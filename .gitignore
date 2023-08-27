@@ -1,2 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
+
+# Project-specific ignores
+TrenchbroomMaps/autosave/
+Build/
+TrenchbroomEntityModels/*
+!TrenchbroomEntityModels/.gdignore
