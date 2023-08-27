@@ -10,6 +10,11 @@ namespace FastDragon
             Input.GetAxis("LeftStickDown", "LeftStickUp")
         );
 
+        public static Vector2 RightStick => new Vector2(
+            Input.GetAxis("RightStickLeft", "RightStickRight"),
+            Input.GetAxis("RightStickDown", "RightStickUp")
+        );
+
         public static bool PauseJustPressed(InputEvent ev)
             => ev.IsActionPressed("Pause");
     }
