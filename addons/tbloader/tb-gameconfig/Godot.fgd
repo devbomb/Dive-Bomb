@@ -14,8 +14,10 @@
 
 @PointClass
 	base(Angle)
-	size(-16 -40 -16, 16 40 16)
-	color(147 112 219)
+	model({
+		"path" : "TrenchbroomEntityModels/Player.obj",
+		"scale" : 0.25
+	})
 	= Player : "Player" []
 
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [

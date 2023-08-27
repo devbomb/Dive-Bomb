@@ -21,7 +21,7 @@ public partial class GenerateTrenchbroomEntityModels : EditorPlugin
     private void Generate()
     {
         string projectFolder = Directory.GetCurrentDirectory();
-        string blendFilesFolder = Path.Combine(projectFolder, "Models");
+        string blendFilesFolder = Path.Combine(projectFolder, "BlenderModels");
         string objFilesFolder = Path.Combine(projectFolder, "TrenchbroomEntityModels");
 
         foreach (var file in new DirectoryInfo(blendFilesFolder).EnumerateFiles())
