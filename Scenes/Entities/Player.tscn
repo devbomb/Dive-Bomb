@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerWalkState.cs" id="2_xn08u"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerStates/PlayerWalkState.cs" id="2_jl88g"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/FollowCamera.cs" id="4_wdgxt"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_h4fto"]
@@ -13,7 +13,7 @@
 script = ExtResource("1_a4opu")
 
 [node name="PlayerWalkState" type="Node" parent="."]
-script = ExtResource("2_xn08u")
+script = ExtResource("2_jl88g")
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
