@@ -19,6 +19,7 @@ unique_name_in_owner = true
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
 transform = Transform3D(1, 0, 0, 0, 0.96752, 0.252796, 0, -0.252796, 0.96752, 0, 3, 6)
 top_level = true
+current = true
 script = ExtResource("4_wdgxt")
 FollowTarget = NodePath("..")
 

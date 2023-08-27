@@ -7,11 +7,15 @@ namespace FastDragon
     {
         public override void _PhysicsProcess(double deltaD)
         {
-            var leftStick = InputService.LeftStick;
+            var leftStick2D = InputService.LeftStick;
+            Vector3 leftStick3D =
+                (Vector3.Right * leftStick2D.X) +
+                (Vector3.Forward * leftStick2D.Y);
+            
+            Vector3 cameraRot = GetViewport().GetCamera3D().Rotation;
+            leftStick3D = leftStick3D.Rotated(Vector3.Up, cameraRot.Y);
 
-            _player.Velocity =
-                (Vector3.Right * leftStick.X) +
-                (Vector3.Forward * leftStick.Y);
+            _player.Velocity = leftStick3D;
             _player.MoveAndSlide();
         }
     }

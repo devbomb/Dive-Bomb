@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class FollowCamera : Node3D
+    public partial class FollowCamera : Camera3D
     {
         [Export] public Node3D FollowTarget;
         [Export] public float FollowDistance = 6;
