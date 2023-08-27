@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://muwxx8ltp1ss"]
+
+[ext_resource type="Script" path="res://Scripts/TBLoaderWrapper.gd" id="1_vtdk5"]
+
+[node name="TestMap" type="Node3D"]
+script = ExtResource("1_vtdk5")
+map_resource = "res://TrenchbroomMaps/TestMap.map"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.958038, 0.253312, -0.13415, 0, 0.468007, 0.883725, 0.286642, -0.846642, 0.448368, 0, 5.02909, 0)
