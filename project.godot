@@ -21,4 +21,4 @@ project/assembly_name="Fast Dragon"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
+enabled=PackedStringArray("res://addons/GenerateTrenchbroomEntityModels/plugin.cfg", "res://addons/tbloader/plugin.cfg")
