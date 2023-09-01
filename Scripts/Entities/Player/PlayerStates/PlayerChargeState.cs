@@ -8,8 +8,7 @@ namespace FastDragon
         [Export] public float ChargeSpeed = 10f;
         [Export] public float TurnSpeedDeg = 90;
 
-        [Export] public float CameraZoomSpeed = 4;
-        [Export] public float CameraRotSpeedDeg = 180;
+        [Export] public float CameraDecayRate = 10;
         [Export] public float CameraPitchDeg = 0;
         [Export] public float CameraDistance = 5;
 
@@ -39,22 +38,25 @@ namespace FastDragon
         {
             var camera = _player.Camera;
 
-            camera.OrbitDistance = Mathf.MoveToward(
+            camera.OrbitDistance = MathUtils.DecayToward(
                 camera.OrbitDistance,
                 CameraDistance,
-                CameraZoomSpeed * delta
+                CameraDecayRate,
+                delta
             );
 
-            camera.OrbitPitchRad = AngleMath.MoveToward(
+            camera.OrbitPitchRad = AngleMath.DecayToward(
                 camera.OrbitPitchRad,
                 Mathf.DegToRad(CameraPitchDeg),
-                Mathf.DegToRad(CameraRotSpeedDeg) * delta
+                CameraDecayRate,
+                delta
             );
 
-            camera.OrbitYawRad = AngleMath.MoveToward(
+            camera.OrbitYawRad = AngleMath.DecayToward(
                 camera.OrbitYawRad,
                 _player.GlobalRotation.Y,
-                Mathf.DegToRad(CameraRotSpeedDeg) * delta
+                CameraDecayRate,
+                delta
             );
         }
     }

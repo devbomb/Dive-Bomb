@@ -12,6 +12,18 @@ namespace FastDragon
             return Mathf.MoveToward(fromRad, closestToRad, deltaRad);
         }
 
+        public static float DecayToward(
+            float fromRad,
+            float toRad,
+            float decayRate,
+            float delta
+        )
+        {
+            float remaining = Mathf.Abs(fromRad - toRad);
+            remaining *= Mathf.Pow(Mathf.E, -decayRate * delta);
+            return MoveToward(toRad, fromRad, remaining);
+        }
+
         public static float Difference(float fromRad, float toRad)
         {
             const float maxAngle = Mathf.Pi * 2;
