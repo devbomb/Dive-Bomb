@@ -5,9 +5,6 @@ namespace FastDragon
 {
     public partial class PlayerWalkState : PlayerState
     {
-        [Export] public float WalkSpeed = 5f;
-        [Export] public float Accel = 20;
-
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
@@ -59,8 +56,8 @@ namespace FastDragon
             // Update the velocity without affecting the vertical speed.
             Vector3 vel = _player.Velocity.Flattened();
             vel = _player.Velocity.MoveToward(
-                leftStick3D * WalkSpeed,
-                Accel * delta
+                leftStick3D * Player.Walk.Speed,
+                Player.Walk.Accel * delta
             );
             vel.Y = _player.Velocity.Y;
 
@@ -85,7 +82,7 @@ namespace FastDragon
 
         private void ApplyGravity(float delta)
         {
-            _player.Velocity += Vector3.Down * _player.DefaultGravity * delta;
+            _player.Velocity += Vector3.Down * Player.Default.Gravity * delta;
         }
     }
 }
