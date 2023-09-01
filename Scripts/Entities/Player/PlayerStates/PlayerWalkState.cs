@@ -5,8 +5,13 @@ namespace FastDragon
 {
     public partial class PlayerWalkState : PlayerState
     {
-        [Export] public float WalkSpeed = 2.5f;
+        [Export] public float WalkSpeed = 5f;
         [Export] public float Accel = 20;
+
+        public override void OnStateEntered()
+        {
+            _player.Camera.ChangeState<OrbitCameraFreeState>();
+        }
 
         public override void _PhysicsProcess(double deltaD)
         {
@@ -15,7 +20,7 @@ namespace FastDragon
             var leftStick2D = InputService.LeftStick;
             leftStick2D = leftStick2D.LimitLength(1);
 
-            Vector3 cameraRot = GetViewport().GetCamera3D().Rotation;
+            Vector3 cameraRot = _player.Camera.Rotation;
             Vector3 leftStick3D =
                 (Vector3.Right * leftStick2D.X) +
                 (Vector3.Forward * leftStick2D.Y);
@@ -38,6 +43,10 @@ namespace FastDragon
                     .Basis
                     .GetEuler();
             }
+
+            // Charge when the button is held
+            if (InputService.ChargeHeld)
+                _player.ChangeState<PlayerChargeState>();
         }
     }
 }

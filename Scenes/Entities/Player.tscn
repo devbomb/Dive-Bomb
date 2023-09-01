@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=9 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerWalkState.cs" id="2_xn08u"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/FollowCamera.cs" id="4_wdgxt"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_h4fto"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerStates/PlayerWalkState.cs" id="2_jl88g"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerStates/PlayerChargeState.cs" id="3_0ejk1"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_15biq"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/CameraStates/OrbitCameraFreeState.cs" id="5_aqmdt"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/CameraStates/OrbitCameraLockedState.cs" id="6_v222x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
 
@@ -13,22 +14,27 @@
 script = ExtResource("1_a4opu")
 
 [node name="PlayerWalkState" type="Node" parent="."]
-script = ExtResource("2_xn08u")
+script = ExtResource("2_jl88g")
+
+[node name="PlayerChargeState" type="Node" parent="."]
+script = ExtResource("3_0ejk1")
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(0.538214, 0, 0, 0, 0.241488, 0, 0, 0, 0.631288, 0, 0.655283, -0.260562)
-mesh = SubResource("BoxMesh_h4fto")
-skeleton = NodePath("../..")
-
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
+[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.96752, 0.252796, 0, -0.252796, 0.96752, 0, 3, 6)
 top_level = true
 current = true
-script = ExtResource("4_wdgxt")
+script = ExtResource("4_15biq")
 FollowTarget = NodePath("..")
+
+[node name="OrbitCameraFreeState" type="Node" parent="Camera"]
+script = ExtResource("5_aqmdt")
+
+[node name="OrbitCameraLockedState" type="Node" parent="Camera"]
+script = ExtResource("6_v222x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

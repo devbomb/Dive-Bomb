@@ -1,0 +1,36 @@
+using Godot;
+
+namespace FastDragon
+{
+    public static class AngleMath
+    {
+        public static float MoveToward(float fromRad, float toRad, float deltaRad)
+        {
+            float shortestDist = Difference(fromRad, toRad);
+            float closestToRad = fromRad + shortestDist;
+
+            return Mathf.MoveToward(fromRad, closestToRad, deltaRad);
+        }
+
+        public static float DecayToward(
+            float fromRad,
+            float toRad,
+            float decayRate,
+            float delta
+        )
+        {
+            float remaining = Mathf.Abs(fromRad - toRad);
+            remaining *= Mathf.Pow(Mathf.E, -decayRate * delta);
+            return MoveToward(toRad, fromRad, remaining);
+        }
+
+        public static float Difference(float fromRad, float toRad)
+        {
+            const float maxAngle = Mathf.Pi * 2;
+            const float halfAngle = Mathf.Pi;
+
+            float diff = ( toRad - fromRad + halfAngle ) % maxAngle - halfAngle;
+            return diff < -halfAngle ? diff + maxAngle : diff;
+        }
+    }
+}
