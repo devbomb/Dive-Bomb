@@ -15,6 +15,8 @@ namespace FastDragon
             Input.GetAxis("RightStickDown", "RightStickUp")
         );
 
+        public static bool ChargeHeld => Input.IsActionPressed("Charge");
+
         public static bool PauseJustPressed(InputEvent ev)
             => ev.IsActionPressed("Pause");
     }
