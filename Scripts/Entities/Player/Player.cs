@@ -16,6 +16,8 @@ namespace FastDragon
         /// </summary>
         public bool PretendColliderDisabled {get; set;}
 
+        public float DefaultGravity = 9.8f;
+
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
 
         private PlayerState _currentState;
