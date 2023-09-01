@@ -5,7 +5,7 @@ namespace FastDragon
 {
     public partial class PlayerChargeState : PlayerState
     {
-        [Export] public float ChargeSpeed = 5f;
+        [Export] public float ChargeSpeed = 10f;
         [Export] public float TurnSpeedDeg = 90;
 
         [Export] public float CameraZoomSpeed = 4;

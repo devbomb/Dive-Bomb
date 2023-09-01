@@ -5,7 +5,7 @@ namespace FastDragon
 {
     public partial class PlayerWalkState : PlayerState
     {
-        [Export] public float WalkSpeed = 2.5f;
+        [Export] public float WalkSpeed = 5f;
         [Export] public float Accel = 20;
 
         public override void OnStateEntered()
