@@ -3,7 +3,7 @@ using System;
 
 namespace FastDragon
 {
-    public partial class PlayerChargeState : PlayerState
+    public partial class PlayerGlideState : PlayerState
     {
         public override void OnStateEntered()
         {
@@ -21,7 +21,7 @@ namespace FastDragon
 
             UpdateCamera(delta);
 
-            if (!InputService.ChargeHeld)
+            if (_player.IsOnFloor())
                 _player.ChangeState<PlayerWalkState>();
         }
 
@@ -29,19 +29,19 @@ namespace FastDragon
         {
             // Rotate with the left stick
             float rotDeg = _player.RotationDegrees.Y;
-            rotDeg -= InputService.LeftStick.X * Player.Charge.TurnSpeedDeg * delta;
+            rotDeg -= InputService.LeftStick.X * Player.Glide.TurnSpeedDeg * delta;
             _player.RotationDegrees = new Vector3(0, rotDeg, 0);
 
             // Update the horizontal velocity, without changing the vertical
             // speed.
-            Vector3 newVel = _player.GlobalForward() * Player.Charge.Speed;
+            Vector3 newVel = _player.GlobalForward() * Player.Glide.Speed;
             newVel.Y = _player.Velocity.Y;
             _player.Velocity = newVel;
         }
 
         private void ApplyGravity(float delta)
         {
-            _player.Velocity += Vector3.Down * Player.Default.Gravity * delta;
+            _player.Velocity += Vector3.Down * Player.Glide.Gravity * delta;
         }
 
         private void UpdateCamera(float delta)
@@ -50,22 +50,22 @@ namespace FastDragon
 
             camera.OrbitDistance = MathUtils.DecayToward(
                 camera.OrbitDistance,
-                Player.Charge.CameraDistance,
-                Player.Charge.CameraDecayRate,
+                Player.Glide.CameraDistance,
+                Player.Glide.CameraDecayRate,
                 delta
             );
 
             camera.OrbitPitchRad = AngleMath.DecayToward(
                 camera.OrbitPitchRad,
-                Mathf.DegToRad(Player.Charge.CameraPitchDeg),
-                Player.Charge.CameraDecayRate,
+                Mathf.DegToRad(Player.Glide.CameraPitchDeg),
+                Player.Glide.CameraDecayRate,
                 delta
             );
 
             camera.OrbitYawRad = AngleMath.DecayToward(
                 camera.OrbitYawRad,
                 _player.GlobalRotation.Y,
-                Player.Charge.CameraDecayRate,
+                Player.Glide.CameraDecayRate,
                 delta
             );
         }

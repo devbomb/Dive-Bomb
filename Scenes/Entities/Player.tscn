@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=10 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerStates/PlayerWalkState.cs" id="2_jl88g"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerStates/PlayerChargeState.cs" id="3_0ejk1"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_15biq"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerStates/PlayerGlideState.cs" id="4_hi33j"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/CameraStates/OrbitCameraFreeState.cs" id="5_aqmdt"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/CameraStates/OrbitCameraLockedState.cs" id="6_v222x"]
 
@@ -18,6 +19,9 @@ script = ExtResource("2_jl88g")
 
 [node name="PlayerChargeState" type="Node" parent="."]
 script = ExtResource("3_0ejk1")
+
+[node name="PlayerGlideState" type="Node" parent="."]
+script = ExtResource("4_hi33j")
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
