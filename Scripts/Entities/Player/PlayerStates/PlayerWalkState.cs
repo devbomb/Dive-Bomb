@@ -15,7 +15,7 @@ namespace FastDragon
             var leftStick2D = InputService.LeftStick;
             leftStick2D = leftStick2D.LimitLength(1);
 
-            Vector3 cameraRot = GetViewport().GetCamera3D().Rotation;
+            Vector3 cameraRot = _player.Camera.Rotation;
             Vector3 leftStick3D =
                 (Vector3.Right * leftStick2D.X) +
                 (Vector3.Forward * leftStick2D.Y);

@@ -17,14 +17,15 @@ script = ExtResource("2_jl88g")
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
 
-[node name="OrbitCamera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
+[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.96752, 0.252796, 0, -0.252796, 0.96752, 0, 3, 6)
 top_level = true
 current = true
 script = ExtResource("4_15biq")
 FollowTarget = NodePath("..")
 
-[node name="OrbitCameraFreeState" type="Node" parent="OrbitCamera"]
+[node name="OrbitCameraFreeState" type="Node" parent="Camera"]
 script = ExtResource("5_aqmdt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -36,6 +36,18 @@ namespace FastDragon
 
         public override void _Process(double deltaD)
         {
+            ApplyAnglesAndDistance();
+        }
+
+        public void ForceRecenter()
+        {
+            OrbitPitchRad = 0;
+            OrbitYawRad = FollowTarget.GlobalRotation.Y;
+            ApplyAnglesAndDistance();
+        }
+
+        private void ApplyAnglesAndDistance()
+        {
             Vector3 dir = Vector3.Back
                 .Rotated(Vector3.Right, OrbitPitchRad)
                 .Rotated(Vector3.Up, OrbitYawRad);

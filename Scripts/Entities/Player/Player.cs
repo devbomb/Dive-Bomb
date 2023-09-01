@@ -16,6 +16,8 @@ namespace FastDragon
         /// </summary>
         public bool PretendColliderDisabled {get; set;}
 
+        public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
+
         private PlayerState _currentState;
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;
@@ -34,6 +36,8 @@ namespace FastDragon
             EmitSignal(SignalName.Respawning);
             Position = _spawnPoint;
             Rotation = _spawnRotation;
+            Camera.ForceRecenter();
+
             ChangeState<PlayerWalkState>();
         }
 
