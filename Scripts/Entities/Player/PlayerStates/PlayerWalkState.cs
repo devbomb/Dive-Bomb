@@ -8,6 +8,11 @@ namespace FastDragon
         [Export] public float WalkSpeed = 2.5f;
         [Export] public float Accel = 20;
 
+        public override void OnStateEntered()
+        {
+            _player.Camera.ChangeState<OrbitCameraFreeState>();
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
@@ -38,6 +43,10 @@ namespace FastDragon
                     .Basis
                     .GetEuler();
             }
+
+            // Charge when the button is held
+            if (InputService.ChargeHeld)
+                _player.ChangeState<PlayerChargeState>();
         }
     }
 }
