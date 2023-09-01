@@ -13,6 +13,13 @@ namespace FastDragon
         public float OrbitYawRad;
         public float OrbitPitchRad;
 
+        /// <summary>
+        /// This height gets added to the camera's final position, AFTER the
+        /// orbit angles are applied and AFTER the camera has been aimed at the
+        /// target.
+        /// </summary>
+        public float CameraHeightOffset = 2;
+
         private OrbitCameraState _currentState;
 
         public override void _Ready()
@@ -55,6 +62,8 @@ namespace FastDragon
             Vector3 offset = dir * OrbitDistance;
             GlobalPosition = FollowTarget.GlobalPosition + offset;
             LookAt(FollowTarget.GlobalPosition);
+
+            GlobalPosition += Vector3.Up * CameraHeightOffset;
         }
 
         private IEnumerable<OrbitCameraState> States()
