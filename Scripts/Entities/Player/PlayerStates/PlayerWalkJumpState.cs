@@ -45,10 +45,9 @@ namespace FastDragon
             }
 
             // Charge when the button is held
-            // TODO: Go to the charge fall state instead
             if (InputService.ChargeHeld)
             {
-                _player.ChangeState<PlayerChargeState>();
+                _player.ChangeState<PlayerChargeFallState>();
                 return;
             }
         }

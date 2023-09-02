@@ -19,8 +19,13 @@ namespace FastDragon
 
         public static class Charge
         {
-            public const float Speed = 10f;
-            public const float TurnSpeedDeg = 90;
+            public const float GroundSpeed = 10f;
+            public const float GroundTurnSpeedDeg = 90;
+
+            public const float AirSpeed = 9f;
+            public const float AirTurnSpeedDeg = 135;
+
+            public const float JumpVSpeed = 8;
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
