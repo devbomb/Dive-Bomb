@@ -32,7 +32,16 @@ namespace FastDragon
             );
 
             if (_player.IsOnFloor())
+            {
                 _player.ChangeState<PlayerWalkState>();
+                return;
+            }
+
+            if (InputService.ChargeHeld)
+            {
+                _player.ChangeState<PlayerChargeFallState>();
+                return;
+            }
         }
     }
 }

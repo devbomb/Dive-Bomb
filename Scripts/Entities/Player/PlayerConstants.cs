@@ -34,7 +34,7 @@ namespace FastDragon
 
         public static class Glide
         {
-            public const float Speed = 10f;
+            public const float Speed = 8;
             public const float TurnSpeedDeg = 90;
             public const float Gravity = 2;
 
