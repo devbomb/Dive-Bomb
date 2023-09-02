@@ -20,6 +20,14 @@
 	})
 	= Player : "Player" []
 
+@PointClass
+	base(Angle)
+	model({
+		"path" : "TrenchbroomEntityModels/Vase.obj",
+		"scale" : 0.25
+	})
+	= Vase : "Vase" []
+
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
 	range(float) : "Range" : 10
 	energy(float) : "Energy" : 1 : "The light's strengh multiplier"
