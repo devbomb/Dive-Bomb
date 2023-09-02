@@ -7,6 +7,12 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraLockedState>();
+
+            // Rob the player of any upward momentum they may have had.
+            // This way, the player can charge while jumping to cut their jump
+            // short.
+            if (_player.Velocity.Y > 0)
+                SetVSpeed(0);
         }
 
         public override void _PhysicsProcess(double deltaD)
