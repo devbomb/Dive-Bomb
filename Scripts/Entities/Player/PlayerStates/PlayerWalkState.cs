@@ -16,7 +16,7 @@ namespace FastDragon
             {
                 if (_player.IsOnFloor())
                 {
-                    // TODO: jump
+                    _player.ChangeState<PlayerWalkJumpState>();
                 }
                 else
                 {

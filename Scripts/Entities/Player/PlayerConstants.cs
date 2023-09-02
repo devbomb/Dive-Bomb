@@ -7,6 +7,8 @@ namespace FastDragon
         public static class Default
         {
             public const float Gravity = 9.8f;
+            public const float JumpRiseGravity = Gravity * 0.5f;
+            public const float JumpVSpeed = 10;
         }
 
         public static class Walk

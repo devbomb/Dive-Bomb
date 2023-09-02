@@ -106,6 +106,13 @@ namespace FastDragon
             _player.Velocity += Vector3.Down * gravity * delta;
         }
 
+        protected void SetVSpeed(float vspeed)
+        {
+            var vel = _player.Velocity;
+            vel.Y = vspeed;
+            _player.Velocity = vel;
+        }
+
         /// <summary>
         /// Gradually moves the camera behind the player, using exponential
         /// decay to smooth things out.
