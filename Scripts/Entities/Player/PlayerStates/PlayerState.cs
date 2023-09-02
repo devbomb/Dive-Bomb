@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 namespace FastDragon
@@ -154,36 +155,41 @@ namespace FastDragon
             Func<GodotObject, MoveAndSlideAction> onCollision
         )
         {
-            Vector3 motion = _player.Velocity * delta;
+            Vector3 prevPos = _player.GlobalPosition;
+            Vector3 prevVel = _player.Velocity;
 
-            while (true)
+            _player.MoveAndSlide();
+
+            int numCollisions = _player.GetSlideCollisionCount();
+            for (int i = 0; i < numCollisions; i++)
             {
-                KinematicCollision3D collision = _player.MoveAndCollide(motion);
-
-                if (collision == null)
-                    return;
-
+                var collision = _player.GetSlideCollision(i);
                 var action = onCollision(collision.GetCollider());
+
                 switch (action)
                 {
-                    case MoveAndSlideAction.ContinueSliding:
-                    {
-                        // Project the motion onto the surface to cause a slide
-                        motion = collision.GetRemainder();
-                        motion = motion.ProjectOnPlane(collision.GetNormal());
-                        break;
-                    }
+                    case MoveAndSlideAction.ContinueSliding: break;
 
                     case MoveAndSlideAction.ContinueThroughObject:
                     {
-                        // Smash right through the object, as if it weren't
-                        // there.
-                        motion = collision.GetRemainder();
-                        break;
+                        var objectToIgnore = (Node)collision.GetCollider();
+
+                        // Rewind and try again, but this time ignore this
+                        // object.
+                        _player.GlobalPosition = prevPos;
+                        _player.Velocity = prevVel;
+
+                        _player.AddCollisionExceptionWith(objectToIgnore);
+                        MoveAndSlideStepByStep(delta, onCollision);
+                        _player.RemoveCollisionExceptionWith(objectToIgnore);
+
+                        return;
                     }
 
                     case MoveAndSlideAction.Stop:
                     {
+                        _player.GlobalPosition = prevPos;
+                        _player.MoveAndCollide(prevVel * delta);
                         return;
                     }
                 }
