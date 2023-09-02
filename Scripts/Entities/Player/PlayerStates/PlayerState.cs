@@ -87,7 +87,7 @@ namespace FastDragon
             // Update the rotation
             if (!_player.Velocity.Flattened().IsZeroApprox())
             {
-               float yAngleRad = Transform3D.Identity
+                float yAngleRad = Transform3D.Identity
                     .LookingAt(_player.Velocity.Flattened(), Vector3.Up)
                     .Basis
                     .GetEuler()
