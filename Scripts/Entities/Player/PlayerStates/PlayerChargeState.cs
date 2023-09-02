@@ -23,7 +23,7 @@ namespace FastDragon
             );
             ApplyGravity(delta);
 
-            MoveAndSlideHandlingChargables(delta);
+            MoveAndSlideStepByStep(delta, OnHitSomething);
 
             ContinuouslyRecenterCamera(
                 Player.Charge.CameraDistance,
@@ -54,30 +54,17 @@ namespace FastDragon
             }
         }
 
-        private void MoveAndSlideHandlingChargables(float delta)
+        private MoveAndSlideAction OnHitSomething(GodotObject hitObject)
         {
-            Vector3 motion = _player.Velocity * delta;
-
-            while (true)
+            if (hitObject is IChargeable c)
             {
-                KinematicCollision3D collision = _player.MoveAndCollide(motion);
-
-                if (collision == null)
-                    return;
-
-                motion = collision.GetRemainder();
-
-                // Keep plowing through if it was a chargeable
-                if (collision.GetCollider() is IChargeable c)
-                {
-                    // TODO: Bonk if bonking is enabled
-                    c.OnCharged();
-                    continue;
-                }
-
-                // Project the motion onto the surface to cause a slide
-                motion = motion.ProjectOnPlane(collision.GetNormal());
+                c.OnCharged();
+                return c.CausesBonk
+                    ? MoveAndSlideAction.Stop
+                    : MoveAndSlideAction.ContinueThroughObject;
             }
+
+            return MoveAndSlideAction.ContinueSliding;
         }
     }
 }

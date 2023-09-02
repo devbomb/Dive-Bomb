@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace FastDragon
@@ -146,6 +147,54 @@ namespace FastDragon
                 decayRate,
                 delta
             );
+        }
+
+        protected void MoveAndSlideStepByStep(
+            float delta,
+            Func<GodotObject, MoveAndSlideAction> onCollision
+        )
+        {
+            Vector3 motion = _player.Velocity * delta;
+
+            while (true)
+            {
+                KinematicCollision3D collision = _player.MoveAndCollide(motion);
+
+                if (collision == null)
+                    return;
+
+                var action = onCollision(collision.GetCollider());
+                switch (action)
+                {
+                    case MoveAndSlideAction.ContinueSliding:
+                    {
+                        // Project the motion onto the surface to cause a slide
+                        motion = collision.GetRemainder();
+                        motion = motion.ProjectOnPlane(collision.GetNormal());
+                        break;
+                    }
+
+                    case MoveAndSlideAction.ContinueThroughObject:
+                    {
+                        // Smash right through the object, as if it weren't
+                        // there.
+                        motion = collision.GetRemainder();
+                        break;
+                    }
+
+                    case MoveAndSlideAction.Stop:
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+        protected delegate MoveAndSlideAction MoveAndSlideCollisionHandler(GodotObject collider);
+        protected enum MoveAndSlideAction
+        {
+            ContinueSliding,
+            ContinueThroughObject,
+            Stop
         }
     }
 }
