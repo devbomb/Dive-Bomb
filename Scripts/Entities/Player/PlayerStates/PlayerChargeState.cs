@@ -14,60 +14,44 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            TurningControls(delta);
+            // TODO: Add a little bit of acceleration when on the ground, but
+            // _instant_ acceleration when doing a charge-jump, to mimic Spyro 1
+            TurningControls(
+                Player.Charge.GroundSpeed,
+                Player.Charge.GroundTurnSpeedDeg,
+                delta
+            );
             ApplyGravity(delta);
 
             _player.MoveAndSlide();
 
-            UpdateCamera(delta);
+            ContinuouslyRecenterCamera(
+                Player.Charge.CameraDistance,
+                Player.Charge.CameraPitchDeg,
+                Player.Charge.CameraDecayRate,
+                delta
+            );
 
             if (!InputService.ChargeHeld)
+            {
                 _player.ChangeState<PlayerWalkState>();
-        }
+                return;
+            }
 
-        private void TurningControls(float delta)
-        {
-            // Rotate with the left stick
-            float rotDeg = _player.RotationDegrees.Y;
-            rotDeg -= InputService.LeftStick.X * Player.Charge.TurnSpeedDeg * delta;
-            _player.RotationDegrees = new Vector3(0, rotDeg, 0);
+            if (!_player.IsOnFloor())
+            {
+                _player.ChangeState<PlayerChargeFallState>();
+                return;
+            }
 
-            // Update the horizontal velocity, without changing the vertical
-            // speed.
-            Vector3 newVel = _player.GlobalForward() * Player.Charge.Speed;
-            newVel.Y = _player.Velocity.Y;
-            _player.Velocity = newVel;
-        }
-
-        private void ApplyGravity(float delta)
-        {
-            _player.Velocity += Vector3.Down * Player.Default.Gravity * delta;
-        }
-
-        private void UpdateCamera(float delta)
-        {
-            var camera = _player.Camera;
-
-            camera.OrbitDistance = MathUtils.DecayToward(
-                camera.OrbitDistance,
-                Player.Charge.CameraDistance,
-                Player.Charge.CameraDecayRate,
-                delta
-            );
-
-            camera.OrbitPitchRad = AngleMath.DecayToward(
-                camera.OrbitPitchRad,
-                Mathf.DegToRad(Player.Charge.CameraPitchDeg),
-                Player.Charge.CameraDecayRate,
-                delta
-            );
-
-            camera.OrbitYawRad = AngleMath.DecayToward(
-                camera.OrbitYawRad,
-                _player.GlobalRotation.Y,
-                Player.Charge.CameraDecayRate,
-                delta
-            );
+            // The player is allowed to "gallop" by holding charge and jump,
+            // so check if jump is held here instead of checking if it's just
+            // pressed.
+            if (InputService.JumpHeld)
+            {
+                _player.ChangeState<PlayerChargeJumpState>();
+                return;
+            }
         }
     }
 }

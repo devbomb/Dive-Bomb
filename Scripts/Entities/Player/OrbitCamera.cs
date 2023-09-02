@@ -27,7 +27,7 @@ namespace FastDragon
             ChangeState<OrbitCameraFreeState>();
         }
 
-        public void ChangeState<TState>() where TState : OrbitCameraState
+        public void ChangeState<TState>() where TState : OrbitCameraState, new()
         {
             _currentState?.OnStateExited();
 
@@ -36,7 +36,13 @@ namespace FastDragon
                 state.ProcessMode = ProcessModeEnum.Disabled;
             }
 
-            _currentState = States().First(s => s is TState);
+            _currentState = States().FirstOrDefault(s => s is TState);
+            if (_currentState == null)
+            {
+                _currentState = new TState();
+                AddChild(_currentState);
+            }
+
             _currentState.ProcessMode = ProcessModeEnum.Inherit;
             _currentState.OnStateEntered();
         }
