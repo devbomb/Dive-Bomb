@@ -40,7 +40,7 @@ namespace FastDragon
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
-            public const float CameraDistance = 5;
+            public const float CameraDistance = 7;
         }
     }
 }
