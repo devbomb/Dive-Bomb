@@ -13,6 +13,14 @@ namespace FastDragon
             _rising = true;
         }
 
+        public override void _Input(InputEvent ev)
+        {
+            if (InputService.JumpJustPressed(ev))
+            {
+                _player.ChangeState<PlayerGlideState>();
+            }
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
