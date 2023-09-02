@@ -23,7 +23,7 @@ namespace FastDragon
             );
             ApplyGravity(delta);
 
-            _player.MoveAndSlide();
+            MoveAndSlideHandlingChargables(delta);
 
             ContinuouslyRecenterCamera(
                 Player.Charge.CameraDistance,
@@ -51,6 +51,32 @@ namespace FastDragon
             {
                 _player.ChangeState<PlayerChargeJumpState>();
                 return;
+            }
+        }
+
+        private void MoveAndSlideHandlingChargables(float delta)
+        {
+            Vector3 motion = _player.Velocity * delta;
+
+            while (true)
+            {
+                KinematicCollision3D collision = _player.MoveAndCollide(motion);
+
+                if (collision == null)
+                    return;
+
+                motion = collision.GetRemainder();
+
+                // Keep plowing through if it was a chargeable
+                if (collision.GetCollider() is IChargeable c)
+                {
+                    // TODO: Bonk if bonking is enabled
+                    c.OnCharged();
+                    continue;
+                }
+
+                // Project the motion onto the surface to cause a slide
+                motion = motion.ProjectOnPlane(collision.GetNormal());
             }
         }
     }
