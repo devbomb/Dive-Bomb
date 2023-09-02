@@ -70,3 +70,8 @@
 "classname" "Player"
 "origin" "0 24 16"
 }
+// entity 2
+{
+"classname" "Vase"
+"origin" "232 -24 24"
+}
