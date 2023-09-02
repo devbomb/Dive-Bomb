@@ -31,5 +31,10 @@ namespace FastDragon
         {
             return v.Cross(other) == Vector3.Zero;
         }
+
+        public static Vector3 ProjectOnPlane(this Vector3 v, Vector3 planeNormal)
+        {
+            return new Plane(planeNormal).Project(v);
+        }
     }
 }
