@@ -216,5 +216,18 @@ namespace FastDragon
             ContinueThroughObject,
             Stop
         }
+
+        protected MoveAndSlideAction OnChargedIntoSomething(GodotObject hitObject)
+        {
+            if (hitObject is IChargeable c)
+            {
+                c.OnCharged();
+                return c.CausesBonk
+                    ? MoveAndSlideAction.Stop
+                    : MoveAndSlideAction.ContinueThroughObject;
+            }
+
+            return MoveAndSlideAction.ContinueSliding;
+        }
     }
 }

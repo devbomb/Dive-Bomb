@@ -29,7 +29,7 @@ namespace FastDragon
             );
             ApplyGravity(delta, Player.Default.JumpRiseGravity);
 
-            _player.MoveAndSlide();
+            MoveAndSlideStepByStep(delta, OnChargedIntoSomething);
 
             ContinuouslyRecenterCamera(
                 Player.Charge.CameraDistance,
