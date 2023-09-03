@@ -64,41 +64,48 @@ namespace FastDragon
         protected void WalkControls(
             float maxSpeed,
             float accel,
+            float rotSpeedRad,
             float delta
         )
         {
             var leftStick2D = InputService.LeftStick;
             leftStick2D = leftStick2D.LimitLength(1);
 
+            if (leftStick2D.IsZeroApprox())
+            {
+                _player.Velocity = _player.Velocity.MoveToward(
+                    Vector3.Zero,
+                    accel * delta
+                );
+
+                return;
+            }
+
+            // Rotate according to the target direction
             Vector3 cameraRot = _player.Camera.Rotation;
-            Vector3 leftStick3D =
+
+            Vector3 targetDir =
                 (Vector3.Right * leftStick2D.X) +
                 (Vector3.Forward * leftStick2D.Y);
-            leftStick3D = leftStick3D.Rotated(Vector3.Up, cameraRot.Y);
 
-            // Update the velocity without affecting the vertical speed.
-            Vector3 vel = _player.Velocity.Flattened();
-            vel = _player.Velocity.MoveToward(
-                leftStick3D * maxSpeed,
-                accel * delta
-            );
-            vel.Y = _player.Velocity.Y;
+            targetDir = targetDir.Rotated(Vector3.Up, cameraRot.Y);
 
-            _player.Velocity = vel;
-
-            // Update the rotation
-            if (!_player.Velocity.Flattened().IsZeroApprox())
-            {
-                float yAngleRad = Transform3D.Identity
-                    .LookingAt(_player.Velocity.Flattened(), Vector3.Up)
+            float targetYawRad = Transform3D.Identity
+                    .LookingAt(targetDir, Vector3.Up)
                     .Basis
                     .GetEuler()
                     .Y;
 
-                var rot = _player.GlobalRotation;
-                rot.Y = yAngleRad;
-                _player.GlobalRotation = rot;
-            }
+            var rot = _player.GlobalRotation;
+            rot.Y = AngleMath.MoveToward(rot.Y, targetYawRad, rotSpeedRad * delta);
+            _player.GlobalRotation = rot;
+
+            // Accelerate according to the magnitude
+            float targetSpeed = leftStick2D.Length() * maxSpeed;
+            float speed = _player.Velocity.Length();
+            speed = Mathf.MoveToward(speed, targetSpeed, accel * delta);
+
+            _player.Velocity = _player.GlobalForward() * speed;
         }
 
         protected void ApplyGravity(
