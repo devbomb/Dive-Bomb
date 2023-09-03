@@ -14,15 +14,7 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                if (_player.IsOnFloor())
-                {
-                    _player.ChangeState<PlayerWalkJumpState>();
-                }
-                else
-                {
-                    // TODO: Move this into one of the non-grounded states
-                    _player.ChangeState<PlayerGlideState>();
-                }
+                _player.ChangeState<PlayerWalkJumpState>();
             }
         }
 
@@ -31,13 +23,20 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             WalkControls(Player.Walk.Speed, Player.Walk.Accel, delta);
-            ApplyGravity(delta);
 
             _player.MoveAndSlide();
 
-            // Charge when the button is held
             if (InputService.ChargeHeld)
+            {
                 _player.ChangeState<PlayerChargeState>();
+                return;
+            }
+
+            if (!_player.IsOnFloor())
+            {
+                _player.ChangeState<PlayerWalkFallState>();
+                return;
+            }
         }
     }
 }
