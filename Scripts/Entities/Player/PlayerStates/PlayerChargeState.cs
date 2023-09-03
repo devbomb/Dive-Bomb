@@ -23,7 +23,7 @@ namespace FastDragon
             );
             ApplyGravity(delta);
 
-            _player.MoveAndSlide();
+            MoveAndSlideStepByStep(delta, OnHitSomething);
 
             ContinuouslyRecenterCamera(
                 Player.Charge.CameraDistance,
@@ -52,6 +52,19 @@ namespace FastDragon
                 _player.ChangeState<PlayerChargeJumpState>();
                 return;
             }
+        }
+
+        private MoveAndSlideAction OnHitSomething(GodotObject hitObject)
+        {
+            if (hitObject is IChargeable c)
+            {
+                c.OnCharged();
+                return c.CausesBonk
+                    ? MoveAndSlideAction.Stop
+                    : MoveAndSlideAction.ContinueThroughObject;
+            }
+
+            return MoveAndSlideAction.ContinueSliding;
         }
     }
 }

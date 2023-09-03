@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Godot;
 
 namespace FastDragon
@@ -146,6 +148,59 @@ namespace FastDragon
                 decayRate,
                 delta
             );
+        }
+
+        protected void MoveAndSlideStepByStep(
+            float delta,
+            Func<GodotObject, MoveAndSlideAction> onCollision
+        )
+        {
+            Vector3 prevPos = _player.GlobalPosition;
+            Vector3 prevVel = _player.Velocity;
+
+            _player.MoveAndSlide();
+
+            int numCollisions = _player.GetSlideCollisionCount();
+            for (int i = 0; i < numCollisions; i++)
+            {
+                var collision = _player.GetSlideCollision(i);
+                var action = onCollision(collision.GetCollider());
+
+                switch (action)
+                {
+                    case MoveAndSlideAction.ContinueSliding: break;
+
+                    case MoveAndSlideAction.ContinueThroughObject:
+                    {
+                        var objectToIgnore = (Node)collision.GetCollider();
+
+                        // Rewind and try again, but this time ignore this
+                        // object.
+                        _player.GlobalPosition = prevPos;
+                        _player.Velocity = prevVel;
+
+                        _player.AddCollisionExceptionWith(objectToIgnore);
+                        MoveAndSlideStepByStep(delta, onCollision);
+                        _player.RemoveCollisionExceptionWith(objectToIgnore);
+
+                        return;
+                    }
+
+                    case MoveAndSlideAction.Stop:
+                    {
+                        _player.GlobalPosition = prevPos;
+                        _player.MoveAndCollide(prevVel * delta);
+                        return;
+                    }
+                }
+            }
+        }
+        protected delegate MoveAndSlideAction MoveAndSlideCollisionHandler(GodotObject collider);
+        protected enum MoveAndSlideAction
+        {
+            ContinueSliding,
+            ContinueThroughObject,
+            Stop
         }
     }
 }
