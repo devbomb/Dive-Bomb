@@ -150,6 +150,20 @@ namespace FastDragon
             );
         }
 
+        /// <summary>
+        /// Just like MoveAndSlide, except it calls onCollision() every time it
+        /// hits something.  The return value of onCollision() determines how
+        /// the motion continues:
+        /// * ContinueSliding will make it act exactly like MoveAndSlide()
+        /// * ContinueThroughObject will make the player go right through this
+        ///     object (and _only_ this object), as if it weren't there.  Use
+        ///     this, for example, when the player charges through a breakable
+        ///     object.
+        /// * Stop will make it act exactly like MoveAndCollide().  No more
+        ///     slides will be processed this frame.
+        /// </summary>
+        /// <param name="delta"></param>
+        /// <param name="onCollision"></param>
         protected void MoveAndSlideStepByStep(
             float delta,
             Func<GodotObject, MoveAndSlideAction> onCollision
