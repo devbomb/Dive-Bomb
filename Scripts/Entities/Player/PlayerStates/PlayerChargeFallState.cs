@@ -12,7 +12,7 @@ namespace FastDragon
             // This way, the player can charge while jumping to cut their jump
             // short.
             if (_player.Velocity.Y > 0)
-                SetVSpeed(0);
+                _player.VSpeed = 0;
         }
 
         public override void _PhysicsProcess(double deltaD)

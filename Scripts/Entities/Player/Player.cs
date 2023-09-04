@@ -18,6 +18,28 @@ namespace FastDragon
 
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
 
+        public float FSpeed
+        {
+            get => Velocity.Flattened().Length();
+            set
+            {
+                Vector3 vel = this.GlobalForward() * value;
+                vel.Y = Velocity.Y;
+                Velocity = vel;
+            }
+        }
+
+        public float VSpeed
+        {
+            get => Velocity.Y;
+            set
+            {
+                Vector3 vel = Velocity;
+                vel.Y = value;
+                Velocity = vel;
+            }
+        }
+
         private PlayerState _currentState;
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;

@@ -9,7 +9,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
-            SetVSpeed(Player.Default.JumpVSpeed);
+            _player.VSpeed = Player.Default.JumpVSpeed;
             _rising = true;
         }
 

@@ -38,9 +38,7 @@ namespace FastDragon
 
             // Update the horizontal velocity, without changing the vertical
             // speed.
-            Vector3 newVel = _player.GlobalForward() * forwardSpeed;
-            newVel.Y = _player.Velocity.Y;
-            _player.Velocity = newVel;
+            _player.FSpeed = forwardSpeed;
         }
 
         /// <summary>
@@ -74,14 +72,11 @@ namespace FastDragon
             if (leftStick2D.IsZeroApprox())
             {
                 // Do not rotate; just move the horizontal velocity to zero.
-                Vector3 vel = _player.Velocity.Flattened();
-                vel = vel.MoveToward(
-                    Vector3.Zero,
+                _player.FSpeed = Mathf.MoveToward(
+                    _player.FSpeed,
+                    0,
                     accel * delta
                 );
-                vel.Y = _player.Velocity.Y;
-
-                _player.Velocity = vel;
 
                 return;
             }
@@ -108,13 +103,11 @@ namespace FastDragon
             // Accelerate according to the magnitude, keeping the vertical
             // speed the same.
             float targetSpeed = leftStick2D.Length() * maxSpeed;
-            float vspeed = _player.Velocity.Y;
-            float hspeed = _player.Velocity.Flattened().Length();
-            hspeed = Mathf.MoveToward(hspeed, targetSpeed, accel * delta);
-
-            Vector3 newVel = _player.GlobalForward() * hspeed;
-            newVel.Y = vspeed;
-            _player.Velocity = newVel;
+            _player.FSpeed = Mathf.MoveToward(
+                _player.FSpeed,
+                targetSpeed,
+                accel * delta
+            );
         }
 
         protected void ApplyGravity(
@@ -122,13 +115,6 @@ namespace FastDragon
             float gravity = Player.Default.Gravity)
         {
             _player.Velocity += Vector3.Down * gravity * delta;
-        }
-
-        protected void SetVSpeed(float vspeed)
-        {
-            var vel = _player.Velocity;
-            vel.Y = vspeed;
-            _player.Velocity = vel;
         }
 
         /// <summary>
