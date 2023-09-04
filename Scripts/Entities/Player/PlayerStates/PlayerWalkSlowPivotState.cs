@@ -1,0 +1,66 @@
+using Godot;
+
+namespace FastDragon
+{
+    public partial class PlayerWalkSlowPivotState : PlayerState
+    {
+        // TODO: move this to PlayerState
+        protected float YawRad
+        {
+            get => _player.GlobalRotation.Y;
+            set
+            {
+                var rot = _player.GlobalRotation;
+                rot.Y = value;
+                _player.GlobalRotation = rot;
+            }
+        }
+
+        private float _timer;
+        private float _startYawRad;
+
+        public override void OnStateEntered()
+        {
+            _timer = 0;
+            _startYawRad = YawRad;
+        }
+
+        public override void _PhysicsProcess(double deltaD)
+        {
+            float delta = (float)deltaD;
+            _timer += delta;
+
+            // Slow down
+            float accel = Player.Walk.Speed / Player.Walk.SlowPivotTime;
+            _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, accel * delta);
+
+            // Rotate in the direction the player is pointing
+            Vector2 leftStick2D = InputService.LeftStick;
+
+            if (!leftStick2D.IsZeroApprox())
+            {
+                Vector3 targetDir =
+                        (Vector3.Right * leftStick2D.X) +
+                        (Vector3.Forward * leftStick2D.Y);
+
+                float targetYawRad = Transform3D.Identity
+                    .LookingAt(targetDir, Vector3.Up)
+                    .Basis
+                    .GetEuler()
+                    .Y;
+
+                float t = _timer / Player.Walk.SlowPivotTime;
+                t = Mathf.Max(t, 1);
+
+                YawRad = Mathf.Lerp(_startYawRad, targetYawRad, t);
+            }
+
+            // Move
+            _player.MoveAndSlide();
+
+            // Go to the walking state when time is up
+            if (_timer >= Player.Walk.SlowPivotTime)
+                _player.ChangeState<PlayerWalkState>();
+        }
+    }
+}
