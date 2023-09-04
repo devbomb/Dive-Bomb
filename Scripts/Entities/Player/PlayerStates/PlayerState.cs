@@ -69,36 +69,27 @@ namespace FastDragon
             var leftStick2D = InputService.LeftStick;
             leftStick2D = leftStick2D.LimitLength(1);
 
-            if (leftStick2D.IsZeroApprox())
-            {
-                // Do not rotate; just move the horizontal velocity to zero.
-                _player.FSpeed = Mathf.MoveToward(
-                    _player.FSpeed,
-                    0,
-                    accel * delta
-                );
-
-                return;
-            }
-
             // Rotate according to the target direction
-            Vector3 cameraRot = _player.Camera.Rotation;
+            if (!leftStick2D.IsZeroApprox())
+            {
+                Vector3 cameraRot = _player.Camera.Rotation;
 
-            Vector3 targetDir =
-                (Vector3.Right * leftStick2D.X) +
-                (Vector3.Forward * leftStick2D.Y);
+                Vector3 targetDir =
+                    (Vector3.Right * leftStick2D.X) +
+                    (Vector3.Forward * leftStick2D.Y);
 
-            targetDir = targetDir.Rotated(Vector3.Up, cameraRot.Y);
+                targetDir = targetDir.Rotated(Vector3.Up, cameraRot.Y);
 
-            float targetYawRad = Transform3D.Identity
-                    .LookingAt(targetDir, Vector3.Up)
-                    .Basis
-                    .GetEuler()
-                    .Y;
+                float targetYawRad = Transform3D.Identity
+                        .LookingAt(targetDir, Vector3.Up)
+                        .Basis
+                        .GetEuler()
+                        .Y;
 
-            var rot = _player.GlobalRotation;
-            rot.Y = AngleMath.MoveToward(rot.Y, targetYawRad, rotSpeedRad * delta);
-            _player.GlobalRotation = rot;
+                var rot = _player.GlobalRotation;
+                rot.Y = AngleMath.MoveToward(rot.Y, targetYawRad, rotSpeedRad * delta);
+                _player.GlobalRotation = rot;
+            }
 
             // Accelerate according to the magnitude, keeping the vertical
             // speed the same.
