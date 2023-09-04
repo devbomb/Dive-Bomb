@@ -39,12 +39,8 @@ namespace FastDragon
 
             if (!leftStick2D.IsZeroApprox())
             {
-                Vector3 targetDir =
-                        (Vector3.Right * leftStick2D.X) +
-                        (Vector3.Forward * leftStick2D.Y);
-
                 float targetYawRad = Transform3D.Identity
-                    .LookingAt(targetDir, Vector3.Up)
+                    .LookingAt(LeftStick3D(), Vector3.Up)
                     .Basis
                     .GetEuler()
                     .Y;
