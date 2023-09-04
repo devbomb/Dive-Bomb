@@ -36,7 +36,7 @@ namespace FastDragon
             t = Mathf.Min(t, 1);
 
             // Accelerate toward the target velocity
-            Vector3 targetVelocity = LeftStick3D() * Player.Walk.Speed;
+            Vector3 targetVelocity = LeftStick3D() * Player.Walk.SlowPivotSpeed;
             _player.Velocity = _startVelocity.Lerp(targetVelocity, t);
 
             // Rotate in the direction the player is pointing
