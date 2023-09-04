@@ -46,7 +46,7 @@ namespace FastDragon
                     .Y;
 
                 float t = _timer / Player.Walk.SlowPivotTime;
-                t = Mathf.Max(t, 1);
+                t = Mathf.Min(t, 1);
 
                 YawRad = Mathf.Lerp(_startYawRad, targetYawRad, t);
             }
