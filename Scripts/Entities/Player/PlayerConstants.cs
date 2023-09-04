@@ -19,7 +19,6 @@ namespace FastDragon
 
             public const float SlowPivotMinAngleDeg = 90;
             public const float SlowPivotTime = 0.5f;
-            public const float SlowPivotSpeed = 2.5f;
         }
 
         public static class Charge

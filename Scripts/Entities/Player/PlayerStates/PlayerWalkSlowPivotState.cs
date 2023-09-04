@@ -18,13 +18,17 @@ namespace FastDragon
 
         private float _timer;
         private float _startYawRad;
-        private Vector3 _startVelocity;
+        private float _endYawRad;
 
         public override void OnStateEntered()
         {
             _timer = 0;
             _startYawRad = YawRad;
-            _startVelocity = _player.Velocity;
+            _endYawRad = Transform3D.Identity
+                .LookingAt(LeftStick3D(), Vector3.Up)
+                .Basis
+                .GetEuler()
+                .Y;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -32,26 +36,15 @@ namespace FastDragon
             float delta = (float)deltaD;
             _timer += delta;
 
+            // Slow down
+            float accel = Player.Walk.Speed / Player.Walk.SlowPivotTime;
+            _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, accel * delta);
+
+            // Rotate
             float t = _timer / Player.Walk.SlowPivotTime;
             t = Mathf.Min(t, 1);
 
-            // Accelerate toward the target velocity
-            Vector3 targetVelocity = LeftStick3D() * Player.Walk.SlowPivotSpeed;
-            _player.Velocity = _startVelocity.Lerp(targetVelocity, t);
-
-            // Rotate in the direction the player is pointing
-            Vector2 leftStick2D = InputService.LeftStick;
-
-            if (!leftStick2D.IsZeroApprox())
-            {
-                float targetYawRad = Transform3D.Identity
-                    .LookingAt(LeftStick3D(), Vector3.Up)
-                    .Basis
-                    .GetEuler()
-                    .Y;
-
-                YawRad = Mathf.Lerp(_startYawRad, targetYawRad, t);
-            }
+            YawRad = Mathf.Lerp(_startYawRad, _endYawRad, t);
 
             // Move
             _player.MoveAndSlide();
