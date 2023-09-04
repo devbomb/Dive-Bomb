@@ -13,6 +13,23 @@ namespace FastDragon
         public virtual void OnStateExited() {}
 
         /// <summary>
+        /// Returns the direction (and magnitude) that the left stick is
+        /// pointing in 3D space, rotated with respect to the camera.
+        /// </summary>
+        /// <returns></returns>
+        protected Vector3 LeftStick3D()
+        {
+            Vector2 leftStick2D = InputService.LeftStick;
+            Vector3 cameraRot = _player.Camera.Rotation;
+
+            Vector3 unrotated =
+                (Vector3.Right * leftStick2D.X) +
+                (Vector3.Forward * leftStick2D.Y);
+
+            return unrotated.Rotated(Vector3.Up, cameraRot.Y);
+        }
+
+        /// <summary>
         /// Propels the player forward, letting them steer using the left
         /// stick's x axis.
         ///
@@ -48,16 +65,8 @@ namespace FastDragon
 
             if (!leftStick2D.IsZeroApprox())
             {
-                Vector3 cameraRot = _player.Camera.Rotation;
-
-                Vector3 targetDir =
-                    (Vector3.Right * leftStick2D.X) +
-                    (Vector3.Forward * leftStick2D.Y);
-
-                targetDir = targetDir.Rotated(Vector3.Up, cameraRot.Y);
-
                 float targetYawRad = Transform3D.Identity
-                        .LookingAt(targetDir, Vector3.Up)
+                        .LookingAt(LeftStick3D(), Vector3.Up)
                         .Basis
                         .GetEuler()
                         .Y;

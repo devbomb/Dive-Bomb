@@ -55,18 +55,6 @@ namespace FastDragon
                 return;
             }
         }
-
-        private Vector3 LeftStick3D()
-        {
-            Vector2 leftStick2D = InputService.LeftStick;
-            Vector3 cameraRot = _player.Camera.Rotation;
-
-            Vector3 unrotated =
-                (Vector3.Right * leftStick2D.X) +
-                (Vector3.Forward * leftStick2D.Y);
-
-            return unrotated.Rotated(Vector3.Up, cameraRot.Y);
-        }
     }
 }
 
