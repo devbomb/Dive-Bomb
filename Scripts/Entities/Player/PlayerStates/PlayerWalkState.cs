@@ -33,6 +33,22 @@ namespace FastDragon
                 return;
             }
 
+            // Initiate a slow pivot if the player tries to turn by too much.
+            // Skilled players can avoid this by jumping and turning in mid-air.
+            // Clunky?  Yes, but that's intentional.  If you wanna be agile, you
+            // need to git gud.
+            var leftStick3D = LeftStick3D();
+            if (!leftStick3D.IsZeroApprox())
+            {
+                float angleRad = leftStick3D.AngleTo(_player.GlobalForward());
+
+                if (angleRad > Mathf.DegToRad(Player.Walk.SlowPivotMinAngleDeg))
+                {
+                    _player.ChangeState<PlayerWalkSlowPivotState>();
+                    return;
+                }
+            }
+
             if (!_player.IsOnFloor())
             {
                 _player.ChangeState<PlayerWalkFallState>();

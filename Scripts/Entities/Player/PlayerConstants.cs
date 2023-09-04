@@ -16,6 +16,9 @@ namespace FastDragon
             public const float Speed = 5f;
             public const float Accel = 20;
             public const float RotSpeedDeg = 360;
+
+            public const float SlowPivotMinAngleDeg = 90;
+            public const float SlowPivotTime = 0.5f;
         }
 
         public static class Charge
