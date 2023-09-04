@@ -5,15 +5,35 @@ namespace FastDragon
 {
     public static class InputService
     {
-        public static Vector2 LeftStick => new Vector2(
-            Input.GetAxis("LeftStickLeft", "LeftStickRight"),
-            Input.GetAxis("LeftStickDown", "LeftStickUp")
+        public const float StickDeadzone = 0.1f;
+
+        public static Vector2 LeftStick => LeftStickRaw.Length() > StickDeadzone
+            ? LeftStickRaw
+            : Vector2.Zero;
+
+        public static Vector2 RightStick => RightStickRaw.Length() > StickDeadzone
+            ? RightStickRaw
+            : Vector2.Zero;
+
+        public static Vector2 LeftStickRaw => new Vector2(
+            GetAxisRaw("LeftStickLeft", "LeftStickRight"),
+            GetAxisRaw("LeftStickDown", "LeftStickUp")
         );
 
-        public static Vector2 RightStick => new Vector2(
-            Input.GetAxis("RightStickLeft", "RightStickRight"),
-            Input.GetAxis("RightStickDown", "RightStickUp")
+        public static Vector2 RightStickRaw => new Vector2(
+            GetAxisRaw("RightStickLeft", "RightStickRight"),
+            GetAxisRaw("RightStickDown", "RightStickUp")
         );
+
+        private static float GetAxisRaw(
+            StringName negativeAction,
+            StringName positiveAction
+        )
+        {
+            float pos = Input.GetActionRawStrength(positiveAction);
+            float neg = Input.GetActionRawStrength(negativeAction);
+            return pos - neg;
+        }
 
         public static bool ChargeHeld => Input.IsActionPressed("Charge");
 
