@@ -22,12 +22,8 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            WalkControls(
-                Player.Walk.Speed,
-                Player.Walk.Accel,
-                Mathf.DegToRad(Player.Walk.RotSpeedDeg),
-                delta
-            );
+            RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
+            AccelerateWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
 
             _player.MoveAndSlide();
 

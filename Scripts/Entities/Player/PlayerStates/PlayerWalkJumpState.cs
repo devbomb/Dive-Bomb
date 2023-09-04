@@ -28,12 +28,9 @@ namespace FastDragon
             if (_player.Velocity.Y <= 0 || !InputService.JumpHeld)
                 _rising = false;
 
-            WalkControls(
-                Player.Walk.Speed,
-                Player.Walk.Accel,
-                Mathf.DegToRad(Player.Walk.RotSpeedDeg),
-                delta
-            );
+            RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
+            AccelerateWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
+
             ApplyGravity(
                 delta,
                 _rising

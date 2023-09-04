@@ -41,35 +41,11 @@ namespace FastDragon
             _player.FSpeed = forwardSpeed;
         }
 
-        /// <summary>
-        /// Accelerates the player in the direction the left stick is pointing,
-        /// up to the given max speed.
-        ///
-        /// Only the player's x and z velocities are affected; the y velocity
-        /// is left untouched.
-        ///
-        /// The left stick input is rotated relative to the camera.
-        ///
-        /// The player's Y-rotation will be updated to match their new x and z
-        /// velocities.
-        ///
-        /// Use this for states where the player has more precise control over
-        /// their character, such as when walking, or strafing in mid-air.
-        /// </summary>
-        /// <param name="maxSpeed"></param>
-        /// <param name="accel"></param>
-        /// <param name="delta"></param>
-        protected void WalkControls(
-            float maxSpeed,
-            float accel,
-            float rotSpeedRad,
-            float delta
-        )
+        protected void RotateTowardLeftStick(float rotSpeedRad, float delta)
         {
             var leftStick2D = InputService.LeftStick;
             leftStick2D = leftStick2D.LimitLength(1);
 
-            // Rotate according to the target direction
             if (!leftStick2D.IsZeroApprox())
             {
                 Vector3 cameraRot = _player.Camera.Rotation;
@@ -90,10 +66,18 @@ namespace FastDragon
                 rot.Y = AngleMath.MoveToward(rot.Y, targetYawRad, rotSpeedRad * delta);
                 _player.GlobalRotation = rot;
             }
+        }
 
-            // Accelerate according to the magnitude, keeping the vertical
-            // speed the same.
+        protected void AccelerateWithLeftStick(
+            float maxSpeed,
+            float accel,
+            float delta
+        )
+        {
+            var leftStick2D = InputService.LeftStick;
+            leftStick2D = leftStick2D.LimitLength(1);
             float targetSpeed = leftStick2D.Length() * maxSpeed;
+
             _player.FSpeed = Mathf.MoveToward(
                 _player.FSpeed,
                 targetSpeed,
