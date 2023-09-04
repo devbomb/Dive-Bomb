@@ -18,11 +18,13 @@ namespace FastDragon
 
         private float _timer;
         private float _startYawRad;
+        private Vector3 _startVelocity;
 
         public override void OnStateEntered()
         {
             _timer = 0;
             _startYawRad = YawRad;
+            _startVelocity = _player.Velocity;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -30,9 +32,12 @@ namespace FastDragon
             float delta = (float)deltaD;
             _timer += delta;
 
-            // Slow down
-            float accel = Player.Walk.Speed / Player.Walk.SlowPivotTime;
-            _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, accel * delta);
+            float t = _timer / Player.Walk.SlowPivotTime;
+            t = Mathf.Min(t, 1);
+
+            // Accelerate toward the target velocity
+            Vector3 targetVelocity = LeftStick3D() * Player.Walk.Speed;
+            _player.Velocity = _startVelocity.Lerp(targetVelocity, t);
 
             // Rotate in the direction the player is pointing
             Vector2 leftStick2D = InputService.LeftStick;
@@ -44,9 +49,6 @@ namespace FastDragon
                     .Basis
                     .GetEuler()
                     .Y;
-
-                float t = _timer / Player.Walk.SlowPivotTime;
-                t = Mathf.Min(t, 1);
 
                 YawRad = Mathf.Lerp(_startYawRad, targetYawRad, t);
             }
