@@ -15,6 +15,7 @@ namespace FastDragon
         {
             public const float Speed = 5f;
             public const float Accel = 20;
+            public const float RotSpeedDeg = 360;
         }
 
         public static class Charge

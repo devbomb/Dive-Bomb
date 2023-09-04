@@ -8,7 +8,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraLockedState>();
-            SetVSpeed(0);
+            _player.VSpeed = 0;
         }
 
         public override void _PhysicsProcess(double deltaD)

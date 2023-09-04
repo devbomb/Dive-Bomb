@@ -38,30 +38,37 @@ namespace FastDragon
 
             // Update the horizontal velocity, without changing the vertical
             // speed.
-            Vector3 newVel = _player.GlobalForward() * forwardSpeed;
-            newVel.Y = _player.Velocity.Y;
-            _player.Velocity = newVel;
+            _player.FSpeed = forwardSpeed;
         }
 
-        /// <summary>
-        /// Accelerates the player in the direction the left stick is pointing,
-        /// up to the given max speed.
-        ///
-        /// Only the player's x and z velocities are affected; the y velocity
-        /// is left untouched.
-        ///
-        /// The left stick input is rotated relative to the camera.
-        ///
-        /// The player's Y-rotation will be updated to match their new x and z
-        /// velocities.
-        ///
-        /// Use this for states where the player has more precise control over
-        /// their character, such as when walking, or strafing in mid-air.
-        /// </summary>
-        /// <param name="maxSpeed"></param>
-        /// <param name="accel"></param>
-        /// <param name="delta"></param>
-        protected void WalkControls(
+        protected void RotateTowardLeftStick(float rotSpeedRad, float delta)
+        {
+            var leftStick2D = InputService.LeftStick;
+            leftStick2D = leftStick2D.LimitLength(1);
+
+            if (!leftStick2D.IsZeroApprox())
+            {
+                Vector3 cameraRot = _player.Camera.Rotation;
+
+                Vector3 targetDir =
+                    (Vector3.Right * leftStick2D.X) +
+                    (Vector3.Forward * leftStick2D.Y);
+
+                targetDir = targetDir.Rotated(Vector3.Up, cameraRot.Y);
+
+                float targetYawRad = Transform3D.Identity
+                        .LookingAt(targetDir, Vector3.Up)
+                        .Basis
+                        .GetEuler()
+                        .Y;
+
+                var rot = _player.GlobalRotation;
+                rot.Y = AngleMath.MoveToward(rot.Y, targetYawRad, rotSpeedRad * delta);
+                _player.GlobalRotation = rot;
+            }
+        }
+
+        protected void AccelerateWithLeftStick(
             float maxSpeed,
             float accel,
             float delta
@@ -69,36 +76,13 @@ namespace FastDragon
         {
             var leftStick2D = InputService.LeftStick;
             leftStick2D = leftStick2D.LimitLength(1);
+            float targetSpeed = leftStick2D.Length() * maxSpeed;
 
-            Vector3 cameraRot = _player.Camera.Rotation;
-            Vector3 leftStick3D =
-                (Vector3.Right * leftStick2D.X) +
-                (Vector3.Forward * leftStick2D.Y);
-            leftStick3D = leftStick3D.Rotated(Vector3.Up, cameraRot.Y);
-
-            // Update the velocity without affecting the vertical speed.
-            Vector3 vel = _player.Velocity.Flattened();
-            vel = _player.Velocity.MoveToward(
-                leftStick3D * maxSpeed,
+            _player.FSpeed = Mathf.MoveToward(
+                _player.FSpeed,
+                targetSpeed,
                 accel * delta
             );
-            vel.Y = _player.Velocity.Y;
-
-            _player.Velocity = vel;
-
-            // Update the rotation
-            if (!_player.Velocity.Flattened().IsZeroApprox())
-            {
-                float yAngleRad = Transform3D.Identity
-                    .LookingAt(_player.Velocity.Flattened(), Vector3.Up)
-                    .Basis
-                    .GetEuler()
-                    .Y;
-
-                var rot = _player.GlobalRotation;
-                rot.Y = yAngleRad;
-                _player.GlobalRotation = rot;
-            }
         }
 
         protected void ApplyGravity(
@@ -106,13 +90,6 @@ namespace FastDragon
             float gravity = Player.Default.Gravity)
         {
             _player.Velocity += Vector3.Down * gravity * delta;
-        }
-
-        protected void SetVSpeed(float vspeed)
-        {
-            var vel = _player.Velocity;
-            vel.Y = vspeed;
-            _player.Velocity = vel;
         }
 
         /// <summary>
@@ -150,6 +127,20 @@ namespace FastDragon
             );
         }
 
+        /// <summary>
+        /// Just like MoveAndSlide, except it calls onCollision() every time it
+        /// hits something.  The return value of onCollision() determines how
+        /// the motion continues:
+        /// * ContinueSliding will make it act exactly like MoveAndSlide()
+        /// * ContinueThroughObject will make the player go right through this
+        ///     object (and _only_ this object), as if it weren't there.  Use
+        ///     this, for example, when the player charges through a breakable
+        ///     object.
+        /// * Stop will make it act exactly like MoveAndCollide().  No more
+        ///     slides will be processed this frame.
+        /// </summary>
+        /// <param name="delta"></param>
+        /// <param name="onCollision"></param>
         protected void MoveAndSlideStepByStep(
             float delta,
             Func<GodotObject, MoveAndSlideAction> onCollision
@@ -201,6 +192,19 @@ namespace FastDragon
             ContinueSliding,
             ContinueThroughObject,
             Stop
+        }
+
+        protected MoveAndSlideAction OnChargedIntoSomething(GodotObject hitObject)
+        {
+            if (hitObject is IChargeable c)
+            {
+                c.OnCharged();
+                return c.CausesBonk
+                    ? MoveAndSlideAction.Stop
+                    : MoveAndSlideAction.ContinueThroughObject;
+            }
+
+            return MoveAndSlideAction.ContinueSliding;
         }
     }
 }

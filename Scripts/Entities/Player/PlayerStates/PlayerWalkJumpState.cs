@@ -9,7 +9,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
-            SetVSpeed(Player.Default.JumpVSpeed);
+            _player.VSpeed = Player.Default.JumpVSpeed;
             _rising = true;
         }
 
@@ -28,7 +28,9 @@ namespace FastDragon
             if (_player.Velocity.Y <= 0 || !InputService.JumpHeld)
                 _rising = false;
 
-            WalkControls(Player.Walk.Speed, Player.Walk.Accel, delta);
+            RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
+            AccelerateWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
+
             ApplyGravity(
                 delta,
                 _rising
