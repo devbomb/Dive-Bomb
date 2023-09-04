@@ -38,7 +38,7 @@ namespace FastDragon
             // Clunky?  Yes, but that's intentional.  If you wanna be agile, you
             // need to git gud.
             var leftStick3D = LeftStick3D();
-            if (leftStick3D.IsZeroApprox())
+            if (!leftStick3D.IsZeroApprox())
             {
                 float angleRad = leftStick3D.AngleTo(_player.GlobalForward());
 
