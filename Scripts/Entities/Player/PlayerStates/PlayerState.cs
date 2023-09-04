@@ -73,10 +73,15 @@ namespace FastDragon
 
             if (leftStick2D.IsZeroApprox())
             {
-                _player.Velocity = _player.Velocity.MoveToward(
+                // Do not rotate; just move the horizontal velocity to zero.
+                Vector3 vel = _player.Velocity.Flattened();
+                vel = vel.MoveToward(
                     Vector3.Zero,
                     accel * delta
                 );
+                vel.Y = _player.Velocity.Y;
+
+                _player.Velocity = vel;
 
                 return;
             }
@@ -100,12 +105,16 @@ namespace FastDragon
             rot.Y = AngleMath.MoveToward(rot.Y, targetYawRad, rotSpeedRad * delta);
             _player.GlobalRotation = rot;
 
-            // Accelerate according to the magnitude
+            // Accelerate according to the magnitude, keeping the vertical
+            // speed the same.
             float targetSpeed = leftStick2D.Length() * maxSpeed;
-            float speed = _player.Velocity.Length();
-            speed = Mathf.MoveToward(speed, targetSpeed, accel * delta);
+            float vspeed = _player.Velocity.Y;
+            float hspeed = _player.Velocity.Flattened().Length();
+            hspeed = Mathf.MoveToward(hspeed, targetSpeed, accel * delta);
 
-            _player.Velocity = _player.GlobalForward() * speed;
+            Vector3 newVel = _player.GlobalForward() * hspeed;
+            newVel.Y = vspeed;
+            _player.Velocity = newVel;
         }
 
         protected void ApplyGravity(
