@@ -17,6 +17,7 @@ namespace FastDragon
         public bool PretendColliderDisabled {get; set;}
 
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
+        public Node3D Model => GetNode<Node3D>("%Model");
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
 
         public float FSpeed

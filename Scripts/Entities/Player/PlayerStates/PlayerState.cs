@@ -7,7 +7,6 @@ namespace FastDragon
     public partial class PlayerState : Node
     {
         protected Player _player => GetParent<Player>();
-        protected Node3D _model => GetNode<Node3D>("%Model");
 
         public virtual void OnStateEntered() {}
         public virtual void OnStateExited() {}
@@ -134,6 +133,18 @@ namespace FastDragon
                 decayRate,
                 delta
             );
+        }
+
+        protected void AngleModelPitchWithVelocity()
+        {
+            _player.Model.GlobalRotation = _player.Velocity.Normalized().ForwardToEulerAnglesRad();
+        }
+
+        protected void ResetModelPitch()
+        {
+            var rot = _player.Model.Rotation;
+            rot.X = 0;
+            _player.Model.Rotation = rot;
         }
 
         /// <summary>

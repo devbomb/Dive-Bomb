@@ -16,6 +16,16 @@ namespace FastDragon
                 _player.VSpeed = 0;
         }
 
+        public override void OnStateExited()
+        {
+            ResetModelPitch();
+        }
+
+        public override void _Process(double deltaD)
+        {
+            AngleModelPitchWithVelocity();
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
