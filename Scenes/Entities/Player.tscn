@@ -509,7 +509,7 @@ tracks/10/enabled = true
 tracks/10/path = NodePath("Model/Armature/Skeleton3D:Neck")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 0.713607, 1.70647e-05, 0.00816037, 0.700499)
+tracks/10/keys = PackedFloat32Array(0, 1, -0.061, 0, 0.008, 0.7)
 tracks/11/type = "rotation_3d"
 tracks/11/imported = false
 tracks/11/enabled = true
@@ -668,7 +668,8 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_a4opu")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rcfxu")
 }
