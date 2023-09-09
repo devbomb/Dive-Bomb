@@ -135,6 +135,15 @@ namespace FastDragon
             );
         }
 
+        protected void AngleModelPitchWithGroundSlope()
+        {
+            Vector3 forwardOnFloor = _player
+                .GlobalForward()
+                .ProjectOnPlane(_player.GetFloorNormal());
+
+            _player.Model.GlobalRotation = forwardOnFloor.ForwardToEulerAnglesRad();
+        }
+
         protected void AngleModelPitchWithVelocity()
         {
             _player.Model.GlobalRotation = _player.Velocity.Normalized().ForwardToEulerAnglesRad();

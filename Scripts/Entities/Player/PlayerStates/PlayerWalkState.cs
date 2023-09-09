@@ -11,6 +11,16 @@ namespace FastDragon
             _player.Animator.Play("Idle");
         }
 
+        public override void OnStateExited()
+        {
+            ResetModelPitch();
+        }
+
+        public override void _Process(double deltaD)
+        {
+            AngleModelPitchWithGroundSlope();
+        }
+
         public override void _Input(InputEvent ev)
         {
             if (InputService.JumpJustPressed(ev))

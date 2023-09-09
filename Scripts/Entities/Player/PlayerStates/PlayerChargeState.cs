@@ -11,6 +11,16 @@ namespace FastDragon
             _player.Animator.Play("Charge");
         }
 
+        public override void OnStateExited()
+        {
+            ResetModelPitch();
+        }
+
+        public override void _Process(double deltaD)
+        {
+            AngleModelPitchWithGroundSlope();
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
