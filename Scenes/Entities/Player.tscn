@@ -226,7 +226,7 @@ tracks/30/enabled = true
 tracks/30/path = NodePath("Model/Armature/Skeleton3D:Root")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
-tracks/30/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/30/keys = PackedFloat32Array(0, 1, -1.0773e-15, 0.000151085, 0.346261)
 
 [sub_resource type="Animation" id="Animation_o52yu"]
 resource_name = "Idle"
@@ -925,6 +925,7 @@ unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
 transform = Transform3D(1, 1.90727e-11, -5.2108e-15, -1.90727e-11, 1, -0.000436332, -5.2108e-15, 0.000436332, 1, 0, 0, 0)
+bones/0/scale = Vector3(1, 1, 1)
 bones/1/position = Vector3(-8.9405e-19, 0.339123, -2.91038e-11)
 bones/1/rotation = Quaternion(-0.575566, 0.00169494, -0.00767496, 0.817718)
 bones/1/scale = Vector3(1, 1, 1)
