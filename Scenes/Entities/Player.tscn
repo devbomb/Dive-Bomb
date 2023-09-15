@@ -915,6 +915,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rcfxu")
 }
+blend_times = [&"Charge", &"Idle", 0.1, &"Jump", &"Charge", 0.1, &"Jump", &"Idle", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Jump", 0.1]
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
