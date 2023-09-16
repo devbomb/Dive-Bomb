@@ -49,9 +49,18 @@ namespace FastDragon
             // Move
             _player.MoveAndSlide();
 
+            if (!_player.IsOnFloor())
+            {
+                _player.ChangeState<PlayerFlopState>();
+                return;
+            }
+
             // Go to the walking state when time is up
             if (_timer >= Player.Walk.SlowPivotTime)
+            {
                 _player.ChangeState<PlayerWalkState>();
+                return;
+            }
         }
     }
 }
