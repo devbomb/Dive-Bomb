@@ -40,7 +40,7 @@ namespace FastDragon
         {
             public const float Duration = 0.5f;
             public const float Distance = 1;
-            public const float AngleDeg = 10;
+            public const float AngleDeg = 20;
         }
 
         public static class Glide
