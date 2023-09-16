@@ -43,6 +43,12 @@ namespace FastDragon
                 delta
             );
 
+            if (IsTouchingWallAtBonkAngle())
+            {
+                _player.ChangeState<PlayerBonkState>();
+                return;
+            }
+
             if (!InputService.ChargeHeld)
             {
                 _player.ChangeState<PlayerWalkState>();

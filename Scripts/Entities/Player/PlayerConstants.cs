@@ -36,6 +36,13 @@ namespace FastDragon
             public const float CameraDistance = 5;
         }
 
+        public static class Bonk
+        {
+            public const float Duration = 0.5f;
+            public const float Distance = 1;
+            public const float AngleDeg = 20;
+        }
+
         public static class Glide
         {
             public const float Speed = 8;

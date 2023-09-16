@@ -46,6 +46,12 @@ namespace FastDragon
                 delta
             );
 
+            if (IsTouchingWallAtBonkAngle())
+            {
+                _player.ChangeState<PlayerBonkState>();
+                return;
+            }
+
             if (_player.IsOnFloor())
             {
                 _player.ChangeState<PlayerChargeState>();

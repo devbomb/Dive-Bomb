@@ -235,5 +235,46 @@ namespace FastDragon
 
             return MoveAndSlideAction.ContinueSliding;
         }
+
+        protected bool IsTouchingWallAtBonkAngle()
+        {
+            if (!_player.IsOnWall())
+                return false;
+
+            var fwd = _player.GlobalForward();
+            float wallAngleRad = GetCombinedWallNormals().Flattened().AngleTo(-fwd);
+            float wallAngleDeg = Mathf.RadToDeg(wallAngleRad);
+
+            return wallAngleDeg < Player.Bonk.AngleDeg;
+
+            Vector3 GetCombinedWallNormals()
+            {
+                // If the player is charging straight into a corner,
+                // GetWallNormal() will only return one of the wall's normals,
+                // which will make it look like the player is grazing one wall
+                // (when in reality, they're hitting two walls head-on).
+                //
+                // The solution: take the average normal of all walls we're
+                // touching.
+                var total = Vector3.Zero;
+
+                int collisions = _player.GetSlideCollisionCount();
+                for (int i = 0; i < collisions; i++)
+                {
+                    var collision = _player.GetSlideCollision(i);
+                    var normal = collision.GetNormal();
+
+                    float angleFromGroundRad = normal.AngleTo(Vector3.Up);
+                    bool isWall = angleFromGroundRad > Mathf.DegToRad(_player.FloorMaxAngle);
+
+                    if (isWall)
+                    {
+                        total += normal;
+                    }
+                }
+
+                return total.Normalized();
+            }
+        }
     }
 }
