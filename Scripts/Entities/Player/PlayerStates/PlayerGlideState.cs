@@ -8,6 +8,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraLockedState>();
+            _player.Animator.Play("Glide");
             _player.VSpeed = 0;
         }
 
