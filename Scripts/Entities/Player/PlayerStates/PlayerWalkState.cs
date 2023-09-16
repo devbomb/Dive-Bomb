@@ -8,6 +8,17 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
+            _player.Animator.Play("Idle");
+        }
+
+        public override void OnStateExited()
+        {
+            ResetModelPitch();
+        }
+
+        public override void _Process(double deltaD)
+        {
+            AngleModelPitchWithGroundSlope();
         }
 
         public override void _Input(InputEvent ev)

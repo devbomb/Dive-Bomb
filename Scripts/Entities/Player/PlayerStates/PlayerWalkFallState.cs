@@ -4,6 +4,11 @@ namespace FastDragon
 {
     public partial class PlayerWalkFallState : PlayerState
     {
+        public override void OnStateEntered()
+        {
+            _player.Animator.Play("Flop");
+        }
+
         public override void _Input(InputEvent ev)
         {
             if (InputService.JumpJustPressed(ev))
