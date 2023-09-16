@@ -1101,6 +1101,13 @@ tracks/29/path = NodePath("Model/Armature/Skeleton3D:UpperWing_L")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = PackedFloat32Array(0, 1, 0.258819, -2.43162e-08, 2.4398e-08, 0.965926)
+tracks/30/type = "position_3d"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = PackedFloat32Array(0, 1, -1.05879e-22, 7.27596e-12, 0.22587)
 
 [sub_resource type="Animation" id="Animation_gsi0i"]
 resource_name = "Glide"
@@ -1315,6 +1322,13 @@ tracks/29/path = NodePath("Model/Armature/Skeleton3D:UpperWing_L")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = PackedFloat32Array(0, 1, 6.0536e-09, -1.11759e-08, 1.58325e-08, 1)
+tracks/30/type = "position_3d"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rcfxu"]
 _data = {
