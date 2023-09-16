@@ -235,5 +235,14 @@ namespace FastDragon
 
             return MoveAndSlideAction.ContinueSliding;
         }
+
+        protected bool IsTouchingWallAtBonkAngle()
+        {
+            var fwd = _player.GlobalForward();
+            float wallAngleRad = _player.GetWallNormal().AngleTo(-fwd);
+            float wallAngleDeg = Mathf.RadToDeg(wallAngleRad);
+
+            return _player.IsOnWall() && wallAngleDeg < Player.Bonk.AngleDeg;
+        }
     }
 }
