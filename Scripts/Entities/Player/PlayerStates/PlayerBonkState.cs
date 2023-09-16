@@ -27,14 +27,17 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            _player.Velocity = _player.Velocity.MoveToward(
-                Vector3.Zero,
-                BonkFriction * delta
-            );
+            // Slow down horizontally, but not vertically
+            Vector3 newVel = _player.Velocity.Flattened();
+            newVel = newVel.MoveToward(Vector3.Zero, BonkFriction * delta);
+            newVel.Y = _player.Velocity.Y;
+            _player.Velocity = newVel;
+
+            ApplyGravity(delta, Player.Default.Gravity);
 
             _player.MoveAndSlide();
 
-            if (_player.Velocity == Vector3.Zero)
+            if (_player.Velocity.Flattened() == Vector3.Zero)
             {
                 _player.ChangeState<PlayerWalkState>();
                 return;
