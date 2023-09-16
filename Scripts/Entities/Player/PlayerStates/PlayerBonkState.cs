@@ -19,7 +19,7 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            // TODO: play the animation
+            _player.Animator.Play("Bonk");
             _player.Velocity = _player.GlobalForward() * -BonkSpeed;
         }
 
