@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerWalkFallState : PlayerState
+    public partial class PlayerFlopState : PlayerState
     {
         public override void OnStateEntered()
         {
