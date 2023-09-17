@@ -21,6 +21,7 @@ namespace FastDragon
         {
             _initialPos = Position;
             _initialState = CurrentState;
+            Reset();
 
             SignalBus.Instance.LevelReset += Reset;
         }
@@ -31,6 +32,8 @@ namespace FastDragon
             CurrentState = SaveFile.Current.CollectedGems.Contains(GetPath())
                 ? State.Collected
                 : _initialState;
+
+            Velocity = Vector3.Zero;
         }
 
         public override void _Process(double delta)

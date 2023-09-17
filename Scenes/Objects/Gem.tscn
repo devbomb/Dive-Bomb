@@ -6,6 +6,7 @@
 radius = 0.25
 
 [node name="Gem" type="CharacterBody3D"]
+collision_layer = 0
 script = ExtResource("1_ajgr5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
