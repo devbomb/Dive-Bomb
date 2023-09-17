@@ -5,8 +5,12 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_amq82"]
 radius = 0.25
 
-[node name="Gem" type="Node3D"]
+[node name="Gem" type="CharacterBody3D"]
 script = ExtResource("1_ajgr5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("SphereShape3D_amq82")
 
 [node name="CollectionArea" type="Area3D" parent="."]
 

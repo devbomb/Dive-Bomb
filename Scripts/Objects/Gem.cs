@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Gem : Node3D
+    public partial class Gem : CharacterBody3D
     {
         [Export] public GemColor Value;
 
@@ -36,6 +36,18 @@ namespace FastDragon
         public override void _Process(double delta)
         {
             Visible = CurrentState == State.Revealed;
+        }
+
+        public override void _PhysicsProcess(double deltaD)
+        {
+            float delta = (float)deltaD;
+
+            if (!IsOnFloor())
+                Velocity += Vector3.Down * 9.8f * delta;
+            else
+                Velocity = Vector3.Zero;
+
+            MoveAndCollide(Velocity * delta);
         }
 
         public void OnCollectionAreaBodyEntered(Node3D body)
