@@ -27,7 +27,15 @@
 		"path" : "TrenchbroomEntityModels/Vase.obj",
 		"scale" : 0.25
 	})
-	= Vase : "Vase" []
+	= Vase : "Vase" [
+		GemColor(choices): "GemColor" : 1 = [
+			1: "Red"
+			2: "Green"
+			5: "Purple"
+			10: "Yellow"
+			25: "Magenta"
+		]
+	]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
 	range(float) : "Range" : 10
