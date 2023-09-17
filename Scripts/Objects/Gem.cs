@@ -7,6 +7,19 @@ namespace FastDragon
         [Export] public GemColor Value;
         public bool Collected {get; private set;} = false;
 
+        private Vector3 _initialPos;
+
+        public override void _Ready()
+        {
+            _initialPos = Position;
+
+            SignalBus.Instance.LevelReset += () =>
+            {
+                Position = _initialPos;
+                Collected = SaveFile.Current.CollectedGems.Contains(GetPath());
+            };
+        }
+
         public override void _Process(double delta)
         {
             Visible = !Collected;
