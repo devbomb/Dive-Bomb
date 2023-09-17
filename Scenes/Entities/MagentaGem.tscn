@@ -4,5 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://c7u1ewvsbant7" path="res://BlenderModels/MagentaGem.blend" id="2_v1gaq"]
 
 [node name="MagentaGem" instance=ExtResource("1_pypxa")]
+Value = 25
 
 [node name="MagentaGem" parent="." index="1" instance=ExtResource("2_v1gaq")]

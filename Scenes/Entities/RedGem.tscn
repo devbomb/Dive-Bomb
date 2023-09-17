@@ -4,5 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://caj1kvvqt3xrv" path="res://BlenderModels/RedGem.blend" id="2_al3fs"]
 
 [node name="RedGem" instance=ExtResource("1_und47")]
+Value = 1
 
 [node name="RedGem" parent="ModelPoint" index="0" instance=ExtResource("2_al3fs")]

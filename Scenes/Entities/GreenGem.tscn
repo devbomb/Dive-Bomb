@@ -4,5 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bisy7ffvbcyyj" path="res://BlenderModels/GreenGem.blend" id="2_sivux"]
 
 [node name="GreenGem" instance=ExtResource("1_ox6av")]
+Value = 2
 
 [node name="GreenGem" parent="ModelPoint" index="0" instance=ExtResource("2_sivux")]

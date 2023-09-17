@@ -4,5 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cke3knfgvssx" path="res://BlenderModels/YellowGem.blend" id="2_bvwib"]
 
 [node name="YellowGem" instance=ExtResource("1_5tw4j")]
+Value = 10
 
 [node name="YellowGem" parent="ModelPoint" index="0" instance=ExtResource("2_bvwib")]
