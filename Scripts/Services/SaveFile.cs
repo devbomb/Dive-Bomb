@@ -14,5 +14,10 @@ namespace FastDragon
         {
             Current = new SaveFile();
         }
+
+        public bool IsGemCollected(string nodePath)
+        {
+            return CollectedGems.Contains(nodePath);
+        }
     }
 }

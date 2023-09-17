@@ -41,13 +41,22 @@ namespace FastDragon
         public void OnCollectionAreaBodyEntered(Node3D body)
         {
             if (body is Player && CurrentState == State.Revealed)
-            {
-                SaveFile.Current.TotalGemCount += (int)Value;
-                SaveFile.Current.CollectedGems.Add(GetPath());
-                CurrentState = State.Collected;
+                Collect();
+        }
 
-                GD.Print($"Collected gem {GetPath()}");
-            }
+        public void Reveal()
+        {
+            CurrentState = State.Revealed;
+            GD.Print($"Revealed gem {GetPath()}");
+        }
+
+        public void Collect()
+        {
+            SaveFile.Current.TotalGemCount += (int)Value;
+            SaveFile.Current.CollectedGems.Add(GetPath());
+            CurrentState = State.Collected;
+
+            GD.Print($"{SaveFile.Current.TotalGemCount}: Collected gem {GetPath()}");
         }
     }
 }
