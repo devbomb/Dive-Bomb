@@ -72,6 +72,8 @@ namespace FastDragon
         public void Reveal()
         {
             CurrentState = State.Revealed;
+            Velocity = Vector3.Up * 10;
+
             GD.Print($"Revealed gem {GetPath()}");
         }
 
