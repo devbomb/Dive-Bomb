@@ -36,3 +36,12 @@
 	specular(float) : "Specular" : 0.5 : "Intensity of the specular blob on reflective surfaces"
 	light_color(color255) : "Color" : "255 255 255"
 ]
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/Gem.obj",
+		"scale" : 0.25
+	})
+	= Gem : "Gem" []
