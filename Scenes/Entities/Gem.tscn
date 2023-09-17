@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpn1spfliqp15"]
-
-[ext_resource type="PackedScene" uid="uid://c3lde1mlqmxyo" path="res://BlenderModels/Gem.blend" id="1_8j6hf"]
-
-[node name="Gem" type="Node3D"]
-
-[node name="Model" parent="." instance=ExtResource("1_8j6hf")]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dorgtewj4e22i"]
+
+[ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem.tscn" id="1_5tw4j"]
+[ext_resource type="PackedScene" uid="uid://cke3knfgvssx" path="res://BlenderModels/YellowGem.blend" id="2_bvwib"]
+
+[node name="YellowGem" instance=ExtResource("1_5tw4j")]
+
+[node name="YellowGem" parent="ModelPoint" index="0" instance=ExtResource("2_bvwib")]

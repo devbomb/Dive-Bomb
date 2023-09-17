@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cpn1spfliqp15"]
+
+[node name="Gem" type="Node3D"]
+
+[node name="ModelPoint" type="Node3D" parent="."]

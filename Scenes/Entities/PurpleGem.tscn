@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7f2hh0jtakwr"]
+
+[ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem.tscn" id="1_adv7y"]
+[ext_resource type="PackedScene" uid="uid://d14ab0v6egjp2" path="res://BlenderModels/PurpleGem.blend" id="2_edfcl"]
+
+[node name="PurpleGem" instance=ExtResource("1_adv7y")]
+
+[node name="PurpleGem" parent="ModelPoint" index="0" instance=ExtResource("2_edfcl")]

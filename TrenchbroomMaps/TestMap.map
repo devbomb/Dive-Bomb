@@ -77,6 +77,26 @@
 }
 // entity 3
 {
-"classname" "Gem"
-"origin" "260 -228 16"
+"classname" "RedGem"
+"origin" "260 -188 16"
+}
+// entity 4
+{
+"classname" "GreenGem"
+"origin" "92 -92 -64"
+}
+// entity 5
+{
+"classname" "YellowGem"
+"origin" "140 -140 -64"
+}
+// entity 6
+{
+"classname" "PurpleGem"
+"origin" "108 -172 -64"
+}
+// entity 7
+{
+"classname" "MagentaGem"
+"origin" "164 -188 -64"
 }
