@@ -36,21 +36,31 @@ namespace FastDragon
             Velocity = Vector3.Zero;
         }
 
-        public override void _Process(double delta)
-        {
-            Visible = CurrentState == State.Revealed;
-        }
-
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
 
-            if (!IsOnFloor())
-                Velocity += Vector3.Down * 9.8f * delta;
-            else
-                Velocity = Vector3.Zero;
+            switch (CurrentState)
+            {
+                case State.Collected:
+                case State.Hidden:
+                {
+                    Visible = false;
+                    break;
+                }
 
-            MoveAndCollide(Velocity * delta);
+                case State.Revealed:
+                {
+                    Visible = true;
+                    Velocity += Vector3.Down * 9.8f * delta;
+
+                    var collision = MoveAndCollide(Velocity * delta);
+                    if (collision != null)
+                        Velocity = Vector3.Zero;
+
+                    break;
+                }
+            }
         }
 
         public void OnCollectionAreaBodyEntered(Node3D body)
