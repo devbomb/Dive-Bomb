@@ -6,4 +6,4 @@
 [node name="MagentaGem" instance=ExtResource("1_pypxa")]
 Value = 25
 
-[node name="MagentaGem" parent="." index="1" instance=ExtResource("2_v1gaq")]
+[node name="MagentaGem" parent="ModelPoint" index="1" instance=ExtResource("2_v1gaq")]

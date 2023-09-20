@@ -18,6 +18,8 @@ namespace FastDragon
         }
         public State CurrentState = State.Revealed;
 
+        private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
+
         private Vector3 _initialPos;
         private State _initialState;
 
@@ -31,6 +33,8 @@ namespace FastDragon
             Reset();
 
             SignalBus.Instance.LevelReset += Reset;
+
+            _animator.Seek(GD.Randf() * _animator.CurrentAnimationLength);
         }
 
         public void Reset()
