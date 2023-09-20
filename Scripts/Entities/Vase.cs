@@ -32,7 +32,7 @@ namespace FastDragon
         {
             _collisionShape.Disabled = true;
             _model.Visible = false;
-            _gem.Reveal();
+            _gem.StartHomingIn();
         }
     }
 }
