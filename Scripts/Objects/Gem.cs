@@ -19,6 +19,7 @@ namespace FastDragon
         public State CurrentState = State.Revealed;
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
+        private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
 
         private Vector3 _initialPos;
         private State _initialState;
@@ -45,6 +46,13 @@ namespace FastDragon
                 : _initialState;
 
             Velocity = Vector3.Zero;
+        }
+
+        public override void _Process(double delta)
+        {
+            _blobShadow.Scale = CurrentState == State.Revealed
+                ? Vector3.One
+                : Vector3.Zero;
         }
 
         public override void _PhysicsProcess(double deltaD)
