@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://djpeind8lnpd3"]
+
+[ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem.tscn" id="1_pypxa"]
+[ext_resource type="PackedScene" uid="uid://c7u1ewvsbant7" path="res://BlenderModels/MagentaGem.blend" id="2_v1gaq"]
+
+[node name="MagentaGem" instance=ExtResource("1_pypxa")]
+Value = 25
+
+[node name="MagentaGem" parent="ModelPoint" index="0" instance=ExtResource("2_v1gaq")]

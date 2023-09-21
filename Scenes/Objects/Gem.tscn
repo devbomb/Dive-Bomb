@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpn1spfliqp15"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Gem.cs" id="1_ajgr5"]
+[ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="2_kl00m"]
+
+[sub_resource type="Animation" id="Animation_ngwd6"]
+resource_name = "Rotate"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ModelPoint:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.785398, 0, 0), Vector3(0.785398, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jfllq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ModelPoint:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kddi0"]
+_data = {
+"RESET": SubResource("Animation_jfllq"),
+"Rotate": SubResource("Animation_ngwd6")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_amq82"]
+radius = 0.25
+
+[sub_resource type="Gradient" id="Gradient_vplaq"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.489712, 0.757202)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_atjso"]
+gradient = SubResource("Gradient_vplaq")
+width = 50
+height = 50
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Gem" type="CharacterBody3D"]
+collision_layer = 0
+script = ExtResource("1_ajgr5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+autoplay = "Rotate"
+libraries = {
+"": SubResource("AnimationLibrary_kddi0")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("SphereShape3D_amq82")
+
+[node name="CollectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("SphereShape3D_amq82")
+
+[node name="ModelPoint" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="BlobShadow" type="Sprite3D" parent="." node_paths=PackedStringArray("Body")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+texture = SubResource("GradientTexture2D_atjso")
+script = ExtResource("2_kl00m")
+Body = NodePath("..")
+
+[connection signal="body_entered" from="CollectionArea" to="." method="OnCollectionAreaBodyEntered"]

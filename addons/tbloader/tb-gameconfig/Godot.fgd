@@ -27,7 +27,15 @@
 		"path" : "TrenchbroomEntityModels/Vase.obj",
 		"scale" : 0.25
 	})
-	= Vase : "Vase" []
+	= Vase : "Vase" [
+		GemColor(choices): "GemColor" : 1 = [
+			1: "Red"
+			2: "Green"
+			5: "Purple"
+			10: "Yellow"
+			25: "Magenta"
+		]
+	]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
 	range(float) : "Range" : 10
@@ -36,3 +44,48 @@
 	specular(float) : "Specular" : 0.5 : "Intensity of the specular blob on reflective surfaces"
 	light_color(color255) : "Color" : "255 255 255"
 ]
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/RedGem.obj",
+		"scale" : 0.25
+	})
+	= RedGem : "RedGem" []
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/GreenGem.obj",
+		"scale" : 0.25
+	})
+	= GreenGem : "GreenGem" []
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/PurpleGem.obj",
+		"scale" : 0.25
+	})
+	= PurpleGem : "PurpleGem" []
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/YellowGem.obj",
+		"scale" : 0.25
+	})
+	= YellowGem : "YellowGem" []
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/MagentaGem.obj",
+		"scale" : 0.25
+	})
+	= MagentaGem : "MagentaGem" []
