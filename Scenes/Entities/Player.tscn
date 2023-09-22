@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=27 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
+[ext_resource type="Script" path="res://Scripts/Objects/Sparx.cs" id="3_cccc4"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_15biq"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="4_db58r"]
 
@@ -1799,6 +1800,51 @@ _data = {
 "RESET": SubResource("Animation_15fu4")
 }
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xm6qv"]
+height = 1.5
+radius = 1.5
+
+[sub_resource type="Gradient" id="Gradient_47hq2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6qrqy"]
+gradient = SubResource("Gradient_47hq2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cri7j"]
+emission_shape = 2
+emission_sphere_radius = 0.05
+spread = 180.0
+gravity = Vector3(0, -0.25, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 0.25
+color_ramp = SubResource("GradientTexture1D_6qrqy")
+
+[sub_resource type="Gradient" id="Gradient_507en"]
+offsets = PackedFloat32Array(0.53202, 0.655172)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lngco"]
+gradient = SubResource("Gradient_507en")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1u7y"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_lngco")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l40r0"]
+material = SubResource("StandardMaterial3D_b1u7y")
+size = Vector2(0.025, 0.025)
+orientation = 2
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
 
 [sub_resource type="Gradient" id="Gradient_07rq0"]
@@ -1828,7 +1874,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rcfxu")
 }
-blend_times = [&"Glide", &"ChargeJump", 0.1, &"Glide", &"Idle", 0.1, &"Charge", &"ChargeJump", 0.1, &"Charge", &"Idle", 0.1, &"Jump", &"Glide", 0.1, &"Jump", &"Charge", 0.1, &"Jump", &"ChargeJump", 0.1, &"Jump", &"Idle", 0.1, &"ChargeJump", &"Glide", 0.1, &"ChargeJump", &"Charge", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Glide", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Jump", 0.1]
+blend_times = [&"Charge", &"ChargeJump", 0.1, &"Charge", &"Idle", 0.1, &"Jump", &"Charge", 0.1, &"Jump", &"ChargeJump", 0.1, &"Jump", &"Idle", 0.1, &"Jump", &"Glide", 0.1, &"ChargeJump", &"Charge", 0.1, &"ChargeJump", &"Glide", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Charge", 0.1, &"Idle", &"Jump", 0.1, &"Idle", &"Glide", 0.1, &"Glide", &"ChargeJump", 0.1, &"Glide", &"Idle", 0.1]
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
@@ -1898,6 +1944,25 @@ bones/27/scale = Vector3(0.999999, 1, 1)
 bones/28/rotation = Quaternion(-5.96046e-08, 3.72529e-09, -1.02445e-08, 1)
 bones/29/rotation = Quaternion(6.0536e-09, -1.11759e-08, 1.58325e-08, 1)
 
+[node name="Sparx" type="Area3D" parent="." node_paths=PackedStringArray("Model")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_cccc4")
+Model = NodePath("Model")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sparx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_xm6qv")
+
+[node name="Model" type="Node3D" parent="Sparx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49101, 0.738755, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Sparx/Model"]
+amount = 100
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_cri7j")
+draw_pass_1 = SubResource("PlaneMesh_l40r0")
+
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.96752, 0.252796, 0, -0.252796, 0.96752, 0, 3, 6)
@@ -1933,6 +1998,7 @@ offset_bottom = 40.0
 layout_mode = 2
 text = "Reset Level"
 
+[connection signal="body_entered" from="Sparx" to="Sparx" method="OnBodyEntered"]
 [connection signal="pressed" from="DebugButtons/VBoxContainer/ResetLevel" to="DebugButtons" method="ResetLevel"]
 
 [editable path="Model"]
