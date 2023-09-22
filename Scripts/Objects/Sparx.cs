@@ -6,7 +6,7 @@ namespace FastDragon
 {
     public partial class Sparx : Area3D
     {
-        public const float FlySpeed = 5;
+        public const float FlySpeed = 10;
         [Export] public Node3D Model;
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
