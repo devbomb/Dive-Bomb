@@ -11,6 +11,13 @@ namespace FastDragon
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
+        private enum State
+        {
+            Idle,
+            CollectingGem
+        }
+        private State _currentState = State.Idle;
+
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += Reset;
@@ -21,31 +28,47 @@ namespace FastDragon
         {
             Model.Position = Vector3.Zero;
             _gemQueue.Clear();
+            _currentState = State.Idle;
         }
 
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
 
-            if (_gemQueue.TryPeek(out Gem gem))
+            switch (_currentState)
             {
-                Model.GlobalPosition = Model.GlobalPosition.MoveToward(
-                    gem.GlobalPosition,
-                    FlySpeed * delta
-                );
-
-                if (Model.GlobalPosition == gem.GlobalPosition)
+                case State.Idle:
                 {
-                    gem.StartHomingIn();
-                    _gemQueue.Dequeue();
+                    Model.Position = Model.Position.MoveToward(
+                        Vector3.Zero,
+                        FlySpeed * delta
+                    );
+
+                    if (_gemQueue.Count > 0)
+                        _currentState = State.CollectingGem;
+
+                    break;
                 }
-            }
-            else
-            {
-                Model.Position = Model.Position.MoveToward(
-                    Vector3.Zero,
-                    FlySpeed * delta
-                );
+
+                case State.CollectingGem:
+                {
+                    Gem gem = _gemQueue.Peek();
+                    Model.GlobalPosition = Model.GlobalPosition.MoveToward(
+                        gem.GlobalPosition,
+                        FlySpeed * delta
+                    );
+
+                    if (Model.GlobalPosition == gem.GlobalPosition)
+                    {
+                        gem.StartHomingIn();
+                        _gemQueue.Dequeue();
+                    }
+
+                    if (_gemQueue.Count <= 0)
+                        _currentState = State.Idle;
+
+                    break;
+                }
             }
         }
 
