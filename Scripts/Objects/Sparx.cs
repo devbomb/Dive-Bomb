@@ -45,7 +45,7 @@ namespace FastDragon
                     );
 
                     if (_gemQueue.Count > 0)
-                        _currentState = State.CollectingGem;
+                        StartCollectingGem();
 
                     break;
                 }
@@ -58,14 +58,14 @@ namespace FastDragon
                         FlySpeed * delta
                     );
 
-                    if (Model.GlobalPosition == gem.GlobalPosition)
+                    if (Model.GlobalPosition.IsEqualApprox(gem.GlobalPosition))
                     {
                         gem.StartHomingIn();
                         _gemQueue.Dequeue();
                     }
 
                     if (_gemQueue.Count <= 0)
-                        _currentState = State.Idle;
+                        ReturnToIdle();
 
                     break;
                 }
@@ -78,6 +78,24 @@ namespace FastDragon
             {
                 _gemQueue.Enqueue(g);
             }
+        }
+
+        private void StartCollectingGem()
+        {
+            _currentState = State.CollectingGem;
+
+            var pos = Model.GlobalPosition;
+            Model.TopLevel = true;
+            Model.GlobalPosition = pos;
+        }
+
+        private void ReturnToIdle()
+        {
+            _currentState = State.Idle;
+
+            var pos = Model.GlobalPosition;
+            Model.TopLevel = false;
+            Model.GlobalPosition = pos;
         }
     }
 }
