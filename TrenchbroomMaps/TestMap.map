@@ -100,3 +100,53 @@
 "classname" "MagentaGem"
 "origin" "164 -188 -64"
 }
+// entity 8
+{
+"classname" "RedGem"
+"origin" "-92 -60 -64"
+}
+// entity 9
+{
+"classname" "RedGem"
+"origin" "-92 -28 -64"
+}
+// entity 10
+{
+"classname" "RedGem"
+"origin" "-92 20 -64"
+}
+// entity 11
+{
+"classname" "PurpleGem"
+"origin" "-172 -260 -64"
+}
+// entity 12
+{
+"classname" "GreenGem"
+"origin" "-124 -340 -64"
+}
+// entity 13
+{
+"classname" "GreenGem"
+"origin" "-156 -308 -64"
+}
+// entity 14
+{
+"classname" "RedGem"
+"origin" "164 -4 16"
+}
+// entity 15
+{
+"classname" "RedGem"
+"origin" "116 -4 16"
+}
+// entity 16
+{
+"classname" "RedGem"
+"origin" "292 -100 16"
+}
+// entity 17
+{
+"classname" "RedGem"
+"origin" "308 -196 16"
+}
