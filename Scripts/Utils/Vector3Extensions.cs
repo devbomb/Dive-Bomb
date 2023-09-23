@@ -40,6 +40,20 @@ namespace FastDragon
             );
         }
 
+        public static Vector3 DecayTowardsEulerRad(
+            this Vector3 fromRad,
+            Vector3 toRad,
+            float decayRate,
+            float delta
+        )
+        {
+            return new Vector3(
+                AngleMath.DecayToward(fromRad.X, toRad.X, decayRate, delta),
+                AngleMath.DecayToward(fromRad.Y, toRad.Y, decayRate, delta),
+                AngleMath.DecayToward(fromRad.Z, toRad.Z, decayRate, delta)
+            );
+        }
+
         public static bool IsParallelTo(this Vector3 v, Vector3 other)
         {
             return v.Cross(other) == Vector3.Zero;

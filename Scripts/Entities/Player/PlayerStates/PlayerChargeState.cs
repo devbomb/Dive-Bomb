@@ -18,13 +18,15 @@ namespace FastDragon
 
         public override void _Process(double deltaD)
         {
-            AngleModelPitchWithGroundSlope();
+            float delta = (float)deltaD;
+
+            AngleModelPitchWithGroundSlope(delta);
 
             ContinuouslyRecenterCamera(
                 Player.Charge.CameraDistance,
                 Player.Charge.CameraPitchDeg,
                 Player.Charge.CameraDecayRate,
-                (float)deltaD
+                delta
             );
         }
 

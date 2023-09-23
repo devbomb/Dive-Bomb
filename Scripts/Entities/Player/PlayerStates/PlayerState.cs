@@ -135,18 +135,26 @@ namespace FastDragon
             );
         }
 
-        protected void AngleModelPitchWithGroundSlope()
+        protected void AngleModelPitchWithGroundSlope(float delta)
         {
             Vector3 forwardOnFloor = _player
                 .GlobalForward()
                 .ProjectOnPlane(_player.GetFloorNormal());
 
-            _player.Model.GlobalRotation = forwardOnFloor.ForwardToEulerAnglesRad();
+            _player.Model.GlobalRotation = _player.Model.GlobalRotation.DecayTowardsEulerRad(
+                forwardOnFloor.ForwardToEulerAnglesRad(),
+                10,
+                delta
+            );
         }
 
-        protected void AngleModelPitchWithVelocity()
+        protected void AngleModelPitchWithVelocity(float delta)
         {
-            _player.Model.GlobalRotation = _player.Velocity.Normalized().ForwardToEulerAnglesRad();
+            _player.Model.GlobalRotation = _player.Model.GlobalRotation.DecayTowardsEulerRad(
+                _player.Velocity.Normalized().ForwardToEulerAnglesRad(),
+                10,
+                delta
+            );
         }
 
         protected void ResetModelPitch()

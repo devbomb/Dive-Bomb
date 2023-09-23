@@ -18,7 +18,9 @@ namespace FastDragon
 
         public override void _Process(double deltaD)
         {
-            AngleModelPitchWithGroundSlope();
+            float delta = (float)deltaD;
+
+            AngleModelPitchWithGroundSlope(delta);
         }
 
         public override void _Input(InputEvent ev)
