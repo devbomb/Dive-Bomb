@@ -11,7 +11,8 @@ namespace FastDragon
         private Vector3 _prevTrueRot;
         private Vector3 _trueRot;
 
-        private float _physicsDelta = 1;
+        private double _physicsDelta = 1.0/60;
+        private double _timer;
 
         public override void _Ready()
         {
@@ -23,48 +24,41 @@ namespace FastDragon
             endSpy.PhysicsProcessed += OnPhysicsFrameEnded;
             AddChild(endSpy);
 
-
             _truePos = GlobalPosition;
-            _prevTruePos = _truePos;
-
             _trueRot = GlobalRotation;
+
+            _prevTruePos = _truePos;
             _prevTrueRot = _trueRot;
         }
 
-        public override void _Process(double deltaD)
+        public override void _Process(double delta)
         {
-            float delta = (float)deltaD;
-            float speed = _truePos.DistanceTo(_prevTruePos) / _physicsDelta;
-            float rotSpeed = _trueRot.DistanceTo(_prevTrueRot) / _physicsDelta;
+            _timer += delta;
+            double t = _timer / _physicsDelta;
+            if (t > 1)
+                t = 1;
 
-            GlobalPosition = GlobalPosition.MoveToward(
-                _truePos,
-                speed * delta
-            );
-
-            GlobalRotation = GlobalRotation.MoveToward(
-                _trueRot,
-                rotSpeed * delta
-            );
+            GlobalPosition = _prevTruePos.Lerp(_truePos, (float)t);
+            GlobalRotation = _prevTrueRot.Lerp(_trueRot, (float)t);
         }
 
-        private void OnPhysicsFrameStarted(double deltaD)
+        private void OnPhysicsFrameStarted(double delta)
         {
-            _physicsDelta = (float)deltaD;
+            _physicsDelta = delta;
+            _timer -= delta;
+
             GlobalPosition = _truePos;
             GlobalRotation = _trueRot;
+            ForceUpdateTransform();
         }
 
-        private void OnPhysicsFrameEnded(double deltaD)
+        private void OnPhysicsFrameEnded(double delta)
         {
             _prevTruePos = _truePos;
             _prevTrueRot = _trueRot;
 
             _truePos = GlobalPosition;
             _trueRot = GlobalRotation;
-
-            GlobalPosition = _prevTruePos;
-            GlobalRotation = _prevTrueRot;
         }
 
         private partial class PhysicsProcessSpy : Node
