@@ -5,7 +5,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Player : CharacterBody3D
+    public partial class Player : InterpolatedCharacterBody3D
     {
         [Signal] public delegate void RespawningEventHandler();
 
@@ -48,6 +48,8 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            base._Ready();
+
             SignalBus.Instance.LevelReset += Respawn;
             _spawnPoint = Position;
             _spawnRotation = Rotation;
@@ -60,6 +62,8 @@ namespace FastDragon
             EmitSignal(SignalName.Respawning);
             Position = _spawnPoint;
             Rotation = _spawnRotation;
+            ResetPhysicsInterpolation();
+
             Camera.ForceRecenter();
 
             ChangeState<PlayerWalkState>();

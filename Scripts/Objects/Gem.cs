@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace FastDragon
 {
-    public partial class Gem : CharacterBody3D
+    public partial class Gem : InterpolatedCharacterBody3D
     {
         public const float HomingDuration = 0.5f;
 
@@ -30,6 +30,8 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            base._Ready();
+
             _initialPos = Position;
             _initialState = CurrentState;
             Reset();
@@ -42,6 +44,8 @@ namespace FastDragon
         public void Reset()
         {
             Position = _initialPos;
+            ResetPhysicsInterpolation();
+
             CurrentState = SaveFile.Current.CollectedGems.Contains(GetPath())
                 ? State.Collected
                 : _initialState;
@@ -51,6 +55,8 @@ namespace FastDragon
 
         public override void _Process(double delta)
         {
+            base._Process(delta);
+
             _blobShadow.Scale = CurrentState == State.Revealed
                 ? Vector3.One
                 : Vector3.Zero;

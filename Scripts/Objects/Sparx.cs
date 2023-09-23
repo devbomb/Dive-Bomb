@@ -28,6 +28,8 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            _model.AddChild(new PhysicsInterpolator3D());
+
             SignalBus.Instance.LevelReset += Reset;
             Reset();
         }

@@ -6,7 +6,7 @@ namespace FastDragon
     {
         [Export] public CharacterBody3D Body;
 
-        public override void _PhysicsProcess(double delta)
+        public override void _Process(double delta)
         {
             var collision = Body.MoveAndCollide(
                 Vector3.Down * 10,
