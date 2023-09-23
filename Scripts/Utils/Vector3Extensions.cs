@@ -27,6 +27,19 @@ namespace FastDragon
                 .GetEuler();
         }
 
+        public static Vector3 LerpEulerRad(
+            this Vector3 fromRad,
+            Vector3 toRad,
+            float t
+        )
+        {
+            return new Vector3(
+                Mathf.LerpAngle(fromRad.X, toRad.X, t),
+                Mathf.LerpAngle(fromRad.Y, toRad.Y, t),
+                Mathf.LerpAngle(fromRad.Z, toRad.Z, t)
+            );
+        }
+
         public static bool IsParallelTo(this Vector3 v, Vector3 other)
         {
             return v.Cross(other) == Vector3.Zero;

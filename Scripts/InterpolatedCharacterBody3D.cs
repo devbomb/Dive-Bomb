@@ -39,7 +39,7 @@ namespace FastDragon
                 t = 1;
 
             GlobalPosition = _prevTruePos.Lerp(_truePos, (float)t);
-            GlobalRotation = _prevTrueRot.Lerp(_trueRot, (float)t);
+            GlobalRotation = _prevTrueRot.LerpEulerRad(_trueRot, (float)t);
         }
 
         public void ResetPhysicsInterpolation()
