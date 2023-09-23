@@ -139,15 +139,36 @@ namespace FastDragon
             const float cylinderRadius = 1.5f;
             const float cylinderHeight = 1.5f;
 
-            float angleRad = Mathf.DegToRad(GD.Randf() * 360);
+            // Keep picking random positions on the edge of our radius until
+            // we find one that doesn't intersect a wall.  But only try a few
+            // times before giving up.
+            for (int i = 0; i < 5; i++)
+            {
+                float angleRad = Mathf.DegToRad(GD.Randf() * 360);
 
-            _idlePosition = new Vector3(
-                cylinderRadius * Mathf.Cos(angleRad),
-                (float)GD.RandRange(-cylinderHeight / 2, cylinderHeight / 2),
-                cylinderRadius * Mathf.Sin(angleRad)
-            );
+                var candidatePosition = new Vector3(
+                    cylinderRadius * Mathf.Cos(angleRad),
+                    (float)GD.RandRange(-cylinderHeight / 2, cylinderHeight / 2),
+                    cylinderRadius * Mathf.Sin(angleRad)
+                );
+
+                if (!RayCast(GlobalPosition, GlobalPosition + candidatePosition))
+                {
+                    _idlePosition = candidatePosition;
+                    break;
+                }
+            }
 
             _idleTimer = (float)GD.RandRange(MinIdlePauseTime, MaxIdlePauseTime);
+        }
+
+        bool RayCast(Vector3 from, Vector3 to)
+        {
+            var spaceState = GetWorld3D().DirectSpaceState;
+            var query = PhysicsRayQueryParameters3D.Create(from, to);
+            var hitDict = spaceState.IntersectRay(query);
+
+            return hitDict.Count > 0;
         }
     }
 }
