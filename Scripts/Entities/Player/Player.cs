@@ -48,6 +48,8 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            base._Ready();
+
             SignalBus.Instance.LevelReset += Respawn;
             _spawnPoint = Position;
             _spawnRotation = Rotation;
