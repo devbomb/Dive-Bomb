@@ -11,7 +11,7 @@ namespace FastDragon
         private Vector3 _prevTrueRot;
         private Vector3 _trueRot;
 
-        private double _physicsDelta = 1.0/60;
+        private double _physicsDelta = 1;
         private double _timer;
 
         public override void _Ready()
@@ -40,6 +40,15 @@ namespace FastDragon
 
             GlobalPosition = _prevTruePos.Lerp(_truePos, (float)t);
             GlobalRotation = _prevTrueRot.Lerp(_trueRot, (float)t);
+        }
+
+        public void ResetPhysicsInterpolation()
+        {
+            _truePos = GlobalPosition;
+            _trueRot = GlobalRotation;
+
+            _prevTruePos = _truePos;
+            _prevTrueRot = _trueRot;
         }
 
         private void OnPhysicsFrameStarted(double delta)

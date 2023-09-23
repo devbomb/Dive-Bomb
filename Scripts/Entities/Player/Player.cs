@@ -62,6 +62,8 @@ namespace FastDragon
             EmitSignal(SignalName.Respawning);
             Position = _spawnPoint;
             Rotation = _spawnRotation;
+            ResetPhysicsInterpolation();
+
             Camera.ForceRecenter();
 
             ChangeState<PlayerWalkState>();
