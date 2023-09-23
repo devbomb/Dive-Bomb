@@ -74,10 +74,17 @@ namespace FastDragon
 
         public void OnBodyEntered(Node3D body)
         {
-            if (body is Gem g && g.CurrentState == Gem.State.Revealed && !_gemQueue.Contains(g))
-            {
-                _gemQueue.Enqueue(g);
-            }
+            if (!(body is Gem gem))
+                return;
+
+            if (gem.CurrentState != Gem.State.Revealed)
+                return;
+
+            if (_gemQueue.Contains(gem))
+                return;
+
+            _gemQueue.Enqueue(gem);
+            gem.Sparkle();
         }
 
         private void StartCollectingGem()
