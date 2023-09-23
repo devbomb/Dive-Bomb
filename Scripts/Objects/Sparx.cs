@@ -58,6 +58,13 @@ namespace FastDragon
                         FlySpeed * delta
                     );
 
+                    // If the model is clipping into a wall, push it out.
+                    _model.GlobalPosition = RayCast(
+                        GlobalPosition,
+                        _model.GlobalPosition,
+                        out bool _
+                    );
+
                     _model.RotationDegrees = _model.RotationDegrees.MoveToward(
                         Vector3.Zero,
                         RotSpeedDeg * delta
@@ -152,7 +159,13 @@ namespace FastDragon
                     cylinderRadius * Mathf.Sin(angleRad)
                 );
 
-                if (!RayCast(GlobalPosition, GlobalPosition + candidatePosition))
+                RayCast(
+                    GlobalPosition,
+                    GlobalPosition + candidatePosition,
+                    out bool hitAnything
+                );
+
+                if (!hitAnything)
                 {
                     _idlePosition = candidatePosition;
                     break;
@@ -162,13 +175,20 @@ namespace FastDragon
             _idleTimer = (float)GD.RandRange(MinIdlePauseTime, MaxIdlePauseTime);
         }
 
-        bool RayCast(Vector3 from, Vector3 to)
+        Vector3 RayCast(Vector3 from, Vector3 to, out bool hitAnything)
         {
             var spaceState = GetWorld3D().DirectSpaceState;
             var query = PhysicsRayQueryParameters3D.Create(from, to);
             var hitDict = spaceState.IntersectRay(query);
 
-            return hitDict.Count > 0;
+            if (hitDict.Count > 0)
+            {
+                hitAnything = true;
+                return (Vector3)hitDict["position"];
+            }
+
+            hitAnything = false;
+            return to;
         }
     }
 }
