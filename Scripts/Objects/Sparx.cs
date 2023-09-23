@@ -9,6 +9,9 @@ namespace FastDragon
         public const float FlySpeed = 10;
         public const float RotSpeedDeg = 360;
 
+        public const float MinIdlePauseTime = 0.25f;
+        public const float MaxIdlePauseTime = 3f;
+
         private Node3D _model => GetNode<Node3D>("%Model");
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
@@ -20,6 +23,9 @@ namespace FastDragon
         }
         private State _currentState = State.Idle;
 
+        private Vector3 _idlePosition;
+        private float _idleTimer;
+
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += Reset;
@@ -28,10 +34,9 @@ namespace FastDragon
 
         private void Reset()
         {
-            ToggleTopLevel(false);
-            _model.Position = Vector3.Zero;
+            ReturnToIdle();
+            _model.Position = _idlePosition;
             _gemQueue.Clear();
-            _currentState = State.Idle;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -42,8 +47,14 @@ namespace FastDragon
             {
                 case State.Idle:
                 {
+                    _idleTimer -= delta;
+                    if (_idleTimer < 0)
+                    {
+                        ShuffleIdlePosition();
+                    }
+
                     _model.Position = _model.Position.MoveToward(
-                        Vector3.Zero,
+                        _idlePosition,
                         FlySpeed * delta
                     );
 
@@ -107,6 +118,8 @@ namespace FastDragon
         private void ReturnToIdle()
         {
             _currentState = State.Idle;
+            ShuffleIdlePosition();
+
             ToggleTopLevel(false);
         }
 
@@ -119,6 +132,22 @@ namespace FastDragon
 
             _model.GlobalPosition = pos;
             _model.GlobalRotation = rot;
+        }
+
+        private void ShuffleIdlePosition()
+        {
+            const float cylinderRadius = 1.5f;
+            const float cylinderHeight = 1.5f;
+
+            float angleRad = Mathf.DegToRad(GD.Randf() * 360);
+
+            _idlePosition = new Vector3(
+                cylinderRadius * Mathf.Cos(angleRad),
+                (float)GD.RandRange(-cylinderHeight / 2, cylinderHeight / 2),
+                cylinderRadius * Mathf.Sin(angleRad)
+            );
+
+            _idleTimer = (float)GD.RandRange(MinIdlePauseTime, MaxIdlePauseTime);
         }
     }
 }
