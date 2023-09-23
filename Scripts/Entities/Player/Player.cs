@@ -5,7 +5,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Player : CharacterBody3D
+    public partial class Player : InterpolatedCharacterBody3D
     {
         [Signal] public delegate void RespawningEventHandler();
 

@@ -11,7 +11,7 @@ namespace FastDragon
         private Vector3 _prevTrueRot;
         private Vector3 _trueRot;
 
-        private float _physicsDelta;
+        private float _physicsDelta = 1;
 
         public override void _Ready()
         {
