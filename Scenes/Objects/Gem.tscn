@@ -1,7 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpn1spfliqp15"]
+[gd_scene load_steps=15 format=3 uid="uid://cpn1spfliqp15"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Gem.cs" id="1_ajgr5"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="2_kl00m"]
+
+[sub_resource type="Animation" id="Animation_jfllq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ModelPoint:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ngwd6"]
 resource_name = "Rotate"
@@ -20,12 +35,18 @@ tracks/0/keys = {
 "values": [Vector3(0.785398, 0, 0), Vector3(0.785398, 6.28319, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_jfllq"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kddi0"]
+_data = {
+"RESET": SubResource("Animation_jfllq"),
+"Rotate": SubResource("Animation_ngwd6")
+}
+
+[sub_resource type="Animation" id="Animation_exjpb"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ModelPoint:rotation")
+tracks/0/path = NodePath("Billboard/SparkleTexture:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,12 +55,69 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kddi0"]
-_data = {
-"RESET": SubResource("Animation_jfllq"),
-"Rotate": SubResource("Animation_ngwd6")
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Billboard/SparkleTexture:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
+
+[sub_resource type="Animation" id="Animation_k82sx"]
+resource_name = "Sparkle"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Billboard/SparkleTexture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Billboard/SparkleTexture:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -6.28319)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b461w"]
+_data = {
+"RESET": SubResource("Animation_exjpb"),
+"Sparkle": SubResource("Animation_k82sx")
+}
+
+[sub_resource type="GDScript" id="GDScript_0ga4t"]
+script/source = "extends Node3D
+
+func _process(delta):
+    look_at(get_tree().root.get_camera_3d().global_position)
+"
+
+[sub_resource type="Gradient" id="Gradient_oxoe0"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.625806, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.240342, 0.414344, 0.818453, 0.270968, 0, 0.131, 0.723529, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mb6km"]
+gradient = SubResource("Gradient_oxoe0")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_amq82"]
 radius = 0.25
@@ -57,15 +135,30 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Gem" type="CharacterBody3D"]
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_ajgr5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="SpinAnimator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 autoplay = "Rotate"
 libraries = {
 "": SubResource("AnimationLibrary_kddi0")
 }
+
+[node name="SparkleAnimator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_b461w")
+}
+
+[node name="Billboard" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338976, 0)
+script = SubResource("GDScript_0ga4t")
+
+[node name="SparkleTexture" type="Sprite3D" parent="Billboard"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+no_depth_test = true
+texture = SubResource("GradientTexture2D_mb6km")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

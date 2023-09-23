@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://dolfkovx44knj"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Sparx.cs" id="1_4djkx"]
+[ext_resource type="PackedScene" uid="uid://c1xaxy0rvh1ou" path="res://BlenderModels/Sparx.blend" id="2_vqihh"]
+
+[sub_resource type="Gradient" id="Gradient_47hq2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6qrqy"]
+gradient = SubResource("Gradient_47hq2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cri7j"]
+emission_shape = 2
+emission_sphere_radius = 0.05
+spread = 180.0
+gravity = Vector3(0, -0.25, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 0.25
+color_ramp = SubResource("GradientTexture1D_6qrqy")
+
+[sub_resource type="Gradient" id="Gradient_507en"]
+offsets = PackedFloat32Array(0.53202, 0.655172)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lngco"]
+gradient = SubResource("Gradient_507en")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1u7y"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_lngco")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l40r0"]
+material = SubResource("StandardMaterial3D_b1u7y")
+size = Vector2(0.025, 0.025)
+orientation = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j2pu6"]
+height = 1.5
+radius = 1.5
+
+[node name="Sparx" type="Node3D"]
+script = ExtResource("1_4djkx")
+
+[node name="Model" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sparx" parent="Model" instance=ExtResource("2_vqihh")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0.000232697, 0, 2.71797e-05)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Model"]
+amount = 100
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_cri7j")
+draw_pass_1 = SubResource("PlaneMesh_l40r0")
+
+[node name="CollectionArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionArea"]
+shape = SubResource("CylinderShape3D_j2pu6")
+
+[connection signal="body_entered" from="CollectionArea" to="." method="OnBodyEnteredCollectionRange"]

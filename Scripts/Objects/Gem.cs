@@ -18,7 +18,8 @@ namespace FastDragon
         }
         public State CurrentState = State.Revealed;
 
-        private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
+        private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
+        private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
 
         private Vector3 _initialPos;
@@ -35,7 +36,7 @@ namespace FastDragon
 
             SignalBus.Instance.LevelReset += Reset;
 
-            _animator.Seek(GD.Randf() * _animator.CurrentAnimationLength);
+            _spinAnim.Seek(GD.Randf() * _spinAnim.CurrentAnimationLength);
         }
 
         public void Reset()
@@ -141,6 +142,11 @@ namespace FastDragon
             CurrentState = State.Collected;
 
             GD.Print($"{SaveFile.Current.TotalGemCount}: Collected gem {GetPath()}");
+        }
+
+        public void Sparkle()
+        {
+            _sparkleAnim.Play("Sparkle");
         }
 
         private Vector3 BezierCurve(
