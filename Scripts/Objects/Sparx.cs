@@ -7,6 +7,8 @@ namespace FastDragon
     public partial class Sparx : Area3D
     {
         public const float FlySpeed = 10;
+        public const float RotSpeedDeg = 360;
+
         [Export] public Node3D Model;
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
@@ -44,6 +46,11 @@ namespace FastDragon
                         FlySpeed * delta
                     );
 
+                    Model.RotationDegrees = Model.RotationDegrees.MoveToward(
+                        Vector3.Zero,
+                        RotSpeedDeg * delta
+                    );
+
                     if (_gemQueue.Count > 0)
                         StartCollectingGem();
 
@@ -53,6 +60,9 @@ namespace FastDragon
                 case State.CollectingGem:
                 {
                     Gem gem = _gemQueue.Peek();
+
+                    Model.LookAt(gem.GlobalPosition);
+
                     Model.GlobalPosition = Model.GlobalPosition.MoveToward(
                         gem.GlobalPosition,
                         FlySpeed * delta
@@ -90,19 +100,24 @@ namespace FastDragon
         private void StartCollectingGem()
         {
             _currentState = State.CollectingGem;
-
-            var pos = Model.GlobalPosition;
-            Model.TopLevel = true;
-            Model.GlobalPosition = pos;
+            ToggleTopLevel(true);
         }
 
         private void ReturnToIdle()
         {
             _currentState = State.Idle;
+            ToggleTopLevel(false);
+        }
 
+        private void ToggleTopLevel(bool topLevel)
+        {
             var pos = Model.GlobalPosition;
-            Model.TopLevel = false;
+            var rot = Model.GlobalRotation;
+
+            Model.TopLevel = topLevel;
+
             Model.GlobalPosition = pos;
+            Model.GlobalRotation = rot;
         }
     }
 }
