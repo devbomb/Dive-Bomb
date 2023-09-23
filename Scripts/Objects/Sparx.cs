@@ -4,12 +4,12 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Sparx : Area3D
+    public partial class Sparx : Node3D
     {
         public const float FlySpeed = 10;
         public const float RotSpeedDeg = 360;
 
-        [Export] public Node3D Model;
+        private Node3D _model => GetNode<Node3D>("%Model");
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
@@ -28,7 +28,8 @@ namespace FastDragon
 
         private void Reset()
         {
-            Model.Position = Vector3.Zero;
+            ToggleTopLevel(false);
+            _model.Position = Vector3.Zero;
             _gemQueue.Clear();
             _currentState = State.Idle;
         }
@@ -41,12 +42,12 @@ namespace FastDragon
             {
                 case State.Idle:
                 {
-                    Model.Position = Model.Position.MoveToward(
+                    _model.Position = _model.Position.MoveToward(
                         Vector3.Zero,
                         FlySpeed * delta
                     );
 
-                    Model.RotationDegrees = Model.RotationDegrees.MoveToward(
+                    _model.RotationDegrees = _model.RotationDegrees.MoveToward(
                         Vector3.Zero,
                         RotSpeedDeg * delta
                     );
@@ -61,14 +62,14 @@ namespace FastDragon
                 {
                     Gem gem = _gemQueue.Peek();
 
-                    Model.LookAt(gem.GlobalPosition);
+                    _model.LookAt(gem.GlobalPosition);
 
-                    Model.GlobalPosition = Model.GlobalPosition.MoveToward(
+                    _model.GlobalPosition = _model.GlobalPosition.MoveToward(
                         gem.GlobalPosition,
                         FlySpeed * delta
                     );
 
-                    if (Model.GlobalPosition.IsEqualApprox(gem.GlobalPosition))
+                    if (_model.GlobalPosition.IsEqualApprox(gem.GlobalPosition))
                     {
                         gem.StartHomingIn();
                         _gemQueue.Dequeue();
@@ -82,7 +83,7 @@ namespace FastDragon
             }
         }
 
-        public void OnBodyEntered(Node3D body)
+        public void OnBodyEnteredCollectionRange(Node3D body)
         {
             if (!(body is Gem gem))
                 return;
@@ -111,13 +112,13 @@ namespace FastDragon
 
         private void ToggleTopLevel(bool topLevel)
         {
-            var pos = Model.GlobalPosition;
-            var rot = Model.GlobalRotation;
+            var pos = _model.GlobalPosition;
+            var rot = _model.GlobalRotation;
 
-            Model.TopLevel = topLevel;
+            _model.TopLevel = topLevel;
 
-            Model.GlobalPosition = pos;
-            Model.GlobalRotation = rot;
+            _model.GlobalPosition = pos;
+            _model.GlobalRotation = rot;
         }
     }
 }
