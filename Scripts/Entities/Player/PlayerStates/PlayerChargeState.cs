@@ -19,6 +19,13 @@ namespace FastDragon
         public override void _Process(double deltaD)
         {
             AngleModelPitchWithGroundSlope();
+
+            ContinuouslyRecenterCamera(
+                Player.Charge.CameraDistance,
+                Player.Charge.CameraPitchDeg,
+                Player.Charge.CameraDecayRate,
+                (float)deltaD
+            );
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -35,13 +42,6 @@ namespace FastDragon
             ApplyGravity(delta);
 
             MoveAndSlideStepByStep(delta, OnChargedIntoSomething);
-
-            ContinuouslyRecenterCamera(
-                Player.Charge.CameraDistance,
-                Player.Charge.CameraPitchDeg,
-                Player.Charge.CameraDecayRate,
-                delta
-            );
 
             if (IsTouchingWallAtBonkAngle())
             {

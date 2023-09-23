@@ -12,6 +12,16 @@ namespace FastDragon
             _player.VSpeed = 0;
         }
 
+        public override void _Process(double deltaD)
+        {
+            ContinuouslyRecenterCamera(
+                Player.Charge.CameraDistance,
+                Player.Charge.CameraPitchDeg,
+                Player.Charge.CameraDecayRate,
+                (float)deltaD
+            );
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
@@ -24,13 +34,6 @@ namespace FastDragon
             ApplyGravity(delta, Player.Glide.Gravity);
 
             _player.MoveAndSlide();
-
-            ContinuouslyRecenterCamera(
-                Player.Glide.CameraDistance,
-                Player.Glide.CameraPitchDeg,
-                Player.Glide.CameraDecayRate,
-                delta
-            );
 
             if (_player.IsOnFloor())
             {
