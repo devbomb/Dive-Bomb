@@ -150,3 +150,18 @@
 "classname" "RedGem"
 "origin" "308 -196 16"
 }
+// entity 18
+{
+"classname" "Basket"
+"origin" "200 -40 16"
+}
+// entity 19
+{
+"classname" "Basket"
+"origin" "232 -72 16"
+}
+// entity 20
+{
+"classname" "Basket"
+"origin" "296 -72 16"
+}
