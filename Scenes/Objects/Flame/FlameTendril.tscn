@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0kj840gbfhhu"]
+[gd_scene load_steps=11 format=3 uid="uid://c0kj840gbfhhu"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Flame/FlameTendril.cs" id="1_rk2bl"]
 
@@ -46,6 +46,9 @@ material = SubResource("StandardMaterial3D_b1u7y")
 size = Vector2(0.25, 0.25)
 orientation = 2
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_s2qme"]
+radius = 0.25
+
 [node name="FlameTendril" type="Node3D"]
 script = ExtResource("1_rk2bl")
 
@@ -58,5 +61,14 @@ mesh = SubResource("SphereMesh_mxgq2")
 unique_name_in_owner = true
 amount = 100
 lifetime = 1.5
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0h1n1")
 draw_pass_1 = SubResource("PlaneMesh_tp3c3")
+
+[node name="Body" type="StaticBody3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+
+[node name="BodyShape" type="CollisionShape3D" parent="Body"]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_s2qme")

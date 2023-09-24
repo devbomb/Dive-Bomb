@@ -30,21 +30,49 @@ namespace FastDragon
         private Node3D _sphere => GetNode<Node3D>("%Sphere");
         private GpuParticles3D _particles => GetNode<GpuParticles3D>("%FlameParticles");
 
-        private void UpdateSize()
+        private PhysicsBody3D _body => GetNode<PhysicsBody3D>("%Body");
+        private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
+
+        public override void _Process(double deltaD)
+        {
+            if (Engine.IsEditorHint())
+                return;
+
+            // Do a sphere-cast up to the intended lenght, and then adjust
+            // the visuals according to how far it went.
+            var collision = _body.MoveAndCollide(
+                this.GlobalForward() * _length,
+                testOnly: true,
+                recoveryAsCollision: true
+            );
+
+            float effectiveLength = collision != null
+                ? collision.GetTravel().Length()
+                : _length;
+
+            UpdateSize(effectiveLength);
+        }
+
+        private void UpdateSize(float length)
         {
             _sphere.Scale = Vector3.One * _radius;
-            _sphere.Position = Vector3.Forward * _length;
-            _particles.Lifetime = _length / _particleSpeed;
+            _sphere.Position = Vector3.Forward * length;
+            _particles.Lifetime = length / _particleSpeed;
 
             var procMat = (ParticleProcessMaterial)_particles.ProcessMaterial;
             procMat.InitialVelocityMin = _particleSpeed;
             procMat.InitialVelocityMax = _particleSpeed;
+
+            var shape = (SphereShape3D)_bodyShape.Shape;
+            shape.Radius = _radius;
         }
 
         private void SetProperty(ref float storage, float value)
         {
             storage = value;
-            UpdateSize();
+
+            if (Engine.IsEditorHint())
+                UpdateSize(_length);
         }
     }
 }
