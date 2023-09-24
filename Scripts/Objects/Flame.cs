@@ -70,8 +70,6 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            _tendrils.Visible = _currentState == State.Flaming;
-
             switch (_currentState)
             {
                 case State.Flaming:
@@ -112,12 +110,18 @@ namespace FastDragon
         {
             _currentState = State.Flaming;
             _timer = ActiveDuration;
+
+            foreach (var tendril in AllFlameTendrils())
+                tendril.Start();
         }
 
         private void StartCoolingDown()
         {
             _currentState = State.CoolingDown;
             _timer = CooldownDuration;
+
+            foreach (var tendril in AllFlameTendrils())
+                tendril.Stop();
         }
 
         private void BecomeReady()

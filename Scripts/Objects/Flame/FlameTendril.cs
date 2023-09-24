@@ -51,6 +51,19 @@ namespace FastDragon
             UpdateSize(effectiveLength);
         }
 
+        public void Start()
+        {
+            _particles.Restart();
+            _particles.Emitting = true;
+            _sphere.Visible = true;
+        }
+
+        public void Stop()
+        {
+            _particles.Emitting = false;
+            _sphere.Visible = false;
+        }
+
         private void UpdateSize(float length)
         {
             _sphere.Scale = Vector3.One * _radius;
