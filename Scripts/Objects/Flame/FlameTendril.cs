@@ -35,10 +35,15 @@ namespace FastDragon
         private PhysicsBody3D _body => GetNode<PhysicsBody3D>("%Body");
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
 
+        private bool _active = false;
+
         public override void _Process(double deltaD)
         {
             if (Engine.IsEditorHint())
                 return;
+
+            _sphere.Visible = _active;
+            _particles.Emitting = _active;
 
             // Do a sphere-cast up to the intended lenght, and then adjust
             // the visuals according to how far it went.
@@ -51,17 +56,34 @@ namespace FastDragon
             UpdateSize(effectiveLength);
         }
 
+        public override void _PhysicsProcess(double delta)
+        {
+            if (Engine.IsEditorHint())
+                return;
+
+            if (!_active)
+                return;
+
+            var collision = CastToLength();
+
+            if (collision == null)
+                return;
+
+            if (collision.GetCollider() is IFlamable flamable)
+            {
+                flamable.OnFlamed();
+            }
+        }
+
         public void Start()
         {
             _particles.Restart();
-            _particles.Emitting = true;
-            _sphere.Visible = true;
+            _active = true;
         }
 
         public void Stop()
         {
-            _particles.Emitting = false;
-            _sphere.Visible = false;
+            _active = false;
         }
 
         private void UpdateSize(float length)
