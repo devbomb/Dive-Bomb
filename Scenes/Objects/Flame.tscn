@@ -1,43 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnugmkxucp0vb"]
+[gd_scene load_steps=3 format=3 uid="uid://bnugmkxucp0vb"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Flame.cs" id="1_24p3t"]
 [ext_resource type="PackedScene" uid="uid://c0kj840gbfhhu" path="res://Scenes/Objects/Flame/FlameTendril.tscn" id="2_ep34e"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gn0kh"]
-size = Vector3(1, 1, 2)
-
 [node name="Flame" type="Node3D"]
 script = ExtResource("1_24p3t")
+FlameTendrilPrefab = ExtResource("2_ep34e")
 
-[node name="Model" type="Node3D" parent="."]
+[node name="Tendrils" type="Node3D" parent="."]
 unique_name_in_owner = true
-
-[node name="FlameTendril" parent="Model" instance=ExtResource("2_ep34e")]
-transform = Transform3D(0.843391, 0, -0.5373, 0, 1, 0, 0.5373, 0, 0.843391, 0, 0, 0)
-
-[node name="FlameTendril2" parent="Model" instance=ExtResource("2_ep34e")]
-transform = Transform3D(0.843391, 0, 0.5373, 0, 1, 0, -0.5373, 0, 0.843391, 0, 0, 0)
-
-[node name="FlameTendril3" parent="Model" instance=ExtResource("2_ep34e")]
-transform = Transform3D(0.990024, 0, 0.140901, 0, 1, 0, -0.140901, 0, 0.990024, 0, 0, 0)
-
-[node name="FlameTendril4" parent="Model" instance=ExtResource("2_ep34e")]
-transform = Transform3D(0.990024, 0, -0.140901, 0, 1, 0, 0.140901, 0, 0.990024, 0, 0, 0)
-
-[node name="FlameTendril5" parent="Model" instance=ExtResource("2_ep34e")]
-transform = Transform3D(0.937889, 0.0897936, 0.335114, 0, 0.965926, -0.258819, -0.346936, 0.242744, 0.905931, 0, 0, 0)
-
-[node name="FlameTendril6" parent="Model" instance=ExtResource("2_ep34e")]
-transform = Transform3D(0.937889, -0.0897936, -0.335114, 0, 0.965926, -0.258819, 0.346936, 0.242744, 0.905931, 0, 0, 0)
-
-[node name="FlameTendril7" parent="Model" instance=ExtResource("2_ep34e")]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
-
-[node name="HitBox" type="Area3D" parent="."]
-
-[node name="HitBoxShape" type="CollisionShape3D" parent="HitBox"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-shape = SubResource("BoxShape3D_gn0kh")
-
-[connection signal="body_entered" from="HitBox" to="." method="OnBodyEntered" flags=3]

@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using Godot;
 
@@ -8,11 +10,15 @@ namespace FastDragon
         public const float ActiveDuration = 0.5f;
         public const float CooldownDuration = 7f / 30;
         public const float Length = 1.5f;
+        public const float HAngleDeg = 65f;
+        public const float VAngleDeg = 15f;
+
+        [Export] public PackedScene FlameTendrilPrefab;
+        [Export] public Node3D BodyToIgnore;
 
         public bool AllowFlaming = true;
 
-        private Node3D _model => GetNode<Node3D>("%Model");
-        private CollisionShape3D _hitBoxShape => GetNode<CollisionShape3D>("%HitBoxShape");
+        private Node3D _tendrils => GetNode<Node3D>("%Tendrils");
 
         private enum State
         {
@@ -25,15 +31,33 @@ namespace FastDragon
 
         private float _timer;
 
+        public override void _Ready()
+        {
+            SignalBus.Instance.LevelReset += Reset;
+
+            // Create a bunch of tendrils
+            for (int i = 0; i < 4; i++)
+            {
+                float t = ((float)i) / 4;
+                float hAngleDeg = Mathf.Lerp(-HAngleDeg / 2, HAngleDeg / 2, t);
+                AddTendril(hAngleDeg, 0);
+                AddTendril(hAngleDeg, VAngleDeg);
+            }
+
+            void AddTendril(float hAngleDeg, float vAngleDeg)
+            {
+                var tendril = FlameTendrilPrefab.Instantiate<FlameTendril>();
+                tendril.RotationDegrees = new Vector3(vAngleDeg, hAngleDeg, 0);
+                tendril.BodyToIgnore = BodyToIgnore;
+
+                _tendrils.AddChild(tendril);
+            }
+        }
+
         public override void _Input(InputEvent ev)
         {
             if (InputService.FlameJustPressed(ev) && _ready && AllowFlaming)
                 StartFlaming();
-        }
-
-        public override void _Ready()
-        {
-            SignalBus.Instance.LevelReset += Reset;
         }
 
         public void Reset()
@@ -46,8 +70,7 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            _model.Visible = _currentState == State.Flaming;
-            _hitBoxShape.Disabled = _currentState != State.Flaming;
+            _tendrils.Visible = _currentState == State.Flaming;
 
             switch (_currentState)
             {
@@ -104,13 +127,7 @@ namespace FastDragon
 
         private IEnumerable<FlameTendril> AllFlameTendrils()
         {
-            foreach (var desc in this.EnumerateDescendants())
-            {
-                if (desc is FlameTendril tendril)
-                {
-                    yield return tendril;
-                }
-            }
+            return _tendrils.EnumerateChildren().Cast<FlameTendril>();
         }
     }
 }

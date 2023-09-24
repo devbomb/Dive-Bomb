@@ -23,6 +23,8 @@ namespace FastDragon
             set => SetProperty(ref _particleSpeed, value);
         }
 
+        public Node3D BodyToIgnore;
+
         private float _length = 1.5f;
         private float _radius = 0.25f;
         private float _particleSpeed = 1;
@@ -40,11 +42,7 @@ namespace FastDragon
 
             // Do a sphere-cast up to the intended lenght, and then adjust
             // the visuals according to how far it went.
-            var collision = _body.MoveAndCollide(
-                this.GlobalForward() * _length,
-                testOnly: true,
-                recoveryAsCollision: true
-            );
+            var collision = CastToLength();
 
             float effectiveLength = collision != null
                 ? collision.GetTravel().Length()
@@ -73,6 +71,21 @@ namespace FastDragon
 
             if (Engine.IsEditorHint())
                 UpdateSize(_length);
+        }
+
+        private KinematicCollision3D CastToLength()
+        {
+            _body.AddCollisionExceptionWith(BodyToIgnore);
+
+            var result = _body.MoveAndCollide(
+                this.GlobalForward() * _length,
+                testOnly: true,
+                recoveryAsCollision: true
+            );
+
+            _body.RemoveCollisionExceptionWith(BodyToIgnore);
+
+            return result;
         }
     }
 }

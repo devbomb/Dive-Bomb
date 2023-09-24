@@ -1903,8 +1903,9 @@ bones/29/rotation = Quaternion(6.0536e-09, -1.11759e-08, 1.58325e-08, 1)
 [node name="Sparx" parent="." instance=ExtResource("3_5fc8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Flame" parent="." instance=ExtResource("4_g8ylw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.855634, -0.426036)
+[node name="Flame" parent="." node_paths=PackedStringArray("BodyToIgnore") instance=ExtResource("4_g8ylw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.732184, -0.483194)
+BodyToIgnore = NodePath("..")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
 unique_name_in_owner = true
