@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0kj840gbfhhu"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Flame/FlameTendril.cs" id="1_rk2bl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_mxgq2"]
+
+[node name="FlameTendril" type="Node3D"]
+script = ExtResource("1_rk2bl")
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -1.5)
+mesh = SubResource("SphereMesh_mxgq2")
