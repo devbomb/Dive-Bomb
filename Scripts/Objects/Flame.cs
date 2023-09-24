@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace FastDragon
@@ -6,6 +7,7 @@ namespace FastDragon
     {
         public const float ActiveDuration = 0.5f;
         public const float CooldownDuration = 7f / 30;
+        public const float Length = 1.5f;
 
         public bool AllowFlaming = true;
 
@@ -53,6 +55,12 @@ namespace FastDragon
                 {
                     _timer -= delta;
 
+                    foreach (var tendril in AllFlameTendrils())
+                    {
+                        tendril.Length = Mathf.Lerp(Length, 0, _timer / ActiveDuration);
+                        tendril.ParticleSpeed = Length / ActiveDuration;
+                    }
+
                     if (_timer <= 0)
                         StartCoolingDown();
 
@@ -92,6 +100,17 @@ namespace FastDragon
         private void BecomeReady()
         {
             _currentState = State.Ready;
+        }
+
+        private IEnumerable<FlameTendril> AllFlameTendrils()
+        {
+            foreach (var desc in this.EnumerateDescendants())
+            {
+                if (desc is FlameTendril tendril)
+                {
+                    yield return tendril;
+                }
+            }
         }
     }
 }
