@@ -21,11 +21,13 @@ namespace FastDragon
         private float _radius = 0.25f;
 
         private Node3D _sphere => GetNode<Node3D>("%Sphere");
+        private GpuParticles3D _particles => GetNode<GpuParticles3D>("%FlameParticles");
 
         private void UpdateSize()
         {
             _sphere.Scale = Vector3.One * _radius;
             _sphere.Position = Vector3.Forward * _length;
+            _particles.Lifetime = _length;
         }
 
         private void SetProperty(ref float storage, float value)
