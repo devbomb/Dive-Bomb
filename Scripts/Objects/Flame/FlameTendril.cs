@@ -17,17 +17,10 @@ namespace FastDragon
             set => SetProperty(ref _radius, value);
         }
 
-        [Export] public float ParticleSpeed
-        {
-            get => _particleSpeed;
-            set => SetProperty(ref _particleSpeed, value);
-        }
-
         public Node3D BodyToIgnore;
 
         private float _length = 1.5f;
         private float _radius = 0.25f;
-        private float _particleSpeed = 1;
 
         private Node3D _sphere => GetNode<Node3D>("%Sphere");
         private GpuParticles3D _particles => GetNode<GpuParticles3D>("%FlameParticles");
@@ -90,11 +83,7 @@ namespace FastDragon
         {
             _sphere.Scale = Vector3.One * _radius;
             _sphere.Position = Vector3.Forward * length;
-            _particles.Lifetime = length / _particleSpeed;
-
-            var procMat = (ParticleProcessMaterial)_particles.ProcessMaterial;
-            procMat.InitialVelocityMin = _particleSpeed;
-            procMat.InitialVelocityMax = _particleSpeed;
+            _particles.Scale = new Vector3(1, 1, length);
 
             var shape = (SphereShape3D)_bodyShape.Shape;
             shape.Radius = _radius;

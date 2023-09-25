@@ -96,10 +96,11 @@ radius = 0.25
 
 [node name="FlameTendril" type="Node3D"]
 script = ExtResource("1_rk2bl")
+Length = 1.0
 
 [node name="Sphere" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -1.5)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -1)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Sphere"]
 local_coords = true
@@ -109,7 +110,7 @@ draw_pass_1 = SubResource("PlaneMesh_flalc")
 [node name="FlameParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
 amount = 100
-lifetime = 1.5
+preprocess = 1.0
 local_coords = true
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_0h1n1")

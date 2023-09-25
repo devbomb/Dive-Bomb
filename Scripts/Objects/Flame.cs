@@ -79,7 +79,6 @@ namespace FastDragon
                     foreach (var tendril in AllFlameTendrils())
                     {
                         tendril.Length = Mathf.Lerp(Length, 0, _timer / ActiveDuration);
-                        tendril.ParticleSpeed = Length / ActiveDuration;
                     }
 
                     if (_timer <= 0)
