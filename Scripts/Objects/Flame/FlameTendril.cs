@@ -24,6 +24,7 @@ namespace FastDragon
 
         private Node3D _sphere => GetNode<Node3D>("%Sphere");
         private GpuParticles3D _particles => GetNode<GpuParticles3D>("%FlameParticles");
+        private Node3D _tendrilScaler => GetNode<Node3D>("%TendrilParticlesScaler");
 
         private PhysicsBody3D _body => GetNode<PhysicsBody3D>("%Body");
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
@@ -83,7 +84,7 @@ namespace FastDragon
         {
             _sphere.Scale = Vector3.One * _radius;
             _sphere.Position = Vector3.Forward * length;
-            _particles.Scale = new Vector3(1, 1, length);
+            _tendrilScaler.Scale = new Vector3(1, 1, length);
 
             var procMat = (ParticleProcessMaterial)_particles.ProcessMaterial;
             procMat.ScaleMin = _radius;

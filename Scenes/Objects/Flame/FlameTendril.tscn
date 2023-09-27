@@ -41,6 +41,9 @@ material = SubResource("StandardMaterial3D_hd72i")
 size = Vector2(1, 1)
 orientation = 2
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_s2qme"]
+radius = 0.25
+
 [sub_resource type="Gradient" id="Gradient_76yr0"]
 offsets = PackedFloat32Array(0.174672, 0.799127, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -57,11 +60,11 @@ curve = SubResource("Curve_egswk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0h1n1"]
 resource_local_to_scene = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 0, 0.5)
 direction = Vector3(0, 0, -1)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
 scale_min = 0.25
 scale_max = 0.25
 scale_curve = SubResource("CurveTexture_lwfcu")
@@ -93,9 +96,6 @@ material = SubResource("StandardMaterial3D_b1u7y")
 size = Vector2(1, 1)
 orientation = 2
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_s2qme"]
-radius = 0.25
-
 [node name="FlameTendril" type="Node3D"]
 script = ExtResource("1_rk2bl")
 Length = 1.0
@@ -109,16 +109,6 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_sxjql")
 draw_pass_1 = SubResource("PlaneMesh_flalc")
 
-[node name="FlameParticles" type="GPUParticles3D" parent="."]
-unique_name_in_owner = true
-amount = 100
-lifetime = 0.5
-preprocess = 1.0
-local_coords = true
-draw_order = 3
-process_material = SubResource("ParticleProcessMaterial_0h1n1")
-draw_pass_1 = SubResource("PlaneMesh_tp3c3")
-
 [node name="Body" type="StaticBody3D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
@@ -126,3 +116,17 @@ collision_layer = 0
 [node name="BodyShape" type="CollisionShape3D" parent="Body"]
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_s2qme")
+
+[node name="TendrilParticlesScaler" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="FlameParticles" type="GPUParticles3D" parent="TendrilParticlesScaler"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+amount = 100
+lifetime = 0.5
+preprocess = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_0h1n1")
+draw_pass_1 = SubResource("PlaneMesh_tp3c3")
