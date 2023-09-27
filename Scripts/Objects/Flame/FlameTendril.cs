@@ -38,7 +38,7 @@ namespace FastDragon
             if (Engine.IsEditorHint())
                 return;
 
-            _sphere.Visible = _active;
+            _sphereParticles.Emitting = _active;
             _particles.Emitting = _active;
 
             // Do a sphere-cast up to the intended lenght, and then adjust
@@ -74,6 +74,7 @@ namespace FastDragon
         public void Start()
         {
             _particles.Restart();
+            _sphereParticles.Restart();
             _active = true;
         }
 
