@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0kj840gbfhhu"]
+[gd_scene load_steps=21 format=3 uid="uid://c0kj840gbfhhu"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Flame/FlameTendril.cs" id="1_rk2bl"]
 
@@ -9,10 +9,20 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_hg24p"]
 gradient = SubResource("Gradient_r2hq2")
 
+[sub_resource type="Curve" id="Curve_kckou"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.621053), -1.01144, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c7og3"]
+curve = SubResource("Curve_kckou")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sxjql"]
-emission_shape = 1
-emission_sphere_radius = 0.1
-gravity = Vector3(0, 0, 0)
+direction = Vector3(0, 0, -1)
+spread = 0.0
+gravity = Vector3(0, 0.5, 0.25)
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_c7og3")
 color_ramp = SubResource("GradientTexture1D_hg24p")
 
 [sub_resource type="Gradient" id="Gradient_sk4sm"]
@@ -52,8 +62,8 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_76yr0")
 
 [sub_resource type="Curve" id="Curve_egswk"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
+_data = [Vector2(0, 0.463158), 0.0, 1.47105, 0, 1, Vector2(0.307692, 0.915789), -2.65865, -2.65865, 0, 0, Vector2(1, 0), -0.977444, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_lwfcu"]
 curve = SubResource("Curve_egswk")
@@ -61,10 +71,12 @@ curve = SubResource("Curve_egswk")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0h1n1"]
 resource_local_to_scene = true
 emission_shape = 3
-emission_box_extents = Vector3(0, 0, 0.5)
+emission_box_extents = Vector3(0, 0, 0.25)
 direction = Vector3(0, 0, -1)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, 0.5, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
 scale_min = 0.25
 scale_max = 0.25
 scale_curve = SubResource("CurveTexture_lwfcu")
@@ -102,9 +114,10 @@ Length = 1.0
 
 [node name="Sphere" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Sphere"]
+[node name="SphereParticles" type="GPUParticles3D" parent="Sphere"]
+unique_name_in_owner = true
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_sxjql")
 draw_pass_1 = SubResource("PlaneMesh_flalc")
@@ -122,9 +135,8 @@ unique_name_in_owner = true
 
 [node name="FlameParticles" type="GPUParticles3D" parent="TendrilParticlesScaler"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-amount = 100
-lifetime = 0.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
+amount = 50
 preprocess = 1.0
 local_coords = true
 draw_order = 3
