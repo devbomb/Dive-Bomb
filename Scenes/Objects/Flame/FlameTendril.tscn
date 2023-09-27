@@ -118,6 +118,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="SphereParticles" type="GPUParticles3D" parent="Sphere"]
 unique_name_in_owner = true
+speed_scale = 2.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_sxjql")
 draw_pass_1 = SubResource("PlaneMesh_flalc")
@@ -138,6 +139,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0749806, -0.4)
 amount = 50
 preprocess = 1.0
+speed_scale = 2.0
 local_coords = true
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_0h1n1")
