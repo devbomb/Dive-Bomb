@@ -9,7 +9,7 @@ namespace FastDragon
     {
         public const float ActiveDuration = 0.5f;
         public const float CooldownDuration = 7f / 30;
-        public const float Length = 1.5f;
+        public const float Length = 3f;
         public const float HAngleDeg = 65f;
         public const float VAngleDeg = 15f;
 
