@@ -9,3 +9,26 @@ FlameTendrilPrefab = ExtResource("2_ep34e")
 
 [node name="Tendrils" type="Node3D" parent="."]
 unique_name_in_owner = true
+
+[node name="FlameTendril" parent="Tendrils" instance=ExtResource("2_ep34e")]
+Length = 1.5
+
+[node name="FlameTendril2" parent="Tendrils" instance=ExtResource("2_ep34e")]
+transform = Transform3D(0.843391, 0, 0.5373, 0, 1, 0, -0.5373, 0, 0.843391, 0, 0, 0)
+Length = 1.5
+
+[node name="FlameTendril3" parent="Tendrils" instance=ExtResource("2_ep34e")]
+transform = Transform3D(0.843391, 0, -0.5373, 0, 1, 0, 0.5373, 0, 0.843391, 0, 0, 0)
+Length = 1.5
+
+[node name="FlameTendril4" parent="Tendrils" instance=ExtResource("2_ep34e")]
+transform = Transform3D(0.95882, -0.0735086, -0.274338, 0.0187981, 0.980233, -0.196953, 0.283393, 0.183685, 0.941248, 0, 0, 0)
+Length = 1.5
+
+[node name="FlameTendril5" parent="Tendrils" instance=ExtResource("2_ep34e")]
+transform = Transform3D(0.95882, 0.0735086, 0.274338, -0.0187981, 0.980233, -0.196953, -0.283393, 0.183685, 0.941248, 0, 0, 0)
+Length = 1.5
+
+[node name="FlameTendril6" parent="Tendrils" instance=ExtResource("2_ep34e")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
+Length = 1.5

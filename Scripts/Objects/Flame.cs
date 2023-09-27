@@ -35,22 +35,9 @@ namespace FastDragon
         {
             SignalBus.Instance.LevelReset += Reset;
 
-            // Create a bunch of tendrils
-            for (int i = 0; i < 4; i++)
+            foreach (var tendril in AllFlameTendrils())
             {
-                float t = ((float)i) / 4;
-                float hAngleDeg = Mathf.Lerp(-HAngleDeg / 2, HAngleDeg / 2, t);
-                AddTendril(hAngleDeg, 0);
-                AddTendril(hAngleDeg, VAngleDeg);
-            }
-
-            void AddTendril(float hAngleDeg, float vAngleDeg)
-            {
-                var tendril = FlameTendrilPrefab.Instantiate<FlameTendril>();
-                tendril.RotationDegrees = new Vector3(vAngleDeg, hAngleDeg, 0);
                 tendril.BodyToIgnore = BodyToIgnore;
-
-                _tendrils.AddChild(tendril);
             }
         }
 
