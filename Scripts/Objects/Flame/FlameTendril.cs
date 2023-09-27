@@ -85,6 +85,10 @@ namespace FastDragon
             _sphere.Position = Vector3.Forward * length;
             _particles.Scale = new Vector3(1, 1, length);
 
+            var procMat = (ParticleProcessMaterial)_particles.ProcessMaterial;
+            procMat.ScaleMin = _radius;
+            procMat.ScaleMax = _radius;
+
             var shape = (SphereShape3D)_bodyShape.Shape;
             shape.Radius = _radius;
         }

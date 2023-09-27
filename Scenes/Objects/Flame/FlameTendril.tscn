@@ -62,6 +62,8 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 1.0
 initial_velocity_max = 1.0
+scale_min = 0.25
+scale_max = 0.25
 scale_curve = SubResource("CurveTexture_lwfcu")
 color_ramp = SubResource("GradientTexture1D_tcqhr")
 
@@ -88,7 +90,7 @@ particles_anim_loop = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tp3c3"]
 material = SubResource("StandardMaterial3D_b1u7y")
-size = Vector2(0.25, 0.25)
+size = Vector2(1, 1)
 orientation = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s2qme"]
