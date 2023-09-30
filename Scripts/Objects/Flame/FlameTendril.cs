@@ -32,6 +32,13 @@ namespace FastDragon
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
 
         private bool _active = false;
+        private bool _initialized = false;
+
+        public override void _Ready()
+        {
+            _initialized = true;
+            UpdateSize(_length);
+        }
 
         public override void _Process(double deltaD)
         {
@@ -102,7 +109,7 @@ namespace FastDragon
         {
             storage = value;
 
-            if (Engine.IsEditorHint())
+            if (Engine.IsEditorHint() && _initialized && Owner != this)
                 UpdateSize(_length);
         }
 
