@@ -55,16 +55,6 @@ namespace FastDragon
 
             _capParticles.Emitting = _active;
             _stalkParticles.Emitting = _active;
-
-            // Do a sphere-cast up to the intended lenght, and then adjust
-            // the visuals according to how far it went.
-            var collision = CastToLength();
-
-            float effectiveLength = collision != null
-                ? collision.GetTravel().Length()
-                : _length;
-
-            UpdateSize(effectiveLength);
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -81,6 +71,7 @@ namespace FastDragon
             _timer += delta;
             _length = Mathf.Lerp(0, MaxLength, _timer / ActiveDuration);
             _length = Mathf.Min(_length, MaxLength);
+            UpdateSize(_length);
 
             // Flame things that we collide with
             var collision = CastToLength();
@@ -93,6 +84,7 @@ namespace FastDragon
             // Stop early if we hit something
             if (collision != null)
             {
+                UpdateSize(collision.GetTravel().Length());
                 Stop();
                 _hitSmokePartciles.GlobalPosition = GlobalPosition + (this.GlobalForward() * _length);
                 _hitSmokePartciles.Restart();
@@ -106,16 +98,37 @@ namespace FastDragon
 
         public void Start()
         {
+            Reattach(_stalk);
+            Reattach(_cap);
+
             _stalkParticles.Restart();
             _capParticles.Restart();
+
             _length = 0;
             _timer = 0;
             _active = true;
+
+            void Reattach(Node3D node)
+            {
+                node.TopLevel = false;
+                node.Position = Vector3.Zero;
+                node.Rotation = Vector3.Zero;
+            }
         }
 
         public void Stop()
         {
             _active = false;
+            Detatch(_cap);
+            Detatch(_stalk);
+
+            void Detatch(Node3D node)
+            {
+                var globalPos = node.GlobalPosition;
+
+                node.TopLevel = true;
+                node.GlobalPosition = globalPos;
+            }
         }
 
         private void UpdateSize(float length)

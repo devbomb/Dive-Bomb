@@ -172,7 +172,7 @@ draw_order = 1
 process_material = SubResource("ParticleProcessMaterial_n5nk7")
 draw_pass_1 = SubResource("PlaneMesh_c3wxs")
 
-[node name="Cap" type="MeshInstance3D" parent="."]
+[node name="Cap" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
