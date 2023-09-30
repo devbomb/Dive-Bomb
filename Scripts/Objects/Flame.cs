@@ -102,11 +102,6 @@ namespace FastDragon
                 {
                     _timer -= delta;
 
-                    foreach (var tendril in AllFlameTendrils())
-                    {
-                        tendril.Length = Mathf.Lerp(Length, 0, _timer / ActiveDuration);
-                    }
-
                     if (_timer <= 0)
                         StartCoolingDown();
 
@@ -190,7 +185,8 @@ namespace FastDragon
             {
                 var tendril = FlameTendrilPrefab.Instantiate<FlameTendril>();
                 tendril.BodyToIgnore = BodyToIgnore;
-                tendril.Length = Length;
+                tendril.MaxLength = Length;
+                tendril.ActiveDuration = ActiveDuration;
 
                 _tendrils.AddChild(tendril);
                 return tendril;

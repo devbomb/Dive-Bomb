@@ -5,22 +5,22 @@ namespace FastDragon
     [Tool]
     public partial class FlameTendril : Node3D
     {
-        [Export] public float Length
+        [Export] public float MaxLength
         {
-            get => _length;
-            set => SetProperty(ref _length, value);
+            get => _maxLength;
+            set => SetProperty(ref _maxLength, value);
         }
+        private float _maxLength = 1.5f;
 
         [Export] public float Radius
         {
             get => _radius;
             set => SetProperty(ref _radius, value);
         }
+        private float _radius = 0.25f;
 
         public Node3D BodyToIgnore;
-
-        private float _length = 1.5f;
-        private float _radius = 0.25f;
+        public float ActiveDuration;
 
         private Node3D _sphere => GetNode<Node3D>("%Sphere");
         private Node3D _tendrilScaler => GetNode<Node3D>("%TendrilParticlesScaler");
@@ -31,13 +31,20 @@ namespace FastDragon
         private PhysicsBody3D _body => GetNode<PhysicsBody3D>("%Body");
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
 
-        private bool _active = false;
         private bool _initialized = false;
+
+        private bool _active = false;
+        private float _timer = 0;
+        private float _length;
+
 
         public override void _Ready()
         {
-            _initialized = true;
-            UpdateSize(_length);
+            if (Engine.IsEditorHint())
+            {
+                _initialized = true;
+                UpdateSize(_maxLength);
+            }
         }
 
         public override void _Process(double deltaD)
@@ -59,14 +66,22 @@ namespace FastDragon
             UpdateSize(effectiveLength);
         }
 
-        public override void _PhysicsProcess(double delta)
+        public override void _PhysicsProcess(double deltaD)
         {
             if (Engine.IsEditorHint())
                 return;
 
+            float delta = (float)deltaD;
+
             if (!_active)
                 return;
 
+            // Move the tendril forward
+            _timer += delta;
+            _length = Mathf.Lerp(0, MaxLength, _timer / ActiveDuration);
+            _length = Mathf.Min(_length, MaxLength);
+
+            // Flame things that we collide with
             var collision = CastToLength();
 
             if (collision == null)
@@ -76,12 +91,18 @@ namespace FastDragon
             {
                 flamable.OnFlamed();
             }
+
+            // Stop when the timer is up
+            if (_timer >= ActiveDuration)
+                Stop();
         }
 
         public void Start()
         {
             _particles.Restart();
             _sphereParticles.Restart();
+            _length = 0;
+            _timer = 0;
             _active = true;
         }
 
@@ -110,7 +131,7 @@ namespace FastDragon
             storage = value;
 
             if (Engine.IsEditorHint() && _initialized && Owner != this)
-                UpdateSize(_length);
+                UpdateSize(_maxLength);
         }
 
         private KinematicCollision3D CastToLength()
