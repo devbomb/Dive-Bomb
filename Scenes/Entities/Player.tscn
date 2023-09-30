@@ -1830,7 +1830,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rcfxu")
 }
-blend_times = [&"Glide", &"Idle", 0.1, &"Glide", &"ChargeJump", 0.1, &"Charge", &"Idle", 0.1, &"Charge", &"ChargeJump", 0.1, &"Jump", &"Glide", 0.1, &"Jump", &"Charge", 0.1, &"Jump", &"Idle", 0.1, &"Jump", &"ChargeJump", 0.1, &"Idle", &"Glide", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Jump", 0.1, &"Idle", &"Flop", 0.3, &"ChargeJump", &"Glide", 0.1, &"ChargeJump", &"Charge", 0.1]
+blend_times = [&"Jump", &"Charge", 0.1, &"Jump", &"Glide", 0.1, &"Jump", &"Idle", 0.1, &"Jump", &"ChargeJump", 0.1, &"Charge", &"Idle", 0.1, &"Charge", &"ChargeJump", 0.1, &"Glide", &"Idle", 0.1, &"Glide", &"ChargeJump", 0.1, &"Idle", &"Jump", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Glide", 0.1, &"ChargeJump", &"Charge", 0.1, &"ChargeJump", &"Glide", 0.1]
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
