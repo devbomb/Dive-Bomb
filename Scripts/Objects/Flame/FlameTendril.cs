@@ -26,6 +26,7 @@ namespace FastDragon
         private Node3D _tendrilScaler => GetNode<Node3D>("%TendrilParticlesScaler");
         private GpuParticles3D _particles => GetNode<GpuParticles3D>("%FlameParticles");
         private GpuParticles3D _sphereParticles => GetNode<GpuParticles3D>("%SphereParticles");
+        private GpuParticles3D _hitSmokePartciles => GetNode<GpuParticles3D>("%HitSmokeParticles");
         private ParticleProcessMaterial _sphereParticlesProc => (ParticleProcessMaterial)_sphereParticles.ProcessMaterial;
 
         private PhysicsBody3D _body => GetNode<PhysicsBody3D>("%Body");
@@ -89,8 +90,17 @@ namespace FastDragon
                 flamable.OnFlamed();
             }
 
+            // Stop early if we hit something
+            if (collision != null)
+            {
+                Stop();
+                _hitSmokePartciles.GlobalPosition = GlobalPosition + (this.GlobalForward() * _length);
+                _hitSmokePartciles.Restart();
+                return;
+            }
+
             // Stop when the timer is up, or when we hit something
-            if (_timer >= ActiveDuration || collision != null)
+            if (_timer >= ActiveDuration)
                 Stop();
         }
 

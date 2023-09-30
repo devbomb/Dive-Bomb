@@ -1,6 +1,55 @@
-[gd_scene load_steps=21 format=3 uid="uid://c0kj840gbfhhu"]
+[gd_scene load_steps=30 format=3 uid="uid://c0kj840gbfhhu"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Flame/FlameTendril.cs" id="1_rk2bl"]
+
+[sub_resource type="Gradient" id="Gradient_m63hv"]
+offsets = PackedFloat32Array(0, 0.716157, 1)
+colors = PackedColorArray(0.215902, 0.215902, 0.215902, 1, 0.0475577, 0.0475576, 0.0475576, 1, 0.0470588, 0.0470588, 0.0470588, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_58lln"]
+gradient = SubResource("Gradient_m63hv")
+
+[sub_resource type="Curve" id="Curve_6qq4n"]
+_data = [Vector2(0, 0), 0.0, 0.978947, 0, 1, Vector2(1, 0.978947), 0.978947, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xfp0e"]
+curve = SubResource("Curve_6qq4n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n5nk7"]
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.3
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_xfp0e")
+color_ramp = SubResource("GradientTexture1D_58lln")
+
+[sub_resource type="Gradient" id="Gradient_6fipq"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.149321, 0.276018, 0.438914, 0.538462, 0.678733)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.812517, 1, 1, 1, 0.559604, 1, 1, 1, 0.235988, 1, 1, 1, 0.0820985, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5cnnn"]
+gradient = SubResource("Gradient_6fipq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3knc"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_5cnnn")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c3wxs"]
+material = SubResource("StandardMaterial3D_f3knc")
+size = Vector2(1, 1)
+orientation = 2
 
 [sub_resource type="Gradient" id="Gradient_r2hq2"]
 offsets = PackedFloat32Array(0.0174672, 0.362445, 0.79476, 1)
@@ -110,6 +159,18 @@ orientation = 2
 
 [node name="FlameTendril" type="Node3D"]
 script = ExtResource("1_rk2bl")
+
+[node name="HitSmokeParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+top_level = true
+emitting = false
+one_shot = true
+preprocess = 0.5
+explosiveness = 0.4
+randomness = 1.0
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_n5nk7")
+draw_pass_1 = SubResource("PlaneMesh_c3wxs")
 
 [node name="Sphere" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
