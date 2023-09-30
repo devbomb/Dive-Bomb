@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnugmkxucp0vb"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Flame.cs" id="1_24p3t"]
+[ext_resource type="PackedScene" uid="uid://c0kj840gbfhhu" path="res://Scenes/Objects/Flame/FlameTendril.tscn" id="2_ep34e"]
+
+[node name="Flame" type="Node3D"]
+script = ExtResource("1_24p3t")
+FlameTendrilPrefab = ExtResource("2_ep34e")
+
+[node name="Tendrils" type="Node3D" parent="."]
+unique_name_in_owner = true

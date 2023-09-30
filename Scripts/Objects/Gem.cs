@@ -6,6 +6,8 @@ namespace FastDragon
     public partial class Gem : InterpolatedCharacterBody3D
     {
         public const float HomingDuration = 0.5f;
+        public const float RevealJumpVelocity = 10;
+        public const float Gravity = 30;
 
         [Export] public GemColor Value;
 
@@ -78,7 +80,7 @@ namespace FastDragon
                 case State.Revealed:
                 {
                     Visible = true;
-                    Velocity += Vector3.Down * 9.8f * delta;
+                    Velocity += Vector3.Down * Gravity * delta;
 
                     var collision = MoveAndCollide(Velocity * delta);
                     if (collision != null)
@@ -129,7 +131,7 @@ namespace FastDragon
         public void Reveal()
         {
             CurrentState = State.Revealed;
-            Velocity = Vector3.Up * 10;
+            Velocity = Vector3.Up * RevealJumpVelocity;
 
             GD.Print($"Revealed gem {GetPath()}");
         }

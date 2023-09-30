@@ -5,6 +5,8 @@ namespace FastDragon
 {
     public partial class PlayerChargeState : PlayerState
     {
+        public override bool AllowFlaming => false;
+
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraLockedState>();

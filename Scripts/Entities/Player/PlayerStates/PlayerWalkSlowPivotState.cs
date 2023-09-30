@@ -4,6 +4,8 @@ namespace FastDragon
 {
     public partial class PlayerWalkSlowPivotState : PlayerState
     {
+        public override bool AllowFlaming => false;
+
         // TODO: move this to PlayerState
         protected float YawRad
         {

@@ -45,5 +45,8 @@ namespace FastDragon
         public static bool PauseJustPressed(InputEvent ev)
             => ev.IsActionPressed("Pause");
 
+        public static bool FlameJustPressed(InputEvent ev)
+            => ev.IsActionPressed("Flame");
+
     }
 }

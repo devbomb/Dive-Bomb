@@ -5,6 +5,8 @@ namespace FastDragon
 {
     public partial class PlayerBonkState : PlayerState
     {
+        public override bool AllowFlaming => false;
+
         private static readonly float BonkSpeed;
         private static readonly float BonkFriction;
 

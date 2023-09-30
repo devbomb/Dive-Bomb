@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=20 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
 [ext_resource type="PackedScene" uid="uid://dolfkovx44knj" path="res://Scenes/Objects/Sparx.tscn" id="3_5fc8t"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_15biq"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="4_db58r"]
+[ext_resource type="PackedScene" uid="uid://bnugmkxucp0vb" path="res://Scenes/Objects/Flame.tscn" id="4_g8ylw"]
 
 [sub_resource type="Animation" id="Animation_ide03"]
 resource_name = "Bonk"
@@ -1829,7 +1830,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rcfxu")
 }
-blend_times = [&"Jump", &"ChargeJump", 0.1, &"Jump", &"Idle", 0.1, &"Jump", &"Glide", 0.1, &"Jump", &"Charge", 0.1, &"ChargeJump", &"Glide", 0.1, &"ChargeJump", &"Charge", 0.1, &"Idle", &"Jump", 0.1, &"Idle", &"Glide", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Flop", 0.3, &"Glide", &"ChargeJump", 0.1, &"Glide", &"Idle", 0.1, &"Charge", &"ChargeJump", 0.1, &"Charge", &"Idle", 0.1]
+blend_times = [&"Jump", &"Charge", 0.1, &"Jump", &"Glide", 0.1, &"Jump", &"Idle", 0.1, &"Jump", &"ChargeJump", 0.1, &"Charge", &"Idle", 0.1, &"Charge", &"ChargeJump", 0.1, &"Glide", &"Idle", 0.1, &"Glide", &"ChargeJump", 0.1, &"Idle", &"Jump", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Glide", 0.1, &"ChargeJump", &"Charge", 0.1, &"ChargeJump", &"Glide", 0.1]
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
@@ -1898,6 +1899,10 @@ bones/27/rotation = Quaternion(0.349826, 0.0566511, 0.081975, 0.9315)
 bones/27/scale = Vector3(0.999999, 1, 1)
 bones/28/rotation = Quaternion(-5.96046e-08, 3.72529e-09, -1.02445e-08, 1)
 bones/29/rotation = Quaternion(6.0536e-09, -1.11759e-08, 1.58325e-08, 1)
+
+[node name="Flame" parent="Model" node_paths=PackedStringArray("BodyToIgnore") instance=ExtResource("4_g8ylw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.732184, -0.483194)
+BodyToIgnore = NodePath("../..")
 
 [node name="Sparx" parent="." instance=ExtResource("3_5fc8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
