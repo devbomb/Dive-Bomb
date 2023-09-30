@@ -172,11 +172,11 @@ draw_order = 1
 process_material = SubResource("ParticleProcessMaterial_n5nk7")
 draw_pass_1 = SubResource("PlaneMesh_c3wxs")
 
-[node name="Sphere" type="MeshInstance3D" parent="."]
+[node name="Cap" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
-[node name="SphereParticles" type="GPUParticles3D" parent="Sphere"]
+[node name="CapParticles" type="GPUParticles3D" parent="Cap"]
 unique_name_in_owner = true
 speed_scale = 2.0
 local_coords = true
@@ -192,10 +192,10 @@ collision_layer = 0
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_s2qme")
 
-[node name="TendrilParticlesScaler" type="Node3D" parent="."]
+[node name="Stalk" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="FlameParticles" type="GPUParticles3D" parent="TendrilParticlesScaler"]
+[node name="StalkParticles" type="GPUParticles3D" parent="Stalk"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0749806, -0.4)
 amount = 50

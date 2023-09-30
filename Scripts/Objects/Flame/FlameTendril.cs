@@ -22,12 +22,12 @@ namespace FastDragon
         public Node3D BodyToIgnore;
         public float ActiveDuration;
 
-        private Node3D _sphere => GetNode<Node3D>("%Sphere");
-        private Node3D _tendrilScaler => GetNode<Node3D>("%TendrilParticlesScaler");
-        private GpuParticles3D _particles => GetNode<GpuParticles3D>("%FlameParticles");
-        private GpuParticles3D _sphereParticles => GetNode<GpuParticles3D>("%SphereParticles");
+        private Node3D _cap => GetNode<Node3D>("%Cap");
+        private Node3D _stalk => GetNode<Node3D>("%Stalk");
+        private GpuParticles3D _capParticles => GetNode<GpuParticles3D>("%CapParticles");
+        private GpuParticles3D _stalkParticles => GetNode<GpuParticles3D>("%StalkParticles");
         private GpuParticles3D _hitSmokePartciles => GetNode<GpuParticles3D>("%HitSmokeParticles");
-        private ParticleProcessMaterial _sphereParticlesProc => (ParticleProcessMaterial)_sphereParticles.ProcessMaterial;
+        private ParticleProcessMaterial _capParticlesProc => (ParticleProcessMaterial)_capParticles.ProcessMaterial;
 
         private PhysicsBody3D _body => GetNode<PhysicsBody3D>("%Body");
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
@@ -53,8 +53,8 @@ namespace FastDragon
             if (Engine.IsEditorHint())
                 return;
 
-            _sphereParticles.Emitting = _active;
-            _particles.Emitting = _active;
+            _capParticles.Emitting = _active;
+            _stalkParticles.Emitting = _active;
 
             // Do a sphere-cast up to the intended lenght, and then adjust
             // the visuals according to how far it went.
@@ -106,8 +106,8 @@ namespace FastDragon
 
         public void Start()
         {
-            _particles.Restart();
-            _sphereParticles.Restart();
+            _stalkParticles.Restart();
+            _capParticles.Restart();
             _length = 0;
             _timer = 0;
             _active = true;
@@ -120,7 +120,7 @@ namespace FastDragon
 
         private void UpdateSize(float length)
         {
-            _sphere.Position = Vector3.Forward * length;
+            _cap.Position = Vector3.Forward * length;
 
             // HACK: There appears to be some kind of Godot bug where, if you
             // set a GPUParticles3D's scale to (1, 1, 0), it will occasionally
@@ -129,13 +129,13 @@ namespace FastDragon
             // To avoid this, just make it invisible instead of changing the
             // scale, if the scale is going to be 0.
             if (length > 0)
-                _tendrilScaler.Scale = new Vector3(1, 1, length);
-            _tendrilScaler.Visible = length > 0;
+                _stalk.Scale = new Vector3(1, 1, length);
+            _stalk.Visible = length > 0;
 
-            _sphereParticlesProc.ScaleMin = _radius;
-            _sphereParticlesProc.ScaleMax = _radius;
+            _capParticlesProc.ScaleMin = _radius;
+            _capParticlesProc.ScaleMax = _radius;
 
-            var procMat = (ParticleProcessMaterial)_particles.ProcessMaterial;
+            var procMat = (ParticleProcessMaterial)_stalkParticles.ProcessMaterial;
             procMat.ScaleMin = _radius;
             procMat.ScaleMax = _radius;
 
