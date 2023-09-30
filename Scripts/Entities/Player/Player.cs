@@ -18,6 +18,7 @@ namespace FastDragon
 
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
         public Node3D Model => GetNode<Node3D>("%Model");
+        public Flame Flame => GetNode<Flame>("%Flame");
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
 
         public float FSpeed
@@ -88,6 +89,7 @@ namespace FastDragon
 
             _currentState.ProcessMode = ProcessModeEnum.Inherit;
             _currentState.OnStateEntered();
+            Flame.AllowFlaming = _currentState.AllowFlaming;
         }
 
         private IEnumerable<PlayerState> States()
