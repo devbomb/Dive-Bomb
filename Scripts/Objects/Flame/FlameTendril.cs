@@ -110,10 +110,20 @@ namespace FastDragon
 
         private void UpdateSize(float length)
         {
+            _sphere.Position = Vector3.Forward * length;
+
+            // HACK: There appears to be some kind of Godot bug where, if you
+            // set a GPUParticles3D's scale to (1, 1, 0), it will occasionally
+            // (but not always) spew out a bunch of "det == 0" errors.
+            //
+            // To avoid this, just make it invisible instead of changing the
+            // scale, if the scale is going to be 0.
+            if (length > 0)
+                _tendrilScaler.Scale = new Vector3(1, 1, length);
+            _tendrilScaler.Visible = length > 0;
+
             _sphereParticlesProc.ScaleMin = _radius;
             _sphereParticlesProc.ScaleMax = _radius;
-            _sphere.Position = Vector3.Forward * length;
-            _tendrilScaler.Scale = new Vector3(1, 1, length);
 
             var procMat = (ParticleProcessMaterial)_particles.ProcessMaterial;
             procMat.ScaleMin = _radius;
