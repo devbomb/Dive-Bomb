@@ -84,16 +84,13 @@ namespace FastDragon
             // Flame things that we collide with
             var collision = CastToLength();
 
-            if (collision == null)
-                return;
-
-            if (collision.GetCollider() is IFlamable flamable)
+            if (collision?.GetCollider() is IFlamable flamable)
             {
                 flamable.OnFlamed();
             }
 
-            // Stop when the timer is up
-            if (_timer >= ActiveDuration)
+            // Stop when the timer is up, or when we hit something
+            if (_timer >= ActiveDuration || collision != null)
                 Stop();
         }
 
