@@ -115,7 +115,7 @@ namespace FastDragon
                 if (!(body is Gem gem))
                     continue;
 
-                if (gem.CurrentState != Gem.State.Revealed)
+                if (!gem.IsRevealed)
                     continue;
 
                 if (!gem.TouchedGroundOnce)
