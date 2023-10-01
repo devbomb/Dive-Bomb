@@ -17,10 +17,22 @@ namespace FastDragon
             _initialCameraPos = _player.Camera.GlobalPosition;
         }
 
-        public override void _Process(double delta)
+        public override void _Process(double deltaD)
         {
-            _player.Camera.GlobalPosition = _initialCameraPos;
-            _player.Camera.LookAt(_player.GlobalPosition);
+            float delta = (float)deltaD;
+
+            var camera = _player.Camera;
+            camera.GlobalPosition = _initialCameraPos;
+
+            Vector3 cameraToPlayerDir = _player.GlobalPosition - camera.GlobalPosition;
+            cameraToPlayerDir = cameraToPlayerDir.Normalized();
+            Vector3 targetRot = cameraToPlayerDir.ForwardToEulerAnglesRad();
+
+            camera.GlobalRotation = camera.GlobalRotation.DecayTowardsEulerRad(
+                targetRot,
+                50,
+                delta
+            );
         }
 
         public override void _PhysicsProcess(double deltaD)
