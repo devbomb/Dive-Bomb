@@ -174,7 +174,7 @@ draw_pass_1 = SubResource("PlaneMesh_c3wxs")
 
 [node name="Cap" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
 [node name="CapParticles" type="GPUParticles3D" parent="Cap"]
 unique_name_in_owner = true
@@ -194,6 +194,7 @@ shape = SubResource("SphereShape3D_s2qme")
 
 [node name="Stalk" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="StalkParticles" type="GPUParticles3D" parent="Stalk"]
 unique_name_in_owner = true
