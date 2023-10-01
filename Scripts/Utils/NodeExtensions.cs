@@ -52,5 +52,21 @@ namespace FastDragon
                 }
             }
         }
+
+        /// <summary>
+        /// Finds the first ancestor(or self) of the given type.
+        /// Returns null if there are no ancestors(or self) of said type.
+        /// </summary>
+        /// <typeparam name="TNode"></typeparam>
+        public static TNode FirstAncestor<TNode>(this Node node) where TNode : class
+        {
+            if (node == null)
+                return null;
+
+            if (node is TNode n)
+                return n;
+
+            return node.GetParent().FirstAncestor<TNode>();
+        }
     }
 }
