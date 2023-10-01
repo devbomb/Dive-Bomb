@@ -5,5 +5,3 @@
 [node name="DeathBarrier" type="Area3D"]
 visible = false
 script = ExtResource("1_5yy7t")
-
-[connection signal="body_entered" from="." to="." method="OnBodyEntered" flags=3]
