@@ -20,6 +20,8 @@ namespace FastDragon
         }
         public State CurrentState = State.Revealed;
 
+        public bool TouchedGroundOnce {get; private set;} = false;
+
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
@@ -87,7 +89,10 @@ namespace FastDragon
 
                     var collision = MoveAndCollide(Velocity * delta);
                     if (collision != null)
+                    {
                         Velocity = Vector3.Zero;
+                        TouchedGroundOnce = true;
+                    }
 
                     break;
                 }
@@ -134,6 +139,7 @@ namespace FastDragon
         public void Reveal()
         {
             CurrentState = State.Revealed;
+            TouchedGroundOnce = false;
             Velocity = Vector3.Up * RevealJumpVelocity;
 
             // If the player is charging and nearby when the gem spawns,
