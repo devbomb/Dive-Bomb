@@ -7,7 +7,7 @@ namespace FastDragon
 {
     public partial class StateMachine : Node
     {
-        private State _currentState;
+        public State CurrentState {get; private set;}
         private readonly Type _stateType;
 
         public StateMachine(Type stateType)
@@ -20,22 +20,22 @@ namespace FastDragon
             if (!typeof(TState).IsAssignableTo(_stateType))
                 throw new Exception($"{typeof(TState).Name} is not a {_stateType.Name}");
 
-            _currentState?.OnStateExited();
+            CurrentState?.OnStateExited();
 
             foreach (var state in States())
             {
                 state.ProcessMode = ProcessModeEnum.Disabled;
             }
 
-            _currentState = States().FirstOrDefault(s => s is TState);
-            if (_currentState == null)
+            CurrentState = States().FirstOrDefault(s => s is TState);
+            if (CurrentState == null)
             {
-                _currentState = new TState();
-                AddChild(_currentState);
+                CurrentState = new TState();
+                AddChild(CurrentState);
             }
 
-            _currentState.ProcessMode = ProcessModeEnum.Inherit;
-            _currentState.OnStateEntered();
+            CurrentState.ProcessMode = ProcessModeEnum.Inherit;
+            CurrentState.OnStateEntered();
         }
 
         private IEnumerable<State> States()
