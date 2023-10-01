@@ -6,6 +6,7 @@ namespace FastDragon
     public partial class Gem : InterpolatedCharacterBody3D
     {
         public const float HomingDuration = 0.5f;
+        public const float FlameChargeWindowDuration = 0.1f;
         public const float RevealJumpVelocity = 10;
         public const float Gravity = 30;
 
@@ -94,6 +95,13 @@ namespace FastDragon
                         TouchedGroundOnce = true;
                     }
 
+                    if (_flameChargeWindowTimer > 0)
+                    {
+                        _flameChargeWindowTimer -= delta;
+                        HomeInIfPlayerChargingNearby();
+                        break;
+                    }
+
                     break;
                 }
 
@@ -142,17 +150,7 @@ namespace FastDragon
             TouchedGroundOnce = false;
             Velocity = Vector3.Up * RevealJumpVelocity;
 
-            // If the player is charging and nearby when the gem spawns,
-            // automatically home it in.
-            //
-            // This has the (intended) side effect of allowing the player to
-            // "charge flame" gem containers and still have them home in.
-            bool shouldHomeIn = _flameChargeArea
-                .GetOverlappingBodies()
-                .Any(n => n is Player p && p.SpawningGemsHomeIn);
-
-            if (shouldHomeIn)
-                StartHomingIn();
+            _flameChargeWindowTimer = FlameChargeWindowDuration;
         }
 
         public void StartHomingIn()
@@ -174,6 +172,16 @@ namespace FastDragon
         public void Sparkle()
         {
             _sparkleAnim.Play("Sparkle");
+        }
+
+        private void HomeInIfPlayerChargingNearby()
+        {
+            bool shouldHomeIn = _flameChargeArea
+                .GetOverlappingBodies()
+                .Any(n => n is Player p && p.SpawningGemsHomeIn);
+
+            if (shouldHomeIn)
+                StartHomingIn();
         }
 
         private Vector3 BezierCurve(
