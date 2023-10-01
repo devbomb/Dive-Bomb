@@ -32,7 +32,7 @@ namespace FastDragon
         {
             _collisionShape.Disabled = true;
             _model.Visible = false;
-            _gem.StartHomingIn();
+            _gem.Reveal();
         }
 
         public void OnFlamed()

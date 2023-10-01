@@ -5,6 +5,7 @@ namespace FastDragon
     public partial class PlayerChargeFallState : PlayerState
     {
         public override bool AllowFlaming => false;
+        public override bool SpawningGemsHomeIn => true;
 
         public override void OnStateEntered()
         {

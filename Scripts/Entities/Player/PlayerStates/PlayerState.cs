@@ -7,6 +7,7 @@ namespace FastDragon
     public partial class PlayerState : Node
     {
         public virtual bool AllowFlaming => true;
+        public virtual bool SpawningGemsHomeIn => false;
 
         protected Player _player => GetParent<Player>();
 

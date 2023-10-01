@@ -17,6 +17,7 @@ namespace FastDragon
         public bool PretendColliderDisabled {get; set;}
 
         public bool AllowFlaming => _currentState.AllowFlaming;
+        public bool SpawningGemsHomeIn => _currentState.SpawningGemsHomeIn;
 
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
         public Node3D Model => GetNode<Node3D>("%Model");

@@ -24,11 +24,14 @@ namespace FastDragon
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
 
+        private Area3D _flameChargeArea => GetNode<Area3D>("%FlameChargeArea");
+
         private Vector3 _initialPos;
         private State _initialState;
 
         private Vector3 _homingStartPos;
         private float _homingTimer;
+        private float _flameChargeWindowTimer;
 
         public override void _Ready()
         {
@@ -133,7 +136,17 @@ namespace FastDragon
             CurrentState = State.Revealed;
             Velocity = Vector3.Up * RevealJumpVelocity;
 
-            GD.Print($"Revealed gem {GetPath()}");
+            // If the player is charging and nearby when the gem spawns,
+            // automatically home it in.
+            //
+            // This has the (intended) side effect of allowing the player to
+            // "charge flame" gem containers and still have them home in.
+            bool shouldHomeIn = _flameChargeArea
+                .GetOverlappingBodies()
+                .Any(n => n is Player p && p.SpawningGemsHomeIn);
+
+            if (shouldHomeIn)
+                StartHomingIn();
         }
 
         public void StartHomingIn()
