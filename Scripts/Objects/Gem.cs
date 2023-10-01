@@ -6,6 +6,7 @@ namespace FastDragon
     public partial class Gem : InterpolatedCharacterBody3D
     {
         public const float HomingDuration = 0.5f;
+        public const float FlameChargeWindowDuration = 0.1f;
         public const float RevealJumpVelocity = 10;
         public const float Gravity = 30;
 
@@ -20,15 +21,20 @@ namespace FastDragon
         }
         public State CurrentState = State.Revealed;
 
+        public bool TouchedGroundOnce {get; private set;} = false;
+
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
+
+        private Area3D _flameChargeArea => GetNode<Area3D>("%FlameChargeArea");
 
         private Vector3 _initialPos;
         private State _initialState;
 
         private Vector3 _homingStartPos;
         private float _homingTimer;
+        private float _flameChargeWindowTimer;
 
         public override void _Ready()
         {
@@ -84,7 +90,17 @@ namespace FastDragon
 
                     var collision = MoveAndCollide(Velocity * delta);
                     if (collision != null)
+                    {
                         Velocity = Vector3.Zero;
+                        TouchedGroundOnce = true;
+                    }
+
+                    if (_flameChargeWindowTimer > 0)
+                    {
+                        _flameChargeWindowTimer -= delta;
+                        HomeInIfPlayerChargingNearby();
+                        break;
+                    }
 
                     break;
                 }
@@ -131,9 +147,10 @@ namespace FastDragon
         public void Reveal()
         {
             CurrentState = State.Revealed;
+            TouchedGroundOnce = false;
             Velocity = Vector3.Up * RevealJumpVelocity;
 
-            GD.Print($"Revealed gem {GetPath()}");
+            _flameChargeWindowTimer = FlameChargeWindowDuration;
         }
 
         public void StartHomingIn()
@@ -155,6 +172,16 @@ namespace FastDragon
         public void Sparkle()
         {
             _sparkleAnim.Play("Sparkle");
+        }
+
+        private void HomeInIfPlayerChargingNearby()
+        {
+            bool shouldHomeIn = _flameChargeArea
+                .GetOverlappingBodies()
+                .Any(n => n is Player p && p.SpawningGemsHomeIn);
+
+            if (shouldHomeIn)
+                StartHomingIn();
         }
 
         private Vector3 BezierCurve(

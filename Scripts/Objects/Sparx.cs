@@ -13,6 +13,7 @@ namespace FastDragon
         public const float MaxIdlePauseTime = 3f;
 
         private Node3D _model => GetNode<Node3D>("%Model");
+        private Area3D _collectionArea => GetNode<Area3D>("%CollectionArea");
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
@@ -44,6 +45,8 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
+
+            QueueNearbyGems();
 
             switch (_currentState)
             {
@@ -103,19 +106,27 @@ namespace FastDragon
             }
         }
 
-        public void OnBodyEnteredCollectionRange(Node3D body)
+        private void QueueNearbyGems()
         {
-            if (!(body is Gem gem))
-                return;
+            var bodies = _collectionArea.GetOverlappingBodies();
 
-            if (gem.CurrentState != Gem.State.Revealed)
-                return;
+            foreach (var body in bodies)
+            {
+                if (!(body is Gem gem))
+                    continue;
 
-            if (_gemQueue.Contains(gem))
-                return;
+                if (gem.CurrentState != Gem.State.Revealed)
+                    continue;
 
-            _gemQueue.Enqueue(gem);
-            gem.Sparkle();
+                if (!gem.TouchedGroundOnce)
+                    continue;
+
+                if (_gemQueue.Contains(gem))
+                    continue;
+
+                _gemQueue.Enqueue(gem);
+                gem.Sparkle();
+            }
         }
 
         private void StartCollectingGem()

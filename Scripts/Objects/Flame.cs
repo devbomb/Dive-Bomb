@@ -49,8 +49,6 @@ namespace FastDragon
         }
         private int _innerRingTendrilCount = 4;
 
-        public bool AllowFlaming = true;
-
         private Node3D _tendrils => GetNode<Node3D>("%Tendrils");
 
         private bool _initialized = false;
@@ -79,14 +77,15 @@ namespace FastDragon
 
         public override void _Input(InputEvent ev)
         {
-            if (InputService.FlameJustPressed(ev) && _ready && AllowFlaming)
+            bool allowFlaming = this.FirstAncestor<Player>().AllowFlaming;
+
+            if (InputService.FlameJustPressed(ev) && _ready && allowFlaming)
                 StartFlaming();
         }
 
         public void Reset()
         {
             BecomeReady();
-            AllowFlaming = true;
         }
 
         public override void _PhysicsProcess(double deltaD)
