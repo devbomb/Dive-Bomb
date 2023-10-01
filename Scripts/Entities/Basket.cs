@@ -13,7 +13,7 @@ namespace FastDragon
         public override void _Ready()
         {
             _gem = GemFactory.Create(GemColor);
-            _gem.CurrentState = Gem.State.Hidden;
+            _gem.StartHidden = true;
             _gem.Name = "Gem";
             AddChild(_gem);
 

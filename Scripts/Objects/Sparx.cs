@@ -17,19 +17,12 @@ namespace FastDragon
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
-        private enum State
-        {
-            Idle,
-            CollectingGem
-        }
-        private State _currentState = State.Idle;
-
-        private Vector3 _idlePosition;
-        private float _idleTimer;
+        private StateMachine _stateMachine = new StateMachine(typeof(SparxState));
 
         public override void _Ready()
         {
             _model.AddChild(new PhysicsInterpolator3D());
+            AddChild(_stateMachine);
 
             SignalBus.Instance.LevelReset += Reset;
             Reset();
@@ -37,73 +30,14 @@ namespace FastDragon
 
         private void Reset()
         {
-            ReturnToIdle();
-            _model.Position = _idlePosition;
+            _stateMachine.ChangeState<Idle>();
+            _model.Position = Vector3.Zero;
             _gemQueue.Clear();
         }
 
         public override void _PhysicsProcess(double deltaD)
         {
-            float delta = (float)deltaD;
-
             QueueNearbyGems();
-
-            switch (_currentState)
-            {
-                case State.Idle:
-                {
-                    _idleTimer -= delta;
-                    if (_idleTimer < 0)
-                    {
-                        ShuffleIdlePosition();
-                    }
-
-                    _model.Position = _model.Position.MoveToward(
-                        _idlePosition,
-                        FlySpeed * delta
-                    );
-
-                    // If the model is clipping into a wall, push it out.
-                    _model.GlobalPosition = RayCast(
-                        GlobalPosition,
-                        _model.GlobalPosition,
-                        out bool _
-                    );
-
-                    _model.RotationDegrees = _model.RotationDegrees.MoveToward(
-                        Vector3.Zero,
-                        RotSpeedDeg * delta
-                    );
-
-                    if (_gemQueue.Count > 0)
-                        StartCollectingGem();
-
-                    break;
-                }
-
-                case State.CollectingGem:
-                {
-                    Gem gem = _gemQueue.Peek();
-
-                    _model.LookAt(gem.GlobalPosition);
-
-                    _model.GlobalPosition = _model.GlobalPosition.MoveToward(
-                        gem.GlobalPosition,
-                        FlySpeed * delta
-                    );
-
-                    if (_model.GlobalPosition.IsEqualApprox(gem.GlobalPosition))
-                    {
-                        gem.StartHomingIn();
-                        _gemQueue.Dequeue();
-                    }
-
-                    if (_gemQueue.Count <= 0)
-                        ReturnToIdle();
-
-                    break;
-                }
-            }
         }
 
         private void QueueNearbyGems()
@@ -115,7 +49,7 @@ namespace FastDragon
                 if (!(body is Gem gem))
                     continue;
 
-                if (gem.CurrentState != Gem.State.Revealed)
+                if (!gem.IsRevealed)
                     continue;
 
                 if (!gem.TouchedGroundOnce)
@@ -129,79 +63,153 @@ namespace FastDragon
             }
         }
 
-        private void StartCollectingGem()
+        private partial class Idle : SparxState
         {
-            _currentState = State.CollectingGem;
-            ToggleTopLevel(true);
-        }
+            private float _idleTimer = 0;
+            private Vector3 _idlePosition;
 
-        private void ReturnToIdle()
-        {
-            _currentState = State.Idle;
-            ShuffleIdlePosition();
+            private Node3D _model => _sparx._model;
 
-            ToggleTopLevel(false);
-        }
-
-        private void ToggleTopLevel(bool topLevel)
-        {
-            var pos = _model.GlobalPosition;
-            var rot = _model.GlobalRotation;
-
-            _model.TopLevel = topLevel;
-
-            _model.GlobalPosition = pos;
-            _model.GlobalRotation = rot;
-        }
-
-        private void ShuffleIdlePosition()
-        {
-            const float cylinderRadius = 1.5f;
-            const float cylinderHeight = 1.5f;
-
-            // Keep picking random positions on the edge of our radius until
-            // we find one that doesn't intersect a wall.  But only try a few
-            // times before giving up.
-            for (int i = 0; i < 5; i++)
+            public override void OnStateEntered()
             {
-                float angleRad = Mathf.DegToRad(GD.Randf() * 360);
+                _idleTimer = 0;
+                ShuffleIdlePosition();
+            }
 
-                var candidatePosition = new Vector3(
-                    cylinderRadius * Mathf.Cos(angleRad),
-                    (float)GD.RandRange(-cylinderHeight / 2, cylinderHeight / 2),
-                    cylinderRadius * Mathf.Sin(angleRad)
-                );
+            public override void _PhysicsProcess(double deltaD)
+            {
+                float delta = (float)deltaD;
 
-                RayCast(
-                    GlobalPosition,
-                    GlobalPosition + candidatePosition,
-                    out bool hitAnything
-                );
-
-                if (!hitAnything)
+                _idleTimer -= delta;
+                if (_idleTimer < 0)
                 {
-                    _idlePosition = candidatePosition;
-                    break;
+                    ShuffleIdlePosition();
                 }
+
+                _model.Position = _model.Position.MoveToward(
+                    _idlePosition,
+                    FlySpeed * delta
+                );
+
+                // If the model is clipping into a wall, push it out.
+                _model.GlobalPosition = RayCast(
+                    _sparx.GlobalPosition,
+                    _model.GlobalPosition,
+                    out bool _
+                );
+
+                _model.RotationDegrees = _model.RotationDegrees.MoveToward(
+                    Vector3.Zero,
+                    RotSpeedDeg * delta
+                );
+
+                if (_sparx._gemQueue.Count > 0)
+                    ChangeState<CollectingGem>();
             }
 
-            _idleTimer = (float)GD.RandRange(MinIdlePauseTime, MaxIdlePauseTime);
+            private void ShuffleIdlePosition()
+            {
+                const float cylinderRadius = 1.5f;
+                const float cylinderHeight = 1.5f;
+
+                // Keep picking random positions on the edge of our radius until
+                // we find one that doesn't intersect a wall.  But only try a few
+                // times before giving up.
+                for (int i = 0; i < 5; i++)
+                {
+                    float angleRad = Mathf.DegToRad(GD.Randf() * 360);
+
+                    var candidatePosition = new Vector3(
+                        cylinderRadius * Mathf.Cos(angleRad),
+                        (float)GD.RandRange(-cylinderHeight / 2, cylinderHeight / 2),
+                        cylinderRadius * Mathf.Sin(angleRad)
+                    );
+
+                    RayCast(
+                        _sparx.GlobalPosition,
+                        _sparx.GlobalPosition + candidatePosition,
+                        out bool hitAnything
+                    );
+
+                    if (!hitAnything)
+                    {
+                        _idlePosition = candidatePosition;
+                        break;
+                    }
+                }
+
+                _idleTimer = (float)GD.RandRange(MinIdlePauseTime, MaxIdlePauseTime);
+            }
+
+            private Vector3 RayCast(Vector3 from, Vector3 to, out bool hitAnything)
+            {
+                var spaceState = _sparx.GetWorld3D().DirectSpaceState;
+                var query = PhysicsRayQueryParameters3D.Create(from, to);
+                var hitDict = spaceState.IntersectRay(query);
+
+                if (hitDict.Count > 0)
+                {
+                    hitAnything = true;
+                    return (Vector3)hitDict["position"];
+                }
+
+                hitAnything = false;
+                return to;
+            }
         }
 
-        Vector3 RayCast(Vector3 from, Vector3 to, out bool hitAnything)
+        private partial class CollectingGem : SparxState
         {
-            var spaceState = GetWorld3D().DirectSpaceState;
-            var query = PhysicsRayQueryParameters3D.Create(from, to);
-            var hitDict = spaceState.IntersectRay(query);
+            private Node3D _model => _sparx._model;
 
-            if (hitDict.Count > 0)
+            public override void OnStateEntered()
             {
-                hitAnything = true;
-                return (Vector3)hitDict["position"];
+                ToggleTopLevel(true);
             }
 
-            hitAnything = false;
-            return to;
+            public override void OnStateExited()
+            {
+                ToggleTopLevel(false);
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                float delta = (float)deltaD;
+
+                Gem gem = _sparx._gemQueue.Peek();
+
+                _model.LookAt(gem.GlobalPosition);
+
+                _model.GlobalPosition = _model.GlobalPosition.MoveToward(
+                    gem.GlobalPosition,
+                    FlySpeed * delta
+                );
+
+                if (_model.GlobalPosition.IsEqualApprox(gem.GlobalPosition))
+                {
+                    gem.StartHomingIn();
+                    _sparx._gemQueue.Dequeue();
+                }
+
+                if (_sparx._gemQueue.Count <= 0)
+                    ChangeState<Idle>();
+            }
+
+            private void ToggleTopLevel(bool topLevel)
+            {
+                var pos = _model.GlobalPosition;
+                var rot = _model.GlobalRotation;
+
+                _model.TopLevel = topLevel;
+
+                _model.GlobalPosition = pos;
+                _model.GlobalRotation = rot;
+            }
+        }
+
+        private abstract partial class SparxState : State
+        {
+            protected Sparx _sparx => _stateMachine.GetParent<Sparx>();
         }
     }
 }

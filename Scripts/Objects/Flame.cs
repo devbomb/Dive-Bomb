@@ -53,14 +53,8 @@ namespace FastDragon
 
         private bool _initialized = false;
 
-        private enum State
-        {
-            Ready,
-            Flaming,
-            CoolingDown
-        }
-        private State _currentState = State.Ready;
-        private bool _ready => _currentState == State.Ready;
+        private StateMachine _stateMachine;
+        private bool _ready => _stateMachine.CurrentState is ReadyState;
 
         private float _timer;
 
@@ -72,6 +66,10 @@ namespace FastDragon
             if (!Engine.IsEditorHint())
             {
                 SignalBus.Instance.LevelReset += Reset;
+
+                _stateMachine = new StateMachine(typeof(FlameState));
+                AddChild(_stateMachine);
+                _stateMachine.ChangeState<ReadyState>();
             }
         }
 
@@ -80,72 +78,18 @@ namespace FastDragon
             bool allowFlaming = this.FirstAncestor<Player>().AllowFlaming;
 
             if (InputService.FlameJustPressed(ev) && _ready && allowFlaming)
-                StartFlaming();
+                _stateMachine.ChangeState<Flaming>();
         }
 
         public void Reset()
         {
-            BecomeReady();
-        }
-
-        public override void _PhysicsProcess(double deltaD)
-        {
-            if (Engine.IsEditorHint())
-                return;
-
-            float delta = (float)deltaD;
-
-            switch (_currentState)
-            {
-                case State.Flaming:
-                {
-                    _timer -= delta;
-
-                    if (_timer <= 0)
-                        StartCoolingDown();
-
-                    break;
-                }
-
-                case State.CoolingDown:
-                {
-                    _timer -= delta;
-
-                    if (_timer <= 0)
-                        BecomeReady();
-
-                    break;
-                }
-            }
+            _stateMachine.ChangeState<ReadyState>();
         }
 
         public void OnBodyEntered(Node3D body)
         {
             if (body is IFlamable flamable)
                 flamable.OnFlamed();
-        }
-
-        private void StartFlaming()
-        {
-            _currentState = State.Flaming;
-            _timer = ActiveDuration;
-
-            foreach (var tendril in AllFlameTendrils())
-                tendril.Start();
-        }
-
-        private void StartCoolingDown()
-        {
-            _currentState = State.CoolingDown;
-            _timer = CooldownDuration;
-
-            foreach (var tendril in AllFlameTendrils())
-                tendril.Stop();
-        }
-
-        private void BecomeReady()
-        {
-            _currentState = State.Ready;
         }
 
         private void CreateFlameTendrils()
@@ -203,6 +147,55 @@ namespace FastDragon
 
             if (Engine.IsEditorHint() && _initialized && Owner != this)
                 CreateFlameTendrils();
+        }
+
+        private partial class ReadyState : FlameState {}
+
+        private partial class Flaming : FlameState
+        {
+            public override void OnStateEntered()
+            {
+                _flame._timer = ActiveDuration;
+
+                foreach (var tendril in _flame.AllFlameTendrils())
+                    tendril.Start();
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                float delta = (float)deltaD;
+
+                _flame._timer -= delta;
+
+                if (_flame._timer <= 0)
+                    ChangeState<CoolingDown>();
+            }
+        }
+
+        private partial class CoolingDown : FlameState
+        {
+            public override void OnStateEntered()
+            {
+                _flame._timer = CooldownDuration;
+
+                foreach (var tendril in _flame.AllFlameTendrils())
+                    tendril.Stop();
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                float delta = (float)deltaD;
+
+                _flame._timer -= delta;
+
+                if (_flame._timer <= 0)
+                    ChangeState<ReadyState>();
+            }
+        }
+
+        private abstract partial class FlameState : State
+        {
+            protected Flame _flame => _stateMachine.GetParent<Flame>();
         }
     }
 }
