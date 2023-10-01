@@ -100,6 +100,11 @@ namespace FastDragon
             {
                 _gem.Visible = false;
             }
+
+            public override void OnStateExited()
+            {
+                _gem.Visible = true;
+            }
         }
         private partial class Revealed : GemState
         {
@@ -107,10 +112,8 @@ namespace FastDragon
             private Node3D _blobShadow => _gem.GetNode<Node3D>("%BlobShadow");
             private Area3D _flameChargeArea => _gem.GetNode<Area3D>("%FlameChargeArea");
 
-
             public override void OnStateEntered()
             {
-                _gem.Visible = true;
                 _gem.TouchedGroundOnce = false;
                 _blobShadow.Scale = Vector3.One;
 
@@ -163,7 +166,6 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _gem.Visible = true;
                 _homingStartPos = _gem.GlobalPosition;
                 _homingTimer = 0;
             }
