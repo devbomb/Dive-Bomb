@@ -30,8 +30,8 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
-            _camera.OrbitYawRad += InputService.RightStick.X * rotSpeed * delta;
-            _camera.OrbitPitchRad += InputService.RightStick.Y * rotSpeed * delta;
+            _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
+            _camera.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
             ClampOrbitAngles();
 
             _camera.OrbitDistance = Mathf.MoveToward(
