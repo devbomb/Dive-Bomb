@@ -6,8 +6,8 @@ namespace FastDragon
     {
         public void OnBodyEntered(Node3D body)
         {
-            if (body is Player)
-                SignalBus.Instance.EmitLevelReset();
+            if (body is Player p)
+                p.ChangeState<PlayerFallingToDeathState>();
         }
     }
 }
