@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=21 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_15biq"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="4_db58r"]
 [ext_resource type="PackedScene" uid="uid://bnugmkxucp0vb" path="res://Scenes/Objects/Flame.tscn" id="4_g8ylw"]
+[ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 
 [sub_resource type="Animation" id="Animation_ide03"]
 resource_name = "Bonk"
@@ -1830,7 +1831,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rcfxu")
 }
-blend_times = [&"Charge", &"ChargeJump", 0.1, &"Charge", &"Idle", 0.1, &"ChargeJump", &"Charge", 0.1, &"ChargeJump", &"Glide", 0.1, &"Glide", &"ChargeJump", 0.1, &"Glide", &"Idle", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Glide", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Jump", 0.1, &"Jump", &"Charge", 0.1, &"Jump", &"ChargeJump", 0.1, &"Jump", &"Glide", 0.1, &"Jump", &"Idle", 0.1]
+blend_times = [&"Jump", &"Idle", 0.1, &"Jump", &"Charge", 0.1, &"Jump", &"ChargeJump", 0.1, &"Jump", &"Glide", 0.1, &"Idle", &"Jump", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Glide", 0.1, &"Charge", &"Idle", 0.1, &"Charge", &"ChargeJump", 0.1, &"ChargeJump", &"Charge", 0.1, &"ChargeJump", &"Glide", 0.1, &"Glide", &"Idle", 0.1, &"Glide", &"ChargeJump", 0.1]
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
@@ -1925,6 +1926,8 @@ top_level = true
 texture = SubResource("GradientTexture2D_kvv27")
 script = ExtResource("4_db58r")
 Body = NodePath("..")
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
 
 [node name="DebugButtons" type="Control" parent="."]
 layout_mode = 3
