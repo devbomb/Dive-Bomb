@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=20 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
@@ -1816,13 +1816,6 @@ height = 100
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="GDScript" id="GDScript_k065o"]
-script/source = "extends Control
-
-func ResetLevel():
-    $\"/root/SignalBus\".EmitLevelReset()
-"
-
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_a4opu")
 
@@ -1928,23 +1921,5 @@ script = ExtResource("4_db58r")
 Body = NodePath("..")
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
-
-[node name="DebugButtons" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = SubResource("GDScript_k065o")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugButtons"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ResetLevel" type="Button" parent="DebugButtons/VBoxContainer"]
-layout_mode = 2
-text = "Reset Level"
-
-[connection signal="pressed" from="DebugButtons/VBoxContainer/ResetLevel" to="DebugButtons" method="ResetLevel"]
 
 [editable path="Model"]

@@ -35,5 +35,11 @@ namespace FastDragon
             Visible = false;
             GetTree().Paused = false;
         }
+
+        public void ResetLevel()
+        {
+            Close();
+            SignalBus.Instance.EmitLevelReset();
+        }
     }
 }
