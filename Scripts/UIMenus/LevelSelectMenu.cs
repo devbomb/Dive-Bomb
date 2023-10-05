@@ -15,6 +15,11 @@ namespace FastDragon
             {
                 var button = new Button();
                 button.Text = file;
+                button.Pressed += () =>
+                {
+                    string filePath = $"{MapsFolder}/{file}";
+                    MapTransitionManager.Instance.GoToMap(filePath);
+                };
 
                 _buttonsContainer.AddChild(button);
             }
