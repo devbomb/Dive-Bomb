@@ -41,5 +41,11 @@ namespace FastDragon
             Close();
             SignalBus.Instance.EmitLevelReset();
         }
+
+        public void ExitLevel()
+        {
+            Close();
+            MapTransitionManager.Instance.GoToLevelSelect();
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace FastDragon
 
             bool alreadyCollected = SaveFile.Current
                 .CollectedGems
-                .Contains(GetPath());
+                .Contains(GetSaveKey());
 
             if (StartHidden || alreadyCollected)
                 ChangeState<Hidden>();
@@ -69,15 +69,35 @@ namespace FastDragon
         public void Collect()
         {
             SaveFile.Current.TotalGemCount += (int)Value;
-            SaveFile.Current.CollectedGems.Add(GetPath());
+            SaveFile.Current.CollectedGems.Add(GetSaveKey());
             ChangeState<Hidden>();
 
-            GD.Print($"{SaveFile.Current.TotalGemCount}: Collected gem {GetPath()}");
+            GD.Print($"{SaveFile.Current.TotalGemCount}: Collected gem {GetSaveKey()}");
         }
 
         public void Sparkle()
         {
             _sparkleAnim.Play("Sparkle");
+        }
+
+        public string GetSaveKey()
+        {
+            var builder = new System.Text.StringBuilder();
+            Visit(this);
+            return builder.ToString();
+
+            void Visit(Node n)
+            {
+                if (n.GetParent() == GetTree().Root)
+                {
+                    builder.Append(n.Name);
+                    return;
+                }
+
+                Visit(n.GetParent());
+                builder.Append("/");
+                builder.Append(n.GetIndex());
+            }
         }
 
         private void ChangeState<TState>() where TState : GemState, new()
