@@ -18,6 +18,7 @@ namespace FastDragon
             AddChild(_gem);
 
             SignalBus.Instance.LevelReset += Reset;
+            Reset();
         }
 
         public void Reset()
