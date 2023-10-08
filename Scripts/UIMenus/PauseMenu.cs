@@ -45,7 +45,10 @@ namespace FastDragon
         public void SaveGame()
         {
             // TODO: Ask the player which save file to overwrite
-            SaveFile.SaveTo("user://Saves/Slot0.json");
+            DirAccess.MakeDirRecursiveAbsolute("user://Saves");
+            using var file = FileAccess.Open("user://Saves/Slot0.json", FileAccess.ModeFlags.Write);
+            file.StoreLine(SaveFile.Current.ToJson());
+            file.Close();
         }
 
         public void ExitLevel()

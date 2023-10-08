@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Godot;
 using Newtonsoft.Json;
 
 namespace FastDragon
@@ -18,23 +17,14 @@ namespace FastDragon
             Current = new SaveFile();
         }
 
-        public static void SaveTo(string filePath)
+        public static SaveFile FromJson(string json)
         {
-            using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write);
-            string json = JsonConvert.SerializeObject(Current);
-            file.StoreLine(json);
-            file.Close();
+            return JsonConvert.DeserializeObject<SaveFile>(json);
         }
 
-        public static void LoadFrom(string filePath)
+        public string ToJson()
         {
-            using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
-            string json = file.GetAsText();
-            Current = JsonConvert.DeserializeObject<SaveFile>(json);
-            file.Close();
-
-            // TODO: Is this the best place to put this?
-            MapTransitionManager.Instance.GoToMap(Current.CurrentMap);
+            return JsonConvert.SerializeObject(this);
         }
 
         public bool IsGemCollected(string nodePath)
