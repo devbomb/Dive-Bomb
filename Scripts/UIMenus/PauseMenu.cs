@@ -42,6 +42,12 @@ namespace FastDragon
             SignalBus.Instance.EmitLevelReset();
         }
 
+        public void SaveGame()
+        {
+            // TODO: Ask the player which save file to overwrite
+            SaveFile.SaveTo("user://Saves/Slot0.json");
+        }
+
         public void ExitLevel()
         {
             Close();
