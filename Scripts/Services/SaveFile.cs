@@ -24,7 +24,13 @@ namespace FastDragon
 
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(
+                this,
+                new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented
+                }
+            );
         }
 
         public bool IsGemCollected(string nodePath)
