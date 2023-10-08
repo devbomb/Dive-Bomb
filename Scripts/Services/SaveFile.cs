@@ -8,6 +8,7 @@ namespace FastDragon
         public static SaveFile Current = new SaveFile();
 
         public int TotalGemCount = 0;
+        public string CurrentMap;
         public HashSet<string> CollectedGems = new HashSet<string>();
 
         public static void Reset()
