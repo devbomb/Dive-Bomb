@@ -1,0 +1,80 @@
+// Game: FastDragon
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) __TB_empty 0 0 0 1 1
+( -64 -64 -16 ) ( -64 -64 -15 ) ( -63 -64 -16 ) __TB_empty 0 0 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) __TB_empty 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) __TB_empty 0 0 0 1 1
+( 64 64 16 ) ( 65 64 16 ) ( 64 64 17 ) __TB_empty 0 0 0 1 1
+( 64 64 16 ) ( 64 64 17 ) ( 64 65 16 ) __TB_empty 0 0 0 1 1
+}
+// brush 1
+{
+( -32 -184 32 ) ( -32 -183 32 ) ( -32 -184 33 ) __TB_empty 0 0 0 1 1
+( -32 -184 32 ) ( -32 -184 33 ) ( -31 -184 32 ) __TB_empty 0 0 0 1 1
+( -32 -184 32 ) ( -31 -184 32 ) ( -32 -183 32 ) __TB_empty 0 0 0 1 1
+( 40 -56 40 ) ( 40 -55 40 ) ( 41 -56 40 ) __TB_empty 0 0 0 1 1
+( 40 -56 40 ) ( 41 -56 40 ) ( 40 -56 41 ) __TB_empty 0 0 0 1 1
+( 40 -56 40 ) ( 40 -56 41 ) ( 40 -55 40 ) __TB_empty 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "GreenGem"
+"origin" "-20 28 16"
+}
+// entity 2
+{
+"classname" "GreenGem"
+"origin" "20 28 16"
+}
+// entity 3
+{
+"classname" "RedGem"
+"origin" "-36 -4 16"
+}
+// entity 4
+{
+"classname" "RedGem"
+"origin" "-28 -20 16"
+}
+// entity 5
+{
+"classname" "RedGem"
+"origin" "-12 -28 16"
+}
+// entity 6
+{
+"classname" "RedGem"
+"origin" "12 -28 16"
+}
+// entity 7
+{
+"classname" "RedGem"
+"origin" "28 -20 16"
+}
+// entity 8
+{
+"classname" "RedGem"
+"origin" "36 -4 16"
+}
+// entity 9
+{
+"classname" "RedGem"
+"origin" "-4 -28 16"
+}
+// entity 10
+{
+"classname" "RedGem"
+"origin" "4 -28 16"
+}
+// entity 11
+{
+"classname" "Player"
+"origin" "8 -136 48"
+"angles" "0 90 0"
+}

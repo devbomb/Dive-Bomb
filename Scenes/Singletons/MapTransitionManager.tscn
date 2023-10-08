@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb32y0ekuw0op"]
+
+[ext_resource type="Script" path="res://Scripts/Services/MapTransitionManager.cs" id="1_onbea"]
+
+[node name="MapTransitionManager" type="Node"]
+script = ExtResource("1_onbea")
+LevelSelectMap = "res://Scenes/Maps/LevelSelectMenu.tscn"

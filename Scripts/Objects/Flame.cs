@@ -69,8 +69,14 @@ namespace FastDragon
 
                 _stateMachine = new StateMachine(typeof(FlameState));
                 AddChild(_stateMachine);
-                _stateMachine.ChangeState<ReadyState>();
+
+                Reset();
             }
+        }
+
+        public void Reset()
+        {
+            _stateMachine.ChangeState<ReadyState>();
         }
 
         public override void _Input(InputEvent ev)
@@ -79,11 +85,6 @@ namespace FastDragon
 
             if (InputService.FlameJustPressed(ev) && _ready && allowFlaming)
                 _stateMachine.ChangeState<Flaming>();
-        }
-
-        public void Reset()
-        {
-            _stateMachine.ChangeState<ReadyState>();
         }
 
         public void OnBodyEntered(Node3D body)

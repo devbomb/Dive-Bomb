@@ -18,11 +18,12 @@ namespace FastDragon
             AddChild(_gem);
 
             SignalBus.Instance.LevelReset += Reset;
+            Reset();
         }
 
         public void Reset()
         {
-            bool gemCollected = SaveFile.Current.IsGemCollected(_gem.GetPath());
+            bool gemCollected = SaveFile.Current.IsGemCollected(_gem.GetSaveKey());
 
             _collisionShape.Disabled = gemCollected;
             _model.Visible = !gemCollected;

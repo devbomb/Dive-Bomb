@@ -45,7 +45,18 @@ namespace FastDragon
             {
                 _initialized = true;
                 UpdateSize(_maxLength);
+                return;
             }
+
+            SignalBus.Instance.LevelReset += Reset;
+            Reset();
+        }
+
+        public void Reset()
+        {
+            _capParticles.Restart();
+            _stalkParticles.Restart();
+            Stop();
         }
 
         public override void _Process(double deltaD)

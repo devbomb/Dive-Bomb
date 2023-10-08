@@ -65,6 +65,7 @@ namespace FastDragon
             EmitSignal(SignalName.Respawning);
             Position = _spawnPoint;
             Rotation = _spawnRotation;
+            Velocity = Vector3.Zero;
             ResetPhysicsInterpolation();
 
             Camera.ForceRecenter();

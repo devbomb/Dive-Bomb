@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_15biq"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="4_db58r"]
 [ext_resource type="PackedScene" uid="uid://bnugmkxucp0vb" path="res://Scenes/Objects/Flame.tscn" id="4_g8ylw"]
+[ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 
 [sub_resource type="Animation" id="Animation_ide03"]
 resource_name = "Bonk"
@@ -1815,13 +1816,6 @@ height = 100
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="GDScript" id="GDScript_k065o"]
-script/source = "extends Control
-
-func ResetLevel():
-    $\"/root/SignalBus\".EmitLevelReset()
-"
-
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_a4opu")
 
@@ -1830,7 +1824,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rcfxu")
 }
-blend_times = [&"Charge", &"ChargeJump", 0.1, &"Charge", &"Idle", 0.1, &"ChargeJump", &"Charge", 0.1, &"ChargeJump", &"Glide", 0.1, &"Glide", &"ChargeJump", 0.1, &"Glide", &"Idle", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Glide", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Jump", 0.1, &"Jump", &"Charge", 0.1, &"Jump", &"ChargeJump", 0.1, &"Jump", &"Glide", 0.1, &"Jump", &"Idle", 0.1]
+blend_times = [&"Jump", &"Idle", 0.1, &"Jump", &"Charge", 0.1, &"Jump", &"ChargeJump", 0.1, &"Jump", &"Glide", 0.1, &"Idle", &"Jump", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Glide", 0.1, &"Charge", &"Idle", 0.1, &"Charge", &"ChargeJump", 0.1, &"ChargeJump", &"Charge", 0.1, &"ChargeJump", &"Glide", 0.1, &"Glide", &"Idle", 0.1, &"Glide", &"ChargeJump", 0.1]
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
@@ -1926,22 +1920,6 @@ texture = SubResource("GradientTexture2D_kvv27")
 script = ExtResource("4_db58r")
 Body = NodePath("..")
 
-[node name="DebugButtons" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = SubResource("GDScript_k065o")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugButtons"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ResetLevel" type="Button" parent="DebugButtons/VBoxContainer"]
-layout_mode = 2
-text = "Reset Level"
-
-[connection signal="pressed" from="DebugButtons/VBoxContainer/ResetLevel" to="DebugButtons" method="ResetLevel"]
+[node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
 
 [editable path="Model"]
