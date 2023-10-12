@@ -34,6 +34,10 @@ text = "Continue"
 layout_mode = 2
 text = "Save"
 
+[node name="Load" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Load"
+
 [node name="ResetLevel" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Reset Level"
@@ -44,5 +48,6 @@ text = "Exit Level"
 
 [connection signal="pressed" from="VBoxContainer/Continue" to="." method="Close"]
 [connection signal="pressed" from="VBoxContainer/Save" to="." method="SaveGame"]
+[connection signal="pressed" from="VBoxContainer/Load" to="." method="LoadSaveFile"]
 [connection signal="pressed" from="VBoxContainer/ResetLevel" to="." method="ResetLevel"]
 [connection signal="pressed" from="VBoxContainer/ExitLevel" to="." method="ExitLevel"]
