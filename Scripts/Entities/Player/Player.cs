@@ -51,6 +51,8 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            SaveFile.Current.CurrentMap = GetTree().CurrentScene.SceneFilePath;
+
             base._Ready();
 
             SignalBus.Instance.LevelReset += Respawn;
