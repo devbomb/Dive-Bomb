@@ -1,43 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://jfal51r4dflw"]
+[gd_scene load_steps=3 format=3 uid="uid://jfal51r4dflw"]
 
 [ext_resource type="Script" path="res://Scripts/TBLoaderWrapper.gd" id="1_xvkdi"]
-
-[sub_resource type="Gradient" id="Gradient_gmxdh"]
-offsets = PackedFloat32Array(0.892019, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_07wh8"]
-noise_type = 5
-frequency = 1.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1idct"]
-width = 1000
-height = 1000
-color_ramp = SubResource("Gradient_gmxdh")
-noise = SubResource("FastNoiseLite_07wh8")
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_racvl"]
-sky_top_color = Color(0.0196078, 0.0313726, 0.12549, 1)
-sky_horizon_color = Color(0.0705882, 0.0901961, 0.341176, 1)
-sky_curve = 0.713524
-sky_cover = SubResource("NoiseTexture2D_1idct")
-ground_bottom_color = Color(0, 0.168627, 0.109804, 1)
-ground_horizon_color = Color(0, 0.0941176, 0.054902, 1)
-sun_angle_max = 3.32
-sun_curve = 1.94942
-
-[sub_resource type="Sky" id="Sky_sluk5"]
-sky_material = SubResource("ProceduralSkyMaterial_racvl")
-
-[sub_resource type="Environment" id="Environment_jd5mb"]
-background_mode = 2
-sky = SubResource("Sky_sluk5")
+[ext_resource type="Environment" uid="uid://bhamu4vflo38l" path="res://Environments/NightSky.tres" id="2_nb5xh"]
 
 [node name="DummyMap" type="Node3D"]
 script = ExtResource("1_xvkdi")
 map_resource = "res://TrenchbroomMaps/DummyMap.map"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_jd5mb")
+environment = ExtResource("2_nb5xh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.481595, -0.220924, 0.848091, -0.230959, 0.901504, 0.365989, -0.845413, -0.372133, 0.383136, 0, 5.02909, 0)
