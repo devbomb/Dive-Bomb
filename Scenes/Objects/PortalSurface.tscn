@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi1df8rnwev2k"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/PortalSurface.cs" id="1_irh2u"]
+
+[sub_resource type="Shader" id="Shader_sbvxd"]
+code = "shader_type spatial;
+
+uniform sampler2D viewport_texture : source_color;
+
+void fragment(){
+    ALBEDO = vec3(texture(viewport_texture, SCREEN_UV).rgb);
+    EMISSION = ALBEDO;
+}
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_05luo"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vy43"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_sbvxd")
+shader_parameter/viewport_texture = SubResource("ViewportTexture_05luo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gjsk2"]
+size = Vector2(5, 5)
+orientation = 2
+
+[node name="PortalSurface" type="Node3D"]
+script = ExtResource("1_irh2u")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1920, 1080)
+
+[node name="PortalCamera" type="Camera3D" parent="SubViewport"]
+unique_name_in_owner = true
+cull_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_2vy43")
+mesh = SubResource("PlaneMesh_gjsk2")
