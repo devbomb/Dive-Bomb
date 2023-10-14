@@ -51,6 +51,8 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            MakeVisibleInPortals();
+
             SaveFile.Current.CurrentMap = GetTree().CurrentScene.SceneFilePath;
 
             base._Ready();
@@ -104,6 +106,15 @@ namespace FastDragon
 
                 if (child is PlayerState state)
                     yield return state;
+            }
+        }
+
+        private void MakeVisibleInPortals()
+        {
+            var visuals = this.EnumerateDescendantsOfType<VisualInstance3D>();
+            foreach (var v in visuals)
+            {
+                v.SetLayerMaskValue(RenderLayer.VisibleInPortals, true);
             }
         }
     }
