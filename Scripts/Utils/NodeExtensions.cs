@@ -53,6 +53,16 @@ namespace FastDragon
             }
         }
 
+        public static IEnumerable<TNode> EnumerateDescendantsOfType<TNode>(this Node node)
+            where TNode : Node
+        {
+            foreach (var d in node.EnumerateDescendants())
+            {
+                if (d is TNode target)
+                    yield return target;
+            }
+        }
+
         /// <summary>
         /// Finds the first ancestor(or self) of the given type.
         /// Returns null if there are no ancestors(or self) of said type.
