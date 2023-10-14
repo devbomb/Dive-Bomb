@@ -11,12 +11,15 @@ namespace FastDragon
         private Camera3D _portalCamera => GetNode<Camera3D>("%PortalCamera");
         private Camera3D _mainCamera => GetTree().Root.GetCamera3D();
 
-        private TaskCompletionSource<float> _physicsProcessTcs = new TaskCompletionSource<float>();
-
-        private bool _isControllingPlayer = false;
+        private StateMachine _stateMachine = new StateMachine(typeof(PortalState));
+        private Player _player;
+        private Vector3 _playerTargetRotRad;
 
         public override void _Ready()
         {
+            AddChild(_stateMachine);
+            _stateMachine.ChangeState<Idle>();
+
             BodyEntered += OnBodyEntered;
         }
 
@@ -27,70 +30,63 @@ namespace FastDragon
             _portalCamera.Environment = Skybox;
         }
 
-        public override void _PhysicsProcess(double delta)
-        {
-            var tcs = _physicsProcessTcs;
-            _physicsProcessTcs = new TaskCompletionSource<float>();
-            tcs.SetResult((float)delta);
-        }
-
-        private Task<float> NextPhysicsFrame()
-        {
-            return _physicsProcessTcs.Task;
-        }
-
         private void OnBodyEntered(Node3D body)
         {
             if (body is Player player && !(player.CurrentState is PlayerManhandledState))
             {
-                PlayPortalAnimation(player);
+                _player = player;
+                _stateMachine.ChangeState<Jumping>();
             }
         }
 
-        private async void PlayPortalAnimation(Player player)
+        private abstract partial class PortalState : State
         {
-            player.ChangeState<PlayerManhandledState>();
-            player.Animator.Play("Jump");
-            player.Velocity = Vector3.Up * Player.Default.JumpVSpeed;
-            Vector3 targetRotRad = PlayerTargetRotRad(player);
+            protected PortalSurface _portal => _stateMachine.GetParent<PortalSurface>();
+            protected Player player => _portal._player;
+        }
 
-            while (player.Velocity.Y > 0)
+        private partial class Idle : PortalState {}
+
+        private partial class Jumping : PortalState
+        {
+            public override void OnStateEntered()
             {
-                float delta = await NextPhysicsFrame();
+                player.ChangeState<PlayerManhandledState>();
+                player.Animator.Play("Jump");
+                player.Velocity = Vector3.Up * Player.Default.JumpVSpeed;
+                _portal._playerTargetRotRad = _portal.PlayerTargetRotRad(player);
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                float delta = (float)deltaD;
+
                 player.Velocity += Vector3.Down * Player.Default.Gravity * delta;
                 player.GlobalPosition += player.Velocity * delta;
 
-                RotatePlayer(delta);
-                RecenterCamera(delta);
+                _portal.RotatePlayer(delta);
+                _portal.RecenterCamera(delta);
+
+                if (player.Velocity.Y <= 0)
+                    ChangeState<Flying>();
+            }
+        }
+
+        private partial class Flying : PortalState
+        {
+            public override void OnStateEntered()
+            {
+                player.ChangeState<PlayerManhandledState>();
+                player.Animator.Play("Glide");
             }
 
-            player.Animator.Play("Glide");
-
-            while (true)
+            public override void _PhysicsProcess(double deltaD)
             {
-                float delta = await NextPhysicsFrame();
+                float delta = (float)deltaD;
+
                 player.GlobalPosition += player.GlobalForward() * Player.Glide.Speed * delta;
-
-                RotatePlayer(delta);
-                RecenterCamera(delta);
-            }
-
-            void RotatePlayer(float delta)
-            {
-                player.GlobalRotation = player.GlobalRotation.RotateTowardEulerRad(
-                    targetRotRad,
-                    delta * Mathf.DegToRad(180)
-                );
-            }
-
-            void RecenterCamera(float delta)
-            {
-                player.Camera.OrbitYawRad = AngleMath.DecayToward(
-                    player.Camera.OrbitYawRad,
-                    targetRotRad.Y,
-                    5,
-                    delta
-                );
+                _portal.RotatePlayer(delta);
+                _portal.RecenterCamera(delta);
             }
         }
 
@@ -108,6 +104,24 @@ namespace FastDragon
             return (Mathf.Abs(diffToForwardRad) < Mathf.Abs(diffToBackwardRad))
                 ? forwardRad
                 : backwardRad;
+        }
+
+        private void RotatePlayer(float delta)
+        {
+            _player.GlobalRotation = _player.GlobalRotation.RotateTowardEulerRad(
+                _playerTargetRotRad,
+                delta * Mathf.DegToRad(180)
+            );
+        }
+
+        private void RecenterCamera(float delta)
+        {
+            _player.Camera.OrbitYawRad = AngleMath.DecayToward(
+                _player.Camera.OrbitYawRad,
+                _playerTargetRotRad.Y,
+                5,
+                delta
+            );
         }
     }
 }
