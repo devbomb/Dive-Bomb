@@ -35,7 +35,12 @@ namespace FastDragon
             if (body is Player player && !(player.CurrentState is PlayerManhandledState))
             {
                 _player = player;
-                _stateMachine.ChangeState<Jumping>();
+                _playerTargetRotRad = PlayerTargetRotRad(player);
+
+                if (player.IsOnFloor())
+                    _stateMachine.ChangeState<Jumping>();
+                else
+                    _stateMachine.ChangeState<Flying>();
             }
         }
 
@@ -54,7 +59,6 @@ namespace FastDragon
                 player.ChangeState<PlayerManhandledState>();
                 player.Animator.Play("Jump");
                 player.Velocity = Vector3.Up * Player.Default.JumpVSpeed;
-                _portal._playerTargetRotRad = _portal.PlayerTargetRotRad(player);
             }
 
             public override void _PhysicsProcess(double deltaD)
