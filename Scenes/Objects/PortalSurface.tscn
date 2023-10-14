@@ -4,6 +4,7 @@
 
 [sub_resource type="Shader" id="Shader_sbvxd"]
 code = "shader_type spatial;
+render_mode unshaded;
 
 uniform sampler2D viewport_texture : source_color;
 
