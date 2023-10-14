@@ -10,6 +10,7 @@ namespace FastDragon
         private Camera3D _portalCamera => GetNode<Camera3D>("%PortalCamera");
         private Camera3D _mainCamera => GetTree().Root.GetCamera3D();
         private MeshInstance3D _portalMaterialHolder => GetNode<MeshInstance3D>("%PortalMaterialHolder");
+        private RayCast3D _normalDetector => GetNode<RayCast3D>("%NormalDetector");
 
         private StateMachine _stateMachine = new StateMachine(typeof(PortalState));
         private Player _player;
@@ -118,7 +119,15 @@ namespace FastDragon
 
         private Vector3 PlayerTargetRotRad(Player player)
         {
-            Vector3 forwardRad = GlobalRotation;
+            // Use a raycast to find what the collision with the player would
+            // be, if the portal were solid
+            _normalDetector.GlobalPosition = player.GlobalPosition;
+            _normalDetector.TargetPosition = GlobalPosition - _normalDetector.GlobalPosition;
+            _normalDetector.ForceUpdateTransform();
+            _normalDetector.ForceRaycastUpdate();
+
+            Vector3 forwardDir = _normalDetector.GetCollisionNormal();
+            Vector3 forwardRad = forwardDir.ForwardToEulerAnglesRad();
             Vector3 backwardRad = forwardRad + (Vector3.Up * Mathf.DegToRad(180));
             float angleToPlayerRad = (GlobalPosition - player.GlobalPosition)
                 .ForwardToEulerAnglesRad()
