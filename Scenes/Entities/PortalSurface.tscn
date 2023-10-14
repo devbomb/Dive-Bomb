@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi1df8rnwev2k"]
+[gd_scene load_steps=5 format=3 uid="uid://bi1df8rnwev2k"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/PortalSurface.cs" id="1_irh2u"]
+[ext_resource type="Script" path="res://Scripts/Entities/PortalSurface.cs" id="1_s1w3c"]
 
 [sub_resource type="Shader" id="Shader_sbvxd"]
 code = "shader_type spatial;
@@ -23,14 +23,8 @@ render_priority = 0
 shader = SubResource("Shader_sbvxd")
 shader_parameter/viewport_texture = SubResource("ViewportTexture_05luo")
 
-[sub_resource type="BoxMesh" id="BoxMesh_0twwc"]
-size = Vector3(4, 4, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_m38uq"]
-size = Vector3(4, 4, 1)
-
 [node name="PortalSurface" type="Area3D"]
-script = ExtResource("1_irh2u")
+script = ExtResource("1_s1w3c")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(1920, 1080)
@@ -42,10 +36,3 @@ cull_mask = 2
 [node name="PortalMaterialHolder" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 material_override = SubResource("ShaderMaterial_2vy43")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-mesh = SubResource("BoxMesh_0twwc")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_m38uq")

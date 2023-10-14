@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=22 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
@@ -1803,6 +1803,9 @@ _data = {
 "RESET": SubResource("Animation_15fu4")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
+radius = 0.1
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
 
 [sub_resource type="Gradient" id="Gradient_07rq0"]
@@ -1825,7 +1828,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rcfxu")
 }
-blend_times = [&"Jump", &"Idle", 0.1, &"Jump", &"Charge", 0.1, &"Jump", &"ChargeJump", 0.1, &"Jump", &"Glide", 0.1, &"Idle", &"Jump", 0.1, &"Idle", &"Charge", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Glide", 0.1, &"Charge", &"Idle", 0.1, &"Charge", &"ChargeJump", 0.1, &"ChargeJump", &"Charge", 0.1, &"ChargeJump", &"Glide", 0.1, &"Glide", &"Idle", 0.1, &"Glide", &"ChargeJump", 0.1]
+blend_times = [&"ChargeJump", &"Glide", 0.1, &"ChargeJump", &"Charge", 0.1, &"Glide", &"ChargeJump", 0.1, &"Glide", &"Idle", 0.1, &"Idle", &"Flop", 0.3, &"Idle", &"Glide", 0.1, &"Idle", &"Jump", 0.1, &"Idle", &"Charge", 0.1, &"Jump", &"ChargeJump", 0.1, &"Jump", &"Glide", 0.1, &"Jump", &"Idle", 0.1, &"Jump", &"Charge", 0.1, &"Charge", &"ChargeJump", 0.1, &"Charge", &"Idle", 0.1]
 
 [node name="Model" parent="." instance=ExtResource("1_aib06")]
 unique_name_in_owner = true
@@ -1912,6 +1915,11 @@ FollowTarget = NodePath("..")
 
 [node name="PhysicsInterpolator3D" type="Node" parent="Camera"]
 script = ExtResource("6_a7kvo")
+
+[node name="PortalActivator" type="Area3D" parent="Camera" groups=["CameraArea"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera/PortalActivator"]
+shape = SubResource("SphereShape3D_2vtlv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
