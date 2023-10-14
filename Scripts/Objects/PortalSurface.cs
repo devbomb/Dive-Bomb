@@ -1,12 +1,10 @@
-using System;
-using System.Threading.Tasks;
 using Godot;
 
 namespace FastDragon
 {
     public partial class PortalSurface : Area3D
     {
-        [Export] public Godot.Environment Skybox {get; private set;}
+        [Export(PropertyHint.File)] public string SkyboxEnvironment;
         [Export(PropertyHint.File)] public string TargetMap;
 
         private Camera3D _portalCamera => GetNode<Camera3D>("%PortalCamera");
@@ -22,13 +20,13 @@ namespace FastDragon
             _stateMachine.ChangeState<Idle>();
 
             BodyEntered += OnBodyEntered;
+            _portalCamera.Environment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
         }
 
         public override void _Process(double delta)
         {
             _portalCamera.GlobalPosition = _mainCamera.GlobalPosition;
             _portalCamera.GlobalRotation = _mainCamera.GlobalRotation;
-            _portalCamera.Environment = Skybox;
         }
 
         private void OnBodyEntered(Node3D body)
