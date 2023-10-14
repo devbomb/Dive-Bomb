@@ -19,6 +19,8 @@ namespace FastDragon
         public bool AllowFlaming => _currentState.AllowFlaming;
         public bool SpawningGemsHomeIn => _currentState.SpawningGemsHomeIn;
 
+        public PlayerState CurrentState => _currentState;
+
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
         public Node3D Model => GetNode<Node3D>("%Model");
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
