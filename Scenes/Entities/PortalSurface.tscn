@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi1df8rnwev2k"]
+[gd_scene load_steps=6 format=3 uid="uid://bi1df8rnwev2k"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/PortalSurface.cs" id="1_s1w3c"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0ubsh"]
 
 [sub_resource type="Shader" id="Shader_sbvxd"]
 code = "shader_type spatial;
@@ -38,6 +40,14 @@ unique_name_in_owner = true
 exclude_parent = false
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="CameraDetector" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CameraDetectorPlane" type="CollisionShape3D" parent="CameraDetector"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_0ubsh")
 
 [node name="PortalMaterialHolder" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true

@@ -9,8 +9,13 @@ namespace FastDragon
 
         private Camera3D _portalCamera => GetNode<Camera3D>("%PortalCamera");
         private Camera3D _mainCamera => GetTree().Root.GetCamera3D();
+
         private MeshInstance3D _portalMaterialHolder => GetNode<MeshInstance3D>("%PortalMaterialHolder");
+
         private RayCast3D _normalDetector => GetNode<RayCast3D>("%NormalDetector");
+
+        private Area3D _cameraDetector => GetNode<Area3D>("%CameraDetector");
+        private CollisionShape3D _cameraDetectorPlane => GetNode<CollisionShape3D>("%CameraDetectorPlane");
 
         private StateMachine _stateMachine = new StateMachine(typeof(PortalState));
         private Player _player;
@@ -42,7 +47,7 @@ namespace FastDragon
             if (body is Player player && !(player.CurrentState is PlayerManhandledState))
             {
                 _player = player;
-                _playerTargetRotRad = PlayerTargetRotRad(player);
+                UpdatePlayerTargetRot(player);
 
                 if (player.IsOnFloor())
                     _stateMachine.ChangeState<Jumping>();
@@ -85,10 +90,13 @@ namespace FastDragon
 
         private partial class Flying : PortalState
         {
+            private bool _skipCameraCheck;
+
             public override void OnStateEntered()
             {
                 player.ChangeState<PlayerManhandledState>();
                 player.Animator.Play("Glide");
+                _skipCameraCheck = true;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -99,13 +107,22 @@ namespace FastDragon
                 _portal.RotatePlayer(delta);
                 _portal.RecenterCamera(delta);
 
-                if (CameraIsTouchingPortal())
+                if (CameraIsTouchingPortal() && !_skipCameraCheck)
                     MapTransitionManager.Instance.GoToMap(_portal.TargetMap);
+
+                // HACK: The camera plane, for some reason, doesn't update its
+                // transform until the frame after the player touches the portal,
+                // even if I call ForceUpdateTransform().  This leads to the
+                // camera instantly hitting the un-transformed plane if the
+                // player jumps into the portal from the wrong side.
+                //
+                // The solution?  Just wait a frame, lol.
+                _skipCameraCheck = false;
             }
 
             private bool CameraIsTouchingPortal()
             {
-                foreach (var area in _portal.GetOverlappingAreas())
+                foreach (var area in _portal._cameraDetector.GetOverlappingAreas())
                 {
                     if (area.IsInGroup("CameraArea"))
                     {
@@ -117,7 +134,7 @@ namespace FastDragon
             }
         }
 
-        private Vector3 PlayerTargetRotRad(Player player)
+        private void UpdatePlayerTargetRot(Player player)
         {
             // Use a raycast to find what the collision with the player would
             // be, if the portal were solid
@@ -126,6 +143,7 @@ namespace FastDragon
             _normalDetector.ForceUpdateTransform();
             _normalDetector.ForceRaycastUpdate();
 
+            // Decide which way to rotate the player when they start flying
             Vector3 forwardDir = _normalDetector.GetCollisionNormal();
             Vector3 forwardRad = forwardDir.ForwardToEulerAnglesRad();
             Vector3 backwardRad = forwardRad + (Vector3.Up * Mathf.DegToRad(180));
@@ -136,9 +154,18 @@ namespace FastDragon
             float diffToForwardRad = AngleMath.Difference(angleToPlayerRad, forwardRad.Y);
             float diffToBackwardRad = AngleMath.Difference(angleToPlayerRad, backwardRad.Y);
 
-            return (Mathf.Abs(diffToForwardRad) < Mathf.Abs(diffToBackwardRad))
+            bool isForward = Mathf.Abs(diffToForwardRad) < Mathf.Abs(diffToBackwardRad);
+
+            _playerTargetRotRad = isForward
                 ? forwardRad
                 : backwardRad;
+
+            // Orient the camera detector plane to be perpendicular to the
+            // normal
+            _cameraDetector.GlobalPosition = _normalDetector.GetCollisionPoint();
+            _cameraDetector.GlobalRotation = isForward
+                ? backwardRad
+                : forwardRad;
         }
 
         private void RotatePlayer(float delta)
