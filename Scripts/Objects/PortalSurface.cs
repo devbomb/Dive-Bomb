@@ -7,6 +7,7 @@ namespace FastDragon
     public partial class PortalSurface : Area3D
     {
         [Export] public Godot.Environment Skybox {get; private set;}
+        [Export(PropertyHint.File)] public string TargetMap;
 
         private Camera3D _portalCamera => GetNode<Camera3D>("%PortalCamera");
         private Camera3D _mainCamera => GetTree().Root.GetCamera3D();
@@ -91,6 +92,22 @@ namespace FastDragon
                 player.GlobalPosition += player.GlobalForward() * Player.Glide.Speed * delta;
                 _portal.RotatePlayer(delta);
                 _portal.RecenterCamera(delta);
+
+                if (CameraIsTouchingPortal())
+                    MapTransitionManager.Instance.GoToMap(_portal.TargetMap);
+            }
+
+            private bool CameraIsTouchingPortal()
+            {
+                foreach (var area in _portal.GetOverlappingAreas())
+                {
+                    if (area.IsInGroup("CameraArea"))
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
 
