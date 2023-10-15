@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bckjgvq8udjn3"]
+
+[ext_resource type="Script" path="res://Scripts/PortalLoadingScreen.cs" id="1_mgqop"]
+[ext_resource type="AnimationLibrary" uid="uid://dp75nlaah5k6o" path="res://AnimationLibraries/PlayerAnimations.tres" id="2_8xff1"]
+[ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="3_l4ous"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_ef0t7"]
+
+[node name="PortalLoadingScreen" type="Node3D"]
+script = ExtResource("1_mgqop")
+
+[node name="WorldEnv" type="WorldEnvironment" parent="."]
+unique_name_in_owner = true
+
+[node name="PlayerAnimator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../PlayerModel")
+libraries = {
+"PlayerAnimations": ExtResource("2_8xff1")
+}
+
+[node name="PlayerModel" parent="." instance=ExtResource("3_l4ous")]
+unique_name_in_owner = true
+
+[node name="OrbitCamera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
+unique_name_in_owner = true
+script = ExtResource("4_ef0t7")
+FollowTarget = NodePath("../PlayerModel")

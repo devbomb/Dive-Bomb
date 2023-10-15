@@ -151,7 +151,7 @@
 {
 "classname" "PortalSurface"
 "SkyboxEnvironment" "res://Environments/DaySky.tres"
-"TargetMap" "res://Scenes/Maps/TestMap.tscn"
+"TargetMap" "res://Scenes/Maps/Levels/TestMap.tscn"
 // brush 0
 {
 ( 112 144 48 ) ( 112 160 16 ) ( 112 160 48 ) __TB_empty 0 0 0 1 1

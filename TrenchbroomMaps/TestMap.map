@@ -235,7 +235,7 @@
 {
 "classname" "PortalSurface"
 "SkyboxEnvironment" "res://Environments/NightSky.tres"
-"TargetMap" "res://Scenes/Maps/DummyMap.tscn"
+"TargetMap" "res://Scenes/Maps/Levels/DummyMap.tscn"
 // brush 0
 {
 ( 48 256 -64 ) ( 48 256 0 ) ( 48 240 0 ) __TB_empty 0 0 0 1 1
