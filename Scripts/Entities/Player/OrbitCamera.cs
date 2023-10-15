@@ -47,7 +47,7 @@ namespace FastDragon
             _currentState.OnStateEntered();
         }
 
-        public override void _Process(double deltaD)
+        public override void _PhysicsProcess(double deltaD)
         {
             ApplyAnglesAndDistance();
         }

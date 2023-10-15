@@ -25,6 +25,11 @@
 
 @SolidClass = DeathBarrier : "DeathBarrier" []
 
+@SolidClass = PortalSurface : "PortalSurface" [
+	SkyboxEnvironment(string) : "Skybox Environment"
+	TargetMap(string) : "Target Map"
+]
+
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
 	range(float) : "Range" : 10
 	energy(float) : "Energy" : 1 : "The light's strengh multiplier"

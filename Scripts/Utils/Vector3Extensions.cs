@@ -40,6 +40,19 @@ namespace FastDragon
             );
         }
 
+        public static Vector3 RotateTowardEulerRad(
+            this Vector3 fromRad,
+            Vector3 toRad,
+            float deltaRad
+        )
+        {
+            return new Vector3(
+                AngleMath.MoveToward(fromRad.X, toRad.X, deltaRad),
+                AngleMath.MoveToward(fromRad.Y, toRad.Y, deltaRad),
+                AngleMath.MoveToward(fromRad.Z, toRad.Z, deltaRad)
+            );
+        }
+
         public static Vector3 DecayTowardsEulerRad(
             this Vector3 fromRad,
             Vector3 toRad,
