@@ -5,6 +5,7 @@ namespace FastDragon
     public partial class PortalLoadingScreen : Node3D
     {
         private string _levelSceneFile;
+        private bool _animationDone = false;
 
         private Node3D _playerModel => GetNode<Node3D>("%PlayerModel");
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
@@ -25,6 +26,9 @@ namespace FastDragon
             _levelSceneFile = levelSceneFile;
             _worldEnv.Environment = skyBoxEnvironment;
 
+            // Start loading the level in the background
+            ResourceLoader.LoadThreadedRequest(_levelSceneFile);
+
             // Sync up the player's animation
             _playerAnimator.Play("PlayerAnimations/Glide");
             _playerAnimator.Seek(animationStartTime, true);
@@ -36,12 +40,21 @@ namespace FastDragon
             _camera.OrbitYawRad = cameraYawRad;
             _camera.OrbitPitchRad = cameraPitchRad;
 
-            // TODO: Load the level asynchronously instead of faking it with a
-            // timer
-            GetTree().CreateTimer(2).Timeout += () =>
+            // TODO: Play a real animation instead of this lame pause
+            _animationDone = false;
+            GetTree().CreateTimer(2).Timeout += () => _animationDone = true;
+        }
+
+        public override void _Process(double deltaD)
+        {
+            var loadStatus = ResourceLoader.LoadThreadedGetStatus(_levelSceneFile);
+            bool doneLoading = loadStatus == ResourceLoader.ThreadLoadStatus.Loaded;
+
+            if (_animationDone && doneLoading)
             {
-                MapTransitionManager.Instance.GoToMap(_levelSceneFile);
-            };
+                var mapPrefab = (PackedScene)ResourceLoader.LoadThreadedGet(_levelSceneFile);
+                GetTree().ChangeSceneToPacked(mapPrefab);
+            }
         }
     }
 }
