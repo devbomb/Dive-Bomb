@@ -9,6 +9,10 @@ namespace FastDragon
     {
         [Signal] public delegate void RespawningEventHandler();
 
+        [Export] public float FlyInHeight = 10;
+        [Export] public float FlyInDistance = 10;
+        [Export] public float FlyInDuration = 2;
+
         /// <summary>
         ///     Disabling collision shapes infamously can't happen in a
         ///     collision handler, which is inconvenient.
@@ -63,7 +67,7 @@ namespace FastDragon
             _spawnPoint = Position;
             _spawnRotation = Rotation;
 
-            Respawn();
+            ChangeState<PlayerFlyInState>();
         }
 
         public void Respawn()
