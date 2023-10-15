@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb32y0ekuw0op"]
+[gd_scene load_steps=3 format=3 uid="uid://cb32y0ekuw0op"]
 
 [ext_resource type="Script" path="res://Scripts/Services/MapTransitionManager.cs" id="1_onbea"]
+[ext_resource type="PackedScene" uid="uid://bckjgvq8udjn3" path="res://Scenes/Maps/Screens/PortalLoadingScreen.tscn" id="2_lrjqs"]
 
 [node name="MapTransitionManager" type="Node"]
 script = ExtResource("1_onbea")
 LevelSelectMap = "res://Scenes/Maps/LevelSelectMenu.tscn"
+PortalLoadingScreenPrefab = ExtResource("2_lrjqs")

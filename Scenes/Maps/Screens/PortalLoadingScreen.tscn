@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bckjgvq8udjn3"]
+
+[ext_resource type="Script" path="res://Scripts/PortalLoadingScreen.cs" id="1_mgqop"]
+[ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Scenes/Entities/Player.tscn" id="1_q3yyc"]
+
+[node name="PortalLoadingScreen" type="Node3D"]
+script = ExtResource("1_mgqop")
+
+[node name="WorldEnv" type="WorldEnvironment" parent="."]
+unique_name_in_owner = true
+
+[node name="Player" parent="." instance=ExtResource("1_q3yyc")]
+unique_name_in_owner = true

@@ -108,7 +108,12 @@ namespace FastDragon
                 _portal.RecenterCamera(delta);
 
                 if (CameraIsTouchingPortal() && !_skipCameraCheck)
-                    MapTransitionManager.Instance.GoToMap(_portal.TargetMap);
+                {
+                    MapTransitionManager.Instance.GoToPortalLoadingScreen(
+                        _portal.TargetMap,
+                        _portal._portalCamera.Environment
+                    );
+                }
 
                 // HACK: The camera plane, for some reason, doesn't update its
                 // transform until the frame after the player touches the portal,
