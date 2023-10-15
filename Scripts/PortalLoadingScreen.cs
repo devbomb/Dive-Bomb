@@ -6,7 +6,7 @@ namespace FastDragon
     {
         private string _levelSceneFile;
 
-        private Player _player => GetNode<Player>("%Player");
+        private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
         public void Initialize(
