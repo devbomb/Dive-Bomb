@@ -21,6 +21,7 @@ libraries = {
 [node name="PlayerModel" parent="." instance=ExtResource("3_l4ous")]
 unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
+[node name="OrbitCamera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
+unique_name_in_owner = true
 script = ExtResource("4_ef0t7")
 FollowTarget = NodePath("../PlayerModel")

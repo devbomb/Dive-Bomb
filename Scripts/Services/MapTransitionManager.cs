@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -33,8 +34,19 @@ namespace FastDragon
             var oldScene = tree.CurrentScene;
             var loadingScreen = PortalLoadingScreenPrefab.Instantiate<PortalLoadingScreen>();
 
-            // TODO: Sync player values between oldScene and loadingScreen
+            // Save player/camera values so they can be copied over to the
+            // loading screen, creating the illusion of a seamless transition
+            var oldPlayer = oldScene
+                .EnumerateDescendantsOfType<Player>()
+                .First();
 
+            double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
+            Vector3 playerRotRad = oldPlayer.GlobalRotation;
+            float cameraDist = oldPlayer.Camera.OrbitDistance;
+            float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
+            float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
+
+            // Swap the current scene out for the loading screen
             tree.Root.RemoveChild(oldScene);
             oldScene.QueueFree();
 
@@ -43,7 +55,12 @@ namespace FastDragon
 
             loadingScreen.Initialize(
                 levelSceneFile,
-                skyBoxEnvironment
+                skyBoxEnvironment,
+                animationStartTime,
+                playerRotRad,
+                cameraDist,
+                cameraYawRad,
+                cameraPitchRad
             );
         }
     }
