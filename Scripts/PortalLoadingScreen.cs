@@ -4,8 +4,14 @@ namespace FastDragon
 {
     public partial class PortalLoadingScreen : Node3D
     {
+        public static readonly float CameraYawRad = Mathf.DegToRad(-145);
+        public static readonly float CameraPitchRad = Mathf.DegToRad(45);
+        public const float CameraDist = Player.Glide.CameraDistance;
+
+        private const float RestMoveDuration = 2;
+        private const float MinLoadingWaitTime = 2;
+
         private string _levelSceneFile;
-        private bool _animationDone = false;
 
         private Node3D _playerModel => GetNode<Node3D>("%PlayerModel");
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
@@ -13,11 +19,13 @@ namespace FastDragon
 
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
+        private bool _animationDone;
+
         public void Initialize(
             string levelSceneFile,
             Environment skyBoxEnvironment,
             double animationStartTime,
-            Vector3 playerRotRad,
+            Vector3 playerStartRotRad,
             float cameraDist,
             float cameraYawRad,
             float cameraPitchRad
@@ -33,28 +41,40 @@ namespace FastDragon
             _playerAnimator.Play("PlayerAnimations/Glide");
             _playerAnimator.Seek(animationStartTime, true);
 
-            _playerModel.Rotation = playerRotRad;
-
             _camera.ChangeState<OrbitCameraLockedState>();
+
+            // Start the loading screen animation
+            _playerModel.GlobalRotation = playerStartRotRad;
             _camera.OrbitDistance = cameraDist;
             _camera.OrbitYawRad = cameraYawRad;
             _camera.OrbitPitchRad = cameraPitchRad;
-
-            // TODO: Play a real animation instead of this lame pause
             _animationDone = false;
-            GetTree().CreateTimer(2).Timeout += () => _animationDone = true;
+
+            var tween = CreateTween();
+            tween.TweenProperty(_playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
+            tween.Parallel().TweenProperty(_camera, "OrbitDistance", CameraDist, RestMoveDuration);
+            tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitYawRad", CameraYawRad, RestMoveDuration);
+            tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitPitchRad", CameraPitchRad, RestMoveDuration);
+            tween.TweenInterval(MinLoadingWaitTime);
+            tween.TweenCallback(Callable.From(() => _animationDone = true));
         }
 
-        public override void _Process(double deltaD)
+        public override void _Process(double delta)
+        {
+            if (DoneLoading() && _animationDone)
+                GoToTargetMap();
+        }
+
+        private bool DoneLoading()
         {
             var loadStatus = ResourceLoader.LoadThreadedGetStatus(_levelSceneFile);
-            bool doneLoading = loadStatus == ResourceLoader.ThreadLoadStatus.Loaded;
+            return loadStatus == ResourceLoader.ThreadLoadStatus.Loaded;
+        }
 
-            if (_animationDone && doneLoading)
-            {
-                var mapPrefab = (PackedScene)ResourceLoader.LoadThreadedGet(_levelSceneFile);
-                GetTree().ChangeSceneToPacked(mapPrefab);
-            }
+        private void GoToTargetMap()
+        {
+            var mapPrefab = (PackedScene)ResourceLoader.LoadThreadedGet(_levelSceneFile);
+            GetTree().ChangeSceneToPacked(mapPrefab);
         }
     }
 }

@@ -40,6 +40,19 @@ namespace FastDragon
             );
         }
 
+        public static Vector3 LerpEulerRadSinusoidal(
+            this Vector3 fromRad,
+            Vector3 toRad,
+            float t
+        )
+        {
+            return new Vector3(
+                MathUtils.LerpAngleSinusoidal(fromRad.X, toRad.X, t),
+                MathUtils.LerpAngleSinusoidal(fromRad.Y, toRad.Y, t),
+                MathUtils.LerpAngleSinusoidal(fromRad.Z, toRad.Z, t)
+            );
+        }
+
         public static Vector3 RotateTowardEulerRad(
             this Vector3 fromRad,
             Vector3 toRad,

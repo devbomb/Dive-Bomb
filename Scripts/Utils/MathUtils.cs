@@ -26,5 +26,29 @@ namespace FastDragon
             remaining *= Mathf.Pow(Mathf.E, -decayRate * delta);
             return to.MoveToward(from, remaining);
         }
+
+        public static float LerpSinusoidal(
+            float from,
+            float to,
+            float t
+        )
+        {
+            float shiftedT = -Mathf.Cos(t * Mathf.DegToRad(180)) + 1;
+            shiftedT /= 2;
+
+            return Mathf.Lerp(from, to, shiftedT);
+        }
+
+        public static float LerpAngleSinusoidal(
+            float fromRad,
+            float toRad,
+            float t
+        )
+        {
+            float shiftedT = -Mathf.Cos(t * Mathf.DegToRad(180)) + 1;
+            shiftedT /= 2;
+
+            return Mathf.LerpAngle(fromRad, toRad, shiftedT);
+        }
     }
 }
