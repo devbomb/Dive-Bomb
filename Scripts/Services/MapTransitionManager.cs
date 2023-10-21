@@ -13,28 +13,34 @@ namespace FastDragon
         public override void _Ready()
         {
             Instance = this;
+            SaveFile.Current.CurrentMap = GetTree().CurrentScene.SceneFilePath;
         }
 
         public void ChangeSceneToNode(Node scene)
         {
-            var tree = GetTree();
-            var oldScene = tree.CurrentScene;
+            SaveFile.Current.CurrentMap = scene.SceneFilePath;
 
-            // Swap the current scene out for the loading screen
+            var tree = GetTree();
+
+            // Unload the old scene
+            var oldScene = tree.CurrentScene;
             tree.Root.RemoveChild(oldScene);
             oldScene.QueueFree();
 
+            // Change to the new one
             tree.Root.AddChild(scene);
             tree.CurrentScene = scene;
         }
 
         public void GoToLevelSelect()
         {
+            SaveFile.Current.CurrentMap = LevelSelectMap;
             GetTree().ChangeSceneToFile(LevelSelectMap);
         }
 
         public void GoToMap(string mapSceneFile)
         {
+            SaveFile.Current.CurrentMap = mapSceneFile;
             GetTree().ChangeSceneToFile(mapSceneFile);
         }
 

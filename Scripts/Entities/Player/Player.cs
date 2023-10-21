@@ -59,8 +59,6 @@ namespace FastDragon
         {
             MakeVisibleInPortals();
 
-            SaveFile.Current.CurrentMap = GetTree().CurrentScene.SceneFilePath;
-
             base._Ready();
 
             SignalBus.Instance.LevelReset += Respawn;
