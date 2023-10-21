@@ -75,12 +75,7 @@ namespace FastDragon
 
         private void GoToTargetMap()
         {
-            var oldScene = GetTree().CurrentScene;
-            oldScene.GetParent().RemoveChild(oldScene);
-            oldScene.QueueFree();
-
-            GetTree().Root.AddChild(_loadedScene);
-            GetTree().CurrentScene = _loadedScene;
+            MapTransitionManager.Instance.ChangeSceneToNode(_loadedScene);
         }
 
         private void LoadInBackground(string sceneFilePath)

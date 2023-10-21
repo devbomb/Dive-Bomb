@@ -15,6 +15,19 @@ namespace FastDragon
             Instance = this;
         }
 
+        public void ChangeSceneToNode(Node scene)
+        {
+            var tree = GetTree();
+            var oldScene = tree.CurrentScene;
+
+            // Swap the current scene out for the loading screen
+            tree.Root.RemoveChild(oldScene);
+            oldScene.QueueFree();
+
+            tree.Root.AddChild(scene);
+            tree.CurrentScene = scene;
+        }
+
         public void GoToLevelSelect()
         {
             GetTree().ChangeSceneToFile(LevelSelectMap);
@@ -46,12 +59,7 @@ namespace FastDragon
             float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
             float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
 
-            // Swap the current scene out for the loading screen
-            tree.Root.RemoveChild(oldScene);
-            oldScene.QueueFree();
-
-            tree.Root.AddChild(loadingScreen);
-            tree.CurrentScene = loadingScreen;
+            ChangeSceneToNode(loadingScreen);
 
             loadingScreen.Initialize(
                 levelSceneFile,
