@@ -20,6 +20,7 @@ namespace FastDragon
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
         private bool _animationDone;
+        private Node3D _loadedScene;
 
         public void Initialize(
             string levelSceneFile,
@@ -34,8 +35,11 @@ namespace FastDragon
             _levelSceneFile = levelSceneFile;
             _worldEnv.Environment = skyBoxEnvironment;
 
+            _loadedScene = null;
+            _animationDone = false;
+
             // Start loading the level in the background
-            ResourceLoader.LoadThreadedRequest(_levelSceneFile);
+            LoadInBackground(_levelSceneFile);
 
             // Sync up the player's animation
             _playerAnimator.Play("PlayerAnimations/Glide");
@@ -48,7 +52,6 @@ namespace FastDragon
             _camera.OrbitDistance = cameraDist;
             _camera.OrbitYawRad = cameraYawRad;
             _camera.OrbitPitchRad = cameraPitchRad;
-            _animationDone = false;
 
             var tween = CreateTween();
             tween.TweenProperty(_playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
@@ -61,20 +64,40 @@ namespace FastDragon
 
         public override void _Process(double delta)
         {
-            if (DoneLoading() && _animationDone)
+            if (_loadedScene != null && _animationDone)
                 GoToTargetMap();
         }
 
-        private bool DoneLoading()
+        private void DoneLoading(Node3D loadedScene)
         {
-            var loadStatus = ResourceLoader.LoadThreadedGetStatus(_levelSceneFile);
-            return loadStatus == ResourceLoader.ThreadLoadStatus.Loaded;
+            _loadedScene = loadedScene;
         }
 
         private void GoToTargetMap()
         {
-            var mapPrefab = (PackedScene)ResourceLoader.LoadThreadedGet(_levelSceneFile);
-            GetTree().ChangeSceneToPacked(mapPrefab);
+            MapTransitionManager.Instance.ChangeSceneToNode(_loadedScene);
+        }
+
+        private void LoadInBackground(string sceneFilePath)
+        {
+            var thread = new System.Threading.Thread(() =>
+            {
+                var prefab = ResourceLoader.Load<PackedScene>(sceneFilePath);
+                var node = prefab.Instantiate<Node3D>();
+
+                // HACK: If this is a trenchbroom scene, build the meshes in
+                // this thread instead of the main thread.  After all, the level
+                // isn't _truly_ loaded until the meshes are built.
+                if (node.HasMethod("_refresh"))
+                {
+                    node.Set("_hackityHackHackDisableRefresh", true);
+                    node.Call("build_meshes");
+                }
+
+                _loadedScene = node;
+            });
+
+            thread.Start();
         }
     }
 }
