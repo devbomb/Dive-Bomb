@@ -20,6 +20,8 @@ namespace FastDragon
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
         private bool _animationDone;
+        private bool _loadingDone;
+        private Node3D _loadedScene;
 
         public void Initialize(
             string levelSceneFile,
@@ -34,8 +36,11 @@ namespace FastDragon
             _levelSceneFile = levelSceneFile;
             _worldEnv.Environment = skyBoxEnvironment;
 
+            _loadingDone = false;
+            _animationDone = false;
+
             // Start loading the level in the background
-            ResourceLoader.LoadThreadedRequest(_levelSceneFile);
+            LoadInBackground(_levelSceneFile);
 
             // Sync up the player's animation
             _playerAnimator.Play("PlayerAnimations/Glide");
@@ -48,7 +53,6 @@ namespace FastDragon
             _camera.OrbitDistance = cameraDist;
             _camera.OrbitYawRad = cameraYawRad;
             _camera.OrbitPitchRad = cameraPitchRad;
-            _animationDone = false;
 
             var tween = CreateTween();
             tween.TweenProperty(_playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
@@ -61,20 +65,39 @@ namespace FastDragon
 
         public override void _Process(double delta)
         {
-            if (DoneLoading() && _animationDone)
+            if (_loadingDone && _animationDone)
                 GoToTargetMap();
         }
 
-        private bool DoneLoading()
+        private void DoneLoading(Node3D loadedScene)
         {
-            var loadStatus = ResourceLoader.LoadThreadedGetStatus(_levelSceneFile);
-            return loadStatus == ResourceLoader.ThreadLoadStatus.Loaded;
+            _loadingDone = true;
+            _loadedScene = loadedScene;
         }
 
         private void GoToTargetMap()
         {
-            var mapPrefab = (PackedScene)ResourceLoader.LoadThreadedGet(_levelSceneFile);
-            GetTree().ChangeSceneToPacked(mapPrefab);
+            var oldScene = GetTree().CurrentScene;
+            oldScene.GetParent().RemoveChild(oldScene);
+            oldScene.QueueFree();
+
+            GetTree().Root.AddChild(_loadedScene);
+            GetTree().CurrentScene = _loadedScene;
+        }
+
+        private void LoadInBackground(string sceneFilePath)
+        {
+            var thread = new System.Threading.Thread(() =>
+            {
+                var prefab = ResourceLoader.Load<PackedScene>(sceneFilePath);
+                var node = prefab.Instantiate<Node3D>();
+
+                // TODO: If this is a trenchbroom scene, refresh it first.
+
+                CallDeferred(nameof(DoneLoading), node);
+            });
+
+            thread.Start();
         }
     }
 }
