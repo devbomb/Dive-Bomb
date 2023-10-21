@@ -5,6 +5,8 @@ namespace FastDragon
 {
     public partial class PhysicsInterpolator3D : Node
     {
+        public bool AllowInterpolation = true;
+
         private Node3D _parent => GetParent<Node3D>();
 
         private Vector3 _prevTruePos;
@@ -37,6 +39,9 @@ namespace FastDragon
 
         public override void _Process(double delta)
         {
+            if (!AllowInterpolation)
+                return;
+
             _timer += delta;
             double t = _timer / _physicsDelta;
             if (t > 1)
@@ -57,6 +62,9 @@ namespace FastDragon
 
         private void OnPhysicsFrameStarted(double delta)
         {
+            if (!AllowInterpolation)
+                return;
+
             _physicsDelta = delta;
             _timer -= delta;
 
@@ -67,6 +75,9 @@ namespace FastDragon
 
         private void OnPhysicsFrameEnded(double delta)
         {
+            if (!AllowInterpolation)
+                return;
+
             _prevTruePos = _truePos;
             _prevTrueRot = _trueRot;
 
