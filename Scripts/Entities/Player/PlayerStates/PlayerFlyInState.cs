@@ -27,8 +27,8 @@ namespace FastDragon
             tween.TweenInterval(0.5);   // HACK: Pause for a bit to hide the "frame hiccup"
             tween.TweenProperty(_player, "global_position", endPos, duration);
             tween.Parallel().TweenProperty(_player, "global_rotation", endRotRad, duration);
-            tween.Parallel().TweenProperty(_player.Camera, "OrbitYawRad", endRotRad.Y, duration);
-            tween.Parallel().TweenProperty(_player.Camera, "OrbitPitchRad", 0, duration);
+            tween.Parallel().TweenAngleRadSinusoidal(_player.Camera, "OrbitYawRad", endRotRad.Y, duration);
+            tween.Parallel().TweenAngleRadSinusoidal(_player.Camera, "OrbitPitchRad", 0, duration);
             tween.TweenCallback(Callable.From(Finish));
         }
 
