@@ -85,7 +85,14 @@ namespace FastDragon
                 var prefab = ResourceLoader.Load<PackedScene>(sceneFilePath);
                 var node = prefab.Instantiate<Node3D>();
 
-                // TODO: If this is a trenchbroom scene, refresh it first.
+                // HACK: If this is a trenchbroom scene, build the meshes in
+                // this thread instead of the main thread.  After all, the level
+                // isn't _truly_ loaded until the meshes are built.
+                if (node.HasMethod("_refresh"))
+                {
+                    node.Set("_hackityHackHackDisableRefresh", true);
+                    node.Call("build_meshes");
+                }
 
                 _loadedScene = node;
             });
