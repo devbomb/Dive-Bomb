@@ -20,7 +20,6 @@ namespace FastDragon
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
         private bool _animationDone;
-        private bool _loadingDone;
         private Node3D _loadedScene;
 
         public void Initialize(
@@ -36,7 +35,7 @@ namespace FastDragon
             _levelSceneFile = levelSceneFile;
             _worldEnv.Environment = skyBoxEnvironment;
 
-            _loadingDone = false;
+            _loadedScene = null;
             _animationDone = false;
 
             // Start loading the level in the background
@@ -65,13 +64,12 @@ namespace FastDragon
 
         public override void _Process(double delta)
         {
-            if (_loadingDone && _animationDone)
+            if (_loadedScene != null && _animationDone)
                 GoToTargetMap();
         }
 
         private void DoneLoading(Node3D loadedScene)
         {
-            _loadingDone = true;
             _loadedScene = loadedScene;
         }
 
@@ -94,7 +92,7 @@ namespace FastDragon
 
                 // TODO: If this is a trenchbroom scene, refresh it first.
 
-                CallDeferred(nameof(DoneLoading), node);
+                _loadedScene = node;
             });
 
             thread.Start();
