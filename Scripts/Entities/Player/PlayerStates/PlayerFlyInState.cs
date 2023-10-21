@@ -24,7 +24,8 @@ namespace FastDragon
 
             double duration = _player.FlyInDuration;
             var tween = CreateTween();
-            tween.Parallel().TweenProperty(_player, "global_position", endPos, duration);
+            tween.TweenInterval(0.5);   // HACK: Pause for a bit to hide the "frame hiccup"
+            tween.TweenProperty(_player, "global_position", endPos, duration);
             tween.Parallel().TweenProperty(_player, "global_rotation", endRotRad, duration);
             tween.Parallel().TweenProperty(_player.Camera, "OrbitYawRad", endRotRad.Y, duration);
             tween.Parallel().TweenProperty(_player.Camera, "OrbitPitchRad", 0, duration);
