@@ -59,7 +59,7 @@ namespace FastDragon
         {
             MakeVisibleInPortals();
 
-            // SaveFile.Current.CurrentMap = GetTree().CurrentScene.SceneFilePath;
+            SaveFile.Current.CurrentMap = GetTree().CurrentScene.SceneFilePath;
 
             base._Ready();
 
