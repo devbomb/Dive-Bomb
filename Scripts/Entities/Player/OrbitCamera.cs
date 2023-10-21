@@ -9,9 +9,39 @@ namespace FastDragon
     {
         [Export] public Node3D FollowTarget;
 
-        public float OrbitDistance = 6;
-        public float OrbitYawRad;
-        public float OrbitPitchRad;
+        public float OrbitDistance
+        {
+            get => _orbitDistance;
+            set
+            {
+                _orbitDistance = value;
+                ApplyAnglesAndDistance();
+            }
+        }
+
+        public float OrbitYawRad
+        {
+            get => _orbitYawRad;
+            set
+            {
+                _orbitYawRad = value;
+                ApplyAnglesAndDistance();
+            }
+        }
+
+        public float OrbitPitchRad
+        {
+            get => _orbitPitchRad;
+            set
+            {
+                _orbitPitchRad = value;
+                ApplyAnglesAndDistance();
+            }
+        }
+
+        private float _orbitDistance = 6;
+        private float _orbitYawRad;
+        private float _orbitPitchRad;
 
         /// <summary>
         /// This height gets added to the camera's final position, AFTER the
@@ -47,11 +77,6 @@ namespace FastDragon
             _currentState.OnStateEntered();
         }
 
-        public override void _PhysicsProcess(double deltaD)
-        {
-            ApplyAnglesAndDistance();
-        }
-
         public void ForceRecenter()
         {
             OrbitPitchRad = 0;
@@ -70,6 +95,16 @@ namespace FastDragon
             LookAt(FollowTarget.GlobalPosition);
 
             GlobalPosition += Vector3.Up * CameraHeightOffset;
+
+            // HACK: ensure it works smoothly with physics interpolation
+            if (!Engine.IsInPhysicsFrame())
+            {
+                foreach (var child in this.EnumerateChildren())
+                {
+                    if (child is PhysicsInterpolator3D interpolator)
+                        interpolator.ResetPhysicsInterpolation();
+                }
+            }
         }
 
         private IEnumerable<OrbitCameraState> States()
