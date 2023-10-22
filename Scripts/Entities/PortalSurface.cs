@@ -21,13 +21,20 @@ namespace FastDragon
         private Player _player;
         private Vector3 _playerTargetRotRad;
 
+        public void SetSkybox(string skyboxEnvironment)
+        {
+            _portalCamera.Environment = ResourceLoader.Load<Environment>(skyboxEnvironment);
+        }
+
         public override void _Ready()
         {
             AddChild(_stateMachine);
             _stateMachine.ChangeState<Idle>();
 
             BodyEntered += OnBodyEntered;
-            _portalCamera.Environment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
+
+            if (ResourceLoader.Exists(SkyboxEnvironment))
+                _portalCamera.Environment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
 
             foreach (var mesh in this.EnumerateDescendantsOfType<MeshInstance3D>())
             {

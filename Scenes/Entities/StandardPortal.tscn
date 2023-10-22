@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://dahuf8m47kslw"]
+
+[ext_resource type="PackedScene" uid="uid://b7e27lthcl3fx" path="res://BlenderModels/StandardPortalFrame.blend" id="1_8h6m5"]
+[ext_resource type="Script" path="res://Scripts/Entities/StandardPortal.cs" id="1_hy3pl"]
+[ext_resource type="PackedScene" uid="uid://bi1df8rnwev2k" path="res://Scenes/Entities/PortalSurface.tscn" id="2_yrgfb"]
+[ext_resource type="PackedScene" uid="uid://c4t6j3ufg2v35" path="res://BlenderModels/StandardPortalSurface.blend" id="3_cxbrd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ut6y6"]
+size = Vector3(3, 4, 0.25)
+
+[node name="StandardPortal" type="Node3D"]
+script = ExtResource("1_hy3pl")
+
+[node name="StandardPortalFrame" parent="." instance=ExtResource("1_8h6m5")]
+
+[node name="PortalSurface" parent="." instance=ExtResource("2_yrgfb")]
+unique_name_in_owner = true
+
+[node name="Model" parent="PortalSurface" instance=ExtResource("3_cxbrd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PortalSurface"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_ut6y6")
