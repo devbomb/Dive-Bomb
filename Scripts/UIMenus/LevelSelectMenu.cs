@@ -4,7 +4,7 @@ namespace FastDragon
 {
     public partial class LevelSelectMenu : Control
     {
-        private const string MapsFolder = "res://Scenes/Maps";
+        private const string MapsFolder = "res://Scenes/Maps/Levels";
         private Control _buttonsContainer => GetNode<Control>("%LevelButtons");
 
         public override void _Ready()
