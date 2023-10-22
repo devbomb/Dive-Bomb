@@ -5,5 +5,5 @@
 
 [node name="MapTransitionManager" type="Node"]
 script = ExtResource("1_onbea")
-LevelSelectMap = "res://Scenes/Maps/LevelSelectMenu.tscn"
+LevelSelectMap = "res://Scenes/Maps/Screens/LevelSelectMenu.tscn"
 PortalLoadingScreenPrefab = ExtResource("2_lrjqs")
