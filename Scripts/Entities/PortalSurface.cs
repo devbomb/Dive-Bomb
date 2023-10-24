@@ -152,6 +152,7 @@ namespace FastDragon
             // be, if the portal were solid
             _normalDetector.GlobalPosition = player.GlobalPosition;
             _normalDetector.TargetPosition = GlobalPosition - _normalDetector.GlobalPosition;
+            _normalDetector.GlobalRotation = Vector3.Zero;
             _normalDetector.ForceUpdateTransform();
             _normalDetector.ForceRaycastUpdate();
 
