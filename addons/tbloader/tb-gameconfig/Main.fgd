@@ -25,10 +25,17 @@
 
 @SolidClass = DeathBarrier : "DeathBarrier" []
 
-@SolidClass = PortalSurface : "PortalSurface" [
-	SkyboxEnvironment(string) : "Skybox Environment"
-	TargetMap(string) : "Target Map"
-]
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/StandardPortalFrame.obj",
+		"scale" : 0.25
+	})
+	= StandardPortal : "StandardPortal" [
+		SkyboxEnvironment(string) : "Skybox Environment"
+		TargetMap(string) : "Target Map"
+	]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
 	range(float) : "Range" : 10
