@@ -13,6 +13,7 @@
 
 @SolidClass = worldspawn : "World entity" [
 	HomeWorld(string) : "Home World"
+	PortalID(string) : "Portal ID"
 ]
 
 @SolidClass = area : "Area" []
