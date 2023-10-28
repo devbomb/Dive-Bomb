@@ -191,8 +191,8 @@
 // entity 22
 {
 "classname" "StandardPortal"
-"origin" "72 228 -64"
-"angles" "0 90 0"
+"origin" "88 220 -64"
+"angles" "0 -90 0"
 "TargetMap" "res://Scenes/Maps/Levels/DummyMap.tscn"
 "SkyboxEnvironment" "res://Environments/NightSky.tres"
 }

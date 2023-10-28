@@ -71,18 +71,7 @@ namespace FastDragon
         public void ExitLevel()
         {
             Close();
-
-            var worldSpawn = GetTree().Root
-                .EnumerateDescendantsOfType<WorldSpawn>()
-                .FirstOrDefault();
-
-            if (worldSpawn?.HomeWorld == null)
-            {
-                MapTransitionManager.Instance.GoToLevelSelect();
-                return;
-            }
-
-            MapTransitionManager.Instance.GoToMap(worldSpawn.HomeWorld);
+            MapTransitionManager.Instance.ExitLevel();
         }
     }
 }

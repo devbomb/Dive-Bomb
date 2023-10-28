@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -76,6 +77,7 @@ namespace FastDragon
         private void GoToTargetMap()
         {
             MapTransitionManager.Instance.ChangeSceneToNode(_loadedScene);
+            _loadedScene.FindNode<Player>().ChangeState<PlayerFlyInState>();
         }
 
         private void LoadInBackground(string sceneFilePath)

@@ -78,5 +78,17 @@ namespace FastDragon
 
             return node.GetParent().FirstAncestor<TNode>();
         }
+
+        /// <summary>
+        /// Returns the first(in depth-first-search order) descendant node of
+        /// the given type, or null if none exists.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <typeparam name="TNode"></typeparam>
+        /// <returns></returns>
+        public static TNode FindNode<TNode>(this Node node) where TNode : Node
+        {
+            return node.EnumerateDescendantsOfType<TNode>().FirstOrDefault();
+        }
     }
 }
