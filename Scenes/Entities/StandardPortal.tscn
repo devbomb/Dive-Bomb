@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="PackedScene" uid="uid://b7e27lthcl3fx" path="res://BlenderModels/StandardPortalFrame.blend" id="1_8h6m5"]
-[ext_resource type="Script" path="res://Scripts/Entities/StandardPortal.cs" id="1_hy3pl"]
+[ext_resource type="Script" path="res://Scripts/Entities/Portal.cs" id="1_hy3pl"]
 [ext_resource type="PackedScene" uid="uid://bi1df8rnwev2k" path="res://Scenes/Objects/PortalSurface.tscn" id="2_yrgfb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut6y6"]

@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class StandardPortal : Node3D
+    public partial class Portal : Node3D
     {
         [Export(PropertyHint.File)] public string SkyboxEnvironment;
         [Export(PropertyHint.File)] public string TargetMap;
