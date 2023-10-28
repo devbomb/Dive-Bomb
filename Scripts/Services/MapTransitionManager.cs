@@ -77,5 +77,24 @@ namespace FastDragon
                 cameraPitchRad
             );
         }
+
+        public void ExitLevel()
+        {
+            var worldSpawn = GetTree().Root
+                .EnumerateDescendantsOfType<WorldSpawn>()
+                .FirstOrDefault();
+
+            // HACK: If this map does not have a home world assigned, go
+            // straight to level select
+            if (worldSpawn?.HomeWorld == null)
+            {
+                GoToLevelSelect();
+                return;
+            }
+
+            // TODO: go to a loading screen, instead of going directly to the
+            // home world
+            GoToMap(worldSpawn.HomeWorld);
+        }
     }
 }
