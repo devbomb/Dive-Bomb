@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -70,7 +71,18 @@ namespace FastDragon
         public void ExitLevel()
         {
             Close();
-            MapTransitionManager.Instance.GoToLevelSelect();
+
+            var worldSpawn = GetTree().Root
+                .EnumerateDescendantsOfType<WorldSpawn>()
+                .FirstOrDefault();
+
+            if (worldSpawn?.HomeWorld == null)
+            {
+                MapTransitionManager.Instance.GoToLevelSelect();
+                return;
+            }
+
+            MapTransitionManager.Instance.GoToMap(worldSpawn.HomeWorld);
         }
     }
 }

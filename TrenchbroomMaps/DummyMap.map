@@ -3,7 +3,7 @@
 // entity 0
 {
 "classname" "worldspawn"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
+"HomeWorld" "res://Scenes/Maps/Levels/TestMap.tscn"
 // brush 0
 {
 ( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) __TB_empty 0 0 0 1 1
@@ -45,68 +45,57 @@
 {
 "classname" "GreenGem"
 "origin" "-20 28 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 2
 {
 "classname" "GreenGem"
 "origin" "20 28 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 3
 {
 "classname" "RedGem"
 "origin" "-36 -4 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 4
 {
 "classname" "RedGem"
 "origin" "-28 -20 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 5
 {
 "classname" "RedGem"
 "origin" "-12 -28 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 6
 {
 "classname" "RedGem"
 "origin" "12 -28 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 7
 {
 "classname" "RedGem"
 "origin" "28 -20 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 8
 {
 "classname" "RedGem"
 "origin" "36 -4 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 9
 {
 "classname" "RedGem"
 "origin" "-4 -28 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 10
 {
 "classname" "RedGem"
 "origin" "4 -28 16"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 11
 {
 "classname" "Player"
 "origin" "8 -136 48"
 "angles" "0 90 0"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 12
 {

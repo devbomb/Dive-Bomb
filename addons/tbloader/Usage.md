@@ -23,3 +23,8 @@ The `tb-gameconfig` folder contains a game configuration for this addon. This in
 which will have some common entities that create Godot nodes. Simply place the files in a folder
 called `Godot` inside the `games` folder of your TrenchBroom installation, so you would have
 `games/Godot/<files>`.
+
+# This is a fork!
+This project uses a fork of tbloader, not the official build.  See this link
+for the source code used by the fork:
+https://github.com/ashelleyPurdue/godot-tbloader/commit/d7d132313cb21a348d66379e4b6e57ae4e09ea2a
