@@ -6,6 +6,7 @@ namespace FastDragon
     {
         [Export(PropertyHint.File)] public string SkyboxEnvironment;
         [Export(PropertyHint.File)] public string TargetMap;
+        [Export] public string PortalID;
 
         private PortalSurface _surface => GetNode<PortalSurface>("%PortalSurface");
 
