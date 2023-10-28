@@ -3,6 +3,7 @@
 // entity 0
 {
 "classname" "worldspawn"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 // brush 0
 {
 ( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) __TB_empty 0 0 0 1 1
@@ -39,129 +40,79 @@
 ( 256 176 0 ) ( 256 176 16 ) ( 48 176 16 ) __TB_empty 0 0 0 1 1
 ( 256 64 16 ) ( 256 176 16 ) ( 256 176 0 ) __TB_empty 0 0 0 1 1
 }
-// brush 4
-{
-( 208 160 96 ) ( 208 144 96 ) ( 208 160 16 ) __TB_empty 0 0 0 1 1
-( 224 144 16 ) ( 208 144 16 ) ( 224 144 64 ) __TB_empty 0 0 0 1 1
-( 224 160 16 ) ( 208 160 16 ) ( 224 144 16 ) __TB_empty 0 0 0 1 1
-( 224 160 64 ) ( 208 160 96 ) ( 224 160 16 ) __TB_empty 0 0 0 1 1
-( 208 160 96 ) ( 224 160 64 ) ( 208 144 96 ) __TB_empty 0.33332825 -0.66667175 0 1 1
-( 224 144 16 ) ( 224 144 64 ) ( 224 160 16 ) __TB_empty 0 0 0 1 1
-}
-// brush 5
-{
-( 96 144 16 ) ( 96 160 16 ) ( 96 144 64 ) __TB_empty 0 0 0 1 1
-( 96 144 64 ) ( 96 160 64 ) ( 112 144 96 ) __TB_empty -0.66667175 -0.66667175 0 1 1
-( 96 144 64 ) ( 112 144 96 ) ( 96 144 16 ) __TB_empty 0 0 0 1 1
-( 96 144 16 ) ( 112 144 16 ) ( 96 160 16 ) __TB_empty 0 0 0 1 1
-( 96 160 16 ) ( 112 160 16 ) ( 96 160 64 ) __TB_empty 0 0 0 1 1
-( 112 160 96 ) ( 112 160 16 ) ( 112 144 96 ) __TB_empty 0 0 0 1 1
-}
-// brush 6
-{
-( 208 144 48 ) ( 208 160 48 ) ( 179.19999999999996 144 105.60000000000002 ) __TB_empty 0 0 0 1 1
-( 208 144 96 ) ( 208 144 48 ) ( 179.19999999999996 144 105.60000000000002 ) __TB_empty 0 0 0 1 1
-( 208 160 96 ) ( 179.19999999999996 160 105.60000000000002 ) ( 208 160 48 ) __TB_empty 0 0 0 1 1
-( 208 144 96 ) ( 179.19999999999996 144 105.60000000000002 ) ( 208 160 96 ) __TB_empty 0 0 0 1 1
-( 208 160 96 ) ( 208 160 48 ) ( 208 144 96 ) __TB_empty 0 0 0 1 1
-}
-// brush 7
-{
-( 112 144 96 ) ( 112 144 48 ) ( 112 160 96 ) __TB_empty 0 0 0 1 1
-( 112 160 96 ) ( 140.79999999999998 160 105.6 ) ( 112 144 96 ) __TB_empty 0 0 0 1 1
-( 112 144 96 ) ( 140.79999999999998 144 105.6 ) ( 112 144 48 ) __TB_empty 0 0 0 1 1
-( 112 160 96 ) ( 112 160 48 ) ( 140.79999999999998 160 105.6 ) __TB_empty 0 0 0 1 1
-( 140.79999999999998 160 105.6 ) ( 112 160 48 ) ( 140.79999999999998 144 105.6 ) __TB_empty 0 0 0 1 1
-}
-// brush 8
-{
-( 140.79999999999998 144 105.6 ) ( 128 144 80 ) ( 140.79999999999998 160 105.6 ) __TB_empty 0 0 0 1 1
-( 160 144 112 ) ( 140.79999999999998 144 105.6 ) ( 160 160 112 ) __TB_empty 0 0 0 1 1
-( 160 144 112 ) ( 179.19999999999996 144 105.60000000000002 ) ( 140.79999999999998 144 105.6 ) __TB_empty 0 0 0 1 1
-( 140.79999999999998 160 105.6 ) ( 128 160 80 ) ( 160 160 112 ) __TB_empty 0 0 0 1 1
-( 160 160 112 ) ( 179.19999999999996 160 105.60000000000002 ) ( 160 144 112 ) __TB_empty 0 0 0 1 1
-( 128 144 80 ) ( 179.19999999999996 144 105.60000000000002 ) ( 128 160 80 ) __TB_empty 0 0 0 1 1
-}
-// brush 9
-{
-( 179.19999999999996 144 105.60000000000002 ) ( 160 144 96 ) ( 179.19999999999996 160 105.60000000000002 ) __TB_empty 0 0 0 1 1
-( 192 144 80 ) ( 192 160 80 ) ( 160 144 96 ) __TB_empty 0 0 0 1 1
-( 179.19999999999996 144 105.60000000000002 ) ( 192 144 80 ) ( 160 144 96 ) __TB_empty 0 0 0 1 1
-( 179.19999999999996 160 105.60000000000002 ) ( 160 160 96 ) ( 192 160 80 ) __TB_empty 0 0 0 1 1
-( 179.19999999999996 160 105.60000000000002 ) ( 192 160 80 ) ( 179.19999999999996 144 105.60000000000002 ) __TB_empty 0 0 0 1 1
-}
 }
 // entity 1
 {
 "classname" "GreenGem"
 "origin" "-20 28 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 2
 {
 "classname" "GreenGem"
 "origin" "20 28 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 3
 {
 "classname" "RedGem"
 "origin" "-36 -4 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 4
 {
 "classname" "RedGem"
 "origin" "-28 -20 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 5
 {
 "classname" "RedGem"
 "origin" "-12 -28 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 6
 {
 "classname" "RedGem"
 "origin" "12 -28 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 7
 {
 "classname" "RedGem"
 "origin" "28 -20 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 8
 {
 "classname" "RedGem"
 "origin" "36 -4 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 9
 {
 "classname" "RedGem"
 "origin" "-4 -28 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 10
 {
 "classname" "RedGem"
 "origin" "4 -28 16"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 11
 {
 "classname" "Player"
 "origin" "8 -136 48"
 "angles" "0 90 0"
+"SkyboxEnvironment" "res://Environments/DaySky.tres"
 }
 // entity 12
 {
-"classname" "PortalSurface"
+"classname" "StandardPortal"
+"origin" "160 152 16"
+"angles" "0 -90 0"
 "SkyboxEnvironment" "res://Environments/DaySky.tres"
 "TargetMap" "res://Scenes/Maps/Levels/TestMap.tscn"
-// brush 0
-{
-( 112 144 48 ) ( 112 160 16 ) ( 112 160 48 ) __TB_empty 0 0 0 1 1
-( 128 160 80 ) ( 112 144 48 ) ( 112 160 48 ) __TB_empty 0 0 0 1 1
-( 160 160 96 ) ( 128 144 80 ) ( 128 160 80 ) __TB_empty 0 0 0 1 1
-( 208 144 48 ) ( 160 144 96 ) ( 192 144 80 ) __TB_empty 0 0 0 1 1
-( 208 160 16 ) ( 112 144 16 ) ( 208 144 16 ) __TB_empty 0 0 0 1 1
-( 208 160 48 ) ( 112 160 16 ) ( 208 160 16 ) __TB_empty 0 0 0 1 1
-( 192 160 80 ) ( 160 144 96 ) ( 160 160 96 ) __TB_empty 0 0 0 1 1
-( 208 160 48 ) ( 192 144 80 ) ( 192 160 80 ) __TB_empty 0 0 0 1 1
-( 208 160 48 ) ( 208 144 16 ) ( 208 144 48 ) __TB_empty 0 0 0 1 1
-}
 }
