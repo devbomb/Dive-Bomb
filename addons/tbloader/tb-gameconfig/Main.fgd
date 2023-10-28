@@ -11,7 +11,9 @@
 	targetname(string) : "Target Name"
 ]
 
-@SolidClass = worldspawn : "World entity" []
+@SolidClass = worldspawn : "World entity" [
+	HomeWorld(string) : "Home World"
+]
 
 @SolidClass = area : "Area" []
 
