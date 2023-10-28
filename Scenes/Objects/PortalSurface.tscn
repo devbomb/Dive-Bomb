@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bi1df8rnwev2k"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/PortalSurface.cs" id="1_s1w3c"]
+[ext_resource type="Script" path="res://Scripts/Objects/PortalSurface.cs" id="1_0sdk0"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0ubsh"]
 
@@ -26,7 +26,7 @@ shader = SubResource("Shader_sbvxd")
 shader_parameter/viewport_texture = SubResource("ViewportTexture_05luo")
 
 [node name="PortalSurface" type="Area3D"]
-script = ExtResource("1_s1w3c")
+script = ExtResource("1_0sdk0")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(1920, 1080)
