@@ -65,7 +65,7 @@ namespace FastDragon
             _spawnPoint = Position;
             _spawnRotation = Rotation;
 
-            ChangeState<PlayerFlyInState>();
+            Respawn();
         }
 
         public void Respawn()
