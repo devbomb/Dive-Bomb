@@ -9,6 +9,7 @@ namespace FastDragon
 
         [Export(PropertyHint.File)] public string LevelSelectMap;
         [Export] public PackedScene PortalLoadingScreenPrefab;
+        [Export] public PackedScene ReturnHomeLoadingScreenPrefab;
 
         public override void _Ready()
         {
@@ -92,18 +93,45 @@ namespace FastDragon
                 return;
             }
 
-            string portalID = worldSpawn.PortalID;
+            string levelSceneFile = worldSpawn.HomeWorld;
+            string previousMapFile = GetTree().CurrentScene.SceneFilePath;
 
-            // TODO: go to a loading screen, instead of going directly to the
-            // home world
-            var scenePrefab = ResourceLoader.Load<PackedScene>(worldSpawn.HomeWorld);
-            var node = scenePrefab.Instantiate<Node3D>();
-            ChangeSceneToNode(node);
+            var tree = GetTree();
+            var oldScene = tree.CurrentScene;
+            var loadingScreen = ReturnHomeLoadingScreenPrefab.Instantiate<ReturnHomeLoadingScreen>();
 
-            var portal = node.EnumerateDescendantsOfType<Portal>()
-                .First(p => p.PortalID == portalID);
+            // Save player/camera values so they can be copied over to the
+            // loading screen, creating the illusion of a seamless transition
+            var oldPlayer = oldScene
+                .EnumerateDescendantsOfType<Player>()
+                .First();
 
-            portal.PlayExitAnimation();
+            double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
+            Vector3 playerRotRad = oldPlayer.GlobalRotation;
+            float cameraDist = oldPlayer.Camera.OrbitDistance;
+            float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
+            float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
+
+            Environment skyBoxEnvironment = oldScene.FindNode<WorldEnvironment>()?.Environment;
+            if (skyBoxEnvironment == null)
+            {
+                // Use a placeholder skybox, in case this level doesn't have
+                // a WorldEnvironment.
+                skyBoxEnvironment = ResourceLoader.Load<Environment>("res://Environments/DaySky.tres");
+            }
+
+            ChangeSceneToNode(loadingScreen);
+
+            loadingScreen.Initialize(
+                levelSceneFile,
+                previousMapFile,
+                skyBoxEnvironment,
+                animationStartTime,
+                playerRotRad,
+                cameraDist,
+                cameraYawRad,
+                cameraPitchRad
+            );
         }
     }
 }
