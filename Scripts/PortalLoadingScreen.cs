@@ -55,7 +55,7 @@ namespace FastDragon
             _camera.OrbitPitchRad = cameraPitchRad;
 
             var tween = CreateTween();
-            tween.TweenProperty(_playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
+            tween.TweenRotRadSinusoidal(_playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
             tween.Parallel().TweenProperty(_camera, "OrbitDistance", CameraDist, RestMoveDuration);
             tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitYawRad", CameraYawRad, RestMoveDuration);
             tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitPitchRad", CameraPitchRad, RestMoveDuration);
