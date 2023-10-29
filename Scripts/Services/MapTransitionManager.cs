@@ -50,15 +50,12 @@ namespace FastDragon
             Environment skyBoxEnvironment
         )
         {
-            var tree = GetTree();
-            var oldScene = tree.CurrentScene;
+            var oldScene = GetTree().CurrentScene;
             var loadingScreen = PortalLoadingScreenPrefab.Instantiate<PortalLoadingScreen>();
 
             // Save player/camera values so they can be copied over to the
             // loading screen, creating the illusion of a seamless transition
-            var oldPlayer = oldScene
-                .EnumerateDescendantsOfType<Player>()
-                .First();
+            var oldPlayer = oldScene.FindNode<Player>();
 
             double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
             Vector3 playerRotRad = oldPlayer.GlobalRotation;
@@ -81,9 +78,7 @@ namespace FastDragon
 
         public void ExitLevel()
         {
-            var worldSpawn = GetTree().Root
-                .EnumerateDescendantsOfType<WorldSpawn>()
-                .FirstOrDefault();
+            var worldSpawn = GetTree().FindNode<WorldSpawn>();
 
             // HACK: If this map does not have a home world assigned, go
             // straight to level select
@@ -96,15 +91,12 @@ namespace FastDragon
             string levelSceneFile = worldSpawn.HomeWorld;
             string previousMapFile = GetTree().CurrentScene.SceneFilePath;
 
-            var tree = GetTree();
-            var oldScene = tree.CurrentScene;
+            var oldScene = GetTree().CurrentScene;
             var loadingScreen = ReturnHomeLoadingScreenPrefab.Instantiate<ReturnHomeLoadingScreen>();
 
             // Save player/camera values so they can be copied over to the
             // loading screen, creating the illusion of a seamless transition
-            var oldPlayer = oldScene
-                .EnumerateDescendantsOfType<Player>()
-                .First();
+            var oldPlayer = oldScene.FindNode<Player>();
 
             double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
             Vector3 playerRotRad = oldPlayer.GlobalRotation;
