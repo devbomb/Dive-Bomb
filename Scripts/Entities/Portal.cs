@@ -7,7 +7,6 @@ namespace FastDragon
     {
         [Export(PropertyHint.File)] public string SkyboxEnvironment;
         [Export(PropertyHint.File)] public string TargetMap;
-        [Export] public string PortalID;
 
         [Export] public float ExitAnimationDuration = 1.5f;
         [Export] public float ExitAnimationStartHeight = 2;
@@ -22,11 +21,12 @@ namespace FastDragon
             _surface.SetSkybox(SkyboxEnvironment);
         }
 
-        public void PlayExitAnimation()
+        public void PlayExitAnimation(double glideAnimationStartTime)
         {
             var player = GetTree().FindNode<Player>();
 
-            player.Animator.Play("Glide");  // TODO: Sync the animation time
+            player.Animator.Play("Glide", 0);
+            player.Animator.Seek(glideAnimationStartTime, true);
             player.AllowInterpolation = false;
 
             // Warp the player to the start pos of the animation
