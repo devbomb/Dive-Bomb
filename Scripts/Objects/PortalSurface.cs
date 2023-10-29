@@ -8,7 +8,6 @@ namespace FastDragon
         [Export(PropertyHint.File)] public string TargetMap;
 
         private Camera3D _portalCamera => GetNode<Camera3D>("%PortalCamera");
-        private Camera3D _mainCamera => GetTree().Root.GetCamera3D();
 
         private MeshInstance3D _portalMaterialHolder => GetNode<MeshInstance3D>("%PortalMaterialHolder");
 
@@ -41,12 +40,6 @@ namespace FastDragon
                 if (mesh != _portalMaterialHolder)
                     mesh.MaterialOverride = _portalMaterialHolder.MaterialOverride;
             }
-        }
-
-        public override void _Process(double delta)
-        {
-            _portalCamera.GlobalPosition = _mainCamera.GlobalPosition;
-            _portalCamera.GlobalRotation = _mainCamera.GlobalRotation;
         }
 
         private void OnBodyEntered(Node3D body)
