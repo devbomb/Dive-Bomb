@@ -13,7 +13,6 @@
 
 @SolidClass = worldspawn : "World entity" [
 	HomeWorld(string) : "Home World"
-	PortalID(string) : "Portal ID"
 ]
 
 @SolidClass = area : "Area" []
@@ -38,7 +37,6 @@
 	= StandardPortal : "StandardPortal" [
 		SkyboxEnvironment(string) : "Skybox Environment"
 		TargetMap(string) : "Target Map"
-		PortalID(string) : "Portal ID"
 	]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [

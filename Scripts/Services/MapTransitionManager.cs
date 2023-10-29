@@ -9,6 +9,7 @@ namespace FastDragon
 
         [Export(PropertyHint.File)] public string LevelSelectMap;
         [Export] public PackedScene PortalLoadingScreenPrefab;
+        [Export] public PackedScene ReturnHomeLoadingScreenPrefab;
 
         public override void _Ready()
         {
@@ -49,15 +50,12 @@ namespace FastDragon
             Environment skyBoxEnvironment
         )
         {
-            var tree = GetTree();
-            var oldScene = tree.CurrentScene;
+            var oldScene = GetTree().CurrentScene;
             var loadingScreen = PortalLoadingScreenPrefab.Instantiate<PortalLoadingScreen>();
 
             // Save player/camera values so they can be copied over to the
             // loading screen, creating the illusion of a seamless transition
-            var oldPlayer = oldScene
-                .EnumerateDescendantsOfType<Player>()
-                .First();
+            var oldPlayer = oldScene.FindNode<Player>();
 
             double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
             Vector3 playerRotRad = oldPlayer.GlobalRotation;
@@ -78,11 +76,42 @@ namespace FastDragon
             );
         }
 
+        public void ExitLevelFromPauseMenu()
+        {
+            const double fadeOutTime = 0.375;
+            const double fadeInTime = 0.375;
+
+            var player = GetTree().FindNode<Player>();
+            var fadeCurtain = GetNode<NonPlayerFadeCurtain>("%NonPlayerFadeCurtain");
+
+            // Pause the scene (but not the whole game!) during the fadeout,
+            // to avoid shenanigans
+            GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Disabled;
+            player.Animator.ProcessMode = ProcessModeEnum.Always;
+
+            // Transition the player to a gliding animation
+            player.ChangeState<PlayerManhandledState>();
+            player.Animator.Play("Glide", fadeOutTime);
+
+            // Fade the screen to black(except for the player)
+            fadeCurtain.Visible = true;
+            fadeCurtain.FadePercent = 0;
+            var tween = GetTree().CreateTween();
+            tween.TweenProperty(fadeCurtain, "FadePercent", 1, fadeOutTime);
+
+            // After everything has faded to black, go to the loading screen
+            tween.TweenCallback(Callable.From(ExitLevel));
+
+            // After going to the loading screen, start fading the screen back
+            // in.  This will still look seamless because the player is
+            // excluded from the fade-out.
+            tween.TweenProperty(fadeCurtain, "FadePercent", 0, fadeInTime);
+            tween.TweenProperty(fadeCurtain, "visible", false, 0);
+        }
+
         public void ExitLevel()
         {
-            var worldSpawn = GetTree().Root
-                .EnumerateDescendantsOfType<WorldSpawn>()
-                .FirstOrDefault();
+            var worldSpawn = GetTree().FindNode<WorldSpawn>();
 
             // HACK: If this map does not have a home world assigned, go
             // straight to level select
@@ -92,18 +121,42 @@ namespace FastDragon
                 return;
             }
 
-            string portalID = worldSpawn.PortalID;
+            string levelSceneFile = worldSpawn.HomeWorld;
+            string previousMapFile = GetTree().CurrentScene.SceneFilePath;
 
-            // TODO: go to a loading screen, instead of going directly to the
-            // home world
-            var scenePrefab = ResourceLoader.Load<PackedScene>(worldSpawn.HomeWorld);
-            var node = scenePrefab.Instantiate<Node3D>();
-            ChangeSceneToNode(node);
+            var oldScene = GetTree().CurrentScene;
+            var loadingScreen = ReturnHomeLoadingScreenPrefab.Instantiate<ReturnHomeLoadingScreen>();
 
-            var portal = node.EnumerateDescendantsOfType<Portal>()
-                .First(p => p.PortalID == portalID);
+            // Save player/camera values so they can be copied over to the
+            // loading screen, creating the illusion of a seamless transition
+            var oldPlayer = oldScene.FindNode<Player>();
 
-            portal.PlayExitAnimation();
+            double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
+            Vector3 playerRotRad = oldPlayer.GlobalRotation;
+            float cameraDist = oldPlayer.Camera.OrbitDistance;
+            float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
+            float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
+
+            Environment skyBoxEnvironment = oldScene.FindNode<WorldEnvironment>()?.Environment;
+            if (skyBoxEnvironment == null)
+            {
+                // Use a placeholder skybox, in case this level doesn't have
+                // a WorldEnvironment.
+                skyBoxEnvironment = ResourceLoader.Load<Environment>("res://Environments/DaySky.tres");
+            }
+
+            ChangeSceneToNode(loadingScreen);
+
+            loadingScreen.Initialize(
+                levelSceneFile,
+                previousMapFile,
+                skyBoxEnvironment,
+                animationStartTime,
+                playerRotRad,
+                cameraDist,
+                cameraYawRad,
+                cameraPitchRad
+            );
         }
     }
 }

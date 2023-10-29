@@ -71,7 +71,7 @@ namespace FastDragon
         public void ExitLevel()
         {
             Close();
-            MapTransitionManager.Instance.ExitLevel();
+            MapTransitionManager.Instance.ExitLevelFromPauseMenu();
         }
     }
 }
