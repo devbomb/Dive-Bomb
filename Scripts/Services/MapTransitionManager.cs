@@ -76,6 +76,30 @@ namespace FastDragon
             );
         }
 
+        public void ExitLevelFromPauseMenu()
+        {
+            double duration = 0.75;
+
+            var player = GetTree().FindNode<Player>();
+            player.ChangeState<PlayerManhandledState>();
+            player.Animator.Play("Glide", duration / 2);
+
+            var fadeCurtain = GetNode<NonPlayerFadeCurtain>("%NonPlayerFadeCurtain");
+            fadeCurtain.Visible = true;
+            fadeCurtain.FadePercent = 0;
+
+            var tween = GetTree().CreateTween();
+            tween.TweenProperty(fadeCurtain, "FadePercent", 1, duration / 2);
+            tween.TweenCallback(Callable.From(ExitLevel));
+            tween.TweenProperty(fadeCurtain, "FadePercent", 0, duration / 2);
+            tween.TweenCallback(Callable.From(() => fadeCurtain.Visible = false));
+
+            // Pause the scene (but not the whole game!) during the fadeout,
+            // to avoid shenanigans
+            GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Disabled;
+            player.Animator.ProcessMode = ProcessModeEnum.Always;
+        }
+
         public void ExitLevel()
         {
             var worldSpawn = GetTree().FindNode<WorldSpawn>();

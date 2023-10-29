@@ -26,6 +26,16 @@ namespace FastDragon
         private bool _startedCorrectionAnimation;
         private Node3D _loadedScene;
 
+        public override void _Ready()
+        {
+            // Allow the player to be seen on top of the black fade curtain
+            var visuals = this.EnumerateDescendantsOfType<VisualInstance3D>();
+            foreach (var v in visuals)
+            {
+                v.SetLayerMaskValue(RenderLayer.VisibleInPortals, true);
+            }
+        }
+
         public void Initialize(
             string levelSceneFile,
             string previousMapFile,
