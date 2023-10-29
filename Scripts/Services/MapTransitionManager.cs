@@ -78,26 +78,35 @@ namespace FastDragon
 
         public void ExitLevelFromPauseMenu()
         {
-            double duration = 0.75;
+            const double fadeOutTime = 0.375;
+            const double fadeInTime = 0.375;
 
             var player = GetTree().FindNode<Player>();
-            player.ChangeState<PlayerManhandledState>();
-            player.Animator.Play("Glide", duration / 2);
-
             var fadeCurtain = GetNode<NonPlayerFadeCurtain>("%NonPlayerFadeCurtain");
-            fadeCurtain.Visible = true;
-            fadeCurtain.FadePercent = 0;
-
-            var tween = GetTree().CreateTween();
-            tween.TweenProperty(fadeCurtain, "FadePercent", 1, duration / 2);
-            tween.TweenCallback(Callable.From(ExitLevel));
-            tween.TweenProperty(fadeCurtain, "FadePercent", 0, duration / 2);
-            tween.TweenCallback(Callable.From(() => fadeCurtain.Visible = false));
 
             // Pause the scene (but not the whole game!) during the fadeout,
             // to avoid shenanigans
             GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Disabled;
             player.Animator.ProcessMode = ProcessModeEnum.Always;
+
+            // Transition the player to a gliding animation
+            player.ChangeState<PlayerManhandledState>();
+            player.Animator.Play("Glide", fadeOutTime);
+
+            // Fade the screen to black(except for the player)
+            fadeCurtain.Visible = true;
+            fadeCurtain.FadePercent = 0;
+            var tween = GetTree().CreateTween();
+            tween.TweenProperty(fadeCurtain, "FadePercent", 1, fadeOutTime);
+
+            // After everything has faded to black, go to the loading screen
+            tween.TweenCallback(Callable.From(ExitLevel));
+
+            // After going to the loading screen, start fading the screen back
+            // in.  This will still look seamless because the player is
+            // excluded from the fade-out.
+            tween.TweenProperty(fadeCurtain, "FadePercent", 0, fadeInTime);
+            tween.TweenProperty(fadeCurtain, "visible", false, 0);
         }
 
         public void ExitLevel()
