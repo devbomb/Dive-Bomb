@@ -18,7 +18,7 @@ namespace FastDragon
         private float _timeToTop;
         private float _timer;
         private Vector3 _playerStartPos;
-        private Vector3 _playerStartRotRad;
+        private float _playerRotSpeedRad;
 
         public override void _Ready()
         {
@@ -49,9 +49,11 @@ namespace FastDragon
                 return;
             }
 
-            float t = _timer / _timeToTop;
-            _ensaredPlayer.GlobalPosition = _playerStartPos.Lerp(_top.GlobalPosition, t);
-            _ensaredPlayer.GlobalRotation = _playerStartRotRad.LerpEulerRad(_top.GlobalRotation, t);
+            _ensaredPlayer.GlobalPosition = _playerStartPos.Lerp(_top.GlobalPosition, _timer / _timeToTop);
+
+            var rot = _ensaredPlayer.GlobalRotation;
+            rot.Y += _playerRotSpeedRad * delta;
+            _ensaredPlayer.GlobalRotation = rot;
         }
 
         private void FindTop()
@@ -92,13 +94,19 @@ namespace FastDragon
             _ensaredPlayer = player;
             player.ChangeState<PlayerManhandledState>();
             player.Camera.ChangeState<OrbitCameraFreeState>();
-
             _playerStartPos = player.GlobalPosition;
-            _playerStartRotRad = player.GlobalRotation;
 
+            // Figure out how long the player will be in the whirlwind for
             float initialHeight = _top.GlobalPosition.Y - player.GlobalPosition.Y;
             _timeToTop = initialHeight / WhirlwindSpeed;
             _timer = 0;
+
+            // Figure out how fast to rotate the player such that they:
+            // * Complete some number of full rotations
+            // * End up at the target rotation by the end of it
+            float angleDiff = AngleMath.Difference(player.GlobalRotation.Y, _top.GlobalRotation.Y);
+            angleDiff += Mathf.DegToRad(360) * 2;
+            _playerRotSpeedRad = angleDiff / _timeToTop;
         }
     }
 }
