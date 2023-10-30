@@ -15,14 +15,20 @@ namespace FastDragon
 
         private WhirlwindTop _top = null;
         private Player _ensaredPlayer = null;
+        private float _timeToTop;
+        private float _timer;
+        private Vector3 _playerStartPos;
+        private Vector3 _playerStartRotRad;
 
         public override void _Ready()
         {
             BodyEntered += OnBodyEntered;
         }
 
-        public override void _PhysicsProcess(double delta)
+        public override void _PhysicsProcess(double deltaD)
         {
+            float delta = (float)deltaD;
+
             // This logic can't be put in _Ready() because the corresponding
             // WhirlwindTop node might not be instantiated until _after_ this
             // node.
@@ -32,13 +38,20 @@ namespace FastDragon
             if (_ensaredPlayer == null)
                 return;
 
-            _ensaredPlayer.MoveAndSlide();
+            _timer += delta;
 
-            if (_ensaredPlayer.GlobalPosition.Y >= _top.GlobalPosition.Y)
+            if (_timer > _timeToTop)
             {
+                _ensaredPlayer.GlobalPosition = _top.GlobalPosition;
+                _ensaredPlayer.GlobalRotation = _top.GlobalRotation;
                 _ensaredPlayer.ChangeState<PlayerGlideState>();
                 _ensaredPlayer = null;
+                return;
             }
+
+            float t = _timer / _timeToTop;
+            _ensaredPlayer.GlobalPosition = _playerStartPos.Lerp(_top.GlobalPosition, t);
+            _ensaredPlayer.GlobalRotation = _playerStartRotRad.LerpEulerRad(_top.GlobalRotation, t);
         }
 
         private void FindTop()
@@ -79,20 +92,13 @@ namespace FastDragon
             _ensaredPlayer = player;
             player.ChangeState<PlayerManhandledState>();
             player.Camera.ChangeState<OrbitCameraFreeState>();
-            player.Velocity = Vector3.Up * WhirlwindSpeed;
 
-            // TODO: smoothly move the player to the center, instead of
-            // teleporting them
-            var pos = player.GlobalPosition;
-            pos.X = GlobalPosition.X;
-            pos.Z = GlobalPosition.Z;
-            player.GlobalPosition = pos;
+            _playerStartPos = player.GlobalPosition;
+            _playerStartRotRad = player.GlobalRotation;
 
-            // TODO: Smoothly rotate the player throughout the sequence, instead
-            // of right now.
-            player.GlobalRotation = GlobalRotation;
-
-            player.ResetPhysicsInterpolation();
+            float initialHeight = _top.GlobalPosition.Y - player.GlobalPosition.Y;
+            _timeToTop = initialHeight / WhirlwindSpeed;
+            _timer = 0;
         }
     }
 }
