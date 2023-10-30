@@ -31,6 +31,24 @@
 	base(Angle)
 	size(-4 -4 0, 4 4 8)
 	model({
+		"path" : "TrenchbroomEntityModels/WhirlwindBottom.obj",
+		"scale" : 0.25
+	})
+	= WhirlwindBottom : "WhirlwindBottom" []
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/WhirlwindTop.obj",
+		"scale" : 0.25
+	})
+	= WhirlwindTop : "WhirlwindTop" []
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
 		"path" : "TrenchbroomEntityModels/StandardPortalFrame.obj",
 		"scale" : 0.25
 	})

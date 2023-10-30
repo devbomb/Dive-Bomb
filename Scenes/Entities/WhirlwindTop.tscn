@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://keh2xy4el7m"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/WhirlwindTop.cs" id="1_5suxa"]
+[ext_resource type="PackedScene" uid="uid://v1v468vb01rh" path="res://BlenderModels/WhirlwindTop.blend" id="1_ne4cj"]
+
+[sub_resource type="GDScript" id="GDScript_ypxbd"]
+script/source = "extends Node3D
+
+func _ready():
+    visible = false
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6pm5b"]
+size = Vector3(2, 1, 2)
+
+[node name="WhirlwindTop" type="Area3D"]
+script = ExtResource("1_5suxa")
+
+[node name="Model" parent="." instance=ExtResource("1_ne4cj")]
+script = SubResource("GDScript_ypxbd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_6pm5b")
