@@ -19,6 +19,8 @@ namespace FastDragon
         private float _timer;
         private Vector3 _playerStartPos;
         private float _playerRotSpeedRad;
+        private float _cameraStartYawRad;
+        private float _cameraStartPitchRad;
 
         public override void _Ready()
         {
@@ -39,6 +41,7 @@ namespace FastDragon
                 return;
 
             _timer += delta;
+            float t = _timer / _timeToTop;
 
             if (_timer > _timeToTop)
             {
@@ -49,11 +52,17 @@ namespace FastDragon
                 return;
             }
 
-            _ensaredPlayer.GlobalPosition = _playerStartPos.Lerp(_top.GlobalPosition, _timer / _timeToTop);
+            // Move the player to the top
+            _ensaredPlayer.GlobalPosition = _playerStartPos.Lerp(_top.GlobalPosition, t);
 
+            // Spin them.  Wheeee!
             var rot = _ensaredPlayer.GlobalRotation;
             rot.Y += _playerRotSpeedRad * delta;
             _ensaredPlayer.GlobalRotation = rot;
+
+            // Rotate the camera to face the end position
+            _ensaredPlayer.Camera.OrbitYawRad = Mathf.LerpAngle(_cameraStartYawRad, _top.GlobalRotation.Y, t);
+            _ensaredPlayer.Camera.OrbitPitchRad = Mathf.LerpAngle(_cameraStartPitchRad, 0, t);
         }
 
         private void FindTop()
@@ -93,8 +102,9 @@ namespace FastDragon
 
             _ensaredPlayer = player;
             player.ChangeState<PlayerManhandledState>();
-            player.Camera.ChangeState<OrbitCameraFreeState>();
             _playerStartPos = player.GlobalPosition;
+            _cameraStartYawRad = player.Camera.OrbitYawRad;
+            _cameraStartPitchRad = player.Camera.OrbitPitchRad;
 
             float initialHeight = _top.GlobalPosition.Y - _playerStartPos.Y;
             float totalHeight = _top.GlobalPosition.Y - GlobalPosition.Y;
