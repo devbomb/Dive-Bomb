@@ -96,16 +96,20 @@ namespace FastDragon
             player.Camera.ChangeState<OrbitCameraFreeState>();
             _playerStartPos = player.GlobalPosition;
 
+            float initialHeight = _top.GlobalPosition.Y - _playerStartPos.Y;
+            float totalHeight = _top.GlobalPosition.Y - GlobalPosition.Y;
+
             // Figure out how long the player will be in the whirlwind for
-            float initialHeight = _top.GlobalPosition.Y - player.GlobalPosition.Y;
             _timeToTop = initialHeight / WhirlwindSpeed;
             _timer = 0;
 
             // Figure out how fast to rotate the player such that they:
             // * Complete some number of full rotations
             // * End up at the target rotation by the end of it
+            // * Don't rotate wicked-fast if they enter the whirlwind near the top
+            int rotations = Mathf.FloorToInt(Mathf.Lerp(0, 3, initialHeight / totalHeight));
             float angleDiff = AngleMath.Difference(player.GlobalRotation.Y, _top.GlobalRotation.Y);
-            angleDiff += Mathf.DegToRad(360) * 2;
+            angleDiff += Mathf.DegToRad(360) * rotations;
             _playerRotSpeedRad = angleDiff / _timeToTop;
         }
     }
