@@ -196,3 +196,13 @@
 "TargetMap" "res://Scenes/Maps/Levels/DummyMap.tscn"
 "SkyboxEnvironment" "res://Environments/NightSky.tres"
 }
+// entity 23
+{
+"classname" "WhirlwindTop"
+"origin" "188 156 48"
+}
+// entity 24
+{
+"classname" "WhirlwindBottom"
+"origin" "188 156 -64"
+}

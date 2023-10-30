@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://keh2xy4el7m"]
+
+[ext_resource type="PackedScene" uid="uid://v1v468vb01rh" path="res://BlenderModels/WhirlwindTop.blend" id="1_ne4cj"]
+
+[sub_resource type="GDScript" id="GDScript_ypxbd"]
+script/source = "extends Node3D
+
+func _ready():
+    visible = false
+"
+
+[node name="WhirlwindTop" type="Area3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_ne4cj")]
+script = SubResource("GDScript_ypxbd")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+depth = 0.0
+polygon = PackedVector2Array(1, 1, 1, -1, -1, -1, -1, 1)
