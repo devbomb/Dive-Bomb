@@ -102,6 +102,7 @@ namespace FastDragon
 
             _ensaredPlayer = player;
             player.ChangeState<PlayerManhandledState>();
+            player.Animator.Play("Glide", 0.3f);
             _playerStartPos = player.GlobalPosition;
             _cameraStartYawRad = player.Camera.OrbitYawRad;
             _cameraStartPitchRad = player.Camera.OrbitPitchRad;
