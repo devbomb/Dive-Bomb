@@ -4,10 +4,14 @@ namespace FastDragon
 {
     public partial class Player
     {
+        private const float SpyroUnits = 1f / 500;
+        private const float SpyroFrames = 1f / 30;
+        private const float SpyroUnitsPerFrameSquared = SpyroUnits / (SpyroFrames * SpyroFrames);
+
         public static class Default
         {
-            public const float Gravity = 30f;
-            public const float JumpRiseGravity = Gravity * 0.5f;
+            public const float Gravity = 12 * SpyroUnitsPerFrameSquared;
+            public const float JumpRiseGravity = Gravity;
             public const float JumpVSpeed = 10;
         }
 
