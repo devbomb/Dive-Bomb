@@ -37,7 +37,7 @@ namespace FastDragon
             public const float AirSpeed = 240 * SpyroUnitsPerFrame;
             public const float AirTurnSpeedDeg = 135;
 
-            public const float JumpVSpeed = 7;
+            public const float JumpVSpeed = Default.JumpVSpeed;
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
