@@ -19,8 +19,8 @@ namespace FastDragon
 
         public static class Walk
         {
-            public const float Speed = 5f;
-            public const float Accel = 20;
+            public const float Speed = 143 * SpyroUnitsPerFrame;
+            public const float Accel = 20 * SpyroUnitsPerFrameSquared;
             public const float RotSpeedDeg = 360;
 
             public const float SlowPivotMinAngleDeg = 90;
