@@ -82,6 +82,7 @@ namespace FastDragon
         protected void AccelerateWithLeftStick(
             float maxSpeed,
             float accel,
+            float decel,
             float delta
         )
         {
@@ -89,10 +90,14 @@ namespace FastDragon
             leftStick2D = leftStick2D.LimitLength(1);
             float targetSpeed = leftStick2D.Length() * maxSpeed;
 
+            float a = _player.FSpeed < targetSpeed
+                ? accel
+                : decel;
+
             _player.FSpeed = Mathf.MoveToward(
                 _player.FSpeed,
                 targetSpeed,
-                accel * delta
+                a * delta
             );
         }
 
