@@ -8,10 +8,15 @@ namespace FastDragon
         public override bool AllowFlaming => false;
         public override bool SpawningGemsHomeIn => true;
 
+        private float _fspeed;
+
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraLockedState>();
             _player.Animator.Play("Charge");
+
+            _fspeed = _player.Velocity.Flattened().Length();
+            _fspeed = Mathf.Max(_fspeed, Player.Charge.InitialGroundSpeed);
         }
 
         public override void OnStateExited()
@@ -37,10 +42,14 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            // TODO: Add a little bit of acceleration when on the ground, but
-            // _instant_ acceleration when doing a charge-jump, to mimic Spyro 1
+            _fspeed = Mathf.MoveToward(
+                _fspeed,
+                Player.Charge.MaxGroundSpeed,
+                Player.Charge.GroundAccel * delta
+            );
+
             TurningControls(
-                Player.Charge.GroundSpeed,
+                _fspeed,
                 Player.Charge.GroundTurnSpeedDeg,
                 delta
             );

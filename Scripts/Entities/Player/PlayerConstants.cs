@@ -29,7 +29,9 @@ namespace FastDragon
 
         public static class Charge
         {
-            public const float GroundSpeed = 10f;
+            public const float InitialGroundSpeed = 83 * SpyroUnitsPerFrame;
+            public const float MaxGroundSpeed = 245 * SpyroUnitsPerFrame;
+            public const float GroundAccel = 122 * SpyroUnitsPerFrameSquared;
             public const float GroundTurnSpeedDeg = 90;
 
             public const float AirSpeed = 9.5f;
