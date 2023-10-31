@@ -4,14 +4,14 @@ namespace FastDragon
 {
     public partial class PlayerWalkJumpState : PlayerState
     {
-        private bool _rising = false;
+        private float _holdJumpTimer;
 
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
             _player.Animator.Play("Jump");
             _player.VSpeed = Player.Default.JumpVSpeed;
-            _rising = true;
+            _holdJumpTimer = Player.Default.MaxJumpHoldTime;
         }
 
         public override void _Input(InputEvent ev)
@@ -26,16 +26,18 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            if (_player.Velocity.Y <= 0 || !InputService.JumpHeld)
-                _rising = false;
+            _holdJumpTimer -= delta;
+
+            if (!InputService.JumpHeld)
+                _holdJumpTimer = 0;
 
             RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
             AccelerateWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
 
             ApplyGravity(
                 delta,
-                _rising
-                    ? Player.Default.JumpRiseGravity
+                _holdJumpTimer > 0
+                    ? Player.Default.JumpHoldGravity
                     : Player.Default.Gravity
             );
 

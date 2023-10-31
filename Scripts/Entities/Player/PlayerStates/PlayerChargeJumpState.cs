@@ -50,7 +50,7 @@ namespace FastDragon
                 Player.Charge.AirTurnSpeedDeg,
                 delta
             );
-            ApplyGravity(delta, Player.Default.JumpRiseGravity);
+            ApplyGravity(delta);
 
             MoveAndSlideStepByStep(delta, OnChargedIntoSomething);
 

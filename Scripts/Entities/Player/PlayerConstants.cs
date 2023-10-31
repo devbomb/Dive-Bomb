@@ -12,8 +12,9 @@ namespace FastDragon
         public static class Default
         {
             public const float Gravity = 12 * SpyroUnitsPerFrameSquared;
-            public const float JumpRiseGravity = Gravity;
-            public const float JumpVSpeed = 113 * SpyroUnitsPerFrame;
+            public const float JumpVSpeed = 110 * SpyroUnitsPerFrame;
+            public const float JumpHoldGravity = -1.4f * SpyroUnitsPerFrameSquared;
+            public const float MaxJumpHoldTime = 5 * SpyroFrames;
         }
 
         public static class Walk
