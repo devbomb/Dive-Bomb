@@ -31,7 +31,11 @@ namespace FastDragon
                 Player.Glide.TurnSpeedDeg,
                 delta
             );
-            ApplyGravity(delta, Player.Glide.Gravity);
+            _player.VSpeed = Mathf.MoveToward(
+                _player.VSpeed,
+                Player.Glide.TerminalVSpeed,
+                Player.Glide.Gravity * delta
+            );
 
             _player.MoveAndSlide();
 

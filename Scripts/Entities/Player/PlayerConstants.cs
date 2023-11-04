@@ -67,7 +67,8 @@ namespace FastDragon
         {
             public const float Speed = 8;
             public const float TurnSpeedDeg = 90;
-            public const float Gravity = 2;
+            public const float Gravity = 4 * SpyroUnitsPerFrameSquared;
+            public const float TerminalVSpeed = -60 * SpyroUnitsPerFrame;
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
