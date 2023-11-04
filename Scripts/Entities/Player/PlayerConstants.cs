@@ -16,9 +16,11 @@ namespace FastDragon
         /// Perhaps I measured Spyro's diameter wrong?  Who knows.
         /// </summary>
         private const float SpyroUnits = 1f / 550;
+        private const float SpyroAnglesToDeg = 360f / 4096;
         private const float SpyroFrames = 1f / 30;
         private const float SpyroUnitsPerFrame = SpyroUnits / SpyroFrames;
         private const float SpyroUnitsPerFrameSquared = SpyroUnits / (SpyroFrames * SpyroFrames);
+        private const float SpyroAnglesPerFrame = SpyroAnglesToDeg / SpyroFrames;
 
         public static class Default
         {
@@ -44,7 +46,7 @@ namespace FastDragon
             public const float InitialGroundSpeed = 83 * SpyroUnitsPerFrame;
             public const float MaxGroundSpeed = 245 * SpyroUnitsPerFrame;
             public const float GroundAccel = 122 * SpyroUnitsPerFrameSquared;
-            public const float GroundTurnSpeedDeg = 90;
+            public const float GroundTurnSpeedDeg = 48 * SpyroAnglesPerFrame;
 
             public const float AirSpeed = 240 * SpyroUnitsPerFrame;
             public const float AirTurnSpeedDeg = 135;
