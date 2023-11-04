@@ -35,7 +35,7 @@ namespace FastDragon
             public const float Speed = 143 * SpyroUnitsPerFrame;
             public const float Accel = 20 * SpyroUnitsPerFrameSquared;
             public const float Decel = 12 * SpyroUnitsPerFrameSquared;
-            public const float RotSpeedDeg = 360;
+            public const float RotSpeedDeg = 80 * SpyroAnglesPerFrame;
 
             public const float SlowPivotMinAngleDeg = 90;
             public const float SlowPivotTime = 0.5f;
@@ -46,10 +46,9 @@ namespace FastDragon
             public const float InitialGroundSpeed = 83 * SpyroUnitsPerFrame;
             public const float MaxGroundSpeed = 245 * SpyroUnitsPerFrame;
             public const float GroundAccel = 122 * SpyroUnitsPerFrameSquared;
-            public const float GroundTurnSpeedDeg = 48 * SpyroAnglesPerFrame;
+            public const float TurnSpeedDeg = 48 * SpyroAnglesPerFrame;
 
             public const float AirSpeed = 240 * SpyroUnitsPerFrame;
-            public const float AirTurnSpeedDeg = 135;
 
             public const float JumpVSpeed = Default.JumpVSpeed;
 

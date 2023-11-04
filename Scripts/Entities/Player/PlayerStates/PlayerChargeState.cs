@@ -50,7 +50,7 @@ namespace FastDragon
 
             TurningControls(
                 _fspeed,
-                Player.Charge.GroundTurnSpeedDeg,
+                Player.Charge.TurnSpeedDeg,
                 delta
             );
             ApplyGravity(delta);
