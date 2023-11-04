@@ -7,11 +7,14 @@ namespace FastDragon
     {
         public override void OnStateEntered()
         {
+            _player.HasUsedGlide = true;
             _player.Camera.ChangeState<OrbitCameraLockedState>();
             _player.Animator.Play("Glide", 0.3);
+
             _player.VSpeed = 0;
+
             _player.FSpeed = Mathf.Max(_player.FSpeed, Player.Glide.InitialFSpeed);
-            _player.HasUsedGlide = true;
+            _player.FSpeed = Mathf.Min(_player.FSpeed, Player.Glide.MaxFSpeed);
         }
 
         public override void _Process(double deltaD)
