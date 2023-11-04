@@ -21,10 +21,7 @@ namespace FastDragon
 
         public override void _Input(InputEvent ev)
         {
-            if (InputService.JumpJustPressed(ev))
-            {
-                _player.ChangeState<PlayerGlideState>();
-            }
+            GlideWithJumpButton(ev);
         }
 
         public override void _Process(double deltaD)

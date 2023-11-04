@@ -11,6 +11,7 @@ namespace FastDragon
             _player.Animator.Play("Glide", 0.3);
             _player.VSpeed = 0;
             _player.FSpeed = Mathf.Max(_player.FSpeed, Player.Glide.InitialFSpeed);
+            _player.HasUsedGlide = true;
         }
 
         public override void _Process(double deltaD)

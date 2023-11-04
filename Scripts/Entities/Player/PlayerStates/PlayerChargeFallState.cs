@@ -24,6 +24,11 @@ namespace FastDragon
             ResetModelPitch();
         }
 
+        public override void _Input(InputEvent ev)
+        {
+            GlideWithJumpButton(ev);
+        }
+
         public override void _Process(double deltaD)
         {
             float delta = (float)deltaD;
