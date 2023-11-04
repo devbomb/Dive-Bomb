@@ -4,7 +4,18 @@ namespace FastDragon
 {
     public partial class Player
     {
-        private const float SpyroUnits = 1f / 500;
+        /// <summary>
+        /// Conversion factor between Godot distance units and Spyro distance
+        /// units.
+        ///
+        /// The player in this game has a diameter of 1 Godot unit.
+        /// I measured Spyro's diameter to be about 500 Spyro units.
+        /// In theory, this should mean the conversion factor is 1f / 500, but
+        /// for some reason, that makes everything feel too fast.
+        /// Using 1f / 550 makes everything feel more accurate.
+        /// Perhaps I measured Spyro's diameter wrong?  Who knows.
+        /// </summary>
+        private const float SpyroUnits = 1f / 550;
         private const float SpyroFrames = 1f / 30;
         private const float SpyroUnitsPerFrame = SpyroUnits / SpyroFrames;
         private const float SpyroUnitsPerFrameSquared = SpyroUnits / (SpyroFrames * SpyroFrames);
