@@ -25,7 +25,7 @@ namespace FastDragon
             _player.Velocity = _player.GlobalForward() * -BonkSpeed;
         }
 
-        public override void _Process(double deltaD)
+        public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
 
