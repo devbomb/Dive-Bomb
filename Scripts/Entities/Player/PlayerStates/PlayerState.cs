@@ -179,23 +179,18 @@ namespace FastDragon
         }
 
         /// <summary>
-        /// Just like MoveAndSlide, except it calls onCollision() every time it
-        /// hits something.  The return value of onCollision() determines how
-        /// the motion continues:
-        /// * ContinueSliding will make it act exactly like MoveAndSlide()
-        /// * ContinueThroughObject will make the player go right through this
-        ///     object (and _only_ this object), as if it weren't there.  Use
-        ///     this, for example, when the player charges through a breakable
-        ///     object.
-        /// * Stop will make it act exactly like MoveAndCollide().  No more
-        ///     slides will be processed this frame.
+        /// Just like MoveAndSlide, except:
+        /// * It passes through all <see cref="IChargeable"/> objects, unless
+        ///     <see cref="IChargeable.CausesBonk"/> is true.
+        /// * It calls <see cref="IChargeable.OnCharged"/> whenever on all
+        ///     <see cref="IChargeable"/> objects it touches or passes through.
+        /// * It bonks the player if they touch an <see cref="IChargeable"/>
+        ///     whose <see cref="IChargeable.CausesBonk"/> is true
+        /// * It bonks the player if they hit a wall at too direct of an angle
+        /// * It returns true if the player bonked
         /// </summary>
         /// <param name="delta"></param>
-        /// <param name="onCollision"></param>
-        protected void MoveAndSlideStepByStep(
-            float delta,
-            Func<GodotObject, MoveAndSlideAction> onCollision
-        )
+        protected bool MoveAndSlideCharging(float delta)
         {
             Vector3 prevPos = _player.GlobalPosition;
             Vector3 prevVel = _player.Velocity;
@@ -206,97 +201,83 @@ namespace FastDragon
             for (int i = 0; i < numCollisions; i++)
             {
                 var collision = _player.GetSlideCollision(i);
-                var action = onCollision(collision.GetCollider());
 
-                switch (action)
+                // Trigger OnCharged().
+                // Bonk if it's bonkable.
+                var hitObject = collision.GetCollider();
+                if (hitObject is IChargeable c)
                 {
-                    case MoveAndSlideAction.ContinueSliding: break;
+                    c.OnCharged();
 
-                    case MoveAndSlideAction.ContinueThroughObject:
-                    {
-                        var objectToIgnore = (Node)collision.GetCollider();
+                    if (c.CausesBonk)
+                        return Bonk();
 
-                        // Rewind and try again, but this time ignore this
-                        // object.
-                        _player.GlobalPosition = prevPos;
-                        _player.Velocity = prevVel;
+                    // Rewind and try again, but this time ignore this object
+                    _player.GlobalPosition = prevPos;
+                    _player.Velocity = prevVel;
 
-                        _player.AddCollisionExceptionWith(objectToIgnore);
-                        MoveAndSlideStepByStep(delta, onCollision);
-                        _player.RemoveCollisionExceptionWith(objectToIgnore);
+                    _player.AddCollisionExceptionWith((Node)hitObject);
+                    bool bonked = MoveAndSlideCharging(delta);
+                    _player.RemoveCollisionExceptionWith((Node)hitObject);
 
-                        return;
-                    }
-
-                    case MoveAndSlideAction.Stop:
-                    {
-                        _player.GlobalPosition = prevPos;
-                        _player.MoveAndCollide(prevVel * delta);
-                        return;
-                    }
+                    return bonked;
                 }
             }
-        }
-        protected delegate MoveAndSlideAction MoveAndSlideCollisionHandler(GodotObject collider);
-        protected enum MoveAndSlideAction
-        {
-            ContinueSliding,
-            ContinueThroughObject,
-            Stop
-        }
 
-        protected MoveAndSlideAction OnChargedIntoSomething(GodotObject hitObject)
-        {
-            if (hitObject is IChargeable c)
+            // Bonk if moving into a wall at the bonk angle.
+            // To determine the angle, we look at the difference between the old
+            // velocity and the new velocity, instead of looking at the wall's
+            // normal.
+            //
+            // Why?  Because this method works even when you're charging
+            // straight into a corner.
+            if (_player.IsOnWall())
             {
-                c.OnCharged();
-                return c.CausesBonk
-                    ? MoveAndSlideAction.Stop
-                    : MoveAndSlideAction.ContinueThroughObject;
-            }
-
-            return MoveAndSlideAction.ContinueSliding;
-        }
-
-        protected bool IsTouchingWallAtBonkAngle()
-        {
-            if (!_player.IsOnWall())
-                return false;
-
-            var fwd = _player.GlobalForward();
-            float wallAngleRad = GetCombinedWallNormals().Flattened().AngleTo(-fwd);
-            float wallAngleDeg = Mathf.RadToDeg(wallAngleRad);
-
-            return wallAngleDeg < Player.Bonk.AngleDeg;
-
-            Vector3 GetCombinedWallNormals()
-            {
-                // If the player is charging straight into a corner,
-                // GetWallNormal() will only return one of the wall's normals,
-                // which will make it look like the player is grazing one wall
-                // (when in reality, they're hitting two walls head-on).
+                // HACK: Sometimes, IsOnWall() will return true, even when there
+                // is clearly no wall there.  This can result in the player
+                // bonking on things they shouldn't, such as baskets.
                 //
-                // The solution: take the average normal of all walls we're
-                // touching.
-                var total = Vector3.Zero;
+                // So, let's ask Godot which wall it thinks we're touching.
+                // If it can't find a good answer, then we know it was
+                // bullshitting us earlier.
+                if (FindWall() == null)
+                    return false;
 
-                int collisions = _player.GetSlideCollisionCount();
-                for (int i = 0; i < collisions; i++)
-                {
-                    var collision = _player.GetSlideCollision(i);
-                    var normal = collision.GetNormal();
+                Vector3 prevVelFlat = prevVel.Flattened();
+                Vector3 newVelFlat = _player.Velocity.Flattened();
 
-                    float angleFromGroundRad = normal.AngleTo(Vector3.Up);
-                    bool isWall = angleFromGroundRad > Mathf.DegToRad(_player.FloorMaxAngle);
+                float speedPercent = newVelFlat.Length() / prevVelFlat.Length();
+                float wallAngleRad = Mathf.DegToRad(90) - Mathf.Acos(speedPercent);
+                float bonkAngleRad = Mathf.DegToRad(Player.Bonk.AngleDeg);
 
-                    if (isWall)
-                    {
-                        total += normal;
-                    }
-                }
-
-                return total.Normalized();
+                if (wallAngleRad < bonkAngleRad)
+                    return Bonk();
             }
+
+            return false;
+
+            bool Bonk()
+            {
+                _player.GlobalPosition = prevPos;
+                _player.MoveAndCollide(prevVel * delta);
+                _player.ChangeState<PlayerBonkState>();
+                return true;
+            }
+        }
+
+        private Node FindWall()
+        {
+            var wallNormal = _player.GetWallNormal();
+            int numCollisions = _player.GetSlideCollisionCount();
+
+            for (int i = 0; i < numCollisions; i++)
+            {
+                var collision = _player.GetSlideCollision(i);
+                if (collision.GetNormal().IsEqualApprox(wallNormal))
+                    return (Node)collision.GetCollider();
+            }
+
+            return null;
         }
     }
 }

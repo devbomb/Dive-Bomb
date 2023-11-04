@@ -55,13 +55,8 @@ namespace FastDragon
             );
             ApplyGravity(delta);
 
-            MoveAndSlideStepByStep(delta, OnChargedIntoSomething);
-
-            if (IsTouchingWallAtBonkAngle())
-            {
-                _player.ChangeState<PlayerBonkState>();
+            if (MoveAndSlideCharging(delta))
                 return;
-            }
 
             if (!InputService.ChargeHeld)
             {
