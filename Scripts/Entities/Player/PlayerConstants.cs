@@ -65,10 +65,13 @@ namespace FastDragon
 
         public static class Glide
         {
-            public const float Speed = 8;
             public const float TurnSpeedDeg = 90;
             public const float Gravity = 4 * SpyroUnitsPerFrameSquared;
             public const float TerminalVSpeed = -60 * SpyroUnitsPerFrame;
+
+            public const float InitialFSpeed = 66 * SpyroUnitsPerFrame;
+            public const float MaxFSpeed = 200 * SpyroUnitsPerFrame;
+            public const float Accel = 8 * SpyroUnitsPerFrameSquared;
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;

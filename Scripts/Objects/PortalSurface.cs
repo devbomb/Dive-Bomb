@@ -103,7 +103,7 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
-                player.GlobalPosition += player.GlobalForward() * Player.Glide.Speed * delta;
+                player.GlobalPosition += player.GlobalForward() * Player.Glide.MaxFSpeed * delta;
                 _portal.RotatePlayer(delta);
                 _portal.RecenterCamera(delta);
 
