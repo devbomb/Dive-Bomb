@@ -33,6 +33,7 @@ namespace FastDragon
                 50,
                 delta
             );
+            camera.ResetPhysicsInterpolation();
         }
 
         public override void _PhysicsProcess(double deltaD)
