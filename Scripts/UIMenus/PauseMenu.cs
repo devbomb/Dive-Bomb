@@ -40,7 +40,7 @@ namespace FastDragon
         public void ResetLevel()
         {
             Close();
-            SignalBus.Instance.EmitLevelReset();
+            MapTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
 
         public void SaveGame()
