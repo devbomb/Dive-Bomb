@@ -51,10 +51,19 @@ namespace FastDragon
         public float CameraHeightOffset = 2;
 
         private OrbitCameraState _currentState;
+        private PhysicsInterpolator3D _interpolator;
 
         public override void _Ready()
         {
+            _interpolator = new PhysicsInterpolator3D();
+            AddChild(_interpolator);
+
             ChangeState<OrbitCameraFreeState>();
+        }
+
+        public void ResetPhysicsInterpolation()
+        {
+            _interpolator.ResetPhysicsInterpolation();
         }
 
         public void ChangeState<TState>() where TState : OrbitCameraState, new()
@@ -99,11 +108,7 @@ namespace FastDragon
             // HACK: ensure it works smoothly with physics interpolation
             if (!Engine.IsInPhysicsFrame())
             {
-                foreach (var child in this.EnumerateChildren())
-                {
-                    if (child is PhysicsInterpolator3D interpolator)
-                        interpolator.ResetPhysicsInterpolation();
-                }
+                ResetPhysicsInterpolation();
             }
         }
 

@@ -33,6 +33,7 @@ namespace FastDragon
                 50,
                 delta
             );
+            camera.ResetPhysicsInterpolation();
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -44,7 +45,7 @@ namespace FastDragon
             _player.MoveAndSlide();
 
             if (_timer <= 0)
-                SignalBus.Instance.EmitLevelReset();
+                MapTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
     }
 }

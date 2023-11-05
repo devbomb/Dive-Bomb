@@ -78,6 +78,8 @@ namespace FastDragon
 
             Camera.ForceRecenter();
 
+            Animator.Play("RESET", 0);
+            Animator.Advance(0);
             ChangeState<PlayerWalkState>();
         }
 

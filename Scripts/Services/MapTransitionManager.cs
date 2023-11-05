@@ -11,6 +11,8 @@ namespace FastDragon
         [Export] public PackedScene PortalLoadingScreenPrefab;
         [Export] public PackedScene ReturnHomeLoadingScreenPrefab;
 
+        private ColorRect _fadeCurtain => GetNode<ColorRect>("%FadeCurtain");
+
         public override void _Ready()
         {
             Instance = this;
@@ -157,6 +159,45 @@ namespace FastDragon
                 cameraYawRad,
                 cameraPitchRad
             );
+        }
+
+        public void RespawnPlayerAfterDeath()
+        {
+            const double fadeOutTime = 0.5;
+            const double pauseTime = 0.25;
+            const double fadeInTime = 0.5;
+
+            // Pause the scene (but not the whole game!) during the fadeout,
+            // to avoid shenanigans
+            GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Disabled;
+
+            // Fade the screen to black
+            var tween = GetTree().CreateTween();
+
+            _fadeCurtain.Color = Colors.Black;
+            _fadeCurtain.Modulate = Colors.Transparent;
+            tween.TweenProperty(
+                _fadeCurtain,
+                "modulate",
+                Colors.White,
+                fadeOutTime
+            );
+            tween.TweenInterval(pauseTime);
+
+            // After everything has faded to black, reset the level
+            tween.TweenCallback(Callable.From(SignalBus.Instance.EmitLevelReset));
+            tween.TweenProperty(
+                _fadeCurtain,
+                "modulate",
+                Colors.Transparent,
+                fadeInTime
+            );
+
+            // After everything is faded back in, unpause
+            tween.TweenCallback(Callable.From(() =>
+            {
+                GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Inherit;
+            }));
         }
     }
 }

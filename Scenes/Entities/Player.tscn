@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=13 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_15biq"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="4_db58r"]
 [ext_resource type="PackedScene" uid="uid://bnugmkxucp0vb" path="res://Scenes/Objects/Flame.tscn" id="4_g8ylw"]
-[ext_resource type="Script" path="res://Scripts/PhysicsInterpolation/PhysicsInterpolator3D.cs" id="6_a7kvo"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
@@ -121,9 +120,6 @@ current = true
 near = 0.01
 script = ExtResource("4_15biq")
 FollowTarget = NodePath("..")
-
-[node name="PhysicsInterpolator3D" type="Node" parent="Camera"]
-script = ExtResource("6_a7kvo")
 
 [node name="PortalActivator" type="Area3D" parent="Camera" groups=["CameraArea"]]
 
