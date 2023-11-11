@@ -10,8 +10,8 @@ namespace FastDragon
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
             _player.Animator.Play("Jump");
-            _player.VSpeed = Player.Default.JumpVSpeed;
-            _holdJumpTimer = Player.Default.MaxJumpHoldTime;
+            _player.VSpeed = Player.Jump.InitVSpeed;
+            _holdJumpTimer = Player.Jump.MaxHoldTime;
         }
 
         public override void _Input(InputEvent ev)
@@ -39,7 +39,7 @@ namespace FastDragon
             ApplyGravity(
                 delta,
                 _holdJumpTimer > 0
-                    ? Player.Default.JumpHoldGravity
+                    ? Player.Jump.HoldGravity
                     : Player.Default.Gravity
             );
 

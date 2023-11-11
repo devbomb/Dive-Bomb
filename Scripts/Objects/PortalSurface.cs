@@ -70,7 +70,7 @@ namespace FastDragon
             {
                 player.ChangeState<PlayerManhandledState>();
                 player.Animator.Play("Jump");
-                player.Velocity = Vector3.Up * Player.Default.JumpVSpeed;
+                player.Velocity = Vector3.Up * Player.Jump.InitVSpeed;
             }
 
             public override void _PhysicsProcess(double deltaD)

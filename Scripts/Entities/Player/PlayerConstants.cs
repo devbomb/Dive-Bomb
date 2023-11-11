@@ -25,9 +25,6 @@ namespace FastDragon
         public static class Default
         {
             public const float Gravity = 12 * SpyroUnitsPerFrameSquared;
-            public const float JumpVSpeed = 110 * SpyroUnitsPerFrame;
-            public const float JumpHoldGravity = -1.4f * SpyroUnitsPerFrameSquared;
-            public const float MaxJumpHoldTime = 5 * SpyroFrames;
         }
 
         public static class Walk
@@ -41,6 +38,13 @@ namespace FastDragon
             public const float SlowPivotTime = 0.5f;
         }
 
+        public static class Jump
+        {
+            public const float InitVSpeed = 110 * SpyroUnitsPerFrame;
+            public const float HoldGravity = -1.4f * SpyroUnitsPerFrameSquared;
+            public const float MaxHoldTime = 5 * SpyroFrames;
+        }
+
         public static class Charge
         {
             public const float InitialGroundSpeed = 83 * SpyroUnitsPerFrame;
@@ -50,7 +54,7 @@ namespace FastDragon
 
             public const float AirSpeed = 240 * SpyroUnitsPerFrame;
 
-            public const float JumpVSpeed = Default.JumpVSpeed;
+            public const float JumpVSpeed = Jump.InitVSpeed;
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
