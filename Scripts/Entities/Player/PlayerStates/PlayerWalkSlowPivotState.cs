@@ -6,18 +6,6 @@ namespace FastDragon
     {
         public override bool AllowFlaming => false;
 
-        // TODO: move this to PlayerState
-        protected float YawRad
-        {
-            get => _player.GlobalRotation.Y;
-            set
-            {
-                var rot = _player.GlobalRotation;
-                rot.Y = value;
-                _player.GlobalRotation = rot;
-            }
-        }
-
         private float _timer;
         private float _startYawRad;
         private float _endYawRad;
@@ -25,7 +13,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _timer = 0;
-            _startYawRad = YawRad;
+            _startYawRad = _player.YawRad;
             _endYawRad = Transform3D.Identity
                 .LookingAt(LeftStick3D(), Vector3.Up)
                 .Basis
@@ -54,7 +42,7 @@ namespace FastDragon
             float t = _timer / Player.Walk.SlowPivotTime;
             t = Mathf.Min(t, 1);
 
-            YawRad = Mathf.Lerp(_startYawRad, _endYawRad, t);
+            _player.YawRad = Mathf.Lerp(_startYawRad, _endYawRad, t);
 
             // Move
             _player.MoveAndSlide();

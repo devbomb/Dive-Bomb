@@ -51,6 +51,17 @@ namespace FastDragon
             }
         }
 
+        public float YawRad
+        {
+            get => GlobalRotation.Y;
+            set
+            {
+                var rot = GlobalRotation;
+                rot.Y = value;
+                GlobalRotation = rot;
+            }
+        }
+
         public bool HasUsedGlide = false;
 
         private PlayerState _currentState;
