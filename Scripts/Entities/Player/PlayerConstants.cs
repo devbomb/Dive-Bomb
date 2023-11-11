@@ -35,7 +35,13 @@ namespace FastDragon
             public const float RotSpeedDeg = 80 * SpyroAnglesPerFrame;
 
             public const float SlowPivotMinAngleDeg = 90;
-            public const float SlowPivotTime = 0.5f;
+        }
+
+        public static class SlowPivot
+        {
+            public const float RotSpeedDeg = 196 * SpyroAnglesPerFrame;
+            public const float MaxSkidDuration = 11 * SpyroFrames;
+            public const float MinDecel = 13 * SpyroUnitsPerFrameSquared; // Could also be 12, depending on rounding
         }
 
         public static class Jump

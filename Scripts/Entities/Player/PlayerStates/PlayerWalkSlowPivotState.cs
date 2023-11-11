@@ -5,20 +5,14 @@ namespace FastDragon
     public partial class PlayerWalkSlowPivotState : PlayerState
     {
         public override bool AllowFlaming => false;
-
-        private float _timer;
-        private float _startYawRad;
-        private float _endYawRad;
+        private float _targetYawRad;
+        private float _decel;
 
         public override void OnStateEntered()
         {
-            _timer = 0;
-            _startYawRad = _player.YawRad;
-            _endYawRad = Transform3D.Identity
-                .LookingAt(LeftStick3D(), Vector3.Up)
-                .Basis
-                .GetEuler()
-                .Y;
+            _targetYawRad = LeftStick3D().ForwardToEulerAnglesRad().Y;
+            _decel = _player.FSpeed / Player.SlowPivot.MaxSkidDuration;
+            _decel = Mathf.Max(_decel, Player.SlowPivot.MinDecel);
         }
 
         public override void _Input(InputEvent ev)
@@ -32,29 +26,37 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
-            _timer += delta;
 
-            // Slow down
-            float accel = Player.Walk.Speed / Player.Walk.SlowPivotTime;
-            _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, accel * delta);
+            // Skid down to a stop
+            _player.FSpeed = Mathf.MoveToward(
+                _player.FSpeed,
+                0,
+                _decel * delta
+            );
+            bool doneSkidding = Mathf.IsZeroApprox(_player.FSpeed);
 
-            // Rotate
-            float t = _timer / Player.Walk.SlowPivotTime;
-            t = Mathf.Min(t, 1);
+            // Turn to the target direction
+            if (doneSkidding)
+            {
+                _player.YawRad = AngleMath.MoveToward(
+                    _player.YawRad,
+                    _targetYawRad,
+                    Mathf.DegToRad(Player.SlowPivot.RotSpeedDeg) * delta
+                );
+            }
+            bool doneTurning = Mathf.IsEqualApprox(_player.YawRad, _targetYawRad);
 
-            _player.YawRad = Mathf.Lerp(_startYawRad, _endYawRad, t);
-
-            // Move
             _player.MoveAndSlide();
 
+            // Flop if we leave the ground
             if (!_player.IsOnFloor())
             {
                 _player.ChangeState<PlayerFlopState>();
                 return;
             }
 
-            // Go to the walking state when time is up
-            if (_timer >= Player.Walk.SlowPivotTime)
+            // Begin walking once we reach the target direction
+            if (doneSkidding && doneTurning)
             {
                 _player.ChangeState<PlayerWalkState>();
                 return;
