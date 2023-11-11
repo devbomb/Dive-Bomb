@@ -67,11 +67,7 @@ namespace FastDragon
 
             if (!leftStick2D.IsZeroApprox())
             {
-                float targetYawRad = Transform3D.Identity
-                        .LookingAt(LeftStick3D(), Vector3.Up)
-                        .Basis
-                        .GetEuler()
-                        .Y;
+                float targetYawRad = LeftStick3D().ForwardToEulerAnglesRad().Y;
 
                 var rot = _player.GlobalRotation;
                 rot.Y = AngleMath.MoveToward(rot.Y, targetYawRad, rotSpeedRad * delta);
