@@ -4,19 +4,25 @@ namespace FastDragon
 {
     public partial class PlayerWalkJumpState : PlayerState
     {
+        private const float GlideDebounceDuration = 0.1f;
+
         private float _holdJumpTimer;
+        private float _glideDebounceTimer;
 
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
             _player.Animator.Play("Jump");
             _player.VSpeed = Player.Jump.InitVSpeed;
+
             _holdJumpTimer = Player.Jump.MaxHoldTime;
+            _glideDebounceTimer = GlideDebounceDuration;
         }
 
         public override void _Input(InputEvent ev)
         {
-            GlideWithJumpButton(ev);
+            if (_glideDebounceTimer <= 0)
+                GlideWithJumpButton(ev);
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -24,6 +30,7 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             _holdJumpTimer -= delta;
+            _glideDebounceTimer -= delta;
 
             if (!InputService.JumpHeld)
                 _holdJumpTimer = 0;
