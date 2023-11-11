@@ -50,6 +50,13 @@ namespace FastDragon
             public const float HoldGravity = -1.4f * SpyroUnitsPerFrameSquared;
             public const float MaxHoldTime = 5 * SpyroFrames;
 
+            // In Spyro, the walk rot speed is the same as the jump rot speed.
+            // In theory, they should be the same in this game, too.
+            // In practice, keeping them the same somehow feels _worse_ in this
+            // game than in it does in Spyro.  So, let's just give it a little
+            // boost.  #NotSorry.
+            public const float RotSpeedDeg = Walk.RotSpeedDeg * 1.25f;
+
             public const float MaxFSpeed = 100 * SpyroUnitsPerFrame;
             public const float StrafeAccel = 20 * SpyroUnitsPerFrameSquared;
         }

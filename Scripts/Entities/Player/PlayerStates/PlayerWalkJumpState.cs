@@ -28,7 +28,7 @@ namespace FastDragon
             if (!InputService.JumpHeld)
                 _holdJumpTimer = 0;
 
-            RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
+            RotateTowardLeftStick(Mathf.DegToRad(Player.Jump.RotSpeedDeg), delta);
             StrafeWithLeftStick(
                 Player.Jump.MaxFSpeed,
                 Player.Jump.StrafeAccel,
