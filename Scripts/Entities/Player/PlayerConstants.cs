@@ -43,6 +43,9 @@ namespace FastDragon
             public const float InitVSpeed = 110 * SpyroUnitsPerFrame;
             public const float HoldGravity = -1.4f * SpyroUnitsPerFrameSquared;
             public const float MaxHoldTime = 5 * SpyroFrames;
+
+            public const float MaxFSpeed = 100 * SpyroUnitsPerFrame;
+            public const float StrafeAccel = 20 * SpyroUnitsPerFrameSquared;
         }
 
         public static class Charge

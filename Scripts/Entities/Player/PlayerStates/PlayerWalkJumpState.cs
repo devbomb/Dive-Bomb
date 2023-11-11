@@ -29,10 +29,9 @@ namespace FastDragon
                 _holdJumpTimer = 0;
 
             RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
-            AccelerateWithLeftStick(
-                Player.Walk.Speed,
-                Player.Walk.Accel,
-                Player.Walk.Decel,
+            StrafeWithLeftStick(
+                Player.Jump.MaxFSpeed,
+                Player.Jump.StrafeAccel,
                 delta
             );
 

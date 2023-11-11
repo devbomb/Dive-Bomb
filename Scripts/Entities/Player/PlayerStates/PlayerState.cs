@@ -101,6 +101,23 @@ namespace FastDragon
             );
         }
 
+        protected void StrafeWithLeftStick(
+            float maxSpeed,
+            float accel,
+            float delta
+        )
+        {
+            Vector3 targetFlatVel = LeftStick3D() * maxSpeed;
+            Vector3 flatVel = _player.Velocity.Flattened();
+            flatVel = flatVel.MoveToward(targetFlatVel, accel * delta);
+
+            _player.Velocity = new Vector3(
+                flatVel.X,
+                _player.Velocity.Y,
+                flatVel.Z
+            );
+        }
+
         protected void GlideWithJumpButton(InputEvent ev)
         {
             if (InputService.JumpJustPressed(ev) && !_player.HasUsedGlide)
