@@ -8,7 +8,10 @@ namespace FastDragon
         public override bool AllowFlaming => false;
         public override bool SpawningGemsHomeIn => true;
 
+        private const float MinSkitterDelay = 1f / 30;
+
         private float _fspeed;
+        private bool _disableJump;
 
         public override void OnStateEntered()
         {
@@ -73,9 +76,23 @@ namespace FastDragon
             // The player is allowed to "gallop" by holding charge and jump,
             // so check if jump is held here instead of checking if it's just
             // pressed.
-            if (InputService.JumpHeld)
+            if (InputService.JumpHeld && !_disableJump)
             {
                 _player.ChangeState<PlayerChargeJumpState>();
+
+                // Impose a cooldown on charge-jumping again, so the player
+                // can't skitter faster than they would in Spyro.
+                // This cooldown needs to persist in-between states, to allow
+                // instant galloping in non-skitter situations.
+                _disableJump = true;
+
+                var timer = GetTree().CreateTimer(
+                    timeSec: MinSkitterDelay,
+                    processAlways: false,
+                    processInPhysics: true
+                );
+                timer.Timeout += () => _disableJump = false;
+
                 return;
             }
         }
