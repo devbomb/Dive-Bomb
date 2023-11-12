@@ -109,7 +109,7 @@ namespace FastDragon
 
                 if (CameraIsTouchingPortal() && !_skipCameraCheck)
                 {
-                    MapTransitionManager.Instance.GoToPortalLoadingScreen(
+                    MapTransitionManager.Instance.EnterLevel(
                         _portal.TargetMap,
                         _portal._portalCamera.Environment
                     );

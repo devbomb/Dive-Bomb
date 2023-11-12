@@ -19,8 +19,8 @@ namespace FastDragon
 
             _player.Camera.ChangeState<OrbitCameraLockedState>();
             _player.Camera.OrbitDistance = PortalLoadingScreen.CameraDist;
-            _player.Camera.OrbitYawRad = PortalLoadingScreen.CameraYawRad;
-            _player.Camera.OrbitPitchRad = PortalLoadingScreen.CameraPitchRad;
+            _player.Camera.OrbitYawRad = PortalLoadingScreen.EnterLevelCameraYawRad;
+            _player.Camera.OrbitPitchRad = PortalLoadingScreen.EnterLevelCameraPitchRad;
 
             double duration = _player.FlyInDuration;
             var tween = CreateTween();
