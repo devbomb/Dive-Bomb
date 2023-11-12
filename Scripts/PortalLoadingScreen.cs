@@ -30,11 +30,14 @@ namespace FastDragon
             Vector3 playerStartRotRad,
             float cameraDist,
             float cameraYawRad,
-            float cameraPitchRad
+            float cameraPitchRad,
+            DirectionalLight3D sun
         )
         {
             _levelSceneFile = levelSceneFile;
             _worldEnv.Environment = skyBoxEnvironment;
+            sun.GetParent().RemoveChild(sun);
+            AddChild(sun);
 
             _loadedScene = null;
             _animationDone = false;

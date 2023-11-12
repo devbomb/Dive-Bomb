@@ -74,7 +74,8 @@ namespace FastDragon
                 playerRotRad,
                 cameraDist,
                 cameraYawRad,
-                cameraPitchRad
+                cameraPitchRad,
+                oldScene.FindNode<DirectionalLight3D>()
             );
         }
 
