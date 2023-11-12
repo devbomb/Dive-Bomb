@@ -60,7 +60,7 @@ namespace FastDragon
             {
                 float angleRad = leftStick3D.AngleTo(_player.GlobalForward());
 
-                if (angleRad > Mathf.DegToRad(Player.Walk.SlowPivotMinAngleDeg))
+                if (angleRad > Mathf.DegToRad(Player.SlowPivot.MinAngleDeg))
                 {
                     _player.ChangeState<PlayerWalkSlowPivotState>();
                     return;
