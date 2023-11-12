@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://byhmelsic6fu5"]
+
+[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="1_cfww8"]
+
+[sub_resource type="Theme" id="Theme_ux4dw"]
+Label/colors/font_color = Color(0.921569, 0.858824, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.67451)
+Label/font_sizes/font_size = 35
+Label/fonts/font = ExtResource("1_cfww8")
+
+[sub_resource type="GDScript" id="GDScript_gr75r"]
+script/source = "extends Label
+
+func _process(delta):
+    text = str($'/root/SaveFile'.Current().TotalGemCount)
+"
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GemCount" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 40.0
+offset_top = 40.0
+theme = SubResource("Theme_ux4dw")
+
+[node name="Label" type="Label" parent="GemCount"]
+layout_mode = 2
+text = "Gems:"
+
+[node name="GemCountLabel" type="Label" parent="GemCount"]
+layout_mode = 2
+text = "100"
+script = SubResource("GDScript_gr75r")
