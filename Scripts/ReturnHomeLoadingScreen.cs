@@ -89,19 +89,25 @@ namespace FastDragon
         {
             _startedCorrectionAnimation = true;
 
-            // HACK: temporarily add the level to the tree, so we can
-            // get the portal's global transform
-            GetTree().Root.AddChild(_loadedScene);
-            Vector3 portalRotRad = GetTargetPortal(_loadedScene).GlobalRotation;
-            GetTree().Root.RemoveChild(_loadedScene);
-
+            // Rotate the player to face the way they're be exiting the portal
             float duration = CorrectionAnimationDuration;
             var tween = CreateTween();
-            tween.TweenRotRadSinusoidal(_playerModel, "global_rotation", portalRotRad, duration);
-            tween.Parallel().TweenProperty(_camera, "OrbitDistance", CameraDist, duration);
-            tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitYawRad", -portalRotRad.Y, duration);
-            tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitPitchRad", CameraPitchRad, duration);
+            TweenPlayerToPortal(tween.Parallel());
             tween.TweenCallback(Callable.From(GoToTargetMap));
+
+            void TweenPlayerToPortal(Tween tween)
+            {
+                // HACK: temporarily add the level to the tree, so we can
+                // get the portal's global transform
+                GetTree().Root.AddChild(_loadedScene);
+                Vector3 portalRotRad = GetTargetPortal(_loadedScene).GlobalRotation;
+                GetTree().Root.RemoveChild(_loadedScene);
+
+                tween.TweenRotRadSinusoidal(_playerModel, "global_rotation", portalRotRad, duration);
+                tween.Parallel().TweenProperty(_camera, "OrbitDistance", CameraDist, duration);
+                tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitYawRad", -portalRotRad.Y, duration);
+                tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitPitchRad", CameraPitchRad, duration);
+            }
         }
 
         private void GoToTargetMap()
