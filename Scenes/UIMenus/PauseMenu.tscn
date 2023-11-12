@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0vpyujcojrlr"]
+[gd_scene load_steps=9 format=3 uid="uid://d0vpyujcojrlr"]
 
 [ext_resource type="Script" path="res://Scripts/UIMenus/PauseMenu.cs" id="1_6unmj"]
 
@@ -12,6 +12,17 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yview"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6jnp"]
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
 [sub_resource type="Theme" id="Theme_rqyyj"]
 Button/colors/font_focus_color = Color(0.94902, 0.815686, 0, 1)
 Button/colors/font_hover_color = Color(0.94902, 0.815686, 0, 1)
@@ -22,6 +33,7 @@ Button/styles/focus = SubResource("StyleBoxEmpty_r2iqq")
 Button/styles/hover = SubResource("StyleBoxEmpty_v61kq")
 Button/styles/normal = SubResource("StyleBoxEmpty_i3vls")
 Button/styles/pressed = SubResource("StyleBoxEmpty_yview")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_g6jnp")
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -31,6 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_rqyyj")
 script = ExtResource("1_6unmj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -50,7 +63,6 @@ grow_vertical = 2
 [node name="Buttons" type="VBoxContainer" parent="PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = SubResource("Theme_rqyyj")
 
 [node name="Continue" type="Button" parent="PanelContainer/Buttons"]
 layout_mode = 2
