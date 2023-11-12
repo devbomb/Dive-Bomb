@@ -15,6 +15,7 @@ namespace FastDragon
 
         private string _levelSceneFile;
         private string _prevousMapFile;
+        private DirectionalLight3D _oldSun;
 
         private Node3D _playerModel => GetNode<Node3D>("%PlayerModel");
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
@@ -44,12 +45,16 @@ namespace FastDragon
             Vector3 playerStartRotRad,
             float cameraDist,
             float cameraYawRad,
-            float cameraPitchRad
+            float cameraPitchRad,
+            DirectionalLight3D sun
         )
         {
             _levelSceneFile = levelSceneFile;
             _prevousMapFile = previousMapFile;
             _worldEnv.Environment = skyBoxEnvironment;
+            _oldSun = sun;
+            _oldSun.SkyMode = DirectionalLight3D.SkyModeEnum.LightOnly;
+            AddChild(_oldSun);
 
             _loadedScene = null;
             _animationDone = false;
@@ -89,11 +94,33 @@ namespace FastDragon
         {
             _startedCorrectionAnimation = true;
 
-            // Rotate the player to face the way they're be exiting the portal
             float duration = CorrectionAnimationDuration;
             var tween = CreateTween();
+            TweenSun(tween.Parallel());
             TweenPlayerToPortal(tween.Parallel());
             tween.TweenCallback(Callable.From(GoToTargetMap));
+
+            void TweenSun(Tween tween)
+            {
+                var newSun = _loadedScene.FindNode<DirectionalLight3D>();
+
+                tween.TweenRotRadSinusoidal(_oldSun, "rotation", newSun.Rotation, duration);
+
+                var lightProperties = newSun.GetPropertyList()
+                    .Select(x => (string)x["name"])
+                    .Where(n => n.StartsWith("light_"))
+                    .Where(n => n != "light_cull_mask");
+
+                foreach (var propertyName in lightProperties)
+                {
+                    tween.Parallel().TweenProperty(
+                        _oldSun,
+                        (string)propertyName,
+                        newSun.Get(propertyName),
+                        duration
+                    );
+                }
+            }
 
             void TweenPlayerToPortal(Tween tween)
             {

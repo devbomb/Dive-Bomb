@@ -81,7 +81,6 @@ namespace FastDragon
         {
             _startedCorrectionAnimation = true;
 
-            // Cross fade between the old sun and the new sun
             float duration = CorrectionAnimationDuration;
             var tween = CreateTween();
             TweenSun(tween.Parallel());
