@@ -62,6 +62,17 @@ namespace FastDragon
             }
         }
 
+        public float ModelPitchRad
+        {
+            get => Model.Rotation.X;
+            set
+            {
+                var rot = Model.Rotation;
+                rot.X = value;
+                Model.Rotation = rot;
+            }
+        }
+
         public bool HasUsedGlide = false;
 
         private PlayerState _currentState;

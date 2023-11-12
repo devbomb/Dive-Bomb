@@ -177,18 +177,13 @@ namespace FastDragon
 
         protected void AngleModelPitchWithVelocity(float delta)
         {
-            _player.Model.GlobalRotation = _player.Model.GlobalRotation.DecayTowardsEulerRad(
-                _player.Velocity.Normalized().ForwardToEulerAnglesRad(),
-                10,
-                delta
-            );
+            var rot = _player.Velocity.Normalized().ForwardToEulerAnglesRad();
+            _player.ModelPitchRad = rot.X;
         }
 
         protected void ResetModelPitch()
         {
-            var rot = _player.Model.Rotation;
-            rot.X = 0;
-            _player.Model.Rotation = rot;
+            _player.ModelPitchRad = 0;
         }
 
         /// <summary>
