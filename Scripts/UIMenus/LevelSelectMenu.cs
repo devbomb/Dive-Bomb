@@ -23,6 +23,8 @@ namespace FastDragon
 
                 _buttonsContainer.AddChild(button);
             }
+
+            _buttonsContainer.GetChild<Button>(0).GrabFocus();
         }
     }
 }
