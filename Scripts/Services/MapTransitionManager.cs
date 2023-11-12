@@ -9,7 +9,6 @@ namespace FastDragon
 
         [Export(PropertyHint.File)] public string LevelSelectMap;
         [Export] public PackedScene PortalLoadingScreenPrefab;
-        [Export] public PackedScene ReturnHomeLoadingScreenPrefab;
 
         private ColorRect _fadeCurtain => GetNode<ColorRect>("%FadeCurtain");
 
@@ -47,40 +46,12 @@ namespace FastDragon
             GetTree().ChangeSceneToFile(mapSceneFile);
         }
 
-        public void GoToPortalLoadingScreen(
+        public void EnterLevel(
             string levelSceneFile,
             Environment skyBoxEnvironment
         )
         {
-            var oldScene = GetTree().CurrentScene;
-            var loadingScreen = PortalLoadingScreenPrefab.Instantiate<PortalLoadingScreen>();
-
-            // Save player/camera values so they can be copied over to the
-            // loading screen, creating the illusion of a seamless transition
-            var oldPlayer = oldScene.FindNode<Player>();
-
-            double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
-            Vector3 playerRotRad = oldPlayer.GlobalRotation;
-            float cameraDist = oldPlayer.Camera.OrbitDistance;
-            float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
-            float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
-
-            // Save the sun, too, so there isn't a jarring lighting change
-            var sun = oldScene.FindNode<DirectionalLight3D>();
-            sun.GetParent().RemoveChild(sun);
-
-            ChangeSceneToNode(loadingScreen);
-
-            loadingScreen.Initialize(
-                levelSceneFile,
-                skyBoxEnvironment,
-                animationStartTime,
-                playerRotRad,
-                cameraDist,
-                cameraYawRad,
-                cameraPitchRad,
-                sun
-            );
+            GoToPortalLoadingScreen(levelSceneFile, null, skyBoxEnvironment);
         }
 
         public void ExitLevelFromPauseMenu()
@@ -118,10 +89,20 @@ namespace FastDragon
 
         public void ExitLevel()
         {
-            var worldSpawn = GetTree().FindNode<WorldSpawn>();
+            var oldScene = GetTree().CurrentScene;
 
-            // HACK: If this map does not have a home world assigned, go
-            // straight to level select
+            // Use the previous map's skybox during the loading screen.
+            // If the level doesn't have one, use a placeholder.
+            Environment skyBoxEnvironment = oldScene.FindNode<WorldEnvironment>()?.Environment;
+            if (skyBoxEnvironment == null)
+            {
+                skyBoxEnvironment = ResourceLoader.Load<Environment>("res://Environments/DaySky.tres");
+            }
+
+            // Find the worldspawn and ask it which homeworld we should go to.
+            // If there is no homeworld assigned, go to the level select menu
+            // instead.
+            var worldSpawn = GetTree().FindNode<WorldSpawn>();
             if (worldSpawn?.HomeWorld == null)
             {
                 GoToLevelSelect();
@@ -129,46 +110,8 @@ namespace FastDragon
             }
 
             string levelSceneFile = worldSpawn.HomeWorld;
-            string previousMapFile = GetTree().CurrentScene.SceneFilePath;
-
-            var oldScene = GetTree().CurrentScene;
-            var loadingScreen = ReturnHomeLoadingScreenPrefab.Instantiate<ReturnHomeLoadingScreen>();
-
-            // Save player/camera values so they can be copied over to the
-            // loading screen, creating the illusion of a seamless transition
-            var oldPlayer = oldScene.FindNode<Player>();
-
-            double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
-            Vector3 playerRotRad = oldPlayer.GlobalRotation;
-            float cameraDist = oldPlayer.Camera.OrbitDistance;
-            float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
-            float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
-
-            Environment skyBoxEnvironment = oldScene.FindNode<WorldEnvironment>()?.Environment;
-            if (skyBoxEnvironment == null)
-            {
-                // Use a placeholder skybox, in case this level doesn't have
-                // a WorldEnvironment.
-                skyBoxEnvironment = ResourceLoader.Load<Environment>("res://Environments/DaySky.tres");
-            }
-
-            // Save the sun, too, so there isn't a jarring lighting change
-            var sun = oldScene.FindNode<DirectionalLight3D>();
-            sun.GetParent().RemoveChild(sun);
-
-            ChangeSceneToNode(loadingScreen);
-
-            loadingScreen.Initialize(
-                levelSceneFile,
-                previousMapFile,
-                skyBoxEnvironment,
-                animationStartTime,
-                playerRotRad,
-                cameraDist,
-                cameraYawRad,
-                cameraPitchRad,
-                sun
-            );
+            string previousMapFile = oldScene.SceneFilePath;
+            GoToPortalLoadingScreen(levelSceneFile, previousMapFile, skyBoxEnvironment);
         }
 
         public void RespawnPlayerAfterDeath()
@@ -208,6 +151,44 @@ namespace FastDragon
             {
                 GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Inherit;
             }));
+        }
+
+        private void GoToPortalLoadingScreen(
+            string levelSceneFile,
+            string previousMapFile,
+            Environment skyBoxEnvironment
+        )
+        {
+            var oldScene = GetTree().CurrentScene;
+            var loadingScreen = PortalLoadingScreenPrefab.Instantiate<PortalLoadingScreen>();
+
+            // Save player/camera values so they can be copied over to the
+            // loading screen, creating the illusion of a seamless transition
+            var oldPlayer = oldScene.FindNode<Player>();
+
+            double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
+            Vector3 playerRotRad = oldPlayer.GlobalRotation;
+            float cameraDist = oldPlayer.Camera.OrbitDistance;
+            float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
+            float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
+
+            // Save the sun, too, so there isn't a jarring lighting change
+            var sun = oldScene.FindNode<DirectionalLight3D>();
+            sun.GetParent().RemoveChild(sun);
+
+            ChangeSceneToNode(loadingScreen);
+
+            loadingScreen.Initialize(
+                levelSceneFile,
+                previousMapFile,
+                skyBoxEnvironment,
+                animationStartTime,
+                playerRotRad,
+                cameraDist,
+                cameraYawRad,
+                cameraPitchRad,
+                sun
+            );
         }
     }
 }
