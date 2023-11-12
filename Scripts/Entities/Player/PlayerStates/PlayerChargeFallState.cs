@@ -24,6 +24,11 @@ namespace FastDragon
             ResetModelPitch();
         }
 
+        public override void _Input(InputEvent ev)
+        {
+            GlideWithJumpButton(ev);
+        }
+
         public override void _Process(double deltaD)
         {
             float delta = (float)deltaD;
@@ -44,18 +49,13 @@ namespace FastDragon
 
             TurningControls(
                 Player.Charge.AirSpeed,
-                Player.Charge.AirTurnSpeedDeg,
+                Player.Charge.TurnSpeedDeg,
                 delta
             );
             ApplyGravity(delta);
 
-            MoveAndSlideStepByStep(delta, OnChargedIntoSomething);
-
-            if (IsTouchingWallAtBonkAngle())
-            {
-                _player.ChangeState<PlayerBonkState>();
+            if (MoveAndSlideCharging(delta))
                 return;
-            }
 
             if (_player.IsOnFloor())
             {

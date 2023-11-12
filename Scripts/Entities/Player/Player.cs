@@ -51,6 +51,30 @@ namespace FastDragon
             }
         }
 
+        public float YawRad
+        {
+            get => GlobalRotation.Y;
+            set
+            {
+                var rot = GlobalRotation;
+                rot.Y = value;
+                GlobalRotation = rot;
+            }
+        }
+
+        public float ModelPitchRad
+        {
+            get => Model.Rotation.X;
+            set
+            {
+                var rot = Model.Rotation;
+                rot.X = value;
+                Model.Rotation = rot;
+            }
+        }
+
+        public bool HasUsedGlide = false;
+
         private PlayerState _currentState;
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;
@@ -81,6 +105,17 @@ namespace FastDragon
             Animator.Play("RESET", 0);
             Animator.Advance(0);
             ChangeState<PlayerWalkState>();
+        }
+
+        public override void _PhysicsProcess(double deltaD)
+        {
+            // Give the player their glide back when they touch the ground.
+            // Gliding uses "double jump rules": after you leave the ground, you
+            // can glide ONCE.  If you leave the gliding state in mid-air for
+            // any reason, you will not be able to glide again until you touch
+            // the ground.
+            if (IsOnFloor())
+                HasUsedGlide = false;
         }
 
         public void ChangeState<TState>() where TState : PlayerState, new()

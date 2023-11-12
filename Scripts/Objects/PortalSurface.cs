@@ -70,7 +70,7 @@ namespace FastDragon
             {
                 player.ChangeState<PlayerManhandledState>();
                 player.Animator.Play("Jump");
-                player.Velocity = Vector3.Up * Player.Default.JumpVSpeed;
+                player.Velocity = Vector3.Up * Player.Jump.InitVSpeed;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -103,7 +103,7 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
-                player.GlobalPosition += player.GlobalForward() * Player.Glide.Speed * delta;
+                player.GlobalPosition += player.GlobalForward() * Player.Glide.MaxFSpeed * delta;
                 _portal.RotatePlayer(delta);
                 _portal.RecenterCamera(delta);
 

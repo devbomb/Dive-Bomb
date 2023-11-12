@@ -4,38 +4,48 @@ namespace FastDragon
 {
     public partial class PlayerWalkJumpState : PlayerState
     {
-        private bool _rising = false;
+        private const float GlideDebounceDuration = 0.1f;
+
+        private float _holdJumpTimer;
+        private float _glideDebounceTimer;
 
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
             _player.Animator.Play("Jump");
-            _player.VSpeed = Player.Default.JumpVSpeed;
-            _rising = true;
+            _player.VSpeed = Player.Jump.InitVSpeed;
+
+            _holdJumpTimer = Player.Jump.MaxHoldTime;
+            _glideDebounceTimer = GlideDebounceDuration;
         }
 
         public override void _Input(InputEvent ev)
         {
-            if (InputService.JumpJustPressed(ev))
-            {
-                _player.ChangeState<PlayerGlideState>();
-            }
+            if (_glideDebounceTimer <= 0)
+                GlideWithJumpButton(ev);
         }
 
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
 
-            if (_player.Velocity.Y <= 0 || !InputService.JumpHeld)
-                _rising = false;
+            _holdJumpTimer -= delta;
+            _glideDebounceTimer -= delta;
 
-            RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
-            AccelerateWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
+            if (!InputService.JumpHeld)
+                _holdJumpTimer = 0;
+
+            RotateTowardLeftStick(Mathf.DegToRad(Player.Jump.RotSpeedDeg), delta);
+            StrafeWithLeftStick(
+                Player.Jump.MaxFSpeed,
+                Player.Jump.StrafeAccel,
+                delta
+            );
 
             ApplyGravity(
                 delta,
-                _rising
-                    ? Player.Default.JumpRiseGravity
+                _holdJumpTimer > 0
+                    ? Player.Jump.HoldGravity
                     : Player.Default.Gravity
             );
 

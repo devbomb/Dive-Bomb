@@ -8,10 +8,18 @@ namespace FastDragon
         public override bool AllowFlaming => false;
         public override bool SpawningGemsHomeIn => true;
 
+        private const float MinSkitterDelay = 1f / 30;
+
+        private float _fspeed;
+        private bool _disableJump;
+
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraLockedState>();
             _player.Animator.Play("Charge");
+
+            _fspeed = _player.Velocity.Flattened().Length();
+            _fspeed = Mathf.Max(_fspeed, Player.Charge.InitialGroundSpeed);
         }
 
         public override void OnStateExited()
@@ -37,22 +45,21 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            // TODO: Add a little bit of acceleration when on the ground, but
-            // _instant_ acceleration when doing a charge-jump, to mimic Spyro 1
+            _fspeed = Mathf.MoveToward(
+                _fspeed,
+                Player.Charge.MaxGroundSpeed,
+                Player.Charge.GroundAccel * delta
+            );
+
             TurningControls(
-                Player.Charge.GroundSpeed,
-                Player.Charge.GroundTurnSpeedDeg,
+                _fspeed,
+                Player.Charge.TurnSpeedDeg,
                 delta
             );
             ApplyGravity(delta);
 
-            MoveAndSlideStepByStep(delta, OnChargedIntoSomething);
-
-            if (IsTouchingWallAtBonkAngle())
-            {
-                _player.ChangeState<PlayerBonkState>();
+            if (MoveAndSlideCharging(delta))
                 return;
-            }
 
             if (!InputService.ChargeHeld)
             {
@@ -69,9 +76,23 @@ namespace FastDragon
             // The player is allowed to "gallop" by holding charge and jump,
             // so check if jump is held here instead of checking if it's just
             // pressed.
-            if (InputService.JumpHeld)
+            if (InputService.JumpHeld && !_disableJump)
             {
                 _player.ChangeState<PlayerChargeJumpState>();
+
+                // Impose a cooldown on charge-jumping again, so the player
+                // can't skitter faster than they would in Spyro.
+                // This cooldown needs to persist in-between states, to allow
+                // instant galloping in non-skitter situations.
+                _disableJump = true;
+
+                var timer = GetTree().CreateTimer(
+                    timeSec: MinSkitterDelay,
+                    processAlways: false,
+                    processInPhysics: true
+                );
+                timer.Timeout += () => _disableJump = false;
+
                 return;
             }
         }

@@ -36,7 +36,12 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
-            AccelerateWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
+            AccelerateWithLeftStick(
+                Player.Walk.Speed,
+                Player.Walk.Accel,
+                Player.Walk.Decel,
+                delta
+            );
 
             _player.MoveAndSlide();
 
@@ -55,7 +60,7 @@ namespace FastDragon
             {
                 float angleRad = leftStick3D.AngleTo(_player.GlobalForward());
 
-                if (angleRad > Mathf.DegToRad(Player.Walk.SlowPivotMinAngleDeg))
+                if (angleRad > Mathf.DegToRad(Player.SlowPivot.MinAngleDeg))
                 {
                     _player.ChangeState<PlayerWalkSlowPivotState>();
                     return;
