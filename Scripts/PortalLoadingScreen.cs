@@ -10,9 +10,11 @@ namespace FastDragon
         public const float CameraDist = Player.Glide.CameraDistance;
 
         private const float RestMoveDuration = 2;
+        private const float CorrectionAnimationDuration = 1;
         private const float MinLoadingWaitTime = 2;
 
         private string _levelSceneFile;
+        private DirectionalLight3D _oldSun;
 
         private Node3D _playerModel => GetNode<Node3D>("%PlayerModel");
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
@@ -21,6 +23,7 @@ namespace FastDragon
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
         private bool _animationDone;
+        private bool _startedCorrectionAnimation;
         private Node3D _loadedScene;
 
         public void Initialize(
@@ -36,10 +39,12 @@ namespace FastDragon
         {
             _levelSceneFile = levelSceneFile;
             _worldEnv.Environment = skyBoxEnvironment;
+            _oldSun = sun;
             AddChild(sun);
 
             _loadedScene = null;
             _animationDone = false;
+            _startedCorrectionAnimation = false;
 
             // Start loading the level in the background
             LoadInBackground(_levelSceneFile);
@@ -67,8 +72,37 @@ namespace FastDragon
 
         public override void _Process(double delta)
         {
-            if (_loadedScene != null && _animationDone)
-                GoToTargetMap();
+            if (_loadedScene != null && _animationDone && !_startedCorrectionAnimation)
+                StartCorrectionAnimation();
+        }
+
+        private void StartCorrectionAnimation()
+        {
+            _startedCorrectionAnimation = true;
+
+            // Cross fade between the old sun and the new sun
+            var newSun = _loadedScene.FindNode<DirectionalLight3D>();
+
+            float duration = CorrectionAnimationDuration;
+            var tween = CreateTween();
+            tween.TweenRotRadSinusoidal(_oldSun, "rotation", newSun.Rotation, duration);
+
+            var lightProperties = newSun.GetPropertyList()
+                .Select(x => (string)x["name"])
+                .Where(n => n.StartsWith("light_"))
+                .Where(n => n != "light_cull_mask");
+
+            foreach (var propertyName in lightProperties)
+            {
+                tween.Parallel().TweenProperty(
+                    _oldSun,
+                    (string)propertyName,
+                    newSun.Get(propertyName),
+                    duration
+                );
+            }
+
+            tween.TweenCallback(Callable.From(GoToTargetMap));
         }
 
         private void DoneLoading(Node3D loadedScene)
