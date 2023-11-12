@@ -40,7 +40,8 @@ namespace FastDragon
             _levelSceneFile = levelSceneFile;
             _worldEnv.Environment = skyBoxEnvironment;
             _oldSun = sun;
-            AddChild(sun);
+            _oldSun.SkyMode = DirectionalLight3D.SkyModeEnum.LightOnly;
+            AddChild(_oldSun);
 
             _loadedScene = null;
             _animationDone = false;
