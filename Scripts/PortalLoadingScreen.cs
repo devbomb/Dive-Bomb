@@ -36,7 +36,6 @@ namespace FastDragon
         {
             _levelSceneFile = levelSceneFile;
             _worldEnv.Environment = skyBoxEnvironment;
-            sun.GetParent().RemoveChild(sun);
             AddChild(sun);
 
             _loadedScene = null;

@@ -65,6 +65,10 @@ namespace FastDragon
             float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
             float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
 
+            // Save the sun, too, so there isn't a jarring lighting change
+            var sun = oldScene.FindNode<DirectionalLight3D>();
+            sun.GetParent().RemoveChild(sun);
+
             ChangeSceneToNode(loadingScreen);
 
             loadingScreen.Initialize(
@@ -75,7 +79,7 @@ namespace FastDragon
                 cameraDist,
                 cameraYawRad,
                 cameraPitchRad,
-                oldScene.FindNode<DirectionalLight3D>()
+                sun
             );
         }
 
