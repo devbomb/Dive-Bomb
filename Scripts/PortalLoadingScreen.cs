@@ -82,28 +82,32 @@ namespace FastDragon
             _startedCorrectionAnimation = true;
 
             // Cross fade between the old sun and the new sun
-            var newSun = _loadedScene.FindNode<DirectionalLight3D>();
-
             float duration = CorrectionAnimationDuration;
             var tween = CreateTween();
-            tween.TweenRotRadSinusoidal(_oldSun, "rotation", newSun.Rotation, duration);
-
-            var lightProperties = newSun.GetPropertyList()
-                .Select(x => (string)x["name"])
-                .Where(n => n.StartsWith("light_"))
-                .Where(n => n != "light_cull_mask");
-
-            foreach (var propertyName in lightProperties)
-            {
-                tween.Parallel().TweenProperty(
-                    _oldSun,
-                    (string)propertyName,
-                    newSun.Get(propertyName),
-                    duration
-                );
-            }
-
+            TweenSun(tween.Parallel());
             tween.TweenCallback(Callable.From(GoToTargetMap));
+
+            void TweenSun(Tween tween)
+            {
+                var newSun = _loadedScene.FindNode<DirectionalLight3D>();
+
+                tween.TweenRotRadSinusoidal(_oldSun, "rotation", newSun.Rotation, duration);
+
+                var lightProperties = newSun.GetPropertyList()
+                    .Select(x => (string)x["name"])
+                    .Where(n => n.StartsWith("light_"))
+                    .Where(n => n != "light_cull_mask");
+
+                foreach (var propertyName in lightProperties)
+                {
+                    tween.Parallel().TweenProperty(
+                        _oldSun,
+                        (string)propertyName,
+                        newSun.Get(propertyName),
+                        duration
+                    );
+                }
+            }
         }
 
         private void DoneLoading(Node3D loadedScene)
