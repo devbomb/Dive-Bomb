@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Godot;
 
 namespace FastDragon
 {
-    public class SaveFile
+    public partial class SaveFile : Resource
     {
         public static SaveFile Current = new SaveFile();
 
-        public int TotalGemCount = 0;
-        public string CurrentMap;
+        [Export] public int TotalGemCount = 0;
+        [Export] public string CurrentMap;
+
         public HashSet<string> CollectedGems = new HashSet<string>();
 
         public static void Reset()
