@@ -6,6 +6,7 @@ namespace FastDragon
     public partial class PauseMenu : Control
     {
         private bool _open = false;
+        private Control _buttons => GetNode<Control>("%Buttons");
 
         public override void _Input(InputEvent ev)
         {
@@ -28,6 +29,8 @@ namespace FastDragon
             _open = true;
             Visible = true;
             GetTree().Paused = true;
+
+            _buttons.GetChild<Button>(0).GrabFocus();
         }
 
         public void Close()
