@@ -16,9 +16,10 @@ namespace FastDragon
         public override void _Process(double delta)
         {
             UpdateDigitsList();
+            EnsureEnoughChildren();
 
             int numChildren = GetChildCount();
-            for (int i = 0; i < numChildren; i++)
+            for (int i = 0; i < GetChildCount(); i++)
             {
                 var child = GetChild<SingleDigitCounter3D>(numChildren - i - 1);
 
@@ -39,6 +40,26 @@ namespace FastDragon
                 value /= 10;
             }
             while (value > 0);
+        }
+
+        private void EnsureEnoughChildren()
+        {
+            while (GetChildCount() < _digits.Count)
+            {
+                var child = SingleDigitPrefab.Instantiate<SingleDigitCounter3D>();
+                AddChild(child);
+            }
+
+            while (GetChildCount() > _digits.Count)
+            {
+                RemoveChild(GetChild(0));
+            }
+
+            for (int i = 0; i < _digits.Count; i++)
+            {
+                var child = GetChild<Node3D>(i);
+                child.Position = Vector3.Right * i * DigitSeparation;
+            }
         }
     }
 }

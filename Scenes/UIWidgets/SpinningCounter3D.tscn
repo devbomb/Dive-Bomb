@@ -5,8 +5,4 @@
 
 [node name="SpinningCounter3D" type="Node3D"]
 script = ExtResource("1_dmowp")
-
-[node name="SingleDigitCounter3D" parent="." instance=ExtResource("1_40ghf")]
-
-[node name="SingleDigitCounter3D2" parent="." instance=ExtResource("1_40ghf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, 0)
+SingleDigitPrefab = ExtResource("1_40ghf")
