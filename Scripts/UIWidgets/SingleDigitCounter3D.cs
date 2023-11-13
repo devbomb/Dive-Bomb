@@ -35,6 +35,13 @@ namespace FastDragon
             {
                 _mesh.RotationDegrees = _mesh.RotationDegrees.MoveToward(Vector3.Zero, RotSpeedDeg * delta);
             }
+
+            // On top of the spin counting, make it always sway a little too
+            Rotation = new Vector3(
+                0,
+                Mathf.Sin(3 * Time.GetTicksMsec() / 1000f) * Mathf.DegToRad(22.5f),
+                0
+            );
         }
 
         private void UpdateMeshText(int digit)
