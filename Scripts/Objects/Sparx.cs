@@ -12,8 +12,9 @@ namespace FastDragon
         public const float MinIdlePauseTime = 0.25f;
         public const float MaxIdlePauseTime = 3f;
 
+        [Export] public Area3D CollectionArea;
+
         private Node3D _model => GetNode<Node3D>("%Model");
-        private Area3D _collectionArea => GetNode<Area3D>("%CollectionArea");
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
@@ -42,7 +43,7 @@ namespace FastDragon
 
         private void QueueNearbyGems()
         {
-            var bodies = _collectionArea.GetOverlappingBodies();
+            var bodies = CollectionArea.GetOverlappingBodies();
 
             foreach (var body in bodies)
             {
