@@ -1,19 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8jl1dppjfhuj"]
 
-[ext_resource type="PackedScene" uid="uid://bnlbwr8pjop0o" path="res://Scenes/UIWidgets/SingleDigitCounter3D.tscn" id="1_ynwei"]
+[ext_resource type="PackedScene" uid="uid://d1vvq00bwo8pm" path="res://Scenes/UIWidgets/SpinningCounter3D.tscn" id="1_bas2m"]
 
 [sub_resource type="GDScript" id="GDScript_78rfb"]
 script/source = "extends Node3D
 
 func _input(ev: InputEvent):
     if (ev.is_action_pressed('ui_up')):
-        $'SingleDigitCounter3D'.Digit += 1
+        $'SpinningCounter3D'.Value += 1
 "
 
 [node name="SpinningCounterTester" type="Node3D"]
 script = SubResource("GDScript_78rfb")
 
-[node name="SingleDigitCounter3D" parent="." instance=ExtResource("1_ynwei")]
+[node name="SpinningCounter3D" parent="." instance=ExtResource("1_bas2m")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.929044)
