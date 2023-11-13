@@ -14,15 +14,12 @@ namespace FastDragon
 
         [Export] public Area3D CollectionArea;
 
-        private Node3D _model => GetNode<Node3D>("%Model");
-
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
         private StateMachine _stateMachine = new StateMachine(typeof(SparxState));
 
         public override void _Ready()
         {
-            _model.AddChild(new PhysicsInterpolator3D());
             AddChild(_stateMachine);
 
             SignalBus.Instance.LevelReset += Reset;
@@ -32,7 +29,7 @@ namespace FastDragon
         private void Reset()
         {
             _stateMachine.ChangeState<Idle>();
-            _model.Position = Vector3.Zero;
+            Position = Vector3.Zero;
             _gemQueue.Clear();
         }
 
@@ -69,8 +66,6 @@ namespace FastDragon
             private float _idleTimer = 0;
             private Vector3 _idlePosition;
 
-            private Node3D _model => _sparx._model;
-
             public override void OnStateEntered()
             {
                 _idleTimer = 0;
@@ -87,19 +82,19 @@ namespace FastDragon
                     ShuffleIdlePosition();
                 }
 
-                _model.Position = _model.Position.MoveToward(
+                _sparx.Position = _sparx.Position.MoveToward(
                     _idlePosition,
                     FlySpeed * delta
                 );
 
                 // If the model is clipping into a wall, push it out.
-                _model.GlobalPosition = RayCast(
+                _sparx.GlobalPosition = RayCast(
+                    _sparx.CollectionArea.GlobalPosition,
                     _sparx.GlobalPosition,
-                    _model.GlobalPosition,
                     out bool _
                 );
 
-                _model.RotationDegrees = _model.RotationDegrees.MoveToward(
+                _sparx.RotationDegrees = _sparx.RotationDegrees.MoveToward(
                     Vector3.Zero,
                     RotSpeedDeg * delta
                 );
@@ -127,8 +122,8 @@ namespace FastDragon
                     );
 
                     RayCast(
-                        _sparx.GlobalPosition,
-                        _sparx.GlobalPosition + candidatePosition,
+                        _sparx.CollectionArea.GlobalPosition,
+                        _sparx.CollectionArea.GlobalPosition + candidatePosition,
                         out bool hitAnything
                     );
 
@@ -161,8 +156,6 @@ namespace FastDragon
 
         private partial class CollectingGem : SparxState
         {
-            private Node3D _model => _sparx._model;
-
             public override void OnStateEntered()
             {
                 ToggleTopLevel(true);
@@ -184,14 +177,14 @@ namespace FastDragon
                     return;
                 }
 
-                _model.LookAt(gem.GlobalPosition);
+                _sparx.LookAt(gem.GlobalPosition);
 
-                _model.GlobalPosition = _model.GlobalPosition.MoveToward(
+                _sparx.GlobalPosition = _sparx.GlobalPosition.MoveToward(
                     gem.GlobalPosition,
                     FlySpeed * delta
                 );
 
-                if (_model.GlobalPosition.IsEqualApprox(gem.GlobalPosition))
+                if (_sparx.GlobalPosition.IsEqualApprox(gem.GlobalPosition))
                 {
                     gem.StartHomingIn();
                     _sparx._gemQueue.Dequeue();
@@ -200,13 +193,13 @@ namespace FastDragon
 
             private void ToggleTopLevel(bool topLevel)
             {
-                var pos = _model.GlobalPosition;
-                var rot = _model.GlobalRotation;
+                var pos = _sparx.GlobalPosition;
+                var rot = _sparx.GlobalRotation;
 
-                _model.TopLevel = topLevel;
+                _sparx.TopLevel = topLevel;
 
-                _model.GlobalPosition = pos;
-                _model.GlobalRotation = rot;
+                _sparx.GlobalPosition = pos;
+                _sparx.GlobalRotation = rot;
             }
 
             private Gem PeekAtGemQueue()
