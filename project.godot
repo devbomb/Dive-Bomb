@@ -121,3 +121,7 @@ Pause={
 
 3d_render/layer_1="Default"
 3d_render/layer_2="VisibleInPortals"
+
+[physics]
+
+common/physics_jitter_fix=0.0

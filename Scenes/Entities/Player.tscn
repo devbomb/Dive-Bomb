@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=15 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://bnugmkxucp0vb" path="res://Scenes/Objects/Flame.tscn" id="4_g8ylw"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5lcs0"]
+height = 1.5
+radius = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
 radius = 0.2
@@ -110,8 +114,18 @@ bones/29/rotation = Quaternion(6.0536e-09, -1.11759e-08, 1.58325e-08, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.732184, -0.483194)
 BodyToIgnore = NodePath("../..")
 
-[node name="Sparx" parent="." instance=ExtResource("3_5fc8t")]
+[node name="Sparx" parent="." node_paths=PackedStringArray("CollectionArea") instance=ExtResource("3_5fc8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+CollectionArea = NodePath("../SparxRange")
+
+[node name="SparxRange" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SparxRange"]
+shape = SubResource("CylinderShape3D_5lcs0")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
 unique_name_in_owner = true
