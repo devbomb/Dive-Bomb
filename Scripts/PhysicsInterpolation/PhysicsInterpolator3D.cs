@@ -28,8 +28,8 @@ namespace FastDragon
             endSpy.PhysicsProcessed += OnPhysicsFrameEnded;
             AddChild(endSpy);
 
-            _truePos = _parent.GlobalPosition;
-            _trueRot = _parent.GlobalRotation;
+            _truePos = _parent.Position;
+            _trueRot = _parent.Rotation;
 
             _prevTruePos = _truePos;
             _prevTrueRot = _trueRot;
@@ -47,14 +47,14 @@ namespace FastDragon
             if (t > 1)
                 t = 1;
 
-            _parent.GlobalPosition = _prevTruePos.Lerp(_truePos, (float)t);
-            _parent.GlobalRotation = _prevTrueRot.LerpEulerRad(_trueRot, (float)t);
+            _parent.Position = _prevTruePos.Lerp(_truePos, (float)t);
+            _parent.Rotation = _prevTrueRot.LerpEulerRad(_trueRot, (float)t);
         }
 
         public void ResetPhysicsInterpolation()
         {
-            _truePos = _parent.GlobalPosition;
-            _trueRot = _parent.GlobalRotation;
+            _truePos = _parent.Position;
+            _trueRot = _parent.Rotation;
 
             _prevTruePos = _truePos;
             _prevTrueRot = _trueRot;
@@ -68,8 +68,8 @@ namespace FastDragon
             _physicsDelta = delta;
             _timer -= delta;
 
-            _parent.GlobalPosition = _truePos;
-            _parent.GlobalRotation = _trueRot;
+            _parent.Position = _truePos;
+            _parent.Rotation = _trueRot;
             _parent.ForceUpdateTransform();
         }
 
@@ -81,8 +81,8 @@ namespace FastDragon
             _prevTruePos = _truePos;
             _prevTrueRot = _trueRot;
 
-            _truePos = _parent.GlobalPosition;
-            _trueRot = _parent.GlobalRotation;
+            _truePos = _parent.Position;
+            _trueRot = _parent.Rotation;
         }
 
         private partial class PhysicsProcessSpy : Node
