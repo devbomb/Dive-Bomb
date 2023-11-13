@@ -11,11 +11,13 @@ namespace FastDragon
         private double _timer;
 
         private Label _label => GetNode<Label>("%Label");
+        private SpinningCounter3D _spinningCounter => GetNode<SpinningCounter3D>("%SpinningCounter");
 
         public override void _Ready()
         {
             _displayedValue = Value;
             _label.Text = _displayedValue.ToString();
+            _spinningCounter.Value = Value;
         }
 
         public override void _Process(double delta)
@@ -34,6 +36,7 @@ namespace FastDragon
                         _displayedValue++;
 
                     _label.Text = _displayedValue.ToString();
+                    _spinningCounter.Value = Value;
                 }
             }
         }
@@ -43,6 +46,7 @@ namespace FastDragon
             Value = value;
             _displayedValue = value;
             _label.Text = _displayedValue.ToString();
+            _spinningCounter.Value = value;
 
             _timer = CountingInterval;
         }

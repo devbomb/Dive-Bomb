@@ -6,3 +6,5 @@
 [node name="SpinningCounter3D" type="Node3D"]
 script = ExtResource("1_dmowp")
 SingleDigitPrefab = ExtResource("1_40ghf")
+
+[node name="SingleDigitCounter3D" parent="." instance=ExtResource("1_40ghf")]
