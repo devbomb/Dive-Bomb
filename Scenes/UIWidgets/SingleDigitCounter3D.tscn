@@ -16,6 +16,7 @@ material = SubResource("StandardMaterial3D_qr331")
 text = "0"
 font = ExtResource("1_e0l3e")
 curve_step = 10.0
+depth = 0.025
 
 [node name="SingleDigitCounter3D" type="Node3D"]
 script = ExtResource("1_tkvxm")
