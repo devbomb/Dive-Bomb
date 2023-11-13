@@ -176,7 +176,12 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
-                Gem gem = _sparx._gemQueue.Peek();
+                Gem gem = PeekAtGemQueue();
+                if (gem == null)
+                {
+                    ChangeState<Idle>();
+                    return;
+                }
 
                 _model.LookAt(gem.GlobalPosition);
 
@@ -190,9 +195,6 @@ namespace FastDragon
                     gem.StartHomingIn();
                     _sparx._gemQueue.Dequeue();
                 }
-
-                if (_sparx._gemQueue.Count <= 0)
-                    ChangeState<Idle>();
             }
 
             private void ToggleTopLevel(bool topLevel)
@@ -204,6 +206,26 @@ namespace FastDragon
 
                 _model.GlobalPosition = pos;
                 _model.GlobalRotation = rot;
+            }
+
+            private Gem PeekAtGemQueue()
+            {
+                // Skip gems that aren't revealed(EG: because they were collected
+                // manually before Sparx could get to them)
+                while (_sparx._gemQueue.Count > 0)
+                {
+                    var gem = _sparx._gemQueue.Peek();
+
+                    if (!gem.IsRevealed)
+                    {
+                        _sparx._gemQueue.Dequeue();
+                        continue;
+                    }
+
+                    return gem;
+                }
+
+                return null;
             }
         }
 
