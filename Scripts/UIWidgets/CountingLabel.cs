@@ -37,5 +37,14 @@ namespace FastDragon
                 }
             }
         }
+
+        public void ForceSet(int value)
+        {
+            Value = value;
+            _displayedValue = value;
+            _label.Text = _displayedValue.ToString();
+
+            _timer = CountingInterval;
+        }
     }
 }
