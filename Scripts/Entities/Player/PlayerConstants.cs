@@ -46,10 +46,6 @@ namespace FastDragon
 
         public static class Jump
         {
-            public const float InitVSpeed = 110 * SpyroUnitsPerFrame;
-            public const float HoldGravity = -1.4f * SpyroUnitsPerFrameSquared;
-            public const float MaxHoldTime = 5 * SpyroFrames;
-
             // In Spyro, the walk rot speed is the same as the jump rot speed.
             // In theory, they should be the same in this game, too.
             // In practice, keeping them the same somehow feels _worse_ in this
@@ -59,6 +55,26 @@ namespace FastDragon
 
             public const float MaxFSpeed = 100 * SpyroUnitsPerFrame;
             public const float StrafeAccel = 20 * SpyroUnitsPerFrameSquared;
+
+
+            public const float FullJumpHeight = 1300 * SpyroUnits;
+            public const float FullJumpRiseTime = 15 * SpyroFrames;
+            public static readonly float FullJumpRiseGravity;
+
+            public const float MinJumpHeight = 530 * SpyroUnits;
+            public const float MinJumpRiseTime = 9 * SpyroFrames;
+            public const float MinJumpGravity = Default.Gravity;
+
+            public static readonly float InitVSpeed;
+
+            static Jump()
+            {
+                (InitVSpeed, FullJumpRiseGravity) = AccelMath.SpeedAndFrictionNeededForDistanceAndTime(
+                    FullJumpHeight,
+                    FullJumpRiseTime
+                );
+
+            }
         }
 
         public static class Charge
@@ -70,7 +86,7 @@ namespace FastDragon
 
             public const float AirSpeed = 240 * SpyroUnitsPerFrame;
 
-            public const float JumpVSpeed = Jump.InitVSpeed;
+            public static float JumpVSpeed = 110 * SpyroUnitsPerFrame;
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;

@@ -7,7 +7,6 @@ namespace FastDragon
         private const float GlideDebounceDuration = 0.1f;
         private const bool PrintMaxHeight = false;
 
-        private float _holdJumpTimer;
         private float _glideDebounceTimer;
         private float _startY;
         private float _maxHeight;
@@ -19,7 +18,6 @@ namespace FastDragon
             _player.Animator.Play("Jump");
             _player.VSpeed = Player.Jump.InitVSpeed;
 
-            _holdJumpTimer = Player.Jump.MaxHoldTime;
             _glideDebounceTimer = GlideDebounceDuration;
 
              _startY = _player.GlobalPosition.Y;
@@ -37,11 +35,7 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            _holdJumpTimer -= delta;
             _glideDebounceTimer -= delta;
-
-            if (!InputService.JumpHeld)
-                _holdJumpTimer = 0;
 
             RotateTowardLeftStick(Mathf.DegToRad(Player.Jump.RotSpeedDeg), delta);
             StrafeWithLeftStick(
@@ -50,12 +44,7 @@ namespace FastDragon
                 delta
             );
 
-            ApplyGravity(
-                delta,
-                _holdJumpTimer > 0
-                    ? Player.Jump.HoldGravity
-                    : Player.Default.Gravity
-            );
+            ApplyGravity(delta, Player.Jump.FullJumpRiseGravity);
             _player.MoveAndSlide();
 
             // DEBUG: Print the max height
