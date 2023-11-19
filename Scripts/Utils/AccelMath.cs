@@ -20,8 +20,9 @@ namespace FastDragon
             float tolerance = 0.1f;
             float speed = 1;
             float predictedDist = CalculateDistance(speed);
+            float error = float.MaxValue;
 
-            while(Mathf.Abs(predictedDist - distance) > tolerance)
+            for (int i = 0; i < 10_000 && error > tolerance; i++)
             {
                 float mult = predictedDist > distance
                     ? 0.75f
@@ -29,6 +30,12 @@ namespace FastDragon
 
                 speed *= mult;
                 predictedDist = CalculateDistance(speed);
+                error = Mathf.Abs(predictedDist - distance);
+            }
+
+            if (error >= tolerance)
+            {
+                GD.PrintErr("Took too many iterations");
             }
 
             return speed;
