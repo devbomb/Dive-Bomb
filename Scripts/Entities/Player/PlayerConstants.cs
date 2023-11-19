@@ -63,7 +63,7 @@ namespace FastDragon
 
             public const float MinJumpHeight = 530 * SpyroUnits;
             public const float MinJumpRiseTime = 9 * SpyroFrames;
-            public const float MinJumpGravity = Default.Gravity;
+            public static readonly float ShortHopGravity;
 
             public static readonly float InitVSpeed;
 
@@ -74,6 +74,7 @@ namespace FastDragon
                     FullJumpRiseTime
                 );
 
+                ShortHopGravity = AccelMath.FrictionNeededForDistance(MinJumpHeight, InitVSpeed);
             }
         }
 
