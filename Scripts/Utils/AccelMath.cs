@@ -48,8 +48,8 @@ namespace FastDragon
 
                 while (v > 0)
                 {
-                    d += v * delta;
                     v = Mathf.MoveToward(v, 0, friction * delta);
+                    d += v * delta;
                 }
 
                 return d;
