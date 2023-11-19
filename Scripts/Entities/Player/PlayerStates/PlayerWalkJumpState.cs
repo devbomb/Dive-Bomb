@@ -5,9 +5,13 @@ namespace FastDragon
     public partial class PlayerWalkJumpState : PlayerState
     {
         private const float GlideDebounceDuration = 0.1f;
+        private const bool PrintMaxHeight = false;
 
         private float _holdJumpTimer;
         private float _glideDebounceTimer;
+        private float _startY;
+        private float _maxHeight;
+        private bool _printedMaxHeight;
 
         public override void OnStateEntered()
         {
@@ -17,6 +21,10 @@ namespace FastDragon
 
             _holdJumpTimer = Player.Jump.MaxHoldTime;
             _glideDebounceTimer = GlideDebounceDuration;
+
+             _startY = _player.GlobalPosition.Y;
+             _maxHeight = 0;
+             _printedMaxHeight = false;
         }
 
         public override void _Input(InputEvent ev)
@@ -48,8 +56,19 @@ namespace FastDragon
                     ? Player.Jump.HoldGravity
                     : Player.Default.Gravity
             );
-
             _player.MoveAndSlide();
+
+            // DEBUG: Print the max height
+            float height = _player.GlobalPosition.Y - _startY;
+            if (height > _maxHeight)
+            {
+                _maxHeight = height;
+            }
+            else if (!_printedMaxHeight && PrintMaxHeight)
+            {
+                _printedMaxHeight = true;
+                GD.Print(_maxHeight);
+            }
 
             if (_player.IsOnFloor())
             {
