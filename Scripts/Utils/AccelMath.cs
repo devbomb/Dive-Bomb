@@ -20,8 +20,9 @@ namespace FastDragon
             float tolerance = 0.1f;
             float speed = 1;
             float predictedDist = CalculateDistance(speed);
+            float error = float.MaxValue;
 
-            while(Mathf.Abs(predictedDist - distance) > tolerance)
+            for (int i = 0; i < 10_000 && error > tolerance; i++)
             {
                 float mult = predictedDist > distance
                     ? 0.75f
@@ -29,6 +30,12 @@ namespace FastDragon
 
                 speed *= mult;
                 predictedDist = CalculateDistance(speed);
+                error = Mathf.Abs(predictedDist - distance);
+            }
+
+            if (error >= tolerance)
+            {
+                GD.PrintErr("Took too many iterations");
             }
 
             return speed;
@@ -41,8 +48,49 @@ namespace FastDragon
 
                 while (v > 0)
                 {
-                    d += v * delta;
                     v = Mathf.MoveToward(v, 0, friction * delta);
+                    d += v * delta;
+                }
+
+                return d;
+            }
+        }
+
+        public static float FrictionNeededForDistance(float distance, float initialSpeed)
+        {
+            float tolerance = 0.1f;
+            float friction = 1;
+            float predictedDist = CalculateDistance(friction);
+            float error = float.MaxValue;
+
+            for (int i = 0; i < 10_000 && error > tolerance; i++)
+            {
+                float mult = predictedDist < distance
+                    ? 0.75f
+                    : 2f;
+
+                friction *= mult;
+                predictedDist = CalculateDistance(friction);
+                error = Mathf.Abs(predictedDist - distance);
+            }
+
+            if (error >= tolerance)
+            {
+                GD.PrintErr("Took too many iterations");
+            }
+
+            return friction;
+
+            float CalculateDistance(float f)
+            {
+                float delta = 1f / 60;
+                float v = initialSpeed;
+                float d = 0;
+
+                while (v > 0)
+                {
+                    v = Mathf.MoveToward(v, 0, f * delta);
+                    d += v * delta;
                 }
 
                 return d;

@@ -5,9 +5,14 @@ namespace FastDragon
     public partial class PlayerWalkJumpState : PlayerState
     {
         private const float GlideDebounceDuration = 0.1f;
+        private const bool PrintMaxHeight = true;
 
-        private float _holdJumpTimer;
+        private bool _isHolding;
+
         private float _glideDebounceTimer;
+        private float _startY;
+        private float _maxHeight;
+        private bool _printedMaxHeight;
 
         public override void OnStateEntered()
         {
@@ -15,8 +20,13 @@ namespace FastDragon
             _player.Animator.Play("Jump");
             _player.VSpeed = Player.Jump.InitVSpeed;
 
-            _holdJumpTimer = Player.Jump.MaxHoldTime;
+            _isHolding = true;
+
             _glideDebounceTimer = GlideDebounceDuration;
+
+             _startY = _player.GlobalPosition.Y;
+             _maxHeight = 0;
+             _printedMaxHeight = false;
         }
 
         public override void _Input(InputEvent ev)
@@ -29,11 +39,7 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            _holdJumpTimer -= delta;
             _glideDebounceTimer -= delta;
-
-            if (!InputService.JumpHeld)
-                _holdJumpTimer = 0;
 
             RotateTowardLeftStick(Mathf.DegToRad(Player.Jump.RotSpeedDeg), delta);
             StrafeWithLeftStick(
@@ -42,14 +48,31 @@ namespace FastDragon
                 delta
             );
 
-            ApplyGravity(
-                delta,
-                _holdJumpTimer > 0
-                    ? Player.Jump.HoldGravity
-                    : Player.Default.Gravity
-            );
+            if (!InputService.JumpHeld)
+                _isHolding = false;
 
+            float gravity = Player.Default.Gravity;
+            if (_player.VSpeed > 0)
+            {
+                gravity = _isHolding
+                    ? Player.Jump.FullJumpRiseGravity
+                    : Player.Jump.ShortHopGravity;
+            }
+
+            ApplyGravity(delta, gravity);
             _player.MoveAndSlide();
+
+            // DEBUG: Print the max height
+            float height = _player.GlobalPosition.Y - _startY;
+            if (height > _maxHeight)
+            {
+                _maxHeight = height;
+            }
+            else if (!_printedMaxHeight && PrintMaxHeight)
+            {
+                _printedMaxHeight = true;
+                GD.Print(_maxHeight);
+            }
 
             if (_player.IsOnFloor())
             {
