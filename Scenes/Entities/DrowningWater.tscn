@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drgg4k6ukmr7h"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/DrowningWater.cs" id="1_vwmum"]
+
+[node name="DrowningWater" type="Area3D"]
+script = ExtResource("1_vwmum")

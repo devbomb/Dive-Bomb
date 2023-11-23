@@ -26,6 +26,7 @@
 	= Player : "Player" []
 
 @SolidClass = DeathBarrier : "DeathBarrier" []
+@SolidClass = DrowningWater : "DrowningWater" []
 
 @PointClass
 	base(Angle)
