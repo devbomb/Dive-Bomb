@@ -26,6 +26,11 @@ namespace FastDragon
 
         public void Open()
         {
+            // Do not allow the pause menu to be opened while the game is
+            // already paused for a different reason(EG: a fadeout transition)
+            if (GetTree().Paused)
+                return;
+
             _open = true;
             Visible = true;
             GetTree().Paused = true;
