@@ -62,9 +62,8 @@ namespace FastDragon
             var player = GetTree().FindNode<Player>();
             var fadeCurtain = GetNode<NonPlayerFadeCurtain>("%NonPlayerFadeCurtain");
 
-            // Pause the scene (but not the whole game!) during the fadeout,
-            // to avoid shenanigans
-            GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Disabled;
+            // Pause the game during the fadeout, to avoid shenanigans
+            GetTree().Paused = true;
             player.Animator.ProcessMode = ProcessModeEnum.Always;
 
             // Transition the player to a gliding animation
@@ -74,11 +73,19 @@ namespace FastDragon
             // Fade the screen to black(except for the player)
             fadeCurtain.Visible = true;
             fadeCurtain.FadePercent = 0;
+
             var tween = GetTree().CreateTween();
+            tween.SetPauseMode(Tween.TweenPauseMode.Process);
+
             tween.TweenProperty(fadeCurtain, "FadePercent", 1, fadeOutTime);
 
-            // After everything has faded to black, go to the loading screen
-            tween.TweenCallback(Callable.From(ExitLevel));
+            // After everything has faded to black, unpause and go to the
+            // loading screen
+            tween.TweenCallback(Callable.From(() =>
+            {
+                GetTree().Paused = false;
+                ExitLevel();
+            }));
 
             // After going to the loading screen, start fading the screen back
             // in.  This will still look seamless because the player is
@@ -120,12 +127,19 @@ namespace FastDragon
             const double pauseTime = 0.25;
             const double fadeInTime = 0.5;
 
-            // Pause the scene (but not the whole game!) during the fadeout,
-            // to avoid shenanigans
-            GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Disabled;
+            // Pause the game during the fadeout, to avoid shenanigans.
+            //
+            // HACK: I _wanted_ to just set CurrentScene's ProcessMode to
+            // "Disabled" instead of pausing the whole game, but that apparently
+            // causes any Area3Ds the player is colliding with to stop detecting
+            // collisions.  Pausing the whole game doesn't cause that problem,
+            // though.
+            // Thanks, Godot >.<
+            GetTree().Paused = true;
 
             // Fade the screen to black
             var tween = GetTree().CreateTween();
+            tween.SetPauseMode(Tween.TweenPauseMode.Process);
 
             _fadeCurtain.Color = Colors.Black;
             _fadeCurtain.Modulate = Colors.Transparent;
@@ -149,7 +163,7 @@ namespace FastDragon
             // After everything is faded back in, unpause
             tween.TweenCallback(Callable.From(() =>
             {
-                GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Inherit;
+                GetTree().Paused = false;
             }));
         }
 

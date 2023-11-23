@@ -58,6 +58,8 @@ namespace FastDragon
 
             _prevTruePos = _truePos;
             _prevTrueRot = _trueRot;
+
+            _timer = 0;
         }
 
         private void OnPhysicsFrameStarted(double delta)
