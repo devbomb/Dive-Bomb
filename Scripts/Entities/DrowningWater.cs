@@ -12,7 +12,7 @@ namespace FastDragon
         public void OnBodyEntered(Node3D body)
         {
             if (body is Player p)
-                p.ChangeState<PlayerFallingToDeathState>();
+                p.ChangeState<PlayerDrownState>();
         }
     }
 }
