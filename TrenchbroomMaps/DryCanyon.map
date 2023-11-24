@@ -877,26 +877,31 @@
 {
 "classname" "Basket"
 "origin" "344 120 16"
+"GemColor" "10"
 }
 // entity 5
 {
 "classname" "Basket"
 "origin" "360 72 16"
+"GemColor" "10"
 }
 // entity 6
 {
 "classname" "Basket"
-"origin" "376 24 16"
+"origin" "392 24 16"
+"GemColor" "5"
 }
 // entity 7
 {
 "classname" "Basket"
 "origin" "456 -152 16"
+"GemColor" "10"
 }
 // entity 8
 {
 "classname" "Basket"
-"origin" "344 168 16"
+"origin" "296 200 16"
+"GemColor" "10"
 }
 // entity 9
 {
@@ -1018,81 +1023,97 @@
 {
 "classname" "Basket"
 "origin" "-392 416 16"
+"GemColor" "2"
 }
 // entity 12
 {
 "classname" "Basket"
 "origin" "-392 512 16"
+"GemColor" "2"
 }
 // entity 13
 {
 "classname" "Basket"
 "origin" "-392 608 16"
+"GemColor" "2"
 }
 // entity 14
 {
 "classname" "Vase"
-"origin" "-152 1208 16"
+"origin" "-88 1176 16"
+"GemColor" "10"
 }
 // entity 15
 {
 "classname" "Vase"
-"origin" "-312 856 16"
+"origin" "-296 808 16"
+"GemColor" "2"
 }
 // entity 16
 {
 "classname" "Vase"
-"origin" "-328 408 16"
+"origin" "-104 296 16"
+"GemColor" "2"
 }
 // entity 17
 {
 "classname" "Vase"
-"origin" "-248 328 16"
+"origin" "-24 264 16"
+"GemColor" "5"
 }
 // entity 18
 {
 "classname" "Vase"
 "origin" "200 136 16"
+"GemColor" "2"
 }
 // entity 19
 {
 "classname" "Vase"
 "origin" "-88 -296 16"
+"GemColor" "5"
 }
 // entity 20
 {
 "classname" "Basket"
 "origin" "-24 -312 16"
+"GemColor" "2"
 }
 // entity 21
 {
 "classname" "Basket"
 "origin" "-152 -248 16"
+"GemColor" "2"
 }
 // entity 22
 {
 "classname" "Basket"
 "origin" "-280 -216 16"
+"GemColor" "2"
 }
 // entity 23
 {
 "classname" "Basket"
 "origin" "-344 -216 16"
+"GemColor" "2"
 }
 // entity 24
 {
 "classname" "Basket"
 "origin" "-408 -184 16"
+"GemColor" "2"
 }
 // entity 25
 {
 "classname" "Vase"
 "origin" "-200 -424 16"
+"GemColor" "2"
 }
 // entity 26
 {
 "classname" "Vase"
 "origin" "-296 -360 16"
+"GemColor" "2"
 }
 // entity 27
 {
