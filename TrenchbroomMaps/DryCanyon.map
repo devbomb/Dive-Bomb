@@ -1979,6 +1979,22 @@
 }
 // entity 47
 {
+"classname" "GreenGem"
+"origin" "-108 1284 144"
+}
+// entity 48
+{
+"classname" "GreenGem"
+"origin" "-76 1300 144"
+}
+// entity 49
+{
+"classname" "Vase"
+"origin" "-168 1224 144"
+"GemColor" "2"
+}
+// entity 50
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "FortZone"
@@ -2402,7 +2418,7 @@
 ( 1376 288 208 ) ( 1376 288 209 ) ( 1376 289 208 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 48
+// entity 51
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
