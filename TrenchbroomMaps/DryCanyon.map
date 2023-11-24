@@ -807,6 +807,24 @@
 ( 144 432 -16 ) ( 144 432 0 ) ( 96 512 -16 ) __TB_empty 0 0 0 1 1
 ( 128 368 -16 ) ( 128 368 0 ) ( 144 432 -16 ) __TB_empty 0 0 0 1 1
 }
+// brush 87
+{
+( 160 1248 16 ) ( 160 1249 16 ) ( 160 1248 17 ) __TB_empty 0 0 0 1 1
+( 160 1248 16 ) ( 160 1248 17 ) ( 161 1248 16 ) __TB_empty 0 0 0 1 1
+( 160 1248 16 ) ( 161 1248 16 ) ( 160 1249 16 ) __TB_empty 0 0 0 1 1
+( 176 1264 48 ) ( 176 1265 48 ) ( 177 1264 48 ) __TB_empty 0 0 0 1 1
+( 176 1264 64 ) ( 177 1264 64 ) ( 176 1264 65 ) __TB_empty 0 0 0 1 1
+( 176 1264 64 ) ( 176 1264 65 ) ( 176 1265 64 ) __TB_empty 0 0 0 1 1
+}
+// brush 88
+{
+( 352 1232 16 ) ( 352 1233 16 ) ( 352 1232 17 ) __TB_empty 0 0 0 1 1
+( 352 1232 16 ) ( 352 1232 17 ) ( 353 1232 16 ) __TB_empty 0 0 0 1 1
+( 352 1232 16 ) ( 353 1232 16 ) ( 352 1233 16 ) __TB_empty 0 0 0 1 1
+( 368 1248 48 ) ( 368 1249 48 ) ( 369 1248 48 ) __TB_empty 0 0 0 1 1
+( 368 1248 64 ) ( 369 1248 64 ) ( 368 1248 65 ) __TB_empty 0 0 0 1 1
+( 368 1248 64 ) ( 368 1248 65 ) ( 368 1249 64 ) __TB_empty 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -1995,6 +2013,59 @@
 }
 // entity 50
 {
+"classname" "Basket"
+"origin" "168 1256 48"
+"GemColor" "5"
+}
+// entity 51
+{
+"classname" "Basket"
+"origin" "376 1080 16"
+"GemColor" "10"
+}
+// entity 52
+{
+"classname" "Basket"
+"origin" "360 1240 48"
+"GemColor" "10"
+}
+// entity 53
+{
+"classname" "GreenGem"
+"origin" "348 988 16"
+}
+// entity 54
+{
+"classname" "GreenGem"
+"origin" "316 1020 16"
+}
+// entity 55
+{
+"classname" "RedGem"
+"origin" "436 1268 16"
+}
+// entity 56
+{
+"classname" "RedGem"
+"origin" "468 1236 16"
+}
+// entity 57
+{
+"classname" "RedGem"
+"origin" "500 1204 16"
+}
+// entity 58
+{
+"classname" "RedGem"
+"origin" "532 1172 16"
+}
+// entity 59
+{
+"classname" "RedGem"
+"origin" "564 1140 16"
+}
+// entity 60
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "FortZone"
@@ -2418,7 +2489,7 @@
 ( 1376 288 208 ) ( 1376 288 209 ) ( 1376 289 208 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 51
+// entity 61
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
