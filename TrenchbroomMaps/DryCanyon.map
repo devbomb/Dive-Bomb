@@ -2118,6 +2118,68 @@
 }
 // entity 66
 {
+"classname" "Basket"
+"origin" "176 -384 176"
+"GemColor" "5"
+}
+// entity 67
+{
+"classname" "Vase"
+"origin" "32 -144 144"
+"GemColor" "10"
+}
+// entity 68
+{
+"classname" "Vase"
+"origin" "32 -32 144"
+"GemColor" "5"
+}
+// entity 69
+{
+"classname" "Vase"
+"origin" "-48 -192 144"
+"GemColor" "5"
+}
+// entity 70
+{
+"classname" "Vase"
+"origin" "-96 -160 144"
+"GemColor" "5"
+}
+// entity 71
+{
+"classname" "Vase"
+"origin" "-128 -112 144"
+"GemColor" "2"
+}
+// entity 72
+{
+"classname" "Vase"
+"origin" "-128 -64 144"
+"GemColor" "2"
+}
+// entity 73
+{
+"classname" "GreenGem"
+"origin" "228 -88 152"
+}
+// entity 74
+{
+"classname" "GreenGem"
+"origin" "260 -88 156"
+}
+// entity 75
+{
+"classname" "GreenGem"
+"origin" "308 -88 160"
+}
+// entity 76
+{
+"classname" "GreenGem"
+"origin" "356 -88 160"
+}
+// entity 77
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "FortZone"
@@ -2541,7 +2603,7 @@
 ( 1376 288 208 ) ( 1376 288 209 ) ( 1376 289 208 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 67
+// entity 78
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
