@@ -2180,6 +2180,53 @@
 }
 // entity 77
 {
+"classname" "RedGem"
+"origin" "236 892 144"
+}
+// entity 78
+{
+"classname" "Basket"
+"origin" "88 728 143.652"
+"GemColor" "5"
+}
+// entity 79
+{
+"classname" "Vase"
+"origin" "200 696 143.652"
+"GemColor" "5"
+}
+// entity 80
+{
+"classname" "RedGem"
+"origin" "-44 732 192"
+}
+// entity 81
+{
+"classname" "RedGem"
+"origin" "-68 732 192"
+}
+// entity 82
+{
+"classname" "RedGem"
+"origin" "-92 732 192"
+}
+// entity 83
+{
+"classname" "RedGem"
+"origin" "44 364 152"
+}
+// entity 84
+{
+"classname" "RedGem"
+"origin" "76 364 168"
+}
+// entity 85
+{
+"classname" "RedGem"
+"origin" "116 380 176"
+}
+// entity 86
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "FortZone"
@@ -2603,7 +2650,7 @@
 ( 1376 288 208 ) ( 1376 288 209 ) ( 1376 289 208 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 78
+// entity 87
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
