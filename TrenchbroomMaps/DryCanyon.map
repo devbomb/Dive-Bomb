@@ -825,6 +825,24 @@
 ( 368 1248 64 ) ( 369 1248 64 ) ( 368 1248 65 ) __TB_empty 0 0 0 1 1
 ( 368 1248 64 ) ( 368 1248 65 ) ( 368 1249 64 ) __TB_empty 0 0 0 1 1
 }
+// brush 89
+{
+( 528 352 144 ) ( 528 353 144 ) ( 528 352 145 ) __TB_empty 0 0 0 1 1
+( 528 352 144 ) ( 528 352 145 ) ( 529 352 144 ) __TB_empty 0 0 0 1 1
+( 528 352 144 ) ( 529 352 144 ) ( 528 353 144 ) __TB_empty 0 0 0 1 1
+( 544 368 176 ) ( 544 369 176 ) ( 545 368 176 ) __TB_empty 0 0 0 1 1
+( 544 368 176 ) ( 545 368 176 ) ( 544 368 177 ) __TB_empty 0 0 0 1 1
+( 544 368 176 ) ( 544 368 177 ) ( 544 369 176 ) __TB_empty 0 0 0 1 1
+}
+// brush 90
+{
+( 640 -64 144 ) ( 640 -63 144 ) ( 640 -64 145 ) __TB_empty 0 0 0 1 1
+( 640 -64 144 ) ( 640 -64 145 ) ( 641 -64 144 ) __TB_empty 0 0 0 1 1
+( 640 -64 144 ) ( 641 -64 144 ) ( 640 -63 144 ) __TB_empty 0 0 0 1 1
+( 656 -48 176 ) ( 656 -47 176 ) ( 657 -48 176 ) __TB_empty 0 0 0 1 1
+( 656 -48 176 ) ( 657 -48 176 ) ( 656 -48 177 ) __TB_empty 0 0 0 1 1
+( 656 -48 176 ) ( 656 -48 177 ) ( 656 -47 176 ) __TB_empty 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -965,7 +983,7 @@
 // entity 7
 {
 "classname" "Basket"
-"origin" "456 -152 16"
+"origin" "456 -232 16"
 "GemColor" "10"
 }
 // entity 8
@@ -2066,6 +2084,40 @@
 }
 // entity 60
 {
+"classname" "Vase"
+"origin" "632 616 144"
+"GemColor" "10"
+}
+// entity 61
+{
+"classname" "Basket"
+"origin" "536 360 176"
+"GemColor" "5"
+}
+// entity 62
+{
+"classname" "GreenGem"
+"origin" "444 332 144"
+}
+// entity 63
+{
+"classname" "GreenGem"
+"origin" "412 316 144"
+}
+// entity 64
+{
+"classname" "Basket"
+"origin" "648 -56 176"
+"GemColor" "5"
+}
+// entity 65
+{
+"classname" "Basket"
+"origin" "584 8 144"
+"GemColor" "25"
+}
+// entity 66
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "FortZone"
@@ -2489,7 +2541,7 @@
 ( 1376 288 208 ) ( 1376 288 209 ) ( 1376 289 208 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 61
+// entity 67
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
