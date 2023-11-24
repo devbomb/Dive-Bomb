@@ -2859,3 +2859,76 @@
 ( 1872 640 320 ) ( 1872 640 321 ) ( 1872 641 320 ) __TB_empty 0 0 0 1 1
 }
 }
+// entity 88
+{
+"classname" "RedGem"
+"origin" "1380 644 48"
+"_tb_layer" "27"
+}
+// entity 89
+{
+"classname" "RedGem"
+"origin" "1380 676 48"
+"_tb_layer" "27"
+}
+// entity 90
+{
+"classname" "RedGem"
+"origin" "1348 796 48"
+"_tb_layer" "27"
+}
+// entity 91
+{
+"classname" "RedGem"
+"origin" "1348 828 48"
+"_tb_layer" "27"
+}
+// entity 92
+{
+"classname" "Vase"
+"origin" "1376 928 48"
+"GemColor" "2"
+"_tb_layer" "27"
+}
+// entity 93
+{
+"classname" "Vase"
+"origin" "1424 1000 48"
+"GemColor" "2"
+"_tb_layer" "27"
+}
+// entity 94
+{
+"classname" "Vase"
+"origin" "1456 928 48"
+"GemColor" "2"
+"_tb_layer" "27"
+}
+// entity 95
+{
+"classname" "Basket"
+"origin" "1480 1216 48"
+"GemColor" "2"
+"_tb_layer" "27"
+}
+// entity 96
+{
+"classname" "Basket"
+"origin" "1152 1752 48"
+"GemColor" "5"
+"_tb_layer" "27"
+}
+// entity 97
+{
+"classname" "Basket"
+"origin" "1088 1736 48"
+"GemColor" "2"
+"_tb_layer" "27"
+}
+// entity 98
+{
+"classname" "Basket"
+"origin" "1032 1712 48"
+"GemColor" "2"
+"_tb_layer" "27"
+}
