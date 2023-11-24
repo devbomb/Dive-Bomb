@@ -2847,6 +2847,15 @@
 ( 1168 64 80 ) ( 1169 64 80 ) ( 1168 64 81 ) __TB_empty 0 0 0 1 1
 ( 1168 64 80 ) ( 1168 64 81 ) ( 1168 65 80 ) __TB_empty 0 0 0 1 1
 }
+// brush 69
+{
+( 1244 232 -64 ) ( 1244 232 0 ) ( 1244 8 -64 ) __TB_empty 0 0 0 1 1
+( 1244 -8 -64 ) ( 1244 -8 0 ) ( 1660 -8 -64 ) __TB_empty 0 0 0 1 1
+( 1244 232 -64 ) ( 1244 8 -64 ) ( 1660 232 -64 ) __TB_empty 0 0 0 1 1
+( 1660 232 0 ) ( 1660 8 0 ) ( 1244 232 0 ) __TB_empty 0 0 0 1 1
+( 1660 280 -64 ) ( 1660 280 0 ) ( 1244 280 -64 ) __TB_empty 0 0 0 1 1
+( 1628 8 -64 ) ( 1628 8 0 ) ( 1628 232 -64 ) __TB_empty 0 0 0 1 1
+}
 }
 // entity 87
 {
@@ -3087,86 +3096,116 @@
 }
 // entity 119
 {
+"classname" "RedGem"
+"origin" "1364 172 0"
+"_tb_layer" "22"
+}
+// entity 120
+{
+"classname" "RedGem"
+"origin" "1436 172 0"
+"_tb_layer" "22"
+}
+// entity 121
+{
+"classname" "RedGem"
+"origin" "1340 156 0"
+"_tb_layer" "22"
+}
+// entity 122
+{
+"classname" "RedGem"
+"origin" "1460 156 0"
+"_tb_layer" "22"
+}
+// entity 123
+{
+"classname" "RedGem"
+"origin" "1400 180 0"
+"_tb_layer" "22"
+}
+// entity 124
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Corridor"
 "_tb_id" "27"
 "_tb_layer_sort_index" "1"
 }
-// entity 120
+// entity 125
 {
 "classname" "RedGem"
 "origin" "1380 836 48"
 "_tb_layer" "27"
 }
-// entity 121
+// entity 126
 {
 "classname" "RedGem"
 "origin" "1380 868 48"
 "_tb_layer" "27"
 }
-// entity 122
+// entity 127
 {
 "classname" "RedGem"
 "origin" "1364 988 48"
 "_tb_layer" "27"
 }
-// entity 123
+// entity 128
 {
 "classname" "RedGem"
 "origin" "1380 1036 48"
 "_tb_layer" "27"
 }
-// entity 124
+// entity 129
 {
 "classname" "Vase"
 "origin" "1440 1104 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 125
+// entity 130
 {
 "classname" "Vase"
 "origin" "1520 1192 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 126
+// entity 131
 {
 "classname" "Vase"
 "origin" "1536 1088 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 127
+// entity 132
 {
 "classname" "Basket"
 "origin" "1560 1392 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 128
+// entity 133
 {
 "classname" "Basket"
 "origin" "1136 1768 48"
 "GemColor" "5"
 "_tb_layer" "27"
 }
-// entity 129
+// entity 134
 {
 "classname" "Basket"
 "origin" "1088 1752 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 130
+// entity 135
 {
 "classname" "Basket"
 "origin" "1032 1712 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 131
+// entity 136
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3271,7 +3310,7 @@
 ( 1664 1712 336 ) ( 1664 1568 304 ) ( 1664 1568 336 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 132
+// entity 137
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3351,7 +3390,7 @@
 ( 967.2617796860577 1504 320 ) ( 1167.2254386942614 1680 320 ) ( 1167.225438694255 1680 304 ) __TB_empty 0.8206787 0 0 1.1497726 1
 }
 }
-// entity 133
+// entity 138
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
