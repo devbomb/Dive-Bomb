@@ -5,6 +5,7 @@
 "classname" "worldspawn"
 "_tb_def" "external:E:/source/experiments/FastDragon/addons/tbloader/tb-gameconfig/Main.fgd"
 "_tb_textures" "textures/Textures"
+"HomeWorld" "res://Scenes/Maps/Levels/TestMap.tscn"
 // brush 0
 {
 ( 432 -352 224 ) ( 400 -384 224 ) ( 384 -384 16 ) __TB_empty 0 0 0 1 1
@@ -2159,13 +2160,13 @@
 // entity 67
 {
 "classname" "Vase"
-"origin" "32 -144 144"
+"origin" "80 -128 144"
 "GemColor" "10"
 }
 // entity 68
 {
 "classname" "Vase"
-"origin" "32 -32 144"
+"origin" "80 -48 144"
 "GemColor" "5"
 }
 // entity 69
@@ -2325,6 +2326,11 @@
 "origin" "924 -196 256"
 }
 // entity 99
+{
+"classname" "ReturnHomeVortex"
+"origin" "-8 -88 144"
+}
+// entity 100
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -2956,7 +2962,7 @@
 ( 1628 8 -64 ) ( 1628 8 0 ) ( 1628 232 -64 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 100
+// entity 101
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2964,7 +2970,7 @@
 "_tb_id" "35"
 "_tb_layer" "22"
 }
-// entity 101
+// entity 102
 {
 "classname" "DrowningWater"
 "_tb_group" "35"
@@ -2979,7 +2985,7 @@
 ( 1104 512 40 ) ( 1184 592 40 ) ( 1184 592 24 ) Textures/PeaceKeepersWater 0 -24 0 1 1
 }
 }
-// entity 102
+// entity 103
 {
 "classname" "DrowningWater"
 "_tb_group" "35"
@@ -2992,7 +2998,7 @@
 ( 1184 592 40 ) ( 1296 757.333333333329 40 ) ( 1296 757.3333333333285 8 ) Textures/PeaceKeepersWater 0 -24 0 1 1
 }
 }
-// entity 103
+// entity 104
 {
 "classname" "DrowningWater"
 "_tb_group" "35"
@@ -3008,222 +3014,222 @@
 ( 1328 692 40 ) ( 1328 736 40 ) ( 1328 736 24 ) Textures/PeaceKeepersWater 0 -24 0 1 1
 }
 }
-// entity 104
+// entity 105
 {
 "classname" "RedGem"
 "origin" "1284 644 144"
 "_tb_layer" "22"
 }
-// entity 105
+// entity 106
 {
 "classname" "GreenGem"
 "origin" "1308 676 144"
 "_tb_layer" "22"
 }
-// entity 106
+// entity 107
 {
 "classname" "Basket"
 "origin" "1384 648 80"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 107
+// entity 108
 {
 "classname" "Basket"
 "origin" "1544 648 80"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 108
+// entity 109
 {
 "classname" "Basket"
 "origin" "1448 568 48"
 "GemColor" "5"
 "_tb_layer" "22"
 }
-// entity 109
+// entity 110
 {
 "classname" "Basket"
 "origin" "1800 232 80"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 110
+// entity 111
 {
 "classname" "Basket"
 "origin" "1672 120 80"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 111
+// entity 112
 {
 "classname" "Basket"
 "origin" "1784 40 48"
 "GemColor" "5"
 "_tb_layer" "22"
 }
-// entity 112
+// entity 113
 {
 "classname" "Basket"
 "origin" "1688 200 48"
 "GemColor" "5"
 "_tb_layer" "22"
 }
-// entity 113
+// entity 114
 {
 "classname" "Basket"
 "origin" "936 296 160"
 "GemColor" "5"
 "_tb_layer" "22"
 }
-// entity 114
+// entity 115
 {
 "classname" "Basket"
 "origin" "920 -168 256"
 "GemColor" "1"
 "_tb_layer" "22"
 }
-// entity 115
+// entity 116
 {
 "classname" "Vase"
 "origin" "776 8 224"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 116
+// entity 117
 {
 "classname" "Vase"
 "origin" "808 8 224"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 117
+// entity 118
 {
 "classname" "Vase"
 "origin" "840 8 224"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 118
+// entity 119
 {
 "classname" "Basket"
 "origin" "1048 56 80"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 119
+// entity 120
 {
 "classname" "Basket"
 "origin" "1160 56 80"
 "GemColor" "5"
 "_tb_layer" "22"
 }
-// entity 120
+// entity 121
 {
 "classname" "Basket"
 "origin" "1096 136 48"
 "GemColor" "5"
 "_tb_layer" "22"
 }
-// entity 121
+// entity 122
 {
 "classname" "GreenGem"
 "origin" "1028 -236 16"
 "_tb_layer" "22"
 }
-// entity 122
+// entity 123
 {
 "classname" "GreenGem"
 "origin" "1108 -252 16"
 "_tb_layer" "22"
 }
-// entity 123
+// entity 124
 {
 "classname" "RedGem"
 "origin" "1236 -124 48"
 "_tb_layer" "22"
 }
-// entity 124
+// entity 125
 {
 "classname" "RedGem"
 "origin" "1364 -124 104"
 "_tb_layer" "22"
 }
-// entity 125
+// entity 126
 {
 "classname" "RedGem"
 "origin" "1428 -140 120"
 "_tb_layer" "22"
 }
-// entity 126
+// entity 127
 {
 "classname" "RedGem"
 "origin" "1492 -44 144"
 "_tb_layer" "22"
 }
-// entity 127
+// entity 128
 {
 "classname" "RedGem"
 "origin" "1524 -60 144"
 "_tb_layer" "22"
 }
-// entity 128
+// entity 129
 {
 "classname" "RedGem"
 "origin" "1524 -92 144"
 "_tb_layer" "22"
 }
-// entity 129
+// entity 130
 {
 "classname" "Basket"
 "origin" "1432 120 176"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 130
+// entity 131
 {
 "classname" "Basket"
 "origin" "1384 120 176"
 "GemColor" "2"
 "_tb_layer" "22"
 }
-// entity 131
+// entity 132
 {
 "classname" "RedGem"
 "origin" "1340 116 176"
 "_tb_layer" "22"
 }
-// entity 132
+// entity 133
 {
 "classname" "RedGem"
 "origin" "1364 172 0"
 "_tb_layer" "22"
 }
-// entity 133
+// entity 134
 {
 "classname" "RedGem"
 "origin" "1436 172 0"
 "_tb_layer" "22"
 }
-// entity 134
+// entity 135
 {
 "classname" "RedGem"
 "origin" "1340 156 0"
 "_tb_layer" "22"
 }
-// entity 135
+// entity 136
 {
 "classname" "RedGem"
 "origin" "1460 156 0"
 "_tb_layer" "22"
 }
-// entity 136
+// entity 137
 {
 "classname" "RedGem"
 "origin" "1400 180 0"
 "_tb_layer" "22"
 }
-// entity 137
+// entity 138
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -3231,80 +3237,80 @@
 "_tb_id" "27"
 "_tb_layer_sort_index" "1"
 }
-// entity 138
+// entity 139
 {
 "classname" "RedGem"
 "origin" "1444 820 48"
 "_tb_layer" "27"
 }
-// entity 139
+// entity 140
 {
 "classname" "RedGem"
 "origin" "1444 852 48"
 "_tb_layer" "27"
 }
-// entity 140
+// entity 141
 {
 "classname" "RedGem"
 "origin" "1364 988 48"
 "_tb_layer" "27"
 }
-// entity 141
+// entity 142
 {
 "classname" "RedGem"
 "origin" "1380 1036 48"
 "_tb_layer" "27"
 }
-// entity 142
+// entity 143
 {
 "classname" "Vase"
 "origin" "1488 1104 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 143
+// entity 144
 {
 "classname" "Vase"
 "origin" "1472 1192 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 144
+// entity 145
 {
 "classname" "Vase"
 "origin" "1536 1184 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 145
+// entity 146
 {
 "classname" "Basket"
 "origin" "1560 1488 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 146
+// entity 147
 {
 "classname" "Basket"
 "origin" "1136 1768 48"
 "GemColor" "5"
 "_tb_layer" "27"
 }
-// entity 147
+// entity 148
 {
 "classname" "Basket"
 "origin" "1088 1752 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 148
+// entity 149
 {
 "classname" "Basket"
 "origin" "1032 1712 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
-// entity 149
+// entity 150
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3409,7 +3415,7 @@
 ( 1664 1712 336 ) ( 1664 1568 304 ) ( 1664 1568 336 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 150
+// entity 151
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3489,7 +3495,7 @@
 ( 967.2617796860577 1504 320 ) ( 1167.2254386942614 1680 320 ) ( 1167.225438694255 1680 304 ) __TB_empty 0.8206787 0 0 1.1497726 1
 }
 }
-// entity 151
+// entity 152
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3605,7 +3611,7 @@
 ( 1664 1554.7118644067796 320 ) ( 1664 1554.7118644067796 321 ) ( 1664 1555.5423728813562 320 ) __TB_empty 0 0 0 0.83050823 1
 }
 }
-// entity 152
+// entity 153
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -3622,60 +3628,60 @@
 ( 1216 -592 16 ) ( 1216 -592 17 ) ( 1216 -591 16 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 153
+// entity 154
 {
 "classname" "Basket"
 "origin" "1016 -664 112"
 "GemColor" "2"
 "_tb_layer" "36"
 }
-// entity 154
+// entity 155
 {
 "classname" "Basket"
 "origin" "1016 -712 112"
 "GemColor" "2"
 "_tb_layer" "36"
 }
-// entity 155
+// entity 156
 {
 "classname" "Basket"
 "origin" "1048 -744 112"
 "GemColor" "2"
 "_tb_layer" "36"
 }
-// entity 156
+// entity 157
 {
 "classname" "Vase"
 "origin" "1096 -760 112"
 "GemColor" "10"
 "_tb_layer" "36"
 }
-// entity 157
+// entity 158
 {
 "classname" "PurpleGem"
 "origin" "1100 -788 112"
 "_tb_layer" "36"
 }
-// entity 158
+// entity 159
 {
 "classname" "PurpleGem"
 "origin" "1084 -772 112"
 "_tb_layer" "36"
 }
-// entity 159
+// entity 160
 {
 "classname" "PurpleGem"
 "origin" "1100 -772 112"
 "_tb_layer" "36"
 }
-// entity 160
+// entity 161
 {
 "classname" "Basket"
 "origin" "1144 -744 112"
 "GemColor" "5"
 "_tb_layer" "36"
 }
-// entity 161
+// entity 162
 {
 "classname" "Basket"
 "origin" "1176 -696 112"

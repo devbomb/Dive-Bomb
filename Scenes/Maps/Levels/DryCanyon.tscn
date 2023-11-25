@@ -1,22 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw8gawpi4tmo5"]
+[gd_scene load_steps=3 format=3 uid="uid://cw8gawpi4tmo5"]
 
 [ext_resource type="Script" path="res://Scripts/TBLoaderWrapper.gd" id="1_tecvj"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xs22"]
-
-[sub_resource type="Sky" id="Sky_vnv28"]
-sky_material = SubResource("ProceduralSkyMaterial_4xs22")
-
-[sub_resource type="Environment" id="Environment_ujahn"]
-background_mode = 2
-sky = SubResource("Sky_vnv28")
+[ext_resource type="Environment" uid="uid://da6gy05gilvwd" path="res://Environments/DryCanyonSky.tres" id="2_7dedk"]
 
 [node name="DryCanyon" type="Node3D"]
 script = ExtResource("1_tecvj")
 map_resource = "res://TrenchbroomMaps/DryCanyon.map"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ujahn")
+environment = ExtResource("2_7dedk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.981569, 0.187471, -0.0371162, -0.0953172, 0.648576, 0.755158, 0.165643, -0.737702, 0.654491, -16.4758, 8.46741, 21.1995)
