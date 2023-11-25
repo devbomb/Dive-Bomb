@@ -151,7 +151,7 @@ namespace FastDragon
 
                 tween.TweenRotRadSinusoidal(_playerModel, "global_rotation", portalRotRad, duration);
                 tween.Parallel().TweenProperty(_camera, "OrbitDistance", CameraDist, duration);
-                tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitYawRad", -portalRotRad.Y, duration);
+                tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitYawRad", portalRotRad.Y + Mathf.DegToRad(180), duration);
                 tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitPitchRad", _cameraPitchRad, duration);
             }
         }
