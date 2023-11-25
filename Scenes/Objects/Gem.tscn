@@ -179,12 +179,19 @@ shape = SubResource("SphereShape3D_5toey")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("SphereShape3D_amq82")
 
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.0058, 0)
+light_size = 0.133
+spot_range = 1.07787
+spot_angle = 53.5843
+
 [node name="ModelPoint" type="Node3D" parent="."]
 unique_name_in_owner = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="ModelPoint"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.274493, -1.19985e-08)
 light_energy = 0.285
+spot_range = 1.0235
 
 [node name="BlobShadow" type="Sprite3D" parent="." node_paths=PackedStringArray("Body")]
 unique_name_in_owner = true
