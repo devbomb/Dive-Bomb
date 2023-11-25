@@ -161,7 +161,9 @@ namespace FastDragon
                     if (collision != null)
                     {
                         _gem.Velocity = Vector3.Zero;
-                        _gem.TouchedGroundOnce = true;
+
+                        if (collision.GetCollider() is StaticBody3D)
+                            _gem.TouchedGroundOnce = true;
                     }
                 }
 
