@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dorgtewj4e22i"]
+[gd_scene load_steps=4 format=3 uid="uid://dorgtewj4e22i"]
 
 [ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem.tscn" id="1_5tw4j"]
 [ext_resource type="PackedScene" uid="uid://cke3knfgvssx" path="res://BlenderModels/YellowGem.blend" id="2_bvwib"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uucb"]
+albedo_color = Color(1, 1, 0, 1)
+metallic = 0.75
+roughness = 0.5
+rim_enabled = true
 
 [node name="YellowGem" instance=ExtResource("1_5tw4j")]
 Value = 10
 
 [node name="YellowGem" parent="ModelPoint" index="0" instance=ExtResource("2_bvwib")]
+
+[node name="Circle" parent="ModelPoint/YellowGem" index="0"]
+transform = Transform3D(0.25, 0.000451785, -2.73256e-05, -0.000451775, 0.25, 9.52129e-05, 2.74994e-05, -9.51629e-05, 0.25, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_3uucb")
+
+[editable path="ModelPoint/YellowGem"]
