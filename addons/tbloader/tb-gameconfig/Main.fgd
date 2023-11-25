@@ -58,6 +58,17 @@
 		TargetMap(string) : "Target Map"
 	]
 
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/ReturnHomeVortex.obj",
+		"scale" : 0.25
+	})
+	= ReturnHomeVortex : "ReturnHomeVortex" [
+		ExitHeight(float) : "Exit Height" : 15
+	]
+
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
 	range(float) : "Range" : 10
 	energy(float) : "Energy" : 1 : "The light's strengh multiplier"
