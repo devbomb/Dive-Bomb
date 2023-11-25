@@ -1,9 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7f2hh0jtakwr"]
+[gd_scene load_steps=4 format=3 uid="uid://c7f2hh0jtakwr"]
 
 [ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem.tscn" id="1_adv7y"]
 [ext_resource type="PackedScene" uid="uid://d14ab0v6egjp2" path="res://BlenderModels/PurpleGem.blend" id="2_edfcl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lqia"]
+albedo_color = Color(0.560784, 0.0784314, 1, 1)
+metallic = 0.75
+roughness = 0.5
+rim_enabled = true
 
 [node name="PurpleGem" instance=ExtResource("1_adv7y")]
 Value = 5
 
 [node name="PurpleGem" parent="ModelPoint" index="0" instance=ExtResource("2_edfcl")]
+
+[node name="Circle" parent="ModelPoint/PurpleGem" index="0"]
+material_override = SubResource("StandardMaterial3D_7lqia")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.67577, 0)
+light_energy = 0.26
+distance_fade_enabled = true
+spot_range = 0.618049
+spot_angle = 54.2615
+
+[editable path="ModelPoint/PurpleGem"]

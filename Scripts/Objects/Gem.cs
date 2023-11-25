@@ -153,13 +153,18 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
-                _gem.Velocity += Vector3.Down * Gravity * delta;
-
-                var collision = _gem.MoveAndCollide(_gem.Velocity * delta);
-                if (collision != null)
+                if (!_gem.TouchedGroundOnce)
                 {
-                    _gem.Velocity = Vector3.Zero;
-                    _gem.TouchedGroundOnce = true;
+                    _gem.Velocity += Vector3.Down * Gravity * delta;
+
+                    var collision = _gem.MoveAndCollide(_gem.Velocity * delta);
+                    if (collision != null)
+                    {
+                        _gem.Velocity = Vector3.Zero;
+
+                        if (collision.GetCollider() is StaticBody3D)
+                            _gem.TouchedGroundOnce = true;
+                    }
                 }
 
                 if (_flameChargeWindowTimer > 0)
