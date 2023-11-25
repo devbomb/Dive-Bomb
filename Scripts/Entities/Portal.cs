@@ -38,7 +38,7 @@ namespace FastDragon
             player.ResetPhysicsInterpolation();
 
             player.Camera.ChangeState<OrbitCameraFreeState>();
-            player.Camera.OrbitYawRad = -_playerSpawn.GlobalRotation.Y;
+            player.Camera.OrbitYawRad = _playerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
             player.Camera.OrbitPitchRad = 0;
 
             // Start tweening the player to the spawn point
