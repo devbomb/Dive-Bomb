@@ -23,7 +23,11 @@
 		"path" : "TrenchbroomEntityModels/Player.obj",
 		"scale" : 0.25
 	})
-	= Player : "Player" []
+	= Player : "Player" [
+		FlyInHeight(float) : "Fly-in height"
+		FlyInDistance(float) : "Fly-in distance"
+		FlyInDuration(float) : "Fly-in duration"
+	]
 
 @SolidClass = DeathBarrier : "DeathBarrier" []
 @SolidClass = DrowningWater : "DrowningWater" []
