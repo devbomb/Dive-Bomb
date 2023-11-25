@@ -44,11 +44,14 @@ namespace FastDragon
 
         private void QueueNearbyGems()
         {
-            var bodies = CollectionArea.GetOverlappingBodies();
+            var areas = CollectionArea.GetOverlappingAreas();
 
-            foreach (var body in bodies)
+            foreach (var area in areas)
             {
-                if (!(body is Gem gem))
+                if (!(area.FirstAncestor<Gem>() is Gem gem))
+                    continue;
+
+                if (area != gem.CollectionArea)
                     continue;
 
                 if (!gem.IsRevealed)

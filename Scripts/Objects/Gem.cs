@@ -15,6 +15,7 @@ namespace FastDragon
         public bool StartHidden = false;
         public bool TouchedGroundOnce {get; private set;} = false;
         public bool IsRevealed => _stateMachine.CurrentState is Revealed;
+        public Area3D CollectionArea => GetNode<Area3D>("%CollectionArea");
 
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
@@ -134,6 +135,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                SetCollision(true);
                 _gem.TouchedGroundOnce = false;
                 _blobShadow.Scale = Vector3.One;
 
@@ -146,6 +148,7 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
+                SetCollision(false);
                 _blobShadow.Scale = Vector3.Zero;
             }
 
@@ -163,7 +166,11 @@ namespace FastDragon
                         _gem.Velocity = Vector3.Zero;
 
                         if (collision.GetCollider() is StaticBody3D)
+                        {
                             _gem.TouchedGroundOnce = true;
+                            UpdateBlobShadow();
+                            SetCollision(false);
+                        }
                     }
                 }
 
@@ -174,6 +181,12 @@ namespace FastDragon
                 }
             }
 
+            public override void _Process(double deltaD)
+            {
+                if (!_gem.TouchedGroundOnce)
+                    UpdateBlobShadow();
+            }
+
             private void HomeInIfPlayerChargingNearby()
             {
                 bool shouldHomeIn = _flameChargeArea
@@ -182,6 +195,26 @@ namespace FastDragon
 
                 if (shouldHomeIn)
                     _gem.StartHomingIn();
+            }
+
+            private void UpdateBlobShadow()
+            {
+                var collision = _gem.MoveAndCollide(
+                    Vector3.Down * 10,
+                    testOnly: true,
+                    recoveryAsCollision: true
+                );
+
+                var position = _gem.GlobalPosition;
+                position.Y = collision.GetPosition().Y;
+                _blobShadow.GlobalPosition = position + collision.GetNormal() * 0.001f;
+                _blobShadow.GlobalRotation = collision.GetNormal().ForwardToEulerAnglesRad();
+            }
+
+            private void SetCollision(bool enabled)
+            {
+                _gem.GetNode<CollisionShape3D>("%PhysicsShape")
+                    .SetDeferred("disabled", !enabled);
             }
         }
         private partial class Homing : GemState
