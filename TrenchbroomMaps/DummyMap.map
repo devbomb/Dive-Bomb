@@ -99,9 +99,7 @@
 }
 // entity 12
 {
-"classname" "StandardPortal"
+"classname" "ReturnHomeVortex"
 "origin" "160 152 16"
 "angles" "0 -90 0"
-"SkyboxEnvironment" "res://Environments/DaySky.tres"
-"TargetMap" "res://Scenes/Maps/Levels/TestMap.tscn"
 }
