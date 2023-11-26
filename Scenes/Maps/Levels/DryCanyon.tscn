@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b38lne2is0rpl"]
+[gd_scene load_steps=3 format=3 uid="uid://omge2vyfbm2s"]
 
 [ext_resource type="Script" path="res://Scripts/TBLoaderWrapper.gd" id="1_tecvj"]
-[ext_resource type="Environment" uid="uid://c3fl0v54x2swo" path="res://Environments/DryCanyonSky.tres" id="2_7dedk"]
+[ext_resource type="Environment" uid="uid://c0q1voerd055g" path="res://Environments/DryCanyonSky.tres" id="2_7dedk"]
 
 [node name="DryCanyon" type="Node3D"]
 script = ExtResource("1_tecvj")
