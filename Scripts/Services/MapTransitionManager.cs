@@ -83,6 +83,7 @@ namespace FastDragon
             // After going to the loading screen, start fading the screen back
             // in.  This will still look seamless because the player is
             // excluded from the fade-out.
+            tween.TweenInterval(1);
             tween.TweenProperty(fadeCurtain, "FadePercent", 0, fadeInTime);
             tween.TweenProperty(fadeCurtain, "visible", false, 0);
         }
