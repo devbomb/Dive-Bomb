@@ -62,8 +62,9 @@ namespace FastDragon
             var player = GetTree().FindNode<Player>();
             var fadeCurtain = GetNode<NonPlayerFadeCurtain>("%NonPlayerFadeCurtain");
 
-            // Pause the game during the fadeout, to avoid shenanigans
-            GetTree().Paused = true;
+            // Pause the scene (but not the whole game!) during the fadeout,
+            // to avoid shenanigans
+            GetTree().CurrentScene.ProcessMode = ProcessModeEnum.Disabled;
             player.Animator.ProcessMode = ProcessModeEnum.Always;
 
             // Transition the player to a gliding animation
@@ -73,19 +74,11 @@ namespace FastDragon
             // Fade the screen to black(except for the player)
             fadeCurtain.Visible = true;
             fadeCurtain.FadePercent = 0;
-
             var tween = GetTree().CreateTween();
-            tween.SetPauseMode(Tween.TweenPauseMode.Process);
-
             tween.TweenProperty(fadeCurtain, "FadePercent", 1, fadeOutTime);
 
-            // After everything has faded to black, unpause and go to the
-            // loading screen
-            tween.TweenCallback(Callable.From(() =>
-            {
-                GetTree().Paused = false;
-                ExitLevel();
-            }));
+            // After everything has faded to black, go to the loading screen
+            tween.TweenCallback(Callable.From(ExitLevel));
 
             // After going to the loading screen, start fading the screen back
             // in.  This will still look seamless because the player is
