@@ -1,0 +1,41 @@
+[gd_resource type="Environment" load_steps=6 format=3 uid="uid://c0q1voerd055g"]
+
+[sub_resource type="Gradient" id="Gradient_ulxdg"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.46875, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.393086, 0.393086, 0.393085, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jnb7k"]
+noise_type = 3
+seed = 11
+frequency = 0.0032
+offset = Vector3(0, -50, 0)
+fractal_type = 2
+domain_warp_fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3i6o0"]
+invert = true
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_ulxdg")
+noise = SubResource("FastNoiseLite_jnb7k")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xs22"]
+sky_top_color = Color(0.2, 0, 0.447059, 1)
+sky_horizon_color = Color(0.792157, 0.415686, 1, 1)
+sky_curve = 0.130583
+sky_cover = SubResource("NoiseTexture2D_3i6o0")
+ground_bottom_color = Color(0.788235, 0.627451, 0.443137, 1)
+ground_horizon_color = Color(0.793976, 0.416982, 0.999998, 1)
+sun_angle_max = 0.0
+
+[sub_resource type="Sky" id="Sky_vnv28"]
+sky_material = SubResource("ProceduralSkyMaterial_4xs22")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_vnv28")
+ambient_light_source = 2
+ambient_light_color = Color(0.294118, 0.294118, 0.294118, 1)
+volumetric_fog_length = 10.94

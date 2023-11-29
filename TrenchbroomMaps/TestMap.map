@@ -206,3 +206,11 @@
 "classname" "WhirlwindBottom"
 "origin" "188 156 -64"
 }
+// entity 25
+{
+"classname" "StandardPortal"
+"origin" "588 -56 -64"
+"angles" "0 180 0"
+"TargetMap" "res://Scenes/Maps/Levels/DryCanyon.tscn"
+"SkyboxEnvironment" "res://Environments/DryCanyonSky.tres"
+}

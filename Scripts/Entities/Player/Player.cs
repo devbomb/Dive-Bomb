@@ -90,6 +90,11 @@ namespace FastDragon
             _spawnRotation = Rotation;
 
             Respawn();
+
+            // DEBUG: Print the total amount of gems in this level.
+            // Defer doing so until the next frame, because we don't know if
+            // all of the gem containers are ready yet.
+            Callable.From(PrintGemCount).CallDeferred();
         }
 
         public void Respawn()
@@ -105,6 +110,31 @@ namespace FastDragon
             Animator.Play("RESET", 0);
             Animator.Advance(0);
             ChangeState<PlayerWalkState>();
+        }
+
+        private void PrintGemCount()
+        {
+            var gemCounts = new Dictionary<GemColor, int>();
+            int totalTreasure = 0;
+            int individualGems = 0;
+
+            var allGems = GetTree().CurrentScene.EnumerateDescendantsOfType<Gem>();
+            foreach (var gem in allGems)
+            {
+                if (!gemCounts.ContainsKey(gem.Value))
+                    gemCounts[gem.Value] = 0;
+
+                totalTreasure += (int)gem.Value;
+                gemCounts[gem.Value]++;
+                individualGems++;
+            }
+            GD.Print($"There is a total of {totalTreasure} treasure in this level");
+            GD.Print($"There are {individualGems} individual gems in this level");
+            foreach (var kvp in gemCounts)
+            {
+                GD.Print($"{kvp.Key}: {kvp.Value}");
+            }
+
         }
 
         public override void _PhysicsProcess(double deltaD)
