@@ -5,7 +5,7 @@ var _tbLoader: TBLoader = TBLoader.new()
 var _hackityHackHackDisableRefresh: bool = false
 
 @export var refresh: bool:
-    set(val):
+    set(_val):
         _refresh()
 
 @export_category("Map")
