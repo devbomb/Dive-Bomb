@@ -143,11 +143,8 @@ namespace FastDragon
 
             void TweenPlayerToPortal(Tween tween)
             {
-                // HACK: temporarily add the level to the tree, so we can
-                // get the portal's global transform
-                GetTree().Root.AddChild(_loadedScene);
-                Vector3 portalRotRad = GetTargetPortal(_loadedScene).GlobalRotation;
-                GetTree().Root.RemoveChild(_loadedScene);
+                var portal = GetTargetPortal(_loadedScene);
+                Vector3 portalRotRad = GetGlobalTransformOutsideOfTree(portal).Basis.GetEuler();
 
                 tween.TweenRotRadSinusoidal(_playerModel, "global_rotation", portalRotRad, duration);
                 tween.Parallel().TweenProperty(_camera, "OrbitDistance", CameraDist, duration);
@@ -199,6 +196,17 @@ namespace FastDragon
                 .EnumerateDescendantsOfType<Portal>()
                 .First(p => p.TargetMap == _prevousMapFile);
 
+        }
+
+        private Transform3D GetGlobalTransformOutsideOfTree(Node3D node)
+        {
+            var parent = GetParentOrNull<Node3D>();
+            if (parent == null)
+            {
+                return node.Transform;
+            }
+
+            return node.Transform * GetGlobalTransformOutsideOfTree(parent);
         }
     }
 }
