@@ -6,3 +6,6 @@ TrenchbroomMaps/autosave/
 Build/
 TrenchbroomEntityModels/*
 !TrenchbroomEntityModels/.gdignore
+OriginalGameModels/*.blend
+OriginalGameModels/*.gltf
+OriginalGameModels/*.png
