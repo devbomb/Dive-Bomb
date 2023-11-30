@@ -10,7 +10,7 @@ script/source = "extends Control
 func _ready():
     $'%GemCountLabel'.ForceSet(GemCount())
 
-func _process(delta):
+func _process(_delta):
     $'%GemCountHider'.ObservedValue = GemCount()
     $'%GemCountLabel'.Value = GemCount()
 
