@@ -25,9 +25,7 @@ namespace FastDragon
             var tree = GetTree();
 
             // Unload the old scene
-            var oldScene = tree.CurrentScene;
-            tree.Root.RemoveChild(oldScene);
-            oldScene.QueueFree();
+            tree.UnloadCurrentScene();
 
             // Change to the new one
             tree.Root.AddChild(scene);

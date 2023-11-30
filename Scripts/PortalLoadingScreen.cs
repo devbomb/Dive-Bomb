@@ -155,12 +155,13 @@ namespace FastDragon
 
         private void GoToTargetMap()
         {
+            double animationPos = _playerAnimator.CurrentAnimationPosition;
             MapTransitionManager.Instance.ChangeSceneToNode(_loadedScene);
 
             if (_isReturningHome)
             {
                 var portal = GetTargetPortal(_loadedScene);
-                portal.PlayExitAnimation(_playerAnimator.CurrentAnimationPosition);
+                portal.PlayExitAnimation(animationPos);
             }
             else
             {
