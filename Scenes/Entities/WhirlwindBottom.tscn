@@ -60,9 +60,9 @@ emission_ring_radius = 1.0
 emission_ring_inner_radius = 1.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 4.0
 initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_k4xrl"]
 interpolation_mode = 2
@@ -91,9 +91,9 @@ emission_ring_radius = 1.0
 emission_ring_inner_radius = 1.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 4.0
 initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
 turbulence_noise_strength = 12.62
 turbulence_noise_speed = Vector3(0, 1, 0)
 sub_emitter_mode = 1
