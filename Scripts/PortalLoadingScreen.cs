@@ -22,6 +22,7 @@ namespace FastDragon
             : EnterLevelCameraPitchRad;
 
         private const float RestMoveDuration = 2;
+        private const float CountingGemsDuration = 1;
         private const float CorrectionAnimationDuration = 1;
         private const float MinLoadingWaitTime = 1;
 
@@ -91,11 +92,6 @@ namespace FastDragon
 
             // Start the animation
             _stateMachine.ChangeState<MovingToRest>();
-
-            // TODO: Start the gem tallying animation
-            _talliedGems = CalculateTalliedGems();
-            GD.Print($"{_talliedGems} => {SaveFile.Current.TotalGemCount}");
-            SaveFile.Current.UntalliedGems.Clear();
         }
 
         private void GoToTargetMap()
@@ -175,7 +171,57 @@ namespace FastDragon
                 tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, RestMoveDuration);
                 tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, RestMoveDuration);
                 tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, RestMoveDuration);
-                tween.TweenCallback(Callable.From(() => ChangeState<WaitingForLoad>()));
+                tween.TweenCallback(Callable.From(() => ChangeState<CountingGems>()));
+            }
+        }
+
+        private partial class CountingGems : LoadingScreenState
+        {
+            private Label _untalliedGemsLabel => _screen.GetNode<Label>("%UntalliedGemsLabel");
+            private Label _talliedGemsLabel => _screen.GetNode<Label>("%TalliedGemsLabel");
+
+            private int _untalliedGems;
+            private int _talliedGems;
+            private double _interval;
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                GD.Print("Started counting gems");
+
+                _timer = 0;
+                _talliedGems = _screen.CalculateTalliedGems();
+                _untalliedGems = SaveFile.Current.TotalGemCount - _talliedGems;
+                SaveFile.Current.UntalliedGems.Clear();
+
+                _untalliedGemsLabel.Visible = true;
+                _talliedGemsLabel.Visible = true;
+
+                _untalliedGemsLabel.Text = $"Treasure found: {_untalliedGems}";
+                _talliedGemsLabel.Text = $"Total treasure: {_talliedGems}";
+
+                _interval = CountingGemsDuration / _untalliedGems;
+            }
+
+            public override void _Process(double delta)
+            {
+                _timer += delta;
+
+                if (_untalliedGems <= 0)
+                {
+                    ChangeState<WaitingForLoad>();
+                    return;
+                }
+
+                if (_timer >= _interval)
+                {
+                    _timer -= _interval;
+                    _untalliedGems--;
+                    _talliedGems++;
+
+                    _untalliedGemsLabel.Text = $"Treasure found: {_untalliedGems}";
+                    _talliedGemsLabel.Text = $"Total treasure: {_talliedGems}";
+                }
             }
         }
 

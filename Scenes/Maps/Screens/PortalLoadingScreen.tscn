@@ -25,3 +25,36 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("4_ef0t7")
 FollowTarget = NodePath("../PlayerModel")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UntalliedGemsLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Treasure found:"
+horizontal_alignment = 1
+
+[node name="TalliedGemsLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Total treasure:"
+horizontal_alignment = 1
