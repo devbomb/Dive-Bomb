@@ -39,6 +39,7 @@ namespace FastDragon
         private bool _animationDone;
         private bool _startedCorrectionAnimation;
         private Node3D _loadedScene;
+        private int _talliedGems;
 
         public override void _Ready()
         {
@@ -95,6 +96,11 @@ namespace FastDragon
             tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitPitchRad", _cameraPitchRad, RestMoveDuration);
             tween.TweenInterval(MinLoadingWaitTime);
             tween.TweenCallback(Callable.From(() => _animationDone = true));
+
+            // TODO: Start the gem tallying animation
+            _talliedGems = CalculateTalliedGems();
+            GD.Print($"{_talliedGems} => {SaveFile.Current.TotalGemCount}");
+            SaveFile.Current.UntalliedGems.Clear();
         }
 
         public override void _Process(double delta)
@@ -208,6 +214,21 @@ namespace FastDragon
             }
 
             return node.Transform * GetGlobalTransformOutsideOfTree(parent);
+        }
+
+        private int CalculateTalliedGems()
+        {
+            int totalUntallied = 0;
+
+            foreach (var kvp in SaveFile.Current.UntalliedGems)
+            {
+                GemColor color = kvp.Key;
+                int count = kvp.Value;
+
+                totalUntallied += (int)color * count;
+            }
+
+            return SaveFile.Current.TotalGemCount - totalUntallied;
         }
     }
 }

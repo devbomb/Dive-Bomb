@@ -69,11 +69,18 @@ namespace FastDragon
 
         public void Collect()
         {
-            SaveFile.Current.TotalGemCount += (int)Value;
-            SaveFile.Current.CollectedGems.Add(GetSaveKey());
+            var saveFile = SaveFile.Current;
+            if (!saveFile.UntalliedGems.ContainsKey(Value))
+            {
+                saveFile.UntalliedGems[Value] = 0;
+            }
+            saveFile.UntalliedGems[Value]++;
+            saveFile.TotalGemCount += (int)Value;
+            saveFile.CollectedGems.Add(GetSaveKey());
+
             ChangeState<Hidden>();
 
-            GD.Print($"{SaveFile.Current.TotalGemCount}: Collected gem {GetSaveKey()}");
+            GD.Print($"{saveFile.TotalGemCount}: Collected gem {GetSaveKey()}");
         }
 
         public void Sparkle()

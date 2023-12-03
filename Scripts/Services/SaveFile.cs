@@ -13,6 +13,7 @@ namespace FastDragon
         public string CurrentMap;
 
         public HashSet<string> CollectedGems = new HashSet<string>();
+        public Dictionary<GemColor, int> UntalliedGems = new Dictionary<GemColor, int>();
 
         public static void Reset()
         {
