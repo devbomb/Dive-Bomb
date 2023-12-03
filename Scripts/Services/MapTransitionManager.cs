@@ -25,7 +25,12 @@ namespace FastDragon
             var tree = GetTree();
 
             // Unload the old scene
-            tree.UnloadCurrentScene();
+            // UnloadCurrentScene() causes nondeterministic crashes,
+            // so we need to do it "manually" instead.
+            // See this issue: https://github.com/godotengine/godot/issues/85692
+            var oldScene = tree.CurrentScene;
+            tree.Root.RemoveChild(oldScene);
+            oldScene.QueueFree();
 
             // Change to the new one
             tree.Root.AddChild(scene);
