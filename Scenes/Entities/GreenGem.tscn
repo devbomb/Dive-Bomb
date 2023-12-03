@@ -1,20 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5l4dithnhgqx"]
+[gd_scene load_steps=3 format=3 uid="uid://b5l4dithnhgqx"]
 
 [ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem.tscn" id="1_ox6av"]
-[ext_resource type="PackedScene" uid="uid://bisy7ffvbcyyj" path="res://BlenderModels/GreenGem.blend" id="2_sivux"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_moav5"]
-albedo_color = Color(0, 1, 0, 1)
-metallic = 0.75
-roughness = 0.5
-rim_enabled = true
+[ext_resource type="PackedScene" uid="uid://be5v4cuys7g1s" path="res://Scenes/Models/GreenGemModel.tscn" id="2_2m821"]
 
 [node name="GreenGem" instance=ExtResource("1_ox6av")]
 Value = 2
 
-[node name="GreenGem" parent="ModelPoint" index="0" instance=ExtResource("2_sivux")]
-
-[node name="Circle" parent="ModelPoint/GreenGem" index="0"]
-material_override = SubResource("StandardMaterial3D_moav5")
-
-[editable path="ModelPoint/GreenGem"]
+[node name="GreenGemModel" parent="ModelPoint" index="0" instance=ExtResource("2_2m821")]

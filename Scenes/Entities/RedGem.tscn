@@ -1,20 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bby552c364kaj"]
+[gd_scene load_steps=3 format=3 uid="uid://bby552c364kaj"]
 
 [ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem.tscn" id="1_und47"]
-[ext_resource type="PackedScene" uid="uid://caj1kvvqt3xrv" path="res://BlenderModels/RedGem.blend" id="2_al3fs"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npvow"]
-albedo_color = Color(1, 0, 0, 1)
-metallic = 0.75
-roughness = 0.5
-rim_enabled = true
+[ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Scenes/Models/RedGemModel.tscn" id="2_7kupr"]
 
 [node name="RedGem" instance=ExtResource("1_und47")]
 Value = 1
 
-[node name="RedGem" parent="ModelPoint" index="0" instance=ExtResource("2_al3fs")]
-
-[node name="Circle" parent="ModelPoint/RedGem" index="0"]
-material_override = SubResource("StandardMaterial3D_npvow")
-
-[editable path="ModelPoint/RedGem"]
+[node name="RedGemModel" parent="ModelPoint" index="0" instance=ExtResource("2_7kupr")]
