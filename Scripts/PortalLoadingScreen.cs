@@ -36,13 +36,15 @@ namespace FastDragon
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
         private bool _isReturningHome => _prevousMapFile != null;
-        private bool _animationDone;
-        private bool _startedCorrectionAnimation;
         private Node3D _loadedScene;
         private int _talliedGems;
 
+        private StateMachine _stateMachine = new StateMachine(typeof(LoadingScreenState));
+
         public override void _Ready()
         {
+            AddChild(_stateMachine);
+
             // Allow the player to be seen on top of the black fade curtain
             var visuals = this.EnumerateDescendantsOfType<VisualInstance3D>();
             foreach (var v in visuals)
@@ -71,8 +73,6 @@ namespace FastDragon
             AddChild(_oldSun);
 
             _loadedScene = null;
-            _animationDone = false;
-            _startedCorrectionAnimation = false;
 
             // Start loading the level in the background
             LoadInBackground(_levelSceneFile);
@@ -83,80 +83,19 @@ namespace FastDragon
 
             _camera.ChangeState<OrbitCameraLockedState>();
 
-            // Start the loading screen animation
+            // Put everything in the starting position
             _playerModel.GlobalRotation = playerStartRotRad;
             _camera.OrbitDistance = cameraStartDist;
             _camera.OrbitYawRad = cameraStartYawRad;
             _camera.OrbitPitchRad = cameraStartPitchRad;
 
-            var tween = CreateTween();
-            tween.TweenRotRadSinusoidal(_playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
-            tween.Parallel().TweenProperty(_camera, "OrbitDistance", CameraDist, RestMoveDuration);
-            tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitYawRad", _cameraYawRad, RestMoveDuration);
-            tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitPitchRad", _cameraPitchRad, RestMoveDuration);
-            tween.TweenInterval(MinLoadingWaitTime);
-            tween.TweenCallback(Callable.From(() => _animationDone = true));
+            // Start the animation
+            _stateMachine.ChangeState<MovingToRest>();
 
             // TODO: Start the gem tallying animation
             _talliedGems = CalculateTalliedGems();
             GD.Print($"{_talliedGems} => {SaveFile.Current.TotalGemCount}");
             SaveFile.Current.UntalliedGems.Clear();
-        }
-
-        public override void _Process(double delta)
-        {
-            if (_loadedScene != null && _animationDone && !_startedCorrectionAnimation)
-                StartCorrectionAnimation();
-        }
-
-        private void StartCorrectionAnimation()
-        {
-            _startedCorrectionAnimation = true;
-
-            float duration = CorrectionAnimationDuration;
-            var tween = CreateTween();
-
-            TweenSun(tween.Parallel());
-
-            if (_isReturningHome)
-            {
-                TweenPlayerToPortal(tween.Parallel());
-            }
-
-            tween.TweenCallback(Callable.From(GoToTargetMap));
-
-            void TweenSun(Tween tween)
-            {
-                var newSun = _loadedScene.FindNode<DirectionalLight3D>();
-
-                tween.TweenRotRadSinusoidal(_oldSun, "rotation", newSun.Rotation, duration);
-
-                var lightProperties = newSun.GetPropertyList()
-                    .Select(x => (string)x["name"])
-                    .Where(n => n.StartsWith("light_"))
-                    .Where(n => n != "light_cull_mask");
-
-                foreach (var propertyName in lightProperties)
-                {
-                    tween.Parallel().TweenProperty(
-                        _oldSun,
-                        (string)propertyName,
-                        newSun.Get(propertyName),
-                        duration
-                    );
-                }
-            }
-
-            void TweenPlayerToPortal(Tween tween)
-            {
-                var portal = GetTargetPortal(_loadedScene);
-                Vector3 portalRotRad = GetGlobalTransformOutsideOfTree(portal).Basis.GetEuler();
-
-                tween.TweenRotRadSinusoidal(_playerModel, "global_rotation", portalRotRad, duration);
-                tween.Parallel().TweenProperty(_camera, "OrbitDistance", CameraDist, duration);
-                tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitYawRad", portalRotRad.Y + Mathf.DegToRad(180), duration);
-                tween.Parallel().TweenAngleRadSinusoidal(_camera, "OrbitPitchRad", _cameraPitchRad, duration);
-            }
         }
 
         private void GoToTargetMap()
@@ -205,17 +144,6 @@ namespace FastDragon
 
         }
 
-        private Transform3D GetGlobalTransformOutsideOfTree(Node3D node)
-        {
-            var parent = GetParentOrNull<Node3D>();
-            if (parent == null)
-            {
-                return node.Transform;
-            }
-
-            return node.Transform * GetGlobalTransformOutsideOfTree(parent);
-        }
-
         private int CalculateTalliedGems()
         {
             int totalUntallied = 0;
@@ -229,6 +157,112 @@ namespace FastDragon
             }
 
             return SaveFile.Current.TotalGemCount - totalUntallied;
+        }
+
+        private abstract partial class LoadingScreenState : State
+        {
+            protected PortalLoadingScreen _screen => _stateMachine.GetParent<PortalLoadingScreen>();
+        }
+
+        private partial class MovingToRest : LoadingScreenState
+        {
+            public override void OnStateEntered()
+            {
+                GD.Print("Started move-to-rest animation");
+
+                var tween = _screen.CreateTween();
+                tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
+                tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, RestMoveDuration);
+                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, RestMoveDuration);
+                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, RestMoveDuration);
+                tween.TweenCallback(Callable.From(() => ChangeState<WaitingForLoad>()));
+            }
+        }
+
+        private partial class WaitingForLoad : LoadingScreenState
+        {
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                GD.Print("Started waiting for loading to finish");
+                _timer = MinLoadingWaitTime;
+            }
+
+            public override void _Process(double delta)
+            {
+                _timer -= delta;
+
+                if (_timer <= 0 && _screen._loadedScene != null)
+                    ChangeState<CorrectingAngle>();
+            }
+        }
+
+        private partial class CorrectingAngle : LoadingScreenState
+        {
+            public override void OnStateEntered()
+            {
+                GD.Print("Started correction animation");
+
+                var tween = _screen.CreateTween();
+
+                TweenSun(tween.Parallel());
+
+                if (_screen._isReturningHome)
+                {
+                    TweenPlayerToPortal(tween.Parallel());
+                }
+
+                tween.TweenCallback(Callable.From(_screen.GoToTargetMap));
+            }
+
+            private void TweenSun(Tween tween)
+            {
+                float duration = CorrectionAnimationDuration;
+                var newSun = _screen._loadedScene.FindNode<DirectionalLight3D>();
+
+                tween.TweenRotRadSinusoidal(_screen._oldSun, "rotation", newSun.Rotation, duration);
+
+                var lightProperties = newSun.GetPropertyList()
+                    .Select(x => (string)x["name"])
+                    .Where(n => n.StartsWith("light_"))
+                    .Where(n => n != "light_cull_mask");
+
+                foreach (var propertyName in lightProperties)
+                {
+                    tween.Parallel().TweenProperty(
+                        _screen._oldSun,
+                        (string)propertyName,
+                        newSun.Get(propertyName),
+                        duration
+                    );
+                }
+            }
+
+            void TweenPlayerToPortal(Tween tween)
+            {
+                float duration = CorrectionAnimationDuration;
+
+                var portal = _screen.GetTargetPortal(_screen._loadedScene);
+                Vector3 portalRotRad = GetGlobalTransformOutsideOfTree(portal).Basis.GetEuler();
+
+                tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", portalRotRad, duration);
+                tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, duration);
+                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", portalRotRad.Y + Mathf.DegToRad(180), duration);
+                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, duration);
+            }
+
+            private Transform3D GetGlobalTransformOutsideOfTree(Node3D node)
+            {
+                var parent = GetParentOrNull<Node3D>();
+                if (parent == null)
+                {
+                    return node.Transform;
+                }
+
+                return node.Transform * GetGlobalTransformOutsideOfTree(parent);
+            }
+
         }
     }
 }
