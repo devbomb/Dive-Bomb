@@ -239,7 +239,7 @@ namespace FastDragon
                 Vector3 end = _gem.GetPlayer().GlobalPosition + (Vector3.Up * 0.25f);
                 Vector3 control = GetTree().Root.GetCamera3D().GlobalPosition + (Vector3.Up * 3);
 
-                _gem.GlobalPosition = BezierCurve(start, end, control, t);
+                _gem.GlobalPosition = start.LerpBezier(end, control, t);
 
                 Vector3 forward = (_gem.GlobalPosition - control).Normalized();
                 Vector3 targetRot = forward.ForwardToEulerAnglesRad();
@@ -255,18 +255,6 @@ namespace FastDragon
                 {
                     _gem.Collect();
                 }
-            }
-
-            private Vector3 BezierCurve(
-                Vector3 start,
-                Vector3 end,
-                Vector3 control,
-                float t
-            )
-            {
-                var a = start.Lerp(control, t);
-                var b = start.Lerp(end, t);
-                return a.Lerp(b, t);
             }
         }
 
