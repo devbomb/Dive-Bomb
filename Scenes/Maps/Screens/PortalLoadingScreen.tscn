@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bckjgvq8udjn3"]
+[gd_scene load_steps=7 format=3 uid="uid://bckjgvq8udjn3"]
 
 [ext_resource type="Script" path="res://Scripts/PortalLoadingScreen.cs" id="1_mgqop"]
 [ext_resource type="AnimationLibrary" uid="uid://dp75nlaah5k6o" path="res://AnimationLibraries/PlayerAnimations.tres" id="2_8xff1"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="3_l4ous"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_ef0t7"]
+[ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://Scenes/UIWidgets/FPSCounter.tscn" id="6_by5mh"]
 
 [node name="PortalLoadingScreen" type="Node3D"]
 script = ExtResource("1_mgqop")
@@ -33,6 +34,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="FPSCounter" parent="HUD" instance=ExtResource("6_by5mh")]
+layout_mode = 0
 
 [node name="UntalliedGemsLabel" type="Label" parent="HUD"]
 unique_name_in_owner = true
