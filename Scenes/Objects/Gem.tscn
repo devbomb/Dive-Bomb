@@ -142,10 +142,10 @@ script = ExtResource("1_ajgr5")
 
 [node name="SpinAnimator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-autoplay = "Rotate"
 libraries = {
 "": SubResource("AnimationLibrary_kddi0")
 }
+autoplay = "Rotate"
 
 [node name="SparkleAnimator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

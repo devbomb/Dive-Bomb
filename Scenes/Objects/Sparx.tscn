@@ -13,9 +13,9 @@ gradient = SubResource("Gradient_47hq2")
 emission_shape = 2
 emission_sphere_radius = 0.05
 spread = 180.0
-gravity = Vector3(0, -0.25, 0)
 initial_velocity_min = 0.25
 initial_velocity_max = 0.25
+gravity = Vector3(0, -0.25, 0)
 color_ramp = SubResource("GradientTexture1D_6qrqy")
 
 [sub_resource type="Gradient" id="Gradient_507en"]

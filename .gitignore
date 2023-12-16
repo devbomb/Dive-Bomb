@@ -1,6 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
 
+# Godot creates a temp copy of this plugin dll whenever the editor is open, for
+# some reason.
+addons/tbloader/bin/~tbloader.windows.x86_64.dll
+
 # Project-specific ignores
 TrenchbroomMaps/autosave/
 Build/
