@@ -32,6 +32,7 @@ namespace FastDragon
         private const float RestMoveDuration = 2;
         private const float CountingGemsDuration = 1;
         private const float CorrectionAnimationDuration = 1;
+        private const float SkipDuration = 0.25f;
         private const float MinLoadingWaitTime = 1;
 
         private const float GemPathBezierControlSpread = 20;
@@ -188,26 +189,65 @@ namespace FastDragon
 
         private abstract partial class LoadingScreenState : State
         {
+            public virtual bool Skippable => false;
             protected PortalLoadingScreen _screen => _stateMachine.GetParent<PortalLoadingScreen>();
+
+            public override void _Input(InputEvent ev)
+            {
+                bool skipPressed =
+                    InputService.PauseJustPressed(ev) ||
+                    InputService.JumpJustPressed(ev);
+
+                if (skipPressed && Skippable)
+                {
+                    ChangeState<Skipping>();
+                }
+            }
+        }
+
+        private partial class Skipping : LoadingScreenState
+        {
+            public override void OnStateEntered()
+            {
+                GD.Print("Skipping animations");
+
+                var tween = _screen.CreateTween();
+                tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", Vector3.Zero, SkipDuration);
+                tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, SkipDuration);
+                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, SkipDuration);
+                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, SkipDuration);
+                tween.TweenCallback(Callable.From(() => ChangeState<LettingPlayerReadLabels>()));
+            }
         }
 
         private partial class MovingToRest : LoadingScreenState
         {
+            public override bool Skippable => true;
+
+            private Tween _tween;
+
             public override void OnStateEntered()
             {
                 GD.Print("Started move-to-rest animation");
 
-                var tween = _screen.CreateTween();
-                tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
-                tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, RestMoveDuration);
-                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, RestMoveDuration);
-                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, RestMoveDuration);
-                tween.TweenCallback(Callable.From(() => ChangeState<SlidingInLabels>()));
+                _tween = _screen.CreateTween();
+                _tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
+                _tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, RestMoveDuration);
+                _tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, RestMoveDuration);
+                _tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, RestMoveDuration);
+                _tween.TweenCallback(Callable.From(() => ChangeState<SlidingInLabels>()));
+            }
+
+            public override void OnStateExited()
+            {
+                _tween.Stop();
             }
         }
 
         private partial class SlidingInLabels : LoadingScreenState
         {
+            public override bool Skippable => true;
+
             public override void OnStateEntered()
             {
                 _screen._untalliedGemsLabel.Visible = true;
@@ -242,6 +282,8 @@ namespace FastDragon
 
         private partial class CountingGems : LoadingScreenState
         {
+            public override bool Skippable => true;
+
             private Node3D _gemSpawn => _screen.GetNode<Node3D>("%GemSpawn");
             private Node3D _gemDest => _screen.GetNode<Node3D>("%GemDest");
 
@@ -384,6 +426,14 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = MinLoadingWaitTime;
+                _screen._labelSlider.Play("RESET");
+                _screen._labelSlider.Advance(0);
+                _screen._untalliedGemsLabel.Visible = true;
+                _screen._talliedGemsLabel.Visible = true;
+
+                _screen._untalliedGems.Clear();
+                _screen._talliedGems = SaveFile.Current.TotalGemCount;
+                _screen.UpdateLabelText();
             }
 
             public override void _Process(double delta)
@@ -400,7 +450,6 @@ namespace FastDragon
 
         private partial class WaitingForLoad : LoadingScreenState
         {
-
             public override void _Process(double delta)
             {
                 if (!_screen._labelSlider.IsPlaying() && _screen._loadedScene != null)
