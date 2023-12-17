@@ -249,12 +249,31 @@ namespace FastDragon
 
             private double _interval;
             private double _timer;
+            private Node3D _gemHolder;
 
             public override void OnStateEntered()
             {
                 GD.Print("Started counting gems");
                 _timer = 0;
                 _interval = CountingGemsDuration / _screen.TotalIndividualUntalliedGems();
+
+                _gemHolder = new Node3D();
+                _gemSpawn.GetParent().AddChild(_gemHolder);
+            }
+
+            public override void OnStateExited()
+            {
+                _gemHolder.QueueFree();
+                _gemHolder = null;
+            }
+
+            private void OnGemCounted(int value)
+            {
+                _screen._talliedGems += value;
+                _screen.UpdateLabelText();
+
+                if (_screen._talliedGems >= SaveFile.Current.TotalGemCount)
+                    ChangeState<LettingPlayerReadLabels>();
             }
 
             public override void _Process(double delta)
@@ -275,35 +294,18 @@ namespace FastDragon
                 _screen._untalliedGems[value]--;
                 _screen.UpdateLabelText();
 
-                var gem = PrefabForGemColor(value).Instantiate<Node3D>();
-                _gemSpawn.GetParent().AddChild(gem);
-
-                gem.Position = _gemSpawn.Position;
-                gem.Scale = Vector3.Zero;
-
-                var tween = CreateTween();
-
-                tween.TweenVector3Bezier(
-                    gem,
-                    "position",
+                var gem = new CountableGem(
+                    value,
+                    _gemSpawn.Position,
                     _gemDest.Position,
-                    RandomBezierControlPoint(GemPathBezierControlSpread),
-                    CountingGemsDuration
+                    RandomBezierControlPoint(GemPathBezierControlSpread)
                 );
-                tween.Parallel().TweenProperty(gem, "scale", Vector3.One, GemSpawnGrowTime);
+                _gemHolder.AddChild(gem);
 
-                tween.TweenCallback(Callable.From(() => CountGem(gem, value)));
-            }
+                var model = ModelPrefabForGemColor(value).Instantiate<Node3D>();
+                gem.AddChild(model);
 
-            private void CountGem(Node3D gem, GemColor value)
-            {
-                _screen._talliedGems += (int)value;
-                _screen.UpdateLabelText();
-
-                gem.QueueFree();
-
-                if (_screen._talliedGems >= SaveFile.Current.TotalGemCount)
-                    ChangeState<LettingPlayerReadLabels>();
+                gem.Counted += OnGemCounted;
             }
 
             private Vector3 RandomBezierControlPoint(float spread)
@@ -314,7 +316,7 @@ namespace FastDragon
                 return center + (Vector3.Right * offset);
             }
 
-            private PackedScene PrefabForGemColor(GemColor color)
+            private PackedScene ModelPrefabForGemColor(GemColor color)
             {
                 return color switch
                 {
@@ -325,6 +327,53 @@ namespace FastDragon
                     GemColor.Magenta => _screen.MagentaGemPrefab,
                     _ => throw new Exception("Invalid gem color chosen")
                 };
+            }
+
+            private partial class CountableGem : Node3D
+            {
+                [Signal] public delegate void CountedEventHandler(int value);
+
+                private readonly GemColor _value;
+                private readonly Vector3 _start;
+                private readonly Vector3 _end;
+                private readonly Vector3 _control;
+
+                private float _timer = 0;
+
+                public CountableGem(
+                    GemColor value,
+                    Vector3 start,
+                    Vector3 end,
+                    Vector3 control
+                )
+                {
+                    _value = value;
+                    _start = start;
+                    _end = end;
+                    _control = control;
+
+                    Position = _start;
+                    Scale = Vector3.Zero;
+                }
+
+                public override void _Process(double deltaD)
+                {
+                    float delta = (float)deltaD;
+
+                    _timer += delta;
+
+                    float positionT = Mathf.Min(1, _timer / CountingGemsDuration);
+                    float scaleT = Mathf.Min(1, _timer / GemSpawnGrowTime);
+
+                    Position = _start.LerpBezier(_end, _control, positionT);
+                    Scale = Vector3.Zero.Lerp(Vector3.One, scaleT);
+
+                    if (_timer >= CountingGemsDuration)
+                    {
+                        EmitSignal(SignalName.Counted, (int)_value);
+                        QueueFree();
+                    }
+                }
             }
         }
 
