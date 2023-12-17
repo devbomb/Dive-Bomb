@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://3t5uuk0vlnxe"]
+
+[sub_resource type="GDScript" id="GDScript_dojn7"]
+script/source = "extends Label
+
+func _process(delta):
+    text = \"FPS: \" + str(1 / delta)
+"
+
+[node name="FPSCounter" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = SubResource("GDScript_dojn7")

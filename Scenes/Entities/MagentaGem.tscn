@@ -1,20 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://djpeind8lnpd3"]
+[gd_scene load_steps=3 format=3 uid="uid://djpeind8lnpd3"]
 
 [ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem.tscn" id="1_pypxa"]
-[ext_resource type="PackedScene" uid="uid://c7u1ewvsbant7" path="res://BlenderModels/MagentaGem.blend" id="2_v1gaq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8ofc"]
-albedo_color = Color(1, 0, 0.968627, 1)
-metallic = 0.75
-roughness = 0.5
-rim_enabled = true
+[ext_resource type="PackedScene" uid="uid://bmpnfs8rauqo" path="res://Scenes/Models/MagentaGemModel.tscn" id="2_usciu"]
 
 [node name="MagentaGem" instance=ExtResource("1_pypxa")]
 Value = 25
 
-[node name="MagentaGem" parent="ModelPoint" index="0" instance=ExtResource("2_v1gaq")]
-
-[node name="Circle" parent="ModelPoint/MagentaGem" index="0"]
-material_override = SubResource("StandardMaterial3D_i8ofc")
-
-[editable path="ModelPoint/MagentaGem"]
+[node name="MagentaGemModel" parent="ModelPoint" index="0" instance=ExtResource("2_usciu")]

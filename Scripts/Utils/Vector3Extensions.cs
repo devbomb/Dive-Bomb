@@ -53,6 +53,18 @@ namespace FastDragon
             );
         }
 
+        public static Vector3 LerpBezier(
+            this Vector3 from,
+            Vector3 to,
+            Vector3 control,
+            float t
+        )
+        {
+            var a = from.Lerp(control, t);
+            var b = from.Lerp(to, t);
+            return a.Lerp(b, t);
+        }
+
         public static Vector3 RotateTowardEulerRad(
             this Vector3 fromRad,
             Vector3 toRad,
