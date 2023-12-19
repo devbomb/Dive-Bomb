@@ -28,7 +28,8 @@ namespace FastDragon
                 (Vector3.Right * leftStick2D.X) +
                 (Vector3.Forward * leftStick2D.Y);
 
-            return unrotated.Rotated(Vector3.Up, cameraRot.Y);
+            return unrotated.Rotated(Vector3.Up, cameraRot.Y)
+                            .LimitLength(1);
         }
 
         /// <summary>
