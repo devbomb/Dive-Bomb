@@ -27,13 +27,18 @@ namespace FastDragon
             public const float Gravity = 12 * SpyroUnitsPerFrameSquared;
         }
 
+        public static class Stand
+        {
+            public const float RotSpeedDeg = 180 * SpyroAnglesPerFrame;
+        }
+
         public static class Walk
         {
+            public const float MinSpeed = 15 * SpyroUnitsPerFrame;
             public const float Speed = 143 * SpyroUnitsPerFrame;
             public const float Accel = 20 * SpyroUnitsPerFrameSquared;
             public const float Decel = 12 * SpyroUnitsPerFrameSquared;
             public const float RotSpeedDeg = 80 * SpyroAnglesPerFrame;
-            public const float FastPivotRotSpeedDeg = 180 * SpyroAnglesPerFrame;
         }
 
         public static class SlowPivot

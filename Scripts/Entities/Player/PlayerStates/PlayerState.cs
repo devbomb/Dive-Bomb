@@ -75,6 +75,16 @@ namespace FastDragon
             }
         }
 
+        protected void RotateInstantlyTowardVelocity()
+        {
+            Vector3 rot = _player.GlobalRotation;
+            rot.Y = _player.Velocity
+                .Flattened()
+                .ForwardToEulerAnglesRad()
+                .Y;
+            _player.GlobalRotation = rot;
+        }
+
         protected void AccelerateWithLeftStick(
             float maxSpeed,
             float accel,

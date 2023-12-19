@@ -9,6 +9,9 @@ namespace FastDragon
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
             _player.Animator.Play("Idle");
+
+            if (_player.Velocity.Length() < Player.Walk.MinSpeed)
+                _player.FSpeed = Player.Walk.MinSpeed;
         }
 
         public override void OnStateExited()
@@ -35,8 +38,8 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
+            RotateInstantlyTowardVelocity();
             _player.MoveAndSlide();
 
             if (InputService.ChargeHeld)
@@ -51,9 +54,9 @@ namespace FastDragon
                 return;
             }
 
-            if (_player.Velocity.IsZeroApprox() && LeftStick3D().IsZeroApprox())
+            if (_player.Velocity.Length() < Player.Walk.MinSpeed)
             {
-                _player.ChangeState<PlayerIdleStandState>();
+                _player.ChangeState<PlayerStandState>();
                 return;
             }
         }

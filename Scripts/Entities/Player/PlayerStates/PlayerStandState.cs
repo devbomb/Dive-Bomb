@@ -3,7 +3,7 @@ using System;
 
 namespace FastDragon
 {
-    public partial class PlayerIdleStandState : PlayerState
+    public partial class PlayerStandState : PlayerState
     {
         public override void OnStateEntered()
         {
@@ -37,7 +37,7 @@ namespace FastDragon
 
             // Don't move, but do allow the player to spin in place
             _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
-            RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.FastPivotRotSpeedDeg), delta);
+            RotateTowardLeftStick(Mathf.DegToRad(Player.Stand.RotSpeedDeg), delta);
             _player.MoveAndSlide();
 
             if (InputService.ChargeHeld)
