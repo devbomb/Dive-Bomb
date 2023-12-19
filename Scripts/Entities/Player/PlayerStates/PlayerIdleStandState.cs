@@ -3,7 +3,7 @@ using System;
 
 namespace FastDragon
 {
-    public partial class PlayerWalkState : PlayerState
+    public partial class PlayerIdleStandState : PlayerState
     {
         public override void OnStateEntered()
         {
@@ -35,8 +35,9 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.RotSpeedDeg), delta);
-            StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
+            // Don't move, but do allow the player to spin in place
+            _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
+            RotateTowardLeftStick(Mathf.DegToRad(Player.Walk.FastPivotRotSpeedDeg), delta);
             _player.MoveAndSlide();
 
             if (InputService.ChargeHeld)
@@ -51,9 +52,13 @@ namespace FastDragon
                 return;
             }
 
-            if (_player.Velocity.IsZeroApprox() && LeftStick3D().IsZeroApprox())
+            // If the player is facing the direction they're trying to walk
+            // and is still pushing the left stick, then start walking.
+            bool isPushingStick = !LeftStick3D().IsZeroApprox();
+            float angleToStickRad = _player.GlobalForward().Flattened().AngleTo(LeftStick3D());
+            if (isPushingStick && Mathf.IsZeroApprox(angleToStickRad))
             {
-                _player.ChangeState<PlayerIdleStandState>();
+                _player.ChangeState<PlayerWalkState>();
                 return;
             }
         }
