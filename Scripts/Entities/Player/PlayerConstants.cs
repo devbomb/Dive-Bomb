@@ -33,6 +33,7 @@ namespace FastDragon
             public const float Accel = 20 * SpyroUnitsPerFrameSquared;
             public const float Decel = 12 * SpyroUnitsPerFrameSquared;
             public const float RotSpeedDeg = 80 * SpyroAnglesPerFrame;
+            public const float FastPivotRotSpeedDeg = 180 * SpyroAnglesPerFrame;
         }
 
         public static class SlowPivot

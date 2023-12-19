@@ -63,7 +63,7 @@ namespace FastDragon
 
             if (!InputService.ChargeHeld)
             {
-                _player.ChangeState<PlayerWalkState>();
+                _player.ChangeState<PlayerWalkAfterChargingState>();
                 return;
             }
 
