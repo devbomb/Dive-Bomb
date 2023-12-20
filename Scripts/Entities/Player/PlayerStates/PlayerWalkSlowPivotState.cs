@@ -13,6 +13,7 @@ namespace FastDragon
             _targetYawRad = LeftStick3D().ForwardToEulerAnglesRad().Y;
             _decel = _player.FSpeed / Player.SlowPivot.MaxSkidDuration;
             _decel = Mathf.Max(_decel, Player.SlowPivot.MinDecel);
+            _player.Animator.Play("Skid", 0.25);
         }
 
         public override void _Input(InputEvent ev)
