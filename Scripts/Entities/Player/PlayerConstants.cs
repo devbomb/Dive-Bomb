@@ -29,7 +29,9 @@ namespace FastDragon
 
         public static class Stand
         {
-            public const float RotSpeedDeg = 180 * SpyroAnglesPerFrame;
+            // The real game uses a value of 180, but I'd like to make _this_
+            // game feel a little bit more responsive than that.
+            public const float RotSpeedDeg = 270 * SpyroAnglesPerFrame;
         }
 
         public static class Walk
