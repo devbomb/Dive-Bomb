@@ -36,6 +36,7 @@ script = ExtResource("1_a4opu")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
+deterministic = true
 root_node = NodePath("../Model")
 libraries = {
 "": ExtResource("2_om7jv")
