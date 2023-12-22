@@ -3,18 +3,12 @@ using System;
 
 namespace FastDragon
 {
-    public partial class PlayerWalkState : PlayerState
+    public partial class PlayerStandState : PlayerState
     {
-        private const string WalkAnim = "Idle";
-        private const string SkidAnim = "Skid";
-
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
-            _player.Animator.Play(WalkAnim);
-
-            if (_player.Velocity.Length() < Player.Walk.MinSpeed)
-                _player.FSpeed = Player.Walk.MinSpeed;
+            _player.Animator.Play("Idle");
         }
 
         public override void OnStateExited()
@@ -41,11 +35,10 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
-            RotateInstantlyTowardVelocity();
+            // Don't move, but do allow the player to spin in place
+            _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
+            RotateTowardLeftStick(Mathf.DegToRad(Player.Stand.RotSpeedDeg), delta);
             _player.MoveAndSlide();
-
-            PlaySkidAnimIfTurningHard();
 
             if (InputService.ChargeHeld)
             {
@@ -59,26 +52,14 @@ namespace FastDragon
                 return;
             }
 
-            if (_player.Velocity.Length() < Player.Walk.MinSpeed)
+            // If the player is facing the direction they're trying to walk
+            // and is still pushing the left stick, then start walking.
+            bool isPushingStick = !LeftStick3D().IsZeroApprox();
+            float angleToStickRad = _player.GlobalForward().Flattened().AngleTo(LeftStick3D());
+            if (isPushingStick && Mathf.IsZeroApprox(angleToStickRad))
             {
-                _player.ChangeState<PlayerStandState>();
+                _player.ChangeState<PlayerWalkState>();
                 return;
-            }
-        }
-
-        private void PlaySkidAnimIfTurningHard()
-        {
-            float leftStickForwardComponent = LeftStick3D().ComponentAlong(_player.GlobalForward());
-            bool playingSkid = _player.Animator.AssignedAnimation == SkidAnim;
-
-            if (leftStickForwardComponent < 0 && !playingSkid)
-            {
-                _player.Animator.Play("Skid");
-            }
-
-            if (leftStickForwardComponent >= 0 && playingSkid)
-            {
-                _player.Animator.Play("Idle");
             }
         }
     }

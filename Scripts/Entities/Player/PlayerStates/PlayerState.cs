@@ -28,7 +28,8 @@ namespace FastDragon
                 (Vector3.Right * leftStick2D.X) +
                 (Vector3.Forward * leftStick2D.Y);
 
-            return unrotated.Rotated(Vector3.Up, cameraRot.Y);
+            return unrotated.Rotated(Vector3.Up, cameraRot.Y)
+                            .LimitLength(1);
         }
 
         /// <summary>
@@ -73,6 +74,16 @@ namespace FastDragon
                 rot.Y = AngleMath.MoveToward(rot.Y, targetYawRad, rotSpeedRad * delta);
                 _player.GlobalRotation = rot;
             }
+        }
+
+        protected void RotateInstantlyTowardVelocity()
+        {
+            Vector3 rot = _player.GlobalRotation;
+            rot.Y = _player.Velocity
+                .Flattened()
+                .ForwardToEulerAnglesRad()
+                .Y;
+            _player.GlobalRotation = rot;
         }
 
         protected void AccelerateWithLeftStick(

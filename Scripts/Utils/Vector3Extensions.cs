@@ -97,6 +97,11 @@ namespace FastDragon
             return v.Cross(other) == Vector3.Zero;
         }
 
+        public static float ComponentAlong(this Vector3 v, Vector3 other)
+        {
+            return v.Dot(other) / other.Length();
+        }
+
         public static Vector3 ProjectOnPlane(this Vector3 v, Vector3 planeNormal)
         {
             return new Plane(planeNormal).Project(v);
