@@ -5,10 +5,13 @@ namespace FastDragon
 {
     public partial class PlayerWalkState : PlayerState
     {
+        private const string WalkAnim = "Idle";
+        private const string SkidAnim = "Skid";
+
         public override void OnStateEntered()
         {
             _player.Camera.ChangeState<OrbitCameraFreeState>();
-            _player.Animator.Play("Idle");
+            _player.Animator.Play(WalkAnim);
 
             if (_player.Velocity.Length() < Player.Walk.MinSpeed)
                 _player.FSpeed = Player.Walk.MinSpeed;
@@ -42,6 +45,8 @@ namespace FastDragon
             RotateInstantlyTowardVelocity();
             _player.MoveAndSlide();
 
+            PlaySkidAnimIfTurningHard();
+
             if (InputService.ChargeHeld)
             {
                 _player.ChangeState<PlayerChargeState>();
@@ -58,6 +63,22 @@ namespace FastDragon
             {
                 _player.ChangeState<PlayerStandState>();
                 return;
+            }
+        }
+
+        private void PlaySkidAnimIfTurningHard()
+        {
+            float leftStickForwardComponent = LeftStick3D().ComponentAlong(_player.GlobalForward());
+            bool playingSkid = _player.Animator.AssignedAnimation == SkidAnim;
+
+            if (leftStickForwardComponent < 0 && !playingSkid)
+            {
+                _player.Animator.Play("Skid");
+            }
+
+            if (leftStickForwardComponent >= 0 && playingSkid)
+            {
+                _player.Animator.Play("Idle");
             }
         }
     }
