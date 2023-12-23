@@ -1,7 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://dolfkovx44knj"]
+[gd_scene load_steps=13 format=3 uid="uid://dolfkovx44knj"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Sparx.cs" id="1_4djkx"]
 [ext_resource type="PackedScene" uid="uid://c1xaxy0rvh1ou" path="res://BlenderModels/Sparx.blend" id="2_vqihh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4w2r1"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfin3"]
+albedo_color = Color(0.258824, 0.478431, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omfw8"]
+albedo_color = Color(0, 0.607843, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_47hq2"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -46,6 +55,9 @@ orientation = 2
 
 [node name="Sparx" type="Node3D"]
 script = ExtResource("1_4djkx")
+GoldMaterial = SubResource("StandardMaterial3D_4w2r1")
+BlueMaterial = SubResource("StandardMaterial3D_qfin3")
+GreenMaterial = SubResource("StandardMaterial3D_omfw8")
 
 [node name="Model" type="Node3D" parent="."]
 unique_name_in_owner = true

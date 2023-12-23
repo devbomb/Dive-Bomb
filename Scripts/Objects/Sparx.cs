@@ -14,6 +14,11 @@ namespace FastDragon
 
         [Export] public Area3D CollectionArea;
 
+        [ExportGroup("Materials")]
+        [Export] public Material GoldMaterial;
+        [Export] public Material BlueMaterial;
+        [Export] public Material GreenMaterial;
+
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
         private StateMachine _stateMachine = new StateMachine(typeof(SparxState));
@@ -35,11 +40,19 @@ namespace FastDragon
             else
                 _stateMachine.ChangeState<Gone>();
 
+            UpdateSparxColor();
+
             Position = Vector3.Zero;
             _interpolator.ResetPhysicsInterpolation();
 
             _gemQueue.Clear();
         }
+
+        public override void _PhysicsProcess(double deltaD)
+        {
+            UpdateSparxColor();
+        }
+
 
         private bool DisappearIfLastHealth()
         {
@@ -75,6 +88,30 @@ namespace FastDragon
 
                 _gemQueue.Enqueue(gem);
                 gem.Sparkle();
+            }
+        }
+
+        private void UpdateSparxColor()
+        {
+            foreach (var meshInstance in this.EnumerateDescendantsOfType<MeshInstance3D>())
+            {
+                meshInstance.MaterialOverride = MaterialForSparxColor();
+            }
+        }
+
+        private Material MaterialForSparxColor()
+        {
+            switch (SaveFile.Current.PlayerHealth)
+            {
+                case SparxColor.Gold: return GoldMaterial;
+                case SparxColor.Blue: return BlueMaterial;
+                case SparxColor.Green: return GreenMaterial;
+
+                // Doesn't matter what material we use when Sparx is gone, since
+                // he's invisible anyway.
+                case SparxColor.Gone:
+                case SparxColor.Dead:
+                default: return GreenMaterial;
             }
         }
 
