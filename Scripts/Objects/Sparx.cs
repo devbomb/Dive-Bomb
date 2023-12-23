@@ -98,7 +98,8 @@ namespace FastDragon
         {
             foreach (var meshInstance in this.EnumerateDescendantsOfType<MeshInstance3D>())
             {
-                meshInstance.MaterialOverride = MaterialForSparxColor();
+                if (meshInstance.IsInGroup("ReplaceColor"))
+                    meshInstance.MaterialOverride = MaterialForSparxColor();
             }
 
             var sparxColor = SaveFile.Current.PlayerHealth;

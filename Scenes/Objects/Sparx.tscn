@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dolfkovx44knj"]
+[gd_scene load_steps=27 format=3 uid="uid://dolfkovx44knj"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Sparx.cs" id="1_4djkx"]
 [ext_resource type="PackedScene" uid="uid://c1xaxy0rvh1ou" path="res://BlenderModels/Sparx.blend" id="2_vqihh"]
@@ -11,6 +11,115 @@ albedo_color = Color(0.258824, 0.478431, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omfw8"]
 albedo_color = Color(0, 0.607843, 0, 1)
+
+[sub_resource type="Animation" id="Animation_uhq2j"]
+resource_name = "Flap"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Sparx/LeftWingTop:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.523599), Vector3(0, 0, 0.523599), Vector3(0, 0, -0.523599)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Sparx/LeftWingBottom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.261799), Vector3(0, 0, -0.261799), Vector3(0, 0, 0.261799)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Sparx/RightWingTop:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 2.61799), Vector3(0, -3.14159, 3.66519), Vector3(0, -3.14159, 2.61799)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Sparx/RightWingBottom:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, -2.87979), Vector3(0, -3.14159, -3.40339), Vector3(0, -3.14159, -2.87979)]
+}
+
+[sub_resource type="Animation" id="Animation_k6jt7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Sparx/LeftWingTop:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.523599)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Sparx/LeftWingBottom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.261799)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Sparx/RightWingTop:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 2.61799)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Sparx/RightWingBottom:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, -2.87979)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m0ref"]
+_data = {
+"Flap": SubResource("Animation_uhq2j"),
+"RESET": SubResource("Animation_k6jt7")
+}
 
 [sub_resource type="Gradient" id="Gradient_47hq2"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -67,7 +176,13 @@ colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0.490196, 1, 0, 0, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wmxpp"]
 gradient = SubResource("Gradient_cjxmh")
 
+[sub_resource type="Curve" id="Curve_u6067"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_s6iur"]
+curve = SubResource("Curve_u6067")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_odsbe"]
 emission_shape = 2
@@ -111,11 +226,30 @@ GoldMaterial = SubResource("StandardMaterial3D_4w2r1")
 BlueMaterial = SubResource("StandardMaterial3D_qfin3")
 GreenMaterial = SubResource("StandardMaterial3D_omfw8")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
+libraries = {
+"": SubResource("AnimationLibrary_m0ref")
+}
+autoplay = "Flap"
+speed_scale = 4.0
+
 [node name="Model" type="Node3D" parent="."]
 unique_name_in_owner = true
 
 [node name="Sparx" parent="Model" instance=ExtResource("2_vqihh")]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0.000232697, 0, 2.71797e-05)
+
+[node name="Body" parent="Model/Sparx" index="0" groups=["ReplaceColor"]]
+
+[node name="LeftWingTop" parent="Model/Sparx" index="1"]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 0.455771, -0.627247, 0, -1.41568)
+
+[node name="RightWingBottom" parent="Model/Sparx" index="3"]
+transform = Transform3D(-0.965926, 0.258819, -3.98448e-08, 0.258819, 0.965926, 0, -8.44439e-08, 2.26267e-08, 0.455771, 0.627247, 0, -1.41568)
+
+[node name="RightWingTop" parent="Model/Sparx" index="4"]
+transform = Transform3D(-0.866025, -0.5, -3.98448e-08, -0.5, 0.866025, 0, -7.57103e-08, -4.37114e-08, 0.455771, 0.627247, 0, -1.41568)
 
 [node name="GoldParticles" type="GPUParticles3D" parent="Model"]
 unique_name_in_owner = true
@@ -131,3 +265,5 @@ amount = 50
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_odsbe")
 draw_pass_1 = SubResource("PlaneMesh_mux1j")
+
+[editable path="Model/Sparx"]
