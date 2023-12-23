@@ -19,6 +19,9 @@ namespace FastDragon
         [Export] public Material BlueMaterial;
         [Export] public Material GreenMaterial;
 
+        private Node3D _goldParticles => GetNode<Node3D>("%GoldParticles");
+        private Node3D _blueParticles => GetNode<Node3D>("%BlueParticles");
+
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
         private StateMachine _stateMachine = new StateMachine(typeof(SparxState));
@@ -97,6 +100,10 @@ namespace FastDragon
             {
                 meshInstance.MaterialOverride = MaterialForSparxColor();
             }
+
+            var sparxColor = SaveFile.Current.PlayerHealth;
+            _goldParticles.Visible = sparxColor == SparxColor.Gold;
+            _blueParticles.Visible = sparxColor == SparxColor.Blue;
         }
 
         private Material MaterialForSparxColor()
