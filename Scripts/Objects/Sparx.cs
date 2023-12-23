@@ -30,16 +30,26 @@ namespace FastDragon
 
         private void Reset()
         {
-            _stateMachine.ChangeState<Idle>();
+            if (SaveFile.Current.PlayerHealth > SparxColor.Gone)
+                _stateMachine.ChangeState<Idle>();
+            else
+                _stateMachine.ChangeState<Gone>();
+
             Position = Vector3.Zero;
             _interpolator.ResetPhysicsInterpolation();
 
             _gemQueue.Clear();
         }
 
-        public override void _PhysicsProcess(double deltaD)
+        private bool DisappearIfLastHealth()
         {
-            QueueNearbyGems();
+            if (SaveFile.Current.PlayerHealth <= SparxColor.Gone)
+            {
+                _stateMachine.ChangeState<Gone>();
+                return true;
+            }
+
+            return false;
         }
 
         private void QueueNearbyGems()
@@ -83,6 +93,22 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
+                if (_sparx.DisappearIfLastHealth())
+                    return;
+
+                _sparx.QueueNearbyGems();
+
+                if (_sparx._gemQueue.Count > 0)
+                {
+                    ChangeState<CollectingGem>();
+                    return;
+                }
+
+                IdleMovement(delta);
+            }
+
+            private void IdleMovement(float delta)
+            {
                 _idleTimer -= delta;
                 if (_idleTimer < 0)
                 {
@@ -105,9 +131,6 @@ namespace FastDragon
                     Vector3.Zero,
                     RotSpeedDeg * delta
                 );
-
-                if (_sparx._gemQueue.Count > 0)
-                    ChangeState<CollectingGem>();
             }
 
             private void ShuffleIdlePosition()
@@ -177,6 +200,15 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
+                if (_sparx.DisappearIfLastHealth())
+                    return;
+
+                _sparx.QueueNearbyGems();
+                FlyTowardNextGemInQueue(delta);
+            }
+
+            private void FlyTowardNextGemInQueue(float delta)
+            {
                 Gem gem = PeekAtGemQueue();
                 if (gem == null)
                 {
@@ -227,6 +259,28 @@ namespace FastDragon
                 }
 
                 return null;
+            }
+        }
+
+        private partial class Gone : SparxState
+        {
+            public override void OnStateEntered()
+            {
+                _sparx.Visible = false;
+                _sparx._gemQueue.Clear();
+            }
+
+            public override void OnStateExited()
+            {
+                _sparx.Visible = true;
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                if (SaveFile.Current.PlayerHealth > SparxColor.Gone)
+                {
+                    ChangeState<Idle>();
+                }
             }
         }
 
