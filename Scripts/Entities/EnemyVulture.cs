@@ -140,6 +140,7 @@ namespace FastDragon
                 _targetPlayer = _vulture.FirstPlayerInRange();
                 _fspeed = 0;
                 _vulture.Velocity = Vector3.Zero;
+                _vulture._animator.Play("Fly");
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -183,6 +184,11 @@ namespace FastDragon
 
         private partial class Returning : VultureState
         {
+            public override void OnStateEntered()
+            {
+                _vulture._animator.Play("Fly");
+            }
+
             public override void _PhysicsProcess(double deltaD)
             {
                 float delta = (float)deltaD;

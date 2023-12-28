@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=3 format=3 uid="uid://c70hfgxo3fxbd"]
+[gd_resource type="AnimationLibrary" load_steps=4 format=3 uid="uid://c70hfgxo3fxbd"]
 
 [sub_resource type="Animation" id="Animation_t58jf"]
 resource_name = "Idle"
@@ -160,8 +160,91 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, -0.0057158, 0.00578448, 0.00620147, 0.999948)
 
+[sub_resource type="Animation" id="Animation_cghvi"]
+resource_name = "Fly"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:Root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.72118, 0, 0, 0.692748, 0.5, 1, -0.72118, 0, 0, 0.692748, 1.4, 1, -0.72118, 0, 0, 0.692748)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D:Neck")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.348442, 0, 0, 0.93733, 0.5, 1, 0.348442, 0, 0, 0.93733, 1.4, 1, 0.348442, 0, 0, 0.93733)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D:Head")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.3166, 0, 0, 0.948559, 0.5, 1, 0.3166, 0, 0, 0.948559, 1.4, 1, 0.3166, 0, 0, 0.948559)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Armature/Skeleton3D:RightShoulder")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.290456, 0.676611, 0.676611, 0.00555025, 0.5, 1, 0.290456, 0.676611, 0.676611, 0.00555025, 1.4, 1, 0.290456, 0.676611, 0.676611, 0.00555025)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Armature/Skeleton3D:RightWing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.122976, 0.126165, 0.414749, 0.892716, 0.5, 1, 0.174368, 0.0252305, 0.872494, 0.455756, 1.4, 1, 0.122976, 0.126165, 0.414749, 0.892716)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Armature/Skeleton3D:RightWing.001")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.0250572, 0.0330733, -0.129286, 0.990739, 0.6, 1, 0.0291597, 0.0295197, 0.0011374, 0.999138, 1.4, 1, 0.0250572, 0.0330733, -0.129286, 0.990739)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Armature/Skeleton3D:RightWing.002")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.00491194, -0.00648098, -0.136668, 0.990584, 0.7, 1, -0.00642204, -0.004989, 0.124371, 0.992202, 1.4, 1, -0.00491194, -0.00648098, -0.136668, 0.990584)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Armature/Skeleton3D:LeftShoulder")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, -0.290455, 0.676611, 0.676611, -0.00554887, 0.5, 1, -0.290455, 0.676611, 0.676611, -0.00554887, 1.4, 1, -0.290455, 0.676611, 0.676611, -0.00554887)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Armature/Skeleton3D:LeftWing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0.122974, -0.126164, -0.41475, 0.892716, 0.5, 1, -0.174366, 0.0252302, 0.872494, -0.455756, 1.4, 1, 0.122974, -0.126164, -0.41475, 0.892716)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Armature/Skeleton3D:LeftWing.001")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0.0250573, -0.0330732, 0.129286, 0.990739, 0.6, 1, 0.0291598, -0.0295197, -0.00113748, 0.999138, 1.4, 1, 0.0250573, -0.0330732, 0.129286, 0.990739)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Armature/Skeleton3D:LeftWing.002")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, -0.00491186, 0.00648104, 0.136668, 0.990584, 0.7, 1, -0.00642195, 0.0049889, -0.124371, 0.992202, 1.4, 1, -0.00491186, 0.00648104, 0.136668, 0.990584)
+
 [resource]
 _data = {
+"Fly": SubResource("Animation_cghvi"),
 "Idle": SubResource("Animation_t58jf"),
 "RESET": SubResource("Animation_1c5fi")
 }
