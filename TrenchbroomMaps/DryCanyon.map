@@ -2033,9 +2033,10 @@
 }
 // entity 49
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "168 1256 48"
 "GemColor" "5"
+"angles" "0 180 0"
 }
 // entity 50
 {
@@ -2045,9 +2046,10 @@
 }
 // entity 51
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "360 1240 48"
 "GemColor" "10"
+"angles" "0 180 0"
 }
 // entity 52
 {
@@ -2092,9 +2094,10 @@
 }
 // entity 60
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "536 360 176"
 "GemColor" "5"
+"angles" "0 90 0"
 }
 // entity 61
 {
@@ -2108,9 +2111,10 @@
 }
 // entity 63
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "648 -56 176"
 "GemColor" "5"
+"angles" "0 90 0"
 }
 // entity 64
 {
@@ -3082,16 +3086,18 @@
 }
 // entity 108
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "1384 648 80"
 "GemColor" "2"
+"angles" "0 90 0"
 "_tb_layer" "22"
 }
 // entity 109
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "1544 648 80"
 "GemColor" "2"
+"angles" "0 90 0"
 "_tb_layer" "22"
 }
 // entity 110
@@ -3103,16 +3109,18 @@
 }
 // entity 111
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "1800 232 80"
 "GemColor" "2"
+"angles" "0 90 0"
 "_tb_layer" "22"
 }
 // entity 112
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "1672 120 80"
 "GemColor" "2"
+"angles" "0 90 0"
 "_tb_layer" "22"
 }
 // entity 113
@@ -3166,16 +3174,18 @@
 }
 // entity 120
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "1048 56 80"
 "GemColor" "2"
+"angles" "0 90 0"
 "_tb_layer" "22"
 }
 // entity 121
 {
-"classname" "Basket"
+"classname" "EnemyVulture"
 "origin" "1160 56 80"
 "GemColor" "5"
+"angles" "0 90 0"
 "_tb_layer" "22"
 }
 // entity 122
