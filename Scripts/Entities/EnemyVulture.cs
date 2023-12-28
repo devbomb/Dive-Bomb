@@ -18,6 +18,8 @@ namespace FastDragon
         private Node3D _model => GetNode<Node3D>("%Model");
         private Gem _gem;
 
+        private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
+
         private StateMachine _stateMachine = new StateMachine(typeof(VultureState));
 
         private Vector3 _spawnPoint;
@@ -100,6 +102,8 @@ namespace FastDragon
                 _vulture.Position = _vulture._spawnPoint;
                 _vulture.ResetPhysicsInterpolation();
                 _framesToWait = 2;
+
+                _vulture._animator.Play("Idle");
             }
 
             public override void _PhysicsProcess(double deltaD)

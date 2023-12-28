@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://do6q3paovwj7e"]
+[gd_scene load_steps=6 format=3 uid="uid://do6q3paovwj7e"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/EnemyVulture.cs" id="1_is5gw"]
+[ext_resource type="AnimationLibrary" uid="uid://c70hfgxo3fxbd" path="res://AnimationLibraries/VultureAnimations.tres" id="2_4b7rt"]
 [ext_resource type="PackedScene" uid="uid://bksx43c001y1k" path="res://BlenderModels/EnemyVulture.blend" id="2_ni8ar"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uo6qh"]
@@ -11,8 +12,34 @@ radius = 20.0
 [node name="EnemyVulture" type="CharacterBody3D"]
 script = ExtResource("1_is5gw")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+deterministic = true
+root_node = NodePath("../Model")
+libraries = {
+"": ExtResource("2_4b7rt")
+}
+
 [node name="Model" parent="." instance=ExtResource("2_ni8ar")]
 unique_name_in_owner = true
+
+[node name="Skeleton3D" parent="Model/Armature" index="0"]
+bones/2/rotation = Quaternion(-0.103653, 0, 0, 0.994614)
+bones/3/rotation = Quaternion(0.290456, 0.676611, 0.676611, 0.00555025)
+bones/3/scale = Vector3(1, 1, 0.999999)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.0291598, 0.0295196, 0.00113742, 0.999138)
+bones/5/scale = Vector3(1, 0.999999, 1)
+bones/6/rotation = Quaternion(-0.0057158, -0.00578449, -0.00620147, 0.999948)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.290455, 0.676611, 0.676611, -0.00554886)
+bones/7/scale = Vector3(0.999999, 0.999999, 0.999999)
+bones/8/rotation = Quaternion(0.13839, -0.109033, -0.527724, 0.830943)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.0291598, -0.0295197, -0.0011374, 0.999138)
+bones/9/scale = Vector3(1, 0.999999, 1)
+bones/10/rotation = Quaternion(-0.0057158, 0.00578448, 0.00620147, 0.999948)
+bones/10/scale = Vector3(1, 1, 1)
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
@@ -24,3 +51,5 @@ unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AggroRangeArea"]
 shape = SubResource("SphereShape3D_hsygr")
+
+[editable path="Model"]
