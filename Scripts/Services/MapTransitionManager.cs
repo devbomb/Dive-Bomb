@@ -134,6 +134,9 @@ namespace FastDragon
             // Thanks, Godot >.<
             GetTree().Paused = true;
 
+            // Heal the player back to full
+            SaveFile.Current.PlayerHealth = SparxColor.Gold;
+
             // Fade the screen to black
             var tween = GetTree().CreateTween();
             tween.SetPauseMode(Tween.TweenPauseMode.Process);

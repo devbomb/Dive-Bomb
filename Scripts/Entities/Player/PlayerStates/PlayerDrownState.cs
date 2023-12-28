@@ -10,7 +10,16 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _timer = DrownDuration;
+            SaveFile.Current.PlayerHealth--;
             _player.Animator.Play("Drown");
+        }
+
+        public override void _Input(InputEvent ev)
+        {
+            if (InputService.JumpJustPressed(ev) && SaveFile.Current.PlayerHealth > 0)
+            {
+                _player.ChangeState<PlayerWalkJumpState>();
+            }
         }
 
         public override void _PhysicsProcess(double deltaD)

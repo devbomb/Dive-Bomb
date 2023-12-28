@@ -9,6 +9,7 @@ namespace FastDragon
     {
         public static SaveFile Current = new SaveFile();
 
+        public SparxColor PlayerHealth = SparxColor.Gold;
         public int TotalGemCount = 0;
         public string CurrentMap;
 

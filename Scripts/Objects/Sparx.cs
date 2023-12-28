@@ -14,6 +14,14 @@ namespace FastDragon
 
         [Export] public Area3D CollectionArea;
 
+        [ExportGroup("Materials")]
+        [Export] public Material GoldMaterial;
+        [Export] public Material BlueMaterial;
+        [Export] public Material GreenMaterial;
+
+        private Node3D _goldParticles => GetNode<Node3D>("%GoldParticles");
+        private Node3D _blueParticles => GetNode<Node3D>("%BlueParticles");
+
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
         private StateMachine _stateMachine = new StateMachine(typeof(SparxState));
@@ -30,7 +38,13 @@ namespace FastDragon
 
         private void Reset()
         {
-            _stateMachine.ChangeState<Idle>();
+            if (SaveFile.Current.PlayerHealth > SparxColor.Gone)
+                _stateMachine.ChangeState<Idle>();
+            else
+                _stateMachine.ChangeState<Gone>();
+
+            UpdateSparxColor();
+
             Position = Vector3.Zero;
             _interpolator.ResetPhysicsInterpolation();
 
@@ -39,7 +53,19 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
-            QueueNearbyGems();
+            UpdateSparxColor();
+        }
+
+
+        private bool DisappearIfLastHealth()
+        {
+            if (SaveFile.Current.PlayerHealth <= SparxColor.Gone)
+            {
+                _stateMachine.ChangeState<Gone>();
+                return true;
+            }
+
+            return false;
         }
 
         private void QueueNearbyGems()
@@ -68,6 +94,35 @@ namespace FastDragon
             }
         }
 
+        private void UpdateSparxColor()
+        {
+            foreach (var meshInstance in this.EnumerateDescendantsOfType<MeshInstance3D>())
+            {
+                if (meshInstance.IsInGroup("ReplaceColor"))
+                    meshInstance.MaterialOverride = MaterialForSparxColor();
+            }
+
+            var sparxColor = SaveFile.Current.PlayerHealth;
+            _goldParticles.Visible = sparxColor == SparxColor.Gold;
+            _blueParticles.Visible = sparxColor == SparxColor.Blue;
+        }
+
+        private Material MaterialForSparxColor()
+        {
+            switch (SaveFile.Current.PlayerHealth)
+            {
+                case SparxColor.Gold: return GoldMaterial;
+                case SparxColor.Blue: return BlueMaterial;
+                case SparxColor.Green: return GreenMaterial;
+
+                // Doesn't matter what material we use when Sparx is gone, since
+                // he's invisible anyway.
+                case SparxColor.Gone:
+                case SparxColor.Dead:
+                default: return GreenMaterial;
+            }
+        }
+
         private partial class Idle : SparxState
         {
             private float _idleTimer = 0;
@@ -83,6 +138,22 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
+                if (_sparx.DisappearIfLastHealth())
+                    return;
+
+                _sparx.QueueNearbyGems();
+
+                if (_sparx._gemQueue.Count > 0)
+                {
+                    ChangeState<CollectingGem>();
+                    return;
+                }
+
+                IdleMovement(delta);
+            }
+
+            private void IdleMovement(float delta)
+            {
                 _idleTimer -= delta;
                 if (_idleTimer < 0)
                 {
@@ -105,9 +176,6 @@ namespace FastDragon
                     Vector3.Zero,
                     RotSpeedDeg * delta
                 );
-
-                if (_sparx._gemQueue.Count > 0)
-                    ChangeState<CollectingGem>();
             }
 
             private void ShuffleIdlePosition()
@@ -177,6 +245,15 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
+                if (_sparx.DisappearIfLastHealth())
+                    return;
+
+                _sparx.QueueNearbyGems();
+                FlyTowardNextGemInQueue(delta);
+            }
+
+            private void FlyTowardNextGemInQueue(float delta)
+            {
                 Gem gem = PeekAtGemQueue();
                 if (gem == null)
                 {
@@ -227,6 +304,28 @@ namespace FastDragon
                 }
 
                 return null;
+            }
+        }
+
+        private partial class Gone : SparxState
+        {
+            public override void OnStateEntered()
+            {
+                _sparx.Visible = false;
+                _sparx._gemQueue.Clear();
+            }
+
+            public override void OnStateExited()
+            {
+                _sparx.Visible = true;
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                if (SaveFile.Current.PlayerHealth > SparxColor.Gone)
+                {
+                    ChangeState<Idle>();
+                }
             }
         }
 
