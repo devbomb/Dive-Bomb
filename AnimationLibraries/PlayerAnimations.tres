@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=11 format=3 uid="uid://dp75nlaah5k6o"]
+[gd_resource type="AnimationLibrary" load_steps=12 format=3 uid="uid://dp75nlaah5k6o"]
 
 [sub_resource type="Animation" id="Animation_ide03"]
 resource_name = "Bonk"
@@ -672,6 +672,96 @@ tracks/30/path = NodePath("Armature/Skeleton3D:Root")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = PackedFloat32Array(0, 1, -1.05879e-22, 7.27596e-12, 0.22587)
+
+[sub_resource type="Animation" id="Animation_5ldvp"]
+resource_name = "DamageFlip"
+length = 0.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.14159, 0, 0), Vector3(6.28319, 0, 0)]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D:Root")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, -0.5, 0)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.25, 0), Vector3(0, 0.5, 0), Vector3(0, 0.345, 0), Vector3(0, 0.5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Armature:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.45, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5), Vector3(1.5, 0.5, 1.5), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1.5, 0.5, 1.5), Vector3(1, 1, 1)]
+}
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Armature/Skeleton3D:Neck")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.168786, -0.00440358, 0.0062764, 0.985623, 0.1, 1, 0.859294, 0.00180574, 0.00806601, 0.511416, 0.45, 1, 0.713607, 1.70646e-05, 0.00816037, 0.700499)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Armature/Skeleton3D:Head")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.802905, 8.78817e-10, -0.000687609, 0.596107, 0.1, 1, -0.0262901, -2.90764e-09, -2.25132e-05, 0.999654, 0.45, 1, -0.701201, 1.22463e-10, -0.000600509, 0.712964)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Armature/Skeleton3D:BackLeg_L")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.456927, -0.0906088, 0.293982, 0.834615, 0.1, 1, -0.149474, -0.441191, 0.789103, -0.400406, 0.55, 1, 0.464809, 0.0307401, 0.0679504, 0.882264)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Armature/Skeleton3D:BackLeg_R")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.456927, 0.0906088, -0.293982, 0.834615, 0.1, 1, 0.149475, -0.441191, 0.789102, 0.400406, 0.55, 1, 0.464809, -0.03074, -0.0679504, 0.882264)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Armature/Skeleton3D:FrontLeg_L")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -0.311622, 0.129078, 0.377369, 0.862452, 0.1, 1, -0.269105, 0.387353, 0.802083, -0.366338, 0.55, 1, -0.337297, -3.62896e-07, 0.018598, 0.941215)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Armature/Skeleton3D:FrontLeg_R")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.311622, -0.129078, -0.377369, 0.862452, 0.1, 1, 0.269103, 0.387352, 0.802084, 0.366337, 0.55, 1, -0.337297, 3.96291e-07, -0.0185979, 0.941215)
 
 [sub_resource type="Animation" id="Animation_jlmlk"]
 loop_mode = 1
@@ -2286,6 +2376,7 @@ _data = {
 "Bonk": SubResource("Animation_ide03"),
 "Charge": SubResource("Animation_tv013"),
 "ChargeJump": SubResource("Animation_b5d7y"),
+"DamageFlip": SubResource("Animation_5ldvp"),
 "Drown": SubResource("Animation_jlmlk"),
 "Flop": SubResource("Animation_nasjm"),
 "Glide": SubResource("Animation_gsi0i"),
