@@ -105,7 +105,9 @@ _data = {
 script/source = "extends Node3D
 
 func _process(_delta):
-    look_at(get_tree().root.get_camera_3d().global_position)
+    var camera = get_tree().root.get_camera_3d()
+    if (camera != null):
+        look_at(camera.global_position)
 "
 
 [sub_resource type="Gradient" id="Gradient_oxoe0"]
