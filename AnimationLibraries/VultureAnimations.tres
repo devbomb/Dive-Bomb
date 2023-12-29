@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=4 format=3 uid="uid://c70hfgxo3fxbd"]
+[gd_resource type="AnimationLibrary" load_steps=4 format=3 uid="uid://phpkdehj2kfx"]
 
 [sub_resource type="Animation" id="Animation_cghvi"]
 resource_name = "Fly"
