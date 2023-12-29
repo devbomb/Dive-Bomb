@@ -4,6 +4,8 @@ namespace FastDragon
 {
     public partial class PlayerDamageFlipState : PlayerState
     {
+        public override bool Invincible => true;
+
         private const float VSpeedBoost = 5;
 
         public override void OnStateEntered()
