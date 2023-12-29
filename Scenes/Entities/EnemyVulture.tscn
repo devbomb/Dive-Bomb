@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://do6q3paovwj7e"]
+[gd_scene load_steps=6 format=3 uid="uid://cyd2uyjl8rvk5"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/EnemyVulture.cs" id="1_is5gw"]
-[ext_resource type="AnimationLibrary" uid="uid://c70hfgxo3fxbd" path="res://AnimationLibraries/VultureAnimations.tres" id="2_4b7rt"]
-[ext_resource type="PackedScene" uid="uid://bksx43c001y1k" path="res://BlenderModels/EnemyVulture.blend" id="2_ni8ar"]
+[ext_resource type="AnimationLibrary" uid="uid://phpkdehj2kfx" path="res://AnimationLibraries/VultureAnimations.tres" id="2_4b7rt"]
+[ext_resource type="PackedScene" path="res://BlenderModels/EnemyVulture.blend" id="2_ni8ar"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uo6qh"]
 
@@ -53,5 +53,9 @@ unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AggroRangeArea"]
 shape = SubResource("SphereShape3D_hsygr")
+
+[node name="LosDetector" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [editable path="Model"]

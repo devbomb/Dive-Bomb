@@ -20,6 +20,7 @@ namespace FastDragon
         private Gem _gem;
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
+        private RayCast3D _losDetector => GetNode<RayCast3D>("%LosDetector");
 
         private StateMachine _stateMachine = new StateMachine(typeof(VultureState));
 
@@ -89,6 +90,17 @@ namespace FastDragon
                     .FirstOrDefault();
         }
 
+        private bool HasLineOfSightTo(Player player)
+        {
+            var localPlayerPos = _losDetector.ToLocal(player.GlobalPosition);
+            _losDetector.TargetPosition = localPlayerPos;
+            _losDetector.ForceUpdateTransform();
+            _losDetector.ForceRaycastUpdate();
+
+            var collider = _losDetector.GetCollider();
+            return (collider == null || collider == player);
+        }
+
         private partial class VultureState : State
         {
             protected EnemyVulture _vulture => _stateMachine.GetParent<EnemyVulture>();
@@ -133,7 +145,8 @@ namespace FastDragon
                     Mathf.DegToRad(RotSpeedDeg) * delta
                 );
 
-                if (_vulture.FirstPlayerInRange() != null)
+                var player = _vulture.FirstPlayerInRange();
+                if (player != null && _vulture.HasLineOfSightTo(player))
                     ChangeState<Chasing>();
             }
         }
