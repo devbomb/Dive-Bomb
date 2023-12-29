@@ -190,7 +190,7 @@ namespace FastDragon
 
             private void OnTouchedPlayer()
             {
-                // TODO: Damage the player
+                _targetPlayer.TryDamage<PlayerDamageFlipState>();
                 ChangeState<Returning>();
             }
         }
