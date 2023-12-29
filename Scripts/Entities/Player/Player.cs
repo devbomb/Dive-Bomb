@@ -112,6 +112,24 @@ namespace FastDragon
             ChangeState<PlayerWalkState>();
         }
 
+        /// <summary>
+        /// If the player is currently vulnerable, deals 1 damage and changes
+        /// to the given state.  The given state should be some sort of damage
+        /// animation state.
+        ///
+        /// If the player is not currently vulnerable, then this method does
+        /// nothing.
+        /// </summary>
+        /// <typeparam name="TState"></typeparam>
+        public void TryDamage<TState>() where TState : PlayerState, new()
+        {
+            if (!CurrentState.Invincible)
+            {
+                SaveFile.Current.PlayerHealth--;
+                ChangeState<TState>();
+            }
+        }
+
         private void PrintGemCount()
         {
             var gemCounts = new Dictionary<GemColor, int>();

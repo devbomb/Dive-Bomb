@@ -6,6 +6,7 @@ namespace FastDragon
 {
     public partial class PlayerState : Node
     {
+        public virtual bool Invincible => false;
         public virtual bool AllowFlaming => true;
         public virtual bool SpawningGemsHomeIn => false;
 

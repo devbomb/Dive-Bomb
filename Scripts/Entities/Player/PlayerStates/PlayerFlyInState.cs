@@ -4,6 +4,8 @@ namespace FastDragon
 {
     public partial class PlayerFlyInState : PlayerState
     {
+        public override bool Invincible => true;
+
         public override void OnStateEntered()
         {
             Vector3 endPos = _player.GlobalPosition;

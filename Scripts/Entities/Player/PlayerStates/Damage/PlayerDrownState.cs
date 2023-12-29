@@ -4,6 +4,8 @@ namespace FastDragon
 {
     public partial class PlayerDrownState : PlayerState
     {
+        public override bool Invincible => true;
+
         private const float DrownDuration = 4;
         private float _timer;
 
