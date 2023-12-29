@@ -7,6 +7,7 @@ namespace FastDragon
     {
         public const float MaxSpeed = Player.Walk.Speed * 1.5f;
         public const float Accel = 32;
+        public const float RotSpeedDeg = 360;
 
         [Export] public GemColor GemColor = GemColor.Red;
         [Export] public float AggroRange = 20;
@@ -39,16 +40,16 @@ namespace FastDragon
             RefreshAggroSphereSize();
 
             SignalBus.Instance.LevelReset += Reset;
-            _spawnPoint = Position;
-            _spawnRotation = Rotation;
+            _spawnPoint = GlobalPosition;
+            _spawnRotation = GlobalRotation;
 
             Reset();
         }
 
         public void Reset()
         {
-            Position = _spawnPoint;
-            Rotation = _spawnRotation;
+            GlobalPosition = _spawnPoint;
+            GlobalRotation = _spawnRotation;
             Velocity = Vector3.Zero;
             ResetPhysicsInterpolation();
 
@@ -99,7 +100,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _vulture.Position = _vulture._spawnPoint;
+                _vulture.GlobalPosition = _vulture._spawnPoint;
                 _vulture.ResetPhysicsInterpolation();
                 _framesToWait = 2;
 
@@ -108,6 +109,8 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double deltaD)
             {
+                float delta = (float)deltaD;
+
                 // HACK: Wait 2 frames before calling FirstPlayerInRange(), to
                 // avoid a false positive.
                 //
@@ -124,6 +127,11 @@ namespace FastDragon
                     _framesToWait--;
                     return;
                 }
+
+                _vulture.GlobalRotation = _vulture.GlobalRotation.RotateTowardEulerRad(
+                    _vulture._spawnRotation,
+                    Mathf.DegToRad(RotSpeedDeg) * delta
+                );
 
                 if (_vulture.FirstPlayerInRange() != null)
                     ChangeState<Chasing>();
@@ -150,6 +158,11 @@ namespace FastDragon
                 _fspeed = Mathf.MoveToward(_fspeed, MaxSpeed, delta * Accel);
                 _vulture.Velocity = _fspeed * _vulture.GlobalPosition.DirectionTo(_targetPlayer.GlobalPosition);
                 _vulture.MoveAndSlide();
+
+                _vulture.GlobalRotation = _vulture.GlobalRotation.RotateTowardEulerRad(
+                    _vulture.Velocity.Normalized().ForwardToEulerAnglesRad(),
+                    Mathf.DegToRad(RotSpeedDeg) * delta
+                );
 
                 if (IsTouchingPlayer())
                     OnTouchedPlayer();
@@ -193,9 +206,18 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
-                _vulture.Position = _vulture.Position.MoveToward(
+                _vulture.GlobalPosition = _vulture.GlobalPosition.MoveToward(
                     _vulture._spawnPoint,
                     MaxSpeed * delta
+                );
+
+                Vector3 targetRot = _vulture.GlobalPosition
+                    .DirectionTo(_vulture._spawnPoint)
+                    .ForwardToEulerAnglesRad();
+
+                _vulture.GlobalRotation = _vulture.GlobalRotation.RotateTowardEulerRad(
+                    targetRot,
+                    Mathf.DegToRad(RotSpeedDeg) * delta
                 );
 
                 if (_vulture.Position.IsEqualApprox(_vulture._spawnPoint))
