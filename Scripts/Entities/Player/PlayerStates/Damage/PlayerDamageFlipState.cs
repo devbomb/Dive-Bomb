@@ -25,8 +25,7 @@ namespace FastDragon
 
                 if (currentHealth <= 0)
                 {
-                    // TODO: Choose a more appropriate death state
-                    _player.ChangeState<PlayerFallingToDeathState>();
+                    _player.ChangeState<PlayerSpinDeathState>();
                 }
                 else
                 {
