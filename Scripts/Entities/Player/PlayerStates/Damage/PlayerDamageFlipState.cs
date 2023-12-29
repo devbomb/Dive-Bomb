@@ -33,5 +33,22 @@ namespace FastDragon
                 }
             }
         }
+
+        public override void OnStateExited()
+        {
+            // Reset the the animator to avoid the "360 degree wrap around" effect.
+            //
+            // This animation ends with the player's rotation being 360 degrees,
+            // which is NOT technically the same as 0 degrees!
+            // When Godot blends this animation with another, it tweens the
+            // player's rotation from 360 all the way back down to 0, instead of
+            // noticing that the rotation is congruent.
+            //
+            // Resetting the animator immediately sets the rotation back to 0
+            // degrees, thus avoiding the effect at the cost of forgoing
+            // animation blending.
+            _player.Animator.Play("RESET", 0);
+            _player.Animator.Seek(0, true);
+        }
     }
 }

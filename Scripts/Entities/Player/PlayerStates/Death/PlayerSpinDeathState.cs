@@ -13,6 +13,9 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double delta)
         {
+            ApplyGravity((float)delta);
+            _player.MoveAndSlide();
+
             if (!_player.Animator.IsPlaying())
                 MapTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
