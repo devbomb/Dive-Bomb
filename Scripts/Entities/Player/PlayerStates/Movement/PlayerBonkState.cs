@@ -21,7 +21,6 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Camera.ChangeState<OrbitCameraFreeState>();
             _player.Animator.Play("Bonk");
             _player.Velocity = _player.GlobalForward() * -BonkSpeed;
         }

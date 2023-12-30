@@ -9,6 +9,18 @@ namespace FastDragon
     {
         [Export] public Node3D FollowTarget;
 
+        public bool DisableInput
+        {
+            get => _currentState is Locked;
+            set
+            {
+                if (value == true)
+                    ChangeState<Locked>();
+                else
+                    ChangeState<Unlocked>();
+            }
+        }
+
         public float OrbitDistance
         {
             get => _orbitDistance;
@@ -57,8 +69,7 @@ namespace FastDragon
         {
             _interpolator = new PhysicsInterpolator3D();
             AddChild(_interpolator);
-
-            ChangeState<OrbitCameraFreeState>();
+            ChangeState<Unlocked>();
         }
 
         public void ResetPhysicsInterpolation()
@@ -66,7 +77,7 @@ namespace FastDragon
             _interpolator.ResetPhysicsInterpolation();
         }
 
-        public void ChangeState<TState>() where TState : OrbitCameraState, new()
+        private void ChangeState<TState>() where TState : OrbitCameraState, new()
         {
             _currentState?.OnStateExited();
 
@@ -120,6 +131,59 @@ namespace FastDragon
 
                 if (child is OrbitCameraState state)
                     yield return state;
+            }
+        }
+
+        private partial class OrbitCameraState : Node
+        {
+            protected OrbitCamera _camera => GetParent<OrbitCamera>();
+
+            public virtual void OnStateEntered() {}
+            public virtual void OnStateExited() {}
+        }
+
+        private partial class Locked : OrbitCameraState
+        {
+            public override void _Process(double deltaD)
+            {
+                _camera.ApplyAnglesAndDistance();
+            }
+        }
+
+        private partial class Unlocked : OrbitCameraState
+        {
+            public float FollowDistance = 6;
+            public float ZoomSpeed = 4;
+
+            public float RightStickRotSpeedDeg = 180;
+
+            public float MinOrbitPitchDeg = -89;
+            public float MaxOrbitPitchDeg = 0;
+
+            public override void _Process(double deltaD)
+            {
+                float delta = (float)deltaD;
+
+                float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
+                _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
+                _camera.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
+                ClampOrbitAngles();
+
+                _camera.OrbitDistance = Mathf.MoveToward(
+                    _camera.OrbitDistance,
+                    FollowDistance,
+                    ZoomSpeed * delta
+                );
+            }
+
+            private void ClampOrbitAngles()
+            {
+                _camera.OrbitYawRad = Mathf.PosMod(_camera.OrbitYawRad, Mathf.DegToRad(360));
+                _camera.OrbitPitchRad = Mathf.Clamp(
+                    _camera.OrbitPitchRad,
+                    Mathf.DegToRad(MinOrbitPitchDeg),
+                    Mathf.DegToRad(MaxOrbitPitchDeg)
+                );
             }
         }
     }

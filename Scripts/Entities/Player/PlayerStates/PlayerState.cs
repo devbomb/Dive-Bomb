@@ -8,6 +8,7 @@ namespace FastDragon
     {
         public virtual bool Invincible => false;
         public virtual bool AllowFlaming => true;
+        public virtual bool DisableCameraInput => false;
         public virtual bool SpawningGemsHomeIn => false;
 
         protected Player _player => GetParent<Player>();

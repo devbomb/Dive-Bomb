@@ -5,7 +5,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dp75nlaah5k6o" path="res://AnimationLibraries/PlayerAnimations.tres" id="2_8xff1"]
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="3_l4ous"]
 [ext_resource type="PackedScene" uid="uid://be5v4cuys7g1s" path="res://Scenes/Models/GreenGemModel.tscn" id="3_wt76o"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_ef0t7"]
+[ext_resource type="Script" path="res://Scripts/Objects/OrbitCamera.cs" id="4_ef0t7"]
 [ext_resource type="PackedScene" uid="uid://crlqwtcxxmg76" path="res://Scenes/Models/PurpleGemModel.tscn" id="4_wm8ew"]
 [ext_resource type="PackedScene" uid="uid://byj33t3fmjjmx" path="res://Scenes/Models/YellowGemModel.tscn" id="5_lc26i"]
 [ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://Scenes/UIWidgets/FPSCounter.tscn" id="6_by5mh"]

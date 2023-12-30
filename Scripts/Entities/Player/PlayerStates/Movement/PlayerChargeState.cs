@@ -6,6 +6,7 @@ namespace FastDragon
     public partial class PlayerChargeState : PlayerState
     {
         public override bool AllowFlaming => false;
+        public override bool DisableCameraInput => true;
         public override bool SpawningGemsHomeIn => true;
 
         private const float MinSkitterDelay = 1f / 30;
@@ -15,7 +16,6 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Camera.ChangeState<OrbitCameraLockedState>();
             _player.Animator.Play("Charge");
 
             _fspeed = _player.Velocity.Flattened().Length();

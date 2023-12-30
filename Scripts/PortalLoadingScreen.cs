@@ -99,7 +99,7 @@ namespace FastDragon
             _playerAnimator.Play("PlayerAnimations/Glide");
             _playerAnimator.Seek(animationStartTime, true);
 
-            _camera.ChangeState<OrbitCameraLockedState>();
+            _camera.DisableInput = true;
 
             // Put everything in the starting position
             _playerModel.GlobalRotation = playerStartRotRad;

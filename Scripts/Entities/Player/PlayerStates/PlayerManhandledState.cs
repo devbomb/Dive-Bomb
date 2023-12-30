@@ -9,10 +9,6 @@ namespace FastDragon
     public partial class PlayerManhandledState : PlayerState
     {
         public override bool Invincible => true;
-
-        public override void OnStateEntered()
-        {
-            _player.Camera.ChangeState<OrbitCameraLockedState>();
-        }
+        public override bool DisableCameraInput => true;
     }
 }

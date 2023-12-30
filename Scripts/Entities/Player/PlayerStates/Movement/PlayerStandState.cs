@@ -7,7 +7,6 @@ namespace FastDragon
     {
         public override void OnStateEntered()
         {
-            _player.Camera.ChangeState<OrbitCameraFreeState>();
             _player.Animator.Play("Idle");
         }
 
