@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
 [ext_resource type="AnimationLibrary" uid="uid://dp75nlaah5k6o" path="res://AnimationLibraries/PlayerAnimations.tres" id="2_om7jv"]
 [ext_resource type="PackedScene" uid="uid://dolfkovx44knj" path="res://Scenes/Objects/Sparx.tscn" id="3_5fc8t"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/OrbitCamera.cs" id="4_15biq"]
+[ext_resource type="Script" path="res://Scripts/Objects/OrbitCamera.cs" id="4_15biq"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="4_db58r"]
 [ext_resource type="PackedScene" uid="uid://bnugmkxucp0vb" path="res://Scenes/Objects/Flame.tscn" id="4_g8ylw"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
