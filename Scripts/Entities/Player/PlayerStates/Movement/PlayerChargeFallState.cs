@@ -5,11 +5,11 @@ namespace FastDragon
     public partial class PlayerChargeFallState : PlayerState
     {
         public override bool AllowFlaming => false;
+        public override bool DisableCameraInput => true;
         public override bool SpawningGemsHomeIn => true;
 
         public override void OnStateEntered()
         {
-            _player.Camera.DisableInput = true;
             _player.Animator.Play("ChargeJump");
 
             // Rob the player of any upward momentum they may have had.

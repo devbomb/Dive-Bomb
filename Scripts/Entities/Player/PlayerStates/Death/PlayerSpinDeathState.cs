@@ -8,7 +8,6 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Camera.DisableInput = false;
             _player.Animator.Play("SpinDeath");
         }
 

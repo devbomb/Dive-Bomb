@@ -157,6 +157,8 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
+            Camera.DisableInput = _currentState.DisableCameraInput;
+
             // Give the player their glide back when they touch the ground.
             // Gliding uses "double jump rules": after you leave the ground, you
             // can glide ONCE.  If you leave the gliding state in mid-air for

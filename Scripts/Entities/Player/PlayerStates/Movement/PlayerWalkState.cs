@@ -10,7 +10,6 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Camera.DisableInput = false;
             _player.Animator.Play(WalkAnim);
 
             if (_player.Velocity.Length() < Player.Walk.MinSpeed)

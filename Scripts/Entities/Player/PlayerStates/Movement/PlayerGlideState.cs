@@ -5,13 +5,14 @@ namespace FastDragon
 {
     public partial class PlayerGlideState : PlayerState
     {
+        public override bool DisableCameraInput => true;
+
         private const float ChargeDebounceDuration = 0.1f;
         private float _chargeDebounceTimer;
 
         public override void OnStateEntered()
         {
             _player.HasUsedGlide = true;
-            _player.Camera.DisableInput = true;
             _player.Animator.Play("Glide", 0.3);
 
             _player.VSpeed = 0;

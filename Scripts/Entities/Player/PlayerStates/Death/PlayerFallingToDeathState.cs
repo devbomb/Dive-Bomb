@@ -5,6 +5,7 @@ namespace FastDragon
     public partial class PlayerFallingToDeathState : PlayerState
     {
         public override bool Invincible => true;
+        public override bool DisableCameraInput => true;
 
         public const float FallDuration = 1;
 
@@ -15,7 +16,6 @@ namespace FastDragon
         {
             _player.Animator.Play("Flop");
             _timer = FallDuration;
-            _player.Camera.DisableInput = true;
             _initialCameraPos = _player.Camera.GlobalPosition;
         }
 
