@@ -19,7 +19,7 @@ namespace FastDragon
             _player.GlobalRotation = Vector3.Zero;
             _player.ResetPhysicsInterpolation();
 
-            _player.Camera.ChangeState<OrbitCameraLockedState>();
+            _player.Camera.DisableInput = true;
             _player.Camera.OrbitDistance = PortalLoadingScreen.CameraDist;
             _player.Camera.OrbitYawRad = PortalLoadingScreen.EnterLevelCameraYawRad;
             _player.Camera.OrbitPitchRad = PortalLoadingScreen.EnterLevelCameraPitchRad;

@@ -37,7 +37,7 @@ namespace FastDragon
             player.GlobalPosition -= _playerSpawn.GlobalForward() * (player.Camera.OrbitDistance + 2);
             player.ResetPhysicsInterpolation();
 
-            player.Camera.ChangeState<OrbitCameraFreeState>();
+            player.Camera.DisableInput = false;
             player.Camera.OrbitYawRad = _playerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
             player.Camera.OrbitPitchRad = 0;
 

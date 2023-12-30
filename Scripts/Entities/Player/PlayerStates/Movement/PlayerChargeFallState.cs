@@ -9,7 +9,7 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Camera.ChangeState<OrbitCameraLockedState>();
+            _player.Camera.DisableInput = true;
             _player.Animator.Play("ChargeJump");
 
             // Rob the player of any upward momentum they may have had.

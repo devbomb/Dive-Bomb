@@ -15,7 +15,7 @@ namespace FastDragon
         {
             _player.Animator.Play("Flop");
             _timer = FallDuration;
-            _player.Camera.ChangeState<OrbitCameraLockedState>();
+            _player.Camera.DisableInput = true;
             _initialCameraPos = _player.Camera.GlobalPosition;
         }
 
