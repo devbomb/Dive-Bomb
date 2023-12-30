@@ -142,7 +142,13 @@ namespace FastDragon
             public virtual void OnStateExited() {}
         }
 
-        private partial class Locked : OrbitCameraState {}
+        private partial class Locked : OrbitCameraState
+        {
+            public override void _Process(double deltaD)
+            {
+                _camera.ApplyAnglesAndDistance();
+            }
+        }
 
         private partial class Unlocked : OrbitCameraState
         {
