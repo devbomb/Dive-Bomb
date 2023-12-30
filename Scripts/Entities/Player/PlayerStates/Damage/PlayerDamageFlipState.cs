@@ -10,13 +10,17 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
+            _player.Camera.ChangeState<OrbitCameraFreeState>();
             _player.Animator.Play("DamageFlip");
             _player.VSpeed += VSpeedBoost;
         }
 
-        public override void _PhysicsProcess(double delta)
+        public override void _PhysicsProcess(double deltaD)
         {
-            ApplyGravity((float)delta);
+            float delta = (float)deltaD;
+
+            ApplyGravity(delta);
+            DecelerateHSpeedToZero(delta);
             _player.MoveAndSlide();
 
             if (!_player.Animator.IsPlaying())

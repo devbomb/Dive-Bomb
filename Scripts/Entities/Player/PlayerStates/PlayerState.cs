@@ -139,6 +139,15 @@ namespace FastDragon
             _player.Velocity += Vector3.Down * gravity * delta;
         }
 
+        protected void DecelerateHSpeedToZero(float delta, float friction = Player.Walk.Decel)
+        {
+            var v = _player.Velocity.Flattened();
+            v = v.MoveToward(Vector3.Zero, friction * delta);
+            v.Y = _player.Velocity.Y;
+
+            _player.Velocity = v;
+        }
+
         /// <summary>
         /// Gradually moves the camera behind the player, using exponential
         /// decay to smooth things out.
