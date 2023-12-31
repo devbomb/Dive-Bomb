@@ -55,8 +55,8 @@ namespace FastDragon
             ResetPhysicsInterpolation();
 
             // TODO: Stay dead if all of the following are true:
-            // * The enemy is dead
-            // * The player has not collected the enemy's gem
+            // * The enemy is dead (or dieing)
+            // * The player has collected the enemy's gem
             // * The player has reached a checkpoint since killing the enemy
             _stateMachine.ChangeState<Idle>();
         }
