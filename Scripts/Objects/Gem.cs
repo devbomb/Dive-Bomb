@@ -59,9 +59,13 @@ namespace FastDragon
                 StartHomingIn();
         }
 
+        /// <summary>
+        /// Reveals the gem, if it isn't already collected.
+        /// </summary>
         public void Reveal()
         {
-            ChangeState<Revealed>();
+            if (!IsCollected)
+                ChangeState<Revealed>();
         }
 
         public void StartHomingIn()
