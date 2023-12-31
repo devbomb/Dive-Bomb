@@ -4,7 +4,7 @@ namespace FastDragon
 {
     public partial class BlobShadow : Node3D
     {
-        [Export] public CharacterBody3D Body;
+        [Export] public PhysicsBody3D Body;
 
         public override void _Process(double delta)
         {
