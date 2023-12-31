@@ -10,6 +10,7 @@ namespace FastDragon
             !(_stateMachine.CurrentState is Dieing) &&
             !(_stateMachine.CurrentState is Dead);
 
+        private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(EnemyHandCannonerState));
@@ -55,22 +56,15 @@ namespace FastDragon
 
         private partial class Dieing : EnemyHandCannonerState
         {
-            private double _timer;
-
             public override void OnStateEntered()
             {
                 _enemy._gem.Reveal();
-                _timer = 2;
-
-                // TODO: Start a death animation
+                _enemy._animator.Play("Death");
             }
 
-            public override void _Process(double delta)
+            public override void _PhysicsProcess(double delta)
             {
-                // TODO: Transition when the animation is done, instead of
-                // after a delay
-                _timer -= delta;
-                if (_timer <= 0)
+                if (!_enemy._animator.IsPlaying())
                     ChangeState<Dead>();
             }
         }
