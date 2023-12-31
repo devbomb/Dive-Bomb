@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch0y87teuvqc8"]
+[gd_scene load_steps=8 format=3 uid="uid://ch0y87teuvqc8"]
 
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="1_ny5k6"]
+[ext_resource type="Script" path="res://Scripts/Entities/EnemyHandCannoner.cs" id="1_x80xv"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3evh2"]
 
@@ -22,6 +23,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="EnemyHandCannoner" type="StaticBody3D"]
+script = ExtResource("1_x80xv")
 
 [node name="Model" type="Node3D" parent="."]
 unique_name_in_owner = true
