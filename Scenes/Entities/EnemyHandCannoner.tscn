@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch0y87teuvqc8"]
+
+[ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="1_ny5k6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3evh2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xdj7j"]
+size = Vector3(0.6, 0.25, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8vnft"]
+
+[sub_resource type="Gradient" id="Gradient_07rq0"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.489712, 0.757202)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0kqlj"]
+gradient = SubResource("Gradient_07rq0")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="EnemyHandCannoner" type="StaticBody3D"]
+
+[node name="Model" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Body" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_3evh2")
+
+[node name="Visor" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, -0.278)
+mesh = SubResource("BoxMesh_xdj7j")
+
+[node name="BodyShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_8vnft")
+
+[node name="ProjectileSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, -0.6)
+
+[node name="BlobShadow" type="Sprite3D" parent="." node_paths=PackedStringArray("Body")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+top_level = true
+texture = SubResource("GradientTexture2D_0kqlj")
+script = ExtResource("1_ny5k6")
+Body = NodePath("..")
