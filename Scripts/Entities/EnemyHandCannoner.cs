@@ -48,7 +48,14 @@ namespace FastDragon
             protected EnemyHandCannoner _enemy => _stateMachine.GetParent<EnemyHandCannoner>();
         }
 
-        private partial class Sleeping : EnemyHandCannonerState {}
+        private partial class Sleeping : EnemyHandCannonerState
+        {
+            public override void OnStateEntered()
+            {
+                _enemy._animator.Play("Sleep");
+            }
+        }
+
         private partial class WakingUp : EnemyHandCannonerState {}
         private partial class Shielding : EnemyHandCannonerState {}
         private partial class Aiming : EnemyHandCannonerState {}
