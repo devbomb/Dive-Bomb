@@ -246,12 +246,7 @@ namespace FastDragon
             {
                 _vulture._bodyShape.Disabled = true;
                 _vulture._model.Visible = false;
-
-                bool gemCollected = SaveFile.Current.IsGemCollected(_vulture._gem.GetSaveKey());
-                if (!gemCollected)
-                {
-                    _vulture._gem.Reveal();
-                }
+                _vulture._gem.Reveal();
             }
 
             public override void OnStateExited()
