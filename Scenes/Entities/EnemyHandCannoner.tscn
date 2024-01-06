@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch0y87teuvqc8"]
+[gd_scene load_steps=11 format=3 uid="uid://ch0y87teuvqc8"]
 
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="1_ny5k6"]
 [ext_resource type="Script" path="res://Scripts/Entities/EnemyHandCannoner.cs" id="1_x80xv"]
+[ext_resource type="PackedScene" uid="uid://cxrfdnblu768c" path="res://BlenderModels/EnemyHandCannoner.blend" id="2_a37ce"]
 
 [sub_resource type="Animation" id="Animation_6jv4s"]
 resource_name = "Death"
@@ -29,7 +30,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5, 0.75, 0.8, 0.9, 1.5, 1.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 2, 0.5), Vector3(0, 2.2, 0.5), Vector3(0, 2, 0.5), Vector3(0, 0.5, 0.5), Vector3(0, 0.25, 0.5), Vector3(0, 0.5, 0.5), Vector3(0, 0.5, 0.5), Vector3(0, 0, 1)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 1.7, 0.5), Vector3(0, 1.9, 0.75), Vector3(0, 1.7, 1), Vector3(0, 0.2, 1.625), Vector3(0, 0.1, 1.625), Vector3(0, 0.2, 1.625), Vector3(0, 0.2, 1.625), Vector3(0, 0, 2.125)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -109,7 +110,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.5, 0)]
+"values": [Vector3(0, 0.2, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -130,11 +131,6 @@ _data = {
 "RESET": SubResource("Animation_v62uv"),
 "Sleep": SubResource("Animation_6ofv0")
 }
-
-[sub_resource type="SphereMesh" id="SphereMesh_3evh2"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_xdj7j"]
-size = Vector3(0.6, 0.25, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8vnft"]
 
@@ -163,13 +159,8 @@ libraries = {
 [node name="Model" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="Body" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("SphereMesh_3evh2")
-
-[node name="Visor" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, -0.278)
-mesh = SubResource("BoxMesh_xdj7j")
+[node name="EnemyHandCannoner" parent="Model" instance=ExtResource("2_a37ce")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
