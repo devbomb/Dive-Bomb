@@ -15,13 +15,11 @@ namespace FastDragon
         public bool IsDead => _stateMachine.CurrentState is Dead;
 
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
-        private Area3D _aggroRangeArea => GetNode<Area3D>("%AggroRangeArea");
         private Node3D _model => GetNode<Node3D>("%Model");
+        private AggroSphere _aggroSphere => GetNode<AggroSphere>("%AggroSphere");
         private Gem _gem;
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
-        private RayCast3D _losDetector => GetNode<RayCast3D>("%LosDetector");
-
         private StateMachine _stateMachine = new StateMachine(typeof(VultureState));
 
         private Vector3 _spawnPoint;
@@ -73,32 +71,7 @@ namespace FastDragon
 
         private void RefreshAggroSphereSize()
         {
-            var sphereShape = _aggroRangeArea
-                .EnumerateDescendantsOfType<CollisionShape3D>()
-                .First()
-                .Shape as SphereShape3D;
-
-            sphereShape.Radius = AggroRange;
-        }
-
-        private Player FirstPlayerInRange()
-        {
-            return _aggroRangeArea
-                    .GetOverlappingBodies()
-                    .Where(body => body is Player)
-                    .Cast<Player>()
-                    .FirstOrDefault();
-        }
-
-        private bool HasLineOfSightTo(Player player)
-        {
-            var localPlayerPos = _losDetector.ToLocal(player.GlobalPosition);
-            _losDetector.TargetPosition = localPlayerPos;
-            _losDetector.ForceUpdateTransform();
-            _losDetector.ForceRaycastUpdate();
-
-            var collider = _losDetector.GetCollider();
-            return (collider == null || collider == player);
+            _aggroSphere.Radius = AggroRange;
         }
 
         private partial class VultureState : State
@@ -145,8 +118,8 @@ namespace FastDragon
                     Mathf.DegToRad(RotSpeedDeg) * delta
                 );
 
-                var player = _vulture.FirstPlayerInRange();
-                if (player != null && _vulture.HasLineOfSightTo(player))
+                var player = _vulture._aggroSphere.SearchForPlayer();
+                if (player != null)
                     ChangeState<Chasing>();
             }
         }
@@ -158,7 +131,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _targetPlayer = _vulture.FirstPlayerInRange();
+                _targetPlayer = _vulture._aggroSphere.SearchForPlayer();
                 _fspeed = 0;
                 _vulture.Velocity = Vector3.Zero;
                 _vulture._animator.Play("Fly");
