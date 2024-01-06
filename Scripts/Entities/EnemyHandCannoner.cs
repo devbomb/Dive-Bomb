@@ -5,6 +5,9 @@ namespace FastDragon
     public partial class EnemyHandCannoner : StaticBody3D, IChargeable
     {
         [Export] public GemColor GemColor = GemColor.Red;
+        [Export] public float ShieldDuration = 1;
+        [Export] public float AimDuration = 1;
+        [Export] public float RecoilDuration = 1;
 
         public bool IsAlive =>
             !(_stateMachine.CurrentState is Dieing) &&
@@ -16,6 +19,8 @@ namespace FastDragon
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(EnemyHandCannonerState));
         private Gem _gem;
+
+        private Player _targetPlayer = null;
 
         public override void _Ready()
         {
@@ -36,12 +41,25 @@ namespace FastDragon
             // * The player has collected the enemy's gem
             // * The player has reached a checkpoint since killing the enemy
             _stateMachine.ChangeState<Sleeping>();
+            _targetPlayer = null;
         }
 
         public void OnCharged()
         {
             if (IsAlive)
                 _stateMachine.ChangeState<Dieing>();
+        }
+
+        private void FaceTargetPlayer()
+        {
+            if (_targetPlayer == null)
+                return;
+
+            GlobalRotation = GlobalPosition
+                    .DirectionTo(_targetPlayer.GlobalPosition)
+                    .Flattened()
+                    .Normalized()
+                    .ForwardToEulerAnglesRad();
         }
 
         private partial class EnemyHandCannonerState : State
@@ -58,7 +76,8 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double deltaD)
             {
-                if (_enemy._aggroSphere.SearchForPlayer() != null)
+                _enemy._targetPlayer = _enemy._aggroSphere.SearchForPlayer();
+                if (_enemy._targetPlayer != null)
                     ChangeState<WakingUp>();
             }
         }
@@ -72,18 +91,60 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double deltaD)
             {
+                _enemy.FaceTargetPlayer();
+
                 if (!_enemy._animator.IsPlaying())
                     ChangeState<Shielding>();
             }
         }
-        private partial class Shielding : EnemyHandCannonerState {}
-        private partial class Aiming : EnemyHandCannonerState {}
+
+        private partial class Shielding : EnemyHandCannonerState
+        {
+            private float _timer;
+
+            public override void OnStateEntered()
+            {
+                _timer = _enemy.ShieldDuration;
+                _enemy._animator.Play("Shield", 0.2f);
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _enemy.FaceTargetPlayer();
+                _timer -= (float)deltaD;
+
+                if (_timer <= 0)
+                    ChangeState<Aiming>();
+            }
+        }
+
+        private partial class Aiming : EnemyHandCannonerState
+        {
+            private float _timer;
+
+            public override void OnStateEntered()
+            {
+                _timer = _enemy.AimDuration;
+                _enemy._animator.Play("Aim", 0.2f);
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _enemy.FaceTargetPlayer();
+                _timer -= (float)deltaD;
+
+                if (_timer <= 0)
+                    ChangeState<Shielding>();   // TODO: Fire instead
+            }
+        }
+
         private partial class RecoilingAfterFiring : EnemyHandCannonerState {}
 
         private partial class Dieing : EnemyHandCannonerState
         {
             public override void OnStateEntered()
             {
+                _enemy.FaceTargetPlayer();
                 _enemy._gem.Reveal();
                 _enemy._animator.Play("Death");
             }
