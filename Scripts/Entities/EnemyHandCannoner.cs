@@ -12,6 +12,7 @@ namespace FastDragon
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
+        private AggroSphere _aggroSphere => GetNode<AggroSphere>("%AggroSphere");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(EnemyHandCannonerState));
         private Gem _gem;
@@ -54,9 +55,27 @@ namespace FastDragon
             {
                 _enemy._animator.Play("Sleep");
             }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                if (_enemy._aggroSphere.SearchForPlayer() != null)
+                    ChangeState<WakingUp>();
+            }
         }
 
-        private partial class WakingUp : EnemyHandCannonerState {}
+        private partial class WakingUp : EnemyHandCannonerState
+        {
+            public override void OnStateEntered()
+            {
+                _enemy._animator.Play("WakeUp", 0.1f);
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                if (!_enemy._animator.IsPlaying())
+                    ChangeState<Shielding>();
+            }
+        }
         private partial class Shielding : EnemyHandCannonerState {}
         private partial class Aiming : EnemyHandCannonerState {}
         private partial class RecoilingAfterFiring : EnemyHandCannonerState {}
