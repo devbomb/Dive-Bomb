@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cka17uxpf4jsi"]
+[gd_scene load_steps=24 format=3 uid="uid://cka17uxpf4jsi"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Projectiles/HandCannonBall.cs" id="1_lvbtc"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="1_pcjdl"]
@@ -40,12 +40,20 @@ height = 100
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Curve" id="Curve_2jo4c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u312v"]
+curve = SubResource("Curve_2jo4c")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qarqo"]
 particle_flag_align_y = true
 direction = Vector3(0, 1, 0)
 spread = 180.0
 initial_velocity_min = 5.0
 initial_velocity_max = 5.0
+scale_curve = SubResource("CurveTexture_u312v")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8x8s1"]
 albedo_color = Color(0.313726, 0.313726, 0.313726, 1)
