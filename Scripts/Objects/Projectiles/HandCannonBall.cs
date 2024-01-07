@@ -5,6 +5,9 @@ namespace FastDragon
     public partial class HandCannonBall : StaticBody3D
     {
         public float Speed = 10;
+        public float Lifetime = 3;
+
+        private float _despawnTimer;
 
         private Node3D _model => GetNode<Node3D>("%Model");
         private GpuParticles3D _trailParticles => GetNode<GpuParticles3D>("%TrailParticles");
@@ -29,21 +32,33 @@ namespace FastDragon
                 return;
             }
 
+            _despawnTimer += delta;
+            if (_despawnTimer >= Lifetime)
+            {
+                Destroy();
+                return;
+            }
+
             var velocity = this.GlobalForward() * Speed;
             var collision = MoveAndCollide(velocity * delta);
 
             if (collision == null)
                 return;
 
-            _destroyed = true;
-            _model.Visible = false;
-            _explosionParticles.Emitting = true;
-            _trailParticles.Emitting = false;
+            Destroy();
 
             if (collision.GetCollider() is Player p)
             {
                 p.TryDamage<PlayerDamageFlipState>();
             }
+        }
+
+        private void Destroy()
+        {
+            _destroyed = true;
+            _model.Visible = false;
+            _explosionParticles.Emitting = true;
+            _trailParticles.Emitting = false;
         }
     }
 }
