@@ -134,11 +134,24 @@ namespace FastDragon
                 _timer -= (float)deltaD;
 
                 if (_timer <= 0)
-                    ChangeState<Shielding>();   // TODO: Fire instead
+                    ChangeState<RecoilingAfterFiring>();
             }
         }
 
-        private partial class RecoilingAfterFiring : EnemyHandCannonerState {}
+        private partial class RecoilingAfterFiring : EnemyHandCannonerState
+        {
+            public override void OnStateEntered()
+            {
+                _enemy._animator.Play("FireRecoil");
+                // TODO: Spawn a projectile
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                if (!_enemy._animator.IsPlaying())
+                    ChangeState<Shielding>();
+            }
+        }
 
         private partial class Dieing : EnemyHandCannonerState
         {
