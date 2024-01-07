@@ -5,6 +5,7 @@ namespace FastDragon
     public partial class EnemyHandCannoner : StaticBody3D, IChargeable
     {
         [Export] public GemColor GemColor = GemColor.Red;
+        [Export] public PackedScene ProjectilePrefab;
         [Export] public float ShieldDuration = 1;
         [Export] public float AimDuration = 1;
         [Export] public float RecoilDuration = 1;
@@ -16,6 +17,7 @@ namespace FastDragon
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
         private AggroSphere _aggroSphere => GetNode<AggroSphere>("%AggroSphere");
+        private Node3D _projectileSpawn => GetNode<Node3D>("%ProjectileSpawnPoint");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(EnemyHandCannonerState));
         private Gem _gem;
@@ -48,6 +50,17 @@ namespace FastDragon
         {
             if (IsAlive)
                 _stateMachine.ChangeState<Dieing>();
+        }
+
+        private void FireProjectile()
+        {
+            _stateMachine.ChangeState<RecoilingAfterFiring>();
+            var projectile = ProjectilePrefab.Instantiate<PhysicsBody3D>();
+
+            GetTree().CurrentScene.AddChild(projectile);
+            projectile.GlobalPosition = _projectileSpawn.GlobalPosition;
+            projectile.GlobalRotation = _projectileSpawn.GlobalRotation;
+            projectile.AddCollisionExceptionWith(this);
         }
 
         private void FaceTargetPlayer()
@@ -134,7 +147,7 @@ namespace FastDragon
                 _timer -= (float)deltaD;
 
                 if (_timer <= 0)
-                    ChangeState<RecoilingAfterFiring>();
+                    _enemy.FireProjectile();
             }
         }
 
@@ -143,7 +156,6 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _enemy._animator.Play("FireRecoil");
-                // TODO: Spawn a projectile
             }
 
             public override void _PhysicsProcess(double deltaD)

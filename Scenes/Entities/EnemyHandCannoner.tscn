@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://ch0y87teuvqc8"]
+[gd_scene load_steps=17 format=3 uid="uid://ch0y87teuvqc8"]
 
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="1_ny5k6"]
 [ext_resource type="Script" path="res://Scripts/Entities/EnemyHandCannoner.cs" id="1_x80xv"]
+[ext_resource type="PackedScene" uid="uid://cka17uxpf4jsi" path="res://Scenes/Objects/Projectiles/HandCannonBall.tscn" id="2_7j68t"]
 [ext_resource type="PackedScene" uid="uid://cxrfdnblu768c" path="res://BlenderModels/EnemyHandCannoner.blend" id="2_a37ce"]
 [ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Scenes/Objects/AggroSphere.tscn" id="4_hle72"]
 
@@ -327,6 +328,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="EnemyHandCannoner" type="StaticBody3D"]
 script = ExtResource("1_x80xv")
+ProjectilePrefab = ExtResource("2_7j68t")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -360,6 +362,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_8vnft")
 
 [node name="ProjectileSpawnPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, -0.6)
 
 [node name="BlobShadow" type="Sprite3D" parent="." node_paths=PackedStringArray("Body")]
