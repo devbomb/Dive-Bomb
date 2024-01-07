@@ -1,19 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cka17uxpf4jsi"]
+[gd_scene load_steps=22 format=3 uid="uid://cka17uxpf4jsi"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Projectiles/HandCannonBall.cs" id="1_lvbtc"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="1_pcjdl"]
-
-[sub_resource type="Gradient" id="Gradient_07rq0"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.489712, 0.757202)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_b3rkq"]
-gradient = SubResource("Gradient_07rq0")
-width = 100
-height = 100
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ylmyn"]
 noise_type = 2
@@ -40,6 +28,18 @@ height = 0.5
 radial_segments = 8
 rings = 5
 
+[sub_resource type="Gradient" id="Gradient_07rq0"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.489712, 0.757202)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b3rkq"]
+gradient = SubResource("Gradient_07rq0")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qarqo"]
 particle_flag_align_y = true
 direction = Vector3(0, 1, 0)
@@ -54,22 +54,72 @@ albedo_color = Color(0.313726, 0.313726, 0.313726, 1)
 material = SubResource("StandardMaterial3D_8x8s1")
 size = Vector3(0.25, 0.25, 0.25)
 
+[sub_resource type="Curve" id="Curve_pr47i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.176845, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sr5fn"]
+curve = SubResource("Curve_pr47i")
+
+[sub_resource type="Curve" id="Curve_bbs6k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.198473, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sgx3l"]
+curve = SubResource("Curve_bbs6k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0a0af"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.1
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_sgx3l")
+alpha_curve = SubResource("CurveTexture_sr5fn")
+
+[sub_resource type="Gradient" id="Gradient_wejpq"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.22807, 0.304348, 0.639946, 0.710526)
+colors = PackedColorArray(0.18, 0.18, 0.18, 1, 0.18, 0.18, 0.18, 0.872879, 0.18, 0.18, 0.18, 0.109209, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dp546"]
+gradient = SubResource("Gradient_wejpq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ixk8"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_dp546")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_u0ubv"]
+material = SubResource("StandardMaterial3D_6ixk8")
+size = Vector2(0.5, 0.5)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1jka"]
 radius = 0.25
 
 [node name="HandCannonBall" type="StaticBody3D"]
 script = ExtResource("1_lvbtc")
 
-[node name="BlobShadow" type="Sprite3D" parent="." node_paths=PackedStringArray("Body")]
+[node name="Model" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_21e0u")
+
+[node name="BlobShadow" type="Sprite3D" parent="Model" node_paths=PackedStringArray("Body")]
 transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0)
 top_level = true
 texture = SubResource("GradientTexture2D_b3rkq")
 script = ExtResource("1_pcjdl")
-Body = NodePath("..")
-
-[node name="Model" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-mesh = SubResource("SphereMesh_21e0u")
+Body = NodePath("../..")
 
 [node name="ExplosionParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
@@ -80,6 +130,17 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_qarqo")
 draw_pass_1 = SubResource("PrismMesh_jeg1m")
+
+[node name="TrailParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.138586)
+amount = 16
+lifetime = 2.0
+speed_scale = 5.0
+visibility_aabb = AABB(-4, -4, -4.52576, 8, 8, 8)
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_0a0af")
+draw_pass_1 = SubResource("QuadMesh_u0ubv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_j1jka")

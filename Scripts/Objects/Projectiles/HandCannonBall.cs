@@ -7,6 +7,7 @@ namespace FastDragon
         public float Speed = 10;
 
         private Node3D _model => GetNode<Node3D>("%Model");
+        private GpuParticles3D _trailParticles => GetNode<GpuParticles3D>("%TrailParticles");
         private GpuParticles3D _explosionParticles => GetNode<GpuParticles3D>("%ExplosionParticles");
 
         private bool _destroyed = false;
@@ -37,6 +38,7 @@ namespace FastDragon
             _destroyed = true;
             _model.Visible = false;
             _explosionParticles.Emitting = true;
+            _trailParticles.Emitting = false;
 
             if (collision.GetCollider() is Player p)
             {
