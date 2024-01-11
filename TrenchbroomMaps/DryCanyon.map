@@ -1213,33 +1213,38 @@
 }
 // entity 14
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "-88 1176 16"
 "GemColor" "10"
+"angles" "0 -60 0"
 }
 // entity 15
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "-296 808 16"
 "GemColor" "2"
+"angles" "0 -90 0"
 }
 // entity 16
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "-104 296 16"
 "GemColor" "2"
+"angles" "0 -35 0"
 }
 // entity 17
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "-24 264 16"
 "GemColor" "5"
+"angles" "0 -35 0"
 }
 // entity 18
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "200 136 16"
 "GemColor" "2"
+"angles" "0 -45 0"
 }
 // entity 19
 {
@@ -1279,13 +1284,13 @@
 }
 // entity 25
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "-200 -424 16"
 "GemColor" "2"
 }
 // entity 26
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "-296 -360 16"
 "GemColor" "2"
 }
@@ -2027,9 +2032,10 @@
 }
 // entity 48
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "-168 1224 144"
 "GemColor" "2"
+"angles" "0 -135 0"
 }
 // entity 49
 {
@@ -2088,9 +2094,10 @@
 }
 // entity 59
 {
-"classname" "Vase"
-"origin" "632 616 144"
+"classname" "EnemyHandCannoner"
+"origin" "648 648 144"
 "GemColor" "10"
+"angles" "0 115 0"
 }
 // entity 60
 {
@@ -2130,13 +2137,13 @@
 }
 // entity 66
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "80 -128 144"
 "GemColor" "10"
 }
 // entity 67
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "80 -48 144"
 "GemColor" "5"
 }
@@ -2197,9 +2204,10 @@
 }
 // entity 78
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "200 696 143.652"
 "GemColor" "5"
+"angles" "0 90 0"
 }
 // entity 79
 {
@@ -3125,9 +3133,10 @@
 }
 // entity 113
 {
-"classname" "Basket"
+"classname" "EnemyHandCannoner"
 "origin" "1784 40 48"
 "GemColor" "5"
+"angles" "0 120 0"
 "_tb_layer" "22"
 }
 // entity 114
@@ -3327,23 +3336,26 @@
 }
 // entity 144
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "1488 1104 48"
 "GemColor" "2"
+"angles" "0 78 0"
 "_tb_layer" "27"
 }
 // entity 145
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "1472 1192 48"
 "GemColor" "2"
+"angles" "0 90 0"
 "_tb_layer" "27"
 }
 // entity 146
 {
-"classname" "Vase"
+"classname" "EnemyHandCannoner"
 "origin" "1536 1184 48"
 "GemColor" "2"
+"angles" "0 90 0"
 "_tb_layer" "27"
 }
 // entity 147
