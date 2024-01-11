@@ -213,6 +213,20 @@ tracks/8/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_R
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = PackedFloat32Array(0, 1, -0.000158293, -1.05956e-07, -0.00257136, 0.999997)
+tracks/9/type = "scale_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107)
 
 [sub_resource type="Animation" id="Animation_edirh"]
 resource_name = "Shield"
@@ -285,6 +299,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(0.99, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.21, 1.21, 1.21), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1)]
 }
+tracks/3/type = "scale_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 1, 1, 0.1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 0.8, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 2.1, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 2.9, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 4.5, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107)
 
 [sub_resource type="Animation" id="Animation_wovws"]
 resource_name = "WakeUp"
@@ -343,28 +371,30 @@ unique_name_in_owner = true
 [node name="EnemyHandCannoner" parent="Model" instance=ExtResource("2_a37ce")]
 
 [node name="Skeleton3D" parent="Model/EnemyHandCannoner/Armature" index="0"]
-bones/0/rotation = Quaternion(-0.717421, 8.30459e-08, -8.55233e-08, 0.696639)
-bones/1/rotation = Quaternion(0.545527, 4.23904e-15, 1.30064e-07, 0.838093)
-bones/2/rotation = Quaternion(-0.207913, 1.99765e-14, -4.95703e-08, 0.978147)
-bones/3/rotation = Quaternion(0.419158, -1.36957e-14, 9.9935e-08, 0.907914)
-bones/4/rotation = Quaternion(-0.707107, -8.42937e-08, -8.42937e-08, 0.707107)
-bones/5/rotation = Quaternion(0.15186, -0.216446, 0.72053, 0.641036)
-bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.0320247, 0.0416046, -0.0582722, 0.996919)
-bones/7/rotation = Quaternion(-0.000158295, 1.02082e-07, 0.00257136, 0.999997)
-bones/8/rotation = Quaternion(0.15186, 0.216446, -0.72053, 0.641036)
-bones/9/rotation = Quaternion(0.0320247, -0.0416045, 0.0582722, 0.996919)
-bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(-0.000158293, -1.05956e-07, -0.00257136, 0.999997)
-bones/12/rotation = Quaternion(0.194989, -0.223209, 0.455448, 0.839478)
-bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.306992, -0.116646, -0.369621, 0.869212)
-bones/13/scale = Vector3(1, 1, 1)
-bones/14/rotation = Quaternion(0.480377, -0.000926492, -0.439077, 0.759242)
-bones/15/rotation = Quaternion(0.194989, 0.223209, -0.455448, 0.839478)
-bones/16/rotation = Quaternion(-0.306992, 0.116646, 0.369621, 0.869212)
-bones/17/rotation = Quaternion(0.480377, 0.000926423, 0.439077, 0.759242)
-bones/17/scale = Vector3(1, 1, 1)
+bones/0/rotation = Quaternion(-0.717421, 0, 0, 0.696639)
+bones/1/rotation = Quaternion(0.545527, 0, 0, 0.838093)
+bones/2/rotation = Quaternion(-0.207913, 0, 0, 0.978147)
+bones/3/rotation = Quaternion(0.419158, 5.42628e-17, 1.47334e-16, 0.907914)
+bones/4/rotation = Quaternion(-0.707107, 2.33962e-23, -1.57009e-16, 0.707107)
+bones/5/rotation = Quaternion(-0.707107, 1.8717e-23, -1.57009e-16, 0.707107)
+bones/16/rotation = Quaternion(0.15186, -0.216446, 0.72053, 0.641036)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(0.0320247, 0.0416046, -0.0582722, 0.996919)
+bones/18/rotation = Quaternion(-0.000158295, 1.01939e-07, 0.00257136, 0.999997)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(0.15186, 0.216446, -0.72053, 0.641036)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/rotation = Quaternion(0.0320247, -0.0416045, 0.0582722, 0.996919)
+bones/21/rotation = Quaternion(-0.000158293, -1.05897e-07, -0.00257136, 0.999997)
+bones/21/scale = Vector3(1, 1, 1)
+bones/24/rotation = Quaternion(-0.244314, 0.359528, -0.413733, 0.799923)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(0.650623, 2.2693e-08, -0.015491, 0.759243)
+bones/25/scale = Vector3(1, 1, 1)
+bones/27/rotation = Quaternion(-0.244314, -0.359528, 0.413733, 0.799923)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/rotation = Quaternion(0.650623, -2.2693e-08, 0.015491, 0.759243)
+bones/28/scale = Vector3(1, 1, 1)
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
