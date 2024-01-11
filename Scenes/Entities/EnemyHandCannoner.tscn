@@ -358,6 +358,7 @@ tracks/4/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0
 
 [sub_resource type="Animation" id="Animation_wovws"]
 resource_name = "WakeUp"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -432,14 +433,14 @@ tracks/9/enabled = true
 tracks/9/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_L")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, 0.650623, 2.2693e-08, -0.015491, 0.759243, 0.2, 1, 0.310548, 0.00592816, -0.0143118, 0.950431, 0.4, 1, 0.310548, 0.00592816, -0.0143118, 0.950431, 0.8, 1, 0.650623, 2.2693e-08, -0.015491, 0.759243)
+tracks/9/keys = PackedFloat32Array(0, 1, 0.650623, 2.2693e-08, -0.015491, 0.759243, 0.2, 1, 0.310548, 0.00592816, -0.0143118, 0.950431, 0.7, 1, 0.310548, 0.00592816, -0.0143118, 0.950431, 0.8, 1, 0.650623, 2.2693e-08, -0.015491, 0.759243)
 tracks/10/type = "rotation_3d"
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_R")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 0.650623, -2.2693e-08, 0.015491, 0.759243, 0.2, 1, 0.310548, -0.00592816, 0.0143118, 0.950431, 0.4, 1, 0.310548, -0.00592816, 0.0143118, 0.950431, 0.8, 1, 0.650623, -2.2693e-08, 0.015491, 0.759243)
+tracks/10/keys = PackedFloat32Array(0, 1, 0.650623, -2.2693e-08, 0.015491, 0.759243, 0.2, 1, 0.310548, -0.00592816, 0.0143118, 0.950431, 0.7, 1, 0.310548, -0.00592816, 0.0143118, 0.950431, 0.8, 1, 0.650623, -2.2693e-08, 0.015491, 0.759243)
 tracks/11/type = "rotation_3d"
 tracks/11/imported = false
 tracks/11/enabled = true
@@ -461,10 +462,10 @@ tracks/13/path = NodePath("Model:scale")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.8, 0.85, 0.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 0.5, 1), Vector3(1, 1.5, 1), Vector3(1, 1, 1)]
+"values": [Vector3(1, 0.5, 1), Vector3(1, 1.5, 1), Vector3(1, 1, 1), Vector3(1, 0.75, 1), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0sjkx"]
