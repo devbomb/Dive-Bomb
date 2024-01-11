@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://ch0y87teuvqc8"]
+[gd_scene load_steps=17 format=3 uid="uid://ch0y87teuvqc8"]
 
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="1_ny5k6"]
 [ext_resource type="Script" path="res://Scripts/Entities/EnemyHandCannoner.cs" id="1_x80xv"]
+[ext_resource type="PackedScene" uid="uid://cka17uxpf4jsi" path="res://Scenes/Objects/Projectiles/HandCannonBall.tscn" id="2_7j68t"]
 [ext_resource type="PackedScene" uid="uid://cxrfdnblu768c" path="res://BlenderModels/EnemyHandCannoner.blend" id="2_a37ce"]
 [ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Scenes/Objects/AggroSphere.tscn" id="4_hle72"]
 
@@ -327,6 +328,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="EnemyHandCannoner" type="StaticBody3D"]
 script = ExtResource("1_x80xv")
+ProjectilePrefab = ExtResource("2_7j68t")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -341,17 +343,28 @@ unique_name_in_owner = true
 [node name="EnemyHandCannoner" parent="Model" instance=ExtResource("2_a37ce")]
 
 [node name="Skeleton3D" parent="Model/EnemyHandCannoner/Armature" index="0"]
+bones/0/rotation = Quaternion(-0.717421, 8.30459e-08, -8.55233e-08, 0.696639)
+bones/1/rotation = Quaternion(0.545527, 4.23904e-15, 1.30064e-07, 0.838093)
+bones/2/rotation = Quaternion(-0.207913, 1.99765e-14, -4.95703e-08, 0.978147)
+bones/3/rotation = Quaternion(0.419158, -1.36957e-14, 9.9935e-08, 0.907914)
+bones/4/rotation = Quaternion(-0.707107, -8.42937e-08, -8.42937e-08, 0.707107)
 bones/5/rotation = Quaternion(0.15186, -0.216446, 0.72053, 0.641036)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.0320247, 0.0416046, -0.0582722, 0.996919)
-bones/6/scale = Vector3(1, 1, 0.999999)
 bones/7/rotation = Quaternion(-0.000158295, 1.02082e-07, 0.00257136, 0.999997)
-bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.15186, 0.216446, -0.72053, 0.641036)
-bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(0.0320247, -0.0416045, 0.0582722, 0.996919)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(-0.000158293, -1.05956e-07, -0.00257136, 0.999997)
+bones/12/rotation = Quaternion(0.194989, -0.223209, 0.455448, 0.839478)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(-0.306992, -0.116646, -0.369621, 0.869212)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(0.480377, -0.000926492, -0.439077, 0.759242)
+bones/15/rotation = Quaternion(0.194989, 0.223209, -0.455448, 0.839478)
+bones/16/rotation = Quaternion(-0.306992, 0.116646, 0.369621, 0.869212)
+bones/17/rotation = Quaternion(0.480377, 0.000926423, 0.439077, 0.759242)
+bones/17/scale = Vector3(1, 1, 1)
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
