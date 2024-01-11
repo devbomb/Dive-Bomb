@@ -14,3 +14,20 @@
 			25: "Magenta"
 		]
 	]
+
+@PointClass
+	base(Angle)
+	size(-8 -8 0, 8 8 16)
+	model({
+		"path" : "TrenchbroomEntityModels/EnemyHandCannoner.obj",
+		"scale" : 0.25
+	})
+	= EnemyHandCannoner : "EnemyHandCannoner" [
+		GemColor(choices): "GemColor" : 1 = [
+			1: "Red"
+			2: "Green"
+			5: "Purple"
+			10: "Yellow"
+			25: "Magenta"
+		]
+	]
