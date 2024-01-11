@@ -339,7 +339,6 @@ libraries = {
 unique_name_in_owner = true
 
 [node name="EnemyHandCannoner" parent="Model" instance=ExtResource("2_a37ce")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/EnemyHandCannoner/Armature" index="0"]
 bones/5/rotation = Quaternion(0.15186, -0.216446, 0.72053, 0.641036)
