@@ -269,6 +269,13 @@ tracks/16/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_R")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = PackedFloat32Array(0, 1, -0.244314, -0.359528, 0.413733, 0.799923)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Neck")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, -0.207913, 0, 0, 0.978147)
 
 [sub_resource type="Animation" id="Animation_edirh"]
 resource_name = "Shield"
@@ -366,10 +373,10 @@ tracks/0/path = NodePath("Model:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8),
-"transitions": PackedFloat32Array(0.378929, 2.37841, 1),
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.8),
+"transitions": PackedFloat32Array(0.378929, 0.378929, 2.37841, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 1, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "scale_3d"
 tracks/1/imported = false
@@ -398,21 +405,21 @@ tracks/4/enabled = true
 tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 0.2, 1, 0.937744, -6.55493e-17, 1.42672e-16, -0.347329, 0.5, 1, 0.937744, -6.55493e-17, 1.42672e-16, -0.347329, 0.8, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107)
+tracks/4/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 0.2, 1, 0.990112, -9.43505e-17, 1.25499e-16, -0.140279, 0.5, 1, 0.990112, -9.43505e-17, 1.25499e-16, -0.140279, 0.8, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107)
 tracks/5/type = "rotation_3d"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0.0766445, -0.0104165, -0.576234, 0.813617, 0.2, 1, 0.431577, -0.0361454, 0.056256, 0.899594, 0.7, 1, 0.431577, -0.0361454, 0.056256, 0.899594, 0.9, 1, -0.330939, -0.0653376, 0.0142203, 0.94128)
+tracks/5/keys = PackedFloat32Array(0, 1, 0.0766445, -0.0104165, -0.576234, 0.813617, 0.2, 1, 0.431577, -0.0361454, 0.056256, 0.899594, 0.6, 1, 0.431577, -0.0361454, 0.056256, 0.899594, 0.8, 1, -0.330939, -0.0653376, 0.0142203, 0.94128)
 tracks/6/type = "rotation_3d"
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0.0766445, 0.0104165, 0.576234, 0.813617, 0.2, 1, 0.431577, 0.0361454, -0.056256, 0.899594, 0.7, 1, 0.431577, 0.0361454, -0.056256, 0.899594, 0.9, 1, -0.330939, 0.0653377, -0.0142204, 0.94128)
+tracks/6/keys = PackedFloat32Array(0, 1, 0.0766445, 0.0104165, 0.576234, 0.813617, 0.2, 1, 0.431577, 0.0361454, -0.056256, 0.899594, 0.6, 1, 0.431577, 0.0361454, -0.056256, 0.899594, 0.8, 1, -0.330939, 0.0653377, -0.0142204, 0.94128)
 tracks/7/type = "rotation_3d"
 tracks/7/imported = false
 tracks/7/enabled = true
@@ -462,11 +469,18 @@ tracks/13/path = NodePath("Model:scale")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.8, 0.85, 0.95),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.8, 0.85, 0.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 0.5, 1), Vector3(1, 1.5, 1), Vector3(1, 1, 1), Vector3(1, 0.75, 1), Vector3(1, 1, 1)]
+"values": [Vector3(1, 0.5, 1), Vector3(1, 0.5, 1), Vector3(0.75, 1.5, 1), Vector3(1, 1, 1), Vector3(1, 0.75, 1), Vector3(1, 1, 1)]
 }
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Neck")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -0.207913, 0, 0, 0.978147, 0.2, 1, 0.275275, 0, 0, 0.961365, 0.5, 1, 0.275275, 0, 0, 0.961365, 0.7, 1, -0.207913, 0, 0, 0.978147, 0.8, 1, -0.207913, 0, 0, 0.978147, 0.85, 1, -0.318564, 0, 0, 0.947901, 0.95, 1, -0.207913, 0, 0, 0.978147)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0sjkx"]
 _data = {
@@ -513,6 +527,7 @@ unique_name_in_owner = true
 bones/0/rotation = Quaternion(-0.717421, 0, 0, 0.696639)
 bones/1/rotation = Quaternion(0.545527, 0, 0, 0.838093)
 bones/2/rotation = Quaternion(-0.207913, 0, 0, 0.978147)
+bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.419158, 5.42628e-17, 1.47334e-16, 0.907914)
 bones/4/rotation = Quaternion(-0.707107, 2.33962e-23, -1.57009e-16, 0.707107)
 bones/5/rotation = Quaternion(-0.707107, 1.8717e-23, -1.57009e-16, 0.707107)
