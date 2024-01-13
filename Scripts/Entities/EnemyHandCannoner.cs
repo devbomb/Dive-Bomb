@@ -6,7 +6,7 @@ namespace FastDragon
     {
         [Export] public GemColor GemColor = GemColor.Red;
         [Export] public PackedScene ProjectilePrefab;
-        [Export] public float ShieldDuration = 1;
+        [Export] public float ShieldDuration = 1.5f;
         [Export] public float AimDuration = 1;
         [Export] public float RecoilDuration = 1;
 
