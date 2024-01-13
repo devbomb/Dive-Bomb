@@ -1044,7 +1044,7 @@ tracks/1/enabled = true
 tracks/1/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.0168543, -0.207778, 0.343779, 0.91562, 0.1, 1, 0.295809, -0.0924637, 0.367716, 0.876774)
+tracks/1/keys = PackedFloat32Array(0, 1, -0.0168543, -0.207778, 0.343779, 0.91562, 0.1, 1, 0.508729, 0.00392997, 0.379143, 0.772936, 0.2, 1, 0.295809, -0.0924637, 0.367716, 0.876774, 0.25, 1, 0.295809, -0.0924637, 0.367716, 0.876774, 0.7, 1, -0.0168543, -0.207778, 0.343779, 0.91562)
 tracks/2/type = "rotation_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -1058,56 +1058,56 @@ tracks/3/enabled = true
 tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0.254782, 0.106415, 0.352276, 0.894239)
+tracks/3/keys = PackedFloat32Array(0, 1, 0.254782, 0.106415, 0.352276, 0.894239, 0.2, 1, 0.194112, 0.196363, -0.0194585, 0.960928, 0.25, 1, 0.194112, 0.196363, -0.0194585, 0.960928, 0.35, 1, 0.0772289, 0.197279, 0.00427984, 0.977291, 0.45, 1, 0.283944, 0.19365, -0.0379056, 0.938317, 0.55, 1, 0.0772289, 0.197279, 0.00427984, 0.977291, 0.65, 1, 0.283944, 0.19365, -0.0379056, 0.938317, 0.75, 1, 0.0772289, 0.197279, 0.00427984, 0.977291, 0.9, 1, -0.251314, 0.148495, -0.0883523, 0.952357)
 tracks/4/type = "rotation_3d"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_R")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, -0.408495, 0.0530327, 0.252974, 0.875399, 0.2, 1, -0.0144584, 0.151919, 0.209115, 0.96591)
+tracks/4/keys = PackedFloat32Array(0, 1, -0.408495, 0.0530327, 0.252974, 0.875399, 0.2, 1, -0.0144584, 0.151919, 0.209115, 0.96591, 0.35, 1, -0.408495, 0.0530327, 0.252974, 0.875399)
 tracks/5/type = "rotation_3d"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_L")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, -0.451098, -0.228379, -0.165451, 0.846746, 0.2, 1, -0.262695, 0.0272516, 0.192978, 0.944991)
+tracks/5/keys = PackedFloat32Array(0, 1, -0.451098, -0.228379, -0.165451, 0.846746, 0.2, 1, -0.262695, 0.0272516, 0.192978, 0.944991, 0.25, 1, -0.262695, 0.0272516, 0.192978, 0.944991, 0.7, 1, -0.451098, -0.228379, -0.165451, 0.846746)
 tracks/6/type = "rotation_3d"
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Head")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0.42513, -0.258485, -0.229695, 0.836475, 0.2, 1, 0.538653, -0.326467, -0.0666454, 0.773841)
+tracks/6/keys = PackedFloat32Array(0, 1, 0.42513, -0.258485, -0.229695, 0.836475, 0.2, 1, 0.538653, -0.326467, -0.0666454, 0.773841, 0.25, 1, 0.538653, -0.326467, -0.0666454, 0.773841, 0.7, 1, 0.426555, 0.0146443, 0.0102248, 0.904285)
 tracks/7/type = "scale_3d"
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_R")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 1, 1, 0.284104)
+tracks/7/keys = PackedFloat32Array(0, 1, 1, 1, 0.284104, 0.1, 1, 1.00048, 1.00048, 1.00048)
 tracks/8/type = "scale_3d"
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_L")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 1, 1, 1.86878)
+tracks/8/keys = PackedFloat32Array(0, 1, 1, 1, 1.86878, 0.1, 1, 1.00048, 1.00048, 1.00048)
 tracks/9/type = "position_3d"
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_L")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, -0.0433649, 0.0521096, 0.013088)
+tracks/9/keys = PackedFloat32Array(0, 1, -0.0433649, 0.0521096, 0.013088, 0.1, 1, -0.039, 0.052, 0.013)
 tracks/10/type = "scale_3d"
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Hand_R")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 2.00048, 0.500475, 2.00048, 0.2, 1, 1.00048, 1.00048, 1.00048)
+tracks/10/keys = PackedFloat32Array(0, 1, 2.00048, 0.500475, 2.00048, 0.2, 1, 1.00048, 1.00048, 1.00048, 0.25, 1, 1.00048, 1.00048, 1.00048)
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
@@ -1115,10 +1115,10 @@ tracks/11/path = NodePath("Model:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.25, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.785398, 0), Vector3(0.542361, 0.971237, 0.646809)]
+"values": [Vector3(0, 0.785398, 0), Vector3(0.542361, 0.971237, 0.646809), Vector3(0.542361, 0.971237, 0.646809), Vector3(0, 0, 0)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -1127,11 +1127,18 @@ tracks/12/path = NodePath("Model:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(0.406126, 3.24901, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.25, 0.7),
+"transitions": PackedFloat32Array(0.406126, 3.24901, 1, 1, 0.406126),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.323281, 0), Vector3(0, 0.143456, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.323281, 0), Vector3(0, 0.143456, 0), Vector3(0, 0.143456, 0), Vector3(0, 0, 0)]
 }
+tracks/13/type = "scale_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.1, 1, 1.00048, 1.00048, 0.100475, 0.15, 1, 1.00048, 1.00048, 0.100475, 0.2, 1, 1, 1, 1, 0.25, 1, 1, 1, 1)
 
 [resource]
 _data = {
