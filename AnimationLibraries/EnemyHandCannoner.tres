@@ -8,14 +8,14 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_R")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.351392, -0.207156, -0.597164, 0.690656)
+tracks/0/keys = PackedFloat32Array(0, 1, -0.337513, -0.229073, -0.639858, 0.6513)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.0826393, -0.19138, 0.619422, 0.756876)
+tracks/1/keys = PackedFloat32Array(0, 1, -0.0168543, -0.207778, 0.343779, 0.91562)
 tracks/2/type = "rotation_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -30,6 +30,60 @@ tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 0.254782, 0.106415, 0.352276, 0.894239)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_R")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.408495, 0.0530327, 0.252974, 0.875399)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_L")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.451098, -0.228379, -0.165451, 0.846746)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Head")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.42513, -0.258485, -0.229695, 0.836475)
+tracks/7/type = "scale_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_R")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1, 1, 0.284104)
+tracks/8/type = "scale_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_L")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 1, 1, 1.86878)
+tracks/9/type = "position_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_L")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.0433649, 0.0521096, 0.013088)
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.785398, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_6jv4s"]
 resource_name = "Death"
