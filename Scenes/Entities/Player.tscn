@@ -1,14 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=14 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
-[ext_resource type="PackedScene" uid="uid://cwldvck1ij05b" path="res://BlenderModels/Player.blend" id="1_aib06"]
 [ext_resource type="AnimationLibrary" uid="uid://dp75nlaah5k6o" path="res://AnimationLibraries/PlayerAnimations.tres" id="2_om7jv"]
 [ext_resource type="PackedScene" uid="uid://dolfkovx44knj" path="res://Scenes/Objects/Sparx.tscn" id="3_5fc8t"]
 [ext_resource type="Script" path="res://Scripts/Objects/OrbitCamera.cs" id="4_15biq"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="4_db58r"]
-[ext_resource type="PackedScene" uid="uid://bnugmkxucp0vb" path="res://Scenes/Objects/Flame.tscn" id="4_g8ylw"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
+[ext_resource type="PackedScene" uid="uid://ciwpie76rxyn1" path="res://BlenderModels/AnotherPlatformerMan.blend" id="10_3vscj"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5lcs0"]
 height = 1.5
@@ -43,77 +42,8 @@ libraries = {
 }
 playback_default_blend_time = 0.1
 
-[node name="Model" parent="." instance=ExtResource("1_aib06")]
+[node name="Model" parent="." instance=ExtResource("10_3vscj")]
 unique_name_in_owner = true
-
-[node name="Skeleton3D" parent="Model/Armature" index="0"]
-transform = Transform3D(1, 1.90727e-11, -5.2108e-15, -1.90727e-11, 1, -0.000436332, -5.2108e-15, 0.000436332, 1, 0, 0, 0)
-bones/1/position = Vector3(-8.9405e-19, 0.339123, -2.91038e-11)
-bones/1/rotation = Quaternion(-0.575566, 0.00169494, -0.00767496, 0.817718)
-bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(-0.387382, -0.205069, 0.694455, 0.570626)
-bones/2/scale = Vector3(1, 1, 0.999998)
-bones/3/position = Vector3(2.02682e-07, 0.238395, 1.2093e-07)
-bones/3/rotation = Quaternion(-0.337297, -3.6193e-07, 0.0185979, 0.941215)
-bones/3/scale = Vector3(1, 1, 0.999999)
-bones/4/rotation = Quaternion(-5.92678e-08, 3.6448e-09, 1.20364e-07, 1)
-bones/4/scale = Vector3(0.999998, 1, 1)
-bones/5/rotation = Quaternion(-0.0187589, 0.0340518, -0.706939, 0.706205)
-bones/5/scale = Vector3(1, 0.999998, 1)
-bones/6/rotation = Quaternion(-0.381448, 0.194314, -0.692817, 0.580297)
-bones/6/scale = Vector3(1, 1, 1)
-bones/7/position = Vector3(-1.28339e-08, 0.238395, 6.28086e-08)
-bones/7/rotation = Quaternion(-0.337297, 3.96071e-07, -0.0185979, 0.941215)
-bones/7/scale = Vector3(1, 1, 0.999998)
-bones/8/position = Vector3(1.42994e-08, 0.123563, 5.37874e-09)
-bones/8/rotation = Quaternion(-5.42498e-10, 1.03273e-09, -1.20786e-07, 1)
-bones/8/scale = Vector3(0.999999, 1, 1)
-bones/9/position = Vector3(-3.91006e-09, 0.123563, 9.5932e-10)
-bones/9/rotation = Quaternion(-0.018759, -0.0340518, 0.706939, 0.706205)
-bones/9/scale = Vector3(1, 0.999999, 1)
-bones/10/position = Vector3(-2.37396e-09, 0.287409, 1.17741e-07)
-bones/10/rotation = Quaternion(0.713607, 1.70641e-05, 0.00816037, 0.700499)
-bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.701201, 7.01135e-11, -0.000600509, 0.712964)
-bones/11/scale = Vector3(1, 0.999999, 1)
-bones/12/rotation = Quaternion(0.681158, 1.03635e-05, 1.41495e-05, 0.732136)
-bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(0.16409, -0.232373, -0.76028, 0.583996)
-bones/13/scale = Vector3(1, 1, 1)
-bones/14/position = Vector3(-2.44738e-08, 0.197514, -1.63869e-07)
-bones/14/rotation = Quaternion(0.464809, -0.03074, -0.0679504, 0.882264)
-bones/14/scale = Vector3(1, 0.999997, 1)
-bones/15/position = Vector3(-1.68014e-08, 0.121543, 1.44196e-08)
-bones/15/rotation = Quaternion(5.61746e-09, -2.98023e-08, 1.38018e-08, 1)
-bones/15/scale = Vector3(1.00001, 0.999993, 1)
-bones/16/position = Vector3(6.55518e-10, 0.121543, 1.48955e-08)
-bones/16/rotation = Quaternion(-0.260071, 3.67411e-08, -0.638979, 0.723926)
-bones/16/scale = Vector3(1, 0.999999, 1)
-bones/17/rotation = Quaternion(0.164065, 0.232351, 0.760282, 0.584009)
-bones/18/position = Vector3(4.26504e-08, 0.197514, -1.01679e-07)
-bones/18/rotation = Quaternion(0.464809, 0.0307401, 0.0679504, 0.882264)
-bones/18/scale = Vector3(1, 1, 0.999999)
-bones/19/position = Vector3(1.19588e-09, 0.121543, 1.81318e-08)
-bones/19/rotation = Quaternion(1.66105e-08, -1.34306e-15, -1.28343e-09, 1)
-bones/19/scale = Vector3(1, 0.999999, 1)
-bones/20/rotation = Quaternion(-0.260071, 2.00471e-08, 0.638979, 0.723926)
-bones/21/rotation = Quaternion(-0.281436, -1.42278e-05, -8.41726e-06, 0.95958)
-bones/22/rotation = Quaternion(4.08797e-07, 0.989173, -0.146757, 7.46805e-08)
-bones/23/rotation = Quaternion(-0.158847, -1.17696e-07, 1.8936e-08, 0.987303)
-bones/24/rotation = Quaternion(0.349826, -0.0566509, -0.0819751, 0.9315)
-bones/24/scale = Vector3(0.999999, 1, 1)
-bones/25/rotation = Quaternion(-2.84053e-08, -7.45058e-09, 1.11759e-08, 1)
-bones/25/scale = Vector3(0.999998, 1, 1)
-bones/26/rotation = Quaternion(2.32831e-08, 5.58794e-09, 2.79397e-09, 1)
-bones/26/scale = Vector3(0.999996, 1, 1)
-bones/27/rotation = Quaternion(0.349826, 0.0566511, 0.081975, 0.9315)
-bones/27/scale = Vector3(0.999999, 1, 1)
-bones/28/rotation = Quaternion(-5.96046e-08, 3.72529e-09, -1.02445e-08, 1)
-bones/29/rotation = Quaternion(6.0536e-09, -1.11759e-08, 1.58325e-08, 1)
-
-[node name="Flame" parent="Model" node_paths=PackedStringArray("BodyToIgnore") instance=ExtResource("4_g8ylw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.732184, -0.483194)
-BodyToIgnore = NodePath("../..")
 
 [node name="Sparx" parent="." node_paths=PackedStringArray("CollectionArea") instance=ExtResource("3_5fc8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -156,5 +86,3 @@ Body = NodePath("..")
 [node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
 
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
-
-[editable path="Model"]
