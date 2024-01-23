@@ -5,7 +5,7 @@ namespace FastDragon
 {
     public partial class PlayerWalkState : PlayerState
     {
-        private const string WalkAnim = "Idle";
+        private const string WalkAnim = "Walk";
         private const string SkidAnim = "Skid";
 
         public override void OnStateEntered()
@@ -72,12 +72,12 @@ namespace FastDragon
 
             if (leftStickForwardComponent < 0 && !playingSkid)
             {
-                _player.Animator.Play("Skid");
+                _player.Animator.Play(SkidAnim);
             }
 
             if (leftStickForwardComponent >= 0 && playingSkid)
             {
-                _player.Animator.Play("Idle");
+                _player.Animator.Play(WalkAnim);
             }
         }
     }

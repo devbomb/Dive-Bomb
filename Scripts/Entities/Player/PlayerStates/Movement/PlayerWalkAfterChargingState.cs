@@ -7,7 +7,7 @@ namespace FastDragon
     {
         public override void OnStateEntered()
         {
-            _player.Animator.Play("Idle");
+            _player.Animator.Play("Walk");
         }
 
         public override void OnStateExited()

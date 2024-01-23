@@ -36,14 +36,16 @@ script = ExtResource("1_a4opu")
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 deterministic = true
-root_node = NodePath("../Model")
+root_node = NodePath("../Model/AnotherPlatformerMan")
 libraries = {
 "": ExtResource("2_om7jv")
 }
 playback_default_blend_time = 0.1
 
-[node name="Model" parent="." instance=ExtResource("10_3vscj")]
+[node name="Model" type="Node3D" parent="."]
 unique_name_in_owner = true
+
+[node name="AnotherPlatformerMan" parent="Model" instance=ExtResource("10_3vscj")]
 
 [node name="Sparx" parent="." node_paths=PackedStringArray("CollectionArea") instance=ExtResource("3_5fc8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
