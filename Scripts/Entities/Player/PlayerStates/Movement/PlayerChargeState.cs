@@ -10,6 +10,8 @@ namespace FastDragon
         public override bool SpawningGemsHomeIn => true;
 
         private const float MinSkitterDelay = 1f / 30;
+        private const float RollingRadius = 0.5f;
+        private const float RollingCircumference = 2 * Mathf.Pi * RollingRadius;
 
         private float _fspeed;
         private bool _disableJump;
@@ -20,11 +22,14 @@ namespace FastDragon
 
             _fspeed = _player.Velocity.Flattened().Length();
             _fspeed = Mathf.Max(_fspeed, Player.Charge.InitialGroundSpeed);
+
+            _player.Animator.SpeedScale = _player.Velocity.Length() / RollingCircumference;
         }
 
         public override void OnStateExited()
         {
             ResetModelPitch();
+            _player.Animator.SpeedScale = 1;
         }
 
         public override void _Process(double deltaD)
