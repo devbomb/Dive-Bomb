@@ -8,6 +8,8 @@ namespace FastDragon
         private const string WalkAnim = "Walk";
         private const string SkidAnim = "Skid";
 
+        private const float StrideLength = 1;
+
         public override void OnStateEntered()
         {
             _player.Animator.Play(WalkAnim);
@@ -19,6 +21,7 @@ namespace FastDragon
         public override void OnStateExited()
         {
             ResetModelPitch();
+            _player.Animator.SpeedScale = 1;
         }
 
         public override void _Process(double deltaD)
@@ -26,6 +29,14 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             AngleModelPitchWithGroundSlope(delta);
+
+            // Adjust the animation speed to match our actual speed
+            // Adjust the animation speed to match our actual speed
+            float animLen = (float)_player.Animator.CurrentAnimationLength;
+            float distancePerCycle = StrideLength * 2;
+            float speed = _player.Velocity.Length();
+
+            _player.Animator.SpeedScale = speed * animLen / distancePerCycle;
         }
 
         public override void _Input(InputEvent ev)
