@@ -54,7 +54,7 @@ namespace FastDragon
 
             if (_player.IsOnFloor())
             {
-                _player.ChangeState<PlayerChargeState>();
+                _player.ChangeState<PlayerRollState>();
                 return;
             }
         }

@@ -53,6 +53,13 @@ namespace FastDragon
             if (InputService.JumpJustPressed(ev))
             {
                 _player.ChangeState<PlayerWalkJumpState>();
+                return;
+            }
+
+            if (InputService.RollJustPressed(ev))
+            {
+                _player.ChangeState<PlayerRollState>();
+                return;
             }
         }
 
@@ -68,7 +75,7 @@ namespace FastDragon
 
             if (InputService.ChargeHeld)
             {
-                _player.ChangeState<PlayerChargeState>();
+                _player.ChangeState<PlayerRollState>();
                 return;
             }
 

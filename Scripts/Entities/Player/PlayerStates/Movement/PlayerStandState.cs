@@ -41,7 +41,7 @@ namespace FastDragon
 
             if (InputService.ChargeHeld)
             {
-                _player.ChangeState<PlayerChargeState>();
+                _player.ChangeState<PlayerRollState>();
                 return;
             }
 

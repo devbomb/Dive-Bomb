@@ -48,6 +48,9 @@ namespace FastDragon
         public static bool FlameJustPressed(InputEvent ev)
             => ev.IsActionPressed("Flame");
 
+        public static bool RollJustPressed(InputEvent ev)
+            => ev.IsActionPressed("Charge");
+
         public static bool RecenterCameraJustPressed(InputEvent ev)
             => ev.IsActionPressed("RecenterCamera");
     }
