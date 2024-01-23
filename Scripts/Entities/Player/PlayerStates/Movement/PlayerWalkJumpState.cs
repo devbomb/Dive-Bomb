@@ -16,7 +16,7 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("Jump");
+            _player.Animator.Play("Jump", 0);
             _player.VSpeed = Player.Jump.InitVSpeed;
 
             _isHolding = true;
