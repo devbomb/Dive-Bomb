@@ -9,7 +9,6 @@ namespace FastDragon
 
         private bool _isHolding;
 
-        private float _glideDebounceTimer;
         private float _startY;
         private float _maxHeight;
         private bool _printedMaxHeight;
@@ -21,24 +20,14 @@ namespace FastDragon
 
             _isHolding = true;
 
-            _glideDebounceTimer = GlideDebounceDuration;
-
              _startY = _player.GlobalPosition.Y;
              _maxHeight = 0;
              _printedMaxHeight = false;
         }
 
-        public override void _Input(InputEvent ev)
-        {
-            if (_glideDebounceTimer <= 0)
-                GlideWithJumpButton(ev);
-        }
-
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
-
-            _glideDebounceTimer -= delta;
 
             RotateTowardLeftStick(Mathf.DegToRad(Player.Jump.RotSpeedDeg), delta);
             StrafeWithLeftStick(

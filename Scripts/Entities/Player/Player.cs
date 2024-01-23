@@ -73,8 +73,6 @@ namespace FastDragon
             }
         }
 
-        public bool HasUsedGlide = false;
-
         private readonly StateMachine _stateMachine = new StateMachine(typeof(PlayerState));
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;
@@ -161,14 +159,6 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             Camera.DisableInput = CurrentState.DisableCameraInput;
-
-            // Give the player their glide back when they touch the ground.
-            // Gliding uses "double jump rules": after you leave the ground, you
-            // can glide ONCE.  If you leave the gliding state in mid-air for
-            // any reason, you will not be able to glide again until you touch
-            // the ground.
-            if (IsOnFloor())
-                HasUsedGlide = false;
         }
 
         public void ChangeState<TState>() where TState : PlayerState, new()

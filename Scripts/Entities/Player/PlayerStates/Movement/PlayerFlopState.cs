@@ -9,11 +9,6 @@ namespace FastDragon
             _player.Animator.Play("Flop");
         }
 
-        public override void _Input(InputEvent ev)
-        {
-            GlideWithJumpButton(ev);
-        }
-
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;

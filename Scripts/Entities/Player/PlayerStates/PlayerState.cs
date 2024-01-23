@@ -124,12 +124,6 @@ namespace FastDragon
             );
         }
 
-        protected void GlideWithJumpButton(InputEvent ev)
-        {
-            if (InputService.JumpJustPressed(ev) && !_player.HasUsedGlide)
-                _player.ChangeState<PlayerGlideState>();
-        }
-
         protected void ApplyGravity(
             float delta,
             float gravity = Player.Default.Gravity)

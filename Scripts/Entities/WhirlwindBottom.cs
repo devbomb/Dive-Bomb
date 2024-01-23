@@ -47,7 +47,7 @@ namespace FastDragon
             {
                 _ensaredPlayer.GlobalPosition = _top.GlobalPosition;
                 _ensaredPlayer.GlobalRotation = _top.GlobalRotation;
-                _ensaredPlayer.ChangeState<PlayerGlideState>();
+                _ensaredPlayer.ChangeState<PlayerChargeJumpState>();
                 _ensaredPlayer = null;
                 return;
             }
