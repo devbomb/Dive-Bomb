@@ -12,6 +12,7 @@ namespace FastDragon
         {
             _player.Animator.Play("Dive");
             _player.VSpeed = Player.Dive.InitialVSpeed;
+            _player.FSpeed = Player.Dive.FSpeed;
         }
 
         public override void OnStateExited()
@@ -37,11 +38,9 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            TurningControls(
-                Player.Dive.FSpeed,
-                Player.Dive.TurnSpeedDeg,
-                delta
-            );
+            RotateTowardLeftStick(Mathf.DegToRad(Player.Dive.TurnSpeedDeg), delta);
+            RedirectFSpeedTowardYaw();
+
             ApplyGravity(delta, Player.Dive.Gravity);
 
             if (MoveAndSlideCharging(delta))

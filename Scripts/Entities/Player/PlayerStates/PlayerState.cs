@@ -85,6 +85,13 @@ namespace FastDragon
             _player.GlobalRotation = rot;
         }
 
+        protected void RedirectFSpeedTowardYaw()
+        {
+            Vector3 vel = _player.GlobalForward() * _player.FSpeed;
+            vel.Y = _player.VSpeed;
+            _player.Velocity = vel;
+        }
+
         protected void AccelerateWithLeftStick(
             float maxSpeed,
             float accel,

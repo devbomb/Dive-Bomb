@@ -109,10 +109,7 @@ namespace FastDragon
         private void LeftStickControls(float delta)
         {
             RotateTowardLeftStick(Mathf.DegToRad(Player.Roll.TurnSpeedDeg), delta);
-
-            Vector3 vel = _player.GlobalForward() * _player.FSpeed;
-            vel.Y = _player.VSpeed;
-            _player.Velocity = vel;
+            RedirectFSpeedTowardYaw();
         }
 
         private float TargetSpeed()
