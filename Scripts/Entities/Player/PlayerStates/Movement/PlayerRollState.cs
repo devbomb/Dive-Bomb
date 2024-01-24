@@ -14,7 +14,6 @@ namespace FastDragon
         private const float RollingCircumference = 2 * Mathf.Pi * RollingRadius;
 
         private float _timer;
-        private bool _isJumpBuffered;
 
         public override void OnStateEntered()
         {
@@ -22,7 +21,6 @@ namespace FastDragon
             _player.Velocity = _player.GlobalForward() * Player.Roll.InitialSpeed;
 
             _timer = 0;
-            _isJumpBuffered = false;
         }
 
         public override void OnStateExited()
@@ -46,18 +44,8 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                // If it's too early to allow jumping, buffer the jump instead
-                // so it will be acted on as soon as jumping is allowed.
-                // Otherwise, jump immediately
-                if (_timer <= Player.Roll.FrictionlessDuration)
-                {
-                    _isJumpBuffered = true;
-                }
-                else
-                {
-                    GD.Print("Instant jump");
-                    _player.ChangeState<PlayerWalkJumpState>();
-                }
+                _player.ChangeState<PlayerWalkJumpState>();
+                return;
             }
         }
 
@@ -76,15 +64,6 @@ namespace FastDragon
 
             if (_timer >= Player.Roll.FrictionlessDuration)
             {
-                // If a jump is buffered, then jump immediately when it becomes
-                // possible.
-                if (_isJumpBuffered)
-                {
-                    GD.Print("Buffered jump");
-                    _player.ChangeState<PlayerWalkJumpState>();
-                    return;
-                }
-
                 // Apply friction
                 _player.FSpeed = Mathf.MoveToward(
                     _player.FSpeed,
