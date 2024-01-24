@@ -49,12 +49,13 @@ namespace FastDragon
                 // If it's too early to allow jumping, buffer the jump instead
                 // so it will be acted on as soon as jumping is allowed.
                 // Otherwise, jump immediately
-                if (_timer >= Player.Roll.FrictionlessDuration)
+                if (_timer <= Player.Roll.FrictionlessDuration)
                 {
                     _isJumpBuffered = true;
                 }
                 else
                 {
+                    GD.Print("Instant jump");
                     _player.ChangeState<PlayerWalkJumpState>();
                 }
             }
@@ -79,6 +80,7 @@ namespace FastDragon
                 // possible.
                 if (_isJumpBuffered)
                 {
+                    GD.Print("Buffered jump");
                     _player.ChangeState<PlayerWalkJumpState>();
                     return;
                 }
