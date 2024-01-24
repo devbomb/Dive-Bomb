@@ -11,7 +11,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _player.Animator.Play("Dive");
-            _player.VSpeed = Player.Charge.JumpVSpeed;
+            _player.VSpeed = Player.Dive.InitialVSpeed;
         }
 
         public override void OnStateExited()
@@ -26,9 +26,9 @@ namespace FastDragon
             AngleModelPitchWithVelocity(delta);
 
             ContinuouslyRecenterCamera(
-                Player.Charge.CameraDistance,
-                Player.Charge.CameraPitchDeg,
-                Player.Charge.CameraDecayRate,
+                Player.Dive.CameraDistance,
+                Player.Dive.CameraPitchDeg,
+                Player.Dive.CameraDecayRate,
                 delta
             );
         }
@@ -38,11 +38,11 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             TurningControls(
-                Player.Charge.AirSpeed,
-                Player.Charge.TurnSpeedDeg,
+                Player.Dive.FSpeed,
+                Player.Dive.TurnSpeedDeg,
                 delta
             );
-            ApplyGravity(delta);
+            ApplyGravity(delta, Player.Dive.Gravity);
 
             if (MoveAndSlideCharging(delta))
                 return;

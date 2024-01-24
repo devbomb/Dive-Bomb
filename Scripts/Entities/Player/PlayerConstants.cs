@@ -95,16 +95,13 @@ namespace FastDragon
             }
         }
 
-        public static class Charge
+        public static class Dive
         {
-            public const float InitialGroundSpeed = 83 * SpyroUnitsPerFrame;
-            public const float MaxGroundSpeed = 245 * SpyroUnitsPerFrame;
-            public const float GroundAccel = 122 * SpyroUnitsPerFrameSquared;
             public const float TurnSpeedDeg = 48 * SpyroAnglesPerFrame;
 
-            public const float AirSpeed = 240 * SpyroUnitsPerFrame;
-
-            public static float JumpVSpeed = 110 * SpyroUnitsPerFrame;
+            public const float FSpeed = 12;
+            public const float InitialVSpeed = 6;
+            public const float Gravity = 30;
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
