@@ -25,6 +25,15 @@ namespace FastDragon
              _printedMaxHeight = false;
         }
 
+        public override void _Input(InputEvent ev)
+        {
+            if (InputService.RollJustPressed(ev))
+            {
+                _player.ChangeState<PlayerDiveState>();
+                return;
+            }
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
@@ -65,13 +74,6 @@ namespace FastDragon
             if (_player.IsOnFloor())
             {
                 _player.ChangeState<PlayerWalkState>();
-                return;
-            }
-
-            // Charge when the button is held
-            if (InputService.ChargeHeld)
-            {
-                _player.ChangeState<PlayerDiveState>();
                 return;
             }
         }
