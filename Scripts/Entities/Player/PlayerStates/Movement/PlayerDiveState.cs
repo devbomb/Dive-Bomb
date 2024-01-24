@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerChargeJumpState : PlayerState
+    public partial class PlayerDiveState : PlayerState
     {
         public override bool AllowFlaming => false;
         public override bool DisableCameraInput => true;
@@ -10,7 +10,7 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("ChargeJump");
+            _player.Animator.Play("Dive");
             _player.VSpeed = Player.Charge.JumpVSpeed;
         }
 
