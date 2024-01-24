@@ -24,7 +24,7 @@ namespace FastDragon
 
             if (InputService.ChargeHeld)
             {
-                _player.ChangeState<PlayerChargeFallState>();
+                _player.ChangeState<PlayerChargeJumpState>();
                 return;
             }
         }
