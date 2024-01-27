@@ -35,6 +35,12 @@ namespace FastDragon
                 _player.ChangeState<PlayerKickState>();
                 return;
             }
+
+            if (InputService.RollJustPressed(ev))
+            {
+                _player.ChangeState<PlayerRollState>();
+                return;
+            }
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -45,12 +51,6 @@ namespace FastDragon
             _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
             RotateTowardLeftStick(Mathf.DegToRad(Player.Stand.RotSpeedDeg), delta);
             _player.MoveAndSlide();
-
-            if (InputService.RollHeld)
-            {
-                _player.ChangeState<PlayerRollState>();
-                return;
-            }
 
             if (!_player.IsOnFloor())
             {

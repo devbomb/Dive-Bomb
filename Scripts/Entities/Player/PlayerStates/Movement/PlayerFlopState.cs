@@ -9,6 +9,15 @@ namespace FastDragon
             _player.Animator.Play("Flop");
         }
 
+        public override void _Input(InputEvent ev)
+        {
+            if (InputService.RollJustPressed(ev))
+            {
+                _player.ChangeState<PlayerDiveState>();
+                return;
+            }
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
@@ -19,12 +28,6 @@ namespace FastDragon
             if (_player.IsOnFloor())
             {
                 _player.ChangeState<PlayerWalkState>();
-                return;
-            }
-
-            if (InputService.RollHeld)
-            {
-                _player.ChangeState<PlayerDiveState>();
                 return;
             }
         }

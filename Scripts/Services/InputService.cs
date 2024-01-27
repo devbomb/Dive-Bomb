@@ -35,8 +35,6 @@ namespace FastDragon
             return pos - neg;
         }
 
-        public static bool RollHeld => Input.IsActionPressed("Roll");
-
         public static bool JumpHeld => Input.IsActionPressed("Jump");
 
         public static bool JumpJustPressed(InputEvent ev)

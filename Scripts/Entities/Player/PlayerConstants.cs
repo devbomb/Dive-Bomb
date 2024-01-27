@@ -58,18 +58,12 @@ namespace FastDragon
         {
             public const float InitialSpeed = 15;
             public const float MinSpeed = 5;
-            public const float HoldSpeed = 10;
+            public const float MinAccel = 5;
+            public const float MaxAccel = 15;
 
-            public const float MinDuration = 0.5f;
+            public const float Duration = 0.5f;
             public const float FrictionlessDuration = 0.25f;
-            public const float FrictionDuration = 0.25f;
-            public const float Friction = (InitialSpeed - MinSpeed) / (FrictionDuration);
-
-            public const float TurnSpeedDeg = 120;
-
-            public const float CameraDistance = 5;
-            public const float CameraDecayRate = 5;
-            public const float CameraPitchDeg = 0;
+            public const float Friction = (InitialSpeed - MinSpeed) / (Duration - FrictionlessDuration);
         }
 
         public static class Jump

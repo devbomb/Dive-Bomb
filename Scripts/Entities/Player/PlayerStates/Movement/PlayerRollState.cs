@@ -6,10 +6,8 @@ namespace FastDragon
     public partial class PlayerRollState : PlayerState
     {
         public override bool AllowFlaming => false;
-        public override bool DisableCameraInput => true;
         public override bool SpawningGemsHomeIn => true;
 
-        private const float MinSkitterDelay = 1f / 30;
         private const float RollingRadius = 0.5f;
         private const float RollingCircumference = 2 * Mathf.Pi * RollingRadius;
 
@@ -31,13 +29,6 @@ namespace FastDragon
         public override void _Process(double deltaD)
         {
             _player.Animator.SpeedScale = _player.Velocity.Length() / RollingCircumference;
-
-            ContinuouslyRecenterCamera(
-                Player.Roll.CameraDistance,
-                Player.Roll.CameraPitchDeg,
-                Player.Roll.CameraDecayRate,
-                (float)deltaD
-            );
         }
 
         public override void _Input(InputEvent ev)
@@ -55,24 +46,23 @@ namespace FastDragon
 
             ApplyGravity(delta);
 
-            LeftStickControls(delta);
-
-            if (MoveAndSlideRolling(delta))
-                return;
-
             _timer += delta;
 
-            if (_timer >= Player.Roll.FrictionlessDuration)
-            {
-                // Apply friction
-                _player.FSpeed = Mathf.MoveToward(
-                    _player.FSpeed,
-                    TargetSpeed(),
-                    Player.Roll.Friction * delta
-                );
-            }
+            float maxSpeed = _timer < Player.Roll.FrictionlessDuration
+                ? Player.Roll.InitialSpeed
+                : Player.Roll.MinSpeed;
 
-            if (_timer >= Player.Roll.MinDuration && !InputService.RollHeld)
+            AccelerateWithLeftStickAgainstDrag(
+                maxSpeed,
+                Player.Roll.MinAccel,
+                Player.Roll.MaxAccel,
+                delta
+            );
+
+            RotateInstantlyTowardVelocity();
+            MoveAndSlideRolling(delta);
+
+            if (_timer >= Player.Roll.Duration)
             {
                 if (_player.IsOnFloor())
                 {
@@ -85,27 +75,6 @@ namespace FastDragon
 
                 return;
             }
-        }
-
-        private void LeftStickControls(float delta)
-        {
-            RotateTowardLeftStick(Mathf.DegToRad(Player.Roll.TurnSpeedDeg), delta);
-            RedirectFSpeedTowardYaw();
-        }
-
-        private float TargetSpeed()
-        {
-            float t = _timer;
-
-            if (t <= Player.Roll.FrictionlessDuration)
-                return Player.Roll.InitialSpeed;
-
-            t -= Player.Roll.FrictionlessDuration;
-
-            if (t <= Player.Roll.FrictionDuration)
-                return Player.Roll.MinSpeed;
-
-            return Player.Roll.HoldSpeed;
         }
     }
 }

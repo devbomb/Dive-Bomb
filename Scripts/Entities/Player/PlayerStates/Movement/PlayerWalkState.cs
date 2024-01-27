@@ -79,12 +79,6 @@ namespace FastDragon
 
             PlaySkidAnimIfTurningHard();
 
-            if (InputService.RollHeld)
-            {
-                _player.ChangeState<PlayerRollState>();
-                return;
-            }
-
             if (!_player.IsOnFloor())
             {
                 _player.ChangeState<PlayerFlopState>();
