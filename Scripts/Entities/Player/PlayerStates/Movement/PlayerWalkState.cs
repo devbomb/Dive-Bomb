@@ -61,6 +61,12 @@ namespace FastDragon
                 _player.ChangeState<PlayerRollState>();
                 return;
             }
+
+            if (InputService.FlameJustPressed(ev))
+            {
+                _player.ChangeState<PlayerKickState>();
+                return;
+            }
         }
 
         public override void _PhysicsProcess(double deltaD)

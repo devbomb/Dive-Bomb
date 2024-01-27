@@ -43,6 +43,17 @@ namespace FastDragon
             public const float RotSpeedDeg = 80 * SpyroAnglesPerFrame;
         }
 
+        public static class Kick
+        {
+            public const float Duration = 0.5f;
+            public const float JumpHeight = 0.5f;
+
+            public static readonly float InitVSpeed = AccelMath.SpeedNeededForDistance(
+                JumpHeight,
+                Default.Gravity
+            );
+        }
+
         public static class Roll
         {
             public const float InitialSpeed = 15;

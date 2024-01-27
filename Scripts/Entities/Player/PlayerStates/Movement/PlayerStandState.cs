@@ -27,6 +27,13 @@ namespace FastDragon
             if (InputService.JumpJustPressed(ev))
             {
                 _player.ChangeState<PlayerWalkJumpState>();
+                return;
+            }
+
+            if (InputService.FlameJustPressed(ev))
+            {
+                _player.ChangeState<PlayerKickState>();
+                return;
             }
         }
 

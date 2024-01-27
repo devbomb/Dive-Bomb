@@ -29,6 +29,8 @@ namespace FastDragon
         public Node3D Model => GetNode<Node3D>("%Model");
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
 
+        public Area3D KickHitbox => GetNode<Area3D>("%KickHitbox");
+
         public float FSpeed
         {
             get => Velocity.Flattened().Length();
