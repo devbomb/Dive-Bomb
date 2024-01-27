@@ -1,8 +1,8 @@
 namespace FastDragon
 {
-    public interface IChargeable
+    public interface IRollable
     {
         bool CausesBonk => false;
-        void OnCharged();
+        void OnRolledInto();
     }
 }

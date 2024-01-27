@@ -62,7 +62,7 @@ namespace FastDragon
                 return;
             }
 
-            if (InputService.FlameJustPressed(ev))
+            if (InputService.KickJustPressed(ev))
             {
                 _player.ChangeState<PlayerKickState>();
                 return;
@@ -79,7 +79,7 @@ namespace FastDragon
 
             PlaySkidAnimIfTurningHard();
 
-            if (InputService.ChargeHeld)
+            if (InputService.RollHeld)
             {
                 _player.ChangeState<PlayerRollState>();
                 return;

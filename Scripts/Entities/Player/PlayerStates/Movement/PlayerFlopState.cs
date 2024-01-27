@@ -22,7 +22,7 @@ namespace FastDragon
                 return;
             }
 
-            if (InputService.ChargeHeld)
+            if (InputService.RollHeld)
             {
                 _player.ChangeState<PlayerDiveState>();
                 return;

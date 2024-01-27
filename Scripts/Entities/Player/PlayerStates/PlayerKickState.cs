@@ -67,17 +67,17 @@ namespace FastDragon
 
             foreach (var body in bodies)
             {
-                if (body is IFlamable f)
+                if (body is IKickable f)
                 {
-                    f.OnFlamed();
+                    f.OnKicked();
                 }
             }
 
             foreach (var area in areas)
             {
-                if (area is IFlamable f)
+                if (area is IKickable f)
                 {
-                    f.OnFlamed();
+                    f.OnKicked();
                 }
             }
         }

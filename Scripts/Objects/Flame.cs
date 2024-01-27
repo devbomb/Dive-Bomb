@@ -83,14 +83,14 @@ namespace FastDragon
         {
             bool allowFlaming = this.FirstAncestor<Player>().AllowFlaming;
 
-            if (InputService.FlameJustPressed(ev) && _ready && allowFlaming)
+            if (InputService.KickJustPressed(ev) && _ready && allowFlaming)
                 _stateMachine.ChangeState<Flaming>();
         }
 
         public void OnBodyEntered(Node3D body)
         {
-            if (body is IFlamable flamable)
-                flamable.OnFlamed();
+            if (body is IKickable flamable)
+                flamable.OnKicked();
         }
 
         private void CreateFlameTendrils()

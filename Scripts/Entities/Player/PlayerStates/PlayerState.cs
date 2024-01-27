@@ -208,17 +208,17 @@ namespace FastDragon
 
         /// <summary>
         /// Just like MoveAndSlide, except:
-        /// * It passes through all <see cref="IChargeable"/> objects, unless
-        ///     <see cref="IChargeable.CausesBonk"/> is true.
-        /// * It calls <see cref="IChargeable.OnCharged"/> whenever on all
-        ///     <see cref="IChargeable"/> objects it touches or passes through.
-        /// * It bonks the player if they touch an <see cref="IChargeable"/>
-        ///     whose <see cref="IChargeable.CausesBonk"/> is true
+        /// * It passes through all <see cref="IRollable"/> objects, unless
+        ///     <see cref="IRollable.CausesBonk"/> is true.
+        /// * It calls <see cref="IRollable.OnRolledInto"/> whenever on all
+        ///     <see cref="IRollable"/> objects it touches or passes through.
+        /// * It bonks the player if they touch an <see cref="IRollable"/>
+        ///     whose <see cref="IRollable.CausesBonk"/> is true
         /// * It bonks the player if they hit a wall at too direct of an angle
         /// * It returns true if the player bonked
         /// </summary>
         /// <param name="delta"></param>
-        protected bool MoveAndSlideCharging(float delta)
+        protected bool MoveAndSlideRolling(float delta)
         {
             Vector3 prevPos = _player.GlobalPosition;
             Vector3 prevVel = _player.Velocity;
@@ -230,12 +230,12 @@ namespace FastDragon
             {
                 var collision = _player.GetSlideCollision(i);
 
-                // Trigger OnCharged().
+                // Trigger OnRolledInto().
                 // Bonk if it's bonkable.
                 var hitObject = collision.GetCollider();
-                if (hitObject is IChargeable c)
+                if (hitObject is IRollable c)
                 {
-                    c.OnCharged();
+                    c.OnRolledInto();
 
                     if (c.CausesBonk)
                         return Bonk();
@@ -245,7 +245,7 @@ namespace FastDragon
                     _player.Velocity = prevVel;
 
                     _player.AddCollisionExceptionWith((Node)hitObject);
-                    bool bonked = MoveAndSlideCharging(delta);
+                    bool bonked = MoveAndSlideRolling(delta);
                     _player.RemoveCollisionExceptionWith((Node)hitObject);
 
                     return bonked;

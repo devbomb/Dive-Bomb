@@ -57,7 +57,7 @@ namespace FastDragon
 
             LeftStickControls(delta);
 
-            if (MoveAndSlideCharging(delta))
+            if (MoveAndSlideRolling(delta))
                 return;
 
             _timer += delta;
@@ -72,7 +72,7 @@ namespace FastDragon
                 );
             }
 
-            if (_timer >= Player.Roll.MinDuration && !InputService.ChargeHeld)
+            if (_timer >= Player.Roll.MinDuration && !InputService.RollHeld)
             {
                 if (_player.IsOnFloor())
                 {

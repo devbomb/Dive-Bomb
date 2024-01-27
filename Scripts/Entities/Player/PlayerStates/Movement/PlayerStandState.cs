@@ -30,7 +30,7 @@ namespace FastDragon
                 return;
             }
 
-            if (InputService.FlameJustPressed(ev))
+            if (InputService.KickJustPressed(ev))
             {
                 _player.ChangeState<PlayerKickState>();
                 return;
@@ -46,7 +46,7 @@ namespace FastDragon
             RotateTowardLeftStick(Mathf.DegToRad(Player.Stand.RotSpeedDeg), delta);
             _player.MoveAndSlide();
 
-            if (InputService.ChargeHeld)
+            if (InputService.RollHeld)
             {
                 _player.ChangeState<PlayerRollState>();
                 return;

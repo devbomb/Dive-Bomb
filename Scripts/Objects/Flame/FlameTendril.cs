@@ -87,9 +87,9 @@ namespace FastDragon
             // Flame things that we collide with
             var collision = CastToLength();
 
-            if (collision?.GetCollider() is IFlamable flamable)
+            if (collision?.GetCollider() is IKickable flamable)
             {
-                flamable.OnFlamed();
+                flamable.OnKicked();
             }
 
             // Stop early if we hit something

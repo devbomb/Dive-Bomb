@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Basket : StaticBody3D, IChargeable, IFlamable
+    public partial class Basket : StaticBody3D, IRollable, IKickable
     {
         [Export] public GemColor GemColor = GemColor.Red;
 
@@ -27,14 +27,14 @@ namespace FastDragon
             _model.Visible = !_gem.IsCollected;
         }
 
-        public void OnCharged()
+        public void OnRolledInto()
         {
             _collisionShape.Disabled = true;
             _model.Visible = false;
             _gem.Reveal();
         }
 
-        public void OnFlamed()
+        public void OnKicked()
         {
             _collisionShape.Disabled = true;
             _model.Visible = false;

@@ -43,7 +43,7 @@ namespace FastDragon
 
             ApplyGravity(delta, Player.Dive.Gravity);
 
-            if (MoveAndSlideCharging(delta))
+            if (MoveAndSlideRolling(delta))
                 return;
 
             if (_player.IsOnFloor())

@@ -33,7 +33,7 @@ namespace FastDragon
                 return;
             }
 
-            if (InputService.FlameJustPressed(ev))
+            if (InputService.KickJustPressed(ev))
             {
                 _player.ChangeState<PlayerKickState>();
                 return;
