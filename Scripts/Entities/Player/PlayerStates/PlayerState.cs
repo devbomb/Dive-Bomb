@@ -127,6 +127,33 @@ namespace FastDragon
             _player.Velocity = flatVel;
         }
 
+        protected void AccelerateWithLeftStick(
+            float maxSpeed,
+            float maxAccel,
+            float delta
+        )
+        {
+            Vector3 leftStick3D = LeftStick3D();
+            Vector3 flatVel = _player.Velocity.Flattened();
+
+            // Apply a drag force in the opposite direction of the current
+            // motion, but only if we're exceeding the speed limit
+            float flatSpeed = flatVel.Length();
+            if (flatSpeed > maxSpeed)
+            {
+                float drag = Mathf.Lerp(0, maxAccel, flatSpeed / maxSpeed);
+                flatVel -= flatVel.Normalized() * drag * delta;
+            }
+
+            // Apply acceleration in the direction the stick is being pushed.
+            float accel = leftStick3D.Length() * maxAccel;
+            flatVel += leftStick3D.Normalized() * accel * delta;
+
+            // Save it
+            flatVel.Y = _player.Velocity.Y;
+            _player.Velocity = flatVel;
+        }
+
         protected void StrafeWithLeftStick(
             float maxSpeed,
             float accel,

@@ -73,10 +73,10 @@ namespace FastDragon
             // In practice, keeping them the same somehow feels _worse_ in this
             // game than in it does in Spyro.  So, let's just give it a little
             // boost.  #NotSorry.
-            public const float RotSpeedDeg = Walk.RotSpeedDeg * 1.25f;
+            public const float RotSpeedDeg = 720;
 
             public const float MaxFSpeed = 100 * SpyroUnitsPerFrame;
-            public const float StrafeAccel = 20 * SpyroUnitsPerFrameSquared;
+            public const float StrafeAccel = 20;
 
 
             public const float FullJumpHeight = 1300 * SpyroUnits;
