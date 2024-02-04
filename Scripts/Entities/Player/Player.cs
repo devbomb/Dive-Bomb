@@ -31,6 +31,10 @@ namespace FastDragon
 
         public Area3D KickHitbox => GetNode<Area3D>("%KickHitbox");
 
+        public LedgeDetector LedgeDetector => GetNode<LedgeDetector>("%LedgeDetector");
+        public Node3D LedgeGrabPoint => GetNode<Node3D>("%LedgeGrabPoint");
+        public Node3D MinLedgeGrabHeight => GetNode<Node3D>("%MinLedgeGrabHeight");
+
         public float FSpeed
         {
             get => Velocity.Flattened().Length();

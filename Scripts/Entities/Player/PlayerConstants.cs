@@ -120,6 +120,12 @@ namespace FastDragon
             public const float AngleDeg = 45;
         }
 
+        public static class LedgeGrab
+        {
+            public const float ClimbDuration = 0.5f;
+            public const float ClimbForwardDist = 0.5f;
+        }
+
         public static class Glide
         {
             public const float MaxFSpeed = 200 * SpyroUnitsPerFrame;

@@ -82,6 +82,9 @@ namespace FastDragon
                 _player.ChangeState<PlayerWalkState>();
                 return;
             }
+
+            if (TryGrabLedge())
+                return;
         }
     }
 }

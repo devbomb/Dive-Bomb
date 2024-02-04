@@ -333,6 +333,33 @@ namespace FastDragon
             }
         }
 
+        /// <summary>
+        /// Changes to the ledge-grabbing state and returns true, if there is
+        /// a valid ledge to grab
+        /// </summary>
+        /// <returns></returns>
+        protected bool TryGrabLedge()
+        {
+            if (_player.VSpeed >= 0)
+                return false;
+
+            if (!_player.IsOnWallOnly())
+                return false;
+
+            if (!_player.LedgeDetector.LedgeDetected)
+                return false;
+
+            float ledgeHeight = _player.LedgeDetector.LedgeHeight - _player.GlobalPosition.Y;
+            float minHeight = _player.MinLedgeGrabHeight.GlobalPosition.Y - _player.GlobalPosition.Y;
+            if (ledgeHeight > minHeight)
+            {
+                _player.ChangeState<PlayerLedgeGrabState>();
+                return true;
+            }
+
+            return false;
+        }
+
         private Node FindWall()
         {
             var wallNormal = _player.GetWallNormal();
