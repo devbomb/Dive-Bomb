@@ -105,8 +105,8 @@ namespace FastDragon
             public const float TurnSpeedDeg = 48 * SpyroAnglesPerFrame;
 
             public const float FSpeed = 12;
-            public const float InitialVSpeed = 6;
-            public const float Gravity = 30;
+            public const float InitialVSpeed = 12;
+            public const float Gravity = 40;
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
