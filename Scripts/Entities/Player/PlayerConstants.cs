@@ -58,8 +58,8 @@ namespace FastDragon
         {
             public const float InitialSpeed = 15;
             public const float MinSpeed = 5;
-            public const float MinAccel = 5;
-            public const float MaxAccel = 15;
+            public const float MinAccel = 20;
+            public const float MaxAccel = 30;
 
             public const float Duration = 0.5f;
             public const float FrictionlessDuration = 0.25f;
