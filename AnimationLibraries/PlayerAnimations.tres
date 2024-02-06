@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=16 format=3 uid="uid://dp75nlaah5k6o"]
+[gd_resource type="AnimationLibrary" load_steps=17 format=3 uid="uid://dp75nlaah5k6o"]
 
 [sub_resource type="Animation" id="Animation_ide03"]
 resource_name = "Bonk"
@@ -866,6 +866,47 @@ tracks/10/keys = {
 "values": [Vector3(-0.174533, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_jjtts"]
+resource_name = "WallSlide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.06939e-08, 0, -0.244649)]
+}
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D:Arm_R")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.00365949, -0.00559708, 0.00683698, 0.999954)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Armature/Skeleton3D:Arm_L")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.0050713, 0.00435871, 0.990507, 0.137299)
+
 [resource]
 _data = {
 "Bonk": SubResource("Animation_ide03"),
@@ -882,5 +923,6 @@ _data = {
 "Roll": SubResource("Animation_tv013"),
 "Skid": SubResource("Animation_qbmvf"),
 "SpinDeath": SubResource("Animation_5blib"),
-"Walk": SubResource("Animation_wuhme")
+"Walk": SubResource("Animation_wuhme"),
+"WallSlide": SubResource("Animation_jjtts")
 }

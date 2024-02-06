@@ -30,6 +30,12 @@ namespace FastDragon
                 _player.ChangeState<PlayerWalkState>();
                 return;
             }
+
+            if (_player.IsOnWall() && _player.VSpeed < 0)
+            {
+                _player.ChangeState<PlayerWallSlideState>();
+                return;
+            }
         }
     }
 }
