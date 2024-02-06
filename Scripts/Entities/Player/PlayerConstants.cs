@@ -55,7 +55,7 @@ namespace FastDragon
             // boost.  #NotSorry.
             public const float RotSpeedDeg = 720;
 
-            public const float MaxFSpeed = 5.5f;
+            public const float MaxFSpeed = Walk.Speed;
             public const float StrafeAccel = 20;
 
 
