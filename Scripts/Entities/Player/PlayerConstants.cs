@@ -6,21 +6,21 @@ namespace FastDragon
     {
         public static class Default
         {
-            public const float Gravity = 19.63636363636364f;
+            public const float Gravity = 20;
         }
 
         public static class Stand
         {
-            public const float RotSpeedDeg = 711.9140625f;
+            public const float RotSpeedDeg = 712f;
         }
 
         public static class Walk
         {
-            public const float MinSpeed = 0.8181818181818182f;
+            public const float MinSpeed = 0.8f;
             public const float Speed = 7.8f;
-            public const float Accel = 32.72727272727273f;
-            public const float Decel = 19.63636363636364f;
-            public const float RotSpeedDeg = 210.9375f;
+            public const float Accel = 32.7f;
+            public const float Decel = 20;
+            public const float RotSpeedDeg = 211f;
         }
 
         public static class Kick
@@ -55,15 +55,15 @@ namespace FastDragon
             // boost.  #NotSorry.
             public const float RotSpeedDeg = 720;
 
-            public const float MaxFSpeed = 5.454545454545455f;
+            public const float MaxFSpeed = 5.5f;
             public const float StrafeAccel = 20;
 
 
-            public const float FullJumpHeight = 2.363636363636364f;
+            public const float FullJumpHeight = 2.4f;
             public const float FullJumpRiseTime = 0.5f;
             public static readonly float FullJumpRiseGravity;
 
-            public const float MinJumpHeight = 0.9636363636363636f;
+            public const float MinJumpHeight = 1;
             public const float MinJumpRiseTime = 0.3f;
             public static readonly float ShortHopGravity;
 
@@ -82,7 +82,7 @@ namespace FastDragon
 
         public static class Dive
         {
-            public const float TurnSpeedDeg = 126.5625f;
+            public const float TurnSpeedDeg = 126.6f;
 
             public const float FSpeed = 12;
             public const float InitialVSpeed = 12;
@@ -108,7 +108,7 @@ namespace FastDragon
 
         public static class Glide
         {
-            public const float MaxFSpeed = 10.90909090909091f;
+            public const float MaxFSpeed = 11f;
             public const float CameraDistance = 7;
         }
     }
