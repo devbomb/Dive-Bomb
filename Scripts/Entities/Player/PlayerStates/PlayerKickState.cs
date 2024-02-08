@@ -55,7 +55,7 @@ namespace FastDragon
                 }
                 else
                 {
-                    _player.ChangeState<PlayerFlopState>();
+                    _player.ChangeState<PlayerKickFlopState>();
                 }
             }
         }

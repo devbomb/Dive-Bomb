@@ -28,10 +28,7 @@ namespace FastDragon
                 return;
             }
 
-            // Disable kicking until a minimum duration has passed, so the
-            // player can't abuse its improved air control to repeatedly
-            // wall jump off of the same wall for infinite height.
-            if (InputService.KickJustPressed(ev) && _timer > Player.WallJump.DisableKickDuration)
+            if (InputService.KickJustPressed(ev))
             {
                 _player.ChangeState<PlayerKickState>();
                 return;

@@ -117,7 +117,6 @@ namespace FastDragon
         {
             public const float FSpeed = Walk.Speed;
             public const float DisableStrafeDuration = 0.15f;
-            public const float DisableKickDuration = 0.5f;
         }
 
         public static class Glide
