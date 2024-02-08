@@ -99,6 +99,7 @@ unique_name_in_owner = true
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
+deterministic = true
 root_node = NodePath("../PlayerModel")
 libraries = {
 "PlayerAnimations": ExtResource("2_8xff1")
