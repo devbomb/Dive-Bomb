@@ -21,6 +21,7 @@ namespace FastDragon
             public const float Accel = 32.7f;
             public const float Decel = 20;
             public const float RotSpeedDeg = 211f;
+            public static float RotSpeedRad => Mathf.DegToRad(RotSpeedDeg);
         }
 
         public static class Kick
@@ -49,6 +50,7 @@ namespace FastDragon
         public static class Jump
         {
             public const float RotSpeedDeg = 720;
+            public static float RotSpeedRad => Mathf.DegToRad(RotSpeedDeg);
 
             public const float MaxFSpeed = Walk.Speed;
             public const float StrafeAccel = 20;
@@ -78,6 +80,7 @@ namespace FastDragon
         public static class Dive
         {
             public const float TurnSpeedDeg = 126.6f;
+            public static float TurnSpeedRad => Mathf.DegToRad(TurnSpeedDeg);
 
             public const float FSpeed = 12;
             public const float InitialVSpeed = 12;
@@ -85,6 +88,7 @@ namespace FastDragon
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
+            public static float CameraPitchRad => Mathf.DegToRad(CameraPitchDeg);
             public const float CameraDistance = 5;
         }
 
@@ -93,6 +97,7 @@ namespace FastDragon
             public const float Duration = 0.5f;
             public const float Distance = 1;
             public const float AngleDeg = 45;
+            public static float AngleRad => Mathf.DegToRad(AngleDeg);
         }
 
         public static class LedgeGrab

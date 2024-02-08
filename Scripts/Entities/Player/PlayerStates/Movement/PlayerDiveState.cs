@@ -28,7 +28,7 @@ namespace FastDragon
 
             ContinuouslyRecenterCamera(
                 Player.Dive.CameraDistance,
-                Player.Dive.CameraPitchDeg,
+                Player.Dive.CameraPitchRad,
                 Player.Dive.CameraDecayRate,
                 delta
             );
@@ -38,7 +38,7 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            RotateTowardLeftStick(Mathf.DegToRad(Player.Dive.TurnSpeedDeg), delta);
+            RotateTowardLeftStick(Player.Dive.TurnSpeedRad, delta);
             RedirectFSpeedTowardYaw();
 
             ApplyGravity(delta, Player.Dive.Gravity);

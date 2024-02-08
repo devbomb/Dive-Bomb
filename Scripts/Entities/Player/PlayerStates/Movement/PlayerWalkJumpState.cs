@@ -36,7 +36,7 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            RotateTowardLeftStick(Mathf.DegToRad(Player.Jump.RotSpeedDeg), delta);
+            RotateTowardLeftStick(Player.Jump.RotSpeedRad, delta);
             AccelerateWithLeftStick(
                 Player.Jump.MaxFSpeed,
                 Player.Jump.StrafeAccel,
