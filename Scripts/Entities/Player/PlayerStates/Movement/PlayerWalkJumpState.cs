@@ -9,20 +9,12 @@ namespace FastDragon
 
         private bool _isHolding;
 
-        private float _startY;
-        private float _maxHeight;
-        private bool _printedMaxHeight;
-
         public override void OnStateEntered()
         {
             _player.Animator.Play("Jump", 0);
             _player.VSpeed = Player.Jump.InitVSpeed;
 
             _isHolding = true;
-
-             _startY = _player.GlobalPosition.Y;
-             _maxHeight = 0;
-             _printedMaxHeight = false;
         }
 
         public override void _Input(InputEvent ev)
@@ -64,18 +56,6 @@ namespace FastDragon
 
             ApplyGravity(delta, gravity);
             _player.MoveAndSlide();
-
-            // DEBUG: Print the max height
-            float height = _player.GlobalPosition.Y - _startY;
-            if (height > _maxHeight)
-            {
-                _maxHeight = height;
-            }
-            else if (!_printedMaxHeight && PrintMaxHeight)
-            {
-                _printedMaxHeight = true;
-                GD.Print(_maxHeight);
-            }
 
             if (_player.IsOnFloor())
             {
