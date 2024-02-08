@@ -48,11 +48,6 @@ namespace FastDragon
 
         public static class Jump
         {
-            // In Spyro, the walk rot speed is the same as the jump rot speed.
-            // In theory, they should be the same in this game, too.
-            // In practice, keeping them the same somehow feels _worse_ in this
-            // game than in it does in Spyro.  So, let's just give it a little
-            // boost.  #NotSorry.
             public const float RotSpeedDeg = 720;
 
             public const float MaxFSpeed = Walk.Speed;
