@@ -21,7 +21,7 @@
 @PointClass
 	base(Angle)
 	model({
-		"path" : "TrenchbroomEntityModels/Player.obj",
+		"path" : "TrenchbroomEntityModels/AnotherPlatformerMan.obj",
 		"scale" : 0.25
 	})
 	= Player : "Player" [
