@@ -8,11 +8,8 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                RotateToFaceAwayFromWall();
-                _player.ResetPhysicsInterpolation();
-
-                _player.FSpeed = Player.Walk.Speed;
-                _player.ChangeState<PlayerWalkJumpState>();
+                _player.ChangeState<PlayerWallJumpState>();
+                return;
             }
         }
 
@@ -67,7 +64,7 @@ namespace FastDragon
                 .ForwardToEulerAnglesRad();
         }
 
-            private void RotateToFaceAwayFromWall()
+        private void RotateToFaceAwayFromWall()
         {
             if (!_player.IsOnWall())
             {
