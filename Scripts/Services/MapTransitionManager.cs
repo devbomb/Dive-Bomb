@@ -196,6 +196,7 @@ namespace FastDragon
                 levelSceneFile,
                 previousMapFile,
                 skyBoxEnvironment,
+                oldPlayer.Animator.AssignedAnimation,
                 animationStartTime,
                 playerRotRad,
                 cameraDist,

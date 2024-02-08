@@ -75,6 +75,7 @@ namespace FastDragon
             string levelSceneFile,
             string previousMapFile,
             Godot.Environment skyBoxEnvironment,
+            string animationName,
             double animationStartTime,
             Vector3 playerStartRotRad,
             float cameraStartDist,
@@ -95,8 +96,8 @@ namespace FastDragon
             // Start loading the level in the background
             LoadInBackground(_levelSceneFile);
 
-            // Sync up the player's animation
-            _playerAnimator.Play("PlayerAnimations/Glide");
+            // Sync up the player's animation...
+            _playerAnimator.Play($"PlayerAnimations/{animationName}");
             _playerAnimator.Seek(animationStartTime, true);
 
             _camera.DisableInput = true;
@@ -146,14 +147,19 @@ namespace FastDragon
             double animationPos = _playerAnimator.CurrentAnimationPosition;
             MapTransitionManager.Instance.ChangeSceneToNode(_loadedScene);
 
+            var realPlayer = _loadedScene.FindNode<Player>();
+            realPlayer.Animator.Play(_playerAnimator.AssignedAnimation.TrimPrefix("PlayerAnimations/"), 0);
+            realPlayer.Animator.Seek(_playerAnimator.CurrentAnimationPosition, true);
+            realPlayer.Animator.Advance(0);
+
             if (_isReturningHome)
             {
                 var portal = GetTargetPortal(_loadedScene);
-                portal.PlayExitAnimation(animationPos);
+                portal.PlayExitAnimation();
             }
             else
             {
-                _loadedScene.FindNode<Player>().ChangeState<PlayerFlyInState>();
+                realPlayer.ChangeState<PlayerFlyInState>();
             }
         }
 
