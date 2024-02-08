@@ -16,11 +16,24 @@ namespace FastDragon
                 _player.ChangeState<PlayerDiveState>();
                 return;
             }
+
+            if (InputService.KickJustPressed(ev))
+            {
+                _player.ChangeState<PlayerKickState>();
+                return;
+            }
         }
 
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
+
+            RotateTowardLeftStick(Player.Jump.RotSpeedRad, delta);
+            AccelerateWithLeftStick(
+                Player.Jump.MaxFSpeed,
+                Player.Jump.StrafeAccel,
+                delta
+            );
 
             ApplyGravity(delta, Player.Default.Gravity);
             _player.MoveAndSlide();
@@ -30,6 +43,9 @@ namespace FastDragon
                 _player.ChangeState<PlayerWalkState>();
                 return;
             }
+
+            if (TryGrabLedge())
+                return;
 
             if (_player.IsOnWall() && _player.VSpeed < 0)
             {
