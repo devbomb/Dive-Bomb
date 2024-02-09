@@ -65,6 +65,23 @@ namespace FastDragon
             return a.Lerp(b, t);
         }
 
+        public static Vector3 LerpParabola(
+            this Vector3 from,
+            Vector3 to,
+            float height,
+            float t
+        )
+        {
+            float x = (2 * t) - 1;
+            float y = 1f - (x * x);
+            y *= height;
+
+            var result = from.Lerp(to, t);
+            result.Y += y;
+
+            return result;
+        }
+
         public static Vector3 RotateTowardEulerRad(
             this Vector3 fromRad,
             Vector3 toRad,
