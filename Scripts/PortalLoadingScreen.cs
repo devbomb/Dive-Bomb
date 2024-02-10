@@ -97,8 +97,9 @@ namespace FastDragon
             LoadInBackground(_levelSceneFile);
 
             // Sync up the player's animation...
-            _playerAnimator.Play($"PlayerAnimations/{animationName}");
+            _playerAnimator.Play(animationName);
             _playerAnimator.Seek(animationStartTime, true);
+
 
             _camera.DisableInput = true;
 
@@ -148,7 +149,7 @@ namespace FastDragon
             MapTransitionManager.Instance.ChangeSceneToNode(_loadedScene);
 
             var realPlayer = _loadedScene.FindNode<Player>();
-            realPlayer.Animator.Play(_playerAnimator.AssignedAnimation.TrimPrefix("PlayerAnimations/"), 0);
+            realPlayer.Animator.Play(_playerAnimator.AssignedAnimation, 0);
             realPlayer.Animator.Seek(_playerAnimator.CurrentAnimationPosition, true);
             realPlayer.Animator.Advance(0);
 
