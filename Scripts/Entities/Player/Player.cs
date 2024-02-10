@@ -20,10 +20,10 @@ namespace FastDragon
         /// </summary>
         public bool PretendColliderDisabled {get; set;}
 
-        public bool AllowFlaming => _currentState.AllowFlaming;
-        public bool SpawningGemsHomeIn => _currentState.SpawningGemsHomeIn;
+        public bool AllowFlaming => CurrentState.AllowFlaming;
+        public bool SpawningGemsHomeIn => CurrentState.SpawningGemsHomeIn;
 
-        public PlayerState CurrentState => _currentState;
+        public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
         public Node3D Model => GetNode<Node3D>("%Model");
@@ -75,12 +75,15 @@ namespace FastDragon
 
         public bool HasUsedGlide = false;
 
-        private PlayerState _currentState;
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(PlayerState));
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;
 
         public override void _Ready()
         {
+            AddChild(_stateMachine);
+            _stateMachine.StateChanging += OnStateChanging;
+
             MakeVisibleInPortals();
 
             base._Ready();
@@ -157,7 +160,7 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
-            Camera.DisableInput = _currentState.DisableCameraInput;
+            Camera.DisableInput = CurrentState.DisableCameraInput;
 
             // Give the player their glide back when they touch the ground.
             // Gliding uses "double jump rules": after you leave the ground, you
@@ -170,23 +173,12 @@ namespace FastDragon
 
         public void ChangeState<TState>() where TState : PlayerState, new()
         {
-            GD.Print($"Changing state to {typeof(TState).Name}");
-            _currentState?.OnStateExited();
+            _stateMachine.ChangeState<TState>();
+        }
 
-            foreach (var state in States())
-            {
-                state.ProcessMode = ProcessModeEnum.Disabled;
-            }
-
-            _currentState = States().FirstOrDefault(s => s is TState);
-            if (_currentState == null)
-            {
-                _currentState = new TState();
-                AddChild(_currentState);
-            }
-
-            _currentState.ProcessMode = ProcessModeEnum.Inherit;
-            _currentState.OnStateEntered();
+        private void OnStateChanging(State currentState, State incomingState)
+        {
+            GD.Print($"Changing state to {incomingState.GetType().Name}");
         }
 
         private IEnumerable<PlayerState> States()

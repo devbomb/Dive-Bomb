@@ -4,17 +4,14 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerState : Node
+    public partial class PlayerState : State
     {
         public virtual bool Invincible => false;
         public virtual bool AllowFlaming => true;
         public virtual bool DisableCameraInput => false;
         public virtual bool SpawningGemsHomeIn => false;
 
-        protected Player _player => GetParent<Player>();
-
-        public virtual void OnStateEntered() {}
-        public virtual void OnStateExited() {}
+        protected Player _player => _stateMachine.GetParent<Player>();
 
         /// <summary>
         /// Returns the direction (and magnitude) that the left stick is
