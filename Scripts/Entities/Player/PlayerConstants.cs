@@ -77,6 +77,31 @@ namespace FastDragon
             }
         }
 
+        public static class BoundJump
+        {
+            public const float TimeWindow = 0.25f;
+
+            public const float FullJumpHeight = 4;
+            public const float FullJumpRiseTime = 0.5f;
+            public static readonly float FullJumpRiseGravity;
+
+            public const float MinJumpHeight = 1.5f;
+            public const float MinJumpRiseTime = 0.3f;
+            public static readonly float ShortHopGravity;
+
+            public static readonly float InitVSpeed;
+
+            static BoundJump()
+            {
+                (InitVSpeed, FullJumpRiseGravity) = AccelMath.SpeedAndFrictionNeededForDistanceAndTime(
+                    FullJumpHeight,
+                    FullJumpRiseTime
+                );
+
+                ShortHopGravity = AccelMath.FrictionNeededForDistance(MinJumpHeight, InitVSpeed);
+            }
+        }
+
         public static class Dive
         {
             public const float TurnSpeedDeg = 126.6f;

@@ -11,12 +11,18 @@ namespace FastDragon
         private const float StrideLength = 1;
         private const float BounceHeight = 0.1f;
 
-        public override void OnStateEntered()
+        private float _boundJumpTimer;
+
+        public override void OnStateEntered(State oldState)
         {
             _player.Animator.Play(WalkAnim);
 
             if (_player.Velocity.Length() < Player.Walk.MinSpeed)
                 _player.FSpeed = Player.Walk.MinSpeed;
+
+            _boundJumpTimer = (oldState is PlayerWalkJumpState)
+                ? Player.BoundJump.TimeWindow
+                : 0;
         }
 
         public override void OnStateExited()
@@ -52,7 +58,10 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                _player.ChangeState<PlayerWalkJumpState>();
+                if (_boundJumpTimer > 0)
+                    _player.ChangeState<PlayerBoundJumpState>();
+                else
+                    _player.ChangeState<PlayerWalkJumpState>();
                 return;
             }
 
@@ -72,6 +81,8 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
+
+            _boundJumpTimer -= delta;
 
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
             RotateInstantlyTowardVelocity();
