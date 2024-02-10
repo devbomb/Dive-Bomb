@@ -7,6 +7,8 @@ namespace FastDragon
 {
     public partial class StateMachine : Node
     {
+        [Signal] public delegate void StateChangingEventHandler(State currentState, State incomingState);
+
         public State CurrentState {get; private set;}
         private readonly Type _stateType;
 
@@ -20,20 +22,29 @@ namespace FastDragon
             if (!typeof(TState).IsAssignableTo(_stateType))
                 throw new Exception($"{typeof(TState).Name} is not a {_stateType.Name}");
 
+            // Get the incoming state's node.
+            // If it doesn't exist yet, create it.
+            State incomingState = States().FirstOrDefault(s => s is TState);
+            if (incomingState == null)
+            {
+                incomingState = new TState();
+                AddChild(incomingState);
+            }
+
+            EmitSignal(SignalName.StateChanging, CurrentState, incomingState);
+
+            // Let the previous state know that it's exiting
             CurrentState?.OnStateExited();
 
+            // Disable the previous state.
+            // ...and all the other states, too, just for good measure.
             foreach (var state in States())
             {
                 state.ProcessMode = ProcessModeEnum.Disabled;
             }
 
-            CurrentState = States().FirstOrDefault(s => s is TState);
-            if (CurrentState == null)
-            {
-                CurrentState = new TState();
-                AddChild(CurrentState);
-            }
-
+            // Switch to the new state and enable it.
+            CurrentState = incomingState;
             CurrentState.ProcessMode = ProcessModeEnum.Inherit;
             CurrentState.OnStateEntered();
         }
