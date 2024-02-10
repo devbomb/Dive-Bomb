@@ -4,9 +4,6 @@ namespace FastDragon
 {
     public partial class PlayerWalkJumpState : PlayerState
     {
-        private const float GlideDebounceDuration = 0.1f;
-        private const bool PrintMaxHeight = true;
-
         private bool _isHolding;
 
         public override void OnStateEntered()
