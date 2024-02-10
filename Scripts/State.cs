@@ -9,6 +9,7 @@ namespace FastDragon
     {
         protected StateMachine _stateMachine => GetParent<StateMachine>();
 
+        public virtual void OnStateEntered(State prevState) {}
         public virtual void OnStateEntered() {}
         public virtual void OnStateExited() {}
 

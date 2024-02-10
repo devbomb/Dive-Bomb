@@ -44,8 +44,10 @@ namespace FastDragon
             }
 
             // Switch to the new state and enable it.
+            State prevState = CurrentState;
             CurrentState = incomingState;
             CurrentState.ProcessMode = ProcessModeEnum.Inherit;
+            CurrentState.OnStateEntered(prevState);
             CurrentState.OnStateEntered();
         }
 
