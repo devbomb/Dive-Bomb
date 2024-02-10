@@ -21,12 +21,10 @@ namespace FastDragon
             _surface.SetSkybox(SkyboxEnvironment);
         }
 
-        public void PlayExitAnimation(double glideAnimationStartTime)
+        public void PlayExitAnimation()
         {
             var player = GetTree().FindNode<Player>();
 
-            player.Animator.Play("Glide", 0);
-            player.Animator.Seek(glideAnimationStartTime, true);
             player.AllowInterpolation = false;
 
             // Warp the player to the start pos of the animation
