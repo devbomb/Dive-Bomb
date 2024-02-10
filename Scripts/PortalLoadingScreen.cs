@@ -100,8 +100,15 @@ namespace FastDragon
             _playerAnimator.Play(animationName);
             _playerAnimator.Seek(animationStartTime, true);
 
-            // ...and then make it transition to the falling animation
-            _playerAnimator.Play("Glide", 0.25f);
+            // ...and then make it transition the animation used for loading
+            if (!_isReturningHome)
+            {
+                _playerAnimator.Play("Glide", 0.25f);
+            }
+            else
+            {
+                _playerAnimator.Play("Levitate", 2);
+            }
 
             _camera.DisableInput = true;
 

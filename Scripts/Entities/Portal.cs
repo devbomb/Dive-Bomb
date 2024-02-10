@@ -8,7 +8,7 @@ namespace FastDragon
         [Export(PropertyHint.File)] public string SkyboxEnvironment;
         [Export(PropertyHint.File)] public string TargetMap;
 
-        [Export] public float ExitAnimationDuration = 1.5f;
+        [Export] public float ExitAnimationDuration = 2.5f;
         [Export] public float ExitAnimationStartHeight = 0;
         [Export] public float ExitAnimationParabolaHeight = 2;
 
@@ -28,11 +28,6 @@ namespace FastDragon
         public void PlayExitAnimation()
         {
             var player = GetTree().FindNode<Player>();
-            player.Animator.Play(
-                "Roll",
-                customBlend: 0.5f,
-                customSpeed: 2
-            );
 
             // Warp the player to the start pos of the animation
             _exitAnimationStartPos = _playerSpawn.GlobalPosition;
