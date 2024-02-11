@@ -11,6 +11,7 @@ namespace FastDragon
         private const float StrideLength = 1;
         private const float BounceHeight = 0.1f;
 
+        private float _sideFlipTimer;
         private float _boundJumpTimer;
 
         public override void OnStateEntered(State oldState)
@@ -20,6 +21,7 @@ namespace FastDragon
             if (_player.Velocity.Length() < Player.Walk.MinSpeed)
                 _player.FSpeed = Player.Walk.MinSpeed;
 
+            _sideFlipTimer = 0;
             _boundJumpTimer = (oldState is PlayerWalkJumpState)
                 ? Player.BoundJump.TimeWindow
                 : 0;
@@ -58,7 +60,9 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                if (_boundJumpTimer > 0)
+                if (_sideFlipTimer > 0)
+                    _player.ChangeState<PlayerSideFlipState>();
+                else if (_boundJumpTimer > 0)
                     _player.ChangeState<PlayerBoundJumpState>();
                 else
                     _player.ChangeState<PlayerWalkJumpState>();
@@ -82,6 +86,7 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
+            _sideFlipTimer -= delta;
             _boundJumpTimer -= delta;
 
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
@@ -111,6 +116,7 @@ namespace FastDragon
             if (leftStickForwardComponent < 0 && !playingSkid)
             {
                 _player.Animator.Play(SkidAnim);
+                _sideFlipTimer = Player.SideFlip.TimeWindow;
             }
 
             if (leftStickForwardComponent >= 0 && playingSkid)

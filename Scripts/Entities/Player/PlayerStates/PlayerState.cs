@@ -75,6 +75,21 @@ namespace FastDragon
             }
         }
 
+        protected void RotateInstantlyTowardLeftStick()
+        {
+            var leftStick2D = InputService.LeftStick;
+            leftStick2D = leftStick2D.LimitLength(1);
+
+            if (!leftStick2D.IsZeroApprox())
+            {
+                float targetYawRad = LeftStick3D().ForwardToEulerAnglesRad().Y;
+
+                var rot = _player.GlobalRotation;
+                rot.Y = targetYawRad;
+                _player.GlobalRotation = rot;
+            }
+        }
+
         protected void RotateInstantlyTowardVelocity()
         {
             Vector3 rot = _player.GlobalRotation;
