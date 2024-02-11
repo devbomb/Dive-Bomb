@@ -144,6 +144,8 @@ namespace FastDragon
             public const float CameraPitchDeg = 0;
             public static float CameraPitchRad => Mathf.DegToRad(CameraPitchDeg);
             public const float CameraDistance = 5;
+
+            public const float RedirectTimeWindow = 0.1f;
         }
 
         public static class Bonk

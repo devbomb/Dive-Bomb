@@ -5,14 +5,18 @@ namespace FastDragon
     public partial class PlayerDiveState : PlayerState
     {
         public override bool AllowFlaming => false;
-        public override bool DisableCameraInput => true;
+        public override bool DisableCameraInput => _redirectTimer <= 0;
         public override bool SpawningGemsHomeIn => true;
+
+        private float _redirectTimer;
 
         public override void OnStateEntered()
         {
             _player.Animator.Play("Dive");
             _player.VSpeed = Player.Dive.InitialVSpeed;
             _player.FSpeed = Player.Dive.FSpeed;
+
+            _redirectTimer = Player.Dive.RedirectTimeWindow;
         }
 
         public override void OnStateExited()
@@ -26,17 +30,28 @@ namespace FastDragon
 
             AngleModelPitchWithVelocity(delta);
 
-            ContinuouslyRecenterCamera(
-                Player.Dive.CameraDistance,
-                Player.Dive.CameraPitchRad,
-                Player.Dive.CameraDecayRate,
-                delta
-            );
+            if (_redirectTimer <= 0)
+            {
+                ContinuouslyRecenterCamera(
+                    Player.Dive.CameraDistance,
+                    Player.Dive.CameraPitchRad,
+                    Player.Dive.CameraDecayRate,
+                    delta
+                );
+            }
         }
 
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
+
+            _redirectTimer -= delta;
+            if (_redirectTimer > 0)
+            {
+                float speed = _player.FSpeed;
+                RotateInstantlyTowardLeftStick();
+                _player.FSpeed = speed;
+            }
 
             RotateTowardLeftStick(Player.Dive.TurnSpeedRad, delta);
             RedirectFSpeedTowardYaw();
