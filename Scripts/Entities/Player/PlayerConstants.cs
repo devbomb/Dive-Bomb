@@ -44,6 +44,8 @@ namespace FastDragon
             public const float MinAccel = 20;
             public const float MaxAccel = 30;
 
+            public const float RedirectTimeWindow = 0.1f;
+
             public const float Duration = 0.5f;
             public const float FrictionlessDuration = 0.25f;
             public const float Friction = (InitialSpeed - MinSpeed) / (Duration - FrictionlessDuration);

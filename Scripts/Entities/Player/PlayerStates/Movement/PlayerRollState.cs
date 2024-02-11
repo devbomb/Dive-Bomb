@@ -12,13 +12,15 @@ namespace FastDragon
         private const float RollingCircumference = 2 * Mathf.Pi * RollingRadius;
 
         private float _timer;
+        private bool _redirectingAllowed;
 
-        public override void OnStateEntered()
+        public override void OnStateEntered(State oldState)
         {
             _player.Animator.Play("Roll");
             _player.Velocity = _player.GlobalForward() * Player.Roll.InitialSpeed;
 
             _timer = 0;
+            _redirectingAllowed = !(oldState is PlayerDiveState);
         }
 
         public override void OnStateExited()
@@ -47,6 +49,13 @@ namespace FastDragon
             ApplyGravity(delta);
 
             _timer += delta;
+
+            if (_redirectingAllowed && _timer < Player.Roll.RedirectTimeWindow)
+            {
+                float speed = _player.FSpeed;
+                RotateInstantlyTowardLeftStick();
+                _player.FSpeed = speed;
+            }
 
             float maxSpeed = _timer < Player.Roll.FrictionlessDuration
                 ? Player.Roll.InitialSpeed
