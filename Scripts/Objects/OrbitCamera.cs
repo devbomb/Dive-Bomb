@@ -9,17 +9,7 @@ namespace FastDragon
     {
         [Export] public Node3D FollowTarget;
 
-        public bool DisableInput
-        {
-            get => _currentState is Locked;
-            set
-            {
-                if (value == true)
-                    ChangeState<Locked>();
-                else
-                    ChangeState<Unlocked>();
-            }
-        }
+        public bool DisableInput { get; set; }
 
         public float OrbitDistance
         {
@@ -142,14 +132,6 @@ namespace FastDragon
             public virtual void OnStateExited() {}
         }
 
-        private partial class Locked : OrbitCameraState
-        {
-            public override void _Process(double deltaD)
-            {
-                _camera.ApplyAnglesAndDistance();
-            }
-        }
-
         private partial class Unlocked : OrbitCameraState
         {
             public float FollowDistance = 6;
@@ -160,9 +142,24 @@ namespace FastDragon
             public float MinOrbitPitchDeg = -89;
             public float MaxOrbitPitchDeg = 0;
 
+            public override void _Input(InputEvent ev)
+            {
+                if (_camera.DisableInput)
+                    return;
+
+                if (InputService.RecenterCameraJustPressed(ev))
+                {
+                    _camera.ChangeState<Recentering>();
+                    return;
+                }
+            }
+
             public override void _Process(double deltaD)
             {
                 float delta = (float)deltaD;
+
+                if (_camera.DisableInput)
+                    return;
 
                 float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
                 _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
@@ -184,6 +181,45 @@ namespace FastDragon
                     Mathf.DegToRad(MinOrbitPitchDeg),
                     Mathf.DegToRad(MaxOrbitPitchDeg)
                 );
+            }
+        }
+
+        private partial class Recentering : OrbitCameraState
+        {
+            private const float Duration = 0.1f;
+
+            private float _timer;
+            private float _initialPitchRad;
+            private float _initialYawRad;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _initialPitchRad = _camera.OrbitPitchRad;
+                _initialYawRad = _camera.OrbitYawRad;
+            }
+
+            public override void _Process(double deltaD)
+            {
+                _timer += (float)deltaD;
+
+                float t = _timer / Duration;
+
+                _camera.OrbitPitchRad = Mathf.LerpAngle(_initialPitchRad, 0, t);
+                _camera.OrbitYawRad = Mathf.LerpAngle(
+                    _initialYawRad,
+                    _camera.FollowTarget.GlobalRotation.Y,
+                    t
+                );
+                _camera.ApplyAnglesAndDistance();
+
+                if (_timer > Duration)
+                {
+                    _camera.ForceRecenter();
+                    _camera.ChangeState<Unlocked>();
+                    return;
+                }
+
             }
         }
     }
