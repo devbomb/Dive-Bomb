@@ -22,6 +22,8 @@ namespace FastDragon
             public const float Decel = 20;
             public const float RotSpeedDeg = 211f;
             public static float RotSpeedRad => Mathf.DegToRad(RotSpeedDeg);
+
+            public const float MinTimeBeforeSideFlip = 0.25f;
         }
 
         public static class Kick

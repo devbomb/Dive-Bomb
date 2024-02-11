@@ -11,8 +11,9 @@ namespace FastDragon
         private const float StrideLength = 1;
         private const float BounceHeight = 0.1f;
 
-        private float _sideFlipTimer;
-        private float _boundJumpTimer;
+        private float _sideFlipDisableTimer;
+        private float _sideFlipWindowTimer;
+        private float _boundJumpWindowTimer;
 
         public override void OnStateEntered(State oldState)
         {
@@ -21,8 +22,9 @@ namespace FastDragon
             if (_player.Velocity.Length() < Player.Walk.MinSpeed)
                 _player.FSpeed = Player.Walk.MinSpeed;
 
-            _sideFlipTimer = 0;
-            _boundJumpTimer = (oldState is PlayerWalkJumpState)
+            _sideFlipDisableTimer = Player.Walk.MinTimeBeforeSideFlip;
+            _sideFlipWindowTimer = 0;
+            _boundJumpWindowTimer = (oldState is PlayerWalkJumpState)
                 ? Player.BoundJump.TimeWindow
                 : 0;
         }
@@ -60,9 +62,9 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                if (_sideFlipTimer > 0)
+                if (_sideFlipWindowTimer > 0 && _sideFlipDisableTimer <= 0)
                     _player.ChangeState<PlayerSideFlipState>();
-                else if (_boundJumpTimer > 0)
+                else if (_boundJumpWindowTimer > 0)
                     _player.ChangeState<PlayerBoundJumpState>();
                 else
                     _player.ChangeState<PlayerWalkJumpState>();
@@ -86,8 +88,9 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            _sideFlipTimer -= delta;
-            _boundJumpTimer -= delta;
+            _sideFlipDisableTimer -= delta;
+            _sideFlipWindowTimer -= delta;
+            _boundJumpWindowTimer -= delta;
 
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
             RotateInstantlyTowardVelocity();
@@ -116,7 +119,7 @@ namespace FastDragon
             if (leftStickForwardComponent < 0 && !playingSkid)
             {
                 _player.Animator.Play(SkidAnim);
-                _sideFlipTimer = Player.SideFlip.TimeWindow;
+                _sideFlipWindowTimer = Player.SideFlip.TimeWindow;
             }
 
             if (leftStickForwardComponent >= 0 && playingSkid)
