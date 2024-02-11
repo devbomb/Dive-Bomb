@@ -149,9 +149,7 @@ namespace FastDragon
 
                 if (InputService.RecenterCameraJustPressed(ev))
                 {
-                    _camera.OrbitPitchRad = 0;
-                    _camera.OrbitYawRad = _camera.FollowTarget.GlobalRotation.Y;
-                    _camera.ApplyAnglesAndDistance();
+                    _camera.ChangeState<Recentering>();
                     return;
                 }
             }
@@ -183,6 +181,45 @@ namespace FastDragon
                     Mathf.DegToRad(MinOrbitPitchDeg),
                     Mathf.DegToRad(MaxOrbitPitchDeg)
                 );
+            }
+        }
+
+        private partial class Recentering : OrbitCameraState
+        {
+            private const float Duration = 0.1f;
+
+            private float _timer;
+            private float _initialPitchRad;
+            private float _initialYawRad;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _initialPitchRad = _camera.OrbitPitchRad;
+                _initialYawRad = _camera.OrbitYawRad;
+            }
+
+            public override void _Process(double deltaD)
+            {
+                _timer += (float)deltaD;
+
+                float t = _timer / Duration;
+
+                _camera.OrbitPitchRad = Mathf.LerpAngle(_initialPitchRad, 0, t);
+                _camera.OrbitYawRad = Mathf.LerpAngle(
+                    _initialYawRad,
+                    _camera.FollowTarget.GlobalRotation.Y,
+                    t
+                );
+                _camera.ApplyAnglesAndDistance();
+
+                if (_timer > Duration)
+                {
+                    _camera.ForceRecenter();
+                    _camera.ChangeState<Unlocked>();
+                    return;
+                }
+
             }
         }
     }
