@@ -142,6 +142,20 @@ namespace FastDragon
             public float MinOrbitPitchDeg = -89;
             public float MaxOrbitPitchDeg = 0;
 
+            public override void _Input(InputEvent ev)
+            {
+                if (_camera.DisableInput)
+                    return;
+
+                if (InputService.RecenterCameraJustPressed(ev))
+                {
+                    _camera.OrbitPitchRad = 0;
+                    _camera.OrbitYawRad = _camera.FollowTarget.GlobalRotation.Y;
+                    _camera.ApplyAnglesAndDistance();
+                    return;
+                }
+            }
+
             public override void _Process(double deltaD)
             {
                 float delta = (float)deltaD;
