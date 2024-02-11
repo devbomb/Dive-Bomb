@@ -4,6 +4,8 @@ namespace FastDragon
 {
     public partial class PlayerWallJumpState : PlayerState
     {
+        public override bool CanBoundAfterLanding => true;
+
         private float _timer;
         private bool _isHolding;
 

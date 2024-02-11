@@ -24,7 +24,9 @@ namespace FastDragon
 
             _sideFlipDisableTimer = Player.Walk.MinTimeBeforeSideFlip;
             _sideFlipWindowTimer = 0;
-            _boundJumpWindowTimer = (oldState is PlayerWalkJumpState)
+
+            bool canBound = (oldState as PlayerState)?.CanBoundAfterLanding ?? false;
+            _boundJumpWindowTimer = canBound
                 ? Player.BoundJump.TimeWindow
                 : 0;
         }
