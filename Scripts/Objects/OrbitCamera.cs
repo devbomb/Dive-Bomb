@@ -9,17 +9,7 @@ namespace FastDragon
     {
         [Export] public Node3D FollowTarget;
 
-        public bool DisableInput
-        {
-            get => _currentState is Locked;
-            set
-            {
-                if (value == true)
-                    ChangeState<Locked>();
-                else
-                    ChangeState<Unlocked>();
-            }
-        }
+        public bool DisableInput { get; set; }
 
         public float OrbitDistance
         {
@@ -142,14 +132,6 @@ namespace FastDragon
             public virtual void OnStateExited() {}
         }
 
-        private partial class Locked : OrbitCameraState
-        {
-            public override void _Process(double deltaD)
-            {
-                _camera.ApplyAnglesAndDistance();
-            }
-        }
-
         private partial class Unlocked : OrbitCameraState
         {
             public float FollowDistance = 6;
@@ -163,6 +145,9 @@ namespace FastDragon
             public override void _Process(double deltaD)
             {
                 float delta = (float)deltaD;
+
+                if (_camera.DisableInput)
+                    return;
 
                 float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
                 _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
