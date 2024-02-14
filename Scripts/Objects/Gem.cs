@@ -10,11 +10,16 @@ namespace FastDragon
         public const float RevealJumpVelocity = 10;
         public const float Gravity = 30;
 
+        public bool IsCollected => SaveFile.Current
+            .CollectedGems
+            .Contains(GetSaveKey());
+
         [Export] public GemColor Value;
 
         public bool StartHidden = false;
         public bool TouchedGroundOnce {get; private set;} = false;
         public bool IsRevealed => _stateMachine.CurrentState is Revealed;
+
         public Area3D CollectionArea => GetNode<Area3D>("%CollectionArea");
 
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
@@ -42,24 +47,25 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             ResetPhysicsInterpolation();
 
-            bool alreadyCollected = SaveFile.Current
-                .CollectedGems
-                .Contains(GetSaveKey());
-
-            if (StartHidden || alreadyCollected)
+            if (StartHidden || IsCollected)
                 ChangeState<Hidden>();
             else
                 ChangeState<Revealed>();
         }
+
         public void OnCollectionAreaBodyEntered(Node3D body)
         {
             if (body is Player && IsRevealed)
                 StartHomingIn();
         }
 
+        /// <summary>
+        /// Reveals the gem, if it isn't already collected.
+        /// </summary>
         public void Reveal()
         {
-            ChangeState<Revealed>();
+            if (!IsCollected)
+                ChangeState<Revealed>();
         }
 
         public void StartHomingIn()

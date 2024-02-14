@@ -45,7 +45,8 @@ public partial class GenerateTrenchbroomEntityModels : EditorPlugin
             "ExportObj.py"
         );
 
-        string blenderFolder = GetEditorInterface()
+        string blenderFolder = EditorInterface
+            .Singleton
             .GetEditorSettings()
             .GetSetting("filesystem/import/blender/blender3_path")
             .AsString();
