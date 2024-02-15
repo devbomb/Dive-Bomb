@@ -150,10 +150,33 @@ namespace FastDragon
 
         public static class Bonk
         {
-            public const float Duration = 0.5f;
-            public const float Distance = 1;
+            public const float RecoilDuration = 0.5f;
+            public const float RecoilDistance = 1;
+            public const float RecoilHeight = 1;
             public const float AngleDeg = 45;
             public static float AngleRad => Mathf.DegToRad(AngleDeg);
+
+            public const float RecoverDuration = 1;
+
+            public static readonly float Friction;
+            public static readonly float InitHSpeed;
+
+            public static readonly float Gravity;
+            public static readonly float InitVSpeed;
+
+            static Bonk()
+            {
+                (InitHSpeed, Friction) = AccelMath.SpeedAndFrictionNeededForDistanceAndTime(
+                    RecoilDistance,
+                    RecoilDuration
+                );
+
+
+                (InitVSpeed, Gravity) = AccelMath.SpeedAndFrictionNeededForDistanceAndTime(
+                    RecoilHeight,
+                    RecoilDuration / 2
+                );
+            }
         }
 
         public static class LedgeGrab

@@ -7,22 +7,11 @@ namespace FastDragon
     {
         public override bool AllowFlaming => false;
 
-        private static readonly float BonkSpeed;
-        private static readonly float BonkFriction;
-
-        static PlayerBonkState()
-        {
-            (BonkSpeed, BonkFriction) =
-                AccelMath.SpeedAndFrictionNeededForDistanceAndTime(
-                    Player.Bonk.Distance,
-                    Player.Bonk.Duration
-                );
-        }
-
         public override void OnStateEntered()
         {
-            _player.Animator.Play("Bonk");
-            _player.Velocity = _player.GlobalForward() * -BonkSpeed;
+            _player.Animator.Play("Bonk", 0);
+            _player.Velocity = _player.GlobalForward() * -Player.Bonk.InitHSpeed;
+            _player.Velocity += Vector3.Up * Player.Bonk.InitVSpeed;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -31,17 +20,17 @@ namespace FastDragon
 
             // Slow down horizontally, but not vertically
             Vector3 newVel = _player.Velocity.Flattened();
-            newVel = newVel.MoveToward(Vector3.Zero, BonkFriction * delta);
+            newVel = newVel.MoveToward(Vector3.Zero, Player.Bonk.Friction * delta);
             newVel.Y = _player.Velocity.Y;
             _player.Velocity = newVel;
 
-            ApplyGravity(delta, Player.Default.Gravity);
+            ApplyGravity(delta, Player.Bonk.Gravity);
 
             _player.MoveAndSlide();
 
-            if (_player.Velocity.Flattened() == Vector3.Zero)
+            if (_player.IsOnFloor())
             {
-                _player.ChangeState<PlayerWalkState>();
+                _player.ChangeState<PlayerBonkRecoverState>();
                 return;
             }
         }
