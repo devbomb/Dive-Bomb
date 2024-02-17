@@ -37,7 +37,7 @@ namespace FastDragon
 
                 if (currentHealth <= 0)
                 {
-                    _player.ChangeState<PlayerSpinDeathState>();
+                    _player.ChangeState<PlayerReachOutDeathState>();
                 }
                 else
                 {

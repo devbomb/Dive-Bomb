@@ -2,13 +2,13 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerSpinDeathState : PlayerState
+    public partial class PlayerReachOutDeathState : PlayerState
     {
         public override bool Invincible => true;
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("SpinDeath");
+            _player.Animator.Play("ReachOutDeath", 0);
         }
 
         public override void _PhysicsProcess(double deltaD)
