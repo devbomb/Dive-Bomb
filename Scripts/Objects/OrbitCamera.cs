@@ -125,7 +125,10 @@ namespace FastDragon
                 float delta = (float)deltaD;
 
                 if (_camera.DisableInput)
+                {
+                    _camera.ApplyAnglesAndDistance();
                     return;
+                }
 
                 float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
                 _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
