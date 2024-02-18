@@ -127,20 +127,16 @@ namespace FastDragon
                     return;
                 }
 
-                if (InputService.RightStick.Length() <= 0.01f)
+                if (InputService.RightStick.Length() > 0.01f)
+                {
+                    OrbitWithRightStick(delta);
+                }
+                else
                 {
                     MaintainDistanceAndAutoRotate(delta);
-                    return;
                 }
 
-                OrbitWithRightStick(delta);
-
-                // Zoom in
-                _camera.OrbitDistance = Mathf.MoveToward(
-                    _camera.OrbitDistance,
-                    FollowDistance,
-                    ZoomSpeed * delta
-                );
+                ZoomToFollowDistance(delta);
             }
 
             private void ClampOrbitAngles()
@@ -172,8 +168,18 @@ namespace FastDragon
 
                 _camera._orbitYawRad = _camera.GlobalRotation.Y;
                 _camera._orbitPitchRad = _camera.GlobalRotation.X;
+                ClampOrbitAngles();
 
                 _camera.ResetPhysicsInterpolation();
+            }
+
+            private void ZoomToFollowDistance(float delta)
+            {
+                _camera.OrbitDistance = Mathf.MoveToward(
+                    _camera.OrbitDistance,
+                    FollowDistance,
+                    ZoomSpeed * delta
+                );
             }
         }
 
