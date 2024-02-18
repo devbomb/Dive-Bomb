@@ -127,11 +127,15 @@ namespace FastDragon
                     return;
                 }
 
-                float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
-                _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
-                _camera.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
-                ClampOrbitAngles();
+                if (InputService.RightStick.Length() <= 0.01f)
+                {
+                    MaintainDistanceAndAutoRotate(delta);
+                    return;
+                }
 
+                OrbitWithRightStick(delta);
+
+                // Zoom in
                 _camera.OrbitDistance = Mathf.MoveToward(
                     _camera.OrbitDistance,
                     FollowDistance,
@@ -147,6 +151,29 @@ namespace FastDragon
                     Mathf.DegToRad(MinOrbitPitchDeg),
                     Mathf.DegToRad(MaxOrbitPitchDeg)
                 );
+            }
+
+            private void OrbitWithRightStick(float delta)
+            {
+                float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
+                _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
+                _camera.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
+                ClampOrbitAngles();
+            }
+
+            private void MaintainDistanceAndAutoRotate(float delta)
+            {
+                var pos = _camera.GlobalPosition;
+                var targetPos = _camera.FollowTarget.GlobalPosition;
+                var dir = targetPos.DirectionTo(pos);
+
+                _camera.GlobalPosition = targetPos + (dir * FollowDistance);
+                _camera.LookAt(targetPos);
+
+                _camera._orbitYawRad = _camera.GlobalRotation.Y;
+                _camera._orbitPitchRad = _camera.GlobalRotation.X;
+
+                _camera.ResetPhysicsInterpolation();
             }
         }
 
