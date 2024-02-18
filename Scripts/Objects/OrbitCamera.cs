@@ -52,39 +52,19 @@ namespace FastDragon
         /// </summary>
         public float CameraHeightOffset = 2;
 
-        private OrbitCameraState _currentState;
-        private PhysicsInterpolator3D _interpolator;
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(OrbitCameraState));
+        private readonly PhysicsInterpolator3D _interpolator = new PhysicsInterpolator3D();
 
         public override void _Ready()
         {
-            _interpolator = new PhysicsInterpolator3D();
+            AddChild(_stateMachine);
             AddChild(_interpolator);
-            ChangeState<Unlocked>();
+            _stateMachine.ChangeState<Unlocked>();
         }
 
         public void ResetPhysicsInterpolation()
         {
             _interpolator.ResetPhysicsInterpolation();
-        }
-
-        private void ChangeState<TState>() where TState : OrbitCameraState, new()
-        {
-            _currentState?.OnStateExited();
-
-            foreach (var state in States())
-            {
-                state.ProcessMode = ProcessModeEnum.Disabled;
-            }
-
-            _currentState = States().FirstOrDefault(s => s is TState);
-            if (_currentState == null)
-            {
-                _currentState = new TState();
-                AddChild(_currentState);
-            }
-
-            _currentState.ProcessMode = ProcessModeEnum.Inherit;
-            _currentState.OnStateEntered();
         }
 
         public void ForceRecenter()
@@ -113,23 +93,9 @@ namespace FastDragon
             }
         }
 
-        private IEnumerable<OrbitCameraState> States()
+        private partial class OrbitCameraState : State
         {
-            for (int i = 0; i < GetChildCount(); i++)
-            {
-                var child = GetChild<Node>(i);
-
-                if (child is OrbitCameraState state)
-                    yield return state;
-            }
-        }
-
-        private partial class OrbitCameraState : Node
-        {
-            protected OrbitCamera _camera => GetParent<OrbitCamera>();
-
-            public virtual void OnStateEntered() {}
-            public virtual void OnStateExited() {}
+            protected OrbitCamera _camera => _stateMachine.GetParent<OrbitCamera>();
         }
 
         private partial class Unlocked : OrbitCameraState
@@ -149,7 +115,7 @@ namespace FastDragon
 
                 if (InputService.RecenterCameraJustPressed(ev))
                 {
-                    _camera.ChangeState<Recentering>();
+                    ChangeState<Recentering>();
                     return;
                 }
             }
@@ -159,7 +125,10 @@ namespace FastDragon
                 float delta = (float)deltaD;
 
                 if (_camera.DisableInput)
+                {
+                    _camera.ApplyAnglesAndDistance();
                     return;
+                }
 
                 float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
                 _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
@@ -216,7 +185,7 @@ namespace FastDragon
                 if (_timer > Duration)
                 {
                     _camera.ForceRecenter();
-                    _camera.ChangeState<Unlocked>();
+                    ChangeState<Unlocked>();
                     return;
                 }
 
