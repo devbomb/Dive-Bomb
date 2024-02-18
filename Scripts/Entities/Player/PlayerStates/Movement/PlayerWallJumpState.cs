@@ -2,17 +2,23 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerWalkJumpState : PlayerState
+    public partial class PlayerWallJumpState : PlayerState
     {
         public override bool CanBoundAfterLanding => true;
 
+        private float _timer;
         private bool _isHolding;
 
         public override void OnStateEntered()
         {
+            RotateToFaceAwayFromWall();
+            _player.ResetPhysicsInterpolation();
+
             _player.Animator.Play("Jump", 0);
             _player.VSpeed = Player.Jump.InitVSpeed;
+            _player.FSpeed = Player.WallJump.FSpeed;
 
+            _timer = 0;
             _isHolding = true;
         }
 
@@ -35,12 +41,21 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            RotateTowardLeftStick(Player.Jump.RotSpeedRad, delta);
-            AccelerateWithLeftStick(
-                Player.Jump.MaxFSpeed,
-                Player.Jump.StrafeAccel,
-                delta
-            );
+            // Disable horizontal controls until the minimum duration has
+            // passed, to prevent the player from scaling walls of indefinite
+            // height
+            _timer += delta;
+
+            if (_timer > Player.WallJump.DisableStrafeDuration)
+            {
+                RotateTowardLeftStick(Player.Jump.RotSpeedRad, delta);
+                AccelerateWithLeftStick(
+                    Player.Jump.MaxFSpeed,
+                    Player.Jump.StrafeAccel,
+                    delta
+                );
+            }
+
 
             if (!InputService.JumpHeld)
                 _isHolding = false;
@@ -70,6 +85,19 @@ namespace FastDragon
                 _player.ChangeState<PlayerWallSlideState>();
                 return;
             }
+        }
+
+        private void RotateToFaceAwayFromWall()
+        {
+            if (!_player.IsOnWall())
+            {
+                GD.PushWarning("Wall jump was triggered while not touching a wall");
+                return;
+            }
+
+            _player.GlobalRotation = _player.GetWallNormal()
+                .Flattened()
+                .ForwardToEulerAnglesRad();
         }
     }
 }

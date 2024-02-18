@@ -10,6 +10,7 @@ namespace FastDragon
         public virtual bool AllowFlaming => true;
         public virtual bool DisableCameraInput => false;
         public virtual bool SpawningGemsHomeIn => false;
+        public virtual bool CanBoundAfterLanding => false;
 
         protected Player _player => _stateMachine.GetParent<Player>();
 
@@ -75,6 +76,21 @@ namespace FastDragon
             }
         }
 
+        protected void RotateInstantlyTowardLeftStick()
+        {
+            var leftStick2D = InputService.LeftStick;
+            leftStick2D = leftStick2D.LimitLength(1);
+
+            if (!leftStick2D.IsZeroApprox())
+            {
+                float targetYawRad = LeftStick3D().ForwardToEulerAnglesRad().Y;
+
+                var rot = _player.GlobalRotation;
+                rot.Y = targetYawRad;
+                _player.GlobalRotation = rot;
+            }
+        }
+
         protected void RotateInstantlyTowardVelocity()
         {
             Vector3 rot = _player.GlobalRotation;
@@ -85,26 +101,73 @@ namespace FastDragon
             _player.GlobalRotation = rot;
         }
 
-        protected void AccelerateWithLeftStick(
+        protected void RedirectFSpeedTowardYaw()
+        {
+            Vector3 vel = _player.GlobalForward() * _player.FSpeed;
+            vel.Y = _player.VSpeed;
+            _player.Velocity = vel;
+        }
+
+        protected void AccelerateWithLeftStickAgainstDrag(
             float maxSpeed,
-            float accel,
-            float decel,
+            float minAccel,
+            float maxAccel,
             float delta
         )
         {
-            var leftStick2D = InputService.LeftStick;
-            leftStick2D = leftStick2D.LimitLength(1);
-            float targetSpeed = leftStick2D.Length() * maxSpeed;
+            Vector3 leftStick3D = LeftStick3D();
+            Vector3 flatVel = _player.Velocity.Flattened();
 
-            float a = _player.FSpeed < targetSpeed
-                ? accel
-                : decel;
+            // Apply a drag force in the opposite direction of the current
+            // motion
+            float flatSpeed = flatVel.Length();
+            float drag = Mathf.Lerp(0, maxAccel, flatSpeed / maxSpeed);
+            flatVel -= flatVel.Normalized() * drag * delta;
 
-            _player.FSpeed = Mathf.MoveToward(
-                _player.FSpeed,
-                targetSpeed,
-                a * delta
-            );
+            // Apply acceleration in the direction the stick is being pushed.
+            // If the stick isn't being pushed at all, then apply the minimum
+            // acceleration in the current facing direction.
+            float accel = Mathf.Lerp(minAccel, maxAccel, leftStick3D.Length());
+
+            if (leftStick3D.IsZeroApprox())
+            {
+                flatVel += _player.GlobalForward() * accel * delta;
+            }
+            else
+            {
+                flatVel += leftStick3D.Normalized() * accel * delta;
+            }
+
+            // Save it
+            flatVel.Y = _player.Velocity.Y;
+            _player.Velocity = flatVel;
+        }
+
+        protected void AccelerateWithLeftStick(
+            float maxSpeed,
+            float maxAccel,
+            float delta
+        )
+        {
+            Vector3 leftStick3D = LeftStick3D();
+            Vector3 flatVel = _player.Velocity.Flattened();
+
+            // Apply a drag force in the opposite direction of the current
+            // motion, but only if we're exceeding the speed limit
+            float flatSpeed = flatVel.Length();
+            if (flatSpeed > maxSpeed)
+            {
+                float drag = Mathf.Lerp(0, maxAccel, flatSpeed / maxSpeed);
+                flatVel -= flatVel.Normalized() * drag * delta;
+            }
+
+            // Apply acceleration in the direction the stick is being pushed.
+            float accel = leftStick3D.Length() * maxAccel;
+            flatVel += leftStick3D.Normalized() * accel * delta;
+
+            // Save it
+            flatVel.Y = _player.Velocity.Y;
+            _player.Velocity = flatVel;
         }
 
         protected void StrafeWithLeftStick(
@@ -122,12 +185,6 @@ namespace FastDragon
                 _player.Velocity.Y,
                 flatVel.Z
             );
-        }
-
-        protected void GlideWithJumpButton(InputEvent ev)
-        {
-            if (InputService.JumpJustPressed(ev) && !_player.HasUsedGlide)
-                _player.ChangeState<PlayerGlideState>();
         }
 
         protected void ApplyGravity(
@@ -207,17 +264,17 @@ namespace FastDragon
 
         /// <summary>
         /// Just like MoveAndSlide, except:
-        /// * It passes through all <see cref="IChargeable"/> objects, unless
-        ///     <see cref="IChargeable.CausesBonk"/> is true.
-        /// * It calls <see cref="IChargeable.OnCharged"/> whenever on all
-        ///     <see cref="IChargeable"/> objects it touches or passes through.
-        /// * It bonks the player if they touch an <see cref="IChargeable"/>
-        ///     whose <see cref="IChargeable.CausesBonk"/> is true
+        /// * It passes through all <see cref="IRollable"/> objects, unless
+        ///     <see cref="IRollable.CausesBonk"/> is true.
+        /// * It calls <see cref="IRollable.OnRolledInto"/> whenever on all
+        ///     <see cref="IRollable"/> objects it touches or passes through.
+        /// * It bonks the player if they touch an <see cref="IRollable"/>
+        ///     whose <see cref="IRollable.CausesBonk"/> is true
         /// * It bonks the player if they hit a wall at too direct of an angle
         /// * It returns true if the player bonked
         /// </summary>
         /// <param name="delta"></param>
-        protected bool MoveAndSlideCharging(float delta)
+        protected bool MoveAndSlideRolling(float delta)
         {
             Vector3 prevPos = _player.GlobalPosition;
             Vector3 prevVel = _player.Velocity;
@@ -229,12 +286,12 @@ namespace FastDragon
             {
                 var collision = _player.GetSlideCollision(i);
 
-                // Trigger OnCharged().
+                // Trigger OnRolledInto().
                 // Bonk if it's bonkable.
                 var hitObject = collision.GetCollider();
-                if (hitObject is IChargeable c)
+                if (hitObject is IRollable c)
                 {
-                    c.OnCharged();
+                    c.OnRolledInto();
 
                     if (c.CausesBonk)
                         return Bonk();
@@ -244,7 +301,7 @@ namespace FastDragon
                     _player.Velocity = prevVel;
 
                     _player.AddCollisionExceptionWith((Node)hitObject);
-                    bool bonked = MoveAndSlideCharging(delta);
+                    bool bonked = MoveAndSlideRolling(delta);
                     _player.RemoveCollisionExceptionWith((Node)hitObject);
 
                     return bonked;
@@ -290,6 +347,33 @@ namespace FastDragon
                 _player.ChangeState<PlayerBonkState>();
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Changes to the ledge-grabbing state and returns true, if there is
+        /// a valid ledge to grab
+        /// </summary>
+        /// <returns></returns>
+        protected bool TryGrabLedge()
+        {
+            if (_player.VSpeed >= 0)
+                return false;
+
+            if (!_player.IsOnWallOnly())
+                return false;
+
+            if (!_player.LedgeDetector.LedgeDetected)
+                return false;
+
+            float ledgeHeight = _player.LedgeDetector.LedgeHeight - _player.GlobalPosition.Y;
+            float minHeight = _player.MinLedgeGrabHeight.GlobalPosition.Y - _player.GlobalPosition.Y;
+            if (ledgeHeight > minHeight)
+            {
+                _player.ChangeState<PlayerLedgeGrabState>();
+                return true;
+            }
+
+            return false;
         }
 
         private Node FindWall()

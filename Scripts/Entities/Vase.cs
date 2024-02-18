@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Vase : StaticBody3D, IChargeable
+    public partial class Vase : StaticBody3D, IRollable
     {
         [Export] public GemColor GemColor = GemColor.Red;
 
@@ -27,7 +27,7 @@ namespace FastDragon
             _model.Visible = !_gem.IsCollected;
         }
 
-        public void OnCharged()
+        public void OnRolledInto()
         {
             _collisionShape.Disabled = true;
             _model.Visible = false;

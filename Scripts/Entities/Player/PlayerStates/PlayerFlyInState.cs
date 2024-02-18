@@ -12,6 +12,10 @@ namespace FastDragon
             Vector3 endPos = _player.GlobalPosition;
             Vector3 endRotRad = _player.GlobalRotation;
 
+            _player.Animator.Play(
+                "Roll",
+                customBlend: 0.25f,
+                customSpeed: 2);
             _player.AllowInterpolation = false;
 
             _player.GlobalPosition += Vector3.Up * _player.FlyInHeight;

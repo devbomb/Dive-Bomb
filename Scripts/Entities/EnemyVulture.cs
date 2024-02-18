@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace FastDragon
 {
-    public partial class EnemyVulture : InterpolatedCharacterBody3D, IChargeable, IFlamable
+    public partial class EnemyVulture : InterpolatedCharacterBody3D, IRollable, IKickable
     {
         public const float MaxSpeed = Player.Walk.Speed * 1.5f;
         public const float Accel = 32;
@@ -59,12 +59,12 @@ namespace FastDragon
             _stateMachine.ChangeState<Idle>();
         }
 
-        public void OnCharged()
+        public void OnRolledInto()
         {
             if (!IsDead) _stateMachine.ChangeState<Dead>();
         }
 
-        public void OnFlamed()
+        public void OnKicked()
         {
             if (!IsDead) _stateMachine.ChangeState<Dead>();
         }

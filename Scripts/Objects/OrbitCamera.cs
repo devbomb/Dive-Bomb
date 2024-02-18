@@ -74,6 +74,11 @@ namespace FastDragon
             ApplyAnglesAndDistance();
         }
 
+        public void Recenter()
+        {
+            _stateMachine.ChangeState<Recentering>();
+        }
+
         private void ApplyAnglesAndDistance()
         {
             Vector3 dir = Vector3.Back

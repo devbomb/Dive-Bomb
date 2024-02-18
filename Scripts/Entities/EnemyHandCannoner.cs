@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class EnemyHandCannoner : StaticBody3D, IChargeable
+    public partial class EnemyHandCannoner : StaticBody3D, IRollable
     {
         [Export] public GemColor GemColor = GemColor.Red;
         [Export] public PackedScene ProjectilePrefab;
@@ -46,7 +46,7 @@ namespace FastDragon
             _targetPlayer = null;
         }
 
-        public void OnCharged()
+        public void OnRolledInto()
         {
             if (IsAlive)
                 _stateMachine.ChangeState<Dieing>();

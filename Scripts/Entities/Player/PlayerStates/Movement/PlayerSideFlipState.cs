@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerWalkJumpState : PlayerState
+    public partial class PlayerSideFlipState : PlayerState
     {
         public override bool CanBoundAfterLanding => true;
 
@@ -10,8 +10,12 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("Jump", 0);
-            _player.VSpeed = Player.Jump.InitVSpeed;
+            _player.Animator.Play("SideFlip", 0);
+            _player.VSpeed = Player.SideFlip.InitVSpeed;
+
+            RotateInstantlyTowardLeftStick();
+            _player.FSpeed = Player.Walk.Speed;
+            _player.ResetPhysicsInterpolation();
 
             _isHolding = true;
         }
@@ -49,8 +53,8 @@ namespace FastDragon
             if (_player.VSpeed > 0)
             {
                 gravity = _isHolding
-                    ? Player.Jump.FullJumpRiseGravity
-                    : Player.Jump.ShortHopGravity;
+                    ? Player.SideFlip.FullJumpRiseGravity
+                    : Player.SideFlip.ShortHopGravity;
             }
 
             ApplyGravity(delta, gravity);

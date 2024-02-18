@@ -4,73 +4,68 @@ namespace FastDragon
 {
     public partial class Player
     {
-        /// <summary>
-        /// Conversion factor between Godot distance units and Spyro distance
-        /// units.
-        ///
-        /// The player in this game has a diameter of 1 Godot unit.
-        /// I measured Spyro's diameter to be about 500 Spyro units.
-        /// In theory, this should mean the conversion factor is 1f / 500, but
-        /// for some reason, that makes everything feel too fast.
-        /// Using 1f / 550 makes everything feel more accurate.
-        /// Perhaps I measured Spyro's diameter wrong?  Who knows.
-        /// </summary>
-        private const float SpyroUnits = 1f / 550;
-        private const float SpyroAnglesToDeg = 360f / 4096;
-        private const float SpyroFrames = 1f / 30;
-        private const float SpyroUnitsPerFrame = SpyroUnits / SpyroFrames;
-        private const float SpyroUnitsPerFrameSquared = SpyroUnits / (SpyroFrames * SpyroFrames);
-        private const float SpyroAnglesPerFrame = SpyroAnglesToDeg / SpyroFrames;
-
         public static class Default
         {
-            public const float Gravity = 12 * SpyroUnitsPerFrameSquared;
+            public const float Gravity = 20;
         }
 
         public static class Stand
         {
-            // The real game uses a value of 180, but I'd like to make _this_
-            // game feel a little bit more responsive than that.
-            public const float RotSpeedDeg = 270 * SpyroAnglesPerFrame;
+            public const float RotSpeedDeg = 712f;
         }
 
         public static class Walk
         {
-            public const float MinSpeed = 15 * SpyroUnitsPerFrame;
-            public const float Speed = 143 * SpyroUnitsPerFrame;
-            public const float Accel = 20 * SpyroUnitsPerFrameSquared;
-            public const float Decel = 12 * SpyroUnitsPerFrameSquared;
-            public const float RotSpeedDeg = 80 * SpyroAnglesPerFrame;
+            public const float MinSpeed = 0.8f;
+            public const float Speed = 7.8f;
+            public const float Accel = 32.7f;
+            public const float Decel = 20;
+            public const float RotSpeedDeg = 211f;
+            public static float RotSpeedRad => Mathf.DegToRad(RotSpeedDeg);
+
+            public const float MinTimeBeforeSideFlip = 0.25f;
         }
 
-        public static class SlowPivot
+        public static class Kick
         {
-            public const float RotSpeedDeg = 196 * SpyroAnglesPerFrame;
-            public const float MaxSkidDuration = 11 * SpyroFrames;
-            public const float MinDecel = 13 * SpyroUnitsPerFrameSquared; // Could also be 12, depending on rounding
+            public const float Duration = 0.5f;
+            public const float JumpHeight = 0.5f;
 
-            public const float MinAngleDeg = 135;
+            public static readonly float InitVSpeed = AccelMath.SpeedNeededForDistance(
+                JumpHeight,
+                Default.Gravity
+            );
+        }
+
+        public static class Roll
+        {
+            public const float InitialSpeed = 15;
+            public const float MinSpeed = 5;
+            public const float MinAccel = 20;
+            public const float MaxAccel = 30;
+
+            public const float RedirectTimeWindow = 0.1f;
+
+            public const float Duration = 0.5f;
+            public const float FrictionlessDuration = 0.25f;
+            public const float Friction = (InitialSpeed - MinSpeed) / (Duration - FrictionlessDuration);
         }
 
         public static class Jump
         {
-            // In Spyro, the walk rot speed is the same as the jump rot speed.
-            // In theory, they should be the same in this game, too.
-            // In practice, keeping them the same somehow feels _worse_ in this
-            // game than in it does in Spyro.  So, let's just give it a little
-            // boost.  #NotSorry.
-            public const float RotSpeedDeg = Walk.RotSpeedDeg * 1.25f;
+            public const float RotSpeedDeg = 720;
+            public static float RotSpeedRad => Mathf.DegToRad(RotSpeedDeg);
 
-            public const float MaxFSpeed = 100 * SpyroUnitsPerFrame;
-            public const float StrafeAccel = 20 * SpyroUnitsPerFrameSquared;
+            public const float MaxFSpeed = Walk.Speed;
+            public const float StrafeAccel = 20;
 
 
-            public const float FullJumpHeight = 1300 * SpyroUnits;
-            public const float FullJumpRiseTime = 15 * SpyroFrames;
+            public const float FullJumpHeight = 2.4f;
+            public const float FullJumpRiseTime = 0.5f;
             public static readonly float FullJumpRiseGravity;
 
-            public const float MinJumpHeight = 530 * SpyroUnits;
-            public const float MinJumpRiseTime = 9 * SpyroFrames;
+            public const float MinJumpHeight = 1;
+            public const float MinJumpRiseTime = 0.3f;
             public static readonly float ShortHopGravity;
 
             public static readonly float InitVSpeed;
@@ -86,41 +81,126 @@ namespace FastDragon
             }
         }
 
-        public static class Charge
+        public static class BoundJump
         {
-            public const float InitialGroundSpeed = 83 * SpyroUnitsPerFrame;
-            public const float MaxGroundSpeed = 245 * SpyroUnitsPerFrame;
-            public const float GroundAccel = 122 * SpyroUnitsPerFrameSquared;
-            public const float TurnSpeedDeg = 48 * SpyroAnglesPerFrame;
+            public const float TimeWindow = 0.25f;
 
-            public const float AirSpeed = 240 * SpyroUnitsPerFrame;
+            public const float FullJumpHeight = 4;
+            public const float FullJumpRiseTime = 0.5f;
+            public static readonly float FullJumpRiseGravity;
 
-            public static float JumpVSpeed = 110 * SpyroUnitsPerFrame;
+            public const float MinJumpHeight = 1.5f;
+            public const float MinJumpRiseTime = 0.3f;
+            public static readonly float ShortHopGravity;
+
+            public static readonly float InitVSpeed;
+
+            static BoundJump()
+            {
+                (InitVSpeed, FullJumpRiseGravity) = AccelMath.SpeedAndFrictionNeededForDistanceAndTime(
+                    FullJumpHeight,
+                    FullJumpRiseTime
+                );
+
+                ShortHopGravity = AccelMath.FrictionNeededForDistance(MinJumpHeight, InitVSpeed);
+            }
+        }
+
+        public static class SideFlip
+        {
+            public const float TimeWindow = 0.4f;
+
+            public const float FullJumpHeight = 4;
+            public const float FullJumpRiseTime = 0.5f;
+            public static readonly float FullJumpRiseGravity;
+
+            public const float MinJumpHeight = 3f;
+            public const float MinJumpRiseTime = 0.6f;
+            public static readonly float ShortHopGravity;
+
+            public static readonly float InitVSpeed;
+
+            static SideFlip()
+            {
+                (InitVSpeed, FullJumpRiseGravity) = AccelMath.SpeedAndFrictionNeededForDistanceAndTime(
+                    FullJumpHeight,
+                    FullJumpRiseTime
+                );
+
+                ShortHopGravity = AccelMath.FrictionNeededForDistance(MinJumpHeight, InitVSpeed);
+            }
+        }
+
+        public static class Dive
+        {
+            public const float TurnSpeedDeg = 126.6f;
+            public static float TurnSpeedRad => Mathf.DegToRad(TurnSpeedDeg);
+
+            public const float FSpeed = 12;
+            public const float InitialVSpeed = 12;
+            public const float Gravity = 40;
 
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
+            public static float CameraPitchRad => Mathf.DegToRad(CameraPitchDeg);
             public const float CameraDistance = 5;
+
+            public const float RedirectTimeWindow = 0.1f;
         }
 
         public static class Bonk
         {
-            public const float Duration = 0.5f;
-            public const float Distance = 1;
+            public const float RecoilDuration = 0.5f;
+            public const float RecoilDistance = 1;
+            public const float RecoilHeight = 1;
             public const float AngleDeg = 45;
+            public static float AngleRad => Mathf.DegToRad(AngleDeg);
+
+            public const float RecoverDuration = 1;
+
+            public static readonly float Friction;
+            public static readonly float InitHSpeed;
+
+            public static readonly float Gravity;
+            public static readonly float InitVSpeed;
+
+            static Bonk()
+            {
+                (InitHSpeed, Friction) = AccelMath.SpeedAndFrictionNeededForDistanceAndTime(
+                    RecoilDistance,
+                    RecoilDuration
+                );
+
+
+                (InitVSpeed, Gravity) = AccelMath.SpeedAndFrictionNeededForDistanceAndTime(
+                    RecoilHeight,
+                    RecoilDuration / 2
+                );
+            }
+        }
+
+        public static class LedgeGrab
+        {
+            public const float ClimbDuration = 0.5f;
+            public const float ClimbForwardDist = 0.5f;
+        }
+
+        public static class WallSlide
+        {
+            public const float Gravity = Default.Gravity / 2;
+            public const float TerminalVelocity = 5;
+            public const float HDecel = Walk.Decel;
+        }
+
+        public static class WallJump
+        {
+            public const float FSpeed = Walk.Speed;
+            public const float DisableStrafeDuration = 0.15f;
         }
 
         public static class Glide
         {
-            public const float TurnSpeedDeg = 90;
-            public const float Gravity = 4 * SpyroUnitsPerFrameSquared;
-            public const float TerminalVSpeed = -60 * SpyroUnitsPerFrame;
-
-            public const float InitialFSpeed = 66 * SpyroUnitsPerFrame;
-            public const float MaxFSpeed = 200 * SpyroUnitsPerFrame;
-            public const float Accel = 8 * SpyroUnitsPerFrameSquared;
-
-            public const float CameraDecayRate = 10;
-            public const float CameraPitchDeg = 0;
+            public const float MaxFSpeed = 11f;
             public const float CameraDistance = 7;
         }
     }

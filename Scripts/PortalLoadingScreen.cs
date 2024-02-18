@@ -7,8 +7,8 @@ namespace FastDragon
 {
     public partial class PortalLoadingScreen : Node3D
     {
-        public static float EnterLevelCameraYawRad => Mathf.DegToRad(-145);
-        public static float EnterLevelCameraPitchRad => Mathf.DegToRad(45);
+        public static float EnterLevelCameraYawRad => Mathf.DegToRad(-180);
+        public static float EnterLevelCameraPitchRad => Mathf.DegToRad(60);
 
         public static float ReturnHomeCameraYawRad => Mathf.DegToRad(180);
         public static float ReturnHomeCameraPitchRad => 0;
@@ -100,6 +100,15 @@ namespace FastDragon
             _playerAnimator.Play(animationName);
             _playerAnimator.Seek(animationStartTime, true);
 
+            // ...and then make it transition the animation used for loading
+            if (!_isReturningHome)
+            {
+                _playerAnimator.Play("Glide", 0.25f);
+            }
+            else
+            {
+                _playerAnimator.Play("Levitate", 2);
+            }
 
             _camera.DisableInput = true;
 

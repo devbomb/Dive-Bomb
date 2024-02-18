@@ -35,8 +35,6 @@ namespace FastDragon
             return pos - neg;
         }
 
-        public static bool ChargeHeld => Input.IsActionPressed("Charge");
-
         public static bool JumpHeld => Input.IsActionPressed("Jump");
 
         public static bool JumpJustPressed(InputEvent ev)
@@ -45,8 +43,11 @@ namespace FastDragon
         public static bool PauseJustPressed(InputEvent ev)
             => ev.IsActionPressed("Pause");
 
-        public static bool FlameJustPressed(InputEvent ev)
-            => ev.IsActionPressed("Flame");
+        public static bool KickJustPressed(InputEvent ev)
+            => ev.IsActionPressed("Kick");
+
+        public static bool RollJustPressed(InputEvent ev)
+            => ev.IsActionPressed("Roll");
 
         public static bool RecenterCameraJustPressed(InputEvent ev)
             => ev.IsActionPressed("RecenterCamera");

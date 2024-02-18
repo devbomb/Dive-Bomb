@@ -95,7 +95,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 player.ChangeState<PlayerManhandledState>();
-                player.Animator.Play("Glide");
+                player.Animator.Play("Dive");
                 _skipCameraCheck = true;
             }
 

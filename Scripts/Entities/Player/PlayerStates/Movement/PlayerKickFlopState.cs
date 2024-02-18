@@ -2,11 +2,10 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerFlopState : PlayerState
+    public partial class PlayerKickFlopState : PlayerState
     {
         public override void OnStateEntered()
         {
-            _player.Animator.Play("Flop");
         }
 
         public override void _Input(InputEvent ev)
@@ -17,11 +16,9 @@ namespace FastDragon
                 return;
             }
 
-            if (InputService.KickJustPressed(ev))
-            {
-                _player.ChangeState<PlayerKickState>();
-                return;
-            }
+            // We intentionally do not kicking again from this state, to
+            // prevent the player from combining wall jumps with kicks to
+            // climb infinitely high.
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -47,11 +44,9 @@ namespace FastDragon
             if (TryGrabLedge())
                 return;
 
-            if (_player.IsOnWall() && _player.VSpeed < 0)
-            {
-                _player.ChangeState<PlayerWallSlideState>();
-                return;
-            }
+            // We intentionally do not allow wall sliding from this state, to
+            // prevent the player from combining wall jumps with kicks to
+            // climb infinitely high.
         }
     }
 }

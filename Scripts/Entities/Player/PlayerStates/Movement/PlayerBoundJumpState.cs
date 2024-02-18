@@ -2,16 +2,16 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerWalkJumpState : PlayerState
+    public partial class PlayerBoundJumpState : PlayerState
     {
-        public override bool CanBoundAfterLanding => true;
+        private const bool PrintMaxHeight = true;
 
         private bool _isHolding;
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("Jump", 0);
-            _player.VSpeed = Player.Jump.InitVSpeed;
+            _player.Animator.Play("BoundJump", 0);
+            _player.VSpeed = Player.BoundJump.InitVSpeed;
 
             _isHolding = true;
         }
@@ -49,8 +49,8 @@ namespace FastDragon
             if (_player.VSpeed > 0)
             {
                 gravity = _isHolding
-                    ? Player.Jump.FullJumpRiseGravity
-                    : Player.Jump.ShortHopGravity;
+                    ? Player.BoundJump.FullJumpRiseGravity
+                    : Player.BoundJump.ShortHopGravity;
             }
 
             ApplyGravity(delta, gravity);

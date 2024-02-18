@@ -7,11 +7,13 @@ namespace FastDragon
         public override bool Invincible => true;
 
         private const float VSpeedBoost = 5;
+        private bool _startedLandingAnimation;
 
         public override void OnStateEntered()
         {
             _player.Animator.Play("DamageFlip");
             _player.VSpeed += VSpeedBoost;
+            _startedLandingAnimation = false;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -22,13 +24,20 @@ namespace FastDragon
             DecelerateHSpeedToZero(delta);
             _player.MoveAndSlide();
 
-            if (!_player.Animator.IsPlaying())
+            if (_player.IsOnFloor() && !_player.Animator.IsPlaying())
             {
+                if (!_startedLandingAnimation)
+                {
+                    _startedLandingAnimation = true;
+                    _player.Animator.Play("DamageFlip_Land");
+                    return;
+                }
+
                 int currentHealth = (int)SaveFile.Current.PlayerHealth;
 
                 if (currentHealth <= 0)
                 {
-                    _player.ChangeState<PlayerSpinDeathState>();
+                    _player.ChangeState<PlayerReachOutDeathState>();
                 }
                 else
                 {

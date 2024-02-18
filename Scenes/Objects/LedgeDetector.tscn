@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfucpfnpqi5r3"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/LedgeDetector.cs" id="1_ykwis"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_difdr"]
+height = 0.05
+radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_pkyy7"]
+
+[node name="LedgeDetector" type="StaticBody3D"]
+collision_layer = 0
+script = ExtResource("1_ykwis")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_difdr")
+
+[node name="OverlapArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+collision_layer = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OverlapArea"]
+shape = SubResource("CylinderShape3D_difdr")
+
+[node name="LedgeCollisionVisualizer" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+top_level = true
+mesh = SubResource("SphereMesh_pkyy7")
