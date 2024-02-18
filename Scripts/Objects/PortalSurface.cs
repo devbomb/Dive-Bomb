@@ -190,6 +190,13 @@ namespace FastDragon
                 5,
                 delta
             );
+
+            _player.Camera.OrbitPitchRad = AngleMath.DecayToward(
+                _player.Camera.OrbitPitchRad,
+                0,
+                5,
+                delta
+            );
         }
     }
 }
