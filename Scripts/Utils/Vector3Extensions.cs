@@ -109,6 +109,18 @@ namespace FastDragon
             );
         }
 
+        public static Vector3 DecayToward(
+            this Vector3 from,
+            Vector3 to,
+            float decayRate,
+            float delta
+        )
+        {
+            float remaining = from.DistanceTo(to);
+            remaining *= Mathf.Pow(Mathf.E, -decayRate * delta);
+            return to.MoveToward(from, remaining);
+        }
+
         public static bool IsParallelTo(this Vector3 v, Vector3 other)
         {
             return v.Cross(other) == Vector3.Zero;
