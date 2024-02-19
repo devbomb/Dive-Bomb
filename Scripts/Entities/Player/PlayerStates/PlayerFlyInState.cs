@@ -31,6 +31,9 @@ namespace FastDragon
             _player.GlobalRotation = Vector3.Zero;
             _player.ResetPhysicsInterpolation();
 
+            _player.CameraFocus.GlobalPosition = _player.CameraFocusRestPos.GlobalPosition;
+            _player.CameraFocusInterpolator.ResetPhysicsInterpolation();
+
             _startPos = _player.GlobalPosition;
             _startRotRad = _player.GlobalRotation;
 
