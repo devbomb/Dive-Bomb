@@ -188,8 +188,6 @@ namespace FastDragon
                     ref _cameraFocusYSpeed
                 );
                 CameraFocus.GlobalPosition = focusPos;
-
-                GetNode<Node3D>("%GroundTargetDisplay").GlobalPosition = groundPos.Flattened() + (Vector3.Up * yFocusGround);
             }
             else
             {
