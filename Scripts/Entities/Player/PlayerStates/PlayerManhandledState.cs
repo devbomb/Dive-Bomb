@@ -10,5 +10,6 @@ namespace FastDragon
     {
         public override bool Invincible => true;
         public override bool DisableCameraInput => true;
+        public override bool UseMario64CameraFocus => false;
     }
 }
