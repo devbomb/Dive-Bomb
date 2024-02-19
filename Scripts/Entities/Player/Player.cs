@@ -28,6 +28,7 @@ namespace FastDragon
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
         public Node3D CameraFocus => GetNode<Node3D>("%CameraFocus");
         public Node3D CameraFocusRestPos => GetNode<Node3D>("%CameraFocusRestPos");
+        public PhysicsInterpolator3D CameraFocusInterpolator => GetNode<PhysicsInterpolator3D>("%CameraFocusInterpolator");
 
         public Node3D Model => GetNode<Node3D>("%Model");
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
@@ -116,6 +117,7 @@ namespace FastDragon
             ResetPhysicsInterpolation();
 
             CameraFocus.GlobalPosition = CameraFocusRestPos.GlobalPosition;
+            CameraFocusInterpolator.ResetPhysicsInterpolation();
             Camera.ForceRecenter();
 
             Animator.Play("RESET", 0);
@@ -166,7 +168,7 @@ namespace FastDragon
 
         }
 
-        public override void _Process(double deltaD)
+        public override void _PhysicsProcess(double deltaD)
         {
             Camera.DisableInput = CurrentState.DisableCameraInput;
 

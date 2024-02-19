@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dolfkovx44knj" path="res://Scenes/Objects/Sparx.tscn" id="3_5fc8t"]
 [ext_resource type="Script" path="res://Scripts/Objects/OrbitCamera.cs" id="4_15biq"]
 [ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="4_db58r"]
+[ext_resource type="Script" path="res://Scripts/PhysicsInterpolation/PhysicsInterpolator3D.cs" id="6_0xbpm"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://ciwpie76rxyn1" path="res://BlenderModels/AnotherPlatformerMan.blend" id="10_3vscj"]
@@ -45,10 +46,6 @@ points = PackedVector3Array(0, 0, 0, 0.75, 0, -1, -0.75, 0, -1, 0, 0.5, -1, 0, -
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
 radius = 0.2
-
-[sub_resource type="SphereMesh" id="SphereMesh_ce3s5"]
-radius = 0.1
-height = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
 
@@ -126,13 +123,13 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 top_level = true
 
+[node name="CameraFocusInterpolator" type="Node" parent="CameraFocus"]
+unique_name_in_owner = true
+script = ExtResource("6_0xbpm")
+
 [node name="CameraFocusRestPos" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="GroundTargetDisplay" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-mesh = SubResource("SphereMesh_ce3s5")
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
