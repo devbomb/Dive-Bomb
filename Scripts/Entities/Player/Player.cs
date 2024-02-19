@@ -170,24 +170,31 @@ namespace FastDragon
         {
             Camera.DisableInput = CurrentState.DisableCameraInput;
 
-            var groundPos = FindGroundPosition();
-            float yFocusGround = groundPos.Y + CameraFocusRestPos.Position.Y;
-            float targetYFocus = Mathf.Max(
-                yFocusGround,
-                GlobalPosition.Y
-            );
+            if (CurrentState.UseMario64CameraFocus)
+            {
+                var groundPos = FindGroundPosition();
+                float yFocusGround = groundPos.Y + CameraFocusRestPos.Position.Y;
+                float targetYFocus = Mathf.Max(
+                    yFocusGround,
+                    GlobalPosition.Y
+                );
 
-            var focusPos = CameraFocusRestPos.GlobalPosition;
-            focusPos.Y = AccelMath.SmoothStepToward(
-                CameraFocus.GlobalPosition.Y,
-                targetYFocus,
-                Player.Default.Gravity,
-                (float)deltaD,
-                ref _cameraFocusYSpeed
-            );
-            CameraFocus.GlobalPosition = focusPos;
+                var focusPos = CameraFocusRestPos.GlobalPosition;
+                focusPos.Y = AccelMath.SmoothStepToward(
+                    CameraFocus.GlobalPosition.Y,
+                    targetYFocus,
+                    Player.Default.Gravity,
+                    (float)deltaD,
+                    ref _cameraFocusYSpeed
+                );
+                CameraFocus.GlobalPosition = focusPos;
 
-            GetNode<Node3D>("%GroundTargetDisplay").GlobalPosition = groundPos.Flattened() + (Vector3.Up * yFocusGround);
+                GetNode<Node3D>("%GroundTargetDisplay").GlobalPosition = groundPos.Flattened() + (Vector3.Up * yFocusGround);
+            }
+            else
+            {
+                CameraFocus.GlobalPosition = CameraFocusRestPos.GlobalPosition;
+            }
         }
 
         private float _cameraFocusYSpeed = 0;

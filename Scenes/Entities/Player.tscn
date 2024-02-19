@@ -112,7 +112,6 @@ shape = SubResource("ConvexPolygonShape3D_abvpo")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.96752, 0.252796, 0, -0.252796, 0.96752, 0, 3, 6)
 top_level = true
-current = true
 near = 0.01
 script = ExtResource("4_15biq")
 FollowTarget = NodePath("../CameraFocus")

@@ -9,6 +9,7 @@ namespace FastDragon
         public virtual bool Invincible => false;
         public virtual bool AllowFlaming => true;
         public virtual bool DisableCameraInput => false;
+        public virtual bool UseMario64CameraFocus => true;
         public virtual bool SpawningGemsHomeIn => false;
         public virtual bool CanBoundAfterLanding => false;
 
