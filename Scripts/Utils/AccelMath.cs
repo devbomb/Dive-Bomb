@@ -125,5 +125,35 @@ namespace FastDragon
 
             return distance;
         }
+
+        public static float SmoothStepToward(
+            float from,
+            float to,
+            float accel,
+            float delta,
+            ref float speed
+        )
+        {
+            // If we can reach the target value by "coasting", then do that.
+            // Otherwise, accelerate until we can.  It's just like hypermiling
+            // in a car!
+            float distToTarget = Mathf.Abs(to - from);
+            if (AccelMath.DistanceTraveledWithFriction(speed, accel) >= distToTarget)
+            {
+                speed -= accel * delta;
+            }
+            else
+            {
+                speed += accel * delta;
+            }
+
+            float result = Mathf.MoveToward(from, to, speed * delta);
+            if (Mathf.IsEqualApprox(result, to))
+            {
+                speed = 0;
+                return to;
+            }
+            return result;
+        }
     }
 }
