@@ -182,6 +182,7 @@ namespace FastDragon
 
             double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
             Vector3 playerRotRad = oldPlayer.GlobalRotation;
+            Vector3 cameraFocus = oldPlayer.CameraFocus.GlobalPosition - oldPlayer.GlobalPosition;
             float cameraDist = oldPlayer.Camera.OrbitDistance;
             float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
             float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
@@ -199,6 +200,7 @@ namespace FastDragon
                 oldPlayer.Animator.AssignedAnimation,
                 animationStartTime,
                 playerRotRad,
+                cameraFocus,
                 cameraDist,
                 cameraYawRad,
                 cameraPitchRad,

@@ -44,7 +44,10 @@ namespace FastDragon
 
         private Node3D _playerModel => GetNode<Node3D>("%PlayerModel");
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
+
         private OrbitCamera _camera => GetNode<OrbitCamera>("%OrbitCamera");
+        private Node3D _cameraFocus => GetNode<Node3D>("%CameraFocus");
+        private Node3D _cameraFocusRestPos => GetNode<Node3D>("%CameraFocusRestPos");
 
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
@@ -78,6 +81,7 @@ namespace FastDragon
             string animationName,
             double animationStartTime,
             Vector3 playerStartRotRad,
+            Vector3 cameraFocusPos,
             float cameraStartDist,
             float cameraStartYawRad,
             float cameraStartPitchRad,
@@ -114,6 +118,7 @@ namespace FastDragon
 
             // Put everything in the starting position
             _playerModel.GlobalRotation = playerStartRotRad;
+            _cameraFocus.GlobalPosition = cameraFocusPos;
             _camera.OrbitDistance = cameraStartDist;
             _camera.OrbitYawRad = cameraStartYawRad;
             _camera.OrbitPitchRad = cameraStartPitchRad;
@@ -226,6 +231,7 @@ namespace FastDragon
 
                 _tween = _screen.CreateTween();
                 _tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
+                _tween.Parallel().TweenProperty(_screen._cameraFocus, "global_position", _screen._cameraFocusRestPos.GlobalPosition, RestMoveDuration);
                 _tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, RestMoveDuration);
                 _tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, RestMoveDuration);
                 _tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, RestMoveDuration);

@@ -108,16 +108,13 @@ libraries = {
 [node name="PlayerModel" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="CameraFocus" type="Marker3D" parent="PlayerModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
 [node name="AnotherPlatformerMan" parent="PlayerModel" instance=ExtResource("8_xrk15")]
 
 [node name="OrbitCamera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -7)
 script = ExtResource("4_ef0t7")
-FollowTarget = NodePath("../PlayerModel/CameraFocus")
+FollowTarget = NodePath("../CameraFocus")
 
 [node name="GemCountingRig" type="Node3D" parent="OrbitCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.153, 0, -5)
@@ -244,6 +241,14 @@ script = ExtResource("10_k6c8e")
 
 [node name="RedGemModel" parent="OrbitCamera/GemCountingRig/GemPoints/GemDest" instance=ExtResource("2_4lauq")]
 metadata/_edit_lock_ = true
+
+[node name="CameraFocus" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CameraFocusRestPos" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
