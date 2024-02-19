@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=19 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
@@ -45,6 +45,10 @@ points = PackedVector3Array(0, 0, 0, 0.75, 0, -1, -0.75, 0, -1, 0, 0.5, -1, 0, -
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
 radius = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_ce3s5"]
+radius = 0.1
+height = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
 
@@ -121,10 +125,15 @@ shape = SubResource("SphereShape3D_2vtlv")
 [node name="CameraFocus" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+top_level = true
 
 [node name="CameraFocusRestPos" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="GroundTargetDisplay" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_ce3s5")
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

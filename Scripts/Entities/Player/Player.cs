@@ -170,22 +170,24 @@ namespace FastDragon
         {
             Camera.DisableInput = CurrentState.DisableCameraInput;
 
-            var groundPos = ToLocal(FindGroundPosition());
+            var groundPos = FindGroundPosition();
             float yFocusGround = groundPos.Y + CameraFocusRestPos.Position.Y;
             float targetYFocus = Mathf.Max(
                 yFocusGround,
-                0
+                GlobalPosition.Y
             );
 
-            var focusPos = CameraFocusRestPos.Position;
+            var focusPos = CameraFocusRestPos.GlobalPosition;
             focusPos.Y = AccelMath.SmoothStepToward(
-                CameraFocus.Position.Y,
+                CameraFocus.GlobalPosition.Y,
                 targetYFocus,
                 Player.Default.Gravity,
                 (float)deltaD,
                 ref _cameraFocusYSpeed
             );
-            CameraFocus.Position = focusPos;
+            CameraFocus.GlobalPosition = focusPos;
+
+            GetNode<Node3D>("%GroundTargetDisplay").GlobalPosition = groundPos.Flattened() + (Vector3.Up * yFocusGround);
         }
 
         private float _cameraFocusYSpeed = 0;
