@@ -115,6 +115,7 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             ResetPhysicsInterpolation();
 
+            CameraFocus.GlobalPosition = CameraFocusRestPos.GlobalPosition;
             Camera.ForceRecenter();
 
             Animator.Play("RESET", 0);
