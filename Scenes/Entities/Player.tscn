@@ -112,6 +112,7 @@ top_level = true
 near = 0.01
 script = ExtResource("4_15biq")
 FollowTarget = NodePath("../CameraFocus")
+AllowAutoRotate = true
 
 [node name="PortalActivator" type="Area3D" parent="Camera" groups=["CameraArea"]]
 

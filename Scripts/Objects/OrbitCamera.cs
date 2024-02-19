@@ -9,6 +9,7 @@ namespace FastDragon
     {
         [Export] public Node3D FollowTarget;
 
+        [Export] public bool AllowAutoRotate { get; set; }
         public bool DisableInput { get; set; }
 
         public float OrbitDistance
@@ -131,7 +132,7 @@ namespace FastDragon
                 {
                     OrbitWithRightStick(delta);
                 }
-                else
+                else if (_camera.AllowAutoRotate)
                 {
                     MaintainDistanceAndAutoRotate(delta);
                 }
