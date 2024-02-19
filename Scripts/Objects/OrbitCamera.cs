@@ -45,12 +45,6 @@ namespace FastDragon
         private float _orbitYawRad;
         private float _orbitPitchRad;
 
-        /// <summary>
-        /// This height gets added to the camera's final position, AFTER the
-        /// orbit angles are applied and AFTER the camera has been aimed at the
-        /// target.
-        /// </summary>
-        public float CameraHeightOffset = 2;
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(OrbitCameraState));
         private readonly PhysicsInterpolator3D _interpolator = new PhysicsInterpolator3D();
@@ -88,8 +82,6 @@ namespace FastDragon
             Vector3 offset = dir * OrbitDistance;
             GlobalPosition = FollowTarget.GlobalPosition + offset;
             LookAt(FollowTarget.GlobalPosition);
-
-            GlobalPosition += Vector3.Up * CameraHeightOffset;
 
             // HACK: ensure it works smoothly with physics interpolation
             if (!Engine.IsInPhysicsFrame())

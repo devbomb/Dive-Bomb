@@ -83,6 +83,9 @@ unique_name_in_owner = true
 
 [node name="AnotherPlatformerMan" parent="Model" instance=ExtResource("10_3vscj")]
 
+[node name="CameraFocus" type="Marker3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
 [node name="Sparx" parent="." node_paths=PackedStringArray("CollectionArea") instance=ExtResource("3_5fc8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 CollectionArea = NodePath("../SparxRange")
@@ -111,7 +114,7 @@ top_level = true
 current = true
 near = 0.01
 script = ExtResource("4_15biq")
-FollowTarget = NodePath("..")
+FollowTarget = NodePath("../Model/CameraFocus")
 
 [node name="PortalActivator" type="Area3D" parent="Camera" groups=["CameraArea"]]
 
