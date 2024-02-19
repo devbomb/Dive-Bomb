@@ -26,6 +26,9 @@ namespace FastDragon
         public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
+        public Node3D CameraFocus => GetNode<Node3D>("%CameraFocus");
+        public Node3D CameraFocusRestPos => GetNode<Node3D>("%CameraFocusRestPos");
+
         public Node3D Model => GetNode<Node3D>("%Model");
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
 
@@ -165,6 +168,39 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             Camera.DisableInput = CurrentState.DisableCameraInput;
+
+            var groundPos = FindGroundPosition();
+            float yFocusGround = groundPos.Y + CameraFocusRestPos.Position.Y;
+            float targetYFocus = Mathf.Max(
+                yFocusGround,
+                GlobalPosition.Y
+            );
+
+            var focusPos = CameraFocusRestPos.GlobalPosition;
+            focusPos.Y = AccelMath.SmoothStepToward(
+                CameraFocus.GlobalPosition.Y,
+                targetYFocus,
+                Player.Default.Gravity,
+                (float)deltaD,
+                ref _cameraFocusYSpeed
+            );
+            CameraFocus.GlobalPosition = focusPos;
+        }
+
+        private float _cameraFocusYSpeed = 0;
+
+        private Vector3 FindGroundPosition()
+        {
+            const float maxHeight = 10;
+            var collision = MoveAndCollide(
+                Vector3.Down * maxHeight,
+                testOnly: true,
+                recoveryAsCollision: true
+            );
+
+            return collision == null
+                ? (GlobalPosition + (Vector3.Down * maxHeight))
+                : collision.GetPosition();
         }
 
         public void ChangeState<TState>() where TState : PlayerState, new()
