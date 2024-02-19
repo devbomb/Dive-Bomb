@@ -166,26 +166,26 @@ namespace FastDragon
 
         }
 
-        public override void _PhysicsProcess(double deltaD)
+        public override void _Process(double deltaD)
         {
             Camera.DisableInput = CurrentState.DisableCameraInput;
 
-            var groundPos = FindGroundPosition();
+            var groundPos = ToLocal(FindGroundPosition());
             float yFocusGround = groundPos.Y + CameraFocusRestPos.Position.Y;
             float targetYFocus = Mathf.Max(
                 yFocusGround,
-                GlobalPosition.Y
+                0
             );
 
-            var focusPos = CameraFocusRestPos.GlobalPosition;
+            var focusPos = CameraFocusRestPos.Position;
             focusPos.Y = AccelMath.SmoothStepToward(
-                CameraFocus.GlobalPosition.Y,
+                CameraFocus.Position.Y,
                 targetYFocus,
                 Player.Default.Gravity,
                 (float)deltaD,
                 ref _cameraFocusYSpeed
             );
-            CameraFocus.GlobalPosition = focusPos;
+            CameraFocus.Position = focusPos;
         }
 
         private float _cameraFocusYSpeed = 0;
