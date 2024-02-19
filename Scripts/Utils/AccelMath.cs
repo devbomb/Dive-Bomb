@@ -107,5 +107,23 @@ namespace FastDragon
 
             return (speed, friction);
         }
+
+        public static float DistanceTraveledWithFriction(float initialSpeed, float friction)
+        {
+            if (friction <= 0 || Mathf.IsZeroApprox(friction))
+                throw new System.Exception("Friction must be greater than 0");
+
+            float delta = 1f / 60;
+            float speed = initialSpeed;
+            float distance = 0;
+
+            while (speed > 0)
+            {
+                speed = Mathf.MoveToward(speed, 0, friction * delta);
+                distance += speed * delta;
+            }
+
+            return distance;
+        }
     }
 }
