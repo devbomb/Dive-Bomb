@@ -38,7 +38,7 @@ func _physics_process(delta):
 "
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5lcs0"]
-height = 1.5
+height = 3.0
 radius = 1.5
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_abvpo"]
@@ -98,6 +98,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SparxRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 shape = SubResource("CylinderShape3D_5lcs0")
 
 [node name="KickHitbox" type="Area3D" parent="."]
