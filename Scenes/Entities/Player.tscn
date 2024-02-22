@@ -44,10 +44,10 @@ radius = 1.5
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_abvpo"]
 points = PackedVector3Array(0, 0, 0, 0.75, 0, -1, -0.75, 0, -1, 0, 0.5, -1, 0, -0.5, -1, 0, 0, -1.5)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
 radius = 0.2
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8oevv"]
 size = Vector3(1, 2, 1)
@@ -99,11 +99,14 @@ shape = SubResource("CylinderShape3D_5lcs0")
 
 [node name="KickHitbox" type="Area3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670237, -0.12726)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="KickHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.301233)
+[node name="ConeEsqueShape" type="CollisionShape3D" parent="KickHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67, 0.174)
 shape = SubResource("ConvexPolygonShape3D_abvpo")
+
+[node name="BodyShape" type="CollisionShape3D" parent="KickHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_b8til")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
 unique_name_in_owner = true
