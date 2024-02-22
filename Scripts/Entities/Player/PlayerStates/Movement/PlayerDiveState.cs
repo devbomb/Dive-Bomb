@@ -5,7 +5,6 @@ namespace FastDragon
     public partial class PlayerDiveState : PlayerState
     {
         public override bool DisableCameraInput => _redirectTimer <= 0;
-        public override bool SpawningGemsHomeIn => true;
 
         private float _redirectTimer;
 

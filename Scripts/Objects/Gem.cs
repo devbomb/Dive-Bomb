@@ -204,7 +204,7 @@ namespace FastDragon
             {
                 bool shouldHomeIn = _flameChargeArea
                     .GetOverlappingBodies()
-                    .Any(n => n is Player p && p.SpawningGemsHomeIn);
+                    .Any(n => n is Player);
 
                 if (shouldHomeIn)
                     _gem.StartHomingIn();

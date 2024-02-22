@@ -13,8 +13,6 @@ namespace FastDragon
         [Export] public float FlyInDistance = 10;
         [Export] public float FlyInDuration = 2;
 
-        public bool SpawningGemsHomeIn => CurrentState.SpawningGemsHomeIn;
-
         public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");

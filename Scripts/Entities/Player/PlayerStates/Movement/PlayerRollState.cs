@@ -5,8 +5,6 @@ namespace FastDragon
 {
     public partial class PlayerRollState : PlayerState
     {
-        public override bool SpawningGemsHomeIn => true;
-
         private const float RollingRadius = 0.5f;
         private const float RollingCircumference = 2 * Mathf.Pi * RollingRadius;
 
