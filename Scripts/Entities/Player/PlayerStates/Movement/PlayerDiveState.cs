@@ -59,10 +59,36 @@ namespace FastDragon
             if (MoveAndSlideRolling(delta))
                 return;
 
+            // TODO: Don't apply the extra hitbox to objects that have already
+            // been hit by the main hitbox
+            ApplyExtraHitbox();
+
             if (_player.IsOnFloor())
             {
                 _player.ChangeState<PlayerRollState>();
                 return;
+            }
+        }
+
+        private void ApplyExtraHitbox()
+        {
+            var bodies = _player.DiveExtraHitbox.GetOverlappingBodies();
+            var areas = _player.DiveExtraHitbox.GetOverlappingAreas();
+
+            foreach (var body in bodies)
+            {
+                if (body is IRollable f)
+                {
+                    f.OnRolledInto();
+                }
+            }
+
+            foreach (var area in areas)
+            {
+                if (area is IRollable f)
+                {
+                    f.OnRolledInto();
+                }
             }
         }
     }
