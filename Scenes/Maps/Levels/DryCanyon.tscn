@@ -1,11 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://omge2vyfbm2s"]
 
-[ext_resource type="Script" path="res://Scripts/TBLoaderWrapper.gd" id="1_tecvj"]
 [ext_resource type="Environment" uid="uid://c0q1voerd055g" path="res://Environments/DryCanyonSky.tres" id="2_7dedk"]
+[ext_resource type="PackedScene" uid="uid://dmq02rkuu7422" path="res://TrenchbroomMaps/DryCanyon.map" id="2_wahdv"]
 
 [node name="DryCanyon" type="Node3D"]
-script = ExtResource("1_tecvj")
-map_resource = "res://TrenchbroomMaps/DryCanyon.map"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_7dedk")
@@ -15,3 +13,5 @@ transform = Transform3D(0.981569, 0.187471, -0.0371162, -0.0953172, 0.648576, 0.
 shadow_enabled = true
 shadow_opacity = 0.55
 shadow_blur = 10.0
+
+[node name="DryCanyon" parent="." instance=ExtResource("2_wahdv")]

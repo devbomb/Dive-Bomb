@@ -179,16 +179,6 @@ namespace FastDragon
             {
                 var prefab = ResourceLoader.Load<PackedScene>(sceneFilePath);
                 var node = prefab.Instantiate<Node3D>();
-
-                // HACK: If this is a trenchbroom scene, build the meshes in
-                // this thread instead of the main thread.  After all, the level
-                // isn't _truly_ loaded until the meshes are built.
-                if (node.HasMethod("_refresh"))
-                {
-                    node.Set("_hackityHackHackDisableRefresh", true);
-                    node.Call("build_meshes");
-                }
-
                 _loadedScene = node;
             });
 
@@ -495,6 +485,8 @@ namespace FastDragon
             {
                 float duration = CorrectionAnimationDuration;
                 var newSun = _screen._loadedScene.FindNode<DirectionalLight3D>();
+                if (newSun == null)
+                    return;
 
                 tween.TweenRotRadSinusoidal(_screen._oldSun, "rotation", newSun.Rotation, duration);
 

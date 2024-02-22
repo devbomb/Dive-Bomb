@@ -1,11 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://jfal51r4dflw"]
 
-[ext_resource type="Script" path="res://Scripts/TBLoaderWrapper.gd" id="1_xvkdi"]
+[ext_resource type="PackedScene" uid="uid://cf2tkkwvrpta4" path="res://TrenchbroomMaps/DummyMap.map" id="2_a3wjm"]
 [ext_resource type="Environment" uid="uid://bhamu4vflo38l" path="res://Environments/NightSky.tres" id="2_nb5xh"]
 
 [node name="DummyMap" type="Node3D"]
-script = ExtResource("1_xvkdi")
-map_resource = "res://TrenchbroomMaps/DummyMap.map"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_nb5xh")
@@ -13,3 +11,5 @@ environment = ExtResource("2_nb5xh")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.481595, -0.220924, 0.848091, -0.230959, 0.901504, 0.365989, -0.845413, -0.372133, 0.383136, 0, 5.02909, 0)
 light_color = Color(0.772549, 0.772549, 0.823529, 1)
+
+[node name="DummyMap" parent="." instance=ExtResource("2_a3wjm")]
