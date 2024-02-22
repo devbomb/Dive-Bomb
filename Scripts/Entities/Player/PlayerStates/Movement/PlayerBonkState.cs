@@ -5,8 +5,6 @@ namespace FastDragon
 {
     public partial class PlayerBonkState : PlayerState
     {
-        public override bool AllowFlaming => false;
-
         public override void OnStateEntered()
         {
             _player.Animator.Play("Bonk", 0);
