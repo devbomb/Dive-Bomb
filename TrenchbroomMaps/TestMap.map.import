@@ -1,0 +1,17 @@
+[remap]
+
+importer="map_importer"
+type="PackedScene"
+uid="uid://bdshm0cut77ja"
+path="res://.godot/imported/TestMap.map-1ff8eeff00a16e0b34692db77517cb63.scn"
+
+[deps]
+
+source_file="res://TrenchbroomMaps/TestMap.map"
+dest_files=["res://.godot/imported/TestMap.map-1ff8eeff00a16e0b34692db77517cb63.scn"]
+
+[params]
+
+map_inverse_scale=16
+entity_path="res://Scenes/Entities"
+texture_path="res://Textures"

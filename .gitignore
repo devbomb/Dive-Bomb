@@ -6,7 +6,8 @@
 addons/tbloader/bin/~tbloader.windows.x86_64.dll
 
 # Project-specific ignores
-TrenchbroomMaps/autosave/
+TrenchbroomMaps/autosave/*
+!TrenchbroomMaps/autosave/.gdignore
 Build/
 TrenchbroomEntityModels/*
 !TrenchbroomEntityModels/.gdignore
