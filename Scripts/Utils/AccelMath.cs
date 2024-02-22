@@ -107,5 +107,53 @@ namespace FastDragon
 
             return (speed, friction);
         }
+
+        public static float DistanceTraveledWithFriction(float initialSpeed, float friction)
+        {
+            if (friction <= 0 || Mathf.IsZeroApprox(friction))
+                throw new System.Exception("Friction must be greater than 0");
+
+            float delta = 1f / 60;
+            float speed = initialSpeed;
+            float distance = 0;
+
+            while (speed > 0)
+            {
+                speed = Mathf.MoveToward(speed, 0, friction * delta);
+                distance += speed * delta;
+            }
+
+            return distance;
+        }
+
+        public static float SmoothStepToward(
+            float from,
+            float to,
+            float accel,
+            float delta,
+            ref float speed
+        )
+        {
+            // If we can reach the target value by "coasting", then do that.
+            // Otherwise, accelerate until we can.  It's just like hypermiling
+            // in a car!
+            float distToTarget = Mathf.Abs(to - from);
+            if (AccelMath.DistanceTraveledWithFriction(speed, accel) >= distToTarget)
+            {
+                speed -= accel * delta;
+            }
+            else
+            {
+                speed += accel * delta;
+            }
+
+            float result = Mathf.MoveToward(from, to, speed * delta);
+            if (Mathf.IsEqualApprox(result, to))
+            {
+                speed = 0;
+                return to;
+            }
+            return result;
+        }
     }
 }

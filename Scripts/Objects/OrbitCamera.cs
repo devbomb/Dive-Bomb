@@ -9,6 +9,7 @@ namespace FastDragon
     {
         [Export] public Node3D FollowTarget;
 
+        [Export] public bool AllowAutoRotate { get; set; }
         public bool DisableInput { get; set; }
 
         public float OrbitDistance
@@ -45,12 +46,6 @@ namespace FastDragon
         private float _orbitYawRad;
         private float _orbitPitchRad;
 
-        /// <summary>
-        /// This height gets added to the camera's final position, AFTER the
-        /// orbit angles are applied and AFTER the camera has been aimed at the
-        /// target.
-        /// </summary>
-        public float CameraHeightOffset = 2;
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(OrbitCameraState));
         private readonly PhysicsInterpolator3D _interpolator = new PhysicsInterpolator3D();
@@ -88,8 +83,6 @@ namespace FastDragon
             Vector3 offset = dir * OrbitDistance;
             GlobalPosition = FollowTarget.GlobalPosition + offset;
             LookAt(FollowTarget.GlobalPosition);
-
-            GlobalPosition += Vector3.Up * CameraHeightOffset;
 
             // HACK: ensure it works smoothly with physics interpolation
             if (!Engine.IsInPhysicsFrame())
@@ -135,16 +128,16 @@ namespace FastDragon
                     return;
                 }
 
-                float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
-                _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
-                _camera.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
-                ClampOrbitAngles();
+                if (InputService.RightStick.Length() > 0.01f)
+                {
+                    OrbitWithRightStick(delta);
+                }
+                else if (_camera.AllowAutoRotate)
+                {
+                    MaintainDistanceAndAutoRotate(delta);
+                }
 
-                _camera.OrbitDistance = Mathf.MoveToward(
-                    _camera.OrbitDistance,
-                    FollowDistance,
-                    ZoomSpeed * delta
-                );
+                ZoomToFollowDistance(delta);
             }
 
             private void ClampOrbitAngles()
@@ -154,6 +147,39 @@ namespace FastDragon
                     _camera.OrbitPitchRad,
                     Mathf.DegToRad(MinOrbitPitchDeg),
                     Mathf.DegToRad(MaxOrbitPitchDeg)
+                );
+            }
+
+            private void OrbitWithRightStick(float delta)
+            {
+                float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
+                _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
+                _camera.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
+                ClampOrbitAngles();
+            }
+
+            private void MaintainDistanceAndAutoRotate(float delta)
+            {
+                var pos = _camera.GlobalPosition;
+                var targetPos = _camera.FollowTarget.GlobalPosition;
+                var dir = targetPos.DirectionTo(pos);
+
+                _camera.GlobalPosition = targetPos + (dir * FollowDistance);
+                _camera.LookAt(targetPos);
+
+                _camera._orbitYawRad = _camera.GlobalRotation.Y;
+                _camera._orbitPitchRad = _camera.GlobalRotation.X;
+                ClampOrbitAngles();
+
+                _camera.ResetPhysicsInterpolation();
+            }
+
+            private void ZoomToFollowDistance(float delta)
+            {
+                _camera.OrbitDistance = Mathf.MoveToward(
+                    _camera.OrbitDistance,
+                    FollowDistance,
+                    ZoomSpeed * delta
                 );
             }
         }
