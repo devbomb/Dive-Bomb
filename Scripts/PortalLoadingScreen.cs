@@ -94,7 +94,7 @@ namespace FastDragon
             _loadedScene = null;
 
             // Start loading the level in the background
-            LoadInBackground(_levelSceneFile);
+            ResourceLoader.LoadThreadedRequest(_levelSceneFile);
 
             // Sync up the player's animation...
             _playerAnimator.Play(animationName);
@@ -171,18 +171,6 @@ namespace FastDragon
             {
                 realPlayer.ChangeState<PlayerFlyInState>();
             }
-        }
-
-        private void LoadInBackground(string sceneFilePath)
-        {
-            var thread = new System.Threading.Thread(() =>
-            {
-                var prefab = ResourceLoader.Load<PackedScene>(sceneFilePath);
-                var node = prefab.Instantiate<Node3D>();
-                _loadedScene = node;
-            });
-
-            thread.Start();
         }
 
         private Portal GetTargetPortal(Node sceneRoot)
@@ -458,8 +446,24 @@ namespace FastDragon
         {
             public override void _Process(double delta)
             {
-                if (!_screen._labelSlider.IsPlaying() && _screen._loadedScene != null)
-                    ChangeState<CorrectingAngle>();
+                string sceneFile = _screen._levelSceneFile;
+                var loadStatus = ResourceLoader.LoadThreadedGetStatus(sceneFile);
+
+                switch (loadStatus)
+                {
+                    case ResourceLoader.ThreadLoadStatus.Loaded:
+                    {
+                        var packedScene = (PackedScene)ResourceLoader.LoadThreadedGet(sceneFile);
+                        _screen._loadedScene = packedScene.Instantiate<Node3D>();
+
+                        ChangeState<CorrectingAngle>();
+                        break;
+                    }
+
+                    case ResourceLoader.ThreadLoadStatus.Failed:
+                    case ResourceLoader.ThreadLoadStatus.InvalidResource:
+                        throw new Exception($"Error loading scene: {loadStatus}");
+                }
             }
         }
 
