@@ -68,6 +68,10 @@ namespace FastDragon
             RotateInstantlyTowardVelocity();
             MoveAndSlideRolling(delta);
 
+            // TODO: Don't apply the extra hitbox to objects that have already
+            // been hit by the main hitbox
+            ApplyExtraHitbox();
+
             if (_timer >= Player.Roll.Duration)
             {
                 if (_player.IsOnFloor())
@@ -80,6 +84,28 @@ namespace FastDragon
                 }
 
                 return;
+            }
+        }
+
+        private void ApplyExtraHitbox()
+        {
+            var bodies = _player.RollExtraHitbox.GetOverlappingBodies();
+            var areas = _player.RollExtraHitbox.GetOverlappingAreas();
+
+            foreach (var body in bodies)
+            {
+                if (body is IRollable f)
+                {
+                    f.OnRolledInto();
+                }
+            }
+
+            foreach (var area in areas)
+            {
+                if (area is IRollable f)
+                {
+                    f.OnRolledInto();
+                }
             }
         }
     }

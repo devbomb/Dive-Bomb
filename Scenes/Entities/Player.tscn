@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=21 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
@@ -48,6 +48,9 @@ points = PackedVector3Array(0, 0, 0, 0.75, 0, -1, -0.75, 0, -1, 0, 0.5, -1, 0, -
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uxvrm"]
 radius = 1.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtu1o"]
+height = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
 radius = 0.2
@@ -118,6 +121,13 @@ unique_name_in_owner = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiveExtraHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_uxvrm")
+
+[node name="RollExtraHitbox" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollExtraHitbox"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_rtu1o")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
 unique_name_in_owner = true

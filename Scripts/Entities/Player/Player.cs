@@ -25,6 +25,7 @@ namespace FastDragon
 
         public Area3D KickHitbox => GetNode<Area3D>("%KickHitbox");
         public Area3D DiveExtraHitbox => GetNode<Area3D>("%DiveExtraHitbox");
+        public Area3D RollExtraHitbox => GetNode<Area3D>("%RollExtraHitbox");
 
         public LedgeDetector LedgeDetector => GetNode<LedgeDetector>("%LedgeDetector");
         public Node3D LedgeGrabPoint => GetNode<Node3D>("%LedgeGrabPoint");
