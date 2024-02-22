@@ -13,13 +13,6 @@ namespace FastDragon
         [Export] public float FlyInDistance = 10;
         [Export] public float FlyInDuration = 2;
 
-        /// <summary>
-        ///     Disabling collision shapes infamously can't happen in a
-        ///     collision handler, which is inconvenient.
-        ///     Here's a shitty workaround.
-        /// </summary>
-        public bool PretendColliderDisabled {get; set;}
-
         public bool AllowFlaming => CurrentState.AllowFlaming;
         public bool SpawningGemsHomeIn => CurrentState.SpawningGemsHomeIn;
 
