@@ -13,16 +13,6 @@ namespace FastDragon
         [Export] public float FlyInDistance = 10;
         [Export] public float FlyInDuration = 2;
 
-        /// <summary>
-        ///     Disabling collision shapes infamously can't happen in a
-        ///     collision handler, which is inconvenient.
-        ///     Here's a shitty workaround.
-        /// </summary>
-        public bool PretendColliderDisabled {get; set;}
-
-        public bool AllowFlaming => CurrentState.AllowFlaming;
-        public bool SpawningGemsHomeIn => CurrentState.SpawningGemsHomeIn;
-
         public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
         public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
@@ -34,6 +24,8 @@ namespace FastDragon
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
 
         public Area3D KickHitbox => GetNode<Area3D>("%KickHitbox");
+        public Area3D DiveExtraHitbox => GetNode<Area3D>("%DiveExtraHitbox");
+        public Area3D RollExtraHitbox => GetNode<Area3D>("%RollExtraHitbox");
 
         public LedgeDetector LedgeDetector => GetNode<LedgeDetector>("%LedgeDetector");
         public Node3D LedgeGrabPoint => GetNode<Node3D>("%LedgeGrabPoint");
