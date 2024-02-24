@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Godot;
 
@@ -10,11 +11,19 @@ namespace FastDragon
         public static SaveFile Current = new SaveFile();
 
         public SparxColor PlayerHealth = SparxColor.Gold;
-        public int TotalGemCount = 0;
         public string CurrentMap;
 
         public HashSet<string> CollectedGems = new HashSet<string>();
         public Dictionary<GemColor, int> UntalliedGems = new Dictionary<GemColor, int>();
+
+        public Dictionary<string, MapProgress> Maps = new Dictionary<string, MapProgress>();
+        public class MapProgress
+        {
+            public int GemsCollected = 0;
+        }
+
+        [JsonIgnore] public int TotalGemCount => Maps.Values.Sum(l => l.GemsCollected);
+        [JsonIgnore] public MapProgress CurrentMapProgress => GetMapProgress(CurrentMap);
 
         public static void Reset()
         {
@@ -32,9 +41,18 @@ namespace FastDragon
                 this,
                 new JsonSerializerSettings
                 {
-                    Formatting = Formatting.Indented
+                    Formatting = Formatting.Indented,
+
                 }
             );
+        }
+
+        public MapProgress GetMapProgress(string map)
+        {
+            if (!Maps.ContainsKey(map))
+                Maps.Add(map, new MapProgress());
+
+            return Maps[map];
         }
 
         public bool IsGemCollected(string nodePath)

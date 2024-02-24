@@ -81,7 +81,7 @@ namespace FastDragon
                 saveFile.UntalliedGems[Value] = 0;
             }
             saveFile.UntalliedGems[Value]++;
-            saveFile.TotalGemCount += (int)Value;
+            saveFile.GetMapProgress(saveFile.CurrentMap).GemsCollected += (int)Value;
             saveFile.CollectedGems.Add(GetSaveKey());
 
             ChangeState<Hidden>();
