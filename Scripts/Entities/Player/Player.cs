@@ -94,10 +94,17 @@ namespace FastDragon
 
             Respawn();
 
-            // DEBUG: Print the total amount of gems in this level.
+            // Count all the gems in the level, including the collected ones,
+            // and then cache this value in the save file.
+            //
+            // Why compute this at runtime, and why cache it in the save file?
+            // Well, because I don't want to count them all by hand and hardcode
+            // it somewhere while I'm designing the levels.  And because I don't
+            // feel like writing a build script to automate it.
+            //
             // Defer doing so until the next frame, because we don't know if
-            // all of the gem containers are ready yet.
-            Callable.From(PrintGemCount).CallDeferred();
+            // all of the gem containers have spawned in yet.
+            Callable.From(CountGemsInMap).CallDeferred();
         }
 
         public void Respawn()
@@ -135,7 +142,7 @@ namespace FastDragon
             }
         }
 
-        private void PrintGemCount()
+        private void CountGemsInMap()
         {
             var gemCounts = new Dictionary<GemColor, int>();
             int totalTreasure = 0;
@@ -158,6 +165,7 @@ namespace FastDragon
                 GD.Print($"{kvp.Key}: {kvp.Value}");
             }
 
+            SaveFile.Current.CurrentMapProgress.TotalGemsInLevel = totalTreasure;
         }
 
         public override void _PhysicsProcess(double deltaD)
