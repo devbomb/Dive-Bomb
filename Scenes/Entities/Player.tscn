@@ -189,3 +189,4 @@ Body = NodePath("..")
 [node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
 
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
+mouse_filter = 2
