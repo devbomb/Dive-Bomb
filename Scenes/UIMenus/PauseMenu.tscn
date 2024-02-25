@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0vpyujcojrlr"]
+[gd_scene load_steps=4 format=3 uid="uid://d0vpyujcojrlr"]
 
 [ext_resource type="Script" path="res://Scripts/UIMenus/PauseMenu.cs" id="1_6unmj"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_wwjmo"]
+[ext_resource type="PackedScene" uid="uid://dk14uy27kbnyn" path="res://Scenes/UIMenus/AtlasMenu.tscn" id="3_0fbh4"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -14,7 +15,8 @@ grow_vertical = 2
 theme = ExtResource("1_wwjmo")
 script = ExtResource("1_6unmj")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="MainPage" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,32 +30,51 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Buttons" type="VBoxContainer" parent="PanelContainer"]
+[node name="Buttons" type="VBoxContainer" parent="MainPage"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Continue" type="Button" parent="PanelContainer/Buttons"]
+[node name="Continue" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Continue"
 
-[node name="Save" type="Button" parent="PanelContainer/Buttons"]
+[node name="Atlas" type="Button" parent="MainPage/Buttons"]
+layout_mode = 2
+text = "Atlas"
+
+[node name="Save" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Save"
 
-[node name="Load" type="Button" parent="PanelContainer/Buttons"]
+[node name="Load" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Load"
 
-[node name="ResetLevel" type="Button" parent="PanelContainer/Buttons"]
+[node name="ResetLevel" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Reset Level"
 
-[node name="ExitLevel" type="Button" parent="PanelContainer/Buttons"]
+[node name="ExitLevel" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Exit Level"
 
-[connection signal="pressed" from="PanelContainer/Buttons/Continue" to="." method="Close"]
-[connection signal="pressed" from="PanelContainer/Buttons/Save" to="." method="SaveGame"]
-[connection signal="pressed" from="PanelContainer/Buttons/Load" to="." method="LoadSaveFile"]
-[connection signal="pressed" from="PanelContainer/Buttons/ResetLevel" to="." method="ResetLevel"]
-[connection signal="pressed" from="PanelContainer/Buttons/ExitLevel" to="." method="ExitLevel"]
+[node name="AtlasMenu" parent="." instance=ExtResource("3_0fbh4")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = -200.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="MainPage/Buttons/Continue" to="." method="Close"]
+[connection signal="pressed" from="MainPage/Buttons/Atlas" to="." method="OpenAtlas"]
+[connection signal="pressed" from="MainPage/Buttons/Save" to="." method="SaveGame"]
+[connection signal="pressed" from="MainPage/Buttons/Load" to="." method="LoadSaveFile"]
+[connection signal="pressed" from="MainPage/Buttons/ResetLevel" to="." method="ResetLevel"]
+[connection signal="pressed" from="MainPage/Buttons/ExitLevel" to="." method="ExitLevel"]
