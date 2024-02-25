@@ -8,6 +8,9 @@ namespace FastDragon
         private bool _open = false;
         private Control _buttons => GetNode<Control>("%Buttons");
 
+        private Control _mainPage => GetNode<Control>("%MainPage");
+        private AtlasMenu _atlasPage => GetNode<AtlasMenu>("%AtlasMenu");
+
         public override void _Input(InputEvent ev)
         {
             if (InputService.PauseJustPressed(ev))
@@ -31,6 +34,8 @@ namespace FastDragon
             if (GetTree().Paused)
                 return;
 
+            ChangePage(_mainPage);
+
             _open = true;
             Visible = true;
             GetTree().Paused = true;
@@ -43,6 +48,12 @@ namespace FastDragon
             _open = false;
             Visible = false;
             GetTree().Paused = false;
+        }
+
+        public void OpenAtlas()
+        {
+            ChangePage(_atlasPage);
+            _atlasPage.Refresh();
         }
 
         public void ResetLevel()
@@ -80,6 +91,19 @@ namespace FastDragon
         {
             Close();
             MapTransitionManager.Instance.ExitLevelFromPauseMenu();
+        }
+
+        private void ChangePage(Control targetPage)
+        {
+            foreach (var page in this.EnumerateChildren().Cast<Control>())
+            {
+                bool isTarget = page == targetPage;
+
+                page.Visible = isTarget;
+                page.ProcessMode = isTarget
+                    ? ProcessModeEnum.Inherit
+                    : ProcessModeEnum.Disabled;
+            }
         }
     }
 }
