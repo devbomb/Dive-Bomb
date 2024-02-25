@@ -1,0 +1,45 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dfo7m2hjbbpml"]
+
+[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="1_eajia"]
+
+[sub_resource type="FontVariation" id="FontVariation_6jygd"]
+base_font = ExtResource("1_eajia")
+variation_embolden = -1.12
+spacing_glyph = -1
+spacing_space = 3
+spacing_top = 5
+spacing_bottom = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_byeby"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r2iqq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v61kq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3vls"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yview"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6jnp"]
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[resource]
+Button/colors/font_focus_color = Color(0.94902, 0.815686, 0, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.815686, 0, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 0.4, 1)
+Button/colors/font_pressed_color = Color(1, 1, 0.4, 1)
+Button/fonts/font = SubResource("FontVariation_6jygd")
+Button/styles/disabled = SubResource("StyleBoxEmpty_byeby")
+Button/styles/focus = SubResource("StyleBoxEmpty_r2iqq")
+Button/styles/hover = SubResource("StyleBoxEmpty_v61kq")
+Button/styles/normal = SubResource("StyleBoxEmpty_i3vls")
+Button/styles/pressed = SubResource("StyleBoxEmpty_yview")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_g6jnp")
