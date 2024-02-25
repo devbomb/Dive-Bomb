@@ -7,6 +7,13 @@ namespace FastDragon
     {
         private Tree _table => GetNode<Tree>("%Table");
 
+        private enum Column
+        {
+            LevelName,
+            Gems,
+            PercentComplete
+        }
+
         public override void _Ready()
         {
             CreateColumns();
@@ -15,9 +22,10 @@ namespace FastDragon
 
         private void CreateColumns()
         {
-            _table.Columns = 2;
-            _table.SetColumnTitle(0, "Level Name");
-            _table.SetColumnTitle(1, "Gems");
+            _table.Columns = System.Enum.GetValues<Column>().Length;
+            _table.SetColumnTitle((int)Column.LevelName, "Level Name");
+            _table.SetColumnTitle((int)Column.Gems, "Gems");
+            _table.SetColumnTitle((int)Column.PercentComplete, "% Complete");
         }
 
         public void Refresh()
@@ -36,11 +44,15 @@ namespace FastDragon
             var progress = SaveFile.Current.Maps[mapName];
             var row = _table.CreateItem();
 
-            row.SetText(0, mapName);
-            row.SetTextAlignment(0, HorizontalAlignment.Left);
+            row.SetText((int)Column.LevelName, mapName);
+            row.SetTextAlignment((int)Column.LevelName, HorizontalAlignment.Left);
 
-            row.SetText(1, $"{progress.GemsCollected} / {progress.TotalGemsInLevel}");
-            row.SetTextAlignment(1, HorizontalAlignment.Center);
+            row.SetText((int)Column.Gems, $"{progress.GemsCollected} / {progress.TotalGemsInLevel}");
+            row.SetTextAlignment((int)Column.Gems, HorizontalAlignment.Center);
+
+            string percentComplete = (progress.PercentComplete() * 100).ToString("0");
+            row.SetText((int)Column.PercentComplete, $"{percentComplete}%");
+            row.SetTextAlignment((int)Column.PercentComplete, HorizontalAlignment.Center);
         }
     }
 }

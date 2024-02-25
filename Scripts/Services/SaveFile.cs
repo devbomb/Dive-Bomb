@@ -43,9 +43,14 @@ namespace FastDragon
             // is first loaded, and then cache that data in the save file.
             // We can get away with this because:
             // * The atlas only shows levels you've visited, to avoid spoilers
-            // * We don't display your total completion percentage anywhere
+            // * We don't display your full-game completion percentage anywhere
             // * This comment exists, reducing the "WTF?!" factor somewhat
             public int TotalGemsInLevel = 0;
+
+            public double PercentComplete()
+            {
+                return ((double)GemsCollected) / TotalGemsInLevel;
+            }
         }
 
         [JsonIgnore] public int TotalGemCount => Maps.Values.Sum(l => l.GemsCollected);
