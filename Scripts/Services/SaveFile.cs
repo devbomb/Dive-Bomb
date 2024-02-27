@@ -14,12 +14,14 @@ namespace FastDragon
         public string CurrentMap;
 
         public HashSet<string> CollectedGems = new HashSet<string>();
+
         public Dictionary<GemColor, int> UntalliedGems = new Dictionary<GemColor, int>();
 
         public Dictionary<string, MapProgress> Maps = new Dictionary<string, MapProgress>();
         public class MapProgress
         {
             public int GemsCollected = 0;
+            public HashSet<string> CollectedFairies = new HashSet<string>();
 
             // Why is this stored in the save file?  Why would it ever change?
             // Well, simply put, it's because we don't know a level's gem count
@@ -46,14 +48,18 @@ namespace FastDragon
             // * We don't display your full-game completion percentage anywhere
             // * This comment exists, reducing the "WTF?!" factor somewhat
             public int TotalGemsInLevel = 0;
+            public int TotalFairiesInLevel = 0;
 
             public double PercentComplete()
             {
-                return ((double)GemsCollected) / TotalGemsInLevel;
+                double gemPercent = ((double)GemsCollected) / TotalGemsInLevel;
+                double fairyPercent = ((double)CollectedFairies.Count) / TotalFairiesInLevel;
+                return (gemPercent + fairyPercent) / 2;
             }
         }
 
         [JsonIgnore] public int TotalGemCount => Maps.Values.Sum(l => l.GemsCollected);
+        [JsonIgnore] public int TotalFairyCount => Maps.Values.Sum(l => l.CollectedFairies.Count);
         [JsonIgnore] public MapProgress CurrentMapProgress => GetMapProgress(CurrentMap);
 
         public static void Reset()

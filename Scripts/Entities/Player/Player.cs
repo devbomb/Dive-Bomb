@@ -94,8 +94,8 @@ namespace FastDragon
 
             Respawn();
 
-            // Count all the gems in the level, including the collected ones,
-            // and then cache this value in the save file.
+            // Count all the gems/fairies in the level, including the collected
+            // ones, and then cache it in the save file.
             //
             // Why compute this at runtime, and why cache it in the save file?
             // Well, because I don't want to count them all by hand and hardcode
@@ -104,7 +104,7 @@ namespace FastDragon
             //
             // Defer doing so until the next frame, because we don't know if
             // all of the gem containers have spawned in yet.
-            Callable.From(CountGemsInMap).CallDeferred();
+            Callable.From(CountCollectablesInMap).CallDeferred();
         }
 
         public void Respawn()
@@ -142,7 +142,7 @@ namespace FastDragon
             }
         }
 
-        private void CountGemsInMap()
+        private void CountCollectablesInMap()
         {
             var gemCounts = new Dictionary<GemColor, int>();
             int totalTreasure = 0;
@@ -166,6 +166,10 @@ namespace FastDragon
             }
 
             SaveFile.Current.CurrentMapProgress.TotalGemsInLevel = totalTreasure;
+            SaveFile.Current.CurrentMapProgress.TotalFairiesInLevel = GetTree()
+                .CurrentScene
+                .EnumerateDescendantsOfType<Fairy>()
+                .Count();
         }
 
         public override void _PhysicsProcess(double deltaD)

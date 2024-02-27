@@ -19,7 +19,30 @@ namespace FastDragon
 
         public void Reset()
         {
-            _stateMachine.ChangeState<Idle>();
+            if (SaveFile.Current.CurrentMapProgress.CollectedFairies.Contains(GetSaveKey()))
+                _stateMachine.ChangeState<Rescued>();
+            else
+                _stateMachine.ChangeState<Idle>();
+        }
+
+        public string GetSaveKey()
+        {
+            var builder = new System.Text.StringBuilder();
+            Visit(this);
+            return builder.ToString();
+
+            void Visit(Node n)
+            {
+                if (n.GetParent() == GetTree().Root)
+                {
+                    builder.Append(n.Name);
+                    return;
+                }
+
+                Visit(n.GetParent());
+                builder.Append("/");
+                builder.Append(n.GetIndex());
+            }
         }
 
         private partial class Idle : FairyState
@@ -51,6 +74,8 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                SaveFile.Current.CurrentMapProgress.CollectedFairies.Add(_fairy.GetSaveKey());
+
                 _fairy.Player.ChangeState<PlayerManhandledState>();
                 _fairy.Player.GlobalRotation = _fairy.Player
                     .GlobalPosition
