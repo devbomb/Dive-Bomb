@@ -11,6 +11,7 @@ namespace FastDragon
         {
             LevelName,
             Gems,
+            Fairies,
             PercentComplete
         }
 
@@ -25,6 +26,7 @@ namespace FastDragon
             _table.Columns = System.Enum.GetValues<Column>().Length;
             _table.SetColumnTitle((int)Column.LevelName, "Level Name");
             _table.SetColumnTitle((int)Column.Gems, "Gems");
+            _table.SetColumnTitle((int)Column.Fairies, "Fairies");
             _table.SetColumnTitle((int)Column.PercentComplete, "% Complete");
         }
 
@@ -49,6 +51,9 @@ namespace FastDragon
 
             row.SetText((int)Column.Gems, $"{progress.GemsCollected} / {progress.TotalGemsInLevel}");
             row.SetTextAlignment((int)Column.Gems, HorizontalAlignment.Center);
+
+            row.SetText((int)Column.Fairies, $"{progress.CollectedFairies.Count} / {progress.TotalFairiesInLevel}");
+            row.SetTextAlignment((int)Column.Fairies, HorizontalAlignment.Center);
 
             string percentComplete = (progress.PercentComplete() * 100).ToString("0");
             row.SetText((int)Column.PercentComplete, $"{percentComplete}%");
