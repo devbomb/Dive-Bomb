@@ -30,6 +30,15 @@
 		FlyInDuration(float) : "Fly-in duration"
 	]
 
+@PointClass
+	base(Angle)
+	size(-8 -8 0, 8 8 24)
+	model({
+		"path" : "TrenchbroomEntityModels/Fairy.obj",
+		"scale" : 0.0625
+	})
+	= Fairy : "Fairy" []
+
 @SolidClass = DeathBarrier : "DeathBarrier" []
 @SolidClass = DrowningWater : "DrowningWater" []
 
