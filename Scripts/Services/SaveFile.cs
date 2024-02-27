@@ -52,9 +52,24 @@ namespace FastDragon
 
             public double PercentComplete()
             {
-                double gemPercent = ((double)GemsCollected) / TotalGemsInLevel;
-                double fairyPercent = ((double)CollectedFairies.Count) / TotalFairiesInLevel;
-                return (gemPercent + fairyPercent) / 2;
+                int categories = 0;
+                double totalPercent = 0;
+
+                if (TotalGemsInLevel != 0)
+                {
+                    categories++;
+                    totalPercent += ((double)GemsCollected) / TotalGemsInLevel;
+                }
+
+                if (TotalFairiesInLevel != 0)
+                {
+                    categories++;
+                    totalPercent += ((double)CollectedFairies.Count) / TotalFairiesInLevel;
+                }
+
+                return categories == 0
+                    ? 1
+                    : (totalPercent / categories);
             }
         }
 
