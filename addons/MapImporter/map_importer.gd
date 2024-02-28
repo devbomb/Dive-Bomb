@@ -51,6 +51,9 @@ func _get_import_options(path, preset_index):
         _:
             return []
 
+func _get_import_order():
+    return 100
+
 func _get_option_visibility(path, option_name, options):
     return true
 
