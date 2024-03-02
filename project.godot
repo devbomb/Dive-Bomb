@@ -26,6 +26,10 @@ SaveFile="*res://Scripts/Singletons/SaveFileGDScriptAdaptor.cs"
 
 project/assembly_name="Fast Dragon"
 
+[editor]
+
+import/use_multiple_threads=false
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/GenerateTrenchbroomEntityModels/plugin.cfg", "res://addons/MapImporter/plugin.cfg", "res://addons/tbloader/plugin.cfg")
