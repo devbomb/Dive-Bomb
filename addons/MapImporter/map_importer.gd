@@ -51,6 +51,10 @@ func _get_import_options(path, preset_index):
         _:
             return []
 
+func _get_import_order():
+    return 101 # Make it process _after_ .tscn files, to ensure the entities
+               # have been imported before we try to instantiate them.
+
 func _get_option_visibility(path, option_name, options):
     return true
 
