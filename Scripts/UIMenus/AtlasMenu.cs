@@ -44,18 +44,21 @@ namespace FastDragon
         private void AddRow(string mapName)
         {
             var progress = SaveFile.Current.Maps[mapName];
+            var cacheEntry = AtlasCache.Instance.GetEntry(mapName);
+
             var row = _table.CreateItem();
 
             row.SetText((int)Column.LevelName, mapName);
             row.SetTextAlignment((int)Column.LevelName, HorizontalAlignment.Left);
 
-            row.SetText((int)Column.Gems, $"{progress.GemsCollected} / {progress.TotalGemsInLevel}");
+            row.SetText((int)Column.Gems, $"{progress.GemsCollected} / {cacheEntry.TotalGemsInLevel}");
             row.SetTextAlignment((int)Column.Gems, HorizontalAlignment.Center);
 
-            row.SetText((int)Column.Fairies, $"{progress.CollectedFairies.Count} / {progress.TotalFairiesInLevel}");
+            row.SetText((int)Column.Fairies, $"{progress.CollectedFairies.Count} / {cacheEntry.TotalFairiesInLevel}");
             row.SetTextAlignment((int)Column.Fairies, HorizontalAlignment.Center);
 
-            string percentComplete = (progress.PercentComplete() * 100).ToString("0");
+            string percentComplete = (SaveFile.Current.GetPercentComplete(mapName) * 100)
+                .ToString("0");
             row.SetText((int)Column.PercentComplete, $"{percentComplete}%");
             row.SetTextAlignment((int)Column.PercentComplete, HorizontalAlignment.Center);
         }

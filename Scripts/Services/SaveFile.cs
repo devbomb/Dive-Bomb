@@ -22,55 +22,6 @@ namespace FastDragon
         {
             public int GemsCollected = 0;
             public HashSet<string> CollectedFairies = new HashSet<string>();
-
-            // Why is this stored in the save file?  Why would it ever change?
-            // Well, simply put, it's because we don't know a level's gem count
-            // until we actually load the level and count how many gems there
-            // are.
-            // We can't do that every time the player looks at their atlas,
-            // though, because then they'd need to wait for every level in the
-            // game to load, including all of its mesh geometry.  All so they
-            // can see a stupid number.
-            //
-            // I _could_ count each level's gems by hand while I'm designing it,
-            // and then hardcode that number somewhere, but...that's awful.  No.
-            // I won't do it.
-            //
-            // I _could_ write a build script(or perhaps a custom Godot importer)
-            // that automatically counts each level's gems and saves it into a
-            // resource file, but...I don't feel like dealing with that.  Maybe
-            // some day, but not today.
-            //
-            // So, as a compromise, we count all the gems in each level when it
-            // is first loaded, and then cache that data in the save file.
-            // We can get away with this because:
-            // * The atlas only shows levels you've visited, to avoid spoilers
-            // * We don't display your full-game completion percentage anywhere
-            // * This comment exists, reducing the "WTF?!" factor somewhat
-            public int TotalGemsInLevel = 0;
-            public int TotalFairiesInLevel = 0;
-
-            public double PercentComplete()
-            {
-                int categories = 0;
-                double totalPercent = 0;
-
-                if (TotalGemsInLevel != 0)
-                {
-                    categories++;
-                    totalPercent += ((double)GemsCollected) / TotalGemsInLevel;
-                }
-
-                if (TotalFairiesInLevel != 0)
-                {
-                    categories++;
-                    totalPercent += ((double)CollectedFairies.Count) / TotalFairiesInLevel;
-                }
-
-                return categories == 0
-                    ? 1
-                    : (totalPercent / categories);
-            }
         }
 
         [JsonIgnore] public int TotalGemCount => Maps.Values.Sum(l => l.GemsCollected);
@@ -105,6 +56,30 @@ namespace FastDragon
                 Maps.Add(map, new MapProgress());
 
             return Maps[map];
+        }
+
+        public double GetPercentComplete(string mapFilePath)
+        {
+            var cacheEntry = AtlasCache.Instance.GetEntry(mapFilePath);
+            var progress = GetMapProgress(mapFilePath);
+            int categories = 0;
+            double totalPercent = 0;
+
+            if (cacheEntry.TotalFairiesInLevel != 0)
+            {
+                categories++;
+                totalPercent += ((double)progress.GemsCollected) / cacheEntry.TotalGemsInLevel;
+            }
+
+            if (cacheEntry.TotalGemsInLevel != 0)
+            {
+                categories++;
+                totalPercent += ((double)progress.CollectedFairies.Count) / cacheEntry.TotalFairiesInLevel;
+            }
+
+            return categories == 0
+                ? 1
+                : (totalPercent / categories);
         }
 
         public bool IsGemCollected(string nodePath)

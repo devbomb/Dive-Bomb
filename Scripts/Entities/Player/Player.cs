@@ -95,16 +95,11 @@ namespace FastDragon
             Respawn();
 
             // Count all the gems/fairies in the level, including the collected
-            // ones, and then cache it in the save file.
-            //
-            // Why compute this at runtime, and why cache it in the save file?
-            // Well, because I don't want to count them all by hand and hardcode
-            // it somewhere while I'm designing the levels.  And because I don't
-            // feel like writing a build script to automate it.
+            // ones, and then cache it.
             //
             // Defer doing so until the next frame, because we don't know if
             // all of the gem containers have spawned in yet.
-            Callable.From(CountCollectablesInMap).CallDeferred();
+            Callable.From(UpdateAtlasCache).CallDeferred();
         }
 
         public void Respawn()
@@ -142,34 +137,9 @@ namespace FastDragon
             }
         }
 
-        private void CountCollectablesInMap()
+        private void UpdateAtlasCache()
         {
-            var gemCounts = new Dictionary<GemColor, int>();
-            int totalTreasure = 0;
-            int individualGems = 0;
-
-            var allGems = GetTree().CurrentScene.EnumerateDescendantsOfType<Gem>();
-            foreach (var gem in allGems)
-            {
-                if (!gemCounts.ContainsKey(gem.Value))
-                    gemCounts[gem.Value] = 0;
-
-                totalTreasure += (int)gem.Value;
-                gemCounts[gem.Value]++;
-                individualGems++;
-            }
-            GD.Print($"There is a total of {totalTreasure} treasure in this level");
-            GD.Print($"There are {individualGems} individual gems in this level");
-            foreach (var kvp in gemCounts)
-            {
-                GD.Print($"{kvp.Key}: {kvp.Value}");
-            }
-
-            SaveFile.Current.CurrentMapProgress.TotalGemsInLevel = totalTreasure;
-            SaveFile.Current.CurrentMapProgress.TotalFairiesInLevel = GetTree()
-                .CurrentScene
-                .EnumerateDescendantsOfType<Fairy>()
-                .Count();
+            AtlasCache.Instance.UpdateCache(SaveFile.Current.CurrentMap, GetTree().CurrentScene);
         }
 
         public override void _PhysicsProcess(double deltaD)
