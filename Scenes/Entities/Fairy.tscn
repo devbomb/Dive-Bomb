@@ -1,15 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsp6s6r2iso4t"]
+[gd_scene load_steps=6 format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Fairy.cs" id="1_qaaot"]
-[ext_resource type="PackedScene" uid="uid://cqgifk3068g17" path="res://Scenes/Models/FairyModel.tscn" id="2_tnosi"]
+[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://BlenderModels/Fairy.blend" id="2_01sg4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ohivc"]
 height = 1.5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hs1pw"]
+transparency = 1
+cull_mode = 1
+albedo_color = Color(0.745098, 0.917647, 1, 0.192157)
+rim = 0.0
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+disable_receive_shadows = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r6mq4"]
+material = SubResource("StandardMaterial3D_hs1pw")
+height = 1.5
+radial_segments = 8
+
 [node name="Fairy" type="Node3D"]
 script = ExtResource("1_qaaot")
 
-[node name="FairyModel" parent="." instance=ExtResource("2_tnosi")]
+[node name="Fairy" parent="." instance=ExtResource("2_01sg4")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="PlayerDetector" type="Area3D" parent="."]
 unique_name_in_owner = true
@@ -17,3 +32,7 @@ unique_name_in_owner = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CylinderShape3D_ohivc")
+
+[node name="Glass" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("CylinderMesh_r6mq4")
