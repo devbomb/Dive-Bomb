@@ -1,68 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6d7vas8km3kd"]
+[gd_scene load_steps=7 format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Fairy.cs" id="1_qaaot"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://BlenderModels/Fairy.blend" id="2_01sg4"]
-
-[sub_resource type="Animation" id="Animation_arvhh"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Fairy/Root/Skeleton3D/HandsFist:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Fairy/Root/Skeleton3D/HandsPalm:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "rotation_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Fairy/Root/Skeleton3D:Ponytail")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.957079, -9.50316e-09, 2.44833e-07, -0.289827)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Fairy/Root/Skeleton3D:Ponytail.001")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, -0.135776, 5.94526e-09, -3.36827e-08, 0.99074)
-tracks/4/type = "rotation_3d"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Fairy/Root/Skeleton3D:Ponytail.002")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, -0.326558, 1.42991e-08, -8.10109e-08, 0.945177)
-tracks/5/type = "rotation_3d"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Fairy/Root/Skeleton3D:Ponytail.003")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0.449732, -1.96926e-08, 1.11567e-07, 0.893164)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8e8i4"]
-_data = {
-"RESET": SubResource("Animation_arvhh")
-}
+[ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://AnimationLibraries/FairyAnimations.tres" id="2_l0xag"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ohivc"]
 height = 1.5
@@ -88,7 +28,7 @@ script = ExtResource("1_qaaot")
 unique_name_in_owner = true
 deterministic = true
 libraries = {
-"": SubResource("AnimationLibrary_8e8i4")
+"": ExtResource("2_l0xag")
 }
 
 [node name="Fairy" parent="." instance=ExtResource("2_01sg4")]
