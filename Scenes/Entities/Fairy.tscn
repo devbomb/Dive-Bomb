@@ -30,9 +30,10 @@ deterministic = true
 libraries = {
 "": ExtResource("2_l0xag")
 }
+autoplay = "PoundingOnGlass"
 
 [node name="Fairy" parent="." instance=ExtResource("2_01sg4")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+transform = Transform3D(0.25, 0.000309387, -0.000209608, -0.000309416, 0.25, -3.38267e-05, 0.000209566, 3.40875e-05, 0.25, 0, 0, 0)
 
 [node name="PlayerDetector" type="Area3D" parent="."]
 unique_name_in_owner = true
