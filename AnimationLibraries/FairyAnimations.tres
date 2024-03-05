@@ -2,6 +2,7 @@
 
 [sub_resource type="Animation" id="Animation_p6p2x"]
 resource_name = "PoundingOnGlass"
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -13,43 +14,50 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0.201537)]
+"values": [Vector3(0, 0, 0.244706)]
 }
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Fairy/Root/Skeleton3D:RightForeArm")
+tracks/1/path = NodePath("Fairy/Root/Skeleton3D:RightArm")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.747195, -8.00112e-06, 0.0185036, 0.664348)
+tracks/1/keys = PackedFloat32Array(0, 1, 0.613814, 0.331359, 0.265362, 0.665594, 0.2, 1, 0.324938, 0.0507631, 0.631957, 0.701761, 0.4, 1, 0.613814, 0.331359, 0.265362, 0.665594)
 tracks/2/type = "rotation_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Fairy/Root/Skeleton3D:RightArm")
+tracks/2/path = NodePath("Fairy/Root/Skeleton3D:RightForeArm")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.132237, -0.114529, 0.623562, 0.76195)
+tracks/2/keys = PackedFloat32Array(0, 1, 0.89368, 0.00478132, 0.0178752, 0.448323, 0.2, 1, 0.18836, -0.0112707, 0.014675, 0.981926, 0.4, 1, 0.89368, 0.00478132, 0.0178752, 0.448323)
 tracks/3/type = "rotation_3d"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Fairy/Root/Skeleton3D:RightShoulder")
+tracks/3/path = NodePath("Fairy/Root/Skeleton3D:RightHand")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, -0.567104, 0.382014, 0.621229, 0.382797)
+tracks/3/keys = PackedFloat32Array(0, 1, -0.0284431, -0.723324, 0.0365672, 0.688953, 0.2, 1, 0.159736, -0.706039, -0.142993, 0.674942, 0.4, 1, -0.0284431, -0.723324, 0.0365672, 0.688953)
 tracks/4/type = "rotation_3d"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Fairy/Root/Skeleton3D:LeftForeArm")
+tracks/4/path = NodePath("Fairy/Root/Skeleton3D:LeftArm")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.747195, 8.82471e-06, -0.0185036, 0.664348)
+tracks/4/keys = PackedFloat32Array(0, 1, 0.324939, -0.0507644, -0.631956, 0.701761, 0.2, 1, 0.51386, -0.388403, -0.377616, 0.665205, 0.4, 1, 0.324939, -0.0507644, -0.631956, 0.701761)
 tracks/5/type = "rotation_3d"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Fairy/Root/Skeleton3D:LeftArm")
+tracks/5/path = NodePath("Fairy/Root/Skeleton3D:LeftForeArm")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0.132237, 0.114528, -0.623562, 0.76195)
+tracks/5/keys = PackedFloat32Array(0, 1, 0.18836, 0.0112713, -0.0146745, 0.981926, 0.2, 1, 0.89368, -0.00478052, -0.0178753, 0.448322, 0.4, 1, 0.18836, 0.0112713, -0.0146745, 0.981926)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Fairy/Root/Skeleton3D:LeftHand")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.0284428, 0.723324, -0.0365674, 0.688953, 0.2, 1, 0.159736, 0.706039, 0.142993, 0.674942, 0.4, 1, -0.0284428, 0.723324, -0.0365674, 0.688953)
 
 [sub_resource type="Animation" id="Animation_arvhh"]
 resource_name = "RESET"
@@ -135,24 +143,31 @@ tracks/8/keys = PackedFloat32Array(0, 1, 0.145304, -0.703187, -0.101662, 0.68853
 tracks/9/type = "rotation_3d"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Fairy/Root/Skeleton3D:RightShoulder")
+tracks/9/path = NodePath("Fairy/Root/Skeleton3D:LeftForeArm")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, -0.567104, 0.382014, 0.621229, 0.382797)
+tracks/9/keys = PackedFloat32Array(0, 1, 0.0585816, 0.0130903, -0.0130778, 0.998111)
 tracks/10/type = "rotation_3d"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Fairy/Root/Skeleton3D:LeftForeArm")
+tracks/10/path = NodePath("Fairy/Root/Skeleton3D:LeftArm")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 0.0585816, 0.0130903, -0.0130778, 0.998111)
+tracks/10/keys = PackedFloat32Array(0, 1, 0.145303, 0.703187, 0.101662, 0.688535)
 tracks/11/type = "rotation_3d"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Fairy/Root/Skeleton3D:LeftArm")
+tracks/11/path = NodePath("Fairy/Root/Skeleton3D:RightHand")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
-tracks/11/keys = PackedFloat32Array(0, 1, 0.145303, 0.703187, 0.101662, 0.688535)
+tracks/11/keys = PackedFloat32Array(0, 1, -0.0284431, -0.723324, 0.0365672, 0.688953)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Fairy/Root/Skeleton3D:LeftHand")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, -0.0284428, 0.723324, -0.0365674, 0.688953)
 
 [resource]
 _data = {
