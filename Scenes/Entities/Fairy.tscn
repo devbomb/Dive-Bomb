@@ -24,17 +24,6 @@ radial_segments = 8
 [node name="Fairy" type="Node3D"]
 script = ExtResource("1_qaaot")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-deterministic = true
-libraries = {
-"": ExtResource("2_l0xag")
-}
-autoplay = "PoundingOnGlass"
-
-[node name="Fairy" parent="." instance=ExtResource("2_01sg4")]
-transform = Transform3D(0.25, 0.000309387, -0.000209608, -0.000309416, 0.25, -3.38267e-05, 0.000209566, 3.40875e-05, 0.25, 0, 0, 0)
-
 [node name="PlayerDetector" type="Area3D" parent="."]
 unique_name_in_owner = true
 
@@ -45,3 +34,17 @@ shape = SubResource("CylinderShape3D_ohivc")
 [node name="Glass" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 mesh = SubResource("CylinderMesh_r6mq4")
+
+[node name="Model" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Model"]
+unique_name_in_owner = true
+deterministic = true
+libraries = {
+"": ExtResource("2_l0xag")
+}
+autoplay = "PoundingOnGlass"
+
+[node name="Fairy" parent="Model" instance=ExtResource("2_01sg4")]
+transform = Transform3D(0.25, 0.000309387, -0.000209608, -0.000309416, 0.25, -3.38267e-05, 0.000209566, 3.40875e-05, 0.25, 0, 0, 0)

@@ -6,6 +6,8 @@ namespace FastDragon
     public partial class Fairy : Node3D
     {
         private readonly StateMachine _stateMachine = new StateMachine(typeof(FairyState));
+
+        private Node3D Model => GetNode<Node3D>("%Model");
         private Area3D PlayerDetector => GetNode<Area3D>("%PlayerDetector");
 
         private Player Player;
@@ -49,6 +51,7 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
+                _fairy.Player = GetTree().FindNode<Player>();
                 _fairy.Visible = true;
                 _fairy.PlayerDetector.BodyEntered += OnBodyEntered;
             }
@@ -58,11 +61,19 @@ namespace FastDragon
                 _fairy.PlayerDetector.BodyEntered -= OnBodyEntered;
             }
 
+            public override void _Process(double deltaD)
+            {
+                _fairy.Model.GlobalRotation = _fairy.GlobalPosition
+                    .DirectionTo(_fairy.Player.GlobalPosition)
+                    .Flattened()
+                    .Normalized()
+                    .ForwardToEulerAnglesRad();
+            }
+
             private void OnBodyEntered(Node3D body)
             {
-                if (body is Player player)
+                if (body is Player)
                 {
-                    _fairy.Player = player;
                     ChangeState<Rescuing>();
                 }
             }
