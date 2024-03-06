@@ -14,7 +14,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.8, 1.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.181634, 0.244706), Vector3(0, 0.340945, 0.244706), Vector3(0, 0.181634, 0.244706)]
+"values": [Vector3(0, 0.182, -0.245), Vector3(0, 0.341, -0.245), Vector3(0, 0.182, -0.245)]
 }
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
