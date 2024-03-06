@@ -7,6 +7,7 @@ namespace FastDragon
     {
         private readonly StateMachine _stateMachine = new StateMachine(typeof(FairyState));
 
+        private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private Node3D Model => GetNode<Node3D>("%Model");
         private Area3D PlayerDetector => GetNode<Area3D>("%PlayerDetector");
 
@@ -54,6 +55,8 @@ namespace FastDragon
                 _fairy.Player = GetTree().FindNode<Player>();
                 _fairy.Visible = true;
                 _fairy.PlayerDetector.BodyEntered += OnBodyEntered;
+                _fairy.Animator.Play("PoundingOnGlass");
+
             }
 
             public override void OnStateExited()
