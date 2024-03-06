@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6d7vas8km3kd"]
+[gd_scene load_steps=12 format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Fairy.cs" id="1_qaaot"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://BlenderModels/Fairy.blend" id="2_01sg4"]
@@ -20,6 +20,37 @@ disable_receive_shadows = true
 material = SubResource("StandardMaterial3D_hs1pw")
 height = 1.5
 radial_segments = 8
+
+[sub_resource type="GDScript" id="GDScript_vpp6y"]
+script/source = "extends Node3D
+
+@export var skeleton: Skeleton3D
+@export var bones: Array[StringName]
+
+func _ready():
+    var children = get_children()
+    for child in children:
+        remove_child(child)
+        skeleton.add_child(child)
+
+    skeleton.physical_bones_start_simulation(bones)
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_levsu"]
+radius = 0.0110835
+height = 0.110835
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bkx8b"]
+radius = 0.000737604
+height = 0.00737604
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sl1f0"]
+radius = 0.00722325
+height = 0.0722325
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3cw2c"]
+radius = 0.00605194
+height = 0.0605194
 
 [node name="Fairy" type="Node3D"]
 script = ExtResource("1_qaaot")
@@ -47,3 +78,81 @@ libraries = {
 autoplay = "RESET"
 
 [node name="Fairy" parent="Model" instance=ExtResource("2_01sg4")]
+
+[node name="HairPhysicsProxy" type="Node3D" parent="Model/Fairy" node_paths=PackedStringArray("skeleton")]
+transform = Transform3D(0.999999, -0.00123766, 0.000838264, 0.00123755, 0.999999, 0.00013635, -0.000838432, -0.000135312, 1, 0.00172251, -0.727865, 0.980098)
+script = SubResource("GDScript_vpp6y")
+skeleton = NodePath("../Root/Skeleton3D")
+bones = Array[StringName]([&"Ponytail", &"Ponytail.001", &"Ponytail.002"])
+
+[node name="Physical Bone Head" type="PhysicalBone3D" parent="Model/Fairy/HairPhysicsProxy"]
+transform = Transform3D(-0.979994, 0.11063, -0.165448, 0.197809, 0.449528, -0.871088, -0.0219952, -0.886389, -0.462418, 0.0129257, 0.690736, 0.0151005)
+collision_layer = 2
+collision_mask = 2
+joint_type = 1
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04879e-08, -5.96046e-08, 0.0554176)
+body_offset = Transform3D(1, -2.12342e-07, 2.81259e-07, 5.2969e-09, 0.501314, -0.865264, 2.44007e-07, 0.865265, 0.501314, 1.49012e-08, 0.0479509, -0.0277816)
+gravity_scale = 0.1
+linear_damp = 10.0
+bone_name = "Head"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Fairy/HairPhysicsProxy/Physical Bone Head"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_levsu")
+
+[node name="Physical Bone Ponytail" type="PhysicalBone3D" parent="Model/Fairy/HairPhysicsProxy"]
+transform = Transform3D(-0.979994, 0.196372, 0.0324013, 0.197809, 0.978981, 0.0495245, -0.0219957, 0.0549418, -0.998247, 0.0219749, 0.738828, 0.0444082)
+collision_layer = 2
+collision_mask = 2
+joint_type = 1
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.452e-08, -3.00622e-07, 0.0036881)
+body_offset = Transform3D(1, -1.52399e-06, 3.72529e-09, -5.32717e-07, 2.12342e-07, -1, 2.31434e-07, 0.999992, 7.0408e-07, 7.45058e-08, 0.0036881, 2.98023e-07)
+gravity_scale = 0.1
+linear_damp = 10.0
+bone_name = "Ponytail"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Fairy/HairPhysicsProxy/Physical Bone Ponytail"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_bkx8b")
+
+[node name="Physical Bone Ponytail_001" type="PhysicalBone3D" parent="Model/Fairy/HairPhysicsProxy"]
+transform = Transform3D(-0.979994, 0.196372, 0.0324012, 0.197808, 0.978989, 0.0495239, -0.0219954, 0.0549428, -0.998247, 0.0206852, 0.736856, 0.0841426)
+collision_layer = 2
+collision_mask = 2
+joint_type = 1
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05391e-15, -5.96046e-08, 0.0361163)
+body_offset = Transform3D(1, 3.44589e-08, 0, -2.49594e-07, 6.33299e-07, -1, 1.24564e-07, 1, 0, 0, 0.0361163, 5.96046e-08)
+gravity_scale = 0.1
+linear_damp = 10.0
+bone_name = "Ponytail.001"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Fairy/HairPhysicsProxy/Physical Bone Ponytail_001"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_sl1f0")
+
+[node name="Physical Bone Ponytail_002" type="PhysicalBone3D" parent="Model/Fairy/HairPhysicsProxy"]
+transform = Transform3D(-0.979994, 0.196372, 0.0324012, 0.197808, 0.978989, 0.0495239, -0.0219954, 0.0549428, -0.998247, 0.0185347, 0.733569, 0.150402)
+collision_layer = 2
+collision_mask = 2
+joint_type = 1
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3411e-07, -1.67054e-14, 0.0302597)
+body_offset = Transform3D(1, 3.44589e-08, 0, -2.49594e-07, 6.33299e-07, -1, 1.24564e-07, 1, 0, -1.3411e-07, 0.0302597, 0)
+gravity_scale = 0.1
+linear_damp = 10.0
+bone_name = "Ponytail.002"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Fairy/HairPhysicsProxy/Physical Bone Ponytail_002"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_3cw2c")
