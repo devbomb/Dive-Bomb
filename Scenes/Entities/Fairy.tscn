@@ -71,15 +71,14 @@ height = 0.0722325
 radius = 0.00605194
 height = 0.0605194
 
-[node name="Fairy" type="Node3D"]
+[node name="Fairy" type="StaticBody3D"]
 script = ExtResource("1_qaaot")
 
-[node name="PlayerDetector" type="Area3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CylinderShape3D_ohivc")
+disabled = true
 
 [node name="Glass" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true

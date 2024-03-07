@@ -3,7 +3,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Fairy : Node3D
+    public partial class Fairy : StaticBody3D, IRollable, IKickable
     {
         private readonly StateMachine _stateMachine = new StateMachine(typeof(FairyState));
 
@@ -11,8 +11,8 @@ namespace FastDragon
         private Node3D Model => GetNode<Node3D>("%Model");
         private Node3D Glass => GetNode<Node3D>("%Glass");
         private GpuParticles3D GlassParticles => GetNode<GpuParticles3D>("%GlassParticles");
+        private CollisionShape3D CollisionShape => GetNode<CollisionShape3D>("%CollisionShape");
 
-        private Area3D PlayerDetector => GetNode<Area3D>("%PlayerDetector");
         private Player Player;
 
         public override void _Ready()
@@ -50,20 +50,30 @@ namespace FastDragon
             }
         }
 
+        public void OnRolledInto()
+        {
+            _stateMachine.ChangeState<Rescuing>();
+        }
+
+        public void OnKicked()
+        {
+            _stateMachine.ChangeState<Rescuing>();
+        }
+
         private partial class Idle : FairyState
         {
             public override void OnStateEntered()
             {
                 _fairy.Player = GetTree().FindNode<Player>();
                 _fairy.Visible = true;
-                _fairy.PlayerDetector.BodyEntered += OnBodyEntered;
                 _fairy.Animator.Play("PoundingOnGlass");
 
+                _fairy.CollisionShape.Disabled = false;
             }
 
             public override void OnStateExited()
             {
-                _fairy.PlayerDetector.BodyEntered -= OnBodyEntered;
+                _fairy.CollisionShape.Disabled = true;
             }
 
             public override void _Process(double deltaD)
@@ -140,6 +150,11 @@ namespace FastDragon
             {
                 _fairy.Player.Velocity += Vector3.Down * PlayerGravity * delta;
                 _fairy.Player.MoveAndSlide();
+
+                // HACK: For whatever reason, MoveAndSlide() is causing the
+                // player to gain horizontal speed, and I can't figure out why.
+                // So, let's just set it to zero.
+                _fairy.Player.FSpeed = 0;
 
                 bool onGround = _fairy.Player.IsOnFloor();
                 bool wasOnGround = _wasPlayerOnGround;
