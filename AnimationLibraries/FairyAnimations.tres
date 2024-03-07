@@ -1,4 +1,125 @@
-[gd_resource type="AnimationLibrary" load_steps=3 format=3 uid="uid://cixu1tgmo6shy"]
+[gd_resource type="AnimationLibrary" load_steps=4 format=3 uid="uid://cixu1tgmo6shy"]
+
+[sub_resource type="Animation" id="Animation_cm1eu"]
+resource_name = "Kiss"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fairy:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.3, 1.4, 1.5, 1.9, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.182, -0.245), Vector3(0, 0.613169, -0.354842), Vector3(0, 0.613169, -0.354842), Vector3(0, 0.574605, -0.446762), Vector3(0, 0.600489, -0.297778), Vector3(0, 0.600489, -0.224864), Vector3(0, 1.65433, 0.681072)]
+}
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fairy/Root/Skeleton3D:RightArm")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.613814, 0.331359, 0.265362, 0.665594, 1, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fairy/Root/Skeleton3D:RightForeArm")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.89368, 0.00478132, 0.0178752, 0.448323, 1, 1, 0, 0, 0, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fairy/Root/Skeleton3D:RightHand")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.0284431, -0.723324, 0.0365672, 0.688953, 1, 1, 0, 0, 0, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Fairy/Root/Skeleton3D:LeftArm")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.324939, -0.0507644, -0.631956, 0.701761, 1, 1, 0, 0, 0, 1)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Fairy/Root/Skeleton3D:LeftForeArm")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.18836, 0.0112713, -0.0146745, 0.981926, 1, 1, 0, 0, 0, 1)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Fairy/Root/Skeleton3D:LeftHand")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.0284428, 0.723324, -0.0365674, 0.688953, 1, 1, 0, 0, 0, 1)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Fairy/Root/Skeleton3D:Spine")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, -0.0310297, -0.258686, 0.00831419, 0.965427, 1, 1, -0.302553, -1.16482e-16, 3.88797e-16, 0.953133)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Fairy/Root/Skeleton3D:Neck")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0.185293, 0.325813, 0.0347577, 0.926447, 1, 1, 0.187975, 0.0749291, -0.014384, 0.979206, 1.3, 1, 0.187975, 0.0749291, -0.014384, 0.979206, 1.4, 1, 0.0529338, 0.0761897, -0.00405058, 0.995679, 1.5, 1, 0.187975, 0.0749291, -0.014384, 0.979206)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Fairy/Root/Skeleton3D:Hips")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 9.30155e-05, -4.49768e-09, 0.999999, 0.00144307, 1, 1, 0.000773711, 0.479595, 0.877489, 0.00122167, 2, 1, 0.000773711, 0.479595, 0.877489, 0.00122167, 3, 1, 0.971717, -0.00142423, 0.000250344, -0.236143)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Fairy/Root/Skeleton3D:LeftUpLeg")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.944911, 0.0538539, 0.0766726, -0.313631, 1, 1, 0.993232, 0.103363, -0.0212929, -0.048503)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Fairy/Root/Skeleton3D:RightUpLeg")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0.899104, -0.0311384, -0.0586316, -0.432671, 1, 1, 0.993232, -0.103363, 0.0212922, -0.0485031)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Fairy/Root/Skeleton3D:LeftLeg")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 0.0388609, 0.0343096, 0.0674191, 0.996377, 1, 1, 0, 0, 0, 1)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Fairy/Root/Skeleton3D:RightLeg")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 0.295418, -0.0505899, -0.0562419, 0.952368, 1, 1, 0, 0, 0, 1)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Fairy/Root/Skeleton3D:LeftWing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 0.1, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 0.2, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 0.3, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 0.4, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 0.5, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 0.6, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 0.7, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 0.8, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 0.9, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 1, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 1.1, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 1.2, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 1.3, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 1.4, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 1.5, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 1.6, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 1.7, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 1.8, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 1.9, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 2, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 2.1, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 2.2, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 2.3, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 2.4, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 2.5, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 2.6, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 2.7, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 2.8, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 2.9, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 3, 1, 0.242564, 0.0716999, -0.646819, 0.719477)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Fairy/Root/Skeleton3D:RightWing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 0.1, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 0.2, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 0.3, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 0.4, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 0.5, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 0.6, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 0.7, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 0.8, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 0.9, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 1, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 1.1, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 1.2, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 1.3, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 1.4, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 1.5, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 1.6, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 1.7, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 1.8, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 1.9, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 2, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 2.1, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 2.2, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 2.3, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 2.4, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 2.5, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 2.6, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 2.7, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 2.8, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 2.9, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 3, 1, 0.242326, -0.0716352, 0.647233, 0.719191)
 
 [sub_resource type="Animation" id="Animation_p6p2x"]
 resource_name = "PoundingOnGlass"
@@ -280,9 +401,17 @@ tracks/20/path = NodePath("Fairy/Root/Skeleton3D:RightLeg")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = PackedFloat32Array(0, 1, 0.0388609, -0.0343096, -0.0674191, 0.996377)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Fairy/Root/Skeleton3D:Hips")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, 9.30155e-05, -4.49768e-09, 0.999999, 0.00144307)
 
 [resource]
 _data = {
+"Kiss": SubResource("Animation_cm1eu"),
 "PoundingOnGlass": SubResource("Animation_p6p2x"),
 "RESET": SubResource("Animation_arvhh")
 }

@@ -9,8 +9,10 @@ namespace FastDragon
 
         private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private Node3D Model => GetNode<Node3D>("%Model");
-        private Area3D PlayerDetector => GetNode<Area3D>("%PlayerDetector");
+        private Node3D Glass => GetNode<Node3D>("%Glass");
+        private GpuParticles3D GlassParticles => GetNode<GpuParticles3D>("%GlassParticles");
 
+        private Area3D PlayerDetector => GetNode<Area3D>("%PlayerDetector");
         private Player Player;
 
         public override void _Ready()
@@ -84,36 +86,85 @@ namespace FastDragon
 
         private partial class Rescuing : FairyState
         {
-            private float _timer;
+            private static float PlayerJumpSpeed => Player.Jump.InitVSpeed / 4;
+            private static float PlayerGravity => Player.Jump.ShortHopGravity / 8;
+
+            private bool _wasPlayerOnGround;
 
             public override void OnStateEntered()
             {
+                _wasPlayerOnGround = false;
                 SaveFile.Current.CurrentMapProgress.CollectedFairies.Add(_fairy.GetSaveKey());
 
-                _fairy.Player.ChangeState<PlayerManhandledState>();
-                _fairy.Player.GlobalRotation = _fairy.Player
-                    .GlobalPosition
-                    .DirectionTo(_fairy.GlobalPosition)
-                    .Flattened()
-                    .Normalized()
-                    .ForwardToEulerAnglesRad();
-                _fairy.Player.ResetPhysicsInterpolation();
+                // Pause the game (except the player and fairy) during the
+                // cutscene to prevent the player from getting hit by enemies.
+                // Don't worry, the pause menu won't open if the game is already
+                // paused by something else.
+                GetTree().Paused = true;
+                _fairy.ProcessMode = ProcessModeEnum.Always;
+                _fairy.Player.ProcessMode = ProcessModeEnum.Always;
 
-                _timer = 3;
+                // Hijack control of the player.  We're going to manipulate them
+                // for the cutscene.
+                _fairy.Player.ChangeState<PlayerManhandledState>();
+                _fairy.Player.Velocity = Vector3.Up * PlayerJumpSpeed;
+
+                // Krrsssh!!!  Shatter the glass!
+                _fairy.Glass.Visible = false;
+                _fairy.GlassParticles.Emitting = true;
+
+                // And move in for a kiss <3
+                _fairy.Animator.Play("Kiss");
             }
 
             public override void OnStateExited()
             {
-                _fairy.Player?.ChangeState<PlayerWalkState>();
-                _fairy.Player = null;
+                GetTree().Paused = false;
+                _fairy.ProcessMode = ProcessModeEnum.Inherit;
+                _fairy.Player.ProcessMode = ProcessModeEnum.Inherit;
+                _fairy.Player.ChangeState<PlayerWalkState>();
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _timer -= (float)deltaD;
+                float delta = (float)deltaD;
 
-                if (_timer <= 0)
+                ApplyGravityToPlayer(delta);
+                RotatePlayerTowardFairy(delta);
+
+                if (!_fairy.Animator.IsPlaying())
                     ChangeState<Rescued>();
+            }
+
+            private void ApplyGravityToPlayer(float delta)
+            {
+                _fairy.Player.Velocity += Vector3.Down * PlayerGravity * delta;
+                _fairy.Player.MoveAndSlide();
+
+                bool onGround = _fairy.Player.IsOnFloor();
+                bool wasOnGround = _wasPlayerOnGround;
+                _wasPlayerOnGround = onGround;
+
+                if (onGround && !wasOnGround)
+                    _fairy.Player.Animator.Play("Idle");
+            }
+
+            private void RotatePlayerTowardFairy(float delta)
+            {
+                if (!_fairy.Player.IsOnFloor())
+                    return;
+
+                var targetRotRad = _fairy.Player.GlobalPosition
+                    .DirectionTo(_fairy.GlobalPosition)
+                    .Flattened()
+                    .Normalized()
+                    .ForwardToEulerAnglesRad();
+
+                _fairy.Player.GlobalRotation = _fairy.Player.GlobalRotation.DecayTowardsEulerRad(
+                    targetRotRad,
+                    10,
+                    delta
+                );
             }
         }
 
