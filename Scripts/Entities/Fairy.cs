@@ -102,6 +102,8 @@ namespace FastDragon
             private static float PlayerJumpSpeed => Player.Jump.InitVSpeed / 4;
             private static float PlayerGravity => Player.Jump.ShortHopGravity / 8;
 
+            private bool _playerLanded;
+
             public override void OnStateEntered()
             {
                 SaveFile.Current.CurrentMapProgress.CollectedFairies.Add(_fairy.GetSaveKey());
@@ -116,17 +118,17 @@ namespace FastDragon
                 // for the cutscene.
                 _fairy.Player.ChangeState<PlayerManhandledState>();
                 _fairy.Player.Velocity = Vector3.Up * PlayerJumpSpeed;
+                _playerLanded = false;
 
                 // Krrsssh!!!  Shatter the glass!
                 _fairy.Glass.Visible = false;
                 _fairy.GlassParticles.Emitting = true;
-                _fairy.Animator.Play("Hovering");
+                _fairy.Animator.Play("Shatter");
             }
 
             public override void OnStateExited()
             {
                 _fairy.SetPausedForCutscene(false);
-                _fairy.Player.ChangeState<PlayerWalkState>();
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -135,7 +137,7 @@ namespace FastDragon
 
                 ApplyGravityToPlayer(delta);
 
-                if (_fairy.Player.IsOnFloor())
+                if (_playerLanded && !_fairy.Animator.IsPlaying())
                     ChangeState<FlyingToPlayer>();
             }
 
@@ -148,6 +150,12 @@ namespace FastDragon
                 // player to gain horizontal speed, and I can't figure out why.
                 // So, let's just set it to zero.
                 _fairy.Player.FSpeed = 0;
+
+                if (_fairy.Player.IsOnFloor() && !_playerLanded)
+                {
+                    _playerLanded = true;
+                    _fairy.Player.Animator.Play("Idle");
+                }
             }
         }
 
@@ -162,7 +170,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _fairy.SetPausedForCutscene(true);
-                _fairy.Animator.Play("Hovering");
+                _fairy.Animator.Play("Hovering", 0.1f);
 
                 _startPos = _fairy.Model.GlobalPosition;
                 _startRotRad = _fairy.Model.GlobalRotation;
@@ -205,6 +213,7 @@ namespace FastDragon
             public override void OnStateExited()
             {
                 _fairy.SetPausedForCutscene(false);
+                _fairy.Player.ChangeState<PlayerWalkState>();
             }
 
             public override void _PhysicsProcess(double deltaD)

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=5 format=3 uid="uid://cixu1tgmo6shy"]
+[gd_resource type="AnimationLibrary" load_steps=6 format=3 uid="uid://cixu1tgmo6shy"]
 
 [sub_resource type="Animation" id="Animation_gtvku"]
 resource_name = "Hovering"
@@ -534,10 +534,34 @@ tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = PackedFloat32Array(0, 1, 9.30155e-05, -4.49768e-09, 0.999999, 0.00144307)
 
+[sub_resource type="Animation" id="Animation_rarm4"]
+resource_name = "Shatter"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fairy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.328018, 0), Vector3(0, 0.328018, 0), Vector3(0, 0.371945, 0), Vector3(0, 0.328018, 0)]
+}
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fairy/Root/Skeleton3D:Neck")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.145084, 0.0754852, -0.0111019, 0.986473, 0.1, 1, 0.137107, -0.309718, 0.0298197, 0.940419, 0.4, 1, 0.137107, -0.309718, 0.0298197, 0.940419, 0.5, 1, 0.130973, 0.449197, -0.0503334, 0.882346, 0.8, 1, 0.130973, 0.449197, -0.0503334, 0.882346, 1, 1, 0.145084, 0.0754852, -0.0111019, 0.986473)
+
 [resource]
 _data = {
 "Hovering": SubResource("Animation_gtvku"),
 "Kiss": SubResource("Animation_cm1eu"),
 "PoundingOnGlass": SubResource("Animation_p6p2x"),
-"RESET": SubResource("Animation_arvhh")
+"RESET": SubResource("Animation_arvhh"),
+"Shatter": SubResource("Animation_rarm4")
 }
