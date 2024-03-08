@@ -90,6 +90,11 @@ unique_name_in_owner = true
 
 [node name="AnotherPlatformerMan" parent="Model" instance=ExtResource("10_3vscj")]
 
+[node name="FairyKissPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.09052e-08, 0.618845, -0.412131)
+visible = false
+
 [node name="Sparx" parent="." node_paths=PackedStringArray("CollectionArea") instance=ExtResource("3_5fc8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 CollectionArea = NodePath("../SparxRange")

@@ -52,12 +52,23 @@ namespace FastDragon
 
         public void OnRolledInto()
         {
-            _stateMachine.ChangeState<Rescuing>();
+            _stateMachine.ChangeState<Shattering>();
         }
 
         public void OnKicked()
         {
-            _stateMachine.ChangeState<Rescuing>();
+            _stateMachine.ChangeState<Shattering>();
+        }
+
+        private void SetPausedForCutscene(bool paused)
+        {
+            GetTree().Paused = paused;
+
+            ProcessMode = paused
+                ? ProcessModeEnum.Always
+                : ProcessModeEnum.Inherit;
+
+            Player.ProcessMode = ProcessMode;
         }
 
         private partial class Idle : FairyState
@@ -84,35 +95,22 @@ namespace FastDragon
                     .Normalized()
                     .ForwardToEulerAnglesRad();
             }
-
-            private void OnBodyEntered(Node3D body)
-            {
-                if (body is Player)
-                {
-                    ChangeState<Rescuing>();
-                }
-            }
         }
 
-        private partial class Rescuing : FairyState
+        private partial class Shattering : FairyState
         {
             private static float PlayerJumpSpeed => Player.Jump.InitVSpeed / 4;
             private static float PlayerGravity => Player.Jump.ShortHopGravity / 8;
 
-            private bool _wasPlayerOnGround;
-
             public override void OnStateEntered()
             {
-                _wasPlayerOnGround = false;
                 SaveFile.Current.CurrentMapProgress.CollectedFairies.Add(_fairy.GetSaveKey());
 
                 // Pause the game (except the player and fairy) during the
                 // cutscene to prevent the player from getting hit by enemies.
                 // Don't worry, the pause menu won't open if the game is already
                 // paused by something else.
-                GetTree().Paused = true;
-                _fairy.ProcessMode = ProcessModeEnum.Always;
-                _fairy.Player.ProcessMode = ProcessModeEnum.Always;
+                _fairy.SetPausedForCutscene(true);
 
                 // Hijack control of the player.  We're going to manipulate them
                 // for the cutscene.
@@ -122,16 +120,12 @@ namespace FastDragon
                 // Krrsssh!!!  Shatter the glass!
                 _fairy.Glass.Visible = false;
                 _fairy.GlassParticles.Emitting = true;
-
-                // And move in for a kiss <3
-                _fairy.Animator.Play("Kiss");
+                _fairy.Animator.Play("Hovering");
             }
 
             public override void OnStateExited()
             {
-                GetTree().Paused = false;
-                _fairy.ProcessMode = ProcessModeEnum.Inherit;
-                _fairy.Player.ProcessMode = ProcessModeEnum.Inherit;
+                _fairy.SetPausedForCutscene(false);
                 _fairy.Player.ChangeState<PlayerWalkState>();
             }
 
@@ -140,10 +134,9 @@ namespace FastDragon
                 float delta = (float)deltaD;
 
                 ApplyGravityToPlayer(delta);
-                RotatePlayerTowardFairy(delta);
 
-                if (!_fairy.Animator.IsPlaying())
-                    ChangeState<Rescued>();
+                if (_fairy.Player.IsOnFloor())
+                    ChangeState<FlyingToPlayer>();
             }
 
             private void ApplyGravityToPlayer(float delta)
@@ -155,31 +148,69 @@ namespace FastDragon
                 // player to gain horizontal speed, and I can't figure out why.
                 // So, let's just set it to zero.
                 _fairy.Player.FSpeed = 0;
+            }
+        }
 
-                bool onGround = _fairy.Player.IsOnFloor();
-                bool wasOnGround = _wasPlayerOnGround;
-                _wasPlayerOnGround = onGround;
+        private partial class FlyingToPlayer : FairyState
+        {
+            private const float Duration = 1;
 
-                if (onGround && !wasOnGround)
-                    _fairy.Player.Animator.Play("Idle");
+            private Vector3 _startPos;
+            private Vector3 _startRotRad;
+            private float _timer;
+
+            public override void OnStateEntered()
+            {
+                _fairy.SetPausedForCutscene(true);
+                _fairy.Animator.Play("Hovering");
+
+                _startPos = _fairy.Model.GlobalPosition;
+                _startRotRad = _fairy.Model.GlobalRotation;
+                _timer = 0;
             }
 
-            private void RotatePlayerTowardFairy(float delta)
+            public override void OnStateExited()
             {
-                if (!_fairy.Player.IsOnFloor())
-                    return;
+                _fairy.SetPausedForCutscene(false);
+            }
 
-                var targetRotRad = _fairy.Player.GlobalPosition
-                    .DirectionTo(_fairy.GlobalPosition)
-                    .Flattened()
-                    .Normalized()
-                    .ForwardToEulerAnglesRad();
+            public override void _Process(double deltaD)
+            {
+                _timer += (float)deltaD;
 
-                _fairy.Player.GlobalRotation = _fairy.Player.GlobalRotation.DecayTowardsEulerRad(
-                    targetRotRad,
-                    10,
-                    delta
-                );
+                var targetPos = _fairy.Player.FairyKissPoint.GlobalPosition;
+                var targetRotRad = _fairy.Player.FairyKissPoint.GlobalRotation;
+
+                float t = _timer / Duration;
+                _fairy.Model.GlobalPosition = _startPos.Lerp(targetPos, t);
+                _fairy.Model.GlobalRotation = _startRotRad.LerpEulerRad(targetRotRad, t);
+
+                if (_timer > Duration)
+                {
+                    _fairy.Model.GlobalPosition = targetPos;
+                    _fairy.Model.GlobalRotation = targetRotRad;
+                    ChangeState<KissingPlayer>();
+                }
+            }
+        }
+
+        private partial class KissingPlayer : FairyState
+        {
+            public override void OnStateEntered()
+            {
+                _fairy.SetPausedForCutscene(true);
+                _fairy.Animator.Play("Kiss", 0.3f);
+            }
+
+            public override void OnStateExited()
+            {
+                _fairy.SetPausedForCutscene(false);
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                if (!_fairy.Animator.IsPlaying())
+                    ChangeState<Rescued>();
             }
         }
 

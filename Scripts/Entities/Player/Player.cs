@@ -31,6 +31,8 @@ namespace FastDragon
         public Node3D LedgeGrabPoint => GetNode<Node3D>("%LedgeGrabPoint");
         public Node3D MinLedgeGrabHeight => GetNode<Node3D>("%MinLedgeGrabHeight");
 
+        public Node3D FairyKissPoint => GetNode<Node3D>("%FairyKissPoint");
+
         public float FSpeed
         {
             get => Velocity.Flattened().Length();
