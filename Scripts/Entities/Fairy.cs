@@ -249,7 +249,7 @@ namespace FastDragon
 
         private partial class RestoringCamera : FairyState
         {
-            private const float Duration = 0.25f;
+            private const float Duration = 0.5f;
             private float _timer;
             private Transform3D _start;
 
