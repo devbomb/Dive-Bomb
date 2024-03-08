@@ -13,6 +13,8 @@ namespace FastDragon
         private GpuParticles3D GlassParticles => GetNode<GpuParticles3D>("%GlassParticles");
         private CollisionShape3D CollisionShape => GetNode<CollisionShape3D>("%CollisionShape");
 
+        private Camera3D CutsceneCam => GetNode<Camera3D>("%CutsceneCam");
+
         private Player Player;
 
         public override void _Ready()
@@ -163,8 +165,8 @@ namespace FastDragon
         {
             private const float Duration = 1;
 
-            private Vector3 _startPos;
-            private Vector3 _startRotRad;
+            private Transform3D _start;
+
             private float _timer;
 
             public override void OnStateEntered()
@@ -172,8 +174,11 @@ namespace FastDragon
                 _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Hovering", 0.1f);
 
-                _startPos = _fairy.Model.GlobalPosition;
-                _startRotRad = _fairy.Model.GlobalRotation;
+                _start = _fairy.Model.GlobalTransform;
+
+                _fairy.CutsceneCam.GlobalTransform = _fairy.Player.Camera.GlobalTransform;
+                _fairy.CutsceneCam.MakeCurrent();
+
                 _timer = 0;
             }
 
@@ -185,20 +190,39 @@ namespace FastDragon
             public override void _Process(double deltaD)
             {
                 _timer += (float)deltaD;
-
-                var targetPos = _fairy.Player.FairyKissPoint.GlobalPosition;
-                var targetRotRad = _fairy.Player.FairyKissPoint.GlobalRotation;
-
                 float t = _timer / Duration;
-                _fairy.Model.GlobalPosition = _startPos.Lerp(targetPos, t);
-                _fairy.Model.GlobalRotation = _startRotRad.LerpEulerRad(targetRotRad, t);
+
+                var player = _fairy.Player;
+
+                var target = player.FairyKissPoint.GlobalTransform;
+                var camStart = player.Camera.GlobalTransform;
+                var camTarget = CamTarget();
+
+                _fairy.Model.GlobalTransform = _start.InterpolateWith(target, t);
+                _fairy.CutsceneCam.GlobalTransform = camStart.InterpolateWith(camTarget, t);
 
                 if (_timer > Duration)
                 {
-                    _fairy.Model.GlobalPosition = targetPos;
-                    _fairy.Model.GlobalRotation = targetRotRad;
+                    _fairy.Model.GlobalTransform = target;
+                    _fairy.CutsceneCam.GlobalTransform = camTarget;
+
                     ChangeState<KissingPlayer>();
                 }
+            }
+
+            private Transform3D CamTarget()
+            {
+                var player = _fairy.Player;
+                var cam = player.Camera;
+                var rightPoint = player.FairyKissCamRightPoint;
+                var leftPoint = player.FairyKissCamLeftPoint;
+
+                float rightDist = cam.GlobalPosition.DistanceTo(rightPoint.GlobalPosition);
+                float leftDist = cam.GlobalPosition.DistanceTo(leftPoint.GlobalPosition);
+
+                return rightDist < leftDist
+                    ? rightPoint.GlobalTransform
+                    : leftPoint.GlobalTransform;
             }
         }
 
@@ -219,6 +243,36 @@ namespace FastDragon
             public override void _PhysicsProcess(double deltaD)
             {
                 if (!_fairy.Animator.IsPlaying())
+                    ChangeState<RestoringCamera>();
+            }
+        }
+
+        private partial class RestoringCamera : FairyState
+        {
+            private const float Duration = 0.25f;
+            private float _timer;
+            private Transform3D _start;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _start = _fairy.CutsceneCam.GlobalTransform;
+            }
+
+            public override void OnStateExited()
+            {
+                _fairy.Player.Camera.MakeCurrent();
+            }
+
+            public override void _Process(double deltaD)
+            {
+                _timer += (float)deltaD;
+
+                float t = _timer / Duration;
+                var end = _fairy.Player.Camera.GlobalTransform;
+                _fairy.CutsceneCam.GlobalTransform = _start.InterpolateWith(end, t);
+
+                if (_timer > Duration)
                     ChangeState<Rescued>();
             }
         }
