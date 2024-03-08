@@ -96,11 +96,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.090
 
 [node name="FairyKissCamRightPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.970526, 1.1243, -0.364016)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 1.124, -0.364)
 
 [node name="FairyKissCamLeftPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.971, 1.124, -0.364)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 1.124, -0.364)
 
 [node name="Sparx" parent="." node_paths=PackedStringArray("CollectionArea") instance=ExtResource("3_5fc8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
