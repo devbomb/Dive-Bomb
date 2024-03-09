@@ -31,6 +31,10 @@ namespace FastDragon
         public Node3D LedgeGrabPoint => GetNode<Node3D>("%LedgeGrabPoint");
         public Node3D MinLedgeGrabHeight => GetNode<Node3D>("%MinLedgeGrabHeight");
 
+        public Node3D FairyKissPoint => GetNode<Node3D>("%FairyKissPoint");
+        public Node3D FairyKissCamRightPoint => GetNode<Node3D>("%FairyKissCamRightPoint");
+        public Node3D FairyKissCamLeftPoint => GetNode<Node3D>("%FairyKissCamLeftPoint");
+
         public float FSpeed
         {
             get => Velocity.Flattened().Length();
@@ -94,17 +98,12 @@ namespace FastDragon
 
             Respawn();
 
-            // Count all the gems in the level, including the collected ones,
-            // and then cache this value in the save file.
-            //
-            // Why compute this at runtime, and why cache it in the save file?
-            // Well, because I don't want to count them all by hand and hardcode
-            // it somewhere while I'm designing the levels.  And because I don't
-            // feel like writing a build script to automate it.
+            // Count all the gems/fairies in the level, including the collected
+            // ones, and then cache it.
             //
             // Defer doing so until the next frame, because we don't know if
             // all of the gem containers have spawned in yet.
-            Callable.From(CountGemsInMap).CallDeferred();
+            Callable.From(UpdateAtlasCache).CallDeferred();
         }
 
         public void Respawn()
@@ -142,30 +141,9 @@ namespace FastDragon
             }
         }
 
-        private void CountGemsInMap()
+        private void UpdateAtlasCache()
         {
-            var gemCounts = new Dictionary<GemColor, int>();
-            int totalTreasure = 0;
-            int individualGems = 0;
-
-            var allGems = GetTree().CurrentScene.EnumerateDescendantsOfType<Gem>();
-            foreach (var gem in allGems)
-            {
-                if (!gemCounts.ContainsKey(gem.Value))
-                    gemCounts[gem.Value] = 0;
-
-                totalTreasure += (int)gem.Value;
-                gemCounts[gem.Value]++;
-                individualGems++;
-            }
-            GD.Print($"There is a total of {totalTreasure} treasure in this level");
-            GD.Print($"There are {individualGems} individual gems in this level");
-            foreach (var kvp in gemCounts)
-            {
-                GD.Print($"{kvp.Key}: {kvp.Value}");
-            }
-
-            SaveFile.Current.CurrentMapProgress.TotalGemsInLevel = totalTreasure;
+            AtlasCache.Instance.UpdateCache(SaveFile.Current.CurrentMap, GetTree().CurrentScene);
         }
 
         public override void _PhysicsProcess(double deltaD)

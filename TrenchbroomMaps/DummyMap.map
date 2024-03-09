@@ -103,3 +103,9 @@
 "origin" "160 152 16"
 "angles" "0 -90 0"
 }
+// entity 13
+{
+"classname" "Fairy"
+"origin" "152 88 16"
+"angles" "0 90 0"
+}

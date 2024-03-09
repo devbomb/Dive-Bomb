@@ -214,3 +214,8 @@
 "TargetMap" "res://Scenes/Maps/Levels/DryCanyon.tscn"
 "SkyboxEnvironment" "res://Environments/DryCanyonSky.tres"
 }
+// entity 26
+{
+"classname" "Fairy"
+"origin" "88 8 16"
+}
