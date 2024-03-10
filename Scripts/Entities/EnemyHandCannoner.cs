@@ -46,6 +46,12 @@ namespace FastDragon
             _targetPlayer = null;
         }
 
+        public override void _PhysicsProcess(double deltaD)
+        {
+            var state = (EnemyHandCannonerState)_stateMachine.CurrentState;
+            _bodyShape.Disabled = !state.EnableCollision;
+        }
+
         public void OnRolledInto()
         {
             if (IsAlive)
@@ -77,6 +83,8 @@ namespace FastDragon
 
         private partial class EnemyHandCannonerState : State
         {
+            public virtual bool EnableCollision => true;
+
             protected EnemyHandCannoner _enemy => _stateMachine.GetParent<EnemyHandCannoner>();
         }
 
@@ -167,6 +175,8 @@ namespace FastDragon
 
         private partial class Dieing : EnemyHandCannonerState
         {
+            public override bool EnableCollision => false;
+
             public override void OnStateEntered()
             {
                 _enemy.FaceTargetPlayer();
@@ -183,16 +193,16 @@ namespace FastDragon
 
         private partial class Dead : EnemyHandCannonerState
         {
+            public override bool EnableCollision => false;
+
             public override void OnStateEntered()
             {
                 _enemy.Visible = false;
-                _enemy._bodyShape.Disabled = true;
             }
 
             public override void OnStateExited()
             {
                 _enemy.Visible = true;
-                _enemy._bodyShape.Disabled = false;
             }
         }
     }
