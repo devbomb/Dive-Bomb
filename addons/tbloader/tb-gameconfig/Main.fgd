@@ -1,6 +1,7 @@
 @include "Gems.fgd"
 @include "GemContainers.fgd"
 @include "Enemies.fgd"
+@include "Detail.fgd"
 
 @baseclass = Angle [
 	// https://github.com/TrenchBroom/TrenchBroom/issues/3827
