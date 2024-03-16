@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5d2j1xwhtmwe"]
+
+[ext_resource type="PackedScene" uid="uid://dad4aqqyc8v3i" path="res://TrenchbroomMaps/Castle.map" id="1_4ems5"]
+[ext_resource type="Environment" uid="uid://dyg4p485vff86" path="res://Environments/Castle.tres" id="1_7bxwh"]
+
+[node name="Castle" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_7bxwh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.551, 0)
+light_color = Color(0.94902, 0.905882, 0, 1)
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="Castle" parent="." instance=ExtResource("1_4ems5")]

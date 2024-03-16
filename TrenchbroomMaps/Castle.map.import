@@ -1,0 +1,17 @@
+[remap]
+
+importer="map_importer"
+type="PackedScene"
+uid="uid://dad4aqqyc8v3i"
+path="res://.godot/imported/Castle.map-70a5990fe8f09fa1ffbf396238f740b3.scn"
+
+[deps]
+
+source_file="res://TrenchbroomMaps/Castle.map"
+dest_files=["res://.godot/imported/Castle.map-70a5990fe8f09fa1ffbf396238f740b3.scn"]
+
+[params]
+
+map_inverse_scale=16
+entity_path="res://Scenes/Entities"
+texture_path="res://Textures"
