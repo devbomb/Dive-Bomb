@@ -8,11 +8,16 @@
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_7bxwh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.257133, 0.127809, -0.957887, 0, 0.991216, 0.132256, 0.966376, 0.0340075, -0.254874, 0, 13.551, 0)
-light_color = Color(1, 1, 0.556863, 1)
+[node name="SkyOnlySun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.257133, -0.012515, -0.966295, 0, 0.999916, -0.0129504, 0.966376, -0.00332999, -0.257111, 0, 13.551, -7.46906)
+light_color = Color(1, 0.946667, 0.2, 1)
 light_bake_mode = 1
-shadow_enabled = true
+sky_mode = 2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.257133, 0.127809, -0.957887, 0, 0.991216, 0.132256, 0.966376, 0.0340074, -0.254874, 0, 13.551, 0)
+light_bake_mode = 1
+sky_mode = 1
 
 [node name="Castle" parent="." instance=ExtResource("1_4ems5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00407791, -0.0424423, -0.00895309)
