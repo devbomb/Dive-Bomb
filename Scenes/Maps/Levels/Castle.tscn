@@ -9,9 +9,25 @@
 environment = ExtResource("1_7bxwh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.551, 0)
-light_color = Color(0.94902, 0.905882, 0, 1)
+transform = Transform3D(-0.257133, 0.127809, -0.957887, 0, 0.991216, 0.132256, 0.966376, 0.0340075, -0.254874, 0, 13.551, 0)
+light_color = Color(1, 1, 0.556863, 1)
 light_bake_mode = 1
 shadow_enabled = true
 
 [node name="Castle" parent="." instance=ExtResource("1_4ems5")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.7641, 12.6101, 0.465789)
+light_color = Color(0.980392, 0.615686, 0, 1)
+light_energy = 1.471
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 16.1816
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.7641, 12.6101, 22.5481)
+light_color = Color(0.980392, 0.615686, 0, 1)
+light_energy = 1.471
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 16.1816
