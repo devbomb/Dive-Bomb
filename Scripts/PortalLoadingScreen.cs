@@ -494,7 +494,23 @@ namespace FastDragon
             private void TweenSun(Tween tween)
             {
                 float duration = CorrectionAnimationDuration;
-                var newSun = _screen._loadedScene.FindNode<DirectionalLight3D>();
+                var newSun = _screen._loadedScene.EnumerateChildren()
+                    .Where(n => n is DirectionalLight3D)
+                    .Cast<DirectionalLight3D>()
+                    .FirstOrDefault(l => l.SkyMode != DirectionalLight3D.SkyModeEnum.SkyOnly);
+                // Why filter out SkyOnly?  Because in some levels, the desired
+                // light direction is not necessarily the same as the sun's
+                // position in the skybox.  In those levels, we use a SkyOnly
+                // light to position the sun in the skybox, and then use a
+                // separate light to set the light direction.
+                //
+                // We only care about tweening the light direction, because
+                // a sudden change in light direction breaks the illusion,
+                // whereas a sudden change in the skybox sun doesn't have nearly
+                // the same shock.  Don't believe me?  Fire up Spyro 1 and enter
+                // Wild Flight.  Did you notice that the sun disappearing?  No?
+                // Exactly my point!
+
                 if (newSun == null)
                     return;
 
