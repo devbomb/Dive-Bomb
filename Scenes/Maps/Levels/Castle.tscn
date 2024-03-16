@@ -15,19 +15,4 @@ light_bake_mode = 1
 shadow_enabled = true
 
 [node name="Castle" parent="." instance=ExtResource("1_4ems5")]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.7641, 12.6101, 0.465789)
-light_color = Color(0.980392, 0.615686, 0, 1)
-light_energy = 1.471
-light_bake_mode = 1
-shadow_enabled = true
-omni_range = 16.1816
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.7641, 12.6101, 22.5481)
-light_color = Color(0.980392, 0.615686, 0, 1)
-light_energy = 1.471
-light_bake_mode = 1
-shadow_enabled = true
-omni_range = 16.1816
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00407791, -0.0424423, -0.00895309)
