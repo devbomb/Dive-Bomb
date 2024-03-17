@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://b0g0e7wuc7mk4"]
+
+[node name="SpotLight3d" type="SpotLight3D"]

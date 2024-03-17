@@ -97,6 +97,27 @@
 		ExitHeight(float) : "Exit Height" : 15
 	]
 
+@PointClass
+	base(Angle)
+	size(-4 -4 -4, 4 4 4)
+	model({
+		"path" : "TrenchbroomEntityModels/WhirlwindTop.obj",
+		"scale" : 0.25
+	})
+	= SpotLight3D : "SpotLight3D" [
+		spot_range(float) : "Range" : 5
+		spot_attenuation(float) : "Attenuation" : 1
+		spot_angle(float) : "Angle" : 45
+		spot_angle_attenuation(float) : "Angle Attenuation" : 1
+
+		light_energy(float) : "Energy" : 1
+		light_bake_mode(choices) : "Bake Mode" : 2 = [
+			0: "Disabled"
+			1: "Dynamic"
+			2: "Static"
+		]
+	]
+
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
 	range(float) : "Range" : 10
 	energy(float) : "Energy" : 1 : "The light's strengh multiplier"
