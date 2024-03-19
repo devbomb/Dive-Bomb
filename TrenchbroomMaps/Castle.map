@@ -4,6 +4,7 @@
 {
 "classname" "worldspawn"
 "HomeWorld" "res://Scenes/Maps/Levels/TestMap.tscn"
+"_tb_textures" "Textures/Textures"
 // brush 0
 {
 ( -64 48 -32 ) ( -64 49 -32 ) ( -64 48 -31 ) __TB_empty 0 0 0 1 1
@@ -841,6 +842,33 @@
 ( 176 1472 112 ) ( 128 1472 32 ) ( 176 1472 32 ) __TB_empty 0 0 0 1 1
 ( 176 1472 112 ) ( 176 1280 32 ) ( 176 1280 112 ) __TB_empty 0 0 0 1 1
 }
+// brush 94
+{
+( -576 320 -64 ) ( -576 321 -64 ) ( -576 320 -63 ) __TB_empty 0 0 0 1 1
+( -128 320 -64 ) ( -128 320 -63 ) ( -127 320 -64 ) __TB_empty 0 0 0 1 1
+( -128 320 -176 ) ( -127 320 -176 ) ( -128 321 -176 ) __TB_empty 0 0 0 1 1
+( 192 512 -32 ) ( 192 513 -32 ) ( 193 512 -32 ) __TB_empty 0 0 0 1 1
+( 192 384 0 ) ( 193 384 0 ) ( 192 384 1 ) __TB_empty 0 0 0 1 1
+( 576 512 0 ) ( 576 512 1 ) ( 576 513 0 ) __TB_empty 0 0 0 1 1
+}
+// brush 95
+{
+( -128 32 -192 ) ( -128 33 -192 ) ( -128 32 -191 ) __TB_empty 0 0 0 1 1
+( -128 32 -192 ) ( -128 32 -191 ) ( -127 32 -192 ) __TB_empty 0 0 0 1 1
+( -128 32 -192 ) ( -127 32 -192 ) ( -128 33 -192 ) __TB_empty 0 0 0 1 1
+( 128 320 -160 ) ( 128 321 -160 ) ( 129 320 -160 ) __TB_empty 0 0 0 1 1
+( 128 320 -160 ) ( 129 320 -160 ) ( 128 320 -159 ) __TB_empty 0 0 0 1 1
+( 128 320 -160 ) ( 128 320 -159 ) ( 128 321 -160 ) __TB_empty 0 0 0 1 1
+}
+// brush 96
+{
+( 128 32 -192 ) ( 128 33 -192 ) ( 128 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 128 32 -192 ) ( 128 32 -191 ) ( 129 32 -192 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 128 32 -192 ) ( 129 32 -192 ) ( 128 33 -192 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 576 320 -168 ) ( 576 321 -168 ) ( 577 320 -168 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 576 320 -160 ) ( 577 320 -160 ) ( 576 320 -159 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 576 320 -160 ) ( 576 320 -159 ) ( 576 321 -160 ) Textures/PeaceKeepersWater 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -1329,4 +1357,33 @@
 "classname" "WallTorch"
 "origin" "-280 1504 128"
 "angles" "0 -90 0"
+}
+// entity 18
+{
+"classname" "Vent"
+"origin" "0 312 -104"
+"angles" "0 -90 0"
+"TargetVentId" "FireplaceVent"
+"VentId" "MoatVent"
+}
+// entity 19
+{
+"classname" "DrowningWater"
+// brush 0
+{
+( -576 32 -192 ) ( -576 33 -192 ) ( -576 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -160 32 -192 ) ( -160 32 -191 ) ( -159 32 -192 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -160 32 -192 ) ( -159 32 -192 ) ( -160 33 -192 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -128 320 -168 ) ( -128 321 -168 ) ( -127 320 -168 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -128 320 -160 ) ( -127 320 -160 ) ( -128 320 -159 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -128 320 -160 ) ( -128 320 -159 ) ( -128 321 -160 ) Textures/PeaceKeepersWater 0 0 0 1 1
+}
+}
+// entity 20
+{
+"classname" "Vent"
+"origin" "-488 1496 72"
+"angles" "0 90 0"
+"TargetVentId" "MoatVent"
+"VentId" "FireplaceVent"
 }
