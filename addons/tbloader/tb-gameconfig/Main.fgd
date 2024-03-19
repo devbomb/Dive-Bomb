@@ -118,6 +118,18 @@
 		]
 	]
 
+@PointClass
+	base(Angle)
+	size(-8 -8 -8, 8 8 8)
+	model({
+		"path" : "TrenchbroomEntityModels/Vent.obj",
+		"scale" : 0.25
+	})
+	= Vent : "Vent" [
+		VentId(string) : "VentId"
+		TargetVentId(string) : "TargetVentId"
+	]
+
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
 	range(float) : "Range" : 10
 	energy(float) : "Energy" : 1 : "The light's strengh multiplier"

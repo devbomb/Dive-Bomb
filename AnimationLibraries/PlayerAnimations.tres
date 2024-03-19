@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=23 format=3 uid="uid://dp75nlaah5k6o"]
+[gd_resource type="AnimationLibrary" load_steps=24 format=3 uid="uid://dp75nlaah5k6o"]
 
 [sub_resource type="Animation" id="Animation_ide03"]
 resource_name = "Bonk"
@@ -2365,6 +2365,66 @@ tracks/14/keys = {
 "values": [Vector3(1, 1, 1), Vector3(1.27865, 0.5, 1.17498), Vector3(1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_7vwef"]
+resource_name = "VentEnter"
+length = 1.5
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:Root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1, 0, 0, 0, 0.2, 1, 0.980517, 0, 0, -0.196434, 0.7, 1, 0.980517, 0, 0, -0.196434, 0.9, 1, -1, 0, 0, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D:Root")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.000474975, 0.172734, 0.88284, 0.2, 1, 0.000474975, 0.616954, -0.170862, 0.7, 1, 0.000474975, 0.616954, -0.170862, 0.9, 1, 0.000474975, 0.172734, 0.88284)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D:Arm_R")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.00507153, 0.00435877, 0.990507, -0.137299, 0.2, 1, -0.00253775, -0.253994, 0.932208, -0.257816, 0.7, 1, -0.00253775, -0.253994, 0.932208, -0.257816, 0.8, 1, -0.00507153, 0.00435877, 0.990507, -0.137299)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Armature/Skeleton3D:Arm_L")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.0050713, 0.00435873, 0.990507, 0.137299, 0.3, 1, 0.328667, -0.686085, 0.176818, 0.624501, 0.8, 1, 0.328667, -0.686085, 0.176818, 0.624501, 0.9, 1, -0.683975, -0.0717759, 0.043201, 0.72468)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Armature/Skeleton3D:LowerArm_L")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.0209201, -0.0032502, -0.00528233, 0.999762, 0.3, 1, -0.40192, -0.000981306, -0.00612405, 0.915654, 0.8, 1, -0.40192, -0.000981306, -0.00612405, 0.915654, 0.9, 1, -0.0209201, -0.0032502, -0.00528233, 0.999762)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Armature/Skeleton3D:Torso")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.707107, 8.42937e-08, 8.42937e-08, 0.707107, 0.2, 1, 0.870029, 5.87703e-08, 1.03716e-07, 0.493001, 0.7, 1, 0.870029, 5.87703e-08, 1.03716e-07, 0.493001, 0.9, 1, 0.707107, 8.42937e-08, 8.42937e-08, 0.707107)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Armature/Skeleton3D:Neck")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.00180139, -3.55269e-15, -4.29484e-10, 0.999998, 0.2, 1, 0.204569, -8.86159e-11, -4.20236e-10, 0.978852, 0.7, 1, 0.204569, -8.86159e-11, -4.20236e-10, 0.978852, 0.8, 1, -0.00180139, -3.55269e-15, -4.29484e-10, 0.999998, 0.9, 1, -0.00180139, -3.55269e-15, -4.29484e-10, 0.999998)
+tracks/7/type = "scale_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Armature/Skeleton3D:Root")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.00048, 1.00048, 0.000474975, 0.2, 1, 0.8, 1.2, 1, 0.3, 1, 1.00048, 1.00048, 1.00048, 0.7, 1, 1.00048, 1.00048, 1.00048, 0.8, 1, 1.00048, 1.00048, 2.00048, 1, 1, 1.00048, 1.00048, 0.000474975)
+
 [sub_resource type="Animation" id="Animation_wuhme"]
 resource_name = "Walk"
 length = 0.8
@@ -2516,6 +2576,7 @@ _data = {
 "Roll": SubResource("Animation_tv013"),
 "SideFlip": SubResource("Animation_uudjk"),
 "Skid": SubResource("Animation_qbmvf"),
+"VentEnter": SubResource("Animation_7vwef"),
 "Walk": SubResource("Animation_wuhme"),
 "WallSlide": SubResource("Animation_jjtts")
 }
