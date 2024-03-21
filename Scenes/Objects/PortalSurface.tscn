@@ -5,7 +5,7 @@
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0ubsh"]
 
-[sub_resource type="Shader" id="Shader_sbvxd"]
+[sub_resource type="Shader" id="Shader_ce2me"]
 code = "shader_type spatial;
 render_mode unshaded;
 
@@ -17,14 +17,14 @@ void fragment(){
 }
 "
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_05luo"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_0pita"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2vy43"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_sbvxd")
-shader_parameter/viewport_texture = SubResource("ViewportTexture_05luo")
+shader = SubResource("Shader_ce2me")
+shader_parameter/viewport_texture = SubResource("ViewportTexture_0pita")
 
 [node name="PortalSurface" type="Area3D"]
 script = ExtResource("1_0sdk0")
@@ -34,6 +34,7 @@ size = Vector2i(1920, 1080)
 
 [node name="PortalCamera" type="Camera3D" parent="SubViewport"]
 unique_name_in_owner = true
+process_mode = 3
 cull_mask = 2
 script = ExtResource("2_cben0")
 
