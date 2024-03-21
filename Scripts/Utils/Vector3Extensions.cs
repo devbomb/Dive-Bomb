@@ -27,6 +27,20 @@ namespace FastDragon
                 .GetEuler();
         }
 
+        /// <summary>
+        /// Assumes an euler order of YXZ
+        /// </summary>
+        /// <param name="eulerAnglesRad"></param>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public static Vector3 EulerAnglesRadToForward(this Vector3 eulerAnglesRad)
+        {
+            return Vector3.Forward
+                .Rotated(Vector3.Up, eulerAnglesRad.Y)
+                .Rotated(Vector3.Right, eulerAnglesRad.X)
+                .Rotated(Vector3.Forward, eulerAnglesRad.Z);
+        }
+
         public static Vector3 LerpEulerRad(
             this Vector3 fromRad,
             Vector3 toRad,

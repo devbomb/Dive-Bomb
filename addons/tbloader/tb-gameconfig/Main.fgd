@@ -44,6 +44,20 @@
 
 @PointClass
 	base(Angle)
+	size(-8 -8 -8, 8 8 8)
+	model({
+		"path": "TrenchbroomEntityModels/WorldPortalPlaceholder.obj",
+		"scale": "1" + " " + SizeX + " " + SizeY // Model is scaled down in Blender, because Trenchbroom doesn't let me multiply
+	})
+	= WorldPortal : "WorldPortal" [
+	PortalId(string) : "PortalId"
+	TargetPortalId(string) : "TargetPortalId"
+	SizeX(float) : "SizeX" : 1
+	SizeY(float) : "SizeY" : 1
+]
+
+@PointClass
+	base(Angle)
 	size(-4 -4 0, 4 4 8)
 	model({
 		"path" : "TrenchbroomEntityModels/WhirlwindBottom.obj",
