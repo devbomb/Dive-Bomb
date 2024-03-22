@@ -102,6 +102,10 @@ namespace FastDragon
             relativePos = relativePos.Scaled(new Vector3(-1, 1, -1));
 
             _portalCamera.GlobalTransform = _targetPortal.GlobalTransform * relativePos;
+
+            // HACK: Reduce the chance of the camera being blocked by a wall
+            // on the wrong side of the portal
+            _portalCamera.Near = _portalCamera.GlobalPosition.DistanceTo(_targetPortal.GlobalPosition) - 2;
         }
 
         private Transform3D TeleportTransform(Transform3D globalTransform)
