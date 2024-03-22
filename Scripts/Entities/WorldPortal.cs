@@ -49,14 +49,6 @@ namespace FastDragon
 
             if (_targetPortal == null)
                 throw new System.Exception($"Couldn't find a portal with ID {TargetPortalId}");
-
-            GD.Print($"Found target portal {_targetPortal.GetPath()}");
-
-            foreach (var mesh in this.EnumerateDescendantsOfType<MeshInstance3D>())
-            {
-                if (mesh != _portalMaterialHolder)
-                    mesh.MaterialOverride = _portalMaterialHolder.MaterialOverride;
-            }
         }
 
         private void OnBodyEntered(Node3D body)
