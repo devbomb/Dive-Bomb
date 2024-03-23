@@ -131,6 +131,7 @@ RecenterCamera={
 
 3d_render/layer_1="Default"
 3d_render/layer_2="VisibleInPortals"
+3d_render/layer_3="WorldPortal"
 
 [physics]
 

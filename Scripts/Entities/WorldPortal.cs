@@ -49,14 +49,6 @@ namespace FastDragon
 
             if (_targetPortal == null)
                 throw new System.Exception($"Couldn't find a portal with ID {TargetPortalId}");
-
-            GD.Print($"Found target portal {_targetPortal.GetPath()}");
-
-            foreach (var mesh in this.EnumerateDescendantsOfType<MeshInstance3D>())
-            {
-                if (mesh != _portalMaterialHolder)
-                    mesh.MaterialOverride = _portalMaterialHolder.MaterialOverride;
-            }
         }
 
         private void OnBodyEntered(Node3D body)
@@ -102,6 +94,10 @@ namespace FastDragon
             relativePos = relativePos.Scaled(new Vector3(-1, 1, -1));
 
             _portalCamera.GlobalTransform = _targetPortal.GlobalTransform * relativePos;
+
+            // HACK: Reduce the chance of the camera being blocked by a wall
+            // on the wrong side of the portal
+            _portalCamera.Near = _portalCamera.GlobalPosition.DistanceTo(_targetPortal.GlobalPosition) - 2;
         }
 
         private Transform3D TeleportTransform(Transform3D globalTransform)

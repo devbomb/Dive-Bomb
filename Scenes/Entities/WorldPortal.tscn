@@ -36,17 +36,17 @@ script = ExtResource("1_h2qwt")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(1920, 1080)
+render_target_update_mode = 4
 
 [node name="PortalCamera" type="Camera3D" parent="SubViewport"]
 unique_name_in_owner = true
-
-[node name="PortalMaterialHolder" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-material_override = SubResource("ShaderMaterial_jtgku")
+cull_mask = 1048571
 
 [node name="Plane" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+layers = 4
+material_override = SubResource("ShaderMaterial_jtgku")
 mesh = SubResource("PlaneMesh_cqmwr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
