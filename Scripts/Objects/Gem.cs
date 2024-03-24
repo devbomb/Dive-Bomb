@@ -24,6 +24,7 @@ namespace FastDragon
 
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
+        private VisibleOnScreenEnabler3D _visibleEnabler => GetNode<VisibleOnScreenEnabler3D>("%VisibleEnabler");
 
         private Vector3 _initialPos;
         private StateMachine _stateMachine = new StateMachine(typeof(GemState));
@@ -235,10 +236,27 @@ namespace FastDragon
             private Vector3 _homingStartPos;
             private float _homingTimer;
 
+            private VisibleOnScreenEnabler3D _storedVisibleEnabler;
+            private Node _visibleEnablerParent;
+
             public override void OnStateEntered()
             {
                 _homingStartPos = _gem.GlobalPosition;
                 _homingTimer = 0;
+
+                // HACK: Don't let the gem fall asleep when going off-screen,
+                // so the player doesn't get screwed over for moving too fast.
+                // Do this by temporarily removing the visibility detector while
+                // in this state.
+                _storedVisibleEnabler = _gem._visibleEnabler;
+                _visibleEnablerParent = _storedVisibleEnabler.GetParent();
+                _visibleEnablerParent.RemoveChild(_storedVisibleEnabler);
+                _gem.ProcessMode = ProcessModeEnum.Inherit;
+            }
+
+            public override void OnStateExited()
+            {
+                _visibleEnablerParent.AddChild(_storedVisibleEnabler);
             }
 
             public override void _PhysicsProcess(double deltaD)

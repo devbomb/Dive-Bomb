@@ -142,7 +142,8 @@ fill_from = Vector2(0.5, 0.5)
 collision_layer = 2
 script = ExtResource("1_ajgr5")
 
-[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+[node name="VisibleEnabler" type="VisibleOnScreenEnabler3D" parent="."]
+unique_name_in_owner = true
 aabb = AABB(-0.25, 0, -0.25, 0.5, 0.5, 0.5)
 
 [node name="SpinAnimator" type="AnimationPlayer" parent="."]
