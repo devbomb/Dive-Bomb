@@ -1,0 +1,10 @@
+@PointClass
+	base(Angle)
+	size(-8 -8 0, 8 8 16)
+	model({
+		"path" : "TrenchbroomEntityModels/WallTorch.obj",
+		"scale" : 0.25
+	})
+	= WallTorch : "WallTorch" [
+		energy(float)
+	]

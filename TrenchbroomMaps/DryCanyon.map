@@ -3,7 +3,6 @@
 // entity 0
 {
 "classname" "worldspawn"
-"_tb_def" "external:E:/source/experiments/FastDragon/addons/tbloader/tb-gameconfig/Main.fgd"
 "_tb_textures" "textures/Textures"
 "HomeWorld" "res://Scenes/Maps/Levels/TestMap.tscn"
 // brush 0

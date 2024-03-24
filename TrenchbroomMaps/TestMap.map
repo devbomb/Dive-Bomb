@@ -219,3 +219,18 @@
 "classname" "Fairy"
 "origin" "88 8 16"
 }
+// entity 27
+{
+"classname" "Vent"
+"origin" "-72 -8 -24"
+"angles" "0 180 0"
+"TargetVentId" "VentB"
+"VentId" "VentA"
+}
+// entity 28
+{
+"classname" "Vent"
+"origin" "360 -216 -24"
+"VentId" "VentB"
+"TargetVentId" "VentA"
+}
