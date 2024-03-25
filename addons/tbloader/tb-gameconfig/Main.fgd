@@ -43,6 +43,12 @@
 @SolidClass = DeathBarrier : "DeathBarrier" []
 @SolidClass = DrowningWater : "DrowningWater" []
 
+@SolidClass = CameraSuggestionZone : "CameraSuggestionZone" [
+	SuggestedYawDeg(float) : "SuggestedYawDeg" : 0
+	SuggestedPitchDeg(float) : "SuggestedPitchDeg" : 0
+	SuggestedDistance(float) : "SuggestedDistance" : 6
+]
+
 @PointClass
 	base(Angle)
 	size(-8 -8 -8, 8 8 8)
