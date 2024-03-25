@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cka17uxpf4jsi"]
+[gd_scene load_steps=23 format=3 uid="uid://cka17uxpf4jsi"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Projectiles/HandCannonBall.cs" id="1_lvbtc"]
-[ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="1_pcjdl"]
+[ext_resource type="PackedScene" uid="uid://dqne2gp56j26a" path="res://Scenes/Objects/BlobShadow.tscn" id="2_7mk11"]
+[ext_resource type="Script" path="res://Scripts/DecoratorNodes/UsesRenderLayersDecorator.cs" id="4_p1c8d"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ylmyn"]
 noise_type = 2
@@ -27,18 +28,6 @@ radius = 0.25
 height = 0.5
 radial_segments = 8
 rings = 5
-
-[sub_resource type="Gradient" id="Gradient_07rq0"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.489712, 0.757202)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_b3rkq"]
-gradient = SubResource("Gradient_07rq0")
-width = 100
-height = 100
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Curve" id="Curve_2jo4c"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -122,12 +111,12 @@ script = ExtResource("1_lvbtc")
 unique_name_in_owner = true
 mesh = SubResource("SphereMesh_21e0u")
 
-[node name="BlobShadow" type="Sprite3D" parent="Model" node_paths=PackedStringArray("Body")]
-transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0)
-top_level = true
-texture = SubResource("GradientTexture2D_b3rkq")
-script = ExtResource("1_pcjdl")
-Body = NodePath("../..")
+[node name="BlobShadow" parent="Model" instance=ExtResource("2_7mk11")]
+diameter = 0.5
+
+[node name="UsesRenderLayersDecorator" type="Node" parent="Model"]
+script = ExtResource("4_p1c8d")
+Layers = 8
 
 [node name="ExplosionParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
