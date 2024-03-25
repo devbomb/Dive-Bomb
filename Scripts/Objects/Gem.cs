@@ -144,14 +144,12 @@ namespace FastDragon
         private partial class Revealed : GemState
         {
             private float _flameChargeWindowTimer = 0;
-            private Node3D _blobShadow => _gem.GetNode<Node3D>("%BlobShadow");
             private Area3D _flameChargeArea => _gem.GetNode<Area3D>("%FlameChargeArea");
 
             public override void OnStateEntered()
             {
                 SetCollision(true);
                 _gem.TouchedGroundOnce = false;
-                _blobShadow.Scale = Vector3.One;
 
                 if (_gem.StartHidden)
                 {
@@ -163,7 +161,6 @@ namespace FastDragon
             public override void OnStateExited()
             {
                 SetCollision(false);
-                _blobShadow.Scale = Vector3.Zero;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -182,7 +179,6 @@ namespace FastDragon
                         if (collision.GetCollider() is StaticBody3D)
                         {
                             _gem.TouchedGroundOnce = true;
-                            UpdateBlobShadow();
                             SetCollision(false);
                         }
                     }
@@ -195,12 +191,6 @@ namespace FastDragon
                 }
             }
 
-            public override void _Process(double deltaD)
-            {
-                if (!_gem.TouchedGroundOnce)
-                    UpdateBlobShadow();
-            }
-
             private void HomeInIfPlayerChargingNearby()
             {
                 bool shouldHomeIn = _flameChargeArea
@@ -209,20 +199,6 @@ namespace FastDragon
 
                 if (shouldHomeIn)
                     _gem.StartHomingIn();
-            }
-
-            private void UpdateBlobShadow()
-            {
-                var collision = _gem.MoveAndCollide(
-                    Vector3.Down * 10,
-                    testOnly: true,
-                    recoveryAsCollision: true
-                );
-
-                var position = _gem.GlobalPosition;
-                position.Y = collision.GetPosition().Y;
-                _blobShadow.GlobalPosition = position + collision.GetNormal() * 0.001f;
-                _blobShadow.GlobalRotation = collision.GetNormal().ForwardToEulerAnglesRad();
             }
 
             private void SetCollision(bool enabled)

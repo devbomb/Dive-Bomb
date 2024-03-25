@@ -1,13 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=20 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
 [ext_resource type="AnimationLibrary" uid="uid://dp75nlaah5k6o" path="res://AnimationLibraries/PlayerAnimations.tres" id="2_om7jv"]
 [ext_resource type="PackedScene" uid="uid://dolfkovx44knj" path="res://Scenes/Objects/Sparx.tscn" id="3_5fc8t"]
+[ext_resource type="Script" path="res://Scripts/DecoratorNodes/UsesRenderLayersDecorator.cs" id="4_6sal7"]
 [ext_resource type="Script" path="res://Scripts/Objects/OrbitCamera.cs" id="4_15biq"]
-[ext_resource type="Script" path="res://Scripts/BlobShadow.cs" id="4_db58r"]
 [ext_resource type="Script" path="res://Scripts/PhysicsInterpolation/PhysicsInterpolator3D.cs" id="6_0xbpm"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
+[ext_resource type="PackedScene" uid="uid://dqne2gp56j26a" path="res://Scenes/Objects/BlobShadow.tscn" id="9_1p7rc"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://ciwpie76rxyn1" path="res://BlenderModels/AnotherPlatformerMan.blend" id="10_3vscj"]
 
@@ -58,18 +59,6 @@ radius = 0.2
 [sub_resource type="BoxMesh" id="BoxMesh_8oevv"]
 size = Vector3(1, 2, 1)
 
-[sub_resource type="Gradient" id="Gradient_07rq0"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.489712, 0.757202)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kvv27"]
-gradient = SubResource("Gradient_07rq0")
-width = 100
-height = 100
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_a4opu")
 
@@ -89,6 +78,10 @@ playback_default_blend_time = 0.1
 unique_name_in_owner = true
 
 [node name="AnotherPlatformerMan" parent="Model" instance=ExtResource("10_3vscj")]
+
+[node name="UseRenderLayersDecorator" type="Node" parent="Model/AnotherPlatformerMan"]
+script = ExtResource("4_6sal7")
+Layers = 8
 
 [node name="FairyKissPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true
@@ -192,12 +185,7 @@ skeleton = NodePath("../..")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25565, 0)
 
-[node name="BlobShadow" type="Sprite3D" parent="." node_paths=PackedStringArray("Body")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-top_level = true
-texture = SubResource("GradientTexture2D_kvv27")
-script = ExtResource("4_db58r")
-Body = NodePath("..")
+[node name="BlobShadow" parent="." instance=ExtResource("9_1p7rc")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
 

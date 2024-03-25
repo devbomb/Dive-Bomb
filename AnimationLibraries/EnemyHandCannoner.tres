@@ -160,6 +160,30 @@ tracks/7/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = PackedFloat32Array(0, 1, 0.0773484, 0.000323257, 0.677502, 0.731442, 0.05, 1, 0.0773484, 0.000323257, 0.677502, 0.731442, 0.1, 1, 0.649703, 0.0203535, -0.0636942, 0.757241, 0.15, 1, 0.649703, 0.0203535, -0.0636942, 0.757241, 0.35, 1, 0.265246, -0.631365, 0.412636, 0.600628, 0.65, 1, -0.00239211, -0.0614758, 0.783235, 0.618674, 0.75, 1, -0.211703, 0.0355942, -0.149882, 0.965117, 0.8, 1, -0.205245, 0.0629225, -0.022627, 0.976424)
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlobShadow:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35),
+"transitions": PackedFloat32Array(1, 0.594604, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.745776), Vector3(0, 0, 2.17296)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BlobShadow:diameter")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.35, 1.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_bhbp3"]
 resource_name = "FireRecoil"
@@ -940,6 +964,30 @@ tracks/90/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Hand_R")
 tracks/90/interp = 1
 tracks/90/loop_wrap = true
 tracks/90/keys = PackedFloat32Array(0, 1, 0.00919459, 0.00919459, -0.000635938, 0.999915)
+tracks/91/type = "value"
+tracks/91/imported = false
+tracks/91/enabled = true
+tracks/91/path = NodePath("BlobShadow:position")
+tracks/91/interp = 1
+tracks/91/loop_wrap = true
+tracks/91/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/92/type = "value"
+tracks/92/imported = false
+tracks/92/enabled = true
+tracks/92/path = NodePath("BlobShadow:diameter")
+tracks/92/interp = 1
+tracks/92/loop_wrap = true
+tracks/92/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_edirh"]
 resource_name = "Shield"

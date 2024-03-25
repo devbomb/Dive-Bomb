@@ -88,8 +88,6 @@ namespace FastDragon
             AddChild(_stateMachine);
             _stateMachine.StateChanging += OnStateChanging;
 
-            MakeVisibleInPortals();
-
             base._Ready();
 
             SignalBus.Instance.LevelReset += Respawn;
@@ -121,6 +119,15 @@ namespace FastDragon
             Animator.Play("RESET", 0);
             Animator.Advance(0);
             ChangeState<PlayerWalkState>();
+        }
+
+        public void SetVisibleInPortals(bool visible)
+        {
+            var visuals = this.EnumerateDescendantsOfType<VisualInstance3D>();
+            foreach (var v in visuals)
+            {
+                v.SetLayerMaskValue(RenderLayer.VisibleInPortals, visible);
+            }
         }
 
         /// <summary>
@@ -212,13 +219,6 @@ namespace FastDragon
             }
         }
 
-        private void MakeVisibleInPortals()
-        {
-            var visuals = this.EnumerateDescendantsOfType<VisualInstance3D>();
-            foreach (var v in visuals)
-            {
-                v.SetLayerMaskValue(RenderLayer.VisibleInPortals, true);
-            }
-        }
+
     }
 }

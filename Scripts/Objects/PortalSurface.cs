@@ -68,6 +68,7 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
+                player.SetVisibleInPortals(true);
                 player.ChangeState<PlayerManhandledState>();
                 player.Animator.Play("Jump");
                 player.Velocity = Vector3.Up * Player.Jump.InitVSpeed;
@@ -94,6 +95,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                player.SetVisibleInPortals(true);
                 player.ChangeState<PlayerManhandledState>();
                 player.Animator.Play("Dive");
                 _skipCameraCheck = true;
