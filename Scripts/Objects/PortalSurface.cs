@@ -68,11 +68,10 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
+                player.SetVisibleInPortals(true);
                 player.ChangeState<PlayerManhandledState>();
                 player.Animator.Play("Jump");
                 player.Velocity = Vector3.Up * Player.Jump.InitVSpeed;
-
-                _portal.MakeVisibleInPortals(player);
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -96,6 +95,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                player.SetVisibleInPortals(true);
                 player.ChangeState<PlayerManhandledState>();
                 player.Animator.Play("Dive");
                 _skipCameraCheck = true;
@@ -199,15 +199,6 @@ namespace FastDragon
                 5,
                 delta
             );
-        }
-
-        private void MakeVisibleInPortals(Node3D node)
-        {
-            var visuals = node.EnumerateDescendantsOfType<VisualInstance3D>();
-            foreach (var v in visuals)
-            {
-                v.SetLayerMaskValue(RenderLayer.VisibleInPortals, true);
-            }
         }
     }
 }

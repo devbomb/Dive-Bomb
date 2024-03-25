@@ -34,6 +34,7 @@ namespace FastDragon
             _exitAnimationStartPos += Vector3.Up * ExitAnimationStartHeight;
             _exitAnimationStartPos -= _playerSpawn.GlobalForward() * (player.Camera.OrbitDistance + 2);
 
+            player.SetVisibleInPortals(true);
             player.ChangeState<PlayerManhandledState>();
             player.GlobalRotation = _playerSpawn.GlobalRotation;
             player.GlobalPosition = _exitAnimationStartPos;
@@ -73,6 +74,7 @@ namespace FastDragon
                 player.GlobalPosition = _playerSpawn.GlobalPosition;
                 player.ResetPhysicsInterpolation();
                 player.ChangeState<PlayerWalkState>();
+                player.SetVisibleInPortals(false);
             }
         }
     }

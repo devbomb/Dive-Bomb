@@ -121,6 +121,15 @@ namespace FastDragon
             ChangeState<PlayerWalkState>();
         }
 
+        public void SetVisibleInPortals(bool visible)
+        {
+            var visuals = this.EnumerateDescendantsOfType<VisualInstance3D>();
+            foreach (var v in visuals)
+            {
+                v.SetLayerMaskValue(RenderLayer.VisibleInPortals, visible);
+            }
+        }
+
         /// <summary>
         /// If the player is currently vulnerable, deals 1 damage and changes
         /// to the given state.  The given state should be some sort of damage
@@ -209,5 +218,7 @@ namespace FastDragon
                     yield return state;
             }
         }
+
+
     }
 }
