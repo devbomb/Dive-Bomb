@@ -88,8 +88,6 @@ namespace FastDragon
             AddChild(_stateMachine);
             _stateMachine.StateChanging += OnStateChanging;
 
-            MakeVisibleInPortals();
-
             base._Ready();
 
             SignalBus.Instance.LevelReset += Respawn;
@@ -209,15 +207,6 @@ namespace FastDragon
 
                 if (child is PlayerState state)
                     yield return state;
-            }
-        }
-
-        private void MakeVisibleInPortals()
-        {
-            var visuals = this.EnumerateDescendantsOfType<VisualInstance3D>();
-            foreach (var v in visuals)
-            {
-                v.SetLayerMaskValue(RenderLayer.VisibleInPortals, true);
             }
         }
     }
