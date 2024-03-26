@@ -2280,3 +2280,130 @@
 ( -320 1344 576 ) ( -320 960 496 ) ( -320 960 576 ) __TB_empty 0 0 0 1 1
 }
 }
+// entity 124
+{
+"classname" "EnemyHandCannoner"
+"origin" "400 1320 32"
+"angles" "0 -90 0"
+}
+// entity 125
+{
+"classname" "EnemyHandCannoner"
+"origin" "792 1592 32"
+}
+// entity 126
+{
+"classname" "EnemyHandCannoner"
+"origin" "-120 600 0"
+}
+// entity 127
+{
+"classname" "EnemyHandCannoner"
+"origin" "480 536 0"
+}
+// entity 128
+{
+"classname" "EnemyHandCannoner"
+"origin" "104 1624 32"
+"angles" "0 90 0"
+"AggroRadius" "40"
+}
+// entity 129
+{
+"classname" "EnemyHandCannoner"
+"origin" "8 1624 32"
+"angles" "0 90 0"
+"AggroRadius" "40"
+}
+// entity 130
+{
+"classname" "EnemyHandCannoner"
+"origin" "-88 1624 32"
+"angles" "0 90 0"
+"AggroRadius" "40"
+}
+// entity 131
+{
+"classname" "EnemyHandCannoner"
+"origin" "104 1896 32"
+"angles" "0 -90 0"
+"AggroRadius" "80"
+}
+// entity 132
+{
+"classname" "EnemyHandCannoner"
+"origin" "8 1896 32"
+"angles" "0 -90 0"
+"AggroRadius" "80"
+}
+// entity 133
+{
+"classname" "EnemyHandCannoner"
+"origin" "-88 1896 32"
+"angles" "0 -90 0"
+"AggroRadius" "80"
+}
+// entity 134
+{
+"classname" "EnemyHandCannoner"
+"origin" "-344 1144 112"
+"angles" "0 90 0"
+}
+// entity 135
+{
+"classname" "EnemyHandCannoner"
+"origin" "-312 840 176"
+"angles" "0 90 0"
+}
+// entity 136
+{
+"classname" "EnemyHandCannoner"
+"origin" "-200 1144 256"
+"angles" "0 -90 0"
+}
+// entity 137
+{
+"classname" "EnemyHandCannoner"
+"origin" "112 1152 304"
+"angles" "0 180 0"
+}
+// entity 138
+{
+"classname" "EnemyHandCannoner"
+"origin" "-8 928 432"
+"angles" "0 -90 0"
+}
+// entity 139
+{
+"classname" "EnemyHandCannoner"
+"origin" "-472 1160 352"
+"angles" "0 -90 0"
+}
+// entity 140
+{
+"classname" "EnemyHandCannoner"
+"origin" "-392 1160 352"
+"angles" "0 -90 0"
+}
+// entity 141
+{
+"classname" "RedGem"
+"origin" "-116 1652 352"
+}
+// entity 142
+{
+"classname" "RedGem"
+"origin" "-140 1604 352"
+}
+// entity 143
+{
+"classname" "EnemyHandCannoner"
+"origin" "-16 1408 352"
+"angles" "0 180 0"
+}
+// entity 144
+{
+"classname" "EnemyHandCannoner"
+"origin" "0 1816 448"
+"angles" "0 -90 0"
+}
