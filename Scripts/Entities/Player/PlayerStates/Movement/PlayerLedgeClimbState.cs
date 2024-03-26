@@ -38,7 +38,7 @@ namespace FastDragon
             _player.GlobalPosition = _endPos;
             _player.Model.TopLevel = false;
             _player.Model.Position = Vector3.Zero;
-            _player.Model.GlobalRotation = Vector3.Zero;
+            _player.Model.Rotation = Vector3.Zero;
 
             _player.Animator.Play("RESET", customBlend: 0);
             _player.Animator.Advance(0);
@@ -65,7 +65,6 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             _timer += delta;
-
             _player.GlobalPosition = _startPos.Lerp(_endPos, _timer / Duration);
 
             if (_timer >= Duration)

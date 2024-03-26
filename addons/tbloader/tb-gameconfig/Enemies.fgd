@@ -30,4 +30,5 @@
 			10: "Yellow"
 			25: "Magenta"
 		]
+		AggroRadius(float) : "AggroRadius" : 20
 	]

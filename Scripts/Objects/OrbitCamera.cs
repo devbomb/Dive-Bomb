@@ -46,6 +46,9 @@ namespace FastDragon
         private float _orbitYawRad;
         private float _orbitPitchRad;
 
+        private float _suggestedYawRad;
+        private float _suggestedPitchRad;
+        private float _suggestedDistance;
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(OrbitCameraState));
         private readonly PhysicsInterpolator3D _interpolator = new PhysicsInterpolator3D();
@@ -67,6 +70,19 @@ namespace FastDragon
             OrbitPitchRad = 0;
             OrbitYawRad = FollowTarget.GlobalRotation.Y;
             ApplyAnglesAndDistance();
+        }
+
+        public void SuggestAngle(float yawRad, float pitchRad, float distance)
+        {
+            _suggestedYawRad = yawRad;
+            _suggestedPitchRad = pitchRad;
+            _suggestedDistance = distance;
+            _stateMachine.ChangeState<SuggestingAngle>();
+        }
+
+        public void StopSuggestingAngle()
+        {
+            _stateMachine.ChangeState<Unlocked>();
         }
 
         public void Recenter()
@@ -181,6 +197,57 @@ namespace FastDragon
                     FollowDistance,
                     ZoomSpeed * delta
                 );
+            }
+        }
+
+        private partial class SuggestingAngle : OrbitCameraState
+        {
+            private const float Duration = 0.5f;
+
+            private float _timer;
+            private float _initialPitchRad;
+            private float _initialYawRad;
+            private float _initialDistance;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _initialPitchRad = _camera.OrbitPitchRad;
+                _initialYawRad = _camera.OrbitYawRad;
+                _initialDistance = _camera.OrbitDistance;
+            }
+
+            public override void _Process(double deltaD)
+            {
+                // Move the camera to the suggested angle
+                _timer += (float)deltaD;
+
+                float t = _timer / Duration;
+                t = Mathf.Min(1, t);
+
+                _camera.OrbitPitchRad = Mathf.LerpAngle(
+                    _initialPitchRad,
+                    _camera._suggestedPitchRad,
+                    t
+                );
+
+                _camera.OrbitYawRad = Mathf.LerpAngle(
+                    _initialYawRad,
+                    _camera._suggestedYawRad,
+                    t
+                );
+
+                _camera.OrbitDistance = Mathf.Lerp(
+                    _initialDistance,
+                    _camera._suggestedDistance,
+                    t
+                );
+
+                _camera.ApplyAnglesAndDistance();
+
+                // ...unless the player has their OWN idea for a camera angle.
+                if (InputService.RightStick.Length() > 0.01f)
+                    ChangeState<Unlocked>();
             }
         }
 

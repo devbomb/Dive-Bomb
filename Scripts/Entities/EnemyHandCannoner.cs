@@ -9,6 +9,7 @@ namespace FastDragon
         [Export] public float ShieldDuration = 1.5f;
         [Export] public float AimDuration = 1;
         [Export] public float RecoilDuration = 1;
+        [Export] public float AggroRadius = 20;
 
         public bool IsAlive =>
             !(_stateMachine.CurrentState is Dieing) &&
@@ -34,6 +35,8 @@ namespace FastDragon
 
             SignalBus.Instance.LevelReset += Reset;
             Reset();
+
+            _aggroSphere.Radius = AggroRadius;
         }
 
         public void Reset()

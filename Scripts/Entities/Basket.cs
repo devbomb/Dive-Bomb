@@ -8,6 +8,7 @@ namespace FastDragon
 
         private CollisionShape3D _collisionShape => GetNode<CollisionShape3D>("%CollisionShape");
         private Node3D _model => GetNode<Node3D>("%Model");
+        private GpuParticles3D _particles => GetNode<GpuParticles3D>("%Particles");
         private Gem _gem;
 
         public override void _Ready()
@@ -31,6 +32,7 @@ namespace FastDragon
         {
             _collisionShape.Disabled = true;
             _model.Visible = false;
+            _particles.Emitting = true;
             _gem.Reveal();
         }
 
@@ -38,6 +40,7 @@ namespace FastDragon
         {
             _collisionShape.Disabled = true;
             _model.Visible = false;
+            _particles.Emitting = true;
             _gem.Reveal();
         }
     }
