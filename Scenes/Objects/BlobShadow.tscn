@@ -31,7 +31,6 @@ func _enter_tree():
 func _update_dimensions():
 
 	if (Engine.is_editor_hint() && owner == null):
-		print(\"No, I won't edit myself in my own scene\")
 		return
 	
 	$Decal.size = Vector3(_diameter, max_height, _diameter)
