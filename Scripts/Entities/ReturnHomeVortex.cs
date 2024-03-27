@@ -4,9 +4,8 @@ namespace FastDragon
 {
     public partial class ReturnHomeVortex : Node3D
     {
-        private const float AscendSpeed = 4;
+        private const float AscendDuration = 3.75f;
         private const float RotSpeedDeg = 180;
-        private const float CameraRotSpeedDeg = 90;
 
         [Export] public float ExitHeight = 15;
 
@@ -20,7 +19,8 @@ namespace FastDragon
                 return;
 
             // Spin the player and move them up
-            _ensnaredPlayer.GlobalPosition += Vector3.Up * AscendSpeed * delta;
+            float speed = ExitHeight / AscendDuration;
+            _ensnaredPlayer.GlobalPosition += Vector3.Up * speed * delta;
             _ensnaredPlayer.GlobalRotationDegrees += Vector3.Up * RotSpeedDeg * delta;
 
             // Rotate the camera underneath the player
