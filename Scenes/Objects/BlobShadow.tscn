@@ -1,62 +1,109 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqne2gp56j26a"]
+[gd_scene load_steps=5 format=3 uid="uid://5oie51hsk73p"]
 
-[sub_resource type="GDScript" id="GDScript_j3l7e"]
+[sub_resource type="GDScript" id="GDScript_ag0do"]
 script/source = "@tool
 extends Node3D
 
-@export var diameter: float = 1:
-	get: return _diameter
+@export var only_update_when_moving: bool = false
+@export var ignore_bodies: Array[PhysicsBody3D]:
+	get: return _ignore_bodies
 	set(value):
-		_diameter = value
-		_update_dimensions()
-var _diameter: float = 1
+		_ignore_bodies = value
+		_ray_cast.clear_exceptions()
+		for body in value:
+			_ray_cast.add_exception(body)
+		_update_everything()
+var _ignore_bodies: Array[PhysicsBody3D]
 
-@export var max_height: float = 100:
-	get: return _max_height
+@export var max_length: float = 100:
+	get: return _max_length
 	set(value):
-		_max_height = value
-		_update_dimensions()
-var _max_height: float = 100
+		_max_length = value
+		_update_everything()
+var _max_length: float = 100
 
 @export var height_margin: float = 0.25:
 	get: return _height_margin
 	set(value):
 		_height_margin = value
-		_update_dimensions()
+		_update_everything()
 var _height_margin: float = 0.25
 
-func _enter_tree():
-	_update_dimensions()
+@export var radius: float = 0.5:
+	get: return _radius
+	set(value):
+		_radius = value
+		_update_everything()
+var _radius: float = 0.5
 
-func _update_dimensions():
+var _ray_cast: ShapeCast3D:
+	get: return %RayCast3D
 
+var _decal: Decal:
+	get: return %Decal
+
+@onready var _last_pos: Vector3 = global_position
+
+func _ready():
+	for body in _ignore_bodies:
+		_ray_cast.add_exception(body)
+	_update_everything()
+
+func _process(delta):
+	var moving: bool = !_last_pos.is_equal_approx(global_position)
+	_last_pos = global_position
+
+	global_rotation = Vector3(0, 0, 0)
+
+	if (!only_update_when_moving || moving):
+		_update_everything()
+
+func _update_everything():
 	if (Engine.is_editor_hint() && owner == null):
 		return
 	
-	$Decal.size = Vector3(_diameter, max_height, _diameter)
-	$Decal.position.y = -max_height / 2
-	$Decal.position.y += height_margin
+	_decal.size = Vector3(radius * 2, radius * 2, radius * 2)
+	_ray_cast.position = Vector3(0, height_margin, 0)
+	_ray_cast.target_position = Vector3(0, -max_length - height_margin, 0)
+	
+	if (!is_inside_tree()):
+		return
+
+	_ray_cast.force_shapecast_update()
+	if (_ray_cast.is_colliding()):
+		_decal.global_position.y = _ray_cast.get_collision_point(0).y
+	else:
+		_decal.position.y = -max_length
 "
 
-[sub_resource type="Gradient" id="Gradient_07rq0"]
+[sub_resource type="Gradient" id="Gradient_txljt"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.489712, 0.757202)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rbxn6"]
-gradient = SubResource("Gradient_07rq0")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2c7an"]
+gradient = SubResource("Gradient_txljt")
 width = 100
 height = 100
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0w0dm"]
+height = 0.1
+
 [node name="BlobShadow" type="Node3D"]
-script = SubResource("GDScript_j3l7e")
+script = SubResource("GDScript_ag0do")
 
 [node name="Decal" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -49.75, 0)
-size = Vector3(1, 100, 1)
-texture_albedo = SubResource("GradientTexture2D_rbxn6")
+unique_name_in_owner = true
+size = Vector3(1, 0.1, 1)
+texture_albedo = SubResource("GradientTexture2D_2c7an")
 upper_fade = 0.000585938
 lower_fade = 0.000565979
 cull_mask = 1
+
+[node name="RayCast3D" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
+enabled = false
+shape = SubResource("CylinderShape3D_0w0dm")
+target_position = Vector3(0, -100, 0)
