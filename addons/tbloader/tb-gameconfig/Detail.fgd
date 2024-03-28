@@ -9,6 +9,8 @@
 		energy(float)
 	]
 
+@PointClass base(Angle) = Fireplace : "Fireplace" []
+
 @PointClass
 	base(Angle)
 	model({
