@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://Scripts/Objects/OrbitCamera.cs" id="4_15biq"]
 [ext_resource type="Script" path="res://Scripts/PhysicsInterpolation/PhysicsInterpolator3D.cs" id="6_0xbpm"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
-[ext_resource type="PackedScene" uid="uid://dqne2gp56j26a" path="res://Scenes/Objects/BlobShadow.tscn" id="9_1p7rc"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="9_vmh20"]
 [ext_resource type="PackedScene" uid="uid://ciwpie76rxyn1" path="res://BlenderModels/AnotherPlatformerMan.blend" id="10_3vscj"]
 
 [sub_resource type="GDScript" id="GDScript_cpnxc"]
@@ -185,7 +185,8 @@ skeleton = NodePath("../..")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25565, 0)
 
-[node name="BlobShadow" parent="." instance=ExtResource("9_1p7rc")]
+[node name="BlobShadow" parent="." node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("9_vmh20")]
+ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
 

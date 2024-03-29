@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://cpn1spfliqp15"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Gem.cs" id="1_ajgr5"]
-[ext_resource type="PackedScene" uid="uid://dqne2gp56j26a" path="res://Scenes/Objects/BlobShadow.tscn" id="2_jj5qc"]
 [ext_resource type="Script" path="res://Scripts/DecoratorNodes/UsesRenderLayersDecorator.cs" id="2_pdoj1"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="3_4j54j"]
 
 [sub_resource type="Animation" id="Animation_jfllq"]
 length = 0.001
@@ -185,8 +185,7 @@ unique_name_in_owner = true
 script = ExtResource("2_pdoj1")
 Layers = 8
 
-[node name="BlobShadow" parent="." instance=ExtResource("2_jj5qc")]
-diameter = 0.5
-max_height = 0.5
+[node name="BlobShadow" parent="." instance=ExtResource("3_4j54j")]
+radius = 0.25
 
 [connection signal="body_entered" from="CollectionArea" to="." method="OnCollectionAreaBodyEntered"]
