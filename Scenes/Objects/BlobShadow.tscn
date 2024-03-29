@@ -5,13 +5,18 @@ script/source = "@tool
 extends Node3D
 
 @export var only_update_when_moving: bool = true
+
 @export var ignore_bodies: Array[PhysicsBody3D]:
 	get: return _ignore_bodies
 	set(value):
 		_ignore_bodies = value
+		
+		_shape_cast.clear_exceptions()
 		_ray_cast.clear_exceptions()
 		for body in value:
+			_shape_cast.add_exception(body)
 			_ray_cast.add_exception(body)
+
 		_update_everything()
 var _ignore_bodies: Array[PhysicsBody3D]
 
@@ -36,7 +41,10 @@ var _height_margin: float = 0.25
 		_update_everything()
 var _radius: float = 0.5
 
-var _ray_cast: ShapeCast3D:
+var _shape_cast: ShapeCast3D:
+	get: return %ShapeCast3D
+	
+var _ray_cast: RayCast3D:
 	get: return %RayCast3D
 
 var _decal: Decal:
@@ -46,6 +54,7 @@ var _decal: Decal:
 
 func _ready():
 	for body in _ignore_bodies:
+		_shape_cast.add_exception(body)
 		_ray_cast.add_exception(body)
 	_update_everything()
 
@@ -63,17 +72,37 @@ func _update_everything():
 		return
 	
 	_decal.size = Vector3(radius * 2, radius * 2, radius * 2)
-	_ray_cast.position = Vector3(0, height_margin, 0)
-	_ray_cast.target_position = Vector3(0, -max_length - height_margin, 0)
-	
+
 	if (!is_inside_tree()):
 		return
 
-	_ray_cast.force_shapecast_update()
-	if (_ray_cast.is_colliding()):
-		_decal.global_position.y = _ray_cast.get_collision_point(0).y
+	if (_check_shape_cast()):
+		_decal.global_position.y = _shape_cast.get_collision_point(0).y
+	elif (_check_ray_cast()):
+		# ShapeCast3D is a LIAR.  It sometimes pretends it didn't collide with
+		# anything, when it very clearly did.  This results in the shadow
+		# flickering constantly.
+		# So, as a backup, try again with a RayCast3D.  This way, it'll fill
+		# in the gaps whenever ShapeCast3D decides to be a little jerkface.
+		_decal.global_position.y = _ray_cast.get_collision_point().y
 	else:
 		_decal.position.y = -max_length
+
+func _check_shape_cast() -> bool:
+	_shape_cast.position = Vector3(0, height_margin, 0)
+	_shape_cast.target_position = Vector3(0, -max_length - height_margin, 0)
+
+	_shape_cast.force_update_transform()
+	_shape_cast.force_shapecast_update()
+	return _shape_cast.is_colliding()
+
+func _check_ray_cast() -> bool:
+	_ray_cast.position = Vector3(0, height_margin, 0)
+	_ray_cast.target_position = Vector3(0, -max_length - height_margin, 0)
+	
+	_ray_cast.force_update_transform()
+	_ray_cast.force_raycast_update()
+	return _ray_cast.is_colliding()
 "
 
 [sub_resource type="Gradient" id="Gradient_txljt"]
@@ -102,8 +131,13 @@ upper_fade = 0.000585938
 lower_fade = 0.000565979
 cull_mask = 1
 
-[node name="RayCast3D" type="ShapeCast3D" parent="."]
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 unique_name_in_owner = true
 enabled = false
 shape = SubResource("CylinderShape3D_0w0dm")
 target_position = Vector3(0, -100, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+enabled = false
+hit_back_faces = false
