@@ -186,7 +186,6 @@ script = ExtResource("2_pdoj1")
 Layers = 8
 
 [node name="BlobShadow" parent="." instance=ExtResource("3_4j54j")]
-only_update_when_moving = true
 radius = 0.25
 
 [connection signal="body_entered" from="CollectionArea" to="." method="OnCollectionAreaBodyEntered"]
