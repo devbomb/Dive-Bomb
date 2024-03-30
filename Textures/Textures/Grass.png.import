@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tec0nm2wtxpi"
-path.bptc="res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.bptc.ctex"
+uid="uid://cvuba0wdl4pkv"
+path.bptc="res://.godot/imported/Grass.png-9a7035600c1a660ded0274feff68221e.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Textures/DarkWood.png"
-dest_files=["res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.bptc.ctex"]
+source_file="res://Textures/Textures/Grass.png"
+dest_files=["res://.godot/imported/Grass.png-9a7035600c1a660ded0274feff68221e.bptc.ctex"]
 
 [params]
 

@@ -234,3 +234,11 @@
 "VentId" "VentB"
 "TargetVentId" "VentA"
 }
+// entity 29
+{
+"classname" "StandardPortal"
+"origin" "120 -468 -64"
+"angles" "0 90 0"
+"TargetMap" "res://Scenes/Maps/Levels/Castle.tscn"
+"SkyboxEnvironment" "res://Environments/Castle.tres"
+}

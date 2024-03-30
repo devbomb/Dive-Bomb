@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tec0nm2wtxpi"
-path.bptc="res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.bptc.ctex"
+uid="uid://0tqc01k4b8el"
+path.bptc="res://.godot/imported/Smoothstone.png-ec66b13eb4625ce054aee60bb420bf03.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Textures/DarkWood.png"
-dest_files=["res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.bptc.ctex"]
+source_file="res://Textures/Textures/Smoothstone.png"
+dest_files=["res://.godot/imported/Smoothstone.png-ec66b13eb4625ce054aee60bb420bf03.bptc.ctex"]
 
 [params]
 

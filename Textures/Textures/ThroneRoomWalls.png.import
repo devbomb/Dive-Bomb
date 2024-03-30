@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tec0nm2wtxpi"
-path.bptc="res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.bptc.ctex"
+uid="uid://by35hen8e5ix4"
+path.bptc="res://.godot/imported/ThroneRoomWalls.png-896a0361fb2fc461f4c7ce49f3d03ec3.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Textures/DarkWood.png"
-dest_files=["res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.bptc.ctex"]
+source_file="res://Textures/Textures/ThroneRoomWalls.png"
+dest_files=["res://.godot/imported/ThroneRoomWalls.png-896a0361fb2fc461f4c7ce49f3d03ec3.bptc.ctex"]
 
 [params]
 

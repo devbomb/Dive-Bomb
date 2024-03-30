@@ -1,0 +1,3443 @@
+// Game: FastDragon
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"HomeWorld" "res://Scenes/Maps/Levels/TestMap.tscn"
+"_tb_textures" "Textures/Textures"
+// brush 0
+{
+( -64 48 -32 ) ( -64 49 -32 ) ( -64 48 -31 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -64 64 -32 ) ( -64 64 -31 ) ( -63 64 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -64 48 -32 ) ( -63 48 -32 ) ( -64 49 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 64 176 0 ) ( 64 177 0 ) ( 65 176 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 64 320 0 ) ( 65 320 0 ) ( 64 320 1 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 64 176 0 ) ( 64 176 1 ) ( 64 177 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+}
+// brush 1
+{
+( 64 352 256 ) ( 64 304 256 ) ( 64 352 -32 ) Textures/PaleBricks 0 0 0 1 1
+( 320 320 -32 ) ( 64 320 -32 ) ( 320 320 256 ) Textures/PaleBricks 0 0 0 1 1
+( 320 352 0 ) ( 64 352 0 ) ( 320 304 0 ) Textures/PaleBricks 0 0 0 1 1
+( 320 304 256 ) ( 64 304 256 ) ( 320 352 256 ) Textures/PaleBricks 0 0 0 1 1
+( 320 384 256 ) ( 64 384 256 ) ( 320 384 -32 ) Textures/PaleBricks 0 0 0 1 1
+( 320 304 256 ) ( 320 352 256 ) ( 320 304 -32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 2
+{
+( -320 304 -32 ) ( -320 352 -32 ) ( -320 304 256 ) Textures/PaleBricks 0 0 0 1 1
+( -320 320 256 ) ( -64 320 256 ) ( -320 320 -32 ) Textures/PaleBricks 0 0 0 1 1
+( -320 304 0 ) ( -64 304 0 ) ( -320 352 0 ) Textures/PaleBricks 0 0 0 1 1
+( -320 352 256 ) ( -64 352 256 ) ( -320 304 256 ) Textures/PaleBricks 0 0 0 1 1
+( -320 384 -32 ) ( -64 384 -32 ) ( -320 384 256 ) Textures/PaleBricks 0 0 0 1 1
+( -64 304 -32 ) ( -64 304 256 ) ( -64 352 -32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 3
+{
+( -64 352 -32 ) ( -64 352 0 ) ( -64 304 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -64 320 -32 ) ( -64 320 0 ) ( 64 320 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 64 352 -32 ) ( -64 352 -32 ) ( 64 304 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -64 352 0 ) ( 64 352 0 ) ( -64 304 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 64 368 -32 ) ( 64 368 0 ) ( -64 368 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 64 304 -32 ) ( 64 304 0 ) ( 64 352 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+}
+// brush 4
+{
+( -64 304 192 ) ( -64 305 192 ) ( -64 304 193 ) Textures/PaleBricks 0 0 0 1 1
+( -64 320 192 ) ( -64 320 193 ) ( -63 320 192 ) Textures/PaleBricks 0 0 0 1 1
+( -64 304 160 ) ( -63 304 160 ) ( -64 305 160 ) Textures/PaleBricks 0 0 0 1 1
+( 64 368 256 ) ( 64 369 256 ) ( 65 368 256 ) Textures/PaleBricks 0 0 0 1 1
+( 64 384 256 ) ( 65 384 256 ) ( 64 384 257 ) Textures/PaleBricks 0 0 0 1 1
+( 64 368 256 ) ( 64 368 257 ) ( 64 369 256 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 5
+{
+( -32 768 -16 ) ( -32 768 32 ) ( -32 672 -16 ) Textures/Smoothstone 0 -0.99999905 0 1 1
+( -32 768 32 ) ( 32 768 32 ) ( 32 672 -16 ) Textures/Smoothstone 0 0 0 1 1
+( 32 672 -16 ) ( 32 768 -16 ) ( -32 768 -16 ) Textures/Smoothstone 0 0 0 1 1
+( 32 768 -16 ) ( 32 768 32 ) ( -32 768 32 ) Textures/Smoothstone 0 0 0 1 1
+( 32 672 -16 ) ( 32 768 32 ) ( 32 768 -16 ) Textures/Smoothstone 0 -0.99999905 0 1 1
+}
+// brush 6
+{
+( -560 752 16 ) ( -560 753 16 ) ( -560 752 17 ) Textures/PaleBricks 0 0 0 1 1
+( -320 800 16 ) ( -320 800 17 ) ( -319 800 16 ) Textures/PaleBricks 0 0 0 1 1
+( -320 752 0 ) ( -319 752 0 ) ( -320 753 0 ) Textures/PaleBricks 0 0 0 1 1
+( 320 928 32 ) ( 320 929 32 ) ( 321 928 32 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1472 32 ) ( 321 1472 32 ) ( 320 1472 33 ) Textures/PaleBricks 0 0 0 1 1
+( 480 928 32 ) ( 480 928 33 ) ( 480 929 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 7
+{
+( -480 784 0 ) ( -480 785 0 ) ( -480 784 1 ) Textures/Smoothstone 0 0 0 1 1
+( -320 736 0 ) ( -320 736 1 ) ( -319 736 0 ) Textures/Smoothstone 0 0 0 1 1
+( -320 784 0 ) ( -319 784 0 ) ( -320 785 0 ) Textures/Smoothstone 0 0 0 1 1
+( 528 1040 32 ) ( 528 1041 32 ) ( 529 1040 32 ) Textures/Smoothstone 0 0 0 1 1
+( 528 768 32 ) ( 529 768 32 ) ( 528 768 33 ) Textures/Smoothstone 0 0 0 1 1
+( -32 1040 32 ) ( -32 1040 33 ) ( -32 1041 32 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 8
+{
+( 32 736 -16 ) ( 32 737 -16 ) ( 32 736 -15 ) Textures/Smoothstone 0 0 0 1 1
+( 32 736 -16 ) ( 32 736 -15 ) ( 33 736 -16 ) Textures/Smoothstone 0 0 0 1 1
+( 32 736 0 ) ( 33 736 0 ) ( 32 737 0 ) Textures/Smoothstone 0 0 0 1 1
+( 480 768 32 ) ( 480 769 32 ) ( 481 768 32 ) Textures/Smoothstone 0 0 0 1 1
+( 480 768 48 ) ( 481 768 48 ) ( 480 768 49 ) Textures/Smoothstone 0 0 0 1 1
+( 480 768 48 ) ( 480 768 49 ) ( 480 769 48 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 9
+{
+( 208 736 32 ) ( 208 737 32 ) ( 208 736 33 ) Textures/DarkWood 0 0 0 1 1
+( 144 800 32 ) ( 144 800 33 ) ( 145 800 32 ) Textures/DarkWood 0 0 0 1 1
+( 144 736 32 ) ( 145 736 32 ) ( 144 737 32 ) Textures/DarkWood 0 0 0 1 1
+( 272 768 48 ) ( 272 769 48 ) ( 273 768 48 ) Textures/DarkWood 0 0 0 1 1
+( 272 960 64 ) ( 273 960 64 ) ( 272 960 65 ) Textures/DarkWood 0 0 0 1 1
+( 256 768 64 ) ( 256 768 65 ) ( 256 769 64 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 10
+{
+( -544 816 32 ) ( -544 817 32 ) ( -544 816 33 ) Textures/PaleBricks 0 0 0 1 1
+( -192 800 32 ) ( -192 800 33 ) ( -191 800 32 ) Textures/PaleBricks 0 0 0 1 1
+( -192 816 32 ) ( -191 816 32 ) ( -192 817 32 ) Textures/PaleBricks 0 0 0 1 1
+( -128 928 176 ) ( -128 929 176 ) ( -127 928 176 ) Textures/PaleBricks 0 0 0 1 1
+( -128 960 48 ) ( -127 960 48 ) ( -128 960 49 ) Textures/PaleBricks 0 0 0 1 1
+( -96 928 48 ) ( -96 928 49 ) ( -96 929 48 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 11
+{
+( -640 768 -16 ) ( -640 784 -16 ) ( -640 768 304 ) Textures/PaleBricks 0 0 0 1 1
+( -320 768 304 ) ( -32 768 304 ) ( -320 768 -16 ) Textures/PaleBricks 0 0 0 1 1
+( -320 768 0 ) ( -32 768 0 ) ( -320 784 0 ) Textures/PaleBricks 0 0 0 1 1
+( -320 784 352 ) ( -32 784 352 ) ( -320 768 352 ) Textures/PaleBricks 0 0 0 1 1
+( -320 800 -16 ) ( -32 800 -16 ) ( -320 800 304 ) Textures/PaleBricks 0 0 0 1 1
+( -32 768 -16 ) ( -32 768 304 ) ( -32 784 -16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 12
+{
+( -32 768 304 ) ( -32 768 112 ) ( -32 784 304 ) Textures/PaleBricks 0 0 0 1 1
+( 32 768 304 ) ( 32 768 112 ) ( -32 768 304 ) Textures/PaleBricks 0 0 0 1 1
+( 32 768 112 ) ( 32 784 112 ) ( -32 768 112 ) Textures/PaleBricks 0 0 0 1 1
+( 32 768 352 ) ( -32 768 352 ) ( 32 784 352 ) Textures/PaleBricks 0 0 0 1 1
+( -32 800 304 ) ( -32 800 112 ) ( 32 800 304 ) Textures/PaleBricks 0 0 0 1 1
+( 32 784 304 ) ( 32 784 112 ) ( 32 768 304 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 13
+{
+( 32 784 304 ) ( 32 768 304 ) ( 32 784 -16 ) Textures/PaleBricks 0 0 0 1 1
+( 320 768 -16 ) ( 32 768 -16 ) ( 320 768 304 ) Textures/PaleBricks 0 0 0 1 1
+( 320 784 0 ) ( 32 784 0 ) ( 320 768 0 ) Textures/PaleBricks 0 0 0 1 1
+( 320 768 352 ) ( 32 768 352 ) ( 320 784 352 ) Textures/PaleBricks 0 0 0 1 1
+( 320 800 304 ) ( 32 800 304 ) ( 320 800 -16 ) Textures/PaleBricks 0 0 0 1 1
+( 640 768 304 ) ( 640 784 304 ) ( 640 768 -16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 14
+{
+( 480 1328 16 ) ( 480 1329 16 ) ( 480 1328 17 ) Textures/PaleBricks 0 0 0 1 1
+( 480 1344 16 ) ( 480 1344 17 ) ( 481 1344 16 ) Textures/PaleBricks 0 0 0 1 1
+( 480 1328 0 ) ( 481 1328 0 ) ( 480 1329 0 ) Textures/PaleBricks 0 0 0 1 1
+( 720 1472 32 ) ( 720 1473 32 ) ( 721 1472 32 ) Textures/PaleBricks 0 0 0 1 1
+( 720 1472 32 ) ( 721 1472 32 ) ( 720 1472 33 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1472 32 ) ( 544 1472 33 ) ( 544 1473 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 15
+{
+( -560 736 -16 ) ( -560 737 -16 ) ( -560 736 -15 ) Textures/PaleBricks 0 0 0 1 1
+( -576 800 -16 ) ( -576 800 -15 ) ( -575 800 -16 ) Textures/PaleBricks 0 0 0 1 1
+( -576 736 32 ) ( -575 736 32 ) ( -576 737 32 ) Textures/PaleBricks 0 0 0 1 1
+( -544 1184 336 ) ( -544 1185 336 ) ( -543 1184 336 ) Textures/PaleBricks 0 0 0 1 1
+( -544 1472 16 ) ( -543 1472 16 ) ( -544 1472 17 ) Textures/PaleBricks 0 0 0 1 1
+( -544 1184 16 ) ( -544 1184 17 ) ( -544 1185 16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 16
+{
+( 384 1584 16 ) ( 384 1585 16 ) ( 384 1584 17 ) Textures/PaleBricks 0 0 0 1 1
+( 480 1664 16 ) ( 480 1664 17 ) ( 481 1664 16 ) Textures/PaleBricks 0 0 0 1 1
+( 480 1584 0 ) ( 481 1584 0 ) ( 480 1585 0 ) Textures/PaleBricks 0 0 0 1 1
+( 528 1792 32 ) ( 528 1793 32 ) ( 529 1792 32 ) Textures/PaleBricks 0 0 0 1 1
+( 528 1792 32 ) ( 529 1792 32 ) ( 528 1792 33 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1792 32 ) ( 544 1792 33 ) ( 544 1793 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 17
+{
+( 176 1280 32 ) ( 176 1281 32 ) ( 176 1280 33 ) Textures/PaleBricks 0 0 0 1 1
+( 176 1280 32 ) ( 176 1280 33 ) ( 177 1280 32 ) Textures/PaleBricks 0 0 0 1 1
+( 176 1280 32 ) ( 177 1280 32 ) ( 176 1281 32 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1472 176 ) ( 304 1473 176 ) ( 305 1472 176 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1472 48 ) ( 305 1472 48 ) ( 304 1472 49 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1472 48 ) ( 304 1472 49 ) ( 304 1473 48 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 18
+{
+( -544 960 176 ) ( -544 960 112 ) ( -544 1136 112 ) Textures/Smoothstone 0 0 0 1 1
+( -544 960 176 ) ( -416 960 176 ) ( -416 960 112 ) Textures/Smoothstone 0 0 0 1 1
+( -416 960 112 ) ( -416 1136 112 ) ( -544 1136 112 ) Textures/Smoothstone 0 0 0 1 1
+( -544 1136 112 ) ( -416 1136 112 ) ( -416 960 176 ) Textures/Smoothstone 0 0 0 1 1
+( -416 960 176 ) ( -416 1136 112 ) ( -416 960 112 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 19
+{
+( -640 768 320 ) ( -640 769 320 ) ( -640 768 321 ) Textures/PaleBricks 0 0 0 1 1
+( -480 768 320 ) ( -480 768 321 ) ( -479 768 320 ) Textures/PaleBricks 0 0 0 1 1
+( -480 768 352 ) ( -479 768 352 ) ( -480 769 352 ) Textures/PaleBricks 0 0 0 1 1
+( 288 800 416 ) ( 288 801 416 ) ( 289 800 416 ) Textures/PaleBricks 0 0 0 1 1
+( 288 800 352 ) ( 289 800 352 ) ( 288 800 353 ) Textures/PaleBricks 0 0 0 1 1
+( 640 800 352 ) ( 640 800 353 ) ( 640 801 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 20
+{
+( 480 1344 336 ) ( 480 1472 96 ) ( 480 1472 336 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1344 336 ) ( 512 1344 96 ) ( 512 1344 336 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1472 192 ) ( 512 1344 192 ) ( 576 1344 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1472 336 ) ( 512 1344 336 ) ( 512 1472 336 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1472 336 ) ( 512 1472 96 ) ( 576 1472 96 ) Textures/PaleBricks 0 0 0 1 1
+( 512 1472 336 ) ( 512 1344 96 ) ( 512 1344 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 21
+{
+( 480 752 16 ) ( 480 753 16 ) ( 480 752 17 ) Textures/PaleBricks 0 0 0 1 1
+( 480 800 16 ) ( 480 800 17 ) ( 481 800 16 ) Textures/PaleBricks 0 0 0 1 1
+( 480 752 0 ) ( 481 752 0 ) ( 480 753 0 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1344 336 ) ( 576 1345 336 ) ( 577 1344 336 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1344 32 ) ( 577 1344 32 ) ( 576 1344 33 ) Textures/PaleBricks 0 0 0 1 1
+( 512 1344 32 ) ( 512 1344 33 ) ( 512 1345 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 22
+{
+( -320 1008 32 ) ( -320 1008 208 ) ( -320 960 32 ) Textures/PaleBricks 0 0 0 1 1
+( -240 960 32 ) ( -240 960 208 ) ( -128 960 32 ) Textures/PaleBricks 0 0 0 1 1
+( -128 960 112 ) ( -128 1008 112 ) ( -240 960 112 ) Textures/PaleBricks 0 0 0 1 1
+( -240 1008 240 ) ( -128 1008 240 ) ( -240 960 240 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1008 32 ) ( -128 1008 208 ) ( -240 1008 32 ) Textures/PaleBricks 0 0 0 1 1
+( -128 960 32 ) ( -128 960 208 ) ( -128 1008 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 23
+{
+( -128 800 288 ) ( -128 960 224 ) ( -128 960 288 ) Textures/DarkWood 0 0 0 1 1
+( -112 800 288 ) ( -128 800 224 ) ( -128 800 288 ) Textures/DarkWood 0 0 0 1 1
+( -112 960 224 ) ( -128 800 224 ) ( -112 800 224 ) Textures/DarkWood 0 0 0 1 1
+( -112 960 288 ) ( -128 800 288 ) ( -128 960 288 ) Textures/DarkWood 0 0 0 1 1
+( -112 960 288 ) ( -128 960 224 ) ( -112 960 224 ) Textures/DarkWood 0 0 0 1 1
+( -112 960 288 ) ( -112 800 224 ) ( -112 800 288 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 24
+{
+( -640 960 336 ) ( -640 961 336 ) ( -640 960 337 ) Textures/PaleBricks 0 0 0 1 1
+( -448 960 336 ) ( -448 960 337 ) ( -447 960 336 ) Textures/PaleBricks 0 0 0 1 1
+( -448 960 336 ) ( -447 960 336 ) ( -448 961 336 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1280 352 ) ( -320 1281 352 ) ( -319 1280 352 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1344 352 ) ( -319 1344 352 ) ( -320 1344 353 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1280 352 ) ( -320 1280 353 ) ( -320 1281 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 25
+{
+( 416 1664 352 ) ( 416 1792 240 ) ( 416 1792 352 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1664 352 ) ( 384 1664 240 ) ( 384 1664 352 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1792 192 ) ( 384 1664 192 ) ( 576 1664 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1792 224 ) ( 384 1664 224 ) ( 384 1792 224 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1792 352 ) ( 384 1792 240 ) ( 576 1792 240 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1792 352 ) ( 544 1664 240 ) ( 544 1664 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 26
+{
+( -400 1792 16 ) ( -400 1792 32 ) ( -400 1728 16 ) Textures/DarkWood 0 0 0 1 1
+( -400 1728 16 ) ( -400 1728 32 ) ( -384 1728 16 ) Textures/DarkWood 0 0 0 1 1
+( -400 1792 16 ) ( -400 1728 16 ) ( -384 1792 16 ) Textures/DarkWood 0 0 0 1 1
+( -384 1792 32 ) ( -384 1728 32 ) ( -400 1792 32 ) Textures/DarkWood 0 0 0 1 1
+( -384 1792 16 ) ( -384 1792 32 ) ( -400 1792 16 ) Textures/DarkWood 0 0 0 1 1
+( -384 1728 16 ) ( -384 1728 32 ) ( -384 1792 16 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 27
+{
+( -416 1792 16 ) ( -416 1792 32 ) ( -416 1728 16 ) Textures/DarkWood 0 0 0 1 1
+( -416 1728 16 ) ( -416 1728 32 ) ( -400 1728 16 ) Textures/DarkWood 0 0 0 1 1
+( -416 1792 16 ) ( -416 1728 16 ) ( -400 1792 16 ) Textures/DarkWood 0 0 0 1 1
+( -400 1792 32 ) ( -400 1728 32 ) ( -416 1792 32 ) Textures/DarkWood 0 0 0 1 1
+( -400 1792 16 ) ( -400 1792 32 ) ( -416 1792 16 ) Textures/DarkWood 0 0 0 1 1
+( -400 1728 16 ) ( -400 1728 32 ) ( -400 1792 16 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 28
+{
+( -64 1792 448 ) ( -64 1760 448 ) ( -64 1472 352 ) Textures/Smoothstone 0 0 0 1 1
+( -64 1760 448 ) ( 64 1760 448 ) ( 64 1472 352 ) Textures/Smoothstone 0 0 0 1 1
+( 64 1472 352 ) ( 64 1792 352 ) ( -64 1792 352 ) Textures/Smoothstone 0 0 0 1 1
+( -64 1792 448 ) ( 64 1792 448 ) ( 64 1760 448 ) Textures/Smoothstone 0 0 0 1 1
+( 64 1792 352 ) ( 64 1792 448 ) ( -64 1792 448 ) Textures/Smoothstone 0 0 0 1 1
+( 64 1760 448 ) ( 64 1792 448 ) ( 64 1792 352 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 29
+{
+( -256 1824 352 ) ( -256 1825 352 ) ( -256 1824 353 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1792 352 ) ( -288 1792 353 ) ( -287 1792 352 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1824 352 ) ( -287 1824 352 ) ( -288 1825 352 ) Textures/PaleBricks 0 0 0 1 1
+( 96 1952 416 ) ( 96 1953 416 ) ( 97 1952 416 ) Textures/PaleBricks 0 0 0 1 1
+( 96 2048 384 ) ( 97 2048 384 ) ( 96 2048 385 ) Textures/PaleBricks 0 0 0 1 1
+( 256 1952 384 ) ( 256 1952 385 ) ( 256 1953 384 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 30
+{
+( -400 1472 32 ) ( -400 1536 32 ) ( -400 1472 352 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1472 352 ) ( -288 1472 352 ) ( -384 1472 32 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1472 32 ) ( -288 1472 32 ) ( -384 1536 32 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1536 336 ) ( -288 1536 336 ) ( -384 1472 336 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1504 32 ) ( -288 1504 32 ) ( -384 1504 352 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1472 32 ) ( -288 1472 352 ) ( -288 1536 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 31
+{
+( -160 1536 352 ) ( -160 1472 352 ) ( -160 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1472 352 ) ( 576 1472 352 ) ( 576 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1472 16 ) ( 576 1536 16 ) ( -160 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1536 336 ) ( 576 1536 336 ) ( 576 1472 336 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1504 16 ) ( 576 1504 352 ) ( -160 1504 352 ) Textures/PaleBricks 0 0 0 1 1
+( 480 1472 352 ) ( 480 1536 352 ) ( 480 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 32
+{
+( -288 1472 16 ) ( -288 1473 16 ) ( -288 1472 17 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1472 16 ) ( -288 1472 17 ) ( -287 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1472 16 ) ( -287 1472 16 ) ( -288 1473 16 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1536 32 ) ( -160 1537 32 ) ( -159 1536 32 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1536 32 ) ( -159 1536 32 ) ( -160 1536 33 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1536 32 ) ( -160 1536 33 ) ( -160 1537 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 33
+{
+( -416 960 112 ) ( -416 1136 32 ) ( -416 1136 112 ) Textures/PaleBricks 0 0 0 1 1
+( -128 960 112 ) ( -416 960 32 ) ( -416 960 112 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1136 32 ) ( -416 960 32 ) ( -128 960 32 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1136 112 ) ( -416 960 112 ) ( -416 1136 112 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1216 112 ) ( -416 1216 32 ) ( -128 1216 32 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1136 112 ) ( -128 960 32 ) ( -128 960 112 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 34
+{
+( -544 1136 96 ) ( -544 1137 96 ) ( -544 1136 97 ) Textures/PaleBricks 0 0 0 1 1
+( -544 1136 96 ) ( -544 1136 97 ) ( -543 1136 96 ) Textures/PaleBricks 0 0 0 1 1
+( -544 1136 32 ) ( -543 1136 32 ) ( -544 1137 32 ) Textures/PaleBricks 0 0 0 1 1
+( -512 1216 112 ) ( -512 1217 112 ) ( -511 1216 112 ) Textures/PaleBricks 0 0 0 1 1
+( -512 1216 112 ) ( -511 1216 112 ) ( -512 1216 113 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1216 112 ) ( -416 1216 113 ) ( -416 1217 112 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 35
+{
+( -304 1216 112 ) ( -304 1216 32 ) ( -304 1344 32 ) Textures/Smoothstone 0 0 0 1 1
+( -304 1216 112 ) ( -160 1216 112 ) ( -160 1216 32 ) Textures/Smoothstone 0 0 0 1 1
+( -160 1216 32 ) ( -160 1344 32 ) ( -304 1344 32 ) Textures/Smoothstone 0 0 0 1 1
+( -304 1344 32 ) ( -160 1344 32 ) ( -160 1216 112 ) Textures/Smoothstone 0 0 0 1 1
+( -160 1216 112 ) ( -160 1344 32 ) ( -160 1216 32 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 36
+{
+( -320 1088 224 ) ( -320 1089 224 ) ( -320 1088 225 ) Textures/PaleBricks 0 0 0 1 1
+( -144 1008 224 ) ( -144 1008 225 ) ( -143 1008 224 ) Textures/PaleBricks 0 0 0 1 1
+( -144 1088 224 ) ( -143 1088 224 ) ( -144 1089 224 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1216 240 ) ( -128 1217 240 ) ( -127 1216 240 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1280 240 ) ( -127 1280 240 ) ( -128 1280 241 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1216 240 ) ( -128 1216 241 ) ( -128 1217 240 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 37
+{
+( -224 912 224 ) ( -224 960 176 ) ( -224 960 224 ) Textures/Smoothstone 0 0 0 1 1
+( -128 912 224 ) ( -240 912 176 ) ( -240 912 224 ) Textures/Smoothstone 0 0 0 1 1
+( -128 960 176 ) ( -240 912 176 ) ( -128 912 176 ) Textures/Smoothstone 0 0 0 1 1
+( -128 960 216 ) ( -240 912 216 ) ( -240 960 216 ) Textures/Smoothstone 0 0 0 1 1
+( -128 960 224 ) ( -240 960 176 ) ( -128 960 176 ) Textures/Smoothstone 0 0 0 1 1
+( -144 960 224 ) ( -144 912 176 ) ( -144 912 224 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 38
+{
+( -224 960 216 ) ( -320 912 176 ) ( -320 960 176 ) Textures/Smoothstone 0 0 0 1 1
+( -224 912 216 ) ( -224 912 176 ) ( -320 912 176 ) Textures/Smoothstone 0 0 0 1 1
+( -224 960 176 ) ( -320 912 176 ) ( -224 912 176 ) Textures/Smoothstone 0 0 0 1 1
+( -224 960 216 ) ( -320 960 176 ) ( -224 960 176 ) Textures/Smoothstone 0 0 0 1 1
+( -224 960 216 ) ( -224 912 176 ) ( -224 912 216 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 39
+{
+( 112 1280 112 ) ( 112 1472 32 ) ( 112 1472 112 ) Textures/PaleBricks 0 0 0 1 1
+( 176 1280 112 ) ( 128 1280 32 ) ( 128 1280 112 ) Textures/PaleBricks 0 0 0 1 1
+( 176 1472 32 ) ( 128 1280 32 ) ( 176 1280 32 ) Textures/PaleBricks 0 0 0 1 1
+( 176 1472 112 ) ( 128 1280 112 ) ( 128 1472 112 ) Textures/PaleBricks 0 0 0 1 1
+( 176 1472 112 ) ( 128 1472 32 ) ( 176 1472 32 ) Textures/PaleBricks 0 0 0 1 1
+( 176 1472 112 ) ( 176 1280 32 ) ( 176 1280 112 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 40
+{
+( -576 320 -64 ) ( -576 321 -64 ) ( -576 320 -63 ) Textures/DryCanyonWallDarker 0 0 0 1 1
+( -128 320 -64 ) ( -128 320 -63 ) ( -127 320 -64 ) Textures/DryCanyonWallDarker 0 0 0 1 1
+( -128 320 -176 ) ( -127 320 -176 ) ( -128 321 -176 ) Textures/DryCanyonWallDarker 0 0 0 1 1
+( 192 512 -32 ) ( 192 513 -32 ) ( 193 512 -32 ) Textures/DryCanyonWallDarker 0 0 0 1 1
+( 192 384 0 ) ( 193 384 0 ) ( 192 384 1 ) Textures/DryCanyonWallDarker 0 0 0 1 1
+( 576 512 0 ) ( 576 512 1 ) ( 576 513 0 ) Textures/DryCanyonWallDarker 0 0 0 1 1
+}
+// brush 41
+{
+( -128 32 -192 ) ( -128 33 -192 ) ( -128 32 -191 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -128 32 -192 ) ( -128 32 -191 ) ( -127 32 -192 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -128 32 -192 ) ( -127 32 -192 ) ( -128 33 -192 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 128 320 -160 ) ( 128 321 -160 ) ( 129 320 -160 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 128 320 -160 ) ( 129 320 -160 ) ( 128 320 -159 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 128 320 -160 ) ( 128 320 -159 ) ( 128 321 -160 ) Textures/desert_mntn2_h 0 0 0 1 1
+}
+// brush 42
+{
+( -608 1488 128 ) ( -608 1520 32 ) ( -608 1520 128 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1488 128 ) ( -608 1488 32 ) ( -608 1488 128 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1520 16 ) ( -608 1488 16 ) ( -560 1488 16 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1520 128 ) ( -608 1488 128 ) ( -608 1520 128 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1520 128 ) ( -608 1520 32 ) ( -560 1520 32 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1520 128 ) ( -560 1488 32 ) ( -560 1488 128 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 43
+{
+( 96 768 0 ) ( 96 320 0 ) ( 96 768 -32 ) Textures/DryCanyonWallDarker 0 0 0 10 10
+( 576 320 -32 ) ( 96 320 -32 ) ( 576 320 0 ) Textures/DryCanyonWallDarker 0 0 0 10 10
+( 576 768 -32 ) ( 96 768 -32 ) ( 576 320 -32 ) Textures/Grass 0 0 0 10 10
+( 576 320 0 ) ( 96 320 0 ) ( 576 768 0 ) Textures/Grass 0 0 0 10 10
+( 576 768 0 ) ( 96 768 0 ) ( 576 768 -32 ) Textures/Grass 0 0 0 10 10
+( 576 320 0 ) ( 576 768 0 ) ( 576 320 -32 ) Textures/DryCanyonWallDarker 0 0 0 10 10
+}
+// brush 44
+{
+( -576 320 -32 ) ( -576 768 -32 ) ( -576 320 0 ) Textures/DryCanyonWallDarker 0 0 0 10 10
+( -576 320 0 ) ( -96 320 0 ) ( -576 320 -32 ) Textures/DryCanyonWallDarker 0 0 0 10 10
+( -576 320 -32 ) ( -96 320 -32 ) ( -576 768 -32 ) Textures/Grass 0 0 0 10 10
+( -576 768 0 ) ( -96 768 0 ) ( -576 320 0 ) Textures/Grass 0 0 0 10 10
+( -576 768 -32 ) ( -96 768 -32 ) ( -576 768 0 ) Textures/Grass 0 0 0 10 10
+( -96 320 -32 ) ( -96 320 0 ) ( -96 768 -32 ) Textures/DryCanyonWallDarker 0 0 0 10 10
+}
+// brush 45
+{
+( -96 768 0 ) ( -96 736 0 ) ( -96 768 -32 ) Textures/Smoothstone 0 0 0 1 1
+( 96 736 0 ) ( 96 736 -32 ) ( -96 736 0 ) Textures/Smoothstone 0 0 0 1 1
+( -96 768 -32 ) ( -96 736 -32 ) ( 96 768 -32 ) Textures/Smoothstone 0 0 0 1 1
+( 96 768 0 ) ( 96 736 0 ) ( -96 768 0 ) Textures/Smoothstone 0 0 0 1 1
+( 96 768 0 ) ( -96 768 0 ) ( 96 768 -32 ) Textures/Smoothstone 0 0 0 1 1
+( 96 768 -32 ) ( 96 736 -32 ) ( 96 768 0 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 46
+{
+( -96 320 -32 ) ( -96 432 -32 ) ( -96 320 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 96 368 -32 ) ( -96 368 -32 ) ( 96 368 0 ) Textures/Smoothstone 0 0 0 1 1
+( 96 320 -32 ) ( 96 432 -32 ) ( -96 320 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -96 320 0 ) ( -96 432 0 ) ( 96 320 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -96 416 -32 ) ( 96 416 -32 ) ( -96 416 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 96 320 0 ) ( 96 432 0 ) ( 96 320 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+}
+// brush 47
+{
+( -96 736 -32 ) ( -96 736 -16 ) ( -96 432 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -96 416 -32 ) ( -96 416 -16 ) ( 96 416 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -96 736 -32 ) ( -96 432 -32 ) ( 96 736 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 96 736 -16 ) ( 96 432 -16 ) ( -96 736 -16 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 96 736 -32 ) ( 96 736 -16 ) ( -96 736 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 96 432 -32 ) ( 96 432 -16 ) ( 96 736 -32 ) Textures/desert_mntn2_h 0 0 0 1 1
+}
+// brush 48
+{
+( -96 416 0 ) ( -96 736 -16 ) ( -96 736 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -80 416 -16 ) ( -96 416 -16 ) ( -96 416 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -80 736 -16 ) ( -96 416 -16 ) ( -80 416 -16 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -80 736 -16 ) ( -96 736 0 ) ( -96 736 -16 ) Textures/desert_mntn2_h 0 0 0 1 1
+( -80 736 -16 ) ( -96 416 0 ) ( -96 736 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+}
+// brush 49
+{
+( 96 736 0 ) ( 80 416 -16 ) ( 80 736 -16 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 96 416 0 ) ( 96 416 -16 ) ( 80 416 -16 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 96 736 -16 ) ( 80 416 -16 ) ( 96 416 -16 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 96 736 0 ) ( 80 736 -16 ) ( 96 736 -16 ) Textures/desert_mntn2_h 0 0 0 1 1
+( 96 736 0 ) ( 96 416 -16 ) ( 96 416 0 ) Textures/desert_mntn2_h 0 0 0 1 1
+}
+// brush 50
+{
+( 320 480 0 ) ( 320 481 0 ) ( 320 480 1 ) Textures/Smoothstone 0 0 0 1 1
+( 320 448 0 ) ( 320 448 1 ) ( 321 448 0 ) Textures/Smoothstone 0 0 0 1 1
+( 320 480 0 ) ( 321 480 0 ) ( 320 481 0 ) Textures/Smoothstone 0 0 0 1 1
+( 432 640 64 ) ( 432 641 64 ) ( 433 640 64 ) Textures/Smoothstone 0 0 0 1 1
+( 432 672 16 ) ( 433 672 16 ) ( 432 672 17 ) Textures/Smoothstone 0 0 0 1 1
+( 432 640 16 ) ( 432 640 17 ) ( 432 641 16 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 51
+{
+( 192 496 0 ) ( 320 496 64 ) ( 320 448 64 ) Textures/Smoothstone 0 0 0 1 1
+( 192 448 0 ) ( 320 448 64 ) ( 320 448 0 ) Textures/Smoothstone 0 0 0 1 1
+( 320 448 0 ) ( 320 496 0 ) ( 192 496 0 ) Textures/Smoothstone 0 0 0 1 1
+( 320 496 0 ) ( 320 496 64 ) ( 192 496 0 ) Textures/Smoothstone 0 0 0 1 1
+( 320 448 64 ) ( 320 496 64 ) ( 320 496 0 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 52
+{
+( 192 672 0 ) ( 320 672 64 ) ( 320 624 64 ) Textures/Smoothstone 0 0 0 1 1
+( 192 624 0 ) ( 320 624 64 ) ( 320 624 0 ) Textures/Smoothstone 0 0 0 1 1
+( 320 624 0 ) ( 320 672 0 ) ( 192 672 0 ) Textures/Smoothstone 0 0 0 1 1
+( 320 672 0 ) ( 320 672 64 ) ( 192 672 0 ) Textures/Smoothstone 0 0 0 1 1
+( 320 624 64 ) ( 320 672 64 ) ( 320 672 0 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 53
+{
+( -272 448 0 ) ( -272 449 0 ) ( -272 448 1 ) Textures/Smoothstone 0 0 0 1 1
+( -256 448 0 ) ( -256 448 1 ) ( -255 448 0 ) Textures/Smoothstone 0 0 0 1 1
+( -256 448 0 ) ( -255 448 0 ) ( -256 449 0 ) Textures/Smoothstone 0 0 0 1 1
+( -192 528 16 ) ( -192 529 16 ) ( -191 528 16 ) Textures/Smoothstone 0 0 0 1 1
+( -192 528 16 ) ( -191 528 16 ) ( -192 528 17 ) Textures/Smoothstone 0 0 0 1 1
+( -192 528 16 ) ( -192 528 17 ) ( -192 529 16 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 54
+{
+( -272 576 0 ) ( -272 577 0 ) ( -272 576 1 ) Textures/Smoothstone 0 0 0 1 1
+( -256 576 0 ) ( -256 576 1 ) ( -255 576 0 ) Textures/Smoothstone 0 0 0 1 1
+( -256 576 0 ) ( -255 576 0 ) ( -256 577 0 ) Textures/Smoothstone 0 0 0 1 1
+( -192 656 96 ) ( -192 657 96 ) ( -191 656 96 ) Textures/Smoothstone 0 0 0 1 1
+( -192 656 16 ) ( -191 656 16 ) ( -192 656 17 ) Textures/Smoothstone 0 0 0 1 1
+( -192 656 16 ) ( -192 656 17 ) ( -192 657 16 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 55
+{
+( 320 992 32 ) ( 320 993 32 ) ( 320 992 33 ) Textures/Smoothstone 0 0 0 1 1
+( 320 992 32 ) ( 320 992 33 ) ( 321 992 32 ) Textures/Smoothstone 0 0 0 1 1
+( 320 992 32 ) ( 321 992 32 ) ( 320 993 32 ) Textures/Smoothstone 0 0 0 1 1
+( 352 1280 64 ) ( 352 1281 64 ) ( 353 1280 64 ) Textures/Smoothstone 0 0 0 1 1
+( 352 1280 48 ) ( 353 1280 48 ) ( 352 1280 49 ) Textures/Smoothstone 0 0 0 1 1
+( 352 1280 48 ) ( 352 1280 49 ) ( 352 1281 48 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 56
+{
+( 448 1152 32 ) ( 448 1153 32 ) ( 448 1152 33 ) Textures/Smoothstone 0 0 0 1 1
+( 448 992 32 ) ( 448 992 33 ) ( 449 992 32 ) Textures/Smoothstone 0 0 0 1 1
+( 448 1152 32 ) ( 449 1152 32 ) ( 448 1153 32 ) Textures/Smoothstone 0 0 0 1 1
+( 480 1336 56 ) ( 480 1337 56 ) ( 481 1336 56 ) Textures/Smoothstone 0 0 0 1 1
+( 480 1280 40 ) ( 481 1280 40 ) ( 480 1280 41 ) Textures/Smoothstone 0 0 0 1 1
+( 480 1336 40 ) ( 480 1336 41 ) ( 480 1337 40 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 57
+{
+( 416 800 32 ) ( 416 801 32 ) ( 416 800 33 ) Textures/Smoothstone 0 0 0 1 1
+( 416 800 32 ) ( 416 800 33 ) ( 417 800 32 ) Textures/Smoothstone 0 0 0 1 1
+( 416 800 32 ) ( 417 800 32 ) ( 416 801 32 ) Textures/Smoothstone 0 0 0 1 1
+( 480 848 112 ) ( 480 849 112 ) ( 481 848 112 ) Textures/Smoothstone 0 0 0 1 1
+( 480 848 48 ) ( 481 848 48 ) ( 480 848 49 ) Textures/Smoothstone 0 0 0 1 1
+( 480 848 48 ) ( 480 848 49 ) ( 480 849 48 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 58
+{
+( 320 1312 352 ) ( 320 1313 352 ) ( 320 1312 353 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1312 352 ) ( 192 1312 353 ) ( 193 1312 352 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1312 352 ) ( 193 1312 352 ) ( 192 1313 352 ) Textures/PaleBricks 0 0 0 1 1
+( 240 1376 416 ) ( 240 1377 416 ) ( 241 1376 416 ) Textures/PaleBricks 0 0 0 1 1
+( 240 1344 368 ) ( 241 1344 368 ) ( 240 1344 369 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1376 368 ) ( 608 1376 369 ) ( 608 1377 368 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 59
+{
+( 608 832 352 ) ( 608 833 352 ) ( 608 832 353 ) Textures/PaleBricks 0 0 0 1 1
+( 608 800 352 ) ( 608 800 353 ) ( 609 800 352 ) Textures/PaleBricks 0 0 0 1 1
+( 608 832 352 ) ( 609 832 352 ) ( 608 833 352 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1312 416 ) ( 640 1313 416 ) ( 641 1312 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2080 368 ) ( 641 2080 368 ) ( 640 2080 369 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1312 368 ) ( 640 1312 369 ) ( 640 1313 368 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 60
+{
+( -64 912 432 ) ( -176 912 352 ) ( -176 960 352 ) Textures/Smoothstone 0 0 0 1 1
+( 64 896 432 ) ( 176 896 352 ) ( -176 896 352 ) Textures/Smoothstone 0 0 0 1 1
+( 176 912 352 ) ( 176 960 352 ) ( -176 960 352 ) Textures/Smoothstone 0 0 0 1 1
+( -64 960 432 ) ( 64 960 432 ) ( 64 912 432 ) Textures/Smoothstone 0 0 0 1 1
+( -176 960 352 ) ( 176 960 352 ) ( 64 960 432 ) Textures/Smoothstone 0 0 0 1 1
+( 64 960 432 ) ( 176 960 352 ) ( 176 912 352 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 61
+{
+( -640 800 416 ) ( -640 1312 352 ) ( -640 1312 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 800 416 ) ( -640 800 352 ) ( -640 800 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1312 352 ) ( -640 800 352 ) ( -608 800 352 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1312 416 ) ( -640 800 416 ) ( -640 1312 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 2080 416 ) ( -640 2080 352 ) ( -608 2080 352 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1312 416 ) ( -608 800 352 ) ( -608 800 416 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 62
+{
+( -608 2032 352 ) ( -608 2033 352 ) ( -608 2032 353 ) Textures/PaleBricks 0 0 0 1 1
+( 256 2048 352 ) ( 256 2048 353 ) ( 257 2048 352 ) Textures/PaleBricks 0 0 0 1 1
+( 256 2032 352 ) ( 257 2032 352 ) ( 256 2033 352 ) Textures/PaleBricks 0 0 0 1 1
+( 544 2064 416 ) ( 544 2065 416 ) ( 545 2064 416 ) Textures/PaleBricks 0 0 0 1 1
+( 544 2080 368 ) ( 545 2080 368 ) ( 544 2080 369 ) Textures/PaleBricks 0 0 0 1 1
+( 608 2064 368 ) ( 608 2064 369 ) ( 608 2065 368 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 63
+{
+( 608 800 416 ) ( 608 801 416 ) ( 608 800 417 ) Textures/PaleBricks 0 0 0 1 1
+( 608 800 416 ) ( 608 800 417 ) ( 609 800 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 800 416 ) ( 609 800 416 ) ( 608 801 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 864 448 ) ( 640 865 448 ) ( 641 864 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 832 448 ) ( 641 832 448 ) ( 640 832 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 864 448 ) ( 640 864 449 ) ( 640 865 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 64
+{
+( 608 896 416 ) ( 608 897 416 ) ( 608 896 417 ) Textures/PaleBricks 0 0 0 1 1
+( 608 896 416 ) ( 608 896 417 ) ( 609 896 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 896 416 ) ( 609 896 416 ) ( 608 897 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 960 448 ) ( 640 961 448 ) ( 641 960 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 992 448 ) ( 641 992 448 ) ( 640 992 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 960 448 ) ( 640 960 449 ) ( 640 961 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 65
+{
+( 608 1056 416 ) ( 608 1057 416 ) ( 608 1056 417 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1056 416 ) ( 608 1056 417 ) ( 609 1056 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1056 416 ) ( 609 1056 416 ) ( 608 1057 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1120 448 ) ( 640 1121 448 ) ( 641 1120 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1152 448 ) ( 641 1152 448 ) ( 640 1152 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1120 448 ) ( 640 1120 449 ) ( 640 1121 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 66
+{
+( 608 1216 416 ) ( 608 1217 416 ) ( 608 1216 417 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1216 416 ) ( 608 1216 417 ) ( 609 1216 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1216 416 ) ( 609 1216 416 ) ( 608 1217 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1280 448 ) ( 640 1281 448 ) ( 641 1280 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1312 448 ) ( 641 1312 448 ) ( 640 1312 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1280 448 ) ( 640 1280 449 ) ( 640 1281 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 67
+{
+( 608 1376 416 ) ( 608 1377 416 ) ( 608 1376 417 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1376 416 ) ( 608 1376 417 ) ( 609 1376 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1376 416 ) ( 609 1376 416 ) ( 608 1377 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1440 448 ) ( 640 1441 448 ) ( 641 1440 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1472 448 ) ( 641 1472 448 ) ( 640 1472 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1440 448 ) ( 640 1440 449 ) ( 640 1441 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 68
+{
+( 608 1536 416 ) ( 608 1537 416 ) ( 608 1536 417 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1536 416 ) ( 608 1536 417 ) ( 609 1536 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1536 416 ) ( 609 1536 416 ) ( 608 1537 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1600 448 ) ( 640 1601 448 ) ( 641 1600 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1632 448 ) ( 641 1632 448 ) ( 640 1632 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1600 448 ) ( 640 1600 449 ) ( 640 1601 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 69
+{
+( 608 1696 416 ) ( 608 1697 416 ) ( 608 1696 417 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1696 416 ) ( 608 1696 417 ) ( 609 1696 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1696 416 ) ( 609 1696 416 ) ( 608 1697 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1760 448 ) ( 640 1761 448 ) ( 641 1760 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1792 448 ) ( 641 1792 448 ) ( 640 1792 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1760 448 ) ( 640 1760 449 ) ( 640 1761 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 70
+{
+( 608 1856 416 ) ( 608 1857 416 ) ( 608 1856 417 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1856 416 ) ( 608 1856 417 ) ( 609 1856 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1856 416 ) ( 609 1856 416 ) ( 608 1857 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1920 448 ) ( 640 1921 448 ) ( 641 1920 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1952 448 ) ( 641 1952 448 ) ( 640 1952 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1920 448 ) ( 640 1920 449 ) ( 640 1921 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 71
+{
+( 544 2048 416 ) ( 544 2049 416 ) ( 544 2048 417 ) Textures/PaleBricks 0 0 0 1 1
+( 576 2048 416 ) ( 576 2048 417 ) ( 577 2048 416 ) Textures/PaleBricks 0 0 0 1 1
+( 576 2048 416 ) ( 577 2048 416 ) ( 576 2049 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 2080 448 ) ( 608 2081 448 ) ( 609 2080 448 ) Textures/PaleBricks 0 0 0 1 1
+( 608 2080 448 ) ( 609 2080 448 ) ( 608 2080 449 ) Textures/PaleBricks 0 0 0 1 1
+( 608 2080 448 ) ( 608 2080 449 ) ( 608 2081 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 72
+{
+( 608 2016 416 ) ( 608 2017 416 ) ( 608 2016 417 ) Textures/PaleBricks 0 0 0 1 1
+( 608 2016 416 ) ( 608 2016 417 ) ( 609 2016 416 ) Textures/PaleBricks 0 0 0 1 1
+( 608 2016 416 ) ( 609 2016 416 ) ( 608 2017 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2048 448 ) ( 640 2049 448 ) ( 641 2048 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2080 448 ) ( 641 2080 448 ) ( 640 2080 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2048 448 ) ( 640 2048 449 ) ( 640 2049 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 73
+{
+( 384 2048 416 ) ( 384 2049 416 ) ( 384 2048 417 ) Textures/PaleBricks 0 0 0 1 1
+( 384 2048 416 ) ( 384 2048 417 ) ( 385 2048 416 ) Textures/PaleBricks 0 0 0 1 1
+( 384 2048 416 ) ( 385 2048 416 ) ( 384 2049 416 ) Textures/PaleBricks 0 0 0 1 1
+( 480 2080 448 ) ( 480 2081 448 ) ( 481 2080 448 ) Textures/PaleBricks 0 0 0 1 1
+( 480 2080 448 ) ( 481 2080 448 ) ( 480 2080 449 ) Textures/PaleBricks 0 0 0 1 1
+( 480 2080 448 ) ( 480 2080 449 ) ( 480 2081 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 74
+{
+( 256 2048 416 ) ( 256 2049 416 ) ( 256 2048 417 ) Textures/PaleBricks 0 0 0 1 1
+( 256 2048 416 ) ( 256 2048 417 ) ( 257 2048 416 ) Textures/PaleBricks 0 0 0 1 1
+( 256 2048 416 ) ( 257 2048 416 ) ( 256 2049 416 ) Textures/PaleBricks 0 0 0 1 1
+( 288 2080 448 ) ( 288 2081 448 ) ( 289 2080 448 ) Textures/PaleBricks 0 0 0 1 1
+( 288 2080 448 ) ( 289 2080 448 ) ( 288 2080 449 ) Textures/PaleBricks 0 0 0 1 1
+( 320 2080 448 ) ( 320 2080 449 ) ( 320 2081 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 75
+{
+( -640 800 416 ) ( -640 801 416 ) ( -640 800 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 800 416 ) ( -640 800 417 ) ( -639 800 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 800 416 ) ( -639 800 416 ) ( -640 801 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 832 448 ) ( -608 833 448 ) ( -607 832 448 ) Textures/PaleBricks 0 0 0 1 1
+( -608 832 448 ) ( -607 832 448 ) ( -608 832 449 ) Textures/PaleBricks 0 0 0 1 1
+( -608 832 448 ) ( -608 832 449 ) ( -608 833 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 76
+{
+( -640 896 416 ) ( -640 897 416 ) ( -640 896 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 896 416 ) ( -640 896 417 ) ( -639 896 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 896 416 ) ( -639 896 416 ) ( -640 897 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 960 448 ) ( -608 961 448 ) ( -607 960 448 ) Textures/PaleBricks 0 0 0 1 1
+( -608 992 448 ) ( -607 992 448 ) ( -608 992 449 ) Textures/PaleBricks 0 0 0 1 1
+( -608 960 448 ) ( -608 960 449 ) ( -608 961 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 77
+{
+( -640 1056 416 ) ( -640 1057 416 ) ( -640 1056 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1056 416 ) ( -640 1056 417 ) ( -639 1056 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1056 416 ) ( -639 1056 416 ) ( -640 1057 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1120 448 ) ( -608 1121 448 ) ( -607 1120 448 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1152 448 ) ( -607 1152 448 ) ( -608 1152 449 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1120 448 ) ( -608 1120 449 ) ( -608 1121 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 78
+{
+( -640 1216 416 ) ( -640 1217 416 ) ( -640 1216 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1216 416 ) ( -640 1216 417 ) ( -639 1216 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1216 416 ) ( -639 1216 416 ) ( -640 1217 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1280 448 ) ( -608 1281 448 ) ( -607 1280 448 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1312 448 ) ( -607 1312 448 ) ( -608 1312 449 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1280 448 ) ( -608 1280 449 ) ( -608 1281 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 79
+{
+( -640 1376 416 ) ( -640 1377 416 ) ( -640 1376 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1376 416 ) ( -640 1376 417 ) ( -639 1376 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1376 416 ) ( -639 1376 416 ) ( -640 1377 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1440 448 ) ( -608 1441 448 ) ( -607 1440 448 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1472 448 ) ( -607 1472 448 ) ( -608 1472 449 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1440 448 ) ( -608 1440 449 ) ( -608 1441 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 80
+{
+( -640 1536 416 ) ( -640 1537 416 ) ( -640 1536 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1536 416 ) ( -640 1536 417 ) ( -639 1536 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1536 416 ) ( -639 1536 416 ) ( -640 1537 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1600 448 ) ( -608 1601 448 ) ( -607 1600 448 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1632 448 ) ( -607 1632 448 ) ( -608 1632 449 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1600 448 ) ( -608 1600 449 ) ( -608 1601 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 81
+{
+( -640 1696 416 ) ( -640 1697 416 ) ( -640 1696 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1696 416 ) ( -640 1696 417 ) ( -639 1696 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1696 416 ) ( -639 1696 416 ) ( -640 1697 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1760 448 ) ( -608 1761 448 ) ( -607 1760 448 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1792 448 ) ( -607 1792 448 ) ( -608 1792 449 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1760 448 ) ( -608 1760 449 ) ( -608 1761 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 82
+{
+( -640 1856 416 ) ( -640 1857 416 ) ( -640 1856 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1856 416 ) ( -640 1856 417 ) ( -639 1856 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1856 416 ) ( -639 1856 416 ) ( -640 1857 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1920 448 ) ( -608 1921 448 ) ( -607 1920 448 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1952 448 ) ( -607 1952 448 ) ( -608 1952 449 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1920 448 ) ( -608 1920 449 ) ( -608 1921 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 83
+{
+( -640 2016 416 ) ( -640 2017 416 ) ( -640 2016 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 2016 416 ) ( -640 2016 417 ) ( -639 2016 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 2016 416 ) ( -639 2016 416 ) ( -640 2017 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 2080 448 ) ( -608 2081 448 ) ( -607 2080 448 ) Textures/PaleBricks 0 0 0 1 1
+( -608 2080 448 ) ( -607 2080 448 ) ( -608 2080 449 ) Textures/PaleBricks 0 0 0 1 1
+( -608 2080 448 ) ( -608 2080 449 ) ( -608 2081 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 84
+{
+( -608 2048 416 ) ( -608 2049 416 ) ( -608 2048 417 ) Textures/PaleBricks 0 0 0 1 1
+( -608 2048 416 ) ( -608 2048 417 ) ( -607 2048 416 ) Textures/PaleBricks 0 0 0 1 1
+( -608 2048 416 ) ( -607 2048 416 ) ( -608 2049 416 ) Textures/PaleBricks 0 0 0 1 1
+( -576 2080 448 ) ( -576 2081 448 ) ( -575 2080 448 ) Textures/PaleBricks 0 0 0 1 1
+( -576 2080 448 ) ( -575 2080 448 ) ( -576 2080 449 ) Textures/PaleBricks 0 0 0 1 1
+( -544 2080 448 ) ( -544 2080 449 ) ( -544 2081 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 85
+{
+( -480 2048 416 ) ( -480 2049 416 ) ( -480 2048 417 ) Textures/PaleBricks 0 0 0 1 1
+( -480 2048 416 ) ( -480 2048 417 ) ( -479 2048 416 ) Textures/PaleBricks 0 0 0 1 1
+( -480 2048 416 ) ( -479 2048 416 ) ( -480 2049 416 ) Textures/PaleBricks 0 0 0 1 1
+( -352 2080 448 ) ( -352 2081 448 ) ( -351 2080 448 ) Textures/PaleBricks 0 0 0 1 1
+( -352 2080 448 ) ( -351 2080 448 ) ( -352 2080 449 ) Textures/PaleBricks 0 0 0 1 1
+( -384 2080 448 ) ( -384 2080 449 ) ( -384 2081 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 86
+{
+( -320 2048 416 ) ( -320 2049 416 ) ( -320 2048 417 ) Textures/PaleBricks 0 0 0 1 1
+( -352 2048 416 ) ( -352 2048 417 ) ( -351 2048 416 ) Textures/PaleBricks 0 0 0 1 1
+( -352 2048 416 ) ( -351 2048 416 ) ( -352 2049 416 ) Textures/PaleBricks 0 0 0 1 1
+( -256 2080 448 ) ( -256 2081 448 ) ( -255 2080 448 ) Textures/PaleBricks 0 0 0 1 1
+( -256 2080 448 ) ( -255 2080 448 ) ( -256 2080 449 ) Textures/PaleBricks 0 0 0 1 1
+( -256 2080 448 ) ( -256 2080 449 ) ( -256 2081 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 87
+{
+( -288 1472 192 ) ( -288 1473 192 ) ( -288 1472 193 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1472 192 ) ( -288 1472 193 ) ( -287 1472 192 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1472 192 ) ( -287 1472 192 ) ( -288 1473 192 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1504 336 ) ( -160 1505 336 ) ( -159 1504 336 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1504 224 ) ( -159 1504 224 ) ( -160 1504 225 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1504 224 ) ( -160 1504 225 ) ( -160 1505 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 88
+{
+( 416 1792 192 ) ( 416 1824 0 ) ( 416 1824 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1792 192 ) ( 416 1792 0 ) ( 416 1792 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1824 0 ) ( 416 1792 0 ) ( 544 1792 0 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1824 224 ) ( 416 1792 224 ) ( 416 1824 224 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1824 192 ) ( 416 1824 0 ) ( 544 1824 0 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1824 192 ) ( 544 1792 0 ) ( 544 1792 192 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 89
+{
+( 416 1632 192 ) ( 416 1664 0 ) ( 416 1664 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1632 192 ) ( 416 1632 0 ) ( 416 1632 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1664 0 ) ( 416 1632 0 ) ( 544 1632 0 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1664 224 ) ( 416 1632 224 ) ( 416 1664 224 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1664 192 ) ( 416 1664 0 ) ( 544 1664 0 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1664 192 ) ( 544 1632 0 ) ( 544 1632 192 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 90
+{
+( -640 1488 336 ) ( -640 1489 336 ) ( -640 1488 337 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1344 336 ) ( -608 1344 337 ) ( -607 1344 336 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1488 336 ) ( -607 1488 336 ) ( -608 1489 336 ) Textures/PaleBricks 0 0 0 1 1
+( -400 2016 352 ) ( -400 2017 352 ) ( -399 2016 352 ) Textures/PaleBricks 0 0 0 1 1
+( -400 2080 352 ) ( -399 2080 352 ) ( -400 2080 353 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2016 352 ) ( 640 2016 353 ) ( 640 2017 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 91
+{
+( 512 1376 192 ) ( 512 1377 192 ) ( 512 1376 193 ) Textures/PaleBricks 0 0 0 1 1
+( 512 1344 192 ) ( 512 1344 193 ) ( 513 1344 192 ) Textures/PaleBricks 0 0 0 1 1
+( 512 1376 192 ) ( 513 1376 192 ) ( 512 1377 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1472 208 ) ( 544 1473 208 ) ( 545 1472 208 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1472 208 ) ( 545 1472 208 ) ( 544 1472 209 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1472 208 ) ( 544 1472 209 ) ( 544 1473 208 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 92
+{
+( 512 1312 192 ) ( 512 1344 32 ) ( 512 1344 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1312 192 ) ( 512 1312 32 ) ( 512 1312 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1344 32 ) ( 512 1312 32 ) ( 544 1312 32 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1344 192 ) ( 512 1312 192 ) ( 512 1344 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1344 192 ) ( 512 1344 32 ) ( 544 1344 32 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1344 192 ) ( 544 1312 32 ) ( 544 1312 192 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 93
+{
+( 480 1472 192 ) ( 480 1504 32 ) ( 480 1504 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1472 192 ) ( 480 1472 32 ) ( 480 1472 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1504 32 ) ( 480 1472 32 ) ( 544 1472 32 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1504 192 ) ( 480 1472 192 ) ( 480 1504 192 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1504 192 ) ( 480 1504 32 ) ( 544 1504 32 ) Textures/PaleBricks 0 0 0 1 1
+( 544 1504 192 ) ( 544 1472 32 ) ( 544 1472 192 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 94
+{
+( 320 1216 336 ) ( 320 1217 336 ) ( 320 1216 337 ) Textures/PaleBricks 0 0 0 1 1
+( 320 960 336 ) ( 320 960 337 ) ( 321 960 336 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1216 336 ) ( 321 1216 336 ) ( 320 1217 336 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1344 352 ) ( 608 1345 352 ) ( 609 1344 352 ) Textures/PaleBricks 0 0 0 1 1
+( 608 1344 352 ) ( 609 1344 352 ) ( 608 1344 353 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1344 352 ) ( 640 1344 353 ) ( 640 1345 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 95
+{
+( -640 800 336 ) ( -640 801 336 ) ( -640 800 337 ) Textures/PaleBricks 0 0 0 1 1
+( 320 800 336 ) ( 320 800 337 ) ( 321 800 336 ) Textures/PaleBricks 0 0 0 1 1
+( 320 800 336 ) ( 321 800 336 ) ( 320 801 336 ) Textures/PaleBricks 0 0 0 1 1
+( 544 960 352 ) ( 544 961 352 ) ( 545 960 352 ) Textures/PaleBricks 0 0 0 1 1
+( 544 960 352 ) ( 545 960 352 ) ( 544 960 353 ) Textures/PaleBricks 0 0 0 1 1
+( 640 960 352 ) ( 640 960 353 ) ( 640 961 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 96
+{
+( -320 1232 336 ) ( -320 1233 336 ) ( -320 1232 337 ) Textures/PaleBricks 0 0 0 1 1
+( -336 1232 336 ) ( -336 1232 337 ) ( -335 1232 336 ) Textures/PaleBricks 0 0 0 1 1
+( -336 1232 336 ) ( -335 1232 336 ) ( -336 1233 336 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1328 352 ) ( 320 1329 352 ) ( 321 1328 352 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 352 ) ( 321 1344 352 ) ( 320 1344 353 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1328 352 ) ( 320 1328 353 ) ( 320 1329 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 97
+{
+( 304 960 32 ) ( 304 961 32 ) ( 304 960 33 ) Textures/PaleBricks 0 0 0 1 1
+( 288 960 32 ) ( 288 960 33 ) ( 289 960 32 ) Textures/PaleBricks 0 0 0 1 1
+( 288 960 32 ) ( 289 960 32 ) ( 288 961 32 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1248 336 ) ( 320 1249 336 ) ( 321 1248 336 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1280 64 ) ( 321 1280 64 ) ( 320 1280 65 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1248 64 ) ( 320 1248 65 ) ( 320 1249 64 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 98
+{
+( -128 960 336 ) ( -128 976 128 ) ( -128 976 336 ) Textures/PaleBricks 0 0 0 1 1
+( 304 960 336 ) ( 288 960 128 ) ( 288 960 336 ) Textures/PaleBricks 0 0 0 1 1
+( 304 976 32 ) ( 288 960 32 ) ( 304 960 32 ) Textures/PaleBricks 0 0 0 1 1
+( 304 976 336 ) ( 288 960 336 ) ( 288 976 336 ) Textures/PaleBricks 0 0 0 1 1
+( 304 976 336 ) ( 288 976 128 ) ( 304 976 128 ) Textures/PaleBricks 0 0 0 1 1
+( 304 976 336 ) ( 304 960 128 ) ( 304 960 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 99
+{
+( -128 992 224 ) ( -128 1264 32 ) ( -128 1264 224 ) Textures/PaleBricks 0 0 0 1 1
+( -112 976 224 ) ( -128 976 32 ) ( -128 976 224 ) Textures/PaleBricks 0 0 0 1 1
+( -112 1264 32 ) ( -128 992 32 ) ( -112 992 32 ) Textures/PaleBricks 0 0 0 1 1
+( -112 1264 224 ) ( -128 992 224 ) ( -128 1264 224 ) Textures/PaleBricks 0 0 0 1 1
+( -112 1264 224 ) ( -128 1264 32 ) ( -112 1264 32 ) Textures/PaleBricks 0 0 0 1 1
+( -112 1264 224 ) ( -112 992 32 ) ( -112 992 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 100
+{
+( -128 1264 224 ) ( -128 1280 32 ) ( -128 1280 224 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1264 224 ) ( -128 1264 32 ) ( -128 1264 224 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1280 32 ) ( -128 1264 32 ) ( 304 1264 32 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1280 336 ) ( -128 1264 336 ) ( -128 1280 336 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1280 224 ) ( -128 1280 32 ) ( 304 1280 32 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1280 224 ) ( 304 1264 32 ) ( 304 1264 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 101
+{
+( -304 1232 336 ) ( -304 1280 224 ) ( -304 1280 336 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1232 336 ) ( -320 1232 224 ) ( -320 1232 336 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1280 240 ) ( -320 1232 240 ) ( -128 1232 240 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1280 336 ) ( -320 1232 336 ) ( -320 1280 336 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1280 336 ) ( -320 1280 224 ) ( -128 1280 224 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1280 336 ) ( -128 1232 224 ) ( -128 1232 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 102
+{
+( -320 1008 336 ) ( -320 1280 240 ) ( -320 1280 336 ) Textures/PaleBricks 0 0 0 1 1
+( -304 960 336 ) ( -320 960 240 ) ( -320 960 336 ) Textures/PaleBricks 0 0 0 1 1
+( -304 1280 240 ) ( -320 1008 240 ) ( -304 1008 240 ) Textures/PaleBricks 0 0 0 1 1
+( -304 1280 336 ) ( -320 1008 336 ) ( -320 1280 336 ) Textures/PaleBricks 0 0 0 1 1
+( -304 1280 336 ) ( -320 1280 240 ) ( -304 1280 240 ) Textures/PaleBricks 0 0 0 1 1
+( -304 1280 336 ) ( -304 1008 240 ) ( -304 1008 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 103
+{
+( -640 800 336 ) ( -640 2080 32 ) ( -640 2080 336 ) Textures/PaleBricks 0 0 0 1 1
+( -624 800 336 ) ( -640 800 32 ) ( -640 800 336 ) Textures/PaleBricks 0 0 0 1 1
+( -624 2080 0 ) ( -640 800 0 ) ( -624 800 0 ) Textures/PaleBricks 0 0 0 1 1
+( -624 2080 336 ) ( -640 800 336 ) ( -640 2080 336 ) Textures/PaleBricks 0 0 0 1 1
+( -624 2080 336 ) ( -640 2080 32 ) ( -624 2080 32 ) Textures/PaleBricks 0 0 0 1 1
+( -624 2080 336 ) ( -624 800 32 ) ( -624 800 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 104
+{
+( -624 2064 336 ) ( -624 2080 32 ) ( -624 2080 336 ) __TB_empty 0 0 0 1 1
+( 640 2064 336 ) ( -624 2064 32 ) ( -624 2064 336 ) __TB_empty 0 0 0 1 1
+( 640 2080 0 ) ( -624 2064 0 ) ( 640 2064 0 ) __TB_empty 0 0 0 1 1
+( 640 2080 336 ) ( -624 2064 336 ) ( -624 2080 336 ) __TB_empty 0 0 0 1 1
+( 640 2080 336 ) ( -624 2080 32 ) ( 640 2080 32 ) __TB_empty 0 0 0 1 1
+( 640 2080 336 ) ( 640 2064 32 ) ( 640 2064 336 ) __TB_empty 0 0 0 1 1
+}
+// brush 105
+{
+( 608 800 336 ) ( 608 1008 32 ) ( 608 1008 336 ) Textures/PaleBricks 0 0 0 1 1
+( 640 800 336 ) ( 608 800 32 ) ( 608 800 336 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1008 0 ) ( 608 800 0 ) ( 640 800 0 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1008 336 ) ( 608 800 336 ) ( 608 1008 336 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1120 336 ) ( 608 1120 32 ) ( 640 1120 32 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1008 336 ) ( 640 800 32 ) ( 640 800 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 106
+{
+( 608 1120 336 ) ( 608 1904 224 ) ( 608 1904 336 ) __TB_empty 0 0 0 1 1
+( 640 1120 336 ) ( 608 1120 224 ) ( 608 1120 336 ) __TB_empty 0 0 0 1 1
+( 640 1904 224 ) ( 608 1120 224 ) ( 640 1120 224 ) __TB_empty 0 0 0 1 1
+( 640 1904 336 ) ( 608 1120 336 ) ( 608 1904 336 ) __TB_empty 0 0 0 1 1
+( 640 2064 336 ) ( 608 2064 224 ) ( 640 2064 224 ) __TB_empty 0 0 0 1 1
+( 640 1904 336 ) ( 640 1120 224 ) ( 640 1120 336 ) __TB_empty 0 0 0 1 1
+}
+// brush 107
+{
+( 608 1856 224 ) ( 608 2064 32 ) ( 608 2064 224 ) __TB_empty 0 0 0 1 1
+( 640 1856 224 ) ( 608 1856 32 ) ( 608 1856 224 ) __TB_empty 0 0 0 1 1
+( 640 2064 0 ) ( 608 1856 0 ) ( 640 1856 0 ) __TB_empty 0 0 0 1 1
+( 640 2064 224 ) ( 608 1856 224 ) ( 608 2064 224 ) __TB_empty 0 0 0 1 1
+( 640 2064 224 ) ( 608 2064 32 ) ( 640 2064 32 ) __TB_empty 0 0 0 1 1
+( 640 2064 224 ) ( 640 1856 32 ) ( 640 1856 224 ) __TB_empty 0 0 0 1 1
+}
+// brush 108
+{
+( -640 768 0 ) ( -640 1488 -32 ) ( -640 1488 0 ) Textures/PaleBricks 0 0 0 1 1
+( 576 768 0 ) ( -576 768 -32 ) ( -576 768 0 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1488 -32 ) ( -576 768 -32 ) ( 576 768 -32 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1488 0 ) ( -576 768 0 ) ( -576 1488 0 ) Textures/PaleBricks 0 0 0 1 1
+( 576 2080 0 ) ( -576 2080 -32 ) ( 576 2080 -32 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1488 0 ) ( 640 768 -32 ) ( 640 768 0 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 109
+{
+( 48 768 416 ) ( 48 769 416 ) ( 48 768 417 ) Textures/PaleBricks 0 0 0 1 1
+( 48 768 416 ) ( 48 768 417 ) ( 49 768 416 ) Textures/PaleBricks 0 0 0 1 1
+( 48 768 416 ) ( 49 768 416 ) ( 48 769 416 ) Textures/PaleBricks 0 0 0 1 1
+( 144 800 448 ) ( 144 801 448 ) ( 145 800 448 ) Textures/PaleBricks 0 0 0 1 1
+( 144 800 448 ) ( 145 800 448 ) ( 144 800 449 ) Textures/PaleBricks 0 0 0 1 1
+( 144 800 448 ) ( 144 800 449 ) ( 144 801 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 110
+{
+( -144 768 416 ) ( -144 769 416 ) ( -144 768 417 ) Textures/PaleBricks 0 0 0 1 1
+( -144 768 416 ) ( -144 768 417 ) ( -143 768 416 ) Textures/PaleBricks 0 0 0 1 1
+( -144 768 416 ) ( -143 768 416 ) ( -144 769 416 ) Textures/PaleBricks 0 0 0 1 1
+( -48 800 448 ) ( -48 801 448 ) ( -47 800 448 ) Textures/PaleBricks 0 0 0 1 1
+( -48 800 448 ) ( -47 800 448 ) ( -48 800 449 ) Textures/PaleBricks 0 0 0 1 1
+( -48 800 448 ) ( -48 800 449 ) ( -48 801 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 111
+{
+( -320 768 416 ) ( -320 769 416 ) ( -320 768 417 ) Textures/PaleBricks 0 0 0 1 1
+( -320 768 416 ) ( -320 768 417 ) ( -319 768 416 ) Textures/PaleBricks 0 0 0 1 1
+( -320 768 416 ) ( -319 768 416 ) ( -320 769 416 ) Textures/PaleBricks 0 0 0 1 1
+( -224 800 448 ) ( -224 801 448 ) ( -223 800 448 ) Textures/PaleBricks 0 0 0 1 1
+( -224 800 448 ) ( -223 800 448 ) ( -224 800 449 ) Textures/PaleBricks 0 0 0 1 1
+( -224 800 448 ) ( -224 800 449 ) ( -224 801 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 112
+{
+( -480 768 416 ) ( -480 769 416 ) ( -480 768 417 ) Textures/PaleBricks 0 0 0 1 1
+( -480 768 416 ) ( -480 768 417 ) ( -479 768 416 ) Textures/PaleBricks 0 0 0 1 1
+( -480 768 416 ) ( -479 768 416 ) ( -480 769 416 ) Textures/PaleBricks 0 0 0 1 1
+( -384 800 448 ) ( -384 801 448 ) ( -383 800 448 ) Textures/PaleBricks 0 0 0 1 1
+( -384 800 448 ) ( -383 800 448 ) ( -384 800 449 ) Textures/PaleBricks 0 0 0 1 1
+( -384 800 448 ) ( -384 800 449 ) ( -384 801 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 113
+{
+( -640 768 416 ) ( -640 769 416 ) ( -640 768 417 ) Textures/PaleBricks 0 0 0 1 1
+( -640 768 416 ) ( -640 768 417 ) ( -639 768 416 ) Textures/PaleBricks 0 0 0 1 1
+( -640 768 416 ) ( -639 768 416 ) ( -640 769 416 ) Textures/PaleBricks 0 0 0 1 1
+( -544 800 448 ) ( -544 801 448 ) ( -543 800 448 ) Textures/PaleBricks 0 0 0 1 1
+( -544 800 448 ) ( -543 800 448 ) ( -544 800 449 ) Textures/PaleBricks 0 0 0 1 1
+( -544 800 448 ) ( -544 800 449 ) ( -544 801 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 114
+{
+( 224 768 416 ) ( 224 769 416 ) ( 224 768 417 ) Textures/PaleBricks 0 0 0 1 1
+( 224 768 416 ) ( 224 768 417 ) ( 225 768 416 ) Textures/PaleBricks 0 0 0 1 1
+( 224 768 416 ) ( 225 768 416 ) ( 224 769 416 ) Textures/PaleBricks 0 0 0 1 1
+( 320 800 448 ) ( 320 801 448 ) ( 321 800 448 ) Textures/PaleBricks 0 0 0 1 1
+( 320 800 448 ) ( 321 800 448 ) ( 320 800 449 ) Textures/PaleBricks 0 0 0 1 1
+( 320 800 448 ) ( 320 800 449 ) ( 320 801 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 115
+{
+( 384 768 416 ) ( 384 769 416 ) ( 384 768 417 ) Textures/PaleBricks 0 0 0 1 1
+( 384 768 416 ) ( 384 768 417 ) ( 385 768 416 ) Textures/PaleBricks 0 0 0 1 1
+( 384 768 416 ) ( 385 768 416 ) ( 384 769 416 ) Textures/PaleBricks 0 0 0 1 1
+( 480 800 448 ) ( 480 801 448 ) ( 481 800 448 ) Textures/PaleBricks 0 0 0 1 1
+( 480 800 448 ) ( 481 800 448 ) ( 480 800 449 ) Textures/PaleBricks 0 0 0 1 1
+( 480 800 448 ) ( 480 800 449 ) ( 480 801 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 116
+{
+( 544 768 416 ) ( 544 769 416 ) ( 544 768 417 ) Textures/PaleBricks 0 0 0 1 1
+( 544 768 416 ) ( 544 768 417 ) ( 545 768 416 ) Textures/PaleBricks 0 0 0 1 1
+( 544 768 416 ) ( 545 768 416 ) ( 544 769 416 ) Textures/PaleBricks 0 0 0 1 1
+( 640 800 448 ) ( 640 801 448 ) ( 641 800 448 ) Textures/PaleBricks 0 0 0 1 1
+( 640 800 448 ) ( 641 800 448 ) ( 640 800 449 ) Textures/PaleBricks 0 0 0 1 1
+( 640 800 448 ) ( 640 800 449 ) ( 640 801 448 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 117
+{
+( 640 1120 224 ) ( 640 1121 224 ) ( 640 1120 225 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1120 224 ) ( 640 1120 225 ) ( 641 1120 224 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1120 224 ) ( 641 1120 224 ) ( 640 1121 224 ) Textures/PaleBricks 0 0 0 1 1
+( 896 1856 848 ) ( 896 1857 848 ) ( 897 1856 848 ) Textures/PaleBricks 0 0 0 1 1
+( 896 1856 256 ) ( 897 1856 256 ) ( 896 1856 257 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1856 256 ) ( 880 1856 257 ) ( 880 1857 256 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 118
+{
+( 760 1088 1104 ) ( 640 1088 848 ) ( 640 1120 848 ) Textures/DarkWood 0 0 0 1 1
+( 760 1120 1104 ) ( 880 1120 848 ) ( 640 1120 848 ) Textures/DarkWood 0 0 0 1 1
+( 880 1088 848 ) ( 880 1120 848 ) ( 640 1120 848 ) Textures/DarkWood 0 0 0 1 1
+( 640 1856 848 ) ( 880 1856 848 ) ( 760 1856 1104 ) Textures/DarkWood 0 0 0 1 1
+( 760 1120 1104 ) ( 880 1120 848 ) ( 880 1088 848 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 119
+{
+( -880 1120 224 ) ( -880 1121 224 ) ( -880 1120 225 ) Textures/PaleBricks 0 0 0 1 1
+( -880 1120 224 ) ( -880 1120 225 ) ( -879 1120 224 ) Textures/PaleBricks 0 0 0 1 1
+( -880 1120 224 ) ( -879 1120 224 ) ( -880 1121 224 ) Textures/PaleBricks 0 0 0 1 1
+( -624 1856 848 ) ( -624 1857 848 ) ( -623 1856 848 ) Textures/PaleBricks 0 0 0 1 1
+( -624 1856 256 ) ( -623 1856 256 ) ( -624 1856 257 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1856 256 ) ( -640 1856 257 ) ( -640 1857 256 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 120
+{
+( -760 1088 1104 ) ( -880 1088 848 ) ( -880 1120 848 ) Textures/DarkWood 0 0 0 1 1
+( -760 1120 1104 ) ( -640 1120 848 ) ( -880 1120 848 ) Textures/DarkWood 0 0 0 1 1
+( -640 1088 848 ) ( -640 1120 848 ) ( -880 1120 848 ) Textures/DarkWood 0 0 0 1 1
+( -880 1856 848 ) ( -640 1856 848 ) ( -760 1856 1104 ) Textures/DarkWood 0 0 0 1 1
+( -760 1120 1104 ) ( -640 1120 848 ) ( -640 1088 848 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 121
+{
+( -880 1120 224 ) ( -880 1856 0 ) ( -880 1856 224 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1120 224 ) ( -880 1120 0 ) ( -880 1120 224 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1856 0 ) ( -880 1120 0 ) ( -640 1120 0 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1856 224 ) ( -880 1120 224 ) ( -880 1856 224 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1856 224 ) ( -880 1856 0 ) ( -640 1856 0 ) Textures/PaleBricks 0 0 0 1 1
+( -640 1856 224 ) ( -640 1120 0 ) ( -640 1120 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 122
+{
+( -32 784 32 ) ( -32 800 0 ) ( -32 800 32 ) Textures/PaleBricks 0 0 0 1 1
+( 32 768 32 ) ( -16 768 0 ) ( -16 768 32 ) Textures/PaleBricks 0 0 0 1 1
+( 32 800 0 ) ( -16 784 0 ) ( 32 784 0 ) Textures/PaleBricks 0 0 0 1 1
+( 32 800 32 ) ( -16 784 32 ) ( -16 800 32 ) Textures/PaleBricks 0 0 0 1 1
+( 32 800 32 ) ( -16 800 0 ) ( 32 800 0 ) Textures/PaleBricks 0 0 0 1 1
+( 32 800 32 ) ( 32 784 0 ) ( 32 784 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 123
+{
+( -384 1712 64 ) ( -384 1728 32 ) ( -384 1728 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1712 64 ) ( -384 1712 32 ) ( -384 1712 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1728 32 ) ( -384 1712 32 ) ( -368 1712 32 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1728 64 ) ( -384 1712 64 ) ( -384 1728 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1728 64 ) ( -384 1728 32 ) ( -368 1728 32 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1728 64 ) ( -368 1712 32 ) ( -368 1712 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 124
+{
+( -384 1792 64 ) ( -384 1808 32 ) ( -384 1808 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1792 64 ) ( -384 1792 32 ) ( -384 1792 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1808 32 ) ( -384 1792 32 ) ( -368 1792 32 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1808 64 ) ( -384 1792 64 ) ( -384 1808 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1808 64 ) ( -384 1808 32 ) ( -368 1808 32 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1808 64 ) ( -368 1792 32 ) ( -368 1792 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 125
+{
+( -384 1776 108 ) ( -384 1744 108 ) ( -384 1744 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -384 1744 108 ) ( -368 1744 108 ) ( -368 1744 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1744 96 ) ( -368 1776 96 ) ( -384 1776 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -384 1776 108 ) ( -368 1776 108 ) ( -368 1744 108 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1776 96 ) ( -368 1776 108 ) ( -384 1776 108 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1744 108 ) ( -368 1776 108 ) ( -368 1776 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 126
+{
+( -384 1712 64 ) ( -384 1760 128 ) ( -384 1744 128 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1744 128 ) ( -384 1712 64 ) ( -384 1744 128 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1728 64 ) ( -384 1712 64 ) ( -368 1712 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1728 96 ) ( -368 1744 96 ) ( -240 1744 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1760 128 ) ( -384 1728 64 ) ( -368 1728 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1760 128 ) ( -368 1712 64 ) ( -368 1744 128 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 127
+{
+( -384 1776 96 ) ( -384 1808 64 ) ( -384 1792 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1792 64 ) ( -384 1776 96 ) ( -368 1776 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1808 64 ) ( -384 1792 64 ) ( -368 1792 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1792 96 ) ( -384 1776 96 ) ( -384 1792 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1808 64 ) ( -384 1792 96 ) ( -384 1808 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1808 64 ) ( -368 1776 96 ) ( -368 1792 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 128
+{
+( -384 1744 96 ) ( -384 1744 108 ) ( -384 1728 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1728 96 ) ( -384 1728 96 ) ( -384 1744 108 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1728 96 ) ( -368 1744 96 ) ( -384 1744 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1744 96 ) ( -368 1744 108 ) ( -384 1744 108 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1728 96 ) ( -368 1744 108 ) ( -368 1744 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 129
+{
+( -384 1776 108 ) ( -384 1776 96 ) ( -384 1792 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -384 1776 108 ) ( -368 1776 108 ) ( -368 1776 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1776 96 ) ( -368 1792 96 ) ( -384 1792 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -384 1792 96 ) ( -368 1792 96 ) ( -368 1776 108 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -368 1776 108 ) ( -368 1792 96 ) ( -368 1776 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "Player"
+"origin" "0 112 0"
+"angles" "0 90 0"
+"FlyInDistance" "0"
+"FlyInDuration" "2"
+"FlyInHeight" "80"
+}
+// entity 2
+{
+"classname" "WallTorch"
+"origin" "24 808 128"
+"energy" "1"
+}
+// entity 3
+{
+"classname" "WallTorch"
+"origin" "-408 808 288"
+}
+// entity 4
+{
+"classname" "WallTorch"
+"origin" "472 888 128"
+"angles" "0 90 0"
+}
+// entity 5
+{
+"classname" "WallTorch"
+"origin" "-80 760 80"
+"angles" "0 -180 0"
+}
+// entity 6
+{
+"classname" "WallTorch"
+"origin" "80 760 80"
+"angles" "0 -180 0"
+}
+// entity 7
+{
+"classname" "WallTorch"
+"origin" "-256 1016 160"
+}
+// entity 8
+{
+"classname" "SpotLight3D"
+"origin" "-540.003 1474.82 340.9"
+"angles" "15 -90 0"
+"spot_range" "35"
+"light_energy" "0.5"
+"spot_angle" "90"
+"spot_angle_attenuation" "0.1"
+"spot_attenuation" "0.01"
+}
+// entity 9
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "ThroneRoom"
+"_tb_id" "1"
+// brush 0
+{
+( -96 2496 544 ) ( -96 2336 544 ) ( -96 2336 448 ) Textures/Smoothstone 0 0 0 1 1
+( -96 2336 544 ) ( 96 2336 544 ) ( 96 2336 448 ) Textures/Smoothstone 0 0 0 1 1
+( 96 2336 448 ) ( 96 2496 448 ) ( -96 2496 448 ) Textures/Smoothstone 0 0 0 1 1
+( -96 2496 544 ) ( 96 2496 544 ) ( 96 2336 544 ) Textures/Smoothstone 0 0 0 1 1
+( 96 2496 448 ) ( 96 2496 544 ) ( -96 2496 544 ) Textures/Smoothstone 0 0 0 1 1
+( 96 2336 544 ) ( 96 2496 544 ) ( 96 2496 448 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 1
+{
+( -44 2400 544 ) ( -44 2401 544 ) ( -44 2400 545 ) __TB_empty 0 0 0 1 1
+( -48 2400 544 ) ( -48 2400 545 ) ( -47 2400 544 ) __TB_empty 0 0 0 1 1
+( -48 2400 544 ) ( -47 2400 544 ) ( -48 2401 544 ) __TB_empty 0 0 0 1 1
+( -16 2416 588 ) ( -16 2417 588 ) ( -15 2416 588 ) __TB_empty 0 0 0 1 1
+( -16 2408 560 ) ( -15 2408 560 ) ( -16 2408 561 ) __TB_empty 0 0 0 1 1
+( -20 2416 560 ) ( -20 2416 561 ) ( -20 2417 560 ) __TB_empty 0 0 0 1 1
+}
+// brush 2
+{
+( -256 1792 448 ) ( -256 1793 448 ) ( -256 1792 449 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1792 448 ) ( -256 1792 449 ) ( -255 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1792 448 ) ( -255 1792 448 ) ( -256 1793 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 2496 896 ) ( -224 2497 896 ) ( -223 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 2496 480 ) ( -223 2496 480 ) ( -224 2496 481 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 2496 480 ) ( -224 2496 481 ) ( -224 2497 480 ) Textures/ThroneRoomWalls 0 0 0 1 1
+}
+// brush 3
+{
+( 224 1792 448 ) ( 224 1793 448 ) ( 224 1792 449 ) Textures/ThroneRoomWalls 0 0 0 1 1
+( 224 1792 448 ) ( 224 1792 449 ) ( 225 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 1792 448 ) ( 225 1792 448 ) ( 224 1793 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2496 896 ) ( 256 2497 896 ) ( 257 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2496 480 ) ( 257 2496 480 ) ( 256 2496 481 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2496 480 ) ( 256 2496 481 ) ( 256 2497 480 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 4
+{
+( -256 2496 416 ) ( -256 2497 416 ) ( -256 2496 417 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 2496 416 ) ( -256 2496 417 ) ( -255 2496 416 ) Textures/ThroneRoomWalls 0 0 0 1 1
+( -256 2496 416 ) ( -255 2496 416 ) ( -256 2497 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2528 896 ) ( 256 2529 896 ) ( 257 2528 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2528 448 ) ( 257 2528 448 ) ( 256 2528 449 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2528 448 ) ( 256 2528 449 ) ( 256 2529 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 5
+{
+( 96 2496 544 ) ( 96 2336 544 ) ( 96 2112 448 ) Textures/Smoothstone 0 0 0 1 1
+( 96 2336 544 ) ( 224 2336 544 ) ( 224 2112 448 ) Textures/Smoothstone 0 0 0 1 1
+( 224 2112 448 ) ( 224 2496 448 ) ( 96 2496 448 ) Textures/Smoothstone 0 0 0 1 1
+( 96 2496 544 ) ( 224 2496 544 ) ( 224 2336 544 ) Textures/Smoothstone 0 0 0 1 1
+( 224 2496 448 ) ( 224 2496 544 ) ( 96 2496 544 ) Textures/Smoothstone 0 0 0 1 1
+( 224 2336 544 ) ( 224 2496 544 ) ( 224 2496 448 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 6
+{
+( -224 2496 544 ) ( -224 2336 544 ) ( -224 2112 448 ) Textures/Smoothstone 0 0 0 1 1
+( -224 2336 544 ) ( -96 2336 544 ) ( -96 2112 448 ) Textures/Smoothstone 0 0 0 1 1
+( -96 2112 448 ) ( -96 2496 448 ) ( -224 2496 448 ) Textures/Smoothstone 0 0 0 1 1
+( -224 2496 544 ) ( -96 2496 544 ) ( -96 2336 544 ) Textures/Smoothstone 0 0 0 1 1
+( -96 2496 448 ) ( -96 2496 544 ) ( -224 2496 544 ) Textures/Smoothstone 0 0 0 1 1
+( -96 2336 544 ) ( -96 2496 544 ) ( -96 2496 448 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 7
+{
+( -24 2400 560 ) ( -24 2384 560 ) ( -24 2400 544 ) __TB_empty 0 0 0 1 1
+( -16 2384 544 ) ( -24 2384 544 ) ( -16 2384 560 ) __TB_empty 0 0 0 1 1
+( -16 2400 544 ) ( -24 2400 544 ) ( -16 2384 544 ) __TB_empty 0 0 0 1 1
+( -16 2384 560 ) ( -24 2384 560 ) ( -16 2400 560 ) __TB_empty 0 0 0 1 1
+( -16 2400 560 ) ( -24 2400 560 ) ( -16 2400 544 ) __TB_empty 0 0 0 1 1
+( -20 2384 560 ) ( -20 2400 560 ) ( -20 2384 544 ) __TB_empty 0 0 0 1 1
+}
+// brush 8
+{
+( -44 2384 544 ) ( -44 2400 544 ) ( -44 2384 560 ) __TB_empty 0 0 0 1 1
+( -48 2384 560 ) ( -40 2384 560 ) ( -48 2384 544 ) __TB_empty 0 0 0 1 1
+( -48 2384 544 ) ( -40 2384 544 ) ( -48 2400 544 ) __TB_empty 0 0 0 1 1
+( -48 2400 560 ) ( -40 2400 560 ) ( -48 2384 560 ) __TB_empty 0 0 0 1 1
+( -48 2400 544 ) ( -40 2400 544 ) ( -48 2400 560 ) __TB_empty 0 0 0 1 1
+( -40 2384 544 ) ( -40 2384 560 ) ( -40 2400 544 ) __TB_empty 0 0 0 1 1
+}
+// brush 9
+{
+( -40 2400 544 ) ( -40 2400 552 ) ( -40 2384 544 ) __TB_empty 0 0 0 1 1
+( -40 2384 544 ) ( -40 2384 552 ) ( -24 2384 544 ) __TB_empty 0 0 0 1 1
+( -24 2400 544 ) ( -40 2400 544 ) ( -24 2384 544 ) __TB_empty 0 0 0 1 1
+( -24 2384 552 ) ( -40 2384 552 ) ( -24 2400 552 ) __TB_empty 0 0 0 1 1
+( -24 2400 544 ) ( -24 2400 552 ) ( -40 2400 544 ) __TB_empty 0 0 0 1 1
+( -24 2384 544 ) ( -24 2384 552 ) ( -24 2400 544 ) __TB_empty 0 0 0 1 1
+}
+// brush 10
+{
+( 8 2384 544 ) ( 8 2400 544 ) ( 8 2384 560 ) __TB_empty 0 0 0 1 1
+( 4 2384 560 ) ( 12 2384 560 ) ( 4 2384 544 ) __TB_empty 0 0 0 1 1
+( 4 2384 544 ) ( 12 2384 544 ) ( 4 2400 544 ) __TB_empty 0 0 0 1 1
+( 4 2400 560 ) ( 12 2400 560 ) ( 4 2384 560 ) __TB_empty 0 0 0 1 1
+( 4 2400 544 ) ( 12 2400 544 ) ( 4 2400 560 ) __TB_empty 0 0 0 1 1
+( 12 2384 544 ) ( 12 2384 560 ) ( 12 2400 544 ) __TB_empty 0 0 0 1 1
+}
+// brush 11
+{
+( 12 2400 544 ) ( 12 2400 552 ) ( 12 2384 544 ) __TB_empty 0 0 0 1 1
+( 12 2384 544 ) ( 12 2384 552 ) ( 28 2384 544 ) __TB_empty 0 0 0 1 1
+( 28 2400 544 ) ( 12 2400 544 ) ( 28 2384 544 ) __TB_empty 0 0 0 1 1
+( 28 2384 552 ) ( 12 2384 552 ) ( 28 2400 552 ) __TB_empty 0 0 0 1 1
+( 28 2400 544 ) ( 28 2400 552 ) ( 12 2400 544 ) __TB_empty 0 0 0 1 1
+( 28 2384 544 ) ( 28 2384 552 ) ( 28 2400 544 ) __TB_empty 0 0 0 1 1
+}
+// brush 12
+{
+( 28 2400 560 ) ( 28 2384 560 ) ( 28 2400 544 ) __TB_empty 0 0 0 1 1
+( 36 2384 544 ) ( 28 2384 544 ) ( 36 2384 560 ) __TB_empty 0 0 0 1 1
+( 36 2400 544 ) ( 28 2400 544 ) ( 36 2384 544 ) __TB_empty 0 0 0 1 1
+( 36 2384 560 ) ( 28 2384 560 ) ( 36 2400 560 ) __TB_empty 0 0 0 1 1
+( 36 2400 560 ) ( 28 2400 560 ) ( 36 2400 544 ) __TB_empty 0 0 0 1 1
+( 32 2384 560 ) ( 32 2400 560 ) ( 32 2384 544 ) __TB_empty 0 0 0 1 1
+}
+// brush 13
+{
+( 8 2400 544 ) ( 8 2401 544 ) ( 8 2400 545 ) __TB_empty 0 0 0 1 1
+( 4 2400 544 ) ( 4 2400 545 ) ( 5 2400 544 ) __TB_empty 0 0 0 1 1
+( 4 2400 544 ) ( 5 2400 544 ) ( 4 2401 544 ) __TB_empty 0 0 0 1 1
+( 36 2416 588 ) ( 36 2417 588 ) ( 37 2416 588 ) __TB_empty 0 0 0 1 1
+( 36 2408 560 ) ( 37 2408 560 ) ( 36 2408 561 ) __TB_empty 0 0 0 1 1
+( 32 2416 560 ) ( 32 2416 561 ) ( 32 2417 560 ) __TB_empty 0 0 0 1 1
+}
+// brush 14
+{
+( -96 2464 544 ) ( -96 2465 544 ) ( -96 2464 545 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -96 2464 544 ) ( -96 2464 545 ) ( -95 2464 544 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -96 2464 544 ) ( -95 2464 544 ) ( -96 2465 544 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 96 2496 800 ) ( 96 2497 800 ) ( 97 2496 800 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 96 2496 560 ) ( 97 2496 560 ) ( 96 2496 561 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 96 2496 560 ) ( 96 2496 561 ) ( 96 2497 560 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 15
+{
+( 64 1824 1024 ) ( 64 1792 1024 ) ( 64 1824 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 1792 448 ) ( 64 1792 448 ) ( 224 1792 1024 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 1824 448 ) ( 64 1824 448 ) ( 224 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 1792 896 ) ( 64 1792 896 ) ( 224 1824 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 1824 1024 ) ( 64 1824 1024 ) ( 224 1824 448 ) Textures/ThroneRoomWalls 0 0 0 1 1
+( 224 1792 1024 ) ( 224 1824 1024 ) ( 224 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 16
+{
+( -224 1792 448 ) ( -224 1824 448 ) ( -224 1792 1024 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 1792 1024 ) ( -64 1792 1024 ) ( -224 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 1792 448 ) ( -64 1792 448 ) ( -224 1824 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 1824 896 ) ( -64 1824 896 ) ( -224 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 1824 448 ) ( -64 1824 448 ) ( -224 1824 1024 ) Textures/ThroneRoomWalls 0 0 0 1 1
+( -64 1792 448 ) ( -64 1792 1024 ) ( -64 1824 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 17
+{
+( -64 1792 1024 ) ( -64 1792 800 ) ( -64 1824 1024 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 1792 544 ) ( 64 1824 544 ) ( -64 1792 800 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 1792 1024 ) ( 64 1792 544 ) ( -64 1792 1024 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 1792 896 ) ( -64 1792 896 ) ( 64 1824 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -64 1824 1024 ) ( -64 1824 800 ) ( 64 1824 1024 ) Textures/ThroneRoomWalls 0 0 0 1 1
+( 64 1824 1024 ) ( 64 1824 544 ) ( 64 1792 1024 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 18
+{
+( -64 1792 800 ) ( -64 1792 544 ) ( -64 1824 800 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -64 1792 800 ) ( 0 1792 672 ) ( -64 1792 544 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -64 1824 800 ) ( -64 1824 544 ) ( 0 1824 672 ) Textures/ThroneRoomWalls 0 0 0 1 1
+( 0 1824 672 ) ( -64 1824 544 ) ( 0 1792 672 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -64 1824 800 ) ( 0 1824 672 ) ( -64 1792 800 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 19
+{
+( 0 1792 672 ) ( -32 1792 608 ) ( 0 1824 672 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 1792 672 ) ( 32 1792 608 ) ( -32 1792 608 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 32 1824 608 ) ( -32 1824 608 ) ( 32 1792 608 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 1824 672 ) ( -32 1824 608 ) ( 32 1824 608 ) Textures/ThroneRoomWalls 0 0 0 1 1
+( 0 1824 672 ) ( 32 1824 608 ) ( 0 1792 672 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 20
+{
+( 240 1808 896 ) ( 240 1809 896 ) ( 240 1808 897 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 240 1808 896 ) ( 240 1808 897 ) ( 241 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 240 1808 896 ) ( 241 1808 896 ) ( 240 1809 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2496 928 ) ( 256 2497 928 ) ( 257 2496 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2512 912 ) ( 257 2512 912 ) ( 256 2512 913 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2496 912 ) ( 256 2496 913 ) ( 256 2497 912 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 21
+{
+( -256 2512 896 ) ( -256 2513 896 ) ( -256 2512 897 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 2512 896 ) ( -256 2512 897 ) ( -255 2512 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 2512 896 ) ( -255 2512 896 ) ( -256 2513 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2528 928 ) ( 256 2529 928 ) ( 257 2528 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2528 912 ) ( 257 2528 912 ) ( 256 2528 913 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2528 912 ) ( 256 2528 913 ) ( 256 2529 912 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 22
+{
+( -256 1808 896 ) ( -256 1809 896 ) ( -256 1808 897 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1808 896 ) ( -256 1808 897 ) ( -255 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1808 896 ) ( -255 1808 896 ) ( -256 1809 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -240 2512 928 ) ( -240 2513 928 ) ( -239 2512 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -240 2512 912 ) ( -239 2512 912 ) ( -240 2512 913 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -240 2512 912 ) ( -240 2512 913 ) ( -240 2513 912 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 23
+{
+( 208 1792 928 ) ( 208 1792 896 ) ( 208 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 1792 896 ) ( 208 1792 896 ) ( 256 1792 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 1808 896 ) ( 208 1808 896 ) ( 256 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 1792 944 ) ( 208 1792 944 ) ( 256 1808 944 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 1808 928 ) ( 208 1808 928 ) ( 256 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 1792 928 ) ( 256 1808 928 ) ( 256 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 24
+{
+( 40 1792 928 ) ( 40 1792 896 ) ( 40 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 1792 928 ) ( 128 1792 928 ) ( 40 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 1792 896 ) ( 128 1792 896 ) ( 40 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 1808 944 ) ( 128 1808 944 ) ( 40 1792 944 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 1808 896 ) ( 128 1808 896 ) ( 40 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 128 1792 896 ) ( 128 1792 928 ) ( 128 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 25
+{
+( 128 1808 896 ) ( 128 1808 912 ) ( 128 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 128 1792 896 ) ( 128 1792 912 ) ( 208 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 208 1808 896 ) ( 128 1808 896 ) ( 208 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 208 1792 912 ) ( 128 1792 912 ) ( 208 1808 912 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 208 1808 896 ) ( 208 1808 912 ) ( 128 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 208 1792 896 ) ( 208 1792 912 ) ( 208 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 26
+{
+( -128 1808 928 ) ( -128 1792 928 ) ( -128 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -128 1792 928 ) ( -40 1792 928 ) ( -128 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -128 1792 896 ) ( -40 1792 896 ) ( -128 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -128 1808 944 ) ( -40 1808 944 ) ( -128 1792 944 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -128 1808 896 ) ( -40 1808 896 ) ( -128 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 1808 928 ) ( -40 1808 896 ) ( -40 1792 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 27
+{
+( -40 1808 896 ) ( -40 1808 912 ) ( -40 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 1792 896 ) ( -40 1792 912 ) ( 40 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 1808 896 ) ( -40 1808 896 ) ( 40 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 1808 912 ) ( 40 1792 912 ) ( -40 1808 912 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 1808 896 ) ( 40 1808 912 ) ( -40 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 1792 896 ) ( 40 1792 912 ) ( 40 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 28
+{
+( -256 1792 896 ) ( -256 1808 896 ) ( -256 1792 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1792 928 ) ( -208 1792 928 ) ( -256 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1792 896 ) ( -208 1792 896 ) ( -256 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1808 944 ) ( -208 1808 944 ) ( -256 1792 944 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1808 896 ) ( -208 1808 896 ) ( -256 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -208 1792 896 ) ( -208 1792 928 ) ( -208 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 29
+{
+( -208 1808 896 ) ( -208 1808 912 ) ( -208 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -208 1792 896 ) ( -208 1792 912 ) ( -128 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -128 1808 896 ) ( -208 1808 896 ) ( -128 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -128 1792 912 ) ( -208 1792 912 ) ( -128 1808 912 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -128 1808 896 ) ( -128 1808 912 ) ( -208 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -128 1792 896 ) ( -128 1792 912 ) ( -128 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 30
+{
+( -256 2048 384 ) ( -256 2049 384 ) ( -256 2048 385 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1792 384 ) ( -256 1792 385 ) ( -255 1792 384 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 2048 416 ) ( -255 2048 416 ) ( -256 2049 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2496 448 ) ( 256 2497 448 ) ( 257 2496 448 ) Textures/ThroneRoomFloor 0 0 0 1 1
+( 256 2496 448 ) ( 257 2496 448 ) ( 256 2496 449 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2496 448 ) ( 256 2496 449 ) ( 256 2497 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+}
+// entity 10
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "ThroneRoomRoof"
+"_tb_id" "3"
+"_tb_group" "1"
+// brush 0
+{
+( 64 2496 896 ) ( 64 1824 896 ) ( 64 2496 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 1824 880 ) ( 64 1824 880 ) ( 224 1824 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 2496 880 ) ( 64 2496 880 ) ( 224 1824 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 1824 896 ) ( 64 1824 896 ) ( 224 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 2496 896 ) ( 64 2496 896 ) ( 224 2496 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 224 1824 896 ) ( 224 2496 896 ) ( 224 1824 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 1
+{
+( -224 1824 880 ) ( -224 2496 880 ) ( -224 1824 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 1824 896 ) ( -64 1824 896 ) ( -224 1824 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 1824 880 ) ( -64 1824 880 ) ( -224 2496 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 2496 896 ) ( -64 2496 896 ) ( -224 1824 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -224 2496 880 ) ( -64 2496 880 ) ( -224 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -64 1824 880 ) ( -64 1824 896 ) ( -64 2496 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 2
+{
+( 0 2096 880 ) ( -40 2176 880 ) ( 0 2096 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 2096 880 ) ( 40 2176 880 ) ( -40 2176 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 2096 896 ) ( -40 2176 896 ) ( 40 2176 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 2176 880 ) ( 40 2176 880 ) ( -40 2176 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 2096 896 ) ( 40 2176 896 ) ( 0 2096 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 3
+{
+( -64 2496 896 ) ( -64 2256 896 ) ( -64 2496 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -64 2496 880 ) ( -64 2256 880 ) ( -56 2496 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -56 2496 896 ) ( 0 2384 896 ) ( -64 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -64 2496 880 ) ( -56 2496 880 ) ( -64 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 2384 896 ) ( 0 2384 880 ) ( -64 2256 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -56 2496 880 ) ( 0 2384 880 ) ( -56 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 4
+{
+( 64 1968 880 ) ( 0 2096 880 ) ( 64 1968 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 2096 880 ) ( 64 2224 880 ) ( 0 2096 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 1968 880 ) ( 64 2224 880 ) ( 0 2096 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 1968 896 ) ( 0 2096 896 ) ( 64 2224 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 1968 896 ) ( 64 2224 896 ) ( 64 1968 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 5
+{
+( -64 1824 880 ) ( -64 2224 880 ) ( -64 1824 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 1824 880 ) ( -64 1824 880 ) ( 64 1824 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 1824 880 ) ( 64 1968 880 ) ( -64 1824 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -64 1824 896 ) ( -64 2224 896 ) ( 64 1824 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -64 2224 880 ) ( 64 1968 880 ) ( -64 2224 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 1824 896 ) ( 64 1968 896 ) ( 64 1824 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 6
+{
+( 48 2192 896 ) ( 16 2176 896 ) ( 48 2192 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2176 880 ) ( 16 2176 880 ) ( 40 2176 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2176 880 ) ( 48 2192 880 ) ( 16 2176 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2176 896 ) ( 16 2176 896 ) ( 48 2192 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2176 896 ) ( 48 2192 896 ) ( 40 2176 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 7
+{
+( 48 2288 880 ) ( 16 2304 880 ) ( 48 2288 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2304 880 ) ( 16 2304 880 ) ( 48 2288 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2304 896 ) ( 48 2288 896 ) ( 16 2304 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2304 896 ) ( 16 2304 896 ) ( 40 2304 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2304 880 ) ( 48 2288 880 ) ( 40 2304 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 8
+{
+( 64 2256 896 ) ( 64 2256 880 ) ( -56 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 2496 880 ) ( -56 2496 880 ) ( 64 2256 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 2496 896 ) ( 64 2256 896 ) ( -56 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 2496 896 ) ( -56 2496 896 ) ( 64 2496 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 64 2496 880 ) ( 64 2256 880 ) ( 64 2496 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 9
+{
+( 0 2384 896 ) ( -40 2304 896 ) ( 0 2384 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2304 880 ) ( -40 2304 880 ) ( 40 2304 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 2384 880 ) ( -40 2304 880 ) ( 40 2304 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 2384 896 ) ( 40 2304 896 ) ( -40 2304 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 0 2384 880 ) ( 40 2304 880 ) ( 0 2384 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 10
+{
+( -40 2304 896 ) ( -48 2288 896 ) ( -40 2304 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 2304 880 ) ( -48 2288 880 ) ( -16 2304 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 2304 896 ) ( -16 2304 896 ) ( -48 2288 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 2304 880 ) ( -16 2304 880 ) ( -40 2304 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -48 2288 896 ) ( -16 2304 896 ) ( -48 2288 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 11
+{
+( -40 2176 880 ) ( -48 2192 880 ) ( -40 2176 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 2176 896 ) ( -16 2176 896 ) ( -40 2176 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 2176 880 ) ( -16 2176 880 ) ( -48 2192 880 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 2176 896 ) ( -48 2192 896 ) ( -16 2176 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -48 2192 880 ) ( -16 2176 880 ) ( -48 2192 896 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+}
+// entity 11
+{
+"classname" "Fairy"
+"origin" "0 2064 448"
+"angles" "0 90 0"
+"_tb_group" "1"
+}
+// entity 12
+{
+"classname" "Decal"
+"origin" "0 2070.93 448"
+"SizeX" "5"
+"SizeY" "0.25"
+"SizeZ" "34"
+"angles" "0 90 0"
+"TexturePath" "res://Textures/Textures/ThroneRoomRug.png"
+"_tb_group" "1"
+}
+// entity 13
+{
+"classname" "YellowGem"
+"origin" "12 2164 448"
+"_tb_group" "1"
+}
+// entity 14
+{
+"classname" "PurpleGem"
+"origin" "52 2196 448"
+"_tb_group" "1"
+}
+// entity 15
+{
+"classname" "PurpleGem"
+"origin" "-52 2196 448"
+"_tb_group" "1"
+}
+// entity 16
+{
+"classname" "YellowGem"
+"origin" "-12 2164 448"
+"_tb_group" "1"
+}
+// entity 17
+{
+"classname" "ReturnHomeVortex"
+"origin" "0 2240 448"
+"ExitHeight" "30"
+"_tb_group" "1"
+}
+// entity 18
+{
+"classname" "WallTorch"
+"origin" "-88 880 144"
+"angles" "0 -90 0"
+}
+// entity 19
+{
+"classname" "WallTorch"
+"origin" "-200 808 224"
+}
+// entity 20
+{
+"classname" "WallTorch"
+"origin" "400 1464 224"
+"angles" "0 180 0"
+}
+// entity 21
+{
+"classname" "WallTorch"
+"origin" "-280 1504 128"
+"angles" "0 -90 0"
+}
+// entity 22
+{
+"classname" "Vent"
+"origin" "0 312 -104"
+"angles" "0 -90 0"
+"TargetVentId" "FireplaceVent"
+"VentId" "MoatVent"
+}
+// entity 23
+{
+"classname" "DrowningWater"
+// brush 0
+{
+( -576 32 -192 ) ( -576 33 -192 ) ( -576 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -160 32 -192 ) ( -160 32 -191 ) ( -159 32 -192 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -160 32 -192 ) ( -159 32 -192 ) ( -160 33 -192 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -128 320 -168 ) ( -128 321 -168 ) ( -127 320 -168 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -128 320 -160 ) ( -127 320 -160 ) ( -128 320 -159 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -128 320 -160 ) ( -128 320 -159 ) ( -128 321 -160 ) Textures/PeaceKeepersWater 0 0 0 1 1
+}
+}
+// entity 24
+{
+"classname" "Fairy"
+"origin" "152 1376 112"
+}
+// entity 25
+{
+"classname" "GreenGem"
+"origin" "148 1316 112"
+}
+// entity 26
+{
+"classname" "GreenGem"
+"origin" "148 1436 112"
+}
+// entity 27
+{
+"classname" "RedGem"
+"origin" "-236 1324 48"
+}
+// entity 28
+{
+"classname" "RedGem"
+"origin" "-236 1292 64"
+}
+// entity 29
+{
+"classname" "MagentaGem"
+"origin" "164 1412 112"
+}
+// entity 30
+{
+"classname" "MagentaGem"
+"origin" "164 1340 112"
+}
+// entity 31
+{
+"classname" "Basket"
+"origin" "-72 1304 32"
+"GemColor" "2"
+}
+// entity 32
+{
+"classname" "Basket"
+"origin" "-24 1304 32"
+"GemColor" "2"
+}
+// entity 33
+{
+"classname" "Fairy"
+"origin" "0 104 -160"
+}
+// entity 34
+{
+"classname" "YellowGem"
+"origin" "-68 124 -160"
+}
+// entity 35
+{
+"classname" "YellowGem"
+"origin" "68 124 -160"
+}
+// entity 36
+{
+"classname" "PurpleGem"
+"origin" "4 228 -160"
+}
+// entity 37
+{
+"classname" "PurpleGem"
+"origin" "-4 180 -160"
+}
+// entity 38
+{
+"classname" "MagentaGem"
+"origin" "0 68 -160"
+}
+// entity 39
+{
+"classname" "Basket"
+"origin" "-56 296 -160"
+"GemColor" "2"
+}
+// entity 40
+{
+"classname" "Basket"
+"origin" "56 296 -160"
+"GemColor" "2"
+}
+// entity 41
+{
+"classname" "RedGem"
+"origin" "-584 1644 144"
+}
+// entity 42
+{
+"classname" "Vase"
+"origin" "232 912 48"
+}
+// entity 43
+{
+"classname" "PurpleGem"
+"origin" "228 868 48"
+}
+// entity 44
+{
+"classname" "RedGem"
+"origin" "-24 296 0"
+}
+// entity 45
+{
+"classname" "RedGem"
+"origin" "24 296 0"
+}
+// entity 46
+{
+"classname" "PurpleGem"
+"origin" "508 516 0"
+}
+// entity 47
+{
+"classname" "PurpleGem"
+"origin" "508 612 0"
+}
+// entity 48
+{
+"classname" "RedGem"
+"origin" "324 412 0"
+}
+// entity 49
+{
+"classname" "Basket"
+"origin" "296 584 0"
+}
+// entity 50
+{
+"classname" "Basket"
+"origin" "296 520 0"
+}
+// entity 51
+{
+"classname" "Vase"
+"origin" "376 520 64"
+"GemColor" "5"
+}
+// entity 52
+{
+"classname" "Vase"
+"origin" "376 600 64"
+"GemColor" "5"
+}
+// entity 53
+{
+"classname" "PurpleGem"
+"origin" "372 476 64"
+}
+// entity 54
+{
+"classname" "PurpleGem"
+"origin" "372 628 64"
+}
+// entity 55
+{
+"classname" "GreenGem"
+"origin" "372 560 64"
+}
+// entity 56
+{
+"classname" "Basket"
+"origin" "40 936 32"
+}
+// entity 57
+{
+"classname" "Basket"
+"origin" "88 936 32"
+}
+// entity 58
+{
+"classname" "YellowGem"
+"origin" "-244 596 96"
+}
+// entity 59
+{
+"classname" "GreenGem"
+"origin" "-212 628 96"
+}
+// entity 60
+{
+"classname" "RedGem"
+"origin" "-228 500 16"
+}
+// entity 61
+{
+"classname" "Vase"
+"origin" "-296 632 0"
+"GemColor" "2"
+}
+// entity 62
+{
+"classname" "Vase"
+"origin" "-296 600 0"
+"GemColor" "2"
+}
+// entity 63
+{
+"classname" "Basket"
+"origin" "-184 616 0"
+}
+// entity 64
+{
+"classname" "GreenGem"
+"origin" "324 708 0"
+}
+// entity 65
+{
+"classname" "GreenGem"
+"origin" "260 724 0"
+}
+// entity 66
+{
+"classname" "GreenGem"
+"origin" "180 700 0"
+}
+// entity 67
+{
+"classname" "RedGem"
+"origin" "244 412 0"
+}
+// entity 68
+{
+"classname" "RedGem"
+"origin" "452 428 0"
+}
+// entity 69
+{
+"classname" "Vase"
+"origin" "336 1048 64"
+}
+// entity 70
+{
+"classname" "Vase"
+"origin" "336 1112 64"
+}
+// entity 71
+{
+"classname" "GreenGem"
+"origin" "468 1236 56"
+}
+// entity 72
+{
+"classname" "RedGem"
+"origin" "468 1180 56"
+}
+// entity 73
+{
+"classname" "PurpleGem"
+"origin" "324 1452 32"
+}
+// entity 74
+{
+"classname" "PurpleGem"
+"origin" "324 1420 32"
+}
+// entity 75
+{
+"classname" "Basket"
+"origin" "448 824 112"
+}
+// entity 76
+{
+"classname" "RedGem"
+"origin" "-172 932 216"
+}
+// entity 77
+{
+"classname" "PurpleGem"
+"origin" "-204 844 176"
+}
+// entity 78
+{
+"classname" "Vase"
+"origin" "-368 920 176"
+"GemColor" "2"
+}
+// entity 79
+{
+"classname" "Basket"
+"origin" "-184 1048 112"
+}
+// entity 80
+{
+"classname" "Basket"
+"origin" "-264 1048 112"
+}
+// entity 81
+{
+"classname" "Vase"
+"origin" "184 840 352"
+"GemColor" "5"
+}
+// entity 82
+{
+"classname" "Vase"
+"origin" "104 840 352"
+"GemColor" "5"
+}
+// entity 83
+{
+"classname" "GreenGem"
+"origin" "396 1076 352"
+}
+// entity 84
+{
+"classname" "GreenGem"
+"origin" "396 996 352"
+}
+// entity 85
+{
+"classname" "GreenGem"
+"origin" "348 916 352"
+}
+// entity 86
+{
+"classname" "EnemyHandCannoner"
+"origin" "400 1320 32"
+"angles" "0 -90 0"
+"GemColor" "2"
+}
+// entity 87
+{
+"classname" "EnemyHandCannoner"
+"origin" "-120 600 0"
+}
+// entity 88
+{
+"classname" "EnemyHandCannoner"
+"origin" "480 536 0"
+}
+// entity 89
+{
+"classname" "EnemyHandCannoner"
+"origin" "-344 1144 112"
+"angles" "0 90 0"
+"GemColor" "2"
+}
+// entity 90
+{
+"classname" "EnemyHandCannoner"
+"origin" "-312 840 176"
+"angles" "0 90 0"
+"GemColor" "2"
+}
+// entity 91
+{
+"classname" "EnemyHandCannoner"
+"origin" "-8 928 432"
+"angles" "0 -90 0"
+}
+// entity 92
+{
+"classname" "EnemyHandCannoner"
+"origin" "-472 1160 352"
+"angles" "0 -90 0"
+"GemColor" "2"
+}
+// entity 93
+{
+"classname" "EnemyHandCannoner"
+"origin" "-392 1160 352"
+"angles" "0 -90 0"
+"GemColor" "2"
+}
+// entity 94
+{
+"classname" "RedGem"
+"origin" "-116 1652 352"
+}
+// entity 95
+{
+"classname" "RedGem"
+"origin" "-140 1604 352"
+}
+// entity 96
+{
+"classname" "EnemyHandCannoner"
+"origin" "-16 1408 352"
+"angles" "0 180 0"
+"GemColor" "5"
+}
+// entity 97
+{
+"classname" "EnemyHandCannoner"
+"origin" "0 1816 448"
+"angles" "0 -90 0"
+"GemColor" "10"
+}
+// entity 98
+{
+"classname" "DeathBarrier"
+// brush 0
+{
+( -1824 32 -192 ) ( -1824 320 -832 ) ( -1824 320 -192 ) __TB_empty 0 0 0 1 1
+( 128 -896 -192 ) ( -128 -896 -832 ) ( -128 -896 -192 ) __TB_empty 0 0 0 1 1
+( 128 320 -832 ) ( -128 32 -832 ) ( 128 32 -832 ) __TB_empty 0 0 0 1 1
+( 128 320 -320 ) ( -128 32 -320 ) ( -128 320 -320 ) __TB_empty 0 0 0 1 1
+( 128 3424 -192 ) ( -128 3424 -832 ) ( 128 3424 -832 ) __TB_empty 0 0 0 1 1
+( 1696 320 -192 ) ( 1696 32 -832 ) ( 1696 32 -192 ) __TB_empty 0 0 0 1 1
+}
+}
+// entity 99
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "Kitchen"
+"_tb_id" "4"
+// brush 0
+{
+( 544 1088 192 ) ( 544 1344 0 ) ( 544 1344 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1120 192 ) ( 512 1120 0 ) ( 512 1120 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1344 16 ) ( 512 1088 16 ) ( 576 1088 16 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1344 192 ) ( 512 1088 192 ) ( 512 1344 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1344 192 ) ( 512 1344 0 ) ( 576 1344 0 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1344 192 ) ( 576 1088 0 ) ( 576 1088 192 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 1
+{
+( 544 1344 192 ) ( 544 1648 32 ) ( 544 1648 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1472 192 ) ( 544 1472 32 ) ( 544 1472 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1648 32 ) ( 544 1344 32 ) ( 576 1344 32 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1648 192 ) ( 544 1344 192 ) ( 544 1648 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1664 192 ) ( 544 1664 32 ) ( 576 1664 32 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1648 192 ) ( 576 1344 32 ) ( 576 1344 192 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 2
+{
+( 544 1792 192 ) ( 544 1840 16 ) ( 544 1840 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1792 192 ) ( 544 1792 16 ) ( 544 1792 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1840 16 ) ( 544 1792 16 ) ( 576 1792 16 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1840 192 ) ( 544 1792 192 ) ( 544 1840 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1856 192 ) ( 544 1856 16 ) ( 576 1856 16 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1840 192 ) ( 576 1792 16 ) ( 576 1792 192 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 3
+{
+( 576 1120 16 ) ( 576 1121 16 ) ( 576 1120 17 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1120 16 ) ( 576 1120 17 ) ( 577 1120 16 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1120 0 ) ( 577 1120 0 ) ( 576 1121 0 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1136 192 ) ( 880 1137 192 ) ( 881 1136 192 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1136 32 ) ( 881 1136 32 ) ( 880 1136 33 ) Textures/PaleBricks 0 0 0 1 1
+( 864 1136 32 ) ( 864 1136 33 ) ( 864 1137 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 4
+{
+( 544 1216 16 ) ( 544 1217 16 ) ( 544 1216 17 ) Textures/PaleBricks 0 0 0 1 1
+( 528 1136 16 ) ( 528 1136 17 ) ( 529 1136 16 ) Textures/PaleBricks 0 0 0 1 1
+( 528 1216 0 ) ( 529 1216 0 ) ( 528 1217 0 ) Textures/PaleBricks 0 0 0 1 1
+( 768 1360 32 ) ( 768 1361 32 ) ( 769 1360 32 ) Textures/PaleBricks 0 0 0 1 1
+( 768 1840 32 ) ( 769 1840 32 ) ( 768 1840 33 ) Textures/PaleBricks 0 0 0 1 1
+( 864 1360 32 ) ( 864 1360 33 ) ( 864 1361 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 5
+{
+( 736 1824 32 ) ( 736 1825 32 ) ( 736 1824 33 ) Textures/PaleBricks 0 0 0 1 1
+( 704 1808 32 ) ( 704 1808 33 ) ( 705 1808 32 ) Textures/PaleBricks 0 0 0 1 1
+( 704 1824 32 ) ( 705 1824 32 ) ( 704 1825 32 ) Textures/PaleBricks 0 0 0 1 1
+( 784 1840 112 ) ( 784 1841 112 ) ( 785 1840 112 ) Textures/PaleBricks 0 0 0 1 1
+( 784 1840 144 ) ( 785 1840 144 ) ( 784 1840 145 ) Textures/PaleBricks 0 0 0 1 1
+( 784 1840 144 ) ( 784 1840 145 ) ( 784 1841 144 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 6
+{
+( 656 1136 32 ) ( 656 1137 32 ) ( 656 1136 33 ) Textures/DarkWood 0 0 0 1 1
+( 656 1136 32 ) ( 656 1136 33 ) ( 657 1136 32 ) Textures/DarkWood 0 0 0 1 1
+( 656 1136 32 ) ( 657 1136 32 ) ( 656 1137 32 ) Textures/DarkWood 0 0 0 1 1
+( 832 1200 80 ) ( 832 1201 80 ) ( 833 1200 80 ) Textures/DarkWood 0 0 0 1 1
+( 832 1184 80 ) ( 833 1184 80 ) ( 832 1184 81 ) Textures/DarkWood 0 0 0 1 1
+( 864 1200 80 ) ( 864 1200 81 ) ( 864 1201 80 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 7
+{
+( 864 1136 16 ) ( 864 1137 16 ) ( 864 1136 17 ) Textures/PaleBricks 0 0 0 1 1
+( 864 1120 16 ) ( 864 1120 17 ) ( 865 1120 16 ) Textures/PaleBricks 0 0 0 1 1
+( 864 1136 0 ) ( 865 1136 0 ) ( 864 1137 0 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1840 192 ) ( 880 1841 192 ) ( 881 1840 192 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1856 32 ) ( 881 1856 32 ) ( 880 1856 33 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1840 32 ) ( 880 1840 33 ) ( 880 1841 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 8
+{
+( 816 1216 32 ) ( 816 1217 32 ) ( 816 1216 33 ) Textures/DarkWood 0 0 0 1 1
+( 800 1184 32 ) ( 800 1184 33 ) ( 801 1184 32 ) Textures/DarkWood 0 0 0 1 1
+( 800 1216 32 ) ( 801 1216 32 ) ( 800 1217 32 ) Textures/DarkWood 0 0 0 1 1
+( 864 1408 80 ) ( 864 1409 80 ) ( 865 1408 80 ) Textures/DarkWood 0 0 0 1 1
+( 864 1440 64 ) ( 865 1440 64 ) ( 864 1440 65 ) Textures/DarkWood 0 0 0 1 1
+( 864 1408 64 ) ( 864 1408 65 ) ( 864 1409 64 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 9
+{
+( 576 1536 32 ) ( 576 1537 32 ) ( 576 1536 33 ) Textures/DarkWood 0 0 0 1 1
+( 576 1552 32 ) ( 576 1552 33 ) ( 577 1552 32 ) Textures/DarkWood 0 0 0 1 1
+( 576 1536 32 ) ( 577 1536 32 ) ( 576 1537 32 ) Textures/DarkWood 0 0 0 1 1
+( 736 1600 112 ) ( 736 1601 112 ) ( 737 1600 112 ) Textures/DarkWood 0 0 0 1 1
+( 736 1584 48 ) ( 737 1584 48 ) ( 736 1584 49 ) Textures/DarkWood 0 0 0 1 1
+( 736 1600 48 ) ( 736 1600 49 ) ( 736 1601 48 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 10
+{
+( 576 1840 144 ) ( 576 1856 16 ) ( 576 1856 144 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1840 144 ) ( 576 1840 16 ) ( 576 1840 144 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1856 0 ) ( 576 1840 0 ) ( 880 1840 0 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1856 192 ) ( 576 1840 192 ) ( 576 1856 192 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1856 144 ) ( 576 1856 16 ) ( 880 1856 16 ) Textures/PaleBricks 0 0 0 1 1
+( 864 1856 144 ) ( 864 1840 16 ) ( 864 1840 144 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 11
+{
+( 544 1120 192 ) ( 544 1121 192 ) ( 544 1120 193 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1120 192 ) ( 576 1120 193 ) ( 577 1120 192 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1120 192 ) ( 577 1120 192 ) ( 576 1121 192 ) Textures/PaleBricks 0 0 0 1 1
+( 864 1856 224 ) ( 864 1857 224 ) ( 865 1856 224 ) Textures/PaleBricks 0 0 0 1 1
+( 864 1856 224 ) ( 865 1856 224 ) ( 864 1856 225 ) Textures/PaleBricks 0 0 0 1 1
+( 880 1856 224 ) ( 880 1856 225 ) ( 880 1857 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+}
+// entity 100
+{
+"classname" "PurpleGem"
+"origin" "852 1588 32"
+"_tb_group" "4"
+}
+// entity 101
+{
+"classname" "PurpleGem"
+"origin" "852 1684 32"
+"_tb_group" "4"
+}
+// entity 102
+{
+"classname" "EnemyHandCannoner"
+"origin" "792 1592 32"
+"GemColor" "5"
+"_tb_group" "4"
+}
+// entity 103
+{
+"classname" "Vase"
+"origin" "840 1352 80"
+"GemColor" "5"
+"_tb_group" "4"
+}
+// entity 104
+{
+"classname" "PurpleGem"
+"origin" "852 1636 32"
+"_tb_group" "4"
+}
+// entity 105
+{
+"classname" "GreenGem"
+"origin" "788 1260 32"
+"_tb_group" "4"
+}
+// entity 106
+{
+"classname" "RedGem"
+"origin" "788 1212 32"
+"_tb_group" "4"
+}
+// entity 107
+{
+"classname" "Vase"
+"origin" "840 1304 80"
+"GemColor" "5"
+"_tb_group" "4"
+}
+// entity 108
+{
+"classname" "Basket"
+"origin" "712 1160 80"
+"GemColor" "2"
+"_tb_group" "4"
+}
+// entity 109
+{
+"classname" "Basket"
+"origin" "776 1160 80"
+"GemColor" "2"
+"_tb_group" "4"
+}
+// entity 110
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "DiningRoom"
+"_tb_id" "5"
+// brush 0
+{
+( -400 1760 128 ) ( -400 1744 96 ) ( -400 1776 96 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1760 128 ) ( -384 1744 96 ) ( -400 1760 128 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1744 96 ) ( -384 1776 96 ) ( -400 1744 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -400 1760 128 ) ( -400 1776 96 ) ( -384 1760 128 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1760 128 ) ( -384 1776 96 ) ( -384 1744 96 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 1
+{
+( -400 1984 352 ) ( -400 1792 352 ) ( -400 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1792 16 ) ( -400 1792 16 ) ( -384 1792 352 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -400 1984 16 ) ( -400 1792 16 ) ( -384 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1984 256 ) ( -384 1792 256 ) ( -400 1984 256 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1984 16 ) ( -384 1984 16 ) ( -400 1984 352 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1984 16 ) ( -384 1792 16 ) ( -384 1984 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 2
+{
+( -400 1472 16 ) ( -400 1728 16 ) ( -400 1472 352 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1536 352 ) ( -384 1536 352 ) ( -400 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1472 16 ) ( -384 1728 16 ) ( -400 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1472 256 ) ( -400 1728 256 ) ( -384 1472 256 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1728 352 ) ( -400 1728 16 ) ( -384 1728 352 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -384 1472 352 ) ( -384 1728 352 ) ( -384 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 3
+{
+( -400 1728 192 ) ( -400 1728 64 ) ( -400 1760 128 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1728 192 ) ( -384 1728 64 ) ( -400 1728 192 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1728 64 ) ( -384 1728 64 ) ( -400 1760 128 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -400 1728 192 ) ( -400 1760 128 ) ( -384 1728 192 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1728 192 ) ( -384 1760 128 ) ( -384 1728 64 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 4
+{
+( -400 1728 352 ) ( -400 1728 192 ) ( -400 1792 352 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1728 352 ) ( -384 1728 192 ) ( -400 1728 352 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1792 64 ) ( -400 1728 192 ) ( -384 1792 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -384 1792 256 ) ( -384 1728 256 ) ( -400 1792 256 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1792 352 ) ( -400 1792 64 ) ( -384 1792 352 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1792 352 ) ( -384 1792 64 ) ( -384 1728 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 5
+{
+( -288 1504 192 ) ( -288 1505 192 ) ( -288 1504 193 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1504 192 ) ( -288 1504 193 ) ( -287 1504 192 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1504 192 ) ( -287 1504 192 ) ( -288 1505 192 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1536 224 ) ( -160 1537 224 ) ( -159 1536 224 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1536 224 ) ( -159 1536 224 ) ( -160 1536 225 ) Textures/PaleBricks 0 0 0 1 1
+( -160 1536 224 ) ( -160 1536 225 ) ( -160 1537 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 6
+{
+( -160 1504 224 ) ( -160 1536 32 ) ( -160 1536 224 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1504 224 ) ( -32 1504 32 ) ( -32 1504 224 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1536 32 ) ( -32 1504 32 ) ( 416 1504 32 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1536 224 ) ( -32 1504 224 ) ( -32 1536 224 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1536 224 ) ( -32 1536 32 ) ( 416 1536 32 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1536 224 ) ( 416 1504 32 ) ( 416 1504 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 7
+{
+( -384 1984 224 ) ( -384 2016 32 ) ( -384 2016 224 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1984 224 ) ( -128 1984 32 ) ( -128 1984 224 ) Textures/PaleBricks 0 0 0 1 1
+( 384 2016 32 ) ( -128 1984 32 ) ( 384 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+( 384 2016 224 ) ( -128 1984 224 ) ( -128 2016 224 ) Textures/PaleBricks 0 0 0 1 1
+( 384 2016 224 ) ( -128 2016 32 ) ( 384 2016 32 ) Textures/PaleBricks 0 0 0 1 1
+( 384 2016 224 ) ( 384 1984 32 ) ( 384 1984 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 8
+{
+( -384 1504 224 ) ( -384 1536 32 ) ( -384 1536 224 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1504 224 ) ( -384 1504 32 ) ( -384 1504 224 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1536 32 ) ( -384 1504 32 ) ( -288 1504 32 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1536 224 ) ( -384 1504 224 ) ( -384 1536 224 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1536 224 ) ( -384 1536 32 ) ( -288 1536 32 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1536 224 ) ( -288 1504 32 ) ( -288 1504 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 9
+{
+( 384 1664 192 ) ( 384 1665 192 ) ( 384 1664 193 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1664 192 ) ( 384 1664 193 ) ( 385 1664 192 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1664 192 ) ( 385 1664 192 ) ( 384 1665 192 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1792 224 ) ( 416 1793 224 ) ( 417 1792 224 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1792 224 ) ( 417 1792 224 ) ( 416 1792 225 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1792 224 ) ( 416 1792 225 ) ( 416 1793 224 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 10
+{
+( 384 1536 16 ) ( 384 1537 16 ) ( 384 1536 17 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1536 16 ) ( 384 1536 17 ) ( 385 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1536 16 ) ( 385 1536 16 ) ( 384 1537 16 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1664 224 ) ( 576 1665 224 ) ( 577 1664 224 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1664 32 ) ( 577 1664 32 ) ( 576 1664 33 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1664 32 ) ( 416 1664 33 ) ( 416 1665 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 11
+{
+( 384 1792 16 ) ( 384 1793 16 ) ( 384 1792 17 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1792 16 ) ( 384 1792 17 ) ( 385 1792 16 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1792 16 ) ( 385 1792 16 ) ( 384 1793 16 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1984 224 ) ( 576 1985 224 ) ( 577 1984 224 ) Textures/PaleBricks 0 0 0 1 1
+( 576 1984 32 ) ( 577 1984 32 ) ( 576 1984 33 ) Textures/PaleBricks 0 0 0 1 1
+( 416 1984 32 ) ( 416 1984 33 ) ( 416 1985 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 12
+{
+( -192 1696 32 ) ( -192 1697 32 ) ( -192 1696 33 ) Textures/DarkWood 0 0 0 0.5 0.5
+( -352 1664 32 ) ( -352 1664 33 ) ( -351 1664 32 ) Textures/DarkWood 0 0 0 0.5 0.5
+( -352 1696 32 ) ( -351 1696 32 ) ( -352 1697 32 ) Textures/DarkWood 0 0 0 0.5 0.5
+( 272 1872 48 ) ( 272 1873 48 ) ( 273 1872 48 ) Textures/DarkWood 0 0 0 0.5 0.5
+( 272 1856 48 ) ( 273 1856 48 ) ( 272 1856 49 ) Textures/DarkWood 0 0 0 0.5 0.5
+( 192 1872 48 ) ( 192 1872 49 ) ( 192 1873 48 ) Textures/DarkWood 0 0 0 0.5 0.5
+}
+// brush 13
+{
+( -384 1536 224 ) ( -384 1537 224 ) ( -384 1536 225 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1504 224 ) ( 384 1504 225 ) ( 385 1504 224 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1536 224 ) ( 385 1536 224 ) ( 384 1537 224 ) Textures/PaleBricks 0 0 0 1 1
+( 480 1984 256 ) ( 480 1985 256 ) ( 481 1984 256 ) Textures/PaleBricks 0 0 0 1 1
+( 480 1984 256 ) ( 481 1984 256 ) ( 480 1984 257 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1984 256 ) ( 384 1984 257 ) ( 384 1985 256 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 14
+{
+( -368 1984 32 ) ( -368 1536 32 ) ( -368 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1536 16 ) ( -368 1536 16 ) ( 384 1536 32 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1984 16 ) ( -368 1984 16 ) ( 384 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1536 32 ) ( -368 1536 32 ) ( 384 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1984 32 ) ( -368 1984 32 ) ( 384 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( 384 1536 32 ) ( 384 1984 32 ) ( 384 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 15
+{
+( -384 1984 32 ) ( -384 1792 32 ) ( -384 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1792 32 ) ( -368 1792 32 ) ( -384 1792 16 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1984 16 ) ( -384 1792 16 ) ( -368 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -368 1984 32 ) ( -368 1792 32 ) ( -384 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1984 16 ) ( -368 1984 16 ) ( -384 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+( -368 1984 16 ) ( -368 1792 16 ) ( -368 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 16
+{
+( -384 1536 16 ) ( -384 1728 16 ) ( -384 1536 32 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1536 32 ) ( -368 1536 32 ) ( -384 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+( -368 1536 16 ) ( -368 1728 16 ) ( -384 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1536 32 ) ( -384 1728 32 ) ( -368 1536 32 ) Textures/PaleBricks 0 0 0 1 1
+( -384 1728 32 ) ( -384 1728 16 ) ( -368 1728 32 ) Textures/PaleBricks 0 0 0 1 1
+( -368 1536 32 ) ( -368 1728 32 ) ( -368 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 17
+{
+( -384 1728 32 ) ( -384 1792 16 ) ( -384 1792 32 ) Textures/DarkWood 0 0 0 1 1
+( -368 1728 32 ) ( -384 1728 16 ) ( -384 1728 32 ) Textures/DarkWood 0 0 0 1 1
+( -368 1792 16 ) ( -384 1728 16 ) ( -368 1728 16 ) Textures/DarkWood 0 0 0 1 1
+( -368 1792 32 ) ( -384 1728 32 ) ( -384 1792 32 ) Textures/DarkWood 0 0 0 1 1
+( -368 1792 32 ) ( -384 1792 16 ) ( -368 1792 16 ) Textures/DarkWood 0 0 0 1 1
+( -368 1792 32 ) ( -368 1728 16 ) ( -368 1728 32 ) Textures/DarkWood 0 0 0 1 1
+}
+}
+// entity 111
+{
+"classname" "Vase"
+"origin" "-152 1760 48"
+"GemColor" "2"
+"_tb_group" "5"
+}
+// entity 112
+{
+"classname" "Vase"
+"origin" "56 1760 48"
+"GemColor" "2"
+"_tb_group" "5"
+}
+// entity 113
+{
+"classname" "Vase"
+"origin" "136 1760 48"
+"GemColor" "2"
+"_tb_group" "5"
+}
+// entity 114
+{
+"classname" "Vase"
+"origin" "-72 1760 48"
+"GemColor" "2"
+"_tb_group" "5"
+}
+// entity 115
+{
+"classname" "EnemyHandCannoner"
+"origin" "8 1624 32"
+"angles" "0 90 0"
+"AggroRadius" "40"
+"GemColor" "5"
+"_tb_group" "5"
+}
+// entity 116
+{
+"classname" "EnemyHandCannoner"
+"origin" "-88 1896 32"
+"angles" "0 -90 0"
+"AggroRadius" "80"
+"GemColor" "5"
+"_tb_group" "5"
+}
+// entity 117
+{
+"classname" "EnemyHandCannoner"
+"origin" "104 1624 32"
+"angles" "0 90 0"
+"AggroRadius" "40"
+"GemColor" "5"
+"_tb_group" "5"
+}
+// entity 118
+{
+"classname" "EnemyHandCannoner"
+"origin" "-88 1624 32"
+"angles" "0 90 0"
+"AggroRadius" "40"
+"GemColor" "5"
+"_tb_group" "5"
+}
+// entity 119
+{
+"classname" "EnemyHandCannoner"
+"origin" "104 1896 32"
+"angles" "0 -90 0"
+"AggroRadius" "80"
+"GemColor" "5"
+"_tb_group" "5"
+}
+// entity 120
+{
+"classname" "EnemyHandCannoner"
+"origin" "8 1896 32"
+"angles" "0 -90 0"
+"AggroRadius" "80"
+"GemColor" "5"
+"_tb_group" "5"
+}
+// entity 121
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "Fireplace"
+"_tb_id" "6"
+// brush 0
+{
+( -416 1472 16 ) ( -416 1728 16 ) ( -416 1472 352 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1472 352 ) ( -400 1472 352 ) ( -416 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1472 16 ) ( -400 1728 16 ) ( -416 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1472 336 ) ( -416 1728 336 ) ( -400 1472 336 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1728 352 ) ( -416 1728 16 ) ( -400 1728 352 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -400 1472 352 ) ( -400 1728 352 ) ( -400 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 1
+{
+( -416 1728 352 ) ( -416 1728 192 ) ( -416 1792 352 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1728 352 ) ( -400 1728 192 ) ( -416 1728 352 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1792 64 ) ( -416 1728 192 ) ( -400 1792 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -400 1792 336 ) ( -400 1728 336 ) ( -416 1792 336 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1792 352 ) ( -416 1792 64 ) ( -400 1792 352 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1792 352 ) ( -400 1792 64 ) ( -400 1728 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 2
+{
+( -416 1984 352 ) ( -416 1792 352 ) ( -416 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1792 16 ) ( -416 1792 16 ) ( -400 1792 352 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -416 1984 16 ) ( -416 1792 16 ) ( -400 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1984 336 ) ( -400 1792 336 ) ( -416 1984 336 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1984 16 ) ( -400 1984 16 ) ( -416 1984 352 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1984 16 ) ( -400 1792 16 ) ( -400 1984 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 3
+{
+( -608 1472 16 ) ( -608 1488 16 ) ( -608 1472 352 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1472 16 ) ( -560 1472 16 ) ( -416 1472 352 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1472 16 ) ( -416 1488 16 ) ( -560 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1472 336 ) ( -560 1488 336 ) ( -416 1472 336 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1488 16 ) ( -416 1488 16 ) ( -560 1488 352 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1472 352 ) ( -416 1488 352 ) ( -416 1472 16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 4
+{
+( -608 1520 160 ) ( -608 1520 144 ) ( -608 1600 144 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1520 160 ) ( -576 1520 160 ) ( -576 1520 144 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1520 144 ) ( -576 1600 144 ) ( -608 1600 144 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1600 144 ) ( -576 1600 144 ) ( -576 1520 160 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1520 160 ) ( -576 1600 144 ) ( -576 1520 144 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 5
+{
+( -608 1488 336 ) ( -608 1808 320 ) ( -608 1808 336 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1488 336 ) ( -608 1488 320 ) ( -608 1488 336 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1808 224 ) ( -608 1488 224 ) ( -576 1488 224 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1808 320 ) ( -608 1488 320 ) ( -608 1808 320 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1984 336 ) ( -608 1984 320 ) ( -576 1984 320 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1808 336 ) ( -576 1488 320 ) ( -576 1488 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 6
+{
+( -608 1984 336 ) ( -608 2000 160 ) ( -608 2000 336 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1984 336 ) ( -416 1984 160 ) ( -416 1984 336 ) Textures/PaleBricks 0 0 0 1 1
+( -400 2000 16 ) ( -416 1984 16 ) ( -400 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -400 2000 336 ) ( -416 1984 336 ) ( -416 2000 336 ) Textures/PaleBricks 0 0 0 1 1
+( -400 2000 336 ) ( -416 2000 160 ) ( -400 2000 160 ) Textures/PaleBricks 0 0 0 1 1
+( -400 2000 336 ) ( -400 1984 160 ) ( -400 1984 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 7
+{
+( -560 1952 128 ) ( -560 1984 80 ) ( -560 1984 128 ) Textures/Smoothstone 0 0 0 1 1
+( -528 1952 128 ) ( -560 1952 80 ) ( -560 1952 128 ) Textures/Smoothstone 0 0 0 1 1
+( -528 1984 80 ) ( -560 1952 80 ) ( -528 1952 80 ) Textures/Smoothstone 0 0 0 1 1
+( -528 1984 112 ) ( -560 1952 112 ) ( -560 1984 112 ) Textures/Smoothstone 0 0 0 1 1
+( -528 1984 128 ) ( -560 1984 80 ) ( -528 1984 80 ) Textures/Smoothstone 0 0 0 1 1
+( -528 1984 128 ) ( -528 1952 80 ) ( -528 1952 128 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 8
+{
+( -448 1488 144 ) ( -448 1489 144 ) ( -448 1488 145 ) Textures/PaleBricks 0 0 0 1 1
+( -448 1488 144 ) ( -448 1488 145 ) ( -447 1488 144 ) Textures/PaleBricks 0 0 0 1 1
+( -448 1488 128 ) ( -447 1488 128 ) ( -448 1489 128 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1536 160 ) ( -416 1537 160 ) ( -415 1536 160 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1520 160 ) ( -415 1520 160 ) ( -416 1520 161 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1536 160 ) ( -416 1536 161 ) ( -416 1537 160 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 9
+{
+( -624 1536 336 ) ( -624 1824 160 ) ( -624 1824 336 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1488 336 ) ( -624 1488 160 ) ( -624 1488 336 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1824 16 ) ( -624 1536 16 ) ( -608 1536 16 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1824 336 ) ( -624 1536 336 ) ( -624 1824 336 ) Textures/PaleBricks 0 0 0 1 1
+( -608 2000 336 ) ( -624 2000 160 ) ( -608 2000 160 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1824 336 ) ( -608 1536 160 ) ( -608 1536 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 10
+{
+( -576 1488 336 ) ( -576 1488 320 ) ( -576 1968 336 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1488 336 ) ( -416 1488 320 ) ( -560 1488 336 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1968 320 ) ( -560 1968 320 ) ( -416 1488 320 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1968 336 ) ( -416 1488 336 ) ( -560 1968 336 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1984 336 ) ( -560 1984 320 ) ( -416 1984 336 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1968 336 ) ( -416 1968 320 ) ( -416 1488 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 11
+{
+( -448 1952 112 ) ( -448 1953 112 ) ( -448 1952 113 ) Textures/Smoothstone 0 0 0 1 1
+( -448 1952 112 ) ( -448 1952 113 ) ( -447 1952 112 ) Textures/Smoothstone 0 0 0 1 1
+( -448 1952 80 ) ( -447 1952 80 ) ( -448 1953 80 ) Textures/Smoothstone 0 0 0 1 1
+( -416 1984 112 ) ( -416 1985 112 ) ( -415 1984 112 ) Textures/Smoothstone 0 0 0 1 1
+( -416 1984 128 ) ( -415 1984 128 ) ( -416 1984 129 ) Textures/Smoothstone 0 0 0 1 1
+( -416 1984 128 ) ( -416 1984 129 ) ( -416 1985 128 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 12
+{
+( -528 1488 160 ) ( -528 1536 128 ) ( -528 1536 160 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1488 160 ) ( -560 1488 112 ) ( -560 1488 160 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1536 160 ) ( -560 1488 160 ) ( -560 1536 160 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1536 128 ) ( -560 1488 112 ) ( -416 1488 112 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1536 160 ) ( -560 1536 128 ) ( -416 1536 128 ) Textures/PaleBricks 0 0 0 1 1
+( -448 1536 160 ) ( -448 1488 112 ) ( -448 1488 160 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 13
+{
+( -608 1488 144 ) ( -608 1489 144 ) ( -608 1488 145 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1488 144 ) ( -560 1488 145 ) ( -559 1488 144 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1488 128 ) ( -559 1488 128 ) ( -560 1489 128 ) Textures/PaleBricks 0 0 0 1 1
+( -528 1536 160 ) ( -528 1537 160 ) ( -527 1536 160 ) Textures/PaleBricks 0 0 0 1 1
+( -528 1520 160 ) ( -527 1520 160 ) ( -528 1520 161 ) Textures/PaleBricks 0 0 0 1 1
+( -528 1536 160 ) ( -528 1536 161 ) ( -528 1537 160 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 14
+{
+( -416 1760 128 ) ( -416 1744 96 ) ( -416 1776 96 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1760 128 ) ( -400 1744 96 ) ( -416 1760 128 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1744 96 ) ( -400 1776 96 ) ( -416 1744 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -416 1760 128 ) ( -416 1776 96 ) ( -400 1760 128 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1760 128 ) ( -400 1776 96 ) ( -400 1744 96 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 15
+{
+( -416 1728 192 ) ( -416 1728 64 ) ( -416 1760 128 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1728 192 ) ( -400 1728 64 ) ( -416 1728 192 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1728 64 ) ( -400 1728 64 ) ( -416 1760 128 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -416 1728 192 ) ( -416 1760 128 ) ( -400 1728 192 ) Textures/PaleBricks 0 0 0 1 1
+( -400 1728 192 ) ( -400 1760 128 ) ( -400 1728 64 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 16
+{
+( -608 1520 32 ) ( -608 1984 32 ) ( -608 1520 144 ) __TB_empty 0 0 0 1 1
+( -608 1520 144 ) ( -592 1520 144 ) ( -608 1520 32 ) __TB_empty 0 0 0 1 1
+( -608 1520 32 ) ( -592 1520 32 ) ( -608 1984 32 ) __TB_empty 0 0 0 1 1
+( -608 1984 144 ) ( -592 1984 144 ) ( -608 1520 144 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1984 32 ) ( -592 1984 32 ) ( -608 1984 144 ) __TB_empty 0 0 0 1 1
+( -592 1984 144 ) ( -592 1984 32 ) ( -592 1520 144 ) __TB_empty 0 0 0 1 1
+}
+// brush 17
+{
+( -592 1984 144 ) ( -592 1808 144 ) ( -592 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1808 32 ) ( -592 1808 32 ) ( -560 1808 128 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1984 32 ) ( -592 1808 32 ) ( -560 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1984 144 ) ( -576 1808 144 ) ( -592 1984 144 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1984 144 ) ( -592 1984 144 ) ( -560 1984 128 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1984 128 ) ( -560 1808 128 ) ( -576 1984 144 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1984 32 ) ( -560 1808 32 ) ( -560 1984 128 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 18
+{
+( -592 1520 32 ) ( -592 1712 32 ) ( -592 1520 144 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1520 32 ) ( -592 1520 32 ) ( -560 1520 128 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1520 32 ) ( -560 1712 32 ) ( -592 1520 32 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1520 144 ) ( -592 1712 144 ) ( -576 1520 144 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1712 144 ) ( -592 1712 32 ) ( -576 1712 144 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1520 144 ) ( -576 1712 144 ) ( -560 1520 128 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1520 128 ) ( -560 1712 128 ) ( -560 1520 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 19
+{
+( -592 1808 144 ) ( -592 1765.333333333333 144 ) ( -592 1808 80 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1808 80 ) ( -592 1808 80 ) ( -560 1776 128 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1808 144 ) ( -576 1765.333333333333 144 ) ( -592 1808 144 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1808 144 ) ( -592 1808 80 ) ( -576 1808 144 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1808 128 ) ( -560 1776 128 ) ( -576 1808 144 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1808 128 ) ( -560 1808 80 ) ( -560 1776 128 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 20
+{
+( -592 1712 144 ) ( -592 1712 80 ) ( -592 1754.666666666667 144 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1712 128 ) ( -560 1712 80 ) ( -576 1712 144 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1712 144 ) ( -592 1754.666666666667 144 ) ( -576 1712 144 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1712 80 ) ( -560 1712 80 ) ( -592 1754.666666666667 144 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1712 144 ) ( -576 1754.666666666667 144 ) ( -560 1712 128 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1712 128 ) ( -560 1744 128 ) ( -560 1712 80 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 21
+{
+( -592 1754.666666666667 144 ) ( -592 1744 128 ) ( -592 1765.333333333333 144 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1754.666666666667 144 ) ( -560 1744 128 ) ( -592 1754.666666666667 144 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1744 128 ) ( -560 1744 128 ) ( -592 1776 128 ) Textures/PaleBricks 0 0 0 1 1
+( -576 1765.333333333333 144 ) ( -576 1754.666666666667 144 ) ( -592 1765.333333333333 144 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1765.333333333333 144 ) ( -592 1776 128 ) ( -576 1765.333333333333 144 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1776 128 ) ( -560 1744 128 ) ( -576 1765.333333333333 144 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 22
+{
+( -560 1824 32 ) ( -560 1825 32 ) ( -560 1824 33 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1824 32 ) ( -560 1824 33 ) ( -559 1824 32 ) Textures/PaleBricks 0 0 0 1 1
+( -560 1824 32 ) ( -559 1824 32 ) ( -560 1825 32 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1968 80 ) ( -416 1969 80 ) ( -415 1968 80 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1984 48 ) ( -415 1984 48 ) ( -416 1984 49 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1968 48 ) ( -416 1968 49 ) ( -416 1969 48 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 23
+{
+( -432 1712 64 ) ( -432 1728 32 ) ( -432 1728 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -416 1712 64 ) ( -432 1712 32 ) ( -432 1712 64 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1728 32 ) ( -432 1712 32 ) ( -416 1712 32 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1728 64 ) ( -432 1712 64 ) ( -432 1728 64 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1728 64 ) ( -432 1728 32 ) ( -416 1728 32 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1728 64 ) ( -416 1712 32 ) ( -416 1712 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 24
+{
+( -432 1712 64 ) ( -432 1760 128 ) ( -432 1744 128 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -416 1744 128 ) ( -432 1712 64 ) ( -432 1744 128 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1728 64 ) ( -432 1712 64 ) ( -416 1712 64 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1728 96 ) ( -416 1744 96 ) ( -288 1744 96 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1760 128 ) ( -432 1728 64 ) ( -416 1728 64 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1760 128 ) ( -416 1712 64 ) ( -416 1744 128 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 25
+{
+( -432 1776 108 ) ( -432 1744 108 ) ( -432 1744 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -432 1744 108 ) ( -416 1744 108 ) ( -416 1744 96 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1744 96 ) ( -416 1776 96 ) ( -432 1776 96 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -432 1776 108 ) ( -416 1776 108 ) ( -416 1744 108 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1776 96 ) ( -416 1776 108 ) ( -432 1776 108 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1744 108 ) ( -416 1776 108 ) ( -416 1776 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 26
+{
+( -432 1744 96 ) ( -432 1744 108 ) ( -432 1728 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -416 1728 96 ) ( -432 1728 96 ) ( -432 1744 108 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1728 96 ) ( -416 1744 96 ) ( -432 1744 96 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1744 96 ) ( -416 1744 108 ) ( -432 1744 108 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1728 96 ) ( -416 1744 108 ) ( -416 1744 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 27
+{
+( -432 1776 108 ) ( -432 1776 96 ) ( -432 1792 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -432 1776 108 ) ( -416 1776 108 ) ( -416 1776 96 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1776 96 ) ( -416 1792 96 ) ( -432 1792 96 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -432 1792 96 ) ( -416 1792 96 ) ( -416 1776 108 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1776 108 ) ( -416 1792 96 ) ( -416 1776 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 28
+{
+( -432 1776 96 ) ( -432 1808 64 ) ( -432 1792 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -416 1792 64 ) ( -432 1776 96 ) ( -416 1776 96 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1808 64 ) ( -432 1792 64 ) ( -416 1792 64 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1792 96 ) ( -432 1776 96 ) ( -432 1792 96 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1808 64 ) ( -432 1792 96 ) ( -432 1808 64 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1808 64 ) ( -416 1776 96 ) ( -416 1792 96 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 29
+{
+( -432 1792 64 ) ( -432 1808 32 ) ( -432 1808 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -416 1792 64 ) ( -432 1792 32 ) ( -432 1792 64 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1808 32 ) ( -432 1792 32 ) ( -416 1792 32 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1808 64 ) ( -432 1792 64 ) ( -432 1808 64 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1808 64 ) ( -432 1808 32 ) ( -416 1808 32 ) Textures/darkbrown_bricks 48 0 0 1 1
+( -416 1808 64 ) ( -416 1792 32 ) ( -416 1792 64 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 30
+{
+( -608 1488 16 ) ( -608 1984 16 ) ( -608 1488 32 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1488 32 ) ( -592 1488 32 ) ( -608 1488 16 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1488 16 ) ( -592 1488 16 ) ( -608 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1984 32 ) ( -592 1984 32 ) ( -608 1488 32 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1984 16 ) ( -592 1984 16 ) ( -608 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1984 32 ) ( -592 1984 16 ) ( -592 1488 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 31
+{
+( -592 1984 32 ) ( -592 1808 32 ) ( -592 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1808 16 ) ( -592 1808 16 ) ( -416 1808 32 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1984 16 ) ( -592 1808 16 ) ( -416 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1984 32 ) ( -416 1808 32 ) ( -592 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1984 32 ) ( -592 1984 32 ) ( -416 1984 16 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1984 16 ) ( -416 1808 16 ) ( -416 1984 32 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 32
+{
+( -592 1488 16 ) ( -592 1712 16 ) ( -592 1488 32 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1488 16 ) ( -592 1488 16 ) ( -416 1488 32 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1488 16 ) ( -416 1712 16 ) ( -592 1488 16 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1488 32 ) ( -592 1712 32 ) ( -416 1488 32 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1712 32 ) ( -592 1712 16 ) ( -416 1712 32 ) Textures/PaleBricks 0 0 0 1 1
+( -416 1488 32 ) ( -416 1712 32 ) ( -416 1488 16 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 33
+{
+( -592 1712 32 ) ( -592 1808 16 ) ( -592 1808 32 ) Textures/DarkWood 0 0 0 1 1
+( -448 1712 32 ) ( -592 1712 16 ) ( -592 1712 32 ) Textures/DarkWood 0 0 0 1 1
+( -448 1808 16 ) ( -592 1712 16 ) ( -448 1712 16 ) Textures/DarkWood 0 0 0 1 1
+( -448 1808 32 ) ( -592 1712 32 ) ( -592 1808 32 ) Textures/DarkWood 0 0 0 1 1
+( -448 1808 32 ) ( -592 1808 16 ) ( -448 1808 16 ) Textures/DarkWood 0 0 0 1 1
+( -416 1808 32 ) ( -416 1712 16 ) ( -416 1712 32 ) Textures/DarkWood 0 0 0 1 1
+}
+}
+// entity 122
+{
+"classname" "PurpleGem"
+"origin" "-532 1892 80"
+"_tb_group" "6"
+}
+// entity 123
+{
+"classname" "GreenGem"
+"origin" "-444 1892 80"
+"_tb_group" "6"
+}
+// entity 124
+{
+"classname" "WallTorch"
+"origin" "-552 1688 80"
+"angles" "0 -90 0"
+"_tb_group" "6"
+}
+// entity 125
+{
+"classname" "RedGem"
+"origin" "-476 1628 32"
+"_tb_group" "6"
+}
+// entity 126
+{
+"classname" "GreenGem"
+"origin" "-500 1588 32"
+"_tb_group" "6"
+}
+// entity 127
+{
+"classname" "GreenGem"
+"origin" "-480 1552 32"
+"_tb_group" "6"
+}
+// entity 128
+{
+"classname" "GreenGem"
+"origin" "-488 1512 160"
+"_tb_group" "6"
+}
+// entity 129
+{
+"classname" "WallTorch"
+"origin" "-456 1496 72"
+"_tb_group" "6"
+}
+// entity 130
+{
+"classname" "RedGem"
+"origin" "-584 1764 144"
+"_tb_group" "6"
+}
+// entity 131
+{
+"classname" "RedGem"
+"origin" "-584 1892 144"
+"_tb_group" "6"
+}
+// entity 132
+{
+"classname" "Vent"
+"origin" "-488 1496 72"
+"angles" "0 90 0"
+"TargetVentId" "MoatVent"
+"VentId" "FireplaceVent"
+"_tb_group" "6"
+}
+// entity 133
+{
+"classname" "RedGem"
+"origin" "-476 1924 80"
+"_tb_group" "6"
+}
+// entity 134
+{
+"classname" "Basket"
+"origin" "-520 1512 160"
+"_tb_group" "6"
+}
+// entity 135
+{
+"classname" "WallTorch"
+"origin" "-520 1496 72"
+"_tb_group" "6"
+}
+// entity 136
+{
+"classname" "Basket"
+"origin" "-544 1968 112"
+"GemColor" "2"
+"_tb_group" "6"
+}
+// entity 137
+{
+"classname" "Basket"
+"origin" "-432 1968 112"
+"GemColor" "2"
+"_tb_group" "6"
+}
+// entity 138
+{
+"classname" "WallTorch"
+"origin" "-488 1976 160"
+"angles" "0 180 0"
+"_tb_group" "6"
+}
+// entity 139
+{
+"classname" "RedGem"
+"origin" "-500 1924 80"
+"_tb_group" "6"
+}
+// entity 140
+{
+"classname" "RedGem"
+"origin" "-488 1520 32"
+"_tb_group" "6"
+}
+// entity 141
+{
+"classname" "Basket"
+"origin" "-456 1512 160"
+"_tb_group" "6"
+}
+// entity 142
+{
+"classname" "Fireplace"
+"origin" "-584 1752 40"
+"_tb_group" "6"
+}
+// entity 143
+{
+"classname" "Fireplace"
+"origin" "-584 1768 40"
+"_tb_group" "6"
+}
+// entity 144
+{
+"classname" "Fireplace"
+"origin" "-584 1736 40"
+"_tb_group" "6"
+}
+// entity 145
+{
+"classname" "Fireplace"
+"origin" "-584 1784 40"
+"_tb_group" "6"
+}
+// entity 146
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "HallwayToRoof"
+"_tb_id" "7"
+// brush 0
+{
+( -304 976 560 ) ( -304 1216 320 ) ( -304 1216 560 ) Textures/PaleBricks 0 0 0 1 1
+( -288 976 560 ) ( -304 976 320 ) ( -304 976 560 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1216 256 ) ( -304 976 256 ) ( -288 976 256 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1216 560 ) ( -304 976 560 ) ( -304 1216 560 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1216 560 ) ( -304 1216 320 ) ( -288 1216 320 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1216 560 ) ( -288 976 320 ) ( -288 976 560 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 1
+{
+( -320 1280 560 ) ( -320 1344 352 ) ( -320 1344 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1328 560 ) ( 144 1328 352 ) ( 144 1328 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 352 ) ( 144 1280 352 ) ( 320 1280 352 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 560 ) ( 144 1280 560 ) ( 144 1344 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 560 ) ( 144 1344 352 ) ( 320 1344 352 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1344 560 ) ( 304 1280 352 ) ( 304 1280 560 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 2
+{
+( -304 960 256 ) ( -304 1280 240 ) ( -304 1280 256 ) Textures/PaleBricks 0 0 0 1 1
+( -128 960 256 ) ( -320 960 240 ) ( -320 960 256 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1280 240 ) ( -320 960 240 ) ( -128 960 240 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1280 256 ) ( -320 960 256 ) ( -320 1280 256 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1216 256 ) ( -320 1216 240 ) ( -128 1216 240 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1280 256 ) ( -128 960 240 ) ( -128 960 256 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 3
+{
+( -304 960 224 ) ( -304 961 224 ) ( -304 960 225 ) Textures/PaleBricks 0 0 0 1 1
+( -304 960 224 ) ( -304 960 225 ) ( -303 960 224 ) Textures/PaleBricks 0 0 0 1 1
+( -304 960 256 ) ( -303 960 256 ) ( -304 961 256 ) Textures/PaleBricks 0 0 0 1 1
+( -240 976 336 ) ( -240 977 336 ) ( -239 976 336 ) Textures/PaleBricks 0 0 0 1 1
+( -240 976 240 ) ( -239 976 240 ) ( -240 976 241 ) Textures/PaleBricks 0 0 0 1 1
+( -240 976 240 ) ( -240 976 241 ) ( -240 977 240 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 4
+{
+( -320 960 336 ) ( -320 961 336 ) ( -320 960 337 ) Textures/PaleBricks 0 0 0 1 1
+( -208 960 336 ) ( -208 960 337 ) ( -207 960 336 ) Textures/PaleBricks 0 0 0 1 1
+( -208 960 336 ) ( -207 960 336 ) ( -208 961 336 ) Textures/PaleBricks 0 0 0 1 1
+( -192 976 560 ) ( -192 977 560 ) ( -191 976 560 ) Textures/PaleBricks 0 0 0 1 1
+( -192 976 352 ) ( -191 976 352 ) ( -192 976 353 ) Textures/PaleBricks 0 0 0 1 1
+( -128 976 352 ) ( -128 976 353 ) ( -128 977 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 5
+{
+( -320 1184 224 ) ( -320 1185 224 ) ( -320 1184 225 ) Textures/PaleBricks 0 0 0 1 1
+( -320 976 224 ) ( -320 976 225 ) ( -319 976 224 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1184 352 ) ( -319 1184 352 ) ( -320 1185 352 ) Textures/PaleBricks 0 0 0 1 1
+( -304 1216 560 ) ( -304 1217 560 ) ( -303 1216 560 ) Textures/PaleBricks 0 0 0 1 1
+( -304 1328 240 ) ( -303 1328 240 ) ( -304 1328 241 ) Textures/PaleBricks 0 0 0 1 1
+( -304 1216 240 ) ( -304 1216 241 ) ( -304 1217 240 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 6
+{
+( 208 1088 336 ) ( 208 1089 336 ) ( 208 1088 337 ) Textures/PaleBricks 0 0 0 1 1
+( 208 1088 336 ) ( 208 1088 337 ) ( 209 1088 336 ) Textures/PaleBricks 0 0 0 1 1
+( 208 1088 336 ) ( 209 1088 336 ) ( 208 1089 336 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1200 352 ) ( 320 1201 352 ) ( 321 1200 352 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1216 352 ) ( 321 1216 352 ) ( 320 1216 353 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1200 352 ) ( 320 1200 353 ) ( 320 1201 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 7
+{
+( 304 1216 560 ) ( 304 1312 352 ) ( 304 1312 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1216 560 ) ( 304 1216 352 ) ( 304 1216 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1312 352 ) ( 304 1216 352 ) ( 320 1216 352 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1312 560 ) ( 304 1216 560 ) ( 304 1312 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 560 ) ( 304 1344 352 ) ( 320 1344 352 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1312 560 ) ( 320 1216 352 ) ( 320 1216 560 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 8
+{
+( -128 960 192 ) ( -128 961 192 ) ( -128 960 193 ) Textures/PaleBricks 0 0 0 1 1
+( -192 960 192 ) ( -192 960 193 ) ( -191 960 192 ) Textures/PaleBricks 0 0 0 1 1
+( -192 960 352 ) ( -191 960 352 ) ( -192 961 352 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1088 560 ) ( 320 1089 560 ) ( 321 1088 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 976 256 ) ( 321 976 256 ) ( 320 976 257 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1088 256 ) ( 304 1088 257 ) ( 304 1089 256 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 9
+{
+( -304 1216 224 ) ( -304 1217 224 ) ( -304 1216 225 ) Textures/PaleBricks 0 0 0 1 1
+( -192 1216 224 ) ( -192 1216 225 ) ( -191 1216 224 ) Textures/PaleBricks 0 0 0 1 1
+( -192 1216 256 ) ( -191 1216 256 ) ( -192 1217 256 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1280 560 ) ( 320 1281 560 ) ( 321 1280 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1232 256 ) ( 321 1232 256 ) ( 320 1232 257 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1280 256 ) ( 304 1280 257 ) ( 304 1281 256 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 10
+{
+( -128 1216 256 ) ( 96 1216 304 ) ( 96 1088 304 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1088 256 ) ( 96 1088 304 ) ( 96 1088 256 ) Textures/PaleBricks 0 0 0 1 1
+( 96 1088 256 ) ( 96 1216 256 ) ( -128 1216 256 ) Textures/PaleBricks 0 0 0 1 1
+( 96 1216 256 ) ( 96 1216 304 ) ( -128 1216 256 ) Textures/PaleBricks 0 0 0 1 1
+( 96 1088 304 ) ( 96 1216 304 ) ( 96 1216 256 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 11
+{
+( 192 1088 224 ) ( 192 1089 224 ) ( 192 1088 225 ) Textures/PaleBricks 0 0 0 1 1
+( 128 1088 224 ) ( 128 1088 225 ) ( 129 1088 224 ) Textures/PaleBricks 0 0 0 1 1
+( 128 1088 304 ) ( 129 1088 304 ) ( 128 1089 304 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1216 352 ) ( 192 1217 352 ) ( 193 1216 352 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1216 256 ) ( 193 1216 256 ) ( 192 1216 257 ) Textures/PaleBricks 0 0 0 1 1
+( 208 1216 256 ) ( 208 1216 257 ) ( 208 1217 256 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 12
+{
+( 304 960 560 ) ( 304 1088 352 ) ( 304 1088 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 960 560 ) ( 304 960 352 ) ( 304 960 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1088 352 ) ( 304 960 352 ) ( 320 960 352 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1088 560 ) ( 304 960 560 ) ( 304 1088 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1088 560 ) ( 304 1088 352 ) ( 320 1088 352 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1088 560 ) ( 320 960 352 ) ( 320 960 560 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 13
+{
+( -128 976 320 ) ( -128 977 320 ) ( -128 976 321 ) Textures/PaleBricks 0 0 0 1 1
+( -128 976 320 ) ( -128 976 321 ) ( -127 976 320 ) Textures/PaleBricks 0 0 0 1 1
+( -128 976 256 ) ( -127 976 256 ) ( -128 977 256 ) Textures/PaleBricks 0 0 0 1 1
+( -112 1072 560 ) ( -112 1073 560 ) ( -111 1072 560 ) Textures/PaleBricks 0 0 0 1 1
+( -112 1072 336 ) ( -111 1072 336 ) ( -112 1072 337 ) Textures/PaleBricks 0 0 0 1 1
+( -112 1072 336 ) ( -112 1072 337 ) ( -112 1073 336 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 14
+{
+( -128 1072 560 ) ( -128 1088 368 ) ( -128 1088 560 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1072 560 ) ( 112 1072 368 ) ( 112 1072 560 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1088 256 ) ( 112 1072 256 ) ( 304 1072 256 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1088 560 ) ( 112 1072 560 ) ( 112 1088 560 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1088 560 ) ( 112 1088 368 ) ( 304 1088 368 ) Textures/PaleBricks 0 0 0 1 1
+( 304 1088 560 ) ( 304 1072 368 ) ( 304 1072 560 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 15
+{
+( 96 1088 224 ) ( 96 1089 224 ) ( 96 1088 225 ) Textures/PaleBricks 0 0 0 1 1
+( 96 1088 224 ) ( 96 1088 225 ) ( 97 1088 224 ) Textures/PaleBricks 0 0 0 1 1
+( 96 1088 288 ) ( 97 1088 288 ) ( 96 1089 288 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1216 304 ) ( 192 1217 304 ) ( 193 1216 304 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1216 352 ) ( 193 1216 352 ) ( 192 1216 353 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1216 352 ) ( 192 1216 353 ) ( 192 1217 352 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 16
+{
+( -320 1312 640 ) ( -320 1296 640 ) ( -320 1280 576 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1296 640 ) ( -288 1296 640 ) ( -288 1280 576 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1280 576 ) ( -288 1312 576 ) ( -320 1312 576 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1312 640 ) ( -288 1312 640 ) ( -288 1296 640 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1312 576 ) ( -288 1312 640 ) ( -320 1312 640 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1296 640 ) ( -288 1312 640 ) ( -288 1312 576 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 17
+{
+( -368 928 480 ) ( -368 929 480 ) ( -368 928 481 ) Textures/Smoothstone 0 0 0 1 1
+( -304 912 480 ) ( -304 912 481 ) ( -303 912 480 ) Textures/Smoothstone 0 0 0 1 1
+( -304 928 480 ) ( -303 928 480 ) ( -304 929 480 ) Textures/Smoothstone 0 0 0 1 1
+( -144 960 496 ) ( -144 961 496 ) ( -143 960 496 ) Textures/Smoothstone 0 0 0 1 1
+( -144 960 496 ) ( -143 960 496 ) ( -144 960 497 ) Textures/Smoothstone 0 0 0 1 1
+( -144 960 496 ) ( -144 960 497 ) ( -144 961 496 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 18
+{
+( -320 1312 576 ) ( -320 1313 576 ) ( -320 1312 577 ) Textures/PaleBricks 0 0 0 1 1
+( -64 1312 576 ) ( -64 1312 577 ) ( -63 1312 576 ) Textures/PaleBricks 0 0 0 1 1
+( -64 1312 576 ) ( -63 1312 576 ) ( -64 1313 576 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 640 ) ( 320 1345 640 ) ( 321 1344 640 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 592 ) ( 321 1344 592 ) ( 320 1344 593 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 592 ) ( 320 1344 593 ) ( 320 1345 592 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 19
+{
+( -320 992 576 ) ( -320 1216 576 ) ( -320 992 640 ) Textures/PaleBricks 0 0 0 1 1
+( -320 992 640 ) ( -288 992 640 ) ( -320 992 576 ) Textures/PaleBricks 0 0 0 1 1
+( -288 992 576 ) ( -288 1216 576 ) ( -320 992 576 ) Textures/PaleBricks 0 0 0 1 1
+( -320 992 640 ) ( -320 1216 640 ) ( -288 992 640 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1152 640 ) ( -320 1152 576 ) ( -288 1152 640 ) Textures/PaleBricks 0 0 0 1 1
+( -288 992 640 ) ( -288 1216 640 ) ( -288 992 576 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 20
+{
+( -320 1152 576 ) ( -320 1216 576 ) ( -320 1152 624 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1152 624 ) ( -320 1152 576 ) ( -320 1152 624 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1216 576 ) ( -320 1152 576 ) ( -288 1152 576 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1216 576 ) ( -320 1152 624 ) ( -320 1216 576 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1216 576 ) ( -288 1152 576 ) ( -288 1152 624 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 21
+{
+( -320 960 560 ) ( -320 961 560 ) ( -320 960 561 ) Textures/PaleBricks 0 0 0 1 1
+( -320 960 560 ) ( -320 960 561 ) ( -319 960 560 ) Textures/PaleBricks 0 0 0 1 1
+( -320 960 560 ) ( -319 960 560 ) ( -320 961 560 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 576 ) ( 320 1345 576 ) ( 321 1344 576 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 576 ) ( 321 1344 576 ) ( 320 1344 577 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 576 ) ( 320 1344 577 ) ( 320 1345 576 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 22
+{
+( -368 960 480 ) ( -368 961 480 ) ( -368 960 481 ) Textures/Smoothstone 0 0 0 1 1
+( -352 960 480 ) ( -352 960 481 ) ( -351 960 480 ) Textures/Smoothstone 0 0 0 1 1
+( -352 960 480 ) ( -351 960 480 ) ( -352 961 480 ) Textures/Smoothstone 0 0 0 1 1
+( -320 1360 496 ) ( -320 1361 496 ) ( -319 1360 496 ) Textures/Smoothstone 0 0 0 1 1
+( -320 1344 496 ) ( -319 1344 496 ) ( -320 1344 497 ) Textures/Smoothstone 0 0 0 1 1
+( -320 1360 496 ) ( -320 1360 497 ) ( -320 1361 496 ) Textures/Smoothstone 0 0 0 1 1
+}
+// brush 23
+{
+( -320 960 576 ) ( -320 961 576 ) ( -320 960 577 ) Textures/PaleBricks 0 0 0 1 1
+( -64 960 576 ) ( -64 960 577 ) ( -63 960 576 ) Textures/PaleBricks 0 0 0 1 1
+( -64 960 576 ) ( -63 960 576 ) ( -64 961 576 ) Textures/PaleBricks 0 0 0 1 1
+( 320 992 640 ) ( 320 993 640 ) ( 321 992 640 ) Textures/PaleBricks 0 0 0 1 1
+( 320 992 592 ) ( 321 992 592 ) ( 320 992 593 ) Textures/PaleBricks 0 0 0 1 1
+( 320 992 592 ) ( 320 992 593 ) ( 320 993 592 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 24
+{
+( 288 992 576 ) ( 288 993 576 ) ( 288 992 577 ) Textures/PaleBricks 0 0 0 1 1
+( 288 992 576 ) ( 288 992 577 ) ( 289 992 576 ) Textures/PaleBricks 0 0 0 1 1
+( 288 992 576 ) ( 289 992 576 ) ( 288 993 576 ) Textures/PaleBricks 0 0 0 1 1
+( 336 1344 640 ) ( 336 1345 640 ) ( 337 1344 640 ) Textures/PaleBricks 0 0 0 1 1
+( 336 1312 592 ) ( 337 1312 592 ) ( 336 1312 593 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 592 ) ( 320 1344 593 ) ( 320 1345 592 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 25
+{
+( 288 1280 640 ) ( 288 1281 640 ) ( 288 1280 641 ) Textures/PaleBricks 0 0 0 1 1
+( 288 1280 640 ) ( 288 1280 641 ) ( 289 1280 640 ) Textures/PaleBricks 0 0 0 1 1
+( 288 1280 640 ) ( 289 1280 640 ) ( 288 1281 640 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 672 ) ( 320 1345 672 ) ( 321 1344 672 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 672 ) ( 321 1344 672 ) ( 320 1344 673 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1344 672 ) ( 320 1344 673 ) ( 320 1345 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 26
+{
+( -32 960 640 ) ( -32 961 640 ) ( -32 960 641 ) Textures/PaleBricks 0 0 0 1 1
+( -32 960 640 ) ( -32 960 641 ) ( -31 960 640 ) Textures/PaleBricks 0 0 0 1 1
+( -32 960 640 ) ( -31 960 640 ) ( -32 961 640 ) Textures/PaleBricks 0 0 0 1 1
+( 32 992 672 ) ( 32 993 672 ) ( 33 992 672 ) Textures/PaleBricks 0 0 0 1 1
+( 32 992 672 ) ( 33 992 672 ) ( 32 992 673 ) Textures/PaleBricks 0 0 0 1 1
+( 32 992 672 ) ( 32 992 673 ) ( 32 993 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 27
+{
+( 256 1312 640 ) ( 256 1313 640 ) ( 256 1312 641 ) Textures/PaleBricks 0 0 0 1 1
+( 256 1312 640 ) ( 256 1312 641 ) ( 257 1312 640 ) Textures/PaleBricks 0 0 0 1 1
+( 256 1312 640 ) ( 257 1312 640 ) ( 256 1313 640 ) Textures/PaleBricks 0 0 0 1 1
+( 288 1344 672 ) ( 288 1345 672 ) ( 289 1344 672 ) Textures/PaleBricks 0 0 0 1 1
+( 288 1344 672 ) ( 289 1344 672 ) ( 288 1344 673 ) Textures/PaleBricks 0 0 0 1 1
+( 288 1344 672 ) ( 288 1344 673 ) ( 288 1345 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 28
+{
+( -32 1312 640 ) ( -32 1313 640 ) ( -32 1312 641 ) Textures/PaleBricks 0 0 0 1 1
+( -32 1312 640 ) ( -32 1312 641 ) ( -31 1312 640 ) Textures/PaleBricks 0 0 0 1 1
+( -32 1312 640 ) ( -31 1312 640 ) ( -32 1313 640 ) Textures/PaleBricks 0 0 0 1 1
+( 32 1344 672 ) ( 32 1345 672 ) ( 33 1344 672 ) Textures/PaleBricks 0 0 0 1 1
+( 32 1344 672 ) ( 33 1344 672 ) ( 32 1344 673 ) Textures/PaleBricks 0 0 0 1 1
+( 32 1344 672 ) ( 32 1344 673 ) ( 32 1345 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 29
+{
+( -192 1312 640 ) ( -192 1313 640 ) ( -192 1312 641 ) Textures/PaleBricks 0 0 0 1 1
+( -192 1312 640 ) ( -192 1312 641 ) ( -191 1312 640 ) Textures/PaleBricks 0 0 0 1 1
+( -192 1312 640 ) ( -191 1312 640 ) ( -192 1313 640 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1344 672 ) ( -128 1345 672 ) ( -127 1344 672 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1344 672 ) ( -127 1344 672 ) ( -128 1344 673 ) Textures/PaleBricks 0 0 0 1 1
+( -128 1344 672 ) ( -128 1344 673 ) ( -128 1345 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 30
+{
+( 128 960 640 ) ( 128 961 640 ) ( 128 960 641 ) Textures/PaleBricks 0 0 0 1 1
+( 128 960 640 ) ( 128 960 641 ) ( 129 960 640 ) Textures/PaleBricks 0 0 0 1 1
+( 128 960 640 ) ( 129 960 640 ) ( 128 961 640 ) Textures/PaleBricks 0 0 0 1 1
+( 192 992 672 ) ( 192 993 672 ) ( 193 992 672 ) Textures/PaleBricks 0 0 0 1 1
+( 192 992 672 ) ( 193 992 672 ) ( 192 992 673 ) Textures/PaleBricks 0 0 0 1 1
+( 192 992 672 ) ( 192 992 673 ) ( 192 993 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 31
+{
+( 128 1312 640 ) ( 128 1313 640 ) ( 128 1312 641 ) Textures/PaleBricks 0 0 0 1 1
+( 128 1312 640 ) ( 128 1312 641 ) ( 129 1312 640 ) Textures/PaleBricks 0 0 0 1 1
+( 128 1312 640 ) ( 129 1312 640 ) ( 128 1313 640 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1344 672 ) ( 192 1345 672 ) ( 193 1344 672 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1344 672 ) ( 193 1344 672 ) ( 192 1344 673 ) Textures/PaleBricks 0 0 0 1 1
+( 192 1344 672 ) ( 192 1344 673 ) ( 192 1345 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 32
+{
+( 288 1152 640 ) ( 288 1153 640 ) ( 288 1152 641 ) Textures/PaleBricks 0 0 0 1 1
+( 288 1120 640 ) ( 288 1120 641 ) ( 289 1120 640 ) Textures/PaleBricks 0 0 0 1 1
+( 288 1152 640 ) ( 289 1152 640 ) ( 288 1153 640 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1216 672 ) ( 320 1217 672 ) ( 321 1216 672 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1184 672 ) ( 321 1184 672 ) ( 320 1184 673 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1216 672 ) ( 320 1216 673 ) ( 320 1217 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 33
+{
+( -320 1296 640 ) ( -320 1297 640 ) ( -320 1296 641 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1296 640 ) ( -320 1296 641 ) ( -319 1296 640 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1296 640 ) ( -319 1296 640 ) ( -320 1297 640 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1312 672 ) ( -288 1313 672 ) ( -287 1312 672 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1312 656 ) ( -287 1312 656 ) ( -288 1312 657 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1312 656 ) ( -288 1312 657 ) ( -288 1313 656 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 34
+{
+( -320 1312 640 ) ( -320 1313 640 ) ( -320 1312 641 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1312 640 ) ( -320 1312 641 ) ( -319 1312 640 ) Textures/PaleBricks 0 0 0 1 1
+( -320 1312 640 ) ( -319 1312 640 ) ( -320 1313 640 ) Textures/PaleBricks 0 0 0 1 1
+( -256 1344 672 ) ( -256 1345 672 ) ( -255 1344 672 ) Textures/PaleBricks 0 0 0 1 1
+( -256 1344 672 ) ( -255 1344 672 ) ( -256 1344 673 ) Textures/PaleBricks 0 0 0 1 1
+( -256 1344 672 ) ( -256 1344 673 ) ( -256 1345 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 35
+{
+( -320 960 640 ) ( -320 961 640 ) ( -320 960 641 ) Textures/PaleBricks 0 0 0 1 1
+( -320 960 640 ) ( -320 960 641 ) ( -319 960 640 ) Textures/PaleBricks 0 0 0 1 1
+( -320 960 640 ) ( -319 960 640 ) ( -320 961 640 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1024 672 ) ( -288 1025 672 ) ( -287 1024 672 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1024 672 ) ( -287 1024 672 ) ( -288 1024 673 ) Textures/PaleBricks 0 0 0 1 1
+( -288 1024 672 ) ( -288 1024 673 ) ( -288 1025 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 36
+{
+( -288 960 640 ) ( -288 961 640 ) ( -288 960 641 ) Textures/PaleBricks 0 0 0 1 1
+( -288 960 640 ) ( -288 960 641 ) ( -287 960 640 ) Textures/PaleBricks 0 0 0 1 1
+( -288 960 640 ) ( -287 960 640 ) ( -288 961 640 ) Textures/PaleBricks 0 0 0 1 1
+( -256 992 672 ) ( -256 993 672 ) ( -255 992 672 ) Textures/PaleBricks 0 0 0 1 1
+( -256 992 672 ) ( -255 992 672 ) ( -256 992 673 ) Textures/PaleBricks 0 0 0 1 1
+( -256 992 672 ) ( -256 992 673 ) ( -256 993 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 37
+{
+( 288 960 640 ) ( 288 961 640 ) ( 288 960 641 ) Textures/PaleBricks 0 0 0 1 1
+( 288 960 640 ) ( 288 960 641 ) ( 289 960 640 ) Textures/PaleBricks 0 0 0 1 1
+( 288 960 640 ) ( 289 960 640 ) ( 288 961 640 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1024 672 ) ( 320 1025 672 ) ( 321 1024 672 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1024 672 ) ( 321 1024 672 ) ( 320 1024 673 ) Textures/PaleBricks 0 0 0 1 1
+( 320 1024 672 ) ( 320 1024 673 ) ( 320 1025 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 38
+{
+( 256 960 640 ) ( 256 961 640 ) ( 256 960 641 ) Textures/PaleBricks 0 0 0 1 1
+( 256 960 640 ) ( 256 960 641 ) ( 257 960 640 ) Textures/PaleBricks 0 0 0 1 1
+( 256 960 640 ) ( 257 960 640 ) ( 256 961 640 ) Textures/PaleBricks 0 0 0 1 1
+( 288 992 672 ) ( 288 993 672 ) ( 289 992 672 ) Textures/PaleBricks 0 0 0 1 1
+( 288 992 672 ) ( 289 992 672 ) ( 288 992 673 ) Textures/PaleBricks 0 0 0 1 1
+( 288 992 672 ) ( 288 992 673 ) ( 288 993 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+// brush 39
+{
+( -192 960 640 ) ( -192 961 640 ) ( -192 960 641 ) Textures/PaleBricks 0 0 0 1 1
+( -192 960 640 ) ( -192 960 641 ) ( -191 960 640 ) Textures/PaleBricks 0 0 0 1 1
+( -192 960 640 ) ( -191 960 640 ) ( -192 961 640 ) Textures/PaleBricks 0 0 0 1 1
+( -128 992 672 ) ( -128 993 672 ) ( -127 992 672 ) Textures/PaleBricks 0 0 0 1 1
+( -128 992 672 ) ( -127 992 672 ) ( -128 992 673 ) Textures/PaleBricks 0 0 0 1 1
+( -128 992 672 ) ( -128 992 673 ) ( -128 993 672 ) Textures/PaleBricks 0 0 0 1 1
+}
+}
+// entity 147
+{
+"classname" "Fairy"
+"origin" "-168 1224 576"
+"_tb_group" "7"
+}
+// entity 148
+{
+"classname" "GreenGem"
+"origin" "-188 1268 576"
+"_tb_group" "7"
+}
+// entity 149
+{
+"classname" "RedGem"
+"origin" "-204 1180 576"
+"_tb_group" "7"
+}
+// entity 150
+{
+"classname" "CameraSuggestionZone"
+"SuggestedDistance" "12"
+"SuggestedYawDeg" "180"
+"_tb_group" "7"
+// brush 0
+{
+( -368 960 576 ) ( -368 1344 496 ) ( -368 1344 576 ) __TB_empty 0 0 0 1 1
+( -320 960 576 ) ( -368 960 496 ) ( -368 960 576 ) __TB_empty 0 0 0 1 1
+( -320 1344 496 ) ( -368 960 496 ) ( -320 960 496 ) __TB_empty 0 0 0 1 1
+( -320 1344 576 ) ( -368 960 576 ) ( -368 1344 576 ) __TB_empty 0 0 0 1 1
+( -320 1344 576 ) ( -368 1344 496 ) ( -320 1344 496 ) __TB_empty 0 0 0 1 1
+( -320 1344 576 ) ( -320 960 496 ) ( -320 960 576 ) __TB_empty 0 0 0 1 1
+}
+}
+// entity 151
+{
+"classname" "EnemyHandCannoner"
+"origin" "-200 1144 256"
+"angles" "0 -90 0"
+"_tb_group" "7"
+}
+// entity 152
+{
+"classname" "EnemyHandCannoner"
+"origin" "120 1152 304"
+"angles" "0 180 0"
+"_tb_group" "7"
+}
+// entity 153
+{
+"classname" "WallTorch"
+"origin" "-136 1000 272"
+"angles" "0 90 0"
+"_tb_group" "7"
+}
+// entity 154
+{
+"classname" "GreenGem"
+"origin" "-204 996 256"
+"_tb_group" "7"
+}
+// entity 155
+{
+"classname" "DrowningWater"
+// brush 0
+{
+( 128 32 -192 ) ( 128 33 -192 ) ( 128 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 128 32 -192 ) ( 128 32 -191 ) ( 129 32 -192 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 128 32 -192 ) ( 129 32 -192 ) ( 128 33 -192 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 576 320 -168 ) ( 576 321 -168 ) ( 577 320 -168 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 576 320 -160 ) ( 577 320 -160 ) ( 576 320 -159 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( 576 320 -160 ) ( 576 320 -159 ) ( 576 321 -160 ) Textures/PeaceKeepersWater 0 0 0 1 1
+}
+}
