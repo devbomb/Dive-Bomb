@@ -1844,11 +1844,13 @@
 {
 "classname" "Vase"
 "origin" "376 520 64"
+"GemColor" "5"
 }
 // entity 52
 {
 "classname" "Vase"
 "origin" "376 600 64"
+"GemColor" "5"
 }
 // entity 53
 {
@@ -1894,11 +1896,13 @@
 {
 "classname" "Vase"
 "origin" "-296 632 0"
+"GemColor" "2"
 }
 // entity 62
 {
 "classname" "Vase"
 "origin" "-296 600 0"
+"GemColor" "2"
 }
 // entity 63
 {
@@ -1979,6 +1983,7 @@
 {
 "classname" "Vase"
 "origin" "-368 920 176"
+"GemColor" "2"
 }
 // entity 79
 {
@@ -1994,11 +1999,13 @@
 {
 "classname" "Vase"
 "origin" "184 840 352"
+"GemColor" "5"
 }
 // entity 82
 {
 "classname" "Vase"
 "origin" "104 840 352"
+"GemColor" "5"
 }
 // entity 83
 {
@@ -2020,6 +2027,7 @@
 "classname" "EnemyHandCannoner"
 "origin" "400 1320 32"
 "angles" "0 -90 0"
+"GemColor" "2"
 }
 // entity 87
 {
@@ -2036,12 +2044,14 @@
 "classname" "EnemyHandCannoner"
 "origin" "-344 1144 112"
 "angles" "0 90 0"
+"GemColor" "2"
 }
 // entity 90
 {
 "classname" "EnemyHandCannoner"
 "origin" "-312 840 176"
 "angles" "0 90 0"
+"GemColor" "2"
 }
 // entity 91
 {
@@ -2054,12 +2064,14 @@
 "classname" "EnemyHandCannoner"
 "origin" "-472 1160 352"
 "angles" "0 -90 0"
+"GemColor" "2"
 }
 // entity 93
 {
 "classname" "EnemyHandCannoner"
 "origin" "-392 1160 352"
 "angles" "0 -90 0"
+"GemColor" "2"
 }
 // entity 94
 {
@@ -2076,12 +2088,14 @@
 "classname" "EnemyHandCannoner"
 "origin" "-16 1408 352"
 "angles" "0 180 0"
+"GemColor" "5"
 }
 // entity 97
 {
 "classname" "EnemyHandCannoner"
 "origin" "0 1816 448"
 "angles" "0 -90 0"
+"GemColor" "10"
 }
 // entity 98
 {
@@ -2227,12 +2241,14 @@
 {
 "classname" "EnemyHandCannoner"
 "origin" "792 1592 32"
+"GemColor" "2"
 "_tb_group" "4"
 }
 // entity 103
 {
 "classname" "Vase"
 "origin" "840 1352 80"
+"GemColor" "5"
 "_tb_group" "4"
 }
 // entity 104
@@ -2257,18 +2273,21 @@
 {
 "classname" "Vase"
 "origin" "840 1304 80"
+"GemColor" "5"
 "_tb_group" "4"
 }
 // entity 108
 {
 "classname" "Basket"
 "origin" "712 1160 80"
+"GemColor" "2"
 "_tb_group" "4"
 }
 // entity 109
 {
 "classname" "Basket"
 "origin" "776 1160 80"
+"GemColor" "2"
 "_tb_group" "4"
 }
 // entity 110
@@ -2442,24 +2461,28 @@
 {
 "classname" "Vase"
 "origin" "-152 1760 48"
+"GemColor" "2"
 "_tb_group" "5"
 }
 // entity 112
 {
 "classname" "Vase"
 "origin" "56 1760 48"
+"GemColor" "2"
 "_tb_group" "5"
 }
 // entity 113
 {
 "classname" "Vase"
 "origin" "136 1760 48"
+"GemColor" "2"
 "_tb_group" "5"
 }
 // entity 114
 {
 "classname" "Vase"
 "origin" "-72 1760 48"
+"GemColor" "2"
 "_tb_group" "5"
 }
 // entity 115
@@ -2468,6 +2491,7 @@
 "origin" "8 1624 32"
 "angles" "0 90 0"
 "AggroRadius" "40"
+"GemColor" "5"
 "_tb_group" "5"
 }
 // entity 116
@@ -2476,6 +2500,7 @@
 "origin" "-88 1896 32"
 "angles" "0 -90 0"
 "AggroRadius" "80"
+"GemColor" "5"
 "_tb_group" "5"
 }
 // entity 117
@@ -2484,6 +2509,7 @@
 "origin" "104 1624 32"
 "angles" "0 90 0"
 "AggroRadius" "40"
+"GemColor" "5"
 "_tb_group" "5"
 }
 // entity 118
@@ -2492,6 +2518,7 @@
 "origin" "-88 1624 32"
 "angles" "0 90 0"
 "AggroRadius" "40"
+"GemColor" "5"
 "_tb_group" "5"
 }
 // entity 119
@@ -2500,6 +2527,7 @@
 "origin" "104 1896 32"
 "angles" "0 -90 0"
 "AggroRadius" "80"
+"GemColor" "5"
 "_tb_group" "5"
 }
 // entity 120
@@ -2508,6 +2536,7 @@
 "origin" "8 1896 32"
 "angles" "0 -90 0"
 "AggroRadius" "80"
+"GemColor" "5"
 "_tb_group" "5"
 }
 // entity 121
@@ -2912,12 +2941,14 @@
 {
 "classname" "Basket"
 "origin" "-544 1968 112"
+"GemColor" "2"
 "_tb_group" "6"
 }
 // entity 137
 {
 "classname" "Basket"
 "origin" "-432 1968 112"
+"GemColor" "2"
 "_tb_group" "6"
 }
 // entity 138
