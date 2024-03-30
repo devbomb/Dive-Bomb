@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch0y87teuvqc8"]
+[gd_scene load_steps=8 format=3 uid="uid://ch0y87teuvqc8"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/EnemyHandCannoner.cs" id="1_x80xv"]
 [ext_resource type="PackedScene" uid="uid://cka17uxpf4jsi" path="res://Scenes/Objects/Projectiles/HandCannonBall.tscn" id="2_7j68t"]
 [ext_resource type="PackedScene" uid="uid://cxrfdnblu768c" path="res://BlenderModels/EnemyHandCannoner.blend" id="2_a37ce"]
 [ext_resource type="AnimationLibrary" uid="uid://dpi267kv74gnc" path="res://AnimationLibraries/EnemyHandCannoner.tres" id="3_t3ybc"]
 [ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Scenes/Objects/AggroSphere.tscn" id="4_hle72"]
-[ext_resource type="Script" path="res://Scripts/DecoratorNodes/UsesRenderLayersDecorator.cs" id="5_sret8"]
-[ext_resource type="PackedScene" uid="uid://dqne2gp56j26a" path="res://Scenes/Objects/BlobShadow.tscn" id="6_4be38"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="6_4be38"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8vnft"]
 
@@ -26,10 +25,6 @@ unique_name_in_owner = true
 
 [node name="EnemyHandCannoner" parent="Model" instance=ExtResource("2_a37ce")]
 
-[node name="UsesRenderLayersDecorator" type="Node" parent="Model/EnemyHandCannoner"]
-script = ExtResource("5_sret8")
-Layers = 8
-
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -43,4 +38,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, -0.6)
 unique_name_in_owner = true
 
 [node name="BlobShadow" parent="." instance=ExtResource("6_4be38")]
-max_height = 2.0

@@ -1,8 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://cka17uxpf4jsi"]
+[gd_scene load_steps=22 format=3 uid="uid://cka17uxpf4jsi"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Projectiles/HandCannonBall.cs" id="1_lvbtc"]
-[ext_resource type="PackedScene" uid="uid://dqne2gp56j26a" path="res://Scenes/Objects/BlobShadow.tscn" id="2_7mk11"]
-[ext_resource type="Script" path="res://Scripts/DecoratorNodes/UsesRenderLayersDecorator.cs" id="4_p1c8d"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="2_7mk11"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ylmyn"]
 noise_type = 2
@@ -112,11 +111,6 @@ unique_name_in_owner = true
 mesh = SubResource("SphereMesh_21e0u")
 
 [node name="BlobShadow" parent="Model" instance=ExtResource("2_7mk11")]
-diameter = 0.5
-
-[node name="UsesRenderLayersDecorator" type="Node" parent="Model"]
-script = ExtResource("4_p1c8d")
-Layers = 8
 
 [node name="ExplosionParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true

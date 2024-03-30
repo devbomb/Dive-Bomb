@@ -15,3 +15,4 @@ dest_files=["res://.godot/imported/TestMap.map-1ff8eeff00a16e0b34692db77517cb63.
 map_inverse_scale=16
 entity_path="res://Scenes/Entities"
 texture_path="res://Textures"
+visual_layer_mask=9
