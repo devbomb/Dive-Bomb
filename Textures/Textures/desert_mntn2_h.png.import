@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://p1alk1ydmlwf"
-path.s3tc="res://.godot/imported/desert_mntn2_h.png-54193362b761c4c81e3e0310e226aa22.s3tc.ctex"
+path.bptc="res://.godot/imported/desert_mntn2_h.png-54193362b761c4c81e3e0310e226aa22.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,12 +12,12 @@ metadata={
 [deps]
 
 source_file="res://Textures/Textures/desert_mntn2_h.png"
-dest_files=["res://.godot/imported/desert_mntn2_h.png-54193362b761c4c81e3e0310e226aa22.s3tc.ctex"]
+dest_files=["res://.godot/imported/desert_mntn2_h.png-54193362b761c4c81e3e0310e226aa22.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

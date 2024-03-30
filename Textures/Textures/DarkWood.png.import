@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tec0nm2wtxpi"
-path.s3tc="res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.s3tc.ctex"
+path.bptc="res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,12 +12,12 @@ metadata={
 [deps]
 
 source_file="res://Textures/Textures/DarkWood.png"
-dest_files=["res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.s3tc.ctex"]
+dest_files=["res://.godot/imported/DarkWood.png-17d8ad120a3e5d3333615a3b92ac266e.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
