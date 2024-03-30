@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cpn1spfliqp15"]
+[gd_scene load_steps=14 format=3 uid="uid://cpn1spfliqp15"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Gem.cs" id="1_ajgr5"]
-[ext_resource type="Script" path="res://Scripts/DecoratorNodes/UsesRenderLayersDecorator.cs" id="2_pdoj1"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="3_4j54j"]
 
 [sub_resource type="Animation" id="Animation_jfllq"]
@@ -180,10 +179,6 @@ shape = SubResource("SphereShape3D_amq82")
 
 [node name="ModelPoint" type="Node3D" parent="."]
 unique_name_in_owner = true
-
-[node name="UsesRenderLayers" type="Node" parent="ModelPoint"]
-script = ExtResource("2_pdoj1")
-Layers = 8
 
 [node name="BlobShadow" parent="." instance=ExtResource("3_4j54j")]
 radius = 0.25

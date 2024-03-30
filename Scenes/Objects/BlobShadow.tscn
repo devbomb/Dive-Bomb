@@ -129,7 +129,7 @@ size = Vector3(1, 0.1, 1)
 texture_albedo = SubResource("GradientTexture2D_2c7an")
 upper_fade = 0.000585938
 lower_fade = 0.000565979
-cull_mask = 1
+cull_mask = 8
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 unique_name_in_owner = true

@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6d7vas8km3kd"]
+[gd_scene load_steps=12 format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Fairy.cs" id="1_qaaot"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://BlenderModels/Fairy.blend" id="2_01sg4"]
 [ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://AnimationLibraries/FairyAnimations.tres" id="2_l0xag"]
-[ext_resource type="Script" path="res://Scripts/DecoratorNodes/UsesRenderLayersDecorator.cs" id="4_nv2wn"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="5_pebs6"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ohivc"]
@@ -78,10 +77,6 @@ libraries = {
 autoplay = "RESET"
 
 [node name="Fairy" parent="Model" instance=ExtResource("2_01sg4")]
-
-[node name="UsesRenderLayersDecorator" type="Node" parent="Model/Fairy"]
-script = ExtResource("4_nv2wn")
-Layers = 8
 
 [node name="BlobShadow" parent="Model/Fairy" instance=ExtResource("5_pebs6")]
 radius = 0.25
