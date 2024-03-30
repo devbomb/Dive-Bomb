@@ -15,3 +15,4 @@ dest_files=["res://.godot/imported/Castle.map-70a5990fe8f09fa1ffbf396238f740b3.s
 map_inverse_scale=16
 entity_path="res://Scenes/Entities"
 texture_path="res://Textures"
+visual_layer_mask=9
