@@ -49,7 +49,7 @@ func _get_import_options(path, preset_index):
                 },
                 {
                     "name": "visual_layer_mask",
-                    "default_value": 1,
+                    "default_value": 1 | 8,
                     "property_hint": PROPERTY_HINT_LAYERS_3D_RENDER
                 }
             ]
