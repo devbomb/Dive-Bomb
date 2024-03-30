@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bb2ckyhrk5jdg"]
 
-[ext_resource type="PackedScene" path="res://TrenchbroomMaps/Castle.map" id="1_4ems5"]
+[ext_resource type="PackedScene" uid="uid://dad4aqqyc8v3i" path="res://TrenchbroomMaps/Castle.map" id="1_4ems5"]
 [ext_resource type="Environment" uid="uid://dp38ywrpiuhjq" path="res://Environments/Castle.tres" id="1_7bxwh"]
 
 [node name="Castle" type="Node3D"]
