@@ -46,6 +46,11 @@ func _get_import_options(path, preset_index):
                 {
                     "name": "texture_path",
                     "default_value": "res://Textures"
+                },
+                {
+                    "name": "visual_layer_mask",
+                    "default_value": 1,
+                    "property_hint": PROPERTY_HINT_LAYERS_3D_RENDER
                 }
             ]
         _:
@@ -67,6 +72,7 @@ func _import(source_file, save_path, options, r_platform_variants, r_gen_files):
     tbLoader.map_inverse_scale = options.map_inverse_scale
     tbLoader.entity_path = options.entity_path
     tbLoader.texture_path = options.texture_path
+    tbLoader.option_visual_layer_mask = options.visual_layer_mask
     
     tbLoader.build_meshes()
 
