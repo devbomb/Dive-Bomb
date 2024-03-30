@@ -8,3 +8,16 @@
 	= WallTorch : "WallTorch" [
 		energy(float)
 	]
+
+@PointClass
+	base(Angle)
+	model({
+		"path": "TrenchbroomEntityModels/Cube.obj",
+		"scale": "" + SizeZ + " " + SizeX + " " + SizeY // Model is scaled down in Blender, because Trenchbroom doesn't let me multiply
+	})
+	= Decal : "Decal" [
+	TexturePath(string): "TexturePath" : ""
+	SizeX(float) : "SizeX" : 1
+	SizeY(float) : "SizeY" : 1
+	SizeZ(float) : "SizeZ" : 1
+]
