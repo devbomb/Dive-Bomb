@@ -1730,23 +1730,25 @@
 }
 // entity 29
 {
-"classname" "RedGem"
+"classname" "MagentaGem"
 "origin" "164 1412 112"
 }
 // entity 30
 {
-"classname" "RedGem"
+"classname" "MagentaGem"
 "origin" "164 1340 112"
 }
 // entity 31
 {
 "classname" "Basket"
 "origin" "-72 1304 32"
+"GemColor" "2"
 }
 // entity 32
 {
 "classname" "Basket"
 "origin" "-24 1304 32"
+"GemColor" "2"
 }
 // entity 33
 {
@@ -2241,7 +2243,7 @@
 {
 "classname" "EnemyHandCannoner"
 "origin" "792 1592 32"
-"GemColor" "2"
+"GemColor" "5"
 "_tb_group" "4"
 }
 // entity 103
