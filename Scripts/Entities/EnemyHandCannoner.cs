@@ -20,6 +20,9 @@ namespace FastDragon
         private AggroSphere _aggroSphere => GetNode<AggroSphere>("%AggroSphere");
         private Node3D _projectileSpawn => GetNode<Node3D>("%ProjectileSpawnPoint");
 
+        private Node3D _model => GetNode<Node3D>("%Model");
+        private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
+
         private readonly StateMachine _stateMachine = new StateMachine(typeof(EnemyHandCannonerState));
         private Gem _gem;
 
@@ -200,12 +203,14 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _enemy.Visible = false;
+                _enemy._model.Visible = false;
+                _enemy._blobShadow.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _enemy.Visible = true;
+                _enemy._model.Visible = true;
+                _enemy._blobShadow.Visible = true;
             }
         }
     }
