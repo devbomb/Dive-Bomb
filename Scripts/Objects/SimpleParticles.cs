@@ -17,6 +17,12 @@ namespace FastDragon
             set => _textureMaterial.BlendMode = value;
         }
 
+        [Export] public bool LocalCoords
+        {
+            get => _particles.LocalCoords;
+            set => _particles.LocalCoords = value;
+        }
+
         [Export] public bool Emitting
         {
             get => _particles.Emitting;
