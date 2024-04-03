@@ -11,6 +11,12 @@ namespace FastDragon
             set => _textureMaterial.AlbedoTexture = value;
         }
 
+        [Export] public BaseMaterial3D.BlendModeEnum BlendMode
+        {
+            get => _textureMaterial.BlendMode;
+            set => _textureMaterial.BlendMode = value;
+        }
+
         [Export] public bool Emitting
         {
             get => _particles.Emitting;
