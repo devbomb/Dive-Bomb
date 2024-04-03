@@ -11,6 +11,61 @@ namespace FastDragon
             set => _textureMaterial.AlbedoTexture = value;
         }
 
+        [Export] public bool Emitting
+        {
+            get => _particles.Emitting;
+            set => _particles.Emitting = value;
+        }
+
+        [Export] public int Amount
+        {
+            get => _particles.Amount;
+            set => _particles.Amount = value;
+        }
+
+        [Export] public float AmountRatio
+        {
+            get => _particles.AmountRatio;
+            set => _particles.AmountRatio = value;
+        }
+
+        [Export] public double Lifetime
+        {
+            get => _particles.Lifetime;
+            set => _particles.Lifetime = value;
+        }
+
+        [Export] public bool OneShot
+        {
+            get => _particles.OneShot;
+            set => _particles.OneShot = value;
+        }
+
+        [Export] public double Preprocess
+        {
+            get => _particles.Preprocess;
+            set => _particles.Preprocess = value;
+        }
+
+        [Export] public double SpeedScale
+        {
+            get => _particles.SpeedScale;
+            set => _particles.SpeedScale = value;
+        }
+
+        [Export] public float Explosiveness
+        {
+            get => _particles.Explosiveness;
+            set => _particles.Explosiveness = value;
+        }
+
+        [Export]
+        public float Randomness
+        {
+            get => _particles.Randomness;
+            set => _particles.Randomness = value;
+        }
+
         [Export] public ParticleProcessMaterial ProcessMaterial
         {
             get => (ParticleProcessMaterial)_particles.ProcessMaterial;
