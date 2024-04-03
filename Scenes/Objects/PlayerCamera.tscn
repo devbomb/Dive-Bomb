@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://di4tqrhb11cow"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/OrbitCamera.cs" id="1_f7olr"]
+[ext_resource type="Script" path="res://Scripts/Objects/PlayerCamera.cs" id="1_uc4gx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
 radius = 0.2
@@ -10,7 +10,7 @@ transform = Transform3D(1, 0, 0, 0, 0.96752, 0.252796, 0, -0.252796, 0.96752, 0,
 top_level = true
 current = true
 near = 0.01
-script = ExtResource("1_f7olr")
+script = ExtResource("1_uc4gx")
 AllowAutoRotate = true
 
 [node name="PortalActivator" type="Area3D" parent="." groups=["CameraArea"]]

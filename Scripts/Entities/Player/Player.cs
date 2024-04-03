@@ -15,7 +15,7 @@ namespace FastDragon
 
         public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
-        public OrbitCamera Camera => GetNode<OrbitCamera>("%Camera");
+        public PlayerCamera Camera => GetNode<PlayerCamera>("%Camera");
         public Node3D CameraFocus => GetNode<Node3D>("%CameraFocus");
         public Node3D CameraFocusRestPos => GetNode<Node3D>("%CameraFocusRestPos");
         public PhysicsInterpolator3D CameraFocusInterpolator => GetNode<PhysicsInterpolator3D>("%CameraFocusInterpolator");
