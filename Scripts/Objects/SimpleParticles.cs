@@ -77,6 +77,9 @@ namespace FastDragon
 
         private readonly GpuParticles3D _particles = new GpuParticles3D
         {
+            Interpolate = true,
+            FractDelta = true,
+
             ProcessMaterial = new ParticleProcessMaterial(),
             DrawPass1 = new QuadMesh
             {
