@@ -11,6 +11,12 @@ namespace FastDragon
             set => _textureMaterial.AlbedoTexture = value;
         }
 
+        [Export] public ParticleProcessMaterial ProcessMaterial
+        {
+            get => (ParticleProcessMaterial)_particles.ProcessMaterial;
+            set => _particles.ProcessMaterial = value;
+        }
+
         private StandardMaterial3D _textureMaterial => (StandardMaterial3D)_mesh.Material;
         private QuadMesh _mesh => (QuadMesh)_particles.DrawPass1;
 
