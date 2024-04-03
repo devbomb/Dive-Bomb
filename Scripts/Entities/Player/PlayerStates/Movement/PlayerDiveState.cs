@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 namespace FastDragon
 {
@@ -7,6 +8,8 @@ namespace FastDragon
         public override bool DisableCameraInput => _redirectTimer <= 0;
 
         private float _redirectTimer;
+
+        private List<IRollable> _brokenObjects = new List<IRollable>();
 
         public override void OnStateEntered()
         {
@@ -56,7 +59,20 @@ namespace FastDragon
 
             ApplyGravity(delta, Player.Dive.Gravity);
 
-            if (MoveAndSlideRolling(delta))
+            _brokenObjects.Clear();
+            bool bonked = MoveAndSlideBreakingObjects<IRollable>(
+                isBreakable: r => true,
+                causesBonkWhenBroken: r => r.CausesBonk,
+                brokenObjects: _brokenObjects,
+                delta
+            );
+
+            foreach (var r in _brokenObjects)
+            {
+                OnBroke(r);
+            }
+
+            if (bonked)
                 return;
 
             // TODO: Don't apply the extra hitbox to objects that have already
@@ -77,19 +93,24 @@ namespace FastDragon
 
             foreach (var body in bodies)
             {
-                if (body is IRollable f)
+                if (body is IRollable r)
                 {
-                    f.OnRolledInto();
+                    OnBroke(r);
                 }
             }
 
             foreach (var area in areas)
             {
-                if (area is IRollable f)
+                if (area is IRollable r)
                 {
-                    f.OnRolledInto();
+                    OnBroke(r);
                 }
             }
+        }
+
+        private void OnBroke(IRollable r)
+        {
+            r.OnRolledInto();
         }
     }
 }

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace FastDragon
 {
@@ -10,6 +11,8 @@ namespace FastDragon
 
         private float _timer;
         private bool _redirectingAllowed;
+
+        private List<IRollable> _brokenObjects = new List<IRollable>();
 
         public override void OnStateEntered(State oldState)
         {
@@ -66,7 +69,19 @@ namespace FastDragon
             );
 
             RotateInstantlyTowardVelocity();
-            MoveAndSlideRolling(delta);
+
+            _brokenObjects.Clear();
+            MoveAndSlideBreakingObjects<IRollable>(
+                isBreakable: r => true,
+                causesBonkWhenBroken: r => r.CausesBonk,
+                _brokenObjects,
+                delta
+            );
+
+            foreach (var r in _brokenObjects)
+            {
+                OnBroke(r);
+            }
 
             // TODO: Don't apply the extra hitbox to objects that have already
             // been hit by the main hitbox
@@ -94,19 +109,24 @@ namespace FastDragon
 
             foreach (var body in bodies)
             {
-                if (body is IRollable f)
+                if (body is IRollable r)
                 {
-                    f.OnRolledInto();
+                    OnBroke(r);
                 }
             }
 
             foreach (var area in areas)
             {
-                if (area is IRollable f)
+                if (area is IRollable r)
                 {
-                    f.OnRolledInto();
+                    OnBroke(r);
                 }
             }
+        }
+
+        private void OnBroke(IRollable r)
+        {
+            r.OnRolledInto();
         }
     }
 }

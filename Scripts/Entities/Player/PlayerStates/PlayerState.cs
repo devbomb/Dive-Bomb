@@ -263,17 +263,24 @@ namespace FastDragon
 
         /// <summary>
         /// Just like MoveAndSlide, except:
-        /// * It passes through all <see cref="IRollable"/> objects, unless
-        ///     <see cref="IRollable.CausesBonk"/> is true.
-        /// * It calls <see cref="IRollable.OnRolledInto"/> whenever on all
-        ///     <see cref="IRollable"/> objects it touches or passes through.
-        /// * It bonks the player if they touch an <see cref="IRollable"/>
-        ///     whose <see cref="IRollable.CausesBonk"/> is true
+        /// * It passes through all objects that meet the isBreakable() criteria
+        /// * It puts all passed-through objects into the brokenObjects list
+        /// * It bonks the player if they touch an object that meets both the
+        ///     isBreakable() and causesBonkWhenBroken() criteria
         /// * It bonks the player if they hit a wall at too direct of an angle
         /// * It returns true if the player bonked
+        ///
+        /// It puts the broken objects in the provided list instead of returning
+        /// them in an array in order to avoid allocating on the heap every
+        /// frame.  Remember to clear the list you pass in before calling.
         /// </summary>
         /// <param name="delta"></param>
-        protected bool MoveAndSlideRolling(float delta)
+        protected bool MoveAndSlideBreakingObjects<TNode>(
+            Func<TNode, bool> isBreakable,
+            Func<TNode, bool> causesBonkWhenBroken,
+            List<TNode> brokenObjects,
+            float delta
+        )
         {
             Vector3 prevPos = _player.GlobalPosition;
             Vector3 prevVel = _player.Velocity;
@@ -288,11 +295,11 @@ namespace FastDragon
                 // Trigger OnRolledInto().
                 // Bonk if it's bonkable.
                 var hitObject = collision.GetCollider();
-                if (hitObject is IRollable c)
+                if (hitObject is TNode n && isBreakable(n))
                 {
-                    c.OnRolledInto();
+                    brokenObjects.Add(n);
 
-                    if (c.CausesBonk)
+                    if (causesBonkWhenBroken(n))
                         return Bonk();
 
                     // Rewind and try again, but this time ignore this object
@@ -300,7 +307,7 @@ namespace FastDragon
                     _player.Velocity = prevVel;
 
                     _player.AddCollisionExceptionWith((Node)hitObject);
-                    bool bonked = MoveAndSlideRolling(delta);
+                    bool bonked = MoveAndSlideBreakingObjects(isBreakable, causesBonkWhenBroken, brokenObjects, delta);
                     _player.RemoveCollisionExceptionWith((Node)hitObject);
 
                     return bonked;
