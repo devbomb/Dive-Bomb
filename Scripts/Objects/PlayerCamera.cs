@@ -55,11 +55,34 @@ namespace FastDragon
         private readonly StateMachine _stateMachine = new StateMachine(typeof(PlayerCameraState));
         private readonly PhysicsInterpolator3D _interpolator = new PhysicsInterpolator3D();
 
+        private float _shakeTimer;
+        private float _shakeDuration;
+        private float _shakeMagnitude;
+        private float _shakeFrequency;
+
         public override void _Ready()
         {
             AddChild(_stateMachine);
             AddChild(_interpolator);
             _stateMachine.ChangeState<Unlocked>();
+        }
+
+        public override void _Process(double deltaD)
+        {
+            if (_shakeTimer < _shakeDuration)
+            {
+                _shakeTimer += (float)deltaD;
+
+                float offset = Mathf.Sin(2 * _shakeFrequency * Mathf.Pi * _shakeTimer);
+                offset *= _shakeMagnitude;
+                offset *= 1f - Mathf.Min(_shakeTimer / _shakeDuration, 1f);
+
+                _camera.Position = Vector3.Forward * offset;
+            }
+            else
+            {
+                _camera.Position = Vector3.Zero;
+            }
         }
 
         public void ResetPhysicsInterpolation()
@@ -68,6 +91,14 @@ namespace FastDragon
         }
 
         public void MakeCurrent() => _camera.MakeCurrent();
+
+        public void Shake(float magnitude, float frequency, float duration)
+        {
+            _shakeTimer = 0;
+            _shakeDuration = duration;
+            _shakeFrequency = frequency;
+            _shakeMagnitude = magnitude;
+        }
 
         public void ForceRecenter()
         {
