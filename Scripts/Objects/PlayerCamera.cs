@@ -58,7 +58,9 @@ namespace FastDragon
         private float _shakeTimer;
         private float _shakeDuration;
         private float _shakeMagnitude;
-        private float _shakeFrequency;
+        private FastNoiseLite _shakeNoiseX = new FastNoiseLite();
+        private FastNoiseLite _shakeNoiseY = new FastNoiseLite();
+        private Random _shakeRNG = new Random(1337);
 
         public override void _Ready()
         {
@@ -73,11 +75,13 @@ namespace FastDragon
             {
                 _shakeTimer += (float)deltaD;
 
-                float offset = Mathf.Sin(2 * _shakeFrequency * Mathf.Pi * _shakeTimer);
-                offset *= _shakeMagnitude;
-                offset *= 1f - Mathf.Min(_shakeTimer / _shakeDuration, 1f);
-
-                _camera.Position = Vector3.Forward * offset;
+                _camera.Position = new Vector3(
+                    _shakeNoiseX.GetNoise1D(_shakeTimer),
+                    _shakeNoiseY.GetNoise1D(_shakeTimer),
+                    0
+                );
+                _camera.Position *= _shakeMagnitude;
+                _camera.Position *= 1f - (_shakeTimer / _shakeDuration);
             }
             else
             {
@@ -96,8 +100,16 @@ namespace FastDragon
         {
             _shakeTimer = 0;
             _shakeDuration = duration;
-            _shakeFrequency = frequency;
             _shakeMagnitude = magnitude;
+
+            _shakeNoiseX = new FastNoiseLite();
+            _shakeNoiseY = new FastNoiseLite();
+
+            _shakeNoiseX.Frequency = frequency;
+            _shakeNoiseX.Seed = _shakeRNG.Next();
+
+            _shakeNoiseY.Frequency = frequency;
+            _shakeNoiseY.Seed = _shakeRNG.Next();
         }
 
         public void ForceRecenter()
