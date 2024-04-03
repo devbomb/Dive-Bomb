@@ -10,6 +10,12 @@ namespace FastDragon
             _player.Animator.Play("Bonk", 0);
             _player.Velocity = _player.GlobalForward() * -Player.Bonk.InitHSpeed;
             _player.Velocity += Vector3.Up * Player.Bonk.InitVSpeed;
+
+            _player.Camera.Shake(
+                magnitude: new Vector2(0, 1),
+                frequency: new Vector2(0, 15),
+                duration: 0.25f
+            );
         }
 
         public override void _PhysicsProcess(double deltaD)

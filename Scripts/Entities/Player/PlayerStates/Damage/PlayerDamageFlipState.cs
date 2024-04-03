@@ -14,6 +14,8 @@ namespace FastDragon
             _player.Animator.Play("DamageFlip");
             _player.VSpeed += VSpeedBoost;
             _startedLandingAnimation = false;
+
+            _player.Camera.Shake(1.1f, 15, 0.5f);
         }
 
         public override void _PhysicsProcess(double deltaD)

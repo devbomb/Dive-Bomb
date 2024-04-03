@@ -114,8 +114,6 @@ namespace FastDragon
                 _playerAnimator.Play("Levitate", 2);
             }
 
-            _camera.DisableInput = true;
-
             // Put everything in the starting position
             _playerModel.GlobalRotation = playerStartRotRad;
             _cameraFocus.GlobalPosition = cameraFocusPos;

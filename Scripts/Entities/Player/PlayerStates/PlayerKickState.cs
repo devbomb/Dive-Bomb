@@ -4,6 +4,11 @@ namespace FastDragon
 {
     public partial class PlayerKickState : PlayerState
     {
+        private const float CameraShakeMagnitude = 0.25f;
+        private const float CameraShakeFrequency = 15;
+        private const float CameraShakeDuration = 0.25f;
+
+
         private float _timer;
 
         public override void OnStateEntered()
@@ -67,19 +72,29 @@ namespace FastDragon
 
             foreach (var body in bodies)
             {
-                if (body is IKickable f)
+                if (body is IKickable k)
                 {
-                    f.OnKicked();
+                    OnBroke(k);
                 }
             }
 
             foreach (var area in areas)
             {
-                if (area is IKickable f)
+                if (area is IKickable k)
                 {
-                    f.OnKicked();
+                    OnBroke(k);
                 }
             }
+        }
+
+        private void OnBroke(IKickable k)
+        {
+            k.OnKicked();
+            _player.Camera.Shake(
+                CameraShakeMagnitude,
+                CameraShakeFrequency,
+                CameraShakeDuration
+            );
         }
     }
 }
