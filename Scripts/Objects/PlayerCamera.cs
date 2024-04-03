@@ -57,7 +57,7 @@ namespace FastDragon
 
         private float _shakeTimer;
         private float _shakeDuration;
-        private float _shakeMagnitude;
+        private Vector2 _shakeMagnitude;
         private FastNoiseLite _shakeNoiseX = new FastNoiseLite();
         private FastNoiseLite _shakeNoiseY = new FastNoiseLite();
         private Random _shakeRNG = new Random(1337);
@@ -76,11 +76,10 @@ namespace FastDragon
                 _shakeTimer += (float)deltaD;
 
                 _camera.Position = new Vector3(
-                    _shakeNoiseX.GetNoise1D(_shakeTimer),
-                    _shakeNoiseY.GetNoise1D(_shakeTimer),
+                    _shakeMagnitude.X * _shakeNoiseX.GetNoise1D(_shakeTimer),
+                    _shakeMagnitude.Y * _shakeNoiseY.GetNoise1D(_shakeTimer),
                     0
                 );
-                _camera.Position *= _shakeMagnitude;
                 _camera.Position *= 1f - (_shakeTimer / _shakeDuration);
             }
             else
@@ -98,17 +97,30 @@ namespace FastDragon
 
         public void Shake(float magnitude, float frequency, float duration)
         {
-            _shakeTimer = 0;
+            Shake(
+                new Vector2(magnitude, magnitude),
+                new Vector2(frequency, frequency),
+                duration
+            );
+        }
+
+        public void Shake(
+            Vector2 magnitude,
+            Vector2 frequency,
+            float duration
+        )
+        {
+             _shakeTimer = 0;
             _shakeDuration = duration;
             _shakeMagnitude = magnitude;
 
             _shakeNoiseX = new FastNoiseLite();
             _shakeNoiseY = new FastNoiseLite();
 
-            _shakeNoiseX.Frequency = frequency;
+            _shakeNoiseX.Frequency = frequency.X;
             _shakeNoiseX.Seed = _shakeRNG.Next();
 
-            _shakeNoiseY.Frequency = frequency;
+            _shakeNoiseY.Frequency = frequency.Y;
             _shakeNoiseY.Seed = _shakeRNG.Next();
         }
 
