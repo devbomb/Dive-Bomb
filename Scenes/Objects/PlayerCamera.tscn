@@ -5,13 +5,15 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
 radius = 0.2
 
-[node name="PlayerCamera" type="Camera3D"]
+[node name="PlayerCamera" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 0.96752, 0.252796, 0, -0.252796, 0.96752, 0, 3, 6)
 top_level = true
-current = true
-near = 0.01
 script = ExtResource("1_uc4gx")
 AllowAutoRotate = true
+
+[node name="Camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+current = true
 
 [node name="PortalActivator" type="Area3D" parent="." groups=["CameraArea"]]
 

@@ -5,7 +5,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerCamera : Camera3D
+    public partial class PlayerCamera : Node3D
     {
         [Export] public Node3D FollowTarget;
 
@@ -42,6 +42,8 @@ namespace FastDragon
             }
         }
 
+        private Camera3D _camera => GetNode<Camera3D>("%Camera");
+
         private float _orbitDistance = 6;
         private float _orbitYawRad;
         private float _orbitPitchRad;
@@ -64,6 +66,8 @@ namespace FastDragon
         {
             _interpolator.ResetPhysicsInterpolation();
         }
+
+        public void MakeCurrent() => _camera.MakeCurrent();
 
         public void ForceRecenter()
         {
@@ -109,7 +113,7 @@ namespace FastDragon
 
         private partial class PlayerCameraState : State
         {
-            protected PlayerCamera _camera => _stateMachine.GetParent<PlayerCamera>();
+            protected PlayerCamera _self => _stateMachine.GetParent<PlayerCamera>();
         }
 
         private partial class Unlocked : PlayerCameraState
@@ -124,7 +128,7 @@ namespace FastDragon
 
             public override void _Input(InputEvent ev)
             {
-                if (_camera.DisableInput)
+                if (_self.DisableInput)
                     return;
 
                 if (InputService.RecenterCameraJustPressed(ev))
@@ -138,9 +142,9 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
-                if (_camera.DisableInput)
+                if (_self.DisableInput)
                 {
-                    _camera.ApplyAnglesAndDistance();
+                    _self.ApplyAnglesAndDistance();
                     return;
                 }
 
@@ -148,7 +152,7 @@ namespace FastDragon
                 {
                     OrbitWithRightStick(delta);
                 }
-                else if (_camera.AllowAutoRotate)
+                else if (_self.AllowAutoRotate)
                 {
                     MaintainDistanceAndAutoRotate(delta);
                 }
@@ -158,9 +162,9 @@ namespace FastDragon
 
             private void ClampOrbitAngles()
             {
-                _camera.OrbitYawRad = Mathf.PosMod(_camera.OrbitYawRad, Mathf.DegToRad(360));
-                _camera.OrbitPitchRad = Mathf.Clamp(
-                    _camera.OrbitPitchRad,
+                _self.OrbitYawRad = Mathf.PosMod(_self.OrbitYawRad, Mathf.DegToRad(360));
+                _self.OrbitPitchRad = Mathf.Clamp(
+                    _self.OrbitPitchRad,
                     Mathf.DegToRad(MinOrbitPitchDeg),
                     Mathf.DegToRad(MaxOrbitPitchDeg)
                 );
@@ -169,31 +173,31 @@ namespace FastDragon
             private void OrbitWithRightStick(float delta)
             {
                 float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
-                _camera.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
-                _camera.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
+                _self.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
+                _self.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
                 ClampOrbitAngles();
             }
 
             private void MaintainDistanceAndAutoRotate(float delta)
             {
-                var pos = _camera.GlobalPosition;
-                var targetPos = _camera.FollowTarget.GlobalPosition;
+                var pos = _self.GlobalPosition;
+                var targetPos = _self.FollowTarget.GlobalPosition;
                 var dir = targetPos.DirectionTo(pos);
 
-                _camera.GlobalPosition = targetPos + (dir * FollowDistance);
-                _camera.LookAt(targetPos);
+                _self.GlobalPosition = targetPos + (dir * FollowDistance);
+                _self.LookAt(targetPos);
 
-                _camera._orbitYawRad = _camera.GlobalRotation.Y;
-                _camera._orbitPitchRad = _camera.GlobalRotation.X;
+                _self._orbitYawRad = _self.GlobalRotation.Y;
+                _self._orbitPitchRad = _self.GlobalRotation.X;
                 ClampOrbitAngles();
 
-                _camera.ResetPhysicsInterpolation();
+                _self.ResetPhysicsInterpolation();
             }
 
             private void ZoomToFollowDistance(float delta)
             {
-                _camera.OrbitDistance = Mathf.MoveToward(
-                    _camera.OrbitDistance,
+                _self.OrbitDistance = Mathf.MoveToward(
+                    _self.OrbitDistance,
                     FollowDistance,
                     ZoomSpeed * delta
                 );
@@ -212,9 +216,9 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _initialPitchRad = _camera.OrbitPitchRad;
-                _initialYawRad = _camera.OrbitYawRad;
-                _initialDistance = _camera.OrbitDistance;
+                _initialPitchRad = _self.OrbitPitchRad;
+                _initialYawRad = _self.OrbitYawRad;
+                _initialDistance = _self.OrbitDistance;
             }
 
             public override void _Process(double deltaD)
@@ -225,25 +229,25 @@ namespace FastDragon
                 float t = _timer / Duration;
                 t = Mathf.Min(1, t);
 
-                _camera.OrbitPitchRad = Mathf.LerpAngle(
+                _self.OrbitPitchRad = Mathf.LerpAngle(
                     _initialPitchRad,
-                    _camera._suggestedPitchRad,
+                    _self._suggestedPitchRad,
                     t
                 );
 
-                _camera.OrbitYawRad = Mathf.LerpAngle(
+                _self.OrbitYawRad = Mathf.LerpAngle(
                     _initialYawRad,
-                    _camera._suggestedYawRad,
+                    _self._suggestedYawRad,
                     t
                 );
 
-                _camera.OrbitDistance = Mathf.Lerp(
+                _self.OrbitDistance = Mathf.Lerp(
                     _initialDistance,
-                    _camera._suggestedDistance,
+                    _self._suggestedDistance,
                     t
                 );
 
-                _camera.ApplyAnglesAndDistance();
+                _self.ApplyAnglesAndDistance();
 
                 // ...unless the player has their OWN idea for a camera angle.
                 if (InputService.RightStick.Length() > 0.01f)
@@ -262,8 +266,8 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _initialPitchRad = _camera.OrbitPitchRad;
-                _initialYawRad = _camera.OrbitYawRad;
+                _initialPitchRad = _self.OrbitPitchRad;
+                _initialYawRad = _self.OrbitYawRad;
             }
 
             public override void _Process(double deltaD)
@@ -272,17 +276,17 @@ namespace FastDragon
 
                 float t = _timer / Duration;
 
-                _camera.OrbitPitchRad = Mathf.LerpAngle(_initialPitchRad, 0, t);
-                _camera.OrbitYawRad = Mathf.LerpAngle(
+                _self.OrbitPitchRad = Mathf.LerpAngle(_initialPitchRad, 0, t);
+                _self.OrbitYawRad = Mathf.LerpAngle(
                     _initialYawRad,
-                    _camera.FollowTarget.GlobalRotation.Y,
+                    _self.FollowTarget.GlobalRotation.Y,
                     t
                 );
-                _camera.ApplyAnglesAndDistance();
+                _self.ApplyAnglesAndDistance();
 
                 if (_timer > Duration)
                 {
-                    _camera.ForceRecenter();
+                    _self.ForceRecenter();
                     ChangeState<Unlocked>();
                     return;
                 }
