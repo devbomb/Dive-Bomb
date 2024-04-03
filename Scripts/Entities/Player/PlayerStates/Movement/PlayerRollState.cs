@@ -9,6 +9,10 @@ namespace FastDragon
         private const float RollingRadius = 0.5f;
         private const float RollingCircumference = 2 * Mathf.Pi * RollingRadius;
 
+        private const float CameraShakeMagnitude = 0.25f;
+        private const float CameraShakeFrequency = 15;
+        private const float CameraShakeDuration = 0.25f;
+
         private float _timer;
         private bool _redirectingAllowed;
 
@@ -127,6 +131,11 @@ namespace FastDragon
         private void OnBroke(IRollable r)
         {
             r.OnRolledInto();
+            _player.Camera.Shake(
+                CameraShakeMagnitude,
+                CameraShakeFrequency,
+                CameraShakeDuration
+            );
         }
     }
 }
