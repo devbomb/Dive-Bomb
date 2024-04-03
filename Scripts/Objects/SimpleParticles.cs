@@ -105,5 +105,7 @@ namespace FastDragon
         {
             AddChild(_particles, @internal: InternalMode.Front);
         }
+
+        public void Restart() => _particles.Restart();
     }
 }
