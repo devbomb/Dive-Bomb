@@ -62,6 +62,11 @@ namespace FastDragon
         private FastNoiseLite _shakeNoiseY = new FastNoiseLite();
         private Random _shakeRNG = new Random(1337);
 
+        private float _lagTimer;
+        private float _lagDuration;
+        private Transform3D _lagPosition;
+        private Transform3D _desiredPosition;
+
         public override void _Ready()
         {
             AddChild(_stateMachine);
@@ -85,6 +90,20 @@ namespace FastDragon
             else
             {
                 _camera.Position = Vector3.Zero;
+            }
+        }
+
+        public override void _PhysicsProcess(double deltaD)
+        {
+            if (_lagTimer < _lagDuration)
+            {
+                _lagTimer += (float)deltaD;
+                float t = Mathf.Min(1, _lagTimer / _lagDuration);
+                GlobalTransform = _lagPosition.InterpolateWith(_desiredPosition, t);
+            }
+            else
+            {
+                GlobalTransform = _desiredPosition;
             }
         }
 
@@ -124,6 +143,13 @@ namespace FastDragon
             _shakeNoiseY.Seed = _shakeRNG.Next();
         }
 
+        public void Lag(float duration)
+        {
+            _lagTimer = 0;
+            _lagDuration = duration;
+            _lagPosition = GlobalTransform;
+        }
+
         public void ForceRecenter()
         {
             OrbitPitchRad = 0;
@@ -156,8 +182,19 @@ namespace FastDragon
                 .Rotated(Vector3.Up, OrbitYawRad);
 
             Vector3 offset = dir * OrbitDistance;
-            GlobalPosition = FollowTarget.GlobalPosition + offset;
-            LookAt(FollowTarget.GlobalPosition);
+            _desiredPosition = Transform3D.Identity
+                .Translated(FollowTarget.GlobalPosition + offset)
+                .LookingAt(FollowTarget.GlobalPosition);
+
+            if (_lagTimer < _lagDuration)
+            {
+                float t = Mathf.Min(1, _lagTimer / _lagDuration);
+                GlobalTransform = _lagPosition.InterpolateWith(_desiredPosition, t);
+            }
+            else
+            {
+                GlobalTransform = _desiredPosition;
+            }
 
             // HACK: ensure it works smoothly with physics interpolation
             if (!Engine.IsInPhysicsFrame())
