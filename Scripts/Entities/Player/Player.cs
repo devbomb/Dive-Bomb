@@ -112,7 +112,7 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             ResetPhysicsInterpolation();
 
-            CameraFocus.GlobalPosition = CameraFocusRestPos.GlobalPosition;
+            CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
             CameraFocusInterpolator.ResetPhysicsInterpolation();
             Camera.ForceRecenter();
 
@@ -180,6 +180,18 @@ namespace FastDragon
             {
                 CameraFocus.GlobalPosition = CameraFocusRestPos.GlobalPosition;
             }
+
+            // HACK: Keep the camera focus rotated with the player, so recentering
+            // works correctly.
+            //
+            // The camera uses the global rotation of whatever it's following to
+            // determine where to go when it recenters.  Its follow target
+            // happens to be the camera focus.  The camera focus is top-level
+            // (I forget why), so it doesn't rotate when the player rotates.
+            // Thus, it always has a global rotation of (0, 0, 0) unless we
+            // intervene, so the camera always faces north when it recenters.
+            // To avoid this, just manually change the focus's rotation.
+            CameraFocus.GlobalRotation = GlobalRotation;
         }
 
         private float _cameraFocusYSpeed = 0;
