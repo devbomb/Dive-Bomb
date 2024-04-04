@@ -13,6 +13,8 @@ namespace FastDragon
         private const float CameraShakeFrequency = 15;
         private const float CameraShakeDuration = 0.25f;
 
+        private const float CameraLagDuration = 0.5f;
+
         private float _timer;
         private bool _redirectingAllowed;
 
@@ -25,6 +27,8 @@ namespace FastDragon
 
             _timer = 0;
             _redirectingAllowed = !(oldState is PlayerDiveState);
+
+            _player.Camera.Lag(CameraLagDuration);
         }
 
         public override void OnStateExited()
