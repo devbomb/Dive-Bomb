@@ -9,11 +9,9 @@ namespace FastDragon
 
         private Node3D _parent => GetParent<Node3D>();
 
-        private Vector3 _prevTruePos;
-        private Vector3 _truePos;
+        private Transform3D _prevTruePos;
+        private Transform3D _truePos;
 
-        private Vector3 _prevTrueRot;
-        private Vector3 _trueRot;
 
         private double _physicsDelta = 1;
         private double _timer;
@@ -28,11 +26,8 @@ namespace FastDragon
             endSpy.PhysicsProcessed += OnPhysicsFrameEnded;
             AddChild(endSpy);
 
-            _truePos = _parent.Position;
-            _trueRot = _parent.Rotation;
-
+            _truePos = _parent.Transform;
             _prevTruePos = _truePos;
-            _prevTrueRot = _trueRot;
 
             ProcessPriority = int.MinValue;
         }
@@ -47,18 +42,13 @@ namespace FastDragon
             if (t > 1)
                 t = 1;
 
-            _parent.Position = _prevTruePos.Lerp(_truePos, (float)t);
-            _parent.Rotation = _prevTrueRot.LerpEulerRad(_trueRot, (float)t);
+            _parent.Transform = _prevTruePos.InterpolateWith(_truePos, (float)t);
         }
 
         public void ResetPhysicsInterpolation()
         {
-            _truePos = _parent.Position;
-            _trueRot = _parent.Rotation;
-
+            _truePos = _parent.Transform;
             _prevTruePos = _truePos;
-            _prevTrueRot = _trueRot;
-
             _timer = 0;
         }
 
@@ -70,8 +60,7 @@ namespace FastDragon
             _physicsDelta = delta;
             _timer -= delta;
 
-            _parent.Position = _truePos;
-            _parent.Rotation = _trueRot;
+            _parent.Transform = _truePos;
             _parent.ForceUpdateTransform();
         }
 
@@ -81,10 +70,7 @@ namespace FastDragon
                 return;
 
             _prevTruePos = _truePos;
-            _prevTrueRot = _trueRot;
-
-            _truePos = _parent.Position;
-            _trueRot = _parent.Rotation;
+            _truePos = _parent.Transform;
         }
 
         private partial class PhysicsProcessSpy : Node
