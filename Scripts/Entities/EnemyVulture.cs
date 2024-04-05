@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace FastDragon
 {
-    public partial class EnemyVulture : InterpolatedCharacterBody3D, IRollable, IKickable
+    public partial class EnemyVulture : CharacterBody3D, IRollable, IKickable
     {
         public const float MaxSpeed = Player.Walk.Speed * 1.5f;
         public const float Accel = 32;
@@ -50,7 +50,7 @@ namespace FastDragon
             GlobalPosition = _spawnPoint;
             GlobalRotation = _spawnRotation;
             Velocity = Vector3.Zero;
-            ResetPhysicsInterpolation();
+            this.ResetPhysicsInterpolation();
 
             // TODO: Stay dead if all of the following are true:
             // * The enemy is dead (or dieing)

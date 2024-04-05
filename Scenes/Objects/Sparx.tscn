@@ -220,7 +220,7 @@ material = SubResource("StandardMaterial3D_w36ok")
 size = Vector2(0.025, 0.025)
 orientation = 2
 
-[node name="Sparx" type="Node3D"]
+[node name="Sparx" type="Node3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_4djkx")
 GoldMaterial = SubResource("StandardMaterial3D_4w2r1")
 BlueMaterial = SubResource("StandardMaterial3D_qfin3")
@@ -245,11 +245,14 @@ transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0.000232697, 0, 2
 [node name="LeftWingTop" parent="Model/Sparx" index="1"]
 transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 0.455771, -0.627247, 0, -1.41568)
 
+[node name="LeftWingBottom" parent="Model/Sparx" index="2"]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 0.455771, -0.627247, 0, -1.41568)
+
 [node name="RightWingBottom" parent="Model/Sparx" index="3"]
-transform = Transform3D(-0.965926, 0.258819, -3.98448e-08, 0.258819, 0.965926, 0, -8.44439e-08, 2.26267e-08, 0.455771, 0.627247, 0, -1.41568)
+transform = Transform3D(-0.965925, 0.258822, 1.15546e-06, 0.258822, 0.965925, 0, 2.4488e-06, -6.56161e-07, 0.455771, 0.627247, 0, -1.41568)
 
 [node name="RightWingTop" parent="Model/Sparx" index="4"]
-transform = Transform3D(-0.866025, -0.5, -3.98448e-08, -0.5, 0.866025, 0, -7.57103e-08, -4.37114e-08, 0.455771, 0.627247, 0, -1.41568)
+transform = Transform3D(-0.866023, -0.500003, 1.15546e-06, -0.500003, 0.866023, 0, 2.19553e-06, 1.2676e-06, 0.455771, 0.627247, 0, -1.41568)
 
 [node name="GoldParticles" type="GPUParticles3D" parent="Model"]
 unique_name_in_owner = true

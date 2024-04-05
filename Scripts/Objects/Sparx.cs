@@ -25,12 +25,10 @@ namespace FastDragon
         private Queue<Gem> _gemQueue = new Queue<Gem>();
 
         private StateMachine _stateMachine = new StateMachine(typeof(SparxState));
-        private PhysicsInterpolator3D _interpolator = new PhysicsInterpolator3D();
 
         public override void _Ready()
         {
             AddChild(_stateMachine);
-            AddChild(_interpolator);
 
             SignalBus.Instance.LevelReset += Reset;
             Reset();
@@ -46,7 +44,7 @@ namespace FastDragon
             UpdateSparxColor();
 
             Position = Vector3.Zero;
-            _interpolator.ResetPhysicsInterpolation();
+            this.ResetPhysicsInterpolation();
 
             _gemQueue.Clear();
         }

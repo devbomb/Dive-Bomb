@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace FastDragon
 {
-    public partial class Gem : InterpolatedCharacterBody3D
+    public partial class Gem : CharacterBody3D
     {
         public const float HomingDuration = 0.5f;
         public const float FlameChargeWindowDuration = 0.1f;
@@ -46,7 +46,7 @@ namespace FastDragon
         {
             Position = _initialPos;
             Velocity = Vector3.Zero;
-            ResetPhysicsInterpolation();
+            this.ResetPhysicsInterpolation();
 
             if (StartHidden || IsCollected)
                 ChangeState<Hidden>();

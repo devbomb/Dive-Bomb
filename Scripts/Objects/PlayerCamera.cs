@@ -53,7 +53,6 @@ namespace FastDragon
         private float _suggestedDistance;
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(PlayerCameraState));
-        private readonly PhysicsInterpolator3D _interpolator = new PhysicsInterpolator3D();
 
         private float _shakeTimer;
         private float _shakeDuration;
@@ -70,7 +69,6 @@ namespace FastDragon
         public override void _Ready()
         {
             AddChild(_stateMachine);
-            AddChild(_interpolator);
             _stateMachine.ChangeState<Unlocked>();
         }
 
@@ -105,11 +103,6 @@ namespace FastDragon
             {
                 GlobalTransform = _desiredPosition;
             }
-        }
-
-        public void ResetPhysicsInterpolation()
-        {
-            _interpolator.ResetPhysicsInterpolation();
         }
 
         public void MakeCurrent() => _camera.MakeCurrent();
@@ -199,7 +192,7 @@ namespace FastDragon
             // HACK: ensure it works smoothly with physics interpolation
             if (!Engine.IsInPhysicsFrame())
             {
-                ResetPhysicsInterpolation();
+                this.ResetPhysicsInterpolation();
             }
         }
 

@@ -52,17 +52,9 @@ namespace FastDragon
         private float _orbitYawRad;
         private float _orbitPitchRad;
 
-
-        private readonly PhysicsInterpolator3D _interpolator = new PhysicsInterpolator3D();
-
         public override void _Ready()
         {
-            AddChild(_interpolator);
-        }
-
-        public void ResetPhysicsInterpolation()
-        {
-            _interpolator.ResetPhysicsInterpolation();
+            AddToGroup(PhysicsInterpolatorSingleton.GroupName);
         }
 
         private void ApplyAnglesAndDistance()
@@ -78,7 +70,7 @@ namespace FastDragon
             // HACK: ensure it works smoothly with physics interpolation
             if (!Engine.IsInPhysicsFrame())
             {
-                ResetPhysicsInterpolation();
+                this.ResetPhysicsInterpolation();
             }
         }
 
