@@ -5,7 +5,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Player : InterpolatedCharacterBody3D
+    public partial class Player : CharacterBody3D
     {
         [Signal] public delegate void RespawningEventHandler();
 
@@ -18,7 +18,6 @@ namespace FastDragon
         public PlayerCamera Camera => GetNode<PlayerCamera>("%Camera");
         public Node3D CameraFocus => GetNode<Node3D>("%CameraFocus");
         public Node3D CameraFocusRestPos => GetNode<Node3D>("%CameraFocusRestPos");
-        public PhysicsInterpolator3D CameraFocusInterpolator => GetNode<PhysicsInterpolator3D>("%CameraFocusInterpolator");
 
         public Node3D Model => GetNode<Node3D>("%Model");
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
@@ -110,10 +109,10 @@ namespace FastDragon
             Position = _spawnPoint;
             Rotation = _spawnRotation;
             Velocity = Vector3.Zero;
-            ResetPhysicsInterpolation();
+            this.ResetPhysicsInterpolation();
 
             CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
-            CameraFocusInterpolator.ResetPhysicsInterpolation();
+            CameraFocus.ResetPhysicsInterpolation();
             Camera.ForceRecenter();
 
             Animator.Play("RESET", 0);

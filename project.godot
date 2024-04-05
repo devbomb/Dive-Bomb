@@ -21,6 +21,7 @@ SignalBus="*res://Scripts/Services/SignalBus.cs"
 GemFactory="*res://Scenes/Singletons/GemFactory.tscn"
 MapTransitionManager="*res://Scenes/Singletons/MapTransitionManager.tscn"
 SaveFile="*res://Scripts/Singletons/SaveFileGDScriptAdaptor.cs"
+PhysicsInterpolatorSingleton="*res://Scripts/PhysicsInterpolation/PhysicsInterpolatorSingleton.cs"
 
 [dotnet]
 

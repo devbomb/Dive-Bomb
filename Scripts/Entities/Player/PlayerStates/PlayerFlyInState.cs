@@ -32,7 +32,7 @@ namespace FastDragon
             _player.ResetPhysicsInterpolation();
 
             _player.CameraFocus.GlobalPosition = _player.CameraFocusRestPos.GlobalPosition;
-            _player.CameraFocusInterpolator.ResetPhysicsInterpolation();
+            _player.CameraFocus.ResetPhysicsInterpolation();
 
             _startPos = _player.GlobalPosition;
             _startRotRad = _player.GlobalRotation;
