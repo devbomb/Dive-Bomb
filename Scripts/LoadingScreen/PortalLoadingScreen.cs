@@ -38,9 +38,8 @@ namespace FastDragon
         private const float GemPathBezierControlSpread = 20;
         private const float GemSpawnGrowTime = 0.05f;
 
-        private string _levelSceneFile;
-        private string _prevousMapFile;
         private DirectionalLight3D _oldSun;
+        private LoadingScreenParameters _parameters;
 
         private Node3D _playerModel => GetNode<Node3D>("%PlayerModel");
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
@@ -51,7 +50,7 @@ namespace FastDragon
 
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
-        private bool _isReturningHome => _prevousMapFile != null;
+        private bool _isReturningHome => _parameters.PreviousMapSceneFilePath != null;
         private Node3D _loadedScene;
 
         private MeshLabel3D _untalliedGemsLabel => GetNode<MeshLabel3D>("%UntalliedGemsLabel");
@@ -74,35 +73,22 @@ namespace FastDragon
             }
         }
 
-        public void Initialize(
-            string levelSceneFile,
-            string previousMapFile,
-            Godot.Environment skyBoxEnvironment,
-            string animationName,
-            double animationStartTime,
-            Vector3 playerStartRotRad,
-            Vector3 cameraFocusPos,
-            float cameraStartDist,
-            float cameraStartYawRad,
-            float cameraStartPitchRad,
-            DirectionalLight3D sun
-        )
+        public void Initialize(LoadingScreenParameters parameters)
         {
-            _levelSceneFile = levelSceneFile;
-            _prevousMapFile = previousMapFile;
-            _worldEnv.Environment = skyBoxEnvironment;
-            _oldSun = sun;
+            _parameters = parameters;
+            _worldEnv.Environment = parameters.SkyBoxEnvironment;
+            _oldSun = parameters.OldSun;
             _oldSun.SkyMode = DirectionalLight3D.SkyModeEnum.LightOnly;
             AddChild(_oldSun);
 
             _loadedScene = null;
 
             // Start loading the level in the background
-            ResourceLoader.LoadThreadedRequest(_levelSceneFile);
+            ResourceLoader.LoadThreadedRequest(parameters.TargetMapSceneFilePath);
 
             // Sync up the player's animation...
-            _playerAnimator.Play(animationName);
-            _playerAnimator.Seek(animationStartTime, true);
+            _playerAnimator.Play(parameters.AnimationName);
+            _playerAnimator.Seek(parameters.AnimationStartTime, true);
 
             // ...and then make it transition the animation used for loading
             if (!_isReturningHome)
@@ -115,11 +101,11 @@ namespace FastDragon
             }
 
             // Put everything in the starting position
-            _playerModel.GlobalRotation = playerStartRotRad;
-            _cameraFocus.GlobalPosition = cameraFocusPos;
-            _camera.OrbitDistance = cameraStartDist;
-            _camera.OrbitYawRad = cameraStartYawRad;
-            _camera.OrbitPitchRad = cameraStartPitchRad;
+            _playerModel.GlobalRotation = parameters.PlayerStartRotRad;
+            _cameraFocus.GlobalPosition = parameters.CameraFocusPos;
+            _camera.OrbitDistance = parameters.CameraDist;
+            _camera.OrbitYawRad = parameters.CameraYawRad;
+            _camera.OrbitPitchRad = parameters.CameraPitchRad;
 
             // Figure out how many of each gem we'll need to spawn in the
             // gem counting animation later.
@@ -180,7 +166,7 @@ namespace FastDragon
         {
             return sceneRoot
                 .EnumerateDescendantsOfType<Portal>()
-                .First(p => p.TargetMap == _prevousMapFile);
+                .First(p => p.TargetMap == _parameters.PreviousMapSceneFilePath);
 
         }
 
@@ -450,7 +436,7 @@ namespace FastDragon
         {
             public override void _Process(double delta)
             {
-                string sceneFile = _screen._levelSceneFile;
+                string sceneFile = _screen._parameters.TargetMapSceneFilePath;
                 var loadStatus = ResourceLoader.LoadThreadedGetStatus(sceneFile);
 
                 switch (loadStatus)
@@ -535,25 +521,13 @@ namespace FastDragon
                 float duration = CorrectionAnimationDuration;
 
                 var portal = _screen.GetTargetPortal(_screen._loadedScene);
-                Vector3 portalRotRad = GetGlobalTransformOutsideOfTree(portal).Basis.GetEuler();
+                Vector3 portalRotRad = portal.GetGlobalTransformOutsideOfTree().Basis.GetEuler();
 
                 tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", portalRotRad, duration);
                 tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, duration);
                 tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", portalRotRad.Y + Mathf.DegToRad(180), duration);
                 tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, duration);
             }
-
-            private Transform3D GetGlobalTransformOutsideOfTree(Node3D node)
-            {
-                var parent = GetParentOrNull<Node3D>();
-                if (parent == null)
-                {
-                    return node.Transform;
-                }
-
-                return node.Transform * GetGlobalTransformOutsideOfTree(parent);
-            }
-
         }
     }
 }
