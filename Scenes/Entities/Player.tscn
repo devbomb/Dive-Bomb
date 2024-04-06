@@ -38,8 +38,8 @@ func _physics_process(delta):
 "
 
 [sub_resource type="Curve" id="Curve_jlgjn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.767908, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.416905, 0), 0.0, 0.0, 0, 0, Vector2(0.767908, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_lpxbd"]
 curve = SubResource("Curve_jlgjn")
@@ -137,9 +137,10 @@ LocalCoords = true
 Amount = 128
 AmountRatio = 1.0
 Lifetime = 1.0
-Preprocess = 0.75
+OneShot = true
+Preprocess = 0.5
 SpeedScale = 2.0
-Explosiveness = 0.5
+Explosiveness = 0.31
 FixedFps = 60
 ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
 
