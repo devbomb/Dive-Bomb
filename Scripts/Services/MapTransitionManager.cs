@@ -173,39 +173,20 @@ namespace FastDragon
             Environment skyBoxEnvironment
         )
         {
-            var oldScene = GetTree().CurrentScene;
-            var loadingScreen = PortalLoadingScreenPrefab.Instantiate<PortalLoadingScreen>();
-
-            // Save player/camera values so they can be copied over to the
-            // loading screen, creating the illusion of a seamless transition
-            var oldPlayer = oldScene.FindNode<Player>();
-
-            double animationStartTime = oldPlayer.Animator.CurrentAnimationPosition;
-            Vector3 playerRotRad = oldPlayer.GlobalRotation;
-            Vector3 cameraFocus = oldPlayer.CameraFocus.GlobalPosition - oldPlayer.GlobalPosition;
-            float cameraDist = oldPlayer.Camera.OrbitDistance;
-            float cameraYawRad = oldPlayer.Camera.OrbitYawRad;
-            float cameraPitchRad = oldPlayer.Camera.OrbitPitchRad;
-
-            // Save the sun, too, so there isn't a jarring lighting change
-            var sun = oldScene.FindNode<DirectionalLight3D>();
-            sun.GetParent().RemoveChild(sun);
-
-            ChangeSceneToNode(loadingScreen);
-
-            loadingScreen.Initialize(
+            var parameters = LoadingScreenParameters.FromCurrentMap(
                 levelSceneFile,
                 previousMapFile,
                 skyBoxEnvironment,
-                oldPlayer.Animator.AssignedAnimation,
-                animationStartTime,
-                playerRotRad,
-                cameraFocus,
-                cameraDist,
-                cameraYawRad,
-                cameraPitchRad,
-                sun
+                GetTree()
             );
+
+            // HACK: un-parent the sun, because we didn't make a clone of it.
+            // TODO: Have FromCurrentMap() make a clone of it instead.
+            parameters.OldSun.GetParent().RemoveChild(parameters.OldSun);
+
+            var loadingScreen = PortalLoadingScreenPrefab.Instantiate<PortalLoadingScreen>();
+            ChangeSceneToNode(loadingScreen);
+            loadingScreen.Initialize(parameters);
         }
     }
 }
