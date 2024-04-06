@@ -38,7 +38,7 @@ func _physics_process(delta):
 "
 
 [sub_resource type="Curve" id="Curve_jlgjn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.446991, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.767908, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_lpxbd"]
@@ -69,7 +69,7 @@ curve_y = SubResource("Curve_0llel")
 curve_z = SubResource("Curve_rprca")
 
 [sub_resource type="Curve" id="Curve_by43w"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0487106, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.790831, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_juou6"]
@@ -130,15 +130,16 @@ unique_name_in_owner = true
 [node name="AnotherPlatformerMan" parent="Model" instance=ExtResource("3_225mv")]
 
 [node name="KickFlameParticles" type="Node3D" parent="Model/AnotherPlatformerMan"]
-transform = Transform3D(-0.463358, -0.713494, -0.525572, -0.829862, 0.141323, 0.539775, -0.310851, 0.686262, -0.657584, 2.93e-08, 1.02745, -0.725269)
+transform = Transform3D(0.41635, 0.722773, 0.551591, -0.666786, -0.169703, 0.72567, 0.618101, -0.669926, 0.411279, 2.93e-08, 1.25174, 0.251508)
 script = ExtResource("3_f05v6")
 BlendMode = 1
 LocalCoords = true
 Amount = 128
 AmountRatio = 1.0
 Lifetime = 1.0
-Preprocess = 0.1
+Preprocess = 0.75
 SpeedScale = 2.0
+Explosiveness = 0.5
 ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
 
 [node name="FairyKissPoint" type="Marker3D" parent="."]
