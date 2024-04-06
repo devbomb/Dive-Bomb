@@ -140,6 +140,7 @@ Lifetime = 1.0
 Preprocess = 0.75
 SpeedScale = 2.0
 Explosiveness = 0.5
+FixedFps = 60
 ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
 
 [node name="FairyKissPoint" type="Marker3D" parent="."]
