@@ -180,10 +180,6 @@ namespace FastDragon
                 GetTree()
             );
 
-            // HACK: un-parent the sun, because we didn't make a clone of it.
-            // TODO: Have FromCurrentMap() make a clone of it instead.
-            parameters.OldSun.GetParent().RemoveChild(parameters.OldSun);
-
             var loadingScreen = PortalLoadingScreenPrefab.Instantiate<PortalLoadingScreen>();
             ChangeSceneToNode(loadingScreen);
             loadingScreen.Initialize(parameters);

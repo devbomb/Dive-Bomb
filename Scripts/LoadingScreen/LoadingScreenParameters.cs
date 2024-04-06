@@ -9,7 +9,7 @@ namespace FastDragon
         public Environment SkyBoxEnvironment;
 
         /// <summary>
-        /// A the main DirectionalLight3D from the previous map.
+        /// A clone of the main DirectionalLight3D from the previous map.
         /// Included so the loading screen can avoid jarring lighting changes.
         /// </summary>
         public DirectionalLight3D OldSun;
@@ -39,7 +39,7 @@ namespace FastDragon
                 PreviousMapSceneFilePath = previousMapSceneFilePath,
                 SkyBoxEnvironment = skyBoxEnvironment,
 
-                OldSun = oldScene.FindNode<DirectionalLight3D>(),
+                OldSun = (DirectionalLight3D)oldScene.FindNode<DirectionalLight3D>().Duplicate(),
 
                 AnimationName = oldPlayer.Animator.AssignedAnimation,
                 AnimationStartTime = oldPlayer.Animator.CurrentAnimationPosition,
