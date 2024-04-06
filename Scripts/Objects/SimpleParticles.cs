@@ -78,6 +78,13 @@ namespace FastDragon
             set => _particles.Randomness = value;
         }
 
+        [Export]
+        public int FixedFps
+        {
+            get => _particles.FixedFps;
+            set => _particles.FixedFps = value;
+        }
+
         [Export] public ParticleProcessMaterial ProcessMaterial
         {
             get => (ParticleProcessMaterial)_particles.ProcessMaterial;
