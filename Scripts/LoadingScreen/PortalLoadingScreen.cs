@@ -531,7 +531,7 @@ namespace FastDragon
 
             private Transform3D GetGlobalTransformOutsideOfTree(Node3D node)
             {
-                var parent = GetParentOrNull<Node3D>();
+                var parent = node.GetParentOrNull<Node3D>();
                 if (parent == null)
                 {
                     return node.Transform;
@@ -539,7 +539,6 @@ namespace FastDragon
 
                 return node.Transform * GetGlobalTransformOutsideOfTree(parent);
             }
-
         }
     }
 }
