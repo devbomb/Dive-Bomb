@@ -521,23 +521,12 @@ namespace FastDragon
                 float duration = CorrectionAnimationDuration;
 
                 var portal = _screen.GetTargetPortal(_screen._loadedScene);
-                Vector3 portalRotRad = GetGlobalTransformOutsideOfTree(portal).Basis.GetEuler();
+                Vector3 portalRotRad = portal.GetGlobalTransformOutsideOfTree().Basis.GetEuler();
 
                 tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", portalRotRad, duration);
                 tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, duration);
                 tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", portalRotRad.Y + Mathf.DegToRad(180), duration);
                 tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, duration);
-            }
-
-            private Transform3D GetGlobalTransformOutsideOfTree(Node3D node)
-            {
-                var parent = node.GetParentOrNull<Node3D>();
-                if (parent == null)
-                {
-                    return node.Transform;
-                }
-
-                return node.Transform * GetGlobalTransformOutsideOfTree(parent);
             }
         }
     }
