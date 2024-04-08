@@ -1,11 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=17 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
 [ext_resource type="AnimationLibrary" uid="uid://dp75nlaah5k6o" path="res://AnimationLibraries/PlayerAnimations.tres" id="2_om7jv"]
 [ext_resource type="PackedScene" uid="uid://dolfkovx44knj" path="res://Scenes/Objects/Sparx.tscn" id="3_5fc8t"]
-[ext_resource type="PackedScene" uid="uid://ciwpie76rxyn1" path="res://BlenderModels/AnotherPlatformerMan.blend" id="3_225mv"]
-[ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="3_f05v6"]
+[ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="3_fw7ex"]
 [ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Scenes/Objects/PlayerCamera.tscn" id="4_ne5gw"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
@@ -37,68 +36,6 @@ func _physics_process(delta):
         
 "
 
-[sub_resource type="Gradient" id="Gradient_x8atq"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.163818, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7mdw1"]
-gradient = SubResource("Gradient_x8atq")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
-[sub_resource type="Curve" id="Curve_dfoy6"]
-_data = [Vector2(0.557307, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_ces48"]
-curve = SubResource("Curve_dfoy6")
-
-[sub_resource type="Curve" id="Curve_30ae7"]
-min_value = -2.0
-max_value = 2.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_0llel"]
-min_value = -2.0
-max_value = 2.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_rprca"]
-min_value = -2.0
-max_value = 2.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_i8s4p"]
-width = 32
-curve_x = SubResource("Curve_30ae7")
-curve_y = SubResource("Curve_0llel")
-curve_z = SubResource("Curve_rprca")
-
-[sub_resource type="Curve" id="Curve_by43w"]
-_data = [Vector2(0, 0), 0.0, 0.0953357, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_juou6"]
-curve = SubResource("Curve_by43w")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2e14a"]
-velocity_pivot = Vector3(0, 0, -1)
-spread = 0.0
-orbit_velocity_min = 1.2
-orbit_velocity_max = 1.2
-orbit_velocity_curve = SubResource("CurveXYZTexture_i8s4p")
-gravity = Vector3(0, 0, 0)
-scale_min = 0.4
-scale_max = 0.4
-scale_curve = SubResource("CurveTexture_juou6")
-color = Color(1, 1, 1, 0.160784)
-alpha_curve = SubResource("CurveTexture_ces48")
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5lcs0"]
 height = 3.0
 radius = 1.5
@@ -127,29 +64,14 @@ script = SubResource("GDScript_cpnxc")
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 deterministic = true
-root_node = NodePath("../Model/AnotherPlatformerMan")
+root_node = NodePath("../Model")
 libraries = {
 "": ExtResource("2_om7jv")
 }
 playback_default_blend_time = 0.1
 
-[node name="Model" type="Node3D" parent="."]
+[node name="Model" parent="." instance=ExtResource("3_fw7ex")]
 unique_name_in_owner = true
-
-[node name="KickFlameParticles" type="Node3D" parent="Model"]
-transform = Transform3D(0.604831, 0.674805, 0.623553, -0.798374, 0.755471, -0.043164, -0.45473, -0.428837, 0.905162, 0.0590594, 0.405857, 0.901034)
-script = ExtResource("3_f05v6")
-Texture = SubResource("GradientTexture2D_7mdw1")
-LocalCoords = true
-Amount = 64
-AmountRatio = 1.0
-Lifetime = 0.275
-Preprocess = 0.25
-SpeedScale = 1.2
-FixedFps = 60
-ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
-
-[node name="AnotherPlatformerMan" parent="Model" instance=ExtResource("3_225mv")]
 
 [node name="FairyKissPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true

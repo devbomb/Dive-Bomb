@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://byj33t3fmjjmx" path="res://Scenes/Models/YellowGemModel.tscn" id="5_lc26i"]
 [ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://Scenes/UIWidgets/FPSCounter.tscn" id="6_by5mh"]
 [ext_resource type="PackedScene" uid="uid://bmpnfs8rauqo" path="res://Scenes/Models/MagentaGemModel.tscn" id="6_ff7ao"]
-[ext_resource type="PackedScene" uid="uid://ciwpie76rxyn1" path="res://BlenderModels/AnotherPlatformerMan.blend" id="8_xrk15"]
+[ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="8_hsd4c"]
 [ext_resource type="Script" path="res://Scripts/DecoratorNodes/VisibleOnlyInEditorDecorator.cs" id="10_k6c8e"]
 [ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="11_i0ki7"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="12_8013m"]
@@ -100,15 +100,13 @@ unique_name_in_owner = true
 [node name="PlayerAnimator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 deterministic = true
-root_node = NodePath("../PlayerModel/AnotherPlatformerMan")
+root_node = NodePath("../PlayerModel")
 libraries = {
 "": ExtResource("2_8xff1")
 }
 
-[node name="PlayerModel" type="Node3D" parent="."]
+[node name="PlayerModel" parent="." instance=ExtResource("8_hsd4c")]
 unique_name_in_owner = true
-
-[node name="AnotherPlatformerMan" parent="PlayerModel" instance=ExtResource("8_xrk15")]
 
 [node name="OrbitCamera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
 unique_name_in_owner = true
