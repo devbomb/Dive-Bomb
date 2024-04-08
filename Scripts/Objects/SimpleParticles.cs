@@ -25,9 +25,20 @@ namespace FastDragon
 
         [Export] public bool Emitting
         {
-            get => _particles.Emitting;
-            set => _particles.Emitting = value;
+            get => _emitting;
+            set
+            {
+                _emitting = value;
+                _particles.Emitting = _emitting;
+            }
         }
+        private bool _emitting = true;
+        // HACK: For whatever reason, "_particles.Emitting" doesn't seem to be
+        // loaded correctly when opening a scene that uses this node in the editor,
+        // even though all of the other "_partciles.Thing" properties are
+        // well-behaved in that regard.  So for this property, and ONLY this
+        // property, we need to add a proxy field.  Your guess for why is as
+        // good as mine.
 
         [Export] public int Amount
         {
