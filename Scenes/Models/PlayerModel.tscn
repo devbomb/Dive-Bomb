@@ -67,7 +67,7 @@ alpha_curve = SubResource("CurveTexture_ces48")
 
 [node name="PlayerModel" type="Node3D"]
 
-[node name="KickFlameParticles" type="Node3D" parent="."]
+[node name="KickTrailParticles" type="Node3D" parent="."]
 transform = Transform3D(0.604831, 0.674805, 0.623553, -0.798374, 0.755471, -0.043164, -0.45473, -0.428837, 0.905162, 0.0590594, 0.405857, 0.901034)
 script = ExtResource("1_x2wfw")
 Texture = SubResource("GradientTexture2D_7mdw1")
