@@ -12,6 +12,7 @@ namespace FastDragon
 
         public SparxColor PlayerHealth = SparxColor.Gold;
         public string CurrentMap;
+        public string CurrentCheckpoint = null;
 
         public HashSet<string> CollectedGems = new HashSet<string>();
 

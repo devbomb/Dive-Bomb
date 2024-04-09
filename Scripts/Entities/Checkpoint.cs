@@ -8,8 +8,20 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            BodyEntered += OnBodyEntered;
+
             if (CheckpointName == null)
                 throw new System.Exception("CheckpointName cannot be null");
+        }
+
+        private void OnBodyEntered(Node3D body)
+        {
+            GD.Print($"Body entered {body}");
+            if (body is Player)
+            {
+                SaveFile.Current.CurrentCheckpoint = CheckpointName;
+                GD.Print($"Set checkpoint to {CheckpointName}");
+            }
         }
     }
 }
