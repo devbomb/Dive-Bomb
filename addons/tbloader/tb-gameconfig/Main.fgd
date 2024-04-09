@@ -128,6 +128,17 @@
 @PointClass
 	base(Angle)
 	size(-8 -8 -8, 8 8 8)
+		model({
+		"path" : "TrenchbroomEntityModels/FairyRing.obj",
+		"scale" : 0.25
+	})
+	= Checkpoint : "Checkpoint" [
+		CheckpointName(string) : "CheckpointName"
+	]
+
+@PointClass
+	base(Angle)
+	size(-8 -8 -8, 8 8 8)
 	model({
 		"path" : "TrenchbroomEntityModels/Vent.obj",
 		"scale" : 0.25
