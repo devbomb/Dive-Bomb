@@ -248,3 +248,9 @@
 "origin" "16 -368 -64"
 "CheckpointName" "Test"
 }
+// entity 31
+{
+"classname" "Checkpoint"
+"origin" "272 -384 -64"
+"CheckpointName" "OtherCheckpoint"
+}
