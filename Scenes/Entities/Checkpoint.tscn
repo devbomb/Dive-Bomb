@@ -88,19 +88,20 @@ curve = SubResource("Curve_3m303")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_klcf1"]
 emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
 emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.0
+emission_ring_inner_radius = 0.5
 angle_min = 45.0
 angle_max = 45.0
 direction = Vector3(0, 1, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
+spread = 0.0
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
 radial_velocity_curve = SubResource("CurveTexture_q725e")
 gravity = Vector3(0, 0, 0)
-damping_min = 10.0
-damping_max = 10.0
+scale_min = 0.5
+scale_max = 0.5
 alpha_curve = SubResource("CurveTexture_f0chk")
 
 [sub_resource type="Gradient" id="Gradient_t7c3s"]
@@ -155,12 +156,13 @@ unique_name_in_owner = true
 script = ExtResource("3_sjo5e")
 Texture = SubResource("GradientTexture2D_cf7p1")
 Emitting = false
-Amount = 16
+Amount = 50
 AmountRatio = 1.0
-Lifetime = 1.0
+Lifetime = 0.5
 OneShot = true
 SpeedScale = 1.0
-Explosiveness = 0.95
+Explosiveness = 0.5
+Randomness = 0.5
 FixedFps = 30
 ProcessMaterial = SubResource("ParticleProcessMaterial_klcf1")
 
