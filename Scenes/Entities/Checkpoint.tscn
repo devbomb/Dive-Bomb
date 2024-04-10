@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbfrncy1cgsc1"]
+[gd_scene load_steps=12 format=3 uid="uid://bbfrncy1cgsc1"]
 
 [ext_resource type="PackedScene" uid="uid://1bbms5s4bt3d" path="res://BlenderModels/FairyRing.blend" id="1_lpb68"]
 [ext_resource type="Script" path="res://Scripts/Entities/Checkpoint.cs" id="1_tl6tw"]
@@ -42,6 +42,17 @@ scale_max = 0.1
 color = Color(0.54, 0.486, 0, 1)
 alpha_curve = SubResource("CurveTexture_l7bcy")
 
+[sub_resource type="Gradient" id="Gradient_t7c3s"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.444444, 1)
+colors = PackedColorArray(0.46, 0.40204, 0.2668, 1, 0, 0.298039, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_elpmb"]
+gradient = SubResource("Gradient_t7c3s")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Checkpoint" type="Area3D"]
 script = ExtResource("1_tl6tw")
 
@@ -62,3 +73,7 @@ SpeedScale = 1.0
 Randomness = 1.0
 FixedFps = 30
 ProcessMaterial = SubResource("ParticleProcessMaterial_b8q6b")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, -3, 0, 3, -1.31134e-07, 0, 0.0201436, 8.80506e-10)
+texture = SubResource("GradientTexture2D_elpmb")
