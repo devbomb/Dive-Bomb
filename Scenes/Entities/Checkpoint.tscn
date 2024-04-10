@@ -1,10 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbfrncy1cgsc1"]
+[gd_scene load_steps=10 format=3 uid="uid://bbfrncy1cgsc1"]
 
 [ext_resource type="PackedScene" uid="uid://1bbms5s4bt3d" path="res://BlenderModels/FairyRing.blend" id="1_lpb68"]
 [ext_resource type="Script" path="res://Scripts/Entities/Checkpoint.cs" id="1_tl6tw"]
+[ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="3_sjo5e"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_67wg3"]
 radius = 1.0
+
+[sub_resource type="Gradient" id="Gradient_phqdh"]
+offsets = PackedFloat32Array(0.133903, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3va3e"]
+gradient = SubResource("Gradient_phqdh")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_tqkdw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0401146, 0.99665), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_l7bcy"]
+curve = SubResource("Curve_tqkdw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b8q6b"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.9
+gravity = Vector3(0, 5, 0)
+linear_accel_min = -10.0
+linear_accel_max = -10.0
+radial_accel_min = -5.0
+radial_accel_max = -5.0
+tangential_accel_min = 10.0
+tangential_accel_max = 10.0
+scale_min = 0.05
+scale_max = 0.1
+color = Color(0.54, 0.486, 0, 1)
+alpha_curve = SubResource("CurveTexture_l7bcy")
 
 [node name="Checkpoint" type="Area3D"]
 script = ExtResource("1_tl6tw")
@@ -14,3 +50,15 @@ script = ExtResource("1_tl6tw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_67wg3")
+
+[node name="Spores" type="Node3D" parent="."]
+script = ExtResource("3_sjo5e")
+Texture = SubResource("GradientTexture2D_3va3e")
+Amount = 20
+AmountRatio = 1.0
+Lifetime = 10.0
+Preprocess = 10.0
+SpeedScale = 1.0
+Randomness = 1.0
+FixedFps = 30
+ProcessMaterial = SubResource("ParticleProcessMaterial_b8q6b")
