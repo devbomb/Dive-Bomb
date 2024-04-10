@@ -116,7 +116,7 @@ namespace FastDragon
             {
                 var checkpoint = GetTree().Root
                     .EnumerateDescendantsOfType<Checkpoint>()
-                    .First();
+                    .First(c => c.IsCurrent);
 
                 GlobalPosition = checkpoint.GlobalPosition;
                 GlobalRotation = checkpoint.GlobalRotation;
