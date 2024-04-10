@@ -6,6 +6,11 @@ namespace FastDragon
     {
         [Export] public string CheckpointName;
 
+        public bool IsCurrent => SaveFile.Current.CurrentCheckpoint == CheckpointName;
+
+        private SimpleParticles _sparkleRing => GetNode<SimpleParticles>("%SparkleRing");
+        private SimpleParticles _sparkleBurst => GetNode<SimpleParticles>("%SparkleBurst");
+
         public override void _Ready()
         {
             BodyEntered += OnBodyEntered;
@@ -14,13 +19,17 @@ namespace FastDragon
                 throw new System.Exception("CheckpointName cannot be null");
         }
 
+        public override void _Process(double deltaD)
+        {
+            _sparkleRing.Emitting = IsCurrent;
+        }
+
         private void OnBodyEntered(Node3D body)
         {
-            GD.Print($"Body entered {body}");
-            if (body is Player)
+            if (body is Player && !IsCurrent)
             {
                 SaveFile.Current.CurrentCheckpoint = CheckpointName;
-                GD.Print($"Set checkpoint to {CheckpointName}");
+                _sparkleBurst.Emitting = true;
             }
         }
     }
