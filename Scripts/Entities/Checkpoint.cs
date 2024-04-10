@@ -26,10 +26,11 @@ namespace FastDragon
 
         private void OnBodyEntered(Node3D body)
         {
-            if (body is Player && !IsCurrent)
+            if (body is Player player && !IsCurrent)
             {
                 SaveFile.Current.CurrentCheckpoint = CheckpointName;
                 _sparkleBurst.Emitting = true;
+                player.Camera.Shake(1, 5, 0.2f);
             }
         }
     }
