@@ -242,3 +242,15 @@
 "TargetMap" "res://Scenes/Maps/Levels/Castle.tscn"
 "SkyboxEnvironment" "res://Environments/Castle.tres"
 }
+// entity 30
+{
+"classname" "Checkpoint"
+"origin" "16 -368 -64"
+"CheckpointName" "Test"
+}
+// entity 31
+{
+"classname" "Checkpoint"
+"origin" "272 -384 -64"
+"CheckpointName" "OtherCheckpoint"
+}

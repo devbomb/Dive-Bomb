@@ -55,6 +55,7 @@ namespace FastDragon
         )
         {
             GoToPortalLoadingScreen(levelSceneFile, null, skyBoxEnvironment);
+            SaveFile.Current.CurrentCheckpoint = null;
         }
 
         public void ExitLevelFromPauseMenu()
@@ -116,6 +117,7 @@ namespace FastDragon
             string levelSceneFile = worldSpawn.HomeWorld;
             string previousMapFile = oldScene.SceneFilePath;
             GoToPortalLoadingScreen(levelSceneFile, previousMapFile, skyBoxEnvironment);
+            SaveFile.Current.CurrentCheckpoint = null;
         }
 
         public void RespawnPlayerAfterDeath()

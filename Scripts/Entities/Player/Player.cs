@@ -90,8 +90,8 @@ namespace FastDragon
             base._Ready();
 
             SignalBus.Instance.LevelReset += Respawn;
-            _spawnPoint = Position;
-            _spawnRotation = Rotation;
+            _spawnPoint = GlobalPosition;
+            _spawnRotation = GlobalRotation;
 
             Respawn();
 
@@ -106,8 +106,22 @@ namespace FastDragon
         public void Respawn()
         {
             EmitSignal(SignalName.Respawning);
-            Position = _spawnPoint;
-            Rotation = _spawnRotation;
+
+            if (SaveFile.Current.CurrentCheckpoint == null)
+            {
+                GlobalPosition = _spawnPoint;
+                GlobalRotation = _spawnRotation;
+            }
+            else
+            {
+                var checkpoint = GetTree().Root
+                    .EnumerateDescendantsOfType<Checkpoint>()
+                    .First();
+
+                GlobalPosition = checkpoint.GlobalPosition;
+                GlobalRotation = checkpoint.GlobalRotation;
+            }
+
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation();
 

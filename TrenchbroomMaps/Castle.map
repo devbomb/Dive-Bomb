@@ -3441,3 +3441,10 @@
 ( 576 320 -160 ) ( 576 320 -159 ) ( 576 321 -160 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
+// entity 156
+{
+"classname" "Checkpoint"
+"origin" "-224 1488 32"
+"angles" "0 -90 0"
+"CheckpointName" "DiningRoom"
+}
