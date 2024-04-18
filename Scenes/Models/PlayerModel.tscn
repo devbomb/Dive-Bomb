@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dykig0tcxggvr"]
+[gd_scene load_steps=14 format=3 uid="uid://dykig0tcxggvr"]
 
 [ext_resource type="PackedScene" uid="uid://bytmfm6g78uxa" path="res://BlenderModels/KennifiedPlayerModel.blend" id="1_gwhpy"]
 [ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="1_x2wfw"]
-[ext_resource type="PackedScene" uid="uid://ciwpie76rxyn1" path="res://BlenderModels/AnotherPlatformerMan.blend" id="2_6pvb3"]
 
 [sub_resource type="Gradient" id="Gradient_x8atq"]
 interpolation_mode = 2
@@ -83,6 +82,3 @@ Preprocess = 0.25
 SpeedScale = 1.2
 FixedFps = 60
 ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
-
-[node name="AnotherPlatformerMan" parent="." instance=ExtResource("2_6pvb3")]
-visible = false
