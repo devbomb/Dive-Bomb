@@ -5,7 +5,7 @@ namespace FastDragon
 {
     public partial class PlayerWalkState : PlayerState
     {
-        private const string WalkAnim = "Walk";
+        private const string RunAnim = "Run";
         private const string SkidAnim = "Skid";
 
         private const float StrideLength = 1;
@@ -17,7 +17,7 @@ namespace FastDragon
 
         public override void OnStateEntered(State oldState)
         {
-            _player.Animator.Play(WalkAnim);
+            _player.Animator.Play(RunAnim);
 
             if (_player.Velocity.Length() < Player.Walk.MinSpeed)
                 _player.FSpeed = Player.Walk.MinSpeed;
@@ -126,7 +126,7 @@ namespace FastDragon
 
             if (leftStickForwardComponent >= 0 && playingSkid)
             {
-                _player.Animator.Play(WalkAnim);
+                _player.Animator.Play(RunAnim);
             }
         }
 
