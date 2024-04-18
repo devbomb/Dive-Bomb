@@ -7152,6 +7152,7 @@ tracks/77/keys = PackedFloat32Array(0, 1, 0.372571, 0.0391453, -0.0117218, 0.927
 
 [sub_resource type="Animation" id="Animation_2ngwv"]
 resource_name = "Kick"
+step = 0.05
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -7698,6 +7699,18 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Toes_R")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, 0.398633, 0.0385452, -0.0119551, 0.916222, 0.0333333, 1, 0.172899, 0.0402733, -0.00259286, 0.984113, 0.0666667, 1, -0.0624583, 0.0397599, 0.00691368, 0.997231, 0.1, 1, 0.307736, 0.0395249, -0.00815325, 0.950616, 1, 1, 0.307736, 0.0395249, -0.00815325, 0.950615)
+tracks/78/type = "value"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("KickTrailParticles:Emitting")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_jonn6"]
 resource_name = "Levitate-loop"
@@ -8799,6 +8812,18 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Toes_R")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, 0.372571, 0.0391453, -0.0117218, 0.927104)
+tracks/78/type = "value"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("KickTrailParticles:Emitting")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_630pu"]
 resource_name = "ReachOutDeath"
