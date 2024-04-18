@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
-[ext_resource type="AnimationLibrary" uid="uid://dp75nlaah5k6o" path="res://AnimationLibraries/PlayerAnimations.tres" id="2_om7jv"]
+[ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://AnimationLibraries/KennifiedPlayerAnimations.tres" id="2_dijyt"]
 [ext_resource type="PackedScene" uid="uid://dolfkovx44knj" path="res://Scenes/Objects/Sparx.tscn" id="3_5fc8t"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="3_fw7ex"]
 [ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Scenes/Objects/PlayerCamera.tscn" id="4_ne5gw"]
@@ -64,9 +64,9 @@ script = SubResource("GDScript_cpnxc")
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 deterministic = true
-root_node = NodePath("../Model")
+root_node = NodePath("../Model/KennifiedPlayerModel")
 libraries = {
-"": ExtResource("2_om7jv")
+"": ExtResource("2_dijyt")
 }
 playback_default_blend_time = 0.1
 

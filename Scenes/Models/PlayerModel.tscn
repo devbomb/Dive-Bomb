@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dykig0tcxggvr"]
+[gd_scene load_steps=15 format=3 uid="uid://dykig0tcxggvr"]
 
+[ext_resource type="PackedScene" uid="uid://4m85rn5sdogh" path="res://BlenderModels/KennifiedPlayerModel.blend" id="1_gwhpy"]
 [ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="1_x2wfw"]
 [ext_resource type="PackedScene" uid="uid://ciwpie76rxyn1" path="res://BlenderModels/AnotherPlatformerMan.blend" id="2_6pvb3"]
 
@@ -67,6 +68,8 @@ alpha_curve = SubResource("CurveTexture_ces48")
 
 [node name="PlayerModel" type="Node3D"]
 
+[node name="KennifiedPlayerModel" parent="." instance=ExtResource("1_gwhpy")]
+
 [node name="KickTrailParticles" type="Node3D" parent="."]
 transform = Transform3D(0.604831, 0.674805, 0.623553, -0.798374, 0.755471, -0.043164, -0.45473, -0.428837, 0.905162, 0.0590594, 0.405857, 0.901034)
 script = ExtResource("1_x2wfw")
@@ -82,3 +85,4 @@ FixedFps = 60
 ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
 
 [node name="AnotherPlatformerMan" parent="." instance=ExtResource("2_6pvb3")]
+visible = false
