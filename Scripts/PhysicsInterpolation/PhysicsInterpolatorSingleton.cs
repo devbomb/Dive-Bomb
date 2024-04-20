@@ -93,6 +93,10 @@ namespace FastDragon
             _physicsDelta = delta;
             _timer -= delta;
 
+            // Move all the nodes back to their true positions before any other
+            // _PhysicsProcess() code has a chance to run.  This effectively
+            // undoes the smoothing we did in _Process(), to ensure
+            // _PhysicsProcess() stays deterministic.
             foreach (var node in AllInterpolatableNodes())
             {
                 node.Transform = GetTruePosStruct(node).Current;
@@ -105,6 +109,9 @@ namespace FastDragon
             if (!AllowInterpolation)
                 return;
 
+            // Save the current and previous position of every node, both so
+            // we can smooth it out during _Process(), AND so we can undo the
+            // smoothing at the start of the next physics frame.
             foreach (var node in AllInterpolatableNodes())
             {
                 var truePos = GetTruePosStruct(node);
@@ -121,6 +128,7 @@ namespace FastDragon
             var holder = _truePos;
             _truePos = _truePosSwap;
             _truePosSwap = holder;
+            _truePosSwap.Clear();
         }
 
         private IEnumerable<Node3D> AllInterpolatableNodes()
