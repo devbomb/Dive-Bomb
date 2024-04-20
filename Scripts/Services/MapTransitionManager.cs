@@ -126,23 +126,29 @@ namespace FastDragon
             const double pauseTime = 0.25;
             const double fadeInTime = 0.5;
 
-            // Pause the game during the fadeout, to avoid shenanigans.
-            //
-            // HACK: I _wanted_ to just set CurrentScene's ProcessMode to
-            // "Disabled" instead of pausing the whole game, but that apparently
-            // causes any Area3Ds the player is colliding with to stop detecting
-            // collisions.  Pausing the whole game doesn't cause that problem,
-            // though.
-            // Thanks, Godot >.<
-            GetTree().Paused = true;
-
             // Heal the player back to full
             SaveFile.Current.PlayerHealth = SparxColor.Gold;
 
-            // Fade the screen to black
             var tween = GetTree().CreateTween();
             tween.SetPauseMode(Tween.TweenPauseMode.Process);
+            tween.TweenCallback(Callable.From(() =>
+            {
+                // Pause the game during the fadeout, to avoid shenanigans.
+                //
+                // HACK: I _wanted_ to just set CurrentScene's ProcessMode to
+                // "Disabled" instead of pausing the whole game, but that apparently
+                // causes any Area3Ds the player is colliding with to stop detecting
+                // collisions.  Pausing the whole game doesn't cause that problem,
+                // though.
+                // Thanks, Godot >.<
+                //
+                // HACK: This needs to be done as part of the tween, instead of
+                // _before_ the tween, to avoid a weird camera flicker effect.
+                // Why?  I don't know.
+                GetTree().Paused = true;
+            }));
 
+            // Fade the screen to black
             _fadeCurtain.Color = Colors.Black;
             _fadeCurtain.Modulate = Colors.Transparent;
             tween.TweenProperty(
