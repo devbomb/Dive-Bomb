@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ciwpie76rxyn1"
-path="res://.godot/imported/AnotherPlatformerMan.blend-e675abb5f91d77666aa636b0c6ebb0bd.scn"
+uid="uid://bytmfm6g78uxa"
+path="res://.godot/imported/KennifiedPlayerModel.blend-5e93c1c0aa621884cd26f678e3553129.scn"
 
 [deps]
 
-source_file="res://BlenderModels/AnotherPlatformerMan.blend"
-dest_files=["res://.godot/imported/AnotherPlatformerMan.blend-e675abb5f91d77666aa636b0c6ebb0bd.scn"]
+source_file="res://BlenderModels/KennifiedPlayerModel.blend"
+dest_files=["res://.godot/imported/KennifiedPlayerModel.blend-5e93c1c0aa621884cd26f678e3553129.scn"]
 
 [params]
 
@@ -29,7 +29,13 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:OriginalModel": {
+"import/skip_import": true
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
 blender/nodes/visible=0

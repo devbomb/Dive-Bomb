@@ -1,7 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dykig0tcxggvr"]
+[gd_scene load_steps=16 format=3 uid="uid://dykig0tcxggvr"]
 
+[ext_resource type="PackedScene" uid="uid://df4m2ng2nc375" path="res://BlenderModels/Parachute.blend" id="1_d1yau"]
+[ext_resource type="PackedScene" uid="uid://bytmfm6g78uxa" path="res://BlenderModels/KennifiedPlayerModel.blend" id="1_gwhpy"]
 [ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="1_x2wfw"]
-[ext_resource type="PackedScene" uid="uid://ciwpie76rxyn1" path="res://BlenderModels/AnotherPlatformerMan.blend" id="2_6pvb3"]
+[ext_resource type="PackedScene" uid="uid://bdmpiimo8xv4a" path="res://Scenes/Objects/AnchoredLine3D.tscn" id="2_6kq2t"]
 
 [sub_resource type="Gradient" id="Gradient_x8atq"]
 interpolation_mode = 2
@@ -67,6 +69,25 @@ alpha_curve = SubResource("CurveTexture_ces48")
 
 [node name="PlayerModel" type="Node3D"]
 
+[node name="Parachute" parent="." instance=ExtResource("1_d1yau")]
+visible = false
+
+[node name="LeftString" parent="Parachute" node_paths=PackedStringArray("end_point") instance=ExtResource("2_6kq2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.854, 0)
+end_point = NodePath("../LeftStringHandle")
+
+[node name="LeftStringHandle" type="Marker3D" parent="Parachute"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, 0)
+
+[node name="RightString" parent="Parachute" node_paths=PackedStringArray("end_point") instance=ExtResource("2_6kq2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.854, 0)
+end_point = NodePath("../RightStringHandle")
+
+[node name="RightStringHandle" type="Marker3D" parent="Parachute"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, 0)
+
+[node name="KennifiedPlayerModel" parent="." instance=ExtResource("1_gwhpy")]
+
 [node name="KickTrailParticles" type="Node3D" parent="."]
 transform = Transform3D(0.604831, 0.674805, 0.623553, -0.798374, 0.755471, -0.043164, -0.45473, -0.428837, 0.905162, 0.0590594, 0.405857, 0.901034)
 script = ExtResource("1_x2wfw")
@@ -80,5 +101,3 @@ Preprocess = 0.25
 SpeedScale = 1.2
 FixedFps = 60
 ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
-
-[node name="AnotherPlatformerMan" parent="." instance=ExtResource("2_6pvb3")]

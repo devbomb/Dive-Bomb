@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdmpiimo8xv4a"]
+
+[sub_resource type="GDScript" id="GDScript_p5f5n"]
+script/source = "@tool
+extends Node3D
+
+@export var start_point: Node3D
+@export var end_point: Node3D
+
+@export var radius: float = 0.01
+@export var color: Color = Color.WHITE
+
+func _process(_delta):
+	if (!is_instance_valid(start_point) || !is_instance_valid(end_point)):
+		%Cylinder.visible = false
+		return
+
+	if (start_point.global_position.is_equal_approx(end_point.global_position)):
+		%Cylinder.visible = false
+		return
+
+	%Cylinder.material_override.albedo_color = color
+
+	%Cylinder.visible = true
+	%Cylinder.scale.x = radius
+	%Cylinder.scale.z = radius
+	
+	%CylinderOffset.global_position = start_point.global_position
+	%CylinderOffset.scale.z = start_point.global_position.distance_to(end_point.global_position)
+	
+	var component_along_up: float = start_point.global_position.direction_to(end_point.global_position).dot(Vector3.UP)
+	var is_parallel_to_up: bool = is_equal_approx(abs(component_along_up), 1)
+	if (!is_parallel_to_up):
+		%CylinderOffset.look_at(end_point.global_position)
+	else:
+		%CylinderOffset.global_rotation_degrees = Vector3(-90, 0, 0)
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38s5i"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+disable_receive_shadows = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1uqjd"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 1.0
+radial_segments = 8
+rings = 1
+
+[node name="AnchoredLine3D" type="Marker3D" node_paths=PackedStringArray("start_point")]
+script = SubResource("GDScript_p5f5n")
+start_point = NodePath(".")
+
+[node name="CylinderOffset" type="Node3D" parent="."]
+unique_name_in_owner = true
+top_level = true
+
+[node name="Cylinder" type="MeshInstance3D" parent="CylinderOffset"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
+visible = false
+material_override = SubResource("StandardMaterial3D_38s5i")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_1uqjd")
+skeleton = NodePath("../..")

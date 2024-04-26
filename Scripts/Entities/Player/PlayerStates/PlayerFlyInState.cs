@@ -22,9 +22,10 @@ namespace FastDragon
             _timer = 0;
 
             _player.Animator.Play(
-                "Roll",
-                customBlend: 0.25f,
-                customSpeed: 2);
+                "ParachuteOpen",
+                customBlend: 0.25f
+            );
+            _player.Animator.Queue("Parachute");
 
             _player.GlobalPosition += Vector3.Up * _player.FlyInHeight;
             _player.GlobalPosition -= _player.GlobalForward() * _player.FlyInDistance;
@@ -48,7 +49,7 @@ namespace FastDragon
 
             _timer += delta;
             float t = _timer / _player.FlyInDuration;
-            _player.GlobalPosition = _startPos.Lerp(_endPos, t);
+            _player.GlobalPosition = _startPos.Lerp(_endPos, DecelerateToOne(t));
             _player.GlobalRotation = _startRotRad.LerpEulerRadSinusoidal(_endRotRad, t);
 
             _player.Camera.OrbitYawRad = Mathf.LerpAngle(
@@ -65,8 +66,15 @@ namespace FastDragon
 
             if (_timer > _player.FlyInDuration)
             {
-                _player.Respawn();
+                _player.ChangeState<PlayerFlyInLandState>();
             }
+        }
+
+        private static float DecelerateToOne(float t)
+        {
+            float foo = t - 1;
+            foo *= foo;
+            return -foo + 1;
         }
     }
 }

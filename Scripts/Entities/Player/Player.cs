@@ -11,7 +11,7 @@ namespace FastDragon
 
         [Export] public float FlyInHeight = 10;
         [Export] public float FlyInDistance = 10;
-        [Export] public float FlyInDuration = 2;
+        [Export] public float FlyInDuration = 4;
 
         public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
