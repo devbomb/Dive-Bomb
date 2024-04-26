@@ -31,7 +31,7 @@ namespace FastDragon
             file.Close();
 
             SaveFile.Current = SaveFile.FromJson(json);
-            MapTransitionManager.Instance.GoToMap(SaveFile.Current.CurrentMap);
+            MapTransitionManager.Instance.GoToMapWithFadeToBlack(SaveFile.Current.CurrentMap);
         }
     }
 }
