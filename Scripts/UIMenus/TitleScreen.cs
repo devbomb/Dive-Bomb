@@ -15,6 +15,7 @@ namespace FastDragon
 
         public void NewGame()
         {
+            SaveFile.Current = new SaveFile();
             MapTransitionManager.Instance.GoToMap(NewGameMap);
         }
 
