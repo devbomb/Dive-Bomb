@@ -51,6 +51,7 @@ layout_mode = 2
 text = "Reset Level"
 
 [node name="ExitLevel" type="Button" parent="MainPage/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Exit Level"
 

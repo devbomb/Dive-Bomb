@@ -7,6 +7,8 @@ namespace FastDragon
     {
         public static MapTransitionManager Instance {get; private set;}
 
+        public bool CurrentMapIsHomeWorld => string.IsNullOrEmpty(GetHomeWorldMap());
+
         [Export(PropertyHint.File)] public string LevelSelectMap;
         [Export(PropertyHint.File)] public string TitleScreenMap;
 
@@ -18,6 +20,12 @@ namespace FastDragon
         {
             Instance = this;
             SaveFile.Current.CurrentMap = GetTree().CurrentScene.SceneFilePath;
+        }
+
+        public string GetHomeWorldMap()
+        {
+            var worldSpawn = GetTree().FindNode<WorldSpawn>();
+            return worldSpawn?.HomeWorld;
         }
 
         public void ChangeSceneToNode(Node scene)
@@ -111,17 +119,7 @@ namespace FastDragon
                 skyBoxEnvironment = ResourceLoader.Load<Environment>("res://Environments/DaySky.tres");
             }
 
-            // Find the worldspawn and ask it which homeworld we should go to.
-            // If there is no homeworld assigned, go to the level select menu
-            // instead.
-            var worldSpawn = GetTree().FindNode<WorldSpawn>();
-            if (worldSpawn?.HomeWorld == null)
-            {
-                GoToLevelSelect();
-                return;
-            }
-
-            string levelSceneFile = worldSpawn.HomeWorld;
+            string levelSceneFile = GetHomeWorldMap();
             string previousMapFile = oldScene.SceneFilePath;
             GoToPortalLoadingScreen(levelSceneFile, previousMapFile, skyBoxEnvironment);
             SaveFile.Current.CurrentCheckpoint = null;

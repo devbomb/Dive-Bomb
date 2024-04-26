@@ -11,6 +11,8 @@ namespace FastDragon
         private Control _mainPage => GetNode<Control>("%MainPage");
         private AtlasMenu _atlasPage => GetNode<AtlasMenu>("%AtlasMenu");
 
+        private Button _exitLevelButton => GetNode<Button>("%ExitLevel");
+
         public override void _Input(InputEvent ev)
         {
             if (InputService.PauseJustPressed(ev))
@@ -25,6 +27,7 @@ namespace FastDragon
         public override void _Ready()
         {
             Close();
+            _exitLevelButton.Visible = !MapTransitionManager.Instance.CurrentMapIsHomeWorld;
         }
 
         public void Open()
