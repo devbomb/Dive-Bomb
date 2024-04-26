@@ -8,6 +8,8 @@ namespace FastDragon
         public static MapTransitionManager Instance {get; private set;}
 
         [Export(PropertyHint.File)] public string LevelSelectMap;
+        [Export(PropertyHint.File)] public string TitleScreenMap;
+
         [Export] public PackedScene PortalLoadingScreenPrefab;
 
         private ColorRect _fadeCurtain => GetNode<ColorRect>("%FadeCurtain");
@@ -41,6 +43,11 @@ namespace FastDragon
         {
             SaveFile.Current.CurrentMap = LevelSelectMap;
             GetTree().ChangeSceneToFile(LevelSelectMap);
+        }
+
+        public void GoToTitleScreen()
+        {
+            GetTree().ChangeSceneToFile(TitleScreenMap);
         }
 
         public void GoToMap(string mapSceneFile)

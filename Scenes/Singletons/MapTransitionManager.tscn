@@ -7,6 +7,7 @@
 [node name="MapTransitionManager" type="Node"]
 script = ExtResource("1_onbea")
 LevelSelectMap = "res://Scenes/Maps/Screens/LevelSelectMenu.tscn"
+TitleScreenMap = "res://Scenes/Maps/Screens/TitleScreen.tscn"
 PortalLoadingScreenPrefab = ExtResource("2_lrjqs")
 
 [node name="NonPlayerFadeCurtain" parent="." instance=ExtResource("4_elvu7")]

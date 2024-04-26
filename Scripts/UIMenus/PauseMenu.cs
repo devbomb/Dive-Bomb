@@ -71,26 +71,16 @@ namespace FastDragon
             file.Close();
         }
 
-        public void LoadSaveFile()
-        {
-            // TODO: Ask the player which save file to load
-            string fileName = "user://Saves/Slot0.json";
-            if (!FileAccess.FileExists(fileName))
-                return;
-
-            using var file = FileAccess.Open(fileName, FileAccess.ModeFlags.Read);
-            string json = file.GetAsText();
-            file.Close();
-
-            SaveFile.Current = SaveFile.FromJson(json);
-            Close();
-            MapTransitionManager.Instance.GoToMap(SaveFile.Current.CurrentMap);
-        }
-
         public void ExitLevel()
         {
             Close();
             MapTransitionManager.Instance.ExitLevelFromPauseMenu();
+        }
+
+        public void QuitToTitle()
+        {
+            Close();
+            MapTransitionManager.Instance.GoToTitleScreen();
         }
 
         private void ChangePage(Control targetPage)
