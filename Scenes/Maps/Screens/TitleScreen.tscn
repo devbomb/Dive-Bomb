@@ -63,7 +63,7 @@ text = "Demo Version"
 label_settings = SubResource("LabelSettings_3giqp")
 horizontal_alignment = 1
 
-[node name="OptionsContainer" type="Control" parent="."]
+[node name="ButtonsContainer" type="Control" parent="."]
 layout_mode = 1
 anchor_top = 0.5
 anchor_right = 1.0
@@ -72,7 +72,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_1b2l8")
 
-[node name="Options" type="VBoxContainer" parent="OptionsContainer"]
+[node name="Buttons" type="VBoxContainer" parent="ButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,14 +87,14 @@ offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Continue" type="Button" parent="OptionsContainer/Options"]
+[node name="Continue" type="Button" parent="ButtonsContainer/Buttons"]
 layout_mode = 2
 text = "Continue"
 
-[node name="NewGame" type="Button" parent="OptionsContainer/Options"]
+[node name="NewGame" type="Button" parent="ButtonsContainer/Buttons"]
 layout_mode = 2
 text = "New Game
 "
 
-[connection signal="pressed" from="OptionsContainer/Options/Continue" to="." method="Continue"]
-[connection signal="pressed" from="OptionsContainer/Options/NewGame" to="." method="NewGame"]
+[connection signal="pressed" from="ButtonsContainer/Buttons/Continue" to="." method="Continue"]
+[connection signal="pressed" from="ButtonsContainer/Buttons/NewGame" to="." method="NewGame"]

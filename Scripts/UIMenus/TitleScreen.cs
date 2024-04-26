@@ -6,6 +6,13 @@ namespace FastDragon
     {
         [Export(PropertyHint.File)] public string NewGameMap;
 
+        private Control _buttons => GetNode<Control>("%Buttons");
+
+        public override void _Ready()
+        {
+            _buttons.GetChild<Button>(0).GrabFocus();
+        }
+
         public void NewGame()
         {
             MapTransitionManager.Instance.GoToMap(NewGameMap);
