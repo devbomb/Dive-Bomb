@@ -12,10 +12,12 @@ PortalLoadingScreenPrefab = ExtResource("2_lrjqs")
 
 [node name="NonPlayerFadeCurtain" parent="." instance=ExtResource("4_elvu7")]
 unique_name_in_owner = true
+z_index = 1000
 
 [node name="FadeCurtain" type="ColorRect" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
+z_index = 1000
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

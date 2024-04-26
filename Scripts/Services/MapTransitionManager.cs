@@ -55,13 +55,18 @@ namespace FastDragon
 
         public void GoToTitleScreen()
         {
-            GetTree().ChangeSceneToFile(TitleScreenMap);
+            DoThingWithFadeToBlack(() => GetTree().ChangeSceneToFile(TitleScreenMap));
         }
 
         public void GoToMap(string mapSceneFile)
         {
             SaveFile.Current.CurrentMap = mapSceneFile;
             GetTree().ChangeSceneToFile(mapSceneFile);
+        }
+
+        public void GoToMapWithFadeToBlack(string mapSceneFile)
+        {
+            DoThingWithFadeToBlack(() => GoToMap(mapSceneFile));
         }
 
         public void EnterLevel(
@@ -127,6 +132,15 @@ namespace FastDragon
 
         public void RespawnPlayerAfterDeath()
         {
+            // Heal the player back to full
+            SaveFile.Current.PlayerHealth = SparxColor.Gold;
+
+            // Fade to black, reset the level, and then unfade.
+            DoThingWithFadeToBlack(SignalBus.Instance.EmitLevelReset);
+        }
+
+        private void DoThingWithFadeToBlack(System.Action action)
+        {
             const double fadeOutTime = 0.5;
             const double pauseTime = 0.25;
             const double fadeInTime = 0.5;
@@ -164,8 +178,8 @@ namespace FastDragon
             );
             tween.TweenInterval(pauseTime);
 
-            // After everything has faded to black, reset the level
-            tween.TweenCallback(Callable.From(SignalBus.Instance.EmitLevelReset));
+            // After everything has faded to black, do the thing
+            tween.TweenCallback(Callable.From(action));
             tween.TweenProperty(
                 _fadeCurtain,
                 "modulate",
