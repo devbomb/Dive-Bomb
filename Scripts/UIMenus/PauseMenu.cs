@@ -11,6 +11,8 @@ namespace FastDragon
         private Control _mainPage => GetNode<Control>("%MainPage");
         private AtlasMenu _atlasPage => GetNode<AtlasMenu>("%AtlasMenu");
 
+        private Button _exitLevelButton => GetNode<Button>("%ExitLevel");
+
         public override void _Input(InputEvent ev)
         {
             if (InputService.PauseJustPressed(ev))
@@ -25,6 +27,7 @@ namespace FastDragon
         public override void _Ready()
         {
             Close();
+            _exitLevelButton.Visible = !MapTransitionManager.Instance.CurrentMapIsHomeWorld;
         }
 
         public void Open()
@@ -71,26 +74,16 @@ namespace FastDragon
             file.Close();
         }
 
-        public void LoadSaveFile()
-        {
-            // TODO: Ask the player which save file to load
-            string fileName = "user://Saves/Slot0.json";
-            if (!FileAccess.FileExists(fileName))
-                return;
-
-            using var file = FileAccess.Open(fileName, FileAccess.ModeFlags.Read);
-            string json = file.GetAsText();
-            file.Close();
-
-            SaveFile.Current = SaveFile.FromJson(json);
-            Close();
-            MapTransitionManager.Instance.GoToMap(SaveFile.Current.CurrentMap);
-        }
-
         public void ExitLevel()
         {
             Close();
             MapTransitionManager.Instance.ExitLevelFromPauseMenu();
+        }
+
+        public void QuitToTitle()
+        {
+            Close();
+            MapTransitionManager.Instance.GoToTitleScreen();
         }
 
         private void ChangePage(Control targetPage)

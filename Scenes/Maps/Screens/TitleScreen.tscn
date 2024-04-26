@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs28xrm5onq8k"]
+
+[ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_1b2l8"]
+[ext_resource type="Script" path="res://Scripts/UIMenus/TitleScreen.cs" id="1_q3h6t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w4jl7"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_3giqp"]
+font_size = 27
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q3h6t")
+NewGameMap = "res://Scenes/Maps/Levels/TestMap.tscn"
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TitleContainer" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.192
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -89.0
+offset_right = 262.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="TitleContainer/VBoxContainer"]
+layout_mode = 2
+text = "Dive Bomb"
+label_settings = SubResource("LabelSettings_w4jl7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="TitleContainer/VBoxContainer"]
+layout_mode = 2
+text = "Demo Version"
+label_settings = SubResource("LabelSettings_3giqp")
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.89
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1b2l8")
+
+[node name="Buttons" type="VBoxContainer" parent="ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -26.0
+offset_right = 46.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="ButtonsContainer/Buttons"]
+layout_mode = 2
+text = "Continue"
+
+[node name="NewGame" type="Button" parent="ButtonsContainer/Buttons"]
+layout_mode = 2
+text = "New Game
+"
+
+[connection signal="pressed" from="ButtonsContainer/Buttons/Continue" to="." method="Continue"]
+[connection signal="pressed" from="ButtonsContainer/Buttons/NewGame" to="." method="NewGame"]
