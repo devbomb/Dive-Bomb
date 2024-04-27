@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://nwvggnggdtmc"]
+[gd_scene load_steps=5 format=3 uid="uid://nwvggnggdtmc"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_ifn8o"]
 [ext_resource type="Script" path="res://Scripts/UIMenus/UserSettingsMenu.cs" id="2_vmbxq"]
@@ -6,6 +6,11 @@
 [sub_resource type="GDScript" id="GDScript_cjhiv"]
 script/source = "extends CheckButton
 func _ready(): button_pressed = $/root/UserSettings.Instance().ShowPerformanceStats
+"
+
+[sub_resource type="GDScript" id="GDScript_yo1g3"]
+script/source = "extends CheckButton
+func _ready(): button_pressed = $'/root/UserSettings'.Instance().UsePhysicsInterpolation
 "
 
 [node name="UserSettingsMenu" type="Control"]
@@ -42,4 +47,10 @@ layout_mode = 2
 text = "Show Performance Stats"
 script = SubResource("GDScript_cjhiv")
 
+[node name="UsePhysicsInterpolation" type="CheckButton" parent="Panel/Buttons"]
+layout_mode = 2
+text = "Frame Interpolation"
+script = SubResource("GDScript_yo1g3")
+
 [connection signal="toggled" from="Panel/Buttons/ShowPerformanceStats" to="." method="SetShowPerformanceStatus"]
+[connection signal="toggled" from="Panel/Buttons/UsePhysicsInterpolation" to="." method="ToggleUsePhysicsInterpolation"]

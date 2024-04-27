@@ -18,7 +18,6 @@ namespace FastDragon
             set
             {
                 _orbitDistance = value;
-                ApplyAnglesAndDistance();
             }
         }
 
@@ -28,7 +27,6 @@ namespace FastDragon
             set
             {
                 _orbitYawRad = value;
-                ApplyAnglesAndDistance();
             }
         }
 
@@ -38,7 +36,6 @@ namespace FastDragon
             set
             {
                 _orbitPitchRad = value;
-                ApplyAnglesAndDistance();
             }
         }
 
@@ -64,7 +61,6 @@ namespace FastDragon
         private float _lagTimer;
         private float _lagDuration;
         private Transform3D _lagPosition;
-        private Transform3D _desiredPosition;
 
         public override void _Ready()
         {
@@ -93,16 +89,8 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
-            if (_lagTimer < _lagDuration)
-            {
-                _lagTimer += (float)deltaD;
-                float t = Mathf.Min(1, _lagTimer / _lagDuration);
-                GlobalTransform = _lagPosition.InterpolateWith(_desiredPosition, t);
-            }
-            else
-            {
-                GlobalTransform = _desiredPosition;
-            }
+            _lagTimer += (float)deltaD;
+            ApplyAnglesAndDistance();
         }
 
         public void MakeCurrent() => _camera.MakeCurrent();
@@ -148,6 +136,14 @@ namespace FastDragon
             OrbitPitchRad = 0;
             OrbitYawRad = FollowTarget.GlobalRotation.Y;
             ApplyAnglesAndDistance();
+            this.ResetPhysicsInterpolation();
+
+            // HACK: Force the Unlocked state's _prevPos field to reset.
+            // This fixes an auto-rotate problem when respawning
+            if (_stateMachine.CurrentState is Unlocked u)
+            {
+                _stateMachine.ChangeState<Unlocked>();
+            }
         }
 
         public void SuggestAngle(float yawRad, float pitchRad, float distance)
@@ -175,24 +171,18 @@ namespace FastDragon
                 .Rotated(Vector3.Up, OrbitYawRad);
 
             Vector3 offset = dir * OrbitDistance;
-            _desiredPosition = Transform3D.Identity
+            var desiredPosition = Transform3D.Identity
                 .Translated(FollowTarget.GlobalPosition + offset)
                 .LookingAt(FollowTarget.GlobalPosition);
 
             if (_lagTimer < _lagDuration)
             {
                 float t = Mathf.Min(1, _lagTimer / _lagDuration);
-                GlobalTransform = _lagPosition.InterpolateWith(_desiredPosition, t);
+                GlobalTransform = _lagPosition.InterpolateWith(desiredPosition, t);
             }
             else
             {
-                GlobalTransform = _desiredPosition;
-            }
-
-            // HACK: ensure it works smoothly with physics interpolation
-            if (!Engine.IsInPhysicsFrame())
-            {
-                this.ResetPhysicsInterpolation();
+                GlobalTransform = desiredPosition;
             }
         }
 
@@ -211,6 +201,13 @@ namespace FastDragon
             public float MinOrbitPitchDeg = -89;
             public float MaxOrbitPitchDeg = 0;
 
+            private Vector3 _prevPos;
+
+            public override void OnStateEntered()
+            {
+                _prevPos = _self.GlobalPosition;
+            }
+
             public override void _Input(InputEvent ev)
             {
                 if (_self.DisableInput)
@@ -223,13 +220,13 @@ namespace FastDragon
                 }
             }
 
-            public override void _Process(double deltaD)
+            public override void _PhysicsProcess(double deltaD)
             {
                 float delta = (float)deltaD;
 
                 if (_self.DisableInput)
                 {
-                    _self.ApplyAnglesAndDistance();
+                    _prevPos = _self.GlobalPosition;
                     return;
                 }
 
@@ -243,6 +240,8 @@ namespace FastDragon
                 }
 
                 ZoomToFollowDistance(delta);
+
+                _prevPos = _self.GlobalPosition;
             }
 
             private void ClampOrbitAngles()
@@ -265,18 +264,18 @@ namespace FastDragon
 
             private void MaintainDistanceAndAutoRotate(float delta)
             {
-                var pos = _self.GlobalPosition;
                 var targetPos = _self.FollowTarget.GlobalPosition;
-                var dir = targetPos.DirectionTo(pos);
+                var dir = targetPos.DirectionTo(_prevPos);
 
-                _self.GlobalPosition = targetPos + (dir * FollowDistance);
-                _self.LookAt(targetPos);
+                var transform = _self.GlobalTransform;
+                transform.Origin = targetPos + (dir * FollowDistance);
+                transform = transform.LookingAt(targetPos);
 
-                _self._orbitYawRad = _self.GlobalRotation.Y;
-                _self._orbitPitchRad = _self.GlobalRotation.X;
+                _self._orbitYawRad = transform.Basis.GetEuler().Y;
+                _self._orbitPitchRad = transform.Basis.GetEuler().X;
                 ClampOrbitAngles();
 
-                _self.ResetPhysicsInterpolation();
+                _self.ApplyAnglesAndDistance();
             }
 
             private void ZoomToFollowDistance(float delta)
@@ -306,7 +305,7 @@ namespace FastDragon
                 _initialDistance = _self.OrbitDistance;
             }
 
-            public override void _Process(double deltaD)
+            public override void _PhysicsProcess(double deltaD)
             {
                 // Move the camera to the suggested angle
                 _timer += (float)deltaD;
@@ -331,8 +330,6 @@ namespace FastDragon
                     _self._suggestedDistance,
                     t
                 );
-
-                _self.ApplyAnglesAndDistance();
 
                 // ...unless the player has their OWN idea for a camera angle.
                 if (InputService.RightStick.Length() > 0.01f)
@@ -367,7 +364,6 @@ namespace FastDragon
                     _self.FollowTarget.GlobalRotation.Y,
                     t
                 );
-                _self.ApplyAnglesAndDistance();
 
                 if (_timer > Duration)
                 {

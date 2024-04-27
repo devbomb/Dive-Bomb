@@ -13,9 +13,15 @@ namespace FastDragon
             _buttons.GetChild<Button>(0).GrabFocus();
         }
 
-        public void SetShowPerformanceStatus(bool showPerformanceStats)
+        public void ToggleShowPerformanceStatus(bool toggledOn)
         {
-            _userSettings.ShowPerformanceStats = showPerformanceStats;
+            _userSettings.ShowPerformanceStats = toggledOn;
+            _userSettings.SaveToJson();
+        }
+
+        public void ToggleUsePhysicsInterpolation(bool toggledOn)
+        {
+            _userSettings.UsePhysicsInterpolation = toggledOn;
             _userSettings.SaveToJson();
         }
     }

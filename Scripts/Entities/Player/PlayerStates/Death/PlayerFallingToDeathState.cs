@@ -21,10 +21,18 @@ namespace FastDragon
             _initialCameraPos = _player.Camera.GlobalPosition;
         }
 
-        public override void _Process(double deltaD)
+        public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
 
+            _timer -= delta;
+
+            // The parachute is out, so slow down the fall.
+            // Can you imagine if we didn't?  "You had ONE job, parachute!"
+            _player.Velocity = _player.Velocity.DecayToward(Vector3.Down * 5, 1, delta);
+            _player.MoveAndSlide();
+
+            // Aim the camera at the player without following
             var camera = _player.Camera;
             camera.GlobalPosition = _initialCameraPos;
 
@@ -37,21 +45,8 @@ namespace FastDragon
                 50,
                 delta
             );
-            camera.ResetPhysicsInterpolation();
-        }
 
-        public override void _PhysicsProcess(double deltaD)
-        {
-            float delta = (float)deltaD;
-
-            _timer -= delta;
-
-            // The parachute is out, so slow down the fall.
-            // Can you imagine if we didn't?  "You had ONE job, parachute!"
-            _player.Velocity = _player.Velocity.DecayToward(Vector3.Down * 5, 1, delta);
-
-            _player.MoveAndSlide();
-
+            // Respawn when the timer is finally up
             if (_timer <= 0)
                 MapTransitionManager.Instance.RespawnPlayerAfterDeath();
         }

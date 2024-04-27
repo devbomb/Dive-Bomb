@@ -50,6 +50,7 @@ radial_segments = 8
 rings = 1
 
 [node name="AnchoredLine3D" type="Marker3D" node_paths=PackedStringArray("start_point")]
+process_priority = 2147483647
 script = SubResource("GDScript_p5f5n")
 start_point = NodePath(".")
 
