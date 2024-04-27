@@ -59,9 +59,10 @@ layout_mode = 2
 [node name="PerformanceStats" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 8.0
 
 [node name="FPSCounter" parent="PerformanceStats" instance=ExtResource("4_yrcis")]
 layout_mode = 2
