@@ -10,6 +10,7 @@ namespace FastDragon
         public static UserSettings Instance { get; } = LoadFromJson();
 
         public bool ShowPerformanceStats = false;
+        public bool UsePhysicsInterpolation = true;
 
         public void SaveToJson()
         {

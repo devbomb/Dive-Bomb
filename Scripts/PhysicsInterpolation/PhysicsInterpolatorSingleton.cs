@@ -10,7 +10,7 @@ namespace FastDragon
         public const string GroupName = "PhysicsInterpolated";
         public static PhysicsInterpolatorSingleton Instance {get; private set;}
 
-        public bool AllowInterpolation = true;
+        private bool AllowInterpolation => UserSettings.Instance.UsePhysicsInterpolation;
         private double _physicsDelta = 1;
         private double _timer;
 
