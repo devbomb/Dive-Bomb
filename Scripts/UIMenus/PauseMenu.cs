@@ -63,6 +63,7 @@ namespace FastDragon
         public void OpenUserSettingsMenu()
         {
             ChangePage(_userSettingsMenu);
+            _userSettingsMenu.OnOpened();
         }
 
         public void ResetLevel()
