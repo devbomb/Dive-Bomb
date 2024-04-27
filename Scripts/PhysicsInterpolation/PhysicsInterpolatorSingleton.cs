@@ -23,95 +23,24 @@ namespace FastDragon
             Instance = this;
         }
 
-        private TruePos GetTruePosStruct(Node3D node)
-        {
-            if (!_truePos.TryGetValue(node, out var truePos))
-            {
-                return new TruePos(node.Transform, node.Transform);
-            }
-
-            return truePos;
-        }
-
-        private void SetTruePosStruct(Node3D node, TruePos value)
-        {
-            _truePos[node] = value;
-        }
-
-        public void ResetPhysicsInterpolation(Node3D node)
-        {
-            _truePos.Remove(node);
-        }
-
         public override void _Ready()
         {
-            var beginSpy = new PhysicsProcessSpy(int.MinValue);
-            beginSpy.PhysicsProcessed += OnPhysicsFrameStarted;
-            AddChild(beginSpy);
+            ProcessMode = ProcessModeEnum.Always;
 
-            var endSpy = new PhysicsProcessSpy(int.MaxValue);
-            endSpy.PhysicsProcessed += OnPhysicsFrameEnded;
-            AddChild(endSpy);
+            RenderingServer.FramePostDraw += OnFramePostDraw;
 
-            ProcessPriority = int.MinValue;
+            ProcessPriority = int.MaxValue - 1; // -1 to allow for AnchoredLine3D to go later than it
+            ProcessPhysicsPriority = int.MaxValue;
         }
 
-        public override void _Process(double delta)
+        public override void _PhysicsProcess(double delta)
         {
-            if (!AllowInterpolation)
-                return;
-
-            _timer += delta;
-
-            double t = _timer / _physicsDelta;
-            if (t > 1)
-                t = 1;
-
-            foreach (var node in AllInterpolatableNodes())
-            {
-                var truePos = GetTruePosStruct(node);
-
-                if (!truePos.Current.Basis.GetRotationQuaternion().IsNormalized())
-                {
-                    continue;
-                }
-
-                if (!truePos.Prev.Basis.GetRotationQuaternion().IsNormalized())
-                {
-                    continue;
-                }
-
-                node.Transform = truePos.Prev.InterpolateWith(truePos.Current, (float)t);
-            }
-        }
-
-        private void OnPhysicsFrameStarted(double delta)
-        {
-            if (!AllowInterpolation)
-                return;
-
             _physicsDelta = delta;
             _timer -= delta;
 
-            // Move all the nodes back to their true positions before any other
-            // _PhysicsProcess() code has a chance to run.  This effectively
-            // undoes the smoothing we did in _Process(), to ensure
-            // _PhysicsProcess() stays deterministic.
-            foreach (var node in AllInterpolatableNodes())
-            {
-                node.Transform = GetTruePosStruct(node).Current;
-                node.ForceUpdateTransform();
-            }
-        }
-
-        private void OnPhysicsFrameEnded(double delta)
-        {
-            if (!AllowInterpolation)
-                return;
-
             // Save the current and previous position of every node, both so
-            // we can smooth it out during _Process(), AND so we can undo the
-            // smoothing at the start of the next physics frame.
+            // we can interpolate between them before rendering, AND so we can
+            // restore it back to its true position after rendering is done.
             foreach (var node in AllInterpolatableNodes())
             {
                 var truePos = GetTruePosStruct(node);
@@ -131,25 +60,84 @@ namespace FastDragon
             _truePosSwap.Clear();
         }
 
+        public override void _Process(double delta)
+        {
+            _timer += delta;
+
+            // I _wanted_ to to use the FramePreDraw signal instead of _Process,
+            // but that signal apparently happpens too late for any position
+            // changes to affect the rendered frame.  I guess all of the
+            // triangles have already been queued up by then, or something.
+            //
+            // Thankfully, _Process with a high ProcessPriority is a close-enough
+            // substitute.
+            OnFramePreDraw();
+        }
+
+        private void OnFramePreDraw()
+        {
+            if (!AllowInterpolation)
+                return;
+
+            // Temporarily move all interpolated objects to their interpolated
+            // position.  We will move them back to their real position after
+            // rendering is done.
+            double t = _timer / _physicsDelta;
+            if (t > 1)
+                t = 1;
+
+            foreach (var node in AllInterpolatableNodes())
+            {
+                var truePos = GetTruePosStruct(node);
+
+                if (!truePos.Current.Basis.GetRotationQuaternion().IsNormalized())
+                {
+                    continue;
+                }
+
+                if (!truePos.Prev.Basis.GetRotationQuaternion().IsNormalized())
+                {
+                    continue;
+                }
+
+                node.Transform = truePos.Prev.InterpolateWith(truePos.Current, (float)t);
+                node.ForceUpdateTransform();
+            }
+        }
+
+        private void OnFramePostDraw()
+        {
+            if (!AllowInterpolation)
+                return;
+
+            // Now that the frame has been drawn, move all objects back to their
+            // true positions.
+            foreach (var node in AllInterpolatableNodes())
+            {
+                node.Transform = GetTruePosStruct(node).Current;
+                node.ForceUpdateTransform();
+            }
+        }
+
         private IEnumerable<Node3D> AllInterpolatableNodes()
         {
             return GetTree().GetNodesInGroup(GroupName)
                 .Cast<Node3D>();
         }
 
-        private partial class PhysicsProcessSpy : Node
+        private TruePos GetTruePosStruct(Node3D node)
         {
-            public event Action<double> PhysicsProcessed;
-
-            public PhysicsProcessSpy(int priority)
+            if (!_truePos.TryGetValue(node, out var truePos))
             {
-                ProcessPhysicsPriority = priority;
+                return new TruePos(node.Transform, node.Transform);
             }
 
-            public override void _PhysicsProcess(double delta)
-            {
-                PhysicsProcessed?.Invoke(delta);
-            }
+            return truePos;
+        }
+
+        public void ResetPhysicsInterpolation(Node3D node)
+        {
+            _truePos.Remove(node);
         }
     }
 }
