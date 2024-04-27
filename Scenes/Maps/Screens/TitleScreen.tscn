@@ -88,6 +88,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Continue" type="Button" parent="ButtonsContainer/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Continue"
 

@@ -4,13 +4,17 @@ namespace FastDragon
 {
     public partial class TitleScreen : Control
     {
+        private const string Slot0Path = "user://Saves/Slot0.json";
+
         [Export(PropertyHint.File)] public string NewGameMap;
 
         private Control _buttons => GetNode<Control>("%Buttons");
+        private Button _continueButton => GetNode<Button>("%Continue");
 
         public override void _Ready()
         {
             _buttons.GetChild<Button>(0).GrabFocus();
+            _continueButton.Visible = FileAccess.FileExists(Slot0Path);
         }
 
         public void NewGame()
@@ -22,11 +26,8 @@ namespace FastDragon
         public void Continue()
         {
             // TODO: Ask the player which save file to load
-            string fileName = "user://Saves/Slot0.json";
-            if (!FileAccess.FileExists(fileName))
-                return;
 
-            using var file = FileAccess.Open(fileName, FileAccess.ModeFlags.Read);
+            using var file = FileAccess.Open(Slot0Path, FileAccess.ModeFlags.Read);
             string json = file.GetAsText();
             file.Close();
 
