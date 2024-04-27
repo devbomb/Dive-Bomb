@@ -52,5 +52,5 @@ layout_mode = 2
 text = "Frame Interpolation"
 script = SubResource("GDScript_yo1g3")
 
-[connection signal="toggled" from="Panel/Buttons/ShowPerformanceStats" to="." method="SetShowPerformanceStatus"]
+[connection signal="toggled" from="Panel/Buttons/ShowPerformanceStats" to="." method="ToggleShowPerformanceStatus"]
 [connection signal="toggled" from="Panel/Buttons/UsePhysicsInterpolation" to="." method="ToggleUsePhysicsInterpolation"]
