@@ -10,6 +10,7 @@ namespace FastDragon
 
         private Control _mainPage => GetNode<Control>("%MainPage");
         private AtlasMenu _atlasPage => GetNode<AtlasMenu>("%AtlasMenu");
+        private UserSettingsMenu _userSettingsMenu => GetNode<UserSettingsMenu>("%UserSettingsMenu");
 
         private Button _exitLevelButton => GetNode<Button>("%ExitLevel");
 
@@ -57,6 +58,12 @@ namespace FastDragon
         {
             ChangePage(_atlasPage);
             _atlasPage.Refresh();
+        }
+
+        public void OpenUserSettingsMenu()
+        {
+            ChangePage(_userSettingsMenu);
+            _userSettingsMenu.OnOpened();
         }
 
         public void ResetLevel()
