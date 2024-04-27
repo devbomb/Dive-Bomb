@@ -3,7 +3,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public class UserSettings
+    public partial class UserSettings : Resource
     {
         private const string FilePath = "user://UserSettings.json";
 
