@@ -3,7 +3,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class AtlasMenu : Control
+    public partial class AtlasMenu : Page
     {
         private Tree _table => GetNode<Tree>("%Table");
 
@@ -18,6 +18,11 @@ namespace FastDragon
         public override void _Ready()
         {
             CreateColumns();
+            Refresh();
+        }
+
+        public override void OnPageEntered()
+        {
             Refresh();
         }
 

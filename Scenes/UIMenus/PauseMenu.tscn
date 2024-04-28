@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0vpyujcojrlr"]
+[gd_scene load_steps=6 format=3 uid="uid://d0vpyujcojrlr"]
 
 [ext_resource type="Script" path="res://Scripts/UIMenus/PauseMenu.cs" id="1_6unmj"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_wwjmo"]
 [ext_resource type="PackedScene" uid="uid://dk14uy27kbnyn" path="res://Scenes/UIMenus/AtlasMenu.tscn" id="3_0fbh4"]
+[ext_resource type="Script" path="res://Scripts/UIWidgets/Page.cs" id="3_2prw7"]
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://Scenes/UIMenus/UserSettingsMenu.tscn" id="4_cbwi1"]
 
 [node name="PauseMenu" type="Control"]
@@ -30,6 +31,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_2prw7")
 
 [node name="Buttons" type="VBoxContainer" parent="MainPage"]
 unique_name_in_owner = true

@@ -20,6 +20,8 @@ namespace FastDragon
                     ? ProcessModeEnum.Inherit
                     : ProcessModeEnum.Disabled;
             }
+
+            targetPage.OnPageEntered();
         }
     }
 }

@@ -3,13 +3,13 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PauseMenu : Control
+    public partial class PauseMenu : PageNavigator
     {
         private bool _open = false;
         private Control _buttons => GetNode<Control>("%Buttons");
 
-        private Control _mainPage => GetNode<Control>("%MainPage");
-        private AtlasMenu _atlasPage => GetNode<AtlasMenu>("%AtlasMenu");
+        private Page _mainPage => GetNode<Page>("%MainPage");
+        private Page _atlasPage => GetNode<Page>("%AtlasMenu");
         private UserSettingsMenu _userSettingsMenu => GetNode<UserSettingsMenu>("%UserSettingsMenu");
 
         private Button _exitLevelButton => GetNode<Button>("%ExitLevel");
@@ -57,13 +57,11 @@ namespace FastDragon
         public void OpenAtlas()
         {
             ChangePage(_atlasPage);
-            _atlasPage.Refresh();
         }
 
         public void OpenUserSettingsMenu()
         {
             ChangePage(_userSettingsMenu);
-            _userSettingsMenu.OnOpened();
         }
 
         public void ResetLevel()
@@ -91,19 +89,6 @@ namespace FastDragon
         {
             Close();
             MapTransitionManager.Instance.GoToTitleScreen();
-        }
-
-        private void ChangePage(Control targetPage)
-        {
-            foreach (var page in this.EnumerateChildren().Cast<Control>())
-            {
-                bool isTarget = page == targetPage;
-
-                page.Visible = isTarget;
-                page.ProcessMode = isTarget
-                    ? ProcessModeEnum.Inherit
-                    : ProcessModeEnum.Disabled;
-            }
         }
     }
 }
