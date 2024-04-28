@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://nwvggnggdtmc"]
+[gd_scene load_steps=7 format=3 uid="uid://nwvggnggdtmc"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_ifn8o"]
 [ext_resource type="Script" path="res://Scripts/UIMenus/UserSettingsMenu.cs" id="2_vmbxq"]
@@ -12,6 +12,13 @@ func _ready(): button_pressed = $/root/UserSettings.Instance().ShowPerformanceSt
 script/source = "extends CheckButton
 func _ready(): button_pressed = $'/root/UserSettings'.Instance().UsePhysicsInterpolation
 "
+
+[sub_resource type="InputEventAction" id="InputEventAction_r0qer"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_ncc13"]
+events = [SubResource("InputEventAction_r0qer")]
 
 [node name="UserSettingsMenu" type="Control"]
 process_mode = 3
@@ -54,6 +61,7 @@ script = SubResource("GDScript_yo1g3")
 
 [node name="Back" type="Button" parent="Panel/Buttons"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_ncc13")
 text = "Back"
 
 [connection signal="toggled" from="Panel/Buttons/ShowPerformanceStats" to="." method="ToggleShowPerformanceStatus"]

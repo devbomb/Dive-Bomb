@@ -8,12 +8,6 @@ namespace FastDragon
         private UserSettings _userSettings => UserSettings.Instance;
         private Control _buttons => GetNode<Control>("%Buttons");
 
-        public override void _Input(InputEvent ev)
-        {
-            if (ev.IsActionPressed("ui_cancel"))
-                GoBack();
-        }
-
         public override void OnPageEntered()
         {
             _buttons.GetChild<Button>(0).GrabFocus();
