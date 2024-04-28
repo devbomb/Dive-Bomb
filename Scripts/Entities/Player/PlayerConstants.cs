@@ -7,6 +7,8 @@ namespace FastDragon
         public static class Default
         {
             public const float Gravity = 20;
+            public const float CoyoteTime = 5f / 60;
+            public const float EarlyJumpBufferTime = 5f / 60;
         }
 
         public static class Stand

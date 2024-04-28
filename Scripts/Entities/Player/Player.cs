@@ -34,6 +34,12 @@ namespace FastDragon
         public Node3D FairyKissCamRightPoint => GetNode<Node3D>("%FairyKissCamRightPoint");
         public Node3D FairyKissCamLeftPoint => GetNode<Node3D>("%FairyKissCamLeftPoint");
 
+        /// <summary>
+        /// Used to let the player press "jump" slightly before landing and
+        /// still have it count.
+        /// </summary>
+        public float EarlyJumpBufferTimer { get; private set; }
+
         public float FSpeed
         {
             get => Velocity.Flattened().Length();
@@ -103,6 +109,14 @@ namespace FastDragon
             Callable.From(UpdateAtlasCache).CallDeferred();
         }
 
+        public override void _Input(InputEvent ev)
+        {
+            if (InputService.JumpJustPressed(ev))
+            {
+                EarlyJumpBufferTimer = Player.Default.EarlyJumpBufferTime;
+            }
+        }
+
         public void Respawn()
         {
             EmitSignal(SignalName.Respawning);
@@ -132,6 +146,8 @@ namespace FastDragon
             Animator.Play("RESET", 0);
             Animator.Advance(0);
             ChangeState<PlayerWalkState>();
+
+            EarlyJumpBufferTimer = 0;
         }
 
         public void SetVisibleInPortals(bool visible)
@@ -168,7 +184,12 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
+            float delta = (float)deltaD;
+
             Camera.DisableInput = CurrentState.DisableCameraInput;
+
+            if (EarlyJumpBufferTimer > 0)
+                EarlyJumpBufferTimer -= delta;
 
             if (CurrentState.UseMario64CameraFocus)
             {
@@ -184,7 +205,7 @@ namespace FastDragon
                     CameraFocus.GlobalPosition.Y,
                     targetYFocus,
                     Player.Default.Gravity,
-                    (float)deltaD,
+                    delta,
                     ref _cameraFocusYSpeed
                 );
                 CameraFocus.GlobalPosition = focusPos;
@@ -232,18 +253,5 @@ namespace FastDragon
         {
             GD.Print($"Changing state to {incomingState.GetType().Name}");
         }
-
-        private IEnumerable<PlayerState> States()
-        {
-            for (int i = 0; i < GetChildCount(); i++)
-            {
-                var child = GetChild<Node>(i);
-
-                if (child is PlayerState state)
-                    yield return state;
-            }
-        }
-
-
     }
 }
