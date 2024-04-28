@@ -11,10 +11,11 @@ namespace FastDragon
         private Control _buttons => GetNode<Control>("%Buttons");
         private Button _continueButton => GetNode<Button>("%Continue");
 
+        private PageNavigator _pageNav => GetNode<PageNavigator>("%PageNavigator");
+
         public override void _Ready()
         {
-            _buttons.GetChild<Button>(0).GrabFocus();
-            _continueButton.Visible = FileAccess.FileExists(Slot0Path);
+            OpenMainPage();
         }
 
         public void NewGame()
@@ -33,6 +34,19 @@ namespace FastDragon
 
             SaveFile.Current = SaveFile.FromJson(json);
             MapTransitionManager.Instance.GoToMapWithFadeToBlack(SaveFile.Current.CurrentMap);
+        }
+
+        public void OpenMainPage()
+        {
+            _pageNav.ChangePage(GetNode<Page>("%MainPage"));
+
+            _buttons.GetChild<Button>(0).GrabFocus();
+            _continueButton.Visible = FileAccess.FileExists(Slot0Path);
+        }
+
+        public void OpenUserSettingsMenu()
+        {
+            _pageNav.ChangePage(GetNode<Page>("%UserSettingsMenu"));
         }
     }
 }

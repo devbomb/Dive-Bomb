@@ -3,12 +3,12 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class UserSettingsMenu : Control
+    public partial class UserSettingsMenu : Page
     {
         private UserSettings _userSettings => UserSettings.Instance;
         private Control _buttons => GetNode<Control>("%Buttons");
 
-        public void OnOpened()
+        public override void OnPageEntered()
         {
             _buttons.GetChild<Button>(0).GrabFocus();
         }
