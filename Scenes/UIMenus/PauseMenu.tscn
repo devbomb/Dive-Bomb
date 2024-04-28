@@ -92,3 +92,5 @@ layout_mode = 1
 [connection signal="pressed" from="MainPage/Buttons/ResetLevel" to="." method="ResetLevel"]
 [connection signal="pressed" from="MainPage/Buttons/ExitLevel" to="." method="ExitLevel"]
 [connection signal="pressed" from="MainPage/Buttons/QuitToTitle" to="." method="QuitToTitle"]
+[connection signal="BackRequested" from="AtlasMenu" to="." method="OpenMainPage"]
+[connection signal="BackRequested" from="UserSettingsMenu" to="." method="OpenMainPage"]

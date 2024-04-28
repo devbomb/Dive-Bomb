@@ -52,5 +52,10 @@ layout_mode = 2
 text = "Frame Interpolation"
 script = SubResource("GDScript_yo1g3")
 
+[node name="Back" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+text = "Back"
+
 [connection signal="toggled" from="Panel/Buttons/ShowPerformanceStats" to="." method="ToggleShowPerformanceStatus"]
 [connection signal="toggled" from="Panel/Buttons/UsePhysicsInterpolation" to="." method="ToggleUsePhysicsInterpolation"]
+[connection signal="pressed" from="Panel/Buttons/Back" to="." method="GoBack"]

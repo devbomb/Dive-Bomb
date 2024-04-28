@@ -38,13 +38,11 @@ namespace FastDragon
             if (GetTree().Paused)
                 return;
 
-            ChangePage(_mainPage);
-
             _open = true;
             Visible = true;
             GetTree().Paused = true;
 
-            _buttons.GetChild<Button>(0).GrabFocus();
+            OpenMainPage();
         }
 
         public void Close()
@@ -52,6 +50,12 @@ namespace FastDragon
             _open = false;
             Visible = false;
             GetTree().Paused = false;
+        }
+
+        public void OpenMainPage()
+        {
+            ChangePage(_mainPage);
+            _buttons.GetChild<Button>(0).GrabFocus();
         }
 
         public void OpenAtlas()
