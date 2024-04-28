@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs28xrm5onq8k"]
+[gd_scene load_steps=8 format=3 uid="uid://bs28xrm5onq8k"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_1b2l8"]
 [ext_resource type="Script" path="res://Scripts/UIMenus/TitleScreen.cs" id="1_q3h6t"]
+[ext_resource type="Script" path="res://Scripts/UIWidgets/PageNavigator.cs" id="3_l50tw"]
+[ext_resource type="Script" path="res://Scripts/UIWidgets/Page.cs" id="3_ml6io"]
+[ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://Scenes/UIMenus/UserSettingsMenu.tscn" id="5_xa3gf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w4jl7"]
 font_size = 100
@@ -63,7 +66,8 @@ text = "Demo Version"
 label_settings = SubResource("LabelSettings_3giqp")
 horizontal_alignment = 1
 
-[node name="ButtonsContainer" type="Control" parent="."]
+[node name="PageNavigator" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 0.5
 anchor_right = 1.0
@@ -71,8 +75,19 @@ anchor_bottom = 0.89
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_1b2l8")
+script = ExtResource("3_l50tw")
 
-[node name="Buttons" type="VBoxContainer" parent="ButtonsContainer"]
+[node name="MainPage" type="Control" parent="PageNavigator"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ml6io")
+
+[node name="Buttons" type="VBoxContainer" parent="PageNavigator/MainPage"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -87,15 +102,26 @@ offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Continue" type="Button" parent="ButtonsContainer/Buttons"]
+[node name="Continue" type="Button" parent="PageNavigator/MainPage/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Continue"
 
-[node name="NewGame" type="Button" parent="ButtonsContainer/Buttons"]
+[node name="NewGame" type="Button" parent="PageNavigator/MainPage/Buttons"]
 layout_mode = 2
 text = "New Game
 "
 
-[connection signal="pressed" from="ButtonsContainer/Buttons/Continue" to="." method="Continue"]
-[connection signal="pressed" from="ButtonsContainer/Buttons/NewGame" to="." method="NewGame"]
+[node name="Options" type="Button" parent="PageNavigator/MainPage/Buttons"]
+layout_mode = 2
+text = "Options"
+
+[node name="UserSettingsMenu" parent="PageNavigator" instance=ExtResource("5_xa3gf")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="PageNavigator/MainPage/Buttons/Continue" to="." method="Continue"]
+[connection signal="pressed" from="PageNavigator/MainPage/Buttons/NewGame" to="." method="NewGame"]
+[connection signal="pressed" from="PageNavigator/MainPage/Buttons/Options" to="." method="OpenUserSettingsMenu"]
+[connection signal="BackRequested" from="PageNavigator/UserSettingsMenu" to="." method="OpenMainPage"]
