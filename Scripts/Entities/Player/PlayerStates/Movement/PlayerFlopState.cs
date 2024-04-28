@@ -4,13 +4,22 @@ namespace FastDragon
 {
     public partial class PlayerFlopState : PlayerState
     {
+        private float _coyoteTimer;
+
         public override void OnStateEntered()
         {
             _player.Animator.Play("Flop");
+            _coyoteTimer = Player.Default.CoyoteTime;
         }
 
         public override void _Input(InputEvent ev)
         {
+            if (InputService.JumpJustPressed(ev) && _coyoteTimer > 0)
+            {
+                _player.ChangeState<PlayerWalkJumpState>();
+                return;
+            }
+
             if (InputService.RollJustPressed(ev))
             {
                 _player.ChangeState<PlayerDiveState>();
@@ -27,6 +36,9 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
+
+            if (_coyoteTimer > 0)
+                _coyoteTimer -= delta;
 
             RotateTowardLeftStick(Player.Jump.RotSpeedRad, delta);
             AccelerateWithLeftStick(
