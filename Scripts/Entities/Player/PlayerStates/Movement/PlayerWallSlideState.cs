@@ -17,6 +17,11 @@ namespace FastDragon
         {
             _player.Animator.Play("WallSlide");
             RotateToFaceWall();
+
+            if (_player.EarlyJumpBufferTimer > 0)
+            {
+                _player.ChangeState<PlayerWallJumpState>();
+            }
         }
 
         public override void _PhysicsProcess(double deltaD)

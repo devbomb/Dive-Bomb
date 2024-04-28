@@ -29,6 +29,13 @@ namespace FastDragon
             _boundJumpWindowTimer = canBound
                 ? Player.BoundJump.TimeWindow
                 : 0;
+
+            // Let the player jump if they pressed the button a little bit too
+            // early
+            if (_player.EarlyJumpBufferTimer > 0)
+            {
+                Jump();
+            }
         }
 
         public override void OnStateExited()
@@ -64,12 +71,7 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                if (_sideFlipWindowTimer > 0 && _sideFlipDisableTimer <= 0)
-                    _player.ChangeState<PlayerSideFlipState>();
-                else if (_boundJumpWindowTimer > 0)
-                    _player.ChangeState<PlayerBoundJumpState>();
-                else
-                    _player.ChangeState<PlayerWalkJumpState>();
+                Jump();
                 return;
             }
 
@@ -111,6 +113,16 @@ namespace FastDragon
                 _player.ChangeState<PlayerStandState>();
                 return;
             }
+        }
+
+        private void Jump()
+        {
+            if (_sideFlipWindowTimer > 0 && _sideFlipDisableTimer <= 0)
+                _player.ChangeState<PlayerSideFlipState>();
+            else if (_boundJumpWindowTimer > 0)
+                _player.ChangeState<PlayerBoundJumpState>();
+            else
+                _player.ChangeState<PlayerWalkJumpState>();
         }
 
         private void PlaySkidAnimIfTurningHard()
