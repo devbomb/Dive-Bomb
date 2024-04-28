@@ -24,6 +24,7 @@ namespace FastDragon
         public override void OnPageEntered()
         {
             Refresh();
+            GetNode<Button>("%BackButton").GrabFocus();
         }
 
         private void CreateColumns()
