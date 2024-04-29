@@ -16,24 +16,32 @@ namespace FastDragon
         private const float CameraLagDuration = 0.5f;
 
         private float _timer;
-        private bool _redirectingAllowed;
+        private bool _isGroundRoll;
+        private float _initialSpeed;
 
         private List<IRollable> _brokenObjects = new List<IRollable>();
 
         public override void OnStateEntered(State oldState)
         {
             _player.Animator.Play("Roll");
-            _player.Velocity = _player.GlobalForward() * Player.Roll.InitialSpeed;
+
 
             _timer = 0;
-            _redirectingAllowed = !(oldState is PlayerDiveState);
+            _isGroundRoll = !(oldState is PlayerDiveState);
+            _initialSpeed = (_isGroundRoll && _player.GroundRollCooldownTimer > 0)
+                ? Player.Roll.SpamRollInitialSpeed
+                : Player.Roll.InitialSpeed;
 
+            _player.Velocity = _player.GlobalForward() * _initialSpeed;
             _player.Camera.Lag(CameraLagDuration);
         }
 
         public override void OnStateExited()
         {
             _player.Animator.SpeedScale = 1;
+
+            if (_isGroundRoll)
+                _player.GroundRollCooldownTimer = Player.Roll.CooldownDuration;
         }
 
         public override void _Process(double deltaD)
@@ -58,7 +66,7 @@ namespace FastDragon
 
             _timer += delta;
 
-            if (_redirectingAllowed && _timer < Player.Roll.RedirectTimeWindow)
+            if (_isGroundRoll && _timer < Player.Roll.RedirectTimeWindow)
             {
                 float speed = _player.FSpeed;
                 RotateInstantlyTowardLeftStick();
@@ -66,7 +74,7 @@ namespace FastDragon
             }
 
             float maxSpeed = _timer < Player.Roll.FrictionlessDuration
-                ? Player.Roll.InitialSpeed
+                ? _initialSpeed
                 : Player.Roll.MinSpeed;
 
             AccelerateWithLeftStickAgainstDrag(
