@@ -1172,6 +1172,7 @@
 "FlyInDistance" "0"
 "FlyInDuration" "2"
 "FlyInHeight" "80"
+"LevelName" "Sunset Castle"
 }
 // entity 2
 {

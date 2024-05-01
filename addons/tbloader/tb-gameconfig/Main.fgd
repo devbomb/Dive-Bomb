@@ -26,6 +26,7 @@
 		"scale" : 0.25
 	})
 	= Player : "Player" [
+		LevelName(string) : "Level name"
 		FlyInHeight(float) : "Fly-in height"
 		FlyInDistance(float) : "Fly-in distance"
 		FlyInDuration(float) : "Fly-in duration"

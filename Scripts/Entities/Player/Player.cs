@@ -9,6 +9,13 @@ namespace FastDragon
     {
         [Signal] public delegate void RespawningEventHandler();
 
+        /// <summary>
+        /// The current level's human-friendly name.
+        /// Will be stored in the Atlas cache.
+        /// </summary>
+        /// <returns></returns>
+        [Export] public string LevelName;
+
         [Export] public float FlyInHeight = 10;
         [Export] public float FlyInDistance = 10;
         [Export] public float FlyInDuration = 4;
