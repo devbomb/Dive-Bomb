@@ -23,17 +23,20 @@ namespace FastDragon
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += OnLevelReset;
-            ProcessMode = ProcessModeEnum.Always;
-            GD.Print("TimeTrialManager ready");
+            _pageNav.ChangePage(null);
         }
 
         public void Initialize(TimeTrialMode mode)
         {
             Mode = mode;
+            ProcessMode = ProcessModeEnum.Always;
         }
 
         public void OnLevelReset()
         {
+            if (!IsTimeTrialMode)
+                return;
+
             Timer = 0;
             IsTimerRunning = false;
             _pageNav.ChangePage(_briefingPage);
