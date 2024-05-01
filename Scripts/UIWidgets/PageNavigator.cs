@@ -21,7 +21,7 @@ namespace FastDragon
                     : ProcessModeEnum.Disabled;
             }
 
-            targetPage.OnPageEntered();
+            targetPage?.OnPageEntered();
         }
     }
 }

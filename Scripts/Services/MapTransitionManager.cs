@@ -69,6 +69,24 @@ namespace FastDragon
             DoThingWithFadeToBlack(() => GoToMap(mapSceneFile));
         }
 
+        public void GoToMapForTimeTrial(string mapSceneFile, TimeTrialManager.TimeTrialMode mode)
+        {
+            // Use a dummy save file to ensure we don't accidentally modify
+            // a real one when collectables are collected
+            SaveFile.Current = new SaveFile();
+
+            DoThingWithFadeToBlack(() =>
+            {
+                SaveFile.Current.CurrentMap = mapSceneFile;
+
+                var mapNode = ResourceLoader.Load<PackedScene>(mapSceneFile).Instantiate<Node>();
+                ChangeSceneToNode(mapNode);
+
+                GetTree().FindNode<TimeTrialManager>().Initialize(mode);
+                SignalBus.Instance.EmitLevelReset();
+            });
+        }
+
         public void EnterLevel(
             string levelSceneFile,
             Environment skyBoxEnvironment
