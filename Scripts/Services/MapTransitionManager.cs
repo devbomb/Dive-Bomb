@@ -24,8 +24,8 @@ namespace FastDragon
 
         public string GetHomeWorldMap()
         {
-            var worldSpawn = GetTree().FindNode<WorldSpawn>();
-            return worldSpawn?.HomeWorld;
+            var worldSpawn = GetTree().FindNode<Player>();
+            return worldSpawn?.HomeWorldMap;
         }
 
         public void ChangeSceneToNode(Node scene)

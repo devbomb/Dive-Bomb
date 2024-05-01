@@ -13,9 +13,7 @@
 	targetname(string) : "Target Name"
 ]
 
-@SolidClass = worldspawn : "World entity" [
-	HomeWorld(string) : "Home World"
-]
+@SolidClass = worldspawn : "World entity" []
 
 @SolidClass = area : "Area" []
 
@@ -27,6 +25,7 @@
 	})
 	= Player : "Player" [
 		LevelName(string) : "Level name"
+		HomeWorldMap(string) : "Home World"
 		FlyInHeight(float) : "Fly-in height"
 		FlyInDistance(float) : "Fly-in distance"
 		FlyInDuration(float) : "Fly-in duration"
