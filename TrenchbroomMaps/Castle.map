@@ -1169,8 +1169,6 @@
 "classname" "Player"
 "origin" "0 112 0"
 "angles" "0 90 0"
-"FlyInDistance" "0"
-"FlyInDuration" "2"
 "FlyInHeight" "80"
 "LevelName" "Sunset Castle"
 }
