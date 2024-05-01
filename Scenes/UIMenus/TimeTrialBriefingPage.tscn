@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://m1lnxuxiyxoe"]
+[gd_scene load_steps=3 format=3 uid="uid://m1lnxuxiyxoe"]
 
 [ext_resource type="Script" path="res://Scripts/UIMenus/TimeTrialBriefingMenu.cs" id="1_g7ix7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2i6y4"]
+font_size = 20
 
 [node name="TimeTrialBriefingPage" type="Control"]
 layout_mode = 3
@@ -13,22 +16,36 @@ script = ExtResource("1_g7ix7")
 
 [node name="Instructions" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.375
 grow_horizontal = 2
-grow_vertical = 2
 text = "Reach the end of the level as fast as possible!
 No collectables are required."
+label_settings = SubResource("LabelSettings_2i6y4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Start" type="Button" parent="."]
-layout_mode = 0
-offset_left = 503.0
-offset_top = 381.0
-offset_right = 652.0
-offset_bottom = 434.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.625
+anchor_right = 0.625
+anchor_bottom = 0.625
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 text = "Start"
 
-[connection signal="pressed" from="Start" to="." method="OnStartPressed"]
+[node name="QuitToTitle" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit to Title"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="OnStartPressed"]
+[connection signal="pressed" from="VBoxContainer/QuitToTitle" to="." method="OnQuitToTitlePressed"]
