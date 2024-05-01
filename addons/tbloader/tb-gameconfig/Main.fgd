@@ -90,6 +90,7 @@
 		"scale" : 0.25
 	})
 	= StandardPortal : "StandardPortal" [
+		Text(string) : "Text" : "Level Name"
 		SkyboxEnvironment(string) : "Skybox Environment"
 		TargetMap(string) : "Target Map"
 	]

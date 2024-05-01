@@ -7,6 +7,7 @@ namespace FastDragon
     {
         [Export(PropertyHint.File)] public string SkyboxEnvironment;
         [Export(PropertyHint.File)] public string TargetMap;
+        [Export] public string Text;
 
         [Export] public float ExitAnimationDuration = 2.5f;
         [Export] public float ExitAnimationStartHeight = 0;
@@ -14,6 +15,9 @@ namespace FastDragon
 
         private Node3D _playerSpawn => GetNode<Node3D>("%PlayerSpawnPoint");
         private PortalSurface _surface => GetNode<PortalSurface>("%PortalSurface");
+
+        private MeshLabel3D _frontLabel => GetNode<MeshLabel3D>("%FrontLabel");
+        private MeshLabel3D _backLabel => GetNode<MeshLabel3D>("%BackLabel");
 
         private Vector3 _exitAnimationStartPos;
         private float _exitAnimationTimer;
@@ -23,6 +27,9 @@ namespace FastDragon
         {
             _surface.TargetMap = TargetMap;
             _surface.SetSkybox(SkyboxEnvironment);
+
+            _frontLabel.Text = Text;
+            _backLabel.Text = Text;
         }
 
         public void PlayExitAnimation()

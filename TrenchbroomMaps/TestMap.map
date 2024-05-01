@@ -196,6 +196,7 @@
 "angles" "0 -90 0"
 "TargetMap" "res://Scenes/Maps/Levels/DummyMap.tscn"
 "SkyboxEnvironment" "res://Environments/NightSky.tres"
+"Text" "Night Dummy Map"
 }
 // entity 23
 {
@@ -214,6 +215,7 @@
 "angles" "0 180 0"
 "TargetMap" "res://Scenes/Maps/Levels/DryCanyon.tscn"
 "SkyboxEnvironment" "res://Environments/DryCanyonSky.tres"
+"Text" "Plagiarism Canyon"
 }
 // entity 26
 {
@@ -242,6 +244,7 @@
 "angles" "0 90 0"
 "TargetMap" "res://Scenes/Maps/Levels/Castle.tscn"
 "SkyboxEnvironment" "res://Environments/Castle.tres"
+"Text" "Sunset Castle"
 }
 // entity 30
 {
