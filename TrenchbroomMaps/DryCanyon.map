@@ -4,7 +4,6 @@
 {
 "classname" "worldspawn"
 "_tb_textures" "textures/Textures"
-"HomeWorld" "res://Scenes/Maps/Levels/TestMap.tscn"
 // brush 0
 {
 ( 432 -352 224 ) ( 400 -384 224 ) ( 384 -384 16 ) Textures/darkbrown_bricks 0 0 0 0.5 0.5
@@ -950,6 +949,8 @@
 "origin" "307.86 -311.453 16"
 "angles" "0 90 0"
 "FlyInHeight" "40"
+"LevelName" "Plagiarism Canyon"
+"HomeWorldMap" "res://Scenes/Maps/Levels/TestMap.tscn"
 }
 // entity 3
 {

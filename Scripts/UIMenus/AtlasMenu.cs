@@ -47,14 +47,14 @@ namespace FastDragon
             }
         }
 
-        private void AddRow(string mapName)
+        private void AddRow(string mapFilePath)
         {
-            var progress = SaveFile.Current.Maps[mapName];
-            var cacheEntry = AtlasCache.Instance.GetEntry(mapName);
+            var progress = SaveFile.Current.Maps[mapFilePath];
+            var cacheEntry = AtlasCache.Instance.GetEntry(mapFilePath);
 
             var row = _table.CreateItem();
 
-            row.SetText((int)Column.LevelName, mapName);
+            row.SetText((int)Column.LevelName, cacheEntry.HumanReadableName);
             row.SetTextAlignment((int)Column.LevelName, HorizontalAlignment.Left);
 
             row.SetText((int)Column.Gems, $"{progress.GemsCollected} / {cacheEntry.TotalGemsInLevel}");
@@ -63,7 +63,7 @@ namespace FastDragon
             row.SetText((int)Column.Fairies, $"{progress.CollectedFairies.Count} / {cacheEntry.TotalFairiesInLevel}");
             row.SetTextAlignment((int)Column.Fairies, HorizontalAlignment.Center);
 
-            string percentComplete = (SaveFile.Current.GetPercentComplete(mapName) * 100)
+            string percentComplete = (SaveFile.Current.GetPercentComplete(mapFilePath) * 100)
                 .ToString("0");
             row.SetText((int)Column.PercentComplete, $"{percentComplete}%");
             row.SetTextAlignment((int)Column.PercentComplete, HorizontalAlignment.Center);

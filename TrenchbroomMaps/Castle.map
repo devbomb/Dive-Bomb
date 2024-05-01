@@ -3,7 +3,6 @@
 // entity 0
 {
 "classname" "worldspawn"
-"HomeWorld" "res://Scenes/Maps/Levels/TestMap.tscn"
 "_tb_textures" "Textures/Textures"
 // brush 0
 {
@@ -1169,9 +1168,9 @@
 "classname" "Player"
 "origin" "0 112 0"
 "angles" "0 90 0"
-"FlyInDistance" "0"
-"FlyInDuration" "2"
 "FlyInHeight" "80"
+"LevelName" "Sunset Castle"
+"HomeWorldMap" "res://Scenes/Maps/Levels/TestMap.tscn"
 }
 // entity 2
 {

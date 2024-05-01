@@ -9,6 +9,22 @@ namespace FastDragon
     {
         [Signal] public delegate void RespawningEventHandler();
 
+        /// <summary>
+        /// The current level's human-friendly name.
+        /// Will be stored in the Atlas cache.
+        /// </summary>
+        /// <returns></returns>
+        [Export] public string LevelName;
+
+        /// <summary>
+        /// The map we should return to when "exit level" is selected in the
+        /// pause menu, or when a vortex is used.
+        ///
+        /// Set to null to indicate that this map is a home world.
+        /// </summary>
+        /// <returns></returns>
+        [Export(PropertyHint.File)] public string HomeWorldMap;
+
         [Export] public float FlyInHeight = 10;
         [Export] public float FlyInDistance = 10;
         [Export] public float FlyInDuration = 4;

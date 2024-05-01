@@ -38,6 +38,7 @@ namespace FastDragon
         private Dictionary<string, Entry> Maps = new Dictionary<string, Entry>();
         public class Entry
         {
+            public string HumanReadableName;
             public int TotalGemsInLevel;
             public int TotalFairiesInLevel;
         }
@@ -46,6 +47,9 @@ namespace FastDragon
         {
             Maps[mapFilePath] = new Entry
             {
+                HumanReadableName = levelRoot.FindNode<Player>()?.LevelName
+                    ?? "No level name specified, or scene does not have a Player",
+
                 TotalGemsInLevel = levelRoot
                     .EnumerateDescendantsOfType<Gem>()
                     .Sum(g => (int)g.Value),
