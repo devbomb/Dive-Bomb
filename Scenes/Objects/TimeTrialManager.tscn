@@ -1,15 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://r1oepshljstr"]
+[gd_scene load_steps=5 format=3 uid="uid://r1oepshljstr"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/TimeTrialManager.cs" id="1_e1abn"]
 [ext_resource type="Script" path="res://Scripts/UIWidgets/PageNavigator.cs" id="2_jdmjo"]
 [ext_resource type="PackedScene" uid="uid://m1lnxuxiyxoe" path="res://Scenes/UIMenus/TimeTrialBriefingPage.tscn" id="3_xwoof"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_bn2qp"]
+font_size = 30
+
 [node name="TimeTrialManager" type="Node"]
 script = ExtResource("1_e1abn")
 
-[node name="PageNavigator" type="Control" parent="."]
-unique_name_in_owner = true
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PageNavigator" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,9 +28,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_jdmjo")
 
-[node name="TimeTrialBriefingPage" parent="PageNavigator" instance=ExtResource("3_xwoof")]
+[node name="TimeTrialBriefingPage" parent="UI/PageNavigator" instance=ExtResource("3_xwoof")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[connection signal="StartPressed" from="PageNavigator/TimeTrialBriefingPage" to="." method="Start"]
+[node name="TimerLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 25.0
+offset_right = -25.0
+grow_horizontal = 0
+text = "00:00.00"
+label_settings = SubResource("LabelSettings_bn2qp")
+
+[connection signal="StartPressed" from="UI/PageNavigator/TimeTrialBriefingPage" to="." method="Start"]

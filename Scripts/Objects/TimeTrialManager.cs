@@ -17,6 +17,8 @@ namespace FastDragon
 
         public double Timer {get; private set;}
 
+        private Label _timerLabel => GetNode<Label>("%TimerLabel");
+
         private PageNavigator _pageNav => GetNode<PageNavigator>("%PageNavigator");
         private Page _briefingPage => GetNode<Page>("%TimeTrialBriefingPage");
 
@@ -53,6 +55,9 @@ namespace FastDragon
         {
             if (IsTimerRunning && IsTimeTrialMode && !GetTree().Paused)
                 Timer += delta;
+
+            _timerLabel.Visible = IsTimeTrialMode;
+            _timerLabel.Text = TimeSpan.FromSeconds(Timer).ToString(@"mm\:ss\.ff");
         }
     }
 }
