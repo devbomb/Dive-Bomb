@@ -5,8 +5,6 @@ namespace FastDragon
 {
     public partial class TimeTrialManager : Node
     {
-        public static TimeTrialManager Instance {get; private set;}
-
         public bool IsTimeTrialMode => Mode != TimeTrialMode.None;
         public bool IsTimerRunning {get; private set;} = false;
 
@@ -21,7 +19,7 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            Instance = this;
+            SignalBus.Instance.LevelReset += Restart;
         }
 
         public override void _PhysicsProcess(double delta)
@@ -32,12 +30,6 @@ namespace FastDragon
 
         public void Start(TimeTrialMode mode)
         {
-            if (IsTimeTrialMode)
-                throw new Exception("Already in time trial mode");
-
-            if (mode == TimeTrialMode.None)
-                throw new Exception("Cannot start a time trial in \"none\" mode");
-
             Mode = mode;
             Restart();
         }

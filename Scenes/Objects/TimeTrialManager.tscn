@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://r1oepshljstr"]
+
+[ext_resource type="Script" path="res://Scripts/TimeTrialManager.cs" id="1_dtf0l"]
+
+[node name="TimeTrialManager" type="Node"]
+script = ExtResource("1_dtf0l")
