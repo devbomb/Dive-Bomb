@@ -6,6 +6,7 @@ namespace FastDragon
     public partial class Fairy : StaticBody3D, IRollable, IKickable
     {
         private readonly StateMachine _stateMachine = new StateMachine(typeof(FairyState));
+        private Transform3D _initialModelPos;
 
         private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private Node3D Model => GetNode<Node3D>("%Model");
@@ -19,6 +20,8 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            _initialModelPos = Model.GlobalTransform;
+
             SignalBus.Instance.LevelReset += Reset;
             AddChild(_stateMachine);
             Reset();
@@ -26,6 +29,8 @@ namespace FastDragon
 
         public void Reset()
         {
+            Model.GlobalTransform = _initialModelPos;
+
             Animator.Play("RESET");
             Animator.Advance(0);
 
