@@ -17,7 +17,6 @@ namespace FastDragon
 
         private float _timer;
         private bool _isGroundRoll;
-        private float _initialSpeed;
 
         private List<IRollable> _brokenObjects = new List<IRollable>();
 
@@ -25,23 +24,15 @@ namespace FastDragon
         {
             _player.Animator.Play("Roll");
 
-
             _timer = 0;
             _isGroundRoll = !(oldState is PlayerDiveState);
-            _initialSpeed = (_isGroundRoll && _player.GroundRollCooldownTimer > 0)
-                ? Player.Roll.SpamRollInitialSpeed
-                : Player.Roll.InitialSpeed;
-
-            _player.Velocity = _player.GlobalForward() * _initialSpeed;
+            _player.Velocity = _player.GlobalForward() * Player.Roll.InitialSpeed;
             _player.Camera.Lag(CameraLagDuration);
         }
 
         public override void OnStateExited()
         {
             _player.Animator.SpeedScale = 1;
-
-            if (_isGroundRoll)
-                _player.GroundRollCooldownTimer = Player.Roll.CooldownDuration;
         }
 
         public override void _Process(double deltaD)
@@ -74,7 +65,7 @@ namespace FastDragon
             }
 
             float maxSpeed = _timer < Player.Roll.FrictionlessDuration
-                ? _initialSpeed
+                ? Player.Roll.InitialSpeed
                 : Player.Roll.MinSpeed;
 
             AccelerateWithLeftStickAgainstDrag(

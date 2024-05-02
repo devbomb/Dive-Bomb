@@ -56,18 +56,6 @@ namespace FastDragon
         /// </summary>
         public float EarlyJumpBufferTimer { get; private set; }
 
-        /// <summary>
-        /// If the player initiates a roll from a grounded state while this
-        /// timer is active, then that roll will have a much lower max speed.
-        /// The auto-roll at the end of a dive is not affected by this.
-        ///
-        /// The purpose of this timer is to ensure that the optimal way of
-        /// moving is to jump -> dive -> roll -> jump -> dive -> roll.
-        /// Without this cooldown, the fastest way to move would just be
-        /// roll -> roll -> roll -> roll -> roll, and that's no fun.
-        /// </summary>
-        public float GroundRollCooldownTimer;
-
         public float FSpeed
         {
             get => Velocity.Flattened().Length();
@@ -176,7 +164,6 @@ namespace FastDragon
             ChangeState<PlayerWalkState>();
 
             EarlyJumpBufferTimer = 0;
-            GroundRollCooldownTimer = 0;
         }
 
         public void SetVisibleInPortals(bool visible)
@@ -218,7 +205,6 @@ namespace FastDragon
             Camera.DisableInput = CurrentState.DisableCameraInput;
 
             if (EarlyJumpBufferTimer > 0) EarlyJumpBufferTimer -= delta;
-            if (GroundRollCooldownTimer > 0) GroundRollCooldownTimer -= delta;
 
             if (CurrentState.UseMario64CameraFocus)
             {
