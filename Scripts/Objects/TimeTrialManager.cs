@@ -23,6 +23,8 @@ namespace FastDragon
         private Page _briefingPage => GetNode<Page>("%TimeTrialBriefingPage");
         private Page _resultsPage => GetNode<Page>("%TimeTrialResultsPage");
 
+        private bool _isResettingSaveFile = false;
+
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += OnLevelReset;
@@ -40,9 +42,33 @@ namespace FastDragon
             if (!IsTimeTrialMode)
                 return;
 
+            if (_isResettingSaveFile)
+            {
+                _isResettingSaveFile = false;
+                return;
+            }
+
             Timer = 0;
             IsTimerRunning = false;
             _pageNav.ChangePage(_briefingPage);
+
+            // Reset the save file, to respawn any collectables that may have
+            // been collected on the previous attempt.
+            string currentMap = SaveFile.Current.CurrentMap;
+            SaveFile.Current = new SaveFile();
+            SaveFile.Current.CurrentMap = currentMap;
+
+            // HACK: We don't technically know which order the LevelReset
+            // handlers will run in.  Some gems may have already reset
+            // themselves based on the previous save file before we had time to
+            // swap it.  So, let's fire the reset event one more time to ensure
+            // EVERYONE sees the clean save file.
+            //
+            // HACK: Need to call deferred while doing this to avoid an
+            // InvalidOperationException, due to FakeSignal not supporting
+            // reentrancy.
+            _isResettingSaveFile = true;
+            SignalBus.Instance.CallDeferred(nameof(SignalBus.Instance.EmitLevelReset));
         }
 
         public void Start()
