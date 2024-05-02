@@ -7,8 +7,10 @@ namespace FastDragon
     {
         private bool _open = false;
         private Control _buttons => GetNode<Control>("%Buttons");
+        private Control _timeTrialButtons => GetNode<Control>("%TimeTrialButtons");
 
         private Page _mainPage => GetNode<Page>("%MainPage");
+        private Page _timeTrialMainPage => GetNode<Page>("%TimeTrialMainPage");
         private Page _atlasPage => GetNode<Page>("%AtlasMenu");
         private UserSettingsMenu _userSettingsMenu => GetNode<UserSettingsMenu>("%UserSettingsMenu");
 
@@ -54,8 +56,16 @@ namespace FastDragon
 
         public void OpenMainPage()
         {
-            ChangePage(_mainPage);
-            _buttons.GetChild<Button>(0).GrabFocus();
+            if (GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false)
+            {
+                ChangePage(_timeTrialMainPage);
+                _timeTrialButtons.GetChild<Button>(0).GrabFocus();
+            }
+            else
+            {
+                ChangePage(_mainPage);
+                _buttons.GetChild<Button>(0).GrabFocus();
+            }
         }
 
         public void OpenAtlas()
