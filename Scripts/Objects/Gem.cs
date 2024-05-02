@@ -24,7 +24,13 @@ namespace FastDragon
 
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
-        private VisibleOnScreenEnabler3D _visibleEnabler => GetNode<VisibleOnScreenEnabler3D>("%VisibleEnabler");
+
+        // Need to actually store this node instead of using a getter, since
+        // we temporarily remove it from the scene tree.  If the getter were
+        // called during a temporary removal, it would result in a
+        // NullReferenceException.
+        private VisibleOnScreenEnabler3D _visibleEnabler;
+        private Node _visibleEnablerParent;
 
         private Vector3 _initialPos;
         private StateMachine _stateMachine = new StateMachine(typeof(GemState));
@@ -32,6 +38,9 @@ namespace FastDragon
         public override void _Ready()
         {
             base._Ready();
+
+            _visibleEnabler = GetNode<VisibleOnScreenEnabler3D>("%VisibleEnabler");
+            _visibleEnablerParent = _visibleEnabler.GetParent();
 
             _initialPos = Position;
             AddChild(_stateMachine);
@@ -129,6 +138,21 @@ namespace FastDragon
             return (Node3D)player;
         }
 
+        private void EnableVisibilityEnabler()
+        {
+            if (!_visibleEnabler.IsInsideTree())
+                _visibleEnablerParent.AddChild(_visibleEnabler);
+        }
+
+        private void DisableVisibilityEnabler()
+        {
+            if (_visibleEnabler.IsInsideTree())
+            {
+                _visibleEnablerParent.RemoveChild(_visibleEnabler);
+                ProcessMode = ProcessModeEnum.Inherit;
+            }
+        }
+
         private partial class Hidden : GemState
         {
             public override void OnStateEntered()
@@ -212,9 +236,6 @@ namespace FastDragon
             private Vector3 _homingStartPos;
             private float _homingTimer;
 
-            private VisibleOnScreenEnabler3D _storedVisibleEnabler;
-            private Node _visibleEnablerParent;
-
             public override void OnStateEntered()
             {
                 _homingStartPos = _gem.GlobalPosition;
@@ -224,15 +245,12 @@ namespace FastDragon
                 // so the player doesn't get screwed over for moving too fast.
                 // Do this by temporarily removing the visibility detector while
                 // in this state.
-                _storedVisibleEnabler = _gem._visibleEnabler;
-                _visibleEnablerParent = _storedVisibleEnabler.GetParent();
-                _visibleEnablerParent.RemoveChild(_storedVisibleEnabler);
-                _gem.ProcessMode = ProcessModeEnum.Inherit;
+                _gem.DisableVisibilityEnabler();
             }
 
             public override void OnStateExited()
             {
-                _visibleEnablerParent.AddChild(_storedVisibleEnabler);
+                _gem.EnableVisibilityEnabler();
             }
 
             public override void _PhysicsProcess(double deltaD)
