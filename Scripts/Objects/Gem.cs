@@ -32,7 +32,7 @@ namespace FastDragon
         private VisibleOnScreenEnabler3D _visibleEnabler;
         private Node _visibleEnablerParent;
 
-        private Vector3 _initialPos;
+        private Transform3D _initialPos;
         private StateMachine _stateMachine = new StateMachine(typeof(GemState));
 
         public override void _Ready()
@@ -42,7 +42,7 @@ namespace FastDragon
             _visibleEnabler = GetNode<VisibleOnScreenEnabler3D>("%VisibleEnabler");
             _visibleEnablerParent = _visibleEnabler.GetParent();
 
-            _initialPos = Position;
+            _initialPos = GlobalTransform;
             AddChild(_stateMachine);
             Reset();
 
@@ -53,7 +53,7 @@ namespace FastDragon
 
         public void Reset()
         {
-            Position = _initialPos;
+            GlobalTransform = _initialPos;
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation();
 
