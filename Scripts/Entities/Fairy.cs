@@ -26,6 +26,9 @@ namespace FastDragon
 
         public void Reset()
         {
+            Animator.Play("RESET");
+            Animator.Advance(0);
+
             if (SaveFile.Current.CurrentMapProgress.CollectedFairies.Contains(GetSaveKey()))
                 _stateMachine.ChangeState<Rescued>();
             else
@@ -79,6 +82,7 @@ namespace FastDragon
             {
                 _fairy.Player = GetTree().FindNode<Player>();
                 _fairy.Visible = true;
+                _fairy.Glass.Visible = true;
                 _fairy.Animator.Play("PoundingOnGlass");
 
                 _fairy.CollisionShape.Disabled = false;
