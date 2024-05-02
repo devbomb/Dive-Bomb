@@ -6,6 +6,7 @@ namespace FastDragon
     public partial class Fairy : StaticBody3D, IRollable, IKickable
     {
         private readonly StateMachine _stateMachine = new StateMachine(typeof(FairyState));
+        private Transform3D _initialModelPos;
 
         private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private Node3D Model => GetNode<Node3D>("%Model");
@@ -19,6 +20,8 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            _initialModelPos = Model.GlobalTransform;
+
             SignalBus.Instance.LevelReset += Reset;
             AddChild(_stateMachine);
             Reset();
@@ -26,6 +29,11 @@ namespace FastDragon
 
         public void Reset()
         {
+            Model.GlobalTransform = _initialModelPos;
+
+            Animator.Play("RESET");
+            Animator.Advance(0);
+
             if (SaveFile.Current.CurrentMapProgress.CollectedFairies.Contains(GetSaveKey()))
                 _stateMachine.ChangeState<Rescued>();
             else
@@ -79,6 +87,7 @@ namespace FastDragon
             {
                 _fairy.Player = GetTree().FindNode<Player>();
                 _fairy.Visible = true;
+                _fairy.Glass.Visible = true;
                 _fairy.Animator.Play("PoundingOnGlass");
 
                 _fairy.CollisionShape.Disabled = false;

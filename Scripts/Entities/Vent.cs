@@ -29,6 +29,12 @@ namespace FastDragon
         public override void _Ready()
         {
             AddChild(_stateMachine);
+            SignalBus.Instance.LevelReset += OnLevelReset;
+            OnLevelReset();
+        }
+
+        private void OnLevelReset()
+        {
             _stateMachine.ChangeState<Idle>();
         }
 
@@ -50,7 +56,6 @@ namespace FastDragon
 
             player.GlobalTransform = _spawnPoint.GlobalTransform;
             player.ResetPhysicsInterpolation();
-            player.Camera.MakeCurrent();
 
             player.ChangeState<PlayerFlopState>();
             player.FSpeed = 3;
@@ -125,6 +130,11 @@ namespace FastDragon
                 }
             }
 
+            public override void OnStateExited()
+            {
+                _player.Camera.MakeCurrent();
+            }
+
             public override void _Process(double deltaD)
             {
                 _camTimer += (float)deltaD;
@@ -173,11 +183,13 @@ namespace FastDragon
                 _player.Camera.ResetPhysicsInterpolation();
 
                 _player.Visible = false;
+                _vent._cutsceneCam.MakeCurrent();
             }
 
             public override void OnStateExited()
             {
                 _player.Visible = true;
+                _player.Camera.MakeCurrent();
             }
 
             public override void _Process(double deltaD)
