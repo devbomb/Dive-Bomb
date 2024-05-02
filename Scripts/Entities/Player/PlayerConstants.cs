@@ -42,7 +42,6 @@ namespace FastDragon
         public static class Roll
         {
             public const float InitialSpeed = 15;
-            public const float SpamRollInitialSpeed = 8;
             public const float MinSpeed = 5;
             public const float MinAccel = 20;
             public const float MaxAccel = 30;
@@ -52,8 +51,6 @@ namespace FastDragon
             public const float Duration = 0.5f;
             public const float FrictionlessDuration = 0.25f;
             public const float Friction = (InitialSpeed - MinSpeed) / (Duration - FrictionlessDuration);
-
-            public const float CooldownDuration = 0.5f;
         }
 
         public static class Jump
