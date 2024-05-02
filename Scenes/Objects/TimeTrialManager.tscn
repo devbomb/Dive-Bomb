@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://r1oepshljstr"]
+[gd_scene load_steps=6 format=3 uid="uid://r1oepshljstr"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/TimeTrialManager.cs" id="1_e1abn"]
 [ext_resource type="Script" path="res://Scripts/UIWidgets/PageNavigator.cs" id="2_jdmjo"]
 [ext_resource type="PackedScene" uid="uid://m1lnxuxiyxoe" path="res://Scenes/UIMenus/TimeTrialBriefingPage.tscn" id="3_xwoof"]
+[ext_resource type="PackedScene" uid="uid://djnfka8w1vstg" path="res://Scenes/UIMenus/TimeTrialResultsPage.tscn" id="4_elsja"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bn2qp"]
 font_size = 30
@@ -29,6 +30,11 @@ grow_vertical = 2
 script = ExtResource("2_jdmjo")
 
 [node name="TimeTrialBriefingPage" parent="UI/PageNavigator" instance=ExtResource("3_xwoof")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="TimeTrialResultsPage" parent="UI/PageNavigator" instance=ExtResource("4_elsja")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

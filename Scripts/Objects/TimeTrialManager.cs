@@ -21,6 +21,7 @@ namespace FastDragon
 
         private PageNavigator _pageNav => GetNode<PageNavigator>("%PageNavigator");
         private Page _briefingPage => GetNode<Page>("%TimeTrialBriefingPage");
+        private Page _resultsPage => GetNode<Page>("%TimeTrialResultsPage");
 
         public override void _Ready()
         {
@@ -49,6 +50,15 @@ namespace FastDragon
             _pageNav.ChangePage(null);
             IsTimerRunning = true;
             GetTree().Paused = false;
+        }
+
+        public void Finish()
+        {
+            if (!IsTimeTrialMode)
+                return;
+
+            IsTimerRunning = false;
+            _pageNav.ChangePage(_resultsPage);
         }
 
         public override void _PhysicsProcess(double delta)
