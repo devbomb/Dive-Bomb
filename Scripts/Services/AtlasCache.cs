@@ -34,8 +34,6 @@ namespace FastDragon
 
         public static AtlasCache Instance { get; } = LoadFromJson();
 
-        public string[] AllCachedMaps => Maps.Keys.ToArray();   // TODO: Remove this after making maps unlockable
-
         [JsonProperty]
         private Dictionary<string, Entry> Maps = new Dictionary<string, Entry>();
         public class Entry

@@ -66,7 +66,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_555xp")
-FocusedControl = NodePath("Buttons/AnyPercent")
+FocusedControl = NodePath("Buttons/AnyPercentButton")
 
 [node name="Buttons" type="VBoxContainer" parent="PageNav/CategorySelectPage"]
 layout_mode = 1
@@ -80,7 +80,8 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnyPercent" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
+[node name="AnyPercentButton" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Any%"
 
@@ -104,5 +105,5 @@ text = "Back"
 
 [connection signal="BackRequested" from="PageNav/LevelSelectPage" to="." method="ReturnToTitle"]
 [connection signal="BackRequested" from="PageNav/CategorySelectPage" to="." method="OnBackPressed"]
-[connection signal="pressed" from="PageNav/CategorySelectPage/Buttons/AnyPercent" to="." method="StartAnyPercent"]
+[connection signal="pressed" from="PageNav/CategorySelectPage/Buttons/AnyPercentButton" to="." method="StartAnyPercent"]
 [connection signal="pressed" from="BackButton" to="." method="OnBackPressed"]

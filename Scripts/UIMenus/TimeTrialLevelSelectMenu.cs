@@ -41,6 +41,15 @@ namespace FastDragon
             _pageNav.ChangePage(_levelSelectPage);
         }
 
+        public void ShowCategorySelectPage()
+        {
+            _pageNav.ChangePage(_categorySelectPage);
+
+            // Enable/disable all the categories that have been locked/unlocked
+            var entry = TimeTrialSaveData.Instance.GetEntry(_selectedMapFilePath);
+            GetNode<Button>("%AnyPercentButton").Disabled = !entry.AnyPercentUnlocked;
+        }
+
         public void StartAnyPercent()
         {
             MapTransitionManager.Instance.GoToMapForTimeTrial(
@@ -53,7 +62,7 @@ namespace FastDragon
         {
             // TODO: Actually check the list of unlocked levels, instead of the
             // atlas cache
-            return AtlasCache.Instance.AllCachedMaps;
+            return TimeTrialSaveData.Instance.UnlockedMaps;
         }
     }
 }

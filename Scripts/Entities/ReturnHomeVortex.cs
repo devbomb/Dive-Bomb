@@ -52,6 +52,7 @@ namespace FastDragon
                 p.ChangeState<PlayerManhandledState>();
                 p.Animator.Play("Glide");
 
+                TimeTrialSaveData.Instance.UnlockAnyPercent(SaveFile.Current.CurrentMap);
                 GetTree().FindNode<TimeTrialManager>()?.Finish();
             }
         }
