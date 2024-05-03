@@ -9,7 +9,7 @@ namespace FastDragon
 
         public bool CurrentMapIsHomeWorld => string.IsNullOrEmpty(GetHomeWorldMap());
 
-        [Export(PropertyHint.File)] public string LevelSelectMap;
+        [Export(PropertyHint.File)] public string TimeTrialLevelSelectMap;
         [Export(PropertyHint.File)] public string TitleScreenMap;
 
         [Export] public PackedScene PortalLoadingScreenPrefab;
@@ -47,10 +47,9 @@ namespace FastDragon
             tree.CurrentScene = scene;
         }
 
-        public void GoToLevelSelect()
+        public void GoToTimeTrialLevelSelect()
         {
-            SaveFile.Current.CurrentMap = LevelSelectMap;
-            GetTree().ChangeSceneToFile(LevelSelectMap);
+            GetTree().ChangeSceneToFile(TimeTrialLevelSelectMap);
         }
 
         public void GoToTitleScreen()

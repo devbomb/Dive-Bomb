@@ -40,10 +40,7 @@ namespace FastDragon
 
         public void TimeTrialMode()
         {
-            MapTransitionManager.Instance.GoToMapForTimeTrial(
-                "res://Scenes/Maps/Levels/Castle.tscn",
-                TimeTrialManager.TimeTrialMode.AnyPercent
-            );
+            MapTransitionManager.Instance.GoToTimeTrialLevelSelect();
         }
 
         public void OpenMainPage()

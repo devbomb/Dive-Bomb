@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://dd1cc1mq1gero"]
+
+[ext_resource type="Script" path="res://Scripts/UIMenus/TimeTrialLevelSelectMenu.cs" id="1_ltvyt"]
+[ext_resource type="Script" path="res://Scripts/UIWidgets/PageNavigator.cs" id="1_rr5nf"]
+[ext_resource type="Script" path="res://Scripts/UIWidgets/Page.cs" id="2_555xp"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_i1ur0"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_ag2fo"]
+events = [SubResource("InputEventAction_i1ur0")]
+
+[node name="TimeTrialLevelSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ltvyt")
+
+[node name="PageNav" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.25
+anchor_right = 0.75
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rr5nf")
+
+[node name="LevelSelectPage" type="Control" parent="PageNav"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_555xp")
+
+[node name="LevelButtons" type="VBoxContainer" parent="PageNav/LevelSelectPage"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CategorySelectPage" type="Control" parent="PageNav" node_paths=PackedStringArray("FocusedControl")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_555xp")
+FocusedControl = NodePath("Buttons/AnyPercent")
+
+[node name="Buttons" type="VBoxContainer" parent="PageNav/CategorySelectPage"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnyPercent" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
+layout_mode = 2
+text = "Any%"
+
+[node name="FairyPercent" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
+layout_mode = 2
+disabled = true
+text = "All Fairies"
+
+[node name="OneHundredPercent" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
+layout_mode = 2
+disabled = true
+text = "100%"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 30.0
+offset_top = 30.0
+shortcut = SubResource("Shortcut_ag2fo")
+text = "Back"
+
+[connection signal="BackRequested" from="PageNav/LevelSelectPage" to="." method="ReturnToTitle"]
+[connection signal="BackRequested" from="PageNav/CategorySelectPage" to="." method="OnBackPressed"]
+[connection signal="pressed" from="PageNav/CategorySelectPage/Buttons/AnyPercent" to="." method="StartAnyPercent"]
+[connection signal="pressed" from="BackButton" to="." method="OnBackPressed"]
