@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqh4hyr3v2be8"]
+[gd_scene load_steps=6 format=3 uid="uid://dqh4hyr3v2be8"]
 
 [ext_resource type="Script" path="res://Scripts/UIMenus/TimeTrialBriefingMenu.cs" id="1_g7ix7"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="2_4p3tb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2i6y4"]
 font_size = 20
+
+[sub_resource type="Gradient" id="Gradient_ovo6q"]
+offsets = PackedFloat32Array(0, 0.1, 0.25, 0.75, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.623377, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0.623377, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1kff0"]
+gradient = SubResource("Gradient_ovo6q")
 
 [node name="TimeTrialBriefingPage" type="Control"]
 layout_mode = 3
@@ -28,6 +35,19 @@ No collectables are required."
 label_settings = SubResource("LabelSettings_2i6y4")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextLegibilityShadow" type="TextureRect" parent="Instructions"]
+modulate = Color(1, 1, 1, 0.486275)
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1kff0")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
