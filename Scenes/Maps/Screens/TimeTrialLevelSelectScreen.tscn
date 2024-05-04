@@ -115,6 +115,6 @@ shortcut = SubResource("Shortcut_ag2fo")
 text = "Back"
 
 [connection signal="BackRequested" from="PageNav/LevelSelectPage" to="." method="ReturnToTitle"]
-[connection signal="BackRequested" from="PageNav/CategorySelectPage" to="." method="OnBackPressed"]
+[connection signal="BackRequested" from="PageNav/CategorySelectPage" to="." method="ShowLevelSelectPage"]
 [connection signal="pressed" from="PageNav/CategorySelectPage/Buttons/AnyPercentButton" to="." method="StartAnyPercent"]
 [connection signal="pressed" from="BackButton" to="." method="OnBackPressed"]
