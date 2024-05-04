@@ -25,12 +25,12 @@ namespace FastDragon
 
             if (timeTrialManager.Timer < timeTrialManager.TargetTime)
                 _animator.Queue("NewHighScore");
-        }
 
-        public override void _Process(double delta)
-        {
-            if (!_animator.IsPlaying())
+            _animator.AnimationFinished += (StringName animName) =>
+            {
                 _buttons.Visible = true;
+                FocusedControl.GrabFocus();
+            };
         }
 
         public void OnRetryPressed() => MapTransitionManager.Instance.RespawnPlayerAfterDeath();
