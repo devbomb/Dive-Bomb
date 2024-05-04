@@ -5,6 +5,11 @@ namespace FastDragon
 {
     public partial class PageNavigator : Control
     {
+        public Page CurrentPage => this.EnumerateChildren()
+            .Where(c => c is Page)
+            .Cast<Page>()
+            .FirstOrDefault(p => p.Visible);
+
         public void ChangePage(Page targetPage)
         {
             var pages = this.EnumerateChildren()
@@ -21,7 +26,8 @@ namespace FastDragon
                     : ProcessModeEnum.Disabled;
             }
 
-            targetPage.OnPageEntered();
+            targetPage?.OnPageEntered();
+            targetPage?.FocusedControl?.GrabFocus();
         }
     }
 }

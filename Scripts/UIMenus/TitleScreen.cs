@@ -38,6 +38,11 @@ namespace FastDragon
             MapTransitionManager.Instance.GoToMapWithFadeToBlack(SaveFile.Current.CurrentMap);
         }
 
+        public void TimeTrialMode()
+        {
+            MapTransitionManager.Instance.GoToTimeTrialLevelSelect();
+        }
+
         public void OpenMainPage()
         {
             _pageNav.ChangePage(GetNode<Page>("%MainPage"));

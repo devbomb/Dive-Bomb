@@ -11,6 +11,11 @@ namespace FastDragon
 
         private Player _ensnaredPlayer = null;
 
+        public override void _Ready()
+        {
+            SignalBus.Instance.LevelReset += OnLevelReset;
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
@@ -31,7 +36,9 @@ namespace FastDragon
                 delta
             );
 
-            if (_ensnaredPlayer.GlobalPosition.Y >= GlobalPosition.Y + ExitHeight)
+            bool playerReachedExitHeight = _ensnaredPlayer.GlobalPosition.Y >= GlobalPosition.Y + ExitHeight;
+            bool isTimeTrialMode = GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
+            if (playerReachedExitHeight && !isTimeTrialMode)
             {
                 MapTransitionManager.Instance.ExitLevel();
             }
@@ -44,7 +51,15 @@ namespace FastDragon
                 _ensnaredPlayer = p;
                 p.ChangeState<PlayerManhandledState>();
                 p.Animator.Play("Glide");
+
+                TimeTrialSaveData.Instance.UnlockAnyPercent(SaveFile.Current.CurrentMap);
+                GetTree().FindNode<TimeTrialManager>()?.Finish();
             }
+        }
+
+        private void OnLevelReset()
+        {
+            _ensnaredPlayer = null;
         }
     }
 }

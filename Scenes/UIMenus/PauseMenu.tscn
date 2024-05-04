@@ -66,6 +66,43 @@ text = "Exit Level"
 layout_mode = 2
 text = "Quit to title"
 
+[node name="TimeTrialMainPage" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_2prw7")
+
+[node name="TimeTrialButtons" type="VBoxContainer" parent="TimeTrialMainPage"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
+layout_mode = 2
+text = "Continue"
+
+[node name="ResetLevel" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
+layout_mode = 2
+text = "Reset"
+
+[node name="Options" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitToTitle" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
+layout_mode = 2
+text = "Quit to title"
+
 [node name="AtlasMenu" parent="." instance=ExtResource("3_0fbh4")]
 unique_name_in_owner = true
 visible = false
@@ -88,5 +125,9 @@ layout_mode = 1
 [connection signal="pressed" from="MainPage/Buttons/ResetLevel" to="." method="ResetLevel"]
 [connection signal="pressed" from="MainPage/Buttons/ExitLevel" to="." method="ExitLevel"]
 [connection signal="pressed" from="MainPage/Buttons/QuitToTitle" to="." method="QuitToTitle"]
+[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Continue" to="." method="Close"]
+[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/ResetLevel" to="." method="ResetLevel"]
+[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Options" to="." method="OpenUserSettingsMenu"]
+[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/QuitToTitle" to="." method="QuitToTitle"]
 [connection signal="BackRequested" from="AtlasMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="UserSettingsMenu" to="." method="OpenMainPage"]
