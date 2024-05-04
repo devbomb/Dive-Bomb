@@ -21,7 +21,7 @@ namespace FastDragon
         public class Entry
         {
             public bool AnyPercentUnlocked = false;
-            public double AnyPercentRecord = TimeSpan.MaxValue.TotalSeconds;
+            public double? AnyPercentRecord = null;
         }
 
         public Entry GetEntry(string mapFilePath)

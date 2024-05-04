@@ -105,7 +105,8 @@ namespace FastDragon
         private double GetSavedBestTime()
         {
             // TODO: Use a different time based on the current mode
-            return CurrentMapEntry().AnyPercentRecord;
+            double devTime = GetTree().FindNode<Player>().AnyPercentDevTime;
+            return CurrentMapEntry().AnyPercentRecord ?? devTime;
         }
 
         private void SetSavedBestTime(double time)
