@@ -85,6 +85,9 @@ namespace FastDragon
 
             IsTimerRunning = false;
             _pageNav.ChangePage(_resultsPage);
+
+            if (Timer < GetSavedBestTime())
+                SetSavedBestTime(Timer);
         }
 
         public override void _PhysicsProcess(double delta)
@@ -93,7 +96,25 @@ namespace FastDragon
                 Timer += delta;
 
             _timerLabel.Visible = IsTimeTrialMode;
-            _timerLabel.Text = TimeSpan.FromSeconds(Timer).ToString(@"mm\:ss\.ff");
+            _timerLabel.Text = TimeUtils.FormatStopwatch(Timer);
+        }
+
+        private double GetSavedBestTime()
+        {
+            // TODO: Use a different time based on the current mode
+            return CurrentMapEntry().AnyPercentRecord;
+        }
+
+        private void SetSavedBestTime(double time)
+        {
+            // TODO: Take the time trial mode into account
+            CurrentMapEntry().AnyPercentRecord = time;
+            TimeTrialSaveData.Instance.SaveToJson();
+        }
+
+        private TimeTrialSaveData.Entry CurrentMapEntry()
+        {
+            return TimeTrialSaveData.Instance.GetEntry(SaveFile.Current.CurrentMap);
         }
     }
 }
