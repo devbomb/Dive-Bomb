@@ -16,6 +16,7 @@ namespace FastDragon
         }
 
         public double Timer {get; private set;}
+        public double TargetTime {get; private set;}
 
         private Label _timerLabel => GetNode<Label>("%TimerLabel");
 
@@ -49,6 +50,8 @@ namespace FastDragon
             }
 
             Timer = 0;
+            TargetTime = GetSavedBestTime();
+
             IsTimerRunning = false;
             _pageNav.ChangePage(_briefingPage);
 
