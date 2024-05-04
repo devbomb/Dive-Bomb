@@ -5,3 +5,17 @@ indent_size = 4
 indent_style = space
 end_of_line = lf
 trim_trailing_whitespace = true
+
+# Stop dotnet_diagnostic from telling you to change instance methods to static.
+# That's a valid suggestion in normal C# projects, but Godot games are not
+# normal.
+#
+# Godot allows you to connect signals to node methods in the editor.  That only
+# works if the method isn't static.  VSCode doesn't know about this, though,
+# so it erroneously thinks that it's always safe to make some methods static,
+# unaware that you're using it as a signal handler.
+dotnet_diagnostic.CA1822.severity = none
+
+# Stop dotnet_diagnostic from complaining about naming rule violations.
+# We have our _own_ naming rules on this project, thank you very much!
+dotnet_diagnostic.IDE1006.severity = none
