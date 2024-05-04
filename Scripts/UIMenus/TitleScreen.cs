@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -40,8 +42,12 @@ namespace FastDragon
         {
             _pageNav.ChangePage(GetNode<Page>("%MainPage"));
 
-            _buttons.GetChild<Button>(0).GrabFocus();
             _continueButton.Visible = FileAccess.FileExists(Slot0Path);
+
+            _buttons.EnumerateChildren()
+                .Cast<Button>()
+                .First(b => b.Visible)
+                .GrabFocus();
         }
 
         public void OpenUserSettingsMenu()
