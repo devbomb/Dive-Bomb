@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd1cc1mq1gero"]
+[gd_scene load_steps=7 format=3 uid="uid://dpeq0las3r0em"]
 
 [ext_resource type="Script" path="res://Scripts/UIMenus/TimeTrialLevelSelectMenu.cs" id="1_ltvyt"]
 [ext_resource type="Script" path="res://Scripts/UIWidgets/PageNavigator.cs" id="1_rr5nf"]
+[ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_v3sch"]
 [ext_resource type="Script" path="res://Scripts/UIWidgets/Page.cs" id="2_555xp"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_i1ur0"]
@@ -18,7 +19,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_v3sch")
 script = ExtResource("1_ltvyt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="PageNav" type="Control" parent="."]
 unique_name_in_owner = true
