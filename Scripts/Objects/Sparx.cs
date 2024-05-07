@@ -229,9 +229,12 @@ namespace FastDragon
 
         private partial class CollectingGem : SparxState
         {
+            private float _speed;
+
             public override void OnStateEntered()
             {
                 ToggleTopLevel(true);
+                _speed = FlySpeed;
             }
 
             public override void OnStateExited()
@@ -263,13 +266,16 @@ namespace FastDragon
 
                 _sparx.GlobalPosition = _sparx.GlobalPosition.MoveToward(
                     gem.GlobalPosition,
-                    FlySpeed * delta
+                    _speed * delta
                 );
 
                 if (_sparx.GlobalPosition.IsEqualApprox(gem.GlobalPosition))
                 {
                     gem.StartHomingIn();
                     _sparx._gemQueue.Dequeue();
+
+                    // Fly faster if there are more gems to pick up
+                    _speed = FlySpeed * 2;
                 }
             }
 
