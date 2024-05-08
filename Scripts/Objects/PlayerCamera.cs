@@ -68,6 +68,20 @@ namespace FastDragon
             _stateMachine.ChangeState<Unlocked>();
         }
 
+        public void Reset()
+        {
+            _lagTimer = 0;
+            _lagDuration = 0;
+
+            _shakeTimer = 0;
+            _shakeDuration = 0;
+
+            OrbitDistance = Unlocked.FollowDistance;
+            ForceRecenter();
+
+            _stateMachine.ChangeState<Unlocked>();
+        }
+
         public override void _Process(double deltaD)
         {
             if (_shakeTimer < _shakeDuration)
@@ -137,13 +151,6 @@ namespace FastDragon
             OrbitYawRad = FollowTarget.GlobalRotation.Y;
             ApplyAnglesAndDistance();
             this.ResetPhysicsInterpolation();
-
-            // HACK: Force the Unlocked state's _prevPos field to reset.
-            // This fixes an auto-rotate problem when respawning
-            if (_stateMachine.CurrentState is Unlocked u)
-            {
-                _stateMachine.ChangeState<Unlocked>();
-            }
         }
 
         public void SuggestAngle(float yawRad, float pitchRad, float distance)
@@ -193,13 +200,13 @@ namespace FastDragon
 
         private partial class Unlocked : PlayerCameraState
         {
-            public float FollowDistance = 6;
-            public float ZoomSpeed = 4;
+            public const float FollowDistance = 6;
+            public const float ZoomSpeed = 4;
 
-            public float RightStickRotSpeedDeg = 180;
+            public const float RightStickRotSpeedDeg = 180;
 
-            public float MinOrbitPitchDeg = -89;
-            public float MaxOrbitPitchDeg = 0;
+            public const float MinOrbitPitchDeg = -89;
+            public const float MaxOrbitPitchDeg = 0;
 
             private Vector3 _prevPos;
 
