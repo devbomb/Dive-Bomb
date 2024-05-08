@@ -62,7 +62,7 @@ namespace FastDragon
         private float _lagDuration;
         private Transform3D _lagPosition;
 
-        private Transform3D _forcedPosition;
+        private Transform3D _fixedPosition;
 
         public override void _Ready()
         {
@@ -170,7 +170,7 @@ namespace FastDragon
 
         public void FixPosition(Transform3D position)
         {
-            _forcedPosition = position;
+            _fixedPosition = position;
             _stateMachine.ChangeState<UsingFixedPosition>();
         }
 
@@ -362,11 +362,29 @@ namespace FastDragon
 
         private partial class UsingFixedPosition : PlayerCameraState
         {
+            private const float TransitionDuration = 1;
+
+            private Transform3D _initialPos;
+            private float _timer;
+
+            public override void OnStateEntered()
+            {
+                _initialPos = _self.GlobalTransform;
+                _timer = 0;
+            }
+
             public override void _PhysicsProcess(double deltaD)
             {
-                // TODO: interpolate to the forced position
-                _self.GlobalTransform = _self._forcedPosition;
-                _self.ResetPhysicsInterpolation();
+                _timer += (float)deltaD;
+                if (_timer > TransitionDuration)
+                    _timer = TransitionDuration;
+
+                float t = _timer / TransitionDuration;
+
+                _self.GlobalTransform = _initialPos.InterpolateWith(
+                    _self._fixedPosition,
+                    MathUtils.LerpSinusoidal(0, 1, t)
+                );
             }
         }
 
