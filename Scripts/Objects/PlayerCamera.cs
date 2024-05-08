@@ -62,6 +62,8 @@ namespace FastDragon
         private float _lagDuration;
         private Transform3D _lagPosition;
 
+        private Transform3D _forcedPosition;
+
         public override void _Ready()
         {
             AddChild(_stateMachine);
@@ -163,6 +165,18 @@ namespace FastDragon
 
         public void StopSuggestingAngle()
         {
+            _stateMachine.ChangeState<Unlocked>();
+        }
+
+        public void FixPosition(Transform3D position)
+        {
+            _forcedPosition = position;
+            _stateMachine.ChangeState<UsingFixedPosition>();
+        }
+
+        public void StopFixingPosition()
+        {
+            // TODO: Go to some kind of transition state first
             _stateMachine.ChangeState<Unlocked>();
         }
 
@@ -342,6 +356,16 @@ namespace FastDragon
                 // ...unless the player has their OWN idea for a camera angle.
                 if (InputService.RightStick.Length() > 0.01f)
                     ChangeState<Unlocked>();
+            }
+        }
+
+        private partial class UsingFixedPosition : PlayerCameraState
+        {
+            public override void _PhysicsProcess(double deltaD)
+            {
+                // TODO: interpolate to the forced position
+                _self.GlobalTransform = _self._forcedPosition;
+                _self.ResetPhysicsInterpolation();
             }
         }
 

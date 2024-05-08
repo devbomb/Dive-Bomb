@@ -50,6 +50,10 @@
 	SuggestedDistance(float) : "SuggestedDistance" : 6
 ]
 
+@SolidClass = FixedCameraZone : "FixedCameraZone" [
+	TargetMarkerId(string) : "TargetMarkerId"
+]
+
 @PointClass
 	base(Angle)
 	size(-8 -8 -8, 8 8 8)
