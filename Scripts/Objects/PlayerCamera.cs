@@ -176,7 +176,8 @@ namespace FastDragon
 
         public void StopFixingPosition()
         {
-            // TODO: Go to some kind of transition state first
+            // HACK: Reuse the lag code to make it smoothly return to normal
+            Lag(1);
             _stateMachine.ChangeState<Unlocked>();
         }
 
