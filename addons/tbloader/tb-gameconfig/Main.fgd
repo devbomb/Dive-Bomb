@@ -157,3 +157,7 @@
 	specular(float) : "Specular" : 0.5 : "Intensity of the specular blob on reflective surfaces"
 	light_color(color255) : "Color" : "255 255 255"
 ]
+
+@PointClass = NamedMarker3D : "NamedMarker3D" [
+	MarkerId(string) : "MarkerId"
+]
