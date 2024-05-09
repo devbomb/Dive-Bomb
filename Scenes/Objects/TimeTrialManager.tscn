@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Objects/TimeTrialManager.cs" id="1_e1abn"]
 [ext_resource type="Script" path="res://Scripts/UIWidgets/PageNavigator.cs" id="2_jdmjo"]
-[ext_resource type="PackedScene" uid="uid://m1lnxuxiyxoe" path="res://Scenes/UIMenus/TimeTrialBriefingPage.tscn" id="3_xwoof"]
-[ext_resource type="PackedScene" uid="uid://djnfka8w1vstg" path="res://Scenes/UIMenus/TimeTrialResultsPage.tscn" id="4_elsja"]
+[ext_resource type="PackedScene" uid="uid://dqh4hyr3v2be8" path="res://Scenes/UIMenus/TimeTrialBriefingPage.tscn" id="3_xwoof"]
+[ext_resource type="PackedScene" uid="uid://drf8cyvxudjxn" path="res://Scenes/UIMenus/TimeTrialResultsPage.tscn" id="4_elsja"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bn2qp"]
 font_size = 30
@@ -41,6 +41,7 @@ layout_mode = 1
 
 [node name="TimerLabel" type="Label" parent="UI"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0

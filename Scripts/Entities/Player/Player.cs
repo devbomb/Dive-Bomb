@@ -162,7 +162,7 @@ namespace FastDragon
 
             CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
             CameraFocus.ResetPhysicsInterpolation();
-            Camera.ForceRecenter();
+            Camera.Reset();
 
             Animator.Play("RESET", 0);
             Animator.Advance(0);
