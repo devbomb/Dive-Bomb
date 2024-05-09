@@ -41,6 +41,8 @@ namespace FastDragon
             _player.Camera.OrbitDistance = PortalLoadingScreen.CameraDist;
             _player.Camera.OrbitYawRad = PortalLoadingScreen.EnterLevelCameraYawRad;
             _player.Camera.OrbitPitchRad = PortalLoadingScreen.EnterLevelCameraPitchRad;
+            _player.Camera.ApplyAnglesAndDistance();
+            _player.Camera.ResetPhysicsInterpolation();
         }
 
         public override void _PhysicsProcess(double deltaD)

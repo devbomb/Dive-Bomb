@@ -171,7 +171,7 @@ namespace FastDragon
             _stateMachine.ChangeState<Recentering>();
         }
 
-        private void ApplyAnglesAndDistance()
+        public void ApplyAnglesAndDistance()
         {
             Vector3 dir = Vector3.Back
                 .Rotated(Vector3.Right, OrbitPitchRad)
@@ -212,6 +212,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                _self.ApplyAnglesAndDistance();
                 _prevPos = _self.GlobalPosition;
             }
 
