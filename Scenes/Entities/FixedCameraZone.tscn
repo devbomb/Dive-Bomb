@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://du1ugbfhrlox"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/CameraZones/FixedCameraZone.cs" id="1_qn0sm"]
+
+[node name="FixedCameraZone" type="Area3D"]
+visible = false
+script = ExtResource("1_qn0sm")

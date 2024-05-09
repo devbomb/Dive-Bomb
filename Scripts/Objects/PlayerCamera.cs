@@ -62,6 +62,8 @@ namespace FastDragon
         private float _lagDuration;
         private Transform3D _lagPosition;
 
+        private Transform3D _fixedPosition;
+
         public override void _Ready()
         {
             AddChild(_stateMachine);
@@ -163,6 +165,19 @@ namespace FastDragon
 
         public void StopSuggestingAngle()
         {
+            _stateMachine.ChangeState<Unlocked>();
+        }
+
+        public void FixPosition(Transform3D position)
+        {
+            _fixedPosition = position;
+            _stateMachine.ChangeState<UsingFixedPosition>();
+        }
+
+        public void StopFixingPosition()
+        {
+            // HACK: Reuse the lag code to make it smoothly return to normal
+            Lag(1);
             _stateMachine.ChangeState<Unlocked>();
         }
 
@@ -342,6 +357,34 @@ namespace FastDragon
                 // ...unless the player has their OWN idea for a camera angle.
                 if (InputService.RightStick.Length() > 0.01f)
                     ChangeState<Unlocked>();
+            }
+        }
+
+        private partial class UsingFixedPosition : PlayerCameraState
+        {
+            private const float TransitionDuration = 1;
+
+            private Transform3D _initialPos;
+            private float _timer;
+
+            public override void OnStateEntered()
+            {
+                _initialPos = _self.GlobalTransform;
+                _timer = 0;
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer += (float)deltaD;
+                if (_timer > TransitionDuration)
+                    _timer = TransitionDuration;
+
+                float t = _timer / TransitionDuration;
+
+                _self.GlobalTransform = _initialPos.InterpolateWith(
+                    _self._fixedPosition,
+                    MathUtils.LerpSinusoidal(0, 1, t)
+                );
             }
         }
 
