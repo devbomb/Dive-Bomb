@@ -62,12 +62,22 @@ namespace FastDragon
 
         public void OnRolledInto()
         {
-            _stateMachine.ChangeState<Shattering>();
+            Shatter();
         }
 
         public void OnKicked()
         {
-            _stateMachine.ChangeState<Shattering>();
+            Shatter();
+        }
+
+        private void Shatter()
+        {
+            bool isTimeTrial = GetTree().Root.FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
+
+            if (isTimeTrial)
+                _stateMachine.ChangeState<QuickRescue>();
+            else
+                _stateMachine.ChangeState<Shattering>();
         }
 
         private void SetPausedForCutscene(bool paused)
@@ -241,6 +251,7 @@ namespace FastDragon
             {
                 _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Kiss", 0.3f);
+                _fairy.Animator.Queue("FlyAway");
             }
 
             public override void OnStateExited()
@@ -282,6 +293,24 @@ namespace FastDragon
                 _fairy.CutsceneCam.GlobalTransform = _start.InterpolateWith(end, t);
 
                 if (_timer > Duration)
+                    ChangeState<Rescued>();
+            }
+        }
+
+        private partial class QuickRescue : FairyState
+        {
+            public override void OnStateEntered()
+            {
+                _fairy.Glass.Visible = false;
+                _fairy.GlassParticles.Emitting = true;
+
+                _fairy.Animator.Play("Shatter");
+                _fairy.Animator.Queue("FlyAway");
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                if (!_fairy.Animator.IsPlaying())
                     ChangeState<Rescued>();
             }
         }
