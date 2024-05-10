@@ -83,20 +83,22 @@ layers = 9
 mesh = SubResource("CylinderMesh_6ps1h")
 
 [node name="DeathBarrier" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.08328, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 script = ExtResource("2_ab5yi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier"]
 shape = SubResource("WorldBoundaryShape3D_1mwof")
 
 [node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.20245, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 material_override = SubResource("StandardMaterial3D_vttnq")
 mesh = SubResource("PlaneMesh_gcvk4")
 script = SubResource("GDScript_awg70")
 
 [node name="SeamonsterBoss" parent="." node_paths=PackedStringArray("InitialSpawnPoint", "CameraFixPoint", "SpawnPoints") instance=ExtResource("5_pv6rf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -8.5)
+IdleDuration = 2.0
+SubmergeDepth = -15.0
 InitialSpawnPoint = NodePath("../BossNorthSpawn")
 CameraFixPoint = NodePath("../FixedCameraPos")
 SpawnPoints = [NodePath("../BossNorthSpawn"), NodePath("../BossWestSpawn"), NodePath("../BossEastSpawn")]

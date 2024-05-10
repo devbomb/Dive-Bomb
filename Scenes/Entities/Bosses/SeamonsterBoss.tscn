@@ -10,7 +10,7 @@ size = Vector3(10, 13, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_cnlwd"]
 size = Vector3(10, 13, 1)
 
-[node name="SeamonsterBoss" type="CharacterBody3D"]
+[node name="SeamonsterBoss" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_30y81")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
