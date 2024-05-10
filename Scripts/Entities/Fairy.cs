@@ -121,10 +121,13 @@ namespace FastDragon
 
         private partial class Shattering : FairyState
         {
+            private const float Duration = 1.7f;
+
             private static float PlayerJumpSpeed => Player.Jump.InitVSpeed / 4;
             private static float PlayerGravity => Player.Jump.ShortHopGravity / 8;
 
             private bool _playerLanded;
+            private float _timer;
 
             public override void OnStateEntered()
             {
@@ -146,6 +149,8 @@ namespace FastDragon
                 _fairy.Glass.Visible = false;
                 _fairy.GlassParticles.Emitting = true;
                 _fairy.Animator.Play("Shatter");
+
+                _timer = Duration;
             }
 
             public override void OnStateExited()
@@ -157,9 +162,11 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
+                _timer += delta;
+
                 ApplyGravityToPlayer(delta);
 
-                if (_playerLanded && !_fairy.Animator.IsPlaying())
+                if (_playerLanded && _timer >= Duration)
                     ChangeState<FlyingToPlayer>();
             }
 
