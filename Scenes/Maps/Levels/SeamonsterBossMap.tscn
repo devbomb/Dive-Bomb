@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://diu8ksph871m4"]
+[gd_scene load_steps=15 format=3 uid="uid://diu8ksph871m4"]
 
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Scenes/Entities/Player.tscn" id="1_0rosg"]
 [ext_resource type="Script" path="res://Scripts/Entities/DeathBarrier.cs" id="2_ab5yi"]
@@ -25,6 +25,7 @@ domain_warp_frequency = -0.09
 domain_warp_fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hf4iv"]
+resource_local_to_scene = true
 width = 1000
 height = 1000
 seamless = true
@@ -32,8 +33,16 @@ as_normal_map = true
 bump_strength = 18.7
 noise = SubResource("FastNoiseLite_6g4jw")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7bj12"]
+transparency = 1
+blend_mode = 3
+normal_enabled = true
+normal_scale = -0.64
+normal_texture = SubResource("NoiseTexture2D_hf4iv")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vttnq"]
 resource_local_to_scene = true
+next_pass = SubResource("StandardMaterial3D_7bj12")
 albedo_color = Color(0.130906, 0.460047, 0.430048, 1)
 roughness = 0.0
 normal_enabled = true
@@ -52,8 +61,8 @@ script/source = "extends MeshInstance3D
 @export var scroll_speed: float = 0.005
 
 func _process(delta):
-	var mat: StandardMaterial3D = material_override
-	mat.uv1_offset.y += scroll_speed * delta
+	material_override.uv1_offset.y += scroll_speed * delta
+	material_override.next_pass.uv1_offset.x -= scroll_speed * delta
 "
 
 [node name="SeamonsterBossMap" type="Node3D"]
