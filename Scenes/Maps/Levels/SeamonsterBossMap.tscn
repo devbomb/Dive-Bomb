@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=3 uid="uid://diu8ksph871m4"]
+
+[ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Scenes/Entities/Player.tscn" id="1_0rosg"]
+[ext_resource type="Script" path="res://Scripts/Entities/DeathBarrier.cs" id="2_ab5yi"]
+[ext_resource type="PackedScene" uid="uid://du1ugbfhrlox" path="res://Scenes/Entities/FixedCameraZone.tscn" id="3_krsp4"]
+[ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Scenes/Entities/NamedMarker3D.tscn" id="4_elxet"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fsvg7"]
+height = 1.0
+radius = 8.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6ps1h"]
+top_radius = 8.0
+bottom_radius = 8.0
+height = 1.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1mwof"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fkwgu"]
+plane = Plane(0, -1, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6g4jw"]
+noise_type = 0
+domain_warp_frequency = -0.09
+domain_warp_fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hf4iv"]
+width = 1000
+height = 1000
+seamless = true
+as_normal_map = true
+bump_strength = 18.7
+noise = SubResource("FastNoiseLite_6g4jw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vttnq"]
+resource_local_to_scene = true
+albedo_color = Color(0.130906, 0.460047, 0.430048, 1)
+roughness = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_hf4iv")
+rim_enabled = true
+anisotropy = 0.28
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.7
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gcvk4"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="GDScript" id="GDScript_awg70"]
+script/source = "extends MeshInstance3D
+
+@export var scroll_speed: float = 0.005
+
+func _process(delta):
+	var mat: StandardMaterial3D = material_override
+	mat.uv1_offset.y += scroll_speed * delta
+"
+
+[node name="SeamonsterBossMap" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.799884, 0.600155, 0, -0.600155, 0.799884, 0, 15.6251, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_0rosg")]
+LevelName = "Seamonster Boss"
+HomeWorldMap = "res://Scenes/Maps/Levels/TestMap.tscn"
+
+[node name="ArenaPlatform" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("CylinderShape3D_fsvg7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ArenaPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+layers = 9
+mesh = SubResource("CylinderMesh_6ps1h")
+
+[node name="DeathBarrier" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.08328, 0)
+script = ExtResource("2_ab5yi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier"]
+shape = SubResource("WorldBoundaryShape3D_1mwof")
+
+[node name="FixedCameraZone" parent="." instance=ExtResource("3_krsp4")]
+TargetMarkerId = "FixedCameraPos"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FixedCameraZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -54.1868, 0)
+shape = SubResource("WorldBoundaryShape3D_fkwgu")
+
+[node name="FixedCameraPos" parent="FixedCameraZone" instance=ExtResource("4_elxet")]
+transform = Transform3D(1, 0, 0, 0, 0.910294, 0.413963, 0, -0.413963, 0.910294, 0, 7.46817, 12.7544)
+MarkerId = "FixedCameraPos"
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.20245, 0)
+material_override = SubResource("StandardMaterial3D_vttnq")
+mesh = SubResource("PlaneMesh_gcvk4")
+script = SubResource("GDScript_awg70")
