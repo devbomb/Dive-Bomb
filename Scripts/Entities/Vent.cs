@@ -113,6 +113,7 @@ namespace FastDragon
 
                 _vent._cutsceneCam.GlobalTransform = _cameraStart;
                 _vent._cutsceneCam.MakeCurrent();
+                _vent._cutsceneCam.ResetPhysicsInterpolation();
 
                 Node3D ClosestCameraPoint()
                 {
@@ -135,25 +136,21 @@ namespace FastDragon
                 _player.Camera.MakeCurrent();
             }
 
-            public override void _Process(double deltaD)
-            {
-                _camTimer += (float)deltaD;
-
-                float t = Mathf.Min(_camTimer / EnterCameraMoveDuration, 1);
-                _vent._cutsceneCam.GlobalTransform = _cameraStart.InterpolateWith(
-                    _cameraEnd,
-                    t
-                );
-            }
-
             public override void _PhysicsProcess(double deltaD)
             {
                 _playerTimer += (float)deltaD;
+                _camTimer += (float)deltaD;
 
-                float t = Mathf.Min(_playerTimer / EnterTweenDuration, 1);
+                float camT = Mathf.Min(_camTimer / EnterCameraMoveDuration, 1);
+                _vent._cutsceneCam.GlobalTransform = _cameraStart.InterpolateWith(
+                    _cameraEnd,
+                    camT
+                );
+
+                float playerT = Mathf.Min(_playerTimer / EnterTweenDuration, 1);
                 _player.GlobalTransform = _playerStart.InterpolateWith(
                     _vent.GlobalTransform,
-                    t
+                    playerT
                 );
 
                 if (!_player.Animator.IsPlaying())
@@ -192,20 +189,15 @@ namespace FastDragon
                 _player.Camera.MakeCurrent();
             }
 
-            public override void _Process(double deltaD)
+            public override void _PhysicsProcess(double deltaD)
             {
-                _camTimer += (float)deltaD;
+                _timer +=(float)deltaD;
 
-                float t = Mathf.Min(_camTimer / MoveDuration, 1);
+                float t = Mathf.Min(_timer / MoveDuration, 1);
                 _vent._cutsceneCam.GlobalTransform = _camStart.InterpolateWith(
                     _player.Camera.GlobalTransform,
                     t
                 );
-            }
-
-            public override void _PhysicsProcess(double deltaD)
-            {
-                _timer +=(float)deltaD;
 
                 if (_timer >= MoveDuration)
                 {
