@@ -17,11 +17,13 @@ namespace FastDragon
         [Export] public Node3D CameraFixPoint;
         [Export] public Node3D[] SpawnPoints = new Node3D[0];
 
+        private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
+
         private readonly StateMachine _stateMachine = new StateMachine(typeof(SeamonsterBossState));
+        private readonly Random _rng = new Random();
 
-        private Transform3D CurrentSpawnPos;
+        private Transform3D _currentSpawnPos;
 
-        private Random _rng = new Random();
 
         public override void _Ready()
         {
@@ -36,7 +38,7 @@ namespace FastDragon
 
         public void Respawn()
         {
-            CurrentSpawnPos = InitialSpawnPoint.GlobalTransform;
+            _currentSpawnPos = InitialSpawnPoint.GlobalTransform;
             _stateMachine.ChangeState<Submerged>();
 
             // Hijack the camera
@@ -45,7 +47,7 @@ namespace FastDragon
 
         private void RandomizeSpawnPoint()
         {
-            CurrentSpawnPos = _rng.PickFrom(SpawnPoints).GlobalTransform;
+            _currentSpawnPos = _rng.PickFrom(SpawnPoints).GlobalTransform;
         }
 
         private abstract partial class SeamonsterBossState : State
@@ -59,7 +61,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self.GlobalTransform = _self.CurrentSpawnPos;
+                _self.GlobalTransform = _self._currentSpawnPos;
                 _self.GlobalPosition += Vector3.Up * _self.SubmergeDepth;
                 _self.ResetPhysicsInterpolation();
 
@@ -92,11 +94,11 @@ namespace FastDragon
                 _timer += (float)deltaD;
 
                 float t = Mathf.Min(_timer / _self.SurfacingDuration, 1);
-                _self.GlobalTransform = _initialPos.InterpolateWith(_self.CurrentSpawnPos, t);
+                _self.GlobalTransform = _initialPos.InterpolateWith(_self._currentSpawnPos, t);
 
                 if (_timer >= _self.SurfacingDuration)
                 {
-                    _self.GlobalTransform = _self.CurrentSpawnPos;
+                    _self.GlobalTransform = _self._currentSpawnPos;
                     ChangeState<Idle>();
                 }
 
@@ -110,6 +112,15 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = _self.IdleDuration;
+                _self._weakPoint.Visible = true;
+                _self._weakPoint.Disabled = false;
+                _self._weakPoint.Broken += OnBroken;
+            }
+
+            public override void OnStateExited()
+            {
+                _self._weakPoint.Disabled = true;
+                _self._weakPoint.Broken -= OnBroken;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -117,6 +128,12 @@ namespace FastDragon
                 _timer -= (float)deltaD;
                 if (_timer <= 0)
                     ChangeState<Submerging>();
+            }
+
+            private void OnBroken()
+            {
+                _self._weakPoint.Visible = false;
+                ChangeState<Submerging>();
             }
         }
 
@@ -131,7 +148,7 @@ namespace FastDragon
             {
                 _timer = 0;
                 _initialPos = _self.GlobalTransform;
-                _targetPos = _self.CurrentSpawnPos.Translated(Vector3.Up * _self.SubmergeDepth);
+                _targetPos = _self._currentSpawnPos.Translated(Vector3.Up * _self.SubmergeDepth);
             }
 
             public override void _PhysicsProcess(double deltaD)
