@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://u1dg26oq81vl"]
+[gd_scene load_steps=5 format=3 uid="uid://u1dg26oq81vl"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/Bosses/SeamonsterBoss.cs" id="1_30y81"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7am8x"]
 size = Vector3(10, 13, 1)
@@ -9,6 +11,7 @@ size = Vector3(10, 13, 1)
 size = Vector3(10, 13, 1)
 
 [node name="SeamonsterBoss" type="CharacterBody3D"]
+script = ExtResource("1_30y81")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
