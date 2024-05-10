@@ -301,7 +301,10 @@ namespace FastDragon
 
         private partial class QuickRescue : FairyState
         {
-            private Transform3D _offsetFromCamera;
+            private const float MoveToCameraDuration = 0.5f;
+
+            private Transform3D _initialOffsetFromCamera;
+            private float _timer;
 
             public override void OnStateEntered()
             {
@@ -311,12 +314,19 @@ namespace FastDragon
                 _fairy.Animator.Play("Shatter");
                 _fairy.Animator.Queue("FlyAway");
 
-                _offsetFromCamera = SaveOffsetFromCamera();
+                _initialOffsetFromCamera = SaveOffsetFromCamera();
+                _timer = 0;
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                MoveWithCamera();
+                _timer += (float)deltaD;
+                float t = Mathf.Min(_timer / MoveToCameraDuration, 1);
+                t = MathUtils.LerpSinusoidal(0, 1, t);
+
+                var offsetFromCamera = _initialOffsetFromCamera.InterpolateWith(Transform3D.Identity, t);
+                var camera = _fairy.Player.Camera.TimeTrialFairyRescuePos;
+                _fairy.Model.GlobalTransform = camera.GlobalTransform * offsetFromCamera;
 
                 if (!_fairy.Animator.IsPlaying())
                     ChangeState<Rescued>();
@@ -324,14 +334,8 @@ namespace FastDragon
 
             private Transform3D SaveOffsetFromCamera()
             {
-                var camera = GetTree().Root.GetCamera3D();
+                var camera = _fairy.Player.Camera.TimeTrialFairyRescuePos;
                 return camera.GlobalTransform.AffineInverse() * _fairy.Model.GlobalTransform;
-            }
-
-            private void MoveWithCamera()
-            {
-                var camera =  GetTree().Root.GetCamera3D();
-                _fairy.Model.GlobalTransform = camera.GlobalTransform * _offsetFromCamera;
             }
         }
 
