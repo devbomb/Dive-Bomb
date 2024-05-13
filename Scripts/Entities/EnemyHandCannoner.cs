@@ -2,8 +2,10 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class EnemyHandCannoner : StaticBody3D, IRollable
+    public partial class EnemyHandCannoner : StaticBody3D, IBreakable
     {
+        public bool VulnerableToKick => false;
+
         [Export] public GemColor GemColor = GemColor.Red;
         [Export] public PackedScene ProjectilePrefab;
         [Export] public float ShieldDuration = 1.5f;
@@ -58,7 +60,7 @@ namespace FastDragon
             _bodyShape.Disabled = !state.EnableCollision;
         }
 
-        public void OnRolledInto()
+        public void OnBroken()
         {
             if (IsAlive)
                 _stateMachine.ChangeState<Dieing>();

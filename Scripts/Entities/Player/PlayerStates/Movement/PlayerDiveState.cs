@@ -13,7 +13,7 @@ namespace FastDragon
 
         private float _redirectTimer;
 
-        private List<IRollable> _brokenObjects = new List<IRollable>();
+        private List<IBreakable> _brokenObjects = new List<IBreakable>();
 
         public override void OnStateEntered()
         {
@@ -64,16 +64,17 @@ namespace FastDragon
             ApplyGravity(delta, Player.Dive.Gravity);
 
             _brokenObjects.Clear();
-            bool bonked = MoveAndSlideBreakingObjects<IRollable>(
-                isBreakable: r => true,
-                causesBonkWhenBroken: r => r.CausesBonk,
+            bool bonked = MoveAndSlideBreakingObjects<IBreakable>(
+                isBreakable: b => b.VulnerableToRoll,
+                causesBonkWhenBroken: b => b.CausesBonk,
                 brokenObjects: _brokenObjects,
                 delta
             );
 
-            foreach (var r in _brokenObjects)
+            foreach (var b in _brokenObjects)
             {
-                OnBroke(r);
+                b.OnRolledInto();
+                Break(b);
             }
 
             if (bonked)
@@ -97,24 +98,30 @@ namespace FastDragon
 
             foreach (var body in bodies)
             {
-                if (body is IRollable r)
+                if (body is IBreakable b && b.VulnerableToRoll)
                 {
-                    OnBroke(r);
+                    b.OnRolledInto();
+
+                    if (b.VulnerableToRoll)
+                        Break(b);
                 }
             }
 
             foreach (var area in areas)
             {
-                if (area is IRollable r)
+                if (area is IBreakable b && b.VulnerableToRoll)
                 {
-                    OnBroke(r);
+                    b.OnRolledInto();
+
+                    if (b.VulnerableToRoll)
+                        Break(b);
                 }
             }
         }
 
-        private void OnBroke(IRollable r)
+        private void Break(IBreakable b)
         {
-            r.OnRolledInto();
+            b.OnBroken();
             _player.Camera.Shake(
                 CameraShakeMagnitude,
                 CameraShakeFrequency,
