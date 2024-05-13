@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace FastDragon
 {
-    public partial class EnemyVulture : CharacterBody3D, IRollable, IKickable
+    public partial class EnemyVulture : CharacterBody3D, IBreakable
     {
         public const float MaxSpeed = Player.Walk.Speed * 1.5f;
         public const float Accel = 32;
@@ -59,12 +59,7 @@ namespace FastDragon
             _stateMachine.ChangeState<Idle>();
         }
 
-        public void OnRolledInto()
-        {
-            if (!IsDead) _stateMachine.ChangeState<Dead>();
-        }
-
-        public void OnKicked()
+        public void OnBroken()
         {
             if (!IsDead) _stateMachine.ChangeState<Dead>();
         }

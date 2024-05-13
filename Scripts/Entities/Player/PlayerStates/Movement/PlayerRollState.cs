@@ -18,7 +18,7 @@ namespace FastDragon
         private float _timer;
         private bool _isGroundRoll;
 
-        private List<IRollable> _brokenObjects = new List<IRollable>();
+        private List<IBreakable> _brokenObjects = new List<IBreakable>();
 
         public override void OnStateEntered(State oldState)
         {
@@ -78,16 +78,17 @@ namespace FastDragon
             RotateInstantlyTowardVelocity();
 
             _brokenObjects.Clear();
-            MoveAndSlideBreakingObjects<IRollable>(
-                isBreakable: r => true,
-                causesBonkWhenBroken: r => r.CausesBonk,
+            MoveAndSlideBreakingObjects<IBreakable>(
+                isBreakable: b => b.VulnerableToRoll,
+                causesBonkWhenBroken: b => b.CausesBonk,
                 _brokenObjects,
                 delta
             );
 
-            foreach (var r in _brokenObjects)
+            foreach (var b in _brokenObjects)
             {
-                OnBroke(r);
+                b.OnRolledInto();
+                Break(b);
             }
 
             // TODO: Don't apply the extra hitbox to objects that have already
@@ -116,24 +117,30 @@ namespace FastDragon
 
             foreach (var body in bodies)
             {
-                if (body is IRollable r)
+                if (body is IBreakable b && b.VulnerableToRoll)
                 {
-                    OnBroke(r);
+                    b.OnRolledInto();
+
+                    if (b.VulnerableToRoll)
+                        Break(b);
                 }
             }
 
             foreach (var area in areas)
             {
-                if (area is IRollable r)
+                if (area is IBreakable b)
                 {
-                    OnBroke(r);
+                    b.OnRolledInto();
+
+                    if (b.VulnerableToRoll)
+                        Break(b);
                 }
             }
         }
 
-        private void OnBroke(IRollable r)
+        private void Break(IBreakable b)
         {
-            r.OnRolledInto();
+            b.OnBroken();
             _player.Camera.Shake(
                 CameraShakeMagnitude,
                 CameraShakeFrequency,

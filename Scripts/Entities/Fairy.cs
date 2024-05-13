@@ -3,7 +3,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Fairy : StaticBody3D, IRollable, IKickable
+    public partial class Fairy : StaticBody3D, IBreakable
     {
         private readonly StateMachine _stateMachine = new StateMachine(typeof(FairyState));
         private Transform3D _initialModelPos;
@@ -61,12 +61,7 @@ namespace FastDragon
             }
         }
 
-        public void OnRolledInto()
-        {
-            Shatter();
-        }
-
-        public void OnKicked()
+        public void OnBroken()
         {
             Shatter();
         }

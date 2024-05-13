@@ -72,24 +72,30 @@ namespace FastDragon
 
             foreach (var body in bodies)
             {
-                if (body is IKickable k)
+                if (body is IBreakable b)
                 {
-                    OnBroke(k);
+                    b.OnKicked();
+
+                    if (b.VulnerableToKick)
+                        Break(b);
                 }
             }
 
             foreach (var area in areas)
             {
-                if (area is IKickable k)
+                if (area is IBreakable b)
                 {
-                    OnBroke(k);
+                    b.OnKicked();
+
+                    if (b.VulnerableToKick)
+                        Break(b);
                 }
             }
         }
 
-        private void OnBroke(IKickable k)
+        private void Break(IBreakable b)
         {
-            k.OnKicked();
+            b.OnBroken();
             _player.Camera.Shake(
                 CameraShakeMagnitude,
                 CameraShakeFrequency,

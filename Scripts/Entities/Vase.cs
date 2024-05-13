@@ -2,8 +2,10 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Vase : StaticBody3D, IRollable
+    public partial class Vase : StaticBody3D, IBreakable
     {
+        public bool VulnerableToKick => false;
+
         [Export] public GemColor GemColor = GemColor.Red;
 
         private CollisionShape3D _collisionShape => GetNode<CollisionShape3D>("%CollisionShape");
@@ -28,7 +30,7 @@ namespace FastDragon
             _model.Visible = !_gem.IsCollected;
         }
 
-        public void OnRolledInto()
+        public void OnBroken()
         {
             _collisionShape.Disabled = true;
             _model.Visible = false;
