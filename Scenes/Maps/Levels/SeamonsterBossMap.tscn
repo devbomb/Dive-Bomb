@@ -102,7 +102,7 @@ SubmergeDepth = -15.0
 InitialSpawnPoint = NodePath("../BossNorthSpawn")
 CameraFixPoint = NodePath("../FixedCameraPos")
 SpawnPoints = [NodePath("../BossNorthSpawn"), NodePath("../BossWestSpawn"), NodePath("../BossEastSpawn")]
-PowerOrbs = [NodePath("../PowerOrbs/North"), NodePath("../PowerOrbs/South"), NodePath("../PowerOrbs/East"), NodePath("../PowerOrbs/West")]
+PowerOrbs = [NodePath("../PowerOrbs/North"), NodePath("../PowerOrbs/South"), NodePath("../PowerOrbs/East"), NodePath("../PowerOrbs/West"), NodePath("../PowerOrbs/Center")]
 
 [node name="BossNorthSpawn" type="Marker3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -8.5)
@@ -131,3 +131,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0)
 
 [node name="West" parent="PowerOrbs" instance=ExtResource("5_6lj42")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
+
+[node name="Center" parent="PowerOrbs" instance=ExtResource("5_6lj42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

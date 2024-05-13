@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -56,7 +57,9 @@ namespace FastDragon
 
         private void RevealPowerOrbs()
         {
-            foreach (var orb in PowerOrbs)
+            var selectedOrbs = _rng.Shuffle(PowerOrbs).Take(4);
+
+            foreach (var orb in selectedOrbs)
                 orb.Reveal();
         }
 
