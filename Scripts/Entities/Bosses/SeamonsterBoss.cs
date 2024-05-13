@@ -9,13 +9,14 @@ namespace FastDragon
         [Export] public float SubmergedDuration = 1;
         [Export] public float SubmergingDuration = 0.5f;
         [Export] public float SurfacingDuration = 0.5f;
-        [Export] public float IdleDuration = 1f;
+        [Export] public float IdleDuration = 5f;
 
         [ExportCategory("Points")]
         [Export] public float SubmergeDepth = -14;
         [Export] public Node3D InitialSpawnPoint;
         [Export] public Node3D CameraFixPoint;
         [Export] public Node3D[] SpawnPoints = new Node3D[0];
+        [Export] public PowerOrb[] PowerOrbs = new PowerOrb[0];
 
         [ExportCategory("Attack Parameters")]
         [ExportGroup("Thick Beam")]
@@ -51,6 +52,18 @@ namespace FastDragon
 
             // Hijack the camera
             GetTree().FindNode<Player>().Camera.FixPosition(CameraFixPoint.GlobalTransform);
+        }
+
+        private void RevealPowerOrbs()
+        {
+            foreach (var orb in PowerOrbs)
+                orb.Reveal();
+        }
+
+        private void HidePowerOrbs()
+        {
+            foreach (var orb in PowerOrbs)
+                orb.SetHidden();
         }
 
         private void RandomizeSpawnPoint()
@@ -95,6 +108,8 @@ namespace FastDragon
             {
                 _timer = 0;
                 _initialPos = _self.GlobalTransform;
+
+                _self.RevealPowerOrbs();
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -199,6 +214,8 @@ namespace FastDragon
                 _timer = 0;
                 _initialPos = _self.GlobalTransform;
                 _targetPos = _self._currentSpawnPos.Translated(Vector3.Up * _self.SubmergeDepth);
+
+                _self.HidePowerOrbs();
             }
 
             public override void _PhysicsProcess(double deltaD)
