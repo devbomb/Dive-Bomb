@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class BreakableStaticBody3D : Area3D, IBreakable
+    public partial class BreakableStaticBody3D : StaticBody3D, IBreakable
     {
         [Signal] public delegate void KickedEventHandler();
         [Signal] public delegate void RolledIntoEventHandler();
