@@ -83,7 +83,7 @@ namespace FastDragon
 
             foreach (var area in areas)
             {
-                if (area is IBreakable b && b.VulnerableToKick)
+                if (area is IBreakable b)
                 {
                     b.OnKicked();
 
