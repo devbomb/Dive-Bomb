@@ -16,7 +16,7 @@ size = Vector3(10, 13, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_t30qc"]
 height = 0.25
-radius = 1.0
+radius = 2.0
 
 [sub_resource type="Gradient" id="Gradient_f22uf"]
 interpolation_mode = 1
