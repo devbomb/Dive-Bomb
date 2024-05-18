@@ -33,6 +33,7 @@ namespace FastDragon
         private readonly Random _rng = new Random();
 
         private Transform3D _currentSpawnPos;
+        private PowerOrb[] _chosenPowerOrbs = new PowerOrb[0];
 
 
         public override void _Ready()
@@ -57,9 +58,11 @@ namespace FastDragon
 
         private void RevealPowerOrbs()
         {
-            var selectedOrbs = _rng.Shuffle(PowerOrbs).Take(4);
+            _chosenPowerOrbs = _rng.Shuffle(PowerOrbs)
+                .Take(4)
+                .ToArray();
 
-            foreach (var orb in selectedOrbs)
+            foreach (var orb in _chosenPowerOrbs)
                 orb.Reveal();
         }
 
@@ -67,6 +70,17 @@ namespace FastDragon
         {
             foreach (var orb in PowerOrbs)
                 orb.SetHidden();
+        }
+
+        private void ShowWeakPoint(bool shouldShow)
+        {
+            _weakPoint.Disabled = !shouldShow;
+            _weakPoint.Visible = shouldShow;
+        }
+
+        private bool AllPowerOrbsBroken()
+        {
+            return _chosenPowerOrbs.Length > 0 && _chosenPowerOrbs.All(o => o.IsBroken);
         }
 
         private void RandomizeSpawnPoint()
@@ -139,8 +153,6 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _self._weakPoint.Visible = true;
-                _self._weakPoint.Disabled = false;
                 _self._weakPoint.Broken += OnDamagedByPlayer;
 
                 _damagedPlayer = false;
@@ -152,7 +164,7 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
-                _self._weakPoint.Disabled = true;
+                _self.ShowWeakPoint(false);
                 _self._weakPoint.Broken -= OnDamagedByPlayer;
 
                 _self._thickBeam.Visible = false;
@@ -166,6 +178,16 @@ namespace FastDragon
 
                 _timer += delta;
 
+                _self.ShowWeakPoint(_self.AllPowerOrbsBroken());
+
+                UpdateThickBeam(delta);
+
+                if (_timer >= _self.IdleDuration)
+                    ChangeState<Submerging>();
+            }
+
+            private void UpdateThickBeam(float delta)
+            {
                 if (_timer >= _self.ThickBeamStartDelay && !_damagedPlayer)
                 {
                     _self._thickBeam.Visible = true;
@@ -178,9 +200,6 @@ namespace FastDragon
                         _self.ThickBeamTargetMoveSpeed * delta
                     );
                 }
-
-                if (_timer >= _self.IdleDuration)
-                    ChangeState<Submerging>();
             }
 
             private void OnDamagedByPlayer()
