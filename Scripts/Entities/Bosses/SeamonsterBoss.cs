@@ -12,6 +12,7 @@ namespace FastDragon
         [Export] public float SurfacingDuration = 0.5f;
         [Export] public float IdleDuration = 5f;
         [Export] public float VulnerableDuration = 3;
+        [Export] public float LaughingDuration = 3;
 
         [ExportCategory("Points")]
         [Export] public float SubmergeDepth = -14;
@@ -149,13 +150,11 @@ namespace FastDragon
         private partial class Idle : SeamonsterBossState
         {
             private float _timer;
-            private bool _damagedPlayer;
 
             public override void OnStateEntered()
             {
                 _timer = 0;
 
-                _damagedPlayer = false;
                 _self._thickBeam.DamagedPlayer += OnDealtDamageToPlayer;
                 _self._thickBeam.TargetPos = PlayerPos();
                 _self._thickBeam.Radius = _self.ThickBeamRadius;
@@ -192,7 +191,7 @@ namespace FastDragon
 
             private void UpdateThickBeam(float delta)
             {
-                if (_timer >= _self.ThickBeamStartDelay && !_damagedPlayer)
+                if (_timer >= _self.ThickBeamStartDelay)
                 {
                     _self._thickBeam.Visible = true;
                     _self._thickBeam.DamageEnabled = true;
@@ -208,10 +207,7 @@ namespace FastDragon
 
             private void OnDealtDamageToPlayer()
             {
-                _damagedPlayer = true;
-
-                _self._thickBeam.Visible = false;
-                _self._thickBeam.DamageEnabled = false;
+                ChangeState<Laughing>();
             }
 
             private Vector3 PlayerPos()
@@ -252,7 +248,33 @@ namespace FastDragon
             {
                 ChangeState<Submerging>();
             }
+        }
 
+        private partial class Laughing : SeamonsterBossState
+        {
+            private float _timer;
+
+            public override void OnStateEntered()
+            {
+                _timer = _self.LaughingDuration;
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer -= (float)deltaD;
+
+                if (_self.AllPowerOrbsBroken())
+                {
+                    ChangeState<Vulnerable>();
+                    return;
+                }
+
+                if (_timer <= 0)
+                {
+                    ChangeState<Submerging>();
+                    return;
+                }
+            }
         }
 
         private partial class Submerging : SeamonsterBossState
