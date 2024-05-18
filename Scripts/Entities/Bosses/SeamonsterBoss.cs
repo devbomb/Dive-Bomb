@@ -20,6 +20,7 @@ namespace FastDragon
         [ExportCategory("Attack Parameters")]
         [ExportGroup("Thick Beam")]
         [Export] public float ThickBeamRadius = 1;
+        [Export] public float ThickBeamElongateSpeed = 40;
         [Export] public float ThickBeamTargetMoveSpeed = 2.5f;
         [Export] public float ThickBeamStartDelay = 0.5f;
 
@@ -128,6 +129,7 @@ namespace FastDragon
                 _self._thickBeam.DamagedPlayer += OnDealtDamageToPlayer;
                 _self._thickBeam.TargetPos = PlayerPos();
                 _self._thickBeam.Radius = _self.ThickBeamRadius;
+                _self._thickBeam.MaxLength = 0;
             }
 
             public override void OnStateExited()
@@ -150,6 +152,9 @@ namespace FastDragon
                 {
                     _self._thickBeam.Visible = true;
                     _self._thickBeam.DamageEnabled = true;
+
+                    _self._thickBeam.MaxLength += _self.ThickBeamElongateSpeed * delta;
+
                     _self._thickBeam.TargetPos = _self._thickBeam.TargetPos.MoveToward(
                         PlayerPos(),
                         _self.ThickBeamTargetMoveSpeed * delta
