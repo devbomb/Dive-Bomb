@@ -11,6 +11,7 @@ namespace FastDragon
         [Export] public float SubmergingDuration = 0.5f;
         [Export] public float SurfacingDuration = 0.5f;
         [Export] public float IdleDuration = 5f;
+        [Export] public float VulnerableDuration = 3;
 
         [ExportCategory("Points")]
         [Export] public float SubmergeDepth = -14;
@@ -153,7 +154,6 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _self._weakPoint.Broken += OnDamagedByPlayer;
 
                 _damagedPlayer = false;
                 _self._thickBeam.DamagedPlayer += OnDealtDamageToPlayer;
@@ -164,9 +164,6 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
-                _self.ShowWeakPoint(false);
-                _self._weakPoint.Broken -= OnDamagedByPlayer;
-
                 _self._thickBeam.Visible = false;
                 _self._thickBeam.DamageEnabled = false;
                 _self._thickBeam.DamagedPlayer -= OnDealtDamageToPlayer;
@@ -178,12 +175,19 @@ namespace FastDragon
 
                 _timer += delta;
 
-                _self.ShowWeakPoint(_self.AllPowerOrbsBroken());
-
                 UpdateThickBeam(delta);
 
+                if (_self.AllPowerOrbsBroken())
+                {
+                    ChangeState<Vulnerable>();
+                    return;
+                }
+
                 if (_timer >= _self.IdleDuration)
+                {
                     ChangeState<Submerging>();
+                    return;
+                }
             }
 
             private void UpdateThickBeam(float delta)
@@ -202,12 +206,6 @@ namespace FastDragon
                 }
             }
 
-            private void OnDamagedByPlayer()
-            {
-                _self._weakPoint.Visible = false;
-                ChangeState<Submerging>();
-            }
-
             private void OnDealtDamageToPlayer()
             {
                 _damagedPlayer = true;
@@ -222,6 +220,39 @@ namespace FastDragon
                     .GlobalPosition
                     .Flattened();
             }
+        }
+
+        private partial class Vulnerable : SeamonsterBossState
+        {
+            private float _timer;
+
+            public override void OnStateEntered()
+            {
+                _self.ShowWeakPoint(true);
+                _self._weakPoint.Broken += OnDamagedByPlayer;
+
+                _timer = _self.VulnerableDuration;
+            }
+
+            public override void OnStateExited()
+            {
+                _self.ShowWeakPoint(false);
+                _self._weakPoint.Broken -= OnDamagedByPlayer;
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer -= (float)deltaD;
+
+                if (_timer <= 0)
+                    ChangeState<Submerging>();
+            }
+
+            private void OnDamagedByPlayer()
+            {
+                ChangeState<Submerging>();
+            }
+
         }
 
         private partial class Submerging : SeamonsterBossState
