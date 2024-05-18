@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://u1dg26oq81vl"]
+[gd_scene load_steps=15 format=3 uid="uid://u1dg26oq81vl"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Bosses/SeamonsterBoss.cs" id="1_30y81"]
 [ext_resource type="Script" path="res://Scripts/Objects/BreakableArea3D.cs" id="2_rlh65"]
 [ext_resource type="Script" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="3_phdjg"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_mmiw0"]
+[ext_resource type="PackedScene" uid="uid://umwpgtg2tbmi" path="res://Scenes/Objects/Projectiles/ThickBeam.tscn" id="5_bboy2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cnlwd"]
 size = Vector3(10, 13, 1)
@@ -84,3 +85,8 @@ Text = "ROLL OR DIVE, NO KICK"
 Material = SubResource("StandardMaterial3D_upxpg")
 Font = ExtResource("4_mmiw0")
 FontSize = 48
+
+[node name="ThickBeam" parent="." instance=ExtResource("5_bboy2")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.0528, 0.573061)
+visible = false

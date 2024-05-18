@@ -17,7 +17,14 @@ namespace FastDragon
         [Export] public Node3D CameraFixPoint;
         [Export] public Node3D[] SpawnPoints = new Node3D[0];
 
+        [ExportCategory("Attack Parameters")]
+        [ExportGroup("Thick Beam")]
+        [Export] public float ThickBeamRadius = 1;
+        [Export] public float ThickBeamTargetMoveSpeed = 2.5f;
+        [Export] public float ThickBeamStartDelay = 0.5f;
+
         private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
+        private ThickBeam _thickBeam => GetNode<ThickBeam>("%ThickBeam");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(SeamonsterBossState));
         private readonly Random _rng = new Random();
@@ -108,32 +115,70 @@ namespace FastDragon
         private partial class Idle : SeamonsterBossState
         {
             private float _timer;
+            private bool _damagedPlayer;
 
             public override void OnStateEntered()
             {
-                _timer = _self.IdleDuration;
+                _timer = 0;
                 _self._weakPoint.Visible = true;
                 _self._weakPoint.Disabled = false;
-                _self._weakPoint.Broken += OnBroken;
+                _self._weakPoint.Broken += OnDamagedByPlayer;
+
+                _damagedPlayer = false;
+                _self._thickBeam.DamagedPlayer += OnDealtDamageToPlayer;
+                _self._thickBeam.TargetPos = PlayerPos();
+                _self._thickBeam.Radius = _self.ThickBeamRadius;
             }
 
             public override void OnStateExited()
             {
                 _self._weakPoint.Disabled = true;
-                _self._weakPoint.Broken -= OnBroken;
+                _self._weakPoint.Broken -= OnDamagedByPlayer;
+
+                _self._thickBeam.Visible = false;
+                _self._thickBeam.DamageEnabled = false;
+                _self._thickBeam.DamagedPlayer -= OnDealtDamageToPlayer;
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _timer -= (float)deltaD;
-                if (_timer <= 0)
+                float delta = (float)deltaD;
+
+                _timer += delta;
+
+                if (_timer >= _self.ThickBeamStartDelay && !_damagedPlayer)
+                {
+                    _self._thickBeam.Visible = true;
+                    _self._thickBeam.DamageEnabled = true;
+                    _self._thickBeam.TargetPos = _self._thickBeam.TargetPos.MoveToward(
+                        PlayerPos(),
+                        _self.ThickBeamTargetMoveSpeed * delta
+                    );
+                }
+
+                if (_timer >= _self.IdleDuration)
                     ChangeState<Submerging>();
             }
 
-            private void OnBroken()
+            private void OnDamagedByPlayer()
             {
                 _self._weakPoint.Visible = false;
                 ChangeState<Submerging>();
+            }
+
+            private void OnDealtDamageToPlayer()
+            {
+                _damagedPlayer = true;
+
+                _self._thickBeam.Visible = false;
+                _self._thickBeam.DamageEnabled = false;
+            }
+
+            private Vector3 PlayerPos()
+            {
+                return GetTree().FindNode<Player>()
+                    .GlobalPosition
+                    .Flattened();
             }
         }
 
