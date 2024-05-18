@@ -187,15 +187,20 @@ namespace FastDragon
         ///
         /// If the player is not currently vulnerable, then this method does
         /// nothing.
+        ///
+        /// Returns true if the player was successfully damaged, or false otherwise
         /// </summary>
         /// <typeparam name="TState"></typeparam>
-        public void TryDamage<TState>() where TState : PlayerState, new()
+        public bool TryDamage<TState>() where TState : PlayerState, new()
         {
             if (!CurrentState.Invincible)
             {
                 SaveFile.Current.PlayerHealth--;
                 ChangeState<TState>();
+                return true;
             }
+
+            return false;
         }
 
         private void UpdateAtlasCache()
