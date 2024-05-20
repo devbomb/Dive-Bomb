@@ -120,6 +120,17 @@ namespace FastDragon
             _currentSpawnPos = _rng.PickFrom(SpawnPoints).GlobalTransform;
         }
 
+        private void ChooseAttack()
+        {
+            var attacks = new Type[]
+            {
+                typeof(WavesAttack),
+                typeof(ThickBeamAttack)
+            };
+            var chosenState = _rng.PickFrom(attacks);
+            _stateMachine.ChangeState(chosenState);
+        }
+
         private abstract partial class SeamonsterBossState : State
         {
             protected SeamonsterBoss _self => _stateMachine.GetParent<SeamonsterBoss>();
@@ -171,7 +182,7 @@ namespace FastDragon
                 if (_timer >= _self.SurfacingDuration)
                 {
                     _self.GlobalTransform = _self._currentSpawnPos;
-                    ChangeState<WavesAttack>();
+                    _self.ChooseAttack();
                 }
 
             }
