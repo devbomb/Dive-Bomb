@@ -51,6 +51,37 @@ namespace FastDragon
             CurrentState.OnStateEntered();
         }
 
+        public void ChangeState(Type stateType)
+        {
+            // Get the incoming state's node.
+            // If it doesn't exist yet, create it.
+            State incomingState = States().FirstOrDefault(s => s.GetType() == stateType);
+            if (incomingState == null)
+            {
+                incomingState = (State)Activator.CreateInstance(stateType);
+                AddChild(incomingState);
+            }
+
+            EmitSignal(SignalName.StateChanging, CurrentState, incomingState);
+
+            // Let the previous state know that it's exiting
+            CurrentState?.OnStateExited();
+
+            // Disable the previous state.
+            // ...and all the other states, too, just for good measure.
+            foreach (var state in States())
+            {
+                state.ProcessMode = ProcessModeEnum.Disabled;
+            }
+
+            // Switch to the new state and enable it.
+            State prevState = CurrentState;
+            CurrentState = incomingState;
+            CurrentState.ProcessMode = ProcessModeEnum.Inherit;
+            CurrentState.OnStateEntered(prevState);
+            CurrentState.OnStateEntered();
+        }
+
         private IEnumerable<State> States()
         {
             for (int i = 0; i < GetChildCount(); i++)
