@@ -5,6 +5,8 @@ namespace FastDragon
 {
     public partial class StraightWave : Node3D
     {
+        [Signal] public delegate void DamagedPlayerEventHandler();
+
         [Export] public float Radius = 0.5f;
         [Export] public float StartWidth = 1;
         [Export] public float EndWidth = 10;
@@ -45,7 +47,10 @@ namespace FastDragon
                 .Cast<Player>()
                 .FirstOrDefault();
 
-            player?.TryDamage<PlayerDamageFlipState>();
+            if (player?.TryDamage<PlayerDamageFlipState>() ?? false)
+            {
+                EmitSignal(SignalName.DamagedPlayer);
+            }
 
             // Destroy when done
             if (_timer >= Duration)
