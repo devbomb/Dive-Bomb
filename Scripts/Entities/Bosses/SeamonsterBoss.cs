@@ -10,7 +10,7 @@ namespace FastDragon
         [Export] public float SubmergedDuration = 1;
         [Export] public float SubmergingDuration = 0.5f;
         [Export] public float SurfacingDuration = 0.5f;
-        [Export] public float IdleDuration = 5f;
+        [Export] public float ThickBeamDuration = 5f;
         [Export] public float VulnerableDuration = 3;
         [Export] public float LaughingDuration = 3;
 
@@ -34,6 +34,9 @@ namespace FastDragon
         [Export] public float WaveEndWidth = 16;
         [Export] public float WaveDistance = 16;
         [Export] public float WaveDuration = 2;
+
+        [Export] public float WaveInterval = 1.67f;
+        [Export] public int WaveCount = 3;
 
         [ExportCategory("Prefabs")]
         [ExportGroup("Prefabs")]
@@ -90,6 +93,21 @@ namespace FastDragon
         {
             _weakPoint.Disabled = !shouldShow;
             _weakPoint.Visible = shouldShow;
+        }
+
+        private StraightWave SpawnWaveAttack()
+        {
+            var wave = StraightWavePrefab.Instantiate<StraightWave>();
+            GetTree().CurrentScene.AddChild(wave);
+            wave.GlobalTransform = _straightWaveSpawn.GlobalTransform;
+
+            wave.Radius = WaveHeight;
+            wave.StartWidth = WaveStartWidth;
+            wave.EndWidth = WaveEndWidth;
+            wave.Distance = WaveDistance;
+            wave.Duration = WaveDuration;
+
+            return wave;
         }
 
         private bool AllPowerOrbsBroken()
@@ -153,13 +171,57 @@ namespace FastDragon
                 if (_timer >= _self.SurfacingDuration)
                 {
                     _self.GlobalTransform = _self._currentSpawnPos;
-                    ChangeState<Idle>();
+                    ChangeState<WavesAttack>();
                 }
 
             }
         }
 
-        private partial class Idle : SeamonsterBossState
+        private partial class WavesAttack : SeamonsterBossState
+        {
+            private int _wavesRemaining;
+            private float _timer;
+
+            public override void OnStateEntered()
+            {
+                _wavesRemaining = _self.WaveCount;
+                _timer = _self.WaveInterval;
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer -= (float)deltaD;
+
+                if (_self.AllPowerOrbsBroken())
+                {
+                    ChangeState<Vulnerable>();
+                    return;
+                }
+
+                if (_timer <= 0)
+                {
+                    if (_wavesRemaining <= 0)
+                    {
+                        ChangeState<Submerging>();
+                        return;
+                    }
+
+                    _wavesRemaining--;
+                    _timer += _self.WaveInterval;
+
+                    var wave = _self.SpawnWaveAttack();
+                    wave.DamagedPlayer += OnDamagedPlayer;
+                }
+            }
+
+            private void OnDamagedPlayer()
+            {
+                if (IsCurrent)
+                    ChangeState<Laughing>();
+            }
+        }
+
+        private partial class ThickBeamAttack : SeamonsterBossState
         {
             private float _timer;
 
@@ -194,7 +256,7 @@ namespace FastDragon
                     return;
                 }
 
-                if (_timer >= _self.IdleDuration)
+                if (_timer >= _self.ThickBeamDuration)
                 {
                     ChangeState<Submerging>();
                     return;
@@ -240,9 +302,6 @@ namespace FastDragon
                 _self._weakPoint.Broken += OnDamagedByPlayer;
 
                 _timer = _self.VulnerableDuration;
-
-                // TODO: Do this after a delay
-                SpawnWaveAttack();
             }
 
             public override void OnStateExited()
@@ -262,19 +321,6 @@ namespace FastDragon
             private void OnDamagedByPlayer()
             {
                 ChangeState<Submerging>();
-            }
-
-            private void SpawnWaveAttack()
-            {
-                var wave = _self.StraightWavePrefab.Instantiate<StraightWave>();
-                GetTree().CurrentScene.AddChild(wave);
-                wave.GlobalTransform = _self._straightWaveSpawn.GlobalTransform;
-
-                wave.Radius = _self.WaveHeight;
-                wave.StartWidth = _self.WaveStartWidth;
-                wave.EndWidth = _self.WaveEndWidth;
-                wave.Distance = _self.WaveDistance;
-                wave.Duration = _self.WaveDuration;
             }
         }
 
