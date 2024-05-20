@@ -28,8 +28,20 @@ namespace FastDragon
         [Export] public float ThickBeamTargetMoveSpeed = 2.5f;
         [Export] public float ThickBeamStartDelay = 0.5f;
 
+        [ExportGroup("Wave")]
+        [Export] public float WaveHeight = 1;
+        [Export] public float WaveStartWidth = 8;
+        [Export] public float WaveEndWidth = 16;
+        [Export] public float WaveDistance = 16;
+        [Export] public float WaveDuration = 2;
+
+        [ExportCategory("Prefabs")]
+        [ExportGroup("Prefabs")]
+        [Export] public PackedScene StraightWavePrefab;
+
         private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
         private ThickBeam _thickBeam => GetNode<ThickBeam>("%ThickBeam");
+        private Node3D _straightWaveSpawn => GetNode<Node3D>("%StraightWaveSpawn");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(SeamonsterBossState));
         private readonly Random _rng = new Random();
@@ -228,6 +240,9 @@ namespace FastDragon
                 _self._weakPoint.Broken += OnDamagedByPlayer;
 
                 _timer = _self.VulnerableDuration;
+
+                // TODO: Do this after a delay
+                SpawnWaveAttack();
             }
 
             public override void OnStateExited()
@@ -247,6 +262,19 @@ namespace FastDragon
             private void OnDamagedByPlayer()
             {
                 ChangeState<Submerging>();
+            }
+
+            private void SpawnWaveAttack()
+            {
+                var wave = _self.StraightWavePrefab.Instantiate<StraightWave>();
+                GetTree().CurrentScene.AddChild(wave);
+                wave.GlobalTransform = _self._straightWaveSpawn.GlobalTransform;
+
+                wave.Radius = _self.WaveHeight;
+                wave.StartWidth = _self.WaveStartWidth;
+                wave.EndWidth = _self.WaveEndWidth;
+                wave.Distance = _self.WaveDistance;
+                wave.Duration = _self.WaveDuration;
             }
         }
 

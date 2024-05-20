@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://u1dg26oq81vl"]
+[gd_scene load_steps=16 format=3 uid="uid://u1dg26oq81vl"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Bosses/SeamonsterBoss.cs" id="1_30y81"]
+[ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Scenes/Objects/Projectiles/StraightWave.tscn" id="2_4jp8p"]
 [ext_resource type="Script" path="res://Scripts/Objects/BreakableArea3D.cs" id="2_rlh65"]
 [ext_resource type="Script" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="3_phdjg"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_mmiw0"]
@@ -46,6 +47,7 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="SeamonsterBoss" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_30y81")
+StraightWavePrefab = ExtResource("2_4jp8p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
@@ -63,10 +65,13 @@ transform = Transform3D(7.07718, 0, 0, 0, 1, 0, 0, 0, 1.29303, 0, 11.2587, -1.01
 mesh = SubResource("BoxMesh_tsskg")
 skeleton = NodePath("../..")
 
+[node name="StraightWaveSpawn" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.119991)
+
 [node name="WeakPoint" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71258, -0.733963)
-visible = false
 script = ExtResource("2_rlh65")
 Kickable = false
 Disabled = true
