@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://s0qtchrtav7v"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Projectiles/StraightWave.cs" id="1_w0vdt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a2f7c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y3ml2"]
+
+[node name="StraightWave" type="Node3D"]
+script = ExtResource("1_w0vdt")
+
+[node name="Model" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_a2f7c")
+
+[node name="HitBox" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape" type="CollisionShape3D" parent="HitBox"]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape3D_y3ml2")
