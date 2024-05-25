@@ -23,10 +23,10 @@ namespace FastDragon
 
         [ExportCategory("Attack Parameters")]
         [ExportGroup("Thick Beam")]
-        [Export] public float ThickBeamRadius = 1;
-        [Export] public float ThickBeamElongateSpeed = 40;
+        [Export] public float ThickBeamRadius = 0.5f;
+        [Export] public float ThickBeamElongateSpeed = 30;
         [Export] public float ThickBeamTargetMoveSpeed = 2.5f;
-        [Export] public float ThickBeamStartDelay = 0.5f;
+        [Export] public float ThickBeamStartDelay = 0.75f;
 
         [ExportGroup("Wave")]
         [Export] public float WaveHeight = 1;
