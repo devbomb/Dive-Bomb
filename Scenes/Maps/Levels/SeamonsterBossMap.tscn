@@ -96,14 +96,14 @@ material_override = SubResource("StandardMaterial3D_vttnq")
 mesh = SubResource("PlaneMesh_gcvk4")
 script = SubResource("GDScript_awg70")
 
-[node name="SeamonsterBoss" parent="." node_paths=PackedStringArray("InitialSpawnPoint", "CameraFixPoint", "SpawnPoints", "PowerOrbs", "AcidSplashesCameraPoint") instance=ExtResource("5_pv6rf")]
+[node name="SeamonsterBoss" parent="." node_paths=PackedStringArray("AcidSplashesCameraPoint", "InitialSpawnPoint", "CameraFixPoint", "SpawnPoints", "PowerOrbs") instance=ExtResource("5_pv6rf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -8.5)
-SubmergeDepth = -15.0
+AcidSplashesCameraPoint = NodePath("../AcidSplashesCameraPos")
 InitialSpawnPoint = NodePath("../BossNorthSpawn")
 CameraFixPoint = NodePath("../FixedCameraPos")
 SpawnPoints = [NodePath("../BossNorthSpawn"), NodePath("../BossWestSpawn"), NodePath("../BossEastSpawn")]
 PowerOrbs = [NodePath("../PowerOrbs/North"), NodePath("../PowerOrbs/South"), NodePath("../PowerOrbs/East"), NodePath("../PowerOrbs/West"), NodePath("../PowerOrbs/Center")]
-AcidSplashesCameraPoint = NodePath("../AcidSplashesCameraPos")
+SubmergeDepth = -15.0
 
 [node name="BossNorthSpawn" type="Marker3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -8.5)

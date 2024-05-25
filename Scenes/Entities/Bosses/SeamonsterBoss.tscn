@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://u1dg26oq81vl"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/Bosses/SeamonsterBoss.cs" id="1_30y81"]
+[ext_resource type="Script" path="res://Scripts/Entities/Bosses/Seamonster/SeamonsterBoss.cs" id="1_r8tvq"]
 [ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Scenes/Objects/Projectiles/StraightWave.tscn" id="2_4jp8p"]
 [ext_resource type="Script" path="res://Scripts/Objects/BreakableArea3D.cs" id="2_rlh65"]
 [ext_resource type="PackedScene" uid="uid://cgshrb63523oq" path="res://Scenes/Objects/Projectiles/FallingAcidBlob.tscn" id="3_mh7lc"]
@@ -47,9 +47,9 @@ height = 0.25
 albedo_color = Color(0, 0, 0, 1)
 
 [node name="SeamonsterBoss" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
-script = ExtResource("1_30y81")
-StraightWavePrefab = ExtResource("2_4jp8p")
+script = ExtResource("1_r8tvq")
 FallingAcidBlobPrefab = ExtResource("3_mh7lc")
+StraightWavePrefab = ExtResource("2_4jp8p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
