@@ -16,6 +16,8 @@ namespace FastDragon
 
         [ExportCategory("Points")]
         [Export] public float SubmergeDepth = -14;
+        [Export] public float HurtKnockbackDistance = 10;
+        [Export] public float HurtKnockbackDuration = 1.5f;
         [Export] public Node3D InitialSpawnPoint;
         [Export] public Node3D CameraFixPoint;
         [Export] public Node3D[] SpawnPoints = new Node3D[0];
@@ -29,6 +31,7 @@ namespace FastDragon
         [Export] public float ThickBeamStartDelay = 0.75f;
 
         [ExportGroup("Wave")]
+        [Export] public PackedScene StraightWavePrefab;
         [Export] public float WaveHeight = 1;
         [Export] public float WaveStartWidth = 8;
         [Export] public float WaveEndWidth = 16;
@@ -38,9 +41,11 @@ namespace FastDragon
         [Export] public float WaveInterval = 1.67f;
         [Export] public int WaveCount = 3;
 
-        [ExportCategory("Prefabs")]
-        [ExportGroup("Prefabs")]
-        [Export] public PackedScene StraightWavePrefab;
+        [ExportGroup("Acid Splashes")]
+        [Export] public PackedScene FallingAcidBlobPrefab;
+        [Export] public Node3D AcidSplashesCameraPoint;
+        [Export] public float AcidSplashesInterval = 0.5f;
+        [Export] public int AcidSplashCount = 4;
 
         private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
         private ThickBeam _thickBeam => GetNode<ThickBeam>("%ThickBeam");
@@ -69,8 +74,21 @@ namespace FastDragon
             _currentSpawnPos = InitialSpawnPoint.GlobalTransform;
             _stateMachine.ChangeState<Submerged>();
 
-            // Hijack the camera
-            GetTree().FindNode<Player>().Camera.FixPosition(CameraFixPoint.GlobalTransform);
+            UseBossCameraAngle();
+        }
+
+        private void UseBossCameraAngle()
+        {
+            GetTree()
+                .FindNode<PlayerCamera>()
+                .FixPosition(CameraFixPoint.GlobalTransform);
+        }
+
+        private void UseOverheadCameraAngle()
+        {
+            GetTree()
+                .FindNode<PlayerCamera>()
+                .FixPosition(AcidSplashesCameraPoint.GlobalTransform);
         }
 
         private void RevealPowerOrbs()
@@ -166,6 +184,10 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                _self.GlobalTransform = _self._currentSpawnPos;
+                _self.GlobalPosition += Vector3.Up * _self.SubmergeDepth;
+                _self.ResetPhysicsInterpolation();
+
                 _timer = 0;
                 _initialPos = _self.GlobalTransform;
 
@@ -303,6 +325,83 @@ namespace FastDragon
             }
         }
 
+        private partial class AcidSplashesSubmerging : SeamonsterBossState
+        {
+            private float _timer;
+            private Transform3D _initialPos;
+            private Transform3D _targetPos;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _initialPos = _self.GlobalTransform;
+                _targetPos = _initialPos.Translated(Vector3.Up * _self.SubmergeDepth);
+
+                _self.UseOverheadCameraAngle();
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer += (float)deltaD;
+
+                float t = Mathf.Min(_timer / _self.SubmergingDuration, 1);
+                _self.GlobalTransform = _initialPos.InterpolateWith(_targetPos, t);
+
+                if (_timer >= _self.SubmergingDuration)
+                {
+                    _self.RandomizeSpawnPoint();
+                    ChangeState<AcidSplashesRaining>();
+                }
+            }
+        }
+
+        private partial class AcidSplashesRaining : SeamonsterBossState
+        {
+            private float _timer;
+            private int _splashesRemaining;
+
+            public override void OnStateEntered()
+            {
+                _timer = _self.AcidSplashesInterval;
+                _splashesRemaining = _self.AcidSplashCount;
+                SpawnSplash();
+            }
+
+            public override void OnStateExited()
+            {
+                _self.UseBossCameraAngle();
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer -= (float)deltaD;
+
+                if (_timer <= 0)
+                {
+                    if (_splashesRemaining > 0)
+                    {
+                        SpawnSplash();
+                        _timer += _self.AcidSplashesInterval;
+                    }
+                    else
+                    {
+                        ChangeState<Submerged>();
+                    }
+                }
+            }
+
+            private void SpawnSplash()
+            {
+                _splashesRemaining--;
+                var acidSplash = _self.FallingAcidBlobPrefab.Instantiate<FallingAcidBlob>();
+                GetTree().CurrentScene.AddChild(acidSplash);
+                acidSplash.GlobalPosition = GetTree()
+                    .FindNode<Player>()
+                    .GlobalPosition
+                    .Flattened();
+            }
+        }
+
         private partial class Vulnerable : SeamonsterBossState
         {
             private float _timer;
@@ -331,7 +430,36 @@ namespace FastDragon
 
             private void OnDamagedByPlayer()
             {
-                ChangeState<Submerging>();
+                ChangeState<Damaged>();
+                GetTree().FindNode<Player>().ChangeState<PlayerBonkState>();
+            }
+        }
+
+        private partial class Damaged : SeamonsterBossState
+        {
+            private float _timer;
+            private Vector3 _startPos;
+            private Vector3 _endPos;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+
+                _startPos = _self.GlobalPosition;
+                _endPos = _startPos - (_self.GlobalForward() * _self.HurtKnockbackDistance);
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer += (float)deltaD;
+                float t = _timer / _self.HurtKnockbackDuration;
+                t = Mathf.Sqrt(t);
+                t = Mathf.Min(t * 2, 1);
+
+                _self.GlobalPosition = _startPos.Lerp(_endPos, t);
+
+                if (_timer >= _self.HurtKnockbackDuration)
+                    ChangeState<AcidSplashesSubmerging>();
             }
         }
 
@@ -373,7 +501,7 @@ namespace FastDragon
             {
                 _timer = 0;
                 _initialPos = _self.GlobalTransform;
-                _targetPos = _self._currentSpawnPos.Translated(Vector3.Up * _self.SubmergeDepth);
+                _targetPos = _initialPos.Translated(Vector3.Up * _self.SubmergeDepth);
 
                 _self.HidePowerOrbs();
             }

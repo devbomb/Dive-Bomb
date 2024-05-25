@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgshrb63523oq"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Projectiles/FallingAcidBlob.cs" id="1_7tjkq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wc42"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0.745098, 0, 0.870588)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ct1ba"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_veg6n"]
+height = 0.5
+
+[sub_resource type="Gradient" id="Gradient_txljt"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.489712, 0.757202)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ke404"]
+gradient = SubResource("Gradient_txljt")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_p7ir2"]
+offsets = PackedFloat32Array(0, 0.955285, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 0.996078, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uenea"]
+gradient = SubResource("Gradient_p7ir2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="FallingAcidBlob" type="Node3D"]
+script = ExtResource("1_7tjkq")
+
+[node name="BlobModel" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19423, 0)
+material_override = SubResource("StandardMaterial3D_2wc42")
+mesh = SubResource("SphereMesh_ct1ba")
+
+[node name="PuddleArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="PuddleShape" type="CollisionShape3D" parent="PuddleArea"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_veg6n")
+
+[node name="Shadow" type="Decal" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0353006, 0)
+size = Vector3(2, 1, 2)
+texture_albedo = SubResource("GradientTexture2D_ke404")
+upper_fade = 0.000585938
+lower_fade = 0.000565979
+cull_mask = 8
+
+[node name="PuddleModel" type="Decal" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_albedo = SubResource("GradientTexture2D_uenea")
+modulate = Color(0, 1, 0.113725, 1)
