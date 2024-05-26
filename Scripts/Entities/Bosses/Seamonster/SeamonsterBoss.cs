@@ -7,6 +7,9 @@ namespace FastDragon
     {
         [Export] public int[] PhaseMaxHealths = new int[0];
 
+        public int CurrentHealth => _health.CurrentHealth;
+        public int MaxHealth => _health.MaxHealth;
+
         private BossHealth _health;
         private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://u1dg26oq81vl"]
+[gd_scene load_steps=20 format=3 uid="uid://u1dg26oq81vl"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Bosses/Seamonster/SeamonsterBoss.cs" id="1_r8tvq"]
 [ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Scenes/Objects/Projectiles/StraightWave.tscn" id="2_4jp8p"]
@@ -45,6 +45,22 @@ height = 0.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upxpg"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrqgy"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2qjv"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_mt0g2"]
+script/source = "extends ProgressBar
+
+@export var boss: Node3D
+
+func _process(_delta):
+	max_value = boss.MaxHealth
+	value = boss.CurrentHealth
+"
 
 [node name="SeamonsterBoss" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_r8tvq")
@@ -99,3 +115,26 @@ FontSize = 48
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.0528, 0.573061)
 visible = false
+
+[node name="BossHUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="BossHUD" node_paths=PackedStringArray("boss")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 25.0
+offset_right = -50.0
+offset_bottom = 50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nrqgy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c2qjv")
+value = 75.0
+show_percentage = false
+script = SubResource("GDScript_mt0g2")
+boss = NodePath("../..")
