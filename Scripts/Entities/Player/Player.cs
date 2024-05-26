@@ -109,6 +109,8 @@ namespace FastDragon
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;
 
+        private float _damageCooldownTimer;
+
         public override void _Ready()
         {
             AddChild(_stateMachine);
@@ -169,6 +171,8 @@ namespace FastDragon
             ChangeState<PlayerWalkState>();
 
             EarlyJumpBufferTimer = 0;
+
+            _damageCooldownTimer = 0;
         }
 
         public void SetVisibleInPortals(bool visible)
@@ -190,17 +194,25 @@ namespace FastDragon
         ///
         /// Returns true if the player was successfully damaged, or false otherwise
         /// </summary>
+        /// <param name="invulnerablePeriod">
+        ///     How many seconds of invulnerability the player receives after
+        ///     getting hit by this attack.  The timer starts AFTER after the
+        ///     damage animation is completed and the player is back in an
+        ///     actionable state.
+        /// </param>
         /// <typeparam name="TState"></typeparam>
-        public bool TryDamage<TState>() where TState : PlayerState, new()
+        public bool TryDamage<TState>(float invulnerablePeriod = 0) where TState : PlayerState, new()
         {
-            if (!CurrentState.Invincible)
-            {
-                SaveFile.Current.PlayerHealth--;
-                ChangeState<TState>();
-                return true;
-            }
+            if (_damageCooldownTimer > 0)
+                return false;
 
-            return false;
+            if (CurrentState.Invincible)
+                return false;
+
+            _damageCooldownTimer = invulnerablePeriod;
+            SaveFile.Current.PlayerHealth--;
+            ChangeState<TState>();
+            return true;
         }
 
         private void UpdateAtlasCache()
@@ -214,8 +226,17 @@ namespace FastDragon
 
             Camera.DisableInput = CurrentState.DisableCameraInput;
 
-            if (EarlyJumpBufferTimer > 0) EarlyJumpBufferTimer -= delta;
+            if (EarlyJumpBufferTimer > 0)
+                EarlyJumpBufferTimer -= delta;
 
+            if (_damageCooldownTimer > 0 && !CurrentState.PauseDamageCooldownTimer)
+                _damageCooldownTimer -= delta;
+
+            AdjustCameraFocusPoint(delta);
+        }
+
+        private void AdjustCameraFocusPoint(float delta)
+        {
             if (CurrentState.UseMario64CameraFocus)
             {
                 var groundPos = FindGroundPosition();
