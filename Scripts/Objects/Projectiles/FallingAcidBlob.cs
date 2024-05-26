@@ -10,6 +10,7 @@ namespace FastDragon
         [Export] public float PuddleLingerDuration = 1f;
         [Export] public float PuddleRadius = 2;
         [Export] public float BlobRadius = 1;
+        [Export] public float DamageCooldownDuration = 2;
 
         private Node3D _blobModel => GetNode<Node3D>("%BlobModel");
         private Node3D _shadow => GetNode<Node3D>("%Shadow");
@@ -62,7 +63,7 @@ namespace FastDragon
 
                 if (player?.IsOnFloor() ?? false)
                 {
-                    if (player.TryDamage<PlayerDamageFlipState>())
+                    if (player.TryDamage<PlayerDamageFlipState>(DamageCooldownDuration))
                         QueueFree();
                 }
 
