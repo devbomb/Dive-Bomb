@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using Godot;
 
 namespace FastDragon
@@ -56,11 +57,12 @@ namespace FastDragon
 
         private void ChooseAttack()
         {
-            var attacks = new Type[]
-            {
-                typeof(WavesAttack),
-                typeof(ThickBeamAttack)
-            };
+            var attacks = new List<Type>();
+            attacks.Add(typeof(WavesAttack));
+
+            if (_health.CurrentPhase >= 1)
+                attacks.Add(typeof(ThickBeamAttack));
+
             var chosenState = _rng.PickFrom(attacks);
             _stateMachine.ChangeState(chosenState);
         }
@@ -180,8 +182,14 @@ namespace FastDragon
 
             private void OnDamagedByPlayer()
             {
-                ChangeState<Damaged>();
+                _self._health.Damage();
+
                 GetTree().FindNode<Player>().ChangeState<PlayerBonkState>();
+
+                if (_self._health.CurrentHealth > 0)
+                    ChangeState<Damaged>();
+                else
+                    _self.QueueFree();  // TODO: Play an actual death animation
             }
         }
 

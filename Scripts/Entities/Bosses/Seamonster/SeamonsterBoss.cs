@@ -5,6 +5,9 @@ namespace FastDragon
 {
     public partial class SeamonsterBoss : CharacterBody3D
     {
+        [Export] public int[] PhaseMaxHealths = new int[0];
+
+        private BossHealth _health;
         private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(SeamonsterBossState));
@@ -27,6 +30,8 @@ namespace FastDragon
 
         public void Respawn()
         {
+            _health = new BossHealth(PhaseMaxHealths);
+
             _currentSpawnPos = InitialSpawnPoint.GlobalTransform;
             _stateMachine.ChangeState<Submerged>();
 
