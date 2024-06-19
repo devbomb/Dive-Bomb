@@ -1,0 +1,46 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=9 format=3 uid="uid://bgcglvens6c8e"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_srhge"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_b2gux"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_okh6u"]
+animation = &"BodyMovement"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_44hj8"]
+animation = &"JawMovement"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hknp8"]
+animation = &"Blink"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc15q"]
+graph_offset = Vector2(-574, -35)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_b2gux")
+nodes/Add2/position = Vector2(20, 0)
+"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_srhge")
+"nodes/Add2 2/position" = Vector2(260, -40)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_hknp8")
+nodes/Animation/position = Vector2(-240, 20)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_okh6u")
+"nodes/Animation 2/position" = Vector2(-240, 240)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_44hj8")
+"nodes/Animation 3/position" = Vector2(-240, 440)
+nodes/output/position = Vector2(480, -20)
+node_connections = [&"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"Add2 2", 0, &"Add2", &"Add2 2", 1, &"Animation 3", &"output", 0, &"Add2 2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7qv5w"]
+animation = &"Surface"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s13nd"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/Idle/node = SubResource("AnimationNodeBlendTree_jc15q")
+states/Idle/position = Vector2(369, 53)
+states/Start/position = Vector2(194, 53)
+states/Surface/node = SubResource("AnimationNodeAnimation_7qv5w")
+states/Surface/position = Vector2(369, 143)
+transitions = ["Surface", "Idle", SubResource("AnimationNodeStateMachineTransition_s13nd")]
+graph_offset = Vector2(-1, -49)

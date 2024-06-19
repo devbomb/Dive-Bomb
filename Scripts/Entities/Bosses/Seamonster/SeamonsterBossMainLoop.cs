@@ -136,6 +136,8 @@ namespace FastDragon
                 _initialPos = _self.GlobalTransform;
 
                 _self.RevealPowerOrbs();
+
+                _self.PlayAnimation("Surface");
             }
 
             public override void _PhysicsProcess(double deltaD)

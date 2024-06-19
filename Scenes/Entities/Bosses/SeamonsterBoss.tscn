@@ -5,17 +5,11 @@
 [ext_resource type="Script" path="res://Scripts/Objects/BreakableArea3D.cs" id="2_rlh65"]
 [ext_resource type="PackedScene" uid="uid://cgshrb63523oq" path="res://Scenes/Objects/Projectiles/FallingAcidBlob.tscn" id="3_mh7lc"]
 [ext_resource type="Script" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="3_phdjg"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bgcglvens6c8e" path="res://Scenes/Entities/Bosses/KrackenAnimationTree.tres" id="4_intgd"]
+[ext_resource type="AnimationLibrary" uid="uid://bn1ba67n5ehrt" path="res://AnimationLibraries/Bosses/Kracken/KrackenAnimations.tres" id="4_l26sy"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_mmiw0"]
 [ext_resource type="PackedScene" uid="uid://hw603kj07kle" path="res://BlenderModels/Kracken.blend" id="4_veo1p"]
 [ext_resource type="PackedScene" uid="uid://umwpgtg2tbmi" path="res://Scenes/Objects/Projectiles/ThickBeam.tscn" id="5_bboy2"]
-
-[sub_resource type="Animation" id="Animation_170it"]
-resource_name = "RESET"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fv6od"]
-_data = {
-"RESET": SubResource("Animation_170it")
-}
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0nu8g"]
 height = 9.97145
@@ -73,17 +67,25 @@ PhaseMaxHealths = PackedInt32Array(3, 3)
 FallingAcidBlobPrefab = ExtResource("3_mh7lc")
 StraightWavePrefab = ExtResource("2_4jp8p")
 
-[node name="Animator" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-deterministic = true
-libraries = {
-"": SubResource("AnimationLibrary_fv6od")
-}
-autoplay = "Idle"
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9841, 1.07279)
 shape = SubResource("CylinderShape3D_0nu8g")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = ExtResource("4_intgd")
+anim_player = NodePath("Animations")
+parameters/Idle/Add2/add_amount = 1.0
+"parameters/Idle/Add2 2/add_amount" = 1.0
+
+[node name="Animations" type="AnimationPlayer" parent="AnimationTree"]
+unique_name_in_owner = true
+deterministic = true
+root_node = NodePath("../..")
+libraries = {
+"": ExtResource("4_l26sy")
+}
 
 [node name="Model" parent="." instance=ExtResource("4_veo1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)

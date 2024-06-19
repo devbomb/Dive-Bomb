@@ -10,6 +10,8 @@ namespace FastDragon
         public int CurrentHealth => _health.CurrentHealth;
         public int MaxHealth => _health.MaxHealth;
 
+        private AnimationTree _animationTree => GetNode<AnimationTree>("%AnimationTree");
+
         private BossHealth _health;
         private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
 
@@ -59,6 +61,12 @@ namespace FastDragon
         {
             _weakPoint.Disabled = !shouldShow;
             _weakPoint.Visible = shouldShow;
+        }
+
+        private void PlayAnimation(string animationName)
+        {
+            var playback = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
+            playback.Start(animationName);
         }
 
         private abstract partial class SeamonsterBossState : State
