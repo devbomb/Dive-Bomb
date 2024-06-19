@@ -183,6 +183,7 @@ namespace FastDragon
 
                 _startPos = _self.GlobalPosition;
                 _endPos = _startPos - (_self.GlobalForward() * _self.HurtKnockbackDistance);
+                _self.PlayAnimation("Damaged");
             }
 
             public override void _PhysicsProcess(double deltaD)
