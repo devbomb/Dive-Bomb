@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=11 format=3 uid="uid://bgcglvens6c8e"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=13 format=3 uid="uid://bgcglvens6c8e"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_srhge"]
 
@@ -31,6 +31,9 @@ node_connections = [&"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"Add2
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yg8en"]
 animation = &"Submerge"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ai61w"]
+animation = &"Submerged"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7qv5w"]
 animation = &"Surface"
 
@@ -42,13 +45,19 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d8k6y"]
 xfade_time = 0.25
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ntcvp"]
+switch_mode = 2
+advance_mode = 2
+
 [resource]
 states/Idle/node = SubResource("AnimationNodeBlendTree_jc15q")
 states/Idle/position = Vector2(369, 53)
-states/Start/position = Vector2(194, 53)
+states/Start/position = Vector2(900, 43)
 states/Submerge/node = SubResource("AnimationNodeAnimation_yg8en")
 states/Submerge/position = Vector2(369, 214)
+states/Submerged/node = SubResource("AnimationNodeAnimation_ai61w")
+states/Submerged/position = Vector2(238, 214)
 states/Surface/node = SubResource("AnimationNodeAnimation_7qv5w")
-states/Surface/position = Vector2(369, 143)
-transitions = ["Surface", "Idle", SubResource("AnimationNodeStateMachineTransition_s13nd"), "Idle", "Submerge", SubResource("AnimationNodeStateMachineTransition_d8k6y")]
+states/Surface/position = Vector2(238, 53)
+transitions = ["Surface", "Idle", SubResource("AnimationNodeStateMachineTransition_s13nd"), "Idle", "Submerge", SubResource("AnimationNodeStateMachineTransition_d8k6y"), "Submerge", "Submerged", SubResource("AnimationNodeStateMachineTransition_ntcvp")]
 graph_offset = Vector2(-1, -49)

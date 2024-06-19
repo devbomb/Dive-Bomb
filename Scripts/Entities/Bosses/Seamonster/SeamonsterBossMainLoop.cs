@@ -15,7 +15,6 @@ namespace FastDragon
 
         [ExportGroup("Main Loop/Submerge")]
         [Export] public float SubmergedDuration = 1;
-        [Export] public float SubmergingDuration = 0.5f;
         [Export] public float SubmergeDepth = -14;
 
         [ExportGroup("Main Loop/Surface")]
@@ -69,29 +68,15 @@ namespace FastDragon
 
         private partial class Submerging : SeamonsterBossState
         {
-            private Transform3D _initialPos;
-            private Transform3D _targetPos;
-
-            private float _timer;
-
             public override void OnStateEntered()
             {
-                _timer = 0;
-                _initialPos = _self.GlobalTransform;
-                _targetPos = _initialPos.Translated(Vector3.Up * _self.SubmergeDepth);
-
                 _self.HidePowerOrbs();
                 _self.PlayAnimation("Submerge");
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _timer += (float)deltaD;
-
-                float t = Mathf.Min(_timer / _self.SubmergingDuration, 1);
-                _self.GlobalTransform = _initialPos.InterpolateWith(_targetPos, t);
-
-                if (_timer >= _self.SubmergingDuration)
+                if (_self.CurrentAnimation() != "Submerge")
                 {
                     _self.RandomizeSpawnPoint();
                     ChangeState<Submerged>();
@@ -123,37 +108,27 @@ namespace FastDragon
 
         private partial class Surfacing : SeamonsterBossState
         {
-            private Transform3D _initialPos;
-
             private float _timer;
 
             public override void OnStateEntered()
             {
                 _self.GlobalTransform = _self._currentSpawnPos;
-                _self.GlobalPosition += Vector3.Up * _self.SubmergeDepth;
                 _self.ResetPhysicsInterpolation();
 
-                _timer = 0;
-                _initialPos = _self.GlobalTransform;
+                _timer = _self.SurfacingDuration;
 
                 _self.RevealPowerOrbs();
-
                 _self.PlayAnimation("Surface");
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _timer += (float)deltaD;
+                _timer -= (float)deltaD;
 
-                float t = Mathf.Min(_timer / _self.SurfacingDuration, 1);
-                _self.GlobalTransform = _initialPos.InterpolateWith(_self._currentSpawnPos, t);
-
-                if (_timer >= _self.SurfacingDuration)
+                if (_timer <= 0)
                 {
-                    _self.GlobalTransform = _self._currentSpawnPos;
                     _self.ChooseAttack();
                 }
-
             }
         }
 

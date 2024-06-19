@@ -69,6 +69,12 @@ namespace FastDragon
             playback.Start(animationName);
         }
 
+        private string CurrentAnimation()
+        {
+            var playback = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
+            return playback.GetCurrentNode();
+        }
+
         private abstract partial class SeamonsterBossState : State
         {
             protected SeamonsterBoss _self => _stateMachine.GetParent<SeamonsterBoss>();

@@ -13,28 +13,15 @@ namespace FastDragon
 
         private partial class AcidSplashesSubmerging : SeamonsterBossState
         {
-            private float _timer;
-            private Transform3D _initialPos;
-            private Transform3D _targetPos;
-
             public override void OnStateEntered()
             {
-                _timer = 0;
-                _initialPos = _self.GlobalTransform;
-                _targetPos = _initialPos.Translated(Vector3.Up * _self.SubmergeDepth);
-
                 _self.UseOverheadCameraAngle();
                 _self.PlayAnimation("Submerge");
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _timer += (float)deltaD;
-
-                float t = Mathf.Min(_timer / _self.SubmergingDuration, 1);
-                _self.GlobalTransform = _initialPos.InterpolateWith(_targetPos, t);
-
-                if (_timer >= _self.SubmergingDuration)
+                if (_self.CurrentAnimation() != "Submerge")
                 {
                     _self.RandomizeSpawnPoint();
                     ChangeState<AcidSplashesRaining>();
