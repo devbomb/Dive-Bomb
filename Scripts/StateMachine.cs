@@ -43,12 +43,17 @@ namespace FastDragon
                 state.ProcessMode = ProcessModeEnum.Disabled;
             }
 
-            // Switch to the new state and enable it.
+            // Switch to the new state
             State prevState = CurrentState;
             CurrentState = incomingState;
-            CurrentState.ProcessMode = ProcessModeEnum.Inherit;
             CurrentState.OnStateEntered(prevState);
             CurrentState.OnStateEntered();
+
+            // Defer enabling the new state to ensure consistency.
+            // This way, we ensure the new state's first Process(or PhysicsProcess)
+            // always happens on the _next_ frame, instead of sometimes happening
+            // on the _current_ frame depending on tree order.
+            CurrentState.SetDeferred("process_mode", (int)ProcessModeEnum.Inherit);
         }
 
         public void ChangeState(Type stateType)
@@ -77,9 +82,14 @@ namespace FastDragon
             // Switch to the new state and enable it.
             State prevState = CurrentState;
             CurrentState = incomingState;
-            CurrentState.ProcessMode = ProcessModeEnum.Inherit;
             CurrentState.OnStateEntered(prevState);
             CurrentState.OnStateEntered();
+
+            // Defer enabling the new state to ensure consistency.
+            // This way, we ensure the new state's first Process(or PhysicsProcess)
+            // always happens on the _next_ frame, instead of sometimes happening
+            // on the _current_ frame depending on tree order.
+            CurrentState.SetDeferred("process_mode", (int)ProcessModeEnum.Inherit);
         }
 
         private IEnumerable<State> States()
