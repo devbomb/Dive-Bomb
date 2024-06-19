@@ -81,6 +81,7 @@ namespace FastDragon
                 _targetPos = _initialPos.Translated(Vector3.Up * _self.SubmergeDepth);
 
                 _self.HidePowerOrbs();
+                _self.PlayAnimation("Submerge");
             }
 
             public override void _PhysicsProcess(double deltaD)

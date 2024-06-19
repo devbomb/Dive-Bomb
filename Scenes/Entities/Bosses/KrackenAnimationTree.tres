@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=9 format=3 uid="uid://bgcglvens6c8e"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=11 format=3 uid="uid://bgcglvens6c8e"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_srhge"]
 
@@ -28,6 +28,9 @@ nodes/Animation/position = Vector2(-240, 20)
 nodes/output/position = Vector2(480, -20)
 node_connections = [&"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"Add2 2", 0, &"Add2", &"Add2 2", 1, &"Animation 3", &"output", 0, &"Add2 2"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yg8en"]
+animation = &"Submerge"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7qv5w"]
 animation = &"Surface"
 
@@ -36,11 +39,16 @@ xfade_time = 0.5
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d8k6y"]
+xfade_time = 0.25
+
 [resource]
 states/Idle/node = SubResource("AnimationNodeBlendTree_jc15q")
 states/Idle/position = Vector2(369, 53)
 states/Start/position = Vector2(194, 53)
+states/Submerge/node = SubResource("AnimationNodeAnimation_yg8en")
+states/Submerge/position = Vector2(369, 214)
 states/Surface/node = SubResource("AnimationNodeAnimation_7qv5w")
 states/Surface/position = Vector2(369, 143)
-transitions = ["Surface", "Idle", SubResource("AnimationNodeStateMachineTransition_s13nd")]
+transitions = ["Surface", "Idle", SubResource("AnimationNodeStateMachineTransition_s13nd"), "Idle", "Submerge", SubResource("AnimationNodeStateMachineTransition_d8k6y")]
 graph_offset = Vector2(-1, -49)

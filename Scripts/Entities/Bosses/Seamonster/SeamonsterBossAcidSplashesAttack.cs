@@ -24,6 +24,7 @@ namespace FastDragon
                 _targetPos = _initialPos.Translated(Vector3.Up * _self.SubmergeDepth);
 
                 _self.UseOverheadCameraAngle();
+                _self.PlayAnimation("Submerge");
             }
 
             public override void _PhysicsProcess(double deltaD)
