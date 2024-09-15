@@ -72,6 +72,8 @@ namespace FastDragon
             {
                 _self.HidePowerOrbs();
                 _self.PlayAnimation("Submerge");
+                _self._leftSplashTentacle.Submerge();
+                _self._rightSplashTentacle.Submerge();
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -119,6 +121,8 @@ namespace FastDragon
 
                 _self.RevealPowerOrbs();
                 _self.PlayAnimation("Surface");
+                _self._leftSplashTentacle.Surface();
+                _self._rightSplashTentacle.Surface();
             }
 
             public override void _PhysicsProcess(double deltaD)

@@ -21,6 +21,10 @@ namespace FastDragon
         private Transform3D _currentSpawnPos;
         private PowerOrb[] _chosenPowerOrbs = new PowerOrb[0];
 
+        private KrackenSplashTentacle _leftSplashTentacle => GetNode<KrackenSplashTentacle>("%LeftSplashTentacle");
+        private KrackenSplashTentacle _rightSplashTentacle => GetNode<KrackenSplashTentacle>("%RightSplashTentacle");
+
+
 
         public override void _Ready()
         {

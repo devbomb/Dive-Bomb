@@ -17,6 +17,8 @@ namespace FastDragon
             {
                 _self.UseOverheadCameraAngle();
                 _self.PlayAnimation("Submerge");
+                _self._leftSplashTentacle.Submerge();
+                _self._rightSplashTentacle.Submerge();
             }
 
             public override void _PhysicsProcess(double deltaD)
