@@ -70,7 +70,7 @@ namespace FastDragon
             // HACK: ensure it works smoothly with physics interpolation
             if (!Engine.IsInPhysicsFrame())
             {
-                this.ResetPhysicsInterpolation();
+                this.ResetPhysicsInterpolation3D();
             }
         }
 

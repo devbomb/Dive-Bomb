@@ -55,7 +55,7 @@ namespace FastDragon
             _animator.Play("BurstOpen");
 
             player.GlobalTransform = _spawnPoint.GlobalTransform;
-            player.ResetPhysicsInterpolation();
+            player.ResetPhysicsInterpolation3D();
 
             player.ChangeState<PlayerFlopState>();
             player.FSpeed = 3;
@@ -113,7 +113,7 @@ namespace FastDragon
 
                 _vent._cutsceneCam.GlobalTransform = _cameraStart;
                 _vent._cutsceneCam.MakeCurrent();
-                _vent._cutsceneCam.ResetPhysicsInterpolation();
+                _vent._cutsceneCam.ResetPhysicsInterpolation3D();
 
                 Node3D ClosestCameraPoint()
                 {
@@ -173,11 +173,11 @@ namespace FastDragon
                 _camStart = _vent._cutsceneCam.GlobalTransform;
 
                 _player.GlobalTransform = _vent._targetVent._spawnPoint.GlobalTransform;
-                _player.ResetPhysicsInterpolation();
+                _player.ResetPhysicsInterpolation3D();
 
                 _player.Camera.OrbitPitchRad = 0;
                 _player.Camera.OrbitYawRad = _player.YawRad + Mathf.DegToRad(180);
-                _player.Camera.ResetPhysicsInterpolation();
+                _player.Camera.ResetPhysicsInterpolation3D();
 
                 _player.Visible = false;
                 _vent._cutsceneCam.MakeCurrent();

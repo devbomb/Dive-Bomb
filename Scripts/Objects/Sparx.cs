@@ -44,7 +44,7 @@ namespace FastDragon
             UpdateSparxColor();
 
             Position = Vector3.Zero;
-            this.ResetPhysicsInterpolation();
+            this.ResetPhysicsInterpolation3D();
 
             _gemQueue.Clear();
         }

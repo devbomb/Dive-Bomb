@@ -30,7 +30,7 @@ namespace FastDragon
         public void Reset()
         {
             Model.GlobalTransform = _initialModelPos;
-            Model.ResetPhysicsInterpolation();
+            Model.ResetPhysicsInterpolation3D();
 
             Animator.Play("RESET");
             Animator.Advance(0);
@@ -200,7 +200,7 @@ namespace FastDragon
 
                 _fairy.CutsceneCam.GlobalTransform = _fairy.Player.Camera.GlobalTransform;
                 _fairy.CutsceneCam.MakeCurrent();
-                _fairy.CutsceneCam.ResetPhysicsInterpolation();
+                _fairy.CutsceneCam.ResetPhysicsInterpolation3D();
 
                 _timer = 0;
             }

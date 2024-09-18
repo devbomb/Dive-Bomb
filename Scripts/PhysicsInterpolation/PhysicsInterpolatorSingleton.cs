@@ -135,7 +135,7 @@ namespace FastDragon
             return truePos;
         }
 
-        public void ResetPhysicsInterpolation(Node3D node)
+        public void ResetPhysicsInterpolation3D(Node3D node)
         {
             _truePos.Remove(node);
         }

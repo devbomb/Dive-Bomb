@@ -4,9 +4,9 @@ namespace FastDragon
 {
     public static class PhysicsInterpolationExtensions
     {
-        public static void ResetPhysicsInterpolation(this Node3D node)
+        public static void ResetPhysicsInterpolation3D(this Node3D node)
         {
-            PhysicsInterpolatorSingleton.Instance.ResetPhysicsInterpolation(node);
+            PhysicsInterpolatorSingleton.Instance.ResetPhysicsInterpolation3D(node);
         }
 
         public static bool IsPhysicsInterpolated(this Node3D node)
