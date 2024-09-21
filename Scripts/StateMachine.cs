@@ -19,15 +19,20 @@ namespace FastDragon
 
         public void ChangeState<TState>() where TState : State, new()
         {
-            if (!typeof(TState).IsAssignableTo(_stateType))
-                throw new Exception($"{typeof(TState).Name} is not a {_stateType.Name}");
+            ChangeState(typeof(TState));
+        }
+
+        public void ChangeState(Type stateType)
+        {
+            if (!stateType.IsAssignableTo(_stateType))
+                throw new Exception($"{stateType.Name} is not a {_stateType.Name}");
 
             // Get the incoming state's node.
             // If it doesn't exist yet, create it.
-            State incomingState = States().FirstOrDefault(s => s is TState);
+            State incomingState = States().FirstOrDefault(s => s.GetType() == stateType);
             if (incomingState == null)
             {
-                incomingState = new TState();
+                incomingState = (State)Activator.CreateInstance(stateType);
                 AddChild(incomingState);
             }
 
@@ -46,9 +51,24 @@ namespace FastDragon
             // Switch to the new state and enable it.
             State prevState = CurrentState;
             CurrentState = incomingState;
-            CurrentState.ProcessMode = ProcessModeEnum.Inherit;
             CurrentState.OnStateEntered(prevState);
             CurrentState.OnStateEntered();
+
+            // Defer enabling the new state to ensure consistency.
+            // This way, we ensure the new state's first Process(or PhysicsProcess)
+            // always happens on the _next_ frame, instead of sometimes happening
+            // on the _current_ frame depending on tree order.
+            //
+            // Doing this as a function call (instead of SetDeferred) avoids a
+            // bug where multiple states could become enabled simulatneously if
+            // ChangeState() is called more than once in the same frame
+            // (since multiple SetDeferreds would be queued up simultaneously).
+            Callable.From(EnableCurrentState).CallDeferred();
+        }
+
+        private void EnableCurrentState()
+        {
+            CurrentState.ProcessMode = ProcessModeEnum.Inherit;
         }
 
         private IEnumerable<State> States()

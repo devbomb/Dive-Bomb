@@ -11,6 +11,8 @@ namespace FastDragon
         public virtual bool UseMario64CameraFocus => true;
         public virtual bool CanBoundAfterLanding => false;
 
+        public virtual bool PauseDamageCooldownTimer => false;
+
         protected Player _player => _stateMachine.GetParent<Player>();
 
         /// <summary>

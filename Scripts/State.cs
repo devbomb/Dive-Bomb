@@ -7,6 +7,8 @@ namespace FastDragon
 {
     public abstract partial class State : Node
     {
+        public bool IsCurrent => _stateMachine.CurrentState == this;
+
         protected StateMachine _stateMachine => GetParent<StateMachine>();
 
         public virtual void OnStateEntered(State prevState) {}
