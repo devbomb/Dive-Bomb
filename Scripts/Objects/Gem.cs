@@ -55,7 +55,7 @@ namespace FastDragon
         {
             GlobalTransform = _initialPos;
             Velocity = Vector3.Zero;
-            this.ResetPhysicsInterpolation();
+            this.ResetPhysicsInterpolation3D();
 
             if (StartHidden || IsCollected)
                 ChangeState<Hidden>();

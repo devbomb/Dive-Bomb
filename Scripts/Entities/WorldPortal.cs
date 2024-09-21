@@ -63,7 +63,7 @@ namespace FastDragon
 
             player.GlobalTransform = TeleportTransform(player.GlobalTransform);
             player.Velocity = TeleportVelocity(player.Velocity);
-            player.ResetPhysicsInterpolation();
+            player.ResetPhysicsInterpolation3D();
 
             // Move the camera with the player, so it's seamless.
             // Make sure to update its orbit angles, too.
@@ -75,7 +75,7 @@ namespace FastDragon
 
             player.Camera.OrbitPitchRad = newOrbitAngles.X;
             player.Camera.OrbitYawRad = newOrbitAngles.Y;
-            player.Camera.ResetPhysicsInterpolation();
+            player.Camera.ResetPhysicsInterpolation3D();
 
             // HACK: Temporarily disable auto-rotation, because it likes to bug
             // out after the teleport.
