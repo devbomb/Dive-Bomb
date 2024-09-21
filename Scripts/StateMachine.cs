@@ -58,7 +58,17 @@ namespace FastDragon
             // This way, we ensure the new state's first Process(or PhysicsProcess)
             // always happens on the _next_ frame, instead of sometimes happening
             // on the _current_ frame depending on tree order.
-            CurrentState.SetDeferred("process_mode", (int)ProcessModeEnum.Inherit);
+            //
+            // Doing this as a function call (instead of SetDeferred) avoids a
+            // bug where multiple states could become enabled simulatneously if
+            // ChangeState() is called more than once in the same frame
+            // (since multiple SetDeferreds would be queued up simultaneously).
+            Callable.From(EnableCurrentState).CallDeferred();
+        }
+
+        private void EnableCurrentState()
+        {
+            CurrentState.ProcessMode = ProcessModeEnum.Inherit;
         }
 
         private IEnumerable<State> States()
