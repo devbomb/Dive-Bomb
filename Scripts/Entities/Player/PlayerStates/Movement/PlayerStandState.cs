@@ -46,10 +46,7 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
-
-            // Don't move, but do allow the player to spin in place
             _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
-            RotateTowardLeftStick(Mathf.DegToRad(Player.Stand.RotSpeedDeg), delta);
             _player.MoveAndSlide();
 
             if (!_player.IsOnFloor())
@@ -58,12 +55,13 @@ namespace FastDragon
                 return;
             }
 
-            // If the player is facing the direction they're trying to walk
-            // and is still pushing the left stick, then start walking.
             bool isPushingStick = !LeftStick3D().IsZeroApprox();
-            float angleToStickRad = _player.GlobalForward().Flattened().AngleTo(LeftStick3D());
-            if (isPushingStick && Mathf.IsZeroApprox(angleToStickRad))
+            if (isPushingStick)
             {
+                // Instantly pivot when starting from a stop, instead of
+                // gradually turning like normal.  Otherwise, you'd walk in a
+                // wide circle like in Mario 64.
+                RotateInstantlyTowardLeftStick();
                 _player.ChangeState<PlayerWalkState>();
                 return;
             }
