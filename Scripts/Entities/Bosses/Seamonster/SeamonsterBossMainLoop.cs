@@ -28,6 +28,8 @@ namespace FastDragon
         [Export] public float HurtKnockbackDistance = 10;
         [Export] public float HurtKnockbackDuration = 1.5f;
 
+        private Node3D _deathAnimationCameraPos => GetNode<Node3D>("%DeathAnimationCameraPos");
+
         private bool AllPowerOrbsBroken()
         {
             return _chosenPowerOrbs.Length > 0 && _chosenPowerOrbs.All(o => o.IsBroken);
@@ -171,7 +173,7 @@ namespace FastDragon
                 if (_self._health.CurrentHealth > 0)
                     ChangeState<Damaged>();
                 else
-                    _self.QueueFree();  // TODO: Play an actual death animation
+                    ChangeState<Dying>();
             }
         }
 
@@ -201,6 +203,55 @@ namespace FastDragon
 
                 if (_timer >= _self.HurtKnockbackDuration)
                     ChangeState<AcidSplashesSubmerging>();
+            }
+        }
+
+        private partial class Dying : SeamonsterBossState
+        {
+            private float _timer;
+            private Vector3 _startPos;
+            private Vector3 _endPos;
+
+            private bool _claimedCamera;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _claimedCamera = false;
+
+                _startPos = _self.GlobalPosition;
+                _endPos = _startPos - (_self.GlobalForward() * _self.HurtKnockbackDistance);
+
+                _self._leftSplashTentacle.Submerge();
+                _self._rightSplashTentacle.Submerge();
+                _self.PlayAnimation("Dying");
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer += (float)deltaD;
+                float t = _timer / _self.HurtKnockbackDuration;
+                t = Mathf.Sqrt(t);
+                t = Mathf.Min(t * 2, 1);
+
+                _self.GlobalPosition = _startPos.Lerp(_endPos, t);
+
+                if (_timer >= _self.HurtKnockbackDuration && !_claimedCamera)
+                {
+                    _self.UseCameraAngle(_self._deathAnimationCameraPos.GlobalTransform);
+                    _claimedCamera = true;
+                }
+
+                if (_self.CurrentAnimation() != "Dying")
+                    ChangeState<Dead>();
+            }
+        }
+
+        private partial class Dead : SeamonsterBossState
+        {
+            public override void OnStateEntered()
+            {
+                _self.UseBossCameraAngle();
             }
         }
 

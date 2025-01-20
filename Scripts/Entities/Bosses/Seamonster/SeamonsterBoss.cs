@@ -24,8 +24,6 @@ namespace FastDragon
         private KrackenSplashTentacle _leftSplashTentacle => GetNode<KrackenSplashTentacle>("%LeftSplashTentacle");
         private KrackenSplashTentacle _rightSplashTentacle => GetNode<KrackenSplashTentacle>("%RightSplashTentacle");
 
-
-
         public override void _Ready()
         {
             AddChild(_stateMachine);
@@ -45,6 +43,13 @@ namespace FastDragon
             _stateMachine.ChangeState<Submerged>();
 
             UseBossCameraAngle();
+        }
+
+        private void UseCameraAngle(Transform3D position)
+        {
+            GetTree()
+                .FindNode<PlayerCamera>()
+                .FixPosition(position);
         }
 
         private void UseBossCameraAngle()

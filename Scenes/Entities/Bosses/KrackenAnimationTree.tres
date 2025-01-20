@@ -1,7 +1,51 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=15 format=3 uid="uid://bgcglvens6c8e"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=25 format=3 uid="uid://bgcglvens6c8e"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yxah2"]
 animation = &"Damaged"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x2byn"]
+animation = &"Submerged"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c17tr"]
+animation = &"Damaged"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j3vpb"]
+animation = &"Explode"
+use_custom_timeline = true
+timeline_length = 3.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ht4c3"]
+animation = &"LookLeftAndRight"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s088x"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gm6st"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2m5f1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_klv05"]
+reset = false
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ecf0d"]
+states/Damaged/node = SubResource("AnimationNodeAnimation_c17tr")
+states/Damaged/position = Vector2(319, 100)
+states/Explode/node = SubResource("AnimationNodeAnimation_j3vpb")
+states/Explode/position = Vector2(616, 100)
+states/LookLeftAndRight/node = SubResource("AnimationNodeAnimation_ht4c3")
+states/LookLeftAndRight/position = Vector2(468, 100)
+transitions = ["Start", "Damaged", SubResource("AnimationNodeStateMachineTransition_s088x"), "Damaged", "LookLeftAndRight", SubResource("AnimationNodeStateMachineTransition_gm6st"), "LookLeftAndRight", "Explode", SubResource("AnimationNodeStateMachineTransition_2m5f1"), "Explode", "End", SubResource("AnimationNodeStateMachineTransition_klv05")]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_srhge"]
 
@@ -55,9 +99,17 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wrjo5"]
 xfade_time = 0.1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d5qei"]
+switch_mode = 2
+advance_mode = 2
+
 [resource]
 states/Damaged/node = SubResource("AnimationNodeAnimation_yxah2")
 states/Damaged/position = Vector2(533, 53)
+states/Dead/node = SubResource("AnimationNodeAnimation_x2byn")
+states/Dead/position = Vector2(642, 106)
+states/Dying/node = SubResource("AnimationNodeStateMachine_ecf0d")
+states/Dying/position = Vector2(533, 106)
 states/Idle/node = SubResource("AnimationNodeBlendTree_jc15q")
 states/Idle/position = Vector2(369, 53)
 states/Start/position = Vector2(900, 43)
@@ -67,5 +119,5 @@ states/Submerged/node = SubResource("AnimationNodeAnimation_ai61w")
 states/Submerged/position = Vector2(238, 214)
 states/Surface/node = SubResource("AnimationNodeAnimation_7qv5w")
 states/Surface/position = Vector2(238, 53)
-transitions = ["Surface", "Idle", SubResource("AnimationNodeStateMachineTransition_s13nd"), "Idle", "Submerge", SubResource("AnimationNodeStateMachineTransition_d8k6y"), "Submerge", "Submerged", SubResource("AnimationNodeStateMachineTransition_ntcvp"), "Idle", "Damaged", SubResource("AnimationNodeStateMachineTransition_wrjo5")]
-graph_offset = Vector2(-1, -49)
+transitions = ["Surface", "Idle", SubResource("AnimationNodeStateMachineTransition_s13nd"), "Idle", "Submerge", SubResource("AnimationNodeStateMachineTransition_d8k6y"), "Submerge", "Submerged", SubResource("AnimationNodeStateMachineTransition_ntcvp"), "Idle", "Damaged", SubResource("AnimationNodeStateMachineTransition_wrjo5"), "Dying", "Dead", SubResource("AnimationNodeStateMachineTransition_d5qei")]
+graph_offset = Vector2(-1, -39.7814)
