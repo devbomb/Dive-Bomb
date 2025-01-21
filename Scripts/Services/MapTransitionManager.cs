@@ -113,6 +113,9 @@ namespace FastDragon
             player.Animator.Play("Glide", fadeOutTime);
 
             // Fade the screen to black(except for the player)
+            // The fade curtain only shows things that are flagged as
+            // "visible in portals", so set that flag on the player.
+            player.SetVisibleInPortals(true);
             fadeCurtain.Visible = true;
             fadeCurtain.FadePercent = 0;
             var tween = GetTree().CreateTween();
