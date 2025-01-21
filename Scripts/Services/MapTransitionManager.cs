@@ -113,8 +113,9 @@ namespace FastDragon
             player.Animator.Play("Glide", fadeOutTime);
 
             // Fade the screen to black(except for the player)
-            // The fade curtain only shows things that are flagged as
-            // "visible in portals", so set that flag on the player.
+            // The fade curtain blocks everything that isn't flagged as
+            // "visible in portals", so setting that flag on the player ensures
+            // he's still visible during the fadeout.
             player.SetVisibleInPortals(true);
             fadeCurtain.Visible = true;
             fadeCurtain.FadePercent = 0;
@@ -130,6 +131,17 @@ namespace FastDragon
             tween.TweenInterval(1);
             tween.TweenProperty(fadeCurtain, "FadePercent", 0, fadeInTime);
             tween.TweenProperty(fadeCurtain, "visible", false, 0);
+
+            // HACK: Setting the process mode to Physics avoids a "black flash"
+            // that would otherwise occur for one frame after switching to the
+            // loading screen.
+            //
+            // Why does that flash happen without this, and why does changing
+            // the process mode fix it?  Not sure, but it may have something to
+            // do with CopycatCamera not moving to the loading screen camera's
+            // position until _after_ a frame has already been drawn with it in
+            // the wrong place.
+            tween.SetProcessMode(Tween.TweenProcessMode.Physics);
         }
 
         public void ExitLevel()
