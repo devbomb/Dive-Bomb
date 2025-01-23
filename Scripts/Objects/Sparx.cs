@@ -68,6 +68,7 @@ namespace FastDragon
 
         private void QueueNearbyGems()
         {
+            return;
             var areas = CollectionArea.GetOverlappingAreas();
 
             foreach (var area in areas)
