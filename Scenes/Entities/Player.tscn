@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=23 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="9_vmh20"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/GemGravityGloves.cs" id="11_6yjeu"]
+[ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="12_yncy6"]
 
 [sub_resource type="GDScript" id="GDScript_cpnxc"]
 script/source = "extends Node
@@ -57,9 +58,22 @@ height = 1.5
 [sub_resource type="BoxMesh" id="BoxMesh_8oevv"]
 size = Vector3(1, 2, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_5a3wt"]
-radius = 0.1
-height = 0.1
+[sub_resource type="Curve" id="Curve_ud4r0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6d1en"]
+curve = SubResource("Curve_ud4r0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gxed6"]
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_6d1en")
+color = Color(0, 0.63, 0.21, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_a4opu")
@@ -194,11 +208,18 @@ external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D"
 unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
 
-[node name="GemGravityGloves" type="Node3D" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint", "CollectionArea")]
+[node name="GemGravityGloves" type="Node3D" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint", "CollectionArea", "Particles")]
 script = ExtResource("11_6yjeu")
 LeftHandPoint = NodePath("../LeftHandBone/LeftHandPoint")
 RightHandPoint = NodePath("../RightHandBone/RightHandPoint")
 CollectionArea = NodePath("../SparxRange")
+Particles = NodePath("SimpleParticles")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GemGravityGloves"]
-mesh = SubResource("SphereMesh_5a3wt")
+[node name="SimpleParticles" type="Node3D" parent="GemGravityGloves"]
+script = ExtResource("12_yncy6")
+Amount = 100
+AmountRatio = 1.0
+Lifetime = 0.5
+SpeedScale = 1.0
+FixedFps = 30
+ProcessMaterial = SubResource("ParticleProcessMaterial_gxed6")

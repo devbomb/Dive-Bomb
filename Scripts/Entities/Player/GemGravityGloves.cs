@@ -8,6 +8,7 @@ namespace FastDragon
         [Export] public Node3D LeftHandPoint;
         [Export] public Node3D RightHandPoint;
         [Export] public Area3D CollectionArea;
+        [Export] public SimpleParticles Particles;
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
         private StateMachine _stateMachine = new StateMachine(typeof(GravityGlovesState));
@@ -60,12 +61,12 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _parent.Visible = false;
+                _parent.Particles.Emitting = false;
             }
 
             public override void OnStateExited()
             {
-                _parent.Visible = true;
+                _parent.Particles.Emitting = true;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -124,11 +125,6 @@ namespace FastDragon
                     _parent._gemQueue.Dequeue();
                     ChangeState<Idle>();
                 }
-            }
-
-            private void FlyTowardNextGemInQueue(float delta)
-            {
-
             }
 
             private Gem PeekAtGemQueue()
