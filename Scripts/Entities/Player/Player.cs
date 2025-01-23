@@ -55,6 +55,9 @@ namespace FastDragon
         public Node3D FairyKissCamRightPoint => GetNode<Node3D>("%FairyKissCamRightPoint");
         public Node3D FairyKissCamLeftPoint => GetNode<Node3D>("%FairyKissCamLeftPoint");
 
+        public Node3D LeftHandPoint => GetNode<Node3D>("%LeftHandPoint");
+        public Node3D RightHandPoint => GetNode<Node3D>("%RightHandPoint");
+
         /// <summary>
         /// Used to let the player press "jump" slightly before landing and
         /// still have it count.

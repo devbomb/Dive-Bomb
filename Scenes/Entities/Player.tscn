@@ -166,3 +166,25 @@ ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
 mouse_filter = 2
+
+[node name="LeftHandBone" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.665818, 0.624029, -0.408992, 0.514083, 0.013588, 0.857633, 0.540745, -0.781283, -0.311755, -0.0207415, 0.846873, -0.402608)
+bone_name = "Hand_L"
+bone_idx = 10
+use_external_skeleton = true
+external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D")
+
+[node name="LeftHandPoint" type="Marker3D" parent="LeftHandBone"]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
+
+[node name="RightHandBone" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-0.919141, 0.375811, 0.118092, -0.0347274, -0.375915, 0.926003, 0.392395, 0.847026, 0.35857, 0.143379, 0.769538, 0.281852)
+bone_name = "Hand_R"
+bone_idx = 19
+use_external_skeleton = true
+external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D")
+
+[node name="RightHandPoint" type="Marker3D" parent="RightHandBone"]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
