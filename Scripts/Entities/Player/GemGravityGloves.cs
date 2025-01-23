@@ -52,6 +52,26 @@ namespace FastDragon
             }
         }
 
+        private Gem PeekAtGemQueue()
+        {
+            // Skip gems that aren't revealed(EG: because they were collected
+            // manually before we could get to them)
+            while (_gemQueue.Count > 0)
+            {
+                var gem = _gemQueue.Peek();
+
+                if (!gem.IsRevealed)
+                {
+                    _gemQueue.Dequeue();
+                    continue;
+                }
+
+                return gem;
+            }
+
+            return null;
+        }
+
         private abstract partial class GravityGlovesState : State
         {
             protected GemGravityGloves _parent => _stateMachine.GetParent<GemGravityGloves>();
@@ -78,13 +98,30 @@ namespace FastDragon
                 if (_parent._gemQueue.Count > 0)
                 {
                     _parent.TopLevel = true;
-                    // TODO: Choose the closest hand point to the gem
-                    _parent.GlobalPosition = _parent.LeftHandPoint.GlobalPosition;
+
+                    var gem = _parent.PeekAtGemQueue();
+                    _parent.GlobalPosition = ClosestHandPoint(gem).GlobalPosition;
                     _parent.ForceUpdateTransform();
                     _parent.ResetPhysicsInterpolation3D();
+
                     ChangeState<CollectingGem>();
                     return;
                 }
+            }
+
+            private Node3D ClosestHandPoint(Gem gem)
+            {
+                float leftDist = gem
+                    .GlobalPosition
+                    .DistanceSquaredTo(_parent.LeftHandPoint.GlobalPosition);
+
+                float rightDist = gem
+                    .GlobalPosition
+                    .DistanceSquaredTo(_parent.RightHandPoint.GlobalPosition);
+
+                return leftDist < rightDist
+                    ? _parent.LeftHandPoint
+                    : _parent.RightHandPoint;
             }
         }
 
@@ -107,7 +144,7 @@ namespace FastDragon
 
                 _parent.QueueNearbyGems();
 
-                Gem gem = PeekAtGemQueue();
+                Gem gem = _parent.PeekAtGemQueue();
                 if (gem == null)
                 {
                     ChangeState<Idle>();
@@ -125,26 +162,6 @@ namespace FastDragon
                     _parent._gemQueue.Dequeue();
                     ChangeState<Idle>();
                 }
-            }
-
-            private Gem PeekAtGemQueue()
-            {
-                // Skip gems that aren't revealed(EG: because they were collected
-                // manually before we could get to them)
-                while (_parent._gemQueue.Count > 0)
-                {
-                    var gem = _parent._gemQueue.Peek();
-
-                    if (!gem.IsRevealed)
-                    {
-                        _parent._gemQueue.Dequeue();
-                        continue;
-                    }
-
-                    return gem;
-                }
-
-                return null;
             }
         }
     }
