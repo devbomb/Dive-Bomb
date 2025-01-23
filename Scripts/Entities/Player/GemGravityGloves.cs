@@ -128,18 +128,40 @@ namespace FastDragon
         {
             private const float FlyTime = 0.2f;
             private float _timer;
+            private float _visualTimer;
 
             public override void OnStateEntered()
             {
                 _timer = 0;
+                _visualTimer = 0;
+            }
+
+            public override void _Process(double deltaD)
+            {
+                _visualTimer += (float)deltaD;
+
+                _parent.QueueNearbyGems();
+
+                Gem gem = _parent.PeekAtGemQueue();
+                if (gem == null)
+                    return;
+
+                var startPoint =  _parent._startHandPoint.GlobalPosition;
+
+                _parent.GlobalPosition = startPoint.Lerp(
+                    gem.GlobalPosition,
+                    _visualTimer / FlyTime
+                );
+
+                _parent.LookAt(startPoint);
+
+                _parent.ResetPhysicsInterpolation3D();
+                _parent.ForceUpdateTransform();
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                float delta = (float)deltaD;
-                _timer += delta;
-
-                _parent.QueueNearbyGems();
+                _timer += (float)deltaD;
 
                 Gem gem = _parent.PeekAtGemQueue();
                 if (gem == null)
@@ -147,14 +169,6 @@ namespace FastDragon
                     ChangeState<Idle>();
                     return;
                 }
-
-                var startPoint =  _parent._startHandPoint.GlobalPosition;
-                _parent.GlobalPosition = startPoint.Lerp(
-                    gem.GlobalPosition,
-                    _timer / FlyTime
-                );
-
-                _parent.LookAt(_parent._startHandPoint.GlobalPosition);
 
                 if (_timer >= FlyTime)
                 {
