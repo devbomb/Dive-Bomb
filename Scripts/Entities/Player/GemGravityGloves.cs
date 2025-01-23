@@ -10,6 +10,8 @@ namespace FastDragon
         [Export] public Area3D CollectionArea;
         [Export] public SimpleParticles Particles;
 
+        private Node3D _startHandPoint;
+
         private Queue<Gem> _gemQueue = new Queue<Gem>();
         private StateMachine _stateMachine = new StateMachine(typeof(GravityGlovesState));
 
@@ -100,10 +102,7 @@ namespace FastDragon
                     _parent.TopLevel = true;
 
                     var gem = _parent.PeekAtGemQueue();
-                    _parent.GlobalPosition = ClosestHandPoint(gem).GlobalPosition;
-                    _parent.ForceUpdateTransform();
-                    _parent.ResetPhysicsInterpolation3D();
-
+                    _parent._startHandPoint = ClosestHandPoint(gem);
                     ChangeState<CollectingGem>();
                     return;
                 }
@@ -129,12 +128,10 @@ namespace FastDragon
         {
             private const float FlyTime = 0.2f;
             private float _timer;
-            private Vector3 _startPos;
 
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _startPos = _parent.GlobalPosition;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -151,10 +148,13 @@ namespace FastDragon
                     return;
                 }
 
-                _parent.GlobalPosition = _startPos.Lerp(
+                var startPoint =  _parent._startHandPoint.GlobalPosition;
+                _parent.GlobalPosition = startPoint.Lerp(
                     gem.GlobalPosition,
                     _timer / FlyTime
                 );
+
+                _parent.LookAt(_parent._startHandPoint.GlobalPosition);
 
                 if (_timer >= FlyTime)
                 {
