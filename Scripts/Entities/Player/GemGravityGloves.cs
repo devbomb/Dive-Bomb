@@ -153,7 +153,7 @@ namespace FastDragon
 
                 _parent.GlobalPosition = startPoint.Lerp(
                     gem.GlobalPosition,
-                    _visualTimer / FlyTime
+                    Mathf.PingPong(_visualTimer * 2 / FlyTime, 1)
                 );
 
                 _parent.LookAt(startPoint);
