@@ -8,8 +8,9 @@ namespace FastDragon
         [Export] public Node3D LeftHandPoint;
         [Export] public Node3D RightHandPoint;
         [Export] public Area3D CollectionArea;
-        [Export] public SimpleParticles Particles;
-        [Export] public Node3D Model;
+
+        private SimpleParticles _particles => GetNode<SimpleParticles>("%TrailParticles");
+        private Node3D _model => GetNode<Node3D>("%Model");
 
         private Node3D _startHandPoint;
 
@@ -84,14 +85,14 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _parent.Particles.Emitting = false;
-                _parent.Model.Visible = false;
+                _parent._particles.Emitting = false;
+                _parent._model.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _parent.Particles.Emitting = true;
-                _parent.Model.Visible = true;
+                _parent._particles.Emitting = true;
+                _parent._model.Visible = true;
             }
 
             public override void _PhysicsProcess(double deltaD)

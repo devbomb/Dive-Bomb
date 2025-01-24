@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpr113kmu5g5o"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/Player/GemGravityGloves.cs" id="1_vb6sn"]
+[ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="2_u8ahm"]
+
+[sub_resource type="Curve" id="Curve_ud4r0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6d1en"]
+curve = SubResource("Curve_ud4r0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gxed6"]
+direction = Vector3(0, 0, -1)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_6d1en")
+color = Color(0, 0.63, 0.21, 1)
+
+[sub_resource type="Curve" id="Curve_kw2dg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5mvlk"]
+curve = SubResource("Curve_kw2dg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m3cj6"]
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_5mvlk")
+color = Color(0, 0.63, 0.21, 1)
+
+[node name="GemGravityGloves" type="Node3D"]
+script = ExtResource("1_vb6sn")
+
+[node name="TrailParticles" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_u8ahm")
+Amount = 100
+AmountRatio = 1.0
+Lifetime = 0.5
+SpeedScale = 1.0
+FixedFps = 30
+ProcessMaterial = SubResource("ParticleProcessMaterial_gxed6")
+
+[node name="Model" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="SimpleParticles" type="Node3D" parent="Model"]
+script = ExtResource("2_u8ahm")
+LocalCoords = true
+Amount = 100
+AmountRatio = 1.0
+Lifetime = 0.5
+Preprocess = 10.0
+SpeedScale = 1.0
+FixedFps = 30
+ProcessMaterial = SubResource("ParticleProcessMaterial_m3cj6")
