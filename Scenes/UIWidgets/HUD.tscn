@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://byhmelsic6fu5"]
+[gd_scene load_steps=9 format=3 uid="uid://byhmelsic6fu5"]
 
+[ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://Scenes/UIWidgets/HealthDisplay.tscn" id="1_6bb2e"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="1_cfww8"]
 [ext_resource type="PackedScene" uid="uid://dpa1avddef2b" path="res://Scenes/UIWidgets/CountingLabel.tscn" id="2_438p2"]
 [ext_resource type="Script" path="res://Scripts/UIWidgets/ContextuallyHiddenControl.cs" id="2_qcprr"]
@@ -38,6 +39,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_h7bdc")
+
+[node name="HealthDisplay" parent="." instance=ExtResource("1_6bb2e")]
+layout_mode = 1
 
 [node name="GemCountHider" type="HBoxContainer" parent="."]
 unique_name_in_owner = true

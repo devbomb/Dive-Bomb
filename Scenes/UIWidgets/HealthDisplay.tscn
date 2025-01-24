@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cys7esjw83l4i"]
+[gd_scene load_steps=6 format=3 uid="uid://cys7esjw83l4i"]
 
 [sub_resource type="Gradient" id="Gradient_y8wuc"]
 interpolation_mode = 1
@@ -24,47 +24,78 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="GDScript" id="GDScript_cpfft"]
 script/source = "extends TextureProgressBar
 
-func _process(_delta: float) -> void:
+const _hang_duration: float = 1
+const _return_duration: float = 1
+
+var _timer: float = 0
+var _lastHealth: int = 0
+
+func _ready() -> void:
 	value = $'/root/SaveFile'.Current().PlayerHealth
-	visible = $'/root/SaveFile'.Current().PlayerHealth < max_value
+	_lastHealth = value
+
+func _process(delta: float) -> void:
+	value = $'/root/SaveFile'.Current().PlayerHealth
+	
+	if (_lastHealth != value):
+		_lastHealth = value
+		_timer = _hang_duration + _return_duration
+	
+	_timer -= delta
+	var t: float = clamp(_timer, 0, _return_duration) / _return_duration
+	
+	anchor_left = lerpf(%RestPoint.anchor_left, %CenterPoint.anchor_left, t)
+	anchor_right = lerpf(%RestPoint.anchor_right, %CenterPoint.anchor_right, t)
+	anchor_top = lerpf(%RestPoint.anchor_top, %CenterPoint.anchor_top, t)
+	anchor_bottom = lerpf(%RestPoint.anchor_bottom, %CenterPoint.anchor_bottom, t)
+	
+	offset_left = lerpf(%RestPoint.offset_left, %CenterPoint.offset_left, t)
+	offset_right = lerpf(%RestPoint.offset_right, %CenterPoint.offset_right, t)
+	offset_top = lerpf(%RestPoint.offset_top, %CenterPoint.offset_top, t)
+	offset_bottom = lerpf(%RestPoint.offset_bottom, %CenterPoint.offset_bottom, t)
 "
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_pmf1a"]
-viewport_path = NodePath("SubViewport")
+[node name="HealthDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5dqk"]
-resource_local_to_scene = true
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_pmf1a")
-disable_receive_shadows = true
-billboard_mode = 1
-billboard_keep_scale = true
-fixed_size = true
+[node name="RestPoint" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 80.0
+grow_horizontal = 0
 
-[sub_resource type="QuadMesh" id="QuadMesh_gey3c"]
+[node name="CenterPoint" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
-[node name="HealthDisplay" type="Node3D"]
-
-[node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
-transparent_bg = true
-size = Vector2i(64, 64)
-
-[node name="ProgressBar" type="TextureProgressBar" parent="SubViewport"]
-offset_right = 64.0
-offset_bottom = 64.0
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 80.0
+grow_horizontal = 0
 max_value = 4.0
 value = 3.0
 fill_mode = 5
 texture_under = SubResource("GradientTexture2D_01u1h")
 texture_progress = SubResource("GradientTexture2D_oxnwy")
 script = SubResource("GDScript_cpfft")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_u5dqk")
-cast_shadow = 0
-mesh = SubResource("QuadMesh_gey3c")
