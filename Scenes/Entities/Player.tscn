@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=17 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
@@ -36,24 +36,6 @@ func _physics_process(delta):
         print(_maxHeight)
         
 "
-
-[sub_resource type="BoxMesh" id="BoxMesh_keoxu"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_5lcs0"]
-height = 3.0
-radius = 1.5
-
-[sub_resource type="Gradient" id="Gradient_tneeo"]
-offsets = PackedFloat32Array(0, 0.492958, 0.686848, 0.707724)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_81n3q"]
-gradient = SubResource("Gradient_tneeo")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0, 0)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1rf0g"]
 height = 1.5
@@ -101,27 +83,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 1
 [node name="FairyKissCamLeftPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 1.124, -0.364)
-
-[node name="GemRange" type="Area3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-collision_layer = 2
-collision_mask = 2
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GemRange"]
-transform = Transform3D(3.02686, 0, 0, 0, 1, 0, 0, 0, 3.04648, 0, -0.5, 0)
-visible = false
-mesh = SubResource("BoxMesh_keoxu")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GemRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
-shape = SubResource("CylinderShape3D_5lcs0")
-
-[node name="Decal" type="Decal" parent="GemRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003, -0.75, 0.005)
-size = Vector3(3, 3, 3)
-texture_albedo = SubResource("GradientTexture2D_81n3q")
 
 [node name="KickHitbox" type="Area3D" parent="."]
 unique_name_in_owner = true
@@ -210,7 +171,6 @@ external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D"
 unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
 
-[node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint", "CollectionArea") instance=ExtResource("10_dedpk")]
+[node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint") instance=ExtResource("10_dedpk")]
 LeftHandPoint = NodePath("../LeftHandBone/LeftHandPoint")
 RightHandPoint = NodePath("../RightHandBone/RightHandPoint")
-CollectionArea = NodePath("../GemRange")

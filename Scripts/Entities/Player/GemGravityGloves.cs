@@ -7,8 +7,9 @@ namespace FastDragon
     {
         [Export] public Node3D LeftHandPoint;
         [Export] public Node3D RightHandPoint;
-        [Export] public Area3D CollectionArea;
 
+        private Area3D _collectionRange => GetNode<Area3D>("%CollectionRange");
+        private Node3D _grabber => GetNode<Node3D>("%Grabber");
         private SimpleParticles _particles => GetNode<SimpleParticles>("%TrailParticles");
         private Node3D _model => GetNode<Node3D>("%Model");
 
@@ -32,7 +33,7 @@ namespace FastDragon
 
         private void QueueNearbyGems()
         {
-            var areas = CollectionArea.GetOverlappingAreas();
+            var areas = _collectionRange.GetOverlappingAreas();
 
             foreach (var area in areas)
             {
@@ -104,7 +105,6 @@ namespace FastDragon
                 var gem = _parent.PeekAtGemQueue();
                 if (gem != null)
                 {
-                    _parent.TopLevel = true;
                     _parent._startHandPoint = ClosestHandPoint(gem);
                     ChangeState<CollectingGem>();
                     return;
@@ -151,18 +151,18 @@ namespace FastDragon
 
                 var startPoint =  _parent._startHandPoint.GlobalPosition;
 
-                _parent.GlobalPosition = startPoint.Lerp(
+                _parent._grabber.GlobalPosition = startPoint.Lerp(
                     gem.GlobalPosition,
                     Mathf.PingPong(_visualTimer * 2 / FlyTime, 1)
                 );
 
-                var dir = _parent.GlobalPosition.DirectionTo(startPoint);
+                var dir = _parent._grabber.GlobalPosition.DirectionTo(startPoint);
                 var up = dir.IsEqualApprox(Vector3.Up)
                     ? Vector3.Forward
                     : Vector3.Up;
 
-                if (_parent.GlobalPosition.DistanceTo(startPoint) > 0.01f)
-                    _parent.LookAt(startPoint, up);
+                if (_parent._grabber.GlobalPosition.DistanceTo(startPoint) > 0.01f)
+                    _parent._grabber.LookAt(startPoint, up);
 
                 _parent.ResetPhysicsInterpolation3D();
                 _parent.ForceUpdateTransform();
