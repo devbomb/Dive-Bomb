@@ -157,7 +157,13 @@ namespace FastDragon
                     Mathf.PingPong(_visualTimer * 2 / FlyTime, 1)
                 );
 
-                _parent.LookAt(startPoint);
+                var dir = _parent.GlobalPosition.DirectionTo(startPoint);
+                var up = dir.IsEqualApprox(Vector3.Up)
+                    ? Vector3.Forward
+                    : Vector3.Up;
+
+                if (_parent.GlobalPosition.DistanceTo(startPoint) > 0.01f)
+                    _parent.LookAt(startPoint, up);
 
                 _parent.ResetPhysicsInterpolation3D();
                 _parent.ForceUpdateTransform();
