@@ -9,14 +9,14 @@
 script/source = "extends Control
 
 func _ready():
-    $'%GemCountLabel'.ForceSet(GemCount())
+	$'%GemCountLabel'.ForceSet(GemCount())
 
 func _process(_delta):
-    $'%GemCountHider'.ObservedValue = GemCount()
-    $'%GemCountLabel'.Value = GemCount()
+	$'%GemCountHider'.ObservedValue = GemCount()
+	$'%GemCountLabel'.Value = GemCount()
 
 func GemCount() -> int:
-    return $'/root/SaveFile'.Current().TotalGemCount
+	return $'/root/SaveFile'.Current().TotalGemCount
 "
 
 [sub_resource type="Theme" id="Theme_ux4dw"]

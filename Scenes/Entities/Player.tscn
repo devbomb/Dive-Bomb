@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=19 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="9_vmh20"]
 [ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Scenes/Objects/GemGravityGloves.tscn" id="10_dedpk"]
+[ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://Scenes/UIWidgets/HealthDisplay.tscn" id="11_4taww"]
 
 [sub_resource type="GDScript" id="GDScript_cpnxc"]
 script/source = "extends Node
@@ -189,3 +190,6 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
 LeftHandPoint = NodePath("../LeftHandBone/LeftHandPoint")
 RightHandPoint = NodePath("../RightHandBone/RightHandPoint")
 CollectionArea = NodePath("../GemRange")
+
+[node name="HealthDisplay" parent="." instance=ExtResource("11_4taww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.737055, 1.4252, 0)

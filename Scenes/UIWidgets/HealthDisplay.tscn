@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://cys7esjw83l4i"]
+
+[sub_resource type="Gradient" id="Gradient_y8wuc"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_01u1h"]
+gradient = SubResource("Gradient_y8wuc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_ywhaq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7)
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oxnwy"]
+gradient = SubResource("Gradient_ywhaq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="GDScript" id="GDScript_cpfft"]
+script/source = "extends TextureProgressBar
+
+func _process(_delta: float) -> void:
+	value = $'/root/SaveFile'.Current().PlayerHealth
+	visible = $'/root/SaveFile'.Current().PlayerHealth < max_value
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pmf1a"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5dqk"]
+resource_local_to_scene = true
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_pmf1a")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_gey3c"]
+
+[node name="HealthDisplay" type="Node3D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(64, 64)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="SubViewport"]
+offset_right = 64.0
+offset_bottom = 64.0
+max_value = 4.0
+value = 3.0
+fill_mode = 5
+texture_under = SubResource("GradientTexture2D_01u1h")
+texture_progress = SubResource("GradientTexture2D_oxnwy")
+script = SubResource("GDScript_cpfft")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_u5dqk")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_gey3c")
