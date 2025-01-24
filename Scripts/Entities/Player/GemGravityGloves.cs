@@ -101,11 +101,10 @@ namespace FastDragon
 
                 _parent.QueueNearbyGems();
 
-                if (_parent._gemQueue.Count > 0)
+                var gem = _parent.PeekAtGemQueue();
+                if (gem != null)
                 {
                     _parent.TopLevel = true;
-
-                    var gem = _parent.PeekAtGemQueue();
                     _parent._startHandPoint = ClosestHandPoint(gem);
                     ChangeState<CollectingGem>();
                     return;
