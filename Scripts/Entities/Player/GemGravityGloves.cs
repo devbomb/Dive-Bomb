@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -9,6 +10,9 @@ namespace FastDragon
         [Export] public Node3D RightHandPoint;
 
         private Area3D _collectionRange => GetNode<Area3D>("%CollectionRange");
+        private Area3D _decalEnabler => GetNode<Area3D>("%DecalEnabler");
+        private Decal _decal => GetNode<Decal>("%Decal");
+
         private Node3D _grabber => GetNode<Node3D>("%Grabber");
         private SimpleParticles _particles => GetNode<SimpleParticles>("%TrailParticles");
         private Node3D _model => GetNode<Node3D>("%Model");
@@ -31,9 +35,30 @@ namespace FastDragon
             _stateMachine.ChangeState<Idle>();
         }
 
+        public override void _PhysicsProcess(double deltaD)
+        {
+            bool showDecal = QueueableGemsInArea(_decalEnabler).Any();
+            float targetAlpha = showDecal
+                ? 1
+                : 0;
+
+            var m = _decal.Modulate;
+            m.A = Mathf.MoveToward(m.A, targetAlpha, 3 * (float)deltaD);
+            _decal.Modulate = m;
+        }
+
         private void QueueNearbyGems()
         {
-            var areas = _collectionRange.GetOverlappingAreas();
+            foreach (var gem in QueueableGemsInArea(_collectionRange))
+            {
+                _gemQueue.Enqueue(gem);
+                gem.Sparkle();
+            }
+        }
+
+        private IEnumerable<Gem> QueueableGemsInArea(Area3D detectorArea)
+        {
+            var areas = detectorArea.GetOverlappingAreas();
 
             foreach (var area in areas)
             {
@@ -52,8 +77,7 @@ namespace FastDragon
                 if (_gemQueue.Contains(gem))
                     continue;
 
-                _gemQueue.Enqueue(gem);
-                gem.Sparkle();
+                yield return gem;
             }
         }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bpr113kmu5g5o"]
+[gd_scene load_steps=13 format=3 uid="uid://bpr113kmu5g5o"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/GemGravityGloves.cs" id="1_vb6sn"]
 [ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="2_u8ahm"]
@@ -6,6 +6,10 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_i8xg1"]
 height = 3.0
 radius = 1.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gajxm"]
+height = 3.0
+radius = 6.0
 
 [sub_resource type="Gradient" id="Gradient_tneeo"]
 offsets = PackedFloat32Array(0, 0.492958, 0.686848, 0.707724)
@@ -67,7 +71,18 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 shape = SubResource("CylinderShape3D_i8xg1")
 
+[node name="DecalEnabler" type="Area3D" parent="CollectionRange"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionRange/DecalEnabler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+shape = SubResource("CylinderShape3D_gajxm")
+
 [node name="Decal" type="Decal" parent="CollectionRange"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003, -0.75, 0.005)
 size = Vector3(3, 3, 3)
 texture_albedo = SubResource("GradientTexture2D_rlph5")
