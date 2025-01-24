@@ -4,6 +4,8 @@ namespace FastDragon
 {
     public partial class Player
     {
+        public const int MaxHealth = 4;
+
         public static class Default
         {
             public const float Gravity = 20;
