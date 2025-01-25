@@ -173,8 +173,9 @@ namespace FastDragon
 
                 var startPoint = _parent._startHandPoint.GlobalPosition;
 
-                _parent._grabber.GlobalPosition = startPoint.Lerp(
+                _parent._grabber.GlobalPosition = startPoint.LerpParabola(
                     gem.GlobalPosition,
+                    0.5f,
                     _visualTimer / Duration
                 );
 
