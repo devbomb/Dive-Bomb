@@ -153,7 +153,7 @@ namespace FastDragon
 
         private partial class CollectingGem : GravityGlovesState
         {
-            private const float FlyTime = 0.2f;
+            private const float Duration = 0.1f;
             private float _timer;
             private float _visualTimer;
 
@@ -167,17 +167,15 @@ namespace FastDragon
             {
                 _visualTimer += (float)deltaD;
 
-                _parent.QueueNearbyGems();
-
                 Gem gem = _parent.PeekAtGemQueue();
                 if (gem == null)
                     return;
 
-                var startPoint =  _parent._startHandPoint.GlobalPosition;
+                var startPoint = _parent._startHandPoint.GlobalPosition;
 
                 _parent._grabber.GlobalPosition = startPoint.Lerp(
                     gem.GlobalPosition,
-                    Mathf.PingPong(_visualTimer * 2 / FlyTime, 1)
+                    _visualTimer / Duration
                 );
 
                 var dir = _parent._grabber.GlobalPosition.DirectionTo(startPoint);
@@ -195,6 +193,7 @@ namespace FastDragon
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
+                _parent.QueueNearbyGems();
 
                 Gem gem = _parent.PeekAtGemQueue();
                 if (gem == null)
@@ -203,12 +202,59 @@ namespace FastDragon
                     return;
                 }
 
-                if (_timer >= FlyTime)
+                if (_timer >= Duration)
                 {
                     gem.StartHomingIn();
                     _parent._gemQueue.Dequeue();
-                    ChangeState<Idle>();
+                    ChangeState<Returning>();
                 }
+            }
+        }
+
+        private partial class Returning : GravityGlovesState
+        {
+            private const float Duration = 0.05f;
+            private float _timer;
+            private float _visualTimer;
+            private Vector3 _startPoint;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _visualTimer = 0;
+                _startPoint = _parent._grabber.GlobalPosition;
+            }
+
+            public override void _Process(double deltaD)
+            {
+                _visualTimer += (float)deltaD;
+
+                var endPoint = _parent._startHandPoint.GlobalPosition;
+
+                _parent._grabber.GlobalPosition = _startPoint.Lerp(
+                    endPoint,
+                    _visualTimer / Duration
+                );
+
+                var dir = _parent._grabber.GlobalPosition.DirectionTo(_startPoint);
+                var up = dir.IsEqualApprox(Vector3.Up)
+                    ? Vector3.Forward
+                    : Vector3.Up;
+
+                if (_parent._grabber.GlobalPosition.DistanceTo(_startPoint) > 0.01f)
+                    _parent._grabber.LookAt(_startPoint, up);
+
+                _parent.ResetPhysicsInterpolation3D();
+                _parent.ForceUpdateTransform();
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer += (float)deltaD;
+                _parent.QueueNearbyGems();
+
+                if (_timer >= Duration)
+                    ChangeState<Idle>();
             }
         }
     }
