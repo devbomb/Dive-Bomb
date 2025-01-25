@@ -58,6 +58,10 @@ namespace FastDragon
 
             if (_player.IsOnFloor())
             {
+                // Notice that we're not changing the VSpeed.
+                // IsOnFloor() does not work reliably if you have 0 or positive
+                // VSpeed, so we need to maintain a little bit of negative speed
+                // to ensure it always returns true.
                 _player.ChangeState<PlayerWalkState>();
                 return;
             }
