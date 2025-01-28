@@ -217,7 +217,7 @@ namespace FastDragon
 
         private partial class Returning : GravityGlovesState
         {
-            private const float Duration = 0.05f;
+            private const float Duration = 0.15f;
             private float _timer;
             private float _visualTimer;
             private Vector3 _startPoint;
