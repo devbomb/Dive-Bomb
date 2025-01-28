@@ -37,7 +37,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	value = $'/root/SaveFile'.Current().PlayerHealth
 	
-	if (_lastHealth != value):
+	if (value < _lastHealth):
 		_lastHealth = value
 		_timer = _hang_duration + _return_duration
 	
@@ -78,6 +78,7 @@ grow_horizontal = 0
 [node name="CenterPoint" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
