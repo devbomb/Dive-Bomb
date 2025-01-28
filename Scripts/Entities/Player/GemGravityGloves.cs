@@ -15,6 +15,7 @@ namespace FastDragon
 
         private Node3D _grabber => GetNode<Node3D>("%Grabber");
         private SimpleParticles _particles => GetNode<SimpleParticles>("%TrailParticles");
+        private TrailRenderer3D _trail => GetNode<TrailRenderer3D>("%Trail");
         private Node3D _model => GetNode<Node3D>("%Model");
 
         private Node3D _startHandPoint;
@@ -112,12 +113,14 @@ namespace FastDragon
             {
                 _parent._particles.Emitting = false;
                 _parent._model.Visible = false;
+                _parent._trail.Active = false;
             }
 
             public override void OnStateExited()
             {
                 _parent._particles.Emitting = true;
                 _parent._model.Visible = true;
+                _parent._trail.Active = true;
             }
 
             public override void _PhysicsProcess(double deltaD)
