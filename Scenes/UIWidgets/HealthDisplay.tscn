@@ -1,19 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://cys7esjw83l4i"]
 
-[sub_resource type="Gradient" id="Gradient_y8wuc"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.7)
+[sub_resource type="Gradient" id="Gradient_d043o"]
+offsets = PackedFloat32Array(0.658252, 0.681553)
 colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_01u1h"]
-gradient = SubResource("Gradient_y8wuc")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_562a7"]
+gradient = SubResource("Gradient_d043o")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="Gradient_ywhaq"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.7)
+offsets = PackedFloat32Array(0.658252, 0.681553)
 colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oxnwy"]
@@ -85,6 +82,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -97,6 +95,6 @@ grow_horizontal = 0
 max_value = 4.0
 value = 3.0
 fill_mode = 5
-texture_under = SubResource("GradientTexture2D_01u1h")
+texture_under = SubResource("GradientTexture2D_562a7")
 texture_progress = SubResource("GradientTexture2D_oxnwy")
 script = SubResource("GDScript_cpfft")
