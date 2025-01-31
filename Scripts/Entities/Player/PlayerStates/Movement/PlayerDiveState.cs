@@ -12,6 +12,7 @@ namespace FastDragon
         public override bool DisableCameraInput => _redirectTimer <= 0;
 
         private float _redirectTimer;
+        private float _targetCameraYawRad;
 
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
 
@@ -22,6 +23,7 @@ namespace FastDragon
             _player.FSpeed = Player.Dive.FSpeed;
 
             _redirectTimer = Player.Dive.RedirectTimeWindow;
+            _targetCameraYawRad = _player.GlobalRotation.Y;
         }
 
         public override void OnStateExited()
@@ -38,6 +40,7 @@ namespace FastDragon
             if (_redirectTimer <= 0)
             {
                 ContinuouslyRecenterCamera(
+                    _targetCameraYawRad,
                     Player.Dive.CameraDistance,
                     Player.Dive.CameraPitchRad,
                     Player.Dive.CameraDecayRate,
@@ -57,6 +60,9 @@ namespace FastDragon
                 RotateInstantlyTowardLeftStick();
                 _player.FSpeed = speed;
             }
+
+            if (_redirectTimer > -0.1f)
+                _targetCameraYawRad = _player.GlobalRotation.Y;
 
             RotateTowardLeftStick(Player.Dive.TurnSpeedRad, delta);
             RedirectFSpeedTowardYaw();

@@ -209,6 +209,7 @@ namespace FastDragon
         /// decay to smooth things out.
         /// </summary>
         protected void ContinuouslyRecenterCamera(
+            float targetYawRad,
             float cameraDistance,
             float cameraPitchDeg,
             float decayRate,
@@ -233,7 +234,7 @@ namespace FastDragon
 
             camera.OrbitYawRad = AngleMath.DecayToward(
                 camera.OrbitYawRad,
-                _player.GlobalRotation.Y,
+                targetYawRad,
                 decayRate,
                 delta
             );
