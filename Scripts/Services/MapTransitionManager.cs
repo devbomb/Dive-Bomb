@@ -165,7 +165,7 @@ namespace FastDragon
         public void RespawnPlayerAfterDeath()
         {
             // Heal the player back to full
-            SaveFile.Current.PlayerHealth = SparxColor.Gold;
+            SaveFile.Current.PlayerHealth = Player.MaxHealth;
 
             // Fade to black, reset the level, and then unfade.
             DoThingWithFadeToBlack(SignalBus.Instance.EmitLevelReset);
@@ -178,7 +178,7 @@ namespace FastDragon
             const double fadeInTime = 0.5;
 
             // Heal the player back to full
-            SaveFile.Current.PlayerHealth = SparxColor.Gold;
+            SaveFile.Current.PlayerHealth = Player.MaxHealth;
 
             var tween = GetTree().CreateTween();
             tween.SetPauseMode(Tween.TweenPauseMode.Process);

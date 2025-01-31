@@ -10,7 +10,7 @@ namespace FastDragon
     {
         public static SaveFile Current = new SaveFile();
 
-        public SparxColor PlayerHealth = SparxColor.Gold;
+        public int PlayerHealth = Player.MaxHealth;
         public string CurrentMap;
         public string CurrentCheckpoint = null;
 

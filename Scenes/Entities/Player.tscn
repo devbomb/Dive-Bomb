@@ -1,15 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=17 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
 [ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://AnimationLibraries/KennifiedPlayerAnimations.tres" id="2_dijyt"]
 [ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Scenes/Objects/TimeTrialManager.tscn" id="2_eu73y"]
-[ext_resource type="PackedScene" uid="uid://dolfkovx44knj" path="res://Scenes/Objects/Sparx.tscn" id="3_5fc8t"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="3_fw7ex"]
 [ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Scenes/Objects/PlayerCamera.tscn" id="4_ne5gw"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="9_vmh20"]
+[ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Scenes/Objects/GemGravityGloves.tscn" id="10_dedpk"]
 
 [sub_resource type="GDScript" id="GDScript_cpnxc"]
 script/source = "extends Node
@@ -36,10 +36,6 @@ func _physics_process(delta):
         print(_maxHeight)
         
 "
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_5lcs0"]
-height = 3.0
-radius = 1.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1rf0g"]
 height = 1.5
@@ -87,20 +83,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 1
 [node name="FairyKissCamLeftPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 1.124, -0.364)
-
-[node name="Sparx" parent="." node_paths=PackedStringArray("CollectionArea") instance=ExtResource("3_5fc8t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-CollectionArea = NodePath("../SparxRange")
-
-[node name="SparxRange" type="Area3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SparxRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
-shape = SubResource("CylinderShape3D_5lcs0")
 
 [node name="KickHitbox" type="Area3D" parent="."]
 unique_name_in_owner = true
@@ -166,3 +148,29 @@ ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
 mouse_filter = 2
+
+[node name="LeftHandBone" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.0934727, -0.982629, -0.160321, -0.0241288, -0.163214, 0.986295, -0.995329, -0.0883233, -0.0389656, -0.508041, 0.905569, -0.0323664)
+bone_name = "Hand_L"
+bone_idx = 10
+use_external_skeleton = true
+external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D")
+
+[node name="LeftHandPoint" type="Marker3D" parent="LeftHandBone"]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
+
+[node name="RightHandBone" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.0934727, 0.982629, 0.160321, 0.0241288, -0.163214, 0.986295, 0.995329, -0.0883233, -0.0389656, 0.508041, 0.905569, -0.0323664)
+bone_name = "Hand_R"
+bone_idx = 19
+use_external_skeleton = true
+external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D")
+
+[node name="RightHandPoint" type="Marker3D" parent="RightHandBone"]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
+
+[node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint") instance=ExtResource("10_dedpk")]
+LeftHandPoint = NodePath("../LeftHandBone/LeftHandPoint")
+RightHandPoint = NodePath("../RightHandBone/RightHandPoint")
