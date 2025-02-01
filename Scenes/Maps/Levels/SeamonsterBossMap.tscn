@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://ch833aopuetgq"]
+[gd_scene load_steps=16 format=3 uid="uid://ch833aopuetgq"]
 
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Scenes/Entities/Player.tscn" id="1_0rosg"]
+[ext_resource type="PackedScene" uid="uid://cqhbrrt437sid" path="res://Scenes/Entities/ReturnHomeVortex.tscn" id="2_0v33w"]
 [ext_resource type="Script" path="res://Scripts/Entities/DeathBarrier.cs" id="2_ab5yi"]
 [ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Scenes/Entities/NamedMarker3D.tscn" id="4_elxet"]
 [ext_resource type="PackedScene" uid="uid://btcofpq2vamxe" path="res://Scenes/Entities/PowerOrb.tscn" id="5_6lj42"]
@@ -72,6 +73,10 @@ transform = Transform3D(1, 0, 0, 0, 0.799884, 0.600155, 0, -0.600155, 0.799884, 
 LevelName = "Seamonster Boss"
 HomeWorldMap = "res://Scenes/Maps/Levels/TestMap.tscn"
 
+[node name="ReturnHomeVortex" parent="." instance=ExtResource("2_0v33w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.43538)
+StartHidden = true
+
 [node name="ArenaPlatform" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaPlatform"]
@@ -96,8 +101,9 @@ material_override = SubResource("StandardMaterial3D_vttnq")
 mesh = SubResource("PlaneMesh_gcvk4")
 script = SubResource("GDScript_awg70")
 
-[node name="SeamonsterBoss" parent="." node_paths=PackedStringArray("AcidSplashesCameraPoint", "InitialSpawnPoint", "CameraFixPoint", "SpawnPoints", "PowerOrbs") instance=ExtResource("5_pv6rf")]
+[node name="SeamonsterBoss" parent="." node_paths=PackedStringArray("ReturnHomeVortex", "AcidSplashesCameraPoint", "InitialSpawnPoint", "CameraFixPoint", "SpawnPoints", "PowerOrbs") instance=ExtResource("5_pv6rf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -8.5)
+ReturnHomeVortex = NodePath("../ReturnHomeVortex")
 AcidSplashesCameraPoint = NodePath("../AcidSplashesCameraPos")
 InitialSpawnPoint = NodePath("../BossNorthSpawn")
 CameraFixPoint = NodePath("../FixedCameraPos")

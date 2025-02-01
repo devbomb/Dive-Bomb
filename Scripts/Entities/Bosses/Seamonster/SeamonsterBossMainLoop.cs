@@ -252,6 +252,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _self.UseBossCameraAngle();
+                _self.ReturnHomeVortex.Reveal();
             }
         }
 
