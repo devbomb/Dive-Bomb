@@ -4,62 +4,178 @@ namespace FastDragon
 {
     public partial class ReturnHomeVortex : Node3D
     {
-        private const float AscendDuration = 3.75f;
-        private const float RotSpeedDeg = 180;
+        [Export] public float ExitHeight = 10;
+        [Export] public bool StartHidden = false;
 
-        [Export] public float ExitHeight = 15;
+        private Node3D _model => GetNode<Node3D>("%Model");
+        private Node3D _hiddenPoint => GetNode<Node3D>("%HiddenPoint");
 
-        private Player _ensnaredPlayer = null;
+        private Area3D _trigger => GetNode<Area3D>("%Trigger");
+
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(VortexState));
 
         public override void _Ready()
         {
-            SignalBus.Instance.LevelReset += OnLevelReset;
+            SignalBus.Instance.LevelReset += Reset;
+            AddChild(_stateMachine);
+
+            Reset();
         }
 
-        public override void _PhysicsProcess(double deltaD)
+        private void Reset()
         {
-            float delta = (float)deltaD;
+            if (StartHidden)
+                _stateMachine.ChangeState<HiddenState>();
+            else
+                _stateMachine.ChangeState<ReadyState>();
+        }
 
-            if (_ensnaredPlayer == null)
-                return;
+        public void Reveal()
+        {
+            _stateMachine.ChangeState<RevealingState>();
+        }
 
-            // Spin the player and move them up
-            float speed = ExitHeight / AscendDuration;
-            _ensnaredPlayer.GlobalPosition += Vector3.Up * speed * delta;
-            _ensnaredPlayer.GlobalRotationDegrees += Vector3.Up * RotSpeedDeg * delta;
+        private void SetTriggerMonitoring(bool enabled)
+        {
+            _trigger.SetDeferred("monitoring", enabled);
+        }
 
-            // Rotate the camera underneath the player
-            _ensnaredPlayer.Camera.OrbitPitchRad = AngleMath.DecayToward(
-                _ensnaredPlayer.Camera.OrbitPitchRad,
-                Mathf.DegToRad(89.999f),
-                2,
-                delta
-            );
-
-            bool playerReachedExitHeight = _ensnaredPlayer.GlobalPosition.Y >= GlobalPosition.Y + ExitHeight;
-            bool isTimeTrialMode = GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
-            if (playerReachedExitHeight && !isTimeTrialMode)
+        private void SetParticlesEmitting(bool emitting)
+        {
+            foreach (var particles in this.EnumerateDescendantsOfType<GpuParticles3D>())
             {
-                MapTransitionManager.Instance.ExitLevel();
+                particles.Emitting = emitting;
             }
         }
 
-        public void OnTriggerBodyEntered(Node body)
+        private abstract partial class VortexState : State
         {
-            if (body is Player p && !(p.CurrentState is PlayerManhandledState))
+            protected ReturnHomeVortex _vortex => _stateMachine.GetParent<ReturnHomeVortex>();
+        }
+
+        private partial class HiddenState : VortexState
+        {
+            public override void OnStateEntered()
             {
-                _ensnaredPlayer = p;
-                p.ChangeState<PlayerManhandledState>();
-                p.Animator.Play("Glide");
+                _vortex._model.Position = _vortex._hiddenPoint.Position;
+                _vortex._model.ResetPhysicsInterpolation3D();
+
+                _vortex.SetParticlesEmitting(false);
+            }
+
+            public override void OnStateExited()
+            {
+                _vortex.SetParticlesEmitting(true);
+            }
+        }
+
+        private partial class RevealingState : VortexState
+        {
+            private const float Duration = 3;
+            private float _timer;
+
+            public override void OnStateEntered()
+            {
+                _vortex._model.Position = _vortex._hiddenPoint.Position;
+                _vortex._model.ResetPhysicsInterpolation3D();
+                _timer = 0;
+
+                _vortex.SetParticlesEmitting(false);
+            }
+
+            public override void OnStateExited()
+            {
+                _vortex.SetParticlesEmitting(true);
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _timer += (float)deltaD;
+
+                _vortex._model.Position = _vortex._hiddenPoint.Position.Lerp(
+                    Vector3.Zero,
+                    _timer / Duration
+                );
+
+                if (_timer >= Duration)
+                {
+                    _vortex._model.Position = Vector3.Zero;
+                    _vortex._model.ResetPhysicsInterpolation3D();
+                    ChangeState<ReadyState>();
+                }
+            }
+        }
+
+        private partial class ReadyState : VortexState
+        {
+            public override void OnStateEntered()
+            {
+                _vortex._model.Position = Vector3.Zero;
+                _vortex._model.ResetPhysicsInterpolation3D();
+
+                _vortex.SetTriggerMonitoring(true);
+                _vortex._trigger.BodyEntered += OnTriggerBodyEntered;
+            }
+
+            public override void OnStateExited()
+            {
+                _vortex.SetTriggerMonitoring(false);
+                _vortex._trigger.BodyEntered -= OnTriggerBodyEntered;
+            }
+
+            private void OnTriggerBodyEntered(Node body)
+            {
+                if (body is Player p && !(p.CurrentState is PlayerManhandledState))
+                    ChangeState<ExitingLevelState>();
+            }
+        }
+
+        private partial class ExitingLevelState : VortexState
+        {
+            private const float AscendDuration = 3.75f;
+            private const float RotSpeedDeg = 180;
+
+            private Player _player;
+
+            public override void OnStateEntered()
+            {
+                _player = GetTree().FindNode<Player>();
+                _player.ChangeState<PlayerManhandledState>();
+                _player.Animator.Play("Glide");
 
                 TimeTrialSaveData.Instance.UnlockAnyPercent(SaveFile.Current.CurrentMap);
                 GetTree().FindNode<TimeTrialManager>()?.Finish();
             }
-        }
 
-        private void OnLevelReset()
-        {
-            _ensnaredPlayer = null;
+            public override void _PhysicsProcess(double deltaD)
+            {
+                float delta = (float)deltaD;
+
+                if (_player == null)
+                    return;
+
+                // Spin the player and move them up
+                float speed = _vortex.ExitHeight / AscendDuration;
+                _player.GlobalPosition += Vector3.Up * speed * delta;
+                _player.GlobalRotationDegrees += Vector3.Up * RotSpeedDeg * delta;
+
+                // Rotate the camera underneath the player
+                _player.Camera.OrbitPitchRad = AngleMath.DecayToward(
+                    _player.Camera.OrbitPitchRad,
+                    Mathf.DegToRad(89.999f),
+                    2,
+                    delta
+                );
+
+                float h = _vortex.GlobalPosition.Y + _vortex.ExitHeight;
+                bool playerReachedExitHeight = _player.GlobalPosition.Y >= h;
+                bool isTimeTrialMode = GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
+
+                if (playerReachedExitHeight && !isTimeTrialMode)
+                {
+                    MapTransitionManager.Instance.ExitLevel();
+                }
+            }
         }
     }
 }
