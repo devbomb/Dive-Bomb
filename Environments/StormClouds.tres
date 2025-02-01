@@ -1,23 +1,135 @@
-[gd_resource type="Environment" load_steps=6 format=3 uid="uid://dlxgq3rap7tto"]
+[gd_resource type="Environment" load_steps=16 format=3 uid="uid://dlxgq3rap7tto"]
 
-[sub_resource type="Gradient" id="Gradient_vosqg"]
-colors = PackedColorArray(0.497474, 0.497474, 0.497474, 1, 0.14, 0.14, 0.14, 0)
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_4oqva"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_gdakf"]
-frequency = 0.0312
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_oqxyu"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lq7vl"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_7kyrw"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_h3dak"]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_d0r6i"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_n055j"]
+constant = 0.05
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_g2ns3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mo8bm"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k1has"]
 seamless = true
-color_ramp = SubResource("Gradient_vosqg")
-noise = SubResource("FastNoiseLite_gdakf")
+noise = SubResource("FastNoiseLite_mo8bm")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wm3ki"]
-sky_top_color = Color(0.319231, 0.325837, 0.339061, 1)
-sky_cover = SubResource("NoiseTexture2D_lq7vl")
-ground_bottom_color = Color(0.163729, 0.666139, 0.683174, 1)
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_3n0kq"]
+texture = SubResource("NoiseTexture2D_k1has")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_emx07"]
+expanded_output_ports = [0]
+input_name = "sky_coords"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_4cugc"]
+operator = 2
+
+[sub_resource type="VisualShader" id="VisualShader_5j53r"]
+code = "shader_type sky;
+uniform sampler2D tex_sky_3 : source_color;
+
+
+
+void sky() {
+// FloatConstant:15
+	float n_out15p0 = 0.500000;
+
+
+// Input:4
+	vec2 n_out4p0 = SKY_COORDS;
+	float n_out4p2 = n_out4p0.g;
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_sky_3, n_out4p0);
+
+
+// FloatOp:8
+	float n_out8p0 = n_out4p2 * n_out4p2;
+
+
+// VectorOp:12
+	vec4 n_out12p0 = n_out3p0 * vec4(n_out8p0);
+
+
+// VectorOp:14
+	vec4 n_out14p0 = vec4(n_out15p0) * n_out12p0;
+
+
+// FloatConstant:18
+	float n_out18p0 = 0.050000;
+
+
+// ColorConstant:11
+	vec4 n_out11p0 = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+
+
+// VectorOp:16
+	vec4 n_out16p0 = vec4(n_out18p0) * n_out11p0;
+
+
+// ColorOp:19
+	vec3 n_out19p0 = vec3(1.0) - (vec3(1.0) - vec3(n_out14p0.xyz)) * (vec3(1.0) - vec3(n_out16p0.xyz));
+
+
+// Output:0
+	COLOR = n_out19p0;
+
+
+}
+"
+graph_offset = Vector2(-201.765, -160.676)
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/sky/0/position = Vector2(1300, -20)
+nodes/sky/3/node = SubResource("VisualShaderNodeTexture_3n0kq")
+nodes/sky/3/position = Vector2(100, -240)
+nodes/sky/4/node = SubResource("VisualShaderNodeInput_emx07")
+nodes/sky/4/position = Vector2(-240, 20)
+nodes/sky/8/node = SubResource("VisualShaderNodeFloatOp_4cugc")
+nodes/sky/8/position = Vector2(140, 120)
+nodes/sky/11/node = SubResource("VisualShaderNodeColorConstant_4oqva")
+nodes/sky/11/position = Vector2(480, 280)
+nodes/sky/12/node = SubResource("VisualShaderNodeVectorOp_oqxyu")
+nodes/sky/12/position = Vector2(480, -100)
+nodes/sky/14/node = SubResource("VisualShaderNodeVectorOp_7kyrw")
+nodes/sky/14/position = Vector2(740, -180)
+nodes/sky/15/node = SubResource("VisualShaderNodeFloatConstant_h3dak")
+nodes/sky/15/position = Vector2(480, -200)
+nodes/sky/16/node = SubResource("VisualShaderNodeVectorOp_d0r6i")
+nodes/sky/16/position = Vector2(740, 80)
+nodes/sky/18/node = SubResource("VisualShaderNodeFloatConstant_n055j")
+nodes/sky/18/position = Vector2(480, 160)
+nodes/sky/19/node = SubResource("VisualShaderNodeColorOp_g2ns3")
+nodes/sky/19/position = Vector2(1040, -60)
+nodes/sky/connections = PackedInt32Array(4, 0, 3, 0, 4, 2, 8, 0, 4, 2, 8, 1, 3, 0, 12, 0, 8, 0, 12, 1, 11, 0, 16, 1, 12, 0, 14, 1, 15, 0, 14, 0, 18, 0, 16, 0, 16, 0, 19, 1, 14, 0, 19, 0, 19, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6na8d"]
+shader = SubResource("VisualShader_5j53r")
 
 [sub_resource type="Sky" id="Sky_ca4hp"]
-sky_material = SubResource("ProceduralSkyMaterial_wm3ki")
+sky_material = SubResource("ShaderMaterial_6na8d")
 
 [resource]
 background_mode = 2
