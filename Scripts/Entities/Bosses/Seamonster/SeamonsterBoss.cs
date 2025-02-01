@@ -33,7 +33,9 @@ namespace FastDragon
 
             // Defer respawning to ensure the player is ready, since we'll be
             // hijacking the camera.
-            CallDeferred(nameof(Respawn));
+            _stateMachine.ChangeState<WaitingToRespawn>();
+
+            _health = new BossHealth(PhaseMaxHealths);
         }
 
         public void Respawn()
@@ -88,6 +90,24 @@ namespace FastDragon
         private abstract partial class SeamonsterBossState : State
         {
             protected SeamonsterBoss _self => _stateMachine.GetParent<SeamonsterBoss>();
+        }
+
+        private partial class WaitingToRespawn : SeamonsterBossState
+        {
+            private int _timer;
+
+            public override void OnStateEntered()
+            {
+                _timer = 2;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer--;
+
+                if (_timer <= 0)
+                    _self.Respawn();
+            }
         }
     }
 }
