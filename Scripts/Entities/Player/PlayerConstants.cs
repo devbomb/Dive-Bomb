@@ -137,7 +137,7 @@ namespace FastDragon
 
         public static class Dive
         {
-            public const float TurnSpeedDeg = 126.6f;
+            public const float TurnSpeedDeg = 150f;
             public static float TurnSpeedRad => Mathf.DegToRad(TurnSpeedDeg);
 
             public const float FSpeed = 12;
