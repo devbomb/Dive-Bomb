@@ -120,18 +120,25 @@ size = Vector2(0.1, 0.1)
 script = ExtResource("1_mohos")
 
 [node name="Trigger" type="Area3D" parent="."]
+unique_name_in_owner = true
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, 0)
 shape = SubResource("CylinderShape3D_si4my")
 
-[node name="Model" parent="." instance=ExtResource("1_ga2ur")]
+[node name="Model" parent="." groups=["PhysicsInterpolated"] instance=ExtResource("1_ga2ur")]
+unique_name_in_owner = true
+
+[node name="HiddenPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Spin"
 libraries = {
 "": SubResource("AnimationLibrary_16jg3")
 }
+autoplay = "Spin"
 
 [node name="Spinny" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -148,5 +155,3 @@ amount = 16
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_pqeg2")
 draw_pass_1 = SubResource("QuadMesh_dp8vi")
-
-[connection signal="body_entered" from="Trigger" to="." method="OnTriggerBodyEntered"]
