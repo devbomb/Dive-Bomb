@@ -47,10 +47,6 @@ namespace FastDragon
 
         public override void _Process(double deltaD)
         {
-            float delta = (float)deltaD;
-
-            AngleModelPitchWithGroundSlope(delta);
-
             // Adjust the animation speed to match our actual speed
             float animLen = (float)_player.Animator.CurrentAnimationLength;
             float distancePerCycle = StrideLength * 2;
@@ -65,6 +61,13 @@ namespace FastDragon
             float interval = (float)_player.Animator.CurrentAnimationLength / 2;
             float t = (float)(_player.Animator.CurrentAnimationPosition / interval);
             _player.Model.Position = Vector3.Up * height * Parabola(t);
+
+            // Angle the model pitch by our speed
+            _player.ModelPitchRad = -Mathf.LerpAngle(
+                0,
+                Player.Walk.MaxRunTiltRad,
+                Mathf.Min(speed / Player.Walk.Speed, 1)
+            );
         }
 
         public override void _Input(InputEvent ev)

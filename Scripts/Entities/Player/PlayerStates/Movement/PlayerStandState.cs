@@ -15,13 +15,6 @@ namespace FastDragon
             ResetModelPitch();
         }
 
-        public override void _Process(double deltaD)
-        {
-            float delta = (float)deltaD;
-
-            AngleModelPitchWithGroundSlope(delta);
-        }
-
         public override void _Input(InputEvent ev)
         {
             if (InputService.JumpJustPressed(ev))
