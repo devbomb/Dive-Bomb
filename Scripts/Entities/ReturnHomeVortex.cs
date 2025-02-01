@@ -145,6 +145,7 @@ namespace FastDragon
 
                 TimeTrialSaveData.Instance.UnlockAnyPercent(SaveFile.Current.CurrentMap);
                 GetTree().FindNode<TimeTrialManager>()?.Finish();
+                GetTree().FindNode<PlayerCamera>().StopFixingPosition();
             }
 
             public override void _PhysicsProcess(double deltaD)
