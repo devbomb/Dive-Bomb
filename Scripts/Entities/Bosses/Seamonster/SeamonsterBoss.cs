@@ -99,6 +99,12 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 2;
+                _self.Visible = false;
+            }
+
+            public override void OnStateExited()
+            {
+                _self.Visible = true;
             }
 
             public override void _PhysicsProcess(double delta)

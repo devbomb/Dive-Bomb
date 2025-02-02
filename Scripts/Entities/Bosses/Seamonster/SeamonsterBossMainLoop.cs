@@ -94,11 +94,18 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                _self.Visible = false;
+
                 _self.GlobalTransform = _self._currentSpawnPos;
                 _self.GlobalPosition += Vector3.Up * _self.SubmergeDepth;
                 _self.ResetPhysicsInterpolation();
 
                 _timer = _self.SubmergedDuration;
+            }
+
+            public override void OnStateExited()
+            {
+                _self.Visible = true;
             }
 
             public override void _PhysicsProcess(double deltaD)
