@@ -8,6 +8,7 @@ namespace FastDragon
         [Export] public float FallHeight = 20;
         [Export] public float FallDuration = 1f;
         [Export] public float PuddleLingerDuration = 1f;
+        [Export] public bool Permanent;
         [Export] public float PuddleRadius = 2;
         [Export] public float BlobRadius = 1;
         [Export] public float DamageCooldownDuration = 2;
@@ -63,12 +64,13 @@ namespace FastDragon
 
                 if (player?.IsOnFloor() ?? false)
                 {
-                    if (player.TryDamage<PlayerDamageFlipState>(DamageCooldownDuration))
+                    bool dealtDamage = player.TryDamage<PlayerDamageFlipState>(DamageCooldownDuration);
+                    if (dealtDamage && !Permanent)
                         QueueFree();
                 }
 
                 // Evaporate after some time
-                if (_timer >= PuddleLingerDuration)
+                if (_timer >= PuddleLingerDuration && !Permanent)
                     QueueFree();
             }
         }

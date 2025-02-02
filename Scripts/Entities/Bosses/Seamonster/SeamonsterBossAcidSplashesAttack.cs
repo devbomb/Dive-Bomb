@@ -69,12 +69,21 @@ namespace FastDragon
             private void SpawnSplash()
             {
                 _splashesRemaining--;
+
                 var acidSplash = _self.FallingAcidBlobPrefab.Instantiate<FallingAcidBlob>();
+
                 GetTree().CurrentScene.AddChild(acidSplash);
+
                 acidSplash.GlobalPosition = GetTree()
                     .FindNode<Player>()
                     .GlobalPosition
                     .Flattened();
+
+                // HACK: Make the last one permanent
+                // TODO: Do this somewhere else?
+                // TODO: Make sure it despawns when the boss dies.
+                if (_splashesRemaining <= 0)
+                    acidSplash.Permanent = true;
             }
         }
     }
