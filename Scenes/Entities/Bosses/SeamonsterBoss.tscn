@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://u1dg26oq81vl"]
+[gd_scene load_steps=32 format=3 uid="uid://u1dg26oq81vl"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Bosses/Seamonster/SeamonsterBoss.cs" id="1_r8tvq"]
 [ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Scenes/Objects/Projectiles/StraightWave.tscn" id="2_4jp8p"]
@@ -9,7 +9,6 @@
 [ext_resource type="AnimationLibrary" uid="uid://bn1ba67n5ehrt" path="res://AnimationLibraries/Bosses/Kracken/KrackenAnimations.tres" id="4_l26sy"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_mmiw0"]
 [ext_resource type="PackedScene" uid="uid://hw603kj07kle" path="res://BlenderModels/Kracken.blend" id="4_veo1p"]
-[ext_resource type="PackedScene" uid="uid://umwpgtg2tbmi" path="res://Scenes/Objects/Projectiles/ThickBeam.tscn" id="5_bboy2"]
 [ext_resource type="PackedScene" uid="uid://bu8mmnh1cn5nb" path="res://Scenes/Objects/KrackenSplashTentacle.tscn" id="11_jhv2y"]
 [ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="12_0irsb"]
 
@@ -189,11 +188,6 @@ Text = "ROLL OR DIVE, NO KICK"
 Material = SubResource("StandardMaterial3D_upxpg")
 Font = ExtResource("4_mmiw0")
 FontSize = 48
-
-[node name="ThickBeam" parent="." instance=ExtResource("5_bboy2")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.0528, 0.573061)
-visible = false
 
 [node name="BossHUD" type="Control" parent="."]
 layout_mode = 3
