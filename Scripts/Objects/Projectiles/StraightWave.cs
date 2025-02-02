@@ -12,6 +12,7 @@ namespace FastDragon
         [Export] public float EndWidth = 10;
         [Export] public float Distance = 10;
         [Export] public float Duration = 1;
+        [Export] public float DamageCooldownDuration = 2;
 
         private Area3D _hitBox => GetNode<Area3D>("%HitBox");
         private CollisionShape3D _collisionShape => GetNode<CollisionShape3D>("%CollisionShape");
@@ -47,7 +48,8 @@ namespace FastDragon
                 .Cast<Player>()
                 .FirstOrDefault();
 
-            if (player?.TryDamage<PlayerDamageFlipState>() ?? false)
+            bool dealtDamage = player?.TryDamage<PlayerDamageFlipState>(DamageCooldownDuration) ?? false;
+            if (dealtDamage)
             {
                 EmitSignal(SignalName.DamagedPlayer);
             }
