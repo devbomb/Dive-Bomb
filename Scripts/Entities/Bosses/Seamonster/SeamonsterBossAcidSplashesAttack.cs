@@ -82,7 +82,7 @@ namespace FastDragon
                 // HACK: Make the last one permanent
                 // TODO: Do this somewhere else?
                 // TODO: Make sure it despawns when the boss dies.
-                if (_splashesRemaining <= 0)
+                if (_splashesRemaining <= 0 && _self._health.CurrentPhase > 0)
                     acidSplash.Permanent = true;
             }
         }
