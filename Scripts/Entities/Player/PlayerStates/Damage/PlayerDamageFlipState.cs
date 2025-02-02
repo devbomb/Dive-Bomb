@@ -7,13 +7,14 @@ namespace FastDragon
         public override bool Invincible => true;
         public override bool PauseDamageCooldownTimer => true;
 
-        private const float VSpeedBoost = 5;
+        private const float VSpeed = 5;
         private bool _startedLandingAnimation;
 
         public override void OnStateEntered()
         {
             _player.Animator.Play("DamageFlip");
-            _player.VSpeed += VSpeedBoost;
+            _player.VSpeed = VSpeed;
+            _player.FSpeed = 0;
             _startedLandingAnimation = false;
 
             _player.Camera.Shake(1.1f, 15, 0.5f);
