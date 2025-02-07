@@ -19,6 +19,7 @@ namespace FastDragon
         private Area3D _puddleArea => GetNode<Area3D>("%PuddleArea");
         private CollisionShape3D _puddleShape => GetNode<CollisionShape3D>("%PuddleShape");
         private CylinderShape3D _puddleCylinder => (CylinderShape3D)_puddleShape.Shape;
+        private SimpleParticles _permanentParticles => GetNode<SimpleParticles>("%PermanentParticles");
 
         private float _timer = 0;
         private bool _hitGround = false;
@@ -32,6 +33,7 @@ namespace FastDragon
             _shadow.Scale = Vector3.One * PuddleRadius;
             _puddleModel.Scale = Vector3.One * PuddleRadius;
             _puddleCylinder.Radius = PuddleRadius;
+            _permanentParticles.Scale = new Vector3(PuddleRadius, 1, PuddleRadius);
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -48,6 +50,7 @@ namespace FastDragon
                 {
                     _timer -= FallDuration;
                     _hitGround = true;
+                    _permanentParticles.Emitting = Permanent;
                 }
             }
             else

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgshrb63523oq"]
+[gd_scene load_steps=13 format=3 uid="uid://cgshrb63523oq"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Projectiles/FallingAcidBlob.cs" id="1_7tjkq"]
+[ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="2_kv134"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wc42"]
 transparency = 1
@@ -36,6 +37,27 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="Curve" id="Curve_th8h4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.258126, 0.912721), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_si5ek"]
+curve = SubResource("Curve_th8h4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1ayyb"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+color = Color(0, 0.52, 0.0519999, 1)
+alpha_curve = SubResource("CurveTexture_si5ek")
+
 [node name="FallingAcidBlob" type="Node3D"]
 script = ExtResource("1_7tjkq")
 
@@ -67,3 +89,14 @@ unique_name_in_owner = true
 visible = false
 texture_albedo = SubResource("GradientTexture2D_uenea")
 modulate = Color(0, 1, 0.113725, 1)
+
+[node name="PermanentParticles" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_kv134")
+Emitting = false
+Amount = 8
+AmountRatio = 1.0
+Lifetime = 1.0
+SpeedScale = 1.0
+FixedFps = 30
+ProcessMaterial = SubResource("ParticleProcessMaterial_1ayyb")
