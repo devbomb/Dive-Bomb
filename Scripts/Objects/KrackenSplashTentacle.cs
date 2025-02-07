@@ -18,6 +18,8 @@ namespace FastDragon
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
 
+        private Transform3D _lockedWaveSpawn;
+
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += Reset;
@@ -43,6 +45,14 @@ namespace FastDragon
             _animator.Play("Splash", 0.1f);
             _animator.Queue("SplashRecover");
             _animator.Queue("Idle");
+
+            // HACK: Determine where the wave will spawn _now_, instead of when
+            // the wave actually spawns.
+            //
+            // This way, the spawn point won't suddenly shift if the player
+            // damages the boss in the middle of a swing.  That would be very
+            // unfortunate for them.
+            _lockedWaveSpawn = WaveSpawn.GlobalTransform;
         }
 
         public void Submerge()
@@ -56,7 +66,7 @@ namespace FastDragon
         {
             var wave = StraightWavePrefab.Instantiate<StraightWave>();
             GetTree().CurrentScene.AddChild(wave);
-            wave.GlobalTransform = WaveSpawn.GlobalTransform;
+            wave.GlobalTransform = _lockedWaveSpawn;
 
             wave.Radius = WaveHeight;
             wave.StartWidth = WaveStartWidth;
