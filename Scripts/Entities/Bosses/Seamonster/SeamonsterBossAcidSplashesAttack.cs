@@ -79,9 +79,11 @@ namespace FastDragon
                     .GlobalPosition
                     .Flattened();
 
-                // HACK: Make the last one permanent
-                // TODO: Do this somewhere else?
-                // TODO: Make sure it despawns when the boss dies.
+                // Make the last one permanent.
+                // This is an easy way to increase the tension as the fight
+                // goes on.
+                //
+                // It'll be deleted at the start of the Dying state.
                 if (_splashesRemaining <= 0 && _self._health.CurrentPhase > 0)
                     acidSplash.Permanent = true;
             }

@@ -219,6 +219,11 @@ namespace FastDragon
                 _self._rightSplashTentacle.Submerge();
                 _self.PlayAnimation("Dying");
 
+                // Clear out all of the permanent acid splashes
+                var splashes = GetTree().Root.EnumerateDescendantsOfType<FallingAcidBlob>();
+                foreach (var splash in splashes)
+                    splash.QueueFree();
+
                 // Don't let the player run around and die during the cutscene
                 GetTree().Paused = true;
                 _self.ProcessMode = ProcessModeEnum.Always;
