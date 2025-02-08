@@ -218,6 +218,18 @@ namespace FastDragon
                 _self._leftSplashTentacle.Submerge();
                 _self._rightSplashTentacle.Submerge();
                 _self.PlayAnimation("Dying");
+
+                // Don't let the player run around and die during the cutscene
+                GetTree().Paused = true;
+                _self.ProcessMode = ProcessModeEnum.Always;
+                GetTree().FindNode<PlayerCamera>().ProcessMode = ProcessModeEnum.Always;
+            }
+
+            public override void OnStateExited()
+            {
+                GetTree().Paused = false;
+                _self.ProcessMode = ProcessModeEnum.Inherit;
+                GetTree().FindNode<PlayerCamera>().ProcessMode = ProcessModeEnum.Inherit;
             }
 
             public override void _PhysicsProcess(double deltaD)
