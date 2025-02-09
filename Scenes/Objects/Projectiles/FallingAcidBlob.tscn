@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgshrb63523oq"]
+[gd_scene load_steps=15 format=3 uid="uid://cgshrb63523oq"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Projectiles/FallingAcidBlob.cs" id="1_7tjkq"]
 [ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="2_kv134"]
@@ -27,22 +27,30 @@ height = 100
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Gradient" id="Gradient_p7ir2"]
-offsets = PackedFloat32Array(0, 0.955285, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 0.996078, 1, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyy55"]
+transparency = 1
+albedo_color = Color(0, 1, 0.113725, 0.623529)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uenea"]
-gradient = SubResource("Gradient_p7ir2")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
+[sub_resource type="CylinderMesh" id="CylinderMesh_ngaiq"]
+material = SubResource("StandardMaterial3D_kyy55")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.01
+cap_bottom = false
 
 [sub_resource type="Curve" id="Curve_th8h4"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.258126, 0.912721), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0.25239, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_si5ek"]
 curve = SubResource("Curve_th8h4")
+
+[sub_resource type="Curve" id="Curve_4o0py"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0898661, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_okuql"]
+curve = SubResource("Curve_4o0py")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1ayyb"]
 emission_shape_scale = Vector3(1, 0, 1)
@@ -53,9 +61,10 @@ spread = 0.0
 initial_velocity_min = 1.0
 initial_velocity_max = 1.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.2
-color = Color(0, 0.52, 0.0519999, 1)
+scale_min = 0.2
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_okuql")
+color = Color(0, 0.376471, 0, 1)
 alpha_curve = SubResource("CurveTexture_si5ek")
 
 [node name="FallingAcidBlob" type="Node3D"]
@@ -84,14 +93,14 @@ upper_fade = 0.000585938
 lower_fade = 0.000565979
 cull_mask = 8
 
-[node name="PuddleModel" type="Decal" parent="."]
+[node name="PuddleModel" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 visible = false
-texture_albedo = SubResource("GradientTexture2D_uenea")
-modulate = Color(0, 1, 0.113725, 1)
+mesh = SubResource("CylinderMesh_ngaiq")
 
 [node name="PermanentParticles" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550711, 0)
 script = ExtResource("2_kv134")
 Emitting = false
 Amount = 8
