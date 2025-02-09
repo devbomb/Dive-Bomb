@@ -46,6 +46,8 @@ roughness = 0.37
 
 [node name="PowerOrb" type="StaticBody3D"]
 script = ExtResource("1_33fc2")
+CameraShakeMagnitude = 0.5
+CameraShakeDuration = 0.25
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
