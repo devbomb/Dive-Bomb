@@ -130,9 +130,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
 [node name="Center" parent="PowerOrbs" instance=ExtResource("5_6lj42")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="BlobShadow" parent="PowerOrbs/Center/Model" index="2" node_paths=PackedStringArray("ignore_bodies")]
+[node name="BlobShadow" parent="PowerOrbs/Center" index="1" node_paths=PackedStringArray("ignore_bodies")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
-ignore_bodies = [NodePath("../.."), NodePath("../../../../Player")]
+ignore_bodies = [NodePath(".."), NodePath("../../../Player")]
 
 [node name="AcidSplashesCameraPos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.463296, 0.886204, 0, -0.886204, 0.463296, 0, 16.596, 7.367)

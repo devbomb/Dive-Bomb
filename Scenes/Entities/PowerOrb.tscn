@@ -32,6 +32,11 @@ script = ExtResource("1_33fc2")
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_dnv66")
 
+[node name="BlobShadow" parent="." node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("2_mqwyj")]
+unique_name_in_owner = true
+ignore_bodies = [NodePath("..")]
+radius = 0.3
+
 [node name="Model" type="Node3D" parent="."]
 unique_name_in_owner = true
 
@@ -44,10 +49,6 @@ visible = false
 light_energy = 0.285
 distance_fade_enabled = true
 spot_range = 1.0235
-
-[node name="BlobShadow" parent="Model" node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("2_mqwyj")]
-ignore_bodies = [NodePath("../..")]
-radius = 0.3
 
 [node name="Model" parent="Model" instance=ExtResource("2_wnb6r")]
 
