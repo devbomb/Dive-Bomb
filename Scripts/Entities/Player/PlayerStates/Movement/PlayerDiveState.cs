@@ -5,10 +5,6 @@ namespace FastDragon
 {
     public partial class PlayerDiveState : PlayerState
     {
-        private const float CameraShakeMagnitude = 0.25f;
-        private const float CameraShakeFrequency = 15;
-        private const float CameraShakeDuration = 0.25f;
-
         public override bool DisableCameraInput => _redirectTimer <= 0;
 
         private float _redirectTimer;
@@ -129,9 +125,9 @@ namespace FastDragon
         {
             b.OnBroken();
             _player.Camera.Shake(
-                CameraShakeMagnitude,
-                CameraShakeFrequency,
-                CameraShakeDuration
+                b.CameraShakeMagnitude,
+                b.CameraShakeFrequency,
+                b.CameraShakeDuration
             );
         }
     }

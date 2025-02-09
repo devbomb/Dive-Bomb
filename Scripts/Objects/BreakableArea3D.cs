@@ -8,6 +8,10 @@ namespace FastDragon
         [Signal] public delegate void RolledIntoEventHandler();
         [Signal] public delegate void BrokenEventHandler();
 
+        [Export] public float CameraShakeMagnitude { get; set; } = 0.25f;
+        [Export] public float CameraShakeFrequency { get; set; } = 15;
+        [Export] public float CameraShakeDuration { get; set; } = 0.5f;
+
         [Export] public bool Rollable { get; set; } = true;
         [Export] public bool Kickable { get; set; } = true;
         [Export] public bool Disabled { get; set; } = false;
