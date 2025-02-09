@@ -30,6 +30,13 @@ namespace FastDragon
             SetHidden();
         }
 
+        public override void _Process(double deltaD)
+        {
+            var rot = _model.RotationDegrees;
+            rot.Y += 45 * (float)deltaD;
+            _model.RotationDegrees = rot;
+        }
+
         public void Reveal()
         {
             _stateMachine.ChangeState<Revealing>();
@@ -61,6 +68,8 @@ namespace FastDragon
                 _self._model.Scale = Vector3.Zero;
                 _timer = 0;
                 _animTimer = 0;
+
+                _self._model.RotationDegrees = new Vector3(0, GD.Randf() * 360, 0);
             }
 
             public override void OnStateExited()
