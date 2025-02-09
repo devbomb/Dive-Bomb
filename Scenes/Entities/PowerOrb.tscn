@@ -1,14 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://btcofpq2vamxe"]
+[gd_scene load_steps=7 format=3 uid="uid://btcofpq2vamxe"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/PowerOrb.cs" id="1_33fc2"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="2_mqwyj"]
+[ext_resource type="PackedScene" uid="uid://lufx1acikyaw" path="res://BlenderModels/PowerOrb.blend" id="2_wnb6r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dnv66"]
 radius = 0.3
 
-[sub_resource type="SphereMesh" id="SphereMesh_5k6b5"]
-radius = 0.3
-height = 0.6
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wotai"]
+transparency = 1
+cull_mode = 1
+shading_mode = 2
+albedo_color = Color(1, 0.05, 0.540834, 0.905882)
+metallic = 1.0
+roughness = 0.19
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktcyv"]
+render_priority = -1
+transparency = 1
+cull_mode = 1
+no_depth_test = true
+shading_mode = 2
+albedo_color = Color(0.989, 0.34, 1, 0.376471)
+metallic = 1.0
+roughness = 0.37
 
 [node name="PowerOrb" type="StaticBody3D"]
 script = ExtResource("1_33fc2")
@@ -17,10 +32,29 @@ script = ExtResource("1_33fc2")
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_dnv66")
 
-[node name="Model" type="MeshInstance3D" parent="."]
+[node name="Model" type="Node3D" parent="."]
 unique_name_in_owner = true
-mesh = SubResource("SphereMesh_5k6b5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Model"]
+omni_range = 0.448221
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.574, 0)
+visible = false
+light_energy = 0.285
+distance_fade_enabled = true
+spot_range = 1.0235
 
 [node name="BlobShadow" parent="Model" node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("2_mqwyj")]
 ignore_bodies = [NodePath("../..")]
 radius = 0.3
+
+[node name="Model" parent="Model" instance=ExtResource("2_wnb6r")]
+
+[node name="Icosphere" parent="Model/Model" index="0"]
+material_override = SubResource("StandardMaterial3D_wotai")
+
+[node name="Outline" parent="Model/Model" index="1"]
+material_override = SubResource("StandardMaterial3D_ktcyv")
+
+[editable path="Model/Model"]
