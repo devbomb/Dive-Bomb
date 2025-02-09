@@ -12,6 +12,7 @@ namespace FastDragon
         private Node3D _model => GetNode<Node3D>("%Model");
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
+        private GpuParticles3D _explosionParticles => GetNode<GpuParticles3D>("%ExplosionParticles");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(PowerOrbState));
 
@@ -120,7 +121,8 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                // TODO: Play particle effects
+                _self._explosionParticles.Emitting = true;
+
                 _self._bodyShape.Disabled = true;
                 _self._model.Visible = false;
                 _self._blobShadow.Visible = false;

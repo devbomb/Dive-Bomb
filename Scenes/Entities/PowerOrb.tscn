@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://btcofpq2vamxe"]
+[gd_scene load_steps=11 format=3 uid="uid://btcofpq2vamxe"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/PowerOrb.cs" id="1_33fc2"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="2_mqwyj"]
@@ -7,6 +7,21 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_dnv66"]
 radius = 0.3
 
+[sub_resource type="Curve" id="Curve_6d603"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u312v"]
+curve = SubResource("Curve_6d603")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n0bsp"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+scale_curve = SubResource("CurveTexture_u312v")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wotai"]
 transparency = 1
 cull_mode = 1
@@ -14,6 +29,10 @@ shading_mode = 2
 albedo_color = Color(1, 0.05, 0.540834, 0.905882)
 metallic = 1.0
 roughness = 0.19
+
+[sub_resource type="PrismMesh" id="PrismMesh_r5emb"]
+material = SubResource("StandardMaterial3D_wotai")
+size = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktcyv"]
 render_priority = -1
@@ -36,6 +55,17 @@ shape = SubResource("SphereShape3D_dnv66")
 unique_name_in_owner = true
 ignore_bodies = [NodePath("..")]
 radius = 0.3
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_n0bsp")
+draw_pass_1 = SubResource("PrismMesh_r5emb")
 
 [node name="Model" type="Node3D" parent="."]
 unique_name_in_owner = true
