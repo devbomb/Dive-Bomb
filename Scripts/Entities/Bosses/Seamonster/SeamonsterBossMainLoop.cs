@@ -162,11 +162,7 @@ namespace FastDragon
                 _self._health.Damage();
 
                 GetTree().FindNode<Player>().ChangeState<PlayerBonkState>();
-
-                if (_self._health.CurrentHealth > 0)
-                    ChangeState<Damaged>();
-                else
-                    ChangeState<Dying>();
+                ChangeState<Damaged>();
             }
         }
 
@@ -183,6 +179,12 @@ namespace FastDragon
                 _startPos = _self.GlobalPosition;
                 _endPos = _startPos - (_self.GlobalForward() * _self.HurtKnockbackDistance);
                 _self.PlayAnimation("Damaged");
+
+                if (_self._health.CurrentHealth <= 0)
+                {
+                    _self._leftSplashTentacle.Submerge();
+                    _self._rightSplashTentacle.Submerge();
+                }
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -195,28 +197,20 @@ namespace FastDragon
                 _self.GlobalPosition = _startPos.Lerp(_endPos, t);
 
                 if (_timer >= _self.HurtKnockbackDuration)
-                    ChangeState<AcidSplashesSubmerging>();
+                {
+                    if (_self._health.CurrentHealth > 0)
+                        ChangeState<AcidSplashesSubmerging>();
+                    else
+                        ChangeState<Dying>();
+                }
             }
         }
 
         private partial class Dying : SeamonsterBossState
         {
-            private float _timer;
-            private Vector3 _startPos;
-            private Vector3 _endPos;
-
-            private bool _claimedCamera;
-
             public override void OnStateEntered()
             {
-                _timer = 0;
-                _claimedCamera = false;
-
-                _startPos = _self.GlobalPosition;
-                _endPos = _startPos - (_self.GlobalForward() * _self.HurtKnockbackDistance);
-
-                _self._leftSplashTentacle.Submerge();
-                _self._rightSplashTentacle.Submerge();
+                _self.UseCameraAngle(_self._deathAnimationCameraPos.GlobalTransform);
                 _self.PlayAnimation("Dying");
 
                 // Clear out all of the permanent acid splashes
@@ -239,19 +233,6 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _timer += (float)deltaD;
-                float t = _timer / _self.HurtKnockbackDuration;
-                t = Mathf.Sqrt(t);
-                t = Mathf.Min(t * 2, 1);
-
-                _self.GlobalPosition = _startPos.Lerp(_endPos, t);
-
-                if (_timer >= _self.HurtKnockbackDuration && !_claimedCamera)
-                {
-                    _self.UseCameraAngle(_self._deathAnimationCameraPos.GlobalTransform);
-                    _claimedCamera = true;
-                }
-
                 if (_self.CurrentAnimation() != "Dying")
                     ChangeState<Dead>();
             }
