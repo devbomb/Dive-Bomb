@@ -15,6 +15,7 @@ namespace FastDragon
 
         private BossHealth _health;
         private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
+        private Control _bossHud => GetNode<Control>("%BossHUD");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(SeamonsterBossState));
         private readonly Random _rng = new Random();
@@ -100,11 +101,13 @@ namespace FastDragon
             {
                 _timer = 2;
                 _self.Visible = false;
+                _self._bossHud.Visible = false;
             }
 
             public override void OnStateExited()
             {
                 _self.Visible = true;
+                _self._bossHud.Visible = true;
             }
 
             public override void _PhysicsProcess(double delta)

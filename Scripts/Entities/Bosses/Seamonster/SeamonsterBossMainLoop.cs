@@ -244,6 +244,13 @@ namespace FastDragon
             {
                 _self.UseBossCameraAngle();
                 _self.ReturnHomeVortex.Reveal();
+
+                _self._bossHud.Visible = false;
+            }
+
+            public override void OnStateExited()
+            {
+                _self._bossHud.Visible = true;
             }
         }
 
