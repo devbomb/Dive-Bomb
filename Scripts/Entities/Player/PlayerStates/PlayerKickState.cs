@@ -4,11 +4,6 @@ namespace FastDragon
 {
     public partial class PlayerKickState : PlayerState
     {
-        private const float CameraShakeMagnitude = 0.25f;
-        private const float CameraShakeFrequency = 15;
-        private const float CameraShakeDuration = 0.25f;
-
-
         private float _timer;
 
         public override void OnStateEntered()
@@ -97,9 +92,9 @@ namespace FastDragon
         {
             b.OnBroken();
             _player.Camera.Shake(
-                CameraShakeMagnitude,
-                CameraShakeFrequency,
-                CameraShakeDuration
+                b.CameraShakeMagnitude,
+                b.CameraShakeFrequency,
+                b.CameraShakeDuration
             );
         }
     }

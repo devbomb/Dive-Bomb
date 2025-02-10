@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://s0qtchrtav7v"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Projectiles/StraightWave.cs" id="1_w0vdt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tbc5i"]
+noise_type = 0
+domain_warp_frequency = -0.09
+domain_warp_fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_57prl"]
+resource_local_to_scene = true
+width = 1000
+height = 1000
+seamless = true
+as_normal_map = true
+bump_strength = 18.7
+noise = SubResource("FastNoiseLite_tbc5i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_poh6f"]
+transparency = 1
+blend_mode = 3
+normal_enabled = true
+normal_scale = -0.64
+normal_texture = SubResource("NoiseTexture2D_57prl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iffqx"]
+next_pass = SubResource("StandardMaterial3D_poh6f")
+cull_mode = 2
+shading_mode = 2
+albedo_color = Color(0.130906, 0.460047, 0.430048, 1)
+roughness = 0.0
+rim_enabled = true
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_isuap"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_iffqx")
+flip_faces = true
+radius = 1.0
+height = 4.0
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y3ml2"]
+
+[node name="StraightWave" type="Node3D"]
+script = ExtResource("1_w0vdt")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_isuap")
+skeleton = NodePath("")
+
+[node name="HitBox" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape" type="CollisionShape3D" parent="HitBox"]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape3D_y3ml2")

@@ -194,9 +194,9 @@
 "classname" "StandardPortal"
 "origin" "88 220 -64"
 "angles" "0 -90 0"
-"TargetMap" "res://Scenes/Maps/Levels/DummyMap.tscn"
-"SkyboxEnvironment" "res://Environments/NightSky.tres"
-"Text" "Night Dummy Map"
+"TargetMap" "res://Scenes/Maps/Levels/SeamonsterBossMap.tscn"
+"SkyboxEnvironment" "res://Environments/StormClouds.tres"
+"Text" "Kracken Boss"
 }
 // entity 23
 {

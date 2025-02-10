@@ -20,6 +20,10 @@ namespace FastDragon
         /// </summary>
         bool VulnerableToKick => true;
 
+        public float CameraShakeMagnitude => 0.25f;
+        public float CameraShakeFrequency => 15;
+        public float CameraShakeDuration => 0.5f;
+
         /// <summary>
         /// Gets called whenever this object is rolled or dived into, regardless
         /// of whether or not it is vulnerable to rolling/diving.

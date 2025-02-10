@@ -7,6 +7,17 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _player.Animator.Play("ParachuteLand", 0.1);
+
+            // Pause the game while flying in.  This way, the fly-in won't
+            // affect cycles.
+            GetTree().Paused = true;
+            _player.ProcessMode = ProcessModeEnum.Always;
+        }
+
+        public override void OnStateExited()
+        {
+            GetTree().Paused = false;
+            _player.ProcessMode = ProcessModeEnum.Inherit;
         }
 
         public override void _PhysicsProcess(double deltaD)

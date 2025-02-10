@@ -43,6 +43,17 @@ namespace FastDragon
             _player.Camera.OrbitPitchRad = PortalLoadingScreen.EnterLevelCameraPitchRad;
             _player.Camera.ApplyAnglesAndDistance();
             _player.Camera.ResetPhysicsInterpolation3D();
+
+            // Pause the game while flying in.  This way, the fly-in won't
+            // affect cycles.
+            GetTree().Paused = true;
+            _player.ProcessMode = ProcessModeEnum.Always;
+        }
+
+        public override void OnStateExited()
+        {
+            GetTree().Paused = false;
+            _player.ProcessMode = ProcessModeEnum.Inherit;
         }
 
         public override void _PhysicsProcess(double deltaD)
