@@ -35,11 +35,6 @@ namespace FastDragon
             _stateMachine.ChangeState<RevealingState>();
         }
 
-        private void SetTriggerMonitoring(bool enabled)
-        {
-            _trigger.SetDeferred("monitoring", enabled);
-        }
-
         private void SetParticlesEmitting(bool emitting)
         {
             foreach (var particles in this.EnumerateDescendantsOfType<GpuParticles3D>())
@@ -108,25 +103,40 @@ namespace FastDragon
 
         private partial class ReadyState : VortexState
         {
+            private int _safetyTimer;
+
             public override void OnStateEntered()
             {
                 _vortex._model.Position = Vector3.Zero;
                 _vortex._model.ResetPhysicsInterpolation3D();
 
-                _vortex.SetTriggerMonitoring(true);
-                _vortex._trigger.BodyEntered += OnTriggerBodyEntered;
+                _safetyTimer = 2;
             }
 
-            public override void OnStateExited()
+            public override void _PhysicsProcess(double deltaD)
             {
-                _vortex.SetTriggerMonitoring(false);
-                _vortex._trigger.BodyEntered -= OnTriggerBodyEntered;
-            }
+                // HACK: Wait a few physics ticks before checking the trigger.
+                //
+                // This is to avoid a bug where resetting the level during the
+                // exit animation(EG: at the end of a time trial) causes the
+                // exit animation to immediately trigger again when the game is
+                // unpaused.
+                //
+                // For whatever reason, the trigger doesn't seem to update its
+                // overlapping bodies for a few ticks after the level resets.
+                // This causes the trigger to think the player is still touching
+                // it, even though they're clearly not.
+                if (_safetyTimer > 0)
+                {
+                    _safetyTimer--;
+                    return;
+                }
 
-            private void OnTriggerBodyEntered(Node body)
-            {
-                if (body is Player p && !(p.CurrentState is PlayerManhandledState))
-                    ChangeState<ExitingLevelState>();
+                foreach (var body in _vortex._trigger.GetOverlappingBodies())
+                {
+                    if (body is Player p && !(p.CurrentState is PlayerManhandledState))
+                        ChangeState<ExitingLevelState>();
+                }
             }
         }
 

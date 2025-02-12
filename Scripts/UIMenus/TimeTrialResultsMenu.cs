@@ -10,6 +10,15 @@ namespace FastDragon
         private Label _yourTimeLabel => GetNode<Label>("%YourTimeLabel");
         private Label _bestTimeLabel => GetNode<Label>("%BestTimeLabel");
 
+        public override void _Ready()
+        {
+            _animator.AnimationFinished += (StringName animName) =>
+            {
+                _buttons.Visible = true;
+                FocusedControl.GrabFocus();
+            };
+        }
+
         public override void OnPageEntered()
         {
             var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
@@ -25,12 +34,6 @@ namespace FastDragon
 
             if (timeTrialManager.Timer < timeTrialManager.TargetTime)
                 _animator.Queue("NewHighScore");
-
-            _animator.AnimationFinished += (StringName animName) =>
-            {
-                _buttons.Visible = true;
-                FocusedControl.GrabFocus();
-            };
         }
 
         public void OnRetryPressed() => MapTransitionManager.Instance.RespawnPlayerAfterDeath();
