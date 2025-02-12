@@ -35,11 +35,6 @@ namespace FastDragon
             _stateMachine.ChangeState<RevealingState>();
         }
 
-        private void SetTriggerMonitoring(bool enabled)
-        {
-            _trigger.SetDeferred("monitoring", enabled);
-        }
-
         private void SetParticlesEmitting(bool emitting)
         {
             foreach (var particles in this.EnumerateDescendantsOfType<GpuParticles3D>())
@@ -112,21 +107,15 @@ namespace FastDragon
             {
                 _vortex._model.Position = Vector3.Zero;
                 _vortex._model.ResetPhysicsInterpolation3D();
-
-                _vortex.SetTriggerMonitoring(true);
-                _vortex._trigger.BodyEntered += OnTriggerBodyEntered;
             }
 
-            public override void OnStateExited()
+            public override void _PhysicsProcess(double deltaD)
             {
-                _vortex.SetTriggerMonitoring(false);
-                _vortex._trigger.BodyEntered -= OnTriggerBodyEntered;
-            }
-
-            private void OnTriggerBodyEntered(Node body)
-            {
-                if (body is Player p && !(p.CurrentState is PlayerManhandledState))
-                    ChangeState<ExitingLevelState>();
+                foreach (var body in _vortex._trigger.GetOverlappingBodies())
+                {
+                    if (body is Player p && !(p.CurrentState is PlayerManhandledState))
+                        ChangeState<ExitingLevelState>();
+                }
             }
         }
 
