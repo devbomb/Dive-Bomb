@@ -1,12 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd1yvfpwdb6in"]
+[gd_scene load_steps=3 format=3 uid="uid://dd1yvfpwdb6in"]
 
 [ext_resource type="PackedScene" uid="uid://dhffo6l667c16" path="res://TrenchbroomMaps/GrayboxBullshit.map" id="1_6iwrr"]
 
+[sub_resource type="Environment" id="Environment_ffd8j"]
+background_mode = 1
+background_color = Color(0.205678, 0.238671, 0.269351, 1)
+
 [node name="GrayboxBullshit" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ffd8j")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.981569, 0.187471, -0.0371162, -0.0953172, 0.648576, 0.755158, 0.165643, -0.737702, 0.654491, -16.4758, 8.46741, 21.1995)
-shadow_enabled = true
+transform = Transform3D(-0.996558, 0.0304495, -0.0770984, -0.0384274, 0.654415, 0.755158, 0.0734486, 0.755522, -0.650993, -16.4758, 8.46741, 21.1995)
 shadow_opacity = 0.55
 shadow_blur = 10.0
 
