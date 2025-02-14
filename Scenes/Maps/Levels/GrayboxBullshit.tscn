@@ -17,3 +17,12 @@ shadow_opacity = 0.55
 shadow_blur = 10.0
 
 [node name="GrayboxBullshit" parent="." instance=ExtResource("1_6iwrr")]
+
+[node name="ManualLights" type="Node3D" parent="."]
+
+[node name="FirstRoom" type="OmniLight3D" parent="ManualLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72103, 15.1838, 20.4772)
+light_energy = 0.493
+light_bake_mode = 1
+omni_range = 20.9662
+omni_attenuation = 0.244
