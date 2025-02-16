@@ -44,6 +44,8 @@
 @SolidClass = DeathBarrier : "DeathBarrier" []
 @SolidClass = DrowningWater : "DrowningWater" []
 
+@SolidClass = DivableWall : "DivableWall" []
+
 @SolidClass = CameraSuggestionZone : "CameraSuggestionZone" [
 	SuggestedYawDeg(float) : "SuggestedYawDeg" : 0
 	SuggestedPitchDeg(float) : "SuggestedPitchDeg" : 0

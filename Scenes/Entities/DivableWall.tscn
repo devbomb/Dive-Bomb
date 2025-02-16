@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=3 uid="uid://wiy70owi7mwc"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/DivableWall.cs" id="1_2tkqn"]
+
+[sub_resource type="GDScript" id="GDScript_o78um"]
+script/source = "@tool
+extends Node
+
+@export var material: Material
+
+func parent_ready():
+	set_material_recursive(get_parent())
+
+func set_material_recursive(node: Node):
+	for child in node.get_children():
+		if child is MeshInstance3D:
+			child.material_override = material
+
+		set_material_recursive(child)
+"
+
+[sub_resource type="Gradient" id="Gradient_mya5v"]
+offsets = PackedFloat32Array(0, 0.319527, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8v0sr"]
+noise_type = 2
+fractal_octaves = 2
+cellular_return_type = 0
+domain_warp_fractal_octaves = 1
+domain_warp_fractal_lacunarity = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i7go5"]
+width = 1024
+height = 1024
+invert = true
+seamless = true
+seamless_blend_skirt = 0.31
+bump_strength = 32.0
+color_ramp = SubResource("Gradient_mya5v")
+noise = SubResource("FastNoiseLite_8v0sr")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mnj54"]
+noise_type = 2
+fractal_octaves = 2
+cellular_return_type = 2
+domain_warp_fractal_octaves = 1
+domain_warp_fractal_lacunarity = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ghw7u"]
+width = 1024
+height = 1024
+invert = true
+seamless = true
+seamless_blend_skirt = 0.31
+as_normal_map = true
+bump_strength = 32.0
+noise = SubResource("FastNoiseLite_mnj54")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8j3up"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 2
+albedo_color = Color(0.729412, 1, 1, 0.556863)
+albedo_texture = SubResource("NoiseTexture2D_i7go5")
+emission_enabled = true
+emission = Color(0, 0.413838, 0.413838, 1)
+normal_enabled = true
+normal_scale = 3.79
+normal_texture = SubResource("NoiseTexture2D_ghw7u")
+rim_enabled = true
+rim = 0.32
+clearcoat_enabled = true
+backlight = Color(0.105882, 0.768627, 1, 1)
+refraction_scale = -0.31
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="Curve" id="Curve_cv1di"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i20vl"]
+curve = SubResource("Curve_cv1di")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6bkmj"]
+lifetime_randomness = 0.33
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -22.05, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_i20vl")
+
+[sub_resource type="PrismMesh" id="PrismMesh_neoal"]
+material = SubResource("StandardMaterial3D_8j3up")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="DivableWall" type="StaticBody3D"]
+script = ExtResource("1_2tkqn")
+
+[node name="MaterialSetter" type="Node" parent="."]
+script = SubResource("GDScript_o78um")
+material = SubResource("StandardMaterial3D_8j3up")
+
+[node name="MeshGrowPoint" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="MeshHolder" type="Node3D" parent="MeshGrowPoint"]
+unique_name_in_owner = true
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_6bkmj")
+draw_pass_1 = SubResource("PrismMesh_neoal")
+
+[connection signal="ready" from="." to="MaterialSetter" method="parent_ready"]
