@@ -26,7 +26,21 @@ namespace FastDragon
 
         private void Reset()
         {
-            _stateMachine.ChangeState<Closed>();
+            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
+            switch (timeTrialManager.Mode)
+            {
+                case TimeTrialManager.TimeTrialMode.FairyPercent:
+                {
+                    _stateMachine.ChangeState<Closed>();
+                    break;
+                }
+
+                default:
+                {
+                    _stateMachine.ChangeState<Open>();
+                    break;
+                }
+            }
         }
 
         public void OnBroken()

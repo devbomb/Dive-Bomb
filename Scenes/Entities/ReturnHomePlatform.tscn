@@ -22,12 +22,14 @@ script = ExtResource("1_mohos")
 [node name="CrystalModel" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+visible = false
 mesh = SubResource("CylinderMesh_c4a2v")
 
 [node name="CrystalShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("CylinderShape3D_fpv6s")
+disabled = true
 
 [node name="PlatformModel" parent="." instance=ExtResource("1_ga2ur")]
 
