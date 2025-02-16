@@ -1,16 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqhbrrt437sid"]
+[gd_scene load_steps=7 format=3 uid="uid://cqhbrrt437sid"]
 
 [ext_resource type="PackedScene" uid="uid://dki5doabmw5bc" path="res://BlenderModels/ReturnHomePlatform.blend" id="1_ga2ur"]
 [ext_resource type="Script" path="res://Scripts/Entities/ReturnHomeVortex/ReturnHomePlatform.cs" id="1_mohos"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="2_ssgtg"]
 [ext_resource type="PackedScene" uid="uid://dpv6lh8h1jbm4" path="res://Scenes/Objects/ReturnHomeVortex.tscn" id="3_cewup"]
 
-[node name="ReturnHomePlatform" type="Node3D"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_c4a2v"]
+material = ExtResource("2_ssgtg")
+top_radius = 1.1
+bottom_radius = 1.1
+height = 3.0
+radial_segments = 8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fpv6s"]
+height = 3.0
+radius = 1.0
+
+[node name="ReturnHomePlatform" type="StaticBody3D"]
 script = ExtResource("1_mohos")
 
-[node name="Model" parent="." groups=["PhysicsInterpolated"] instance=ExtResource("1_ga2ur")]
+[node name="CrystalModel" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_c4a2v")
+
+[node name="CrystalShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("CylinderShape3D_fpv6s")
+
+[node name="PlatformModel" parent="." instance=ExtResource("1_ga2ur")]
 
 [node name="Vortex" parent="." instance=ExtResource("3_cewup")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-IsActive = true
