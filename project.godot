@@ -23,6 +23,7 @@ MapTransitionManager="*res://Scenes/Singletons/MapTransitionManager.tscn"
 SaveFile="*res://Scripts/Singletons/SaveFileGDScriptAdaptor.cs"
 UserSettings="*res://Scripts/Singletons/UserSettingsGDScriptAdaptor.cs"
 PhysicsInterpolatorSingleton="*res://Scripts/PhysicsInterpolation/PhysicsInterpolatorSingleton.cs"
+HitStopManager="*res://Scripts/Services/HitStopManager.cs"
 
 [dotnet]
 

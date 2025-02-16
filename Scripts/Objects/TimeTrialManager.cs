@@ -96,7 +96,14 @@ namespace FastDragon
         public override void _PhysicsProcess(double delta)
         {
             if (IsTimerRunning && IsTimeTrialMode && !GetTree().Paused)
-                Timer += delta;
+            {
+                // Divide by the time scale to cancel out slow-motion effects
+                // (such as hitstop), allowing us to keep track of real-life
+                // time(or something close to it.)
+                //
+                // If you think this is unfair, consider getting good.
+                Timer += delta / Engine.TimeScale;
+            }
 
             _timerLabel.Visible = IsTimeTrialMode;
             _timerLabel.Text = TimeUtils.FormatStopwatch(Timer);
