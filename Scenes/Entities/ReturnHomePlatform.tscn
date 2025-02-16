@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqhbrrt437sid"]
+
+[ext_resource type="PackedScene" uid="uid://dki5doabmw5bc" path="res://BlenderModels/ReturnHomePlatform.blend" id="1_ga2ur"]
+[ext_resource type="Script" path="res://Scripts/Entities/ReturnHomeVortex/ReturnHomePlatform.cs" id="1_mohos"]
+[ext_resource type="PackedScene" uid="uid://dpv6lh8h1jbm4" path="res://Scenes/Objects/ReturnHomeVortex.tscn" id="3_cewup"]
+
+[node name="ReturnHomePlatform" type="Node3D"]
+script = ExtResource("1_mohos")
+
+[node name="Model" parent="." groups=["PhysicsInterpolated"] instance=ExtResource("1_ga2ur")]
+unique_name_in_owner = true
+
+[node name="Vortex" parent="." instance=ExtResource("3_cewup")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+IsActive = true

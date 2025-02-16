@@ -1654,7 +1654,7 @@
 }
 // entity 17
 {
-"classname" "ReturnHomeVortex"
+"classname" "ReturnHomePlatform"
 "origin" "0 2240 448"
 "ExitHeight" "30"
 "_tb_group" "1"

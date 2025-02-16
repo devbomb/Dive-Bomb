@@ -105,10 +105,10 @@
 	base(Angle)
 	size(-4 -4 0, 4 4 8)
 	model({
-		"path" : "TrenchbroomEntityModels/ReturnHomeVortex.obj",
+		"path" : "TrenchbroomEntityModels/ReturnHomePlatform.obj",
 		"scale" : 0.25
 	})
-	= ReturnHomeVortex : "ReturnHomeVortex" [
+	= ReturnHomePlatform : "ReturnHomePlatform" [
 		ExitHeight(float) : "Exit Height" : 15
 	]
 
