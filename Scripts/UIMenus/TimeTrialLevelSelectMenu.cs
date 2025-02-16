@@ -58,6 +58,14 @@ namespace FastDragon
             );
         }
 
+        public void StartFairyPercent()
+        {
+            MapTransitionManager.Instance.GoToMapForTimeTrial(
+                _selectedMapFilePath,
+                TimeTrialManager.TimeTrialMode.FairyPercent
+            );
+        }
+
         private string[] AllUnlockedLevels()
         {
             // TODO: Actually check the list of unlocked levels, instead of the

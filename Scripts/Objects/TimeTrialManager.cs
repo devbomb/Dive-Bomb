@@ -12,7 +12,8 @@ namespace FastDragon
         public enum TimeTrialMode
         {
             None,
-            AnyPercent
+            AnyPercent,
+            FairyPercent
         }
 
         public double Timer {get; private set;}
