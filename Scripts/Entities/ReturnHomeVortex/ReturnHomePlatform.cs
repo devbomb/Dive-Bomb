@@ -4,7 +4,7 @@ namespace FastDragon
 {
     public partial class ReturnHomePlatform : StaticBody3D, IBreakable
     {
-        public bool VulnerableToRoll => _stateMachine.CurrentState is Closed;
+        public bool VulnerableToRoll => RequirementsMet() && _stateMachine.CurrentState is Closed;
         public bool VulnerableToKick => false;
 
         [Export] public float ExitHeight = 15;
@@ -46,6 +46,24 @@ namespace FastDragon
         public void OnBroken()
         {
             _stateMachine.ChangeState<Opening>();
+        }
+
+        private bool RequirementsMet()
+        {
+            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
+            switch (timeTrialManager.Mode)
+            {
+                case TimeTrialManager.TimeTrialMode.FairyPercent:
+                {
+                    var saveFile = SaveFile.Current;
+                    var mapEntry = AtlasCache.Instance.GetEntry(saveFile.CurrentMap);
+                    int fairiesFound = saveFile.CurrentMapProgress.CollectedFairies.Count;
+
+                    return fairiesFound >= mapEntry.TotalFairiesInLevel;
+                }
+
+                default: return true;
+            }
         }
 
         private partial class PlatformState : State
