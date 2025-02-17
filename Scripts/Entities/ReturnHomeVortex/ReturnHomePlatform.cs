@@ -5,7 +5,7 @@ namespace FastDragon
 {
     public partial class ReturnHomePlatform : StaticBody3D, IBreakable
     {
-        public bool VulnerableToRoll => RequirementsMet() && _stateMachine.CurrentState is Closed;
+        public bool VulnerableToRoll => CanBreak() && _stateMachine.CurrentState is Closed;
         public bool VulnerableToKick => false;
 
         [Export] public float ExitHeight = 15;
@@ -32,19 +32,17 @@ namespace FastDragon
         private void Reset()
         {
             var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            switch (timeTrialManager.Mode)
+            if (timeTrialManager.IsTimeTrialMode)
             {
-                case TimeTrialCategory.FairyPercent:
-                {
-                    _stateMachine.ChangeState<Closed>();
-                    break;
-                }
-
-                default:
-                {
+                if (timeTrialManager.RequirementsMet())
                     _stateMachine.ChangeState<Open>();
-                    break;
-                }
+                else
+                    _stateMachine.ChangeState<Closed>();
+            }
+            else
+            {
+                // TODO: Remember if the player has broken it before
+                _stateMachine.ChangeState<Open>();
             }
         }
 
@@ -53,7 +51,7 @@ namespace FastDragon
             _stateMachine.ChangeState<Opening>();
         }
 
-        private bool RequirementsMet()
+        private bool CanBreak()
         {
             return GetTree().FindNode<TimeTrialManager>().RequirementsMet();
         }
