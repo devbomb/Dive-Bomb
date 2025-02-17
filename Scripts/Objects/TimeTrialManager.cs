@@ -10,8 +10,8 @@ namespace FastDragon
 
         public TimeTrialCategory? Mode {get; private set;} = null;
 
-        public double Timer {get; private set;}
-        public double TargetTime {get; private set;}
+        public uint TimerPhysicsTicks {get; private set;}
+        public uint TargetTimePhysicsTicks {get; private set;}
 
         private Label _timerLabel => GetNode<Label>("%TimerLabel");
 
@@ -63,8 +63,8 @@ namespace FastDragon
                 return;
             }
 
-            Timer = 0;
-            TargetTime = GetSavedBestTime();
+            TimerPhysicsTicks = 0;
+            TargetTimePhysicsTicks = GetSavedBestTime();
 
             IsTimerRunning = false;
             _pageNav.ChangePage(_briefingPage);
@@ -122,38 +122,34 @@ namespace FastDragon
             IsTimerRunning = false;
             _pageNav.ChangePage(_resultsPage);
 
-            if (Timer < GetSavedBestTime())
-                SetSavedBestTime(Timer);
+            if (TimerPhysicsTicks < GetSavedBestTime())
+                SetSavedBestTime(TimerPhysicsTicks);
         }
 
         public override void _PhysicsProcess(double delta)
         {
             if (IsTimerRunning && IsTimeTrialMode && !GetTree().Paused)
             {
-                // Divide by the time scale to cancel out slow-motion effects
-                // (such as hitstop), allowing us to keep track of real-life
-                // time(or something close to it.)
-                //
-                // If you think this is unfair, consider getting good.
-                Timer += delta / Engine.TimeScale;
+                TimerPhysicsTicks++;
+                // TODO: compensate for slo-mo effects?
             }
 
             _timerLabel.Visible = IsTimeTrialMode;
-            _timerLabel.Text = TimeUtils.FormatStopwatch(Timer);
+            _timerLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(TimerPhysicsTicks);
         }
 
-        private double GetSavedBestTime()
+        private uint GetSavedBestTime()
         {
             var entry = CurrentCategoryEntry();
 
-            return entry.Record == null
-                ? double.MaxValue
-                : entry.Record.Value;
+            return entry.BestTimePhysicsTicks == null
+                ? uint.MaxValue
+                : entry.BestTimePhysicsTicks.Value;
         }
 
-        private void SetSavedBestTime(double time)
+        private void SetSavedBestTime(uint timePhysicsTicks)
         {
-            CurrentCategoryEntry().Record = time;
+            CurrentCategoryEntry().BestTimePhysicsTicks = timePhysicsTicks;
             TimeTrialSaveData.Instance.SaveToJson();
         }
 

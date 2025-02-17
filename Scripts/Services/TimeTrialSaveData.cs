@@ -26,7 +26,7 @@ namespace FastDragon
         public class CategoryEntry
         {
             public bool Unlocked;
-            public double? Record;
+            public uint? BestTimePhysicsTicks;
         }
 
         public CategoryEntry GetEntry(string mapFilePath, TimeTrialCategory category)
