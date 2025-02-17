@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace FastDragon
@@ -12,6 +13,8 @@ namespace FastDragon
         private Node3D _crystalModel => GetNode<Node3D>("%CrystalModel");
         private CollisionShape3D _crystalShape => GetNode<CollisionShape3D>("%CrystalShape");
         private ReturnHomeVortex _vortex => GetNode<ReturnHomeVortex>("%Vortex");
+        private Node3D _requirementsDisplay => GetNode<Node3D>("%RequirementsDisplay");
+        private Node3D _requirementsPivot => GetNode<Node3D>("%RequirementsPivot");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(PlatformState));
 
@@ -66,6 +69,17 @@ namespace FastDragon
             }
         }
 
+        private void SetRequirementsVisible(bool visible)
+        {
+            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
+            var currentMode = timeTrialManager?.Mode ?? TimeTrialManager.TimeTrialMode.None;
+
+            foreach (var m in Enum.GetValues<TimeTrialManager.TimeTrialMode>())
+                _requirementsDisplay.GetNode<Node3D>(m.ToString()).Visible = !visible;
+
+            _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
+        }
+
         private partial class PlatformState : State
         {
             protected ReturnHomePlatform _self => _stateMachine.GetParent<ReturnHomePlatform>();
@@ -77,12 +91,23 @@ namespace FastDragon
             {
                 _self._crystalModel.Visible = true;
                 _self._crystalShape.Disabled = false;
+                _self.SetRequirementsVisible(true);
             }
 
             public override void OnStateExited()
             {
                 _self._crystalModel.Visible = false;
                 _self._crystalShape.Disabled = true;
+                _self.SetRequirementsVisible(false);
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                var lookPoint = GetTree().Root.GetCamera3D().GlobalPosition;
+                lookPoint.Y = _self._requirementsPivot.GlobalPosition.Y;
+
+                if (_self._requirementsPivot.GlobalPosition.DistanceTo(lookPoint) > 0.1f)
+                    _self._requirementsPivot.LookAt(lookPoint);
             }
         }
 
