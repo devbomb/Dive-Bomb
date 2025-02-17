@@ -22,6 +22,9 @@ namespace FastDragon
         {
             public bool AnyPercentUnlocked = false;
             public double? AnyPercentRecord = null;
+
+            public bool FairyPercentUnlocked = false;
+            public double? FairyPercentRecord = null;
         }
 
         public Entry GetEntry(string mapFilePath)
@@ -37,6 +40,12 @@ namespace FastDragon
         public void UnlockAnyPercent(string mapFilePath)
         {
             GetEntry(mapFilePath).AnyPercentUnlocked = true;
+            SaveToJson();
+        }
+
+        public void UnlockFairyPercent(string mapFilePath)
+        {
+            GetEntry(mapFilePath).FairyPercentUnlocked = true;
             SaveToJson();
         }
 
