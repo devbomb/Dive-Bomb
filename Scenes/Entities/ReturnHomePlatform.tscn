@@ -59,6 +59,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.23688, 0)
 emitting = false
 amount = 64
 one_shot = true
+preprocess = 0.1
 explosiveness = 0.95
 process_material = SubResource("ParticleProcessMaterial_qx6kd")
 draw_pass_1 = SubResource("PrismMesh_hktgs")
