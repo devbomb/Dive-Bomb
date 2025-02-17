@@ -144,17 +144,11 @@ namespace FastDragon
 
         private double GetSavedBestTime()
         {
-            if (CurrentCategoryEntry().Record != null)
-                return CurrentCategoryEntry().Record.Value;
+            var entry = CurrentCategoryEntry();
 
-            var player = GetTree().FindNode<Player>();
-
-            switch (Mode)
-            {
-                case TimeTrialCategory.AnyPercent: return player.AnyPercentDevTime;
-                case TimeTrialCategory.FairyPercent: return player.FairyPercentDevTime;
-                default: throw new Exception($"Unknown time trial mode {Mode}");
-            }
+            return entry.Record == null
+                ? double.MaxValue
+                : entry.Record.Value;
         }
 
         private void SetSavedBestTime(double time)

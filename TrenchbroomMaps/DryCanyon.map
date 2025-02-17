@@ -951,7 +951,6 @@
 "FlyInHeight" "40"
 "LevelName" "Plagiarism Canyon"
 "HomeWorldMap" "res://Scenes/Maps/Levels/TestMap.tscn"
-"AnyPercentDevTime" "15"
 }
 // entity 3
 {
