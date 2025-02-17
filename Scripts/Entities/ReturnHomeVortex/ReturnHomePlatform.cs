@@ -88,7 +88,7 @@ namespace FastDragon
 
         private partial class Opening : PlatformState
         {
-            private const float Duration = 0.2f;
+            private const float Duration = 3f / 60;
             private float _timer;
 
             public override void OnStateEntered()
