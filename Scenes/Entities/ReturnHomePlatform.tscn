@@ -8,10 +8,11 @@
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_c4a2v"]
 material = ExtResource("2_ssgtg")
-top_radius = 1.1
-bottom_radius = 1.1
+top_radius = 1.0
+bottom_radius = 1.0
 height = 3.0
 radial_segments = 8
+cap_bottom = false
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fpv6s"]
 height = 3.0
