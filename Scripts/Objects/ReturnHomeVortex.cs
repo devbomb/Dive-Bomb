@@ -68,17 +68,36 @@ namespace FastDragon
             var bodies = _trigger.GetOverlappingBodies();
             foreach (var body in bodies)
             {
-                if (body is Player p && !(p.CurrentState is PlayerManhandledState))
-                {
-                    _ensnaredPlayer = p;
-                    p.ChangeState<PlayerManhandledState>();
-                    p.Animator.Play("Glide");
-
-                    TimeTrialSaveData.Instance.UnlockAnyPercent(SaveFile.Current.CurrentMap);
-                    GetTree().FindNode<TimeTrialManager>()?.Finish();
-                    GetTree().FindNode<PlayerCamera>().StopFixingPosition();
-                }
+                if (body is Player p)
+                    OnPlayerEnteredTrigger(p);
             }
+        }
+
+        private void OnPlayerEnteredTrigger(Player p)
+        {
+            if (p.CurrentState is PlayerManhandledState)
+                return;
+
+            _ensnaredPlayer = p;
+            p.ChangeState<PlayerManhandledState>();
+            p.Animator.Play("Glide");
+
+            GetTree().FindNode<TimeTrialManager>()?.Finish();
+            GetTree().FindNode<PlayerCamera>().StopFixingPosition();
+
+            // Unlock time trial modes
+            // TODO: Only do this if currently NOT in time trial mode
+            string currentMap = SaveFile.Current.CurrentMap;
+            var mapProgress = SaveFile.Current.CurrentMapProgress;
+            var atlasEntry = AtlasCache.Instance.GetEntry(currentMap);
+
+            bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
+            bool levelHasFairies = atlasEntry.TotalFairiesInLevel > 0;
+
+            TimeTrialSaveData.Instance.UnlockAnyPercent(currentMap);
+
+            if (levelHasFairies && mapProgress.FairiesCollected >= atlasEntry.TotalFairiesInLevel)
+                TimeTrialSaveData.Instance.UnlockFairyPercent(currentMap);
         }
 
         private void SpinPlayer(float delta)

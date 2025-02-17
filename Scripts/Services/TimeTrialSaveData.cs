@@ -13,13 +13,15 @@ namespace FastDragon
         public static TimeTrialSaveData Instance { get; } = LoadFromJson();
 
         [JsonIgnore] public string[] UnlockedMaps => Entries
-            .Where(kvp => kvp.Value.AnyPercentUnlocked)
+            .Where(kvp => kvp.Value.SomethingUnlocked)
             .Select(kvp => kvp.Key)
             .ToArray();
 
         [JsonProperty] private Dictionary<string, Entry> Entries = new Dictionary<string, Entry>();
         public class Entry
         {
+            public bool SomethingUnlocked => AnyPercentUnlocked || FairyPercentUnlocked;
+
             public bool AnyPercentUnlocked = false;
             public double? AnyPercentRecord = null;
 
