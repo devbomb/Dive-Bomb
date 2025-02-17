@@ -101,10 +101,10 @@ namespace FastDragon
             bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
             bool levelHasFairies = atlasEntry.TotalFairiesInLevel > 0;
 
-            TimeTrialSaveData.Instance.UnlockAnyPercent(currentMap);
+            TimeTrialSaveData.Instance.UnlockCategory(currentMap, TimeTrialCategory.AnyPercent);
 
             if (levelHasFairies && mapProgress.FairiesCollected >= atlasEntry.TotalFairiesInLevel)
-                TimeTrialSaveData.Instance.UnlockFairyPercent(currentMap);
+                TimeTrialSaveData.Instance.UnlockCategory(currentMap, TimeTrialCategory.FairyPercent);
         }
 
         public void Start()
@@ -144,34 +144,30 @@ namespace FastDragon
 
         private double GetSavedBestTime()
         {
+            if (CurrentCategoryEntry().Record != null)
+                return CurrentCategoryEntry().Record.Value;
+
             var player = GetTree().FindNode<Player>();
-            var entry = CurrentMapEntry();
 
             switch (Mode)
             {
-                case TimeTrialCategory.AnyPercent: return entry.AnyPercentRecord ?? player.AnyPercentDevTime;
-                case TimeTrialCategory.FairyPercent: return entry.FairyPercentRecord ?? player.FairyPercentDevTime;
+                case TimeTrialCategory.AnyPercent: return player.AnyPercentDevTime;
+                case TimeTrialCategory.FairyPercent: return player.FairyPercentDevTime;
                 default: throw new Exception($"Unknown time trial mode {Mode}");
             }
         }
 
         private void SetSavedBestTime(double time)
         {
-            var entry = CurrentMapEntry();
-
-            switch (Mode)
-            {
-                case TimeTrialCategory.AnyPercent: entry.AnyPercentRecord = time; break;
-                case TimeTrialCategory.FairyPercent: entry.FairyPercentRecord = time; break;
-                default: throw new Exception($"Unknown time trial mode {Mode}");
-            }
-
+            CurrentCategoryEntry().Record = time;
             TimeTrialSaveData.Instance.SaveToJson();
         }
 
-        private TimeTrialSaveData.Entry CurrentMapEntry()
+        private TimeTrialSaveData.CategoryEntry CurrentCategoryEntry()
         {
-            return TimeTrialSaveData.Instance.GetEntry(SaveFile.Current.CurrentMap);
+            return TimeTrialSaveData
+                .Instance
+                .GetEntry(SaveFile.Current.CurrentMap, Mode.Value);
         }
     }
 }
