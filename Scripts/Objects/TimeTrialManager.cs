@@ -5,16 +5,10 @@ namespace FastDragon
 {
     public partial class TimeTrialManager : Node
     {
-        public bool IsTimeTrialMode => Mode != TimeTrialMode.None;
+        public bool IsTimeTrialMode => Mode != TimeTrialCategory.None;
         public bool IsTimerRunning {get; private set;} = false;
 
-        public TimeTrialMode Mode {get; private set;} = TimeTrialMode.None;
-        public enum TimeTrialMode
-        {
-            None,
-            AnyPercent,
-            FairyPercent
-        }
+        public TimeTrialCategory Mode {get; private set;} = TimeTrialCategory.None;
 
         public double Timer {get; private set;}
         public double TargetTime {get; private set;}
@@ -35,7 +29,7 @@ namespace FastDragon
             _pageNav.ChangePage(null);
         }
 
-        public void Initialize(TimeTrialMode mode)
+        public void Initialize(TimeTrialCategory mode)
         {
             Mode = mode;
             ProcessMode = ProcessModeEnum.Always;
@@ -138,8 +132,8 @@ namespace FastDragon
 
             switch (Mode)
             {
-                case TimeTrialMode.AnyPercent: return entry.AnyPercentRecord ?? player.AnyPercentDevTime;
-                case TimeTrialMode.FairyPercent: return entry.FairyPercentRecord ?? player.FairyPercentDevTime;
+                case TimeTrialCategory.AnyPercent: return entry.AnyPercentRecord ?? player.AnyPercentDevTime;
+                case TimeTrialCategory.FairyPercent: return entry.FairyPercentRecord ?? player.FairyPercentDevTime;
                 default: throw new Exception($"Unknown time trial mode {Mode}");
             }
         }
@@ -150,8 +144,8 @@ namespace FastDragon
 
             switch (Mode)
             {
-                case TimeTrialMode.AnyPercent: entry.AnyPercentRecord = time; break;
-                case TimeTrialMode.FairyPercent: entry.FairyPercentRecord = time; break;
+                case TimeTrialCategory.AnyPercent: entry.AnyPercentRecord = time; break;
+                case TimeTrialCategory.FairyPercent: entry.FairyPercentRecord = time; break;
                 default: throw new Exception($"Unknown time trial mode {Mode}");
             }
 

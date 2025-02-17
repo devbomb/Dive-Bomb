@@ -34,7 +34,7 @@ namespace FastDragon
             var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
             switch (timeTrialManager.Mode)
             {
-                case TimeTrialManager.TimeTrialMode.FairyPercent:
+                case TimeTrialCategory.FairyPercent:
                 {
                     _stateMachine.ChangeState<Closed>();
                     break;
@@ -58,7 +58,7 @@ namespace FastDragon
             var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
             switch (timeTrialManager.Mode)
             {
-                case TimeTrialManager.TimeTrialMode.FairyPercent:
+                case TimeTrialCategory.FairyPercent:
                 {
                     var saveFile = SaveFile.Current;
                     var mapEntry = AtlasCache.Instance.GetEntry(saveFile.CurrentMap);
@@ -74,9 +74,9 @@ namespace FastDragon
         private void SetRequirementsVisible(bool visible)
         {
             var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            var currentMode = timeTrialManager?.Mode ?? TimeTrialManager.TimeTrialMode.None;
+            var currentMode = timeTrialManager?.Mode ?? TimeTrialCategory.None;
 
-            foreach (var m in Enum.GetValues<TimeTrialManager.TimeTrialMode>())
+            foreach (var m in Enum.GetValues<TimeTrialCategory>())
                 _requirementsDisplay.GetNode<Node3D>(m.ToString()).Visible = !visible;
 
             _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;

@@ -68,7 +68,7 @@ namespace FastDragon
             DoThingWithFadeToBlack(() => GoToMap(mapSceneFile));
         }
 
-        public void GoToMapForTimeTrial(string mapSceneFile, TimeTrialManager.TimeTrialMode mode)
+        public void GoToMapForTimeTrial(string mapSceneFile, TimeTrialCategory mode)
         {
             // Use a dummy save file to ensure we don't accidentally modify
             // a real one when collectables are collected

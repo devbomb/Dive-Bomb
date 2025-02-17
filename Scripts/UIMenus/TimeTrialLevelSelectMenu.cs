@@ -56,12 +56,12 @@ namespace FastDragon
 
         public void StartAnyPercent()
         {
-            Start(TimeTrialManager.TimeTrialMode.AnyPercent);
+            Start(TimeTrialCategory.AnyPercent);
         }
 
         public void StartFairyPercent()
         {
-            Start(TimeTrialManager.TimeTrialMode.FairyPercent);
+            Start(TimeTrialCategory.FairyPercent);
         }
 
         private string[] AllUnlockedLevels()
@@ -69,7 +69,7 @@ namespace FastDragon
             return TimeTrialSaveData.Instance.UnlockedMaps;
         }
 
-        private void Start(TimeTrialManager.TimeTrialMode mode)
+        private void Start(TimeTrialCategory mode)
         {
             MapTransitionManager.Instance.GoToMapForTimeTrial(
                 _selectedMapFilePath,
