@@ -16,6 +16,8 @@ namespace FastDragon
         private Node3D _requirementsDisplay => GetNode<Node3D>("%RequirementsDisplay");
         private Node3D _requirementsPivot => GetNode<Node3D>("%RequirementsPivot");
 
+        private GpuParticles3D _shatterParticles => GetNode<GpuParticles3D>("%ShatterParticles");
+
         private readonly StateMachine _stateMachine = new StateMachine(typeof(PlatformState));
 
         public override void _Ready()
@@ -119,6 +121,8 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = Duration;
+                _self._shatterParticles.Restart();
+                _self._shatterParticles.Emitting = true;
             }
 
             public override void _PhysicsProcess(double deltaD)
