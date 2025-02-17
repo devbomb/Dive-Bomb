@@ -35,6 +35,23 @@ namespace FastDragon
             ProcessMode = ProcessModeEnum.Always;
         }
 
+        public bool RequirementsMet()
+        {
+            switch (Mode)
+            {
+                case TimeTrialCategory.FairyPercent:
+                {
+                    var saveFile = SaveFile.Current;
+                    var mapEntry = AtlasCache.Instance.GetEntry(saveFile.CurrentMap);
+                    int fairiesFound = saveFile.CurrentMapProgress.CollectedFairies.Count;
+
+                    return fairiesFound >= mapEntry.TotalFairiesInLevel;
+                }
+
+                default: return true;
+            }
+        }
+
         private void OnLevelReset()
         {
             if (!IsTimeTrialMode)

@@ -55,20 +55,7 @@ namespace FastDragon
 
         private bool RequirementsMet()
         {
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            switch (timeTrialManager.Mode)
-            {
-                case TimeTrialCategory.FairyPercent:
-                {
-                    var saveFile = SaveFile.Current;
-                    var mapEntry = AtlasCache.Instance.GetEntry(saveFile.CurrentMap);
-                    int fairiesFound = saveFile.CurrentMapProgress.CollectedFairies.Count;
-
-                    return fairiesFound >= mapEntry.TotalFairiesInLevel;
-                }
-
-                default: return true;
-            }
+            return GetTree().FindNode<TimeTrialManager>().RequirementsMet();
         }
 
         private void SetRequirementsVisible(bool visible)
