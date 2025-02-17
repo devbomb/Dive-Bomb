@@ -12,7 +12,8 @@ namespace FastDragon
         public enum TimeTrialMode
         {
             None,
-            AnyPercent
+            AnyPercent,
+            FairyPercent
         }
 
         public double Timer {get; private set;}
@@ -111,15 +112,28 @@ namespace FastDragon
 
         private double GetSavedBestTime()
         {
-            // TODO: Use a different time based on the current mode
-            double devTime = GetTree().FindNode<Player>().AnyPercentDevTime;
-            return CurrentMapEntry().AnyPercentRecord ?? devTime;
+            var player = GetTree().FindNode<Player>();
+            var entry = CurrentMapEntry();
+
+            switch (Mode)
+            {
+                case TimeTrialMode.AnyPercent: return entry.AnyPercentRecord ?? player.AnyPercentDevTime;
+                case TimeTrialMode.FairyPercent: return entry.FairyPercentRecord ?? player.FairyPercentDevTime;
+                default: throw new Exception($"Unknown time trial mode {Mode}");
+            }
         }
 
         private void SetSavedBestTime(double time)
         {
-            // TODO: Take the time trial mode into account
-            CurrentMapEntry().AnyPercentRecord = time;
+            var entry = CurrentMapEntry();
+
+            switch (Mode)
+            {
+                case TimeTrialMode.AnyPercent: entry.AnyPercentRecord = time; break;
+                case TimeTrialMode.FairyPercent: entry.FairyPercentRecord = time; break;
+                default: throw new Exception($"Unknown time trial mode {Mode}");
+            }
+
             TimeTrialSaveData.Instance.SaveToJson();
         }
 

@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://2yvv5qgiulnp"]
+
+[ext_resource type="Script" path="res://Scripts/UIWidgets/FairiesInLevelProgress.cs" id="1_5js4f"]
+[ext_resource type="Script" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="1_etdow"]
+[ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://AnimationLibraries/FairyAnimations.tres" id="2_k65jw"]
+[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="2_omm1n"]
+[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="3_rnvmb"]
+[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://BlenderModels/Fairy.blend" id="3_tmx4v"]
+
+[node name="FairiesInLevelProgress" type="Node3D"]
+script = ExtResource("1_5js4f")
+
+[node name="Label" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_etdow")
+Text = "9/9"
+Material = ExtResource("2_omm1n")
+Font = ExtResource("3_rnvmb")
+FontSize = 24
+
+[node name="FairyModel" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.431, -0.35, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FairyModel"]
+libraries = {
+"": ExtResource("2_k65jw")
+}
+autoplay = "Hovering"
+
+[node name="Fairy" parent="FairyModel" instance=ExtResource("3_tmx4v")]

@@ -22,6 +22,7 @@ namespace FastDragon
         public class MapProgress
         {
             public int GemsCollected = 0;
+            public int FairiesCollected => CollectedFairies.Count;
             public HashSet<string> CollectedFairies = new HashSet<string>();
         }
 

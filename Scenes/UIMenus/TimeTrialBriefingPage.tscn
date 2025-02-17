@@ -22,13 +22,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g7ix7")
 
-[node name="Instructions" type="Label" parent="."]
+[node name="Instructions" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnyPercent" type="Label" parent="Instructions"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.25
 anchor_right = 0.5
 anchor_bottom = 0.375
+offset_left = -217.5
+offset_right = 217.5
 grow_horizontal = 2
 text = "Reach the end of the level as fast as possible!
 No collectables are required."
@@ -36,7 +48,36 @@ label_settings = SubResource("LabelSettings_2i6y4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextLegibilityShadow" type="TextureRect" parent="Instructions"]
+[node name="TextLegibilityShadow" type="TextureRect" parent="Instructions/AnyPercent"]
+modulate = Color(1, 1, 1, 0.486275)
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1kff0")
+
+[node name="FairyPercent" type="Label" parent="Instructions"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.375
+offset_left = -217.5
+offset_right = 217.5
+grow_horizontal = 2
+text = "Reach the exit after freeing all the fairies!"
+label_settings = SubResource("LabelSettings_2i6y4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextLegibilityShadow" type="TextureRect" parent="Instructions/FairyPercent"]
 modulate = Color(1, 1, 1, 0.486275)
 z_index = -1
 layout_mode = 1

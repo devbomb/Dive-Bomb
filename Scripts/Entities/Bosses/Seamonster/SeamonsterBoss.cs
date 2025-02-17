@@ -6,7 +6,7 @@ namespace FastDragon
     public partial class SeamonsterBoss : CharacterBody3D
     {
         [Export] public int[] PhaseMaxHealths = new int[0];
-        [Export] public ReturnHomeVortex ReturnHomeVortex;
+        [Export] public BossReturnHomePlatform ReturnHomeVortex;
 
         public int CurrentHealth => _health.CurrentHealth;
         public int MaxHealth => _health.MaxHealth;

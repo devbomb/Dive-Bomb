@@ -2307,7 +2307,7 @@
 }
 // entity 98
 {
-"classname" "ReturnHomeVortex"
+"classname" "ReturnHomePlatform"
 "origin" "-8 -88 144"
 }
 // entity 99

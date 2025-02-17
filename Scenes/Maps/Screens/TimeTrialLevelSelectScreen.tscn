@@ -96,9 +96,9 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Any%"
 
-[node name="FairyPercent" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
+[node name="FairyPercentButton" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
-disabled = true
 text = "All Fairies"
 
 [node name="OneHundredPercent" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
@@ -117,4 +117,5 @@ text = "Back"
 [connection signal="BackRequested" from="PageNav/LevelSelectPage" to="." method="ReturnToTitle"]
 [connection signal="BackRequested" from="PageNav/CategorySelectPage" to="." method="ShowLevelSelectPage"]
 [connection signal="pressed" from="PageNav/CategorySelectPage/Buttons/AnyPercentButton" to="." method="StartAnyPercent"]
+[connection signal="pressed" from="PageNav/CategorySelectPage/Buttons/FairyPercentButton" to="." method="StartFairyPercent"]
 [connection signal="pressed" from="BackButton" to="." method="OnBackPressed"]

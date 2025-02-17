@@ -312,6 +312,8 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                SaveFile.Current.CurrentMapProgress.CollectedFairies.Add(_fairy.GetSaveKey());
+
                 _fairy.Glass.Visible = false;
                 _fairy.GlassParticles.Emitting = true;
 

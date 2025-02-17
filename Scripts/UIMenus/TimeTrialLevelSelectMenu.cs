@@ -23,7 +23,7 @@ namespace FastDragon
                 button.Pressed += () =>
                 {
                     _selectedMapFilePath = capturedFilePath;
-                    _pageNav.ChangePage(_categorySelectPage);
+                    ShowCategorySelectPage();
                 };
                 _levelButtons.AddChild(button);
             }
@@ -48,21 +48,33 @@ namespace FastDragon
             // Enable/disable all the categories that have been locked/unlocked
             var entry = TimeTrialSaveData.Instance.GetEntry(_selectedMapFilePath);
             GetNode<Button>("%AnyPercentButton").Disabled = !entry.AnyPercentUnlocked;
+            GetNode<Button>("%FairyPercentButton").Disabled = !entry.FairyPercentUnlocked;
+
+            GD.Print($"AnyPercentUnlocked: {entry.AnyPercentUnlocked}");
+            GD.Print($"FairyPercentUnlocked: {entry.FairyPercentUnlocked}");
         }
 
         public void StartAnyPercent()
         {
-            MapTransitionManager.Instance.GoToMapForTimeTrial(
-                _selectedMapFilePath,
-                TimeTrialManager.TimeTrialMode.AnyPercent
-            );
+            Start(TimeTrialManager.TimeTrialMode.AnyPercent);
+        }
+
+        public void StartFairyPercent()
+        {
+            Start(TimeTrialManager.TimeTrialMode.FairyPercent);
         }
 
         private string[] AllUnlockedLevels()
         {
-            // TODO: Actually check the list of unlocked levels, instead of the
-            // atlas cache
             return TimeTrialSaveData.Instance.UnlockedMaps;
+        }
+
+        private void Start(TimeTrialManager.TimeTrialMode mode)
+        {
+            MapTransitionManager.Instance.GoToMapForTimeTrial(
+                _selectedMapFilePath,
+                mode
+            );
         }
     }
 }
