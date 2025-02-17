@@ -23,12 +23,20 @@ namespace FastDragon
         }
         private FakeSignal<Action> _levelReset = new FakeSignal<Action>();
 
+        public event Action ExitReached
+        {
+            add => _exitReached.Add(value);
+            remove => _exitReached.Remove(value);
+        }
+        private FakeSignal<Action> _exitReached = new FakeSignal<Action>();
+
         public override void _Ready()
         {
             Instance = this;
         }
 
         public void EmitLevelReset() => _levelReset.Emit();
+        public void EmitExitReached() => _exitReached.Emit();
 
         private class FakeSignal<TDelegate> where TDelegate : Delegate
         {

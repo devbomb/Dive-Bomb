@@ -30,6 +30,8 @@ namespace FastDragon
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += OnLevelReset;
+            SignalBus.Instance.ExitReached += OnExitReached;
+
             _pageNav.ChangePage(null);
         }
 
@@ -39,7 +41,7 @@ namespace FastDragon
             ProcessMode = ProcessModeEnum.Always;
         }
 
-        public void OnLevelReset()
+        private void OnLevelReset()
         {
             if (!IsTimeTrialMode)
                 return;
@@ -75,6 +77,25 @@ namespace FastDragon
             SignalBus.Instance.CallDeferred(nameof(SignalBus.Instance.EmitLevelReset));
         }
 
+        private void OnExitReached()
+        {
+            Finish();
+
+            // Unlock time trial modes
+            // TODO: Only do this if currently NOT in time trial mode
+            string currentMap = SaveFile.Current.CurrentMap;
+            var mapProgress = SaveFile.Current.CurrentMapProgress;
+            var atlasEntry = AtlasCache.Instance.GetEntry(currentMap);
+
+            bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
+            bool levelHasFairies = atlasEntry.TotalFairiesInLevel > 0;
+
+            TimeTrialSaveData.Instance.UnlockAnyPercent(currentMap);
+
+            if (levelHasFairies && mapProgress.FairiesCollected >= atlasEntry.TotalFairiesInLevel)
+                TimeTrialSaveData.Instance.UnlockFairyPercent(currentMap);
+        }
+
         public void Start()
         {
             _pageNav.ChangePage(null);
@@ -82,7 +103,7 @@ namespace FastDragon
             GetTree().Paused = false;
         }
 
-        public void Finish()
+        private void Finish()
         {
             if (!IsTimeTrialMode)
                 return;
