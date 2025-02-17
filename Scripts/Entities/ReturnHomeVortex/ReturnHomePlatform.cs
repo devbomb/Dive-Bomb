@@ -115,7 +115,9 @@ namespace FastDragon
 
         private partial class Opening : PlatformState
         {
-            private const float Duration = 3f / 60;
+            private const float Duration = 4f / 60;
+            private const float HitStopDuration = 0.19f;
+
             private float _timer;
 
             public override void OnStateEntered()
@@ -123,6 +125,7 @@ namespace FastDragon
                 _timer = Duration;
                 _self._shatterParticles.Restart();
                 _self._shatterParticles.Emitting = true;
+                HitStopManager.Instance.StopFor(HitStopDuration);
             }
 
             public override void _PhysicsProcess(double deltaD)
