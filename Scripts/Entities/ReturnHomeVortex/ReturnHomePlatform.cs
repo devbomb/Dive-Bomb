@@ -73,13 +73,14 @@ namespace FastDragon
 
         private void SetRequirementsVisible(bool visible)
         {
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            var currentMode = timeTrialManager?.Mode ?? TimeTrialCategory.None;
-
             foreach (var m in Enum.GetValues<TimeTrialCategory>())
                 _requirementsDisplay.GetNode<Node3D>(m.ToString()).Visible = !visible;
 
-            _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
+            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
+            var currentMode = timeTrialManager?.Mode;
+
+            if (currentMode != null)
+                _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
         }
 
         private partial class PlatformState : State

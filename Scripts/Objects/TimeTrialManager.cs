@@ -5,10 +5,10 @@ namespace FastDragon
 {
     public partial class TimeTrialManager : Node
     {
-        public bool IsTimeTrialMode => Mode != TimeTrialCategory.None;
+        public bool IsTimeTrialMode => Mode != null;
         public bool IsTimerRunning {get; private set;} = false;
 
-        public TimeTrialCategory Mode {get; private set;} = TimeTrialCategory.None;
+        public TimeTrialCategory? Mode {get; private set;} = null;
 
         public double Timer {get; private set;}
         public double TargetTime {get; private set;}
