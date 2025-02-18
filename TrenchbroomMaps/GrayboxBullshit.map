@@ -658,3 +658,14 @@
 "classname" "RedGem"
 "origin" "556 -116 360"
 }
+// entity 19
+{
+"classname" "Fairy"
+"origin" "288 -200 464"
+}
+// entity 20
+{
+"classname" "Checkpoint"
+"origin" "400 -128 336"
+"angles" "0 90 0"
+}
