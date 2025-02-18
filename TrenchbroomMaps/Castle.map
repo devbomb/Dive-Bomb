@@ -1171,7 +1171,6 @@
 "FlyInHeight" "80"
 "LevelName" "Sunset Castle"
 "HomeWorldMap" "res://Scenes/Maps/Levels/TestMap.tscn"
-"AnyPercentDevTime" "30"
 }
 // entity 2
 {

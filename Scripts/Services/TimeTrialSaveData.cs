@@ -12,42 +12,37 @@ namespace FastDragon
 
         public static TimeTrialSaveData Instance { get; } = LoadFromJson();
 
-        [JsonIgnore] public string[] UnlockedMaps => Entries
+        [JsonIgnore] public string[] UnlockedMaps => Maps
             .Where(kvp => kvp.Value.SomethingUnlocked)
             .Select(kvp => kvp.Key)
             .ToArray();
 
-        [JsonProperty] private Dictionary<string, Entry> Entries = new Dictionary<string, Entry>();
-        public class Entry
+        [JsonProperty] private Dictionary<string, MapEntry> Maps = new Dictionary<string, MapEntry>();
+        private class MapEntry : Dictionary<TimeTrialCategory, CategoryEntry>
         {
-            public bool SomethingUnlocked => AnyPercentUnlocked || FairyPercentUnlocked;
-
-            public bool AnyPercentUnlocked = false;
-            public double? AnyPercentRecord = null;
-
-            public bool FairyPercentUnlocked = false;
-            public double? FairyPercentRecord = null;
+            [JsonIgnore] public bool SomethingUnlocked => Values.Any(c => c.Unlocked);
         }
 
-        public Entry GetEntry(string mapFilePath)
+        public class CategoryEntry
         {
-            if (!Entries.ContainsKey(mapFilePath))
-            {
-                Entries[mapFilePath] = new Entry();
-            }
-
-            return Entries[mapFilePath];
+            public bool Unlocked;
+            public uint? BestTimePhysicsTicks;
         }
 
-        public void UnlockAnyPercent(string mapFilePath)
+        public CategoryEntry GetEntry(string mapFilePath, TimeTrialCategory category)
         {
-            GetEntry(mapFilePath).AnyPercentUnlocked = true;
-            SaveToJson();
+            if (!Maps.ContainsKey(mapFilePath))
+                Maps[mapFilePath] = new MapEntry();
+
+            if (!Maps[mapFilePath].ContainsKey(category))
+                Maps[mapFilePath][category] = new CategoryEntry();
+
+            return Maps[mapFilePath][category];
         }
 
-        public void UnlockFairyPercent(string mapFilePath)
+        public void UnlockCategory(string mapFilePath, TimeTrialCategory category)
         {
-            GetEntry(mapFilePath).FairyPercentUnlocked = true;
+            GetEntry(mapFilePath, category).Unlocked = true;
             SaveToJson();
         }
 

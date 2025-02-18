@@ -82,22 +82,9 @@ namespace FastDragon
             p.ChangeState<PlayerManhandledState>();
             p.Animator.Play("Glide");
 
-            GetTree().FindNode<TimeTrialManager>()?.Finish();
             GetTree().FindNode<PlayerCamera>().StopFixingPosition();
 
-            // Unlock time trial modes
-            // TODO: Only do this if currently NOT in time trial mode
-            string currentMap = SaveFile.Current.CurrentMap;
-            var mapProgress = SaveFile.Current.CurrentMapProgress;
-            var atlasEntry = AtlasCache.Instance.GetEntry(currentMap);
-
-            bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
-            bool levelHasFairies = atlasEntry.TotalFairiesInLevel > 0;
-
-            TimeTrialSaveData.Instance.UnlockAnyPercent(currentMap);
-
-            if (levelHasFairies && mapProgress.FairiesCollected >= atlasEntry.TotalFairiesInLevel)
-                TimeTrialSaveData.Instance.UnlockFairyPercent(currentMap);
+            SignalBus.Instance.EmitExitReached();
         }
 
         private void SpinPlayer(float delta)

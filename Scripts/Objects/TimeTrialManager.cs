@@ -5,19 +5,13 @@ namespace FastDragon
 {
     public partial class TimeTrialManager : Node
     {
-        public bool IsTimeTrialMode => Mode != TimeTrialMode.None;
+        public bool IsTimeTrialMode => Mode != null;
         public bool IsTimerRunning {get; private set;} = false;
 
-        public TimeTrialMode Mode {get; private set;} = TimeTrialMode.None;
-        public enum TimeTrialMode
-        {
-            None,
-            AnyPercent,
-            FairyPercent
-        }
+        public TimeTrialCategory? Mode {get; private set;} = null;
 
-        public double Timer {get; private set;}
-        public double TargetTime {get; private set;}
+        public uint TimerPhysicsTicks {get; private set;}
+        public uint TargetTimePhysicsTicks {get; private set;}
 
         private Label _timerLabel => GetNode<Label>("%TimerLabel");
 
@@ -30,16 +24,35 @@ namespace FastDragon
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += OnLevelReset;
+            SignalBus.Instance.ExitReached += OnExitReached;
+
             _pageNav.ChangePage(null);
         }
 
-        public void Initialize(TimeTrialMode mode)
+        public void Initialize(TimeTrialCategory mode)
         {
             Mode = mode;
             ProcessMode = ProcessModeEnum.Always;
         }
 
-        public void OnLevelReset()
+        public bool RequirementsMet()
+        {
+            switch (Mode)
+            {
+                case TimeTrialCategory.FairyPercent:
+                {
+                    var saveFile = SaveFile.Current;
+                    var mapEntry = AtlasCache.Instance.GetEntry(saveFile.CurrentMap);
+                    int fairiesFound = saveFile.CurrentMapProgress.CollectedFairies.Count;
+
+                    return fairiesFound >= mapEntry.TotalFairiesInLevel;
+                }
+
+                default: return true;
+            }
+        }
+
+        private void OnLevelReset()
         {
             if (!IsTimeTrialMode)
                 return;
@@ -50,8 +63,8 @@ namespace FastDragon
                 return;
             }
 
-            Timer = 0;
-            TargetTime = GetSavedBestTime();
+            TimerPhysicsTicks = 0;
+            TargetTimePhysicsTicks = GetSavedBestTime();
 
             IsTimerRunning = false;
             _pageNav.ChangePage(_briefingPage);
@@ -75,6 +88,25 @@ namespace FastDragon
             SignalBus.Instance.CallDeferred(nameof(SignalBus.Instance.EmitLevelReset));
         }
 
+        private void OnExitReached()
+        {
+            Finish();
+
+            // Unlock time trial modes
+            // TODO: Only do this if currently NOT in time trial mode
+            string currentMap = SaveFile.Current.CurrentMap;
+            var mapProgress = SaveFile.Current.CurrentMapProgress;
+            var atlasEntry = AtlasCache.Instance.GetEntry(currentMap);
+
+            bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
+            bool levelHasFairies = atlasEntry.TotalFairiesInLevel > 0;
+
+            TimeTrialSaveData.Instance.UnlockCategory(currentMap, TimeTrialCategory.AnyPercent);
+
+            if (levelHasFairies && mapProgress.FairiesCollected >= atlasEntry.TotalFairiesInLevel)
+                TimeTrialSaveData.Instance.UnlockCategory(currentMap, TimeTrialCategory.FairyPercent);
+        }
+
         public void Start()
         {
             _pageNav.ChangePage(null);
@@ -82,7 +114,7 @@ namespace FastDragon
             GetTree().Paused = false;
         }
 
-        public void Finish()
+        private void Finish()
         {
             if (!IsTimeTrialMode)
                 return;
@@ -90,56 +122,42 @@ namespace FastDragon
             IsTimerRunning = false;
             _pageNav.ChangePage(_resultsPage);
 
-            if (Timer < GetSavedBestTime())
-                SetSavedBestTime(Timer);
+            if (TimerPhysicsTicks < GetSavedBestTime())
+                SetSavedBestTime(TimerPhysicsTicks);
         }
 
         public override void _PhysicsProcess(double delta)
         {
             if (IsTimerRunning && IsTimeTrialMode && !GetTree().Paused)
             {
-                // Divide by the time scale to cancel out slow-motion effects
-                // (such as hitstop), allowing us to keep track of real-life
-                // time(or something close to it.)
-                //
-                // If you think this is unfair, consider getting good.
-                Timer += delta / Engine.TimeScale;
+                TimerPhysicsTicks++;
+                // TODO: compensate for slo-mo effects?
             }
 
             _timerLabel.Visible = IsTimeTrialMode;
-            _timerLabel.Text = TimeUtils.FormatStopwatch(Timer);
+            _timerLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(TimerPhysicsTicks);
         }
 
-        private double GetSavedBestTime()
+        private uint GetSavedBestTime()
         {
-            var player = GetTree().FindNode<Player>();
-            var entry = CurrentMapEntry();
+            var entry = CurrentCategoryEntry();
 
-            switch (Mode)
-            {
-                case TimeTrialMode.AnyPercent: return entry.AnyPercentRecord ?? player.AnyPercentDevTime;
-                case TimeTrialMode.FairyPercent: return entry.FairyPercentRecord ?? player.FairyPercentDevTime;
-                default: throw new Exception($"Unknown time trial mode {Mode}");
-            }
+            return entry.BestTimePhysicsTicks == null
+                ? uint.MaxValue
+                : entry.BestTimePhysicsTicks.Value;
         }
 
-        private void SetSavedBestTime(double time)
+        private void SetSavedBestTime(uint timePhysicsTicks)
         {
-            var entry = CurrentMapEntry();
-
-            switch (Mode)
-            {
-                case TimeTrialMode.AnyPercent: entry.AnyPercentRecord = time; break;
-                case TimeTrialMode.FairyPercent: entry.FairyPercentRecord = time; break;
-                default: throw new Exception($"Unknown time trial mode {Mode}");
-            }
-
+            CurrentCategoryEntry().BestTimePhysicsTicks = timePhysicsTicks;
             TimeTrialSaveData.Instance.SaveToJson();
         }
 
-        private TimeTrialSaveData.Entry CurrentMapEntry()
+        private TimeTrialSaveData.CategoryEntry CurrentCategoryEntry()
         {
-            return TimeTrialSaveData.Instance.GetEntry(SaveFile.Current.CurrentMap);
+            return TimeTrialSaveData
+                .Instance
+                .GetEntry(SaveFile.Current.CurrentMap, Mode.Value);
         }
     }
 }

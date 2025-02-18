@@ -22,8 +22,8 @@ namespace FastDragon
         public override void OnPageEntered()
         {
             var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            _yourTimeLabel.Text = TimeUtils.FormatStopwatch(timeTrialManager.Timer);
-            _bestTimeLabel.Text = TimeUtils.FormatStopwatch(timeTrialManager.TargetTime);
+            _yourTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(timeTrialManager.TimerPhysicsTicks);
+            _bestTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(timeTrialManager.TargetTimePhysicsTicks);
 
             _buttons.Visible = false;
 
@@ -32,7 +32,7 @@ namespace FastDragon
 
             _animator.Play("Open");
 
-            if (timeTrialManager.Timer < timeTrialManager.TargetTime)
+            if (timeTrialManager.TimerPhysicsTicks < timeTrialManager.TargetTimePhysicsTicks)
                 _animator.Queue("NewHighScore");
         }
 

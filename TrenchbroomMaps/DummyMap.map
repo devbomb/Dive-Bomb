@@ -97,7 +97,6 @@
 "angles" "0 90 0"
 "LevelName" "Night Dummy Map"
 "HomeWorldMap" "res://Scenes/Maps/Levels/TestMap.tscn"
-"AnyPercentDevTime" "5"
 }
 // entity 12
 {

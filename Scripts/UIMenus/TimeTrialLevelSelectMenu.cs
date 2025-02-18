@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace FastDragon
@@ -8,6 +9,7 @@ namespace FastDragon
         private Page _levelSelectPage => GetNode<Page>("%LevelSelectPage");
         private Page _categorySelectPage => GetNode<Page>("%CategorySelectPage");
         private Control _levelButtons => GetNode<Control>("%LevelButtons");
+        private Control _categoryButtons => GetNode<Control>("%CategoryButtons");
 
         private string _selectedMapFilePath;
 
@@ -46,22 +48,22 @@ namespace FastDragon
             _pageNav.ChangePage(_categorySelectPage);
 
             // Enable/disable all the categories that have been locked/unlocked
-            var entry = TimeTrialSaveData.Instance.GetEntry(_selectedMapFilePath);
-            GetNode<Button>("%AnyPercentButton").Disabled = !entry.AnyPercentUnlocked;
-            GetNode<Button>("%FairyPercentButton").Disabled = !entry.FairyPercentUnlocked;
-
-            GD.Print($"AnyPercentUnlocked: {entry.AnyPercentUnlocked}");
-            GD.Print($"FairyPercentUnlocked: {entry.FairyPercentUnlocked}");
+            var saveData = TimeTrialSaveData.Instance;
+            foreach (var category in Enum.GetValues<TimeTrialCategory>())
+            {
+                bool unlocked = saveData.GetEntry(_selectedMapFilePath, category).Unlocked;
+                _categoryButtons.GetNode<Button>(category.ToString()).Disabled = !unlocked;
+            }
         }
 
         public void StartAnyPercent()
         {
-            Start(TimeTrialManager.TimeTrialMode.AnyPercent);
+            Start(TimeTrialCategory.AnyPercent);
         }
 
         public void StartFairyPercent()
         {
-            Start(TimeTrialManager.TimeTrialMode.FairyPercent);
+            Start(TimeTrialCategory.FairyPercent);
         }
 
         private string[] AllUnlockedLevels()
@@ -69,7 +71,7 @@ namespace FastDragon
             return TimeTrialSaveData.Instance.UnlockedMaps;
         }
 
-        private void Start(TimeTrialManager.TimeTrialMode mode)
+        private void Start(TimeTrialCategory mode)
         {
             MapTransitionManager.Instance.GoToMapForTimeTrial(
                 _selectedMapFilePath,

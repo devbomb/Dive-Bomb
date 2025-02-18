@@ -25,12 +25,6 @@ namespace FastDragon
         /// <returns></returns>
         [Export(PropertyHint.File)] public string HomeWorldMap;
 
-        /// <summary>
-        /// The default any% record for this level.
-        /// </summary>
-        [Export] public double AnyPercentDevTime = TimeSpan.MaxValue.TotalSeconds;
-        [Export] public double FairyPercentDevTime = TimeSpan.MaxValue.TotalSeconds;
-
         [Export] public float FlyInHeight = 10;
         [Export] public float FlyInDistance = 10;
         [Export] public float FlyInDuration = 4;

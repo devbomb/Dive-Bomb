@@ -5,7 +5,7 @@ namespace FastDragon
 {
     public partial class ReturnHomePlatform : StaticBody3D, IBreakable
     {
-        public bool VulnerableToRoll => RequirementsMet() && _stateMachine.CurrentState is Closed;
+        public bool VulnerableToRoll => CanBreak() && _stateMachine.CurrentState is Closed;
         public bool VulnerableToKick => false;
 
         [Export] public float ExitHeight = 15;
@@ -32,19 +32,17 @@ namespace FastDragon
         private void Reset()
         {
             var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            switch (timeTrialManager.Mode)
+            if (timeTrialManager.IsTimeTrialMode)
             {
-                case TimeTrialManager.TimeTrialMode.FairyPercent:
-                {
-                    _stateMachine.ChangeState<Closed>();
-                    break;
-                }
-
-                default:
-                {
+                if (timeTrialManager.RequirementsMet())
                     _stateMachine.ChangeState<Open>();
-                    break;
-                }
+                else
+                    _stateMachine.ChangeState<Closed>();
+            }
+            else
+            {
+                // TODO: Remember if the player has broken it before
+                _stateMachine.ChangeState<Open>();
             }
         }
 
@@ -53,33 +51,21 @@ namespace FastDragon
             _stateMachine.ChangeState<Opening>();
         }
 
-        private bool RequirementsMet()
+        private bool CanBreak()
         {
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            switch (timeTrialManager.Mode)
-            {
-                case TimeTrialManager.TimeTrialMode.FairyPercent:
-                {
-                    var saveFile = SaveFile.Current;
-                    var mapEntry = AtlasCache.Instance.GetEntry(saveFile.CurrentMap);
-                    int fairiesFound = saveFile.CurrentMapProgress.CollectedFairies.Count;
-
-                    return fairiesFound >= mapEntry.TotalFairiesInLevel;
-                }
-
-                default: return true;
-            }
+            return GetTree().FindNode<TimeTrialManager>().RequirementsMet();
         }
 
         private void SetRequirementsVisible(bool visible)
         {
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            var currentMode = timeTrialManager?.Mode ?? TimeTrialManager.TimeTrialMode.None;
-
-            foreach (var m in Enum.GetValues<TimeTrialManager.TimeTrialMode>())
+            foreach (var m in Enum.GetValues<TimeTrialCategory>())
                 _requirementsDisplay.GetNode<Node3D>(m.ToString()).Visible = !visible;
 
-            _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
+            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
+            var currentMode = timeTrialManager?.Mode;
+
+            if (currentMode != null)
+                _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
         }
 
         private partial class PlatformState : State

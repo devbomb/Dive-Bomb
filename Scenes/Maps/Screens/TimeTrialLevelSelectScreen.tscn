@@ -77,9 +77,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_555xp")
-FocusedControl = NodePath("Buttons/AnyPercentButton")
+FocusedControl = NodePath("CategoryButtons/AnyPercent")
 
-[node name="Buttons" type="VBoxContainer" parent="PageNav/CategorySelectPage"]
+[node name="CategoryButtons" type="VBoxContainer" parent="PageNav/CategorySelectPage"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
@@ -91,17 +92,15 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnyPercentButton" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
-unique_name_in_owner = true
+[node name="AnyPercent" type="Button" parent="PageNav/CategorySelectPage/CategoryButtons"]
 layout_mode = 2
 text = "Any%"
 
-[node name="FairyPercentButton" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
-unique_name_in_owner = true
+[node name="FairyPercent" type="Button" parent="PageNav/CategorySelectPage/CategoryButtons"]
 layout_mode = 2
 text = "All Fairies"
 
-[node name="OneHundredPercent" type="Button" parent="PageNav/CategorySelectPage/Buttons"]
+[node name="OneHundredPercent" type="Button" parent="PageNav/CategorySelectPage/CategoryButtons"]
 layout_mode = 2
 disabled = true
 text = "100%"
@@ -116,6 +115,6 @@ text = "Back"
 
 [connection signal="BackRequested" from="PageNav/LevelSelectPage" to="." method="ReturnToTitle"]
 [connection signal="BackRequested" from="PageNav/CategorySelectPage" to="." method="ShowLevelSelectPage"]
-[connection signal="pressed" from="PageNav/CategorySelectPage/Buttons/AnyPercentButton" to="." method="StartAnyPercent"]
-[connection signal="pressed" from="PageNav/CategorySelectPage/Buttons/FairyPercentButton" to="." method="StartFairyPercent"]
+[connection signal="pressed" from="PageNav/CategorySelectPage/CategoryButtons/AnyPercent" to="." method="StartAnyPercent"]
+[connection signal="pressed" from="PageNav/CategorySelectPage/CategoryButtons/FairyPercent" to="." method="StartFairyPercent"]
 [connection signal="pressed" from="BackButton" to="." method="OnBackPressed"]
