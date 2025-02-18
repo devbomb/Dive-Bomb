@@ -26,3 +26,9 @@ light_energy = 0.493
 light_bake_mode = 1
 omni_range = 20.9662
 omni_attenuation = 0.244
+
+[node name="OmniLight3D" type="OmniLight3D" parent="ManualLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5244, 20.0322, 13.2688)
+light_energy = 0.065
+omni_range = 18.342
+omni_attenuation = -0.787
