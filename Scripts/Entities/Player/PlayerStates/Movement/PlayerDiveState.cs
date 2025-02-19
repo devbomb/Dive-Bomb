@@ -9,6 +9,7 @@ namespace FastDragon
 
         private float _redirectTimer;
         private float _targetCameraYawRad;
+        private float _startY;
 
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
 
@@ -20,6 +21,8 @@ namespace FastDragon
 
             _redirectTimer = Player.Dive.RedirectTimeWindow;
             _targetCameraYawRad = _player.GlobalRotation.Y;
+
+            _startY = _player.GlobalPosition.Y;
         }
 
         public override void OnStateExited()
@@ -35,13 +38,38 @@ namespace FastDragon
 
             if (_redirectTimer <= 0)
             {
-                ContinuouslyRecenterCamera(
-                    _targetCameraYawRad,
+                var camera = _player.Camera;
+
+                camera.OrbitDistance = MathUtils.DecayToward(
+                    camera.OrbitDistance,
                     Player.Dive.CameraDistance,
-                    Player.Dive.CameraPitchRad,
                     Player.Dive.CameraDecayRate,
                     delta
                 );
+
+                camera.OrbitYawRad = AngleMath.DecayToward(
+                    camera.OrbitYawRad,
+                    _targetCameraYawRad,
+                    Player.Dive.CameraDecayRate,
+                    delta
+                );
+
+                // Allow the camera to look down at the player if they've
+                // fallen below the height that they started the dive at.
+                var transform = camera.GlobalTransform;
+                transform = transform.LookingAt(_player.GlobalPosition);
+                float pitchRad = _player.GlobalPosition.Y < _startY - 2
+                    ? Mathf.Min(transform.Basis.GetEuler().X, Player.Dive.CameraPitchRad)
+                    : Player.Dive.CameraPitchRad;
+
+                camera.OrbitPitchRad = AngleMath.DecayToward(
+                    camera.OrbitPitchRad,
+                    pitchRad,
+                    Player.Dive.CameraDecayRate / 4,
+                    delta
+                );
+
+                camera.ApplyAnglesAndDistance();
             }
         }
 
