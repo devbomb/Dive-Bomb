@@ -16,6 +16,12 @@ transform = Transform3D(-0.996558, 0.0304495, -0.0770984, -0.0384274, 0.654415, 
 shadow_opacity = 0.55
 shadow_blur = 10.0
 
+[node name="Backwards" type="DirectionalLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+light_energy = 0.4
+light_bake_mode = 1
+sky_mode = 1
+
 [node name="GrayboxBullshit" parent="." instance=ExtResource("1_6iwrr")]
 
 [node name="ManualLights" type="Node3D" parent="."]
