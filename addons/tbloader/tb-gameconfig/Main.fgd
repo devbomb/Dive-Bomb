@@ -44,6 +44,7 @@
 @SolidClass = DrowningWater : "DrowningWater" []
 
 @SolidClass = DivableWall : "DivableWall" []
+@SolidClass = XRayWall : "XRayWall" []
 
 @SolidClass = CameraSuggestionZone : "CameraSuggestionZone" [
 	SuggestedYawDeg(float) : "SuggestedYawDeg" : 0
