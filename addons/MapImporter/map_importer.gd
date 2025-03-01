@@ -51,6 +51,11 @@ func _get_import_options(path, preset_index):
                     "name": "visual_layer_mask",
                     "default_value": 1 | 8,
                     "property_hint": PROPERTY_HINT_LAYERS_3D_RENDER
+                },
+                {
+                    "name": "collision_layer_mask",
+                    "default_value": 1 | 2,
+                    "property_hint": PROPERTY_HINT_LAYERS_3D_PHYSICS
                 }
             ]
         _:
@@ -86,6 +91,9 @@ func _import(source_file, save_path, options, r_platform_variants, r_gen_files):
         # Set the map root as the owner---otherwise, it won't be saved to the
         # packed scene!
         node.owner = mapRoot
+        
+        if node is StaticBody3D && !is_root_of_another_scene(node):
+            node.collision_layer = options.collision_layer_mask
     
     # Save the map as a packed scene
     var scene = PackedScene.new()
@@ -113,6 +121,9 @@ func move_children(src: Node, dst: Node):
 func get_root_node_name(source_file: String):
     var parts = source_file.trim_prefix("res://").split("/")
     return parts[parts.size() - 1].trim_suffix(".map")
+
+func is_root_of_another_scene(node: Node) -> bool:
+    return node.scene_file_path != ""
 
 # Returns all nodes that are directly inside the given scene
 # (IE: were not brought in by a child scene)
