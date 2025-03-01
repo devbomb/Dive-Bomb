@@ -41,6 +41,16 @@ enabled=PackedStringArray("res://addons/GenerateTrenchbroomEntityModels/plugin.c
 
 PhysicsInterpolated=""
 
+[importer_defaults]
+
+map_importer={
+"collision_layer_mask": 3,
+"entity_path": "res://Scenes/Entities",
+"map_inverse_scale": 16,
+"texture_path": "res://Textures",
+"visual_layer_mask": 9
+}
+
 [input]
 
 ui_accept={
@@ -146,6 +156,8 @@ RecenterCamera={
 3d_render/layer_2="VisibleInPortals"
 3d_render/layer_3="WorldPortal"
 3d_render/layer_4="ReceiveDecals"
+3d_physics/layer_1="Default"
+3d_physics/layer_2="ObstructsCamera"
 
 [physics]
 
