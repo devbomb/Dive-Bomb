@@ -12,6 +12,11 @@ top_level = true
 script = ExtResource("1_uc4gx")
 AllowAutoRotate = true
 
+[node name="RayCast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
 [node name="Camera" type="Camera3D" parent="."]
 unique_name_in_owner = true
 current = true

@@ -42,6 +42,7 @@ namespace FastDragon
         }
 
         private Camera3D _camera => GetNode<Camera3D>("%Camera");
+        private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast");
 
         private float _orbitDistance = 6;
         private float _orbitYawRad;
@@ -70,6 +71,8 @@ namespace FastDragon
         {
             AddChild(_stateMachine);
             _stateMachine.ChangeState<Unlocked>();
+
+            _raycast.AddException(GetParent<Player>());
         }
 
         public void Reset()
@@ -108,6 +111,7 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             _lagTimer += (float)deltaD;
+
             ApplyAnglesAndDistance();
         }
 
@@ -198,6 +202,17 @@ namespace FastDragon
             var desiredPosition = Transform3D.Identity
                 .Translated(FollowTarget.GlobalPosition + offset)
                 .LookingAt(FollowTarget.GlobalPosition);
+
+            _raycast.GlobalPosition = FollowTarget.GlobalPosition;
+            _raycast.TargetPosition = desiredPosition.Origin - _raycast.GlobalPosition;
+            _raycast.GlobalRotation = Vector3.Zero;
+            _raycast.ForceUpdateTransform();
+            _raycast.ForceRaycastUpdate();
+
+            if (_raycast.IsColliding())
+            {
+                desiredPosition.Origin = _raycast.GetCollisionPoint();
+            }
 
             if (_lagTimer < _lagDuration)
             {
