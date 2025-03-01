@@ -146,6 +146,8 @@ RecenterCamera={
 3d_render/layer_2="VisibleInPortals"
 3d_render/layer_3="WorldPortal"
 3d_render/layer_4="ReceiveDecals"
+3d_physics/layer_1="Default"
+3d_physics/layer_2="ObstructsCamera"
 
 [physics]
 
