@@ -81,18 +81,16 @@ func _import(source_file, save_path, options, r_platform_variants, r_gen_files):
     
     move_children(tbLoader, mapRoot)
     fix_duplicate_node_names(mapRoot)
-    set_owner_of_descendants(mapRoot, mapRoot)
     
+    for node in all_nodes_directly_in_scene(mapRoot):
+        # Set the map root as the owner---otherwise, it won't be saved to the
+        # packed scene!
+        node.owner = mapRoot
+    
+    # Save the map as a packed scene
     var scene = PackedScene.new()
     scene.pack(mapRoot)
     return ResourceSaver.save(scene, "%s.%s" % [save_path, _get_save_extension()])
-
-func set_owner_of_descendants(node: Node, newOwner: Node):
-    for child in node.get_children():
-        if child.owner != null:
-            continue
-        child.owner = newOwner
-        set_owner_of_descendants(child, newOwner)
 
 func fix_duplicate_node_names(node: Node):
     var nameCounts: Dictionary = {}
@@ -115,3 +113,21 @@ func move_children(src: Node, dst: Node):
 func get_root_node_name(source_file: String):
     var parts = source_file.trim_prefix("res://").split("/")
     return parts[parts.size() - 1].trim_suffix(".map")
+
+# Returns all nodes that are directly inside the given scene
+# (IE: were not brought in by a child scene)
+func all_nodes_directly_in_scene(sceneRoot: Node) -> Array[Node]:
+    var array: Array[Node] = []
+    for child in sceneRoot.get_children():
+        _all_nodes_directly_in_scene(child, sceneRoot, array)
+    return array
+
+func _all_nodes_directly_in_scene(node: Node, sceneRoot: Node, array: Array[Node]):
+    var is_from_another_scene: bool = node.owner != null && node.owner != sceneRoot
+    if is_from_another_scene:
+        return
+    
+    array.append(node)
+
+    for child in node.get_children():
+        _all_nodes_directly_in_scene(child, sceneRoot, array)
