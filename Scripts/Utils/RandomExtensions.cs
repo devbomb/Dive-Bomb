@@ -7,7 +7,7 @@ namespace FastDragon
 {
     public static class RandomExtensions
     {
-        public static T[] Shuffle<T>(this Random rng, IEnumerable<T> items)
+        public static T[] Shuffled<T>(this Random rng, IEnumerable<T> items)
         {
             var unshuffled = new List<T>(items);
             var shuffled = new List<T>();

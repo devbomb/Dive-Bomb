@@ -43,7 +43,7 @@ namespace FastDragon
 
         private void RevealPowerOrbs()
         {
-            _chosenPowerOrbs = _rng.Shuffle(PowerOrbs)
+            _chosenPowerOrbs = _rng.Shuffled(PowerOrbs)
                 .Take(4)
                 .ToArray();
 
