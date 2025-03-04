@@ -188,7 +188,6 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Hovering", 0.1f);
 
                 _start = _fairy.Model.GlobalTransform;
@@ -198,6 +197,11 @@ namespace FastDragon
                 _fairy.CutsceneCam.ResetPhysicsInterpolation();
 
                 _timer = 0;
+
+                // We need to pause AFTER moving the camera and resetting physics
+                // interpolation.  Otherwise, the camera will appear to jump for
+                // one frame.  Why?  IDK.
+                _fairy.SetPausedForCutscene(true);
             }
 
             public override void OnStateExited()
