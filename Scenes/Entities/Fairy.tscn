@@ -72,7 +72,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 deterministic = true
 libraries = {
-"": ExtResource("2_l0xag")
+&"": ExtResource("2_l0xag")
 }
 autoplay = "RESET"
 

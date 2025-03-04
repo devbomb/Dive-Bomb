@@ -870,10 +870,10 @@ tracks/17/keys = {
 
 [resource]
 _data = {
-"FlyAway": SubResource("Animation_eoewg"),
-"Hovering": SubResource("Animation_gtvku"),
-"Kiss": SubResource("Animation_cm1eu"),
-"PoundingOnGlass": SubResource("Animation_p6p2x"),
-"RESET": SubResource("Animation_arvhh"),
-"Shatter": SubResource("Animation_rarm4")
+&"FlyAway": SubResource("Animation_eoewg"),
+&"Hovering": SubResource("Animation_gtvku"),
+&"Kiss": SubResource("Animation_cm1eu"),
+&"PoundingOnGlass": SubResource("Animation_p6p2x"),
+&"RESET": SubResource("Animation_arvhh"),
+&"Shatter": SubResource("Animation_rarm4")
 }

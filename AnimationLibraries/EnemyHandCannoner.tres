@@ -1204,11 +1204,11 @@ tracks/14/keys = PackedFloat32Array(0, 1, -0.207913, 0, 0, 0.978147, 0.2, 1, 0.2
 
 [resource]
 _data = {
-"Aim": SubResource("Animation_8dsxe"),
-"Death": SubResource("Animation_6jv4s"),
-"FireRecoil": SubResource("Animation_bhbp3"),
-"RESET": SubResource("Animation_v62uv"),
-"Shield": SubResource("Animation_edirh"),
-"Sleep": SubResource("Animation_6ofv0"),
-"WakeUp": SubResource("Animation_wovws")
+&"Aim": SubResource("Animation_8dsxe"),
+&"Death": SubResource("Animation_6jv4s"),
+&"FireRecoil": SubResource("Animation_bhbp3"),
+&"RESET": SubResource("Animation_v62uv"),
+&"Shield": SubResource("Animation_edirh"),
+&"Sleep": SubResource("Animation_6ofv0"),
+&"WakeUp": SubResource("Animation_wovws")
 }

@@ -36,7 +36,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, -0.707107, 1.58051e-08, 0.707107, 1.580
 
 [resource]
 _data = {
-"BurstOpen": SubResource("Animation_x6mdr"),
-"PlayerEntering": SubResource("Animation_67e8j"),
-"RESET": SubResource("Animation_bclfk")
+&"BurstOpen": SubResource("Animation_x6mdr"),
+&"PlayerEntering": SubResource("Animation_67e8j"),
+&"RESET": SubResource("Animation_bclfk")
 }
