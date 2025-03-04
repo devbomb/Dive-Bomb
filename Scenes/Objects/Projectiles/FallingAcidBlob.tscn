@@ -70,7 +70,7 @@ alpha_curve = SubResource("CurveTexture_si5ek")
 [node name="FallingAcidBlob" type="Node3D"]
 script = ExtResource("1_7tjkq")
 
-[node name="BlobModel" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="BlobModel" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19423, 0)
 material_override = SubResource("StandardMaterial3D_2wc42")

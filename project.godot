@@ -37,10 +37,6 @@ import/use_multiple_threads=false
 
 enabled=PackedStringArray("res://addons/GenerateTrenchbroomEntityModels/plugin.cfg", "res://addons/MapImporter/plugin.cfg", "res://addons/tbloader/plugin.cfg")
 
-[global_group]
-
-PhysicsInterpolated=""
-
 [importer_defaults]
 
 map_importer={

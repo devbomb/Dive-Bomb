@@ -7,7 +7,7 @@
 [node name="BossReturnHomePlatform" type="Node3D"]
 script = ExtResource("1_kde3x")
 
-[node name="Model" parent="." groups=["PhysicsInterpolated"] instance=ExtResource("2_exf5q")]
+[node name="Model" parent="." instance=ExtResource("2_exf5q")]
 unique_name_in_owner = true
 
 [node name="HiddenPoint" type="Marker3D" parent="."]

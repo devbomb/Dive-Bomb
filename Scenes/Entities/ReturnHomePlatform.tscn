@@ -64,7 +64,7 @@ explosiveness = 0.95
 process_material = SubResource("ParticleProcessMaterial_qx6kd")
 draw_pass_1 = SubResource("PrismMesh_hktgs")
 
-[node name="RequirementsPivot" type="Node3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="RequirementsPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 

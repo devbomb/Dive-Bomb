@@ -127,7 +127,7 @@ radius = 0.25
 [sub_resource type="SphereShape3D" id="SphereShape3D_5toey"]
 radius = 1.0
 
-[node name="Gem" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
+[node name="Gem" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_ajgr5")
 

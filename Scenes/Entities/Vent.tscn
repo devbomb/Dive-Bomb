@@ -35,7 +35,7 @@ transform = Transform3D(-0.364835, -0.478114, 0.798939, 0, 0.858084, 0.513509, -
 unique_name_in_owner = true
 transform = Transform3D(-0.364877, 0.478136, -0.798906, 0, 0.858065, 0.513541, 0.931056, 0.187379, -0.313088, -4.941, 4.035, -2.811)
 
-[node name="CutsceneCam" type="Camera3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="CutsceneCam" type="Camera3D" parent="."]
 unique_name_in_owner = true
 
 [connection signal="body_entered" from="Area3D" to="." method="OnAreaEntered"]
