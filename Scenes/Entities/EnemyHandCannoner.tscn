@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ch0y87teuvqc8"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/EnemyHandCannoner.cs" id="1_x80xv"]
+[ext_resource type="Script" uid="uid://dbq24o3s8vbso" path="res://Scripts/Entities/EnemyHandCannoner.cs" id="1_x80xv"]
 [ext_resource type="PackedScene" uid="uid://cka17uxpf4jsi" path="res://Scenes/Objects/Projectiles/HandCannonBall.tscn" id="2_7j68t"]
 [ext_resource type="PackedScene" uid="uid://cxrfdnblu768c" path="res://BlenderModels/EnemyHandCannoner.blend" id="2_a37ce"]
 [ext_resource type="AnimationLibrary" uid="uid://dpi267kv74gnc" path="res://AnimationLibraries/EnemyHandCannoner.tres" id="3_t3ybc"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://t1vahhcvv1hb"]
+[gd_scene load_steps=12 format=3 uid="uid://t1vahhcvv1hb"]
 
 [sub_resource type="Curve" id="Curve_o10cw"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -7,7 +7,13 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_2i2a7"]
 curve = SubResource("Curve_o10cw")
 
+[sub_resource type="Curve" id="Curve_t3k41"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_ll5r1"]
+curve = SubResource("Curve_t3k41")
 
 [sub_resource type="Gradient" id="Gradient_4ajil"]
 offsets = PackedFloat32Array(0, 0.48583, 1)

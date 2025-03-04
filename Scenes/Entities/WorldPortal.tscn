@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://btv2t1ldssbpg"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/WorldPortal.cs" id="1_h2qwt"]
+[ext_resource type="Script" uid="uid://c3mmyc2cdgryc" path="res://Scripts/Entities/WorldPortal.cs" id="1_h2qwt"]
 
 [sub_resource type="Shader" id="Shader_sbvxd"]
 code = "shader_type spatial;

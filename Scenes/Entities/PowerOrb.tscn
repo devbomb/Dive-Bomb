@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://btcofpq2vamxe"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/PowerOrb.cs" id="1_33fc2"]
+[ext_resource type="Script" uid="uid://djngs7hwn3v5q" path="res://Scripts/Entities/PowerOrb.cs" id="1_33fc2"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="2_mqwyj"]
 [ext_resource type="PackedScene" uid="uid://lufx1acikyaw" path="res://BlenderModels/PowerOrb.blend" id="2_wnb6r"]
 

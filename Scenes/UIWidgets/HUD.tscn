@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://Scenes/UIWidgets/HealthDisplay.tscn" id="1_6bb2e"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="1_cfww8"]
 [ext_resource type="PackedScene" uid="uid://dpa1avddef2b" path="res://Scenes/UIWidgets/CountingLabel.tscn" id="2_438p2"]
-[ext_resource type="Script" path="res://Scripts/UIWidgets/ContextuallyHiddenControl.cs" id="2_qcprr"]
+[ext_resource type="Script" uid="uid://cromiohdg3esv" path="res://Scripts/UIWidgets/ContextuallyHiddenControl.cs" id="2_qcprr"]
 [ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://Scenes/UIWidgets/FPSCounter.tscn" id="4_yrcis"]
 
 [sub_resource type="GDScript" id="GDScript_h7bdc"]

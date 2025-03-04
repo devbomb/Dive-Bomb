@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://df4m2ng2nc375" path="res://BlenderModels/Parachute.blend" id="1_d1yau"]
 [ext_resource type="PackedScene" uid="uid://bytmfm6g78uxa" path="res://BlenderModels/KennifiedPlayerModel.blend" id="1_gwhpy"]
-[ext_resource type="Script" path="res://Scripts/Objects/SimpleParticles.cs" id="1_x2wfw"]
+[ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="1_x2wfw"]
 [ext_resource type="PackedScene" uid="uid://bdmpiimo8xv4a" path="res://Scenes/Objects/AnchoredLine3D.tscn" id="2_6kq2t"]
 
 [sub_resource type="Gradient" id="Gradient_x8atq"]
@@ -24,20 +24,17 @@ point_count = 2
 curve = SubResource("Curve_dfoy6")
 
 [sub_resource type="Curve" id="Curve_30ae7"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_0llel"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_rprca"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cj6n6qr7joyt0"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/DivableWall.cs" id="1_2tkqn"]
+[ext_resource type="Script" uid="uid://bvmycxh81wt3f" path="res://Scripts/Entities/DivableWall.cs" id="1_2tkqn"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="2_5d810"]
 
 [sub_resource type="GDScript" id="GDScript_o78um"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0vpyujcojrlr"]
 
-[ext_resource type="Script" path="res://Scripts/UIMenus/PauseMenu.cs" id="1_6unmj"]
+[ext_resource type="Script" uid="uid://brneuhryr7gx3" path="res://Scripts/UIMenus/PauseMenu.cs" id="1_6unmj"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_wwjmo"]
 [ext_resource type="PackedScene" uid="uid://dk14uy27kbnyn" path="res://Scenes/UIMenus/AtlasMenu.tscn" id="3_0fbh4"]
-[ext_resource type="Script" path="res://Scripts/UIWidgets/Page.cs" id="3_2prw7"]
+[ext_resource type="Script" uid="uid://la5dtjohmevd" path="res://Scripts/UIWidgets/Page.cs" id="3_2prw7"]
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://Scenes/UIMenus/UserSettingsMenu.tscn" id="4_cbwi1"]
 
 [node name="PauseMenu" type="Control"]

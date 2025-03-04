@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cyd2uyjl8rvk5"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/EnemyVulture.cs" id="1_is5gw"]
+[ext_resource type="Script" uid="uid://l0gjh3jkqteb" path="res://Scripts/Entities/EnemyVulture.cs" id="1_is5gw"]
 [ext_resource type="AnimationLibrary" uid="uid://phpkdehj2kfx" path="res://AnimationLibraries/VultureAnimations.tres" id="2_4b7rt"]
 [ext_resource type="PackedScene" uid="uid://bksx43c001y1k" path="res://BlenderModels/EnemyVulture.blend" id="2_ni8ar"]
 [ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Scenes/Objects/AggroSphere.tscn" id="4_l56o7"]

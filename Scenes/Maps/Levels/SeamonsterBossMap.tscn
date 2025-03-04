@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtoyyu1x2olbc" path="res://BlenderModels/KrackenPlatform.blend" id="4_78ou1"]
 [ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Scenes/Entities/NamedMarker3D.tscn" id="4_elxet"]
 [ext_resource type="PackedScene" uid="uid://btcofpq2vamxe" path="res://Scenes/Entities/PowerOrb.tscn" id="5_6lj42"]
-[ext_resource type="Script" path="res://Scripts/Entities/DrowningWater.cs" id="5_ps4q3"]
+[ext_resource type="Script" uid="uid://c4dmx1el10jag" path="res://Scripts/Entities/DrowningWater.cs" id="5_ps4q3"]
 [ext_resource type="PackedScene" uid="uid://u1dg26oq81vl" path="res://Scenes/Entities/Bosses/SeamonsterBoss.tscn" id="5_pv6rf"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1mwof"]

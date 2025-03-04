@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://c26712jp7rfwp"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
+[ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
 [ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://AnimationLibraries/KennifiedPlayerAnimations.tres" id="2_dijyt"]
 [ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Scenes/Objects/TimeTrialManager.tscn" id="2_eu73y"]

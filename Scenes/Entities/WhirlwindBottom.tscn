@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://48w85r66vymo"]
 
 [ext_resource type="PackedScene" uid="uid://cak20n617vjgj" path="res://BlenderModels/WhirlwindBottom.blend" id="1_5pty4"]
-[ext_resource type="Script" path="res://Scripts/Entities/WhirlwindBottom.cs" id="1_wvuej"]
+[ext_resource type="Script" uid="uid://dr5rqffeku4js" path="res://Scripts/Entities/WhirlwindBottom.cs" id="1_wvuej"]
 
 [sub_resource type="GDScript" id="GDScript_w25r2"]
 script/source = "extends Node3D
@@ -48,8 +48,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_16jg3"]
 _data = {
-"RESET": SubResource("Animation_26xbe"),
-"Spin": SubResource("Animation_nio8d")
+&"RESET": SubResource("Animation_26xbe"),
+&"Spin": SubResource("Animation_nio8d")
 }
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gw4lh"]
@@ -58,6 +58,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 1.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 1.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
 initial_velocity_min = 4.0
@@ -89,6 +90,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 1.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 1.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
 initial_velocity_min = 4.0
