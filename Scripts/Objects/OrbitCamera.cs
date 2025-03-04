@@ -61,12 +61,6 @@ namespace FastDragon
             Vector3 offset = dir * OrbitDistance;
             GlobalPosition = FollowTarget.GlobalPosition + offset;
             LookAt(FollowTarget.GlobalPosition);
-
-            // HACK: ensure it works smoothly with physics interpolation
-            if (!Engine.IsInPhysicsFrame())
-            {
-                ResetPhysicsInterpolation();
-            }
         }
 
         private void ClampOrbitAngles()
