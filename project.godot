@@ -161,6 +161,6 @@ RecenterCamera={
 
 [physics]
 
-common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
 jolt_physics_3d/simulation/areas_detect_static_bodies=true
+common/physics_interpolation=true

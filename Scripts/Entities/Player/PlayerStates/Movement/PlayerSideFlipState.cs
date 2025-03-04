@@ -15,7 +15,7 @@ namespace FastDragon
 
             RotateInstantlyTowardLeftStick();
             _player.FSpeed = Player.Walk.Speed;
-            _player.ResetPhysicsInterpolation3D();
+            _player.ResetPhysicsInterpolation();
 
             _isHolding = true;
         }

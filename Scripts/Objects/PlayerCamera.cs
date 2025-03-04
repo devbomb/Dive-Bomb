@@ -158,7 +158,7 @@ namespace FastDragon
             OrbitPitchRad = 0;
             OrbitYawRad = FollowTarget.GlobalRotation.Y;
             ApplyAnglesAndDistance();
-            this.ResetPhysicsInterpolation3D();
+            ResetPhysicsInterpolation();
         }
 
         public void SuggestAngle(float yawRad, float pitchRad, float distance)

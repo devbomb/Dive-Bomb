@@ -50,7 +50,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _self._model.Position = _self._hiddenPoint.Position;
-                _self._model.ResetPhysicsInterpolation3D();
+                _self._model.ResetPhysicsInterpolation();
 
                 _self.SetParticlesEmitting(false);
             }
@@ -69,7 +69,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _self._model.Position = _self._hiddenPoint.Position;
-                _self._model.ResetPhysicsInterpolation3D();
+                _self._model.ResetPhysicsInterpolation();
                 _timer = 0;
 
                 _self.SetParticlesEmitting(false);
@@ -92,7 +92,7 @@ namespace FastDragon
                 if (_timer >= Duration)
                 {
                     _self._model.Position = Vector3.Zero;
-                    _self._model.ResetPhysicsInterpolation3D();
+                    _self._model.ResetPhysicsInterpolation();
                     ChangeState<ReadyState>();
                 }
             }
@@ -103,7 +103,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _self._model.Position = Vector3.Zero;
-                _self._model.ResetPhysicsInterpolation3D();
+                _self._model.ResetPhysicsInterpolation();
                 _self._vortex.IsActive = true;
             }
 

@@ -52,11 +52,6 @@ namespace FastDragon
         private float _orbitYawRad;
         private float _orbitPitchRad;
 
-        public override void _Ready()
-        {
-            AddToGroup(PhysicsInterpolatorSingleton.GroupName);
-        }
-
         private void ApplyAnglesAndDistance()
         {
             Vector3 dir = Vector3.Back
@@ -70,7 +65,7 @@ namespace FastDragon
             // HACK: ensure it works smoothly with physics interpolation
             if (!Engine.IsInPhysicsFrame())
             {
-                this.ResetPhysicsInterpolation3D();
+                ResetPhysicsInterpolation();
             }
         }
 

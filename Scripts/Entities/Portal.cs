@@ -45,10 +45,10 @@ namespace FastDragon
             player.ChangeState<PlayerManhandledState>();
             player.GlobalRotation = _playerSpawn.GlobalRotation;
             player.GlobalPosition = _exitAnimationStartPos;
-            player.ResetPhysicsInterpolation3D();
+            player.ResetPhysicsInterpolation();
 
             player.CameraFocus.GlobalPosition = player.CameraFocusRestPos.GlobalPosition;
-            player.CameraFocus.ResetPhysicsInterpolation3D();
+            player.CameraFocus.ResetPhysicsInterpolation();
 
             player.Camera.OrbitYawRad = _playerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
             player.Camera.OrbitPitchRad = 0;
@@ -79,7 +79,7 @@ namespace FastDragon
             {
                 _playingExitAnimation = false;
                 player.GlobalPosition = _playerSpawn.GlobalPosition;
-                player.ResetPhysicsInterpolation3D();
+                player.ResetPhysicsInterpolation();
                 player.ChangeState<PlayerWalkState>();
                 player.SetVisibleInPortals(false);
             }

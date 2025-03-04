@@ -190,7 +190,7 @@ namespace FastDragon
                 if (_parent._grabber.GlobalPosition.DistanceTo(startPoint) > 0.01f)
                     _parent._grabber.LookAt(startPoint, up);
 
-                _parent.ResetPhysicsInterpolation3D();
+                _parent.ResetPhysicsInterpolation();
                 _parent.ForceUpdateTransform();
             }
 
@@ -248,7 +248,7 @@ namespace FastDragon
                 if (_parent._grabber.GlobalPosition.DistanceTo(_startPoint) > 0.01f)
                     _parent._grabber.LookAt(_startPoint, up);
 
-                _parent.ResetPhysicsInterpolation3D();
+                _parent.ResetPhysicsInterpolation();
                 _parent.ForceUpdateTransform();
             }
 
