@@ -102,7 +102,7 @@ unique_name_in_owner = true
 deterministic = true
 root_node = NodePath("../PlayerModel")
 libraries = {
-"": ExtResource("7_x6xbq")
+&"": ExtResource("7_x6xbq")
 }
 
 [node name="PlayerModel" parent="." instance=ExtResource("8_hsd4c")]
@@ -120,7 +120,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.153, 0, -5)
 [node name="LabelSlider" type="AnimationPlayer" parent="OrbitCamera/GemCountingRig"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_n3vqn")
+&"": SubResource("AnimationLibrary_n3vqn")
 }
 
 [node name="UntalliedGemsLabel" type="Node3D" parent="OrbitCamera/GemCountingRig"]
