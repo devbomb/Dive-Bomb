@@ -12,7 +12,7 @@ StraightWavePrefab = ExtResource("2_r5q12")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": ExtResource("1_l8kec")
+&"": ExtResource("1_l8kec")
 }
 
 [node name="KrackenTentacle" parent="." instance=ExtResource("1_60w2y")]

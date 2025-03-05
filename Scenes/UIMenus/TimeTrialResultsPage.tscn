@@ -330,7 +330,7 @@ FocusedControl = NodePath("Buttons/VBoxContainer/RetryButton")
 unique_name_in_owner = true
 deterministic = true
 libraries = {
-"": SubResource("AnimationLibrary_sufs0")
+&"": SubResource("AnimationLibrary_sufs0")
 }
 
 [node name="AnnouncementLabel" type="Label" parent="."]

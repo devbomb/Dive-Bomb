@@ -83,6 +83,6 @@ shadow_normal_bias = 1.048
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 deterministic = true
 libraries = {
-"": SubResource("AnimationLibrary_uihpi")
+&"": SubResource("AnimationLibrary_uihpi")
 }
 autoplay = "Flicker"

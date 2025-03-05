@@ -142,10 +142,10 @@ unique_name_in_owner = true
 shape = SubResource("CylinderShape3D_tirex")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Spin"
 libraries = {
-"": SubResource("AnimationLibrary_16jg3")
+&"": SubResource("AnimationLibrary_16jg3")
 }
+autoplay = "Spin"
 
 [node name="Spinny" type="Node3D" parent="."]
 

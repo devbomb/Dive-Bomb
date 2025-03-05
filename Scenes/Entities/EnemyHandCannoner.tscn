@@ -17,7 +17,7 @@ ProjectilePrefab = ExtResource("2_7j68t")
 unique_name_in_owner = true
 deterministic = true
 libraries = {
-"": ExtResource("3_t3ybc")
+&"": ExtResource("3_t3ybc")
 }
 
 [node name="Model" type="Node3D" parent="."]
