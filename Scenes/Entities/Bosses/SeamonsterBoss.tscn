@@ -141,7 +141,7 @@ unique_name_in_owner = true
 deterministic = true
 root_node = NodePath("../..")
 libraries = {
-"": ExtResource("4_l26sy")
+&"": ExtResource("4_l26sy")
 }
 
 [node name="Model" parent="." instance=ExtResource("4_veo1p")]

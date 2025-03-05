@@ -451,11 +451,11 @@ tracks/7/keys = PackedFloat32Array(0, 1, 0, -2.25705, 0, 0.3, 1, 0, -1.31481, 0)
 
 [resource]
 _data = {
-"Idle": SubResource("Animation_mubhi"),
-"RESET": SubResource("Animation_elrp3"),
-"Splash": SubResource("Animation_lnr6p"),
-"SplashRecover": SubResource("Animation_eqjm6"),
-"Submerge": SubResource("Animation_vfx1o"),
-"Submerged": SubResource("Animation_jb2k4"),
-"Surface": SubResource("Animation_xwqdu")
+&"Idle": SubResource("Animation_mubhi"),
+&"RESET": SubResource("Animation_elrp3"),
+&"Splash": SubResource("Animation_lnr6p"),
+&"SplashRecover": SubResource("Animation_eqjm6"),
+&"Submerge": SubResource("Animation_vfx1o"),
+&"Submerged": SubResource("Animation_jb2k4"),
+&"Surface": SubResource("Animation_xwqdu")
 }
