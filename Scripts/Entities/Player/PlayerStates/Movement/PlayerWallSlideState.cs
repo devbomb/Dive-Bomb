@@ -28,9 +28,15 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            // Apply friction to the horizontal speed
+            // Apply friction to the horizontal speed.
+            // We do need to keep _some_ velocity going _into_ the wall, though,
+            // to ensure IsOnWall() still works reliably.
+            var targetFlatVel = -_player.GetWallNormal()
+                .Flattened()
+                .Normalized() * 0.1f;
+
             var flatVel = _player.Velocity.Flattened();
-            flatVel = flatVel.MoveToward(Vector3.Zero, Player.WallSlide.HDecel * delta);
+            flatVel = flatVel.MoveToward(targetFlatVel, Player.WallSlide.HDecel * delta);
             flatVel.Y = _player.VSpeed;
             _player.Velocity = flatVel;
 
@@ -65,18 +71,6 @@ namespace FastDragon
             }
 
             _player.GlobalRotation = (-_player.GetWallNormal())
-                .Flattened()
-                .ForwardToEulerAnglesRad();
-        }
-
-        private void RotateToFaceAwayFromWall()
-        {
-            if (!_player.IsOnWall())
-            {
-                throw new System.Exception("Tried to rotate away from wall, but not touching one");
-            }
-
-            _player.GlobalRotation = _player.GetWallNormal()
                 .Flattened()
                 .ForwardToEulerAnglesRad();
         }
