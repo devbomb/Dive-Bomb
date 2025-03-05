@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bi1df8rnwev2k"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/PortalSurface.cs" id="1_0sdk0"]
-[ext_resource type="Script" path="res://Scripts/Objects/CopycatCamera.cs" id="2_cben0"]
+[ext_resource type="Script" uid="uid://2c4cobid61l8" path="res://Scripts/Objects/PortalSurface.cs" id="1_0sdk0"]
+[ext_resource type="Script" uid="uid://casqflr2c8ms3" path="res://Scripts/Objects/CopycatCamera.cs" id="2_cben0"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0ubsh"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://s0qtchrtav7v"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Projectiles/StraightWave.cs" id="1_w0vdt"]
+[ext_resource type="Script" uid="uid://dypst6uibd52w" path="res://Scripts/Objects/Projectiles/StraightWave.cs" id="1_w0vdt"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_tbc5i"]
 noise_type = 0
@@ -26,7 +26,6 @@ normal_texture = SubResource("NoiseTexture2D_57prl")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iffqx"]
 next_pass = SubResource("StandardMaterial3D_poh6f")
 cull_mode = 2
-shading_mode = 2
 albedo_color = Color(0.130906, 0.460047, 0.430048, 1)
 roughness = 0.0
 rim_enabled = true

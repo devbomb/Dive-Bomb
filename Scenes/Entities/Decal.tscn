@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxanjw4yrox7s"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/Decal.gd" id="1_d13tu"]
+[ext_resource type="Script" uid="uid://bufuh0jsxxnja" path="res://Scripts/Entities/Decal.gd" id="1_d13tu"]
 
 [node name="Decal" type="Decal"]
 editor_description = "A wrapper for a decal that can be placed in Trenchbroom"

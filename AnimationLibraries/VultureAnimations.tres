@@ -244,7 +244,7 @@ tracks/10/keys = PackedFloat32Array(0, 1, -0.0057158, 0.00578448, 0.00620147, 0.
 
 [resource]
 _data = {
-"Fly": SubResource("Animation_cghvi"),
-"Idle": SubResource("Animation_t58jf"),
-"RESET": SubResource("Animation_1c5fi")
+&"Fly": SubResource("Animation_cghvi"),
+&"Idle": SubResource("Animation_t58jf"),
+&"RESET": SubResource("Animation_1c5fi")
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bu8mmnh1cn5nb"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/KrackenSplashTentacle.cs" id="1_8wc7c"]
+[ext_resource type="Script" uid="uid://b8m54tbf2ojjb" path="res://Scripts/Objects/KrackenSplashTentacle.cs" id="1_8wc7c"]
 [ext_resource type="PackedScene" uid="uid://dv18f3wonrtm2" path="res://BlenderModels/KrackenTentacle.blend" id="1_60w2y"]
 [ext_resource type="AnimationLibrary" uid="uid://b1qmtyyaaywuq" path="res://AnimationLibraries/Bosses/Kracken/KrackenTentacleAnimations.tres" id="1_l8kec"]
 [ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Scenes/Objects/Projectiles/StraightWave.tscn" id="2_r5q12"]
@@ -12,7 +12,7 @@ StraightWavePrefab = ExtResource("2_r5q12")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": ExtResource("1_l8kec")
+&"": ExtResource("1_l8kec")
 }
 
 [node name="KrackenTentacle" parent="." instance=ExtResource("1_60w2y")]

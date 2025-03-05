@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://y0qa1rqbd1x7"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/Vent.cs" id="1_1m5e1"]
+[ext_resource type="Script" uid="uid://rjut1c2k5y2r" path="res://Scripts/Entities/Vent.cs" id="1_1m5e1"]
 [ext_resource type="PackedScene" uid="uid://cnh40ih5ik4pc" path="res://BlenderModels/Vent.blend" id="1_fioef"]
 [ext_resource type="AnimationLibrary" uid="uid://mph1dfth0pie" path="res://AnimationLibraries/VentAnimations.tres" id="2_b40rd"]
 
@@ -13,7 +13,7 @@ script = ExtResource("1_1m5e1")
 unique_name_in_owner = true
 deterministic = true
 libraries = {
-"": ExtResource("2_b40rd")
+&"": ExtResource("2_b40rd")
 }
 
 [node name="Model" parent="." instance=ExtResource("1_fioef")]

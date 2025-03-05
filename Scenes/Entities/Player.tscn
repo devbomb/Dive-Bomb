@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://c26712jp7rfwp"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
+[ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
 [ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://AnimationLibraries/KennifiedPlayerAnimations.tres" id="2_dijyt"]
 [ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Scenes/Objects/TimeTrialManager.tscn" id="2_eu73y"]
@@ -65,7 +65,7 @@ unique_name_in_owner = true
 deterministic = true
 root_node = NodePath("../Model")
 libraries = {
-"": ExtResource("2_dijyt")
+&"": ExtResource("2_dijyt")
 }
 playback_default_blend_time = 0.1
 
@@ -150,7 +150,7 @@ ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 mouse_filter = 2
 
 [node name="LeftHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.0934727, -0.982629, -0.160321, -0.0241288, -0.163214, 0.986295, -0.995329, -0.0883233, -0.0389656, -0.508041, 0.905569, -0.0323664)
+transform = Transform3D(0.0741329, -0.991472, -0.107182, 0.0655875, -0.102398, 0.992579, -0.995089, -0.0806125, 0.0574371, -0.315088, 0.925497, -0.0166783)
 bone_name = "Hand_L"
 bone_idx = 10
 use_external_skeleton = true
@@ -161,7 +161,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.0934727, 0.982629, 0.160321, 0.0241288, -0.163214, 0.986295, 0.995329, -0.0883233, -0.0389656, 0.508041, 0.905569, -0.0323664)
+transform = Transform3D(0.0741329, 0.991472, 0.107182, -0.0655875, -0.102398, 0.992579, 0.995089, -0.0806125, 0.0574371, 0.315088, 0.925497, -0.0166783)
 bone_name = "Hand_R"
 bone_idx = 19
 use_external_skeleton = true

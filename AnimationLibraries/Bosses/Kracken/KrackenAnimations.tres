@@ -736,14 +736,14 @@ tracks/6/keys = PackedFloat32Array(0, 1, -2.73999e-06, 0.216933, -1.21421, 0.3, 
 
 [resource]
 _data = {
-"Blink": SubResource("Animation_xmheq"),
-"BodyMovement": SubResource("Animation_8v0ow"),
-"Damaged": SubResource("Animation_3k4df"),
-"Explode": SubResource("Animation_0p5b1"),
-"JawMovement": SubResource("Animation_xtfpy"),
-"LookLeftAndRight": SubResource("Animation_2j602"),
-"RESET": SubResource("Animation_170it"),
-"Submerge": SubResource("Animation_ky8h8"),
-"Submerged": SubResource("Animation_qsehc"),
-"Surface": SubResource("Animation_gxf10")
+&"Blink": SubResource("Animation_xmheq"),
+&"BodyMovement": SubResource("Animation_8v0ow"),
+&"Damaged": SubResource("Animation_3k4df"),
+&"Explode": SubResource("Animation_0p5b1"),
+&"JawMovement": SubResource("Animation_xtfpy"),
+&"LookLeftAndRight": SubResource("Animation_2j602"),
+&"RESET": SubResource("Animation_170it"),
+&"Submerge": SubResource("Animation_ky8h8"),
+&"Submerged": SubResource("Animation_qsehc"),
+&"Surface": SubResource("Animation_gxf10")
 }

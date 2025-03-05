@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cpn1spfliqp15"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Gem.cs" id="1_ajgr5"]
+[ext_resource type="Script" uid="uid://bo6unbh4sy1dw" path="res://Scripts/Objects/Gem.cs" id="1_ajgr5"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="3_4j54j"]
 
 [sub_resource type="Animation" id="Animation_jfllq"]
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kddi0"]
 _data = {
-"RESET": SubResource("Animation_jfllq"),
-"Rotate": SubResource("Animation_ngwd6")
+&"RESET": SubResource("Animation_jfllq"),
+&"Rotate": SubResource("Animation_ngwd6")
 }
 
 [sub_resource type="Animation" id="Animation_exjpb"]
@@ -98,8 +98,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b461w"]
 _data = {
-"RESET": SubResource("Animation_exjpb"),
-"Sparkle": SubResource("Animation_k82sx")
+&"RESET": SubResource("Animation_exjpb"),
+&"Sparkle": SubResource("Animation_k82sx")
 }
 
 [sub_resource type="GDScript" id="GDScript_0ga4t"]
@@ -138,14 +138,14 @@ aabb = AABB(-0.25, 0, -0.25, 0.5, 0.5, 0.5)
 [node name="SpinAnimator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_kddi0")
+&"": SubResource("AnimationLibrary_kddi0")
 }
 autoplay = "Rotate"
 
 [node name="SparkleAnimator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_b461w")
+&"": SubResource("AnimationLibrary_b461w")
 }
 
 [node name="Billboard" type="Node3D" parent="."]

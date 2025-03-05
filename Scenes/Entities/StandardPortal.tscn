@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="PackedScene" uid="uid://b7e27lthcl3fx" path="res://BlenderModels/StandardPortalFrame.blend" id="1_8h6m5"]
-[ext_resource type="Script" path="res://Scripts/Entities/Portal.cs" id="1_hy3pl"]
+[ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Scripts/Entities/Portal.cs" id="1_hy3pl"]
 [ext_resource type="PackedScene" uid="uid://bi1df8rnwev2k" path="res://Scenes/Objects/PortalSurface.tscn" id="2_yrgfb"]
-[ext_resource type="Script" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="4_sne7i"]
+[ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="4_sne7i"]
 [ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="5_qu4xu"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="6_jcutw"]
 
