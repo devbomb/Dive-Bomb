@@ -170,11 +170,6 @@ namespace FastDragon
                 _fairy.Player.Velocity += Vector3.Down * PlayerGravity * delta;
                 _fairy.Player.MoveAndSlide();
 
-                // HACK: For whatever reason, MoveAndSlide() is causing the
-                // player to gain horizontal speed, and I can't figure out why.
-                // So, let's just set it to zero.
-                _fairy.Player.FSpeed = 0;
-
                 if (_fairy.Player.IsOnFloor() && !_playerLanded)
                 {
                     _playerLanded = true;
