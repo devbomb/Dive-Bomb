@@ -305,34 +305,32 @@ namespace FastDragon
             }
 
             // Bonk if moving into a wall at the bonk angle.
-            // To determine the angle, we look at the difference between the old
-            // velocity and the new velocity, instead of looking at the wall's
-            // normal.
+            // We detect this by measuring the player's change in speed, rather
+            // than by calling IsOnWall() or reading the wall normal.
+            // Why?  Well:
+            // 1. IsOnWall() sometimes gives us a false positive, potentially
+            //      causing a bonk against things that shouldn't be bonkable
+            //      (EG: baskets).
             //
-            // Why?  Because this method works even when you're charging
-            // straight into a corner.
-            if (_player.IsOnWall())
-            {
-                // HACK: Sometimes, IsOnWall() will return true, even when there
-                // is clearly no wall there.  This can result in the player
-                // bonking on things they shouldn't, such as baskets.
-                //
-                // So, let's ask Godot which wall it thinks we're touching.
-                // If it can't find a good answer, then we know it was
-                // bullshitting us earlier.
-                if (FindWall() == null)
-                    return false;
+            // 2. Reading the wall normal doesn't work if they player is touching
+            //      two walls at once(IE: rolling into a corner).  Even if those
+            //      two walls "add up" to being a head-on collision, Godot will
+            //      only use ONE of those walls' normals, which would result in
+            //      the player not bonking when they logically should.
+            //
+            // 3. Let's face it: why do people feel pain when they slam into a
+            //      wall IRL?  It's not the collision itself, but rather the
+            //      _deceleration_ caused by the collision.  Therefore, it makes
+            //      sense for a bonk to be triggered by a sudden stop.
+            Vector3 prevVelFlat = prevVel.Flattened();
+            Vector3 newVelFlat = _player.Velocity.Flattened();
 
-                Vector3 prevVelFlat = prevVel.Flattened();
-                Vector3 newVelFlat = _player.Velocity.Flattened();
+            float speedPercent = newVelFlat.Length() / prevVelFlat.Length();
+            float wallAngleRad = Mathf.DegToRad(90) - Mathf.Acos(speedPercent);
+            float bonkAngleRad = Mathf.DegToRad(Player.Bonk.AngleDeg);
 
-                float speedPercent = newVelFlat.Length() / prevVelFlat.Length();
-                float wallAngleRad = Mathf.DegToRad(90) - Mathf.Acos(speedPercent);
-                float bonkAngleRad = Mathf.DegToRad(Player.Bonk.AngleDeg);
-
-                if (wallAngleRad < bonkAngleRad)
-                    return Bonk();
-            }
+            if (wallAngleRad < bonkAngleRad)
+                return Bonk();
 
             return false;
 
@@ -370,21 +368,6 @@ namespace FastDragon
             }
 
             return false;
-        }
-
-        private Node FindWall()
-        {
-            var wallNormal = _player.GetWallNormal();
-            int numCollisions = _player.GetSlideCollisionCount();
-
-            for (int i = 0; i < numCollisions; i++)
-            {
-                var collision = _player.GetSlideCollision(i);
-                if (collision.GetNormal().IsEqualApprox(wallNormal))
-                    return (Node)collision.GetCollider();
-            }
-
-            return null;
         }
     }
 }
