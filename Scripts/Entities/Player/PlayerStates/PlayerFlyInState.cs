@@ -30,10 +30,10 @@ namespace FastDragon
             _player.GlobalPosition += Vector3.Up * _player.FlyInHeight;
             _player.GlobalPosition -= _player.GlobalForward() * _player.FlyInDistance;
             _player.GlobalRotation = Vector3.Zero;
-            _player.ResetPhysicsInterpolation3D();
+            _player.ResetPhysicsInterpolation();
 
             _player.CameraFocus.GlobalPosition = _player.CameraFocusRestPos.GlobalPosition;
-            _player.CameraFocus.ResetPhysicsInterpolation3D();
+            _player.CameraFocus.ResetPhysicsInterpolation();
 
             _startPos = _player.GlobalPosition;
             _startRotRad = _player.GlobalRotation;
@@ -42,7 +42,7 @@ namespace FastDragon
             _player.Camera.OrbitYawRad = PortalLoadingScreen.EnterLevelCameraYawRad;
             _player.Camera.OrbitPitchRad = PortalLoadingScreen.EnterLevelCameraPitchRad;
             _player.Camera.ApplyAnglesAndDistance();
-            _player.Camera.ResetPhysicsInterpolation3D();
+            _player.Camera.ResetPhysicsInterpolation();
 
             // Pause the game while flying in.  This way, the fly-in won't
             // affect cycles.

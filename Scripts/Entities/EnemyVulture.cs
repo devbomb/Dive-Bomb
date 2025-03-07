@@ -50,7 +50,7 @@ namespace FastDragon
             GlobalPosition = _spawnPoint;
             GlobalRotation = _spawnRotation;
             Velocity = Vector3.Zero;
-            this.ResetPhysicsInterpolation3D();
+            ResetPhysicsInterpolation();
 
             // TODO: Stay dead if all of the following are true:
             // * The enemy is dead (or dieing)
@@ -81,7 +81,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _vulture.GlobalPosition = _vulture._spawnPoint;
-                _vulture.ResetPhysicsInterpolation3D();
+                _vulture.ResetPhysicsInterpolation();
                 _framesToWait = 2;
 
                 _vulture._animator.Play("Idle");

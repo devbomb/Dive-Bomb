@@ -65,7 +65,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_015oc")
 draw_pass_1 = SubResource("PrismMesh_lu2bc")
 
-[node name="Model" type="Node3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="Model" type="Node3D" parent="."]
 unique_name_in_owner = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Model"]
@@ -81,5 +81,5 @@ autoplay = "RESET"
 [node name="BlobShadow" parent="Model/Fairy" instance=ExtResource("5_pebs6")]
 radius = 0.25
 
-[node name="CutsceneCam" type="Camera3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="CutsceneCam" type="Camera3D" parent="."]
 unique_name_in_owner = true

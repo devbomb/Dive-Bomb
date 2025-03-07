@@ -22,7 +22,6 @@ GemFactory="*res://Scenes/Singletons/GemFactory.tscn"
 MapTransitionManager="*res://Scenes/Singletons/MapTransitionManager.tscn"
 SaveFile="*res://Scripts/Singletons/SaveFileGDScriptAdaptor.cs"
 UserSettings="*res://Scripts/Singletons/UserSettingsGDScriptAdaptor.cs"
-PhysicsInterpolatorSingleton="*res://Scripts/PhysicsInterpolation/PhysicsInterpolatorSingleton.cs"
 HitStopManager="*res://Scripts/Services/HitStopManager.cs"
 
 [dotnet]
@@ -36,10 +35,6 @@ import/use_multiple_threads=false
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/GenerateTrenchbroomEntityModels/plugin.cfg", "res://addons/MapImporter/plugin.cfg", "res://addons/tbloader/plugin.cfg")
-
-[global_group]
-
-PhysicsInterpolated=""
 
 [importer_defaults]
 
@@ -161,6 +156,6 @@ RecenterCamera={
 
 [physics]
 
-common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
 jolt_physics_3d/simulation/areas_detect_static_bodies=true
+common/physics_interpolation=true

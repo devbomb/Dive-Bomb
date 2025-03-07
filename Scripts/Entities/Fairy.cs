@@ -30,7 +30,7 @@ namespace FastDragon
         public void Reset()
         {
             Model.GlobalTransform = _initialModelPos;
-            Model.ResetPhysicsInterpolation3D();
+            Model.ResetPhysicsInterpolation();
 
             Animator.Play("RESET");
             Animator.Advance(0);
@@ -188,16 +188,20 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Hovering", 0.1f);
 
                 _start = _fairy.Model.GlobalTransform;
 
                 _fairy.CutsceneCam.GlobalTransform = _fairy.Player.Camera.GlobalTransform;
                 _fairy.CutsceneCam.MakeCurrent();
-                _fairy.CutsceneCam.ResetPhysicsInterpolation3D();
+                _fairy.CutsceneCam.ResetPhysicsInterpolation();
 
                 _timer = 0;
+
+                // We need to pause AFTER moving the camera and resetting physics
+                // interpolation.  Otherwise, the camera will appear to jump for
+                // one frame.  Why?  IDK.
+                _fairy.SetPausedForCutscene(true);
             }
 
             public override void OnStateExited()
