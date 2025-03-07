@@ -865,7 +865,7 @@ tracks/17/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1.80786, 0.75543, 1), Vector3(0.75, 1.25, 1), Vector3(1, 1, 1)]
+"values": [Vector3(1, 1, 1), Vector3(1.808, 0.755, 1.808), Vector3(0.75, 1.25, 0.75), Vector3(1, 1, 1)]
 }
 
 [resource]

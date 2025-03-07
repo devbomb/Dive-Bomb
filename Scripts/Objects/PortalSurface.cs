@@ -91,40 +91,30 @@ namespace FastDragon
 
         private partial class Flying : PortalState
         {
-            private bool _skipCameraCheck;
-
             public override void OnStateEntered()
             {
                 player.SetVisibleInPortals(true);
                 player.ChangeState<PlayerManhandledState>();
                 player.Animator.Play("Dive");
-                _skipCameraCheck = true;
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 float delta = (float)deltaD;
 
-                player.GlobalPosition += player.GlobalForward() * Player.Glide.MaxFSpeed * delta;
+                if (CameraIsBehindPlayer())
+                    player.GlobalPosition += player.GlobalForward() * Player.Glide.MaxFSpeed * delta;
+
                 _portal.RotatePlayer(delta);
                 _portal.RecenterCamera(delta);
 
-                if (CameraIsTouchingPortal() && !_skipCameraCheck)
+                if (CameraIsTouchingPortal() && CameraIsBehindPlayer())
                 {
                     MapTransitionManager.Instance.EnterLevel(
                         _portal.TargetMap,
                         _portal._portalCamera.Environment
                     );
                 }
-
-                // HACK: The camera plane, for some reason, doesn't update its
-                // transform until the frame after the player touches the portal,
-                // even if I call ForceUpdateTransform().  This leads to the
-                // camera instantly hitting the un-transformed plane if the
-                // player jumps into the portal from the wrong side.
-                //
-                // The solution?  Just wait a frame, lol.
-                _skipCameraCheck = false;
             }
 
             private bool CameraIsTouchingPortal()
@@ -138,6 +128,16 @@ namespace FastDragon
                 }
 
                 return false;
+            }
+
+            private bool CameraIsBehindPlayer()
+            {
+                float angleDiffRad = Mathf.AngleDifference(
+                    _portal._playerTargetRotRad.Y,
+                    player.Camera.OrbitYawRad
+                );
+
+                return Mathf.Abs(angleDiffRad) < Mathf.DegToRad(45);
             }
         }
 
