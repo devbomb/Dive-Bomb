@@ -42,7 +42,7 @@
 
 @SolidClass = DeathBarrier : "DeathBarrier" []
 @SolidClass = DrowningWater : "DrowningWater" []
-
+@SolidClass = NonCameraObstructingWall : "NonCameraObstructingWall" []
 @SolidClass = DivableWall : "DivableWall" []
 @SolidClass = XRayWall : "XRayWall" []
 @SolidClass = BulletproofGlassWall : "BulletproofGlassWall" []
