@@ -1355,17 +1355,10 @@
 }
 // entity 52
 {
-"classname" "Checkpoint"
-"origin" "208 160 240"
-"angles" "0 -90 0"
-"DebugSpawnHere" "1"
-}
-// entity 53
-{
 "classname" "RedGem"
 "origin" "200 -280 208"
 }
-// entity 54
+// entity 53
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -1382,7 +1375,7 @@
 ( 592 -192 64 ) ( 592 -192 65 ) ( 592 -191 64 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 55
+// entity 54
 {
 "classname" "CameraSuggestionZone"
 "SuggestedPitchDeg" "-20"
