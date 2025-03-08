@@ -68,8 +68,6 @@ namespace FastDragon
                     Player.Dive.CameraDecayRate / 4,
                     delta
                 );
-
-                camera.ApplyAnglesAndDistance();
             }
         }
 
