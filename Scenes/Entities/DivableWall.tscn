@@ -9,6 +9,10 @@ extends Node
 
 @export var material: Material
 
+func _ready():
+	if (!get_parent().is_connected(\"ready\", parent_ready)):
+		get_parent().connect(\"ready\", parent_ready)
+
 func parent_ready():
 	set_material_recursive(get_parent())
 
@@ -64,5 +68,3 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_6bkmj")
 draw_pass_1 = SubResource("PrismMesh_neoal")
-
-[connection signal="ready" from="." to="MaterialSetter" method="parent_ready"]
