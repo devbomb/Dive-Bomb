@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://ka2a1mmw4mos"]
+
+[ext_resource type="Script" uid="uid://byg5bmfo7lf25" path="res://Scripts/DecoratorNodes/MaterialSetter.gd" id="1_f5b03"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f5b03"]
+noise_type = 2
+frequency = 0.0181
+fractal_type = 2
+fractal_octaves = 1
+cellular_return_type = 2
+domain_warp_type = 2
+domain_warp_frequency = 0.1
+domain_warp_fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_es45y"]
+seamless = true
+seamless_blend_skirt = 0.534
+as_normal_map = true
+bump_strength = 32.0
+noise = SubResource("FastNoiseLite_f5b03")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwqnm"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+roughness = 0.0
+emission = Color(1, 1, 1, 1)
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_es45y")
+clearcoat_enabled = true
+clearcoat_roughness = 1.0
+heightmap_enabled = true
+backlight_enabled = true
+backlight = Color(0.509286, 0.509286, 0.509286, 1)
+refraction_enabled = true
+refraction_scale = 0.01
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 1
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_f5b03"]
+size = Vector3(20, 20, 1)
+
+[node name="BulletproofGlassWall" type="StaticBody3D"]
+
+[node name="MaterialSetter" type="Node" parent="."]
+script = ExtResource("1_f5b03")
+material = SubResource("StandardMaterial3D_wwqnm")
+metadata/_custom_type_script = "uid://byg5bmfo7lf25"
+
+[node name="Preview" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_wwqnm")
+mesh = SubResource("BoxMesh_f5b03")
