@@ -4,6 +4,8 @@ namespace FastDragon
 {
     public partial class LedgeDetector : StaticBody3D
     {
+        public const float MaxSlopeAngleDeg = 5f;
+
         public bool LedgeDetected {get; private set;}
         public float LedgeHeight => LedgeDetected
             ? _lastEdgeCollisionPos.Y
@@ -79,7 +81,10 @@ namespace FastDragon
 
                 // Ignore this collision and try again, if it wasn't something
                 // we're allowed to grab on to
-                bool grabbingAllowed = collision.GetCollider() is StaticBody3D;
+                bool grabbingAllowed =
+                    collision.GetCollider() is StaticBody3D &&
+                    collision.GetNormal().AngleTo(Vector3.Up) <= Mathf.DegToRad(MaxSlopeAngleDeg);
+
                 if (!grabbingAllowed)
                 {
                     AddCollisionExceptionWith((Node)collision.GetCollider());
