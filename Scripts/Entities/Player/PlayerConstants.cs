@@ -186,10 +186,11 @@ namespace FastDragon
             }
         }
 
-        public static class LedgeGrab
+        public static class LedgeClimb
         {
-            public const float ClimbDuration = 0.5f;
-            public const float ClimbForwardDist = 0.5f;
+            public const float InitVSpeed = 15;
+            public const float FSpeed = Walk.Speed * 0.8f;
+            public const float Gravity = 45;
         }
 
         public static class WallJump
