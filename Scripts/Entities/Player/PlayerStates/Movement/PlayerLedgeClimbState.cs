@@ -7,7 +7,6 @@ namespace FastDragon
         private Vector3 _startPos;
         private Vector3 _endPos;
         private float _timer;
-        private float _modelTimer;
 
         private const float Duration = Player.LedgeGrab.ClimbDuration;
 
@@ -23,7 +22,6 @@ namespace FastDragon
             _startPos = _player.GlobalPosition;
             _endPos = _player.LedgeGrabPoint.GlobalPosition;
             _timer = 0;
-            _modelTimer = 0;
 
             // Temporarily detatch the model so we can tween it separately.
             // That way, the model can go up and down, while the camera just
@@ -39,25 +37,10 @@ namespace FastDragon
             _player.Model.TopLevel = false;
             _player.Model.Position = Vector3.Zero;
             _player.Model.Rotation = Vector3.Zero;
+            _player.Model.ResetPhysicsInterpolation();
 
             _player.Animator.Play("RESET", customBlend: 0);
             _player.Animator.Advance(0);
-        }
-
-        public override void _Process(double deltaD)
-        {
-            float delta = (float)deltaD;
-
-            // We need to move the model in Process instead of PhysicsProcess
-            // to avoid physics-interpolation-jittering.
-            // Since the model is not attached to the body in this state, it
-            // doesn't benefit from the body's physics interpolator.
-            _modelTimer += delta;
-            _player.Model.GlobalPosition = LerpPartialParabola(
-                _startPos,
-                _endPos,
-                _modelTimer / Duration
-            );
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -66,6 +49,12 @@ namespace FastDragon
 
             _timer += delta;
             _player.GlobalPosition = _startPos.Lerp(_endPos, _timer / Duration);
+
+            _player.Model.GlobalPosition = LerpPartialParabola(
+                _startPos,
+                _endPos,
+                _timer / Duration
+            );
 
             if (_timer >= Duration)
                 _player.ChangeState<PlayerWalkState>();
