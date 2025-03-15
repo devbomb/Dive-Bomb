@@ -4,10 +4,13 @@ namespace FastDragon
 {
     public partial class PlayerWallSlideState : PlayerState
     {
+        private Vector3 _lastWallNormal;
+
         public override void _Input(InputEvent ev)
         {
             if (InputService.JumpJustPressed(ev))
             {
+                RotateToFaceAwayFromWall();
                 _player.ChangeState<PlayerWallJumpState>();
                 return;
             }
@@ -16,10 +19,13 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _player.Animator.Play("WallSlide");
+
+            _lastWallNormal = _player.GetWallNormal();
             RotateToFaceWall();
 
             if (_player.EarlyJumpBufferTimer > 0)
             {
+                RotateToFaceAwayFromWall();
                 _player.ChangeState<PlayerWallJumpState>();
             }
         }
@@ -28,21 +34,13 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            // Apply friction to the horizontal speed.
-            // We do need to keep _some_ velocity going _into_ the wall, though,
-            // to ensure IsOnWall() still works reliably.
-            var targetFlatVel = -_player.GetWallNormal()
-                .Flattened()
-                .Normalized() * 0.1f;
+            AccelerateWithLeftStick(
+                Player.Jump.MaxFSpeed,
+                Player.Jump.StrafeAccel,
+                delta
+            );
 
-            var flatVel = _player.Velocity.Flattened();
-            flatVel = flatVel.MoveToward(targetFlatVel, Player.WallSlide.HDecel * delta);
-            flatVel.Y = _player.VSpeed;
-            _player.Velocity = flatVel;
-
-            ApplyGravity(delta, Player.WallSlide.Gravity);
-            _player.VSpeed = Mathf.Max(_player.VSpeed, -Player.WallSlide.TerminalVelocity);
-
+            ApplyGravity(delta, Player.Default.Gravity);
             _player.MoveAndSlide();
 
             if (TryGrabLedge())
@@ -54,7 +52,7 @@ namespace FastDragon
                 return;
             }
 
-            if (!_player.IsOnWall())
+            if (!StillOnWall())
             {
                 _player.ChangeState<PlayerFlopState>();
                 return;
@@ -63,14 +61,35 @@ namespace FastDragon
             RotateToFaceWall();
         }
 
-        private void RotateToFaceWall()
+        private bool StillOnWall()
         {
-            if (!_player.IsOnWall())
+            var collision = new KinematicCollision3D();
+            bool onWall = _player.TestMove(
+                _player.GlobalTransform,
+                -_lastWallNormal * 0.01f,
+                collision,
+                recoveryAsCollision: true
+            );
+
+            if (onWall)
             {
-                throw new System.Exception("Tried to rotate to the wall, but not touching one");
+                _lastWallNormal = collision.GetNormal();
+                GD.Print($"Wall normal: {_lastWallNormal}");
             }
 
-            _player.GlobalRotation = (-_player.GetWallNormal())
+            return onWall;
+        }
+
+        private void RotateToFaceWall()
+        {
+            _player.GlobalRotation = (-_lastWallNormal)
+                .Flattened()
+                .ForwardToEulerAnglesRad();
+        }
+
+        private void RotateToFaceAwayFromWall()
+        {
+            _player.GlobalRotation = _lastWallNormal
                 .Flattened()
                 .ForwardToEulerAnglesRad();
         }

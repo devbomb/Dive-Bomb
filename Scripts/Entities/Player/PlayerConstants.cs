@@ -192,13 +192,6 @@ namespace FastDragon
             public const float ClimbForwardDist = 0.5f;
         }
 
-        public static class WallSlide
-        {
-            public const float Gravity = Default.Gravity / 2;
-            public const float TerminalVelocity = 5;
-            public const float HDecel = Walk.Decel;
-        }
-
         public static class WallJump
         {
             public const float FSpeed = Walk.Speed;
