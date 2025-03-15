@@ -350,9 +350,6 @@ namespace FastDragon
         /// <returns></returns>
         protected bool TryGrabLedge()
         {
-            if (_player.VSpeed >= 0)
-                return false;
-
             if (!_player.IsOnWallOnly())
                 return false;
 
