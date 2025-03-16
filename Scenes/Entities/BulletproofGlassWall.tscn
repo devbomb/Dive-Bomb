@@ -1,6 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ka2a1mmw4mos"]
+[gd_scene load_steps=7 format=3 uid="uid://3y4ru5ntm6w7"]
 
-[ext_resource type="Script" uid="uid://byg5bmfo7lf25" path="res://Scripts/DecoratorNodes/MaterialSetter.gd" id="1_f5b03"]
+[ext_resource type="Script" path="res://Scripts/DecoratorNodes/MaterialSetter.gd" id="1_f5b03"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5b03"]
+render_priority = -1
+transparency = 1
+blend_mode = 3
+albedo_color = Color(0.75, 0.75, 0.75, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_f5b03"]
 noise_type = 2
@@ -20,16 +26,16 @@ bump_strength = 32.0
 noise = SubResource("FastNoiseLite_f5b03")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwqnm"]
+next_pass = SubResource("StandardMaterial3D_f5b03")
 transparency = 1
+blend_mode = 1
 albedo_color = Color(1, 1, 1, 0)
 roughness = 0.0
 emission = Color(1, 1, 1, 1)
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_es45y")
-clearcoat_enabled = true
 clearcoat_roughness = 1.0
 heightmap_enabled = true
-backlight_enabled = true
 backlight = Color(0.509286, 0.509286, 0.509286, 1)
 refraction_enabled = true
 refraction_scale = 0.01
