@@ -3159,7 +3159,7 @@
 // brush 0
 {
 ( -464 352 768 ) ( -464 416 720 ) ( -464 416 768 ) Textures/Grate 0 0 0 1 1
-( -368 352 768 ) ( -464 352 720 ) ( -464 352 768 ) Textures/Grate 0 0 0 1 1
+( -368 224 768 ) ( -464 224 720 ) ( -464 224 768 ) Textures/Grate 0 0 0 1 1
 ( -368 416 720 ) ( -464 352 720 ) ( -368 352 720 ) Textures/Grate 0 0 0 1 1
 ( -368 416 768 ) ( -464 352 768 ) ( -464 416 768 ) Textures/Grate 0 0 0 1 1
 ( -368 416 768 ) ( -464 416 720 ) ( -368 416 720 ) Textures/Grate 0 0 0 1 1
@@ -3278,6 +3278,13 @@
 }
 // entity 122
 {
+"classname" "Checkpoint"
+"origin" "-416 240 720"
+"CheckpointName" "Rooftops"
+"angles" "0 0 0"
+}
+// entity 123
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "HideableWalls"
@@ -3293,7 +3300,7 @@
 ( 592 -192 64 ) ( 592 -192 65 ) ( 592 -191 64 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 123
+// entity 124
 {
 "classname" "CameraSuggestionZone"
 "SuggestedPitchDeg" "-20"
