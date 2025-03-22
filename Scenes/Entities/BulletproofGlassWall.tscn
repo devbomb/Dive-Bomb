@@ -53,7 +53,6 @@ size = Vector3(20, 20, 1)
 [node name="MaterialSetter" type="Node" parent="."]
 script = ExtResource("1_f5b03")
 material = SubResource("StandardMaterial3D_wwqnm")
-metadata/_custom_type_script = "uid://byg5bmfo7lf25"
 
 [node name="Preview" type="MeshInstance3D" parent="."]
 visible = false
