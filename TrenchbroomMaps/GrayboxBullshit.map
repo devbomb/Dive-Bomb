@@ -3168,6 +3168,66 @@
 }
 // entity 100
 {
+"classname" "Vase"
+"origin" "144 272 576"
+}
+// entity 101
+{
+"classname" "Vase"
+"origin" "184 272 576"
+}
+// entity 102
+{
+"classname" "Vase"
+"origin" "224 272 576"
+}
+// entity 103
+{
+"classname" "PurpleGem"
+"origin" "284 268 560"
+}
+// entity 104
+{
+"classname" "YellowGem"
+"origin" "308 244 560"
+}
+// entity 105
+{
+"classname" "GreenGem"
+"origin" "164 236 560"
+}
+// entity 106
+{
+"classname" "GreenGem"
+"origin" "204 236 560"
+}
+// entity 107
+{
+"classname" "Basket"
+"origin" "48 240 560"
+}
+// entity 108
+{
+"classname" "Basket"
+"origin" "48 272 560"
+}
+// entity 109
+{
+"classname" "RedGem"
+"origin" "-228 356 672"
+}
+// entity 110
+{
+"classname" "RedGem"
+"origin" "-156 348 648"
+}
+// entity 111
+{
+"classname" "RedGem"
+"origin" "-300 356 696"
+}
+// entity 112
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "HideableWalls"
@@ -3183,7 +3243,7 @@
 ( 592 -192 64 ) ( 592 -192 65 ) ( 592 -191 64 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 101
+// entity 113
 {
 "classname" "CameraSuggestionZone"
 "SuggestedPitchDeg" "-20"
