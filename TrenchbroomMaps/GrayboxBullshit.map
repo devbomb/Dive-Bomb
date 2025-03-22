@@ -3056,6 +3056,7 @@
 {
 "classname" "ReturnHomePlatform"
 "origin" "-652 4 -80"
+"ExitHeight" "71"
 "_tb_group" "3"
 }
 // entity 88
