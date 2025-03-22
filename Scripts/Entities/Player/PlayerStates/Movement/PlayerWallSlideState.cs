@@ -10,8 +10,7 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                RotateToFaceAwayFromWall();
-                _player.ChangeState<PlayerWallJumpState>();
+                TryWallJump();
                 return;
             }
         }
@@ -25,8 +24,7 @@ namespace FastDragon
 
             if (_player.EarlyJumpBufferTimer > 0)
             {
-                RotateToFaceAwayFromWall();
-                _player.ChangeState<PlayerWallJumpState>();
+                TryWallJump();
             }
         }
 
@@ -92,6 +90,20 @@ namespace FastDragon
             _player.GlobalRotation = _lastWallNormal
                 .Flattened()
                 .ForwardToEulerAnglesRad();
+        }
+
+        private void TryWallJump()
+        {
+            // Don't allow the player to wall jump if the wall is angled down
+            // at all.
+            //
+            // This allows level designers to prevent the player from wall
+            // jumping by simply slanting the walls.
+            if (_player.GetWallNormal().Y >= 0)
+            {
+                RotateToFaceAwayFromWall();
+                _player.ChangeState<PlayerWallJumpState>();
+            }
         }
     }
 }
