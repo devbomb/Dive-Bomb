@@ -163,8 +163,6 @@ namespace FastDragon
             public const float AngleDeg = 45;
             public static float AngleRad => Mathf.DegToRad(AngleDeg);
 
-            public const float RecoverDuration = 1;
-
             public static readonly float Friction;
             public static readonly float InitHSpeed;
 

@@ -12,26 +12,18 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play(LandAnim);
             _player.Velocity = Vector3.Zero;
 
-            _timer = Player.Bonk.RecoverDuration;
-            _startedRecoverAnimation = false;
+            _timer = _player.Animator.GetAnimation(RecoverAnim).Length;
+            _player.Animator.Play(RecoverAnim, customBlend: 0);
+            _player.Animator.Advance(0);
         }
 
         public override void _PhysicsProcess(double deltaD)
         {
             _timer -= (float)deltaD;
 
-            if (!_player.Animator.IsPlaying() && !_startedRecoverAnimation)
-            {
-                _startedRecoverAnimation = true;
-                float len = _player.Animator.GetAnimation(RecoverAnim).Length;
-                float speed = len / _timer;
-                _player.Animator.Play("BonkRecover", customSpeed: speed);
-            }
-
-            if (_timer <= 0)
+            if (!_player.Animator.IsPlaying())
                 _player.ChangeState<PlayerStandState>();
         }
     }
