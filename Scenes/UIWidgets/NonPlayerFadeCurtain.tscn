@@ -40,7 +40,6 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-physics_interpolation_mode = 2
 cull_mask = 2
 script = ExtResource("1_ru3ge")
 

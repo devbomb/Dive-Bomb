@@ -12,7 +12,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             RotateToFaceAwayFromWall();
-            _player.ResetPhysicsInterpolation();
+            _player.ResetPhysicsInterpolation3D();
 
             _player.Animator.Play("Jump", 0);
             _player.VSpeed = Player.Jump.InitVSpeed;
