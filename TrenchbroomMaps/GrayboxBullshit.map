@@ -2247,6 +2247,7 @@
 {
 "classname" "Basket"
 "origin" "200 152 96"
+"GemColor" "5"
 }
 // entity 3
 {
@@ -2273,7 +2274,8 @@
 // entity 7
 {
 "classname" "Basket"
-"origin" "328 264 208"
+"origin" "320 264 208"
+"GemColor" "2"
 }
 // entity 8
 {
@@ -2304,21 +2306,25 @@
 {
 "classname" "Vase"
 "origin" "204 -184 208"
+"GemColor" "2"
 }
 // entity 12
 {
 "classname" "Vase"
 "origin" "204 -216 208"
+"GemColor" "2"
 }
 // entity 13
 {
 "classname" "Vase"
 "origin" "204 -248 208"
+"GemColor" "2"
 }
 // entity 14
 {
 "classname" "Basket"
 "origin" "520 -88 360"
+"GemColor" "2"
 }
 // entity 15
 {
@@ -2391,6 +2397,7 @@
 {
 "classname" "Basket"
 "origin" "312 -200 96"
+"GemColor" "10"
 }
 // entity 27
 {
@@ -2433,8 +2440,8 @@
 }
 // entity 30
 {
-"classname" "RedGem"
-"origin" "476 -452 48"
+"classname" "PurpleGem"
+"origin" "460 -452 48"
 }
 // entity 31
 {
@@ -2445,6 +2452,7 @@
 {
 "classname" "Basket"
 "origin" "488 -440 48"
+"GemColor" "5"
 }
 // entity 33
 {
@@ -2458,22 +2466,22 @@
 }
 // entity 35
 {
-"classname" "RedGem"
+"classname" "GreenGem"
 "origin" "452 -116 160"
 }
 // entity 36
 {
-"classname" "RedGem"
+"classname" "GreenGem"
 "origin" "300 -388 144"
 }
 // entity 37
 {
-"classname" "RedGem"
+"classname" "GreenGem"
 "origin" "300 -340 144"
 }
 // entity 38
 {
-"classname" "RedGem"
+"classname" "GreenGem"
 "origin" "396 -236 48"
 }
 // entity 39
@@ -2483,7 +2491,7 @@
 }
 // entity 40
 {
-"classname" "RedGem"
+"classname" "PurpleGem"
 "origin" "420 -204 48"
 }
 // entity 41
@@ -2500,15 +2508,17 @@
 {
 "classname" "EnemyHandCannoner"
 "origin" "440 40 112"
+"GemColor" "2"
 }
 // entity 44
 {
 "classname" "EnemyHandCannoner"
 "origin" "204 -416 240"
+"GemColor" "5"
 }
 // entity 45
 {
-"classname" "RedGem"
+"classname" "GreenGem"
 "origin" "204 -380 240"
 }
 // entity 46
@@ -2520,25 +2530,29 @@
 {
 "classname" "Vase"
 "origin" "264 -424 336"
+"GemColor" "2"
 }
 // entity 48
 {
 "classname" "Vase"
 "origin" "312 -424 336"
+"GemColor" "2"
 }
 // entity 49
 {
 "classname" "Vase"
 "origin" "360 -424 336"
+"GemColor" "2"
 }
 // entity 50
 {
 "classname" "EnemyHandCannoner"
 "origin" "424 -312 320"
+"GemColor" "2"
 }
 // entity 51
 {
-"classname" "RedGem"
+"classname" "GreenGem"
 "origin" "204 -280 208"
 }
 // entity 52
@@ -2680,6 +2694,7 @@
 "classname" "EnemyHandCannoner"
 "origin" "112 352 448"
 "AggroRadius" "40"
+"GemColor" "10"
 }
 // entity 67
 {
@@ -3197,16 +3212,19 @@
 {
 "classname" "Vase"
 "origin" "144 272 576"
+"GemColor" "2"
 }
 // entity 100
 {
 "classname" "Vase"
 "origin" "184 272 576"
+"GemColor" "2"
 }
 // entity 101
 {
 "classname" "Vase"
 "origin" "224 272 576"
+"GemColor" "2"
 }
 // entity 102
 {
@@ -3215,17 +3233,17 @@
 }
 // entity 103
 {
-"classname" "YellowGem"
+"classname" "PurpleGem"
 "origin" "308 244 560"
 }
 // entity 104
 {
-"classname" "GreenGem"
+"classname" "RedGem"
 "origin" "164 236 560"
 }
 // entity 105
 {
-"classname" "GreenGem"
+"classname" "RedGem"
 "origin" "204 236 560"
 }
 // entity 106
@@ -3240,18 +3258,18 @@
 }
 // entity 108
 {
-"classname" "RedGem"
-"origin" "-228 356 672"
+"classname" "GreenGem"
+"origin" "-228 352 672"
 }
 // entity 109
 {
-"classname" "RedGem"
-"origin" "-156 348 648"
+"classname" "GreenGem"
+"origin" "-156 352 648"
 }
 // entity 110
 {
-"classname" "RedGem"
-"origin" "-300 356 696"
+"classname" "GreenGem"
+"origin" "-300 352 696"
 }
 // entity 111
 {
@@ -3364,12 +3382,12 @@
 "_tb_id" "4"
 // brush 0
 {
-( -208 -192 144 ) ( -240 -320 144 ) ( -240 -320 128 ) __TB_empty 0 0 0 1 1
+( -208 -192 144 ) ( -240 -304 144 ) ( -240 -304 128 ) __TB_empty 0 0 0 1 1
 ( -240 -304 144 ) ( -64 -304 144 ) ( -64 -304 128 ) __TB_empty 0 0 0 1 1
-( -240 -320 128 ) ( -64 -320 128 ) ( -96 -192 128 ) __TB_empty 0 0 0 1 1
-( -96 -192 144 ) ( -64 -320 144 ) ( -240 -320 144 ) __TB_empty 0 0 0 1 1
+( -240 -304 128 ) ( -64 -304 128 ) ( -96 -192 128 ) __TB_empty 0 0 0 1 1
+( -96 -192 144 ) ( -64 -304 144 ) ( -240 -304 144 ) __TB_empty 0 0 0 1 1
 ( -96 -192 128 ) ( -96 -192 144 ) ( -208 -192 144 ) __TB_empty 0 0 0 1 1
-( -64 -320 128 ) ( -64 -320 144 ) ( -96 -192 144 ) __TB_empty 0 0 0 1 1
+( -64 -304 128 ) ( -64 -304 144 ) ( -96 -192 144 ) __TB_empty 0 0 0 1 1
 }
 // brush 1
 {
@@ -3542,6 +3560,171 @@
 }
 // entity 130
 {
+"classname" "GreenGem"
+"origin" "284 -244 464"
+}
+// entity 131
+{
+"classname" "GreenGem"
+"origin" "284 -164 464"
+}
+// entity 132
+{
+"classname" "MagentaGem"
+"origin" "316 -212 464"
+}
+// entity 133
+{
+"classname" "PurpleGem"
+"origin" "324 532 392"
+}
+// entity 134
+{
+"classname" "PurpleGem"
+"origin" "292 476 392"
+}
+// entity 135
+{
+"classname" "MagentaGem"
+"origin" "284 516 392"
+}
+// entity 136
+{
+"classname" "RedGem"
+"origin" "260 532 392"
+}
+// entity 137
+{
+"classname" "GreenGem"
+"origin" "260 492 392"
+}
+// entity 138
+{
+"classname" "GreenGem"
+"origin" "196 460 272"
+}
+// entity 139
+{
+"classname" "RedGem"
+"origin" "212 428 272"
+}
+// entity 140
+{
+"classname" "GreenGem"
+"origin" "132 484 288"
+}
+// entity 141
+{
+"classname" "PurpleGem"
+"origin" "396 612 400"
+}
+// entity 142
+{
+"classname" "GreenGem"
+"origin" "420 620 400"
+}
+// entity 143
+{
+"classname" "GreenGem"
+"origin" "212 748 448"
+}
+// entity 144
+{
+"classname" "GreenGem"
+"origin" "148 780 448"
+}
+// entity 145
+{
+"classname" "RedGem"
+"origin" "396 740 416"
+}
+// entity 146
+{
+"classname" "PurpleGem"
+"origin" "436 252 192"
+}
+// entity 147
+{
+"classname" "RedGem"
+"origin" "228 -68 336"
+}
+// entity 148
+{
+"classname" "RedGem"
+"origin" "196 -60 336"
+}
+// entity 149
+{
+"classname" "RedGem"
+"origin" "212 -252 416"
+}
+// entity 150
+{
+"classname" "GreenGem"
+"origin" "180 -108 368"
+}
+// entity 151
+{
+"classname" "RedGem"
+"origin" "100 -36 32"
+}
+// entity 152
+{
+"classname" "GreenGem"
+"origin" "132 12 32"
+}
+// entity 153
+{
+"classname" "GreenGem"
+"origin" "388 76 80"
+}
+// entity 154
+{
+"classname" "GreenGem"
+"origin" "388 116 80"
+}
+// entity 155
+{
+"classname" "GreenGem"
+"origin" "-164 4 48"
+}
+// entity 156
+{
+"classname" "RedGem"
+"origin" "-132 -12 48"
+}
+// entity 157
+{
+"classname" "GreenGem"
+"origin" "-436 308 592"
+}
+// entity 158
+{
+"classname" "RedGem"
+"origin" "-412 348 592"
+}
+// entity 159
+{
+"classname" "GreenGem"
+"origin" "196 180 240"
+}
+// entity 160
+{
+"classname" "RedGem"
+"origin" "212 212 240"
+}
+// entity 161
+{
+"classname" "RedGem"
+"origin" "332 -364 224"
+}
+// entity 162
+{
+"classname" "RedGem"
+"origin" "444 -108 336"
+}
+// entity 163
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "HideableWalls"
@@ -3557,7 +3740,7 @@
 ( 592 -192 64 ) ( 592 -192 65 ) ( 592 -191 64 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 131
+// entity 164
 {
 "classname" "CameraSuggestionZone"
 "SuggestedPitchDeg" "-20"
