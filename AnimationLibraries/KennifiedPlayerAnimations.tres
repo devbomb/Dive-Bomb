@@ -1106,6 +1106,14 @@ markers = [{
 "color": Color(1, 1, 1, 1),
 "name": &"NewStart",
 "time": 0.3
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"Flattest",
+"time": 0.1
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"MaxRecoil",
+"time": 0.233333
 }]
 tracks/0/type = "position_3d"
 tracks/0/imported = false
@@ -1125,9 +1133,9 @@ tracks/2/type = "scale_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Hips")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1.5, 0.1, 1, 1.5, 1.5, 0.5, 0.2, 1, 0.75, 0.75, 1.25, 0.366667, 1, 1, 1, 1)
 tracks/3/type = "position_3d"
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -1575,7 +1583,7 @@ tracks/66/enabled = true
 tracks/66/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Leg_R")
 tracks/66/interp = 1
 tracks/66/loop_wrap = true
-tracks/66/keys = PackedFloat32Array(0, 1, 0.999994, 1, 0.999999)
+tracks/66/keys = PackedFloat32Array(0, 1, 0.999994, 1, 0.999999, 0.1, 1, 1, 0.75, 1, 0.233333, 1, 0.999994, 1, 0.999999)
 tracks/67/type = "position_3d"
 tracks/67/imported = false
 tracks/67/enabled = true

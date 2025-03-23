@@ -15,8 +15,6 @@ namespace FastDragon
             _player.Velocity = Vector3.Zero;
 
             _timer = Player.Bonk.RecoverDuration;
-            _player.Animator.Play("RESET");
-            _player.Animator.Advance(0);
             StartRecoveryAnimation();
         }
 
@@ -32,7 +30,8 @@ namespace FastDragon
         {
             float len = _player.Animator.GetAnimation(RecoverAnim).Length;
             float speed = len / Player.Bonk.RecoverDuration;
-            _player.Animator.Play(RecoverAnim, customSpeed: speed);
+            _player.Animator.Play(RecoverAnim, customSpeed: speed, customBlend: 0);
+            _player.Animator.Advance(0);
         }
     }
 }
