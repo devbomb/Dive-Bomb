@@ -6,16 +6,19 @@ namespace FastDragon
     {
         private float _coyoteTimer;
 
-        public override void OnStateEntered()
+        public override void OnStateEntered(State prevState)
         {
             _player.Animator.Play("Flop");
-            _coyoteTimer = Player.Default.CoyoteTime;
+
+            if (prevState is PlayerWalkState)
+                _coyoteTimer = Player.Default.CoyoteTime;
         }
 
         public override void _Input(InputEvent ev)
         {
             if (InputService.JumpJustPressed(ev) && _coyoteTimer > 0)
             {
+                GD.Print("Coyote jump!");
                 _player.ChangeState<PlayerWalkJumpState>();
                 return;
             }

@@ -4,12 +4,21 @@ namespace FastDragon
 {
     public partial class LedgeDetector : StaticBody3D
     {
+        public const float MaxSlopeAngleDeg = 5f;
+
         public bool LedgeDetected {get; private set;}
+
+        /// <summary>
+        /// Returns the global y position of the ledge the player can grab onto.
+        /// If there is no grabbable ledge, it will return a ridiculously high
+        /// value.
+        /// </summary>
         public float LedgeHeight => LedgeDetected
             ? _lastEdgeCollisionPos.Y
             : float.MaxValue;
 
         private MeshInstance3D _visualizer => GetNode<MeshInstance3D>("%LedgeCollisionVisualizer");
+        private RayCast3D _gapChecker => GetNode<RayCast3D>("%GapChecker");
 
         private Vector3 _lastEdgeCollisionPos;
 
@@ -30,12 +39,6 @@ namespace FastDragon
                 _lastEdgeCollisionPos = ledgeCollision.GetPosition();
         }
 
-        /// <summary>
-        /// Returns the global y position of the ledge the player can grab onto.
-        /// If there is no grabbable ledge, it will return a ridiculously high
-        /// value.
-        /// </summary>
-        /// <returns></returns>
         private KinematicCollision3D FindLedgeCollision()
         {
             // HACK: Ignore any bodies that the detector starts inside of.
@@ -79,7 +82,11 @@ namespace FastDragon
 
                 // Ignore this collision and try again, if it wasn't something
                 // we're allowed to grab on to
-                bool grabbingAllowed = collision.GetCollider() is StaticBody3D;
+                bool grabbingAllowed =
+                    collision.GetCollider() is StaticBody3D &&
+                    collision.GetNormal().AngleTo(Vector3.Up) <= Mathf.DegToRad(MaxSlopeAngleDeg) &&
+                    !WallStackedOnTopOfLedge(collision.GetPosition());
+
                 if (!grabbingAllowed)
                 {
                     AddCollisionExceptionWith((Node)collision.GetCollider());
@@ -91,6 +98,29 @@ namespace FastDragon
 
                 return collision;
             }
+        }
+
+        /// <summary>
+        /// Returns true if there is another wall stacked on top of the ledge
+        /// we intend to grab.  This prevents us from grabbing a "ledge" that's
+        /// really just a seam between two flush bits of level geometry.
+        /// </summary>
+        private bool WallStackedOnTopOfLedge(Vector3 edgeCollisionPos)
+        {
+            var pos = _gapChecker.GlobalPosition;
+            pos.Y = edgeCollisionPos.Y + 0.1f;
+            _gapChecker.GlobalPosition = pos;
+            _gapChecker.ForceUpdateTransform();
+
+            // _gapChecker.TargetPosition = (_gapChecker.GlobalPosition - edgeCollisionPos)
+            //     .Flattened();
+
+            // _gapChecker.TargetPosition += _gapChecker.TargetPosition.Normalized() * 0.1f;
+
+            _gapChecker.TargetPosition = Vector3.Forward * (1 + 0.1f);
+
+            _gapChecker.ForceRaycastUpdate();
+            return _gapChecker.IsColliding();
         }
     }
 }

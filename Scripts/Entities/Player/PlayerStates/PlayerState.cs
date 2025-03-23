@@ -356,6 +356,17 @@ namespace FastDragon
             if (!_player.LedgeDetector.LedgeDetected)
                 return false;
 
+            // HACK: Don't grab a ledge if the player is too close to a ceiling.
+            // This prevents them from grabbing an incorrectly-detected "ledge"
+            // that's actually flush with (or even inside of) the ceiling.
+            bool tooCloseToCeiling = _player.TestMove(
+                _player.GlobalTransform,
+                Vector3.Up * 1
+            );
+            if (tooCloseToCeiling)
+                return false;
+
+            // Grab the ledge if it's not too high
             float ledgeHeight = _player.LedgeDetector.LedgeHeight - _player.GlobalPosition.Y;
             float minHeight = _player.MinLedgeGrabHeight.GlobalPosition.Y - _player.GlobalPosition.Y;
             if (ledgeHeight > minHeight)
