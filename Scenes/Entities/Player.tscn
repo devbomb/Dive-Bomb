@@ -52,7 +52,7 @@ height = 1.5
 [sub_resource type="BoxMesh" id="BoxMesh_8oevv"]
 size = Vector3(1, 2, 1)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_a4opu")
 
 [node name="TimeTrialManager" parent="." instance=ExtResource("2_eu73y")]
@@ -109,7 +109,7 @@ shape = SubResource("CapsuleShape3D_rtu1o")
 unique_name_in_owner = true
 FollowTarget = NodePath("../CameraFocus")
 
-[node name="CameraFocus" type="Marker3D" parent="."]
+[node name="CameraFocus" type="Marker3D" parent="." groups=["PhysicsInterpolated"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 top_level = true

@@ -118,7 +118,7 @@ scale_curve = SubResource("CurveTexture_nck0h")
 color_ramp = SubResource("GradientTexture1D_prhnu")
 alpha_curve = SubResource("CurveTexture_15bfe")
 
-[node name="SeamonsterBoss" type="CharacterBody3D"]
+[node name="SeamonsterBoss" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_r8tvq")
 PhaseMaxHealths = PackedInt32Array(3, 3)
 FallingAcidBlobPrefab = ExtResource("3_mh7lc")
