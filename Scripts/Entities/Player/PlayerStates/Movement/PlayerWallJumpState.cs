@@ -11,7 +11,6 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            RotateToFaceAwayFromWall();
             _player.ResetPhysicsInterpolation3D();
 
             _player.Animator.Play("Jump", 0);
@@ -85,19 +84,6 @@ namespace FastDragon
                 _player.ChangeState<PlayerWallSlideState>();
                 return;
             }
-        }
-
-        private void RotateToFaceAwayFromWall()
-        {
-            if (!_player.IsOnWall())
-            {
-                GD.PushWarning("Wall jump was triggered while not touching a wall");
-                return;
-            }
-
-            _player.GlobalRotation = _player.GetWallNormal()
-                .Flattened()
-                .ForwardToEulerAnglesRad();
         }
     }
 }
