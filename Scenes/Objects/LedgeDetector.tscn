@@ -12,6 +12,12 @@ radius = 1.0
 collision_layer = 0
 script = ExtResource("1_ykwis")
 
+[node name="GapChecker" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+hit_from_inside = true
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
 shape = SubResource("CylinderShape3D_difdr")
@@ -29,4 +35,5 @@ shape = SubResource("CylinderShape3D_difdr")
 unique_name_in_owner = true
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 top_level = true
+visible = false
 mesh = SubResource("SphereMesh_pkyy7")
