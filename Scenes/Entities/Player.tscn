@@ -150,7 +150,7 @@ ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 mouse_filter = 2
 
 [node name="LeftHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.0741329, -0.991472, -0.107182, 0.0655875, -0.102398, 0.992579, -0.995089, -0.0806125, 0.0574371, -0.315088, 0.925497, -0.0166783)
+transform = Transform3D(-0.0334059, -0.994257, -0.101667, 0.998489, -0.0376395, 0.0400113, -0.0436082, -0.100177, 0.994013, -0.291627, 0.0344688, 0.302915)
 bone_name = "Hand_L"
 bone_idx = 10
 use_external_skeleton = true
@@ -161,7 +161,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.0741329, 0.991472, 0.107182, -0.0655875, -0.102398, 0.992579, 0.995089, -0.0806125, 0.0574371, 0.315088, 0.925497, -0.0166783)
+transform = Transform3D(-0.0334059, 0.994257, 0.101667, -0.998489, -0.0376395, 0.0400113, 0.0436082, -0.100177, 0.994013, 0.291627, 0.0344688, 0.302915)
 bone_name = "Hand_R"
 bone_idx = 19
 use_external_skeleton = true
