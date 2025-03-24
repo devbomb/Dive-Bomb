@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3y4ru5ntm6w7"]
 
-[ext_resource type="Script" path="res://Scripts/DecoratorNodes/MaterialSetter.gd" id="1_f5b03"]
+[ext_resource type="Script" uid="uid://byg5bmfo7lf25" path="res://Scripts/DecoratorNodes/MaterialSetter.gd" id="1_f5b03"]
 [ext_resource type="Material" uid="uid://djjv3erqamsem" path="res://Materials/BulletproofGlassWall.tres" id="2_es45y"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_f5b03"]
