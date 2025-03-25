@@ -47,6 +47,7 @@ map_importer={
 "collision_layer_mask": 3,
 "entity_path": "res://Scenes/Entities",
 "map_inverse_scale": 16,
+"texture_material_map": Resource("res://TextureMaterialMap.tres"),
 "texture_path": "res://Textures",
 "visual_layer_mask": 9
 }

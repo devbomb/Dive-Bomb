@@ -56,6 +56,10 @@ func _get_import_options(path, preset_index) -> Array[Dictionary]:
 					"name": "collision_layer_mask",
 					"default_value": 1 | 2,
 					"property_hint": PROPERTY_HINT_LAYERS_3D_PHYSICS
+				},
+				{
+					"name": "texture_material_map",
+					"default_value": MaterialMap.new()
 				}
 			]
 		_:
@@ -99,6 +103,10 @@ func _import(
 
 		if node is StaticBody3D && !is_root_of_another_scene(node):
 			node.collision_layer = options.collision_layer_mask
+		
+		# Map textures to their materials based
+		if node is MeshInstance3D && !is_root_of_another_scene(node):
+			replace_materials(node, options.texture_material_map.texture_to_material)
 
 	# Save the map as a packed scene
 	var scene = PackedScene.new()
@@ -147,3 +155,19 @@ func _all_nodes_directly_in_scene(node: Node, sceneRoot: Node, array: Array[Node
 
 	for child in node.get_children():
 		_all_nodes_directly_in_scene(child, sceneRoot, array)
+
+func replace_materials(meshInstance: MeshInstance3D, textureToMaterial: Dictionary[Texture2D, Material]):
+	for surfaceIndex in meshInstance.mesh.get_surface_count():
+		var surfaceMaterial: Material = meshInstance.mesh.surface_get_material(surfaceIndex)
+		if !(surfaceMaterial is StandardMaterial3D):
+			continue
+
+		var texture: Texture2D = surfaceMaterial.albedo_texture
+		if texture == null:
+			continue
+		
+		if !textureToMaterial.has(texture):
+			continue
+
+		var replacementMaterial: Material = textureToMaterial.get(texture)
+		meshInstance.set_surface_override_material(surfaceIndex, replacementMaterial)
