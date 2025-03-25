@@ -19,3 +19,8 @@ dotnet_diagnostic.CA1822.severity = none
 # Stop dotnet_diagnostic from complaining about naming rule violations.
 # We have our _own_ naming rules on this project, thank you very much!
 dotnet_diagnostic.IDE1006.severity = none
+
+[*.gd]
+indent_size = 4
+indent_style = tab
+trim_trailing_whitespace = true

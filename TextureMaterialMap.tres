@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MaterialMap" load_steps=2 format=3 uid="uid://dgvjaxeitfghe"]
+
+[ext_resource type="Script" uid="uid://cb8n0ec7vcom" path="res://addons/MapImporter/MaterialMap.gd" id="1_4o1u0"]
+
+[resource]
+script = ExtResource("1_4o1u0")
+texture_to_material = Dictionary[Texture2D, Material]({})
