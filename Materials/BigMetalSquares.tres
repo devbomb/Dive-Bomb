@@ -1,0 +1,26 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://4uwtrknctulw"]
+
+[ext_resource type="Texture2D" uid="uid://px3g1sk1iywm" path="res://Textures/Textures/BigMetalSquares.png" id="1_poqrj"]
+
+[sub_resource type="Gradient" id="Gradient_c4rir"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.315412, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.417406, 0.417406, 0.417406, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0uoos"]
+frequency = 0.0006
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gu3ey"]
+invert = true
+in_3d_space = true
+seamless = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_c4rir")
+noise = SubResource("FastNoiseLite_0uoos")
+
+[resource]
+albedo_texture = ExtResource("1_poqrj")
+metallic = 0.77
+roughness = 0.58
+normal_texture = SubResource("NoiseTexture2D_gu3ey")
+rim_tint = 0.0
