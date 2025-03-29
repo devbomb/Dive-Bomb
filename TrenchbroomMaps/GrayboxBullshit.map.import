@@ -17,5 +17,4 @@ entity_path="res://Scenes/Entities"
 texture_path="res://Textures"
 visual_layer_mask=9
 collision_layer_mask=3
-texture_material_map=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("res://addons/MapImporter/MaterialMap.gd"),"texture_to_material":Dictionary[Texture2D, Material]({}))
-
+texture_material_map=Resource("res://TextureMaterialMap.tres")
