@@ -35,7 +35,7 @@
 {
 ( 160 48 32 ) ( 160 49 32 ) ( 160 48 33 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 160 48 32 ) ( 160 48 33 ) ( 161 48 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 160 48 32 ) ( 161 48 32 ) ( 160 49 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 160 48 16 ) ( 161 48 16 ) ( 160 49 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 256 64 48 ) ( 256 65 48 ) ( 257 64 48 ) Textures/GridSquare 0 0 0 1 1
 ( 256 192 48 ) ( 257 192 48 ) ( 256 192 49 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 256 64 48 ) ( 256 64 49 ) ( 256 65 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -53,7 +53,7 @@
 {
 ( 256 -64 32 ) ( 256 -63 32 ) ( 256 -64 33 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 256 -64 32 ) ( 256 -64 33 ) ( 257 -64 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 256 -64 32 ) ( 257 -64 32 ) ( 256 -63 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 256 -64 16 ) ( 257 -64 16 ) ( 256 -63 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 272 48 48 ) ( 272 49 48 ) ( 273 48 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 272 48 48 ) ( 273 48 48 ) ( 272 48 49 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 352 48 48 ) ( 352 48 49 ) ( 352 49 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -62,7 +62,7 @@
 {
 ( 352 -64 32 ) ( 352 -63 32 ) ( 352 -64 33 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 352 -64 32 ) ( 352 -64 33 ) ( 353 -64 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 352 -64 32 ) ( 353 -64 32 ) ( 352 -63 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 352 -64 16 ) ( 353 -64 16 ) ( 352 -63 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 368 48 80 ) ( 368 49 80 ) ( 369 48 80 ) Textures/GridSquare 0 0 0 1 1
 ( 368 192 48 ) ( 369 192 48 ) ( 368 192 49 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 400 48 48 ) ( 400 48 49 ) ( 400 49 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -221,7 +221,7 @@
 {
 ( 160 192 80 ) ( 160 193 80 ) ( 160 192 81 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 160 192 80 ) ( 160 192 81 ) ( 161 192 80 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 160 192 32 ) ( 161 192 32 ) ( 160 193 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 160 192 16 ) ( 161 192 16 ) ( 160 193 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 400 256 112 ) ( 400 257 112 ) ( 401 256 112 ) Textures/GridSquare 0 0 0 1 1
 ( 400 304 96 ) ( 401 304 96 ) ( 400 304 97 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 400 256 96 ) ( 400 256 97 ) ( 400 257 96 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2233,12 +2233,12 @@
 "classname" "DeathBarrier"
 // brush 0
 {
-( -1312 -624 -368 ) ( -1312 -623 -368 ) ( -1312 -624 -367 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( -144 -1376 -368 ) ( -144 -1376 -367 ) ( -143 -1376 -368 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( -144 -624 -368 ) ( -143 -624 -368 ) ( -144 -623 -368 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 2032 32 -352 ) ( 2032 33 -352 ) ( 2033 32 -352 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 2032 1264 -352 ) ( 2033 1264 -352 ) ( 2032 1264 -351 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 2032 32 -352 ) ( 2032 32 -351 ) ( 2032 33 -352 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -1312 -624 -368 ) ( -1312 -623 -368 ) ( -1312 -624 -367 ) __TB_empty 0 0 0 1 1
+( -144 -1376 -368 ) ( -144 -1376 -367 ) ( -143 -1376 -368 ) __TB_empty 0 0 0 1 1
+( -144 -624 -368 ) ( -143 -624 -368 ) ( -144 -623 -368 ) __TB_empty 0 0 0 1 1
+( 2032 32 -352 ) ( 2032 33 -352 ) ( 2033 32 -352 ) __TB_empty 0 0 0 1 1
+( 2032 1264 -352 ) ( 2033 1264 -352 ) ( 2032 1264 -351 ) __TB_empty 0 0 0 1 1
+( 2032 32 -352 ) ( 2032 32 -351 ) ( 2032 33 -352 ) __TB_empty 0 0 0 1 1
 }
 }
 // entity 2
@@ -3761,6 +3761,19 @@
 }
 // entity 165
 {
+"classname" "MoltenGlassCube"
+// brush 0
+{
+( 244 48 32 ) ( 244 192 16 ) ( 244 192 32 ) Textures/MoltenGlass 0 0 0 1 1
+( 352 36 32 ) ( 256 36 16 ) ( 256 36 32 ) Textures/MoltenGlass 0 0 0 1 1
+( 352 192 16 ) ( 256 48 16 ) ( 352 48 16 ) Textures/MoltenGlass 0 0 0 1 1
+( 352 192 46 ) ( 256 48 46 ) ( 256 192 46 ) Textures/MoltenGlass 0 0 0 1 1
+( 352 204 32 ) ( 256 204 16 ) ( 352 204 16 ) Textures/MoltenGlass 0 0 0 1 1
+( 364 192 32 ) ( 364 48 16 ) ( 364 48 32 ) Textures/MoltenGlass 0 0 0 1 1
+}
+}
+// entity 166
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "HideableWalls"
@@ -3776,7 +3789,7 @@
 ( 592 -192 64 ) ( 592 -192 65 ) ( 592 -191 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
-// entity 166
+// entity 167
 {
 "classname" "CameraSuggestionZone"
 "SuggestedPitchDeg" "-20"
