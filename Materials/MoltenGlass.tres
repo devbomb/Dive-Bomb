@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cfompnq7cbshh"]
+
+[ext_resource type="Shader" uid="uid://b54w5o8wflvth" path="res://Shaders/MoltenGlass.gdshader" id="1_200c1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_200c1")
+shader_parameter/amplitude = 0.05
+shader_parameter/frequency = 1.5

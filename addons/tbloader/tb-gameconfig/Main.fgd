@@ -46,6 +46,7 @@
 @SolidClass = DivableWall : "DivableWall" []
 @SolidClass = XRayWall : "XRayWall" []
 @SolidClass = BulletproofGlassWall : "BulletproofGlassWall" []
+@SolidClass = MoltenGlassCube : "MoltenGlassCube" []
 
 @SolidClass = CameraSuggestionZone : "CameraSuggestionZone" [
 	SuggestedYawDeg(float) : "SuggestedYawDeg" : 0

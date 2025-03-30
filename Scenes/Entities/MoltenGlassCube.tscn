@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxdmbkadbo867"]
+
+[ext_resource type="Script" uid="uid://ck80j7qyk8fw3" path="res://Scripts/Entities/MoltenGlass.cs" id="1_1pcia"]
+[ext_resource type="Material" uid="uid://cfompnq7cbshh" path="res://Materials/MoltenGlass.tres" id="1_kkmwj"]
+[ext_resource type="ArrayMesh" uid="uid://dwb87ab7wgpq6" path="res://BlenderModels/MoltenGlassCube.obj" id="2_1pcia"]
+
+[sub_resource type="GDScript" id="GDScript_kkmwj"]
+script/source = "@tool
+extends MeshInstance3D
+
+func _on_parent_ready():
+	for child in get_parent().get_children():
+		if child != self && child is MeshInstance3D:
+			var aabb: AABB = child.get_aabb()
+			position = aabb.get_center()
+			scale = aabb.size
+			child.visible = false
+"
+
+[node name="MoltenGlassCube" type="Area3D"]
+script = ExtResource("1_1pcia")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_kkmwj")
+mesh = ExtResource("2_1pcia")
+script = SubResource("GDScript_kkmwj")
+
+[connection signal="ready" from="." to="MeshInstance3D" method="_on_parent_ready"]
+[connection signal="tree_entered" from="." to="MeshInstance3D" method="_on_parent_ready"]
