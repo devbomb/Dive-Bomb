@@ -211,11 +211,11 @@
 // entity 25
 {
 "classname" "StandardPortal"
-"origin" "588 -56 -64"
+"origin" "588 -88 -64"
 "angles" "0 180 0"
-"TargetMap" "res://Scenes/Maps/Levels/DryCanyon.tscn"
-"SkyboxEnvironment" "res://Environments/DryCanyonSky.tres"
-"Text" "Plagiarism Canyon"
+"TargetMap" "res://Scenes/Maps/Levels/BrokenGlassFactory.tscn"
+"SkyboxEnvironment" "res://Environments/BrokenGlassFactory.tres"
+"Text" "Broken Glass Factory"
 }
 // entity 26
 {
@@ -257,4 +257,13 @@
 "classname" "Checkpoint"
 "origin" "272 -384 -64"
 "CheckpointName" "OtherCheckpoint"
+}
+// entity 32
+{
+"classname" "StandardPortal"
+"origin" "-308 -52 -64"
+"angles" "0 0 0"
+"TargetMap" "res://Scenes/Maps/Levels/DryCanyon.tscn"
+"SkyboxEnvironment" "res://Environments/DryCanyonSky.tres"
+"Text" "Plagiarism Canyon"
 }
