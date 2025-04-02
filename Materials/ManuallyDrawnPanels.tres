@@ -27,7 +27,6 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 
 [resource]
 next_pass = SubResource("StandardMaterial3D_o45gw")
-albedo_color = Color(0.793647, 0.862961, 1, 1)
 albedo_texture = ExtResource("1_f2xsa")
 metallic = 0.86
 roughness = 0.71
