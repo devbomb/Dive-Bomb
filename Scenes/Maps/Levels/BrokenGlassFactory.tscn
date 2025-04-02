@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqr5me1moyfgs"]
 
-[ext_resource type="PackedScene" uid="uid://dhffo6l667c16" path="res://TrenchbroomMaps/GrayboxBullshit.map" id="1_6iwrr"]
-[ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Environments/BrokenGlassFactory.tres" id="1_qspdi"]
+[ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Environments/BrokenGlassFactory.tres" id="1_6vb15"]
+[ext_resource type="PackedScene" uid="uid://dhffo6l667c16" path="res://TrenchbroomMaps/BrokenGlassFactory.map" id="2_gj55p"]
 
 [node name="GrayboxBullshit" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_qspdi")
+environment = ExtResource("1_6vb15")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.996558, 0.0304495, -0.0770984, -0.0384274, 0.654415, 0.755158, 0.0734486, 0.755522, -0.650993, -16.4758, 8.46741, 21.1995)
@@ -20,7 +20,7 @@ light_energy = 0.4
 light_bake_mode = 1
 sky_mode = 1
 
-[node name="GrayboxBullshit" parent="." instance=ExtResource("1_6iwrr")]
+[node name="GrayboxBullshit" parent="." instance=ExtResource("2_gj55p")]
 
 [node name="ManualLights" type="Node3D" parent="."]
 
