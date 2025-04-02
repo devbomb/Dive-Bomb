@@ -952,7 +952,7 @@
 }
 // brush 106
 {
-( 240 -448 320 ) ( 240 -447 320 ) ( 240 -448 321 ) Textures/BigMetalSquares 0 0 0 1 1
+( 240 -448 320 ) ( 240 -447 320 ) ( 240 -448 321 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 240 -448 320 ) ( 240 -448 321 ) ( 241 -448 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 240 -448 320 ) ( 241 -448 320 ) ( 240 -447 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 368 -400 336 ) ( 368 -399 336 ) ( 369 -400 336 ) Textures/GridSquare 0 0 0 1 1
@@ -2211,11 +2211,11 @@
 ( 168 -400 240 ) ( 160 -448 240 ) ( 168 -448 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 168 -400 384 ) ( 160 -448 384 ) ( 160 -400 384 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 168 -400 368 ) ( 160 -400 240 ) ( 168 -400 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 168 -400 368 ) ( 168 -448 240 ) ( 168 -448 368 ) Textures/BigMetalSquares 0 0 0 1 1
+( 168 -400 368 ) ( 168 -448 240 ) ( 168 -448 368 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 248
 {
-( 240 -352 224 ) ( 240 -351 224 ) ( 240 -352 225 ) Textures/BigMetalSquares 0 0 0 1 1
+( 240 -352 224 ) ( 240 -351 224 ) ( 240 -352 225 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 240 -448 224 ) ( 240 -448 225 ) ( 241 -448 224 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 240 -352 32 ) ( 241 -352 32 ) ( 240 -351 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 256 -272 320 ) ( 256 -271 320 ) ( 257 -272 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -3914,6 +3914,22 @@
 }
 // entity 171
 {
+"classname" "Vent"
+"origin" "176 -408 284"
+"angles" "0 0 0"
+"TargetVentId" "SkipWallJumpDest"
+"VentId" "SkipWallJumpSrc"
+}
+// entity 172
+{
+"classname" "Vent"
+"origin" "264 -280 360"
+"angles" "0 270 0"
+"TargetVentId" "SkipWallJumpSrc"
+"VentId" "SkipWallJumpDest"
+}
+// entity 173
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "HideableWalls"
@@ -3929,7 +3945,7 @@
 ( 592 -192 64 ) ( 592 -192 65 ) ( 592 -191 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
-// entity 172
+// entity 174
 {
 "classname" "CameraSuggestionZone"
 "SuggestedPitchDeg" "-20"
