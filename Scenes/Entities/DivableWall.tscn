@@ -2,23 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bvmycxh81wt3f" path="res://Scripts/Entities/DivableWall.cs" id="1_2tkqn"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="2_5d810"]
-
-[sub_resource type="GDScript" id="GDScript_o78um"]
-script/source = "@tool
-extends Node
-
-@export var material: Material
-
-func parent_ready():
-	set_material_recursive(get_parent())
-
-func set_material_recursive(node: Node):
-	for child in node.get_children():
-		if child is MeshInstance3D:
-			child.material_override = material
-
-		set_material_recursive(child)
-"
+[ext_resource type="Script" uid="uid://byg5bmfo7lf25" path="res://Scripts/DecoratorNodes/MaterialSetter.gd" id="2_y03kn"]
 
 [sub_resource type="Curve" id="Curve_cv1di"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -46,7 +30,7 @@ size = Vector3(0.25, 0.25, 0.25)
 script = ExtResource("1_2tkqn")
 
 [node name="MaterialSetter" type="Node" parent="."]
-script = SubResource("GDScript_o78um")
+script = ExtResource("2_y03kn")
 material = ExtResource("2_5d810")
 
 [node name="MeshGrowPoint" type="Node3D" parent="."]
@@ -64,5 +48,3 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_6bkmj")
 draw_pass_1 = SubResource("PrismMesh_neoal")
-
-[connection signal="ready" from="." to="MaterialSetter" method="parent_ready"]

@@ -6,6 +6,13 @@ namespace FastDragon
     {
         [Export] public string CheckpointName;
 
+        /// <summary>
+        /// If true, the player will always spawn here when the level loads
+        /// and on death.  Use this to test parts of a level without needing
+        /// to physically move the player's starting point.
+        /// </summary>
+        [Export] public bool DebugSpawnHere;
+
         public bool IsCurrent => SaveFile.Current.CurrentCheckpoint == CheckpointName;
 
         private SimpleParticles _sparkleRing => GetNode<SimpleParticles>("%SparkleRing");

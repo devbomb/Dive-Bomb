@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://civ801qjw6hm7" path="res://Scripts/Objects/ReturnHomeVortex.cs" id="1_yn784"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_8yvpk"]
-height = 50.0
+height = 4.5
 radius = 1.5
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ndxbr"]
@@ -86,7 +86,7 @@ script = ExtResource("1_yn784")
 unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 shape = SubResource("CylinderShape3D_8yvpk")
 
 [node name="Spinny" type="Node3D" parent="."]

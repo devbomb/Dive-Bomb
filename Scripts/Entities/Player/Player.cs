@@ -104,8 +104,7 @@ namespace FastDragon
         }
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(PlayerState));
-        private Vector3 _spawnPoint;
-        private Vector3 _spawnRotation;
+        private Transform3D _spawnPos;
 
         private float _damageCooldownTimer;
 
@@ -117,8 +116,7 @@ namespace FastDragon
             base._Ready();
 
             SignalBus.Instance.LevelReset += Respawn;
-            _spawnPoint = GlobalPosition;
-            _spawnRotation = GlobalRotation;
+            _spawnPos = GlobalTransform;
 
             Respawn();
 
@@ -142,20 +140,13 @@ namespace FastDragon
         {
             EmitSignal(SignalName.Respawning);
 
-            if (SaveFile.Current.CurrentCheckpoint == null)
-            {
-                GlobalPosition = _spawnPoint;
-                GlobalRotation = _spawnRotation;
-            }
-            else
-            {
-                var checkpoint = GetTree().Root
-                    .EnumerateDescendantsOfType<Checkpoint>()
-                    .First(c => c.IsCurrent);
+            var checkpoint = GetTree().Root
+                .EnumerateDescendantsOfType<Checkpoint>()
+                .FirstOrDefault(c => c.IsCurrent || c.DebugSpawnHere);
 
-                GlobalPosition = checkpoint.GlobalPosition;
-                GlobalRotation = checkpoint.GlobalRotation;
-            }
+            GlobalTransform = checkpoint == null
+                ? _spawnPos
+                : checkpoint.GlobalTransform;
 
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();

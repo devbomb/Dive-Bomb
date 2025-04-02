@@ -1,7 +1,17 @@
-[gd_resource type="Resource" script_class="MaterialMap" load_steps=2 format=3 uid="uid://dgvjaxeitfghe"]
+[gd_resource type="Resource" script_class="MaterialMap" load_steps=8 format=3 uid="uid://dgvjaxeitfghe"]
 
 [ext_resource type="Script" uid="uid://cb8n0ec7vcom" path="res://addons/MapImporter/MaterialMap.gd" id="1_4o1u0"]
+[ext_resource type="Texture2D" uid="uid://px3g1sk1iywm" path="res://Textures/Textures/BigMetalSquares.png" id="4_4qu2l"]
+[ext_resource type="Material" uid="uid://4uwtrknctulw" path="res://Materials/BigMetalSquares.tres" id="5_1acbw"]
+[ext_resource type="Texture2D" uid="uid://bqvdqwued36vr" path="res://Textures/Textures/ManuallyDrawnPanels.png" id="6_205iw"]
+[ext_resource type="Texture2D" uid="uid://dsq2gmifj0jny" path="res://Textures/Textures/MoltenGlass.png" id="6_sfm7b"]
+[ext_resource type="Material" uid="uid://cfompnq7cbshh" path="res://Materials/MoltenGlass.tres" id="7_kyo2g"]
+[ext_resource type="Material" uid="uid://dp8hf7rertopp" path="res://Materials/ManuallyDrawnPanels.tres" id="7_sfm7b"]
 
 [resource]
 script = ExtResource("1_4o1u0")
-texture_to_material = Dictionary[Texture2D, Material]({})
+texture_to_material = Dictionary[Texture2D, Material]({
+ExtResource("4_4qu2l"): ExtResource("5_1acbw"),
+ExtResource("6_205iw"): ExtResource("7_sfm7b"),
+ExtResource("6_sfm7b"): ExtResource("7_kyo2g")
+})

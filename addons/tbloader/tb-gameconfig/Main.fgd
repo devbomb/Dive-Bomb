@@ -42,9 +42,11 @@
 
 @SolidClass = DeathBarrier : "DeathBarrier" []
 @SolidClass = DrowningWater : "DrowningWater" []
-
+@SolidClass = NonCameraObstructingWall : "NonCameraObstructingWall" []
 @SolidClass = DivableWall : "DivableWall" []
 @SolidClass = XRayWall : "XRayWall" []
+@SolidClass = BulletproofGlassWall : "BulletproofGlassWall" []
+@SolidClass = MoltenGlassCube : "MoltenGlassCube" []
 
 @SolidClass = CameraSuggestionZone : "CameraSuggestionZone" [
 	SuggestedYawDeg(float) : "SuggestedYawDeg" : 0
@@ -142,6 +144,11 @@
 	})
 	= Checkpoint : "Checkpoint" [
 		CheckpointName(string) : "CheckpointName"
+		DebugSpawnHere(choices) : "DebugSpawnHere" : 0 =
+		[
+			0: "False"
+			1: "True"
+		]
 	]
 
 @PointClass
