@@ -1,7 +1,6 @@
-[gd_resource type="AnimationLibrary" load_steps=30 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=29 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
-[ext_resource type="AudioStream" uid="uid://l73s7j3svjwy" path="res://Audio/SFX/Roll.wav" id="2_gfs70"]
 
 [sub_resource type="Animation" id="Animation_gd5kq"]
 resource_name = "Bonk"
@@ -10825,21 +10824,6 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Hand_R.003")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, -0.0156046, 0.00771282, 0.010085, 0.999798)
-tracks/78/type = "audio"
-tracks/78/imported = false
-tracks/78/enabled = true
-tracks/78/path = NodePath("%Model/../AudioStreamPlayer3D")
-tracks/78/interp = 1
-tracks/78/loop_wrap = true
-tracks/78/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("2_gfs70")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/78/use_blend = false
 
 [sub_resource type="Animation" id="Animation_fcmoj"]
 resource_name = "Run-loop"
