@@ -1,6 +1,7 @@
-[gd_resource type="AnimationLibrary" load_steps=30 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=31 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
+[ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Audio/SFX/BounceJump.wav" id="1_kysro"]
 [ext_resource type="AudioStream" uid="uid://ctipp7patffgc" path="res://Audio/SFX/StandardJump.wav" id="2_gfs70"]
 
 [sub_resource type="Animation" id="Animation_gd5kq"]
@@ -1667,7 +1668,6 @@ tracks/77/keys = PackedFloat32Array(0, 1, 1, 1.5, 1, 0.116667, 1, 1.5, 0.5, 1.5,
 
 [sub_resource type="Animation" id="Animation_8ukxa"]
 resource_name = "BoundJump"
-length = 0.3
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -2214,6 +2214,21 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Root")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/78/type = "audio"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("%Model/../AudioStreamPlayer3D")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_kysro")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/78/use_blend = true
 
 [sub_resource type="Animation" id="Animation_a71f0"]
 resource_name = "DamageFlip"
