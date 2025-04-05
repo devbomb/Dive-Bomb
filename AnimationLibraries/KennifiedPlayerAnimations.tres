@@ -1,8 +1,9 @@
-[gd_resource type="AnimationLibrary" load_steps=31 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=32 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
 [ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Audio/SFX/BounceJump.wav" id="1_kysro"]
 [ext_resource type="AudioStream" uid="uid://ctipp7patffgc" path="res://Audio/SFX/StandardJump.wav" id="2_gfs70"]
+[ext_resource type="AudioStream" uid="uid://bolkngv47k5qp" path="res://Audio/SFX/SideFlip.wav" id="4_u8sac"]
 
 [sub_resource type="Animation" id="Animation_gd5kq"]
 resource_name = "Bonk"
@@ -11956,6 +11957,21 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Toes_R")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, 0.542572, -0.0602398, -0.0259536, 0.837445, 0.0333333, 1, 0.53716, -0.0568759, -0.0254854, 0.841175, 0.0666667, 1, 0.522474, -0.0478215, -0.0242204, 0.850969, 0.1, 1, 0.500763, -0.03463, -0.0223651, 0.864602, 0.133333, 1, 0.474399, -0.0189036, -0.0201342, 0.879877, 0.166667, 1, 0.446019, -0.0023125, -0.0177584, 0.894844, 0.2, 1, 0.418539, 0.0134396, -0.0154816, 0.907967, 0.233333, 1, 0.39505, 0.0266721, -0.0135531, 0.918172, 0.266667, 1, 0.378696, 0.0357649, -0.0122194, 0.924749, 0.3, 1, 0.372571, 0.0391453, -0.0117218, 0.927104, 0.766667, 1, 0.372571, 0.0391453, -0.0117218, 0.927104)
+tracks/78/type = "audio"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("%Model/../AudioStreamPlayer3D")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_u8sac")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/78/use_blend = true
 
 [sub_resource type="Animation" id="Animation_b52ii"]
 resource_name = "Skid"
