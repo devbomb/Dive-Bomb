@@ -1,6 +1,7 @@
-[gd_resource type="AnimationLibrary" load_steps=29 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=30 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
+[ext_resource type="AudioStream" uid="uid://ctipp7patffgc" path="res://Audio/SFX/StandardJump.wav" id="2_gfs70"]
 
 [sub_resource type="Animation" id="Animation_gd5kq"]
 resource_name = "Bonk"
@@ -6632,7 +6633,7 @@ tracks/77/keys = PackedFloat32Array(0, 1, 0.372571, 0.0391453, -0.0117218, 0.927
 
 [sub_resource type="Animation" id="Animation_ymktk"]
 resource_name = "Jump"
-length = 0.3
+length = 0.75
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -7179,6 +7180,21 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Toes_R")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, 0.372571, 0.0391453, -0.0117218, 0.927104)
+tracks/78/type = "audio"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("%Model/../AudioStreamPlayer3D")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_gfs70")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/78/use_blend = false
 
 [sub_resource type="Animation" id="Animation_2ngwv"]
 resource_name = "Kick"
