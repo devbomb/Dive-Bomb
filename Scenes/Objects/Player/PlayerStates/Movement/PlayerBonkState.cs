@@ -5,11 +5,15 @@ namespace FastDragon
 {
     public partial class PlayerBonkState : PlayerState
     {
+        private AudioStreamPlayer _bonkSoundPlayer => _player.GetNode<AudioStreamPlayer>("%BonkSoundPlayer");
+
         public override void OnStateEntered()
         {
             _player.Animator.Play("Bonk", 0);
             _player.Velocity = _player.GlobalForward() * -Player.Bonk.InitHSpeed;
             _player.Velocity += Vector3.Up * Player.Bonk.InitVSpeed;
+
+            _bonkSoundPlayer.Play();
 
             _player.Camera.Shake(
                 magnitude: new Vector2(0, 1),

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=19 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Scenes/Objects/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/Player/LedgeDetector.tscn" id="2_0esln"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="3_fw7ex"]
 [ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Scenes/Objects/Player/PlayerCamera.tscn" id="4_ne5gw"]
 [ext_resource type="AudioStream" uid="uid://l73s7j3svjwy" path="res://Audio/SFX/Roll.wav" id="5_4kc40"]
+[ext_resource type="AudioStream" uid="uid://dghyx6ev3y6q6" path="res://Audio/SFX/Bonk.wav" id="6_wmg1a"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="9_vmh20"]
@@ -81,6 +82,11 @@ unique_name_in_owner = true
 stream = ExtResource("5_4kc40")
 pitch_scale = 1.13
 max_polyphony = 3
+
+[node name="BonkSoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_wmg1a")
+volume_db = -5.81
 
 [node name="FairyKissPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true
