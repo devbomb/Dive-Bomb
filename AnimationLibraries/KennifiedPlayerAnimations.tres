@@ -1,9 +1,10 @@
-[gd_resource type="AnimationLibrary" load_steps=32 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=33 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
 [ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Audio/SFX/BounceJump.wav" id="1_kysro"]
 [ext_resource type="AudioStream" uid="uid://ctipp7patffgc" path="res://Audio/SFX/StandardJump.wav" id="2_gfs70"]
 [ext_resource type="AudioStream" uid="uid://bolkngv47k5qp" path="res://Audio/SFX/SideFlip.wav" id="4_u8sac"]
+[ext_resource type="AudioStream" uid="uid://ctxkawuv3irk7" path="res://Audio/SFX/Skid.wav" id="5_tjt4m"]
 
 [sub_resource type="Animation" id="Animation_gd5kq"]
 resource_name = "Bonk"
@@ -12522,6 +12523,21 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Thumb_R.001"
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, 0.0355485, 0.0182721, -0.118036, 0.992205)
+tracks/78/type = "audio"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("%Model/../AudioStreamPlayer3D")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_tjt4m")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/78/use_blend = true
 
 [sub_resource type="Animation" id="Animation_6hp63"]
 resource_name = "VentEnter"
