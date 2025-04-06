@@ -17,3 +17,4 @@ entity_path="res://Scenes/Entities"
 texture_path="res://Textures"
 visual_layer_mask=9
 collision_layer_mask=3
+texture_material_map=Resource("res://TextureMaterialMap.tres")
