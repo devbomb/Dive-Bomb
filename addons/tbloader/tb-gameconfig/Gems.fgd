@@ -5,7 +5,7 @@
 		"path" : "TrenchbroomEntityModels/RedGem.obj",
 		"scale" : 0.25
 	})
-	= RedGem : "RedGem" []
+	= RedGem []
 
 @PointClass
 	base(Angle)
@@ -14,7 +14,7 @@
 		"path" : "TrenchbroomEntityModels/GreenGem.obj",
 		"scale" : 0.25
 	})
-	= GreenGem : "GreenGem" []
+	= GreenGem []
 
 @PointClass
 	base(Angle)
@@ -23,7 +23,7 @@
 		"path" : "TrenchbroomEntityModels/PurpleGem.obj",
 		"scale" : 0.25
 	})
-	= PurpleGem : "PurpleGem" []
+	= PurpleGem []
 
 @PointClass
 	base(Angle)
@@ -32,7 +32,7 @@
 		"path" : "TrenchbroomEntityModels/YellowGem.obj",
 		"scale" : 0.25
 	})
-	= YellowGem : "YellowGem" []
+	= YellowGem []
 
 @PointClass
 	base(Angle)
@@ -41,4 +41,4 @@
 		"path" : "TrenchbroomEntityModels/MagentaGem.obj",
 		"scale" : 0.25
 	})
-	= MagentaGem : "MagentaGem" []
+	= MagentaGem []

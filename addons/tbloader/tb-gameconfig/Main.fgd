@@ -15,7 +15,7 @@
 
 @SolidClass = worldspawn : "World entity" []
 
-@SolidClass = area : "Area" []
+@SolidClass = area []
 
 @PointClass
 	base(Angle)
@@ -23,7 +23,7 @@
 		"path" : "TrenchbroomEntityModels/AnotherPlatformerMan.obj",
 		"scale" : 0.25
 	})
-	= Player : "Player" [
+	= Player [
 		LevelName(string) : "Level name"
 		HomeWorldMap(string) : "Home World"
 		FlyInHeight(float) : "Fly-in height"
@@ -38,23 +38,23 @@
 		"path" : "TrenchbroomEntityModels/Fairy.obj",
 		"scale" : 0.0625
 	})
-	= Fairy : "Fairy" []
+	= Fairy []
 
-@SolidClass = DeathBarrier : "DeathBarrier" []
-@SolidClass = DrowningWater : "DrowningWater" []
-@SolidClass = NonCameraObstructingWall : "NonCameraObstructingWall" []
-@SolidClass = DivableWall : "DivableWall" []
-@SolidClass = XRayWall : "XRayWall" []
-@SolidClass = BulletproofGlassWall : "BulletproofGlassWall" []
-@SolidClass = MoltenGlassCube : "MoltenGlassCube" []
+@SolidClass = DeathBarrier []
+@SolidClass = DrowningWater []
+@SolidClass = NonCameraObstructingWall []
+@SolidClass = DivableWall []
+@SolidClass = XRayWall []
+@SolidClass = BulletproofGlassWall []
+@SolidClass = MoltenGlassCube []
 
-@SolidClass = CameraSuggestionZone : "CameraSuggestionZone" [
+@SolidClass = CameraSuggestionZone [
 	SuggestedYawDeg(float) : "SuggestedYawDeg" : 0
 	SuggestedPitchDeg(float) : "SuggestedPitchDeg" : 0
 	SuggestedDistance(float) : "SuggestedDistance" : 6
 ]
 
-@SolidClass = FixedCameraZone : "FixedCameraZone" [
+@SolidClass = FixedCameraZone [
 	TargetMarkerId(string) : "TargetMarkerId"
 ]
 
@@ -65,7 +65,7 @@
 		"path": "TrenchbroomEntityModels/WorldPortalPlaceholder.obj",
 		"scale": "1" + " " + SizeX + " " + SizeY // Model is scaled down in Blender, because Trenchbroom doesn't let me multiply
 	})
-	= WorldPortal : "WorldPortal" [
+	= WorldPortal [
 	PortalId(string) : "PortalId"
 	TargetPortalId(string) : "TargetPortalId"
 	SizeX(float) : "SizeX" : 1
@@ -79,7 +79,7 @@
 		"path" : "TrenchbroomEntityModels/WhirlwindBottom.obj",
 		"scale" : 0.25
 	})
-	= WhirlwindBottom : "WhirlwindBottom" []
+	= WhirlwindBottom []
 
 @PointClass
 	base(Angle)
@@ -88,7 +88,7 @@
 		"path" : "TrenchbroomEntityModels/WhirlwindTop.obj",
 		"scale" : 0.25
 	})
-	= WhirlwindTop : "WhirlwindTop" []
+	= WhirlwindTop []
 
 @PointClass
 	base(Angle)
@@ -97,7 +97,7 @@
 		"path" : "TrenchbroomEntityModels/StandardPortalFrame.obj",
 		"scale" : 0.25
 	})
-	= StandardPortal : "StandardPortal" [
+	= StandardPortal [
 		Text(string) : "Text" : "Level Name"
 		SkyboxEnvironment(string) : "Skybox Environment"
 		TargetMap(string) : "Target Map"
@@ -110,7 +110,7 @@
 		"path" : "TrenchbroomEntityModels/ReturnHomePlatform.obj",
 		"scale" : 0.25
 	})
-	= ReturnHomePlatform : "ReturnHomePlatform" [
+	= ReturnHomePlatform [
 		ExitHeight(float) : "Exit Height" : 15
 	]
 
@@ -121,7 +121,7 @@
 		"path" : "TrenchbroomEntityModels/WhirlwindTop.obj",
 		"scale" : 0.25
 	})
-	= SpotLight3D : "SpotLight3D" [
+	= SpotLight3D [
 		spot_range(float) : "Range" : 5
 		spot_attenuation(float) : "Attenuation" : 1
 		spot_angle(float) : "Angle" : 45
@@ -142,7 +142,7 @@
 		"path" : "TrenchbroomEntityModels/FairyRing.obj",
 		"scale" : 0.25
 	})
-	= Checkpoint : "Checkpoint" [
+	= Checkpoint [
 		CheckpointName(string) : "CheckpointName"
 		DebugSpawnHere(choices) : "DebugSpawnHere" : 0 =
 		[
@@ -158,12 +158,12 @@
 		"path" : "TrenchbroomEntityModels/Vent.obj",
 		"scale" : 0.25
 	})
-	= Vent : "Vent" [
+	= Vent [
 		VentId(string) : "VentId"
 		TargetVentId(string) : "TargetVentId"
 	]
 
-@PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
+@PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light [
 	range(float) : "Range" : 10
 	energy(float) : "Energy" : 1 : "The light's strengh multiplier"
 	attenuation(float) : "Attenuation" : 1 : "The drop-off curve (lower values emit more light far away)"
@@ -171,6 +171,6 @@
 	light_color(color255) : "Color" : "255 255 255"
 ]
 
-@PointClass = NamedMarker3D : "NamedMarker3D" [
+@PointClass = NamedMarker3D [
 	MarkerId(string) : "MarkerId"
 ]

@@ -5,7 +5,7 @@
 		"path" : "TrenchbroomEntityModels/EnemyVulture.obj",
 		"scale" : 0.25
 	})
-	= EnemyVulture : "EnemyVulture" [
+	= EnemyVulture [
 		GemColor(choices): "GemColor" : 1 = [
 			1: "Red"
 			2: "Green"
@@ -22,7 +22,7 @@
 		"path" : "TrenchbroomEntityModels/EnemyHandCannoner.obj",
 		"scale" : 0.25
 	})
-	= EnemyHandCannoner : "EnemyHandCannoner" [
+	= EnemyHandCannoner [
 		GemColor(choices): "GemColor" : 1 = [
 			1: "Red"
 			2: "Green"
