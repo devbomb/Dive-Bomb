@@ -22,7 +22,7 @@ uniform float sun_angle_max = 30.0;
 uniform float sun_curve : hint_range(0, 1) = 0.15;
 uniform float exposure : hint_range(0, 128) = 1.0;
 
-void sky() 
+void sky()
 {
 	float v_angle = acos(clamp(EYEDIR.y, -1.0, 1.0));
 	float c = (1.0 - v_angle / (PI * 0.5));
