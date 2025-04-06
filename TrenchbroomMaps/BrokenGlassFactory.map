@@ -2262,7 +2262,7 @@
 }
 // entity 1
 {
-"classname" "DeathBarrier"
+"classname" "Hazard_/DeathBarrier"
 // brush 0
 {
 ( -1312 -624 -368 ) ( -1312 -623 -368 ) ( -1312 -624 -367 ) __TB_empty 0 0 0 1 1
@@ -2321,7 +2321,7 @@
 }
 // entity 10
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 176 100 352 ) ( 176 116 272 ) ( 176 116 352 ) Textures/Grate 0 0 0 1 1
@@ -2395,7 +2395,7 @@
 }
 // entity 22
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 176 -32 192 ) ( 176 -31 192 ) ( 176 -32 193 ) Textures/Grate 0 0 0 1 1
@@ -2431,7 +2431,7 @@
 }
 // entity 27
 {
-"classname" "XRayWall"
+"classname" "Wall_/XRayWall"
 // brush 0
 {
 ( 352 -96 320 ) ( 352 -64 192 ) ( 352 -64 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2444,7 +2444,7 @@
 }
 // entity 28
 {
-"classname" "XRayWall"
+"classname" "Wall_/XRayWall"
 // brush 0
 {
 ( 448 -64 320 ) ( 448 0 192 ) ( 448 0 320 ) Textures/BigMetalSquares 0 0 0 1 1
@@ -2457,7 +2457,7 @@
 }
 // entity 29
 {
-"classname" "XRayWall"
+"classname" "Wall_/XRayWall"
 // brush 0
 {
 ( 256 -160 32 ) ( 256 -128 32 ) ( 256 -160 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2587,7 +2587,7 @@
 }
 // entity 52
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 160 -288 288 ) ( 160 -32 192 ) ( 160 -32 288 ) Textures/Grate 0 0 0 1 1
@@ -2630,7 +2630,7 @@
 }
 // entity 59
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 344 -380 284 ) ( 344 -340 228 ) ( 344 -340 284 ) Textures/Grate 0 0 0 1 1
@@ -2643,7 +2643,7 @@
 }
 // entity 60
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 318.34314575051394 -313.65685424949334 284 ) ( 324 -308 228 ) ( 324 -308 284 ) Textures/Grate 0 0 0 1 1
@@ -2656,7 +2656,7 @@
 }
 // entity 61
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 280 -312 284 ) ( 280 -304 228 ) ( 280 -304 284 ) Textures/Grate 0 0 0 1 1
@@ -2669,7 +2669,7 @@
 }
 // entity 62
 {
-"classname" "NonCameraObstructingWall"
+"classname" "Wall_/NonCameraObstructingWall"
 // brush 0
 {
 ( 344 -384 224 ) ( 344 -380 224 ) ( 344 -384 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2682,7 +2682,7 @@
 }
 // entity 63
 {
-"classname" "NonCameraObstructingWall"
+"classname" "Wall_/NonCameraObstructingWall"
 // brush 0
 {
 ( 272 -312 224 ) ( 272 -304 224 ) ( 272 -312 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2695,7 +2695,7 @@
 }
 // entity 64
 {
-"classname" "NonCameraObstructingWall"
+"classname" "Wall_/NonCameraObstructingWall"
 // brush 0
 {
 ( 342.3431457505103 -337.6568542494897 284 ) ( 344 -340 288 ) ( 344 -340 284 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2708,7 +2708,7 @@
 }
 // entity 65
 {
-"classname" "NonCameraObstructingWall"
+"classname" "Wall_/NonCameraObstructingWall"
 // brush 0
 {
 ( 316 -312 288 ) ( 316 -304 284 ) ( 316 -304 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2743,7 +2743,7 @@
 }
 // entity 70
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 160 288 432 ) ( 160 304 368 ) ( 160 304 432 ) Textures/Grate 0 0 0 1 1
@@ -2776,7 +2776,7 @@
 }
 // entity 75
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 32 320 544 ) ( 32 384 448 ) ( 32 384 544 ) Textures/Grate 0 0 0 1 1
@@ -2789,7 +2789,7 @@
 }
 // entity 76
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 296 544 424 ) ( 296 560 400 ) ( 296 560 424 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2807,7 +2807,7 @@
 }
 // entity 78
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 288 544 528 ) ( 288 544 544 ) ( 240 496 528 ) Textures/Grate 0 0 0 1 1
@@ -2835,7 +2835,7 @@
 }
 // entity 81
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( -448 256 688 ) ( -448 240 688 ) ( -448 240 608 ) Textures/Grate 0 -68 0 1 1
@@ -2848,7 +2848,7 @@
 }
 // entity 82
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( -448 160 544 ) ( -448 80 584 ) ( -448 80 568 ) Textures/Grate 28 -28 0 1 1
@@ -3098,7 +3098,7 @@
 }
 // entity 84
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedYawDeg" "315"
 "_tb_group" "3"
 // brush 0
@@ -3113,7 +3113,7 @@
 }
 // entity 85
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 "_tb_group" "3"
 // brush 0
 {
@@ -3140,7 +3140,7 @@
 }
 // entity 88
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 "_tb_group" "3"
 // brush 0
 {
@@ -3154,7 +3154,7 @@
 }
 // entity 89
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( -448 192 688 ) ( -448 200 578.6666666666665 ) ( -448 216 584 ) Textures/Grate 0 0 0 1 1
@@ -3197,7 +3197,7 @@
 }
 // entity 95
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( -448 272 720 ) ( -448 400 704 ) ( -448 400 720 ) Textures/Grate 0 0 0 1 1
@@ -3226,7 +3226,7 @@
 }
 // entity 98
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedYawDeg" "180"
 "SuggestedPitchDeg" "-45"
 // brush 0
@@ -3376,7 +3376,7 @@
 }
 // entity 125
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 320 288 464 ) ( 320 304 352 ) ( 320 304 464 ) Textures/Grate 0 0 0 1 1
@@ -3393,7 +3393,7 @@
 }
 // entity 126
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedYawDeg" "180"
 // brush 0
 {
@@ -3582,7 +3582,7 @@
 }
 // entity 129
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 "HomeWorldMap" "res://Scenes/Maps/Levels/TestMap.tscn"
 "FlyInDuration" "6"
 "FlyInHeight" "90"
@@ -3765,7 +3765,7 @@
 }
 // entity 163
 {
-"classname" "XRayWall"
+"classname" "Wall_/XRayWall"
 // brush 0
 {
 ( 224 448 256 ) ( 224 560 256 ) ( 224 448 528 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -3789,7 +3789,7 @@
 }
 // entity 164
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedYawDeg" "225"
 // brush 0
 {
@@ -3803,7 +3803,7 @@
 }
 // entity 165
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( 244 48 32 ) ( 244 192 16 ) ( 244 192 32 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3816,7 +3816,7 @@
 }
 // entity 166
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( 288 64 158 ) ( 288 96 30 ) ( 288 96 158 ) Textures/MoltenGlass 48 -16 0 1 1
@@ -3829,7 +3829,7 @@
 }
 // entity 167
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( 288 64 400 ) ( 288 96 288 ) ( 288 96 400 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3891,7 +3891,7 @@
 }
 // entity 169
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( -384 304 384 ) ( -384 305 384 ) ( -384 304 385 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3904,7 +3904,7 @@
 }
 // entity 170
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( -240 304 400 ) ( -240 400 384 ) ( -240 400 400 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3950,7 +3950,7 @@
 }
 // entity 174
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedPitchDeg" "-20"
 "_tb_layer" "2"
 // brush 0

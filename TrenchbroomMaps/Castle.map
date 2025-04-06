@@ -1693,7 +1693,7 @@
 }
 // entity 23
 {
-"classname" "DrowningWater"
+"classname" "Hazard_/DrowningWater"
 // brush 0
 {
 ( -576 32 -192 ) ( -576 33 -192 ) ( -576 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1
@@ -2102,7 +2102,7 @@
 }
 // entity 98
 {
-"classname" "DeathBarrier"
+"classname" "Hazard_/DeathBarrier"
 // brush 0
 {
 ( -1824 32 -192 ) ( -1824 320 -832 ) ( -1824 320 -192 ) __TB_empty 0 0 0 1 1
@@ -3392,7 +3392,7 @@
 }
 // entity 150
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedDistance" "12"
 "SuggestedYawDeg" "180"
 "_tb_group" "7"
@@ -3435,7 +3435,7 @@
 }
 // entity 155
 {
-"classname" "DrowningWater"
+"classname" "Hazard_/DrowningWater"
 // brush 0
 {
 ( 128 32 -192 ) ( 128 33 -192 ) ( 128 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1
