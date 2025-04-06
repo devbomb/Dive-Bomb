@@ -1,27 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqr5me1moyfgs"]
+[gd_scene load_steps=3 format=3 uid="uid://cqr5me1moyfgs"]
 
 [ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Environments/BrokenGlassFactory.tres" id="1_6vb15"]
 [ext_resource type="PackedScene" uid="uid://dhffo6l667c16" path="res://TrenchbroomMaps/BrokenGlassFactory.map" id="2_gj55p"]
-[ext_resource type="Script" uid="uid://ds6l88st086mv" path="res://Scripts/TextureSaver.gd" id="3_gj55p"]
-
-[sub_resource type="Gradient" id="Gradient_jcvg1"]
-colors = PackedColorArray(0.169245, 0.169245, 0.169245, 1, 0.0519709, 0.051971, 0.051971, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oee7l"]
-noise_type = 2
-seed = 2
-frequency = 0.048
-fractal_type = 0
-fractal_octaves = 1
-cellular_return_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ersto"]
-width = 1026
-height = 1026
-seamless = true
-seamless_blend_skirt = 1.0
-color_ramp = SubResource("Gradient_jcvg1")
-noise = SubResource("FastNoiseLite_oee7l")
 
 [node name="GrayboxBullshit" type="Node3D"]
 
@@ -63,9 +43,3 @@ light_energy = 0.353
 light_specular = 0.0
 omni_range = 2.58276
 omni_attenuation = 0.0
-
-[node name="TextureSaver" type="Node" parent="."]
-script = ExtResource("3_gj55p")
-texture = SubResource("NoiseTexture2D_ersto")
-fileName = "SkyNoise"
-metadata/_custom_type_script = "uid://ds6l88st086mv"
