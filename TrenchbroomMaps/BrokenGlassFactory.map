@@ -2536,13 +2536,13 @@
 }
 // entity 43
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "440 40 112"
 "GemColor" "2"
 }
 // entity 44
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "204 -416 240"
 "GemColor" "5"
 }
@@ -2576,7 +2576,7 @@
 }
 // entity 50
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "424 -312 320"
 "GemColor" "2"
 }
@@ -2721,7 +2721,7 @@
 }
 // entity 66
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "112 352 448"
 "AggroRadius" "40"
 "GemColor" "10"
