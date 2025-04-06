@@ -20,10 +20,7 @@
 
 @PointClass
 	base(Angle)
-	model({
-		"path" : "TrenchbroomEntityModels/AnotherPlatformerMan.obj",
-		"scale" : 0.25
-	})
+	model("TrenchbroomEntityModels/KennifiedPlayerModel.obj")
 	= Player [
 		LevelName(string) : "Level name"
 		HomeWorldMap(string) : "Home World"

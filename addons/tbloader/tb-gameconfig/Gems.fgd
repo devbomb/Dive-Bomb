@@ -1,44 +1,29 @@
 @PointClass
 	base(Angle)
 	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/RedGem.obj",
-		"scale" : 0.25
-	})
+	model("TrenchbroomEntityModels/RedGem.obj")
 	= RedGem []
 
 @PointClass
 	base(Angle)
 	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/GreenGem.obj",
-		"scale" : 0.25
-	})
+	model("TrenchbroomEntityModels/GreenGem.obj")
 	= GreenGem []
 
 @PointClass
 	base(Angle)
 	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/PurpleGem.obj",
-		"scale" : 0.25
-	})
+	model("TrenchbroomEntityModels/PurpleGem.obj")
 	= PurpleGem []
 
 @PointClass
 	base(Angle)
 	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/YellowGem.obj",
-		"scale" : 0.25
-	})
+	model("TrenchbroomEntityModels/YellowGem.obj")
 	= YellowGem []
 
 @PointClass
 	base(Angle)
 	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/MagentaGem.obj",
-		"scale" : 0.25
-	})
+	model("TrenchbroomEntityModels/MagentaGem.obj")
 	= MagentaGem []
