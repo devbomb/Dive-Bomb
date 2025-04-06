@@ -2865,6 +2865,7 @@
 "_tb_type" "_tb_group"
 "_tb_name" "ExitRoom"
 "_tb_id" "3"
+"_tb_linked_group_id" "{f34d1273-c109-4b69-9012-a880d773b294}"
 // brush 0
 {
 ( -336 -80 -144 ) ( -336 -48 -144 ) ( -336 -80 192 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -3410,6 +3411,7 @@
 "_tb_type" "_tb_group"
 "_tb_name" "SpawnTutorial"
 "_tb_id" "4"
+"_tb_linked_group_id" "{c85b173f-f001-4a5e-a6d8-ca20b941bc0b}"
 // brush 0
 {
 ( -208 -192 144 ) ( -240 -304 144 ) ( -240 -304 128 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -3844,6 +3846,7 @@
 "_tb_type" "_tb_group"
 "_tb_name" "BigFaucet"
 "_tb_id" "6"
+"_tb_linked_group_id" "{f7491557-7b1a-40f9-8de9-e5861a705996}"
 // brush 0
 {
 ( 280 104 808 ) ( 280 104 776 ) ( 280 144 808 ) Textures/BigMetalSquares 0 0 0 1 1

@@ -1223,6 +1223,7 @@
 "_tb_type" "_tb_group"
 "_tb_name" "ThroneRoom"
 "_tb_id" "1"
+"_tb_linked_group_id" "{9f6cfafd-7446-4998-9ff9-021fd2900d0a}"
 // brush 0
 {
 ( -96 2496 544 ) ( -96 2336 544 ) ( -96 2336 448 ) Textures/Smoothstone 0 0 0 1 1
@@ -1507,6 +1508,7 @@
 "_tb_type" "_tb_group"
 "_tb_name" "ThroneRoomRoof"
 "_tb_id" "3"
+"_tb_linked_group_id" "{14afd7cb-ad5b-4678-a66a-93583bfc58be}"
 "_tb_group" "1"
 // brush 0
 {
@@ -2117,6 +2119,7 @@
 "_tb_type" "_tb_group"
 "_tb_name" "Kitchen"
 "_tb_id" "4"
+"_tb_linked_group_id" "{e462e4c1-1f83-4dec-832f-8ac01c159794}"
 // brush 0
 {
 ( 544 1088 192 ) ( 544 1344 0 ) ( 544 1344 192 ) Textures/PaleBricks 0 0 0 1 1
@@ -2297,6 +2300,7 @@
 "_tb_type" "_tb_group"
 "_tb_name" "DiningRoom"
 "_tb_id" "5"
+"_tb_linked_group_id" "{003b0ce9-c0cd-4d85-a20e-76a2ae2e2003}"
 // brush 0
 {
 ( -400 1760 128 ) ( -400 1744 96 ) ( -400 1776 96 ) Textures/PaleBricks 0 0 0 1 1
@@ -2546,6 +2550,7 @@
 "_tb_type" "_tb_group"
 "_tb_name" "Fireplace"
 "_tb_id" "6"
+"_tb_linked_group_id" "{d1555568-8e4c-40d5-b0ab-e7cc1947a5e0}"
 // brush 0
 {
 ( -416 1472 16 ) ( -416 1728 16 ) ( -416 1472 352 ) Textures/PaleBricks 0 0 0 1 1
@@ -3007,6 +3012,7 @@
 "_tb_type" "_tb_group"
 "_tb_name" "HallwayToRoof"
 "_tb_id" "7"
+"_tb_linked_group_id" "{9993d802-1861-4f30-8a0d-93a66ec6055d}"
 // brush 0
 {
 ( -304 976 560 ) ( -304 1216 320 ) ( -304 1216 560 ) Textures/PaleBricks 0 0 0 1 1
