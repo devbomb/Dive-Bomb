@@ -1,8 +1,9 @@
-[gd_resource type="AnimationLibrary" load_steps=33 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=34 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
 [ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Audio/SFX/BounceJump.wav" id="1_kysro"]
 [ext_resource type="AudioStream" uid="uid://ctipp7patffgc" path="res://Audio/SFX/StandardJump.wav" id="2_gfs70"]
+[ext_resource type="AudioStream" uid="uid://bksoplmt3ix8j" path="res://Audio/SFX/Kick.wav" id="4_kvosl"]
 [ext_resource type="AudioStream" uid="uid://bolkngv47k5qp" path="res://Audio/SFX/SideFlip.wav" id="4_u8sac"]
 [ext_resource type="AudioStream" uid="uid://ctxkawuv3irk7" path="res://Audio/SFX/Skid.wav" id="5_tjt4m"]
 
@@ -7774,6 +7775,21 @@ tracks/78/keys = {
 "update": 1,
 "values": [true, true, false]
 }
+tracks/79/type = "audio"
+tracks/79/imported = false
+tracks/79/enabled = true
+tracks/79/path = NodePath("%Model/../AudioStreamPlayer3D")
+tracks/79/interp = 1
+tracks/79/loop_wrap = true
+tracks/79/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_kvosl")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/79/use_blend = false
 
 [sub_resource type="Animation" id="Animation_jonn6"]
 resource_name = "Levitate-loop"
