@@ -75,7 +75,6 @@ playback_default_blend_time = 0.1
 unique_name_in_owner = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
-max_polyphony = 3
 
 [node name="RollSoundPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

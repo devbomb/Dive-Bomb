@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cj6n6qr7joyt0"]
+[gd_scene load_steps=9 format=3 uid="uid://cj6n6qr7joyt0"]
 
 [ext_resource type="Script" uid="uid://bvmycxh81wt3f" path="res://Scenes/Entities/Wall_/DivableWall.cs" id="1_2tkqn"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="2_5d810"]
-[ext_resource type="Script" path="res://Scripts/DecoratorNodes/MaterialSetter.gd" id="2_y03kn"]
+[ext_resource type="Script" uid="uid://byg5bmfo7lf25" path="res://Scripts/DecoratorNodes/MaterialSetter.gd" id="2_y03kn"]
+[ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Audio/SFX/GlassWallShatter.wav" id="4_61wgf"]
 
 [sub_resource type="Curve" id="Curve_cv1di"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -32,6 +33,10 @@ script = ExtResource("1_2tkqn")
 [node name="MaterialSetter" type="Node" parent="."]
 script = ExtResource("2_y03kn")
 material = ExtResource("2_5d810")
+
+[node name="ShatterSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_61wgf")
 
 [node name="MeshGrowPoint" type="Node3D" parent="."]
 unique_name_in_owner = true

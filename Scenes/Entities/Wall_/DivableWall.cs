@@ -93,6 +93,7 @@ namespace FastDragon
 
                 SetPivotPointToPlayer();
                 SpawnParticles();
+                _self.GetNode<AudioStreamPlayer>("%ShatterSound").Play();
             }
 
             public override void OnStateExited()
