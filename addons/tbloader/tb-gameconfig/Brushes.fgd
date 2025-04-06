@@ -1,0 +1,17 @@
+@SolidClass = DeathBarrier []
+@SolidClass = DrowningWater []
+@SolidClass = NonCameraObstructingWall []
+@SolidClass = DivableWall []
+@SolidClass = XRayWall []
+@SolidClass = BulletproofGlassWall []
+@SolidClass = MoltenGlassCube []
+
+@SolidClass = CameraSuggestionZone [
+	SuggestedYawDeg(float) : "SuggestedYawDeg" : 0
+	SuggestedPitchDeg(float) : "SuggestedPitchDeg" : 0
+	SuggestedDistance(float) : "SuggestedDistance" : 6
+]
+
+@SolidClass = FixedCameraZone [
+	TargetMarkerId(string) : "TargetMarkerId"
+]
