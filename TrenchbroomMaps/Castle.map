@@ -1174,36 +1174,36 @@
 }
 // entity 2
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "24 808 128"
 "energy" "1"
 }
 // entity 3
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-408 808 288"
 }
 // entity 4
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "472 888 128"
 "angles" "0 90 0"
 }
 // entity 5
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-80 760 80"
 "angles" "0 -180 0"
 }
 // entity 6
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "80 760 80"
 "angles" "0 -180 0"
 }
 // entity 7
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-256 1016 160"
 }
 // entity 8
@@ -1620,7 +1620,7 @@
 }
 // entity 12
 {
-"classname" "Decal"
+"classname" "Detail_/Decal"
 "origin" "0 2070.93 448"
 "SizeX" "5"
 "SizeY" "0.25"
@@ -1662,24 +1662,24 @@
 }
 // entity 18
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-88 880 144"
 "angles" "0 -90 0"
 }
 // entity 19
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-200 808 224"
 }
 // entity 20
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "400 1464 224"
 "angles" "0 180 0"
 }
 // entity 21
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-280 1504 128"
 "angles" "0 -90 0"
 }
@@ -1688,7 +1688,7 @@
 "classname" "Vent"
 "origin" "0 312 -104"
 "angles" "0 -90 0"
-"TargetVentId" "FireplaceVent"
+"TargetVentId" "Detail_/FireplaceVent"
 "VentId" "MoatVent"
 }
 // entity 23
@@ -2548,7 +2548,7 @@
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
-"_tb_name" "Fireplace"
+"_tb_name" "Detail_/Fireplace"
 "_tb_id" "6"
 "_tb_linked_group_id" "{d1555568-8e4c-40d5-b0ab-e7cc1947a5e0}"
 // brush 0
@@ -2869,7 +2869,7 @@
 }
 // entity 124
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-552 1688 80"
 "angles" "0 -90 0"
 "_tb_group" "6"
@@ -2900,7 +2900,7 @@
 }
 // entity 129
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-456 1496 72"
 "_tb_group" "6"
 }
@@ -2922,7 +2922,7 @@
 "origin" "-488 1496 72"
 "angles" "0 90 0"
 "TargetVentId" "MoatVent"
-"VentId" "FireplaceVent"
+"VentId" "Detail_/FireplaceVent"
 "_tb_group" "6"
 }
 // entity 133
@@ -2939,7 +2939,7 @@
 }
 // entity 135
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-520 1496 72"
 "_tb_group" "6"
 }
@@ -2959,7 +2959,7 @@
 }
 // entity 138
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-488 1976 160"
 "angles" "0 180 0"
 "_tb_group" "6"
@@ -2984,25 +2984,25 @@
 }
 // entity 142
 {
-"classname" "Fireplace"
+"classname" "Detail_/Fireplace"
 "origin" "-584 1752 40"
 "_tb_group" "6"
 }
 // entity 143
 {
-"classname" "Fireplace"
+"classname" "Detail_/Fireplace"
 "origin" "-584 1768 40"
 "_tb_group" "6"
 }
 // entity 144
 {
-"classname" "Fireplace"
+"classname" "Detail_/Fireplace"
 "origin" "-584 1736 40"
 "_tb_group" "6"
 }
 // entity 145
 {
-"classname" "Fireplace"
+"classname" "Detail_/Fireplace"
 "origin" "-584 1784 40"
 "_tb_group" "6"
 }
@@ -3422,7 +3422,7 @@
 }
 // entity 153
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-136 1000 272"
 "angles" "0 90 0"
 "_tb_group" "7"

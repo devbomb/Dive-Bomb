@@ -2281,13 +2281,13 @@
 }
 // entity 3
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "472 136 176"
 "angles" "0 90 0"
 }
 // entity 4
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "232 -88 240"
 "angles" "0 90 0"
 }
@@ -2309,13 +2309,13 @@
 }
 // entity 8
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "376 280 256"
 "angles" "0 180 0"
 }
 // entity 9
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "264 280 256"
 "angles" "0 180 0"
 }
@@ -2413,13 +2413,13 @@
 }
 // entity 24
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "280 -200 128"
 "angles" "0 -90 0"
 }
 // entity 25
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "280 -368 176"
 "angles" "0 -90 0"
 }
@@ -3167,31 +3167,31 @@
 }
 // entity 90
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-200 352 448"
 "angles" "0 90 0"
 }
 // entity 91
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-136 352 424"
 "angles" "0 90 0"
 }
 // entity 92
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-264 352 480"
 "angles" "0 90 0"
 }
 // entity 93
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-344 352 512"
 "angles" "0 90 0"
 }
 // entity 94
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-360 352 568"
 "angles" "0 -90 0"
 }
