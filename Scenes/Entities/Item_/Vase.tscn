@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dlh8rir7h1xac"]
 
 [ext_resource type="PackedScene" uid="uid://b4vxdysdoipqr" path="res://BlenderModels/Vase.blend" id="1_gnefo"]
-[ext_resource type="Script" uid="uid://46sos1k8sfk4" path="res://Scripts/Entities/Vase.cs" id="1_wm3wg"]
+[ext_resource type="Script" uid="uid://46sos1k8sfk4" path="res://Scenes/Entities/Item_/Vase.cs" id="1_wm3wg"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xouiu"]
 height = 1.0

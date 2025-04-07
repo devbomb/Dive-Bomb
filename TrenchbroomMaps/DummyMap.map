@@ -42,52 +42,52 @@
 }
 // entity 1
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-20 28 16"
 }
 // entity 2
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "20 28 16"
 }
 // entity 3
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-36 -4 16"
 }
 // entity 4
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-28 -20 16"
 }
 // entity 5
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-12 -28 16"
 }
 // entity 6
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "12 -28 16"
 }
 // entity 7
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "28 -20 16"
 }
 // entity 8
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "36 -4 16"
 }
 // entity 9
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-4 -28 16"
 }
 // entity 10
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "4 -28 16"
 }
 // entity 11

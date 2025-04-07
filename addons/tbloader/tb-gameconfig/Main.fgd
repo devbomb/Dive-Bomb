@@ -1,7 +1,5 @@
 @include "Brushes.fgd"
 @include "Items.fgd"
-@include "Gems.fgd"
-@include "GemContainers.fgd"
 @include "Enemies.fgd"
 @include "Detail.fgd"
 

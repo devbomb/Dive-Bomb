@@ -82,98 +82,98 @@
 }
 // entity 2
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "232 -24 16"
 }
 // entity 3
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "260 -188 16"
 }
 // entity 4
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "92 -92 -64"
 }
 // entity 5
 {
-"classname" "YellowGem"
+"classname" "Item_/YellowGem"
 "origin" "140 -140 -64"
 }
 // entity 6
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "108 -172 -64"
 }
 // entity 7
 {
-"classname" "MagentaGem"
+"classname" "Item_/MagentaGem"
 "origin" "164 -188 -64"
 }
 // entity 8
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-92 -60 -64"
 }
 // entity 9
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-92 -28 -64"
 }
 // entity 10
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-92 20 -64"
 }
 // entity 11
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "-172 -260 -64"
 }
 // entity 12
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-124 -340 -64"
 }
 // entity 13
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-156 -308 -64"
 }
 // entity 14
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "164 -4 16"
 }
 // entity 15
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "116 -4 16"
 }
 // entity 16
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "292 -100 16"
 }
 // entity 17
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "308 -196 16"
 }
 // entity 18
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "200 -40 16"
 }
 // entity 19
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "232 -72 16"
 "GemColor" "1"
 }
 // entity 20
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "296 -72 16"
 }
 // entity 21
