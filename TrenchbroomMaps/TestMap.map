@@ -200,16 +200,6 @@
 }
 // entity 23
 {
-"classname" "WhirlwindTop"
-"origin" "188 156 48"
-}
-// entity 24
-{
-"classname" "WhirlwindBottom"
-"origin" "188 156 -64"
-}
-// entity 25
-{
 "classname" "StandardPortal"
 "origin" "588 -88 -64"
 "angles" "0 180 0"
@@ -217,12 +207,12 @@
 "SkyboxEnvironment" "res://Environments/BrokenGlassFactory.tres"
 "Text" "Broken Glass Factory"
 }
-// entity 26
+// entity 24
 {
 "classname" "Item_/Fairy"
 "origin" "88 8 16"
 }
-// entity 27
+// entity 25
 {
 "classname" "Vent"
 "origin" "-72 -8 -24"
@@ -230,14 +220,14 @@
 "TargetVentId" "VentB"
 "VentId" "VentA"
 }
-// entity 28
+// entity 26
 {
 "classname" "Vent"
 "origin" "360 -216 -24"
 "VentId" "VentB"
 "TargetVentId" "VentA"
 }
-// entity 29
+// entity 27
 {
 "classname" "StandardPortal"
 "origin" "120 -468 -64"
@@ -246,19 +236,19 @@
 "SkyboxEnvironment" "res://Environments/Castle.tres"
 "Text" "Sunset Castle"
 }
-// entity 30
+// entity 28
 {
 "classname" "Checkpoint"
 "origin" "16 -368 -64"
 "CheckpointName" "Test"
 }
-// entity 31
+// entity 29
 {
 "classname" "Checkpoint"
 "origin" "272 -384 -64"
 "CheckpointName" "OtherCheckpoint"
 }
-// entity 32
+// entity 30
 {
 "classname" "StandardPortal"
 "origin" "-308 -52 -64"
