@@ -219,7 +219,7 @@
 }
 // entity 26
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "88 8 16"
 }
 // entity 27

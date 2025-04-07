@@ -1,4 +1,5 @@
 @include "Brushes.fgd"
+@include "Items.fgd"
 @include "Gems.fgd"
 @include "GemContainers.fgd"
 @include "Enemies.fgd"
@@ -28,15 +29,6 @@
 		FlyInDistance(float) : "Fly-in distance"
 		FlyInDuration(float) : "Fly-in duration"
 	]
-
-@PointClass
-	base(Angle)
-	size(-8 -8 0, 8 8 24)
-	model({
-		"path" : "TrenchbroomEntityModels/Fairy.obj",
-		"scale" : 0.0625
-	})
-	= Fairy []
 
 @PointClass
 	base(Angle)

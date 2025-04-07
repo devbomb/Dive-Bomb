@@ -106,7 +106,7 @@
 }
 // entity 13
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "152 88 16"
 "angles" "0 90 0"
 }

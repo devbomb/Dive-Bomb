@@ -1613,7 +1613,7 @@
 }
 // entity 11
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "0 2064 448"
 "angles" "0 90 0"
 "_tb_group" "1"
@@ -1706,7 +1706,7 @@
 }
 // entity 24
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "152 1376 112"
 }
 // entity 25
@@ -1753,7 +1753,7 @@
 }
 // entity 33
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "0 104 -160"
 }
 // entity 34
@@ -3374,7 +3374,7 @@
 }
 // entity 147
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "-168 1224 576"
 "_tb_group" "7"
 }

@@ -2417,42 +2417,42 @@
 }
 // entity 102
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "192 500.686 192"
 "angles" "0 45 0"
 }
 // entity 103
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "1096 -712 112"
 "angles" "0 -90 0"
 }
 // entity 104
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "1400 104 0"
 "angles" "0 -90 0"
 }
 // entity 105
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "104 -88 144"
 "angles" "0 180 0"
 }
 // entity 106
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "776 776 224"
 }
 // entity 107
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "157.072 666.928 144"
 "angles" "0 -120 0"
 }
 // entity 108
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "-168 808 56"
 }
 // entity 109
