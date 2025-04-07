@@ -214,18 +214,18 @@
 }
 // entity 25
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "-72 -8 -24"
 "angles" "0 180 0"
-"TargetVentId" "VentB"
-"VentId" "VentA"
+"TargetVentId" "Transport_/VentB"
+"VentId" "Transport_/VentA"
 }
 // entity 26
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "360 -216 -24"
-"VentId" "VentB"
-"TargetVentId" "VentA"
+"VentId" "Transport_/VentB"
+"TargetVentId" "Transport_/VentA"
 }
 // entity 27
 {
@@ -238,15 +238,15 @@
 }
 // entity 28
 {
-"classname" "Checkpoint"
+"classname" "Transport_/Checkpoint"
 "origin" "16 -368 -64"
-"CheckpointName" "Test"
+"Transport_/CheckpointName" "Test"
 }
 // entity 29
 {
-"classname" "Checkpoint"
+"classname" "Transport_/Checkpoint"
 "origin" "272 -384 -64"
-"CheckpointName" "OtherCheckpoint"
+"Transport_/CheckpointName" "OtherTransport_/Checkpoint"
 }
 // entity 30
 {

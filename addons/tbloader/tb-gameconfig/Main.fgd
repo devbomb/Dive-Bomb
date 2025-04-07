@@ -1,4 +1,5 @@
 @include "Brushes.fgd"
+@include "Transport.fgd"
 @include "Items.fgd"
 @include "Enemies.fgd"
 @include "Detail.fgd"
@@ -57,17 +58,6 @@
 
 @PointClass
 	base(Angle)
-	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/ReturnHomePlatform.obj",
-		"scale" : 0.25
-	})
-	= ReturnHomePlatform [
-		ExitHeight(float) : "Exit Height" : 15
-	]
-
-@PointClass
-	base(Angle)
 	size(-4 -4 -4, 4 4 4)
 	model({
 		"path" : "TrenchbroomEntityModels/WhirlwindTop.obj",
@@ -85,34 +75,6 @@
 			1: "Dynamic"
 			2: "Static"
 		]
-	]
-
-@PointClass
-	base(Angle)
-	size(-16 -16 0, 16 16 8)
-		model({
-		"path" : "TrenchbroomEntityModels/FairyRing.obj",
-		"scale" : 0.25
-	})
-	= Checkpoint [
-		CheckpointName(string) : "CheckpointName"
-		DebugSpawnHere(choices) : "DebugSpawnHere" : 0 =
-		[
-			0: "False"
-			1: "True"
-		]
-	]
-
-@PointClass
-	base(Angle)
-	size(-8 -8 -8, 8 8 8)
-	model({
-		"path" : "TrenchbroomEntityModels/Vent.obj",
-		"scale" : 0.25
-	})
-	= Vent [
-		VentId(string) : "VentId"
-		TargetVentId(string) : "TargetVentId"
 	]
 
 @PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light [

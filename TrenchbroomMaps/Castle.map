@@ -1655,7 +1655,7 @@
 }
 // entity 17
 {
-"classname" "ReturnHomePlatform"
+"classname" "Transport_/ReturnHomePlatform"
 "origin" "0 2240 448"
 "ExitHeight" "30"
 "_tb_group" "1"
@@ -1685,11 +1685,11 @@
 }
 // entity 22
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "0 312 -104"
 "angles" "0 -90 0"
-"TargetVentId" "Detail_/FireplaceVent"
-"VentId" "MoatVent"
+"TargetVentId" "Detail_/FireplaceTransport_/Vent"
+"VentId" "MoatTransport_/Vent"
 }
 // entity 23
 {
@@ -2918,11 +2918,11 @@
 }
 // entity 132
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "-488 1496 72"
 "angles" "0 90 0"
-"TargetVentId" "MoatVent"
-"VentId" "Detail_/FireplaceVent"
+"TargetVentId" "MoatTransport_/Vent"
+"VentId" "Detail_/FireplaceTransport_/Vent"
 "_tb_group" "6"
 }
 // entity 133
@@ -3448,8 +3448,8 @@
 }
 // entity 156
 {
-"classname" "Checkpoint"
+"classname" "Transport_/Checkpoint"
 "origin" "-224 1488 32"
 "angles" "0 -90 0"
-"CheckpointName" "DiningRoom"
+"Transport_/CheckpointName" "DiningRoom"
 }

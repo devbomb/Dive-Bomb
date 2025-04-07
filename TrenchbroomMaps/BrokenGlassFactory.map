@@ -2373,10 +2373,10 @@
 }
 // entity 18
 {
-"classname" "Checkpoint"
+"classname" "Transport_/Checkpoint"
 "origin" "400 -128 336"
 "angles" "0 90 0"
-"CheckpointName" "FloatingPlatformBridge"
+"Transport_/CheckpointName" "FloatingPlatformBridge"
 }
 // entity 19
 {
@@ -2820,7 +2820,7 @@
 }
 // entity 79
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "312 568 440"
 "angles" "0 90 0"
 "VentId" "SmokestackEscapeDest"
@@ -2828,7 +2828,7 @@
 }
 // entity 80
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "264 536 440"
 "angles" "0 -90 0"
 "TargetVentId" "SmokestackEscapeDest"
@@ -3127,7 +3127,7 @@
 }
 // entity 86
 {
-"classname" "ReturnHomePlatform"
+"classname" "Transport_/ReturnHomePlatform"
 "origin" "-652 4 -80"
 "ExitHeight" "71"
 "_tb_group" "3"
@@ -3210,7 +3210,7 @@
 }
 // entity 96
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "-416 408 752"
 "angles" "0 -90 0"
 "TargetVentId" "VortexEscapeSource"
@@ -3218,7 +3218,7 @@
 }
 // entity 97
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "-344 -72 48"
 "angles" "0 180 0"
 "TargetVentId" "VortexEscapeDest"
@@ -3354,9 +3354,9 @@
 }
 // entity 121
 {
-"classname" "Checkpoint"
+"classname" "Transport_/Checkpoint"
 "origin" "-416 240 720"
-"CheckpointName" "Rooftops"
+"Transport_/CheckpointName" "Rooftops"
 "angles" "0 0 0"
 }
 // entity 122
@@ -3917,7 +3917,7 @@
 }
 // entity 171
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "176 -408 284"
 "angles" "0 0 0"
 "TargetVentId" "SkipWallJumpDest"
@@ -3925,7 +3925,7 @@
 }
 // entity 172
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "264 -280 360"
 "angles" "0 270 0"
 "TargetVentId" "SkipWallJumpSrc"

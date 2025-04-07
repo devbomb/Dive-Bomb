@@ -100,7 +100,7 @@
 }
 // entity 12
 {
-"classname" "ReturnHomePlatform"
+"classname" "Transport_/ReturnHomePlatform"
 "origin" "160 152 16"
 "angles" "0 -90 0"
 }

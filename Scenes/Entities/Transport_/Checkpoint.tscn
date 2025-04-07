@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://bbfrncy1cgsc1"]
 
 [ext_resource type="PackedScene" uid="uid://1bbms5s4bt3d" path="res://BlenderModels/FairyRing.blend" id="1_lpb68"]
-[ext_resource type="Script" uid="uid://cfqry8cyhwe4l" path="res://Scripts/Entities/Checkpoint.cs" id="1_tl6tw"]
+[ext_resource type="Script" uid="uid://cfqry8cyhwe4l" path="res://Scenes/Entities/Transport_/Checkpoint.cs" id="1_tl6tw"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="3_sjo5e"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_67wg3"]
