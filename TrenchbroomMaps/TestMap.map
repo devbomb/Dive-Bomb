@@ -191,7 +191,7 @@
 }
 // entity 22
 {
-"classname" "StandardPortal"
+"classname" "Transport_/StandardPortal"
 "origin" "88 220 -64"
 "angles" "0 -90 0"
 "TargetMap" "res://Scenes/Maps/Levels/SeamonsterBossMap.tscn"
@@ -200,7 +200,7 @@
 }
 // entity 23
 {
-"classname" "StandardPortal"
+"classname" "Transport_/StandardPortal"
 "origin" "588 -88 -64"
 "angles" "0 180 0"
 "TargetMap" "res://Scenes/Maps/Levels/BrokenGlassFactory.tscn"
@@ -229,7 +229,7 @@
 }
 // entity 27
 {
-"classname" "StandardPortal"
+"classname" "Transport_/StandardPortal"
 "origin" "120 -468 -64"
 "angles" "0 90 0"
 "TargetMap" "res://Scenes/Maps/Levels/Castle.tscn"
@@ -250,7 +250,7 @@
 }
 // entity 30
 {
-"classname" "StandardPortal"
+"classname" "Transport_/StandardPortal"
 "origin" "-308 -52 -64"
 "angles" "0 0 0"
 "TargetMap" "res://Scenes/Maps/Levels/DryCanyon.tscn"

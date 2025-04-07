@@ -36,3 +36,16 @@
 	= Transport_/ReturnHomePlatform [
 		ExitHeight(float) : "Exit Height" : 15
 	]
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/StandardPortalFrame.obj",
+		"scale" : 0.25
+	})
+	= Transport_/StandardPortal [
+		Text(string) : "Text" : "Level Name"
+		SkyboxEnvironment(string) : "Skybox Environment"
+		TargetMap(string) : "Target Map"
+	]
