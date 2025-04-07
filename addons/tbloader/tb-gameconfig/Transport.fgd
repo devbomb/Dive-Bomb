@@ -1,5 +1,16 @@
 @PointClass
 	base(Angle)
+	model("TrenchbroomEntityModels/KennifiedPlayerModel.obj")
+	= Transport_/PlayerSpawn [
+		LevelName(string) : "Level name"
+		HomeWorldMap(string) : "Home World"
+		FlyInHeight(float) : "Fly-in height"
+		FlyInDistance(float) : "Fly-in distance"
+		FlyInDuration(float) : "Fly-in duration"
+	]
+
+@PointClass
+	base(Angle)
 	size(-16 -16 0, 16 16 8)
 		model({
 		"path" : "TrenchbroomEntityModels/FairyRing.obj",

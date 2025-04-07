@@ -92,7 +92,7 @@
 }
 // entity 11
 {
-"classname" "Player"
+"classname" "Transport_/PlayerSpawn"
 "origin" "8 -136 48"
 "angles" "0 90 0"
 "LevelName" "Night Dummy Map"

@@ -76,7 +76,7 @@
 }
 // entity 1
 {
-"classname" "Player"
+"classname" "Transport_/PlayerSpawn"
 "origin" "0 24 16"
 "LevelName" "Test Homeworld"
 }

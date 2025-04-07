@@ -1165,7 +1165,7 @@
 }
 // entity 1
 {
-"classname" "Player"
+"classname" "Transport_/PlayerSpawn"
 "origin" "0 112 0"
 "angles" "0 90 0"
 "FlyInHeight" "80"

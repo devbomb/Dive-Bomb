@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba2ixu535q7o3"]
+
+[ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Scenes/Objects/Player/Player.tscn" id="1_1r56h"]
+
+[node name="Player" instance=ExtResource("1_1r56h")]
+
+[node name="LeftHandBone" parent="." index="20"]
+transform = Transform3D(0.0741329, -0.991472, -0.107182, 0.0655875, -0.102398, 0.992579, -0.995089, -0.0806125, 0.0574371, -0.315088, 0.925497, -0.0166783)
+
+[node name="RightHandBone" parent="." index="21"]
+transform = Transform3D(0.0741329, 0.991472, 0.107182, -0.0655875, -0.102398, 0.992579, 0.995089, -0.0806125, 0.0574371, 0.315088, 0.925497, -0.0166783)
