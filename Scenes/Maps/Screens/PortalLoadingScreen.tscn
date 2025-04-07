@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bckjgvq8udjn3"]
 
-[ext_resource type="Script" uid="uid://w5odecg6wwfh" path="res://Scripts/LoadingScreen/PortalLoadingScreen.cs" id="1_mgqop"]
+[ext_resource type="Script" uid="uid://w5odecg6wwfh" path="res://Scenes/Maps/Screens/PortalLoadingScreen.cs" id="1_mgqop"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Scenes/Models/RedGemModel.tscn" id="2_4lauq"]
 [ext_resource type="PackedScene" uid="uid://be5v4cuys7g1s" path="res://Scenes/Models/GreenGemModel.tscn" id="3_wt76o"]
 [ext_resource type="Script" uid="uid://dinu4neoq8exm" path="res://Scripts/Objects/OrbitCamera.cs" id="4_ef0t7"]

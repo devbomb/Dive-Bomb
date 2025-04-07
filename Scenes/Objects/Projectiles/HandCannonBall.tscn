@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://cka17uxpf4jsi"]
 
-[ext_resource type="Script" uid="uid://c112j55qhfdop" path="res://Scripts/Objects/Projectiles/HandCannonBall.cs" id="1_lvbtc"]
+[ext_resource type="Script" uid="uid://c112j55qhfdop" path="res://Scenes/Objects/Projectiles/HandCannonBall.cs" id="1_lvbtc"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="2_7mk11"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ylmyn"]

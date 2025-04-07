@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://2yvv5qgiulnp"]
 
-[ext_resource type="Script" uid="uid://cx2bahro6fr1n" path="res://Scripts/UIWidgets/FairiesInLevelProgress.cs" id="1_5js4f"]
+[ext_resource type="Script" uid="uid://cx2bahro6fr1n" path="res://Scenes/UIWidgets/FairiesInLevelProgress.cs" id="1_5js4f"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="1_etdow"]
 [ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://AnimationLibraries/FairyAnimations.tres" id="2_k65jw"]
 [ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="2_omm1n"]
