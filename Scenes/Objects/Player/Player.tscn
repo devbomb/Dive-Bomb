@@ -1,15 +1,15 @@
 [gd_scene load_steps=17 format=3 uid="uid://c26712jp7rfwp"]
 
-[ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Scripts/Entities/Player/Player.cs" id="1_a4opu"]
-[ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/LedgeDetector.tscn" id="2_0esln"]
+[ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Scenes/Objects/Player/Player.cs" id="1_a4opu"]
+[ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/Player/LedgeDetector.tscn" id="2_0esln"]
 [ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://AnimationLibraries/KennifiedPlayerAnimations.tres" id="2_dijyt"]
-[ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Scenes/Objects/TimeTrialManager.tscn" id="2_eu73y"]
+[ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Scenes/Objects/Player/TimeTrialManager.tscn" id="2_eu73y"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="3_fw7ex"]
-[ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Scenes/Objects/PlayerCamera.tscn" id="4_ne5gw"]
+[ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Scenes/Objects/Player/PlayerCamera.tscn" id="4_ne5gw"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="9_vmh20"]
-[ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Scenes/Objects/GemGravityGloves.tscn" id="10_dedpk"]
+[ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Scenes/Objects/Player/GemGravityGloves.tscn" id="10_dedpk"]
 
 [sub_resource type="GDScript" id="GDScript_cpnxc"]
 script/source = "extends Node
@@ -150,7 +150,7 @@ ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 mouse_filter = 2
 
 [node name="LeftHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.0334059, -0.994257, -0.101667, 0.998489, -0.0376395, 0.0400113, -0.0436082, -0.100177, 0.994013, -0.291627, 0.0344688, 0.302915)
+transform = Transform3D(0.0741337, -0.991472, -0.107182, 0.0655877, -0.102398, 0.992579, -0.995088, -0.0806132, 0.0574373, -0.295978, 0.869362, -0.0156669)
 bone_name = "Hand_L"
 bone_idx = 10
 use_external_skeleton = true
@@ -161,7 +161,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.0334059, 0.994257, 0.101667, -0.998489, -0.0376395, 0.0400113, 0.0436082, -0.100177, 0.994013, 0.291627, 0.0344688, 0.302915)
+transform = Transform3D(0.0741337, 0.991472, 0.107182, -0.0655877, -0.102398, 0.992579, 0.995088, -0.0806132, 0.0574373, 0.295978, 0.869362, -0.0156669)
 bone_name = "Hand_R"
 bone_idx = 19
 use_external_skeleton = true

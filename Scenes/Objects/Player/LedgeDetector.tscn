@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfucpfnpqi5r3"]
 
-[ext_resource type="Script" uid="uid://bhepqrluiokcn" path="res://Scenes/Objects/LedgeDetector.cs" id="1_ykwis"]
+[ext_resource type="Script" uid="uid://bhepqrluiokcn" path="res://Scenes/Objects/Player/LedgeDetector.cs" id="1_ykwis"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_difdr"]
 height = 0.05

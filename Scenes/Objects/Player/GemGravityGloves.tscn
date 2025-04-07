@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bpr113kmu5g5o"]
 
-[ext_resource type="Script" uid="uid://dgvar2aymf5oe" path="res://Scenes/Objects/GemGravityGloves.cs" id="1_vb6sn"]
+[ext_resource type="Script" uid="uid://dgvar2aymf5oe" path="res://Scenes/Objects/Player/GemGravityGloves.cs" id="1_vb6sn"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="2_u8ahm"]
 [ext_resource type="Script" uid="uid://jrisye22e6pq" path="res://Scripts/Objects/TrailRenderer3D.cs" id="3_cw6y1"]
 
