@@ -25,6 +25,7 @@ namespace FastDragon
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
 
+        private AudioStreamPlayer _homeInSound => GetNode<AudioStreamPlayer>("%HomeInSound");
         private AudioStreamPlayer _collectSound => GetNode<AudioStreamPlayer>("%CollectSound");
 
         // Need to actually store this node instead of using a getter, since
@@ -243,6 +244,7 @@ namespace FastDragon
             {
                 _homingStartPos = _gem.GlobalPosition;
                 _homingTimer = 0;
+                _gem._homeInSound.Play();
 
                 // HACK: Don't let the gem fall asleep when going off-screen,
                 // so the player doesn't get screwed over for moving too fast.
