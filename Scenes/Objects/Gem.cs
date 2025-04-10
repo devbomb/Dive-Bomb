@@ -25,6 +25,8 @@ namespace FastDragon
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
 
+        private AudioStreamPlayer _collectSound => GetNode<AudioStreamPlayer>("%CollectSound");
+
         // Need to actually store this node instead of using a getter, since
         // we temporarily remove it from the scene tree.  If the getter were
         // called during a temporary removal, it would result in a
@@ -94,6 +96,7 @@ namespace FastDragon
             saveFile.GetMapProgress(saveFile.CurrentMap).GemsCollected += (int)Value;
             saveFile.CollectedGems.Add(GetSaveKey());
 
+            _collectSound.Play();
             ChangeState<Hidden>();
 
             GD.Print($"{saveFile.TotalGemCount}: Collected gem {GetSaveKey()}");
