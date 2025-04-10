@@ -9,6 +9,8 @@ namespace FastDragon
         [Export] public Node3D LeftHandPoint;
         [Export] public Node3D RightHandPoint;
 
+        private AudioStreamPlayer3D _reachOutSound => GetNode<AudioStreamPlayer3D>("%ReachOutSound");
+
         private Area3D _collectionRange => GetNode<Area3D>("%CollectionRange");
         private Area3D _decalEnabler => GetNode<Area3D>("%DecalEnabler");
         private Decal _decal => GetNode<Decal>("%Decal");
@@ -164,6 +166,7 @@ namespace FastDragon
             {
                 _timer = 0;
                 _visualTimer = 0;
+                _parent._reachOutSound.Play();
             }
 
             public override void _Process(double deltaD)
