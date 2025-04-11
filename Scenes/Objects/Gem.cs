@@ -264,6 +264,7 @@ namespace FastDragon
 
                 _homingTimer += delta;
                 float t = _homingTimer / HomingDuration;
+                t = FastSlowFast(t, 1.4f);
 
                 Vector3 start = _homingStartPos;
                 Vector3 end = _gem.GetPlayer().GlobalPosition + (Vector3.Up * 0.25f);
@@ -285,6 +286,13 @@ namespace FastDragon
                 {
                     _gem.Collect();
                 }
+            }
+
+            private float FastSlowFast(float t, float exponent)
+            {
+                t = (2 * t) - 1;
+                float c = Mathf.Sign(t) * Mathf.Pow(Mathf.Abs(t), exponent);
+                return (c + 1) / 2;
             }
         }
 
