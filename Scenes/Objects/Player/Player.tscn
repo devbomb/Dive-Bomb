@@ -75,17 +75,20 @@ playback_default_blend_time = 0.1
 unique_name_in_owner = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
 
 [node name="RollSoundPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_4kc40")
 pitch_scale = 1.13
 max_polyphony = 3
+bus = &"Sfx"
 
 [node name="BonkSoundPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_wmg1a")
 volume_db = -5.81
+bus = &"Sfx"
 
 [node name="FairyKissPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true

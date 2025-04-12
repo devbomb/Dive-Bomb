@@ -154,11 +154,13 @@ libraries = {
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("2_m4rpn")
+bus = &"Sfx"
 
 [node name="HomeInSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("3_025us")
+bus = &"Sfx"
 
 [node name="Billboard" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338976, 0)

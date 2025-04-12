@@ -58,3 +58,4 @@ draw_pass_1 = SubResource("PrismMesh_fa7py")
 [node name="ShatterSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_pehis")
+bus = &"Sfx"
