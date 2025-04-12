@@ -98,3 +98,23 @@ Preprocess = 0.25
 SpeedScale = 1.2
 FixedFps = 60
 ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
+
+[node name="LeftHandBone" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.0741329, -0.991472, -0.107182, 0.0655875, -0.102398, 0.992579, -0.995089, -0.0806125, 0.0574371, -0.315088, 0.925497, -0.0166783)
+bone_name = "Hand_L"
+bone_idx = 10
+use_external_skeleton = true
+external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
+
+[node name="LeftHandPoint" type="Marker3D" parent="LeftHandBone"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.282762, -1.11759e-09)
+
+[node name="RightHandBone" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.0741329, 0.991472, 0.107182, -0.0655875, -0.102398, 0.992579, 0.995089, -0.0806125, 0.0574371, 0.315088, 0.925497, -0.0166783)
+bone_name = "Hand_R"
+bone_idx = 19
+use_external_skeleton = true
+external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
+
+[node name="RightHandPoint" type="Marker3D" parent="RightHandBone"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.283, 0)
