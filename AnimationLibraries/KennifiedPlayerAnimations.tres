@@ -1,10 +1,12 @@
-[gd_resource type="AnimationLibrary" load_steps=35 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=37 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
 [ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Audio/SFX/BounceJump.wav" id="1_kysro"]
 [ext_resource type="AudioStream" uid="uid://ctipp7patffgc" path="res://Audio/SFX/StandardJump.wav" id="2_gfs70"]
 [ext_resource type="AudioStream" uid="uid://bksoplmt3ix8j" path="res://Audio/SFX/Kick.wav" id="4_kvosl"]
 [ext_resource type="AudioStream" uid="uid://bolkngv47k5qp" path="res://Audio/SFX/SideFlip.wav" id="4_u8sac"]
+[ext_resource type="AudioStream" uid="uid://bpixqvyhbaw8v" path="res://Audio/SFX/ParachuteKick.wav" id="5_035b6"]
+[ext_resource type="AudioStream" uid="uid://cj0cbpek5hnn7" path="res://Audio/SFX/ParachuteDeploy.wav" id="5_rvkxb"]
 [ext_resource type="AudioStream" uid="uid://ctxkawuv3irk7" path="res://Audio/SFX/Skid.wav" id="5_tjt4m"]
 [ext_resource type="AudioStream" uid="uid://bgjbnvtp2qryy" path="res://Audio/SFX/VentEnterSwoosh.wav" id="7_y6mkr"]
 
@@ -8597,6 +8599,21 @@ tracks/31/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0.0114145), Vector3(0, 0, -0.0122173), Vector3(0, 0, 0.0114145)]
 }
+tracks/32/type = "audio"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("%Model/../AudioStreamPlayer3D")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"clips": [{
+"end_offset": 0.124,
+"start_offset": 0.0,
+"stream": ExtResource("5_035b6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/32/use_blend = true
 
 [sub_resource type="Animation" id="Animation_70186"]
 resource_name = "ParachuteLand"
@@ -9139,6 +9156,21 @@ tracks/31/keys = {
 "update": 0,
 "values": [Vector3(1.047, -1.065, -0.657), Vector3(1.047, -1.065, -0.657), Vector3(0.782, 2.353, -0.657), Vector3(0.183, 0.903, 0.018), Vector3(0.087, 0.348, -0.02), Vector3(0.096, 0.112, -0.02), Vector3(0.255, 0.339, -0.01)]
 }
+tracks/32/type = "audio"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("%Model/../AudioStreamPlayer3D")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_rvkxb")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/32/use_blend = true
 
 [sub_resource type="Animation" id="Animation_u41tu"]
 resource_name = "RESET"
