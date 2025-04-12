@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=34 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=35 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
 [ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Audio/SFX/BounceJump.wav" id="1_kysro"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bksoplmt3ix8j" path="res://Audio/SFX/Kick.wav" id="4_kvosl"]
 [ext_resource type="AudioStream" uid="uid://bolkngv47k5qp" path="res://Audio/SFX/SideFlip.wav" id="4_u8sac"]
 [ext_resource type="AudioStream" uid="uid://ctxkawuv3irk7" path="res://Audio/SFX/Skid.wav" id="5_tjt4m"]
+[ext_resource type="AudioStream" uid="uid://bgjbnvtp2qryy" path="res://Audio/SFX/VentEnterSwoosh.wav" id="7_y6mkr"]
 
 [sub_resource type="Animation" id="Animation_gd5kq"]
 resource_name = "Bonk"
@@ -12558,6 +12559,7 @@ tracks/78/use_blend = true
 [sub_resource type="Animation" id="Animation_6hp63"]
 resource_name = "VentEnter"
 length = 1.5
+step = 0.025
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -12571,14 +12573,14 @@ tracks/1/enabled = true
 tracks/1/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Root")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.707107, 0, 0, 0.707107, 0.0333333, 1, -0.697314, 0, 0, 0.716766, 0.0666667, 1, -0.672169, 0, 0, 0.740398, 0.133333, 1, -0.602888, 0, 0, 0.797826, 0.166667, 1, -0.575003, 0, 0, 0.818151, 0.2, 1, -0.563696, 0, 0, 0.825983, 0.7, 1, -0.563696, 0, 0, 0.825983, 0.733333, 1, -0.575003, 0, 0, 0.818151, 0.766667, 1, -0.602888, 0, 0, 0.797826, 0.833333, 1, -0.672169, 0, 0, 0.740398, 0.866667, 1, -0.697314, 0, 0, 0.716766, 0.9, 1, -0.707107, 0, 0, 0.707107, 1.5, 1, -0.707107, 0, 0, 0.707107)
+tracks/1/keys = PackedFloat32Array(0, 1, -0.707107, 0, 0, 0.707107, 0.0333333, 1, -0.697314, 0, 0, 0.716766, 0.0666667, 1, -0.672169, 0, 0, 0.740398, 0.133333, 1, -0.602888, 0, 0, 0.797826, 0.166667, 1, -0.575003, 0, 0, 0.818151, 0.2, 1, -0.563696, 0, 0, 0.825983, 0.75, 1, -0.563696, 0, 0, 0.825983, 0.775, 1, -0.575003, 0, 0, 0.818151, 0.8, 1, -0.602888, 0, 0, 0.797826, 0.85, 1, -0.672169, 0, 0, 0.740398, 0.875, 1, -0.697314, 0, 0, 0.716766, 0.9, 1, -0.707107, 0, 0, 0.707107, 1.5, 1, -0.707107, 0, 0, 0.707107)
 tracks/2/type = "scale_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Root")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 1, 0.001, 1, 0.0333333, 1, 1, 0.075, 1, 0.0666667, 1, 1, 0.26, 1, 0.133333, 1, 1, 0.741, 1, 0.166667, 1, 1, 0.926, 1, 0.2, 1, 1, 1, 1, 0.7, 1, 1, 1, 1, 0.733333, 1, 1, 1.12963, 1, 0.766667, 1, 1, 1.37037, 1, 0.8, 1, 1, 1.5, 1, 0.833333, 1, 1, 1.38896, 1, 0.866667, 1, 1, 1.11137, 1, 0.933333, 1, 1, 0.38963, 1, 0.966667, 1, 1, 0.112037, 1, 1, 1, 1, 0.001, 1, 1.5, 1, 1, 0.001, 1)
+tracks/2/keys = PackedFloat32Array(0, 1, 1, 0.001, 1, 0.0333333, 1, 1, 0.075, 1, 0.0666667, 1, 1, 0.26, 1, 0.133333, 1, 1, 0.741, 1, 0.166667, 1, 1, 0.926, 1, 0.2, 1, 1, 1, 1, 0.75, 1, 1, 1, 1, 0.775, 1, 1, 1.12963, 1, 0.8, 1, 1, 1.37037, 1, 0.825, 1, 1, 1.5, 1, 0.85, 1, 1, 1.38896, 1, 0.875, 1, 1, 1.11137, 1, 0.9, 1, 1, 0.75, 1, 0.933333, 1, 1, 0.38963, 1, 0.966667, 1, 1, 0.112037, 1, 1, 1, 1, 0.001, 1, 1.5, 1, 1, 0.001, 1)
 tracks/3/type = "position_3d"
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -13104,6 +13106,21 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Toes_R")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, 0.372571, 0.0391453, -0.0117218, 0.927104)
+tracks/78/type = "audio"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("%Model/../AudioStreamPlayer3D")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_y6mkr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/78/use_blend = true
 
 [sub_resource type="Animation" id="Animation_qyb8i"]
 resource_name = "Walk-loop"
