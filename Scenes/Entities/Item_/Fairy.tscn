@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6d7vas8km3kd"]
+[gd_scene load_steps=14 format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" uid="uid://5c2hnyrbuo5m" path="res://Scenes/Entities/Item_/Fairy.cs" id="1_qaaot"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://BlenderModels/Fairy.blend" id="2_01sg4"]
 [ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://AnimationLibraries/FairyAnimations.tres" id="2_l0xag"]
 [ext_resource type="AudioStream" uid="uid://b1kkywgiv08uj" path="res://Audio/SFX/MagicalGlassShatter.wav" id="2_wcnnd"]
+[ext_resource type="AudioStream" uid="uid://eqg1m3m28yi3" path="res://Audio/SFX/FairyJingle.wav" id="3_p435h"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="5_pebs6"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ohivc"]
@@ -48,6 +49,14 @@ script = ExtResource("1_qaaot")
 [node name="ShatterSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_wcnnd")
+bus = &"Sfx"
+
+[node name="JingleSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_p435h")
+bus = &"Sfx"
+
+[node name="AnimationSoundPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Sfx"
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]

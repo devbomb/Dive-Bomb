@@ -10,6 +10,7 @@ namespace FastDragon
 
         private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private AudioStreamPlayer ShatterSound => GetNode<AudioStreamPlayer>("%ShatterSound");
+        private AudioStreamPlayer JingleSound => GetNode<AudioStreamPlayer>("%JingleSound");
 
         private Node3D Model => GetNode<Node3D>("%Model");
         private Node3D Glass => GetNode<Node3D>("%Glass");
@@ -244,6 +245,7 @@ namespace FastDragon
                 _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Hovering", 0.1f);
                 _fairy.Player.Animator.Play("Idle");
+                _fairy.JingleSound.Play();
 
                 _start = _fairy.Model.GlobalTransform;
                 _timer = 0;
