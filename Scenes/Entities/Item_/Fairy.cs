@@ -116,10 +116,15 @@ namespace FastDragon
 
         private partial class Shattering : FairyState
         {
-            private const float Duration = 1.7f;
+            private const float Duration = 2f;
+            private const float CameraMoveDelay = 1f;
+            private const float TimeScale = 0.5f;
 
-            private static float PlayerJumpSpeed => Player.Jump.InitVSpeed / 4;
-            private static float PlayerGravity => Player.Jump.ShortHopGravity / 8;
+            private static float PlayerJumpSpeed => Player.Jump.InitVSpeed;
+            private static float PlayerGravity => Player.Jump.ShortHopGravity;
+
+            private Player _player => _fairy.Player;
+            private Node3D _camTarget;
 
             private bool _playerLanded;
             private float _timer;
@@ -137,7 +142,8 @@ namespace FastDragon
                 // Hijack control of the player.  We're going to manipulate them
                 // for the cutscene.
                 _fairy.Player.ChangeState<PlayerManhandledState>();
-                _fairy.Player.Velocity = Vector3.Up * PlayerJumpSpeed;
+                _player.Velocity = Vector3.Up * PlayerJumpSpeed;
+                _player.Velocity += _player.GlobalForward() * -1;
                 _playerLanded = false;
 
                 // Krrsssh!!!  Shatter the glass!
@@ -145,42 +151,85 @@ namespace FastDragon
                 _fairy.GlassParticles.Emitting = true;
                 _fairy.Animator.Play("Shatter");
 
-                _timer = Duration;
+                // Start moving the camera into position
+                _camTarget = CamTarget();
+                _fairy.CutsceneCam.GlobalTransform = _player.Camera.GlobalTransform;
+                _fairy.CutsceneCam.MakeCurrent();
+                _fairy.CutsceneCam.ResetPhysicsInterpolation3D();
+
+                // Do a slow-mo effect until the player lands
+                Engine.TimeScale = TimeScale;
             }
 
             public override void OnStateExited()
             {
                 _fairy.SetPausedForCutscene(false);
+                Engine.TimeScale = 1;
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 float delta = (float)deltaD;
 
-                _timer += delta;
+                _timer += delta / (float)Engine.TimeScale;
 
+                MoveCamera();
                 ApplyGravityToPlayer(delta);
 
-                if (_playerLanded && _timer >= Duration)
+                if (_playerLanded && !_player.Animator.IsPlaying() && _timer >= Duration)
                     ChangeState<FlyingToPlayer>();
+            }
+
+            private void MoveCamera()
+            {
+                float croppedDuration = Duration - CameraMoveDelay;
+                float croppedTimer = _timer - CameraMoveDelay;
+                if (croppedTimer < 0)
+                    croppedTimer = 0;
+
+                float t = croppedTimer / croppedDuration;
+                t = Mathf.Clamp(t, 0, 1);
+                t = Mathf.SmoothStep(0, 1, t);
+
+                var camStart = _player.Camera.GlobalTransform;
+                _fairy.CutsceneCam.GlobalTransform = camStart.InterpolateWith(
+                    _camTarget.GlobalTransform,
+                    t);
             }
 
             private void ApplyGravityToPlayer(float delta)
             {
-                _fairy.Player.Velocity += Vector3.Down * PlayerGravity * delta;
-                _fairy.Player.MoveAndSlide();
+                _player.Velocity += Vector3.Down * PlayerGravity * delta;
+                _player.MoveAndSlide();
 
-                if (_fairy.Player.IsOnFloor() && !_playerLanded)
+                if (_player.IsOnFloor() && !_playerLanded)
                 {
                     _playerLanded = true;
-                    _fairy.Player.Animator.Play("Idle");
+                    _player.Velocity = Vector3.Zero;
+                    Engine.TimeScale = 1;
+                    _player.Animator.PlaySection("ParachuteLand", endTime: 0.75f);
                 }
+            }
+
+            private Node3D CamTarget()
+            {
+                var player = _fairy.Player;
+                var cam = player.Camera;
+                var rightPoint = player.FairyKissCamRightPoint;
+                var leftPoint = player.FairyKissCamLeftPoint;
+
+                float rightDist = cam.GlobalPosition.DistanceTo(rightPoint.GlobalPosition);
+                float leftDist = cam.GlobalPosition.DistanceTo(leftPoint.GlobalPosition);
+
+                return rightDist < leftDist
+                    ? rightPoint
+                    : leftPoint;
             }
         }
 
         private partial class FlyingToPlayer : FairyState
         {
-            private const float Duration = 1;
+            private const float Duration = 0.5f;
 
             private Transform3D _start;
 
@@ -190,13 +239,9 @@ namespace FastDragon
             {
                 _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Hovering", 0.1f);
+                _fairy.Player.Animator.Play("Idle");
 
                 _start = _fairy.Model.GlobalTransform;
-
-                _fairy.CutsceneCam.GlobalTransform = _fairy.Player.Camera.GlobalTransform;
-                _fairy.CutsceneCam.MakeCurrent();
-                _fairy.CutsceneCam.ResetPhysicsInterpolation3D();
-
                 _timer = 0;
             }
 
@@ -209,38 +254,18 @@ namespace FastDragon
             {
                 _timer += (float)deltaD;
                 float t = _timer / Duration;
+                t = Mathf.SmoothStep(0, 1, t);
 
                 var player = _fairy.Player;
 
                 var target = player.FairyKissPoint.GlobalTransform;
-                var camStart = player.Camera.GlobalTransform;
-                var camTarget = CamTarget();
-
                 _fairy.Model.GlobalTransform = _start.InterpolateWith(target, t);
-                _fairy.CutsceneCam.GlobalTransform = camStart.InterpolateWith(camTarget, t);
 
                 if (_timer > Duration)
                 {
                     _fairy.Model.GlobalTransform = target;
-                    _fairy.CutsceneCam.GlobalTransform = camTarget;
-
                     ChangeState<KissingPlayer>();
                 }
-            }
-
-            private Transform3D CamTarget()
-            {
-                var player = _fairy.Player;
-                var cam = player.Camera;
-                var rightPoint = player.FairyKissCamRightPoint;
-                var leftPoint = player.FairyKissCamLeftPoint;
-
-                float rightDist = cam.GlobalPosition.DistanceTo(rightPoint.GlobalPosition);
-                float leftDist = cam.GlobalPosition.DistanceTo(leftPoint.GlobalPosition);
-
-                return rightDist < leftDist
-                    ? rightPoint.GlobalTransform
-                    : leftPoint.GlobalTransform;
             }
         }
 
@@ -250,7 +275,6 @@ namespace FastDragon
             {
                 _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Kiss", 0.3f);
-                _fairy.Animator.Queue("FlyAway");
             }
 
             public override void OnStateExited()
@@ -268,7 +292,7 @@ namespace FastDragon
 
         private partial class RestoringCamera : FairyState
         {
-            private const float Duration = 0.5f;
+            private const float Duration = 0.75f;
             private float _timer;
             private Transform3D _start;
 
@@ -276,6 +300,7 @@ namespace FastDragon
             {
                 _timer = 0;
                 _start = _fairy.CutsceneCam.GlobalTransform;
+                _fairy.Animator.Play("FlyAwayHigh");
             }
 
             public override void OnStateExited()
@@ -288,6 +313,8 @@ namespace FastDragon
                 _timer += (float)deltaD;
 
                 float t = _timer / Duration;
+                t = Mathf.SmoothStep(0, 1, t);
+
                 var end = _fairy.Player.Camera.GlobalTransform;
                 _fairy.CutsceneCam.GlobalTransform = _start.InterpolateWith(end, t);
 
