@@ -28,14 +28,15 @@ var _timer: float = 0
 var _lastHealth: int = 0
 
 func _ready() -> void:
-	value = $'/root/SaveFile'.Current().PlayerHealth
-	_lastHealth = value
+	_lastHealth = $'/root/SaveFile'.Current().PlayerHealth
+	value = _lastHealth
 
 func _process(delta: float) -> void:
-	value = $'/root/SaveFile'.Current().PlayerHealth
+	var health: int = $'/root/SaveFile'.Current().PlayerHealth
+	value = health
 	
 	if (value < _lastHealth):
-		_lastHealth = value
+		_lastHealth = health
 		_timer = _hang_duration + _return_duration
 	
 	_timer -= delta

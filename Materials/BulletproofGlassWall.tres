@@ -33,7 +33,6 @@ emission = Color(1, 1, 1, 1)
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_es45y")
 clearcoat_roughness = 1.0
-heightmap_enabled = true
 backlight = Color(0.509286, 0.509286, 0.509286, 1)
 refraction_enabled = true
 refraction_scale = 0.01

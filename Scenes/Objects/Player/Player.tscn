@@ -18,7 +18,7 @@ var _startY : float = 0
 var _maxHeight : float = 0
 var _printedMaxHeight : bool = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
     var player : CharacterBody3D = get_parent()
     
     if (player.is_on_floor()):
@@ -149,28 +149,6 @@ ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
 mouse_filter = 2
 
-[node name="LeftHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.0741337, -0.991472, -0.107182, 0.0655877, -0.102398, 0.992579, -0.995088, -0.0806132, 0.0574373, -0.295978, 0.869362, -0.0156669)
-bone_name = "Hand_L"
-bone_idx = 10
-use_external_skeleton = true
-external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D")
-
-[node name="LeftHandPoint" type="Marker3D" parent="LeftHandBone"]
-unique_name_in_owner = true
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
-
-[node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.0741337, 0.991472, 0.107182, -0.0655877, -0.102398, 0.992579, 0.995088, -0.0806132, 0.0574373, 0.295978, 0.869362, -0.0156669)
-bone_name = "Hand_R"
-bone_idx = 19
-use_external_skeleton = true
-external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D")
-
-[node name="RightHandPoint" type="Marker3D" parent="RightHandBone"]
-unique_name_in_owner = true
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
-
 [node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint") instance=ExtResource("10_dedpk")]
-LeftHandPoint = NodePath("../LeftHandBone/LeftHandPoint")
-RightHandPoint = NodePath("../RightHandBone/RightHandPoint")
+LeftHandPoint = NodePath("../Model/LeftHandBone/LeftHandPoint")
+RightHandPoint = NodePath("../Model/RightHandBone/RightHandPoint")

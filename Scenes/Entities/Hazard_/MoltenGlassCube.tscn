@@ -8,6 +8,16 @@
 script/source = "@tool
 extends MeshInstance3D
 
+func _ready():
+	# Need to connect this via code because connecting it through the editor
+	# produces an error saying that the signal has already been connected to
+	# this method.  Sounds like a Godot bug.
+	if (!get_parent().is_connected(\"ready\", _on_parent_ready)):
+		get_parent().connect(\"ready\", _on_parent_ready)
+	
+	if (!get_parent().is_connected(\"tree_entered\", _on_parent_ready)):
+		get_parent().connect(\"tree_entered\", _on_parent_ready)
+
 func _on_parent_ready():
 	for child in get_parent().get_children():
 		if child != self && child is MeshInstance3D:
@@ -24,6 +34,3 @@ script = ExtResource("1_1pcia")
 material_override = ExtResource("1_kkmwj")
 mesh = ExtResource("2_1pcia")
 script = SubResource("GDScript_kkmwj")
-
-[connection signal="ready" from="." to="MeshInstance3D" method="_on_parent_ready"]
-[connection signal="tree_entered" from="." to="MeshInstance3D" method="_on_parent_ready"]
