@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dk14uy27kbnyn"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_mdws6"]
-[ext_resource type="Script" uid="uid://7bp8d3dtgh28" path="res://Scripts/UIMenus/AtlasMenu.cs" id="2_axmb2"]
+[ext_resource type="Script" uid="uid://7bp8d3dtgh28" path="res://Scenes/UIMenus/AtlasMenu.cs" id="2_axmb2"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_u6pej"]
 action = &"ui_cancel"

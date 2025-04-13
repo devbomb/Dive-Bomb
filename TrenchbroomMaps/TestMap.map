@@ -76,109 +76,109 @@
 }
 // entity 1
 {
-"classname" "Player"
+"classname" "Transport_/PlayerSpawn"
 "origin" "0 24 16"
 "LevelName" "Test Homeworld"
 }
 // entity 2
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "232 -24 16"
 }
 // entity 3
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "260 -188 16"
 }
 // entity 4
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "92 -92 -64"
 }
 // entity 5
 {
-"classname" "YellowGem"
+"classname" "Item_/YellowGem"
 "origin" "140 -140 -64"
 }
 // entity 6
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "108 -172 -64"
 }
 // entity 7
 {
-"classname" "MagentaGem"
+"classname" "Item_/MagentaGem"
 "origin" "164 -188 -64"
 }
 // entity 8
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-92 -60 -64"
 }
 // entity 9
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-92 -28 -64"
 }
 // entity 10
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-92 20 -64"
 }
 // entity 11
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "-172 -260 -64"
 }
 // entity 12
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-124 -340 -64"
 }
 // entity 13
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-156 -308 -64"
 }
 // entity 14
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "164 -4 16"
 }
 // entity 15
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "116 -4 16"
 }
 // entity 16
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "292 -100 16"
 }
 // entity 17
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "308 -196 16"
 }
 // entity 18
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "200 -40 16"
 }
 // entity 19
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "232 -72 16"
 "GemColor" "1"
 }
 // entity 20
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "296 -72 16"
 }
 // entity 21
 {
-"classname" "DeathBarrier"
+"classname" "Hazard_/DeathBarrier"
 // brush 0
 {
 ( -1568 1088 -144 ) ( -1568 -1360 -144 ) ( -1568 -1360 -160 ) __TB_empty 0 0 0 1 1
@@ -191,7 +191,7 @@
 }
 // entity 22
 {
-"classname" "StandardPortal"
+"classname" "Transport_/StandardPortal"
 "origin" "88 220 -64"
 "angles" "0 -90 0"
 "TargetMap" "res://Scenes/Maps/Levels/SeamonsterBossMap.tscn"
@@ -200,67 +200,57 @@
 }
 // entity 23
 {
-"classname" "WhirlwindTop"
-"origin" "188 156 48"
-}
-// entity 24
-{
-"classname" "WhirlwindBottom"
-"origin" "188 156 -64"
-}
-// entity 25
-{
-"classname" "StandardPortal"
+"classname" "Transport_/StandardPortal"
 "origin" "588 -88 -64"
 "angles" "0 180 0"
 "TargetMap" "res://Scenes/Maps/Levels/BrokenGlassFactory.tscn"
 "SkyboxEnvironment" "res://Environments/BrokenGlassFactory.tres"
 "Text" "Broken Glass Factory"
 }
+// entity 24
+{
+"classname" "Item_/Fairy"
+"origin" "88 8 16"
+}
+// entity 25
+{
+"classname" "Transport_/Vent"
+"origin" "-72 -8 -24"
+"angles" "0 180 0"
+"TargetVentId" "Transport_/VentB"
+"VentId" "Transport_/VentA"
+}
 // entity 26
 {
-"classname" "Fairy"
-"origin" "88 8 16"
+"classname" "Transport_/Vent"
+"origin" "360 -216 -24"
+"VentId" "Transport_/VentB"
+"TargetVentId" "Transport_/VentA"
 }
 // entity 27
 {
-"classname" "Vent"
-"origin" "-72 -8 -24"
-"angles" "0 180 0"
-"TargetVentId" "VentB"
-"VentId" "VentA"
-}
-// entity 28
-{
-"classname" "Vent"
-"origin" "360 -216 -24"
-"VentId" "VentB"
-"TargetVentId" "VentA"
-}
-// entity 29
-{
-"classname" "StandardPortal"
+"classname" "Transport_/StandardPortal"
 "origin" "120 -468 -64"
 "angles" "0 90 0"
 "TargetMap" "res://Scenes/Maps/Levels/Castle.tscn"
 "SkyboxEnvironment" "res://Environments/Castle.tres"
 "Text" "Sunset Castle"
 }
+// entity 28
+{
+"classname" "Transport_/Checkpoint"
+"origin" "16 -368 -64"
+"Transport_/CheckpointName" "Test"
+}
+// entity 29
+{
+"classname" "Transport_/Checkpoint"
+"origin" "272 -384 -64"
+"Transport_/CheckpointName" "OtherTransport_/Checkpoint"
+}
 // entity 30
 {
-"classname" "Checkpoint"
-"origin" "16 -368 -64"
-"CheckpointName" "Test"
-}
-// entity 31
-{
-"classname" "Checkpoint"
-"origin" "272 -384 -64"
-"CheckpointName" "OtherCheckpoint"
-}
-// entity 32
-{
-"classname" "StandardPortal"
+"classname" "Transport_/StandardPortal"
 "origin" "-308 -52 -64"
 "angles" "0 0 0"
 "TargetMap" "res://Scenes/Maps/Levels/DryCanyon.tscn"

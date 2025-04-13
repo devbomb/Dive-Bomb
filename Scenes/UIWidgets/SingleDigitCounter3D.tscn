@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bnlbwr8pjop0o"]
 
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="1_e0l3e"]
-[ext_resource type="Script" uid="uid://dkvd8i2y8mo22" path="res://Scripts/UIWidgets/SingleDigitCounter3D.cs" id="1_tkvxm"]
+[ext_resource type="Script" uid="uid://dkvd8i2y8mo22" path="res://Scenes/UIWidgets/SingleDigitCounter3D.cs" id="1_tkvxm"]
 [ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="3_khrkr"]
 
 [sub_resource type="TextMesh" id="TextMesh_5lnjq"]

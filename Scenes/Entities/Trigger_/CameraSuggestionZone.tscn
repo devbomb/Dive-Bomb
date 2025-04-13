@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://blc1i8274dnoe"]
+
+[ext_resource type="Script" uid="uid://g1sj4robijs3" path="res://Scenes/Entities/Trigger_/CameraSuggestionZone.cs" id="1_l0i3x"]
+
+[node name="CameraSuggestionZone" type="Area3D"]
+visible = false
+script = ExtResource("1_l0i3x")

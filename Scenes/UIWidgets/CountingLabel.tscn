@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpa1avddef2b"]
 
-[ext_resource type="Script" uid="uid://bn1okvxdu26gw" path="res://Scripts/UIWidgets/CountingLabel.cs" id="1_tt4pu"]
+[ext_resource type="Script" uid="uid://bn1okvxdu26gw" path="res://Scenes/UIWidgets/CountingLabel.cs" id="1_tt4pu"]
 [ext_resource type="PackedScene" uid="uid://d1vvq00bwo8pm" path="res://Scenes/UIWidgets/SpinningCounter3D.tscn" id="2_5rvke"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="2_ox7c8"]
 

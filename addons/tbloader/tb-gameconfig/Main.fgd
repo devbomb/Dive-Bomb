@@ -1,5 +1,6 @@
-@include "Gems.fgd"
-@include "GemContainers.fgd"
+@include "Brushes.fgd"
+@include "Transport.fgd"
+@include "Items.fgd"
 @include "Enemies.fgd"
 @include "Detail.fgd"
 
@@ -15,48 +16,7 @@
 
 @SolidClass = worldspawn : "World entity" []
 
-@SolidClass = area : "Area" []
-
-@PointClass
-	base(Angle)
-	model({
-		"path" : "TrenchbroomEntityModels/AnotherPlatformerMan.obj",
-		"scale" : 0.25
-	})
-	= Player : "Player" [
-		LevelName(string) : "Level name"
-		HomeWorldMap(string) : "Home World"
-		FlyInHeight(float) : "Fly-in height"
-		FlyInDistance(float) : "Fly-in distance"
-		FlyInDuration(float) : "Fly-in duration"
-	]
-
-@PointClass
-	base(Angle)
-	size(-8 -8 0, 8 8 24)
-	model({
-		"path" : "TrenchbroomEntityModels/Fairy.obj",
-		"scale" : 0.0625
-	})
-	= Fairy : "Fairy" []
-
-@SolidClass = DeathBarrier : "DeathBarrier" []
-@SolidClass = DrowningWater : "DrowningWater" []
-@SolidClass = NonCameraObstructingWall : "NonCameraObstructingWall" []
-@SolidClass = DivableWall : "DivableWall" []
-@SolidClass = XRayWall : "XRayWall" []
-@SolidClass = BulletproofGlassWall : "BulletproofGlassWall" []
-@SolidClass = MoltenGlassCube : "MoltenGlassCube" []
-
-@SolidClass = CameraSuggestionZone : "CameraSuggestionZone" [
-	SuggestedYawDeg(float) : "SuggestedYawDeg" : 0
-	SuggestedPitchDeg(float) : "SuggestedPitchDeg" : 0
-	SuggestedDistance(float) : "SuggestedDistance" : 6
-]
-
-@SolidClass = FixedCameraZone : "FixedCameraZone" [
-	TargetMarkerId(string) : "TargetMarkerId"
-]
+@SolidClass = area []
 
 @PointClass
 	base(Angle)
@@ -65,7 +25,7 @@
 		"path": "TrenchbroomEntityModels/WorldPortalPlaceholder.obj",
 		"scale": "1" + " " + SizeX + " " + SizeY // Model is scaled down in Blender, because Trenchbroom doesn't let me multiply
 	})
-	= WorldPortal : "WorldPortal" [
+	= WorldPortal [
 	PortalId(string) : "PortalId"
 	TargetPortalId(string) : "TargetPortalId"
 	SizeX(float) : "SizeX" : 1
@@ -74,54 +34,12 @@
 
 @PointClass
 	base(Angle)
-	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/WhirlwindBottom.obj",
-		"scale" : 0.25
-	})
-	= WhirlwindBottom : "WhirlwindBottom" []
-
-@PointClass
-	base(Angle)
-	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/WhirlwindTop.obj",
-		"scale" : 0.25
-	})
-	= WhirlwindTop : "WhirlwindTop" []
-
-@PointClass
-	base(Angle)
-	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/StandardPortalFrame.obj",
-		"scale" : 0.25
-	})
-	= StandardPortal : "StandardPortal" [
-		Text(string) : "Text" : "Level Name"
-		SkyboxEnvironment(string) : "Skybox Environment"
-		TargetMap(string) : "Target Map"
-	]
-
-@PointClass
-	base(Angle)
-	size(-4 -4 0, 4 4 8)
-	model({
-		"path" : "TrenchbroomEntityModels/ReturnHomePlatform.obj",
-		"scale" : 0.25
-	})
-	= ReturnHomePlatform : "ReturnHomePlatform" [
-		ExitHeight(float) : "Exit Height" : 15
-	]
-
-@PointClass
-	base(Angle)
 	size(-4 -4 -4, 4 4 4)
 	model({
 		"path" : "TrenchbroomEntityModels/WhirlwindTop.obj",
 		"scale" : 0.25
 	})
-	= SpotLight3D : "SpotLight3D" [
+	= SpotLight3D [
 		spot_range(float) : "Range" : 5
 		spot_attenuation(float) : "Attenuation" : 1
 		spot_angle(float) : "Angle" : 45
@@ -135,35 +53,7 @@
 		]
 	]
 
-@PointClass
-	base(Angle)
-	size(-16 -16 0, 16 16 8)
-		model({
-		"path" : "TrenchbroomEntityModels/FairyRing.obj",
-		"scale" : 0.25
-	})
-	= Checkpoint : "Checkpoint" [
-		CheckpointName(string) : "CheckpointName"
-		DebugSpawnHere(choices) : "DebugSpawnHere" : 0 =
-		[
-			0: "False"
-			1: "True"
-		]
-	]
-
-@PointClass
-	base(Angle)
-	size(-8 -8 -8, 8 8 8)
-	model({
-		"path" : "TrenchbroomEntityModels/Vent.obj",
-		"scale" : 0.25
-	})
-	= Vent : "Vent" [
-		VentId(string) : "VentId"
-		TargetVentId(string) : "TargetVentId"
-	]
-
-@PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light : "Light" [
+@PointClass size(-4 -4 -4, 4 4 4) color(255 255 0) = light [
 	range(float) : "Range" : 10
 	energy(float) : "Energy" : 1 : "The light's strengh multiplier"
 	attenuation(float) : "Attenuation" : 1 : "The drop-off curve (lower values emit more light far away)"
@@ -171,6 +61,6 @@
 	light_color(color255) : "Color" : "255 255 255"
 ]
 
-@PointClass = NamedMarker3D : "NamedMarker3D" [
+@PointClass = NamedMarker3D [
 	MarkerId(string) : "MarkerId"
 ]

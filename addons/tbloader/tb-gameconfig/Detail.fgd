@@ -1,15 +1,12 @@
 @PointClass
 	base(Angle)
 	size(-8 -8 0, 8 8 16)
-	model({
-		"path" : "TrenchbroomEntityModels/WallTorch.obj",
-		"scale" : 0.25
-	})
-	= WallTorch : "WallTorch" [
+	model("TrenchbroomEntityModels/WallTorch.obj")
+	= WallTorch [
 		energy(float)
 	]
 
-@PointClass base(Angle) = Fireplace : "Fireplace" []
+@PointClass base(Angle) = Fireplace []
 
 @PointClass
 	base(Angle)
@@ -17,9 +14,9 @@
 		"path": "TrenchbroomEntityModels/Cube.obj",
 		"scale": "" + SizeZ + " " + SizeX + " " + SizeY // Model is scaled down in Blender, because Trenchbroom doesn't let me multiply
 	})
-	= Decal : "Decal" [
-	TexturePath(string): "TexturePath" : ""
-	SizeX(float) : "SizeX" : 1
-	SizeY(float) : "SizeY" : 1
-	SizeZ(float) : "SizeZ" : 1
-]
+	= Decal [
+		TexturePath(string): "TexturePath" : ""
+		SizeX(float) : "SizeX" : 1
+		SizeY(float) : "SizeY" : 1
+		SizeZ(float) : "SizeZ" : 1
+	]

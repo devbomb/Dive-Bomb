@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cgshrb63523oq"]
 
-[ext_resource type="Script" uid="uid://cktr85700gpf0" path="res://Scripts/Objects/Projectiles/FallingAcidBlob.cs" id="1_7tjkq"]
+[ext_resource type="Script" uid="uid://cktr85700gpf0" path="res://Scenes/Objects/Projectiles/FallingAcidBlob.cs" id="1_7tjkq"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="2_kv134"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wc42"]

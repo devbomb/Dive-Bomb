@@ -2262,7 +2262,7 @@
 }
 // entity 1
 {
-"classname" "DeathBarrier"
+"classname" "Hazard_/DeathBarrier"
 // brush 0
 {
 ( -1312 -624 -368 ) ( -1312 -623 -368 ) ( -1312 -624 -367 ) __TB_empty 0 0 0 1 1
@@ -2275,53 +2275,53 @@
 }
 // entity 2
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "200 152 96"
 "GemColor" "5"
 }
 // entity 3
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "472 136 176"
 "angles" "0 90 0"
 }
 // entity 4
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "232 -88 240"
 "angles" "0 90 0"
 }
 // entity 5
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "452 12 112"
 }
 // entity 6
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "468 44 112"
 }
 // entity 7
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "320 264 208"
 "GemColor" "2"
 }
 // entity 8
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "376 280 256"
 "angles" "0 180 0"
 }
 // entity 9
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "264 280 256"
 "angles" "0 180 0"
 }
 // entity 10
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 176 100 352 ) ( 176 116 272 ) ( 176 116 352 ) Textures/Grate 0 0 0 1 1
@@ -2334,68 +2334,68 @@
 }
 // entity 11
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "204 -184 208"
 "GemColor" "2"
 }
 // entity 12
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "204 -216 208"
 "GemColor" "2"
 }
 // entity 13
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "204 -248 208"
 "GemColor" "2"
 }
 // entity 14
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "520 -88 360"
 "GemColor" "2"
 }
 // entity 15
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "524 -28 360"
 }
 // entity 16
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "556 -116 360"
 }
 // entity 17
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "288 -200 464"
 }
 // entity 18
 {
-"classname" "Checkpoint"
+"classname" "Transport_/Checkpoint"
 "origin" "400 -128 336"
 "angles" "0 90 0"
-"CheckpointName" "FloatingPlatformBridge"
+"Transport_/CheckpointName" "FloatingPlatformBridge"
 }
 // entity 19
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "400 32 336"
 }
 // entity 20
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "400 128 336"
 }
 // entity 21
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "400 224 336"
 }
 // entity 22
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 176 -32 192 ) ( 176 -31 192 ) ( 176 -32 193 ) Textures/Grate 0 0 0 1 1
@@ -2408,30 +2408,30 @@
 }
 // entity 23
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "304 -352 232"
 }
 // entity 24
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "280 -200 128"
 "angles" "0 -90 0"
 }
 // entity 25
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "280 -368 176"
 "angles" "0 -90 0"
 }
 // entity 26
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "312 -200 96"
 "GemColor" "10"
 }
 // entity 27
 {
-"classname" "XRayWall"
+"classname" "Wall_/XRayWall"
 // brush 0
 {
 ( 352 -96 320 ) ( 352 -64 192 ) ( 352 -64 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2444,7 +2444,7 @@
 }
 // entity 28
 {
-"classname" "XRayWall"
+"classname" "Wall_/XRayWall"
 // brush 0
 {
 ( 448 -64 320 ) ( 448 0 192 ) ( 448 0 320 ) Textures/BigMetalSquares 0 0 0 1 1
@@ -2457,7 +2457,7 @@
 }
 // entity 29
 {
-"classname" "XRayWall"
+"classname" "Wall_/XRayWall"
 // brush 0
 {
 ( 256 -160 32 ) ( 256 -128 32 ) ( 256 -160 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2470,124 +2470,124 @@
 }
 // entity 30
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "460 -452 48"
 }
 // entity 31
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "332 -324 48"
 }
 // entity 32
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "488 -440 48"
 "GemColor" "5"
 }
 // entity 33
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "316 -356 48"
 }
 // entity 34
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "484 -172 160"
 }
 // entity 35
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "452 -116 160"
 }
 // entity 36
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "300 -388 144"
 }
 // entity 37
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "300 -340 144"
 }
 // entity 38
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "396 -236 48"
 }
 // entity 39
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "436 -252 48"
 }
 // entity 40
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "420 -204 48"
 }
 // entity 41
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "484 -332 96"
 }
 // entity 42
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "484 -356 96"
 }
 // entity 43
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "440 40 112"
 "GemColor" "2"
 }
 // entity 44
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "204 -416 240"
 "GemColor" "5"
 }
 // entity 45
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "204 -380 240"
 }
 // entity 46
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "204 -348 240"
 }
 // entity 47
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "264 -424 336"
 "GemColor" "2"
 }
 // entity 48
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "312 -424 336"
 "GemColor" "2"
 }
 // entity 49
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "360 -424 336"
 "GemColor" "2"
 }
 // entity 50
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "424 -312 320"
 "GemColor" "2"
 }
 // entity 51
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "204 -280 208"
 }
 // entity 52
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 160 -288 288 ) ( 160 -32 192 ) ( 160 -32 288 ) Textures/Grate 0 0 0 1 1
@@ -2600,37 +2600,37 @@
 }
 // entity 53
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "544 -392 304"
 }
 // entity 54
 {
-"classname" "MagentaGem"
+"classname" "Item_/MagentaGem"
 "origin" "484 -468 304"
 }
 // entity 55
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "572 -388 304"
 }
 // entity 56
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "516 -388 304"
 }
 // entity 57
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "564 -212 336"
 }
 // entity 58
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "524 -292 320"
 }
 // entity 59
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 344 -380 284 ) ( 344 -340 228 ) ( 344 -340 284 ) Textures/Grate 0 0 0 1 1
@@ -2643,7 +2643,7 @@
 }
 // entity 60
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 318.34314575051394 -313.65685424949334 284 ) ( 324 -308 228 ) ( 324 -308 284 ) Textures/Grate 0 0 0 1 1
@@ -2656,7 +2656,7 @@
 }
 // entity 61
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 280 -312 284 ) ( 280 -304 228 ) ( 280 -304 284 ) Textures/Grate 0 0 0 1 1
@@ -2669,7 +2669,7 @@
 }
 // entity 62
 {
-"classname" "NonCameraObstructingWall"
+"classname" "Wall_/NonCameraObstructingWall"
 // brush 0
 {
 ( 344 -384 224 ) ( 344 -380 224 ) ( 344 -384 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2682,7 +2682,7 @@
 }
 // entity 63
 {
-"classname" "NonCameraObstructingWall"
+"classname" "Wall_/NonCameraObstructingWall"
 // brush 0
 {
 ( 272 -312 224 ) ( 272 -304 224 ) ( 272 -312 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2695,7 +2695,7 @@
 }
 // entity 64
 {
-"classname" "NonCameraObstructingWall"
+"classname" "Wall_/NonCameraObstructingWall"
 // brush 0
 {
 ( 342.3431457505103 -337.6568542494897 284 ) ( 344 -340 288 ) ( 344 -340 284 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2708,7 +2708,7 @@
 }
 // entity 65
 {
-"classname" "NonCameraObstructingWall"
+"classname" "Wall_/NonCameraObstructingWall"
 // brush 0
 {
 ( 316 -312 288 ) ( 316 -304 284 ) ( 316 -304 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2721,29 +2721,29 @@
 }
 // entity 66
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "112 352 448"
 "AggroRadius" "40"
 "GemColor" "10"
 }
 // entity 67
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "112 640 448"
 }
 // entity 68
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "112 544 448"
 }
 // entity 69
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "112 448 448"
 }
 // entity 70
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 160 288 432 ) ( 160 304 368 ) ( 160 304 432 ) Textures/Grate 0 0 0 1 1
@@ -2756,27 +2756,27 @@
 }
 // entity 71
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "196 596 320"
 }
 // entity 72
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "164 612 320"
 }
 // entity 73
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "324 620 368"
 }
 // entity 74
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "308 588 368"
 }
 // entity 75
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 32 320 544 ) ( 32 384 448 ) ( 32 384 544 ) Textures/Grate 0 0 0 1 1
@@ -2789,7 +2789,7 @@
 }
 // entity 76
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( 296 544 424 ) ( 296 560 400 ) ( 296 560 424 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2802,12 +2802,12 @@
 }
 // entity 77
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "308 504 392"
 }
 // entity 78
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 288 544 528 ) ( 288 544 544 ) ( 240 496 528 ) Textures/Grate 0 0 0 1 1
@@ -2820,7 +2820,7 @@
 }
 // entity 79
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "312 568 440"
 "angles" "0 90 0"
 "VentId" "SmokestackEscapeDest"
@@ -2828,14 +2828,14 @@
 }
 // entity 80
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "264 536 440"
 "angles" "0 -90 0"
 "TargetVentId" "SmokestackEscapeDest"
 }
 // entity 81
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( -448 256 688 ) ( -448 240 688 ) ( -448 240 608 ) Textures/Grate 0 -68 0 1 1
@@ -2848,7 +2848,7 @@
 }
 // entity 82
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( -448 160 544 ) ( -448 80 584 ) ( -448 80 568 ) Textures/Grate 28 -28 0 1 1
@@ -3098,7 +3098,7 @@
 }
 // entity 84
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedYawDeg" "315"
 "_tb_group" "3"
 // brush 0
@@ -3113,7 +3113,7 @@
 }
 // entity 85
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 "_tb_group" "3"
 // brush 0
 {
@@ -3127,20 +3127,20 @@
 }
 // entity 86
 {
-"classname" "ReturnHomePlatform"
+"classname" "Transport_/ReturnHomePlatform"
 "origin" "-652 4 -80"
 "ExitHeight" "71"
 "_tb_group" "3"
 }
 // entity 87
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "-648 -96 -80"
 "_tb_group" "3"
 }
 // entity 88
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 "_tb_group" "3"
 // brush 0
 {
@@ -3154,7 +3154,7 @@
 }
 // entity 89
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( -448 192 688 ) ( -448 200 578.6666666666665 ) ( -448 216 584 ) Textures/Grate 0 0 0 1 1
@@ -3167,37 +3167,37 @@
 }
 // entity 90
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-200 352 448"
 "angles" "0 90 0"
 }
 // entity 91
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-136 352 424"
 "angles" "0 90 0"
 }
 // entity 92
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-264 352 480"
 "angles" "0 90 0"
 }
 // entity 93
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-344 352 512"
 "angles" "0 90 0"
 }
 // entity 94
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-360 352 568"
 "angles" "0 -90 0"
 }
 // entity 95
 {
-"classname" "BulletproofGlassWall"
+"classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
 ( -448 272 720 ) ( -448 400 704 ) ( -448 400 720 ) Textures/Grate 0 0 0 1 1
@@ -3210,7 +3210,7 @@
 }
 // entity 96
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "-416 408 752"
 "angles" "0 -90 0"
 "TargetVentId" "VortexEscapeSource"
@@ -3218,7 +3218,7 @@
 }
 // entity 97
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "-344 -72 48"
 "angles" "0 180 0"
 "TargetVentId" "VortexEscapeDest"
@@ -3226,7 +3226,7 @@
 }
 // entity 98
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedYawDeg" "180"
 "SuggestedPitchDeg" "-45"
 // brush 0
@@ -3241,142 +3241,142 @@
 }
 // entity 99
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "144 272 576"
 "GemColor" "2"
 }
 // entity 100
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "184 272 576"
 "GemColor" "2"
 }
 // entity 101
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "224 272 576"
 "GemColor" "2"
 }
 // entity 102
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "284 268 560"
 }
 // entity 103
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "308 244 560"
 }
 // entity 104
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "164 236 560"
 }
 // entity 105
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "204 236 560"
 }
 // entity 106
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "48 240 560"
 }
 // entity 107
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "48 272 560"
 }
 // entity 108
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-228 352 672"
 }
 // entity 109
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-156 352 648"
 }
 // entity 110
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-300 352 696"
 }
 // entity 111
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-460 60 -48"
 }
 // entity 112
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-412 60 -24"
 }
 // entity 113
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-348 -76 0"
 }
 // entity 114
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "-604 36 -80"
 }
 // entity 115
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "-604 -28 -80"
 }
 // entity 116
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-564 -100 -96"
 }
 // entity 117
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-524 -92 -112"
 }
 // entity 118
 {
-"classname" "YellowGem"
+"classname" "Item_/YellowGem"
 "origin" "-572 4 -80"
 }
 // entity 119
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-636 -80 -80"
 }
 // entity 120
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-664 -112 -80"
 }
 // entity 121
 {
-"classname" "Checkpoint"
+"classname" "Transport_/Checkpoint"
 "origin" "-416 240 720"
-"CheckpointName" "Rooftops"
+"Transport_/CheckpointName" "Rooftops"
 "angles" "0 0 0"
 }
 // entity 122
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-176 352 472"
 }
 // entity 123
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-240 352 504"
 }
 // entity 124
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-320 352 536"
 }
 // entity 125
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 // brush 0
 {
 ( 320 288 464 ) ( 320 304 352 ) ( 320 304 464 ) Textures/Grate 0 0 0 1 1
@@ -3393,7 +3393,7 @@
 }
 // entity 126
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedYawDeg" "180"
 // brush 0
 {
@@ -3570,7 +3570,7 @@
 }
 // entity 128
 {
-"classname" "Player"
+"classname" "Transport_/PlayerSpawn"
 "origin" "-152 -264 144"
 "LevelName" "Broken Glass Factory"
 "angles" "0 90 0"
@@ -3582,7 +3582,7 @@
 }
 // entity 129
 {
-"classname" "DivableWall"
+"classname" "Wall_/DivableWall"
 "HomeWorldMap" "res://Scenes/Maps/Levels/TestMap.tscn"
 "FlyInDuration" "6"
 "FlyInHeight" "90"
@@ -3600,172 +3600,172 @@
 }
 // entity 130
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "284 -244 464"
 }
 // entity 131
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "284 -164 464"
 }
 // entity 132
 {
-"classname" "MagentaGem"
+"classname" "Item_/MagentaGem"
 "origin" "316 -212 464"
 }
 // entity 133
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "324 532 392"
 }
 // entity 134
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "292 476 392"
 }
 // entity 135
 {
-"classname" "MagentaGem"
+"classname" "Item_/MagentaGem"
 "origin" "284 516 392"
 }
 // entity 136
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "260 532 392"
 }
 // entity 137
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "260 492 392"
 }
 // entity 138
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "196 460 272"
 }
 // entity 139
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "212 428 272"
 }
 // entity 140
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "132 484 288"
 }
 // entity 141
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "396 612 400"
 }
 // entity 142
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "420 620 400"
 }
 // entity 143
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "212 748 448"
 }
 // entity 144
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "148 780 448"
 }
 // entity 145
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "396 740 416"
 }
 // entity 146
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "436 252 192"
 }
 // entity 147
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "228 -68 336"
 }
 // entity 148
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "196 -60 336"
 }
 // entity 149
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "212 -252 416"
 }
 // entity 150
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "180 -108 368"
 }
 // entity 151
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "100 -36 32"
 }
 // entity 152
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "132 12 32"
 }
 // entity 153
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "388 76 80"
 }
 // entity 154
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "388 116 80"
 }
 // entity 155
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-164 4 48"
 }
 // entity 156
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-132 -12 48"
 }
 // entity 157
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-436 308 592"
 }
 // entity 158
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-412 348 592"
 }
 // entity 159
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "196 180 240"
 }
 // entity 160
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "212 212 240"
 }
 // entity 161
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "332 -364 224"
 }
 // entity 162
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "444 -108 336"
 }
 // entity 163
 {
-"classname" "XRayWall"
+"classname" "Wall_/XRayWall"
 // brush 0
 {
 ( 224 448 256 ) ( 224 560 256 ) ( 224 448 528 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -3789,7 +3789,7 @@
 }
 // entity 164
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedYawDeg" "225"
 // brush 0
 {
@@ -3803,7 +3803,7 @@
 }
 // entity 165
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( 244 48 32 ) ( 244 192 16 ) ( 244 192 32 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3816,7 +3816,7 @@
 }
 // entity 166
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( 288 64 158 ) ( 288 96 30 ) ( 288 96 158 ) Textures/MoltenGlass 48 -16 0 1 1
@@ -3829,7 +3829,7 @@
 }
 // entity 167
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( 288 64 400 ) ( 288 96 288 ) ( 288 96 400 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3891,7 +3891,7 @@
 }
 // entity 169
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( -384 304 384 ) ( -384 305 384 ) ( -384 304 385 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3904,7 +3904,7 @@
 }
 // entity 170
 {
-"classname" "MoltenGlassCube"
+"classname" "Hazard_/MoltenGlassCube"
 // brush 0
 {
 ( -240 304 400 ) ( -240 400 384 ) ( -240 400 400 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3917,7 +3917,7 @@
 }
 // entity 171
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "176 -408 284"
 "angles" "0 0 0"
 "TargetVentId" "SkipWallJumpDest"
@@ -3925,7 +3925,7 @@
 }
 // entity 172
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "264 -280 360"
 "angles" "0 270 0"
 "TargetVentId" "SkipWallJumpSrc"
@@ -3950,7 +3950,7 @@
 }
 // entity 174
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedPitchDeg" "-20"
 "_tb_layer" "2"
 // brush 0

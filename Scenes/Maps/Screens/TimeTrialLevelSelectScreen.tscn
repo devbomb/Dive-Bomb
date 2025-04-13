@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpeq0las3r0em"]
 
-[ext_resource type="Script" uid="uid://b6m01emp38ojc" path="res://Scripts/UIMenus/TimeTrialLevelSelectMenu.cs" id="1_ltvyt"]
+[ext_resource type="Script" uid="uid://b6m01emp38ojc" path="res://Scenes/Maps/Screens/TimeTrialLevelSelectMenu.cs" id="1_ltvyt"]
 [ext_resource type="Script" uid="uid://chudgtyjw2v1a" path="res://Scripts/UIWidgets/PageNavigator.cs" id="1_rr5nf"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_v3sch"]
 [ext_resource type="Script" uid="uid://la5dtjohmevd" path="res://Scripts/UIWidgets/Page.cs" id="2_555xp"]

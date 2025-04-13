@@ -1,0 +1,62 @@
+@PointClass
+	base(Angle)
+	model("TrenchbroomEntityModels/KennifiedPlayerModel.obj")
+	= Transport_/PlayerSpawn [
+		LevelName(string) : "Level name"
+		HomeWorldMap(string) : "Home World"
+		FlyInHeight(float) : "Fly-in height"
+		FlyInDistance(float) : "Fly-in distance"
+		FlyInDuration(float) : "Fly-in duration"
+	]
+
+@PointClass
+	base(Angle)
+	size(-16 -16 0, 16 16 8)
+		model({
+		"path" : "TrenchbroomEntityModels/FairyRing.obj",
+		"scale" : 0.25
+	})
+	= Transport_/Checkpoint [
+		CheckpointName(string) : "CheckpointName"
+		DebugSpawnHere(choices) : "DebugSpawnHere" : 0 =
+		[
+			0: "False"
+			1: "True"
+		]
+	]
+
+@PointClass
+	base(Angle)
+	size(-8 -8 -8, 8 8 8)
+	model({
+		"path" : "TrenchbroomEntityModels/Vent.obj",
+		"scale" : 0.25
+	})
+	= Transport_/Vent [
+		VentId(string) : "VentId"
+		TargetVentId(string) : "TargetVentId"
+	]
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/ReturnHomePlatform.obj",
+		"scale" : 0.25
+	})
+	= Transport_/ReturnHomePlatform [
+		ExitHeight(float) : "Exit Height" : 15
+	]
+
+@PointClass
+	base(Angle)
+	size(-4 -4 0, 4 4 8)
+	model({
+		"path" : "TrenchbroomEntityModels/StandardPortalFrame.obj",
+		"scale" : 0.25
+	})
+	= Transport_/StandardPortal [
+		Text(string) : "Text" : "Level Name"
+		SkyboxEnvironment(string) : "Skybox Environment"
+		TargetMap(string) : "Target Map"
+	]

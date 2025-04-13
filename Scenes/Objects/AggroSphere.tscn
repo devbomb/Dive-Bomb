@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbmm36axet2jq"]
 
-[ext_resource type="Script" uid="uid://dr6076quuwgul" path="res://Scripts/Objects/AggroSphere.cs" id="1_lx276"]
+[ext_resource type="Script" uid="uid://dr6076quuwgul" path="res://Scenes/Objects/AggroSphere.cs" id="1_lx276"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t27k1"]
 radius = 1.0

@@ -1165,7 +1165,7 @@
 }
 // entity 1
 {
-"classname" "Player"
+"classname" "Transport_/PlayerSpawn"
 "origin" "0 112 0"
 "angles" "0 90 0"
 "FlyInHeight" "80"
@@ -1174,36 +1174,36 @@
 }
 // entity 2
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "24 808 128"
 "energy" "1"
 }
 // entity 3
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-408 808 288"
 }
 // entity 4
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "472 888 128"
 "angles" "0 90 0"
 }
 // entity 5
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-80 760 80"
 "angles" "0 -180 0"
 }
 // entity 6
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "80 760 80"
 "angles" "0 -180 0"
 }
 // entity 7
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-256 1016 160"
 }
 // entity 8
@@ -1613,14 +1613,14 @@
 }
 // entity 11
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "0 2064 448"
 "angles" "0 90 0"
 "_tb_group" "1"
 }
 // entity 12
 {
-"classname" "Decal"
+"classname" "Detail_/Decal"
 "origin" "0 2070.93 448"
 "SizeX" "5"
 "SizeY" "0.25"
@@ -1631,69 +1631,69 @@
 }
 // entity 13
 {
-"classname" "YellowGem"
+"classname" "Item_/YellowGem"
 "origin" "12 2164 448"
 "_tb_group" "1"
 }
 // entity 14
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "52 2196 448"
 "_tb_group" "1"
 }
 // entity 15
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "-52 2196 448"
 "_tb_group" "1"
 }
 // entity 16
 {
-"classname" "YellowGem"
+"classname" "Item_/YellowGem"
 "origin" "-12 2164 448"
 "_tb_group" "1"
 }
 // entity 17
 {
-"classname" "ReturnHomePlatform"
+"classname" "Transport_/ReturnHomePlatform"
 "origin" "0 2240 448"
 "ExitHeight" "30"
 "_tb_group" "1"
 }
 // entity 18
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-88 880 144"
 "angles" "0 -90 0"
 }
 // entity 19
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-200 808 224"
 }
 // entity 20
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "400 1464 224"
 "angles" "0 180 0"
 }
 // entity 21
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-280 1504 128"
 "angles" "0 -90 0"
 }
 // entity 22
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "0 312 -104"
 "angles" "0 -90 0"
-"TargetVentId" "FireplaceVent"
-"VentId" "MoatVent"
+"TargetVentId" "Detail_/FireplaceTransport_/Vent"
+"VentId" "MoatTransport_/Vent"
 }
 // entity 23
 {
-"classname" "DrowningWater"
+"classname" "Hazard_/DrowningWater"
 // brush 0
 {
 ( -576 32 -192 ) ( -576 33 -192 ) ( -576 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1
@@ -1706,403 +1706,403 @@
 }
 // entity 24
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "152 1376 112"
 }
 // entity 25
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "148 1316 112"
 }
 // entity 26
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "148 1436 112"
 }
 // entity 27
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-236 1324 48"
 }
 // entity 28
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-236 1292 64"
 }
 // entity 29
 {
-"classname" "MagentaGem"
+"classname" "Item_/MagentaGem"
 "origin" "164 1412 112"
 }
 // entity 30
 {
-"classname" "MagentaGem"
+"classname" "Item_/MagentaGem"
 "origin" "164 1340 112"
 }
 // entity 31
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-72 1304 32"
 "GemColor" "2"
 }
 // entity 32
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-24 1304 32"
 "GemColor" "2"
 }
 // entity 33
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "0 104 -160"
 }
 // entity 34
 {
-"classname" "YellowGem"
+"classname" "Item_/YellowGem"
 "origin" "-68 124 -160"
 }
 // entity 35
 {
-"classname" "YellowGem"
+"classname" "Item_/YellowGem"
 "origin" "68 124 -160"
 }
 // entity 36
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "4 228 -160"
 }
 // entity 37
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "-4 180 -160"
 }
 // entity 38
 {
-"classname" "MagentaGem"
+"classname" "Item_/MagentaGem"
 "origin" "0 68 -160"
 }
 // entity 39
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-56 296 -160"
 "GemColor" "2"
 }
 // entity 40
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "56 296 -160"
 "GemColor" "2"
 }
 // entity 41
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-584 1644 144"
 }
 // entity 42
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "232 912 48"
 }
 // entity 43
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "228 868 48"
 }
 // entity 44
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-24 296 0"
 }
 // entity 45
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "24 296 0"
 }
 // entity 46
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "508 516 0"
 }
 // entity 47
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "508 612 0"
 }
 // entity 48
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "324 412 0"
 }
 // entity 49
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "296 584 0"
 }
 // entity 50
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "296 520 0"
 }
 // entity 51
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "376 520 64"
 "GemColor" "5"
 }
 // entity 52
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "376 600 64"
 "GemColor" "5"
 }
 // entity 53
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "372 476 64"
 }
 // entity 54
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "372 628 64"
 }
 // entity 55
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "372 560 64"
 }
 // entity 56
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "40 936 32"
 }
 // entity 57
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "88 936 32"
 }
 // entity 58
 {
-"classname" "YellowGem"
+"classname" "Item_/YellowGem"
 "origin" "-244 596 96"
 }
 // entity 59
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-212 628 96"
 }
 // entity 60
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-228 500 16"
 }
 // entity 61
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "-296 632 0"
 "GemColor" "2"
 }
 // entity 62
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "-296 600 0"
 "GemColor" "2"
 }
 // entity 63
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-184 616 0"
 }
 // entity 64
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "324 708 0"
 }
 // entity 65
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "260 724 0"
 }
 // entity 66
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "180 700 0"
 }
 // entity 67
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "244 412 0"
 }
 // entity 68
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "452 428 0"
 }
 // entity 69
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "336 1048 64"
 }
 // entity 70
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "336 1112 64"
 }
 // entity 71
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "468 1236 56"
 }
 // entity 72
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "468 1180 56"
 }
 // entity 73
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "324 1452 32"
 }
 // entity 74
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "324 1420 32"
 }
 // entity 75
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "448 824 112"
 }
 // entity 76
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-172 932 216"
 }
 // entity 77
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "-204 844 176"
 }
 // entity 78
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "-368 920 176"
 "GemColor" "2"
 }
 // entity 79
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-184 1048 112"
 }
 // entity 80
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-264 1048 112"
 }
 // entity 81
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "184 840 352"
 "GemColor" "5"
 }
 // entity 82
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "104 840 352"
 "GemColor" "5"
 }
 // entity 83
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "396 1076 352"
 }
 // entity 84
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "396 996 352"
 }
 // entity 85
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "348 916 352"
 }
 // entity 86
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "400 1320 32"
 "angles" "0 -90 0"
 "GemColor" "2"
 }
 // entity 87
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-120 600 0"
 }
 // entity 88
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "480 536 0"
 }
 // entity 89
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-344 1144 112"
 "angles" "0 90 0"
 "GemColor" "2"
 }
 // entity 90
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-312 840 176"
 "angles" "0 90 0"
 "GemColor" "2"
 }
 // entity 91
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-8 928 432"
 "angles" "0 -90 0"
 }
 // entity 92
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-472 1160 352"
 "angles" "0 -90 0"
 "GemColor" "2"
 }
 // entity 93
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-392 1160 352"
 "angles" "0 -90 0"
 "GemColor" "2"
 }
 // entity 94
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-116 1652 352"
 }
 // entity 95
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-140 1604 352"
 }
 // entity 96
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-16 1408 352"
 "angles" "0 180 0"
 "GemColor" "5"
 }
 // entity 97
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "0 1816 448"
 "angles" "0 -90 0"
 "GemColor" "10"
 }
 // entity 98
 {
-"classname" "DeathBarrier"
+"classname" "Hazard_/DeathBarrier"
 // brush 0
 {
 ( -1824 32 -192 ) ( -1824 320 -832 ) ( -1824 320 -192 ) __TB_empty 0 0 0 1 1
@@ -2231,65 +2231,65 @@
 }
 // entity 100
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "852 1588 32"
 "_tb_group" "4"
 }
 // entity 101
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "852 1684 32"
 "_tb_group" "4"
 }
 // entity 102
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "792 1592 32"
 "GemColor" "5"
 "_tb_group" "4"
 }
 // entity 103
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "840 1352 80"
 "GemColor" "5"
 "_tb_group" "4"
 }
 // entity 104
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "852 1636 32"
 "_tb_group" "4"
 }
 // entity 105
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "788 1260 32"
 "_tb_group" "4"
 }
 // entity 106
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "788 1212 32"
 "_tb_group" "4"
 }
 // entity 107
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "840 1304 80"
 "GemColor" "5"
 "_tb_group" "4"
 }
 // entity 108
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "712 1160 80"
 "GemColor" "2"
 "_tb_group" "4"
 }
 // entity 109
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "776 1160 80"
 "GemColor" "2"
 "_tb_group" "4"
@@ -2464,35 +2464,35 @@
 }
 // entity 111
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "-152 1760 48"
 "GemColor" "2"
 "_tb_group" "5"
 }
 // entity 112
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "56 1760 48"
 "GemColor" "2"
 "_tb_group" "5"
 }
 // entity 113
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "136 1760 48"
 "GemColor" "2"
 "_tb_group" "5"
 }
 // entity 114
 {
-"classname" "Vase"
+"classname" "Item_/Vase"
 "origin" "-72 1760 48"
 "GemColor" "2"
 "_tb_group" "5"
 }
 // entity 115
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "8 1624 32"
 "angles" "0 90 0"
 "AggroRadius" "40"
@@ -2501,7 +2501,7 @@
 }
 // entity 116
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-88 1896 32"
 "angles" "0 -90 0"
 "AggroRadius" "80"
@@ -2510,7 +2510,7 @@
 }
 // entity 117
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "104 1624 32"
 "angles" "0 90 0"
 "AggroRadius" "40"
@@ -2519,7 +2519,7 @@
 }
 // entity 118
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-88 1624 32"
 "angles" "0 90 0"
 "AggroRadius" "40"
@@ -2528,7 +2528,7 @@
 }
 // entity 119
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "104 1896 32"
 "angles" "0 -90 0"
 "AggroRadius" "80"
@@ -2537,7 +2537,7 @@
 }
 // entity 120
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "8 1896 32"
 "angles" "0 -90 0"
 "AggroRadius" "80"
@@ -2548,7 +2548,7 @@
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
-"_tb_name" "Fireplace"
+"_tb_name" "Detail_/Fireplace"
 "_tb_id" "6"
 "_tb_linked_group_id" "{d1555568-8e4c-40d5-b0ab-e7cc1947a5e0}"
 // brush 0
@@ -2857,152 +2857,152 @@
 }
 // entity 122
 {
-"classname" "PurpleGem"
+"classname" "Item_/PurpleGem"
 "origin" "-532 1892 80"
 "_tb_group" "6"
 }
 // entity 123
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-444 1892 80"
 "_tb_group" "6"
 }
 // entity 124
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-552 1688 80"
 "angles" "0 -90 0"
 "_tb_group" "6"
 }
 // entity 125
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-476 1628 32"
 "_tb_group" "6"
 }
 // entity 126
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-500 1588 32"
 "_tb_group" "6"
 }
 // entity 127
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-480 1552 32"
 "_tb_group" "6"
 }
 // entity 128
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-488 1512 160"
 "_tb_group" "6"
 }
 // entity 129
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-456 1496 72"
 "_tb_group" "6"
 }
 // entity 130
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-584 1764 144"
 "_tb_group" "6"
 }
 // entity 131
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-584 1892 144"
 "_tb_group" "6"
 }
 // entity 132
 {
-"classname" "Vent"
+"classname" "Transport_/Vent"
 "origin" "-488 1496 72"
 "angles" "0 90 0"
-"TargetVentId" "MoatVent"
-"VentId" "FireplaceVent"
+"TargetVentId" "MoatTransport_/Vent"
+"VentId" "Detail_/FireplaceTransport_/Vent"
 "_tb_group" "6"
 }
 // entity 133
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-476 1924 80"
 "_tb_group" "6"
 }
 // entity 134
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-520 1512 160"
 "_tb_group" "6"
 }
 // entity 135
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-520 1496 72"
 "_tb_group" "6"
 }
 // entity 136
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-544 1968 112"
 "GemColor" "2"
 "_tb_group" "6"
 }
 // entity 137
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-432 1968 112"
 "GemColor" "2"
 "_tb_group" "6"
 }
 // entity 138
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-488 1976 160"
 "angles" "0 180 0"
 "_tb_group" "6"
 }
 // entity 139
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-500 1924 80"
 "_tb_group" "6"
 }
 // entity 140
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-488 1520 32"
 "_tb_group" "6"
 }
 // entity 141
 {
-"classname" "Basket"
+"classname" "Item_/Basket"
 "origin" "-456 1512 160"
 "_tb_group" "6"
 }
 // entity 142
 {
-"classname" "Fireplace"
+"classname" "Detail_/Fireplace"
 "origin" "-584 1752 40"
 "_tb_group" "6"
 }
 // entity 143
 {
-"classname" "Fireplace"
+"classname" "Detail_/Fireplace"
 "origin" "-584 1768 40"
 "_tb_group" "6"
 }
 // entity 144
 {
-"classname" "Fireplace"
+"classname" "Detail_/Fireplace"
 "origin" "-584 1736 40"
 "_tb_group" "6"
 }
 // entity 145
 {
-"classname" "Fireplace"
+"classname" "Detail_/Fireplace"
 "origin" "-584 1784 40"
 "_tb_group" "6"
 }
@@ -3374,25 +3374,25 @@
 }
 // entity 147
 {
-"classname" "Fairy"
+"classname" "Item_/Fairy"
 "origin" "-168 1224 576"
 "_tb_group" "7"
 }
 // entity 148
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-188 1268 576"
 "_tb_group" "7"
 }
 // entity 149
 {
-"classname" "RedGem"
+"classname" "Item_/RedGem"
 "origin" "-204 1180 576"
 "_tb_group" "7"
 }
 // entity 150
 {
-"classname" "CameraSuggestionZone"
+"classname" "Trigger_/CameraSuggestionZone"
 "SuggestedDistance" "12"
 "SuggestedYawDeg" "180"
 "_tb_group" "7"
@@ -3408,34 +3408,34 @@
 }
 // entity 151
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "-200 1144 256"
 "angles" "0 -90 0"
 "_tb_group" "7"
 }
 // entity 152
 {
-"classname" "EnemyHandCannoner"
+"classname" "Enemy_/EnemyHandCannoner"
 "origin" "120 1152 304"
 "angles" "0 180 0"
 "_tb_group" "7"
 }
 // entity 153
 {
-"classname" "WallTorch"
+"classname" "Detail_/WallTorch"
 "origin" "-136 1000 272"
 "angles" "0 90 0"
 "_tb_group" "7"
 }
 // entity 154
 {
-"classname" "GreenGem"
+"classname" "Item_/GreenGem"
 "origin" "-204 996 256"
 "_tb_group" "7"
 }
 // entity 155
 {
-"classname" "DrowningWater"
+"classname" "Hazard_/DrowningWater"
 // brush 0
 {
 ( 128 32 -192 ) ( 128 33 -192 ) ( 128 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1
@@ -3448,8 +3448,8 @@
 }
 // entity 156
 {
-"classname" "Checkpoint"
+"classname" "Transport_/Checkpoint"
 "origin" "-224 1488 32"
 "angles" "0 -90 0"
-"CheckpointName" "DiningRoom"
+"Transport_/CheckpointName" "DiningRoom"
 }

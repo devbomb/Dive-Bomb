@@ -1,0 +1,176 @@
+[gd_scene load_steps=17 format=3 uid="uid://c26712jp7rfwp"]
+
+[ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Scenes/Objects/Player/Player.cs" id="1_a4opu"]
+[ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/Player/LedgeDetector.tscn" id="2_0esln"]
+[ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://AnimationLibraries/KennifiedPlayerAnimations.tres" id="2_dijyt"]
+[ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Scenes/Objects/Player/TimeTrialManager.tscn" id="2_eu73y"]
+[ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="3_fw7ex"]
+[ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Scenes/Objects/Player/PlayerCamera.tscn" id="4_ne5gw"]
+[ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
+[ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="9_vmh20"]
+[ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Scenes/Objects/Player/GemGravityGloves.tscn" id="10_dedpk"]
+
+[sub_resource type="GDScript" id="GDScript_cpnxc"]
+script/source = "extends Node
+
+var _startY : float = 0
+var _maxHeight : float = 0
+var _printedMaxHeight : bool = false
+
+func _physics_process(delta):
+    var player : CharacterBody3D = get_parent()
+    
+    if (player.is_on_floor()):
+        _startY = player.global_position.y
+        _maxHeight = 0
+        _printedMaxHeight = false
+        return
+    
+    var height : float = player.global_position.y - _startY
+
+    if (height >= _maxHeight):
+        _maxHeight = height
+    elif (!_printedMaxHeight):
+        _printedMaxHeight = true
+        print(_maxHeight)
+        
+"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1rf0g"]
+height = 1.5
+radius = 1.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uxvrm"]
+radius = 1.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtu1o"]
+height = 1.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8oevv"]
+size = Vector3(1, 2, 1)
+
+[node name="Player" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
+script = ExtResource("1_a4opu")
+
+[node name="TimeTrialManager" parent="." instance=ExtResource("2_eu73y")]
+
+[node name="MaxJumpHeightPrinter" type="Node" parent="."]
+script = SubResource("GDScript_cpnxc")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+deterministic = true
+root_node = NodePath("../Model")
+libraries = {
+&"": ExtResource("2_dijyt")
+}
+playback_default_blend_time = 0.1
+
+[node name="Model" parent="." instance=ExtResource("3_fw7ex")]
+unique_name_in_owner = true
+
+[node name="FairyKissPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.09052e-08, 0.618845, -0.412131)
+
+[node name="FairyKissCamRightPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 1.124, -0.364)
+
+[node name="FairyKissCamLeftPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 1.124, -0.364)
+
+[node name="KickHitbox" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KickHitbox"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.26022e-08, 0.381694, -0.182095)
+shape = SubResource("CylinderShape3D_1rf0g")
+
+[node name="DiveExtraHitbox" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiveExtraHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_uxvrm")
+
+[node name="RollExtraHitbox" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollExtraHitbox"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_rtu1o")
+
+[node name="Camera" parent="." node_paths=PackedStringArray("FollowTarget") instance=ExtResource("4_ne5gw")]
+unique_name_in_owner = true
+FollowTarget = NodePath("../CameraFocus")
+
+[node name="CameraFocus" type="Marker3D" parent="." groups=["PhysicsInterpolated"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+top_level = true
+
+[node name="CameraFocusRestPos" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="BodyShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_b8til")
+
+[node name="LedgeDetector" parent="." instance=ExtResource("2_0esln")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45037, 0)
+visible = false
+
+[node name="LedgeGrabPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.387, -0.492)
+
+[node name="ReferenceLedge" type="MeshInstance3D" parent="LedgeGrabPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.5)
+visible = false
+mesh = SubResource("BoxMesh_8oevv")
+skeleton = NodePath("../..")
+
+[node name="MinLedgeGrabHeight" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25565, 0)
+
+[node name="BlobShadow" parent="." node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("9_vmh20")]
+ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
+
+[node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
+mouse_filter = 2
+
+[node name="LeftHandBone" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.0741337, -0.991472, -0.107182, 0.0655877, -0.102398, 0.992579, -0.995088, -0.0806132, 0.0574373, -0.295978, 0.869362, -0.0156669)
+bone_name = "Hand_L"
+bone_idx = 10
+use_external_skeleton = true
+external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D")
+
+[node name="LeftHandPoint" type="Marker3D" parent="LeftHandBone"]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
+
+[node name="RightHandBone" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.0741337, 0.991472, 0.107182, -0.0655877, -0.102398, 0.992579, 0.995088, -0.0806132, 0.0574373, 0.295978, 0.869362, -0.0156669)
+bone_name = "Hand_R"
+bone_idx = 19
+use_external_skeleton = true
+external_skeleton = NodePath("../Model/KennifiedPlayerModel/Armature/Skeleton3D")
+
+[node name="RightHandPoint" type="Marker3D" parent="RightHandBone"]
+unique_name_in_owner = true
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
+
+[node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint") instance=ExtResource("10_dedpk")]
+LeftHandPoint = NodePath("../LeftHandBone/LeftHandPoint")
+RightHandPoint = NodePath("../RightHandBone/RightHandPoint")

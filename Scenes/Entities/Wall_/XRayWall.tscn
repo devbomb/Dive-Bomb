@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://duaxv01wdol62"]
+
+[ext_resource type="Script" uid="uid://u706mf64s5ag" path="res://Scenes/Entities/Wall_/XRayWall.cs" id="1_wdluk"]
+
+[node name="XRayWall" type="StaticBody3D"]
+script = ExtResource("1_wdluk")
+
+[node name="RayCast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+visible = false
+exclude_parent = false
+hit_from_inside = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
