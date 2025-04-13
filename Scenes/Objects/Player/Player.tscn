@@ -74,7 +74,8 @@ playback_default_blend_time = 0.1
 [node name="Model" parent="." instance=ExtResource("3_fw7ex")]
 unique_name_in_owner = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+[node name="AnimatorSoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 bus = &"Sfx"
 
 [node name="RollSoundPlayer" type="AudioStreamPlayer" parent="."]

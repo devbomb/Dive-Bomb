@@ -105,6 +105,10 @@ libraries = {
 &"": ExtResource("7_x6xbq")
 }
 
+[node name="AnimatorSoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Sfx"
+
 [node name="PlayerModel" parent="." instance=ExtResource("8_hsd4c")]
 unique_name_in_owner = true
 
