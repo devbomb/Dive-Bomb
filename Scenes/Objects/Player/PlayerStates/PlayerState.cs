@@ -23,7 +23,7 @@ namespace FastDragon
         protected Vector3 LeftStick3D()
         {
             Vector2 leftStick2D = InputService.LeftStick;
-            Vector3 cameraRot = _player.Camera.Rotation;
+            Vector3 cameraRot = GetViewport().GetCamera3D().GlobalRotation;
 
             Vector3 unrotated =
                 (Vector3.Right * leftStick2D.X) +
