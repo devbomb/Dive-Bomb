@@ -275,7 +275,6 @@ namespace FastDragon
             {
                 _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Kiss", 0.3f);
-                _fairy.Animator.Queue("FlyAway");
             }
 
             public override void OnStateExited()
@@ -293,7 +292,7 @@ namespace FastDragon
 
         private partial class RestoringCamera : FairyState
         {
-            private const float Duration = 0.5f;
+            private const float Duration = 0.75f;
             private float _timer;
             private Transform3D _start;
 
@@ -301,6 +300,7 @@ namespace FastDragon
             {
                 _timer = 0;
                 _start = _fairy.CutsceneCam.GlobalTransform;
+                _fairy.Animator.Play("FlyAwayHigh");
             }
 
             public override void OnStateExited()
@@ -313,6 +313,8 @@ namespace FastDragon
                 _timer += (float)deltaD;
 
                 float t = _timer / Duration;
+                t = Mathf.SmoothStep(0, 1, t);
+
                 var end = _fairy.Player.Camera.GlobalTransform;
                 _fairy.CutsceneCam.GlobalTransform = _start.InterpolateWith(end, t);
 
