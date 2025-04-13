@@ -116,10 +116,12 @@ namespace FastDragon
 
         private partial class Shattering : FairyState
         {
-            private const float Duration = 1.7f;
+            private const float TimeScale = 0.5f;
 
-            private static float PlayerJumpSpeed => Player.Jump.InitVSpeed / 4;
-            private static float PlayerGravity => Player.Jump.ShortHopGravity / 8;
+            private static float PlayerJumpSpeed => Player.Jump.InitVSpeed;
+            private static float PlayerGravity => Player.Jump.ShortHopGravity;
+
+            private Player _player => _fairy.Player;
 
             private bool _playerLanded;
             private float _timer;
@@ -137,7 +139,8 @@ namespace FastDragon
                 // Hijack control of the player.  We're going to manipulate them
                 // for the cutscene.
                 _fairy.Player.ChangeState<PlayerManhandledState>();
-                _fairy.Player.Velocity = Vector3.Up * PlayerJumpSpeed;
+                _player.Velocity = Vector3.Up * PlayerJumpSpeed;
+                _player.Velocity += _player.GlobalForward() * -1;
                 _playerLanded = false;
 
                 // Krrsssh!!!  Shatter the glass!
@@ -145,12 +148,13 @@ namespace FastDragon
                 _fairy.GlassParticles.Emitting = true;
                 _fairy.Animator.Play("Shatter");
 
-                _timer = Duration;
+                Engine.TimeScale = TimeScale;
             }
 
             public override void OnStateExited()
             {
                 _fairy.SetPausedForCutscene(false);
+                Engine.TimeScale = 1;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -161,19 +165,21 @@ namespace FastDragon
 
                 ApplyGravityToPlayer(delta);
 
-                if (_playerLanded && _timer >= Duration)
+                if (_playerLanded && !_player.Animator.IsPlaying())
                     ChangeState<FlyingToPlayer>();
             }
 
             private void ApplyGravityToPlayer(float delta)
             {
-                _fairy.Player.Velocity += Vector3.Down * PlayerGravity * delta;
-                _fairy.Player.MoveAndSlide();
+                _player.Velocity += Vector3.Down * PlayerGravity * delta;
+                _player.MoveAndSlide();
 
-                if (_fairy.Player.IsOnFloor() && !_playerLanded)
+                if (_player.IsOnFloor() && !_playerLanded)
                 {
                     _playerLanded = true;
-                    _fairy.Player.Animator.Play("Idle");
+                    _player.Velocity = Vector3.Zero;
+                    Engine.TimeScale = 1;
+                    _player.Animator.PlaySection("ParachuteLand", endTime: 0.75f);
                 }
             }
         }
@@ -190,6 +196,7 @@ namespace FastDragon
             {
                 _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Hovering", 0.1f);
+                _fairy.Player.Animator.Play("Idle");
 
                 _start = _fairy.Model.GlobalTransform;
 
