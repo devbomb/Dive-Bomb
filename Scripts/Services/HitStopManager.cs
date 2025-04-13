@@ -17,12 +17,16 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double delta)
         {
-            Engine.TimeScale = _timer > 0
-                ? HitStopTimeScale
-                : 1;
-
             if (_timer > 0)
+            {
+                Engine.TimeScale = HitStopTimeScale;
                 _timer -= delta / HitStopTimeScale;
+
+                if (_timer <= 0)
+                {
+                    Engine.TimeScale = 1;
+                }
+            }
         }
 
         public void StopFor(double seconds)
