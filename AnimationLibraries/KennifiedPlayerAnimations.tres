@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=37 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=38 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
 [ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Audio/SFX/BounceJump.wav" id="1_kysro"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bpixqvyhbaw8v" path="res://Audio/SFX/ParachuteKick.wav" id="5_035b6"]
 [ext_resource type="AudioStream" uid="uid://cj0cbpek5hnn7" path="res://Audio/SFX/ParachuteDeploy.wav" id="5_rvkxb"]
 [ext_resource type="AudioStream" uid="uid://ctxkawuv3irk7" path="res://Audio/SFX/Skid.wav" id="5_tjt4m"]
+[ext_resource type="AudioStream" uid="uid://cbugnr8emhdrm" path="res://Audio/SFX/ParachuteLand.wav" id="6_myp5l"]
 [ext_resource type="AudioStream" uid="uid://bgjbnvtp2qryy" path="res://Audio/SFX/VentEnterSwoosh.wav" id="7_y6mkr"]
 
 [sub_resource type="Animation" id="Animation_gd5kq"]
@@ -8902,6 +8903,21 @@ tracks/36/keys = {
 "update": 0,
 "values": [Vector3(0.255, 0.339, -0.01), Vector3(1.33458, -0.62619, -0.01), Vector3(0.98493, -0.62619, -0.01), Vector3(0.98493, -0.62619, -0.01), Vector3(1.33458, -0.62619, -0.01)]
 }
+tracks/37/type = "audio"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("%Model/../AudioStreamPlayer3D")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_myp5l")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/37/use_blend = true
 
 [sub_resource type="Animation" id="Animation_jp61u"]
 resource_name = "ParachuteOpen"
