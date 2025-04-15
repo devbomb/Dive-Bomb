@@ -30,8 +30,6 @@ namespace FastDragon
 
         private Node3D _deathAnimationCameraPos => GetNode<Node3D>("%DeathAnimationCameraPos");
 
-        private AudioStreamPlayer _emergeSplashSound => GetNode<AudioStreamPlayer>("%EmergeSplashSound");
-
         private bool AllPowerOrbsBroken()
         {
             return _chosenPowerOrbs.Length > 0 && _chosenPowerOrbs.All(o => o.IsBroken);
@@ -66,8 +64,6 @@ namespace FastDragon
                 _self.PlayAnimation("Submerge");
                 _self._leftSplashTentacle.Submerge();
                 _self._rightSplashTentacle.Submerge();
-
-                _self._emergeSplashSound.Play();
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -124,8 +120,6 @@ namespace FastDragon
                 _self.PlayAnimation("Surface");
                 _self._leftSplashTentacle.Surface();
                 _self._rightSplashTentacle.Surface();
-
-                _self._emergeSplashSound.Play();
             }
 
             public override void _PhysicsProcess(double deltaD)
