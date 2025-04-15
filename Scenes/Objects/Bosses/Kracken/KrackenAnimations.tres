@@ -606,6 +606,20 @@ tracks/9/path = NodePath("Model/Armature/Skeleton3D:Root")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = PackedFloat32Array(0, 1, 0.0522772, 1.15996e-07, -2.74896e-08, 0.998633, 0.3, 1, -0.0900742, 1.18725e-07, -1.07377e-08, 0.995935)
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SubmergeSplashSound")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.566667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_qsehc"]
 resource_name = "Submerged"
