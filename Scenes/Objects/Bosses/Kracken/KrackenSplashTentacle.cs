@@ -17,6 +17,7 @@ namespace FastDragon
         [Signal] public delegate void DamagedPlayerEventHandler();
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
+        private AudioStreamPlayer _splashSound => GetNode<AudioStreamPlayer>("%SplashSound");
 
         private Transform3D _lockedWaveSpawn;
 
@@ -74,6 +75,8 @@ namespace FastDragon
             wave.Distance = WaveDistance;
             wave.Duration = WaveDuration;
             wave.DamagedPlayer += () => EmitSignal(nameof(DamagedPlayer));
+
+            _splashSound.Play();
 
             return wave;
         }
