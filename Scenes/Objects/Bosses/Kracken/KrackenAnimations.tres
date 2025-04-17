@@ -1,6 +1,7 @@
-[gd_resource type="AnimationLibrary" load_steps=12 format=3 uid="uid://bn1ba67n5ehrt"]
+[gd_resource type="AnimationLibrary" load_steps=13 format=3 uid="uid://bn1ba67n5ehrt"]
 
 [ext_resource type="AudioStream" uid="uid://7iuw75niosxj" path="res://Audio/SFX/Kracken/EmergeRoarAngry.wav" id="1_5qk1u"]
+[ext_resource type="AudioStream" uid="uid://dc66vxvhib0hr" path="res://Audio/SFX/Kracken/Growl0.wav" id="1_7sa1r"]
 
 [sub_resource type="Animation" id="Animation_xmheq"]
 resource_name = "Blink"
@@ -622,6 +623,21 @@ tracks/10/keys = {
 "method": &"play"
 }]
 }
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("VoicePlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_7sa1r")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_qsehc"]
 resource_name = "Submerged"
