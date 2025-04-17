@@ -133,12 +133,16 @@ shape = SubResource("CylinderShape3D_0nu8g")
 [node name="EmergeSplashSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_sp6e7")
+volume_db = -12.782
 bus = &"Sfx"
 
 [node name="SubmergeSplashSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_itbdy")
 bus = &"Sfx"
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="."]
+bus = &"ReverbSfx"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 unique_name_in_owner = true

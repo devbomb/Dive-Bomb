@@ -1,4 +1,6 @@
-[gd_resource type="AnimationLibrary" load_steps=11 format=3 uid="uid://bn1ba67n5ehrt"]
+[gd_resource type="AnimationLibrary" load_steps=12 format=3 uid="uid://bn1ba67n5ehrt"]
+
+[ext_resource type="AudioStream" uid="uid://7iuw75niosxj" path="res://Audio/SFX/Kracken/EmergeRoarAngry.wav" id="1_5qk1u"]
 
 [sub_resource type="Animation" id="Animation_xmheq"]
 resource_name = "Blink"
@@ -761,6 +763,21 @@ tracks/7/keys = {
 "method": &"play"
 }]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("VoicePlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.2939,
+"start_offset": 0.200598,
+"stream": ExtResource("1_5qk1u")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/8/use_blend = true
 
 [resource]
 _data = {
