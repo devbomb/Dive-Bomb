@@ -1,9 +1,12 @@
-[gd_resource type="AnimationLibrary" load_steps=16 format=3 uid="uid://bn1ba67n5ehrt"]
+[gd_resource type="AnimationLibrary" load_steps=21 format=3 uid="uid://bn1ba67n5ehrt"]
 
 [ext_resource type="AudioStream" uid="uid://7iuw75niosxj" path="res://Audio/SFX/Kracken/EmergeRoarAngry.wav" id="1_5qk1u"]
 [ext_resource type="AudioStream" uid="uid://dc66vxvhib0hr" path="res://Audio/SFX/Kracken/Growl0.wav" id="1_7sa1r"]
 [ext_resource type="AudioStream" uid="uid://bkpkt2tcm758j" path="res://Audio/SFX/Kracken/Roar1.wav" id="2_7sa1r"]
 [ext_resource type="AudioStream" uid="uid://duv3g2w7krfae" path="res://Audio/SFX/Kracken/InterstitialRoar0.wav" id="4_dgjtf"]
+[ext_resource type="AudioStream" uid="uid://byej3axeop1j6" path="res://Audio/SFX/Kracken/SwingRoarAngry0.wav" id="5_cw7j6"]
+[ext_resource type="AudioStream" uid="uid://bvp3t47nyj30t" path="res://Audio/SFX/Kracken/SwingRoarAngry1.wav" id="6_he0vj"]
+[ext_resource type="AudioStream" uid="uid://cboen7a6onbh0" path="res://Audio/SFX/Kracken/SwingRoarAngry3.wav" id="7_ml00o"]
 
 [sub_resource type="Animation" id="Animation_xmheq"]
 resource_name = "Blink"
@@ -803,6 +806,108 @@ tracks/8/keys = {
 }
 tracks/8/use_blend = true
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8ppvs"]
+streams_count = 3
+stream_0/stream = ExtResource("5_cw7j6")
+stream_1/stream = ExtResource("6_he0vj")
+stream_2/stream = ExtResource("7_ml00o")
+
+[sub_resource type="Animation" id="Animation_he0vj"]
+resource_name = "Swing"
+length = 1.5
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.0655969, 1.15619e-07, -2.90349e-08, 0.997846, 0.7, 1, 0.0655969, 1.15619e-07, -2.90349e-08, 0.997846, 0.866667, 1, -0.493621, 1.12549e-07, 3.92887e-08, 0.869677, 1, 1, -0.493621, 1.12549e-07, 3.92887e-08, 0.869677, 1.5, 1, -0.0900742, 1.18725e-07, -1.07377e-08, 0.995935)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Armature/Skeleton3D:UpperTorso")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.167858, -2.07064e-09, 9.7017e-09, 0.985811, 0.7, 1, -0.167858, -2.07064e-09, 9.7017e-09, 0.985811, 0.866667, 1, 0.0991925, 5.72454e-10, 9.90368e-09, 0.995068, 1, 1, 0.0991925, 5.72454e-10, 9.90368e-09, 0.995068, 1.5, 1, 0.0416083, 1.10146e-14, 9.9202e-09, 0.999134)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Armature/Skeleton3D:Neck")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.240674, 1.132e-07, 3.79847e-08, 0.970606, 0.7, 1, -0.240674, 1.132e-07, 3.79847e-08, 0.970606, 0.866667, 1, -0.148721, 1.1626e-07, 2.72168e-08, 0.988879, 1, 1, -0.148721, 1.1626e-07, 2.72168e-08, 0.988879)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Armature/Skeleton3D:LowerHead")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.389022, -2.11654e-08, 3.93561e-08, 0.921228, 0.7, 1, -0.389022, -2.11654e-08, 3.93561e-08, 0.921228, 0.866667, 1, -0.132995, -1.00674e-08, 4.35376e-08, 0.991117, 1, 1, -0.132995, -1.00674e-08, 4.35376e-08, 0.991117)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Armature/Skeleton3D:LowerTorso")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.128822, 7.92779e-10, 8.44577e-09, 0.991668, 0.7, 1, 0.128822, 7.92779e-10, 8.44577e-09, 0.991668, 0.866667, 1, 0.253294, 1.85528e-09, 8.27751e-09, 0.967389, 1, 1, 0.253294, 1.85528e-09, 8.27751e-09, 0.967389, 1.5, 1, 0.0355799, -6.61001e-15, 8.4829e-09, 0.999367)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Armature/Skeleton3D:UpperHead")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.188967, -9.28055e-07, -1.20588e-06, 0.981983, 0.7, 1, 0.188967, -9.28055e-07, -1.20588e-06, 0.981983, 0.866667, 1, 0.188967, -9.28055e-07, -1.20588e-06, 0.981983, 1, 1, 0.188967, -9.28055e-07, -1.20588e-06, 0.981983)
+tracks/6/type = "position_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/Armature/Skeleton3D:BottomLip")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -3.2156e-06, 0.537414, -1.43306, 0.7, 1, -3.2156e-06, 0.537414, -1.43306, 0.866667, 1, -3.56854e-06, -1.32178, -1.24729, 0.933333, 1, -3.56854e-06, -1.32178, -1.24729, 1.5, 1, -1.5873e-06, 0.309852, -0.828177)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/Armature/Skeleton3D:BottomLip")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.182225, 1.36817e-06, -4.95983e-07, 0.983257, 0.7, 1, 0.182225, 1.36817e-06, -4.95983e-07, 0.983257, 0.866667, 1, -0.699465, 1.19273e-06, 8.33831e-07, 0.714667, 0.933333, 1, -0.699465, 1.19273e-06, 8.33831e-07, 0.714667, 1.5, 1, -0.699465, 1.19273e-06, 8.33831e-07, 0.714667)
+tracks/8/type = "scale_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/Armature/Skeleton3D:Eyes")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 1, 1, 0.300839, 0.7, 1, 1, 1, 0.300839, 0.866667, 1, 1, 1, 1, 1.13333, 1, 1, 1, 1)
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("VoicePlayer")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_8ppvs")
+}],
+"times": PackedFloat32Array(0.5)
+}
+tracks/9/use_blend = true
+tracks/10/type = "scale_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model/Armature/Skeleton3D:BottomLip")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 1, 0.435264, 1, 0.7, 1, 1, 0.435264, 1, 0.866667, 1, 1, 1, 1)
+tracks/11/type = "position_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/11/interp = 2
+tracks/11/loop_wrap = false
+tracks/11/keys = PackedFloat32Array(0, 1, 0, -1.54978, -0.252843, 0.366667, 1, 0, -1.54978, 0.352223, 0.7, 1, 0, -1.54978, 0.352223, 0.866667, 1, 0, -1.54978, 2.96701, 1, 1, 0, -1.54978, 2.96701, 1.5, 1, 0, -1.54978, 0.352223)
+
 [resource]
 _data = {
 &"Blink": SubResource("Animation_xmheq"),
@@ -814,5 +919,6 @@ _data = {
 &"RESET": SubResource("Animation_170it"),
 &"Submerge": SubResource("Animation_ky8h8"),
 &"Submerged": SubResource("Animation_qsehc"),
-&"Surface": SubResource("Animation_gxf10")
+&"Surface": SubResource("Animation_gxf10"),
+&"Swing": SubResource("Animation_he0vj")
 }

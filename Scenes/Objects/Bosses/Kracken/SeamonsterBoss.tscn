@@ -163,6 +163,17 @@ libraries = {
 [node name="Model" parent="." instance=ExtResource("4_veo1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
+[node name="Skeleton3D" parent="Model/Armature" index="0"]
+bones/0/rotation = Quaternion(-0.0900742, 1.18725e-07, -1.07377e-08, 0.995935)
+bones/1/rotation = Quaternion(0.0355798, -6.63779e-15, 8.4829e-09, 0.999367)
+bones/2/rotation = Quaternion(0.0416083, 1.10702e-14, 9.9202e-09, 0.999134)
+bones/3/rotation = Quaternion(-0.148721, 1.1626e-07, 2.72168e-08, 0.988879)
+bones/4/rotation = Quaternion(-0.132995, -1.00674e-08, 4.35376e-08, 0.991117)
+bones/5/rotation = Quaternion(0.188967, -9.28055e-07, -1.20588e-06, 0.981984)
+bones/7/position = Vector3(-1.5873e-06, 0.309852, -0.828177)
+bones/7/rotation = Quaternion(-0.699465, 1.19273e-06, 8.33831e-07, 0.714667)
+bones/8/scale = Vector3(1, 1, 1)
+
 [node name="LeftSplashTentacle" parent="." node_paths=PackedStringArray("WaveSpawn") instance=ExtResource("11_jhv2y")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0.683, 1.70356)
@@ -246,3 +257,5 @@ ProcessMaterial = SubResource("ParticleProcessMaterial_mk2to")
 [node name="DeathAnimationCameraPos" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(-0.539475, -0.438664, 0.718708, 0, 0.85357, 0.520978, -0.842002, 0.281055, -0.46048, 9.27381, 12.6741, -6.44525)
+
+[editable path="Model"]

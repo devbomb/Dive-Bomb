@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=23 format=3 uid="uid://bgcglvens6c8e"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=26 format=3 uid="uid://bgcglvens6c8e"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yxah2"]
 animation = &"Damaged"
@@ -50,7 +50,7 @@ animation = &"JawMovement"
 animation = &"Blink"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc15q"]
-graph_offset = Vector2(-574, -35)
+graph_offset = Vector2(-568.095, -36.1712)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_b2gux")
 nodes/Add2/position = Vector2(20, 0)
 "nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_srhge")
@@ -73,6 +73,9 @@ animation = &"Submerged"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7qv5w"]
 animation = &"Surface"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2y0lh"]
+animation = &"Swing"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s13nd"]
 xfade_time = 0.5
 switch_mode = 2
@@ -92,6 +95,15 @@ xfade_time = 0.1
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xfu1"]
+xfade_time = 1.0
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2y0lh"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
 [resource]
 states/Damaged/node = SubResource("AnimationNodeAnimation_yxah2")
 states/Damaged/position = Vector2(533, 53)
@@ -108,5 +120,7 @@ states/Submerged/node = SubResource("AnimationNodeAnimation_ai61w")
 states/Submerged/position = Vector2(238, 214)
 states/Surface/node = SubResource("AnimationNodeAnimation_7qv5w")
 states/Surface/position = Vector2(238, 53)
-transitions = ["Surface", "Idle", SubResource("AnimationNodeStateMachineTransition_s13nd"), "Idle", "Submerge", SubResource("AnimationNodeStateMachineTransition_d8k6y"), "Submerge", "Submerged", SubResource("AnimationNodeStateMachineTransition_ntcvp"), "Idle", "Damaged", SubResource("AnimationNodeStateMachineTransition_wrjo5"), "Dying", "Dead", SubResource("AnimationNodeStateMachineTransition_d5qei")]
-graph_offset = Vector2(-1, -39.7814)
+states/Swing/node = SubResource("AnimationNodeAnimation_2y0lh")
+states/Swing/position = Vector2(515, 204.219)
+transitions = ["Surface", "Idle", SubResource("AnimationNodeStateMachineTransition_s13nd"), "Idle", "Submerge", SubResource("AnimationNodeStateMachineTransition_d8k6y"), "Submerge", "Submerged", SubResource("AnimationNodeStateMachineTransition_ntcvp"), "Idle", "Damaged", SubResource("AnimationNodeStateMachineTransition_wrjo5"), "Dying", "Dead", SubResource("AnimationNodeStateMachineTransition_d5qei"), "Idle", "Swing", SubResource("AnimationNodeStateMachineTransition_3xfu1"), "Swing", "Idle", SubResource("AnimationNodeStateMachineTransition_2y0lh")]
+graph_offset = Vector2(-152, 5.2186)

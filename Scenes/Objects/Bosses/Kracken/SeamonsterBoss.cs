@@ -76,10 +76,14 @@ namespace FastDragon
             _weakPoint.Visible = shouldShow;
         }
 
-        private void PlayAnimation(string animationName)
+        private void PlayAnimation(string animationName, bool travel = false)
         {
             var playback = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
-            playback.Start(animationName);
+
+            if (travel)
+                playback.Travel(animationName);
+            else
+                playback.Start(animationName);
         }
 
         private string CurrentAnimation()
