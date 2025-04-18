@@ -13,7 +13,7 @@ StraightWavePrefab = ExtResource("2_r5q12")
 [node name="SplashSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_un38s")
-volume_db = -10.739
+volume_db = -15.216
 bus = &"Sfx"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

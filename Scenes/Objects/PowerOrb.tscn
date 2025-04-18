@@ -50,6 +50,7 @@ CameraShakeDuration = 0.25
 
 [node name="ShatterSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_k6hmf")
+volume_db = -8.265
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
