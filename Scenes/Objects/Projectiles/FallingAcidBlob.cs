@@ -13,6 +13,8 @@ namespace FastDragon
         [Export] public float BlobRadius = 1;
         [Export] public float DamageCooldownDuration = 2;
 
+        [Signal] public delegate void HitGroundEventHandler();
+
         private Node3D _blobModel => GetNode<Node3D>("%BlobModel");
         private Node3D _shadow => GetNode<Node3D>("%Shadow");
         private Node3D _puddleModel => GetNode<Node3D>("%PuddleModel");
@@ -51,6 +53,7 @@ namespace FastDragon
                     _timer -= FallDuration;
                     _hitGround = true;
                     _permanentParticles.Emitting = Permanent;
+                    EmitSignal(SignalName.HitGround);
                 }
             }
             else
