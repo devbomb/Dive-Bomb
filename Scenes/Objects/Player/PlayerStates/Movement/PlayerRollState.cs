@@ -96,6 +96,12 @@ namespace FastDragon
             // been hit by the main hitbox
             ApplyExtraHitbox();
 
+            // It's possible for the objects hit by the hitbox to change the
+            // current state.  We don't want to overwrite that state change if
+            // it happened to happen on the final frame of the timer.
+            if (!IsCurrent)
+                return;
+
             if (_timer >= Player.Roll.Duration)
             {
                 if (_player.IsOnFloor())
