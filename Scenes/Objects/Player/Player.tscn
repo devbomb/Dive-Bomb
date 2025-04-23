@@ -95,6 +95,7 @@ bus = &"Sfx"
 [node name="FlipDamageSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("7_anupw")
+volume_db = -3.443
 bus = &"Sfx"
 
 [node name="FairyKissPoint" type="Marker3D" parent="."]
