@@ -1,7 +1,8 @@
-[gd_resource type="AnimationLibrary" load_steps=38 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=39 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
 [ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Audio/SFX/BounceJump.wav" id="1_kysro"]
+[ext_resource type="AudioStream" uid="uid://cqk8bk8k8ve18" path="res://Audio/SFX/BlobSplash.wav" id="2_8i3dw"]
 [ext_resource type="AudioStream" uid="uid://ctipp7patffgc" path="res://Audio/SFX/StandardJump.wav" id="2_gfs70"]
 [ext_resource type="AudioStream" uid="uid://bksoplmt3ix8j" path="res://Audio/SFX/Kick.wav" id="4_kvosl"]
 [ext_resource type="AudioStream" uid="uid://bolkngv47k5qp" path="res://Audio/SFX/SideFlip.wav" id="4_u8sac"]
@@ -3336,6 +3337,21 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Toes_R")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, 0.206036, 0.049873, 0.0217822, 0.97703, 0.0333333, 1, 0.154575, 0.0532551, 0.0330518, 0.985991, 0.4, 1, 0.154575, 0.0532551, 0.0330518, 0.985991)
+tracks/78/type = "audio"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("%AnimatorSoundPlayer")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_8i3dw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/78/use_blend = true
 
 [sub_resource type="Animation" id="Animation_q57fk"]
 resource_name = "Dive"
