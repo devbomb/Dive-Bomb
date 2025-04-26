@@ -1,9 +1,10 @@
-[gd_resource type="AnimationLibrary" load_steps=39 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=41 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Audio/SFX/Dive.wav" id="1_71awk"]
 [ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Audio/SFX/BounceJump.wav" id="1_kysro"]
 [ext_resource type="AudioStream" uid="uid://cqk8bk8k8ve18" path="res://Audio/SFX/BlobSplash.wav" id="2_8i3dw"]
 [ext_resource type="AudioStream" uid="uid://ctipp7patffgc" path="res://Audio/SFX/StandardJump.wav" id="2_gfs70"]
+[ext_resource type="AudioStream" uid="uid://drwb4p7kyhrvo" path="res://Audio/SFX/DrownWaterPaddleSplash.wav" id="4_fydph"]
 [ext_resource type="AudioStream" uid="uid://bksoplmt3ix8j" path="res://Audio/SFX/Kick.wav" id="4_kvosl"]
 [ext_resource type="AudioStream" uid="uid://bolkngv47k5qp" path="res://Audio/SFX/SideFlip.wav" id="4_u8sac"]
 [ext_resource type="AudioStream" uid="uid://bpixqvyhbaw8v" path="res://Audio/SFX/ParachuteKick.wav" id="5_035b6"]
@@ -3918,6 +3919,12 @@ tracks/78/keys = {
 }
 tracks/78/use_blend = false
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ml3f"]
+random_pitch = 1.35
+random_volume_offset_db = 1.21
+streams_count = 1
+stream_0/stream = ExtResource("4_fydph")
+
 [sub_resource type="Animation" id="Animation_7y2uj"]
 resource_name = "Drown-loop"
 loop_mode = 1
@@ -4467,6 +4474,33 @@ tracks/77/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Toes_R")
 tracks/77/interp = 1
 tracks/77/loop_wrap = true
 tracks/77/keys = PackedFloat32Array(0, 1, 0.372571, 0.0391453, -0.0117218, 0.927104)
+tracks/78/type = "audio"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("%AnimatorSoundPlayer")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_6ml3f")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_6ml3f")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_6ml3f")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_6ml3f")
+}],
+"times": PackedFloat32Array(0, 0.133333, 0.566667, 0.7)
+}
+tracks/78/use_blend = true
 
 [sub_resource type="Animation" id="Animation_8ipv1"]
 resource_name = "Flop"
