@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bbfrncy1cgsc1"]
+[gd_scene load_steps=23 format=3 uid="uid://bbfrncy1cgsc1"]
 
 [ext_resource type="PackedScene" uid="uid://1bbms5s4bt3d" path="res://BlenderModels/FairyRing.blend" id="1_lpb68"]
 [ext_resource type="Script" uid="uid://cfqry8cyhwe4l" path="res://Scenes/Entities/Transport_/Checkpoint.cs" id="1_tl6tw"]
+[ext_resource type="AudioStream" uid="uid://d3d3ewp2ua3qv" path="res://Audio/SFX/Checkpoint.wav" id="2_xw0qj"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="3_sjo5e"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_67wg3"]
@@ -121,6 +122,10 @@ fill_to = Vector2(0.5, 0)
 [node name="Checkpoint" type="Area3D"]
 script = ExtResource("1_tl6tw")
 
+[node name="CheckpointSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xw0qj")
+bus = &"Sfx"
+
 [node name="FairyRing" parent="." instance=ExtResource("1_lpb68")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -172,3 +177,5 @@ ProcessMaterial = SubResource("ParticleProcessMaterial_klcf1")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, -1.31134e-07, -3, 0, 3, -1.31134e-07, 0, 0.0201436, 8.80506e-10)
 texture = SubResource("GradientTexture2D_elpmb")
+
+[connection signal="Activated" from="." to="CheckpointSound" method="play"]

@@ -15,6 +15,8 @@ namespace FastDragon
 
         public bool IsCurrent => SaveFile.Current.CurrentCheckpoint == CheckpointName;
 
+        [Signal] public delegate void ActivatedEventHandler();
+
         private SimpleParticles _sparkleRing => GetNode<SimpleParticles>("%SparkleRing");
         private SimpleParticles _sparkleBurst => GetNode<SimpleParticles>("%SparkleBurst");
 
@@ -49,6 +51,7 @@ namespace FastDragon
             {
                 SaveFile.Current.CurrentCheckpoint = CheckpointName;
                 _sparkleBurst.Emitting = true;
+                EmitSignal(SignalName.Activated);
                 player.Camera.Shake(1, 5, 0.2f);
             }
         }
