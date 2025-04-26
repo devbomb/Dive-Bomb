@@ -44,6 +44,10 @@ namespace FastDragon
         private Node3D _playerModel => GetNode<Node3D>("%PlayerModel");
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
 
+        private AudioStreamPlayer _windSound => GetNode<AudioStreamPlayer>("%WindSound");
+        private AudioStreamPlayer _gemSpawnSound => GetNode<AudioStreamPlayer>("%GemSpawnSound");
+        private AudioStreamPlayer _gemCountSound => GetNode<AudioStreamPlayer>("%GemCountSound");
+
         private OrbitCamera _camera => GetNode<OrbitCamera>("%OrbitCamera");
         private Node3D _cameraFocus => GetNode<Node3D>("%CameraFocus");
         private Node3D _cameraFocusRestPos => GetNode<Node3D>("%CameraFocusRestPos");
@@ -119,6 +123,27 @@ namespace FastDragon
 
             // Start the animation
             _stateMachine.ChangeState<MovingToRest>();
+            StartFadingWindIn();
+        }
+
+        private void StartFadingWindIn()
+        {
+            const float duration = 2;
+
+            _windSound.PitchScale = 0.01f;
+            GetTree()
+                .CreateTween()
+                .TweenProperty(_windSound, "pitch_scale", 1, duration);
+        }
+
+        private void StartFadingWindOut()
+        {
+            const float duration = 1;
+
+            _windSound.PitchScale = 1;
+            GetTree()
+                .CreateTween()
+                .TweenProperty(_windSound, "pitch_scale", 0.01f, duration);
         }
 
         private int TotalUntalliedGems()
@@ -268,6 +293,8 @@ namespace FastDragon
         {
             public override bool Skippable => true;
 
+            private const float MinInterval = 2f / 60;
+
             private Node3D _gemSpawn => _screen.GetNode<Node3D>("%GemSpawn");
             private Node3D _gemDest => _screen.GetNode<Node3D>("%GemDest");
 
@@ -281,7 +308,13 @@ namespace FastDragon
             {
                 GD.Print("Started counting gems");
                 _timer = 0;
+
                 _interval = CountingGemsDuration / _screen.TotalIndividualUntalliedGems();
+
+                if (_interval < MinInterval)
+                    _interval = MinInterval;
+
+                _interval = MinInterval;
 
                 _gemHolder = new Node3D();
                 _gemSpawn.GetParent().AddChild(_gemHolder);
@@ -297,6 +330,7 @@ namespace FastDragon
             {
                 _screen._talliedGems += value;
                 _screen.UpdateLabelText();
+                _screen._gemCountSound.Play();
 
                 if (_screen._talliedGems >= SaveFile.Current.TotalGemCount)
                     ChangeState<LettingPlayerReadLabels>();
@@ -330,8 +364,9 @@ namespace FastDragon
 
                 var model = ModelPrefabForGemColor(value).Instantiate<Node3D>();
                 gem.AddChild(model);
-
                 gem.Counted += OnGemCounted;
+
+                _screen._gemSpawnSound.Play();
             }
 
             private Vector3 RandomBezierControlPoint(float spread)
@@ -462,6 +497,8 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 GD.Print("Started correction animation");
+
+                _screen.StartFadingWindOut();
 
                 var tween = _screen.CreateTween();
 

@@ -38,6 +38,12 @@ namespace FastDragon
 
             ApplyKickHitbox();
 
+            // It's possible for the objects hit by the hitbox to change the
+            // current state.  If that happens, we don't want the normal logic
+            // for this state to run for an extra frame.
+            if (!IsCurrent)
+                return;
+
             ApplyGravity(delta);
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
 

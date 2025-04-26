@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bckjgvq8udjn3"]
+[gd_scene load_steps=22 format=3 uid="uid://bckjgvq8udjn3"]
 
 [ext_resource type="Script" uid="uid://w5odecg6wwfh" path="res://Scenes/Maps/Screens/PortalLoadingScreen.cs" id="1_mgqop"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Scenes/Models/RedGemModel.tscn" id="2_4lauq"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://byj33t3fmjjmx" path="res://Scenes/Models/YellowGemModel.tscn" id="5_lc26i"]
 [ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://Scenes/UIWidgets/FPSCounter.tscn" id="6_by5mh"]
 [ext_resource type="PackedScene" uid="uid://bmpnfs8rauqo" path="res://Scenes/Models/MagentaGemModel.tscn" id="6_ff7ao"]
+[ext_resource type="AudioStream" uid="uid://bck1j6xyd3npi" path="res://Audio/SFX/SkyDiveWind.wav" id="7_rxgq8"]
 [ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://AnimationLibraries/KennifiedPlayerAnimations.tres" id="7_x6xbq"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="8_hsd4c"]
+[ext_resource type="AudioStream" uid="uid://bojobea40tjay" path="res://Audio/SFX/Gem.wav" id="8_umnyl"]
 [ext_resource type="Script" uid="uid://cag7kxi13wlpq" path="res://Scripts/DecoratorNodes/VisibleOnlyInEditorDecorator.cs" id="10_k6c8e"]
 [ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="11_i0ki7"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="12_8013m"]
@@ -94,6 +96,27 @@ PurpleGemPrefab = ExtResource("4_wm8ew")
 YellowGemPrefab = ExtResource("5_lc26i")
 MagentaGemPrefab = ExtResource("6_ff7ao")
 
+[node name="WindSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_rxgq8")
+volume_db = -17.219
+pitch_scale = 0.01
+autoplay = true
+bus = &"Sfx"
+
+[node name="GemSpawnSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_umnyl")
+pitch_scale = 1.15
+max_polyphony = 10
+bus = &"Sfx"
+
+[node name="GemCountSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_umnyl")
+max_polyphony = 10
+bus = &"Sfx"
+
 [node name="WorldEnv" type="WorldEnvironment" parent="."]
 unique_name_in_owner = true
 
@@ -104,6 +127,10 @@ root_node = NodePath("../PlayerModel")
 libraries = {
 &"": ExtResource("7_x6xbq")
 }
+
+[node name="AnimatorSoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Sfx"
 
 [node name="PlayerModel" parent="." instance=ExtResource("8_hsd4c")]
 unique_name_in_owner = true

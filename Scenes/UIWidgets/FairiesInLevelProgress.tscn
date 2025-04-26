@@ -10,6 +10,9 @@
 [node name="FairiesInLevelProgress" type="Node3D"]
 script = ExtResource("1_5js4f")
 
+[node name="AnimationSoundPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
+
 [node name="Label" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

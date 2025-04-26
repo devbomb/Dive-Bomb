@@ -57,6 +57,7 @@ namespace FastDragon
                         : _self._rightSplashTentacle;
 
                     tentacle.StartSplash();
+                    _self.PlayAnimation("Swing", travel: true);
                 }
             }
 

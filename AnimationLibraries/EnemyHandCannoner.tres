@@ -1,7 +1,37 @@
-[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://dpi267kv74gnc"]
+[gd_resource type="AnimationLibrary" load_steps=33 format=3 uid="uid://dpi267kv74gnc"]
+
+[ext_resource type="AudioStream" uid="uid://cl6pd72tshp26" path="res://Audio/SFX/EnemyHandCannoner/Aim0.wav" id="1_8gvmy"]
+[ext_resource type="AudioStream" uid="uid://cwqlapqmck7ss" path="res://Audio/SFX/EnemyHandCannoner/Snooze.wav" id="1_hnm5h"]
+[ext_resource type="AudioStream" uid="uid://bcacefufvwqmf" path="res://Audio/SFX/EnemyHandCannoner/Alert0.wav" id="2_0grrb"]
+[ext_resource type="AudioStream" uid="uid://8j1okw4er7ct" path="res://Audio/SFX/EnemyHandCannoner/Aim1.wav" id="2_1y1ab"]
+[ext_resource type="AudioStream" uid="uid://doi2c7f3773bj" path="res://Audio/SFX/EnemyHandCannoner/Alert1.wav" id="3_45isc"]
+[ext_resource type="AudioStream" uid="uid://dgv1shv7heduy" path="res://Audio/SFX/EnemyHandCannoner/Aim2.wav" id="3_h84qr"]
+[ext_resource type="AudioStream" uid="uid://vvew2j01qg8c" path="res://Audio/SFX/EnemyHandCannoner/Alert2.wav" id="4_gtjld"]
+[ext_resource type="AudioStream" uid="uid://c50q1d5oya4tb" path="res://Audio/SFX/EnemyHandCannoner/Aim3.wav" id="4_tsj7q"]
+[ext_resource type="AudioStream" uid="uid://bwvjan1khljii" path="res://Audio/SFX/EnemyHandCannoner/Aim4.wav" id="5_fdota"]
+[ext_resource type="AudioStream" uid="uid://7npik10abums" path="res://Audio/SFX/EnemyHandCannoner/Hurt0.wav" id="6_6v8jd"]
+[ext_resource type="AudioStream" uid="uid://dmbpl73gxqeiq" path="res://Audio/SFX/EnemyHandCannoner/Fire0.wav" id="6_fdota"]
+[ext_resource type="AudioStream" uid="uid://8nkljtiprgjh" path="res://Audio/SFX/EnemyHandCannoner/Fire1.wav" id="7_6x8cy"]
+[ext_resource type="AudioStream" uid="uid://ckuqqn2xiy7cf" path="res://Audio/SFX/EnemyHandCannoner/Hurt1.wav" id="7_t6hd1"]
+[ext_resource type="AudioStream" uid="uid://mj6kvlyy7jk6" path="res://Audio/SFX/EnemyHandCannoner/Fire2.wav" id="8_7achj"]
+[ext_resource type="AudioStream" uid="uid://n62vnwnyy6x1" path="res://Audio/SFX/EnemyHandCannoner/Hurt2.wav" id="8_m2ett"]
+[ext_resource type="AudioStream" uid="uid://cssp4v3t02f5v" path="res://Audio/SFX/EnemyHandCannoner/Fire3.wav" id="9_2pb3t"]
+[ext_resource type="AudioStream" uid="uid://ck5auu6tkhw37" path="res://Audio/SFX/EnemyHandCannoner/HurtThud0.wav" id="9_d3ntl"]
+[ext_resource type="AudioStream" uid="uid://cogiwdqlpr36x" path="res://Audio/SFX/EnemyHandCannoner/HurtThud1.wav" id="10_1dej5"]
+[ext_resource type="AudioStream" uid="uid://cfukvolacyevq" path="res://Audio/SFX/EnemyHandCannoner/GunFire.wav" id="10_6x8cy"]
+[ext_resource type="AudioStream" uid="uid://dte4h5guyotpq" path="res://Audio/SFX/GenericKill.wav" id="11_t6hd1"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6x8cy"]
+streams_count = 5
+stream_0/stream = ExtResource("1_8gvmy")
+stream_1/stream = ExtResource("2_1y1ab")
+stream_2/stream = ExtResource("3_h84qr")
+stream_3/stream = ExtResource("4_tsj7q")
+stream_4/stream = ExtResource("5_fdota")
 
 [sub_resource type="Animation" id="Animation_8dsxe"]
 resource_name = "Aim"
+length = 2.0
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -84,6 +114,32 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector3(0, 0.785398, 0)]
 }
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AnimationVoicePlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_6x8cy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/11/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o1ydf"]
+streams_count = 3
+stream_0/stream = ExtResource("6_6v8jd")
+stream_1/stream = ExtResource("7_t6hd1")
+stream_2/stream = ExtResource("8_m2ett")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rhey7"]
+streams_count = 2
+stream_0/stream = ExtResource("9_d3ntl")
+stream_1/stream = ExtResource("10_1dej5")
 
 [sub_resource type="Animation" id="Animation_6jv4s"]
 resource_name = "Death"
@@ -184,6 +240,49 @@ tracks/9/keys = {
 "update": 0,
 "values": [1.0, 0.0]
 }
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AnimationVoicePlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_o1ydf")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_rhey7")
+}],
+"times": PackedFloat32Array(0, 0.65)
+}
+tracks/10/use_blend = true
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("KillSoundPlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_t6hd1")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/11/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q1t0j"]
+streams_count = 4
+stream_0/stream = ExtResource("6_fdota")
+stream_0/weight = 0.5
+stream_1/stream = ExtResource("7_6x8cy")
+stream_2/stream = ExtResource("8_7achj")
+stream_2/weight = 0.5
+stream_3/stream = ExtResource("9_2pb3t")
 
 [sub_resource type="Animation" id="Animation_bhbp3"]
 resource_name = "FireRecoil"
@@ -309,6 +408,36 @@ tracks/14/keys = {
 "update": 0,
 "values": [Vector3(1, 0.75, 1), Vector3(1, 1.2, 1), Vector3(1, 0.9, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 0.8, 1), Vector3(1, 1, 1)]
 }
+tracks/15/type = "audio"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AnimationVoicePlayer")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_q1t0j")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/15/use_blend = true
+tracks/16/type = "audio"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("FireSoundPlayer")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_6x8cy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/16/use_blend = true
 
 [sub_resource type="Animation" id="Animation_v62uv"]
 length = 0.001
@@ -1029,7 +1158,7 @@ tracks/4/keys = PackedFloat32Array(0, 1, -8.46921e-09, 0.0921281, -1.30385e-08)
 
 [sub_resource type="Animation" id="Animation_6ofv0"]
 resource_name = "Sleeping"
-length = 4.5
+length = 13.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1062,10 +1191,10 @@ tracks/2/path = NodePath("Model:scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 2.1, 2.5, 2.9, 4.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.3, 1.66667, 2.9, 3.3, 4.23333, 4.53333, 5.9, 6.26667, 7.63333, 7.96667, 9.43333, 9.93333, 11.1, 11.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(0.99, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.21, 1.21, 1.21), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1)]
+"values": [Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.2, 1.2, 1.2)]
 }
 tracks/3/type = "scale_3d"
 tracks/3/imported = false
@@ -1080,7 +1209,28 @@ tracks/4/enabled = true
 tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 0.8, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 2.1, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 2.9, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 4.5, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107)
+tracks/4/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 1.3, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 1.66667, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 2.9, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 3.3, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 4.23333, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 4.53333, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 5.9, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 6.23333, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 7.66667, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 7.96667, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 9.43333, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 9.93333, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 11.1, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 11.4, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182)
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SnoreSoundPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_hnm5h")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r3x1m"]
+streams_count = 3
+stream_0/stream = ExtResource("2_0grrb")
+stream_1/stream = ExtResource("3_45isc")
+stream_2/stream = ExtResource("4_gtjld")
 
 [sub_resource type="Animation" id="Animation_wovws"]
 resource_name = "WakeUp"
@@ -1201,6 +1351,21 @@ tracks/14/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Neck")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = PackedFloat32Array(0, 1, -0.207913, 0, 0, 0.978147, 0.2, 1, 0.275275, 0, 0, 0.961365, 0.5, 1, 0.275275, 0, 0, 0.961365, 0.55, 1, -0.207913, 0, 0, 0.978147, 0.65, 1, -0.207913, 0, 0, 0.978147, 0.7, 1, -0.318564, 0, 0, 0.947901, 0.8, 1, -0.207913, 0, 0, 0.978147)
+tracks/15/type = "audio"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AnimationVoicePlayer")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_r3x1m")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/15/use_blend = true
 
 [resource]
 _data = {

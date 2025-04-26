@@ -25,6 +25,9 @@ namespace FastDragon
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
 
+        private AudioStreamPlayer _homeInSound => GetNode<AudioStreamPlayer>("%HomeInSound");
+        private AudioStreamPlayer _collectSound => GetNode<AudioStreamPlayer>("%CollectSound");
+
         // Need to actually store this node instead of using a getter, since
         // we temporarily remove it from the scene tree.  If the getter were
         // called during a temporary removal, it would result in a
@@ -94,6 +97,7 @@ namespace FastDragon
             saveFile.GetMapProgress(saveFile.CurrentMap).GemsCollected += (int)Value;
             saveFile.CollectedGems.Add(GetSaveKey());
 
+            _collectSound.Play();
             ChangeState<Hidden>();
 
             GD.Print($"{saveFile.TotalGemCount}: Collected gem {GetSaveKey()}");
@@ -240,6 +244,7 @@ namespace FastDragon
             {
                 _homingStartPos = _gem.GlobalPosition;
                 _homingTimer = 0;
+                _gem._homeInSound.Play();
 
                 // HACK: Don't let the gem fall asleep when going off-screen,
                 // so the player doesn't get screwed over for moving too fast.
@@ -259,6 +264,7 @@ namespace FastDragon
 
                 _homingTimer += delta;
                 float t = _homingTimer / HomingDuration;
+                t = FastSlowFast(t, 1.4f);
 
                 Vector3 start = _homingStartPos;
                 Vector3 end = _gem.GetPlayer().GlobalPosition + (Vector3.Up * 0.25f);
@@ -280,6 +286,13 @@ namespace FastDragon
                 {
                     _gem.Collect();
                 }
+            }
+
+            private float FastSlowFast(float t, float exponent)
+            {
+                t = (2 * t) - 1;
+                float c = Mathf.Sign(t) * Mathf.Pow(Mathf.Abs(t), exponent);
+                return (c + 1) / 2;
             }
         }
 

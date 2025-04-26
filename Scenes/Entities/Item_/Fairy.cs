@@ -9,6 +9,9 @@ namespace FastDragon
         private Transform3D _initialModelPos;
 
         private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");
+        private AudioStreamPlayer ShatterSound => GetNode<AudioStreamPlayer>("%ShatterSound");
+        private AudioStreamPlayer JingleSound => GetNode<AudioStreamPlayer>("%JingleSound");
+
         private Node3D Model => GetNode<Node3D>("%Model");
         private Node3D Glass => GetNode<Node3D>("%Glass");
         private GpuParticles3D GlassParticles => GetNode<GpuParticles3D>("%GlassParticles");
@@ -149,6 +152,8 @@ namespace FastDragon
                 // Krrsssh!!!  Shatter the glass!
                 _fairy.Glass.Visible = false;
                 _fairy.GlassParticles.Emitting = true;
+                _fairy.ShatterSound.Play();
+
                 _fairy.Animator.Play("Shatter");
 
                 // Start moving the camera into position
@@ -240,6 +245,7 @@ namespace FastDragon
                 _fairy.SetPausedForCutscene(true);
                 _fairy.Animator.Play("Hovering", 0.1f);
                 _fairy.Player.Animator.Play("Idle");
+                _fairy.JingleSound.Play();
 
                 _start = _fairy.Model.GlobalTransform;
                 _timer = 0;
@@ -338,6 +344,7 @@ namespace FastDragon
 
                 _fairy.Glass.Visible = false;
                 _fairy.GlassParticles.Emitting = true;
+                _fairy.ShatterSound.Play();
 
                 _fairy.Animator.Play("Shatter");
                 _fairy.Animator.Queue("FlyAway");

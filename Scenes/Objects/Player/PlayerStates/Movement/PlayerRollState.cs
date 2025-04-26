@@ -16,6 +16,8 @@ namespace FastDragon
 
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
 
+        private AudioStreamPlayer _rollSoundPlayer => _player.GetNode<AudioStreamPlayer>("%RollSoundPlayer");
+
         public override void OnStateEntered(State oldState)
         {
             _player.Animator.Play("Roll");
@@ -24,6 +26,8 @@ namespace FastDragon
             _isGroundRoll = !(oldState is PlayerDiveState);
             _player.Velocity = _player.GlobalForward() * Player.Roll.InitialSpeed;
             _player.Camera.Lag(CameraLagDuration);
+
+            _rollSoundPlayer.Play(0.025f);
         }
 
         public override void OnStateExited()
@@ -33,7 +37,8 @@ namespace FastDragon
 
         public override void _Process(double deltaD)
         {
-            _player.Animator.SpeedScale = _player.Velocity.Length() / RollingCircumference;
+            float scale = _player.Velocity.Length() / RollingCircumference;
+            _player.Animator.SpeedScale = scale;
         }
 
         public override void _Input(InputEvent ev)
@@ -90,6 +95,12 @@ namespace FastDragon
             // TODO: Don't apply the extra hitbox to objects that have already
             // been hit by the main hitbox
             ApplyExtraHitbox();
+
+            // It's possible for the objects hit by the hitbox to change the
+            // current state.  We don't want to overwrite that state change if
+            // it happened to happen on the final frame of the timer.
+            if (!IsCurrent)
+                return;
 
             if (_timer >= Player.Roll.Duration)
             {

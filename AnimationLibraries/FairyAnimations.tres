@@ -1,4 +1,6 @@
-[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://cixu1tgmo6shy"]
+[gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://cixu1tgmo6shy"]
+
+[ext_resource type="AudioStream" uid="uid://bilyd7s4ryh37" path="res://Audio/SFX/Smooch.wav" id="1_olf8a"]
 
 [sub_resource type="Animation" id="Animation_eoewg"]
 resource_name = "FlyAway"
@@ -559,6 +561,21 @@ tracks/17/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/18/type = "audio"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../AnimationSoundPlayer")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_olf8a")
+}],
+"times": PackedFloat32Array(0.633333)
+}
+tracks/18/use_blend = true
 
 [sub_resource type="Animation" id="Animation_p6p2x"]
 resource_name = "PoundingOnGlass"

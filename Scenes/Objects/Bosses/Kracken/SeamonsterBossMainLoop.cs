@@ -261,6 +261,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = _self.LaughingDuration;
+                _self.PlayAnimation("Laugh", true);
             }
 
             public override void _PhysicsProcess(double deltaD)

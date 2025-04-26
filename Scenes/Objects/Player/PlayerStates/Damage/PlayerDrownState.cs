@@ -14,6 +14,7 @@ namespace FastDragon
             _timer = DrownDuration;
             SaveFile.Current.PlayerHealth--;
             _player.Animator.Play("Drown");
+            _player.GetNode<AudioStreamPlayer>("%DrownStartSplashSound").Play();
         }
 
         public override void _Input(InputEvent ev)

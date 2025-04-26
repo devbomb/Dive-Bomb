@@ -13,6 +13,16 @@
 script = ExtResource("1_x80xv")
 ProjectilePrefab = ExtResource("2_7j68t")
 
+[node name="SnoreSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+max_distance = 30.0
+
+[node name="FireSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+volume_db = 3.575
+
+[node name="KillSoundPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationVoicePlayer" type="AudioStreamPlayer3D" parent="."]
+
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 deterministic = true

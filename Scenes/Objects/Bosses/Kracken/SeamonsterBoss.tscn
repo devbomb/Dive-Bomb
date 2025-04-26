@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://u1dg26oq81vl"]
+[gd_scene load_steps=34 format=3 uid="uid://u1dg26oq81vl"]
 
 [ext_resource type="Script" uid="uid://ppobneqjd1nn" path="res://Scenes/Objects/Bosses/Kracken/SeamonsterBoss.cs" id="1_r8tvq"]
 [ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Scenes/Objects/Projectiles/StraightWave.tscn" id="2_4jp8p"]
@@ -8,7 +8,9 @@
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bgcglvens6c8e" path="res://Scenes/Objects/Bosses/Kracken/KrackenAnimationTree.tres" id="4_intgd"]
 [ext_resource type="AnimationLibrary" uid="uid://bn1ba67n5ehrt" path="res://Scenes/Objects/Bosses/Kracken/KrackenAnimations.tres" id="4_l26sy"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_mmiw0"]
+[ext_resource type="AudioStream" uid="uid://b5jq8dta6a5b3" path="res://Audio/SFX/Kracken/EmergeSplash.wav" id="4_sp6e7"]
 [ext_resource type="PackedScene" uid="uid://hw603kj07kle" path="res://BlenderModels/Kracken.blend" id="4_veo1p"]
+[ext_resource type="AudioStream" uid="uid://d2kc2km8ub83h" path="res://Audio/SFX/Kracken/SubmergeSplash.wav" id="5_itbdy"]
 [ext_resource type="PackedScene" uid="uid://bu8mmnh1cn5nb" path="res://Scenes/Objects/Bosses/Kracken/KrackenSplashTentacle.tscn" id="11_jhv2y"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="12_0irsb"]
 
@@ -128,6 +130,26 @@ StraightWavePrefab = ExtResource("2_4jp8p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9841, 1.07279)
 shape = SubResource("CylinderShape3D_0nu8g")
 
+[node name="EmergeSplashSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_sp6e7")
+volume_db = -16.015
+bus = &"Sfx"
+
+[node name="SubmergeSplashSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_itbdy")
+volume_db = -9.404
+bus = &"Sfx"
+
+[node name="ExplodeSound" type="AudioStreamPlayer" parent="."]
+volume_db = -4.316
+bus = &"ReverbSfx"
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -8.609
+bus = &"ReverbSfx"
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
@@ -213,6 +235,16 @@ value = 75.0
 show_percentage = false
 script = SubResource("GDScript_mt0g2")
 boss = NodePath("../..")
+
+[node name="ExplosionFadeCurtain" type="ColorRect" parent="BossHUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.560784, 0, 1)
 
 [node name="HeadExplosionParticles" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.22239, 3.25011)

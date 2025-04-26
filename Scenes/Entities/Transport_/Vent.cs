@@ -21,6 +21,7 @@ namespace FastDragon
 
         private Camera3D _cutsceneCam => GetNode<Camera3D>("%CutsceneCam");
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
+        private AudioStreamPlayer _crawlSound => GetNode<AudioStreamPlayer>("%CrawlSound");
 
         private float _cooldownTimer;
         private Vent _targetVent;
@@ -181,12 +182,15 @@ namespace FastDragon
 
                 _player.Visible = false;
                 _vent._cutsceneCam.MakeCurrent();
+
+                _vent._crawlSound.Play();
             }
 
             public override void OnStateExited()
             {
                 _player.Visible = true;
                 _player.Camera.MakeCurrent();
+                _vent._crawlSound.Stop();
             }
 
             public override void _PhysicsProcess(double deltaD)

@@ -35,6 +35,7 @@ namespace FastDragon
             _collisionShape.Disabled = true;
             _model.Visible = false;
             _particles.Emitting = true;
+            GetNode<AudioStreamPlayer3D>("%ShatterSound").Play();
             _gem.Reveal();
         }
     }
