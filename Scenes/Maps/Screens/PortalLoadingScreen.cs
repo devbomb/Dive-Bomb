@@ -44,6 +44,8 @@ namespace FastDragon
         private Node3D _playerModel => GetNode<Node3D>("%PlayerModel");
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
 
+        private AudioStreamPlayer _windSound => GetNode<AudioStreamPlayer>("%WindSound");
+
         private OrbitCamera _camera => GetNode<OrbitCamera>("%OrbitCamera");
         private Node3D _cameraFocus => GetNode<Node3D>("%CameraFocus");
         private Node3D _cameraFocusRestPos => GetNode<Node3D>("%CameraFocusRestPos");
@@ -119,6 +121,27 @@ namespace FastDragon
 
             // Start the animation
             _stateMachine.ChangeState<MovingToRest>();
+            StartFadingWindIn();
+        }
+
+        private void StartFadingWindIn()
+        {
+            const float duration = 2;
+
+            _windSound.PitchScale = 0.01f;
+            GetTree()
+                .CreateTween()
+                .TweenProperty(_windSound, "pitch_scale", 1, duration);
+        }
+
+        private void StartFadingWindOut()
+        {
+            const float duration = 1;
+
+            _windSound.PitchScale = 1;
+            GetTree()
+                .CreateTween()
+                .TweenProperty(_windSound, "pitch_scale", 0.01f, duration);
         }
 
         private int TotalUntalliedGems()
@@ -462,6 +485,8 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 GD.Print("Started correction animation");
+
+                _screen.StartFadingWindOut();
 
                 var tween = _screen.CreateTween();
 
