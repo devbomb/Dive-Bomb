@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Godot;
 
 namespace FastDragon
@@ -8,65 +8,55 @@ namespace FastDragon
     {
         public static SignalBus Instance {get; private set;}
 
-        // Why am I doing this instead of using a Godot signal?
+        // Why are we using user signals instead of the [Signal] attribute?
         // It's a workaround for this bug:
         // https://github.com/godotengine/godot/issues/82346
         //
-        // tldr: If you connect a Godot signal in C#, and then the handler node
-        // is QueueFree()'d(EG: because you changed maps), then the Callable
-        // won't be disconnected from the signal.  That's a problem for us,
-        // because SignalBus is a singleton that persists between map changes.
+        // tldr: If you use the += syntax to connect to a signal created using
+        // the [Signal] attribute, the Callable won't be disconnected when the
+        // handler node is QueueFreed()'d (EG: because you changed maps).
+        // That's a problem for us because SignalBus is a singleton that
+        // persists between map changes.
         public event Action LevelReset
         {
-            add => _levelReset.Add(value);
-            remove => _levelReset.Remove(value);
+            add => ConnectAction(value);
+            remove => DisconnectAction(value);
         }
-        private FakeSignal<Action> _levelReset = new FakeSignal<Action>();
 
         public event Action ExitReached
         {
-            add => _exitReached.Add(value);
-            remove => _exitReached.Remove(value);
+            add => ConnectAction(value);
+            remove => DisconnectAction(value);
         }
-        private FakeSignal<Action> _exitReached = new FakeSignal<Action>();
+
+        public SignalBus()
+        {
+            AddUserSignal(nameof(LevelReset));
+            AddUserSignal(nameof(ExitReached));
+        }
 
         public override void _Ready()
         {
             Instance = this;
         }
 
-        public void EmitLevelReset() => _levelReset.Emit();
-        public void EmitExitReached() => _exitReached.Emit();
+        public void EmitLevelReset() => EmitSignal(nameof(LevelReset));
+        public void EmitExitReached() => EmitSignal(nameof(ExitReached));
 
-        private class FakeSignal<TDelegate> where TDelegate : Delegate
+        private void ConnectAction(
+            Action action,
+            [CallerMemberName] string signalName = ""
+        )
         {
-            private List<TDelegate> _handlers = new List<TDelegate>();
-            private List<TDelegate> _swap = new List<TDelegate>();
+            Connect(signalName, Callable.From(action));
+        }
 
-            public void Add(TDelegate handler) => _handlers.Add(handler);
-            public void Remove(TDelegate handler) => _handlers.Remove(handler);
-
-            public void Emit(params object[] args)
-            {
-                // Filter out deleted objects, without incurring any GC
-                _swap.Clear();
-                foreach (var handler in _handlers)
-                {
-                    if (handler.Target is GodotObject obj && !IsInstanceValid(obj))
-                        continue;
-
-                    _swap.Add(handler);
-                }
-
-                _handlers.Clear();
-                _handlers.AddRange(_swap);
-
-                // Execute the remaining handlers
-                foreach (var handler in _handlers)
-                {
-                    handler.DynamicInvoke(args);
-                }
-            }
+        private void DisconnectAction(
+            Action action,
+            [CallerMemberName] string signalName = ""
+        )
+        {
+            Disconnect(signalName, Callable.From(action));
         }
     }
 }
