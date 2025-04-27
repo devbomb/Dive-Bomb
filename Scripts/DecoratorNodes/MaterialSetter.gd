@@ -5,9 +5,6 @@ extends Node
 @export var material: Material
 
 func _ready():
-	# Need to connect this via code because connecting it through the editor
-	# produces an error saying that the signal has already been connected to
-	# this method.  Sounds like a Godot bug.
 	if (!get_parent().is_connected("ready", parent_ready)):
 		get_parent().connect("ready", parent_ready)
 
