@@ -16,7 +16,7 @@ func _get_recognized_extensions() -> PackedStringArray:
 	return ["map"]
 
 func _get_save_extension() -> String:
-	return "scn"
+	return "tscn"
 
 func _get_resource_type() -> String:
 	return "PackedScene"
@@ -77,7 +77,7 @@ func _import(
 	save_path: String,
 	options: Dictionary,
 	r_platform_variants: Array[String],
-	r_gen_files: Array[String]):
+	r_gen_files: Array[String]) -> Error:
 	print("Importing " + source_file)
 	var tbLoader: TBLoader = TBLoader.new()
 
@@ -109,9 +109,23 @@ func _import(
 			replace_materials(node, options.texture_material_map.texture_to_material)
 
 	# Save the map as a packed scene
+	var filePath = "%s.%s" % [save_path, _get_save_extension()]
 	var scene = PackedScene.new()
 	scene.pack(mapRoot)
-	return ResourceSaver.save(scene, "%s.%s" % [save_path, _get_save_extension()])
+	
+	var saveResult = ResourceSaver.save(scene, filePath)
+	if (saveResult != OK):
+		return saveResult
+	
+	# HACK: ResourceSaver.save() has a bug where signal connections from
+	# instantiated child scenes are unnecessarily saved again in the parent
+	# scene, resulting in a "Signal 'Foo' is already connected" error.
+	# See https://github.com/godotengine/godot/issues/48064
+	#
+	# The workaround: edit the generated .tscn file and delete the "connection"
+	# lines.
+	_strip_duplicate_signal_connections(filePath)
+	return OK
 
 func fix_duplicate_node_names(node: Node):
 	var nameCounts: Dictionary = {}
@@ -171,3 +185,16 @@ func replace_materials(meshInstance: MeshInstance3D, textureToMaterial: Dictiona
 
 		var replacementMaterial: Material = textureToMaterial.get(texture)
 		meshInstance.set_surface_override_material(surfaceIndex, replacementMaterial)
+
+func _strip_duplicate_signal_connections(filePath: String) -> Error:
+	var originalText: String = FileAccess.get_file_as_string(filePath)
+	
+	var regex = RegEx.new()
+	regex.compile("\\[connection signal=.+\\]\\n")
+	var strippedText: String = regex.sub(originalText, "", true)
+	
+	var file: FileAccess = FileAccess.open(filePath, FileAccess.WRITE)
+	file.store_string(strippedText)
+	file.close()
+	# TODO: catch and return errors?
+	return OK

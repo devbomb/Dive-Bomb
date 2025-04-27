@@ -3,12 +3,12 @@
 importer="map_importer"
 type="PackedScene"
 uid="uid://cf2tkkwvrpta4"
-path="res://.godot/imported/DummyMap.map-7ad11d06d03b87b43249f2e7164b320a.scn"
+path="res://.godot/imported/DummyMap.map-7ad11d06d03b87b43249f2e7164b320a.tscn"
 
 [deps]
 
 source_file="res://TrenchbroomMaps/DummyMap.map"
-dest_files=["res://.godot/imported/DummyMap.map-7ad11d06d03b87b43249f2e7164b320a.scn"]
+dest_files=["res://.godot/imported/DummyMap.map-7ad11d06d03b87b43249f2e7164b320a.tscn"]
 
 [params]
 
