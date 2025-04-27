@@ -2376,7 +2376,7 @@
 "classname" "Transport_/Checkpoint"
 "origin" "400 -128 336"
 "angles" "0 90 0"
-"Transport_/CheckpointName" "FloatingPlatformBridge"
+"CheckpointName" "FloatingPlatformBridge"
 }
 // entity 19
 {
@@ -3356,7 +3356,7 @@
 {
 "classname" "Transport_/Checkpoint"
 "origin" "-416 240 720"
-"Transport_/CheckpointName" "Rooftops"
+"CheckpointName" "Rooftops"
 "angles" "0 0 0"
 }
 // entity 122
