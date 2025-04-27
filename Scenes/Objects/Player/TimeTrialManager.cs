@@ -80,12 +80,8 @@ namespace FastDragon
             // themselves based on the previous save file before we had time to
             // swap it.  So, let's fire the reset event one more time to ensure
             // EVERYONE sees the clean save file.
-            //
-            // HACK: Need to call deferred while doing this to avoid an
-            // InvalidOperationException, due to FakeSignal not supporting
-            // reentrancy.
             _isResettingSaveFile = true;
-            SignalBus.Instance.CallDeferred(nameof(SignalBus.Instance.EmitLevelReset));
+            SignalBus.Instance.EmitLevelReset();
         }
 
         private void OnExitReached()
