@@ -16,7 +16,7 @@ func _get_recognized_extensions() -> PackedStringArray:
 	return ["map"]
 
 func _get_save_extension() -> String:
-	return "scn"
+	return "tscn"
 
 func _get_resource_type() -> String:
 	return "PackedScene"
