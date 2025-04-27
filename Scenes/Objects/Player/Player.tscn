@@ -57,6 +57,7 @@ height = 1.5
 size = Vector3(1, 2, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
+collision_layer = 9
 script = ExtResource("1_a4opu")
 
 [node name="TimeTrialManager" parent="." instance=ExtResource("2_eu73y")]
