@@ -240,13 +240,13 @@
 {
 "classname" "Transport_/Checkpoint"
 "origin" "16 -368 -64"
-"Transport_/CheckpointName" "Test"
+"CheckpointName" "Test"
 }
 // entity 29
 {
 "classname" "Transport_/Checkpoint"
 "origin" "272 -384 -64"
-"Transport_/CheckpointName" "OtherTransport_/Checkpoint"
+"CheckpointName" "OtherTransport_/Checkpoint"
 }
 // entity 30
 {

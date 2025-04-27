@@ -3451,5 +3451,5 @@
 "classname" "Transport_/Checkpoint"
 "origin" "-224 1488 32"
 "angles" "0 -90 0"
-"Transport_/CheckpointName" "DiningRoom"
+"CheckpointName" "DiningRoom"
 }
