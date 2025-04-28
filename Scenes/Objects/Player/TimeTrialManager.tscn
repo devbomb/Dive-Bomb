@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cnb1gwesfjr6b" path="res://Scenes/Objects/Player/TimeTrialManager.cs" id="1_e1abn"]
 [ext_resource type="Script" uid="uid://chudgtyjw2v1a" path="res://Scripts/UIWidgets/PageNavigator.cs" id="2_jdmjo"]
-[ext_resource type="PackedScene" uid="uid://dqh4hyr3v2be8" path="res://Scenes/UIMenus/TimeTrialBriefingPage.tscn" id="3_xwoof"]
-[ext_resource type="PackedScene" uid="uid://drf8cyvxudjxn" path="res://Scenes/UIMenus/TimeTrialResultsPage.tscn" id="4_elsja"]
+[ext_resource type="PackedScene" uid="uid://dqh4hyr3v2be8" path="res://Scenes/UIMenus/TimeTrial/TimeTrialBriefingPage.tscn" id="3_xwoof"]
+[ext_resource type="PackedScene" uid="uid://drf8cyvxudjxn" path="res://Scenes/UIMenus/TimeTrial/TimeTrialResultsPage.tscn" id="4_elsja"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bn2qp"]
 font_size = 30
