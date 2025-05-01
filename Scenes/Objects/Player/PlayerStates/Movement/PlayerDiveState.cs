@@ -115,46 +115,20 @@ namespace FastDragon
             if (bonked)
                 return;
 
+            // Apply an extra-wide hitbox to catch objects that the player
+            // barely grazes past without touching.
             // TODO: Don't apply the extra hitbox to objects that have already
             // been hit by the main hitbox
-            ApplyExtraHitbox();
+            ApplyHitboxToBreakableObjects(
+                _player.DiveExtraHitbox,
+                b => b.VulnerableToRoll,
+                b => b.OnRolledInto()
+            );
 
             if (_player.IsOnFloor())
             {
                 _player.ChangeState<PlayerRollState>();
                 return;
-            }
-        }
-
-        private void ApplyExtraHitbox()
-        {
-            var bodies = _player.DiveExtraHitbox.GetOverlappingBodies();
-            var areas = _player.DiveExtraHitbox.GetOverlappingAreas();
-
-            foreach (var body in bodies)
-            {
-                if (body is IBreakable b && b.VulnerableToRoll)
-                {
-                    b.OnRolledInto();
-
-                    if (b.VulnerableToRoll)
-                        Break(b);
-                    else
-                        b.OnBreakRejected();
-                }
-            }
-
-            foreach (var area in areas)
-            {
-                if (area is IBreakable b && b.VulnerableToRoll)
-                {
-                    b.OnRolledInto();
-
-                    if (b.VulnerableToRoll)
-                        Break(b);
-                    else
-                        b.OnBreakRejected();
-                }
             }
         }
 
