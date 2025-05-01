@@ -1,11 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://b6d7vas8km3kd"]
+[gd_scene load_steps=27 format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" uid="uid://5c2hnyrbuo5m" path="res://Scenes/Entities/Item_/Fairy.cs" id="1_qaaot"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://BlenderModels/Fairy.blend" id="2_01sg4"]
 [ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://AnimationLibraries/FairyAnimations.tres" id="2_l0xag"]
 [ext_resource type="AudioStream" uid="uid://b1kkywgiv08uj" path="res://Audio/SFX/MagicalGlassShatter.wav" id="2_wcnnd"]
 [ext_resource type="AudioStream" uid="uid://eqg1m3m28yi3" path="res://Audio/SFX/FairyJingle.wav" id="3_p435h"]
+[ext_resource type="Script" uid="uid://ilt6j85e4n8e" path="res://Scripts/DecoratorNodes/BillboardToCameraDecorator.gd" id="4_g18ww"]
+[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_ioiy7"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="5_pebs6"]
+[ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Scenes/Models/RedGemModel.tscn" id="5_vio7c"]
+[ext_resource type="Script" uid="uid://vpf40mbrhlr" path="res://Scripts/DecoratorNodes/SpinDecorator.gd" id="6_vio7c"]
+[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="7_wl47v"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ohivc"]
 height = 1.5
@@ -23,6 +28,21 @@ disable_receive_shadows = true
 material = SubResource("StandardMaterial3D_hs1pw")
 height = 1.5
 radial_segments = 8
+
+[sub_resource type="GDScript" id="GDScript_vio7c"]
+script/source = "extends Node3D
+
+@export var label_mesh: TextMesh
+
+func _ready():
+	visible = owner.GemCost > 0
+	label_mesh.text = str(owner.GemCost)
+"
+
+[sub_resource type="TextMesh" id="TextMesh_aq6wb"]
+material = ExtResource("7_wl47v")
+text = "999"
+font = ExtResource("4_ioiy7")
 
 [sub_resource type="Curve" id="Curve_61x46"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -139,6 +159,27 @@ disabled = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 mesh = SubResource("CylinderMesh_r6mq4")
+
+[node name="PriceTag" type="Node3D" parent="Glass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01713, 0)
+script = SubResource("GDScript_vio7c")
+label_mesh = SubResource("TextMesh_aq6wb")
+
+[node name="BillboardToCameraDecorator" type="Node" parent="Glass/PriceTag"]
+script = ExtResource("4_g18ww")
+metadata/_custom_type_script = "uid://ilt6j85e4n8e"
+
+[node name="RedGemModel" parent="Glass/PriceTag" instance=ExtResource("5_vio7c")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.354317, -0.0213813, 0)
+
+[node name="SpinDecorator" type="Node" parent="Glass/PriceTag/RedGemModel"]
+script = ExtResource("6_vio7c")
+speed_degrees = Vector3(0, 90, 0)
+metadata/_custom_type_script = "uid://vpf40mbrhlr"
+
+[node name="Label" type="MeshInstance3D" parent="Glass/PriceTag"]
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -0.16494, 0.0733068, 6.14166e-09)
+mesh = SubResource("TextMesh_aq6wb")
 
 [node name="GlassParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
