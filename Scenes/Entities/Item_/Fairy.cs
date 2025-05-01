@@ -9,12 +9,13 @@ namespace FastDragon
 
         [Export] public int GemCost { get; set; }
 
-        public bool CanBreak => EnoughGems || IsTimeTrialMode();
-        public bool VulnerableToKick => CanBreak;
-        public bool VulnerableToRoll => CanBreak;
-        public bool CausesBonk => !CanBreak;
+        public bool VulnerableToKick => CanBreak();
+        public bool VulnerableToRoll => CanBreak();
+        public bool CausesBonk => !CanBreak();
 
-        public bool EnoughGems => SaveFile.Current.TotalGemCount >= GemCost;
+        public bool CanBreak() => EnoughGems() || IsTimeTrialMode();
+        public bool EnoughGems() => SaveFile.Current.TotalGemCount >= GemCost;
+        public bool ShowPriceTag() => GemCost > 0 && !IsTimeTrialMode();
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(FairyState));
         private Transform3D _initialModelPos;
