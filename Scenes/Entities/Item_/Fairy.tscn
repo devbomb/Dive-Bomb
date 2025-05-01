@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6d7vas8km3kd"]
+[gd_scene load_steps=20 format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" uid="uid://5c2hnyrbuo5m" path="res://Scenes/Entities/Item_/Fairy.cs" id="1_qaaot"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://BlenderModels/Fairy.blend" id="2_01sg4"]
@@ -42,6 +42,76 @@ scale_curve = SubResource("CurveTexture_u312v")
 [sub_resource type="PrismMesh" id="PrismMesh_lu2bc"]
 material = SubResource("StandardMaterial3D_hs1pw")
 size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p435h"]
+
+[sub_resource type="Animation" id="Animation_ioiy7"]
+resource_name = "PoorShaming"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TooPoor:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TooPoor:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p435h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TooPoor:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TooPoor:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7rhii"]
+_data = {
+&"PoorShaming": SubResource("Animation_ioiy7"),
+&"RESET": SubResource("Animation_p435h")
+}
+
+[sub_resource type="Gradient" id="Gradient_ovo6q"]
+offsets = PackedFloat32Array(0, 0.1, 0.25, 0.75, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.623377, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0.623377, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p435h"]
+gradient = SubResource("Gradient_ovo6q")
 
 [node name="Fairy" type="StaticBody3D"]
 script = ExtResource("1_qaaot")
@@ -99,3 +169,51 @@ radius = 0.25
 
 [node name="CutsceneCam" type="Camera3D" parent="." groups=["PhysicsInterpolated"]]
 unique_name_in_owner = true
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="TooPoor" type="Label" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.0
+offset_top = 59.0
+offset_right = 124.0
+offset_bottom = 49.0
+grow_horizontal = 2
+text = "You're too poor to free this fairy!"
+label_settings = SubResource("LabelSettings_p435h")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/TooPoor"]
+deterministic = true
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_7rhii")
+}
+
+[node name="TextLegibilityShadow" type="TextureRect" parent="HUD/TooPoor"]
+modulate = Color(1, 1, 1, 0.486275)
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_p435h")
+
+[connection signal="BreakRejected" from="." to="HUD/TooPoor/AnimationPlayer" method="play" binds= ["PoorShaming"]]

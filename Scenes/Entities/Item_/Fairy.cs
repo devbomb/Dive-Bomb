@@ -5,6 +5,8 @@ namespace FastDragon
 {
     public partial class Fairy : StaticBody3D, IBreakable
     {
+        [Signal] public delegate void BreakRejectedEventHandler();
+
         [Export] public int GemCost { get; set; }
 
         public bool CanBreak => EnoughGems || IsTimeTrialMode();
@@ -84,6 +86,11 @@ namespace FastDragon
                 SaveFile.Current.GemsSpent += GemCost;
                 _stateMachine.ChangeState<Shattering>();
             }
+        }
+
+        public void OnBreakRejected()
+        {
+            EmitSignal(SignalName.BreakRejected);
         }
 
         private bool IsTimeTrialMode()
