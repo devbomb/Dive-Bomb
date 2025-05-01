@@ -253,22 +253,25 @@ namespace FastDragon
 
         /// <summary>
         /// Just like MoveAndSlide, except:
-        /// * It passes through all objects that meet the isBreakable() criteria
+        /// * It passes through all objects that meet the isVulnerable() criteria
         /// * It puts all passed-through objects into the brokenObjects list
+        /// * It puts objects that failed the isVulnerable() criteria into the
+        ///     unbrokenObjects list
         /// * It bonks the player if they touch an object that meets both the
-        ///     isBreakable() and causesBonkWhenBroken() criteria
+        ///     isVulnerable() and causesBonkWhenBroken() criteria
         /// * It bonks the player if they hit a wall at too direct of an angle
         /// * It returns true if the player bonked
         ///
-        /// It puts the broken objects in the provided list instead of returning
-        /// them in an array in order to avoid allocating on the heap every
-        /// frame.  Remember to clear the list you pass in before calling.
+        /// It puts the broken/unbroken objects in the provided list instead of
+        //  returning them in an array to avoid allocating on the heap every
+        /// frame.  Remember to clear those lists you pass in before calling!
         /// </summary>
         /// <param name="delta"></param>
         protected bool MoveAndSlideBreakingObjects<TNode>(
-            Func<TNode, bool> isBreakable,
+            Func<TNode, bool> isVulnerable,
             Func<TNode, bool> causesBonkWhenBroken,
             List<TNode> brokenObjects,
+            List<TNode> unbrokenObjects,
             float delta
         )
         {
@@ -281,11 +284,12 @@ namespace FastDragon
             for (int i = 0; i < numCollisions; i++)
             {
                 var collision = _player.GetSlideCollision(i);
-
-                // Trigger OnRolledInto().
-                // Bonk if it's bonkable.
                 var hitObject = collision.GetCollider();
-                if (hitObject is TNode n && isBreakable(n))
+
+                if (hitObject is not TNode n)
+                    continue;
+
+                if (isVulnerable(n))
                 {
                     brokenObjects.Add(n);
 
@@ -297,10 +301,19 @@ namespace FastDragon
                     _player.Velocity = prevVel;
 
                     _player.AddCollisionExceptionWith((Node)hitObject);
-                    bool bonked = MoveAndSlideBreakingObjects(isBreakable, causesBonkWhenBroken, brokenObjects, delta);
+                    bool bonked = MoveAndSlideBreakingObjects(
+                        isVulnerable,
+                        causesBonkWhenBroken,
+                        brokenObjects,
+                        unbrokenObjects,
+                        delta);
                     _player.RemoveCollisionExceptionWith((Node)hitObject);
 
                     return bonked;
+                }
+                else
+                {
+                    unbrokenObjects.Add(n);
                 }
             }
 

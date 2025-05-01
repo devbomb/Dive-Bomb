@@ -15,6 +15,7 @@ namespace FastDragon
         private bool _isGroundRoll;
 
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
+        private List<IBreakable> _unbrokenObjects= new List<IBreakable>();
 
         private AudioStreamPlayer _rollSoundPlayer => _player.GetNode<AudioStreamPlayer>("%RollSoundPlayer");
 
@@ -79,10 +80,13 @@ namespace FastDragon
             RotateInstantlyTowardVelocity();
 
             _brokenObjects.Clear();
+            _unbrokenObjects.Clear();
+
             MoveAndSlideBreakingObjects<IBreakable>(
-                isBreakable: b => b.VulnerableToRoll,
+                isVulnerable: b => b.VulnerableToRoll,
                 causesBonkWhenBroken: b => b.CausesBonk,
-                _brokenObjects,
+                brokenObjects: _brokenObjects,
+                unbrokenObjects: _unbrokenObjects,
                 delta
             );
 
@@ -91,6 +95,9 @@ namespace FastDragon
                 b.OnRolledInto();
                 Break(b);
             }
+
+            foreach (var b in _unbrokenObjects)
+                b.OnBreakRejected();
 
             // TODO: Don't apply the extra hitbox to objects that have already
             // been hit by the main hitbox
@@ -130,6 +137,8 @@ namespace FastDragon
 
                     if (b.VulnerableToRoll)
                         Break(b);
+                    else
+                        b.OnBreakRejected();
                 }
             }
 
@@ -141,6 +150,8 @@ namespace FastDragon
 
                     if (b.VulnerableToRoll)
                         Break(b);
+                    else
+                        b.OnBreakRejected();
                 }
             }
         }

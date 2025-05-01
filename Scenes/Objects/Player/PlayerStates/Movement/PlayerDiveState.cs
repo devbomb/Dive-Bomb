@@ -12,6 +12,7 @@ namespace FastDragon
         private float _startY;
 
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
+        private List<IBreakable> _unbrokenObjects = new List<IBreakable>();
 
         public override void OnStateEntered()
         {
@@ -92,10 +93,13 @@ namespace FastDragon
             ApplyGravity(delta, Player.Dive.Gravity);
 
             _brokenObjects.Clear();
+            _unbrokenObjects.Clear();
+
             bool bonked = MoveAndSlideBreakingObjects<IBreakable>(
-                isBreakable: b => b.VulnerableToRoll,
+                isVulnerable: b => b.VulnerableToRoll,
                 causesBonkWhenBroken: b => b.CausesBonk,
                 brokenObjects: _brokenObjects,
+                unbrokenObjects: _unbrokenObjects,
                 delta
             );
 
@@ -104,6 +108,9 @@ namespace FastDragon
                 b.OnRolledInto();
                 Break(b);
             }
+
+            foreach (var b in _unbrokenObjects)
+                b.OnBreakRejected();
 
             if (bonked)
                 return;
@@ -132,6 +139,8 @@ namespace FastDragon
 
                     if (b.VulnerableToRoll)
                         Break(b);
+                    else
+                        b.OnBreakRejected();
                 }
             }
 
@@ -143,6 +152,8 @@ namespace FastDragon
 
                     if (b.VulnerableToRoll)
                         Break(b);
+                    else
+                        b.OnBreakRejected();
                 }
             }
         }

@@ -7,6 +7,7 @@ namespace FastDragon
         [Signal] public delegate void KickedEventHandler();
         [Signal] public delegate void RolledIntoEventHandler();
         [Signal] public delegate void BrokenEventHandler();
+        [Signal] public delegate void BreakRejectedEventHandler();
 
         [Export] public float CameraShakeMagnitude { get; set; } = 0.25f;
         [Export] public float CameraShakeFrequency { get; set; } = 15;
@@ -27,6 +28,11 @@ namespace FastDragon
         public void OnRolledInto()
         {
             EmitSignal(SignalName.RolledInto);
+        }
+
+        public void OnBreakRejected()
+        {
+            EmitSignal(SignalName.BreakRejected);
         }
 
         public void OnBroken()

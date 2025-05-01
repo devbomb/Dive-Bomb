@@ -79,6 +79,8 @@ namespace FastDragon
 
                     if (b.VulnerableToKick)
                         Break(b);
+                    else
+                        b.OnBreakRejected();
                 }
             }
 
@@ -90,6 +92,8 @@ namespace FastDragon
 
                     if (b.VulnerableToKick)
                         Break(b);
+                    else
+                        b.OnBreakRejected();
                 }
             }
         }
