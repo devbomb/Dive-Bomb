@@ -381,32 +381,26 @@ namespace FastDragon
 
             foreach (var body in bodies)
             {
-                if (body is IBreakable b && isVulnerable(b))
-                {
-                    onDetected(b);
-
-                    if (isVulnerable(b))
-                        Break(b);
-                    else
-                        b.OnBreakRejected();
-                }
+                if (body is IBreakable b)
+                    TryBreak(b);
             }
 
             foreach (var area in areas)
             {
-                if (area is IBreakable b && isVulnerable(b))
-                {
-                    onDetected(b);
-
-                    if (isVulnerable(b))
-                        Break(b);
-                    else
-                        b.OnBreakRejected();
-                }
+                if (area is IBreakable b)
+                    TryBreak(b);
             }
 
-            void Break(IBreakable b)
+            void TryBreak(IBreakable b)
             {
+                onDetected(b);
+
+                if (!isVulnerable(b))
+                {
+                    b.OnBreakRejected();
+                    return;
+                }
+
                 b.OnBroken();
                 _player.Camera.Shake(
                     b.CameraShakeMagnitude,
