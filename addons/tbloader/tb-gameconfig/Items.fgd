@@ -2,7 +2,9 @@
 	base(Angle)
 	size(-8 -8 0, 8 8 24)
 	model("TrenchbroomEntityModels/Fairy.obj")
-	= Item_/Fairy []
+	= Item_/Fairy [
+		GemCost(int) : "Gem Cost" : 0
+	]
 
 @PointClass
 	base(Angle)

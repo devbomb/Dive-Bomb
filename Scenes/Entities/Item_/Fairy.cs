@@ -5,6 +5,15 @@ namespace FastDragon
 {
     public partial class Fairy : StaticBody3D, IBreakable
     {
+        [Export] public int GemCost { get; set; }
+
+        public bool CanBreak => EnoughGems || IsTimeTrialMode();
+        public bool VulnerableToKick => CanBreak;
+        public bool VulnerableToRoll => CanBreak;
+        public bool CausesBonk => !CanBreak;
+
+        public bool EnoughGems => SaveFile.Current.TotalGemCount >= GemCost;
+
         private readonly StateMachine _stateMachine = new StateMachine(typeof(FairyState));
         private Transform3D _initialModelPos;
 
@@ -66,17 +75,20 @@ namespace FastDragon
 
         public void OnBroken()
         {
-            Shatter();
+            if (IsTimeTrialMode())
+            {
+                _stateMachine.ChangeState<QuickRescue>();
+            }
+            else
+            {
+                SaveFile.Current.GemsSpent += GemCost;
+                _stateMachine.ChangeState<Shattering>();
+            }
         }
 
-        private void Shatter()
+        private bool IsTimeTrialMode()
         {
-            bool isTimeTrial = GetTree().Root.FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
-
-            if (isTimeTrial)
-                _stateMachine.ChangeState<QuickRescue>();
-            else
-                _stateMachine.ChangeState<Shattering>();
+            return GetTree().Root.FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
         }
 
         private void SetPausedForCutscene(bool paused)
