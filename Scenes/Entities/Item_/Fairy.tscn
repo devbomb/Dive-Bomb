@@ -46,6 +46,7 @@ func _first_frame_after_ready():
 "
 
 [sub_resource type="TextMesh" id="TextMesh_aq6wb"]
+resource_local_to_scene = true
 material = ExtResource("7_wl47v")
 text = "999"
 font = ExtResource("4_ioiy7")
