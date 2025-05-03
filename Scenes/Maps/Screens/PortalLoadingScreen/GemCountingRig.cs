@@ -309,7 +309,12 @@ namespace FastDragon
             public override void _Process(double delta)
             {
                 if (!_self._labelSlider.IsPlaying())
-                    ChangeState<SlidingInGemsSpent>();
+                {
+                    if (_self._untalliedSpentGems > 0)
+                        ChangeState<SlidingInGemsSpent>();
+                    else
+                        ChangeState<LettingPlayerReadLabels>();
+                }
             }
         }
 
