@@ -18,6 +18,7 @@ namespace FastDragon
         public HashSet<string> CollectedGems = new HashSet<string>();
 
         public Dictionary<GemColor, int> UntalliedGems = new Dictionary<GemColor, int>();
+        public int UntalliedGemsSpent;
 
         public Dictionary<string, MapProgress> Maps = new Dictionary<string, MapProgress>();
         public class MapProgress
@@ -51,6 +52,12 @@ namespace FastDragon
 
                 }
             );
+        }
+
+        public void SpendGems(int amount)
+        {
+            GemsSpent += amount;
+            UntalliedGemsSpent += amount;
         }
 
         public MapProgress GetMapProgress(string map)

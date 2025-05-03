@@ -84,7 +84,7 @@ namespace FastDragon
             }
             else
             {
-                SaveFile.Current.GemsSpent += GemCost;
+                SaveFile.Current.SpendGems(GemCost);
                 _stateMachine.ChangeState<Shattering>();
             }
         }
