@@ -10,6 +10,7 @@ environment = ExtResource("2_0of0g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.958038, 0.253313, -0.13415, -0.134871, 0.811326, 0.568824, 0.25293, -0.526862, 0.811445, 0, 5.02909, 0)
+layers = 3
 sky_mode = 1
 
 [node name="TestMap" parent="." instance=ExtResource("1_um13f")]
