@@ -1616,6 +1616,7 @@
 "classname" "Item_/Fairy"
 "origin" "0 2064 448"
 "angles" "0 90 0"
+"GemCost" "250"
 "_tb_group" "1"
 }
 // entity 12
@@ -1627,30 +1628,35 @@
 "SizeZ" "34"
 "angles" "0 90 0"
 "TexturePath" "res://Textures/Textures/ThroneRoomRug.png"
+"GemCost" "250"
 "_tb_group" "1"
 }
 // entity 13
 {
 "classname" "Item_/YellowGem"
 "origin" "12 2164 448"
+"GemCost" "250"
 "_tb_group" "1"
 }
 // entity 14
 {
 "classname" "Item_/PurpleGem"
 "origin" "52 2196 448"
+"GemCost" "250"
 "_tb_group" "1"
 }
 // entity 15
 {
 "classname" "Item_/PurpleGem"
 "origin" "-52 2196 448"
+"GemCost" "250"
 "_tb_group" "1"
 }
 // entity 16
 {
 "classname" "Item_/YellowGem"
 "origin" "-12 2164 448"
+"GemCost" "250"
 "_tb_group" "1"
 }
 // entity 17
@@ -1658,6 +1664,7 @@
 "classname" "Transport_/ReturnHomePlatform"
 "origin" "0 2240 448"
 "ExitHeight" "30"
+"GemCost" "250"
 "_tb_group" "1"
 }
 // entity 18

@@ -253,22 +253,25 @@ namespace FastDragon
 
         /// <summary>
         /// Just like MoveAndSlide, except:
-        /// * It passes through all objects that meet the isBreakable() criteria
+        /// * It passes through all objects that meet the isVulnerable() criteria
         /// * It puts all passed-through objects into the brokenObjects list
+        /// * It puts objects that failed the isVulnerable() criteria into the
+        ///     unbrokenObjects list
         /// * It bonks the player if they touch an object that meets both the
-        ///     isBreakable() and causesBonkWhenBroken() criteria
+        ///     isVulnerable() and causesBonkWhenBroken() criteria
         /// * It bonks the player if they hit a wall at too direct of an angle
         /// * It returns true if the player bonked
         ///
-        /// It puts the broken objects in the provided list instead of returning
-        /// them in an array in order to avoid allocating on the heap every
-        /// frame.  Remember to clear the list you pass in before calling.
+        /// It puts the broken/unbroken objects in the provided list instead of
+        //  returning them in an array to avoid allocating on the heap every
+        /// frame.  Remember to clear those lists you pass in before calling!
         /// </summary>
         /// <param name="delta"></param>
         protected bool MoveAndSlideBreakingObjects<TNode>(
-            Func<TNode, bool> isBreakable,
+            Func<TNode, bool> isVulnerable,
             Func<TNode, bool> causesBonkWhenBroken,
             List<TNode> brokenObjects,
+            List<TNode> unbrokenObjects,
             float delta
         )
         {
@@ -281,11 +284,12 @@ namespace FastDragon
             for (int i = 0; i < numCollisions; i++)
             {
                 var collision = _player.GetSlideCollision(i);
-
-                // Trigger OnRolledInto().
-                // Bonk if it's bonkable.
                 var hitObject = collision.GetCollider();
-                if (hitObject is TNode n && isBreakable(n))
+
+                if (hitObject is not TNode n)
+                    continue;
+
+                if (isVulnerable(n))
                 {
                     brokenObjects.Add(n);
 
@@ -297,10 +301,19 @@ namespace FastDragon
                     _player.Velocity = prevVel;
 
                     _player.AddCollisionExceptionWith((Node)hitObject);
-                    bool bonked = MoveAndSlideBreakingObjects(isBreakable, causesBonkWhenBroken, brokenObjects, delta);
+                    bool bonked = MoveAndSlideBreakingObjects(
+                        isVulnerable,
+                        causesBonkWhenBroken,
+                        brokenObjects,
+                        unbrokenObjects,
+                        delta);
                     _player.RemoveCollisionExceptionWith((Node)hitObject);
 
                     return bonked;
+                }
+                else
+                {
+                    unbrokenObjects.Add(n);
                 }
             }
 
@@ -340,6 +353,60 @@ namespace FastDragon
                 _player.MoveAndCollide(prevVel * delta);
                 _player.ChangeState<PlayerBonkState>();
                 return true;
+            }
+        }
+
+        /// <summary>
+        /// Scans the given area for breakable objects and breaks them if they're
+        /// vulnerable to this particular kind of attack.
+        ///
+        /// When an object is broken in this manner, its <see cref="IBreakable.OnBroken"/>
+        /// method is called, the <paramref name="onBroken"/> callback is fired,
+        /// and a screen shake effect is played.
+        ///
+        /// If a breakable object is detected but it isn't vulnerable to this
+        /// particular kind of attack, its <see cref="IBreakable.OnBreakRejected"/>
+        /// method is called.
+        /// </summary>
+        /// <param name="hitbox"></param>
+        /// <param name="isVulnerable"></param>
+        /// <param name="onDetected">Called when a breakable object is detected, regardless of if it's vulnerable</param>
+        protected void ApplyHitboxToBreakableObjects(
+            Area3D hitbox,
+            Func<IBreakable, bool> isVulnerable,
+            Action<IBreakable> onDetected)
+        {
+            var bodies = hitbox.GetOverlappingBodies();
+            var areas = hitbox.GetOverlappingAreas();
+
+            foreach (var body in bodies)
+            {
+                if (body is IBreakable b)
+                    TryBreak(b);
+            }
+
+            foreach (var area in areas)
+            {
+                if (area is IBreakable b)
+                    TryBreak(b);
+            }
+
+            void TryBreak(IBreakable b)
+            {
+                onDetected(b);
+
+                if (!isVulnerable(b))
+                {
+                    b.OnBreakRejected();
+                    return;
+                }
+
+                b.OnBroken();
+                _player.Camera.Shake(
+                    b.CameraShakeMagnitude,
+                    b.CameraShakeFrequency,
+                    b.CameraShakeDuration
+                );
             }
         }
 

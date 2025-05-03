@@ -1,0 +1,372 @@
+[gd_scene load_steps=21 format=3 uid="uid://desy5vwopnilu"]
+
+[ext_resource type="Script" uid="uid://w3vuer5jnq04" path="res://Scenes/Maps/Screens/PortalLoadingScreen/GemCountingRig.cs" id="1_d3gao"]
+[ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Scenes/Models/RedGemModel.tscn" id="2_3qivj"]
+[ext_resource type="PackedScene" uid="uid://be5v4cuys7g1s" path="res://Scenes/Models/GreenGemModel.tscn" id="3_rp877"]
+[ext_resource type="PackedScene" uid="uid://crlqwtcxxmg76" path="res://Scenes/Models/PurpleGemModel.tscn" id="4_o7chy"]
+[ext_resource type="PackedScene" uid="uid://byj33t3fmjjmx" path="res://Scenes/Models/YellowGemModel.tscn" id="5_k00r0"]
+[ext_resource type="PackedScene" uid="uid://bmpnfs8rauqo" path="res://Scenes/Models/MagentaGemModel.tscn" id="6_5kyev"]
+[ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="7_1t3ap"]
+[ext_resource type="AudioStream" uid="uid://bojobea40tjay" path="res://Audio/SFX/Gem.wav" id="7_3qivj"]
+[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="8_7xmdk"]
+[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="9_res2x"]
+[ext_resource type="Script" uid="uid://cag7kxi13wlpq" path="res://Scripts/DecoratorNodes/VisibleOnlyInEditorDecorator.cs" id="10_u1aj1"]
+
+[sub_resource type="Animation" id="Animation_3qivj"]
+resource_name = "MoveTotalToTop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%UntalliedGemsLabel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, 3.143, 0), Vector3(-0.203, 4, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TalliedGemsLabel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, -2.874, 0), Vector3(-0.203, 3.143, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_emx2o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%UntalliedGemsLabel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.203, 4, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TalliedGemsLabel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.203, 3.143, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpentGemsLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-8.82991, 2.79569, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_620hr"]
+resource_name = "SlideInGemsFound"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%UntalliedGemsLabel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, 4, 0), Vector3(-0.203, 3.143, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TalliedGemsLabel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, -4, 0), Vector3(-0.203, -2.874, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o7chy"]
+resource_name = "SlideInGemsSpent"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpentGemsLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-8.83, 2.796, 0), Vector3(-0.167681, 2.79569, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k00r0"]
+resource_name = "SlideInNoGemsFound"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TalliedGemsLabel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, 4, 0), Vector3(-0.203, 3.143, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rp877"]
+resource_name = "SlideOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%UntalliedGemsLabel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.203, 4, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TalliedGemsLabel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, 3.143, 0), Vector3(-0.203, 4, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3vqn"]
+_data = {
+&"MoveTotalToTop": SubResource("Animation_3qivj"),
+&"RESET": SubResource("Animation_emx2o"),
+&"SlideInGemsFound": SubResource("Animation_620hr"),
+&"SlideInGemsSpent": SubResource("Animation_o7chy"),
+&"SlideInNoGemsFound": SubResource("Animation_k00r0"),
+&"SlideOut": SubResource("Animation_rp877")
+}
+
+[sub_resource type="Gradient" id="Gradient_m180p"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.706271)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_own0v"]
+gradient = SubResource("Gradient_m180p")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[node name="GemCountingRig" type="Node3D"]
+script = ExtResource("1_d3gao")
+RedGemPrefab = ExtResource("2_3qivj")
+GreenGemPrefab = ExtResource("3_rp877")
+PurpleGemPrefab = ExtResource("4_o7chy")
+YellowGemPrefab = ExtResource("5_k00r0")
+MagentaGemPrefab = ExtResource("6_5kyev")
+
+[node name="GemSpawnSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_3qivj")
+pitch_scale = 1.15
+max_polyphony = 10
+bus = &"Sfx"
+
+[node name="GemCountSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_3qivj")
+max_polyphony = 10
+bus = &"Sfx"
+
+[node name="GemSpentSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_3qivj")
+pitch_scale = 1.73
+max_polyphony = 10
+bus = &"Sfx"
+
+[node name="LabelSlider" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_n3vqn")
+}
+
+[node name="UntalliedGemsLabel" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203, 4, 0)
+script = ExtResource("7_1t3ap")
+Text = "Treasure Found: 999"
+Material = ExtResource("8_7xmdk")
+Font = ExtResource("9_res2x")
+FontSize = 32
+
+[node name="Backdrop" type="Sprite3D" parent="UntalliedGemsLabel"]
+transform = Transform3D(6.914, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(1, 1, 1, 0.580392)
+texture = SubResource("GradientTexture2D_own0v")
+
+[node name="TextLights" type="Node3D" parent="UntalliedGemsLabel"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="UntalliedGemsLabel/TextLights"]
+transform = Transform3D(0.154814, -0.0299769, 0.987489, -0.0103773, 0.999435, 0.0319665, -0.987889, -0.0151963, 0.154416, 2.37793, 0.0420477, 0.0718932)
+light_specular = 16.0
+spot_range = 2.09363
+spot_attenuation = 0.00592077
+spot_angle = 26.7188
+spot_angle_attenuation = 0.00680116
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="UntalliedGemsLabel/TextLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68199, 0, 0.796456)
+omni_range = 2.23539
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="UntalliedGemsLabel/TextLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575746, 0, 0.796456)
+omni_range = 2.23539
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="UntalliedGemsLabel/TextLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567658, 0, 0.796456)
+omni_range = 1.30679
+
+[node name="TalliedGemsLabel" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203, 3.143, 0)
+script = ExtResource("7_1t3ap")
+Text = "Total Treasure: 999"
+Material = ExtResource("8_7xmdk")
+Font = ExtResource("9_res2x")
+FontSize = 32
+
+[node name="TextLights" type="Node3D" parent="TalliedGemsLabel"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="TalliedGemsLabel/TextLights"]
+transform = Transform3D(0.154814, -0.0299769, 0.987489, -0.0103773, 0.999435, 0.0319665, -0.987889, -0.0151963, 0.154416, 2.37793, 0.0420477, 0.0718932)
+light_specular = 16.0
+shadow_enabled = true
+spot_range = 2.09363
+spot_attenuation = 0.00592077
+spot_angle = 26.7188
+spot_angle_attenuation = 0.00680116
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="TalliedGemsLabel/TextLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68199, 0, 0.796456)
+omni_range = 2.23539
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="TalliedGemsLabel/TextLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575746, 0, 0.796456)
+omni_range = 2.23539
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="TalliedGemsLabel/TextLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567658, 0, 0.796456)
+omni_range = 1.30679
+
+[node name="AntiLightToMakeLastDigitPopMore" type="SpotLight3D" parent="TalliedGemsLabel/TextLights"]
+transform = Transform3D(-0.108936, 0, 0.994049, 0, 1, 0, -0.994049, 0, -0.108936, 2.30785, 0.0723879, -0.00235844)
+light_energy = 16.0
+light_negative = true
+light_specular = 1.304
+spot_range = 1.43955
+spot_angle = 46.1819
+
+[node name="AntiLightToMakeLastDigitPopMore2" type="SpotLight3D" parent="TalliedGemsLabel/TextLights"]
+transform = Transform3D(-0.109734, 0, -0.993961, 0, 1, 0, 0.993961, 0, -0.109734, 1.29762, -0.0170844, -0.0496446)
+light_energy = 16.0
+light_negative = true
+light_specular = 1.304
+spot_range = 0.710831
+spot_angle = 46.1819
+
+[node name="Backdrop" type="Sprite3D" parent="TalliedGemsLabel"]
+transform = Transform3D(6.914, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(1, 1, 1, 0.580392)
+texture = SubResource("GradientTexture2D_own0v")
+
+[node name="Backdrop2" type="Sprite3D" parent="TalliedGemsLabel"]
+transform = Transform3D(1.41705, 0, 0, 0, 1, 0, 0, 0, 1, 1.59514, 0, 0)
+modulate = Color(1, 1, 1, 0.682353)
+texture = SubResource("GradientTexture2D_own0v")
+
+[node name="SpentGemsLabel" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.82991, 2.79569, 0)
+script = ExtResource("7_1t3ap")
+Text = "Treasure Spent: -999"
+Material = ExtResource("8_7xmdk")
+Font = ExtResource("9_res2x")
+FontSize = 32
+
+[node name="Backdrop" type="Sprite3D" parent="SpentGemsLabel"]
+transform = Transform3D(6.914, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+modulate = Color(1, 1, 1, 0.580392)
+texture = SubResource("GradientTexture2D_own0v")
+
+[node name="TextLights" type="Node3D" parent="SpentGemsLabel"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SpentGemsLabel/TextLights"]
+transform = Transform3D(0.154814, -0.0299769, 0.987489, -0.0103773, 0.999435, 0.0319665, -0.987889, -0.0151963, 0.154416, 2.37793, 0.0420477, 0.0718932)
+light_specular = 16.0
+spot_range = 2.09363
+spot_attenuation = 0.00592077
+spot_angle = 26.7188
+spot_angle_attenuation = 0.00680116
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SpentGemsLabel/TextLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68199, 0, 0.796456)
+omni_range = 2.23539
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="SpentGemsLabel/TextLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575746, 0, 0.796456)
+omni_range = 2.23539
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="SpentGemsLabel/TextLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567658, 0, 0.796456)
+omni_range = 1.30679
+
+[node name="GemPoints" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.153, 0, -2.394)
+
+[node name="GemSpawn" type="Marker3D" parent="GemPoints"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.35243, 0)
+
+[node name="VisibleOnlyInEditorDecorator" type="Node" parent="GemPoints/GemSpawn"]
+script = ExtResource("10_u1aj1")
+
+[node name="RedGemModel" parent="GemPoints/GemSpawn" instance=ExtResource("2_3qivj")]
+metadata/_edit_lock_ = true
+
+[node name="GemDest" type="Marker3D" parent="GemPoints"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.50482, 0)
+
+[node name="VisibleOnlyInEditorDecorator" type="Node" parent="GemPoints/GemDest"]
+script = ExtResource("10_u1aj1")
+
+[node name="RedGemModel" parent="GemPoints/GemDest" instance=ExtResource("2_3qivj")]
+metadata/_edit_lock_ = true

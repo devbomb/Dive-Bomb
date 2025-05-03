@@ -15,11 +15,8 @@ namespace FastDragon
 
         public const float CameraDist = Player.Glide.CameraDistance;
 
-        [Export] public PackedScene RedGemPrefab;
-        [Export] public PackedScene GreenGemPrefab;
-        [Export] public PackedScene PurpleGemPrefab;
-        [Export] public PackedScene YellowGemPrefab;
-        [Export] public PackedScene MagentaGemPrefab;
+        [Signal] public delegate void DoneSkippingEventHandler();
+        [Signal] public delegate void DoneMovingToRestEventHandler();
 
         private float _cameraYawRad => _isReturningHome
             ? ReturnHomeCameraYawRad
@@ -30,13 +27,10 @@ namespace FastDragon
             : EnterLevelCameraPitchRad;
 
         private const float RestMoveDuration = 2;
-        private const float CountingGemsDuration = 1;
+
         private const float CorrectionAnimationDuration = 1;
         private const float SkipDuration = 0.25f;
         private const float MinLoadingWaitTime = 1;
-
-        private const float GemPathBezierControlSpread = 20;
-        private const float GemSpawnGrowTime = 0.05f;
 
         private DirectionalLight3D _oldSun;
         private LoadingScreenParameters _parameters;
@@ -45,8 +39,6 @@ namespace FastDragon
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
 
         private AudioStreamPlayer _windSound => GetNode<AudioStreamPlayer>("%WindSound");
-        private AudioStreamPlayer _gemSpawnSound => GetNode<AudioStreamPlayer>("%GemSpawnSound");
-        private AudioStreamPlayer _gemCountSound => GetNode<AudioStreamPlayer>("%GemCountSound");
 
         private OrbitCamera _camera => GetNode<OrbitCamera>("%OrbitCamera");
         private Node3D _cameraFocus => GetNode<Node3D>("%CameraFocus");
@@ -56,12 +48,6 @@ namespace FastDragon
 
         private bool _isReturningHome => _parameters.PreviousMapSceneFilePath != null;
         private Node3D _loadedScene;
-
-        private MeshLabel3D _untalliedGemsLabel => GetNode<MeshLabel3D>("%UntalliedGemsLabel");
-        private MeshLabel3D _talliedGemsLabel => GetNode<MeshLabel3D>("%TalliedGemsLabel");
-        private AnimationPlayer _labelSlider => GetNode<AnimationPlayer>("%LabelSlider");
-        private Dictionary<GemColor, int> _untalliedGems;
-        private int _talliedGems;
 
         private StateMachine _stateMachine = new StateMachine(typeof(LoadingScreenState));
 
@@ -111,19 +97,14 @@ namespace FastDragon
             _camera.OrbitYawRad = parameters.CameraYawRad;
             _camera.OrbitPitchRad = parameters.CameraPitchRad;
 
-            // Figure out how many of each gem we'll need to spawn in the
-            // gem counting animation later.
-            _untalliedGems = SaveFile.Current.UntalliedGems;
-            SaveFile.Current.UntalliedGems = new Dictionary<GemColor, int>();
-            _talliedGems = SaveFile.Current.TotalGemCount - TotalUntalliedGems();
-
-            // Hide the labels until it's time for them to be seen
-            _untalliedGemsLabel.Visible = false;
-            _talliedGemsLabel.Visible = false;
-
             // Start the animation
             _stateMachine.ChangeState<MovingToRest>();
             StartFadingWindIn();
+        }
+
+        public void OnAnimationsDone()
+        {
+            _stateMachine.ChangeState<WaitingForLoad>();
         }
 
         private void StartFadingWindIn()
@@ -146,25 +127,6 @@ namespace FastDragon
                 .TweenProperty(_windSound, "pitch_scale", 0.01f, duration);
         }
 
-        private int TotalUntalliedGems()
-        {
-            return _untalliedGems
-                .Select(kvp => (int)kvp.Key * kvp.Value)
-                .Sum();
-        }
-
-        private int TotalIndividualUntalliedGems()
-        {
-            return _untalliedGems
-                .Select(kvp => kvp.Value)
-                .Sum();
-        }
-
-        private void UpdateLabelText()
-        {
-            _untalliedGemsLabel.Text = $"Treasure found: {TotalUntalliedGems()}";
-            _talliedGemsLabel.Text = $"Total treasure: {_talliedGems}";
-        }
 
         private void GoToTargetMap()
         {
@@ -202,11 +164,7 @@ namespace FastDragon
 
             public override void _Input(InputEvent ev)
             {
-                bool skipPressed =
-                    InputService.PauseJustPressed(ev) ||
-                    InputService.JumpJustPressed(ev);
-
-                if (skipPressed && Skippable)
+                if (InputService.SkipJustPressed(ev) && Skippable)
                 {
                     ChangeState<Skipping>();
                 }
@@ -224,7 +182,11 @@ namespace FastDragon
                 tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, SkipDuration);
                 tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, SkipDuration);
                 tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, SkipDuration);
-                tween.TweenCallback(Callable.From(() => ChangeState<LettingPlayerReadLabels>()));
+                tween.TweenCallback(Callable.From(() =>
+                {
+                    ChangeState<WaitingForAnimations>();
+                    _screen.EmitSignal(PortalLoadingScreen.SignalName.DoneSkipping);
+                }));
             }
         }
 
@@ -244,7 +206,11 @@ namespace FastDragon
                 _tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, RestMoveDuration);
                 _tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, RestMoveDuration);
                 _tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, RestMoveDuration);
-                _tween.TweenCallback(Callable.From(() => ChangeState<SlidingInLabels>()));
+                _tween.TweenCallback(Callable.From(() =>
+                {
+                    ChangeState<WaitingForAnimations>();
+                    _screen.EmitSignal(PortalLoadingScreen.SignalName.DoneMovingToRest);
+                }));
             }
 
             public override void OnStateExited()
@@ -253,219 +219,7 @@ namespace FastDragon
             }
         }
 
-        private partial class SlidingInLabels : LoadingScreenState
-        {
-            public override bool Skippable => true;
-
-            public override void OnStateEntered()
-            {
-                _screen._untalliedGemsLabel.Visible = true;
-                _screen._talliedGemsLabel.Visible = true;
-                _screen.UpdateLabelText();
-                _screen._labelSlider.Play("SlideIn");
-
-                // We just made the text visible, but it won't naturally jump to
-                // its starting position until the next frame when the animator
-                // processes.  This will result in the text appearing to "blink"
-                // for one frame before the animation actually starts.
-                //
-                // To avoid this, let's just force it to update right now.
-                _screen._labelSlider.Seek(0, true);
-            }
-
-            public override void _Process(double delta)
-            {
-                if (!_screen._labelSlider.IsPlaying())
-                {
-                    if (_screen.TotalUntalliedGems() > 0)
-                    {
-                        ChangeState<CountingGems>();
-                    }
-                    else
-                    {
-                        ChangeState<LettingPlayerReadLabels>();
-                    }
-                }
-            }
-        }
-
-        private partial class CountingGems : LoadingScreenState
-        {
-            public override bool Skippable => true;
-
-            private const float MinInterval = 2f / 60;
-
-            private Node3D _gemSpawn => _screen.GetNode<Node3D>("%GemSpawn");
-            private Node3D _gemDest => _screen.GetNode<Node3D>("%GemDest");
-
-            private Random _rng = new Random();
-
-            private double _interval;
-            private double _timer;
-            private Node3D _gemHolder;
-
-            public override void OnStateEntered()
-            {
-                GD.Print("Started counting gems");
-                _timer = 0;
-
-                _interval = CountingGemsDuration / _screen.TotalIndividualUntalliedGems();
-
-                if (_interval < MinInterval)
-                    _interval = MinInterval;
-
-                _interval = MinInterval;
-
-                _gemHolder = new Node3D();
-                _gemSpawn.GetParent().AddChild(_gemHolder);
-            }
-
-            public override void OnStateExited()
-            {
-                _gemHolder.QueueFree();
-                _gemHolder = null;
-            }
-
-            private void OnGemCounted(int value)
-            {
-                _screen._talliedGems += value;
-                _screen.UpdateLabelText();
-                _screen._gemCountSound.Play();
-
-                if (_screen._talliedGems >= SaveFile.Current.TotalGemCount)
-                    ChangeState<LettingPlayerReadLabels>();
-            }
-
-            public override void _Process(double delta)
-            {
-                _timer += delta;
-
-                if (_screen.TotalUntalliedGems() > 0 && _timer >= _interval)
-                {
-                    _timer -= _interval;
-
-                    GemColor color = _rng.PickFromWeighted(_screen._untalliedGems);
-                    SpawnGem(color);
-                }
-            }
-
-            private void SpawnGem(GemColor value)
-            {
-                _screen._untalliedGems[value]--;
-                _screen.UpdateLabelText();
-
-                var gem = new CountableGem(
-                    value,
-                    _gemSpawn.Position,
-                    _gemDest.Position,
-                    RandomBezierControlPoint(GemPathBezierControlSpread)
-                );
-                _gemHolder.AddChild(gem);
-
-                var model = ModelPrefabForGemColor(value).Instantiate<Node3D>();
-                gem.AddChild(model);
-                gem.Counted += OnGemCounted;
-
-                _screen._gemSpawnSound.Play();
-            }
-
-            private Vector3 RandomBezierControlPoint(float spread)
-            {
-                Vector3 center = _gemDest.Position;
-                float offset = (GD.Randf() - 0.5f) * spread;
-
-                return center + (Vector3.Right * offset);
-            }
-
-            private PackedScene ModelPrefabForGemColor(GemColor color)
-            {
-                return color switch
-                {
-                    GemColor.Red => _screen.RedGemPrefab,
-                    GemColor.Green => _screen.GreenGemPrefab,
-                    GemColor.Purple => _screen.PurpleGemPrefab,
-                    GemColor.Yellow => _screen.YellowGemPrefab,
-                    GemColor.Magenta => _screen.MagentaGemPrefab,
-                    _ => throw new Exception("Invalid gem color chosen")
-                };
-            }
-
-            private partial class CountableGem : Node3D
-            {
-                [Signal] public delegate void CountedEventHandler(int value);
-
-                private readonly GemColor _value;
-                private readonly Vector3 _start;
-                private readonly Vector3 _end;
-                private readonly Vector3 _control;
-
-                private float _timer = 0;
-
-                public CountableGem(
-                    GemColor value,
-                    Vector3 start,
-                    Vector3 end,
-                    Vector3 control
-                )
-                {
-                    _value = value;
-                    _start = start;
-                    _end = end;
-                    _control = control;
-
-                    Position = _start;
-                    Scale = Vector3.Zero;
-                }
-
-                public override void _Process(double deltaD)
-                {
-                    float delta = (float)deltaD;
-
-                    _timer += delta;
-
-                    float positionT = Mathf.Min(1, _timer / CountingGemsDuration);
-                    float scaleT = Mathf.Min(1, _timer / GemSpawnGrowTime);
-
-                    Position = _start.LerpBezier(_end, _control, positionT);
-                    Scale = Vector3.Zero.Lerp(Vector3.One, scaleT);
-
-                    if (_timer >= CountingGemsDuration)
-                    {
-                        EmitSignal(SignalName.Counted, (int)_value);
-                        QueueFree();
-                    }
-                }
-            }
-        }
-
-        private partial class LettingPlayerReadLabels : LoadingScreenState
-        {
-            private double _timer;
-
-            public override void OnStateEntered()
-            {
-                _timer = MinLoadingWaitTime;
-                _screen._labelSlider.Play("RESET");
-                _screen._labelSlider.Advance(0);
-                _screen._untalliedGemsLabel.Visible = true;
-                _screen._talliedGemsLabel.Visible = true;
-
-                _screen._untalliedGems.Clear();
-                _screen._talliedGems = SaveFile.Current.TotalGemCount;
-                _screen.UpdateLabelText();
-            }
-
-            public override void _Process(double delta)
-            {
-                _timer -= delta;
-
-                if (_timer <= 0)
-                {
-                    _screen._labelSlider.PlayBackwards("SlideIn");
-                    ChangeState<WaitingForLoad>();
-                }
-            }
-        }
+        private partial class WaitingForAnimations : LoadingScreenState {}
 
         private partial class WaitingForLoad : LoadingScreenState
         {

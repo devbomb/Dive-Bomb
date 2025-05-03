@@ -47,5 +47,14 @@ namespace FastDragon
         /// to.
         /// </summary>
         void OnBroken() {}
+
+        /// <summary>
+        /// Gets called whenever it is hit by any attack that it's NOT
+        /// vulnerable to.
+        ///
+        /// Use this to play "reaction" animations when the player tries to
+        /// break something that's unbreakable.
+        /// </summary>
+        void OnBreakRejected() {}
     }
 }

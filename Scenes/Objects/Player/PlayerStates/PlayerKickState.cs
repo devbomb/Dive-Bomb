@@ -36,7 +36,11 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            ApplyKickHitbox();
+            ApplyHitboxToBreakableObjects(
+                _player.KickHitbox,
+                b => b.VulnerableToKick,
+                b => b.OnKicked()
+            );
 
             // It's possible for the objects hit by the hitbox to change the
             // current state.  If that happens, we don't want the normal logic
@@ -64,44 +68,6 @@ namespace FastDragon
                     _player.ChangeState<PlayerKickFlopState>();
                 }
             }
-        }
-
-        private void ApplyKickHitbox()
-        {
-            var bodies = _player.KickHitbox.GetOverlappingBodies();
-            var areas = _player.KickHitbox.GetOverlappingAreas();
-
-            foreach (var body in bodies)
-            {
-                if (body is IBreakable b)
-                {
-                    b.OnKicked();
-
-                    if (b.VulnerableToKick)
-                        Break(b);
-                }
-            }
-
-            foreach (var area in areas)
-            {
-                if (area is IBreakable b)
-                {
-                    b.OnKicked();
-
-                    if (b.VulnerableToKick)
-                        Break(b);
-                }
-            }
-        }
-
-        private void Break(IBreakable b)
-        {
-            b.OnBroken();
-            _player.Camera.Shake(
-                b.CameraShakeMagnitude,
-                b.CameraShakeFrequency,
-                b.CameraShakeDuration
-            );
         }
     }
 }

@@ -14,9 +14,11 @@ namespace FastDragon
         public string CurrentMap;
         public string CurrentCheckpoint = null;
 
+        public int GemsSpent;
         public HashSet<string> CollectedGems = new HashSet<string>();
 
         public Dictionary<GemColor, int> UntalliedGems = new Dictionary<GemColor, int>();
+        public int UntalliedGemsSpent;
 
         public Dictionary<string, MapProgress> Maps = new Dictionary<string, MapProgress>();
         public class MapProgress
@@ -26,7 +28,7 @@ namespace FastDragon
             public HashSet<string> CollectedFairies = new HashSet<string>();
         }
 
-        [JsonIgnore] public int TotalGemCount => Maps.Values.Sum(l => l.GemsCollected);
+        [JsonIgnore] public int TotalGemCount => Maps.Values.Sum(l => l.GemsCollected) - GemsSpent;
         [JsonIgnore] public int TotalFairyCount => Maps.Values.Sum(l => l.CollectedFairies.Count);
         [JsonIgnore] public MapProgress CurrentMapProgress => GetMapProgress(CurrentMap);
 
@@ -50,6 +52,25 @@ namespace FastDragon
 
                 }
             );
+        }
+
+        public void CollectGem(string map, GemColor color, string saveKey)
+        {
+            GetMapProgress(map).GemsCollected += (int)color;
+            CollectedGems.Add(saveKey);
+
+            if (!UntalliedGems.ContainsKey(color))
+            {
+                UntalliedGems[color] = 0;
+            }
+
+            UntalliedGems[color]++;
+        }
+
+        public void SpendGems(int amount)
+        {
+            GemsSpent += amount;
+            UntalliedGemsSpent += amount;
         }
 
         public MapProgress GetMapProgress(string map)

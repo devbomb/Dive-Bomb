@@ -3100,6 +3100,7 @@
 {
 "classname" "Trigger_/CameraSuggestionZone"
 "SuggestedYawDeg" "315"
+"GemCost" "120"
 "_tb_group" "3"
 // brush 0
 {
@@ -3114,6 +3115,7 @@
 // entity 85
 {
 "classname" "Wall_/BulletproofGlassWall"
+"GemCost" "120"
 "_tb_group" "3"
 // brush 0
 {
@@ -3130,17 +3132,20 @@
 "classname" "Transport_/ReturnHomePlatform"
 "origin" "-652 4 -80"
 "ExitHeight" "71"
+"GemCost" "120"
 "_tb_group" "3"
 }
 // entity 87
 {
 "classname" "Item_/Fairy"
 "origin" "-648 -96 -80"
+"GemCost" "120"
 "_tb_group" "3"
 }
 // entity 88
 {
 "classname" "Wall_/DivableWall"
+"GemCost" "120"
 "_tb_group" "3"
 // brush 0
 {

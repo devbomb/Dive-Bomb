@@ -2438,6 +2438,7 @@
 "classname" "Item_/Fairy"
 "origin" "104 -88 144"
 "angles" "0 180 0"
+"GemCost" "220"
 }
 // entity 106
 {

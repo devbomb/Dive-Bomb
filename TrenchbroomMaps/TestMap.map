@@ -211,6 +211,7 @@
 {
 "classname" "Item_/Fairy"
 "origin" "88 8 16"
+"GemCost" "20"
 }
 // entity 25
 {

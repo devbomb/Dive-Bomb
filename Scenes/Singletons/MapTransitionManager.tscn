@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cb32y0ekuw0op"]
 
 [ext_resource type="Script" uid="uid://c8wwlnkv67vs2" path="res://Scenes/Singletons/MapTransitionManager.cs" id="1_onbea"]
-[ext_resource type="PackedScene" uid="uid://bckjgvq8udjn3" path="res://Scenes/Maps/Screens/PortalLoadingScreen.tscn" id="2_lrjqs"]
+[ext_resource type="PackedScene" uid="uid://bckjgvq8udjn3" path="res://Scenes/Maps/Screens/PortalLoadingScreen/PortalLoadingScreen.tscn" id="2_lrjqs"]
 [ext_resource type="PackedScene" uid="uid://cimgukuoywob1" path="res://Scenes/UIWidgets/NonPlayerFadeCurtain.tscn" id="4_elvu7"]
 
 [node name="MapTransitionManager" type="Node"]

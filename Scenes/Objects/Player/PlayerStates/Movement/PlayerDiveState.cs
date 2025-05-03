@@ -12,6 +12,7 @@ namespace FastDragon
         private float _startY;
 
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
+        private List<IBreakable> _unbrokenObjects = new List<IBreakable>();
 
         public override void OnStateEntered()
         {
@@ -92,10 +93,13 @@ namespace FastDragon
             ApplyGravity(delta, Player.Dive.Gravity);
 
             _brokenObjects.Clear();
+            _unbrokenObjects.Clear();
+
             bool bonked = MoveAndSlideBreakingObjects<IBreakable>(
-                isBreakable: b => b.VulnerableToRoll,
+                isVulnerable: b => b.VulnerableToRoll,
                 causesBonkWhenBroken: b => b.CausesBonk,
                 brokenObjects: _brokenObjects,
+                unbrokenObjects: _unbrokenObjects,
                 delta
             );
 
@@ -105,45 +109,26 @@ namespace FastDragon
                 Break(b);
             }
 
+            foreach (var b in _unbrokenObjects)
+                b.OnBreakRejected();
+
             if (bonked)
                 return;
 
+            // Apply an extra-wide hitbox to catch objects that the player
+            // barely grazes past without touching.
             // TODO: Don't apply the extra hitbox to objects that have already
             // been hit by the main hitbox
-            ApplyExtraHitbox();
+            ApplyHitboxToBreakableObjects(
+                _player.DiveExtraHitbox,
+                b => b.VulnerableToRoll,
+                b => b.OnRolledInto()
+            );
 
             if (_player.IsOnFloor())
             {
                 _player.ChangeState<PlayerRollState>();
                 return;
-            }
-        }
-
-        private void ApplyExtraHitbox()
-        {
-            var bodies = _player.DiveExtraHitbox.GetOverlappingBodies();
-            var areas = _player.DiveExtraHitbox.GetOverlappingAreas();
-
-            foreach (var body in bodies)
-            {
-                if (body is IBreakable b && b.VulnerableToRoll)
-                {
-                    b.OnRolledInto();
-
-                    if (b.VulnerableToRoll)
-                        Break(b);
-                }
-            }
-
-            foreach (var area in areas)
-            {
-                if (area is IBreakable b && b.VulnerableToRoll)
-                {
-                    b.OnRolledInto();
-
-                    if (b.VulnerableToRoll)
-                        Break(b);
-                }
             }
         }
 
