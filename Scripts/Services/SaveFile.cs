@@ -54,6 +54,19 @@ namespace FastDragon
             );
         }
 
+        public void CollectGem(string map, GemColor color, string saveKey)
+        {
+            GetMapProgress(map).GemsCollected += (int)color;
+            CollectedGems.Add(saveKey);
+
+            if (!UntalliedGems.ContainsKey(color))
+            {
+                UntalliedGems[color] = 0;
+            }
+
+            UntalliedGems[color]++;
+        }
+
         public void SpendGems(int amount)
         {
             GemsSpent += amount;

@@ -89,13 +89,7 @@ namespace FastDragon
         public void Collect()
         {
             var saveFile = SaveFile.Current;
-            if (!saveFile.UntalliedGems.ContainsKey(Value))
-            {
-                saveFile.UntalliedGems[Value] = 0;
-            }
-            saveFile.UntalliedGems[Value]++;
-            saveFile.GetMapProgress(saveFile.CurrentMap).GemsCollected += (int)Value;
-            saveFile.CollectedGems.Add(GetSaveKey());
+            saveFile.CollectGem(saveFile.CurrentMap, Value, GetSaveKey());
 
             _collectSound.Play();
             ChangeState<Hidden>();
