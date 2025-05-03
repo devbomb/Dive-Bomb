@@ -12,6 +12,7 @@ namespace FastDragon
 
         public bool IsCollected => SaveFile.Current.IsGemCollected(
             SaveFile.Current.CurrentMap,
+            Value,
             GetSaveKey());
 
         [Export] public GemColor Value;

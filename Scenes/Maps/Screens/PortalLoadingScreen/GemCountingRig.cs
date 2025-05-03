@@ -41,8 +41,8 @@ namespace FastDragon
             AddChild(_stateMachine);
             _stateMachine.ChangeState<Idle>();
 
-            _untalliedGems = SaveFile.Current.UntalliedGems;
-            SaveFile.Current.UntalliedGems = new Dictionary<GemColor, int>();
+            _untalliedGems = SaveFile.Current.UntalliedGemsCollected;
+            SaveFile.Current.UntalliedGemsCollected = new Dictionary<GemColor, int>();
 
             _untalliedSpentGems = SaveFile.Current.UntalliedGemsSpent;
             SaveFile.Current.UntalliedGemsSpent = 0;

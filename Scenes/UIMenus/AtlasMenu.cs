@@ -57,7 +57,7 @@ namespace FastDragon
             row.SetText((int)Column.LevelName, cacheEntry.HumanReadableName);
             row.SetTextAlignment((int)Column.LevelName, HorizontalAlignment.Left);
 
-            row.SetText((int)Column.Gems, $"{progress.GemsCollected} / {cacheEntry.TotalGemsInLevel}");
+            row.SetText((int)Column.Gems, $"{progress.TotalGemsCollected} / {cacheEntry.TotalGemsInLevel}");
             row.SetTextAlignment((int)Column.Gems, HorizontalAlignment.Center);
 
             row.SetText((int)Column.Fairies, $"{progress.CollectedFairies.Count} / {cacheEntry.TotalFairiesInLevel}");
