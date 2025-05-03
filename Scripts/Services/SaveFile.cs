@@ -15,20 +15,39 @@ namespace FastDragon
         public string CurrentCheckpoint = null;
 
         public int GemsSpent;
-        public HashSet<string> CollectedGems = new HashSet<string>();
-
-        public Dictionary<GemColor, int> UntalliedGems = new Dictionary<GemColor, int>();
         public int UntalliedGemsSpent;
+        public Dictionary<GemColor, int> UntalliedGemsCollected = new Dictionary<GemColor, int>();
 
         public Dictionary<string, MapProgress> Maps = new Dictionary<string, MapProgress>();
         public class MapProgress
         {
-            public int GemsCollected = 0;
-            public int FairiesCollected => CollectedFairies.Count;
-            public HashSet<string> CollectedFairies = new HashSet<string>();
+            [JsonIgnore] public int FairiesCollected => CollectedFairies.Count;
+            [JsonIgnore] public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);
+
+            public HashSet<string> CollectedFairies = new();
+            public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
+
+            public void CollectGem(GemColor color, string saveKey)
+            {
+                if (!CollectedGems.TryGetValue(color, out var set))
+                {
+                    set = new HashSet<string>();
+                    CollectedGems[color] = set;
+                }
+
+                set.Add(saveKey);
+            }
+
+            public bool IsGemCollected(GemColor color, string saveKey)
+            {
+                if (!CollectedGems.TryGetValue(color, out var set))
+                    return false;
+
+                return set.Contains(saveKey);
+            }
         }
 
-        [JsonIgnore] public int TotalGemCount => Maps.Values.Sum(l => l.GemsCollected) - GemsSpent;
+        [JsonIgnore] public int TotalGemCount => Maps.Values.Sum(l => l.TotalGemsCollected) - GemsSpent;
         [JsonIgnore] public int TotalFairyCount => Maps.Values.Sum(l => l.CollectedFairies.Count);
         [JsonIgnore] public MapProgress CurrentMapProgress => GetMapProgress(CurrentMap);
 
@@ -54,23 +73,39 @@ namespace FastDragon
             );
         }
 
+        public bool IsGemCollected(string map, GemColor color, string saveKey)
+        {
+            return GetMapProgress(map).IsGemCollected(color, saveKey);
+        }
+
         public void CollectGem(string map, GemColor color, string saveKey)
         {
-            GetMapProgress(map).GemsCollected += (int)color;
-            CollectedGems.Add(saveKey);
+            GetMapProgress(map).CollectGem(color, saveKey);
 
-            if (!UntalliedGems.ContainsKey(color))
+            if (!UntalliedGemsCollected.ContainsKey(color))
             {
-                UntalliedGems[color] = 0;
+                UntalliedGemsCollected[color] = 0;
             }
 
-            UntalliedGems[color]++;
+            UntalliedGemsCollected[color]++;
         }
 
         public void SpendGems(int amount)
         {
             GemsSpent += amount;
             UntalliedGemsSpent += amount;
+        }
+
+        public void CollectFairy(string map, string saveKey)
+        {
+            var progress = GetMapProgress(map);
+            progress.CollectedFairies.Add(saveKey);
+        }
+
+        public bool IsFairyCollected(string map, string saveKey)
+        {
+            var progress = GetMapProgress(map);
+            return progress.CollectedFairies.Contains(saveKey);
         }
 
         public MapProgress GetMapProgress(string map)
@@ -91,7 +126,7 @@ namespace FastDragon
             if (cacheEntry.TotalFairiesInLevel != 0)
             {
                 categories++;
-                totalPercent += ((double)progress.GemsCollected) / cacheEntry.TotalGemsInLevel;
+                totalPercent += ((double)progress.TotalGemsCollected) / cacheEntry.TotalGemsInLevel;
             }
 
             if (cacheEntry.TotalGemsInLevel != 0)
@@ -103,11 +138,6 @@ namespace FastDragon
             return categories == 0
                 ? 1
                 : (totalPercent / categories);
-        }
-
-        public bool IsGemCollected(string nodePath)
-        {
-            return CollectedGems.Contains(nodePath);
         }
     }
 }
