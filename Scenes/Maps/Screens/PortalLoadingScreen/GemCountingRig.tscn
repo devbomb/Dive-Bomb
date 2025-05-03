@@ -78,6 +78,33 @@ tracks/2/keys = {
 "values": [Vector3(-8.82991, 2.79569, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_620hr"]
+resource_name = "SlideInGemsFound"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%UntalliedGemsLabel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, 4, 0), Vector3(-0.203, 3.143, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TalliedGemsLabel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, -4, 0), Vector3(-0.203, -2.874, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_o7chy"]
 resource_name = "SlideInGemsSpent"
 length = 0.6
@@ -92,6 +119,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-8.83, 2.796, 0), Vector3(-0.167681, 2.79569, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k00r0"]
+resource_name = "SlideInNoGemsFound"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TalliedGemsLabel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, 4, 0), Vector3(-0.203, 3.143, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_rp877"]
@@ -115,52 +157,10 @@ tracks/1/path = NodePath("%TalliedGemsLabel:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.433333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-0.203, 3.143, 0), Vector3(-0.203, 4, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_620hr"]
-resource_name = "SlideInGemsFound"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%UntalliedGemsLabel:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.203, 4, 0), Vector3(-0.203, 3.143, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%TalliedGemsLabel:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.203, -4, 0), Vector3(-0.203, -2.874, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_k00r0"]
-resource_name = "SlideInNoGemsFound"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%TalliedGemsLabel:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.203, 4, 0), Vector3(-0.203, 3.143, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3vqn"]
