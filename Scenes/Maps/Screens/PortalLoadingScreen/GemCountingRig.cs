@@ -16,17 +16,22 @@ namespace FastDragon
         [Export] public PackedScene MagentaGemPrefab;
 
         private const float CountingGemsDuration = 1;
+        private const float MaxDeductingCostsDuration = 1;
         private const float ReadingLabelsDuration = 1;
         private const float GemPathBezierControlSpread = 20;
         private const float GemSpawnGrowTime = 0.05f;
 
         private AudioStreamPlayer _gemSpawnSound => GetNode<AudioStreamPlayer>("%GemSpawnSound");
         private AudioStreamPlayer _gemCountSound => GetNode<AudioStreamPlayer>("%GemCountSound");
+        private AudioStreamPlayer _gemSpentSound => GetNode<AudioStreamPlayer>("%GemSpentSound");
 
         private MeshLabel3D _untalliedGemsLabel => GetNode<MeshLabel3D>("%UntalliedGemsLabel");
         private MeshLabel3D _talliedGemsLabel => GetNode<MeshLabel3D>("%TalliedGemsLabel");
+        private MeshLabel3D _spentGemsLabel => GetNode<MeshLabel3D>("%SpentGemsLabel");
         private AnimationPlayer _labelSlider => GetNode<AnimationPlayer>("%LabelSlider");
+
         private Dictionary<GemColor, int> _untalliedGems;
+        private int _untalliedSpentGems;
         private int _talliedGems;
 
         private StateMachine _stateMachine = new StateMachine(typeof(RigState));
@@ -38,7 +43,13 @@ namespace FastDragon
 
             _untalliedGems = SaveFile.Current.UntalliedGems;
             SaveFile.Current.UntalliedGems = new Dictionary<GemColor, int>();
-            _talliedGems = SaveFile.Current.TotalGemCount - TotalUntalliedGems();
+
+            _untalliedSpentGems = SaveFile.Current.UntalliedGemsSpent;
+            SaveFile.Current.UntalliedGemsSpent = 0;
+
+            _talliedGems = SaveFile.Current.TotalGemCount;
+            _talliedGems -= TotalUntalliedGems();
+            _talliedGems += _untalliedSpentGems;
         }
 
         public void Start()
@@ -65,9 +76,17 @@ namespace FastDragon
                 .Sum();
         }
 
+        private void SetLabelsVisible(bool visible)
+        {
+            _untalliedGemsLabel.Visible = visible;
+            _spentGemsLabel.Visible = visible;
+            _talliedGemsLabel.Visible = visible;
+        }
+
         private void UpdateLabelText()
         {
             _untalliedGemsLabel.Text = $"Treasure found: {TotalUntalliedGems()}";
+            _spentGemsLabel.Text = $"Tresure spent: -{_untalliedSpentGems}";
             _talliedGemsLabel.Text = $"Total treasure: {_talliedGems}";
         }
 
@@ -90,8 +109,7 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _self._untalliedGemsLabel.Visible = false;
-                _self._talliedGemsLabel.Visible = false;
+                _self.SetLabelsVisible(false);
             }
         }
 
@@ -101,8 +119,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self._untalliedGemsLabel.Visible = true;
-                _self._talliedGemsLabel.Visible = true;
+                _self.SetLabelsVisible(true);
                 _self.UpdateLabelText();
                 _self._labelSlider.Play("SlideIn");
 
@@ -125,7 +142,7 @@ namespace FastDragon
                     }
                     else
                     {
-                        ChangeState<LettingPlayerReadLabels>();
+                        ChangeState<MovingTotalToTop>();
                     }
                 }
             }
@@ -174,8 +191,8 @@ namespace FastDragon
                 _self.UpdateLabelText();
                 _self._gemCountSound.Play();
 
-                if (_self._talliedGems >= SaveFile.Current.TotalGemCount)
-                    ChangeState<LettingPlayerReadLabels>();
+                if (_self._talliedGems >= SaveFile.Current.TotalGemCount + _self._untalliedSpentGems)
+                    ChangeState<MovingTotalToTop>();
             }
 
             public override void _Process(double delta)
@@ -280,6 +297,105 @@ namespace FastDragon
             }
         }
 
+        private partial class MovingTotalToTop : RigState
+        {
+            public override bool Skippable => true;
+
+            public override void OnStateEntered()
+            {
+                _self._labelSlider.Play("MoveTotalToTop");
+            }
+
+            public override void _Process(double delta)
+            {
+                if (!_self._labelSlider.IsPlaying())
+                    ChangeState<SlidingInGemsSpent>();
+            }
+        }
+
+        private partial class SlidingInGemsSpent : RigState
+        {
+            public override bool Skippable => true;
+
+            public override void OnStateEntered()
+            {
+                _self._labelSlider.Play("SlideInGemsSpent");
+            }
+
+            public override void _Process(double delta)
+            {
+                if (!_self._labelSlider.IsPlaying())
+                    ChangeState<DeductingCosts>();
+            }
+        }
+
+        private partial class DeductingCosts : RigState
+        {
+            public override bool Skippable => true;
+
+            private const double Interval = 2.0 / 60;
+            private double _timer;
+            private double _totalTimer;
+
+            public override void OnStateEntered()
+            {
+                _timer = Interval;
+                _totalTimer = MaxDeductingCostsDuration;
+            }
+
+            public override void _Process(double delta)
+            {
+                if (_self._untalliedSpentGems <= 0)
+                {
+                    ChangeState<SlidingOutGemsSpent>();
+                    return;
+                }
+
+                _timer -= delta;
+                if (_timer <= 0)
+                {
+                    _timer += Interval;
+
+                    _self._untalliedSpentGems--;
+                    _self._talliedGems--;
+                    _self.UpdateLabelText();
+
+                    _self._gemSpentSound.Play();
+                }
+
+                // Look, the player gets the picture.  We don't need to show
+                // the _entire_ countdown if it's too long.
+                _totalTimer -= delta;
+                if (_totalTimer <= 0)
+                {
+                    ChangeState<SlidingOutGemsSpent>();
+                }
+            }
+
+            public override void OnStateExited()
+            {
+                _self._talliedGems = SaveFile.Current.TotalGemCount;
+                _self._untalliedSpentGems = 0;
+                _self.UpdateLabelText();
+            }
+        }
+
+        private partial class SlidingOutGemsSpent : RigState
+        {
+            public override bool Skippable => true;
+
+            public override void OnStateEntered()
+            {
+                _self._labelSlider.PlayBackwards("SlideInGemsSpent");
+            }
+
+            public override void _Process(double delta)
+            {
+                if (!_self._labelSlider.IsPlaying())
+                    ChangeState<LettingPlayerReadLabels>();
+            }
+        }
+
         private partial class LettingPlayerReadLabels : RigState
         {
             private double _timer;
@@ -289,8 +405,7 @@ namespace FastDragon
                 _timer = ReadingLabelsDuration;
                 _self._labelSlider.Play("RESET");
                 _self._labelSlider.Advance(0);
-                _self._untalliedGemsLabel.Visible = true;
-                _self._talliedGemsLabel.Visible = true;
+                _self.SetLabelsVisible(true);
 
                 _self._untalliedGems.Clear();
                 _self._talliedGems = SaveFile.Current.TotalGemCount;
@@ -303,7 +418,7 @@ namespace FastDragon
 
                 if (_timer <= 0)
                 {
-                    _self._labelSlider.PlayBackwards("SlideIn");
+                    _self._labelSlider.Play("SlideOut");
                     _self.EmitSignal(GemCountingRig.SignalName.Done);
                     ChangeState<DoneState>();
                 }
