@@ -202,11 +202,7 @@ namespace FastDragon
 
             public override void _Input(InputEvent ev)
             {
-                bool skipPressed =
-                    InputService.PauseJustPressed(ev) ||
-                    InputService.JumpJustPressed(ev);
-
-                if (skipPressed && Skippable)
+                if (InputService.SkipJustPressed(ev) && Skippable)
                 {
                     ChangeState<Skipping>();
                 }
