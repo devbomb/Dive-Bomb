@@ -54,6 +54,11 @@ namespace FastDragon
             );
         }
 
+        public bool IsGemCollected(string map, string saveKey)
+        {
+            return CollectedGems.Contains(saveKey);
+        }
+
         public void CollectGem(string map, GemColor color, string saveKey)
         {
             GetMapProgress(map).GemsCollected += (int)color;
@@ -71,6 +76,18 @@ namespace FastDragon
         {
             GemsSpent += amount;
             UntalliedGemsSpent += amount;
+        }
+
+        public void CollectFairy(string map, string saveKey)
+        {
+            var progress = GetMapProgress(map);
+            progress.CollectedFairies.Add(saveKey);
+        }
+
+        public bool IsFairyCollected(string map, string saveKey)
+        {
+            var progress = GetMapProgress(map);
+            return progress.CollectedFairies.Contains(saveKey);
         }
 
         public MapProgress GetMapProgress(string map)
@@ -103,11 +120,6 @@ namespace FastDragon
             return categories == 0
                 ? 1
                 : (totalPercent / categories);
-        }
-
-        public bool IsGemCollected(string nodePath)
-        {
-            return CollectedGems.Contains(nodePath);
         }
     }
 }

@@ -10,9 +10,9 @@ namespace FastDragon
         public const float RevealJumpVelocity = 10;
         public const float Gravity = 30;
 
-        public bool IsCollected => SaveFile.Current
-            .CollectedGems
-            .Contains(GetSaveKey());
+        public bool IsCollected => SaveFile.Current.IsGemCollected(
+            SaveFile.Current.CurrentMap,
+            GetSaveKey());
 
         [Export] public GemColor Value;
 

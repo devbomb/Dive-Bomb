@@ -154,7 +154,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SaveFile.Current.CurrentMapProgress.CollectedFairies.Add(_fairy.GetSaveKey());
+                SaveFile.Current.CollectFairy(SaveFile.Current.CurrentMap, _fairy.GetSaveKey());
 
                 // Pause the game (except the player and fairy) during the
                 // cutscene to prevent the player from getting hit by enemies.
