@@ -54,7 +54,10 @@ namespace FastDragon
 
         public void Start()
         {
-            _stateMachine.ChangeState<SlidingInLabels>();
+            if (TotalIndividualUntalliedGems() > 0)
+                _stateMachine.ChangeState<SlidingInGemsFound>();
+            else
+                _stateMachine.ChangeState<SlidingInNoGemsFound>();
         }
 
         public void StartAfterSkipped()
@@ -113,7 +116,7 @@ namespace FastDragon
             }
         }
 
-        private partial class SlidingInLabels : RigState
+        private partial class SlidingInGemsFound : RigState
         {
             public override bool Skippable => true;
 
@@ -121,7 +124,7 @@ namespace FastDragon
             {
                 _self.SetLabelsVisible(true);
                 _self.UpdateLabelText();
-                _self._labelSlider.Play("SlideIn");
+                _self._labelSlider.Play("SlideInGemsFound");
 
                 // We just made the text visible, but it won't naturally jump to
                 // its starting position until the next frame when the animator
@@ -136,14 +139,38 @@ namespace FastDragon
             {
                 if (!_self._labelSlider.IsPlaying())
                 {
-                    if (_self.TotalUntalliedGems() > 0)
-                    {
-                        ChangeState<CountingGems>();
-                    }
+                    ChangeState<CountingGems>();
+                }
+            }
+        }
+
+        private partial class SlidingInNoGemsFound : RigState
+        {
+            public override bool Skippable => true;
+
+            public override void OnStateEntered()
+            {
+                _self.SetLabelsVisible(true);
+                _self.UpdateLabelText();
+                _self._labelSlider.Play("SlideInNoGemsFound");
+
+                // We just made the text visible, but it won't naturally jump to
+                // its starting position until the next frame when the animator
+                // processes.  This will result in the text appearing to "blink"
+                // for one frame before the animation actually starts.
+                //
+                // To avoid this, let's just force it to update right now.
+                _self._labelSlider.Seek(0, true);
+            }
+
+            public override void _Process(double delta)
+            {
+                if (!_self._labelSlider.IsPlaying())
+                {
+                    if (_self._untalliedSpentGems > 0)
+                        ChangeState<SlidingInGemsSpent>();
                     else
-                    {
-                        ChangeState<MovingTotalToTop>();
-                    }
+                        ChangeState<LettingPlayerReadLabels>();
                 }
             }
         }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://desy5vwopnilu"]
+[gd_scene load_steps=21 format=3 uid="uid://desy5vwopnilu"]
 
 [ext_resource type="Script" uid="uid://w3vuer5jnq04" path="res://Scenes/Maps/Screens/PortalLoadingScreen/GemCountingRig.cs" id="1_d3gao"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Scenes/Models/RedGemModel.tscn" id="2_3qivj"]
@@ -78,33 +78,6 @@ tracks/2/keys = {
 "values": [Vector3(-8.82991, 2.79569, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_620hr"]
-resource_name = "SlideIn"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%UntalliedGemsLabel:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.203, 4, 0), Vector3(-0.203, 3.143, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%TalliedGemsLabel:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.203, -4, 0), Vector3(-0.203, -2.874, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_o7chy"]
 resource_name = "SlideInGemsSpent"
 length = 0.6
@@ -148,12 +121,55 @@ tracks/1/keys = {
 "values": [Vector3(-0.203, 3.143, 0), Vector3(-0.203, 4, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_620hr"]
+resource_name = "SlideInGemsFound"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%UntalliedGemsLabel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, 4, 0), Vector3(-0.203, 3.143, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TalliedGemsLabel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, -4, 0), Vector3(-0.203, -2.874, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k00r0"]
+resource_name = "SlideInNoGemsFound"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TalliedGemsLabel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.203, 4, 0), Vector3(-0.203, 3.143, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3vqn"]
 _data = {
 &"MoveTotalToTop": SubResource("Animation_3qivj"),
 &"RESET": SubResource("Animation_emx2o"),
-&"SlideIn": SubResource("Animation_620hr"),
+&"SlideInGemsFound": SubResource("Animation_620hr"),
 &"SlideInGemsSpent": SubResource("Animation_o7chy"),
+&"SlideInNoGemsFound": SubResource("Animation_k00r0"),
 &"SlideOut": SubResource("Animation_rp877")
 }
 
