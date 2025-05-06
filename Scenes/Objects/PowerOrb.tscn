@@ -43,7 +43,7 @@ albedo_color = Color(0.989, 0.34, 1, 0.376471)
 metallic = 1.0
 roughness = 0.37
 
-[node name="PowerOrb" type="StaticBody3D"]
+[node name="PowerOrb" type="StaticBody3D" groups=["UnsafeGround"]]
 script = ExtResource("1_33fc2")
 CameraShakeMagnitude = 0.5
 CameraShakeDuration = 0.25
