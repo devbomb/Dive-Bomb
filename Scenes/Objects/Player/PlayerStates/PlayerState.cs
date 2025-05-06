@@ -463,9 +463,20 @@ namespace FastDragon
             if (!onGround)
                 return;
 
+            if (collision.GetCollider() is not StaticBody3D ground)
+                return;
+
+            if (ground.ConstantLinearVelocity != Vector3.Zero)
+                return;
+
+            if (ground.ConstantAngularVelocity != Vector3.Zero)
+                return;
+
             bool isUnsafe = ((Node)collision.GetCollider()).IsInGroup("UnsafeGround");
-            if (!isUnsafe)
-                _player.LastSafeGroundPos = _player.GlobalTransform;
+            if (isUnsafe)
+                return;
+
+            _player.LastSafeGroundPos = _player.GlobalTransform;
         }
     }
 }
