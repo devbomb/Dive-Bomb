@@ -38,7 +38,7 @@ scale_curve = SubResource("CurveTexture_gyt0j")
 material = ExtResource("2_ssgtg")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="ReturnHomePlatform" type="StaticBody3D"]
+[node name="ReturnHomePlatform" type="StaticBody3D" groups=["UnsafeGround"]]
 script = ExtResource("1_mohos")
 
 [node name="CrystalModel" type="MeshInstance3D" parent="."]
