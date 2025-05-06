@@ -100,6 +100,11 @@ namespace FastDragon
             }
         }
 
+        /// <summary>
+        /// The location the player will teleport to if they fall in water
+        /// </summary>
+        public Transform3D LastSafeGroundPos;
+
         private readonly StateMachine _stateMachine = new StateMachine(typeof(PlayerState));
         private Transform3D _spawnPos;
 
@@ -145,6 +150,8 @@ namespace FastDragon
                 ? _spawnPos
                 : checkpoint.GlobalTransform;
 
+            LastSafeGroundPos = GlobalTransform;
+
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
@@ -157,7 +164,6 @@ namespace FastDragon
             ChangeState<PlayerWalkState>();
 
             EarlyJumpBufferTimer = 0;
-
             _damageCooldownTimer = 0;
         }
 
@@ -219,6 +225,8 @@ namespace FastDragon
                 _damageCooldownTimer -= delta;
 
             AdjustCameraFocusPoint(delta);
+
+            GD.Print(GlobalPosition.Y);
         }
 
         private void AdjustCameraFocusPoint(float delta)

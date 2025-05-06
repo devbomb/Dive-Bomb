@@ -102,6 +102,7 @@ namespace FastDragon
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
             RotateInstantlyTowardVelocity();
             _player.MoveAndSlide();
+            UpdateLastSafeGroundPos();
 
             PlaySkidAnimIfTurningHard();
 

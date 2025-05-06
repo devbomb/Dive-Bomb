@@ -444,5 +444,28 @@ namespace FastDragon
 
             return false;
         }
+
+        /// <summary>
+        /// Sets the player's last safe pos to here, if they're currently
+        /// standing on solid ground that isn't flagged as "unsafe".
+        ///
+        /// Call this after MoveAndSlide() if the current state is one where
+        /// you're comfortable updating it.
+        /// </summary>
+        protected void UpdateLastSafeGroundPos()
+        {
+            var collision = new KinematicCollision3D();
+            bool onGround = _player.TestMove(
+                _player.GlobalTransform,
+                -_player.UpDirection * 0.1f,
+                collision);
+
+            if (!onGround)
+                return;
+
+            bool isUnsafe = ((Node)collision.GetCollider()).IsInGroup("UnsafeGround");
+            if (!isUnsafe)
+                _player.LastSafeGroundPos = _player.GlobalTransform;
+        }
     }
 }

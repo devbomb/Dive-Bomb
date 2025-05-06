@@ -90,5 +90,16 @@ namespace FastDragon
         {
             return node.EnumerateDescendantsOfType<TNode>().FirstOrDefault();
         }
+
+        public static bool IsAncestorInGroup(this Node node, StringName groupName)
+        {
+            if (node.IsInGroup(groupName))
+                return true;
+
+            if (node.GetParent() is Node parent)
+                return parent.IsAncestorInGroup(groupName);
+
+            return false;
+        }
     }
 }
