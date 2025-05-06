@@ -472,6 +472,13 @@ namespace FastDragon
             if (ground.ConstantAngularVelocity != Vector3.Zero)
                 return;
 
+            // Don't consider the ground "safe" if the normal vector is too
+            // sloped.  This prevents the player from being respawned at the
+            // very very edge of a platform(which would just lead to them
+            // falling again)
+            if (collision.GetAngle() > Mathf.DegToRad(45))
+                return;
+
             bool isUnsafe = ((Node)collision.GetCollider()).IsInGroup("UnsafeGround");
             if (isUnsafe)
                 return;
