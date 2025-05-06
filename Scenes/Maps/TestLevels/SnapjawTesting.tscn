@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ix6x15b1vqy"]
+
+[ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://TrenchbroomMaps/SnapjawTesting.map" id="1_e4jik"]
+
+[node name="SnapjawTesting" type="Node3D"]
+
+[node name="SnapjawTesting" parent="." instance=ExtResource("1_e4jik")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.748389, 0.66326, 0, -0.66326, 0.748389, 0, 4.20436, 0)
