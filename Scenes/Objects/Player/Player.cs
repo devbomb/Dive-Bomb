@@ -225,8 +225,6 @@ namespace FastDragon
                 _damageCooldownTimer -= delta;
 
             AdjustCameraFocusPoint(delta);
-
-            GD.Print(GlobalPosition.Y);
         }
 
         private void AdjustCameraFocusPoint(float delta)
