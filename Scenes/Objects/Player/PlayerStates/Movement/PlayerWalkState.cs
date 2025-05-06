@@ -31,7 +31,13 @@ namespace FastDragon
                 : 0;
 
             // Let the player jump if they pressed the button a little bit too
-            // early
+            // early.
+            //
+            // Note that this does NOT update the last safe grounded position.
+            // That's intentional!
+            // The player can use this to delay setting their last safe position,
+            // effectively using it as a "remote teleport" by jumping into the
+            // water.
             if (_player.EarlyJumpBufferTimer > 0)
             {
                 Jump();
