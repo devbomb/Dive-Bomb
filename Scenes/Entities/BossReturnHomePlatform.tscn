@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dki5doabmw5bc" path="res://BlenderModels/ReturnHomePlatform.blend" id="2_exf5q"]
 [ext_resource type="PackedScene" uid="uid://dpv6lh8h1jbm4" path="res://Scenes/Objects/ReturnHomeVortex.tscn" id="3_awh5i"]
 
-[node name="BossReturnHomePlatform" type="Node3D"]
+[node name="BossReturnHomePlatform" type="Node3D" groups=["UnsafeGround"]]
 script = ExtResource("1_kde3x")
 
 [node name="Model" parent="." groups=["PhysicsInterpolated"] instance=ExtResource("2_exf5q")]

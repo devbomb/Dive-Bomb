@@ -6,7 +6,7 @@ namespace FastDragon
     {
         public override bool Invincible => true;
 
-        private const float DrownDuration = 4;
+        private const float DrownDuration = 1;
         private float _timer;
 
         public override void OnStateEntered()
@@ -15,14 +15,6 @@ namespace FastDragon
             SaveFile.Current.PlayerHealth--;
             _player.Animator.Play("Drown");
             _player.GetNode<AudioStreamPlayer>("%DrownStartSplashSound").Play();
-        }
-
-        public override void _Input(InputEvent ev)
-        {
-            if (InputService.JumpJustPressed(ev) && SaveFile.Current.PlayerHealth > 0)
-            {
-                _player.ChangeState<PlayerWalkJumpState>();
-            }
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -34,7 +26,20 @@ namespace FastDragon
 
             _timer -= delta;
             if (_timer <= 0)
-                MapTransitionManager.Instance.RespawnPlayerAfterDeath();
+            {
+                if (SaveFile.Current.PlayerHealth > 0)
+                    ReturnToLastSafePlace();
+                else
+                    MapTransitionManager.Instance.RespawnPlayerAfterDeath();
+            }
+        }
+
+        private void ReturnToLastSafePlace()
+        {
+            _player.GlobalTransform = _player.LastSafeGroundPos;
+            _player.ResetPhysicsInterpolation3D();
+            _player.Velocity = Vector3.Zero;
+            _player.ChangeState<PlayerStandState>();
         }
     }
 }

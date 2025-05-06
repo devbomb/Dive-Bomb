@@ -34,7 +34,7 @@ roughness = 0.549223
 material = SubResource("StandardMaterial3D_26d1g")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="Vase" type="StaticBody3D"]
+[node name="Vase" type="StaticBody3D" groups=["UnsafeGround"]]
 script = ExtResource("1_wm3wg")
 
 [node name="Model" parent="." instance=ExtResource("1_gnefo")]

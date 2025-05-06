@@ -115,6 +115,8 @@ namespace FastDragon
             if (!IsCurrent)
                 return;
 
+            UpdateLastSafeGroundPos();
+
             if (_timer >= Player.Roll.Duration)
             {
                 if (_player.IsOnFloor())

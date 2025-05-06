@@ -40,6 +40,7 @@ enabled=PackedStringArray("res://addons/GenerateTrenchbroomEntityModels/plugin.c
 [global_group]
 
 PhysicsInterpolated=""
+UnsafeGround="If a collision object is tagged with this, it is not considered \"safe\" ground.  The player will not update its \"last safe ground\" position when standing on it."
 
 [input]
 

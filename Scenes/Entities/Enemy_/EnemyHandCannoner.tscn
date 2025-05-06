@@ -9,7 +9,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8vnft"]
 
-[node name="EnemyHandCannoner" type="StaticBody3D"]
+[node name="EnemyHandCannoner" type="StaticBody3D" groups=["UnsafeGround"]]
 script = ExtResource("1_x80xv")
 ProjectilePrefab = ExtResource("2_7j68t")
 
