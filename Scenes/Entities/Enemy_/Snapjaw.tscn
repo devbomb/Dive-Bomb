@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ri50s5tjym3n"]
+[gd_scene load_steps=11 format=3 uid="uid://ri50s5tjym3n"]
 
 [ext_resource type="PackedScene" uid="uid://bj6kfebqy4yxg" path="res://BlenderModels/Snapjaw.blend" id="1_6h8uk"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6h8uk"]
+
+[sub_resource type="Animation" id="Animation_sroyn"]
+resource_name = "Attack"
 
 [sub_resource type="Animation" id="Animation_6h8uk"]
 resource_name = "RESET"
@@ -12,14 +15,14 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Model/Armature/Skeleton3D:Root")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.813489, 0)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.813, 0)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Model/Armature/Skeleton3D:Tail")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.3688, 0.603313, 0.603313, 0.3688)
+tracks/1/keys = PackedFloat32Array(0, 1, 0.5, -0.5, -0.5, -0.5)
 tracks/2/type = "scale_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -27,6 +30,13 @@ tracks/2/path = NodePath("Model/Armature/Skeleton3D:Tail")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_58fhs"]
 resource_name = "Watch"
@@ -36,14 +46,14 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Model/Armature/Skeleton3D:Root")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -3.50415, -1.18641, 0)
+tracks/0/keys = PackedFloat32Array(0, 1, -3.54103, -1.1626, 0)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Model/Armature/Skeleton3D:Root")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, -0.234514, 0, 0.972113)
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 tracks/2/type = "rotation_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -54,6 +64,7 @@ tracks/2/keys = PackedFloat32Array(0, 1, -0.5119, -0.163459, 0.83741, -0.0999208
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_58fhs"]
 _data = {
+&"Attack": SubResource("Animation_sroyn"),
 &"RESET": SubResource("Animation_6h8uk"),
 &"Watch": SubResource("Animation_58fhs")
 }
