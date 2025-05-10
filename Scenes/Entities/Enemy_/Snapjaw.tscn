@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ri50s5tjym3n"]
+[gd_scene load_steps=24 format=3 uid="uid://ri50s5tjym3n"]
 
 [ext_resource type="Script" uid="uid://b5064ks5nmy4u" path="res://Scenes/Entities/Enemy_/Snapjaw.cs" id="1_1q2op"]
 [ext_resource type="PackedScene" uid="uid://bj6kfebqy4yxg" path="res://BlenderModels/Snapjaw.blend" id="1_6h8uk"]
@@ -14,22 +14,37 @@ size = Vector3(1.5, 5.987, 0.5)
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sroyn"]
 animation = &"Attack"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a38kv"]
+animation = &"Fall"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1q2op"]
 animation = &"RESET"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8sopg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8sopg"]
+animation = &"Watch"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a38kv"]
 advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xaiic"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2mt67"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6h8uk"]
 states/Attack/node = SubResource("AnimationNodeAnimation_sroyn")
 states/Attack/position = Vector2(417, 100)
+states/Fall/node = SubResource("AnimationNodeAnimation_a38kv")
+states/Fall/position = Vector2(525, 100)
 states/RESET/node = SubResource("AnimationNodeAnimation_1q2op")
-states/RESET/position = Vector2(285, 100)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_8sopg")]
+states/RESET/position = Vector2(214, 250)
+states/Watch/node = SubResource("AnimationNodeAnimation_8sopg")
+states/Watch/position = Vector2(301, 100)
+transitions = ["Start", "Watch", SubResource("AnimationNodeStateMachineTransition_a38kv"), "Watch", "Attack", SubResource("AnimationNodeStateMachineTransition_xaiic"), "Attack", "Fall", SubResource("AnimationNodeStateMachineTransition_2mt67")]
 
 [sub_resource type="Animation" id="Animation_sroyn"]
 resource_name = "Attack"
-length = 2.0
+length = 0.500002
 step = 0.0166667
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
@@ -51,7 +66,7 @@ tracks/2/enabled = true
 tracks/2/path = NodePath("Model/Armature/Skeleton3D:Root")
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
-tracks/2/keys = PackedFloat32Array(0, 1, 0, -3, 0, 0.5, 1, 0, 2, 0)
+tracks/2/keys = PackedFloat32Array(0, 1, 0, -3, 0, 0.3, 1, 0, 0, 0)
 tracks/3/type = "rotation_3d"
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -77,6 +92,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BreakableArea:Disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_6h8uk"]
@@ -149,6 +176,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BreakableArea:Disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_58fhs"]
 resource_name = "Watch"
@@ -181,9 +220,50 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 0.0177446, 3.14831e-08, -1.28418e-08, 0.999843)
 
+[sub_resource type="Animation" id="Animation_1q2op"]
+resource_name = "Fall"
+length = 1.0
+step = 0.0166667
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = PackedFloat32Array(0, 1, 0.5, 0.5, -0.5, -0.5)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Armature/Skeleton3D:UpperJaw")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = PackedFloat32Array(0, 1, 0.141424, 3.07834e-08, -1.44389e-08, 0.989949)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 0, -3, 0)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Armature/Skeleton3D:LowerJaw")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = PackedFloat32Array(0, 1, -3.796e-08, 0.978236, -0.207493, 6.43992e-08)
+tracks/4/type = "scale_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Armature/Skeleton3D:Torso")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_58fhs"]
 _data = {
 &"Attack": SubResource("Animation_sroyn"),
+&"Fall": SubResource("Animation_1q2op"),
 &"RESET": SubResource("Animation_6h8uk"),
 &"Watch": SubResource("Animation_58fhs")
 }
@@ -202,8 +282,13 @@ albedo_color = Color(0.815686, 0.619608, 0.27451, 1)
 material = SubResource("StandardMaterial3D_6h8uk")
 size = Vector2(10, 10)
 
-[node name="Snapjaw" type="Node3D"]
+[node name="Snapjaw" type="Node3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_1q2op")
+
+[node name="FloorDetector" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -100, 0)
 
 [node name="BreakableArea" type="Area3D" parent="."]
 script = ExtResource("1_58fhs")
@@ -237,6 +322,7 @@ libraries = {
 [node name="Model" parent="." instance=ExtResource("1_6h8uk")]
 
 [node name="Reference" type="Node3D" parent="."]
+visible = false
 
 [node name="WaterReference" type="MeshInstance3D" parent="Reference"]
 mesh = SubResource("PlaneMesh_1q2op")
