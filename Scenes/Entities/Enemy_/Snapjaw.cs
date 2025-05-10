@@ -23,9 +23,12 @@ namespace FastDragon
             // HACK: We can't do the raycast in _Ready() because the floor may
             // not have been added to the tree yet.  Instead, we'll wait until
             // the first frame to find it.
+            Visible = false;
             _floorPos = GlobalPosition;
             Callable.From(() =>
             {
+                Visible = true;
+
                 _floorDetector.ForceRaycastUpdate();
                 _floorPos = _floorDetector.GetCollisionPoint();
                 _floorPos.Y += 1;
@@ -60,7 +63,11 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _self._animator.PlayState("Watch");
+                _self._animator.Advance(0);
                 _timer = Duration;
+
+                _self.GlobalPosition = _self._floorPos;
+                _self.ResetPhysicsInterpolation3D();
             }
 
             public override void _PhysicsProcess(double delta)
