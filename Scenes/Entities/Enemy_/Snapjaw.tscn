@@ -73,6 +73,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BreakableArea:Disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.366667, 1.06667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_6h8uk"]
 resource_name = "RESET"
@@ -144,6 +156,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BreakableArea:Disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_58fhs"]
 resource_name = "Watch"
@@ -201,6 +225,7 @@ size = Vector2(10, 10)
 
 [node name="BreakableArea" type="Area3D" parent="."]
 script = ExtResource("1_58fhs")
+Disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BreakableArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75005, 0)
