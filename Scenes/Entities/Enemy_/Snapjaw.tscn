@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://ri50s5tjym3n"]
+[gd_scene load_steps=19 format=3 uid="uid://ri50s5tjym3n"]
 
+[ext_resource type="Script" uid="uid://b5064ks5nmy4u" path="res://Scenes/Entities/Enemy_/Snapjaw.cs" id="1_1q2op"]
 [ext_resource type="PackedScene" uid="uid://bj6kfebqy4yxg" path="res://BlenderModels/Snapjaw.blend" id="1_6h8uk"]
 [ext_resource type="Script" uid="uid://blpfmbcbfae1y" path="res://Scripts/Objects/BreakableArea3D.cs" id="1_58fhs"]
 [ext_resource type="Script" uid="uid://4lt3umf3fct" path="res://Scenes/Objects/DamagePlayerArea.cs" id="2_sroyn"]
@@ -13,13 +14,18 @@ size = Vector3(1.5, 5.987, 0.5)
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sroyn"]
 animation = &"Attack"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1q2op"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1q2op"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8sopg"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6h8uk"]
 states/Attack/node = SubResource("AnimationNodeAnimation_sroyn")
-states/Attack/position = Vector2(301, 100)
-transitions = ["Start", "Attack", SubResource("AnimationNodeStateMachineTransition_1q2op")]
+states/Attack/position = Vector2(417, 100)
+states/RESET/node = SubResource("AnimationNodeAnimation_1q2op")
+states/RESET/position = Vector2(285, 100)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_8sopg")]
 
 [sub_resource type="Animation" id="Animation_sroyn"]
 resource_name = "Attack"
@@ -222,6 +228,7 @@ material = SubResource("StandardMaterial3D_6h8uk")
 size = Vector2(10, 10)
 
 [node name="Snapjaw" type="Node3D"]
+script = ExtResource("1_1q2op")
 
 [node name="BreakableArea" type="Area3D" parent="."]
 script = ExtResource("1_58fhs")
@@ -239,6 +246,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02053, 0)
 shape = SubResource("BoxShape3D_58fhs")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeStateMachine_6h8uk")
 anim_player = NodePath("AnimationPlayer")
 
@@ -249,7 +258,6 @@ callback_mode_process = 0
 libraries = {
 &"": SubResource("AnimationLibrary_58fhs")
 }
-autoplay = "Attack"
 
 [node name="Model" parent="." instance=ExtResource("1_6h8uk")]
 
@@ -264,3 +272,5 @@ skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/Do
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("PlaneMesh_58fhs")
 skeleton = NodePath("../../root/@EditorNode@21301/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Snapjaw")
+
+[connection signal="Broken" from="BreakableArea" to="." method="OnBroken"]
