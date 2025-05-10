@@ -78,19 +78,10 @@ namespace FastDragon
 
         private void PlayAnimation(string animationName, bool travel = false)
         {
-            var playback = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
-
-            if (travel)
-                playback.Travel(animationName);
-            else
-                playback.Start(animationName);
+            _animationTree.PlayState(animationName, travel);
         }
 
-        private string CurrentAnimation()
-        {
-            var playback = (AnimationNodeStateMachinePlayback)_animationTree.Get("parameters/playback");
-            return playback.GetCurrentNode();
-        }
+        private string CurrentAnimation() => _animationTree.CurrentState();
 
         private abstract partial class SeamonsterBossState : State
         {
