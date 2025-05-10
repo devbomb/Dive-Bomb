@@ -22,5 +22,10 @@ namespace FastDragon
             var playback = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/playback");
             return playback.GetCurrentNode();
         }
+
+        public static AnimationPlayer GetAnimPlayer(this AnimationTree animationTree)
+        {
+            return animationTree.GetNode<AnimationPlayer>(animationTree.AnimPlayer);
+        }
     }
 }
