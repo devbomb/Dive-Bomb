@@ -254,6 +254,7 @@ autoplay = "Attack"
 [node name="Model" parent="." instance=ExtResource("1_6h8uk")]
 
 [node name="Reference" type="Node3D" parent="."]
+visible = false
 
 [node name="WaterReference" type="MeshInstance3D" parent="Reference"]
 mesh = SubResource("PlaneMesh_1q2op")
