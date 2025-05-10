@@ -8,7 +8,7 @@
 height = 2.28043
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_58fhs"]
-size = Vector3(2, 2.90632, 1)
+size = Vector3(1.5, 5.987, 0.5)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sroyn"]
 animation = &"Attack"
@@ -68,7 +68,7 @@ tracks/5/path = NodePath("JawDamageArea:Enabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.35),
+"times": PackedFloat32Array(0, 0.133333, 0.366667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -210,7 +210,7 @@ shape = SubResource("CylinderShape3D_sroyn")
 script = ExtResource("2_sroyn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JawDamageArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.21498, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.02053, 0)
 shape = SubResource("BoxShape3D_58fhs")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
