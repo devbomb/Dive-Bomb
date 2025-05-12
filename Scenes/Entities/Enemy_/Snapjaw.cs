@@ -101,6 +101,7 @@ namespace FastDragon
             {
                 _timer += delta;
                 float t = (float)(_timer / _duration);
+                t = 1 - ((t - 1) * (t - 1));
 
                 _self.GlobalPosition = _self._floorPos.Lerp(_self._targetPos, t);
 
@@ -111,7 +112,7 @@ namespace FastDragon
 
         private partial class Hovering : SnapjawState
         {
-            private const double Duration = 0.75;
+            private const double Duration = 0.5;
 
             private double _timer;
 
@@ -131,7 +132,7 @@ namespace FastDragon
 
         private partial class Falling : SnapjawState
         {
-            private const double Duration = 1;
+            private const double Duration = 0.5;
 
             private double _timer;
 
@@ -153,7 +154,7 @@ namespace FastDragon
             {
                 _timer += delta;
                 float t = (float)(_timer / Duration);
-                // TODO: Massage "t" so it looks like gravity
+                t = Mathf.Pow(t, 2);
 
                 _self.GlobalPosition = _self._targetPos.Lerp(_self._floorPos, t);
 
