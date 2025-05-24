@@ -3,13 +3,15 @@ using System.Linq;
 
 namespace FastDragon
 {
-    public partial class EnemyVulture : CharacterBody3D, IBreakable
+    public partial class EnemyVulture : CharacterBody3D, IBreakable, IGemContainer
     {
         public const float MaxSpeed = Player.Walk.Speed * 1.5f;
         public const float Accel = 32;
         public const float RotSpeedDeg = 360;
 
-        [Export] public GemColor GemColor = GemColor.Red;
+        [Signal] public delegate void KilledEventHandler();
+
+        [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public float AggroRange = 20;
 
         public bool IsDead => _stateMachine.CurrentState is Dead;
@@ -17,7 +19,6 @@ namespace FastDragon
         private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
         private Node3D _model => GetNode<Node3D>("%Model");
         private AggroSphere _aggroSphere => GetNode<AggroSphere>("%AggroSphere");
-        private Gem _gem;
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private StateMachine _stateMachine = new StateMachine(typeof(VultureState));
@@ -30,11 +31,6 @@ namespace FastDragon
             base._Ready();
 
             AddChild(_stateMachine);
-
-            _gem = GemFactory.Create(GemColor);
-            _gem.StartHidden = true;
-            _gem.Name = "Gem";
-            AddChild(_gem);
 
             RefreshAggroSphereSize();
 
@@ -214,7 +210,7 @@ namespace FastDragon
             {
                 _vulture._bodyShape.Disabled = true;
                 _vulture._model.Visible = false;
-                _vulture._gem.Reveal();
+                _vulture.EmitSignal(EnemyVulture.SignalName.Killed);
             }
 
             public override void OnStateExited()

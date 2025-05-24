@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyd2uyjl8rvk5"]
+[gd_scene load_steps=7 format=3 uid="uid://cyd2uyjl8rvk5"]
 
 [ext_resource type="Script" uid="uid://l0gjh3jkqteb" path="res://Scenes/Entities/Enemy_/EnemyVulture.cs" id="1_is5gw"]
 [ext_resource type="AnimationLibrary" uid="uid://phpkdehj2kfx" path="res://AnimationLibraries/VultureAnimations.tres" id="2_4b7rt"]
+[ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Scripts/Objects/GemSpawner.cs" id="2_alb8d"]
 [ext_resource type="PackedScene" uid="uid://bksx43c001y1k" path="res://BlenderModels/EnemyVulture.blend" id="2_ni8ar"]
 [ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Scenes/Objects/AggroSphere.tscn" id="4_l56o7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uo6qh"]
 
-[node name="EnemyVulture" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
+[node name="EnemyVulture" type="CharacterBody3D" groups=["PhysicsInterpolated", "UnsafeGround"]]
 script = ExtResource("1_is5gw")
+
+[node name="GemSpawner" type="Node3D" parent="."]
+script = ExtResource("2_alb8d")
+metadata/_custom_type_script = "uid://dhjvxdov8gnkp"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -47,5 +52,7 @@ shape = SubResource("SphereShape3D_uo6qh")
 
 [node name="AggroSphere" parent="." instance=ExtResource("4_l56o7")]
 unique_name_in_owner = true
+
+[connection signal="Killed" from="." to="GemSpawner" method="Reveal"]
 
 [editable path="Model"]
