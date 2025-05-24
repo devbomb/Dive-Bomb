@@ -7,6 +7,7 @@ namespace FastDragon
     {
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public string CycleId = null;
+        [Export] public double CycleOffset;
 
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
         private AnimationTree _animator => GetNode<AnimationTree>("%AnimationTree");
@@ -46,15 +47,23 @@ namespace FastDragon
         private void Reset()
         {
             if (string.IsNullOrEmpty(CycleId))
-                _stateMachine.ChangeState<Watching>();
+                _stateMachine.ChangeState<WaitingForCycleOffset>();
             else
                 _stateMachine.ChangeState<WaitingForCycleStart>();
         }
 
         public void OnBroken()
         {
-            GD.Print("Broken");
             _stateMachine.ChangeState<Dead>();
+        }
+
+        private void MoveToWatchingPosition()
+        {
+            _animator.PlayState("Watch");
+            _animator.Advance(0);
+
+            GlobalPosition = _floorPos;
+            this.ResetPhysicsInterpolation3D();
         }
 
         private abstract partial class SnapjawState : State
@@ -67,12 +76,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 SignalBus.Instance.CycleStarted += OnCycleStarted;
-
-                _self._animator.PlayState("Watch");
-                _self._animator.Advance(0);
-
-                _self.GlobalPosition = _self._floorPos;
-                _self.ResetPhysicsInterpolation3D();
+                _self.MoveToWatchingPosition();
             }
 
             public override void OnStateExited()
@@ -83,6 +87,24 @@ namespace FastDragon
             private void OnCycleStarted(string cycleId)
             {
                 if (cycleId == _self.CycleId)
+                    ChangeState<WaitingForCycleOffset>();
+            }
+        }
+
+        private partial class WaitingForCycleOffset : SnapjawState
+        {
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                _self.MoveToWatchingPosition();
+                _timer = _self.CycleOffset;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer -= delta;
+                if (_timer <= 0)
                     ChangeState<Watching>();
             }
         }
@@ -95,12 +117,8 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self._animator.PlayState("Watch");
-                _self._animator.Advance(0);
+                _self.MoveToWatchingPosition();
                 _timer = Duration;
-
-                _self.GlobalPosition = _self._floorPos;
-                _self.ResetPhysicsInterpolation3D();
             }
 
             public override void _PhysicsProcess(double delta)
