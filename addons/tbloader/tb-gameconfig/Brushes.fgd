@@ -16,3 +16,7 @@
 @SolidClass = Trigger_/FixedCameraZone [
 	TargetMarkerId(string) : "TargetMarkerId"
 ]
+
+@SolidClass = Trigger_/CycleStarter [
+	CycleId(string) : "CycleId"
+]
