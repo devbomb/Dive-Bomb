@@ -2,11 +2,13 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class EnemyHandCannoner : StaticBody3D, IBreakable
+    public partial class EnemyHandCannoner : StaticBody3D, IBreakable, IGemContainer
     {
         public bool VulnerableToKick => false;
 
-        [Export] public GemColor GemColor = GemColor.Red;
+        [Signal] public delegate void KilledEventHandler();
+
+        [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public PackedScene ProjectilePrefab;
         [Export] public float ShieldDuration = 1.5f;
         [Export] public float AimDuration = 1;
@@ -26,17 +28,12 @@ namespace FastDragon
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
 
         private readonly StateMachine _stateMachine = new StateMachine(typeof(EnemyHandCannonerState));
-        private Gem _gem;
 
         private Player _targetPlayer = null;
 
         public override void _Ready()
         {
             AddChild(_stateMachine);
-
-            _gem = GemFactory.Create(GemColor);
-            _gem.StartHidden = true;
-            AddChild(_gem);
 
             SignalBus.Instance.LevelReset += Reset;
             Reset();
@@ -188,7 +185,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _enemy.FaceTargetPlayer();
-                _enemy._gem.Reveal();
+                _enemy.EmitSignal(EnemyHandCannoner.SignalName.Killed);
                 _enemy._animator.Play("Death");
             }
 
