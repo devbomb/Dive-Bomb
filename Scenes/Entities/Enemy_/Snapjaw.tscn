@@ -75,7 +75,7 @@ tracks/3/enabled = true
 tracks/3/path = NodePath("Model/Armature/Skeleton3D:LowerJaw")
 tracks/3/interp = 1
 tracks/3/loop_wrap = false
-tracks/3/keys = PackedFloat32Array(0, 1, -2.62005e-08, 0.927344, -0.37421, 7.00125e-08, 0.133333, 1, -7.18715e-09, 0.798893, -0.601473, 7.44081e-08, 0.3, 1, -3.796e-08, 0.978236, -0.207493, 6.43992e-08, 0.333333, 1, -3.60797e-08, 0.971819, -0.235727, 6.54712e-08, 0.366666, 1, -3.796e-08, 0.978236, -0.207493, 6.43992e-08)
+tracks/3/keys = PackedFloat32Array(0, 1, -2.62005e-08, 0.927344, -0.37421, 7.00125e-08, 0.133333, 1, -7.18715e-09, 0.798893, -0.601473, 7.44081e-08, 0.3, 1, -3.796e-08, 0.978236, -0.207493, 6.43992e-08, 0.316667, 1, -3.796e-08, 0.978236, -0.207493, 6.43992e-08, 0.333333, 1, -3.60797e-08, 0.971819, -0.235727, 6.54712e-08, 0.35, 1, -3.796e-08, 0.978236, -0.207493, 6.43992e-08)
 tracks/4/type = "scale_3d"
 tracks/4/imported = false
 tracks/4/enabled = true
@@ -310,7 +310,6 @@ target_position = Vector3(0, -100, 0)
 
 [node name="BreakableArea" type="Area3D" parent="."]
 script = ExtResource("1_58fhs")
-Disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BreakableArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0651472, 0)
