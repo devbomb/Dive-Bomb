@@ -151,7 +151,7 @@ namespace FastDragon
             {
                 _timer += delta;
                 float t = (float)(_timer / _duration);
-                t = 1 - ((t - 1) * (t - 1));
+                t = 1f - Mathf.Pow(t - 1, 4);
 
                 _self.GlobalPosition = _self._floorPos.Lerp(_self._targetPos, t);
 
