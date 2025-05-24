@@ -5,6 +5,8 @@ namespace FastDragon
     [GlobalClass]
     public partial class GemSpawner : Node3D
     {
+        public bool IsGemCollected => _gem.IsCollected;
+
         private Gem _gem;
 
         public override void _Ready()
