@@ -10,5 +10,9 @@
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.748389, 0.66326, 0, -0.66326, 0.748389, 0, 4.20436, 0)
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(1, 0, 0, 0, -0.977743, 0.209806, 0, -0.209806, -0.977743, 0, 0, 0)
+light_energy = 0.448
+
 [node name="Snapjaw" parent="." instance=ExtResource("2_y82or")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029, 4.05747, 6)
