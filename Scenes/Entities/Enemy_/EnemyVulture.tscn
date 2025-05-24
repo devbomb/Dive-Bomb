@@ -8,7 +8,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uo6qh"]
 
-[node name="EnemyVulture" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
+[node name="EnemyVulture" type="CharacterBody3D" groups=["PhysicsInterpolated", "UnsafeGround"]]
 script = ExtResource("1_is5gw")
 
 [node name="GemSpawner" type="Node3D" parent="."]
