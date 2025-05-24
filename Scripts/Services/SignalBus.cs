@@ -29,10 +29,25 @@ namespace FastDragon
             remove => DisconnectAction(value);
         }
 
+        public event Action<string> CycleStarted
+        {
+            add => ConnectAction(value);
+            remove => DisconnectAction(value);
+        }
+
         public SignalBus()
         {
             AddUserSignal(nameof(LevelReset));
             AddUserSignal(nameof(ExitReached));
+
+            AddUserSignal(nameof(CycleStarted),
+            [
+                new Godot.Collections.Dictionary
+                {
+                    {"name", "cycleId"},
+                    {"type", (int)Variant.Type.String}
+                }
+            ]);
         }
 
         public override void _Ready()
@@ -42,6 +57,7 @@ namespace FastDragon
 
         public void EmitLevelReset() => EmitSignal(nameof(LevelReset));
         public void EmitExitReached() => EmitSignal(nameof(ExitReached));
+        public void EmitCycleStarted(string cycleId) => EmitSignal(nameof(CycleStarted), cycleId);
 
         private void ConnectAction(
             Action action,
@@ -51,8 +67,24 @@ namespace FastDragon
             Connect(signalName, Callable.From(action));
         }
 
+        private void ConnectAction<T>(
+            Action<T> action,
+            [CallerMemberName] string signalName = ""
+        )
+        {
+            Connect(signalName, Callable.From(action));
+        }
+
         private void DisconnectAction(
             Action action,
+            [CallerMemberName] string signalName = ""
+        )
+        {
+            Disconnect(signalName, Callable.From(action));
+        }
+
+        private void DisconnectAction<T>(
+            Action<T> action,
             [CallerMemberName] string signalName = ""
         )
         {
