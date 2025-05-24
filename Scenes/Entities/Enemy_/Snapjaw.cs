@@ -5,6 +5,8 @@ namespace FastDragon
 {
     public partial class Snapjaw : Node3D
     {
+        [Export] public string CycleId = null;
+
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
         private AnimationTree _animator => GetNode<AnimationTree>("%AnimationTree");
         private readonly StateMachine _stateMachine = new StateMachine(typeof(SnapjawState));
@@ -41,7 +43,10 @@ namespace FastDragon
 
         private void Reset()
         {
-            _stateMachine.ChangeState<Watching>();
+            if (string.IsNullOrEmpty(CycleId))
+                _stateMachine.ChangeState<Watching>();
+            else
+                _stateMachine.ChangeState<WaitingForCycleStart>();
         }
 
         public void OnBroken()
@@ -52,6 +57,31 @@ namespace FastDragon
         private abstract partial class SnapjawState : State
         {
             protected Snapjaw _self => _stateMachine.GetParent<Snapjaw>();
+        }
+
+        private partial class WaitingForCycleStart : SnapjawState
+        {
+            public override void OnStateEntered()
+            {
+                SignalBus.Instance.CycleStarted += OnCycleStarted;
+
+                _self._animator.PlayState("Watch");
+                _self._animator.Advance(0);
+
+                _self.GlobalPosition = _self._floorPos;
+                _self.ResetPhysicsInterpolation3D();
+            }
+
+            public override void OnStateExited()
+            {
+                SignalBus.Instance.CycleStarted -= OnCycleStarted;
+            }
+
+            private void OnCycleStarted(string cycleId)
+            {
+                if (cycleId == _self.CycleId)
+                    ChangeState<Watching>();
+            }
         }
 
         private partial class Watching : SnapjawState
