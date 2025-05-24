@@ -39,9 +39,8 @@ namespace FastDragon
                 _floorPos.Y += 1;
 
                 _floorDetector.Enabled = false;
+                Reset();
             }).CallDeferred();
-
-            Reset();
         }
 
         private void Reset()
