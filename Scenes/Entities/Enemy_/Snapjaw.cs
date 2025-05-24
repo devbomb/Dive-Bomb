@@ -3,12 +3,14 @@ using System;
 
 namespace FastDragon
 {
-    public partial class Snapjaw : Node3D
+    public partial class Snapjaw : Node3D, IGemContainer
     {
+        [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public string CycleId = null;
 
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
         private AnimationTree _animator => GetNode<AnimationTree>("%AnimationTree");
+        private Node3D _model => GetNode<Node3D>("%Model");
         private readonly StateMachine _stateMachine = new StateMachine(typeof(SnapjawState));
 
         private Vector3 _targetPos;
@@ -51,6 +53,7 @@ namespace FastDragon
 
         public void OnBroken()
         {
+            GD.Print("Broken");
             _stateMachine.ChangeState<Dead>();
         }
 
@@ -198,12 +201,12 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _self._animator.PlayState("RESET");
-                _self.Visible = false;
+                _self._model.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _self.Visible = true;
+                _self._model.Visible = true;
             }
         }
     }
