@@ -136,3 +136,32 @@ with the following parameters:
     not enforced.
 
 # How it works: MapImporter and TBLoader
+
+## Why not use Qodot or func_godot?
+When using Trenchbroom with Godot, the usual advice is to use plugins like
+Qodot or func_godot.  Dive Bomb emphatically rejects this advice for one simple
+reason: version control.
+
+In Qodot/func_godot, you create a `.map` file and then click a "build" button
+to turn that map into a `.tscn`.  The `.tscn` essentially duplicates all of
+the content of the `.map`, but in a format Godot can use.  You're then faced
+with an impossible choice.  You either:
+* Track both the `.map` and the `.tscn` in your git repo, meaning you now have
+    two essentially-duplicate files that risk getting out of sync.
+
+* Track only the `.tscn` in your git repo, meaning you forfeit the ability to
+    track your hard work creating the `.map`.
+
+Both of those options suck and nobody should use them.
+
+## OK, but why not use Qodot or func_godot?
+Didn't you just ask that question?
+
+## Yes, but you didn't answer.  TBLoader also has the exact same "build" button problem as the other two, and yet you were still able to make MapImporter work with it.  Why couldn't you have done the same thing with Qodot or func_godot?
+Oh, well, uhh...this is embarassing, but Qodot and func_godot are too complicated
+for my simple monkey brain.  There, you happy?  I admitted it.  They have all of
+these extra asset types that you need to create and learn to use and...bleh.
+
+TBLoader, at least on the surface, was simpler to learn.  You put the entities
+in a folder and...OK, maybe it's not actually that much simpler.  But it sure
+seemed like it was at the time!
