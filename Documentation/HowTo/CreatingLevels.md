@@ -100,6 +100,23 @@ There is no need to "compile" or "export" maps you make; Dive Bomb uses a
 like any other scene.
 
 # Creating the .tscn file
+Trenchbroom is great for creating level geometry and placing entities, but there
+are some things that are easier to do in the Godot editor.  For that reason the
+"official" scene for each level is a plain old .tscn file.  The .tscn file
+contains these key nodes:
+* An [instance](#how-it-works-mapimporter-and-tbloader) of the map you created
+    in Trenchbroom
+* A `DirectionalLight3D` that acts as this level's "sun"
+* A `WorldEnvironment` that sets the level's [skybox](#creating-the-skybox)
+* Any additional manually-placed lights or particle effects.
+
+> Not sure what should go in the .map and which should go in the .tscn?
+For the most part, almost everything should be in the .map.  Only put something
+directly in the .tscn if one of these is true:
+> * It can't be previewed in Trenchbroom(like lights or particles) and needs to be
+    tweaked frequently
+> * It can't be easily edited in Trenchbroom(like the path of a moving platform)
+> * It doesn't need to be moved if the level geometry moves
 
 # Creating the skybox
 
