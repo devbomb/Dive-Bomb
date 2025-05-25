@@ -59,7 +59,7 @@ common entities you'll use are:
         called in the inventory screen and in Time Trial mode.
     * `HomeWorldMap`: The path to the .tscn file of the level the player should
         return to when the exit is reached(or "exit level" is chosen in the
-        pause menu).
+        pause menu).  Must start with "res://"
 
 * `Transport_/ReturnHomePlatform`: the level exit.  Levels without one of these
     cannot be played in Time Trial mode.
@@ -119,7 +119,20 @@ directly in the .tscn if one of these is true:
 > * It doesn't need to be moved if the level geometry moves
 
 # Creating the skybox
+Every level needs a skybox, _even indoor levels_.  This is because the seamless
+loading screen uses...well, the skybox.  Create an `Environment` asset and save
+it to `res://Environments` as a `.tres` file.  You should then use it as the
+parameter in the `.tscn` file's `WorldEnvironment` node.
 
 # Creating a portal
+In the home world's .map file, place a `Transport_/StandardPortal` entity
+with the following parameters:
+* `SkyboxEnvironment`: the path to the `.tres` file of the `Environment` asset
+    you created in the last step.  Must start with "res://"
+* `TargetMap`: the path to the `.tscn` file for this level.  Must start with
+    "res://"
+* `Text`: the text that floats in front of the portal.  Should be the same as
+    the level's name(as defined in the PlayerSpawn's parameters), but this is
+    not enforced.
 
 # How it works: MapImporter and TBLoader
