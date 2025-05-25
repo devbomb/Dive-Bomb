@@ -82,7 +82,7 @@ common entities you'll use are:
     because that looks nice in the inventory screen.
     * Note: Gems count toward the player's completion percentage, so please 
         don't be evil about where you hide them.  Nobody wants to go back and
-        hunt for that one lone gem you hit in the most remote corner of the 
+        hunt for that one lone gem you hid in the most remote corner of the 
         world.
 
 * `Item_/Basket` and `Item_/Vase`: Breakable objects that contain gems.
@@ -137,31 +137,17 @@ with the following parameters:
 
 # How it works: MapImporter and TBLoader
 
-## Why not use Qodot or func_godot?
-When using Trenchbroom with Godot, the usual advice is to use plugins like
-Qodot or func_godot.  Dive Bomb emphatically rejects this advice for one simple
-reason: version control.
+When creating levels for Dive Bomb, there is no need to click a "build" button
+to convert your map to a `.tscn`.  Instead, the map files get automatically
+imported in the same way `.blend` files are.  This avoids the need to store
+duplicate, possibly-conflicting information in the git repo.
 
-In Qodot/func_godot, you create a `.map` file and then click a "build" button
-to turn that map into a `.tscn`.  The `.tscn` essentially duplicates all of
-the content of the `.map`, but in a format Godot can use.  You're then faced
-with an impossible choice.  You either:
-* Track both the `.map` and the `.tscn` in your git repo, meaning you now have
-    two essentially-duplicate files that risk getting out of sync.
+This is accomplished by combining
+[TBLoader](https://github.com/codecat/godot-tbloader) with a custom-made
+[import plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/import_plugins.html) 
+called "MapImporter".  MapImporter invokes TBLoader to convert the map file
+to a tree of Godot nodes, does some post-processing to inject custom materials
+and work around some bugs, and then saves the result in the `.godot` folder.
 
-* Track only the `.tscn` in your git repo, meaning you forfeit the ability to
-    track your hard work creating the `.map`.
-
-Both of those options suck and nobody should use them.
-
-## OK, but why not use Qodot or func_godot?
-Didn't you just ask that question?
-
-## Yes, but you didn't answer.  TBLoader also has the exact same "build" button problem as the other two, and yet you were still able to make MapImporter work with it.  Why couldn't you have done the same thing with Qodot or func_godot?
-Oh, well, uhh...this is embarassing, but Qodot and func_godot are too complicated
-for my simple monkey brain.  There, you happy?  I admitted it.  They have all of
-these extra asset types that you need to create and learn to use and...bleh.
-
-TBLoader, at least on the surface, was simpler to learn.  You put the entities
-in a folder and...OK, maybe it's not actually that much simpler.  But it sure
-seemed like it was at the time!
+This means you can drag and drop a `.map` file into a scene, just like you can
+with a `.blend` file.
