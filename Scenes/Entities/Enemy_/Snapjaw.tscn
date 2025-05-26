@@ -107,6 +107,20 @@ tracks/6/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/Armature/Skeleton3D:Hat")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.638436, 0.0012492, -0.00189224, 0.769672, 0.133333, 1, 0.357009, 0.00179136, -0.00139, 0.934098, 0.3, 1, 0.981397, -0.00106322, -0.00200306, -0.191978, 0.4, 1, -0.237743, 0.00226419, -0.000124267, 0.971325, 0.5, 1, 0.591124, 0.00136044, -0.00181391, 0.806578)
+tracks/8/type = "position_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/Armature/Skeleton3D:Hat")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -0.0261059, 0.0544039, 0.239603, 0.133333, 1, -0.0257153, 0.0168704, 0.341019, 0.3, 1, -0.0250187, 1.75696, -0.0191274, 0.366667, 1, -0.0250187, 1.75696, -0.0191274, 0.5, 1, -0.0261059, 0.0544039, 0.239603)
 
 [sub_resource type="Animation" id="Animation_1q2op"]
 resource_name = "Fall"
@@ -241,6 +255,20 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model/Armature/Skeleton3D:Hat")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.591124, 0.00136044, -0.00181391, 0.806578)
+tracks/11/type = "position_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Model/Armature/Skeleton3D:Hat")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, -0.0263255, -0.0413219, 0.218049)
 
 [sub_resource type="Animation" id="Animation_58fhs"]
 resource_name = "Watch"
@@ -310,7 +338,6 @@ target_position = Vector3(0, -100, 0)
 
 [node name="BreakableArea" type="Area3D" parent="."]
 script = ExtResource("1_58fhs")
-Disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BreakableArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0651472, 0)
@@ -319,6 +346,7 @@ shape = SubResource("CylinderShape3D_sroyn")
 
 [node name="JawDamageArea" type="Area3D" parent="."]
 script = ExtResource("2_sroyn")
+Enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JawDamageArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.855975, 0)
