@@ -310,6 +310,7 @@ target_position = Vector3(0, -100, 0)
 
 [node name="BreakableArea" type="Area3D" parent="."]
 script = ExtResource("1_58fhs")
+Disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BreakableArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0651472, 0)
