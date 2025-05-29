@@ -20,7 +20,7 @@
 ( 128 -64 -16 ) ( 129 -64 -16 ) ( 128 -63 -16 ) __TB_empty 0 0 0 1 1
 ( 144 48 16 ) ( 144 49 16 ) ( 145 48 16 ) __TB_empty 0 0 0 1 1
 ( 144 64 0 ) ( 145 64 0 ) ( 144 64 1 ) __TB_empty 0 0 0 1 1
-( 224 48 0 ) ( 224 48 1 ) ( 224 49 0 ) __TB_empty 0 0 0 1 1
+( 496 48 0 ) ( 496 48 1 ) ( 496 49 0 ) __TB_empty 0 0 0 1 1
 }
 // brush 2
 {
@@ -66,6 +66,30 @@
 // entity 4
 {
 "classname" "Enemy_/Snapjaw"
-"origin" "200 8 80"
+"origin" "120 -8 64"
+"CycleOffset" "0"
+}
+// entity 5
+{
+"classname" "Enemy_/Snapjaw"
+"origin" "184 -8 64"
 "CycleOffset" "0.5"
+}
+// entity 6
+{
+"classname" "Enemy_/Snapjaw"
+"origin" "264 -8 48"
+"CycleOffset" "1"
+}
+// entity 7
+{
+"classname" "Enemy_/Snapjaw"
+"origin" "376 -8 48"
+"CycleOffset" "1.5"
+}
+// entity 8
+{
+"classname" "Enemy_/Snapjaw"
+"origin" "472 -8 48"
+"CycleOffset" "2"
 }
