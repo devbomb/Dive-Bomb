@@ -63,3 +63,9 @@
 ( 128 64 16 ) ( 128 -64 -16 ) ( 128 -64 16 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
+// entity 4
+{
+"classname" "Enemy_/Snapjaw"
+"origin" "200 8 80"
+"CycleOffset" "0.5"
+}
