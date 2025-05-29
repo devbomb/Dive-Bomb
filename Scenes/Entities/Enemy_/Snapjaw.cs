@@ -258,7 +258,7 @@ namespace FastDragon
 
         private partial class DeathFalling : SnapjawState
         {
-            private const double Duration = 0.25;
+            private const double Duration = 0.3;
 
             private double _timer;
 
@@ -266,14 +266,9 @@ namespace FastDragon
             {
                 _timer = 0;
                 _self.GlobalPosition = _self._targetPos;
-                _self._animator.GetAnimPlayer().SpeedScale = (float)(1.0 / Duration);
+                _self._animator.Set("parameters/DeathFall/TimeScale/scale", (float)1.0 / Duration);
 
                 _self._animator.PlayState("DeathFall");
-            }
-
-            public override void OnStateExited()
-            {
-                _self._animator.GetAnimPlayer().SpeedScale = 1;
             }
 
             public override void _PhysicsProcess(double delta)

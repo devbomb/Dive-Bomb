@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ri50s5tjym3n"]
+[gd_scene load_steps=40 format=3 uid="uid://ri50s5tjym3n"]
 
 [ext_resource type="Script" uid="uid://b5064ks5nmy4u" path="res://Scenes/Entities/Enemy_/Snapjaw.cs" id="1_1q2op"]
 [ext_resource type="PackedScene" uid="uid://bj6kfebqy4yxg" path="res://BlenderModels/Snapjaw.blend" id="1_6h8uk"]
@@ -25,8 +25,19 @@ size = Vector3(0.75, 1.63689, 0.25)
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sroyn"]
 animation = &"Attack"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2mt67"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4utbh"]
 animation = &"DeathFall"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_xq8qg"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_siaue"]
+graph_offset = Vector2(-314, -37)
+nodes/DeathFall/node = SubResource("AnimationNodeAnimation_4utbh")
+nodes/DeathFall/position = Vector2(0, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_xq8qg")
+nodes/TimeScale/position = Vector2(140, 120)
+nodes/output/position = Vector2(280, 120)
+node_connections = [&"TimeScale", 0, &"DeathFall", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xaiic"]
 animation = &"DeathFlip"
@@ -58,8 +69,8 @@ xfade_time = 0.03
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6h8uk"]
 states/Attack/node = SubResource("AnimationNodeAnimation_sroyn")
 states/Attack/position = Vector2(422, 100)
-states/DeathFall/node = SubResource("AnimationNodeAnimation_2mt67")
-states/DeathFall/position = Vector2(607, 210)
+states/DeathFall/node = SubResource("AnimationNodeBlendTree_siaue")
+states/DeathFall/position = Vector2(614, 210)
 states/DeathFlip/node = SubResource("AnimationNodeAnimation_xaiic")
 states/DeathFlip/position = Vector2(474, 210)
 states/Fall/node = SubResource("AnimationNodeAnimation_a38kv")
@@ -759,6 +770,7 @@ unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeStateMachine_6h8uk")
 anim_player = NodePath("AnimationPlayer")
+parameters/DeathFall/TimeScale/scale = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 deterministic = true
