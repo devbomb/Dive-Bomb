@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ri50s5tjym3n"]
+[gd_scene load_steps=36 format=3 uid="uid://ri50s5tjym3n"]
 
 [ext_resource type="Script" uid="uid://b5064ks5nmy4u" path="res://Scenes/Entities/Enemy_/Snapjaw.cs" id="1_1q2op"]
 [ext_resource type="PackedScene" uid="uid://bj6kfebqy4yxg" path="res://BlenderModels/Snapjaw.blend" id="1_6h8uk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://4lt3umf3fct" path="res://Scenes/Objects/DamagePlayerArea.cs" id="2_sroyn"]
 [ext_resource type="AudioStream" uid="uid://dte4h5guyotpq" path="res://Audio/SFX/GenericKill.wav" id="3_a38kv"]
 [ext_resource type="AudioStream" uid="uid://cfcux1p4socfk" path="res://Audio/SFX/Snapjaw/LeChomp1.wav" id="6_xaiic"]
+[ext_resource type="AudioStream" uid="uid://bfjhqi7kapw6q" path="res://Audio/SFX/Snapjaw/SacreBleu.wav" id="7_2mt67"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sroyn"]
 height = 2.88564
@@ -146,7 +147,7 @@ tracks/8/loop_wrap = true
 tracks/8/keys = PackedFloat32Array(0, 1, -0.0261059, 0.0544039, 0.239603, 0.133333, 1, -0.0257153, 0.0168704, 0.341019, 0.3, 1, -0.0250187, 1.75696, -0.0191274, 0.366667, 1, -0.0250187, 1.75696, -0.0191274, 0.5, 1, -0.0261059, 0.0544039, 0.239603)
 tracks/9/type = "audio"
 tracks/9/imported = false
-tracks/9/enabled = false
+tracks/9/enabled = true
 tracks/9/path = NodePath("Voice")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
@@ -154,26 +155,11 @@ tracks/9/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0461746,
-"stream": ExtResource("6_xaiic")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/9/use_blend = true
-tracks/10/type = "audio"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Voice")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0461746,
 "stream": SubResource("AudioStreamRandomizer_xaiic")
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/10/use_blend = true
+tracks/9/use_blend = true
 
 [sub_resource type="Animation" id="Animation_xaiic"]
 resource_name = "DeathFall"
@@ -734,6 +720,10 @@ metadata/_custom_type_script = "uid://dhjvxdov8gnkp"
 [node name="KillSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_a38kv")
 
+[node name="SacreBleu" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_2mt67")
+bus = &"Sfx"
+
 [node name="Voice" type="AudioStreamPlayer3D" parent="."]
 bus = &"Sfx"
 
@@ -744,6 +734,7 @@ target_position = Vector3(0, -100, 0)
 
 [node name="BreakableArea" type="Area3D" parent="."]
 script = ExtResource("1_58fhs")
+Disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BreakableArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0651472, 0)
@@ -787,3 +778,4 @@ mesh = SubResource("PlaneMesh_58fhs")
 [connection signal="Broken" from="BreakableArea" to="." method="OnBroken"]
 [connection signal="Broken" from="BreakableArea" to="GemSpawner" method="Reveal"]
 [connection signal="Broken" from="BreakableArea" to="KillSound" method="play"]
+[connection signal="Broken" from="BreakableArea" to="SacreBleu" method="play"]
