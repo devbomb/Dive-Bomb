@@ -53,7 +53,7 @@ namespace FastDragon
 
         public void OnBroken()
         {
-            _stateMachine.ChangeState<Dead>();
+            _stateMachine.ChangeState<DeathFlipping>();
         }
 
         private void MoveToWatchingPosition()
@@ -63,6 +63,19 @@ namespace FastDragon
 
             GlobalPosition = _floorPos;
             this.ResetPhysicsInterpolation3D();
+        }
+
+        private void FacePlayer()
+        {
+            var player = GetTree().FindNode<Player>();
+            if (player == null)
+                return;
+
+            GlobalRotation = GlobalPosition
+                    .DirectionTo(player.GlobalPosition)
+                    .Flattened()
+                    .Normalized()
+                    .ForwardToEulerAnglesRad();
         }
 
         private abstract partial class SnapjawState : State
@@ -210,6 +223,69 @@ namespace FastDragon
 
                 if (_timer >= Duration)
                     ChangeState<Watching>();
+            }
+        }
+
+        private partial class DeathFlipping : SnapjawState
+        {
+            private double _duration;
+            private double _timer;
+            private Vector3 _startPos;
+
+            public override void OnStateEntered()
+            {
+                _duration = _self._animator.GetAnimPlayer().GetAnimation("DeathFlip").Length;
+                _timer = 0;
+                _startPos = _self.GlobalPosition;
+
+                _self._animator.PlayState("DeathFlip");
+                _self.FacePlayer();
+                _self.ResetPhysicsInterpolation3D();
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer += delta;
+
+                float t = (float)(2 * _timer / _duration);
+                t = Mathf.Min(t, 1f);
+                _self.GlobalPosition = _startPos.Lerp(_self._targetPos, t);
+
+                if (_timer >= _duration)
+                    ChangeState<DeathFalling>();
+            }
+        }
+
+        private partial class DeathFalling : SnapjawState
+        {
+            private const double Duration = 0.25;
+
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _self.GlobalPosition = _self._targetPos;
+                _self._animator.GetAnimPlayer().SpeedScale = (float)(1.0 / Duration);
+
+                _self._animator.PlayState("DeathFall");
+            }
+
+            public override void OnStateExited()
+            {
+                _self._animator.GetAnimPlayer().SpeedScale = 1;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer += delta;
+                float t = (float)(_timer / Duration);
+                t = Mathf.Pow(t, 2);
+
+                _self.GlobalPosition = _self._targetPos.Lerp(_self._floorPos, t);
+
+                if (_timer >= Duration)
+                    ChangeState<Dead>();
             }
         }
 
