@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ri50s5tjym3n"]
+[gd_scene load_steps=48 format=3 uid="uid://ri50s5tjym3n"]
 
 [ext_resource type="Script" uid="uid://b5064ks5nmy4u" path="res://Scenes/Entities/Enemy_/Snapjaw.cs" id="1_1q2op"]
 [ext_resource type="PackedScene" uid="uid://bj6kfebqy4yxg" path="res://BlenderModels/Snapjaw.blend" id="1_6h8uk"]
@@ -48,14 +48,28 @@ animation = &"Fall"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1q2op"]
 animation = &"RESET"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8sopg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xq8qg"]
+animation = &"SurfacePeek"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_siaue"]
 animation = &"Watch"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a38kv"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ruhx5"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xaiic"]
-xfade_time = 0.1
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b8fbw"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jv5sa"]
+states/SurfacePeek/node = SubResource("AnimationNodeAnimation_xq8qg")
+states/SurfacePeek/position = Vector2(320, 100)
+states/Watch/node = SubResource("AnimationNodeAnimation_siaue")
+states/Watch/position = Vector2(439, 100)
+transitions = ["Start", "SurfacePeek", SubResource("AnimationNodeStateMachineTransition_ruhx5"), "SurfacePeek", "Watch", SubResource("AnimationNodeStateMachineTransition_b8fbw")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ruhx5"]
+animation = &"WindUp"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2mt67"]
 
@@ -66,20 +80,31 @@ xfade_time = 0.03
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_siaue"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5iau"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jv5sa"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6d3q5"]
+xfade_time = 0.1
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6h8uk"]
 states/Attack/node = SubResource("AnimationNodeAnimation_sroyn")
-states/Attack/position = Vector2(422, 100)
+states/Attack/position = Vector2(548, 100)
 states/DeathFall/node = SubResource("AnimationNodeBlendTree_siaue")
-states/DeathFall/position = Vector2(614, 210)
+states/DeathFall/position = Vector2(740, 210)
 states/DeathFlip/node = SubResource("AnimationNodeAnimation_xaiic")
-states/DeathFlip/position = Vector2(474, 210)
+states/DeathFlip/position = Vector2(600, 210)
 states/Fall/node = SubResource("AnimationNodeAnimation_a38kv")
-states/Fall/position = Vector2(525, 100)
+states/Fall/position = Vector2(651, 100)
 states/RESET/node = SubResource("AnimationNodeAnimation_1q2op")
 states/RESET/position = Vector2(214, 250)
-states/Watch/node = SubResource("AnimationNodeAnimation_8sopg")
-states/Watch/position = Vector2(301, 100)
-transitions = ["Start", "Watch", SubResource("AnimationNodeStateMachineTransition_a38kv"), "Watch", "Attack", SubResource("AnimationNodeStateMachineTransition_xaiic"), "Attack", "Fall", SubResource("AnimationNodeStateMachineTransition_2mt67"), "Fall", "DeathFlip", SubResource("AnimationNodeStateMachineTransition_4utbh"), "Attack", "DeathFlip", SubResource("AnimationNodeStateMachineTransition_xq8qg"), "DeathFlip", "DeathFall", SubResource("AnimationNodeStateMachineTransition_siaue")]
+states/Watch/node = SubResource("AnimationNodeStateMachine_jv5sa")
+states/Watch/position = Vector2(305, 100)
+states/WindUp/node = SubResource("AnimationNodeAnimation_ruhx5")
+states/WindUp/position = Vector2(428, 100)
+transitions = ["Attack", "Fall", SubResource("AnimationNodeStateMachineTransition_2mt67"), "Fall", "DeathFlip", SubResource("AnimationNodeStateMachineTransition_4utbh"), "Attack", "DeathFlip", SubResource("AnimationNodeStateMachineTransition_xq8qg"), "DeathFlip", "DeathFall", SubResource("AnimationNodeStateMachineTransition_siaue"), "Start", "Watch", SubResource("AnimationNodeStateMachineTransition_s5iau"), "Watch", "WindUp", SubResource("AnimationNodeStateMachineTransition_jv5sa"), "WindUp", "Attack", SubResource("AnimationNodeStateMachineTransition_6d3q5")]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xaiic"]
 streams_count = 1
@@ -702,6 +727,125 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 0.0177446, 3.14831e-08, -1.28418e-08, 0.999843)
 
+[sub_resource type="Animation" id="Animation_4utbh"]
+resource_name = "SurfacePeek"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.104065, 0.699407, 0.104065, 0.699407)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Armature/Skeleton3D:Belly")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.5, -0.5, -0.5, -0.5)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Armature/Skeleton3D:UpperJaw")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.0177446, 3.14831e-08, -1.28418e-08, 0.999843)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, -0.62161, 1.36389, 0.2, 1, 0, -0.62161, 1.36389, 0.533333, 1, 0, -0.326909, 1.36389)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Armature/Skeleton3D:Eyelid_L")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.178, -0.05, -0.035, 0.433333, 1, 0.178, -0.05, -0.035, 0.7, 1, 0.0475751, 0.121405, -0.0343142)
+tracks/5/type = "scale_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Armature/Skeleton3D:Eye_L")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 1, 0.608176, 1, 0.5, 1, 1, 0.608176, 1, 0.6, 1, 1, 1, 1, 0.733333, 1, 1, 1.1, 1, 0.833333, 1, 1, 1, 1)
+tracks/6/type = "position_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/Armature/Skeleton3D:Eyelid_R")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.177917, -0.0504307, -0.0352999, 0.4, 1, -0.177917, -0.0504307, -0.0352999, 0.666667, 1, -0.0475751, 0.121405, -0.0343142)
+tracks/7/type = "scale_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/Armature/Skeleton3D:Eye_R")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1, 0.608, 1, 0.4, 1, 1, 0.608, 1, 0.5, 1, 1, 1, 1, 0.633333, 1, 1, 1.1, 1, 0.733333, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_xq8qg"]
+resource_name = "WindUp"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.326909, 1.36389, 0.2, 1, 0, -0.2, 1.364, 0.366667, 1, 0, -0.62161, 1.36389)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.104065, 0.699407, 0.104065, 0.699407)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Armature/Skeleton3D:Belly")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.5, -0.5, -0.5, -0.5)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Armature/Skeleton3D:UpperJaw")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.0177446, 3.14831e-08, -1.28418e-08, 0.999843)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Armature/Skeleton3D:Eyelid_L")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.0475751, 0.121405, -0.0343142, 0.2, 1, 0.178, -0.05, -0.035)
+tracks/5/type = "scale_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Armature/Skeleton3D:Eye_L")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.1, 1, 1, 2, 1, 0.2, 1, 1, 0.608176, 1)
+tracks/6/type = "position_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/Armature/Skeleton3D:Eyelid_R")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.0475751, 0.121405, -0.0343142, 0.2, 1, -0.177917, -0.0504307, -0.0352999)
+tracks/7/type = "scale_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/Armature/Skeleton3D:Eye_R")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(-5.96046e-08, 1, 1, 1, 1, 0.1, 1, 1, 2, 1, 0.2, 1, 1, 0.608, 1)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_58fhs"]
 _data = {
 &"Attack": SubResource("Animation_sroyn"),
@@ -709,7 +853,9 @@ _data = {
 &"DeathFlip": SubResource("Animation_a38kv"),
 &"Fall": SubResource("Animation_1q2op"),
 &"RESET": SubResource("Animation_6h8uk"),
-&"Watch": SubResource("Animation_58fhs")
+&"SurfacePeek": SubResource("Animation_4utbh"),
+&"Watch": SubResource("Animation_58fhs"),
+&"WindUp": SubResource("Animation_xq8qg")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sroyn"]

@@ -140,6 +140,32 @@ namespace FastDragon
 
                 _timer -= delta;
                 if (_timer <= 0)
+                    ChangeState<WindingUp>();
+            }
+        }
+
+        private partial class WindingUp : SnapjawState
+        {
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                _timer = _self._animator.GetAnimPlayer().GetAnimation("WindUp").Length;
+                _self.MoveToWatchingPosition();
+
+                _self.GlobalPosition = _self._floorPos;
+                _self.ResetPhysicsInterpolation3D();
+
+                _self._animator.PlayState("WindUp");
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer -= delta;
+                _self.GlobalPosition = _self._floorPos;
+                _self.ResetPhysicsInterpolation3D();
+
+                if (_timer <= 0)
                     ChangeState<Attacking>();
             }
         }
