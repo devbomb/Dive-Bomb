@@ -24,7 +24,7 @@ namespace FastDragon
         {
             _gem.Reveal();
 
-            if (AlwaysHomeIn)
+            if (AlwaysHomeIn && !IsGemCollected)
                 _gem.StartHomingIn();
         }
     }
