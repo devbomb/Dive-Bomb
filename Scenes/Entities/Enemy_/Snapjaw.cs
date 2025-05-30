@@ -138,6 +138,8 @@ namespace FastDragon
                 _self.GlobalPosition = _self._floorPos;
                 _self.ResetPhysicsInterpolation3D();
 
+                _self.FacePlayer();
+
                 _timer -= delta;
                 if (_timer <= 0)
                     ChangeState<WindingUp>();
@@ -182,6 +184,7 @@ namespace FastDragon
                 _timer = 0;
                 _self.GlobalPosition = _self._floorPos;
                 _self.ResetPhysicsInterpolation3D();
+                _self.FacePlayer();
 
                 _self._animator.PlayState("Attack");
             }

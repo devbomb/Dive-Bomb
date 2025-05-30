@@ -696,37 +696,6 @@ tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = PackedFloat32Array(0, 1, 1, 1, 1)
 
-[sub_resource type="Animation" id="Animation_58fhs"]
-resource_name = "Watch"
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Model/Armature/Skeleton3D:Root")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.326909, 1.36389)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Model/Armature/Skeleton3D:Root")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.104065, 0.699407, 0.104065, 0.699407)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Model/Armature/Skeleton3D:Belly")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.5, -0.5, -0.5, -0.5)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Model/Armature/Skeleton3D:UpperJaw")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0.0177446, 3.14831e-08, -1.28418e-08, 0.999843)
-
 [sub_resource type="Animation" id="Animation_4utbh"]
 resource_name = "SurfacePeek"
 tracks/0/type = "rotation_3d"
@@ -785,6 +754,37 @@ tracks/7/path = NodePath("Model/Armature/Skeleton3D:Eye_R")
 tracks/7/interp = 2
 tracks/7/loop_wrap = true
 tracks/7/keys = PackedFloat32Array(0, 1, 1, 0.608, 1, 0.4, 1, 1, 0.608, 1, 0.5, 1, 1, 1, 1, 0.633333, 1, 1, 1.1, 1, 0.733333, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_58fhs"]
+resource_name = "Watch"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.326909, 1.36389)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.104065, 0.699407, 0.104065, 0.699407)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Armature/Skeleton3D:Belly")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.5, -0.5, -0.5, -0.5)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Armature/Skeleton3D:UpperJaw")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.0177446, 3.14831e-08, -1.28418e-08, 0.999843)
 
 [sub_resource type="Animation" id="Animation_xq8qg"]
 resource_name = "WindUp"
