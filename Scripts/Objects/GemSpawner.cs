@@ -5,6 +5,7 @@ namespace FastDragon
     [GlobalClass]
     public partial class GemSpawner : Node3D
     {
+        [Export] public bool AlwaysHomeIn;
         public bool IsGemCollected => _gem.IsCollected;
 
         private Gem _gem;
@@ -22,6 +23,9 @@ namespace FastDragon
         public void Reveal()
         {
             _gem.Reveal();
+
+            if (AlwaysHomeIn && !IsGemCollected)
+                _gem.StartHomingIn();
         }
     }
 }
