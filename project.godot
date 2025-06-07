@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Log="*res://Scripts/Services/Log.cs"
 SignalBus="*res://Scripts/Services/SignalBus.cs"
 GemFactory="*res://Scenes/Singletons/GemFactory.tscn"
 MapTransitionManager="*res://Scenes/Singletons/MapTransitionManager.tscn"

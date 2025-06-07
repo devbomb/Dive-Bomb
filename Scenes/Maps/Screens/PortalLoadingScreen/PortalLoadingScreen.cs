@@ -66,6 +66,14 @@ namespace FastDragon
         public void Initialize(LoadingScreenParameters parameters)
         {
             _parameters = parameters;
+            Log.LoadingScreenStarted(
+                parameters.PreviousMapSceneFilePath,
+                parameters.TargetMapSceneFilePath,
+                _isReturningHome,
+                SaveFile.Current.TotalGemCount + SaveFile.Current.GemsSpent,
+                SaveFile.Current.GemsSpent
+            );
+
             _worldEnv.Environment = parameters.SkyBoxEnvironment;
             _oldSun = parameters.OldSun;
             _oldSun.SkyMode = DirectionalLight3D.SkyModeEnum.LightOnly;
@@ -147,6 +155,8 @@ namespace FastDragon
             {
                 realPlayer.ChangeState<PlayerFlyInState>();
             }
+
+            Log.LoadingScreenFinished();
         }
 
         private Portal GetTargetPortal(Node sceneRoot)
@@ -173,9 +183,10 @@ namespace FastDragon
 
         private partial class Skipping : LoadingScreenState
         {
-            public override void OnStateEntered()
+            public override void OnStateEntered(State prevState)
             {
                 GD.Print("Skipping animations");
+                Log.LoadingScreenSkipped(prevState.GetType().Name);
 
                 var tween = _screen.CreateTween();
                 tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", Vector3.Zero, SkipDuration);
