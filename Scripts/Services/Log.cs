@@ -34,5 +34,40 @@ namespace FastDragon
         {
             _logger.Value.Information("Game started {InitialScene}", initialScene);
         }
+
+        public static void LoadingScreenStarted(
+            string previousScene,
+            string nextScene,
+            bool returningHome,
+            int totalTreasure,
+            int gemsSpent
+        )
+        {
+            string template = "Loading screen started"
+                + " {PreviousScene}"
+                + " {NextScene}"
+                + " {ReturningHome}"
+                + " {TotalTreasure}"
+                + " {GemsSpent}";
+
+            _logger.Value.Information(
+                template,
+                previousScene,
+                nextScene,
+                returningHome,
+                totalTreasure,
+                gemsSpent
+            );
+        }
+
+        public static void LoadingScreenSkipped(string state)
+        {
+            _logger.Value.Information("Loading screen skipped {State}", state);
+        }
+
+        public static void LoadingScreenFinished()
+        {
+            _logger.Value.Information("Loading screen finished");
+        }
     }
 }
