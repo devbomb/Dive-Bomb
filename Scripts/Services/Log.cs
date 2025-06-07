@@ -69,5 +69,32 @@ namespace FastDragon
         {
             _logger.Value.Information("Loading screen finished");
         }
+
+        public static void StartedGoToMap(
+            string previousScene,
+            string nextScene,
+            bool fadedToBlack,
+            bool forTimeTrial
+        )
+        {
+            string template = "Started GoToMap()"
+                + " {PreviousScene}"
+                + " {NextScene}"
+                + " {FadedToBlack}"
+                + " {ForTimeTrial}";
+
+            _logger.Value.Information(
+                template,
+                previousScene,
+                nextScene,
+                fadedToBlack,
+                forTimeTrial
+            );
+        }
+
+        public static void FinishedGoToMap()
+        {
+            _logger.Value.Information("Finished GoToMap()");
+        }
     }
 }

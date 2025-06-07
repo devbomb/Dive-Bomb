@@ -54,7 +54,17 @@ namespace FastDragon
 
         public void GoToTitleScreen()
         {
-            DoThingWithFadeToBlack(() => GetTree().ChangeSceneToFile(TitleScreenMap));
+            DoThingWithFadeToBlack(() =>
+            {
+                Log.StartedGoToMap(
+                    GetTree().CurrentScene.Name,
+                    TitleScreenMap,
+                    true,
+                    false
+                );
+                GetTree().ChangeSceneToFile(TitleScreenMap);
+                Log.FinishedGoToMap();
+            });
         }
 
         public void GoToMap(string mapSceneFile)
@@ -65,7 +75,17 @@ namespace FastDragon
 
         public void GoToMapWithFadeToBlack(string mapSceneFile)
         {
-            DoThingWithFadeToBlack(() => GoToMap(mapSceneFile));
+            DoThingWithFadeToBlack(() =>
+            {
+                Log.StartedGoToMap(
+                    GetTree().CurrentScene.Name,
+                    mapSceneFile,
+                    true,
+                    false
+                );
+                GoToMap(mapSceneFile);
+                Log.FinishedGoToMap();
+            });
         }
 
         public void GoToMapForTimeTrial(string mapSceneFile, TimeTrialCategory mode)
@@ -76,10 +96,19 @@ namespace FastDragon
 
             DoThingWithFadeToBlack(() =>
             {
+                Log.StartedGoToMap(
+                    GetTree().CurrentScene.Name,
+                    mapSceneFile,
+                    true,
+                    true
+                );
+
                 SaveFile.Current.CurrentMap = mapSceneFile;
 
                 var mapNode = ResourceLoader.Load<PackedScene>(mapSceneFile).Instantiate<Node>();
                 ChangeSceneToNode(mapNode);
+
+                Log.FinishedGoToMap();
 
                 GetTree().FindNode<TimeTrialManager>().Initialize(mode);
                 SignalBus.Instance.EmitLevelReset();
