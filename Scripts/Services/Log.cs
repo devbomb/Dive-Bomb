@@ -29,12 +29,15 @@ namespace FastDragon
 
         public override void _EnterTree()
         {
-            Log.GameStarted();
+            Callable.From(() =>
+            {
+                Log.GameStarted(GetTree().CurrentScene.Name);
+            }).CallDeferred();
         }
 
-        public static void GameStarted()
+        public static void GameStarted(string initialScene)
         {
-            _logger.Value.Information("Game started");
+            _logger.Value.Information("Game started {InitialScene}", initialScene);
         }
     }
 }
