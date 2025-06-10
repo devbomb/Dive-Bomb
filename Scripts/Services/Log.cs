@@ -65,6 +65,14 @@ namespace FastDragon
             _logger.Value.Information("Loading screen skipped {State}", state);
         }
 
+        public static void LoadingScreenSoftlocked(double duration)
+        {
+            _logger.Value.Error(
+                "Infinite loading screen (probably) {Duration}",
+                duration
+            );
+        }
+
         public static void LoadingScreenFinished()
         {
             _logger.Value.Information("Loading screen finished");
