@@ -234,16 +234,46 @@ namespace FastDragon
 
         private partial class WaitingForLoad : LoadingScreenState
         {
+            private double _timer;
+            private bool _loggedSoftlock;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _loggedSoftlock = false;
+            }
+
             public override void _Process(double delta)
             {
+                // Detect if https://github.com/ashelleyPurdue/FastDragon/issues/11
+                // is occurring and use a fade-to-black as a failsafe.
+                // Also log it, because we're desperate for more data about it.
+                _timer += delta;
+                if (_timer >= 30 && !_loggedSoftlock)
+                {
+                    Log.LoadingScreenSoftlocked(_timer);
+                    MapTransitionManager.Instance.GoToMapWithFadeToBlack(_screen._parameters.TargetMapSceneFilePath);
+                }
+
                 string sceneFile = _screen._parameters.TargetMapSceneFilePath;
+
+                // This line is a potential candidate for being the location of
+                // https://github.com/ashelleyPurdue/FastDragon/issues/12
+                // (The Broken Glass Factory Freeze)
+                GD.Print("Getting load status");
                 var loadStatus = ResourceLoader.LoadThreadedGetStatus(sceneFile);
+                GD.Print($"Load status: {loadStatus}");
 
                 switch (loadStatus)
                 {
                     case ResourceLoader.ThreadLoadStatus.Loaded:
                     {
+                        // This line is ALSO a potential candidate for
+                        // https://github.com/ashelleyPurdue/FastDragon/issues/12.
+                        GD.Print("Calling LoadThreadedGet()");
                         var packedScene = (PackedScene)ResourceLoader.LoadThreadedGet(sceneFile);
+                        GD.Print("Done with LoadThreadedGet()");
+
                         _screen._loadedScene = packedScene.Instantiate<Node3D>();
 
                         ChangeState<CorrectingAngle>();
