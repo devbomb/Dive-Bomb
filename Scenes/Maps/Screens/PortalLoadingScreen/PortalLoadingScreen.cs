@@ -243,27 +243,8 @@ namespace FastDragon
 
         private class WaitingForLoad : LoadingScreenState
         {
-            private double _timer;
-            private bool _loggedSoftlock;
-
-            public override void OnStateEntered()
-            {
-                _timer = 0;
-                _loggedSoftlock = false;
-            }
-
             public override void _Process(double delta)
             {
-                // Detect if https://github.com/ashelleyPurdue/FastDragon/issues/11
-                // is occurring and use a fade-to-black as a failsafe.
-                // Also log it, because we're desperate for more data about it.
-                _timer += delta;
-                if (_timer >= 30 && !_loggedSoftlock)
-                {
-                    Log.LoadingScreenSoftlocked(_timer);
-                    MapTransitionManager.Instance.GoToMapWithFadeToBlack(Self._parameters.TargetMapSceneFilePath);
-                }
-
                 if (Self.LoadedScene != null)
                 {
                     Self._loadedSceneNode = Self.LoadedScene.Instantiate<Node3D>();
