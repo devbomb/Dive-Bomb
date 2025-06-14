@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Serilog.Debugging;
 
 namespace FastDragon
 {
@@ -19,11 +20,13 @@ namespace FastDragon
         void _PhysicsProcess(double delta) {}
     }
 
-    public abstract class State : IState
+    public abstract class State<TSelf> : IState where TSelf : Node
     {
         public bool IsCurrent => _stateMachine.CurrentState == this;
 
-        protected StateMachine _stateMachine;
+        protected TSelf Self => _stateMachine.GetParent<TSelf>();
+
+        private StateMachine _stateMachine;
 
         public void SetStateMachine(StateMachine stateMachine)
         {

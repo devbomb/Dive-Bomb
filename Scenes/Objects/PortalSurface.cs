@@ -56,9 +56,8 @@ namespace FastDragon
             }
         }
 
-        private abstract partial class PortalState : State
+        private abstract partial class PortalState : State<PortalSurface>
         {
-            protected PortalSurface Self => _stateMachine.GetParent<PortalSurface>();
             protected Player Player => Self._player;
         }
 

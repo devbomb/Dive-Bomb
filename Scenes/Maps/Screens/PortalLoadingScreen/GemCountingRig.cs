@@ -93,10 +93,9 @@ namespace FastDragon
             _talliedGemsLabel.Text = $"Total treasure: {_talliedGems}";
         }
 
-        private abstract partial class RigState : State
+        private abstract partial class RigState : State<GemCountingRig>
         {
             public virtual bool Skippable => false;
-            protected GemCountingRig Self => _stateMachine.GetParent<GemCountingRig>();
 
             public override void _Input(InputEvent ev)
             {

@@ -14,7 +14,7 @@ namespace FastDragon
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
         private GpuParticles3D _explosionParticles => GetNode<GpuParticles3D>("%ExplosionParticles");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(PowerOrbState));
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<PowerOrb>));
 
         public override void _Ready()
         {
@@ -53,12 +53,7 @@ namespace FastDragon
             _stateMachine.ChangeState<BrokenState>();
         }
 
-        private abstract partial class PowerOrbState : State
-        {
-            protected PowerOrb Self => _stateMachine.GetParent<PowerOrb>();
-        }
-
-        private partial class Revealing : PowerOrbState
+        private partial class Revealing : State<PowerOrb>
         {
             private float _animTimer;
             private float _timer;
@@ -96,11 +91,11 @@ namespace FastDragon
             }
         }
 
-        private partial class Revealed : PowerOrbState
+        private partial class Revealed : State<PowerOrb>
         {
         }
 
-        private partial class Hidden : PowerOrbState
+        private partial class Hidden : State<PowerOrb>
         {
             public override void OnStateEntered()
             {
@@ -117,7 +112,7 @@ namespace FastDragon
             }
         }
 
-        private partial class BrokenState : PowerOrbState
+        private partial class BrokenState : State<PowerOrb>
         {
             public override void OnStateEntered()
             {

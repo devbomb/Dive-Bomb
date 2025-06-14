@@ -80,9 +80,8 @@ namespace FastDragon
                 _cooldownTimer -= (float)deltaD;
         }
 
-        private abstract partial class VentState : State
+        private abstract partial class VentState : State<Vent>
         {
-            protected Vent Self => _stateMachine.GetParent<Vent>();
             protected Player Player => Self._player;
         }
 

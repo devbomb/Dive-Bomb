@@ -167,10 +167,9 @@ namespace FastDragon
 
         }
 
-        private abstract partial class LoadingScreenState : State
+        private abstract partial class LoadingScreenState : State<PortalLoadingScreen>
         {
             public virtual bool Skippable => false;
-            protected PortalLoadingScreen Self => _stateMachine.GetParent<PortalLoadingScreen>();
 
             public override void _Input(InputEvent ev)
             {

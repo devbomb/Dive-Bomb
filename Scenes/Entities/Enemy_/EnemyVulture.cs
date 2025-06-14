@@ -65,10 +65,7 @@ namespace FastDragon
             _aggroSphere.Radius = AggroRange;
         }
 
-        private partial class VultureState : State
-        {
-            protected EnemyVulture Self => _stateMachine.GetParent<EnemyVulture>();
-        }
+        private partial class VultureState : State<EnemyVulture> {}
 
         private partial class Idle : VultureState
         {

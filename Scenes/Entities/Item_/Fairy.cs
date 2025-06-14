@@ -17,7 +17,7 @@ namespace FastDragon
         public bool EnoughGems() => SaveFile.Current.TotalGemCount >= GemCost;
         public bool ShowPriceTag() => GemCost > 0 && !IsTimeTrialMode();
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(FairyState));
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<Fairy>));
         private Transform3D _initialModelPos;
 
         private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");
@@ -110,7 +110,7 @@ namespace FastDragon
             Player.ProcessMode = ProcessMode;
         }
 
-        private partial class Idle : FairyState
+        private partial class Idle : State<Fairy>
         {
             public override void OnStateEntered()
             {
@@ -137,7 +137,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Shattering : FairyState
+        private partial class Shattering : State<Fairy>
         {
             private const float Duration = 2f;
             private const float CameraMoveDelay = 1f;
@@ -252,7 +252,7 @@ namespace FastDragon
             }
         }
 
-        private partial class FlyingToPlayer : FairyState
+        private partial class FlyingToPlayer : State<Fairy>
         {
             private const float Duration = 0.5f;
 
@@ -295,7 +295,7 @@ namespace FastDragon
             }
         }
 
-        private partial class KissingPlayer : FairyState
+        private partial class KissingPlayer : State<Fairy>
         {
             public override void OnStateEntered()
             {
@@ -316,7 +316,7 @@ namespace FastDragon
             }
         }
 
-        private partial class RestoringCamera : FairyState
+        private partial class RestoringCamera : State<Fairy>
         {
             private const float Duration = 0.75f;
             private float _timer;
@@ -349,7 +349,7 @@ namespace FastDragon
             }
         }
 
-        private partial class QuickRescue : FairyState
+        private partial class QuickRescue : State<Fairy>
         {
             private const float MoveToCameraDuration = 0.5f;
 
@@ -396,17 +396,12 @@ namespace FastDragon
             }
         }
 
-        private partial class Rescued : FairyState
+        private partial class Rescued : State<Fairy>
         {
             public override void OnStateEntered()
             {
                 Self.Visible = false;
             }
-        }
-
-        private abstract partial class FairyState : State
-        {
-            protected Fairy Self => _stateMachine.GetParent<Fairy>();
         }
     }
 }

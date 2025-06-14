@@ -12,7 +12,7 @@ namespace FastDragon
         private Node3D _meshGrowPoint => GetNode<Node3D>("%MeshGrowPoint");
         private GpuParticles3D _shatterPartciles => GetNode<GpuParticles3D>("%ExplosionParticles");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(DivableWallState));
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<DivableWall>));
 
         public override void _Ready()
         {
@@ -59,12 +59,7 @@ namespace FastDragon
                 mesh.Transparency = transparency;
         }
 
-        private partial class DivableWallState : State
-        {
-            protected DivableWall Self => _stateMachine.GetParent<DivableWall>();
-        }
-
-        private partial class Solid : DivableWallState
+        private partial class Solid : State<DivableWall>
         {
             public override void OnStateEntered()
             {
@@ -74,7 +69,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Shattering : DivableWallState
+        private partial class Shattering : State<DivableWall>
         {
             private const float Duration = 2f / 60;
             private const float EndScale = 2f;
@@ -147,7 +142,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Broken : DivableWallState
+        private partial class Broken : State<DivableWall>
         {
             public override void OnStateEntered()
             {

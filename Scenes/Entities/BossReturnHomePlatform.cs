@@ -40,10 +40,7 @@ namespace FastDragon
             }
         }
 
-        private abstract partial class VortexState : State
-        {
-            protected BossReturnHomePlatform Self => _stateMachine.GetParent<BossReturnHomePlatform>();
-        }
+        private abstract partial class VortexState : State<BossReturnHomePlatform> {}
 
         private partial class HiddenState : VortexState
         {

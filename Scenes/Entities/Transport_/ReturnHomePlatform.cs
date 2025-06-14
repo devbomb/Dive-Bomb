@@ -18,7 +18,7 @@ namespace FastDragon
 
         private GpuParticles3D _shatterParticles => GetNode<GpuParticles3D>("%ShatterParticles");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(PlatformState));
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<ReturnHomePlatform>));
 
         public override void _Ready()
         {
@@ -68,12 +68,7 @@ namespace FastDragon
                 _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
         }
 
-        private partial class PlatformState : State
-        {
-            protected ReturnHomePlatform Self => _stateMachine.GetParent<ReturnHomePlatform>();
-        }
-
-        private partial class Closed : PlatformState
+        private partial class Closed : State<ReturnHomePlatform>
         {
             public override void OnStateEntered()
             {
@@ -99,7 +94,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Opening : PlatformState
+        private partial class Opening : State<ReturnHomePlatform>
         {
             private const float Duration = 4f / 60;
             private const float HitStopDuration = 0.19f;
@@ -123,7 +118,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Open : PlatformState
+        private partial class Open : State<ReturnHomePlatform>
         {
             public override void OnStateEntered()
             {

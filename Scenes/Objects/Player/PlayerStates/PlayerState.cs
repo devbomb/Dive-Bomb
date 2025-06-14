@@ -4,7 +4,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerState : State
+    public partial class PlayerState : State<Player>
     {
         public virtual bool Invincible => false;
         public virtual bool DisableCameraInput => false;
@@ -12,8 +12,6 @@ namespace FastDragon
         public virtual bool CanBoundAfterLanding => false;
 
         public virtual bool PauseDamageCooldownTimer => false;
-
-        protected Player Self => _stateMachine.GetParent<Player>();
 
         /// <summary>
         /// Returns the direction (and magnitude) that the left stick is

@@ -37,7 +37,7 @@ namespace FastDragon
         private Node _visibleEnablerParent;
 
         private Transform3D _initialPos;
-        private StateMachine _stateMachine = new StateMachine(typeof(GemState));
+        private StateMachine _stateMachine = new StateMachine(typeof(State<Gem>));
 
         public override void _Ready()
         {
@@ -123,7 +123,7 @@ namespace FastDragon
             }
         }
 
-        private void ChangeState<TState>() where TState : GemState, new()
+        private void ChangeState<TState>() where TState : State<Gem>, new()
         {
             _stateMachine.ChangeState<TState>();
         }
@@ -152,7 +152,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Hidden : GemState
+        private partial class Hidden : State<Gem>
         {
             public override void OnStateEntered()
             {
@@ -164,7 +164,7 @@ namespace FastDragon
                 Self.Visible = true;
             }
         }
-        private partial class Revealed : GemState
+        private partial class Revealed : State<Gem>
         {
             private float _flameChargeWindowTimer = 0;
             private Area3D _flameChargeArea => Self.GetNode<Area3D>("%FlameChargeArea");
@@ -230,7 +230,7 @@ namespace FastDragon
                     .SetDeferred("disabled", !enabled);
             }
         }
-        private partial class Homing : GemState
+        private partial class Homing : State<Gem>
         {
             private Vector3 _homingStartPos;
             private float _homingTimer;
@@ -289,11 +289,6 @@ namespace FastDragon
                 float c = Mathf.Sign(t) * Mathf.Pow(Mathf.Abs(t), exponent);
                 return (c + 1) / 2;
             }
-        }
-
-        private abstract partial class GemState : State
-        {
-            protected Gem Self => _stateMachine.GetParent<Gem>();
         }
     }
 }

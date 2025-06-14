@@ -56,7 +56,7 @@ namespace FastDragon
             _currentSpawnPos = _rng.PickFrom(SpawnPoints).GlobalTransform;
         }
 
-        private partial class Submerging : SeamonsterBossState
+        private partial class Submerging : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
@@ -76,7 +76,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Submerged : SeamonsterBossState
+        private partial class Submerged : State<SeamonsterBoss>
         {
             private float _timer;
 
@@ -105,7 +105,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Surfacing : SeamonsterBossState
+        private partial class Surfacing : State<SeamonsterBoss>
         {
             private float _timer;
 
@@ -131,7 +131,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Vulnerable : SeamonsterBossState
+        private partial class Vulnerable : State<SeamonsterBoss>
         {
             private float _timer;
 
@@ -166,7 +166,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Damaged : SeamonsterBossState
+        private partial class Damaged : State<SeamonsterBoss>
         {
             private float _timer;
             private Vector3 _startPos;
@@ -206,7 +206,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Dying : SeamonsterBossState
+        private partial class Dying : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
@@ -238,7 +238,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Dead : SeamonsterBossState
+        private partial class Dead : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
@@ -254,7 +254,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Laughing : SeamonsterBossState
+        private partial class Laughing : State<SeamonsterBoss>
         {
             private float _timer;
 

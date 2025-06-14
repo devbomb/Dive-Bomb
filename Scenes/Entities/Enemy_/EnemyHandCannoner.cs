@@ -86,11 +86,9 @@ namespace FastDragon
                     .ForwardToEulerAnglesRad();
         }
 
-        private partial class EnemyHandCannonerState : State
+        private partial class EnemyHandCannonerState : State<EnemyHandCannoner>
         {
             public virtual bool EnableCollision => true;
-
-            protected EnemyHandCannoner Self => _stateMachine.GetParent<EnemyHandCannoner>();
         }
 
         private partial class Sleeping : EnemyHandCannonerState
