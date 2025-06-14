@@ -19,7 +19,7 @@ namespace FastDragon
 
         private AudioStreamPlayer _rollSoundPlayer => _player.GetNode<AudioStreamPlayer>("%RollSoundPlayer");
 
-        public override void OnStateEntered(State oldState)
+        public override void OnStateEntered(IState oldState)
         {
             _player.Animator.Play("Roll");
 

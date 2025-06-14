@@ -15,7 +15,7 @@ namespace FastDragon
         private float _sideFlipWindowTimer;
         private float _boundJumpWindowTimer;
 
-        public override void OnStateEntered(State oldState)
+        public override void OnStateEntered(IState oldState)
         {
             _player.Animator.Play(RunAnim);
 

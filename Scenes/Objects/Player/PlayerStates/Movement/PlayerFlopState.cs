@@ -6,7 +6,7 @@ namespace FastDragon
     {
         private float _coyoteTimer;
 
-        public override void OnStateEntered(State prevState)
+        public override void OnStateEntered(IState prevState)
         {
             _player.Animator.Play("Flop");
 

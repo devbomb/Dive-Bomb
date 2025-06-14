@@ -183,7 +183,7 @@ namespace FastDragon
 
         private partial class Skipping : LoadingScreenState
         {
-            public override void OnStateEntered(State prevState)
+            public override void OnStateEntered(IState prevState)
             {
                 GD.Print("Skipping animations");
                 Log.LoadingScreenSkipped(prevState.GetType().Name);

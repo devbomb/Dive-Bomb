@@ -5,7 +5,21 @@ using Godot;
 
 namespace FastDragon
 {
-    public abstract class State
+    public interface IState
+    {
+        void SetStateMachine(StateMachine stateMachine);
+
+        void OnStateEntered(IState prevState) {}
+        void OnStateEntered() {}
+        void OnStateExited() {}
+
+        void _Input(InputEvent ev) {}
+
+        void _Process(double delta) {}
+        void _PhysicsProcess(double delta) {}
+    }
+
+    public abstract class State : IState
     {
         public bool IsCurrent => _stateMachine.CurrentState == this;
 
@@ -19,7 +33,7 @@ namespace FastDragon
         protected SceneTree GetTree() => _stateMachine.GetTree();
         protected Viewport GetViewport() => _stateMachine.GetViewport();
 
-        public virtual void OnStateEntered(State prevState) {}
+        public virtual void OnStateEntered(IState prevState) {}
         public virtual void OnStateEntered() {}
         public virtual void OnStateExited() {}
 
@@ -28,7 +42,7 @@ namespace FastDragon
         public virtual void _Process(double delta) {}
         public virtual void _PhysicsProcess(double delta) {}
 
-        protected void ChangeState<TState>() where TState : State, new()
+        protected void ChangeState<TState>() where TState : IState, new()
         {
             _stateMachine.ChangeState<TState>();
         }

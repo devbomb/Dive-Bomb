@@ -7,13 +7,13 @@ namespace FastDragon
 {
     public partial class StateMachine : Node
     {
-        public delegate void StateChangingEventHandler(State currentState, State incomingState);
+        public delegate void StateChangingEventHandler(IState currentState, IState incomingState);
         public event StateChangingEventHandler StateChanging;
 
-        public State CurrentState { get; private set; }
+        public IState CurrentState { get; private set; }
         private readonly Type _stateType;
 
-        private readonly List<State> _stateCache = new List<State>();
+        private readonly List<IState> _stateCache = new List<IState>();
 
         public StateMachine(Type stateType)
         {
@@ -35,7 +35,7 @@ namespace FastDragon
             CurrentState?._PhysicsProcess(delta);
         }
 
-        public void ChangeState<TState>() where TState : State, new()
+        public void ChangeState<TState>() where TState : IState, new()
         {
             ChangeState(typeof(TState));
         }
@@ -47,10 +47,10 @@ namespace FastDragon
 
             // Get the incoming state's node.
             // If it doesn't exist yet, create it.
-            State incomingState = _stateCache.FirstOrDefault(s => s.GetType() == stateType);
+            IState incomingState = _stateCache.FirstOrDefault(s => s.GetType() == stateType);
             if (incomingState == null)
             {
-                incomingState = (State)Activator.CreateInstance(stateType);
+                incomingState = (IState)Activator.CreateInstance(stateType);
                 incomingState.SetStateMachine(this);
                 _stateCache.Add(incomingState);
             }
@@ -61,7 +61,7 @@ namespace FastDragon
             CurrentState?.OnStateExited();
 
             // Switch to the new state and enable it.
-            State prevState = CurrentState;
+            IState prevState = CurrentState;
             CurrentState = incomingState;
             CurrentState.OnStateEntered(prevState);
             CurrentState.OnStateEntered();
