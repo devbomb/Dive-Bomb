@@ -227,7 +227,7 @@ namespace FastDragon
 
         private partial class PlayerCameraState : State
         {
-            protected PlayerCamera _self => _stateMachine.GetParent<PlayerCamera>();
+            protected PlayerCamera Self => _stateMachine.GetParent<PlayerCamera>();
         }
 
         private partial class Unlocked : PlayerCameraState
@@ -244,13 +244,13 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self.ApplyAnglesAndDistance();
-                _prevPos = _self.GlobalPosition;
+                Self.ApplyAnglesAndDistance();
+                _prevPos = Self.GlobalPosition;
             }
 
             public override void _Input(InputEvent ev)
             {
-                if (_self.DisableInput)
+                if (Self.DisableInput)
                     return;
 
                 if (InputService.RecenterCameraJustPressed(ev))
@@ -264,9 +264,9 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
-                if (_self.DisableInput)
+                if (Self.DisableInput)
                 {
-                    _prevPos = _self.GlobalPosition;
+                    _prevPos = Self.GlobalPosition;
                     return;
                 }
 
@@ -274,21 +274,21 @@ namespace FastDragon
                 {
                     OrbitWithRightStick(delta);
                 }
-                else if (_self.AllowAutoRotate)
+                else if (Self.AllowAutoRotate)
                 {
                     MaintainDistanceAndAutoRotate(delta);
                 }
 
                 ZoomToFollowDistance(delta);
 
-                _prevPos = _self.GlobalPosition;
+                _prevPos = Self.GlobalPosition;
             }
 
             private void ClampOrbitAngles()
             {
-                _self.OrbitYawRad = Mathf.PosMod(_self.OrbitYawRad, Mathf.DegToRad(360));
-                _self.OrbitPitchRad = Mathf.Clamp(
-                    _self.OrbitPitchRad,
+                Self.OrbitYawRad = Mathf.PosMod(Self.OrbitYawRad, Mathf.DegToRad(360));
+                Self.OrbitPitchRad = Mathf.Clamp(
+                    Self.OrbitPitchRad,
                     Mathf.DegToRad(MinOrbitPitchDeg),
                     Mathf.DegToRad(MaxOrbitPitchDeg)
                 );
@@ -297,31 +297,31 @@ namespace FastDragon
             private void OrbitWithRightStick(float delta)
             {
                 float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
-                _self.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
-                _self.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
+                Self.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
+                Self.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
                 ClampOrbitAngles();
             }
 
             private void MaintainDistanceAndAutoRotate(float delta)
             {
-                var targetPos = _self.FollowTarget.GlobalPosition;
+                var targetPos = Self.FollowTarget.GlobalPosition;
                 var dir = targetPos.DirectionTo(_prevPos);
 
-                var transform = _self.GlobalTransform;
+                var transform = Self.GlobalTransform;
                 transform.Origin = targetPos + (dir * FollowDistance);
                 transform = transform.LookingAt(targetPos);
 
-                _self._orbitYawRad = transform.Basis.GetEuler().Y;
-                _self._orbitPitchRad = transform.Basis.GetEuler().X;
+                Self._orbitYawRad = transform.Basis.GetEuler().Y;
+                Self._orbitPitchRad = transform.Basis.GetEuler().X;
                 ClampOrbitAngles();
 
-                _self.ApplyAnglesAndDistance();
+                Self.ApplyAnglesAndDistance();
             }
 
             private void ZoomToFollowDistance(float delta)
             {
-                _self.OrbitDistance = Mathf.MoveToward(
-                    _self.OrbitDistance,
+                Self.OrbitDistance = Mathf.MoveToward(
+                    Self.OrbitDistance,
                     FollowDistance,
                     ZoomSpeed * delta
                 );
@@ -340,9 +340,9 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _initialPitchRad = _self.OrbitPitchRad;
-                _initialYawRad = _self.OrbitYawRad;
-                _initialDistance = _self.OrbitDistance;
+                _initialPitchRad = Self.OrbitPitchRad;
+                _initialYawRad = Self.OrbitYawRad;
+                _initialDistance = Self.OrbitDistance;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -353,21 +353,21 @@ namespace FastDragon
                 float t = _timer / Duration;
                 t = Mathf.Min(1, t);
 
-                _self.OrbitPitchRad = Mathf.LerpAngle(
+                Self.OrbitPitchRad = Mathf.LerpAngle(
                     _initialPitchRad,
-                    _self._suggestedPitchRad,
+                    Self._suggestedPitchRad,
                     t
                 );
 
-                _self.OrbitYawRad = Mathf.LerpAngle(
+                Self.OrbitYawRad = Mathf.LerpAngle(
                     _initialYawRad,
-                    _self._suggestedYawRad,
+                    Self._suggestedYawRad,
                     t
                 );
 
-                _self.OrbitDistance = Mathf.Lerp(
+                Self.OrbitDistance = Mathf.Lerp(
                     _initialDistance,
-                    _self._suggestedDistance,
+                    Self._suggestedDistance,
                     t
                 );
 
@@ -386,7 +386,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _initialPos = _self.GlobalTransform;
+                _initialPos = Self.GlobalTransform;
                 _timer = 0;
             }
 
@@ -398,8 +398,8 @@ namespace FastDragon
 
                 float t = _timer / TransitionDuration;
 
-                _self.GlobalTransform = _initialPos.InterpolateWith(
-                    _self._fixedPosition,
+                Self.GlobalTransform = _initialPos.InterpolateWith(
+                    Self._fixedPosition,
                     MathUtils.LerpSinusoidal(0, 1, t)
                 );
             }
@@ -416,8 +416,8 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _initialPitchRad = _self.OrbitPitchRad;
-                _initialYawRad = _self.OrbitYawRad;
+                _initialPitchRad = Self.OrbitPitchRad;
+                _initialYawRad = Self.OrbitYawRad;
             }
 
             public override void _Process(double deltaD)
@@ -426,16 +426,16 @@ namespace FastDragon
 
                 float t = _timer / Duration;
 
-                _self.OrbitPitchRad = Mathf.LerpAngle(_initialPitchRad, 0, t);
-                _self.OrbitYawRad = Mathf.LerpAngle(
+                Self.OrbitPitchRad = Mathf.LerpAngle(_initialPitchRad, 0, t);
+                Self.OrbitYawRad = Mathf.LerpAngle(
                     _initialYawRad,
-                    _self.FollowTarget.GlobalRotation.Y,
+                    Self.FollowTarget.GlobalRotation.Y,
                     t
                 );
 
                 if (_timer > Duration)
                 {
-                    _self.ForceRecenter();
+                    Self.ForceRecenter();
                     ChangeState<Unlocked>();
                     return;
                 }

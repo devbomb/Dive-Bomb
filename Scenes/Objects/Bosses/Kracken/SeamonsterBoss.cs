@@ -85,7 +85,7 @@ namespace FastDragon
 
         private abstract partial class SeamonsterBossState : State
         {
-            protected SeamonsterBoss _self => _stateMachine.GetParent<SeamonsterBoss>();
+            protected SeamonsterBoss Self => _stateMachine.GetParent<SeamonsterBoss>();
         }
 
         private partial class WaitingToRespawn : SeamonsterBossState
@@ -95,14 +95,14 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 2;
-                _self.Visible = false;
-                _self._bossHud.Visible = false;
+                Self.Visible = false;
+                Self._bossHud.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _self.Visible = true;
-                _self._bossHud.Visible = true;
+                Self.Visible = true;
+                Self._bossHud.Visible = true;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -110,7 +110,7 @@ namespace FastDragon
                 _timer--;
 
                 if (_timer <= 0)
-                    _self.Respawn();
+                    Self.Respawn();
             }
         }
     }

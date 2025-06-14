@@ -8,7 +8,7 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("ReachOutDeath", 0);
+            Self.Animator.Play("ReachOutDeath", 0);
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -17,9 +17,9 @@ namespace FastDragon
 
             ApplyGravity(delta);
             DecelerateHSpeedToZero(delta);
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
-            if (!_player.Animator.IsPlaying())
+            if (!Self.Animator.IsPlaying())
                 MapTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
     }

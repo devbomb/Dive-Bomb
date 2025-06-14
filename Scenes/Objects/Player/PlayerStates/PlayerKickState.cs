@@ -9,24 +9,24 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             _timer = Player.Kick.Duration;
-            _player.VSpeed = Player.Kick.InitVSpeed;
-            _player.Animator.Play("Kick");
+            Self.VSpeed = Player.Kick.InitVSpeed;
+            Self.Animator.Play("Kick");
         }
 
         public override void _Input(InputEvent ev)
         {
-            if (InputService.JumpJustPressed(ev) && _player.IsOnFloor())
+            if (InputService.JumpJustPressed(ev) && Self.IsOnFloor())
             {
-                _player.ChangeState<PlayerWalkJumpState>();
+                Self.ChangeState<PlayerWalkJumpState>();
                 return;
             }
 
             if (InputService.RollJustPressed(ev))
             {
-                if (_player.IsOnFloor())
-                    _player.ChangeState<PlayerRollState>();
+                if (Self.IsOnFloor())
+                    Self.ChangeState<PlayerRollState>();
                 else
-                    _player.ChangeState<PlayerDiveState>();
+                    Self.ChangeState<PlayerDiveState>();
 
                 return;
             }
@@ -37,7 +37,7 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             ApplyHitboxToBreakableObjects(
-                _player.KickHitbox,
+                Self.KickHitbox,
                 b => b.VulnerableToKick,
                 b => b.OnKicked()
             );
@@ -51,21 +51,21 @@ namespace FastDragon
             ApplyGravity(delta);
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
 
-            if (!_player.Velocity.Flattened().IsZeroApprox())
+            if (!Self.Velocity.Flattened().IsZeroApprox())
                 RotateInstantlyTowardVelocity();
 
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
             _timer -= delta;
             if (_timer <= 0)
             {
-                if (_player.IsOnFloor())
+                if (Self.IsOnFloor())
                 {
-                    _player.ChangeState<PlayerWalkState>();
+                    Self.ChangeState<PlayerWalkState>();
                 }
                 else
                 {
-                    _player.ChangeState<PlayerKickFlopState>();
+                    Self.ChangeState<PlayerKickFlopState>();
                 }
             }
         }

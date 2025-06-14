@@ -58,8 +58,8 @@ namespace FastDragon
 
         private abstract partial class PortalState : State
         {
-            protected PortalSurface _portal => _stateMachine.GetParent<PortalSurface>();
-            protected Player player => _portal._player;
+            protected PortalSurface Self => _stateMachine.GetParent<PortalSurface>();
+            protected Player Player => Self._player;
         }
 
         private partial class Idle : PortalState {}
@@ -68,23 +68,23 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                player.SetVisibleInPortals(true);
-                player.ChangeState<PlayerManhandledState>();
-                player.Animator.Play("Jump");
-                player.Velocity = Vector3.Up * Player.Jump.InitVSpeed;
+                Player.SetVisibleInPortals(true);
+                Player.ChangeState<PlayerManhandledState>();
+                Player.Animator.Play("Jump");
+                Player.Velocity = Vector3.Up * Player.Jump.InitVSpeed;
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 float delta = (float)deltaD;
 
-                player.Velocity += Vector3.Down * Player.Default.Gravity * delta;
-                player.GlobalPosition += player.Velocity * delta;
+                Player.Velocity += Vector3.Down * Player.Default.Gravity * delta;
+                Player.GlobalPosition += Player.Velocity * delta;
 
-                _portal.RotatePlayer(delta);
-                _portal.RecenterCamera(delta);
+                Self.RotatePlayer(delta);
+                Self.RecenterCamera(delta);
 
-                if (player.Velocity.Y <= 0)
+                if (Player.Velocity.Y <= 0)
                     ChangeState<Flying>();
             }
         }
@@ -93,9 +93,9 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                player.SetVisibleInPortals(true);
-                player.ChangeState<PlayerManhandledState>();
-                player.Animator.Play("Dive");
+                Player.SetVisibleInPortals(true);
+                Player.ChangeState<PlayerManhandledState>();
+                Player.Animator.Play("Dive");
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -103,23 +103,23 @@ namespace FastDragon
                 float delta = (float)deltaD;
 
                 if (CameraIsBehindPlayer())
-                    player.GlobalPosition += player.GlobalForward() * Player.Glide.MaxFSpeed * delta;
+                    Player.GlobalPosition += Player.GlobalForward() * Player.Glide.MaxFSpeed * delta;
 
-                _portal.RotatePlayer(delta);
-                _portal.RecenterCamera(delta);
+                Self.RotatePlayer(delta);
+                Self.RecenterCamera(delta);
 
                 if (CameraIsTouchingPortal() && CameraIsBehindPlayer())
                 {
                     MapTransitionManager.Instance.EnterLevel(
-                        _portal.TargetMap,
-                        _portal._portalCamera.Environment
+                        Self.TargetMap,
+                        Self._portalCamera.Environment
                     );
                 }
             }
 
             private bool CameraIsTouchingPortal()
             {
-                foreach (var area in _portal._cameraDetector.GetOverlappingAreas())
+                foreach (var area in Self._cameraDetector.GetOverlappingAreas())
                 {
                     if (area.IsInGroup("CameraArea"))
                     {
@@ -133,8 +133,8 @@ namespace FastDragon
             private bool CameraIsBehindPlayer()
             {
                 float angleDiffRad = Mathf.AngleDifference(
-                    _portal._playerTargetRotRad.Y,
-                    player.Camera.OrbitYawRad
+                    Self._playerTargetRotRad.Y,
+                    Player.Camera.OrbitYawRad
                 );
 
                 return Mathf.Abs(angleDiffRad) < Mathf.DegToRad(45);

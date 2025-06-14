@@ -11,11 +11,11 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.ResetPhysicsInterpolation3D();
+            Self.ResetPhysicsInterpolation3D();
 
-            _player.Animator.Play("Jump", 0);
-            _player.VSpeed = Player.Jump.InitVSpeed;
-            _player.FSpeed = Player.WallJump.FSpeed;
+            Self.Animator.Play("Jump", 0);
+            Self.VSpeed = Player.Jump.InitVSpeed;
+            Self.FSpeed = Player.WallJump.FSpeed;
 
             _timer = 0;
             _isHolding = true;
@@ -25,13 +25,13 @@ namespace FastDragon
         {
             if (InputService.RollJustPressed(ev))
             {
-                _player.ChangeState<PlayerDiveState>();
+                Self.ChangeState<PlayerDiveState>();
                 return;
             }
 
             if (InputService.KickJustPressed(ev))
             {
-                _player.ChangeState<PlayerKickState>();
+                Self.ChangeState<PlayerKickState>();
                 return;
             }
         }
@@ -60,7 +60,7 @@ namespace FastDragon
                 _isHolding = false;
 
             float gravity = Player.Default.Gravity;
-            if (_player.VSpeed > 0)
+            if (Self.VSpeed > 0)
             {
                 gravity = _isHolding
                     ? Player.Jump.FullJumpRiseGravity
@@ -68,20 +68,20 @@ namespace FastDragon
             }
 
             ApplyGravity(delta, gravity);
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
-            if (_player.IsOnFloor())
+            if (Self.IsOnFloor())
             {
-                _player.ChangeState<PlayerWalkState>();
+                Self.ChangeState<PlayerWalkState>();
                 return;
             }
 
             if (TryGrabLedge())
                 return;
 
-            if (_player.IsOnWall() && _player.VSpeed < 0)
+            if (Self.IsOnWall() && Self.VSpeed < 0)
             {
-                _player.ChangeState<PlayerWallSlideState>();
+                Self.ChangeState<PlayerWallSlideState>();
                 return;
             }
         }

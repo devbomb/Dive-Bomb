@@ -106,35 +106,35 @@ namespace FastDragon
 
         private abstract partial class GravityGlovesState : State
         {
-            protected GemGravityGloves _parent => _stateMachine.GetParent<GemGravityGloves>();
+            protected GemGravityGloves Self => _stateMachine.GetParent<GemGravityGloves>();
         }
 
         private partial class Idle : GravityGlovesState
         {
             public override void OnStateEntered()
             {
-                _parent._particles.Emitting = false;
-                _parent._model.Visible = false;
-                _parent._trail.Active = false;
+                Self._particles.Emitting = false;
+                Self._model.Visible = false;
+                Self._trail.Active = false;
             }
 
             public override void OnStateExited()
             {
-                _parent._particles.Emitting = true;
-                _parent._model.Visible = true;
-                _parent._trail.Active = true;
+                Self._particles.Emitting = true;
+                Self._model.Visible = true;
+                Self._trail.Active = true;
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 float delta = (float)deltaD;
 
-                _parent.QueueNearbyGems();
+                Self.QueueNearbyGems();
 
-                var gem = _parent.PeekAtGemQueue();
+                var gem = Self.PeekAtGemQueue();
                 if (gem != null)
                 {
-                    _parent._startHandPoint = ClosestHandPoint(gem);
+                    Self._startHandPoint = ClosestHandPoint(gem);
                     ChangeState<CollectingGem>();
                     return;
                 }
@@ -144,15 +144,15 @@ namespace FastDragon
             {
                 float leftDist = gem
                     .GlobalPosition
-                    .DistanceSquaredTo(_parent.LeftHandPoint.GlobalPosition);
+                    .DistanceSquaredTo(Self.LeftHandPoint.GlobalPosition);
 
                 float rightDist = gem
                     .GlobalPosition
-                    .DistanceSquaredTo(_parent.RightHandPoint.GlobalPosition);
+                    .DistanceSquaredTo(Self.RightHandPoint.GlobalPosition);
 
                 return leftDist < rightDist
-                    ? _parent.LeftHandPoint
-                    : _parent.RightHandPoint;
+                    ? Self.LeftHandPoint
+                    : Self.RightHandPoint;
             }
         }
 
@@ -166,43 +166,43 @@ namespace FastDragon
             {
                 _timer = 0;
                 _visualTimer = 0;
-                _parent._reachOutSound.Play();
+                Self._reachOutSound.Play();
             }
 
             public override void _Process(double deltaD)
             {
                 _visualTimer += (float)deltaD;
 
-                Gem gem = _parent.PeekAtGemQueue();
+                Gem gem = Self.PeekAtGemQueue();
                 if (gem == null)
                     return;
 
-                var startPoint = _parent._startHandPoint.GlobalPosition;
+                var startPoint = Self._startHandPoint.GlobalPosition;
 
-                _parent._grabber.GlobalPosition = startPoint.LerpParabola(
+                Self._grabber.GlobalPosition = startPoint.LerpParabola(
                     gem.GlobalPosition,
                     0.5f,
                     _visualTimer / Duration
                 );
 
-                var dir = _parent._grabber.GlobalPosition.DirectionTo(startPoint);
+                var dir = Self._grabber.GlobalPosition.DirectionTo(startPoint);
                 var up = dir.IsEqualApprox(Vector3.Up)
                     ? Vector3.Forward
                     : Vector3.Up;
 
-                if (_parent._grabber.GlobalPosition.DistanceTo(startPoint) > 0.01f)
-                    _parent._grabber.LookAt(startPoint, up);
+                if (Self._grabber.GlobalPosition.DistanceTo(startPoint) > 0.01f)
+                    Self._grabber.LookAt(startPoint, up);
 
-                _parent.ResetPhysicsInterpolation3D();
-                _parent.ForceUpdateTransform();
+                Self.ResetPhysicsInterpolation3D();
+                Self.ForceUpdateTransform();
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
-                _parent.QueueNearbyGems();
+                Self.QueueNearbyGems();
 
-                Gem gem = _parent.PeekAtGemQueue();
+                Gem gem = Self.PeekAtGemQueue();
                 if (gem == null)
                 {
                     ChangeState<Idle>();
@@ -212,7 +212,7 @@ namespace FastDragon
                 if (_timer >= Duration)
                 {
                     gem.StartHomingIn();
-                    _parent._gemQueue.Dequeue();
+                    Self._gemQueue.Dequeue();
                     ChangeState<Returning>();
                 }
             }
@@ -229,36 +229,36 @@ namespace FastDragon
             {
                 _timer = 0;
                 _visualTimer = 0;
-                _startPoint = _parent._grabber.GlobalPosition;
+                _startPoint = Self._grabber.GlobalPosition;
             }
 
             public override void _Process(double deltaD)
             {
                 _visualTimer += (float)deltaD;
 
-                var endPoint = _parent._startHandPoint.GlobalPosition;
+                var endPoint = Self._startHandPoint.GlobalPosition;
 
-                _parent._grabber.GlobalPosition = _startPoint.Lerp(
+                Self._grabber.GlobalPosition = _startPoint.Lerp(
                     endPoint,
                     _visualTimer / Duration
                 );
 
-                var dir = _parent._grabber.GlobalPosition.DirectionTo(_startPoint);
+                var dir = Self._grabber.GlobalPosition.DirectionTo(_startPoint);
                 var up = dir.IsEqualApprox(Vector3.Up)
                     ? Vector3.Forward
                     : Vector3.Up;
 
-                if (_parent._grabber.GlobalPosition.DistanceTo(_startPoint) > 0.01f)
-                    _parent._grabber.LookAt(_startPoint, up);
+                if (Self._grabber.GlobalPosition.DistanceTo(_startPoint) > 0.01f)
+                    Self._grabber.LookAt(_startPoint, up);
 
-                _parent.ResetPhysicsInterpolation3D();
-                _parent.ForceUpdateTransform();
+                Self.ResetPhysicsInterpolation3D();
+                Self.ForceUpdateTransform();
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
-                _parent.QueueNearbyGems();
+                Self.QueueNearbyGems();
 
                 if (_timer >= Duration)
                     ChangeState<Idle>();

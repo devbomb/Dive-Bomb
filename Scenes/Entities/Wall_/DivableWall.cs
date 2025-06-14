@@ -61,16 +61,16 @@ namespace FastDragon
 
         private partial class DivableWallState : State
         {
-            protected DivableWall _self => _stateMachine.GetParent<DivableWall>();
+            protected DivableWall Self => _stateMachine.GetParent<DivableWall>();
         }
 
         private partial class Solid : DivableWallState
         {
             public override void OnStateEntered()
             {
-                _self.SetCollisionEnabled(true);
-                _self._meshHolder.Visible = true;
-                _self.SetTransparency(0);
+                Self.SetCollisionEnabled(true);
+                Self._meshHolder.Visible = true;
+                Self.SetTransparency(0);
             }
         }
 
@@ -87,21 +87,21 @@ namespace FastDragon
             {
                 HitStopManager.Instance.StopFor(HitStopDuration);
 
-                _self.SetCollisionEnabled(false);
+                Self.SetCollisionEnabled(false);
                 _timer = 0;
                 _modelTimer = 0;
 
                 SetPivotPointToPlayer();
                 SpawnParticles();
-                _self.GetNode<AudioStreamPlayer>("%ShatterSound").Play();
+                Self.GetNode<AudioStreamPlayer>("%ShatterSound").Play();
             }
 
             public override void OnStateExited()
             {
-                _self._shatterPartciles.Emitting = false;
-                _self._meshGrowPoint.Scale = Vector3.One;
-                _self._meshGrowPoint.Position = Vector3.Zero;
-                _self._meshHolder.Position = Vector3.Zero;
+                Self._shatterPartciles.Emitting = false;
+                Self._meshGrowPoint.Scale = Vector3.One;
+                Self._meshGrowPoint.Position = Vector3.Zero;
+                Self._meshHolder.Position = Vector3.Zero;
             }
 
             public override void _Process(double deltaD)
@@ -109,8 +109,8 @@ namespace FastDragon
                 _modelTimer += (float)deltaD;
 
                 float t = _modelTimer / Duration;
-                _self._meshGrowPoint.Scale = Vector3.One.Lerp(Vector3.One * EndScale, t * t);
-                _self.SetTransparency(t);
+                Self._meshGrowPoint.Scale = Vector3.One.Lerp(Vector3.One * EndScale, t * t);
+                Self.SetTransparency(t);
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -125,25 +125,25 @@ namespace FastDragon
 
             private void SetPivotPointToPlayer()
             {
-                var holderPos = _self._meshHolder.GlobalTransform;
+                var holderPos = Self._meshHolder.GlobalTransform;
 
                 var player = GetTree().FindNode<Player>();
-                _self._meshGrowPoint.GlobalPosition = player.GlobalPosition;
-                _self._meshHolder.GlobalTransform = holderPos;
+                Self._meshGrowPoint.GlobalPosition = player.GlobalPosition;
+                Self._meshHolder.GlobalTransform = holderPos;
             }
 
             private void SpawnParticles()
             {
-                _self._shatterPartciles.Restart();
-                _self._shatterPartciles.Emitting = true;
+                Self._shatterPartciles.Restart();
+                Self._shatterPartciles.Emitting = true;
 
                 // Walls can be large.  If we always spawn the particles at the
                 // origin point, it could be far away from where the player actually
                 // hit, which would look weird.  Therefore, let's spawn the
                 // particles at the player's position.
                 var player = GetTree().FindNode<Player>();
-                _self._shatterPartciles.GlobalPosition = player.GlobalPosition;
-                _self._shatterPartciles.GlobalPosition += Vector3.Up;
+                Self._shatterPartciles.GlobalPosition = player.GlobalPosition;
+                Self._shatterPartciles.GlobalPosition += Vector3.Up;
             }
         }
 
@@ -151,8 +151,8 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _self.SetCollisionEnabled(false);
-                _self._meshHolder.Visible = false;
+                Self.SetCollisionEnabled(false);
+                Self._meshHolder.Visible = false;
             }
         }
     }

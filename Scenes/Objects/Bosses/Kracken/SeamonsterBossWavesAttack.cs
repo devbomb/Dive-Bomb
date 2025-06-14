@@ -18,24 +18,24 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _wavesRemaining = _self.WaveCount;
-                _timer = _self.WaveInterval;
+                _wavesRemaining = Self.WaveCount;
+                _timer = Self.WaveInterval;
 
-                _self._leftSplashTentacle.DamagedPlayer += OnDamagedPlayer;
-                _self._rightSplashTentacle.DamagedPlayer += OnDamagedPlayer;
+                Self._leftSplashTentacle.DamagedPlayer += OnDamagedPlayer;
+                Self._rightSplashTentacle.DamagedPlayer += OnDamagedPlayer;
             }
 
             public override void OnStateExited()
             {
-                _self._leftSplashTentacle.DamagedPlayer -= OnDamagedPlayer;
-                _self._rightSplashTentacle.DamagedPlayer -= OnDamagedPlayer;
+                Self._leftSplashTentacle.DamagedPlayer -= OnDamagedPlayer;
+                Self._rightSplashTentacle.DamagedPlayer -= OnDamagedPlayer;
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer -= (float)deltaD;
 
-                if (_self.AllPowerOrbsBroken())
+                if (Self.AllPowerOrbsBroken())
                 {
                     ChangeState<Vulnerable>();
                     return;
@@ -50,14 +50,14 @@ namespace FastDragon
                     }
 
                     _wavesRemaining--;
-                    _timer += _self.WaveInterval;
+                    _timer += Self.WaveInterval;
 
                     var tentacle = _wavesRemaining % 2 == 0
-                        ? _self._leftSplashTentacle
-                        : _self._rightSplashTentacle;
+                        ? Self._leftSplashTentacle
+                        : Self._rightSplashTentacle;
 
                     tentacle.StartSplash();
-                    _self.PlayAnimation("Swing", travel: true);
+                    Self.PlayAnimation("Swing", travel: true);
                 }
             }
 

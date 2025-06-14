@@ -16,14 +16,14 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("Dive");
-            _player.VSpeed = Player.Dive.InitialVSpeed;
-            _player.FSpeed = Player.Dive.FSpeed;
+            Self.Animator.Play("Dive");
+            Self.VSpeed = Player.Dive.InitialVSpeed;
+            Self.FSpeed = Player.Dive.FSpeed;
 
             _redirectTimer = Player.Dive.RedirectTimeWindow;
-            _targetCameraYawRad = _player.GlobalRotation.Y;
+            _targetCameraYawRad = Self.GlobalRotation.Y;
 
-            _startY = _player.GlobalPosition.Y;
+            _startY = Self.GlobalPosition.Y;
         }
 
         public override void OnStateExited()
@@ -39,7 +39,7 @@ namespace FastDragon
 
             if (_redirectTimer <= 0)
             {
-                var camera = _player.Camera;
+                var camera = Self.Camera;
 
                 camera.OrbitDistance = MathUtils.DecayToward(
                     camera.OrbitDistance,
@@ -58,8 +58,8 @@ namespace FastDragon
                 // Allow the camera to look down at the player if they've
                 // fallen below the height that they started the dive at.
                 var transform = camera.GlobalTransform;
-                transform = transform.LookingAt(_player.GlobalPosition);
-                float pitchRad = _player.GlobalPosition.Y < _startY - 2
+                transform = transform.LookingAt(Self.GlobalPosition);
+                float pitchRad = Self.GlobalPosition.Y < _startY - 2
                     ? Mathf.Min(transform.Basis.GetEuler().X, Player.Dive.CameraPitchRad)
                     : Player.Dive.CameraPitchRad;
 
@@ -79,13 +79,13 @@ namespace FastDragon
             _redirectTimer -= delta;
             if (_redirectTimer > 0)
             {
-                float speed = _player.FSpeed;
+                float speed = Self.FSpeed;
                 RotateInstantlyTowardLeftStick();
-                _player.FSpeed = speed;
+                Self.FSpeed = speed;
             }
 
             if (_redirectTimer > -0.1f)
-                _targetCameraYawRad = _player.GlobalRotation.Y;
+                _targetCameraYawRad = Self.GlobalRotation.Y;
 
             RotateTowardLeftStick(Player.Dive.TurnSpeedRad, delta);
             RedirectFSpeedTowardYaw();
@@ -120,14 +120,14 @@ namespace FastDragon
             // TODO: Don't apply the extra hitbox to objects that have already
             // been hit by the main hitbox
             ApplyHitboxToBreakableObjects(
-                _player.DiveExtraHitbox,
+                Self.DiveExtraHitbox,
                 b => b.VulnerableToRoll,
                 b => b.OnRolledInto()
             );
 
-            if (_player.IsOnFloor())
+            if (Self.IsOnFloor())
             {
-                _player.ChangeState<PlayerRollState>();
+                Self.ChangeState<PlayerRollState>();
                 return;
             }
         }
@@ -135,7 +135,7 @@ namespace FastDragon
         private void Break(IBreakable b)
         {
             b.OnBroken();
-            _player.Camera.Shake(
+            Self.Camera.Shake(
                 b.CameraShakeMagnitude,
                 b.CameraShakeFrequency,
                 b.CameraShakeDuration

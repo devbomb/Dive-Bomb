@@ -12,7 +12,7 @@ namespace FastDragon
         {
             if (InputService.RollJustPressed(ev))
             {
-                _player.ChangeState<PlayerDiveState>();
+                Self.ChangeState<PlayerDiveState>();
                 return;
             }
 
@@ -33,11 +33,11 @@ namespace FastDragon
             );
 
             ApplyGravity(delta, Player.Default.Gravity);
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
-            if (_player.IsOnFloor())
+            if (Self.IsOnFloor())
             {
-                _player.ChangeState<PlayerWalkState>();
+                Self.ChangeState<PlayerWalkState>();
                 return;
             }
 

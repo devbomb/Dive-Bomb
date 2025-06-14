@@ -14,11 +14,11 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("ParachuteOpen");
-            _player.Animator.Queue("Parachute");
+            Self.Animator.Play("ParachuteOpen");
+            Self.Animator.Queue("Parachute");
 
             _timer = FallDuration;
-            _initialCameraPos = _player.Camera.GlobalPosition;
+            _initialCameraPos = Self.Camera.GlobalPosition;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -29,14 +29,14 @@ namespace FastDragon
 
             // The parachute is out, so slow down the fall.
             // Can you imagine if we didn't?  "You had ONE job, parachute!"
-            _player.Velocity = _player.Velocity.DecayToward(Vector3.Down * 5, 1, delta);
-            _player.MoveAndSlide();
+            Self.Velocity = Self.Velocity.DecayToward(Vector3.Down * 5, 1, delta);
+            Self.MoveAndSlide();
 
             // Aim the camera at the player without following
-            var camera = _player.Camera;
+            var camera = Self.Camera;
             camera.GlobalPosition = _initialCameraPos;
 
-            Vector3 cameraToPlayerDir = _player.GlobalPosition - camera.GlobalPosition;
+            Vector3 cameraToPlayerDir = Self.GlobalPosition - camera.GlobalPosition;
             cameraToPlayerDir = cameraToPlayerDir.Normalized();
             Vector3 targetRot = cameraToPlayerDir.ForwardToEulerAnglesRad();
 

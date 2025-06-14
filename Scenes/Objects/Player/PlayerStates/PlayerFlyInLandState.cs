@@ -6,24 +6,24 @@ namespace FastDragon
     {
         public override void OnStateEntered()
         {
-            _player.Animator.Play("ParachuteLand", 0.1);
+            Self.Animator.Play("ParachuteLand", 0.1);
 
             // Pause the game while flying in.  This way, the fly-in won't
             // affect cycles.
             GetTree().Paused = true;
-            _player.ProcessMode = Node.ProcessModeEnum.Always;
+            Self.ProcessMode = Node.ProcessModeEnum.Always;
         }
 
         public override void OnStateExited()
         {
             GetTree().Paused = false;
-            _player.ProcessMode = Node.ProcessModeEnum.Inherit;
+            Self.ProcessMode = Node.ProcessModeEnum.Inherit;
         }
 
         public override void _PhysicsProcess(double deltaD)
         {
-            if (!_player.Animator.IsPlaying())
-                _player.Respawn();
+            if (!Self.Animator.IsPlaying())
+                Self.Respawn();
         }
     }
 }

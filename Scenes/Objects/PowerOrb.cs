@@ -55,7 +55,7 @@ namespace FastDragon
 
         private abstract partial class PowerOrbState : State
         {
-            protected PowerOrb _self => _stateMachine.GetParent<PowerOrb>();
+            protected PowerOrb Self => _stateMachine.GetParent<PowerOrb>();
         }
 
         private partial class Revealing : PowerOrbState
@@ -65,33 +65,33 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self._bodyShape.Disabled = true;
-                _self._model.Scale = Vector3.Zero;
+                Self._bodyShape.Disabled = true;
+                Self._model.Scale = Vector3.Zero;
                 _timer = 0;
                 _animTimer = 0;
 
-                _self._model.RotationDegrees = new Vector3(0, GD.Randf() * 360, 0);
+                Self._model.RotationDegrees = new Vector3(0, GD.Randf() * 360, 0);
             }
 
             public override void OnStateExited()
             {
-                _self._bodyShape.Disabled = false;
-                _self._model.Scale = Vector3.One;
+                Self._bodyShape.Disabled = false;
+                Self._model.Scale = Vector3.One;
             }
 
             public override void _Process(double deltaD)
             {
                 _animTimer += (float)deltaD;
 
-                float t = _animTimer / _self.SpawnTime;
-                _self._model.Scale = Vector3.Zero.Lerp(Vector3.One, t);
+                float t = _animTimer / Self.SpawnTime;
+                Self._model.Scale = Vector3.Zero.Lerp(Vector3.One, t);
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
 
-                if (_timer >= _self.SpawnTime)
+                if (_timer >= Self.SpawnTime)
                     ChangeState<Revealed>();
             }
         }
@@ -104,16 +104,16 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _self._bodyShape.Disabled = true;
-                _self._model.Visible = false;
-                _self._blobShadow.Visible = false;
+                Self._bodyShape.Disabled = true;
+                Self._model.Visible = false;
+                Self._blobShadow.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _self._bodyShape.Disabled = false;
-                _self._model.Visible = true;
-                _self._blobShadow.Visible = true;
+                Self._bodyShape.Disabled = false;
+                Self._model.Visible = true;
+                Self._blobShadow.Visible = true;
             }
         }
 
@@ -121,18 +121,18 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _self._explosionParticles.Emitting = true;
+                Self._explosionParticles.Emitting = true;
 
-                _self._bodyShape.Disabled = true;
-                _self._model.Visible = false;
-                _self._blobShadow.Visible = false;
+                Self._bodyShape.Disabled = true;
+                Self._model.Visible = false;
+                Self._blobShadow.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _self._bodyShape.Disabled = false;
-                _self._model.Visible = true;
-                _self._blobShadow.Visible = true;
+                Self._bodyShape.Disabled = false;
+                Self._model.Visible = true;
+                Self._blobShadow.Visible = true;
             }
         }
     }

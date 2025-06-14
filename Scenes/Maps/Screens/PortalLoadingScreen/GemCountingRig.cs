@@ -96,7 +96,7 @@ namespace FastDragon
         private abstract partial class RigState : State
         {
             public virtual bool Skippable => false;
-            protected GemCountingRig _self => _stateMachine.GetParent<GemCountingRig>();
+            protected GemCountingRig Self => _stateMachine.GetParent<GemCountingRig>();
 
             public override void _Input(InputEvent ev)
             {
@@ -112,7 +112,7 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _self.SetLabelsVisible(false);
+                Self.SetLabelsVisible(false);
             }
         }
 
@@ -122,9 +122,9 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self.SetLabelsVisible(true);
-                _self.UpdateLabelText();
-                _self._labelSlider.Play("SlideInGemsFound");
+                Self.SetLabelsVisible(true);
+                Self.UpdateLabelText();
+                Self._labelSlider.Play("SlideInGemsFound");
 
                 // We just made the text visible, but it won't naturally jump to
                 // its starting position until the next frame when the animator
@@ -132,12 +132,12 @@ namespace FastDragon
                 // for one frame before the animation actually starts.
                 //
                 // To avoid this, let's just force it to update right now.
-                _self._labelSlider.Seek(0, true);
+                Self._labelSlider.Seek(0, true);
             }
 
             public override void _Process(double delta)
             {
-                if (!_self._labelSlider.IsPlaying())
+                if (!Self._labelSlider.IsPlaying())
                 {
                     ChangeState<CountingGems>();
                 }
@@ -150,9 +150,9 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self.SetLabelsVisible(true);
-                _self.UpdateLabelText();
-                _self._labelSlider.Play("SlideInNoGemsFound");
+                Self.SetLabelsVisible(true);
+                Self.UpdateLabelText();
+                Self._labelSlider.Play("SlideInNoGemsFound");
 
                 // We just made the text visible, but it won't naturally jump to
                 // its starting position until the next frame when the animator
@@ -160,14 +160,14 @@ namespace FastDragon
                 // for one frame before the animation actually starts.
                 //
                 // To avoid this, let's just force it to update right now.
-                _self._labelSlider.Seek(0, true);
+                Self._labelSlider.Seek(0, true);
             }
 
             public override void _Process(double delta)
             {
-                if (!_self._labelSlider.IsPlaying())
+                if (!Self._labelSlider.IsPlaying())
                 {
-                    if (_self._untalliedSpentGems > 0)
+                    if (Self._untalliedSpentGems > 0)
                         ChangeState<SlidingInGemsSpent>();
                     else
                         ChangeState<LettingPlayerReadLabels>();
@@ -181,8 +181,8 @@ namespace FastDragon
 
             private const float MinInterval = 2f / 60;
 
-            private Node3D _gemSpawn => _self.GetNode<Node3D>("%GemSpawn");
-            private Node3D _gemDest => _self.GetNode<Node3D>("%GemDest");
+            private Node3D _gemSpawn => Self.GetNode<Node3D>("%GemSpawn");
+            private Node3D _gemDest => Self.GetNode<Node3D>("%GemDest");
 
             private Random _rng = new Random();
 
@@ -195,7 +195,7 @@ namespace FastDragon
                 GD.Print("Started counting gems");
                 _timer = 0;
 
-                _interval = CountingGemsDuration / _self.TotalIndividualUntalliedGems();
+                _interval = CountingGemsDuration / Self.TotalIndividualUntalliedGems();
 
                 if (_interval < MinInterval)
                     _interval = MinInterval;
@@ -214,11 +214,11 @@ namespace FastDragon
 
             private void OnGemCounted(int value)
             {
-                _self._talliedGems += value;
-                _self.UpdateLabelText();
-                _self._gemCountSound.Play();
+                Self._talliedGems += value;
+                Self.UpdateLabelText();
+                Self._gemCountSound.Play();
 
-                if (_self._talliedGems >= SaveFile.Current.TotalGemCount + _self._untalliedSpentGems)
+                if (Self._talliedGems >= SaveFile.Current.TotalGemCount + Self._untalliedSpentGems)
                     ChangeState<MovingTotalToTop>();
             }
 
@@ -226,19 +226,19 @@ namespace FastDragon
             {
                 _timer += delta;
 
-                if (_self.TotalUntalliedGems() > 0 && _timer >= _interval)
+                if (Self.TotalUntalliedGems() > 0 && _timer >= _interval)
                 {
                     _timer -= _interval;
 
-                    GemColor color = _rng.PickFromWeighted(_self._untalliedGems);
+                    GemColor color = _rng.PickFromWeighted(Self._untalliedGems);
                     SpawnGem(color);
                 }
             }
 
             private void SpawnGem(GemColor value)
             {
-                _self._untalliedGems[value]--;
-                _self.UpdateLabelText();
+                Self._untalliedGems[value]--;
+                Self.UpdateLabelText();
 
                 var gem = new CountableGem(
                     value,
@@ -252,7 +252,7 @@ namespace FastDragon
                 gem.AddChild(model);
                 gem.Counted += OnGemCounted;
 
-                _self._gemSpawnSound.Play();
+                Self._gemSpawnSound.Play();
             }
 
             private Vector3 RandomBezierControlPoint(float spread)
@@ -267,11 +267,11 @@ namespace FastDragon
             {
                 return color switch
                 {
-                    GemColor.Red => _self.RedGemPrefab,
-                    GemColor.Green => _self.GreenGemPrefab,
-                    GemColor.Purple => _self.PurpleGemPrefab,
-                    GemColor.Yellow => _self.YellowGemPrefab,
-                    GemColor.Magenta => _self.MagentaGemPrefab,
+                    GemColor.Red => Self.RedGemPrefab,
+                    GemColor.Green => Self.GreenGemPrefab,
+                    GemColor.Purple => Self.PurpleGemPrefab,
+                    GemColor.Yellow => Self.YellowGemPrefab,
+                    GemColor.Magenta => Self.MagentaGemPrefab,
                     _ => throw new Exception("Invalid gem color chosen")
                 };
             }
@@ -330,14 +330,14 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self._labelSlider.Play("MoveTotalToTop");
+                Self._labelSlider.Play("MoveTotalToTop");
             }
 
             public override void _Process(double delta)
             {
-                if (!_self._labelSlider.IsPlaying())
+                if (!Self._labelSlider.IsPlaying())
                 {
-                    if (_self._untalliedSpentGems > 0)
+                    if (Self._untalliedSpentGems > 0)
                         ChangeState<SlidingInGemsSpent>();
                     else
                         ChangeState<LettingPlayerReadLabels>();
@@ -351,12 +351,12 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self._labelSlider.Play("SlideInGemsSpent");
+                Self._labelSlider.Play("SlideInGemsSpent");
             }
 
             public override void _Process(double delta)
             {
-                if (!_self._labelSlider.IsPlaying())
+                if (!Self._labelSlider.IsPlaying())
                     ChangeState<DeductingCosts>();
             }
         }
@@ -377,7 +377,7 @@ namespace FastDragon
 
             public override void _Process(double delta)
             {
-                if (_self._untalliedSpentGems <= 0)
+                if (Self._untalliedSpentGems <= 0)
                 {
                     ChangeState<SlidingOutGemsSpent>();
                     return;
@@ -388,11 +388,11 @@ namespace FastDragon
                 {
                     _timer += Interval;
 
-                    _self._untalliedSpentGems--;
-                    _self._talliedGems--;
-                    _self.UpdateLabelText();
+                    Self._untalliedSpentGems--;
+                    Self._talliedGems--;
+                    Self.UpdateLabelText();
 
-                    _self._gemSpentSound.Play();
+                    Self._gemSpentSound.Play();
                 }
 
                 // Look, the player gets the picture.  We don't need to show
@@ -406,9 +406,9 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
-                _self._talliedGems = SaveFile.Current.TotalGemCount;
-                _self._untalliedSpentGems = 0;
-                _self.UpdateLabelText();
+                Self._talliedGems = SaveFile.Current.TotalGemCount;
+                Self._untalliedSpentGems = 0;
+                Self.UpdateLabelText();
             }
         }
 
@@ -418,12 +418,12 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self._labelSlider.PlayBackwards("SlideInGemsSpent");
+                Self._labelSlider.PlayBackwards("SlideInGemsSpent");
             }
 
             public override void _Process(double delta)
             {
-                if (!_self._labelSlider.IsPlaying())
+                if (!Self._labelSlider.IsPlaying())
                     ChangeState<LettingPlayerReadLabels>();
             }
         }
@@ -435,13 +435,13 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = ReadingLabelsDuration;
-                _self._labelSlider.Play("RESET");
-                _self._labelSlider.Advance(0);
-                _self.SetLabelsVisible(true);
+                Self._labelSlider.Play("RESET");
+                Self._labelSlider.Advance(0);
+                Self.SetLabelsVisible(true);
 
-                _self._untalliedGems.Clear();
-                _self._talliedGems = SaveFile.Current.TotalGemCount;
-                _self.UpdateLabelText();
+                Self._untalliedGems.Clear();
+                Self._talliedGems = SaveFile.Current.TotalGemCount;
+                Self.UpdateLabelText();
             }
 
             public override void _Process(double delta)
@@ -450,8 +450,8 @@ namespace FastDragon
 
                 if (_timer <= 0)
                 {
-                    _self._labelSlider.Play("SlideOut");
-                    _self.EmitSignal(GemCountingRig.SignalName.Done);
+                    Self._labelSlider.Play("SlideOut");
+                    Self.EmitSignal(GemCountingRig.SignalName.Done);
                     ChangeState<DoneState>();
                 }
             }
