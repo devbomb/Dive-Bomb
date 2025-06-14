@@ -47,13 +47,13 @@ namespace FastDragon
             // Pause the game while flying in.  This way, the fly-in won't
             // affect cycles.
             GetTree().Paused = true;
-            _player.ProcessMode = ProcessModeEnum.Always;
+            _player.ProcessMode = Node.ProcessModeEnum.Always;
         }
 
         public override void OnStateExited()
         {
             GetTree().Paused = false;
-            _player.ProcessMode = ProcessModeEnum.Inherit;
+            _player.ProcessMode = Node.ProcessModeEnum.Inherit;
         }
 
         public override void _PhysicsProcess(double deltaD)
