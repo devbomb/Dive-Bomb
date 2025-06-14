@@ -7,79 +7,61 @@ namespace FastDragon
 {
     public partial class StateMachine : Node
     {
-        [Signal] public delegate void StateChangingEventHandler(State currentState, State incomingState);
+        public delegate void StateChangingEventHandler(IState currentState, IState incomingState);
+        public event StateChangingEventHandler StateChanging;
 
-        public State CurrentState {get; private set;}
+        public IState CurrentState { get; private set; }
         private readonly Type _stateType;
+
+        private readonly List<IState> _stateCache = new List<IState>();
 
         public StateMachine(Type stateType)
         {
             _stateType = stateType;
         }
 
-        public void ChangeState<TState>() where TState : State, new()
+        public override void _Input(InputEvent ev)
         {
-            ChangeState(typeof(TState));
+            CurrentState?._Input(ev);
         }
 
-        public void ChangeState(Type stateType)
+        public override void _Process(double delta)
         {
+            CurrentState?._Process(delta);
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            CurrentState?._PhysicsProcess(delta);
+        }
+
+        public void ChangeState<TState>() where TState : IState, new()
+        {
+            var stateType = typeof(TState);
+
             if (!stateType.IsAssignableTo(_stateType))
                 throw new Exception($"{stateType.Name} is not a {_stateType.Name}");
 
             // Get the incoming state's node.
             // If it doesn't exist yet, create it.
-            State incomingState = States().FirstOrDefault(s => s.GetType() == stateType);
+            IState incomingState = _stateCache.FirstOrDefault(s => s.GetType() == stateType);
             if (incomingState == null)
             {
-                incomingState = (State)Activator.CreateInstance(stateType);
-                AddChild(incomingState);
+                incomingState = new TState();
+                incomingState.SetStateMachine(this);
+                _stateCache.Add(incomingState);
             }
 
-            EmitSignal(SignalName.StateChanging, CurrentState, incomingState);
+            StateChanging?.Invoke(CurrentState, incomingState);
 
             // Let the previous state know that it's exiting
             CurrentState?.OnStateExited();
 
-            // Disable the previous state.
-            // ...and all the other states, too, just for good measure.
-            foreach (var state in States())
-            {
-                state.ProcessMode = ProcessModeEnum.Disabled;
-            }
-
             // Switch to the new state and enable it.
-            State prevState = CurrentState;
+            IState prevState = CurrentState;
             CurrentState = incomingState;
             CurrentState.OnStateEntered(prevState);
             CurrentState.OnStateEntered();
-
-            // Defer enabling the new state to ensure consistency.
-            // This way, we ensure the new state's first Process(or PhysicsProcess)
-            // always happens on the _next_ frame, instead of sometimes happening
-            // on the _current_ frame depending on tree order.
-            //
-            // Doing this as a function call (instead of SetDeferred) avoids a
-            // bug where multiple states could become enabled simulatneously if
-            // ChangeState() is called more than once in the same frame
-            // (since multiple SetDeferreds would be queued up simultaneously).
-            Callable.From(EnableCurrentState).CallDeferred();
-        }
-
-        private void EnableCurrentState()
-        {
-            CurrentState.ProcessMode = ProcessModeEnum.Inherit;
-        }
-
-        private IEnumerable<State> States()
-        {
-            for (int i = 0; i < GetChildCount(); i++)
-            {
-                var child = GetChild<Node>(i);
-
-                if (child is State state)
-                    yield return state;
-            }
         }
     }
 }

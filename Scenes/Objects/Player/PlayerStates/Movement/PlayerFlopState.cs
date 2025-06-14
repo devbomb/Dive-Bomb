@@ -6,9 +6,9 @@ namespace FastDragon
     {
         private float _coyoteTimer;
 
-        public override void OnStateEntered(State prevState)
+        public override void OnStateEntered(IState prevState)
         {
-            _player.Animator.Play("Flop");
+            Self.Animator.Play("Flop");
 
             if (prevState is PlayerWalkState)
                 _coyoteTimer = Player.Default.CoyoteTime;
@@ -19,19 +19,19 @@ namespace FastDragon
             if (InputService.JumpJustPressed(ev) && _coyoteTimer > 0)
             {
                 GD.Print("Coyote jump!");
-                _player.ChangeState<PlayerWalkJumpState>();
+                Self.ChangeState<PlayerWalkJumpState>();
                 return;
             }
 
             if (InputService.RollJustPressed(ev))
             {
-                _player.ChangeState<PlayerDiveState>();
+                Self.ChangeState<PlayerDiveState>();
                 return;
             }
 
             if (InputService.KickJustPressed(ev))
             {
-                _player.ChangeState<PlayerKickState>();
+                Self.ChangeState<PlayerKickState>();
                 return;
             }
         }
@@ -51,20 +51,20 @@ namespace FastDragon
             );
 
             ApplyGravity(delta, Player.Default.Gravity);
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
-            if (_player.IsOnFloor())
+            if (Self.IsOnFloor())
             {
-                _player.ChangeState<PlayerWalkState>();
+                Self.ChangeState<PlayerWalkState>();
                 return;
             }
 
             if (TryGrabLedge())
                 return;
 
-            if (_player.IsOnWall() && _player.VSpeed < 0)
+            if (Self.IsOnWall() && Self.VSpeed < 0)
             {
-                _player.ChangeState<PlayerWallSlideState>();
+                Self.ChangeState<PlayerWallSlideState>();
                 return;
             }
         }

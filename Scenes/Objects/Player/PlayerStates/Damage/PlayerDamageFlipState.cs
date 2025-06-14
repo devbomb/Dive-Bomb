@@ -12,13 +12,13 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("DamageFlip");
-            _player.GetNode<AudioStreamPlayer>("%FlipDamageSound").Play();
-            _player.VSpeed = VSpeed;
-            _player.FSpeed = 0;
+            Self.Animator.Play("DamageFlip");
+            Self.GetNode<AudioStreamPlayer>("%FlipDamageSound").Play();
+            Self.VSpeed = VSpeed;
+            Self.FSpeed = 0;
             _startedLandingAnimation = false;
 
-            _player.Camera.Shake(1.1f, 15, 0.5f);
+            Self.Camera.Shake(1.1f, 15, 0.5f);
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -27,14 +27,14 @@ namespace FastDragon
 
             ApplyGravity(delta);
             DecelerateHSpeedToZero(delta);
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
-            if (_player.IsOnFloor() && !_player.Animator.IsPlaying())
+            if (Self.IsOnFloor() && !Self.Animator.IsPlaying())
             {
                 if (!_startedLandingAnimation)
                 {
                     _startedLandingAnimation = true;
-                    _player.Animator.Play("DamageFlip_Land");
+                    Self.Animator.Play("DamageFlip_Land");
                     return;
                 }
 
@@ -42,11 +42,11 @@ namespace FastDragon
 
                 if (currentHealth <= 0)
                 {
-                    _player.ChangeState<PlayerReachOutDeathState>();
+                    Self.ChangeState<PlayerReachOutDeathState>();
                 }
                 else
                 {
-                    _player.ChangeState<PlayerWalkState>();
+                    Self.ChangeState<PlayerWalkState>();
                 }
             }
         }
@@ -64,8 +64,8 @@ namespace FastDragon
             // Resetting the animator immediately sets the rotation back to 0
             // degrees, thus avoiding the effect at the cost of forgoing
             // animation blending.
-            _player.Animator.Play("RESET", 0);
-            _player.Animator.Seek(0, true);
+            Self.Animator.Play("RESET", 0);
+            Self.Animator.Seek(0, true);
         }
     }
 }

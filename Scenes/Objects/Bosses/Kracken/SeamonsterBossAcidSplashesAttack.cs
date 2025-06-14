@@ -11,41 +11,41 @@ namespace FastDragon
         [Export] public float AcidSplashesInterval = 0.5f;
         [Export] public int AcidSplashCount = 4;
 
-        private partial class AcidSplashesSubmerging : SeamonsterBossState
+        private partial class AcidSplashesSubmerging : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
-                _self.UseOverheadCameraAngle();
-                _self.PlayAnimation("Submerge");
-                _self._leftSplashTentacle.Submerge();
-                _self._rightSplashTentacle.Submerge();
+                Self.UseOverheadCameraAngle();
+                Self.PlayAnimation("Submerge");
+                Self._leftSplashTentacle.Submerge();
+                Self._rightSplashTentacle.Submerge();
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                if (_self.CurrentAnimation() != "Submerge")
+                if (Self.CurrentAnimation() != "Submerge")
                 {
-                    _self.RandomizeSpawnPoint();
+                    Self.RandomizeSpawnPoint();
                     ChangeState<AcidSplashesRaining>();
                 }
             }
         }
 
-        private partial class AcidSplashesRaining : SeamonsterBossState
+        private partial class AcidSplashesRaining : State<SeamonsterBoss>
         {
             private float _timer;
             private int _splashesRemaining;
 
             public override void OnStateEntered()
             {
-                _timer = _self.AcidSplashesInterval;
-                _splashesRemaining = _self.AcidSplashCount;
+                _timer = Self.AcidSplashesInterval;
+                _splashesRemaining = Self.AcidSplashCount;
                 SpawnSplash();
             }
 
             public override void OnStateExited()
             {
-                _self.UseBossCameraAngle();
+                Self.UseBossCameraAngle();
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -57,7 +57,7 @@ namespace FastDragon
                     if (_splashesRemaining > 0)
                     {
                         SpawnSplash();
-                        _timer += _self.AcidSplashesInterval;
+                        _timer += Self.AcidSplashesInterval;
                     }
                     else
                     {
@@ -70,7 +70,7 @@ namespace FastDragon
             {
                 _splashesRemaining--;
 
-                var acidSplash = _self.FallingAcidBlobPrefab.Instantiate<FallingAcidBlob>();
+                var acidSplash = Self.FallingAcidBlobPrefab.Instantiate<FallingAcidBlob>();
 
                 GetTree().CurrentScene.AddChild(acidSplash);
 
@@ -84,7 +84,7 @@ namespace FastDragon
                 // goes on.
                 //
                 // It'll be deleted at the start of the Dying state.
-                if (_splashesRemaining <= 0 && _self._health.CurrentPhase > 0)
+                if (_splashesRemaining <= 0 && Self._health.CurrentPhase > 0)
                     acidSplash.Permanent = true;
             }
         }

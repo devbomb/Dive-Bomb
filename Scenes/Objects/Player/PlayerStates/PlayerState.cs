@@ -4,7 +4,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerState : State
+    public partial class PlayerState : State<Player>
     {
         public virtual bool Invincible => false;
         public virtual bool DisableCameraInput => false;
@@ -12,8 +12,6 @@ namespace FastDragon
         public virtual bool CanBoundAfterLanding => false;
 
         public virtual bool PauseDamageCooldownTimer => false;
-
-        protected Player _player => _stateMachine.GetParent<Player>();
 
         /// <summary>
         /// Returns the direction (and magnitude) that the left stick is
@@ -53,13 +51,13 @@ namespace FastDragon
         )
         {
             // Rotate with the left stick
-            float rotDeg = _player.RotationDegrees.Y;
+            float rotDeg = Self.RotationDegrees.Y;
             rotDeg -= InputService.LeftStick.X * turnSpeedDeg * delta;
-            _player.RotationDegrees = new Vector3(0, rotDeg, 0);
+            Self.RotationDegrees = new Vector3(0, rotDeg, 0);
 
             // Update the horizontal velocity, without changing the vertical
             // speed.
-            _player.FSpeed = forwardSpeed;
+            Self.FSpeed = forwardSpeed;
         }
 
         protected void RotateTowardLeftStick(float rotSpeedRad, float delta)
@@ -71,9 +69,9 @@ namespace FastDragon
             {
                 float targetYawRad = LeftStick3D().ForwardToEulerAnglesRad().Y;
 
-                var rot = _player.GlobalRotation;
+                var rot = Self.GlobalRotation;
                 rot.Y = AngleMath.MoveToward(rot.Y, targetYawRad, rotSpeedRad * delta);
-                _player.GlobalRotation = rot;
+                Self.GlobalRotation = rot;
             }
         }
 
@@ -86,27 +84,27 @@ namespace FastDragon
             {
                 float targetYawRad = LeftStick3D().ForwardToEulerAnglesRad().Y;
 
-                var rot = _player.GlobalRotation;
+                var rot = Self.GlobalRotation;
                 rot.Y = targetYawRad;
-                _player.GlobalRotation = rot;
+                Self.GlobalRotation = rot;
             }
         }
 
         protected void RotateInstantlyTowardVelocity()
         {
-            Vector3 rot = _player.GlobalRotation;
-            rot.Y = _player.Velocity
+            Vector3 rot = Self.GlobalRotation;
+            rot.Y = Self.Velocity
                 .Flattened()
                 .ForwardToEulerAnglesRad()
                 .Y;
-            _player.GlobalRotation = rot;
+            Self.GlobalRotation = rot;
         }
 
         protected void RedirectFSpeedTowardYaw()
         {
-            Vector3 vel = _player.GlobalForward() * _player.FSpeed;
-            vel.Y = _player.VSpeed;
-            _player.Velocity = vel;
+            Vector3 vel = Self.GlobalForward() * Self.FSpeed;
+            vel.Y = Self.VSpeed;
+            Self.Velocity = vel;
         }
 
         protected void AccelerateWithLeftStickAgainstDrag(
@@ -117,7 +115,7 @@ namespace FastDragon
         )
         {
             Vector3 leftStick3D = LeftStick3D();
-            Vector3 flatVel = _player.Velocity.Flattened();
+            Vector3 flatVel = Self.Velocity.Flattened();
 
             // Apply a drag force in the opposite direction of the current
             // motion
@@ -132,7 +130,7 @@ namespace FastDragon
 
             if (leftStick3D.IsZeroApprox())
             {
-                flatVel += _player.GlobalForward() * accel * delta;
+                flatVel += Self.GlobalForward() * accel * delta;
             }
             else
             {
@@ -140,8 +138,8 @@ namespace FastDragon
             }
 
             // Save it
-            flatVel.Y = _player.Velocity.Y;
-            _player.Velocity = flatVel;
+            flatVel.Y = Self.Velocity.Y;
+            Self.Velocity = flatVel;
         }
 
         protected void AccelerateWithLeftStick(
@@ -151,7 +149,7 @@ namespace FastDragon
         )
         {
             Vector3 leftStick3D = LeftStick3D();
-            Vector3 flatVel = _player.Velocity.Flattened();
+            Vector3 flatVel = Self.Velocity.Flattened();
 
             // Apply a drag force in the opposite direction of the current
             // motion, but only if we're exceeding the speed limit
@@ -167,8 +165,8 @@ namespace FastDragon
             flatVel += leftStick3D.Normalized() * accel * delta;
 
             // Save it
-            flatVel.Y = _player.Velocity.Y;
-            _player.Velocity = flatVel;
+            flatVel.Y = Self.Velocity.Y;
+            Self.Velocity = flatVel;
         }
 
         protected void StrafeWithLeftStick(
@@ -178,12 +176,12 @@ namespace FastDragon
         )
         {
             Vector3 targetFlatVel = LeftStick3D() * maxSpeed;
-            Vector3 flatVel = _player.Velocity.Flattened();
+            Vector3 flatVel = Self.Velocity.Flattened();
             flatVel = flatVel.MoveToward(targetFlatVel, accel * delta);
 
-            _player.Velocity = new Vector3(
+            Self.Velocity = new Vector3(
                 flatVel.X,
-                _player.Velocity.Y,
+                Self.Velocity.Y,
                 flatVel.Z
             );
         }
@@ -192,16 +190,16 @@ namespace FastDragon
             float delta,
             float gravity = Player.Default.Gravity)
         {
-            _player.Velocity += Vector3.Down * gravity * delta;
+            Self.Velocity += Vector3.Down * gravity * delta;
         }
 
         protected void DecelerateHSpeedToZero(float delta, float friction = Player.Walk.Decel)
         {
-            var v = _player.Velocity.Flattened();
+            var v = Self.Velocity.Flattened();
             v = v.MoveToward(Vector3.Zero, friction * delta);
-            v.Y = _player.Velocity.Y;
+            v.Y = Self.Velocity.Y;
 
-            _player.Velocity = v;
+            Self.Velocity = v;
         }
 
         /// <summary>
@@ -216,7 +214,7 @@ namespace FastDragon
             float delta
         )
         {
-            var camera = _player.Camera;
+            var camera = Self.Camera;
 
             camera.OrbitDistance = MathUtils.DecayToward(
                 camera.OrbitDistance,
@@ -242,13 +240,13 @@ namespace FastDragon
 
         protected void AngleModelPitchWithVelocity(float delta)
         {
-            var rot = _player.Velocity.Normalized().ForwardToEulerAnglesRad();
-            _player.ModelPitchRad = rot.X;
+            var rot = Self.Velocity.Normalized().ForwardToEulerAnglesRad();
+            Self.ModelPitchRad = rot.X;
         }
 
         protected void ResetModelPitch()
         {
-            _player.ModelPitchRad = 0;
+            Self.ModelPitchRad = 0;
         }
 
         /// <summary>
@@ -275,15 +273,15 @@ namespace FastDragon
             float delta
         )
         {
-            Vector3 prevPos = _player.GlobalPosition;
-            Vector3 prevVel = _player.Velocity;
+            Vector3 prevPos = Self.GlobalPosition;
+            Vector3 prevVel = Self.Velocity;
 
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
-            int numCollisions = _player.GetSlideCollisionCount();
+            int numCollisions = Self.GetSlideCollisionCount();
             for (int i = 0; i < numCollisions; i++)
             {
-                var collision = _player.GetSlideCollision(i);
+                var collision = Self.GetSlideCollision(i);
                 var hitObject = collision.GetCollider();
 
                 if (hitObject is not TNode n)
@@ -297,17 +295,17 @@ namespace FastDragon
                         return Bonk();
 
                     // Rewind and try again, but this time ignore this object
-                    _player.GlobalPosition = prevPos;
-                    _player.Velocity = prevVel;
+                    Self.GlobalPosition = prevPos;
+                    Self.Velocity = prevVel;
 
-                    _player.AddCollisionExceptionWith((Node)hitObject);
+                    Self.AddCollisionExceptionWith((Node)hitObject);
                     bool bonked = MoveAndSlideBreakingObjects(
                         isVulnerable,
                         causesBonkWhenBroken,
                         brokenObjects,
                         unbrokenObjects,
                         delta);
-                    _player.RemoveCollisionExceptionWith((Node)hitObject);
+                    Self.RemoveCollisionExceptionWith((Node)hitObject);
 
                     return bonked;
                 }
@@ -336,7 +334,7 @@ namespace FastDragon
             //      _deceleration_ caused by the collision.  Therefore, it makes
             //      sense for a bonk to be triggered by a sudden stop.
             Vector3 prevVelFlat = prevVel.Flattened();
-            Vector3 newVelFlat = _player.Velocity.Flattened();
+            Vector3 newVelFlat = Self.Velocity.Flattened();
 
             float speedPercent = newVelFlat.Length() / prevVelFlat.Length();
             float wallAngleRad = Mathf.DegToRad(90) - Mathf.Acos(speedPercent);
@@ -349,9 +347,9 @@ namespace FastDragon
 
             bool Bonk()
             {
-                _player.GlobalPosition = prevPos;
-                _player.MoveAndCollide(prevVel * delta);
-                _player.ChangeState<PlayerBonkState>();
+                Self.GlobalPosition = prevPos;
+                Self.MoveAndCollide(prevVel * delta);
+                Self.ChangeState<PlayerBonkState>();
                 return true;
             }
         }
@@ -402,7 +400,7 @@ namespace FastDragon
                 }
 
                 b.OnBroken();
-                _player.Camera.Shake(
+                Self.Camera.Shake(
                     b.CameraShakeMagnitude,
                     b.CameraShakeFrequency,
                     b.CameraShakeDuration
@@ -417,28 +415,28 @@ namespace FastDragon
         /// <returns></returns>
         protected bool TryGrabLedge()
         {
-            if (!_player.IsOnWallOnly())
+            if (!Self.IsOnWallOnly())
                 return false;
 
-            if (!_player.LedgeDetector.LedgeDetected)
+            if (!Self.LedgeDetector.LedgeDetected)
                 return false;
 
             // HACK: Don't grab a ledge if the player is too close to a ceiling.
             // This prevents them from grabbing an incorrectly-detected "ledge"
             // that's actually flush with (or even inside of) the ceiling.
-            bool tooCloseToCeiling = _player.TestMove(
-                _player.GlobalTransform,
+            bool tooCloseToCeiling = Self.TestMove(
+                Self.GlobalTransform,
                 Vector3.Up * 1
             );
             if (tooCloseToCeiling)
                 return false;
 
             // Grab the ledge if it's not too high
-            float ledgeHeight = _player.LedgeDetector.LedgeHeight - _player.GlobalPosition.Y;
-            float minHeight = _player.MinLedgeGrabHeight.GlobalPosition.Y - _player.GlobalPosition.Y;
+            float ledgeHeight = Self.LedgeDetector.LedgeHeight - Self.GlobalPosition.Y;
+            float minHeight = Self.MinLedgeGrabHeight.GlobalPosition.Y - Self.GlobalPosition.Y;
             if (ledgeHeight > minHeight)
             {
-                _player.ChangeState<PlayerLedgeGrabState>();
+                Self.ChangeState<PlayerLedgeGrabState>();
                 return true;
             }
 
@@ -455,9 +453,9 @@ namespace FastDragon
         protected void UpdateLastSafeGroundPos()
         {
             var collision = new KinematicCollision3D();
-            bool onGround = _player.TestMove(
-                _player.GlobalTransform,
-                -_player.UpDirection * 0.1f,
+            bool onGround = Self.TestMove(
+                Self.GlobalTransform,
+                -Self.UpDirection * 0.1f,
                 collision);
 
             if (!onGround)
@@ -483,7 +481,7 @@ namespace FastDragon
             if (isUnsafe)
                 return;
 
-            _player.LastSafeGroundPos = _player.GlobalTransform;
+            Self.LastSafeGroundPos = Self.GlobalTransform;
         }
     }
 }

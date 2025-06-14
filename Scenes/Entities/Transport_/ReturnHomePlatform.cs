@@ -18,7 +18,7 @@ namespace FastDragon
 
         private GpuParticles3D _shatterParticles => GetNode<GpuParticles3D>("%ShatterParticles");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(PlatformState));
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<ReturnHomePlatform>));
 
         public override void _Ready()
         {
@@ -68,38 +68,33 @@ namespace FastDragon
                 _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
         }
 
-        private partial class PlatformState : State
-        {
-            protected ReturnHomePlatform _self => _stateMachine.GetParent<ReturnHomePlatform>();
-        }
-
-        private partial class Closed : PlatformState
+        private partial class Closed : State<ReturnHomePlatform>
         {
             public override void OnStateEntered()
             {
-                _self._crystalModel.Visible = true;
-                _self._crystalShape.Disabled = false;
-                _self.SetRequirementsVisible(true);
+                Self._crystalModel.Visible = true;
+                Self._crystalShape.Disabled = false;
+                Self.SetRequirementsVisible(true);
             }
 
             public override void OnStateExited()
             {
-                _self._crystalModel.Visible = false;
-                _self._crystalShape.Disabled = true;
-                _self.SetRequirementsVisible(false);
+                Self._crystalModel.Visible = false;
+                Self._crystalShape.Disabled = true;
+                Self.SetRequirementsVisible(false);
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 var lookPoint = GetTree().Root.GetCamera3D().GlobalPosition;
-                lookPoint.Y = _self._requirementsPivot.GlobalPosition.Y;
+                lookPoint.Y = Self._requirementsPivot.GlobalPosition.Y;
 
-                if (_self._requirementsPivot.GlobalPosition.DistanceTo(lookPoint) > 0.1f)
-                    _self._requirementsPivot.LookAt(lookPoint);
+                if (Self._requirementsPivot.GlobalPosition.DistanceTo(lookPoint) > 0.1f)
+                    Self._requirementsPivot.LookAt(lookPoint);
             }
         }
 
-        private partial class Opening : PlatformState
+        private partial class Opening : State<ReturnHomePlatform>
         {
             private const float Duration = 4f / 60;
             private const float HitStopDuration = 0.19f;
@@ -109,8 +104,8 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = Duration;
-                _self._shatterParticles.Restart();
-                _self._shatterParticles.Emitting = true;
+                Self._shatterParticles.Restart();
+                Self._shatterParticles.Emitting = true;
                 HitStopManager.Instance.StopFor(HitStopDuration);
             }
 
@@ -123,16 +118,16 @@ namespace FastDragon
             }
         }
 
-        private partial class Open : PlatformState
+        private partial class Open : State<ReturnHomePlatform>
         {
             public override void OnStateEntered()
             {
-                _self._vortex.IsActive = true;
+                Self._vortex.IsActive = true;
             }
 
             public override void OnStateExited()
             {
-                _self._vortex.IsActive = false;
+                Self._vortex.IsActive = false;
             }
         }
     }

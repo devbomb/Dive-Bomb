@@ -14,7 +14,7 @@ namespace FastDragon
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
         private GpuParticles3D _explosionParticles => GetNode<GpuParticles3D>("%ExplosionParticles");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(PowerOrbState));
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<PowerOrb>));
 
         public override void _Ready()
         {
@@ -53,86 +53,81 @@ namespace FastDragon
             _stateMachine.ChangeState<BrokenState>();
         }
 
-        private abstract partial class PowerOrbState : State
-        {
-            protected PowerOrb _self => _stateMachine.GetParent<PowerOrb>();
-        }
-
-        private partial class Revealing : PowerOrbState
+        private partial class Revealing : State<PowerOrb>
         {
             private float _animTimer;
             private float _timer;
 
             public override void OnStateEntered()
             {
-                _self._bodyShape.Disabled = true;
-                _self._model.Scale = Vector3.Zero;
+                Self._bodyShape.Disabled = true;
+                Self._model.Scale = Vector3.Zero;
                 _timer = 0;
                 _animTimer = 0;
 
-                _self._model.RotationDegrees = new Vector3(0, GD.Randf() * 360, 0);
+                Self._model.RotationDegrees = new Vector3(0, GD.Randf() * 360, 0);
             }
 
             public override void OnStateExited()
             {
-                _self._bodyShape.Disabled = false;
-                _self._model.Scale = Vector3.One;
+                Self._bodyShape.Disabled = false;
+                Self._model.Scale = Vector3.One;
             }
 
             public override void _Process(double deltaD)
             {
                 _animTimer += (float)deltaD;
 
-                float t = _animTimer / _self.SpawnTime;
-                _self._model.Scale = Vector3.Zero.Lerp(Vector3.One, t);
+                float t = _animTimer / Self.SpawnTime;
+                Self._model.Scale = Vector3.Zero.Lerp(Vector3.One, t);
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
 
-                if (_timer >= _self.SpawnTime)
+                if (_timer >= Self.SpawnTime)
                     ChangeState<Revealed>();
             }
         }
 
-        private partial class Revealed : PowerOrbState
+        private partial class Revealed : State<PowerOrb>
         {
         }
 
-        private partial class Hidden : PowerOrbState
+        private partial class Hidden : State<PowerOrb>
         {
             public override void OnStateEntered()
             {
-                _self._bodyShape.Disabled = true;
-                _self._model.Visible = false;
-                _self._blobShadow.Visible = false;
+                Self._bodyShape.Disabled = true;
+                Self._model.Visible = false;
+                Self._blobShadow.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _self._bodyShape.Disabled = false;
-                _self._model.Visible = true;
-                _self._blobShadow.Visible = true;
+                Self._bodyShape.Disabled = false;
+                Self._model.Visible = true;
+                Self._blobShadow.Visible = true;
             }
         }
 
-        private partial class BrokenState : PowerOrbState
+        private partial class BrokenState : State<PowerOrb>
         {
             public override void OnStateEntered()
             {
-                _self._explosionParticles.Emitting = true;
+                Self._explosionParticles.Emitting = true;
 
-                _self._bodyShape.Disabled = true;
-                _self._model.Visible = false;
-                _self._blobShadow.Visible = false;
+                Self._bodyShape.Disabled = true;
+                Self._model.Visible = false;
+                Self._blobShadow.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _self._bodyShape.Disabled = false;
-                _self._model.Visible = true;
-                _self._blobShadow.Visible = true;
+                Self._bodyShape.Disabled = false;
+                Self._model.Visible = true;
+                Self._blobShadow.Visible = true;
             }
         }
     }

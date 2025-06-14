@@ -17,43 +17,43 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _endPos = _player.GlobalPosition;
-            _endRotRad = _player.GlobalRotation;
+            _endPos = Self.GlobalPosition;
+            _endRotRad = Self.GlobalRotation;
             _timer = 0;
 
-            _player.Animator.Play(
+            Self.Animator.Play(
                 "ParachuteOpen",
                 customBlend: 0.25f
             );
-            _player.Animator.Queue("Parachute");
+            Self.Animator.Queue("Parachute");
 
-            _player.GlobalPosition += Vector3.Up * _player.FlyInHeight;
-            _player.GlobalPosition -= _player.GlobalForward() * _player.FlyInDistance;
-            _player.GlobalRotation = Vector3.Zero;
-            _player.ResetPhysicsInterpolation3D();
+            Self.GlobalPosition += Vector3.Up * Self.FlyInHeight;
+            Self.GlobalPosition -= Self.GlobalForward() * Self.FlyInDistance;
+            Self.GlobalRotation = Vector3.Zero;
+            Self.ResetPhysicsInterpolation3D();
 
-            _player.CameraFocus.GlobalPosition = _player.CameraFocusRestPos.GlobalPosition;
-            _player.CameraFocus.ResetPhysicsInterpolation3D();
+            Self.CameraFocus.GlobalPosition = Self.CameraFocusRestPos.GlobalPosition;
+            Self.CameraFocus.ResetPhysicsInterpolation3D();
 
-            _startPos = _player.GlobalPosition;
-            _startRotRad = _player.GlobalRotation;
+            _startPos = Self.GlobalPosition;
+            _startRotRad = Self.GlobalRotation;
 
-            _player.Camera.OrbitDistance = PortalLoadingScreen.CameraDist;
-            _player.Camera.OrbitYawRad = PortalLoadingScreen.EnterLevelCameraYawRad;
-            _player.Camera.OrbitPitchRad = PortalLoadingScreen.EnterLevelCameraPitchRad;
-            _player.Camera.ApplyAnglesAndDistance();
-            _player.Camera.ResetPhysicsInterpolation3D();
+            Self.Camera.OrbitDistance = PortalLoadingScreen.CameraDist;
+            Self.Camera.OrbitYawRad = PortalLoadingScreen.EnterLevelCameraYawRad;
+            Self.Camera.OrbitPitchRad = PortalLoadingScreen.EnterLevelCameraPitchRad;
+            Self.Camera.ApplyAnglesAndDistance();
+            Self.Camera.ResetPhysicsInterpolation3D();
 
             // Pause the game while flying in.  This way, the fly-in won't
             // affect cycles.
             GetTree().Paused = true;
-            _player.ProcessMode = ProcessModeEnum.Always;
+            Self.ProcessMode = Node.ProcessModeEnum.Always;
         }
 
         public override void OnStateExited()
         {
             GetTree().Paused = false;
-            _player.ProcessMode = ProcessModeEnum.Inherit;
+            Self.ProcessMode = Node.ProcessModeEnum.Inherit;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -61,25 +61,25 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             _timer += delta;
-            float t = _timer / _player.FlyInDuration;
-            _player.GlobalPosition = _startPos.Lerp(_endPos, DecelerateToOne(t));
-            _player.GlobalRotation = _startRotRad.LerpEulerRadSinusoidal(_endRotRad, t);
+            float t = _timer / Self.FlyInDuration;
+            Self.GlobalPosition = _startPos.Lerp(_endPos, DecelerateToOne(t));
+            Self.GlobalRotation = _startRotRad.LerpEulerRadSinusoidal(_endRotRad, t);
 
-            _player.Camera.OrbitYawRad = Mathf.LerpAngle(
+            Self.Camera.OrbitYawRad = Mathf.LerpAngle(
                 PortalLoadingScreen.EnterLevelCameraYawRad,
                 _endRotRad.Y,
                 t
             );
 
-            _player.Camera.OrbitPitchRad = Mathf.LerpAngle(
+            Self.Camera.OrbitPitchRad = Mathf.LerpAngle(
                 PortalLoadingScreen.EnterLevelCameraPitchRad,
                 0,
                 t
             );
 
-            if (_timer > _player.FlyInDuration)
+            if (_timer > Self.FlyInDuration)
             {
-                _player.ChangeState<PlayerFlyInLandState>();
+                Self.ChangeState<PlayerFlyInLandState>();
             }
         }
 

@@ -86,24 +86,22 @@ namespace FastDragon
                     .ForwardToEulerAnglesRad();
         }
 
-        private partial class EnemyHandCannonerState : State
+        private partial class EnemyHandCannonerState : State<EnemyHandCannoner>
         {
             public virtual bool EnableCollision => true;
-
-            protected EnemyHandCannoner _enemy => _stateMachine.GetParent<EnemyHandCannoner>();
         }
 
         private partial class Sleeping : EnemyHandCannonerState
         {
             public override void OnStateEntered()
             {
-                _enemy._animator.Play("Sleep");
+                Self._animator.Play("Sleep");
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _enemy._targetPlayer = _enemy._aggroSphere.SearchForPlayer();
-                if (_enemy._targetPlayer != null)
+                Self._targetPlayer = Self._aggroSphere.SearchForPlayer();
+                if (Self._targetPlayer != null)
                     ChangeState<WakingUp>();
             }
         }
@@ -112,14 +110,14 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _enemy._animator.Play("WakeUp", 0.1f);
+                Self._animator.Play("WakeUp", 0.1f);
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _enemy.FaceTargetPlayer();
+                Self.FaceTargetPlayer();
 
-                if (!_enemy._animator.IsPlaying())
+                if (!Self._animator.IsPlaying())
                     ChangeState<Shielding>();
             }
         }
@@ -130,13 +128,13 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _timer = _enemy.ShieldDuration;
-                _enemy._animator.Play("Shield", 0.2f);
+                _timer = Self.ShieldDuration;
+                Self._animator.Play("Shield", 0.2f);
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _enemy.FaceTargetPlayer();
+                Self.FaceTargetPlayer();
                 _timer -= (float)deltaD;
 
                 if (_timer <= 0)
@@ -150,17 +148,17 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _timer = _enemy.AimDuration;
-                _enemy._animator.Play("Aim", 0.2f);
+                _timer = Self.AimDuration;
+                Self._animator.Play("Aim", 0.2f);
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                _enemy.FaceTargetPlayer();
+                Self.FaceTargetPlayer();
                 _timer -= (float)deltaD;
 
                 if (_timer <= 0)
-                    _enemy.FireProjectile();
+                    Self.FireProjectile();
             }
         }
 
@@ -168,12 +166,12 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _enemy._animator.Play("FireRecoil");
+                Self._animator.Play("FireRecoil");
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                if (!_enemy._animator.IsPlaying())
+                if (!Self._animator.IsPlaying())
                     ChangeState<Shielding>();
             }
         }
@@ -184,14 +182,14 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _enemy.FaceTargetPlayer();
-                _enemy.EmitSignal(EnemyHandCannoner.SignalName.Killed);
-                _enemy._animator.Play("Death");
+                Self.FaceTargetPlayer();
+                Self.EmitSignal(EnemyHandCannoner.SignalName.Killed);
+                Self._animator.Play("Death");
             }
 
             public override void _PhysicsProcess(double delta)
             {
-                if (!_enemy._animator.IsPlaying())
+                if (!Self._animator.IsPlaying())
                     ChangeState<Dead>();
             }
         }
@@ -202,14 +200,14 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _enemy._model.Visible = false;
-                _enemy._blobShadow.Visible = false;
+                Self._model.Visible = false;
+                Self._blobShadow.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _enemy._model.Visible = true;
-                _enemy._blobShadow.Visible = true;
+                Self._model.Visible = true;
+                Self._blobShadow.Visible = true;
             }
         }
     }

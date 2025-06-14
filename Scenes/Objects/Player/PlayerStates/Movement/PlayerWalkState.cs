@@ -15,12 +15,12 @@ namespace FastDragon
         private float _sideFlipWindowTimer;
         private float _boundJumpWindowTimer;
 
-        public override void OnStateEntered(State oldState)
+        public override void OnStateEntered(IState oldState)
         {
-            _player.Animator.Play(RunAnim);
+            Self.Animator.Play(RunAnim);
 
-            if (_player.Velocity.Length() < Player.Walk.MinSpeed)
-                _player.FSpeed = Player.Walk.MinSpeed;
+            if (Self.Velocity.Length() < Player.Walk.MinSpeed)
+                Self.FSpeed = Player.Walk.MinSpeed;
 
             _sideFlipDisableTimer = Player.Walk.MinTimeBeforeSideFlip;
             _sideFlipWindowTimer = 0;
@@ -38,7 +38,7 @@ namespace FastDragon
             // The player can use this to delay setting their last safe position,
             // effectively using it as a "remote teleport" by jumping into the
             // water.
-            if (_player.EarlyJumpBufferTimer > 0)
+            if (Self.EarlyJumpBufferTimer > 0)
             {
                 Jump();
             }
@@ -47,29 +47,29 @@ namespace FastDragon
         public override void OnStateExited()
         {
             ResetModelPitch();
-            _player.Animator.SpeedScale = 1;
-            _player.Model.Position = Vector3.Zero;
+            Self.Animator.SpeedScale = 1;
+            Self.Model.Position = Vector3.Zero;
         }
 
         public override void _Process(double deltaD)
         {
             // Adjust the animation speed to match our actual speed
-            float animLen = (float)_player.Animator.CurrentAnimationLength;
+            float animLen = (float)Self.Animator.CurrentAnimationLength;
             float distancePerCycle = StrideLength * 2;
-            float speed = _player.Velocity.Length();
+            float speed = Self.Velocity.Length();
             float speedScale = speed * animLen / distancePerCycle;
-            _player.Animator.SpeedScale = speedScale;
+            Self.Animator.SpeedScale = speedScale;
 
             // Add a little "bounce" to the step.
             // This isn't part of the animation because its height needs to vary
             // according to the speed
             float height = BounceHeight / speedScale;
-            float interval = (float)_player.Animator.CurrentAnimationLength / 2;
-            float t = (float)(_player.Animator.CurrentAnimationPosition / interval);
-            _player.Model.Position = Vector3.Up * height * Parabola(t);
+            float interval = (float)Self.Animator.CurrentAnimationLength / 2;
+            float t = (float)(Self.Animator.CurrentAnimationPosition / interval);
+            Self.Model.Position = Vector3.Up * height * Parabola(t);
 
             // Angle the model pitch by our speed
-            _player.ModelPitchRad = -Mathf.LerpAngle(
+            Self.ModelPitchRad = -Mathf.LerpAngle(
                 0,
                 Player.Walk.MaxRunTiltRad,
                 Mathf.Min(speed / Player.Walk.Speed, 1)
@@ -86,13 +86,13 @@ namespace FastDragon
 
             if (InputService.RollJustPressed(ev))
             {
-                _player.ChangeState<PlayerRollState>();
+                Self.ChangeState<PlayerRollState>();
                 return;
             }
 
             if (InputService.KickJustPressed(ev))
             {
-                _player.ChangeState<PlayerKickState>();
+                Self.ChangeState<PlayerKickState>();
                 return;
             }
         }
@@ -107,20 +107,20 @@ namespace FastDragon
 
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
             RotateInstantlyTowardVelocity();
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
             UpdateLastSafeGroundPos();
 
             PlaySkidAnimIfTurningHard();
 
-            if (!_player.IsOnFloor())
+            if (!Self.IsOnFloor())
             {
-                _player.ChangeState<PlayerFlopState>();
+                Self.ChangeState<PlayerFlopState>();
                 return;
             }
 
-            if (_player.Velocity.Length() < Player.Walk.MinSpeed)
+            if (Self.Velocity.Length() < Player.Walk.MinSpeed)
             {
-                _player.ChangeState<PlayerStandState>();
+                Self.ChangeState<PlayerStandState>();
                 return;
             }
         }
@@ -128,27 +128,27 @@ namespace FastDragon
         private void Jump()
         {
             if (_sideFlipWindowTimer > 0 && _sideFlipDisableTimer <= 0)
-                _player.ChangeState<PlayerSideFlipState>();
+                Self.ChangeState<PlayerSideFlipState>();
             else if (_boundJumpWindowTimer > 0)
-                _player.ChangeState<PlayerBoundJumpState>();
+                Self.ChangeState<PlayerBoundJumpState>();
             else
-                _player.ChangeState<PlayerWalkJumpState>();
+                Self.ChangeState<PlayerWalkJumpState>();
         }
 
         private void PlaySkidAnimIfTurningHard()
         {
-            float leftStickForwardComponent = LeftStick3D().ComponentAlong(_player.GlobalForward());
-            bool playingSkid = _player.Animator.AssignedAnimation == SkidAnim;
+            float leftStickForwardComponent = LeftStick3D().ComponentAlong(Self.GlobalForward());
+            bool playingSkid = Self.Animator.AssignedAnimation == SkidAnim;
 
             if (leftStickForwardComponent < 0 && !playingSkid)
             {
-                _player.Animator.Play(SkidAnim);
+                Self.Animator.Play(SkidAnim);
                 _sideFlipWindowTimer = Player.SideFlip.TimeWindow;
             }
 
             if (leftStickForwardComponent >= 0 && playingSkid)
             {
-                _player.Animator.Play(RunAnim);
+                Self.Animator.Play(RunAnim);
             }
         }
 

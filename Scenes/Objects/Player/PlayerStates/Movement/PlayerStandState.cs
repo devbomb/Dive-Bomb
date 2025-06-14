@@ -7,7 +7,7 @@ namespace FastDragon
     {
         public override void OnStateEntered()
         {
-            _player.Animator.Play("Idle");
+            Self.Animator.Play("Idle");
         }
 
         public override void OnStateExited()
@@ -19,19 +19,19 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                _player.ChangeState<PlayerWalkJumpState>();
+                Self.ChangeState<PlayerWalkJumpState>();
                 return;
             }
 
             if (InputService.KickJustPressed(ev))
             {
-                _player.ChangeState<PlayerKickState>();
+                Self.ChangeState<PlayerKickState>();
                 return;
             }
 
             if (InputService.RollJustPressed(ev))
             {
-                _player.ChangeState<PlayerRollState>();
+                Self.ChangeState<PlayerRollState>();
                 return;
             }
         }
@@ -39,13 +39,13 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
-            _player.Velocity = _player.Velocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
-            _player.MoveAndSlide();
+            Self.Velocity = Self.Velocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
+            Self.MoveAndSlide();
             UpdateLastSafeGroundPos();
 
-            if (!_player.IsOnFloor())
+            if (!Self.IsOnFloor())
             {
-                _player.ChangeState<PlayerFlopState>();
+                Self.ChangeState<PlayerFlopState>();
                 return;
             }
 
@@ -56,7 +56,7 @@ namespace FastDragon
                 // gradually turning like normal.  Otherwise, you'd walk in a
                 // wide circle like in Mario 64.
                 RotateInstantlyTowardLeftStick();
-                _player.ChangeState<PlayerWalkState>();
+                Self.ChangeState<PlayerWalkState>();
                 return;
             }
         }

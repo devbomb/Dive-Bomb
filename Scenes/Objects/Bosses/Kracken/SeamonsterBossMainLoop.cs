@@ -56,44 +56,44 @@ namespace FastDragon
             _currentSpawnPos = _rng.PickFrom(SpawnPoints).GlobalTransform;
         }
 
-        private partial class Submerging : SeamonsterBossState
+        private partial class Submerging : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
-                _self.HidePowerOrbs();
-                _self.PlayAnimation("Submerge");
-                _self._leftSplashTentacle.Submerge();
-                _self._rightSplashTentacle.Submerge();
+                Self.HidePowerOrbs();
+                Self.PlayAnimation("Submerge");
+                Self._leftSplashTentacle.Submerge();
+                Self._rightSplashTentacle.Submerge();
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                if (_self.CurrentAnimation() != "Submerge")
+                if (Self.CurrentAnimation() != "Submerge")
                 {
-                    _self.RandomizeSpawnPoint();
+                    Self.RandomizeSpawnPoint();
                     ChangeState<Submerged>();
                 }
             }
         }
 
-        private partial class Submerged : SeamonsterBossState
+        private partial class Submerged : State<SeamonsterBoss>
         {
             private float _timer;
 
             public override void OnStateEntered()
             {
-                _self.Visible = false;
+                Self.Visible = false;
 
-                _self.GlobalTransform = _self._currentSpawnPos;
-                _self.GlobalPosition += Vector3.Up * _self.SubmergeDepth;
-                _self.ResetPhysicsInterpolation();
+                Self.GlobalTransform = Self._currentSpawnPos;
+                Self.GlobalPosition += Vector3.Up * Self.SubmergeDepth;
+                Self.ResetPhysicsInterpolation();
 
-                _timer = _self.SubmergedDuration;
+                _timer = Self.SubmergedDuration;
             }
 
             public override void OnStateExited()
             {
-                _self.Visible = true;
+                Self.Visible = true;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -105,21 +105,21 @@ namespace FastDragon
             }
         }
 
-        private partial class Surfacing : SeamonsterBossState
+        private partial class Surfacing : State<SeamonsterBoss>
         {
             private float _timer;
 
             public override void OnStateEntered()
             {
-                _self.GlobalTransform = _self._currentSpawnPos;
-                _self.ResetPhysicsInterpolation();
+                Self.GlobalTransform = Self._currentSpawnPos;
+                Self.ResetPhysicsInterpolation();
 
-                _timer = _self.SurfacingDuration;
+                _timer = Self.SurfacingDuration;
 
-                _self.RevealPowerOrbs();
-                _self.PlayAnimation("Surface");
-                _self._leftSplashTentacle.Surface();
-                _self._rightSplashTentacle.Surface();
+                Self.RevealPowerOrbs();
+                Self.PlayAnimation("Surface");
+                Self._leftSplashTentacle.Surface();
+                Self._rightSplashTentacle.Surface();
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -131,22 +131,22 @@ namespace FastDragon
             }
         }
 
-        private partial class Vulnerable : SeamonsterBossState
+        private partial class Vulnerable : State<SeamonsterBoss>
         {
             private float _timer;
 
             public override void OnStateEntered()
             {
-                _self.ShowWeakPoint(true);
-                _self._weakPoint.Broken += OnDamagedByPlayer;
+                Self.ShowWeakPoint(true);
+                Self._weakPoint.Broken += OnDamagedByPlayer;
 
-                _timer = _self.VulnerableDuration;
+                _timer = Self.VulnerableDuration;
             }
 
             public override void OnStateExited()
             {
-                _self.ShowWeakPoint(false);
-                _self._weakPoint.Broken -= OnDamagedByPlayer;
+                Self.ShowWeakPoint(false);
+                Self._weakPoint.Broken -= OnDamagedByPlayer;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -159,14 +159,14 @@ namespace FastDragon
 
             private void OnDamagedByPlayer()
             {
-                _self._health.Damage();
+                Self._health.Damage();
 
                 GetTree().FindNode<Player>().ChangeState<PlayerBonkState>();
                 ChangeState<Damaged>();
             }
         }
 
-        private partial class Damaged : SeamonsterBossState
+        private partial class Damaged : State<SeamonsterBoss>
         {
             private float _timer;
             private Vector3 _startPos;
@@ -176,29 +176,29 @@ namespace FastDragon
             {
                 _timer = 0;
 
-                _startPos = _self.GlobalPosition;
-                _endPos = _startPos - (_self.GlobalForward() * _self.HurtKnockbackDistance);
-                _self.PlayAnimation("Damaged");
+                _startPos = Self.GlobalPosition;
+                _endPos = _startPos - (Self.GlobalForward() * Self.HurtKnockbackDistance);
+                Self.PlayAnimation("Damaged");
 
-                if (_self._health.CurrentHealth <= 0)
+                if (Self._health.CurrentHealth <= 0)
                 {
-                    _self._leftSplashTentacle.Submerge();
-                    _self._rightSplashTentacle.Submerge();
+                    Self._leftSplashTentacle.Submerge();
+                    Self._rightSplashTentacle.Submerge();
                 }
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
-                float t = _timer / _self.HurtKnockbackDuration;
+                float t = _timer / Self.HurtKnockbackDuration;
                 t = Mathf.Sqrt(t);
                 t = Mathf.Min(t * 2, 1);
 
-                _self.GlobalPosition = _startPos.Lerp(_endPos, t);
+                Self.GlobalPosition = _startPos.Lerp(_endPos, t);
 
-                if (_timer >= _self.HurtKnockbackDuration)
+                if (_timer >= Self.HurtKnockbackDuration)
                 {
-                    if (_self._health.CurrentHealth > 0)
+                    if (Self._health.CurrentHealth > 0)
                         ChangeState<AcidSplashesSubmerging>();
                     else
                         ChangeState<Dying>();
@@ -206,12 +206,12 @@ namespace FastDragon
             }
         }
 
-        private partial class Dying : SeamonsterBossState
+        private partial class Dying : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
-                _self.UseCameraAngle(_self._deathAnimationCameraPos.GlobalTransform);
-                _self.PlayAnimation("Dying");
+                Self.UseCameraAngle(Self._deathAnimationCameraPos.GlobalTransform);
+                Self.PlayAnimation("Dying");
 
                 // Clear out all of the permanent acid splashes
                 var splashes = GetTree().Root.EnumerateDescendantsOfType<FallingAcidBlob>();
@@ -220,55 +220,55 @@ namespace FastDragon
 
                 // Don't let the player run around and die during the cutscene
                 GetTree().Paused = true;
-                _self.ProcessMode = ProcessModeEnum.Always;
+                Self.ProcessMode = ProcessModeEnum.Always;
                 GetTree().FindNode<PlayerCamera>().ProcessMode = ProcessModeEnum.Always;
             }
 
             public override void OnStateExited()
             {
                 GetTree().Paused = false;
-                _self.ProcessMode = ProcessModeEnum.Inherit;
+                Self.ProcessMode = ProcessModeEnum.Inherit;
                 GetTree().FindNode<PlayerCamera>().ProcessMode = ProcessModeEnum.Inherit;
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
-                if (_self.CurrentAnimation() != "Dying")
+                if (Self.CurrentAnimation() != "Dying")
                     ChangeState<Dead>();
             }
         }
 
-        private partial class Dead : SeamonsterBossState
+        private partial class Dead : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
-                _self.UseBossCameraAngle();
-                _self.ReturnHomeVortex.Reveal();
+                Self.UseBossCameraAngle();
+                Self.ReturnHomeVortex.Reveal();
 
-                _self._bossHud.Visible = false;
+                Self._bossHud.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _self._bossHud.Visible = true;
+                Self._bossHud.Visible = true;
             }
         }
 
-        private partial class Laughing : SeamonsterBossState
+        private partial class Laughing : State<SeamonsterBoss>
         {
             private float _timer;
 
             public override void OnStateEntered()
             {
-                _timer = _self.LaughingDuration;
-                _self.PlayAnimation("Laugh", true);
+                _timer = Self.LaughingDuration;
+                Self.PlayAnimation("Laugh", true);
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer -= (float)deltaD;
 
-                if (_self.AllPowerOrbsBroken())
+                if (Self.AllPowerOrbsBroken())
                 {
                     ChangeState<Vulnerable>();
                     return;

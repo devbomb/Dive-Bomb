@@ -12,19 +12,19 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Velocity = Vector3.Zero;
+            Self.Velocity = Vector3.Zero;
 
-            _timer = _player.Animator.GetAnimation(RecoverAnim).Length;
-            _player.Animator.Play(RecoverAnim, customBlend: 0);
-            _player.Animator.Advance(0);
+            _timer = Self.Animator.GetAnimation(RecoverAnim).Length;
+            Self.Animator.Play(RecoverAnim, customBlend: 0);
+            Self.Animator.Advance(0);
         }
 
         public override void _PhysicsProcess(double deltaD)
         {
             _timer -= (float)deltaD;
 
-            if (!_player.Animator.IsPlaying())
-                _player.ChangeState<PlayerStandState>();
+            if (!Self.Animator.IsPlaying())
+                Self.ChangeState<PlayerStandState>();
         }
     }
 }

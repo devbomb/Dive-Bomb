@@ -17,7 +17,7 @@ namespace FastDragon
         private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
         private Control _bossHud => GetNode<Control>("%BossHUD");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(SeamonsterBossState));
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<SeamonsterBoss>));
         private readonly Random _rng = new Random();
 
         private Transform3D _currentSpawnPos;
@@ -83,26 +83,21 @@ namespace FastDragon
 
         private string CurrentAnimation() => _animationTree.CurrentState();
 
-        private abstract partial class SeamonsterBossState : State
-        {
-            protected SeamonsterBoss _self => _stateMachine.GetParent<SeamonsterBoss>();
-        }
-
-        private partial class WaitingToRespawn : SeamonsterBossState
+        private partial class WaitingToRespawn : State<SeamonsterBoss>
         {
             private int _timer;
 
             public override void OnStateEntered()
             {
                 _timer = 2;
-                _self.Visible = false;
-                _self._bossHud.Visible = false;
+                Self.Visible = false;
+                Self._bossHud.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _self.Visible = true;
-                _self._bossHud.Visible = true;
+                Self.Visible = true;
+                Self._bossHud.Visible = true;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -110,7 +105,7 @@ namespace FastDragon
                 _timer--;
 
                 if (_timer <= 0)
-                    _self.Respawn();
+                    Self.Respawn();
             }
         }
     }

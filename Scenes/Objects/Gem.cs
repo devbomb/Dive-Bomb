@@ -37,7 +37,7 @@ namespace FastDragon
         private Node _visibleEnablerParent;
 
         private Transform3D _initialPos;
-        private StateMachine _stateMachine = new StateMachine(typeof(GemState));
+        private StateMachine _stateMachine = new StateMachine(typeof(State<Gem>));
 
         public override void _Ready()
         {
@@ -123,7 +123,7 @@ namespace FastDragon
             }
         }
 
-        private void ChangeState<TState>() where TState : GemState, new()
+        private void ChangeState<TState>() where TState : State<Gem>, new()
         {
             _stateMachine.ChangeState<TState>();
         }
@@ -152,31 +152,31 @@ namespace FastDragon
             }
         }
 
-        private partial class Hidden : GemState
+        private partial class Hidden : State<Gem>
         {
             public override void OnStateEntered()
             {
-                _gem.Visible = false;
+                Self.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _gem.Visible = true;
+                Self.Visible = true;
             }
         }
-        private partial class Revealed : GemState
+        private partial class Revealed : State<Gem>
         {
             private float _flameChargeWindowTimer = 0;
-            private Area3D _flameChargeArea => _gem.GetNode<Area3D>("%FlameChargeArea");
+            private Area3D _flameChargeArea => Self.GetNode<Area3D>("%FlameChargeArea");
 
             public override void OnStateEntered()
             {
                 SetCollision(true);
-                _gem.TouchedGroundOnce = false;
+                Self.TouchedGroundOnce = false;
 
-                if (_gem.StartHidden)
+                if (Self.StartHidden)
                 {
-                    _gem.Velocity = Vector3.Up * RevealJumpVelocity;
+                    Self.Velocity = Vector3.Up * RevealJumpVelocity;
                     _flameChargeWindowTimer = FlameChargeWindowDuration;
                 }
             }
@@ -190,18 +190,18 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
-                if (!_gem.TouchedGroundOnce)
+                if (!Self.TouchedGroundOnce)
                 {
-                    _gem.Velocity += Vector3.Down * Gravity * delta;
+                    Self.Velocity += Vector3.Down * Gravity * delta;
 
-                    var collision = _gem.MoveAndCollide(_gem.Velocity * delta);
+                    var collision = Self.MoveAndCollide(Self.Velocity * delta);
                     if (collision != null)
                     {
-                        _gem.Velocity = Vector3.Zero;
+                        Self.Velocity = Vector3.Zero;
 
                         if (collision.GetCollider() is StaticBody3D)
                         {
-                            _gem.TouchedGroundOnce = true;
+                            Self.TouchedGroundOnce = true;
                             SetCollision(false);
                         }
                     }
@@ -221,36 +221,36 @@ namespace FastDragon
                     .Any(n => n is Player);
 
                 if (shouldHomeIn)
-                    _gem.StartHomingIn();
+                    Self.StartHomingIn();
             }
 
             private void SetCollision(bool enabled)
             {
-                _gem.GetNode<CollisionShape3D>("%PhysicsShape")
+                Self.GetNode<CollisionShape3D>("%PhysicsShape")
                     .SetDeferred("disabled", !enabled);
             }
         }
-        private partial class Homing : GemState
+        private partial class Homing : State<Gem>
         {
             private Vector3 _homingStartPos;
             private float _homingTimer;
 
             public override void OnStateEntered()
             {
-                _homingStartPos = _gem.GlobalPosition;
+                _homingStartPos = Self.GlobalPosition;
                 _homingTimer = 0;
-                _gem._homeInSound.Play();
+                Self._homeInSound.Play();
 
                 // HACK: Don't let the gem fall asleep when going off-screen,
                 // so the player doesn't get screwed over for moving too fast.
                 // Do this by temporarily removing the visibility detector while
                 // in this state.
-                _gem.DisableVisibilityEnabler();
+                Self.DisableVisibilityEnabler();
             }
 
             public override void OnStateExited()
             {
-                _gem.EnableVisibilityEnabler();
+                Self.EnableVisibilityEnabler();
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -262,24 +262,24 @@ namespace FastDragon
                 t = FastSlowFast(t, 1.4f);
 
                 Vector3 start = _homingStartPos;
-                Vector3 end = _gem.GetPlayer().GlobalPosition + (Vector3.Up * 0.25f);
+                Vector3 end = Self.GetPlayer().GlobalPosition + (Vector3.Up * 0.25f);
                 Vector3 control = GetTree().Root.GetCamera3D().GlobalPosition + (Vector3.Up * 3);
 
-                _gem.GlobalPosition = start.LerpBezier(end, control, t);
+                Self.GlobalPosition = start.LerpBezier(end, control, t);
 
-                Vector3 forward = (_gem.GlobalPosition - control).Normalized();
+                Vector3 forward = (Self.GlobalPosition - control).Normalized();
                 Vector3 targetRot = forward.ForwardToEulerAnglesRad();
 
                 float decayRate = 5f;
-                _gem.GlobalRotation = new Vector3(
-                    AngleMath.DecayToward(_gem.GlobalRotation.X, targetRot.X, decayRate, delta),
-                    AngleMath.DecayToward(_gem.GlobalRotation.Y, targetRot.Y, decayRate, delta),
-                    AngleMath.DecayToward(_gem.GlobalRotation.Z, targetRot.Z, decayRate, delta)
+                Self.GlobalRotation = new Vector3(
+                    AngleMath.DecayToward(Self.GlobalRotation.X, targetRot.X, decayRate, delta),
+                    AngleMath.DecayToward(Self.GlobalRotation.Y, targetRot.Y, decayRate, delta),
+                    AngleMath.DecayToward(Self.GlobalRotation.Z, targetRot.Z, decayRate, delta)
                 );
 
                 if (_homingTimer >= HomingDuration)
                 {
-                    _gem.Collect();
+                    Self.Collect();
                 }
             }
 
@@ -289,11 +289,6 @@ namespace FastDragon
                 float c = Mathf.Sign(t) * Mathf.Pow(Mathf.Abs(t), exponent);
                 return (c + 1) / 2;
             }
-        }
-
-        private abstract partial class GemState : State
-        {
-            protected Gem _gem => _stateMachine.GetParent<Gem>();
         }
     }
 }

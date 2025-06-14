@@ -5,17 +5,17 @@ namespace FastDragon
 {
     public partial class PlayerBonkState : PlayerState
     {
-        private AudioStreamPlayer _bonkSoundPlayer => _player.GetNode<AudioStreamPlayer>("%BonkSoundPlayer");
+        private AudioStreamPlayer _bonkSoundPlayer => Self.GetNode<AudioStreamPlayer>("%BonkSoundPlayer");
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("Bonk", 0);
-            _player.Velocity = _player.GlobalForward() * -Player.Bonk.InitHSpeed;
-            _player.Velocity += Vector3.Up * Player.Bonk.InitVSpeed;
+            Self.Animator.Play("Bonk", 0);
+            Self.Velocity = Self.GlobalForward() * -Player.Bonk.InitHSpeed;
+            Self.Velocity += Vector3.Up * Player.Bonk.InitVSpeed;
 
             _bonkSoundPlayer.Play();
 
-            _player.Camera.Shake(
+            Self.Camera.Shake(
                 magnitude: new Vector2(0, 1),
                 frequency: new Vector2(0, 15),
                 duration: 0.25f
@@ -27,18 +27,18 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             // Slow down horizontally, but not vertically
-            Vector3 newVel = _player.Velocity.Flattened();
+            Vector3 newVel = Self.Velocity.Flattened();
             newVel = newVel.MoveToward(Vector3.Zero, Player.Bonk.Friction * delta);
-            newVel.Y = _player.Velocity.Y;
-            _player.Velocity = newVel;
+            newVel.Y = Self.Velocity.Y;
+            Self.Velocity = newVel;
 
             ApplyGravity(delta, Player.Bonk.Gravity);
 
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
-            if (_player.IsOnFloor())
+            if (Self.IsOnFloor())
             {
-                _player.ChangeState<PlayerBonkRecoverState>();
+                Self.ChangeState<PlayerBonkRecoverState>();
                 return;
             }
         }

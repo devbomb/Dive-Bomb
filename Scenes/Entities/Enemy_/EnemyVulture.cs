@@ -65,10 +65,7 @@ namespace FastDragon
             _aggroSphere.Radius = AggroRange;
         }
 
-        private partial class VultureState : State
-        {
-            protected EnemyVulture _vulture => _stateMachine.GetParent<EnemyVulture>();
-        }
+        private partial class VultureState : State<EnemyVulture> {}
 
         private partial class Idle : VultureState
         {
@@ -76,11 +73,11 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _vulture.GlobalPosition = _vulture._spawnPoint;
-                _vulture.ResetPhysicsInterpolation3D();
+                Self.GlobalPosition = Self._spawnPoint;
+                Self.ResetPhysicsInterpolation3D();
                 _framesToWait = 2;
 
-                _vulture._animator.Play("Idle");
+                Self._animator.Play("Idle");
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -104,12 +101,12 @@ namespace FastDragon
                     return;
                 }
 
-                _vulture.GlobalRotation = _vulture.GlobalRotation.RotateTowardEulerRad(
-                    _vulture._spawnRotation,
+                Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
+                    Self._spawnRotation,
                     Mathf.DegToRad(RotSpeedDeg) * delta
                 );
 
-                var player = _vulture._aggroSphere.SearchForPlayer();
+                var player = Self._aggroSphere.SearchForPlayer();
                 if (player != null)
                     ChangeState<Chasing>();
             }
@@ -122,10 +119,10 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _targetPlayer = _vulture._aggroSphere.SearchForPlayer();
+                _targetPlayer = Self._aggroSphere.SearchForPlayer();
                 _fspeed = 0;
-                _vulture.Velocity = Vector3.Zero;
-                _vulture._animator.Play("Fly");
+                Self.Velocity = Vector3.Zero;
+                Self._animator.Play("Fly");
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -133,11 +130,11 @@ namespace FastDragon
                 float delta = (float)deltaD;
 
                 _fspeed = Mathf.MoveToward(_fspeed, MaxSpeed, delta * Accel);
-                _vulture.Velocity = _fspeed * _vulture.GlobalPosition.DirectionTo(_targetPlayer.GlobalPosition);
-                _vulture.MoveAndSlide();
+                Self.Velocity = _fspeed * Self.GlobalPosition.DirectionTo(_targetPlayer.GlobalPosition);
+                Self.MoveAndSlide();
 
-                _vulture.GlobalRotation = _vulture.GlobalRotation.RotateTowardEulerRad(
-                    _vulture.Velocity.Normalized().ForwardToEulerAnglesRad(),
+                Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
+                    Self.Velocity.Normalized().ForwardToEulerAnglesRad(),
                     Mathf.DegToRad(RotSpeedDeg) * delta
                 );
 
@@ -147,10 +144,10 @@ namespace FastDragon
 
             private bool IsTouchingPlayer()
             {
-                int collisionCount = _vulture.GetSlideCollisionCount();
+                int collisionCount = Self.GetSlideCollisionCount();
                 for (int i = 0; i < collisionCount; i++)
                 {
-                    var collision = _vulture.GetSlideCollision(i);
+                    var collision = Self.GetSlideCollision(i);
                     int colliderCount = collision.GetCollisionCount();
                     for (int j = 0; j < colliderCount; j++)
                     {
@@ -176,28 +173,28 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _vulture._animator.Play("Fly");
+                Self._animator.Play("Fly");
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 float delta = (float)deltaD;
 
-                _vulture.GlobalPosition = _vulture.GlobalPosition.MoveToward(
-                    _vulture._spawnPoint,
+                Self.GlobalPosition = Self.GlobalPosition.MoveToward(
+                    Self._spawnPoint,
                     MaxSpeed * delta
                 );
 
-                Vector3 targetRot = _vulture.GlobalPosition
-                    .DirectionTo(_vulture._spawnPoint)
+                Vector3 targetRot = Self.GlobalPosition
+                    .DirectionTo(Self._spawnPoint)
                     .ForwardToEulerAnglesRad();
 
-                _vulture.GlobalRotation = _vulture.GlobalRotation.RotateTowardEulerRad(
+                Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
                     targetRot,
                     Mathf.DegToRad(RotSpeedDeg) * delta
                 );
 
-                if (_vulture.Position.IsEqualApprox(_vulture._spawnPoint))
+                if (Self.Position.IsEqualApprox(Self._spawnPoint))
                 {
                     ChangeState<Idle>();
                 }
@@ -208,15 +205,15 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _vulture._bodyShape.Disabled = true;
-                _vulture._model.Visible = false;
-                _vulture.EmitSignal(EnemyVulture.SignalName.Killed);
+                Self._bodyShape.Disabled = true;
+                Self._model.Visible = false;
+                Self.EmitSignal(EnemyVulture.SignalName.Killed);
             }
 
             public override void OnStateExited()
             {
-                _vulture._bodyShape.Disabled = false;
-                _vulture._model.Visible = true;
+                Self._bodyShape.Disabled = false;
+                Self._model.Visible = true;
             }
         }
     }

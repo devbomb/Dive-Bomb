@@ -8,31 +8,31 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            float climbAnimLen = _player.Animator.GetAnimation("Roll").Length;
-            _player.Animator.Play(
+            float climbAnimLen = Self.Animator.GetAnimation("Roll").Length;
+            Self.Animator.Play(
                 "Roll",
                 customBlend: 0.125f,
                 customSpeed: climbAnimLen / 0.5f
             );
 
-            _player.VSpeed = Player.LedgeClimb.InitVSpeed;
-            _player.FSpeed = Player.LedgeClimb.FSpeed;
+            Self.VSpeed = Player.LedgeClimb.InitVSpeed;
+            Self.FSpeed = Player.LedgeClimb.FSpeed;
 
-            _endHeight = _player.LedgeGrabPoint.GlobalPosition.Y;
+            _endHeight = Self.LedgeGrabPoint.GlobalPosition.Y;
         }
 
         public override void OnStateExited()
         {
-            _player.Animator.Play("RESET", customBlend: 0);
-            _player.Animator.Advance(0);
+            Self.Animator.Play("RESET", customBlend: 0);
+            Self.Animator.Advance(0);
         }
 
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
 
-            if (_player.GlobalPosition.Y < _endHeight)
-                _player.FSpeed = Player.LedgeClimb.FSpeed;
+            if (Self.GlobalPosition.Y < _endHeight)
+                Self.FSpeed = Player.LedgeClimb.FSpeed;
             else
             {
                 RotateTowardLeftStick(Player.Jump.RotSpeedRad, delta);
@@ -44,10 +44,10 @@ namespace FastDragon
             }
 
             ApplyGravity(delta, Player.LedgeClimb.Gravity);
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
-            if (_player.IsOnFloor())
-                _player.ChangeState<PlayerWalkState>();
+            if (Self.IsOnFloor())
+                Self.ChangeState<PlayerWalkState>();
         }
     }
 }

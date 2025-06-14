@@ -287,7 +287,7 @@ namespace FastDragon
             _stateMachine.ChangeState<TState>();
         }
 
-        private void OnStateChanging(State currentState, State incomingState)
+        private void OnStateChanging(IState currentState, IState incomingState)
         {
             GD.Print($"Changing state to {incomingState.GetType().Name}");
         }

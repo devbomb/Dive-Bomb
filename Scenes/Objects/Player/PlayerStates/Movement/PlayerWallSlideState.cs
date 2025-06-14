@@ -17,12 +17,12 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            _player.Animator.Play("WallSlide");
+            Self.Animator.Play("WallSlide");
 
-            _lastWallNormal = _player.GetWallNormal();
+            _lastWallNormal = Self.GetWallNormal();
             RotateToFaceWall();
 
-            if (_player.EarlyJumpBufferTimer > 0)
+            if (Self.EarlyJumpBufferTimer > 0)
             {
                 TryWallJump();
             }
@@ -39,20 +39,20 @@ namespace FastDragon
             );
 
             ApplyGravity(delta, Player.Default.Gravity);
-            _player.MoveAndSlide();
+            Self.MoveAndSlide();
 
             if (TryGrabLedge())
                 return;
 
-            if (_player.IsOnFloor())
+            if (Self.IsOnFloor())
             {
-                _player.ChangeState<PlayerWalkState>();
+                Self.ChangeState<PlayerWalkState>();
                 return;
             }
 
             if (!StillOnWall())
             {
-                _player.ChangeState<PlayerFlopState>();
+                Self.ChangeState<PlayerFlopState>();
                 return;
             }
 
@@ -62,8 +62,8 @@ namespace FastDragon
         private bool StillOnWall()
         {
             var collision = new KinematicCollision3D();
-            bool onWall = _player.TestMove(
-                _player.GlobalTransform,
+            bool onWall = Self.TestMove(
+                Self.GlobalTransform,
                 -_lastWallNormal * 0.01f,
                 collision,
                 recoveryAsCollision: true
@@ -80,14 +80,14 @@ namespace FastDragon
 
         private void RotateToFaceWall()
         {
-            _player.GlobalRotation = (-_lastWallNormal)
+            Self.GlobalRotation = (-_lastWallNormal)
                 .Flattened()
                 .ForwardToEulerAnglesRad();
         }
 
         private void RotateToFaceAwayFromWall()
         {
-            _player.GlobalRotation = _lastWallNormal
+            Self.GlobalRotation = _lastWallNormal
                 .Flattened()
                 .ForwardToEulerAnglesRad();
         }
@@ -99,10 +99,10 @@ namespace FastDragon
             //
             // This allows level designers to prevent the player from wall
             // jumping by simply slanting the walls.
-            if (_player.GetWallNormal().Y >= 0)
+            if (Self.GetWallNormal().Y >= 0)
             {
                 RotateToFaceAwayFromWall();
-                _player.ChangeState<PlayerWallJumpState>();
+                Self.ChangeState<PlayerWallJumpState>();
             }
         }
     }

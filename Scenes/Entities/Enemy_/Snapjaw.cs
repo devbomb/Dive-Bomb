@@ -12,7 +12,7 @@ namespace FastDragon
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
         private AnimationTree _animator => GetNode<AnimationTree>("%AnimationTree");
         private Node3D _model => GetNode<Node3D>("%Model");
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(SnapjawState));
+        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<Snapjaw>));
 
         private Vector3 _targetPos;
         private Vector3 _floorPos;
@@ -78,17 +78,12 @@ namespace FastDragon
                     .ForwardToEulerAnglesRad();
         }
 
-        private abstract partial class SnapjawState : State
-        {
-            protected Snapjaw _self => _stateMachine.GetParent<Snapjaw>();
-        }
-
-        private partial class WaitingForCycleStart : SnapjawState
+        private partial class WaitingForCycleStart : State<Snapjaw>
         {
             public override void OnStateEntered()
             {
                 SignalBus.Instance.CycleStarted += OnCycleStarted;
-                _self.MoveToWatchingPosition();
+                Self.MoveToWatchingPosition();
             }
 
             public override void OnStateExited()
@@ -98,19 +93,19 @@ namespace FastDragon
 
             private void OnCycleStarted(string cycleId)
             {
-                if (cycleId == _self.CycleId)
+                if (cycleId == Self.CycleId)
                     ChangeState<WaitingForCycleOffset>();
             }
         }
 
-        private partial class WaitingForCycleOffset : SnapjawState
+        private partial class WaitingForCycleOffset : State<Snapjaw>
         {
             private double _timer;
 
             public override void OnStateEntered()
             {
-                _self.MoveToWatchingPosition();
-                _timer = _self.CycleOffset;
+                Self.MoveToWatchingPosition();
+                _timer = Self.CycleOffset;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -121,7 +116,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Watching : SnapjawState
+        private partial class Watching : State<Snapjaw>
         {
             private const double Duration = 2;
 
@@ -129,16 +124,16 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self.MoveToWatchingPosition();
+                Self.MoveToWatchingPosition();
                 _timer = Duration;
             }
 
             public override void _PhysicsProcess(double delta)
             {
-                _self.GlobalPosition = _self._floorPos;
-                _self.ResetPhysicsInterpolation3D();
+                Self.GlobalPosition = Self._floorPos;
+                Self.ResetPhysicsInterpolation3D();
 
-                _self.FacePlayer();
+                Self.FacePlayer();
 
                 _timer -= delta;
                 if (_timer <= 0)
@@ -146,47 +141,47 @@ namespace FastDragon
             }
         }
 
-        private partial class WindingUp : SnapjawState
+        private partial class WindingUp : State<Snapjaw>
         {
             private double _timer;
 
             public override void OnStateEntered()
             {
-                _timer = _self._animator.GetAnimPlayer().GetAnimation("WindUp").Length;
-                _self.MoveToWatchingPosition();
+                _timer = Self._animator.GetAnimPlayer().GetAnimation("WindUp").Length;
+                Self.MoveToWatchingPosition();
 
-                _self.GlobalPosition = _self._floorPos;
-                _self.ResetPhysicsInterpolation3D();
+                Self.GlobalPosition = Self._floorPos;
+                Self.ResetPhysicsInterpolation3D();
 
-                _self._animator.PlayState("WindUp");
+                Self._animator.PlayState("WindUp");
             }
 
             public override void _PhysicsProcess(double delta)
             {
                 _timer -= delta;
-                _self.GlobalPosition = _self._floorPos;
-                _self.ResetPhysicsInterpolation3D();
+                Self.GlobalPosition = Self._floorPos;
+                Self.ResetPhysicsInterpolation3D();
 
                 if (_timer <= 0)
                     ChangeState<Attacking>();
             }
         }
 
-        private partial class Attacking : SnapjawState
+        private partial class Attacking : State<Snapjaw>
         {
             private double _duration;
             private double _timer;
 
             public override void OnStateEntered()
             {
-                _duration = _self._animator.GetAnimPlayer().GetAnimation("Attack").Length;
+                _duration = Self._animator.GetAnimPlayer().GetAnimation("Attack").Length;
 
                 _timer = 0;
-                _self.GlobalPosition = _self._floorPos;
-                _self.ResetPhysicsInterpolation3D();
-                _self.FacePlayer();
+                Self.GlobalPosition = Self._floorPos;
+                Self.ResetPhysicsInterpolation3D();
+                Self.FacePlayer();
 
-                _self._animator.PlayState("Attack");
+                Self._animator.PlayState("Attack");
             }
 
             public override void _PhysicsProcess(double delta)
@@ -195,14 +190,14 @@ namespace FastDragon
                 float t = (float)(_timer / _duration);
                 t = 1f - Mathf.Pow(t - 1, 4);
 
-                _self.GlobalPosition = _self._floorPos.Lerp(_self._targetPos, t);
+                Self.GlobalPosition = Self._floorPos.Lerp(Self._targetPos, t);
 
                 if (_timer >= _duration)
                     ChangeState<Hovering>();
             }
         }
 
-        private partial class Hovering : SnapjawState
+        private partial class Hovering : State<Snapjaw>
         {
             private const double Duration = 0.5;
 
@@ -211,7 +206,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = Duration;
-                _self.GlobalPosition = _self._targetPos;
+                Self.GlobalPosition = Self._targetPos;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -222,7 +217,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Falling : SnapjawState
+        private partial class Falling : State<Snapjaw>
         {
             private const double Duration = 0.5;
 
@@ -231,15 +226,15 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _self.GlobalPosition = _self._targetPos;
-                _self._animator.GetAnimPlayer().SpeedScale = (float)(1.0 / Duration);
+                Self.GlobalPosition = Self._targetPos;
+                Self._animator.GetAnimPlayer().SpeedScale = (float)(1.0 / Duration);
 
-                _self._animator.PlayState("Fall");
+                Self._animator.PlayState("Fall");
             }
 
             public override void OnStateExited()
             {
-                _self._animator.GetAnimPlayer().SpeedScale = 1;
+                Self._animator.GetAnimPlayer().SpeedScale = 1;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -248,14 +243,14 @@ namespace FastDragon
                 float t = (float)(_timer / Duration);
                 t = Mathf.Pow(t, 2);
 
-                _self.GlobalPosition = _self._targetPos.Lerp(_self._floorPos, t);
+                Self.GlobalPosition = Self._targetPos.Lerp(Self._floorPos, t);
 
                 if (_timer >= Duration)
                     ChangeState<Watching>();
             }
         }
 
-        private partial class DeathFlipping : SnapjawState
+        private partial class DeathFlipping : State<Snapjaw>
         {
             private double _duration;
             private double _timer;
@@ -263,13 +258,13 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _duration = _self._animator.GetAnimPlayer().GetAnimation("DeathFlip").Length;
+                _duration = Self._animator.GetAnimPlayer().GetAnimation("DeathFlip").Length;
                 _timer = 0;
-                _startPos = _self.GlobalPosition;
+                _startPos = Self.GlobalPosition;
 
-                _self._animator.PlayState("DeathFlip");
-                _self.FacePlayer();
-                _self.ResetPhysicsInterpolation3D();
+                Self._animator.PlayState("DeathFlip");
+                Self.FacePlayer();
+                Self.ResetPhysicsInterpolation3D();
             }
 
             public override void _PhysicsProcess(double delta)
@@ -278,14 +273,14 @@ namespace FastDragon
 
                 float t = (float)(2 * _timer / _duration);
                 t = Mathf.Min(t, 1f);
-                _self.GlobalPosition = _startPos.Lerp(_self._targetPos, t);
+                Self.GlobalPosition = _startPos.Lerp(Self._targetPos, t);
 
                 if (_timer >= _duration)
                     ChangeState<DeathFalling>();
             }
         }
 
-        private partial class DeathFalling : SnapjawState
+        private partial class DeathFalling : State<Snapjaw>
         {
             private const double Duration = 0.3;
 
@@ -294,10 +289,10 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _self.GlobalPosition = _self._targetPos;
-                _self._animator.Set("parameters/DeathFall/TimeScale/scale", (float)1.0 / Duration);
+                Self.GlobalPosition = Self._targetPos;
+                Self._animator.Set("parameters/DeathFall/TimeScale/scale", (float)1.0 / Duration);
 
-                _self._animator.PlayState("DeathFall");
+                Self._animator.PlayState("DeathFall");
             }
 
             public override void _PhysicsProcess(double delta)
@@ -306,24 +301,24 @@ namespace FastDragon
                 float t = (float)(_timer / Duration);
                 t = Mathf.Pow(t, 2);
 
-                _self.GlobalPosition = _self._targetPos.Lerp(_self._floorPos, t);
+                Self.GlobalPosition = Self._targetPos.Lerp(Self._floorPos, t);
 
                 if (_timer >= Duration)
                     ChangeState<Dead>();
             }
         }
 
-        private partial class Dead : SnapjawState
+        private partial class Dead : State<Snapjaw>
         {
             public override void OnStateEntered()
             {
-                _self._animator.PlayState("RESET");
-                _self._model.Visible = false;
+                Self._animator.PlayState("RESET");
+                Self._model.Visible = false;
             }
 
             public override void OnStateExited()
             {
-                _self._model.Visible = true;
+                Self._model.Visible = true;
             }
         }
     }

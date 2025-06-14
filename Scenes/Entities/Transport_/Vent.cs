@@ -80,10 +80,9 @@ namespace FastDragon
                 _cooldownTimer -= (float)deltaD;
         }
 
-        private abstract partial class VentState : State
+        private abstract partial class VentState : State<Vent>
         {
-            protected Vent _vent => _stateMachine.GetParent<Vent>();
-            protected Player _player => _vent._player;
+            protected Player Player => Self._player;
         }
 
         private partial class Idle : VentState {}
@@ -99,42 +98,42 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _vent._animator.Play("PlayerEntering");
+                Self._animator.Play("PlayerEntering");
 
-                _player.ChangeState<PlayerManhandledState>();
-                _player.Animator.Play("VentEnter", EnterTweenDuration);
-                _player.Velocity = Vector3.Zero;
+                Player.ChangeState<PlayerManhandledState>();
+                Player.Animator.Play("VentEnter", EnterTweenDuration);
+                Player.Velocity = Vector3.Zero;
 
-                _playerStart = _player.GlobalTransform;
+                _playerStart = Player.GlobalTransform;
                 _playerTimer = 0;
 
                 _camTimer = 0;
-                _cameraStart = _player.Camera.GlobalTransform;
+                _cameraStart = Player.Camera.GlobalTransform;
                 _cameraEnd = ClosestCameraPoint().GlobalTransform;
 
-                _vent._cutsceneCam.GlobalTransform = _cameraStart;
-                _vent._cutsceneCam.MakeCurrent();
-                _vent._cutsceneCam.ResetPhysicsInterpolation3D();
+                Self._cutsceneCam.GlobalTransform = _cameraStart;
+                Self._cutsceneCam.MakeCurrent();
+                Self._cutsceneCam.ResetPhysicsInterpolation3D();
 
                 Node3D ClosestCameraPoint()
                 {
-                    float leftDist = _vent._cameraPointLeft
+                    float leftDist = Self._cameraPointLeft
                         .GlobalPosition
-                        .DistanceTo(_player.Camera.GlobalPosition);
+                        .DistanceTo(Player.Camera.GlobalPosition);
 
-                    float rightDist = _vent._cameraPointRight
+                    float rightDist = Self._cameraPointRight
                         .GlobalPosition
-                        .DistanceTo(_player.Camera.GlobalPosition);
+                        .DistanceTo(Player.Camera.GlobalPosition);
 
                     return leftDist < rightDist
-                        ? _vent._cameraPointLeft
-                        : _vent._cameraPointRight;
+                        ? Self._cameraPointLeft
+                        : Self._cameraPointRight;
                 }
             }
 
             public override void OnStateExited()
             {
-                _player.Camera.MakeCurrent();
+                Player.Camera.MakeCurrent();
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -143,18 +142,18 @@ namespace FastDragon
                 _camTimer += (float)deltaD;
 
                 float camT = Mathf.Min(_camTimer / EnterCameraMoveDuration, 1);
-                _vent._cutsceneCam.GlobalTransform = _cameraStart.InterpolateWith(
+                Self._cutsceneCam.GlobalTransform = _cameraStart.InterpolateWith(
                     _cameraEnd,
                     camT
                 );
 
                 float playerT = Mathf.Min(_playerTimer / EnterTweenDuration, 1);
-                _player.GlobalTransform = _playerStart.InterpolateWith(
-                    _vent.GlobalTransform,
+                Player.GlobalTransform = _playerStart.InterpolateWith(
+                    Self.GlobalTransform,
                     playerT
                 );
 
-                if (!_player.Animator.IsPlaying())
+                if (!Player.Animator.IsPlaying())
                     ChangeState<Moving>();
             }
         }
@@ -171,26 +170,26 @@ namespace FastDragon
                 _timer = 0;
 
                 _camTimer = 0;
-                _camStart = _vent._cutsceneCam.GlobalTransform;
+                _camStart = Self._cutsceneCam.GlobalTransform;
 
-                _player.GlobalTransform = _vent._targetVent._spawnPoint.GlobalTransform;
-                _player.ResetPhysicsInterpolation3D();
+                Player.GlobalTransform = Self._targetVent._spawnPoint.GlobalTransform;
+                Player.ResetPhysicsInterpolation3D();
 
-                _player.Camera.OrbitPitchRad = 0;
-                _player.Camera.OrbitYawRad = _player.YawRad + Mathf.DegToRad(180);
-                _player.Camera.ResetPhysicsInterpolation3D();
+                Player.Camera.OrbitPitchRad = 0;
+                Player.Camera.OrbitYawRad = Player.YawRad + Mathf.DegToRad(180);
+                Player.Camera.ResetPhysicsInterpolation3D();
 
-                _player.Visible = false;
-                _vent._cutsceneCam.MakeCurrent();
+                Player.Visible = false;
+                Self._cutsceneCam.MakeCurrent();
 
-                _vent._crawlSound.Play();
+                Self._crawlSound.Play();
             }
 
             public override void OnStateExited()
             {
-                _player.Visible = true;
-                _player.Camera.MakeCurrent();
-                _vent._crawlSound.Stop();
+                Player.Visible = true;
+                Player.Camera.MakeCurrent();
+                Self._crawlSound.Stop();
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -198,14 +197,14 @@ namespace FastDragon
                 _timer +=(float)deltaD;
 
                 float t = Mathf.Min(_timer / MoveDuration, 1);
-                _vent._cutsceneCam.GlobalTransform = _camStart.InterpolateWith(
-                    _player.Camera.GlobalTransform,
+                Self._cutsceneCam.GlobalTransform = _camStart.InterpolateWith(
+                    Player.Camera.GlobalTransform,
                     t
                 );
 
                 if (_timer >= MoveDuration)
                 {
-                    _vent._targetVent.ExitFrom(_player);
+                    Self._targetVent.ExitFrom(Player);
                     ChangeState<Idle>();
                 }
             }

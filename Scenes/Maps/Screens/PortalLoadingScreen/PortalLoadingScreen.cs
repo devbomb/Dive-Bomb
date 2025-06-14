@@ -167,10 +167,9 @@ namespace FastDragon
 
         }
 
-        private abstract partial class LoadingScreenState : State
+        private abstract partial class LoadingScreenState : State<PortalLoadingScreen>
         {
             public virtual bool Skippable => false;
-            protected PortalLoadingScreen _screen => _stateMachine.GetParent<PortalLoadingScreen>();
 
             public override void _Input(InputEvent ev)
             {
@@ -183,20 +182,20 @@ namespace FastDragon
 
         private partial class Skipping : LoadingScreenState
         {
-            public override void OnStateEntered(State prevState)
+            public override void OnStateEntered(IState prevState)
             {
                 GD.Print("Skipping animations");
                 Log.LoadingScreenSkipped(prevState.GetType().Name);
 
-                var tween = _screen.CreateTween();
-                tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", Vector3.Zero, SkipDuration);
-                tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, SkipDuration);
-                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, SkipDuration);
-                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, SkipDuration);
+                var tween = Self.CreateTween();
+                tween.TweenRotRadSinusoidal(Self._playerModel, "global_rotation", Vector3.Zero, SkipDuration);
+                tween.Parallel().TweenProperty(Self._camera, "OrbitDistance", CameraDist, SkipDuration);
+                tween.Parallel().TweenAngleRadSinusoidal(Self._camera, "OrbitYawRad", Self._cameraYawRad, SkipDuration);
+                tween.Parallel().TweenAngleRadSinusoidal(Self._camera, "OrbitPitchRad", Self._cameraPitchRad, SkipDuration);
                 tween.TweenCallback(Callable.From(() =>
                 {
                     ChangeState<WaitingForAnimations>();
-                    _screen.EmitSignal(PortalLoadingScreen.SignalName.DoneSkipping);
+                    Self.EmitSignal(PortalLoadingScreen.SignalName.DoneSkipping);
                 }));
             }
         }
@@ -211,16 +210,16 @@ namespace FastDragon
             {
                 GD.Print("Started move-to-rest animation");
 
-                _tween = _screen.CreateTween();
-                _tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
-                _tween.Parallel().TweenProperty(_screen._cameraFocus, "global_position", _screen._cameraFocusRestPos.GlobalPosition, RestMoveDuration);
-                _tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, RestMoveDuration);
-                _tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", _screen._cameraYawRad, RestMoveDuration);
-                _tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, RestMoveDuration);
+                _tween = Self.CreateTween();
+                _tween.TweenRotRadSinusoidal(Self._playerModel, "global_rotation", Vector3.Zero, RestMoveDuration);
+                _tween.Parallel().TweenProperty(Self._cameraFocus, "global_position", Self._cameraFocusRestPos.GlobalPosition, RestMoveDuration);
+                _tween.Parallel().TweenProperty(Self._camera, "OrbitDistance", CameraDist, RestMoveDuration);
+                _tween.Parallel().TweenAngleRadSinusoidal(Self._camera, "OrbitYawRad", Self._cameraYawRad, RestMoveDuration);
+                _tween.Parallel().TweenAngleRadSinusoidal(Self._camera, "OrbitPitchRad", Self._cameraPitchRad, RestMoveDuration);
                 _tween.TweenCallback(Callable.From(() =>
                 {
                     ChangeState<WaitingForAnimations>();
-                    _screen.EmitSignal(PortalLoadingScreen.SignalName.DoneMovingToRest);
+                    Self.EmitSignal(PortalLoadingScreen.SignalName.DoneMovingToRest);
                 }));
             }
 
@@ -252,10 +251,10 @@ namespace FastDragon
                 if (_timer >= 30 && !_loggedSoftlock)
                 {
                     Log.LoadingScreenSoftlocked(_timer);
-                    MapTransitionManager.Instance.GoToMapWithFadeToBlack(_screen._parameters.TargetMapSceneFilePath);
+                    MapTransitionManager.Instance.GoToMapWithFadeToBlack(Self._parameters.TargetMapSceneFilePath);
                 }
 
-                string sceneFile = _screen._parameters.TargetMapSceneFilePath;
+                string sceneFile = Self._parameters.TargetMapSceneFilePath;
 
                 // This line is a potential candidate for being the location of
                 // https://github.com/ashelleyPurdue/FastDragon/issues/12
@@ -274,7 +273,7 @@ namespace FastDragon
                         var packedScene = (PackedScene)ResourceLoader.LoadThreadedGet(sceneFile);
                         GD.Print("Done with LoadThreadedGet()");
 
-                        _screen._loadedScene = packedScene.Instantiate<Node3D>();
+                        Self._loadedScene = packedScene.Instantiate<Node3D>();
 
                         ChangeState<CorrectingAngle>();
                         break;
@@ -293,24 +292,24 @@ namespace FastDragon
             {
                 GD.Print("Started correction animation");
 
-                _screen.StartFadingWindOut();
+                Self.StartFadingWindOut();
 
-                var tween = _screen.CreateTween();
+                var tween = Self.CreateTween();
 
                 TweenSun(tween.Parallel());
 
-                if (_screen._isReturningHome)
+                if (Self._isReturningHome)
                 {
                     TweenPlayerToPortal(tween.Parallel());
                 }
 
-                tween.TweenCallback(Callable.From(_screen.GoToTargetMap));
+                tween.TweenCallback(Callable.From(Self.GoToTargetMap));
             }
 
             private void TweenSun(Tween tween)
             {
                 float duration = CorrectionAnimationDuration;
-                var newSun = _screen._loadedScene.EnumerateChildren()
+                var newSun = Self._loadedScene.EnumerateChildren()
                     .Where(n => n is DirectionalLight3D)
                     .Cast<DirectionalLight3D>()
                     .FirstOrDefault(l => l.SkyMode != DirectionalLight3D.SkyModeEnum.SkyOnly);
@@ -330,7 +329,7 @@ namespace FastDragon
                 if (newSun == null)
                     return;
 
-                tween.TweenRotRadSinusoidal(_screen._oldSun, "rotation", newSun.Rotation, duration);
+                tween.TweenRotRadSinusoidal(Self._oldSun, "rotation", newSun.Rotation, duration);
 
                 var lightProperties = newSun.GetPropertyList()
                     .Select(x => (string)x["name"])
@@ -340,7 +339,7 @@ namespace FastDragon
                 foreach (var propertyName in lightProperties)
                 {
                     tween.Parallel().TweenProperty(
-                        _screen._oldSun,
+                        Self._oldSun,
                         (string)propertyName,
                         newSun.Get(propertyName),
                         duration
@@ -352,13 +351,13 @@ namespace FastDragon
             {
                 float duration = CorrectionAnimationDuration;
 
-                var portal = _screen.GetTargetPortal(_screen._loadedScene);
+                var portal = Self.GetTargetPortal(Self._loadedScene);
                 Vector3 portalRotRad = portal.GetGlobalTransformOutsideOfTree().Basis.GetEuler();
 
-                tween.TweenRotRadSinusoidal(_screen._playerModel, "global_rotation", portalRotRad, duration);
-                tween.Parallel().TweenProperty(_screen._camera, "OrbitDistance", CameraDist, duration);
-                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitYawRad", portalRotRad.Y + Mathf.DegToRad(180), duration);
-                tween.Parallel().TweenAngleRadSinusoidal(_screen._camera, "OrbitPitchRad", _screen._cameraPitchRad, duration);
+                tween.TweenRotRadSinusoidal(Self._playerModel, "global_rotation", portalRotRad, duration);
+                tween.Parallel().TweenProperty(Self._camera, "OrbitDistance", CameraDist, duration);
+                tween.Parallel().TweenAngleRadSinusoidal(Self._camera, "OrbitYawRad", portalRotRad.Y + Mathf.DegToRad(180), duration);
+                tween.Parallel().TweenAngleRadSinusoidal(Self._camera, "OrbitPitchRad", Self._cameraPitchRad, duration);
             }
         }
     }

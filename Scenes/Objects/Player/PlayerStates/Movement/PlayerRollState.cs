@@ -17,36 +17,36 @@ namespace FastDragon
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
         private List<IBreakable> _unbrokenObjects= new List<IBreakable>();
 
-        private AudioStreamPlayer _rollSoundPlayer => _player.GetNode<AudioStreamPlayer>("%RollSoundPlayer");
+        private AudioStreamPlayer _rollSoundPlayer => Self.GetNode<AudioStreamPlayer>("%RollSoundPlayer");
 
-        public override void OnStateEntered(State oldState)
+        public override void OnStateEntered(IState oldState)
         {
-            _player.Animator.Play("Roll");
+            Self.Animator.Play("Roll");
 
             _timer = 0;
             _isGroundRoll = !(oldState is PlayerDiveState);
-            _player.Velocity = _player.GlobalForward() * Player.Roll.InitialSpeed;
-            _player.Camera.Lag(CameraLagDuration);
+            Self.Velocity = Self.GlobalForward() * Player.Roll.InitialSpeed;
+            Self.Camera.Lag(CameraLagDuration);
 
             _rollSoundPlayer.Play(0.025f);
         }
 
         public override void OnStateExited()
         {
-            _player.Animator.SpeedScale = 1;
+            Self.Animator.SpeedScale = 1;
         }
 
         public override void _Process(double deltaD)
         {
-            float scale = _player.Velocity.Length() / RollingCircumference;
-            _player.Animator.SpeedScale = scale;
+            float scale = Self.Velocity.Length() / RollingCircumference;
+            Self.Animator.SpeedScale = scale;
         }
 
         public override void _Input(InputEvent ev)
         {
             if (InputService.JumpJustPressed(ev))
             {
-                _player.ChangeState<PlayerWalkJumpState>();
+                Self.ChangeState<PlayerWalkJumpState>();
                 return;
             }
         }
@@ -61,9 +61,9 @@ namespace FastDragon
 
             if (_isGroundRoll && _timer < Player.Roll.RedirectTimeWindow)
             {
-                float speed = _player.FSpeed;
+                float speed = Self.FSpeed;
                 RotateInstantlyTowardLeftStick();
-                _player.FSpeed = speed;
+                Self.FSpeed = speed;
             }
 
             float maxSpeed = _timer < Player.Roll.FrictionlessDuration
@@ -104,7 +104,7 @@ namespace FastDragon
             // TODO: Don't apply the extra hitbox to objects that have already
             // been hit by the main hitbox
             ApplyHitboxToBreakableObjects(
-                _player.RollExtraHitbox,
+                Self.RollExtraHitbox,
                 b => b.VulnerableToRoll,
                 b => b.OnRolledInto()
             );
@@ -119,13 +119,13 @@ namespace FastDragon
 
             if (_timer >= Player.Roll.Duration)
             {
-                if (_player.IsOnFloor())
+                if (Self.IsOnFloor())
                 {
-                    _player.ChangeState<PlayerWalkState>();
+                    Self.ChangeState<PlayerWalkState>();
                 }
                 else
                 {
-                    _player.ChangeState<PlayerFlopState>();
+                    Self.ChangeState<PlayerFlopState>();
                 }
 
                 return;
@@ -135,7 +135,7 @@ namespace FastDragon
         private void Break(IBreakable b)
         {
             b.OnBroken();
-            _player.Camera.Shake(
+            Self.Camera.Shake(
                 b.CameraShakeMagnitude,
                 b.CameraShakeFrequency,
                 b.CameraShakeDuration

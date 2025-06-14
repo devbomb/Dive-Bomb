@@ -40,24 +40,21 @@ namespace FastDragon
             }
         }
 
-        private abstract partial class VortexState : State
-        {
-            protected BossReturnHomePlatform _self => _stateMachine.GetParent<BossReturnHomePlatform>();
-        }
+        private abstract partial class VortexState : State<BossReturnHomePlatform> {}
 
         private partial class HiddenState : VortexState
         {
             public override void OnStateEntered()
             {
-                _self._model.Position = _self._hiddenPoint.Position;
-                _self._model.ResetPhysicsInterpolation3D();
+                Self._model.Position = Self._hiddenPoint.Position;
+                Self._model.ResetPhysicsInterpolation3D();
 
-                _self.SetParticlesEmitting(false);
+                Self.SetParticlesEmitting(false);
             }
 
             public override void OnStateExited()
             {
-                _self.SetParticlesEmitting(true);
+                Self.SetParticlesEmitting(true);
             }
         }
 
@@ -68,31 +65,31 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _self._model.Position = _self._hiddenPoint.Position;
-                _self._model.ResetPhysicsInterpolation3D();
+                Self._model.Position = Self._hiddenPoint.Position;
+                Self._model.ResetPhysicsInterpolation3D();
                 _timer = 0;
 
-                _self.SetParticlesEmitting(false);
+                Self.SetParticlesEmitting(false);
             }
 
             public override void OnStateExited()
             {
-                _self.SetParticlesEmitting(true);
+                Self.SetParticlesEmitting(true);
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
 
-                _self._model.Position = _self._hiddenPoint.Position.Lerp(
+                Self._model.Position = Self._hiddenPoint.Position.Lerp(
                     Vector3.Zero,
                     _timer / Duration
                 );
 
                 if (_timer >= Duration)
                 {
-                    _self._model.Position = Vector3.Zero;
-                    _self._model.ResetPhysicsInterpolation3D();
+                    Self._model.Position = Vector3.Zero;
+                    Self._model.ResetPhysicsInterpolation3D();
                     ChangeState<ReadyState>();
                 }
             }
@@ -102,14 +99,14 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                _self._model.Position = Vector3.Zero;
-                _self._model.ResetPhysicsInterpolation3D();
-                _self._vortex.IsActive = true;
+                Self._model.Position = Vector3.Zero;
+                Self._model.ResetPhysicsInterpolation3D();
+                Self._vortex.IsActive = true;
             }
 
             public override void OnStateExited()
             {
-                _self._vortex.IsActive = false;
+                Self._vortex.IsActive = false;
             }
         }
     }
