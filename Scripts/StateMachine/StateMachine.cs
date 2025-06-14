@@ -37,11 +37,8 @@ namespace FastDragon
 
         public void ChangeState<TState>() where TState : IState, new()
         {
-            ChangeState(typeof(TState));
-        }
+            var stateType = typeof(TState);
 
-        public void ChangeState(Type stateType)
-        {
             if (!stateType.IsAssignableTo(_stateType))
                 throw new Exception($"{stateType.Name} is not a {_stateType.Name}");
 
@@ -50,7 +47,7 @@ namespace FastDragon
             IState incomingState = _stateCache.FirstOrDefault(s => s.GetType() == stateType);
             if (incomingState == null)
             {
-                incomingState = (IState)Activator.CreateInstance(stateType);
+                incomingState = new TState();
                 incomingState.SetStateMachine(this);
                 _stateCache.Add(incomingState);
             }
