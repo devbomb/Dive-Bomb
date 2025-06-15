@@ -13,7 +13,7 @@ namespace FastDragon
         [Export] public string VentId;
         [Export] public string TargetVentId;
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(VentState));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         private Node3D _spawnPoint => GetNode<Node3D>("%SpawnPoint");
         private Node3D _cameraPointLeft => GetNode<Node3D>("%CameraPointLeft");

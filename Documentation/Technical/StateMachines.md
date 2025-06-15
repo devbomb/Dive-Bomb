@@ -30,7 +30,7 @@ refers to the node being controlled by a state machine.
 ```C#
 public partial class Blinker : Node3D
 {
-    private readonly StateMachine _stateMachine = new StateMachine(typeof(BlinkerState));
+    private readonly StateMachine _stateMachine = new StateMachine();
 
     public override void _Ready()
     {

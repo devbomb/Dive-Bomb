@@ -27,7 +27,7 @@ namespace FastDragon
         private Node3D _model => GetNode<Node3D>("%Model");
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(EnemyHandCannonerState));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         private Player _targetPlayer = null;
 

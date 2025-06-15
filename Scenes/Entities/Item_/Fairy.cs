@@ -17,7 +17,7 @@ namespace FastDragon
         public bool EnoughGems() => SaveFile.Current.TotalGemCount >= GemCost;
         public bool ShowPriceTag() => GemCost > 0 && !IsTimeTrialMode();
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<Fairy>));
+        private readonly StateMachine _stateMachine = new StateMachine();
         private Transform3D _initialModelPos;
 
         private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");

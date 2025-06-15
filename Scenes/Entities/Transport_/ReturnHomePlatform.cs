@@ -18,7 +18,7 @@ namespace FastDragon
 
         private GpuParticles3D _shatterParticles => GetNode<GpuParticles3D>("%ShatterParticles");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<ReturnHomePlatform>));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {

@@ -34,7 +34,7 @@ namespace FastDragon
         private int _untalliedSpentGems;
         private int _talliedGems;
 
-        private StateMachine _stateMachine = new StateMachine(typeof(RigState));
+        private StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {

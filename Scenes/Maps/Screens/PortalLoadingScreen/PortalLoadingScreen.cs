@@ -49,7 +49,7 @@ namespace FastDragon
         private bool _isReturningHome => _parameters.PreviousMapSceneFilePath != null;
         private Node3D _loadedScene;
 
-        private StateMachine _stateMachine = new StateMachine(typeof(LoadingScreenState));
+        private StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {

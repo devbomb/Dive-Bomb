@@ -52,7 +52,7 @@ namespace FastDragon
         private float _suggestedPitchRad;
         private float _suggestedDistance;
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<PlayerCamera>));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         private float _shakeTimer;
         private float _shakeDuration;

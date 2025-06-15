@@ -12,7 +12,7 @@ namespace FastDragon
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
         private AnimationTree _animator => GetNode<AnimationTree>("%AnimationTree");
         private Node3D _model => GetNode<Node3D>("%Model");
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<Snapjaw>));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         private Vector3 _targetPos;
         private Vector3 _floorPos;

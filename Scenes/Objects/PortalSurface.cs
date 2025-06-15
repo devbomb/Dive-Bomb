@@ -16,7 +16,7 @@ namespace FastDragon
         private Area3D _cameraDetector => GetNode<Area3D>("%CameraDetector");
         private CollisionShape3D _cameraDetectorPlane => GetNode<CollisionShape3D>("%CameraDetectorPlane");
 
-        private StateMachine _stateMachine = new StateMachine(typeof(PortalState));
+        private StateMachine _stateMachine = new StateMachine();
         private Player _player;
         private Vector3 _playerTargetRotRad;
 

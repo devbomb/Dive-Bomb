@@ -11,7 +11,7 @@ namespace FastDragon
 
         private ReturnHomeVortex _vortex => GetNode<ReturnHomeVortex>("%Vortex");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(VortexState));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {

@@ -37,7 +37,7 @@ namespace FastDragon
         private Node _visibleEnablerParent;
 
         private Transform3D _initialPos;
-        private StateMachine _stateMachine = new StateMachine(typeof(State<Gem>));
+        private StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {

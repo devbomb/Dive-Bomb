@@ -21,7 +21,7 @@ namespace FastDragon
         private AggroSphere _aggroSphere => GetNode<AggroSphere>("%AggroSphere");
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
-        private StateMachine _stateMachine = new StateMachine(typeof(VultureState));
+        private StateMachine _stateMachine = new StateMachine();
 
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;

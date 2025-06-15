@@ -23,7 +23,7 @@ namespace FastDragon
         private Node3D _startHandPoint;
 
         private Queue<Gem> _gemQueue = new Queue<Gem>();
-        private StateMachine _stateMachine = new StateMachine(typeof(State<GemGravityGloves>));
+        private StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {

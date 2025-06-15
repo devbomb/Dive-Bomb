@@ -12,7 +12,7 @@ namespace FastDragon
         private Node3D _meshGrowPoint => GetNode<Node3D>("%MeshGrowPoint");
         private GpuParticles3D _shatterPartciles => GetNode<GpuParticles3D>("%ExplosionParticles");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<DivableWall>));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {
