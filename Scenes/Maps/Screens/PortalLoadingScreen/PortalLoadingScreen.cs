@@ -49,7 +49,7 @@ namespace FastDragon
         private bool _isReturningHome => _parameters.PreviousMapSceneFilePath != null;
         private Node3D _loadedScene;
 
-        private StateMachine _stateMachine = new StateMachine(typeof(LoadingScreenState));
+        private StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {
@@ -180,7 +180,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Skipping : LoadingScreenState
+        private class Skipping : LoadingScreenState
         {
             public override void OnStateEntered(IState prevState)
             {
@@ -200,7 +200,7 @@ namespace FastDragon
             }
         }
 
-        private partial class MovingToRest : LoadingScreenState
+        private class MovingToRest : LoadingScreenState
         {
             public override bool Skippable => true;
 
@@ -229,9 +229,9 @@ namespace FastDragon
             }
         }
 
-        private partial class WaitingForAnimations : LoadingScreenState {}
+        private class WaitingForAnimations : LoadingScreenState {}
 
-        private partial class WaitingForLoad : LoadingScreenState
+        private class WaitingForLoad : LoadingScreenState
         {
             private double _timer;
             private bool _loggedSoftlock;
@@ -286,7 +286,7 @@ namespace FastDragon
             }
         }
 
-        private partial class CorrectingAngle : LoadingScreenState
+        private class CorrectingAngle : LoadingScreenState
         {
             public override void OnStateEntered()
             {

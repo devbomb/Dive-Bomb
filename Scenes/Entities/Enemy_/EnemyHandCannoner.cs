@@ -27,7 +27,7 @@ namespace FastDragon
         private Node3D _model => GetNode<Node3D>("%Model");
         private Node3D _blobShadow => GetNode<Node3D>("%BlobShadow");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(EnemyHandCannonerState));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         private Player _targetPlayer = null;
 
@@ -86,12 +86,12 @@ namespace FastDragon
                     .ForwardToEulerAnglesRad();
         }
 
-        private partial class EnemyHandCannonerState : State<EnemyHandCannoner>
+        private class EnemyHandCannonerState : State<EnemyHandCannoner>
         {
             public virtual bool EnableCollision => true;
         }
 
-        private partial class Sleeping : EnemyHandCannonerState
+        private class Sleeping : EnemyHandCannonerState
         {
             public override void OnStateEntered()
             {
@@ -106,7 +106,7 @@ namespace FastDragon
             }
         }
 
-        private partial class WakingUp : EnemyHandCannonerState
+        private class WakingUp : EnemyHandCannonerState
         {
             public override void OnStateEntered()
             {
@@ -122,7 +122,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Shielding : EnemyHandCannonerState
+        private class Shielding : EnemyHandCannonerState
         {
             private float _timer;
 
@@ -142,7 +142,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Aiming : EnemyHandCannonerState
+        private class Aiming : EnemyHandCannonerState
         {
             private float _timer;
 
@@ -162,7 +162,7 @@ namespace FastDragon
             }
         }
 
-        private partial class RecoilingAfterFiring : EnemyHandCannonerState
+        private class RecoilingAfterFiring : EnemyHandCannonerState
         {
             public override void OnStateEntered()
             {
@@ -176,7 +176,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Dieing : EnemyHandCannonerState
+        private class Dieing : EnemyHandCannonerState
         {
             public override bool EnableCollision => false;
 
@@ -194,7 +194,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Dead : EnemyHandCannonerState
+        private class Dead : EnemyHandCannonerState
         {
             public override bool EnableCollision => false;
 

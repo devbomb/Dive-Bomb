@@ -52,7 +52,7 @@ namespace FastDragon
         private float _suggestedPitchRad;
         private float _suggestedDistance;
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<PlayerCamera>));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         private float _shakeTimer;
         private float _shakeDuration;
@@ -225,7 +225,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Unlocked : State<PlayerCamera>
+        private class Unlocked : State<PlayerCamera>
         {
             public const float FollowDistance = 6;
             public const float ZoomSpeed = 4;
@@ -323,7 +323,7 @@ namespace FastDragon
             }
         }
 
-        private partial class SuggestingAngle : State<PlayerCamera>
+        private class SuggestingAngle : State<PlayerCamera>
         {
             private const float Duration = 0.5f;
 
@@ -372,7 +372,7 @@ namespace FastDragon
             }
         }
 
-        private partial class UsingFixedPosition : State<PlayerCamera>
+        private class UsingFixedPosition : State<PlayerCamera>
         {
             private const float TransitionDuration = 1;
 
@@ -400,7 +400,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Recentering : State<PlayerCamera>
+        private class Recentering : State<PlayerCamera>
         {
             private const float Duration = 0.1f;
 

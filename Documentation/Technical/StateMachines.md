@@ -3,23 +3,22 @@ State machines are awesome!  But long, messy switch statements?  Not so much.
 
 To implement state machines in an exensible and encapsulated way, this project
 uses a custom state machine system.  The basic premise is:
-* Every state is a node, which controls its parent from its `_PhysicsProcess()`
-* The current state has its `ProcessMode` set to `Inherit`
-* All other states have their `ProcessMode` set to `Disabled`
-* To change states, we:
-    * Call `OnStateExited()` on the current state
-    * Set the current state's `ProcessMode` to `Disabled`
-    * Create an instance of the new state and add it as a child, if one does
-        not already exist
-    * Set the new state's `ProcessMode` to `Inherit`
-    * Call `OnStateEntered()` on the new state
+* A `StateMachine` node keeps a cache of `IState` objects, each of which has the
+    following methods:
+    * `OnStateEntered()`
+    * `OnStateExited()`
+    * `_PhysicsProcess()`
+    * `_Process()`
+* Whenever `StateMachine` changes states, it:
+    * Calls `OnStateExited()` on the current state
+    * Retrives the new state from the cache, creating a new instance if there
+        isn't one already
+    * Sets `CurrentState` to the new state
+    * Calls `OnStateEntered()` on the new state
 
-This technique is implemented using two classes:
-* The abstract `State` class, which all state nodes inherit from.
-* The `StateMachine` node, which all state nodes are a child of.
-
-When I said that states control their parents earlier, I lied.  They actually
-control their `StateMachine`'s parent.
+`IState` is deliberately designed to resemble a Godot node.  Inside the
+`_PhysicsProcess()` method, you'd put logic that controls the subject, defining
+what it should do in this state.
 
 # Using `StateMachine`
 
@@ -31,7 +30,7 @@ refers to the node being controlled by a state machine.
 ```C#
 public partial class Blinker : Node3D
 {
-    private readonly StateMachine _stateMachine = new StateMachine(typeof(BlinkerState));
+    private readonly StateMachine _stateMachine = new StateMachine();
 
     public override void _Ready()
     {
@@ -39,12 +38,7 @@ public partial class Blinker : Node3D
         _stateMachine.ChangeState<BlinkOn>();
     }
 
-    private abstract partial class BlinkerState : State
-    {
-        protected Blinker _self => _stateMachine.GetParent<Blinker>();
-    }
-
-    private partial class BlinkOn : SomeEntityState
+    private class BlinkOn : State<Blinker>
     {
         private float _timer;
 
@@ -62,19 +56,19 @@ public partial class Blinker : Node3D
         }
     }
 
-    private partial class BlinkOff : SomeEntityState
+    private class BlinkOff : State<Blinker>
     {
         private float _timer;
 
         public override void OnStateEntered()
         {
             _timer = 0.25f;
-            _self.Visible = false;
+            Self.Visible = false; // Self is a Blinker
         }
 
         public override void OnStateExited()
         {
-            _self.Visible = true;
+            Self.Visible = true;
             // Best practice: If a state changes a property away from its
             // "normal" value, that same state is responsible for cleaning up
             // after itself in OnStateExited().

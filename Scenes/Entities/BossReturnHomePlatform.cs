@@ -11,7 +11,7 @@ namespace FastDragon
 
         private ReturnHomeVortex _vortex => GetNode<ReturnHomeVortex>("%Vortex");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(VortexState));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {
@@ -42,7 +42,7 @@ namespace FastDragon
 
         private abstract partial class VortexState : State<BossReturnHomePlatform> {}
 
-        private partial class HiddenState : VortexState
+        private class HiddenState : VortexState
         {
             public override void OnStateEntered()
             {
@@ -58,7 +58,7 @@ namespace FastDragon
             }
         }
 
-        private partial class RevealingState : VortexState
+        private class RevealingState : VortexState
         {
             private const float Duration = 3;
             private float _timer;
@@ -95,7 +95,7 @@ namespace FastDragon
             }
         }
 
-        private partial class ReadyState : VortexState
+        private class ReadyState : VortexState
         {
             public override void OnStateEntered()
             {

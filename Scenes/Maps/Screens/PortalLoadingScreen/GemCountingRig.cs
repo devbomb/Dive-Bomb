@@ -34,7 +34,7 @@ namespace FastDragon
         private int _untalliedSpentGems;
         private int _talliedGems;
 
-        private StateMachine _stateMachine = new StateMachine(typeof(RigState));
+        private StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {
@@ -93,7 +93,7 @@ namespace FastDragon
             _talliedGemsLabel.Text = $"Total treasure: {_talliedGems}";
         }
 
-        private abstract partial class RigState : State<GemCountingRig>
+        private abstract class RigState : State<GemCountingRig>
         {
             public virtual bool Skippable => false;
 
@@ -107,7 +107,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Idle : RigState
+        private class Idle : RigState
         {
             public override void OnStateEntered()
             {
@@ -115,7 +115,7 @@ namespace FastDragon
             }
         }
 
-        private partial class SlidingInGemsFound : RigState
+        private class SlidingInGemsFound : RigState
         {
             public override bool Skippable => true;
 
@@ -143,7 +143,7 @@ namespace FastDragon
             }
         }
 
-        private partial class SlidingInNoGemsFound : RigState
+        private class SlidingInNoGemsFound : RigState
         {
             public override bool Skippable => true;
 
@@ -323,7 +323,7 @@ namespace FastDragon
             }
         }
 
-        private partial class MovingTotalToTop : RigState
+        private class MovingTotalToTop : RigState
         {
             public override bool Skippable => true;
 
@@ -344,7 +344,7 @@ namespace FastDragon
             }
         }
 
-        private partial class SlidingInGemsSpent : RigState
+        private class SlidingInGemsSpent : RigState
         {
             public override bool Skippable => true;
 
@@ -360,7 +360,7 @@ namespace FastDragon
             }
         }
 
-        private partial class DeductingCosts : RigState
+        private class DeductingCosts : RigState
         {
             public override bool Skippable => true;
 
@@ -411,7 +411,7 @@ namespace FastDragon
             }
         }
 
-        private partial class SlidingOutGemsSpent : RigState
+        private class SlidingOutGemsSpent : RigState
         {
             public override bool Skippable => true;
 
@@ -427,7 +427,7 @@ namespace FastDragon
             }
         }
 
-        private partial class LettingPlayerReadLabels : RigState
+        private class LettingPlayerReadLabels : RigState
         {
             private double _timer;
 
@@ -456,7 +456,7 @@ namespace FastDragon
             }
         }
 
-        private partial class DoneState : RigState
+        private class DoneState : RigState
         {
         }
     }

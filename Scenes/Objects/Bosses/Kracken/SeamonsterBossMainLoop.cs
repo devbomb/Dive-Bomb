@@ -56,7 +56,7 @@ namespace FastDragon
             _currentSpawnPos = _rng.PickFrom(SpawnPoints).GlobalTransform;
         }
 
-        private partial class Submerging : State<SeamonsterBoss>
+        private class Submerging : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
@@ -76,7 +76,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Submerged : State<SeamonsterBoss>
+        private class Submerged : State<SeamonsterBoss>
         {
             private float _timer;
 
@@ -105,7 +105,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Surfacing : State<SeamonsterBoss>
+        private class Surfacing : State<SeamonsterBoss>
         {
             private float _timer;
 
@@ -131,7 +131,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Vulnerable : State<SeamonsterBoss>
+        private class Vulnerable : State<SeamonsterBoss>
         {
             private float _timer;
 
@@ -166,7 +166,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Damaged : State<SeamonsterBoss>
+        private class Damaged : State<SeamonsterBoss>
         {
             private float _timer;
             private Vector3 _startPos;
@@ -206,7 +206,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Dying : State<SeamonsterBoss>
+        private class Dying : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
@@ -238,7 +238,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Dead : State<SeamonsterBoss>
+        private class Dead : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
@@ -254,7 +254,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Laughing : State<SeamonsterBoss>
+        private class Laughing : State<SeamonsterBoss>
         {
             private float _timer;
 

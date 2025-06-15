@@ -21,7 +21,7 @@ namespace FastDragon
         private AggroSphere _aggroSphere => GetNode<AggroSphere>("%AggroSphere");
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
-        private StateMachine _stateMachine = new StateMachine(typeof(VultureState));
+        private StateMachine _stateMachine = new StateMachine();
 
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;
@@ -65,9 +65,9 @@ namespace FastDragon
             _aggroSphere.Radius = AggroRange;
         }
 
-        private partial class VultureState : State<EnemyVulture> {}
+        private class VultureState : State<EnemyVulture> {}
 
-        private partial class Idle : VultureState
+        private class Idle : VultureState
         {
             private int _framesToWait;
 
@@ -112,7 +112,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Chasing : VultureState
+        private class Chasing : VultureState
         {
             private Player _targetPlayer;
             private float _fspeed;
@@ -169,7 +169,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Returning : VultureState
+        private class Returning : VultureState
         {
             public override void OnStateEntered()
             {
@@ -201,7 +201,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Dead : VultureState
+        private class Dead : VultureState
         {
             public override void OnStateEntered()
             {

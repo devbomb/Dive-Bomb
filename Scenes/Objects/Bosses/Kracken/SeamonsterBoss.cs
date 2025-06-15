@@ -17,7 +17,7 @@ namespace FastDragon
         private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
         private Control _bossHud => GetNode<Control>("%BossHUD");
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<SeamonsterBoss>));
+        private readonly StateMachine _stateMachine = new StateMachine();
         private readonly Random _rng = new Random();
 
         private Transform3D _currentSpawnPos;
@@ -83,7 +83,7 @@ namespace FastDragon
 
         private string CurrentAnimation() => _animationTree.CurrentState();
 
-        private partial class WaitingToRespawn : State<SeamonsterBoss>
+        private class WaitingToRespawn : State<SeamonsterBoss>
         {
             private int _timer;
 

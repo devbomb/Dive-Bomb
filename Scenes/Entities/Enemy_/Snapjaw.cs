@@ -12,7 +12,7 @@ namespace FastDragon
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
         private AnimationTree _animator => GetNode<AnimationTree>("%AnimationTree");
         private Node3D _model => GetNode<Node3D>("%Model");
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(State<Snapjaw>));
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         private Vector3 _targetPos;
         private Vector3 _floorPos;
@@ -78,7 +78,7 @@ namespace FastDragon
                     .ForwardToEulerAnglesRad();
         }
 
-        private partial class WaitingForCycleStart : State<Snapjaw>
+        private class WaitingForCycleStart : State<Snapjaw>
         {
             public override void OnStateEntered()
             {
@@ -98,7 +98,7 @@ namespace FastDragon
             }
         }
 
-        private partial class WaitingForCycleOffset : State<Snapjaw>
+        private class WaitingForCycleOffset : State<Snapjaw>
         {
             private double _timer;
 
@@ -116,7 +116,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Watching : State<Snapjaw>
+        private class Watching : State<Snapjaw>
         {
             private const double Duration = 2;
 
@@ -141,7 +141,7 @@ namespace FastDragon
             }
         }
 
-        private partial class WindingUp : State<Snapjaw>
+        private class WindingUp : State<Snapjaw>
         {
             private double _timer;
 
@@ -167,7 +167,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Attacking : State<Snapjaw>
+        private class Attacking : State<Snapjaw>
         {
             private double _duration;
             private double _timer;
@@ -197,7 +197,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Hovering : State<Snapjaw>
+        private class Hovering : State<Snapjaw>
         {
             private const double Duration = 0.5;
 
@@ -217,7 +217,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Falling : State<Snapjaw>
+        private class Falling : State<Snapjaw>
         {
             private const double Duration = 0.5;
 
@@ -250,7 +250,7 @@ namespace FastDragon
             }
         }
 
-        private partial class DeathFlipping : State<Snapjaw>
+        private class DeathFlipping : State<Snapjaw>
         {
             private double _duration;
             private double _timer;
@@ -280,7 +280,7 @@ namespace FastDragon
             }
         }
 
-        private partial class DeathFalling : State<Snapjaw>
+        private class DeathFalling : State<Snapjaw>
         {
             private const double Duration = 0.3;
 
@@ -308,7 +308,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Dead : State<Snapjaw>
+        private class Dead : State<Snapjaw>
         {
             public override void OnStateEntered()
             {

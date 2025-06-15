@@ -105,7 +105,7 @@ namespace FastDragon
         /// </summary>
         public Transform3D LastSafeGroundPos;
 
-        private readonly StateMachine _stateMachine = new StateMachine(typeof(PlayerState));
+        private readonly StateMachine _stateMachine = new StateMachine();
         private Transform3D _spawnPos;
 
         private float _damageCooldownTimer;

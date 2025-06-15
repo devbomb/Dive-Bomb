@@ -11,14 +11,8 @@ namespace FastDragon
         public event StateChangingEventHandler StateChanging;
 
         public IState CurrentState { get; private set; }
-        private readonly Type _stateType;
 
         private readonly List<IState> _stateCache = new List<IState>();
-
-        public StateMachine(Type stateType)
-        {
-            _stateType = stateType;
-        }
 
         public override void _Input(InputEvent ev)
         {
@@ -38,9 +32,6 @@ namespace FastDragon
         public void ChangeState<TState>() where TState : IState, new()
         {
             var stateType = typeof(TState);
-
-            if (!stateType.IsAssignableTo(_stateType))
-                throw new Exception($"{stateType.Name} is not a {_stateType.Name}");
 
             // Get the incoming state's node.
             // If it doesn't exist yet, create it.

@@ -16,7 +16,7 @@ namespace FastDragon
         private Area3D _cameraDetector => GetNode<Area3D>("%CameraDetector");
         private CollisionShape3D _cameraDetectorPlane => GetNode<CollisionShape3D>("%CameraDetectorPlane");
 
-        private StateMachine _stateMachine = new StateMachine(typeof(PortalState));
+        private StateMachine _stateMachine = new StateMachine();
         private Player _player;
         private Vector3 _playerTargetRotRad;
 
@@ -61,9 +61,9 @@ namespace FastDragon
             protected Player Player => Self._player;
         }
 
-        private partial class Idle : PortalState {}
+        private class Idle : PortalState {}
 
-        private partial class Jumping : PortalState
+        private class Jumping : PortalState
         {
             public override void OnStateEntered()
             {
@@ -88,7 +88,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Flying : PortalState
+        private class Flying : PortalState
         {
             public override void OnStateEntered()
             {

@@ -11,7 +11,7 @@ namespace FastDragon
         [Export] public float WaveInterval = 1.67f;
         [Export] public int WaveCount = 3;
 
-        private partial class WavesAttack : State<SeamonsterBoss>
+        private class WavesAttack : State<SeamonsterBoss>
         {
             private int _wavesRemaining;
             private float _timer;
