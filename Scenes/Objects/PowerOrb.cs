@@ -53,7 +53,7 @@ namespace FastDragon
             _stateMachine.ChangeState<BrokenState>();
         }
 
-        private partial class Revealing : State<PowerOrb>
+        private class Revealing : State<PowerOrb>
         {
             private float _animTimer;
             private float _timer;
@@ -91,11 +91,11 @@ namespace FastDragon
             }
         }
 
-        private partial class Revealed : State<PowerOrb>
+        private class Revealed : State<PowerOrb>
         {
         }
 
-        private partial class Hidden : State<PowerOrb>
+        private class Hidden : State<PowerOrb>
         {
             public override void OnStateEntered()
             {
@@ -112,7 +112,7 @@ namespace FastDragon
             }
         }
 
-        private partial class BrokenState : State<PowerOrb>
+        private class BrokenState : State<PowerOrb>
         {
             public override void OnStateEntered()
             {

@@ -85,9 +85,9 @@ namespace FastDragon
             protected Player Player => Self._player;
         }
 
-        private partial class Idle : VentState {}
+        private class Idle : VentState {}
 
-        private partial class Entering : VentState
+        private class Entering : VentState
         {
             private Transform3D _playerStart;
             private Transform3D _cameraStart;
@@ -158,7 +158,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Moving : VentState
+        private class Moving : VentState
         {
             private float _timer;
             private float _camTimer;

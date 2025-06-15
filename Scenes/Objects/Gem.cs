@@ -152,7 +152,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Hidden : State<Gem>
+        private class Hidden : State<Gem>
         {
             public override void OnStateEntered()
             {
@@ -164,7 +164,7 @@ namespace FastDragon
                 Self.Visible = true;
             }
         }
-        private partial class Revealed : State<Gem>
+        private class Revealed : State<Gem>
         {
             private float _flameChargeWindowTimer = 0;
             private Area3D _flameChargeArea => Self.GetNode<Area3D>("%FlameChargeArea");
@@ -230,7 +230,7 @@ namespace FastDragon
                     .SetDeferred("disabled", !enabled);
             }
         }
-        private partial class Homing : State<Gem>
+        private class Homing : State<Gem>
         {
             private Vector3 _homingStartPos;
             private float _homingTimer;

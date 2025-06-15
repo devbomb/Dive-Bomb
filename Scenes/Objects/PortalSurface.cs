@@ -61,9 +61,9 @@ namespace FastDragon
             protected Player Player => Self._player;
         }
 
-        private partial class Idle : PortalState {}
+        private class Idle : PortalState {}
 
-        private partial class Jumping : PortalState
+        private class Jumping : PortalState
         {
             public override void OnStateEntered()
             {
@@ -88,7 +88,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Flying : PortalState
+        private class Flying : PortalState
         {
             public override void OnStateEntered()
             {

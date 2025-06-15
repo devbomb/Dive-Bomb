@@ -42,7 +42,7 @@ namespace FastDragon
 
         private abstract partial class VortexState : State<BossReturnHomePlatform> {}
 
-        private partial class HiddenState : VortexState
+        private class HiddenState : VortexState
         {
             public override void OnStateEntered()
             {
@@ -58,7 +58,7 @@ namespace FastDragon
             }
         }
 
-        private partial class RevealingState : VortexState
+        private class RevealingState : VortexState
         {
             private const float Duration = 3;
             private float _timer;
@@ -95,7 +95,7 @@ namespace FastDragon
             }
         }
 
-        private partial class ReadyState : VortexState
+        private class ReadyState : VortexState
         {
             public override void OnStateEntered()
             {

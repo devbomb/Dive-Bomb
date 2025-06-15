@@ -104,7 +104,7 @@ namespace FastDragon
             return null;
         }
 
-        private partial class Idle : State<GemGravityGloves>
+        private class Idle : State<GemGravityGloves>
         {
             public override void OnStateEntered()
             {
@@ -151,7 +151,7 @@ namespace FastDragon
             }
         }
 
-        private partial class CollectingGem : State<GemGravityGloves>
+        private class CollectingGem : State<GemGravityGloves>
         {
             private const float Duration = 0.1f;
             private float _timer;
@@ -213,7 +213,7 @@ namespace FastDragon
             }
         }
 
-        private partial class Returning : State<GemGravityGloves>
+        private class Returning : State<GemGravityGloves>
         {
             private const float Duration = 0.15f;
             private float _timer;

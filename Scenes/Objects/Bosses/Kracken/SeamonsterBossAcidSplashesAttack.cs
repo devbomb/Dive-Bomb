@@ -11,7 +11,7 @@ namespace FastDragon
         [Export] public float AcidSplashesInterval = 0.5f;
         [Export] public int AcidSplashCount = 4;
 
-        private partial class AcidSplashesSubmerging : State<SeamonsterBoss>
+        private class AcidSplashesSubmerging : State<SeamonsterBoss>
         {
             public override void OnStateEntered()
             {
@@ -31,7 +31,7 @@ namespace FastDragon
             }
         }
 
-        private partial class AcidSplashesRaining : State<SeamonsterBoss>
+        private class AcidSplashesRaining : State<SeamonsterBoss>
         {
             private float _timer;
             private int _splashesRemaining;

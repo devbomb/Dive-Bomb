@@ -83,7 +83,7 @@ namespace FastDragon
 
         private string CurrentAnimation() => _animationTree.CurrentState();
 
-        private partial class WaitingToRespawn : State<SeamonsterBoss>
+        private class WaitingToRespawn : State<SeamonsterBoss>
         {
             private int _timer;
 
