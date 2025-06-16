@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 
 namespace FastDragon
@@ -17,6 +18,8 @@ namespace FastDragon
 
         [Signal] public delegate void DoneSkippingEventHandler();
         [Signal] public delegate void DoneMovingToRestEventHandler();
+
+        [Export] public PackedScene LoadedScene = null;
 
         private float _cameraYawRad => _isReturningHome
             ? ReturnHomeCameraYawRad
@@ -47,7 +50,7 @@ namespace FastDragon
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
         private bool _isReturningHome => _parameters.PreviousMapSceneFilePath != null;
-        private Node3D _loadedScene;
+        private Node3D _loadedSceneNode;
 
         private StateMachine _stateMachine = new StateMachine();
 
@@ -79,10 +82,17 @@ namespace FastDragon
             _oldSun.SkyMode = DirectionalLight3D.SkyModeEnum.LightOnly;
             AddChild(_oldSun);
 
-            _loadedScene = null;
+            _loadedSceneNode = null;
 
             // Start loading the level in the background
-            ResourceLoader.LoadThreadedRequest(parameters.TargetMapSceneFilePath);
+            // HACK: Using a C# thread instead of ResourceLoader.LoadThreadedRequest()
+            // to avoid a non-deterministic deadlock.
+            // See https://github.com/godotengine/godot/issues/107548
+            new System.Threading.Thread(() =>
+            {
+                var loadedScene = ResourceLoader.Load<PackedScene>(parameters.TargetMapSceneFilePath);
+                SetDeferred(nameof(LoadedScene), loadedScene);
+            }).Start();
 
             // Sync up the player's animation...
             _playerAnimator.Play(parameters.AnimationName);
@@ -139,16 +149,16 @@ namespace FastDragon
         private void GoToTargetMap()
         {
             double animationPos = _playerAnimator.CurrentAnimationPosition;
-            MapTransitionManager.Instance.ChangeSceneToNode(_loadedScene);
+            MapTransitionManager.Instance.ChangeSceneToNode(_loadedSceneNode);
 
-            var realPlayer = _loadedScene.FindNode<Player>();
+            var realPlayer = _loadedSceneNode.FindNode<Player>();
             realPlayer.Animator.Play(_playerAnimator.AssignedAnimation, 0);
             realPlayer.Animator.Seek(_playerAnimator.CurrentAnimationPosition, true);
             realPlayer.Animator.Advance(0);
 
             if (_isReturningHome)
             {
-                var portal = GetTargetPortal(_loadedScene);
+                var portal = GetTargetPortal(_loadedSceneNode);
                 portal.PlayExitAnimation();
             }
             else
@@ -233,55 +243,12 @@ namespace FastDragon
 
         private class WaitingForLoad : LoadingScreenState
         {
-            private double _timer;
-            private bool _loggedSoftlock;
-
-            public override void OnStateEntered()
-            {
-                _timer = 0;
-                _loggedSoftlock = false;
-            }
-
             public override void _Process(double delta)
             {
-                // Detect if https://github.com/ashelleyPurdue/FastDragon/issues/11
-                // is occurring and use a fade-to-black as a failsafe.
-                // Also log it, because we're desperate for more data about it.
-                _timer += delta;
-                if (_timer >= 30 && !_loggedSoftlock)
+                if (Self.LoadedScene != null)
                 {
-                    Log.LoadingScreenSoftlocked(_timer);
-                    MapTransitionManager.Instance.GoToMapWithFadeToBlack(Self._parameters.TargetMapSceneFilePath);
-                }
-
-                string sceneFile = Self._parameters.TargetMapSceneFilePath;
-
-                // This line is a potential candidate for being the location of
-                // https://github.com/ashelleyPurdue/FastDragon/issues/12
-                // (The Broken Glass Factory Freeze)
-                GD.Print("Getting load status");
-                var loadStatus = ResourceLoader.LoadThreadedGetStatus(sceneFile);
-                GD.Print($"Load status: {loadStatus}");
-
-                switch (loadStatus)
-                {
-                    case ResourceLoader.ThreadLoadStatus.Loaded:
-                    {
-                        // This line is ALSO a potential candidate for
-                        // https://github.com/ashelleyPurdue/FastDragon/issues/12.
-                        GD.Print("Calling LoadThreadedGet()");
-                        var packedScene = (PackedScene)ResourceLoader.LoadThreadedGet(sceneFile);
-                        GD.Print("Done with LoadThreadedGet()");
-
-                        Self._loadedScene = packedScene.Instantiate<Node3D>();
-
-                        ChangeState<CorrectingAngle>();
-                        break;
-                    }
-
-                    case ResourceLoader.ThreadLoadStatus.Failed:
-                    case ResourceLoader.ThreadLoadStatus.InvalidResource:
-                        throw new Exception($"Error loading scene: {loadStatus}");
+                    Self._loadedSceneNode = Self.LoadedScene.Instantiate<Node3D>();
+                    ChangeState<CorrectingAngle>();
                 }
             }
         }
@@ -309,7 +276,7 @@ namespace FastDragon
             private void TweenSun(Tween tween)
             {
                 float duration = CorrectionAnimationDuration;
-                var newSun = Self._loadedScene.EnumerateChildren()
+                var newSun = Self._loadedSceneNode.EnumerateChildren()
                     .Where(n => n is DirectionalLight3D)
                     .Cast<DirectionalLight3D>()
                     .FirstOrDefault(l => l.SkyMode != DirectionalLight3D.SkyModeEnum.SkyOnly);
@@ -351,7 +318,7 @@ namespace FastDragon
             {
                 float duration = CorrectionAnimationDuration;
 
-                var portal = Self.GetTargetPortal(Self._loadedScene);
+                var portal = Self.GetTargetPortal(Self._loadedSceneNode);
                 Vector3 portalRotRad = portal.GetGlobalTransformOutsideOfTree().Basis.GetEuler();
 
                 tween.TweenRotRadSinusoidal(Self._playerModel, "global_rotation", portalRotRad, duration);
