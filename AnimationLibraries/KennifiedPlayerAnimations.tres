@@ -3930,6 +3930,18 @@ tracks/79/keys = {
 "update": 0,
 "values": [0.0, 1.0]
 }
+tracks/80/type = "value"
+tracks/80/imported = false
+tracks/80/enabled = true
+tracks/80/path = NodePath("HeadBone/HeadPoint/DiveThuum:transparency")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = {
+"times": PackedFloat32Array(0.1, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ml3f"]
 random_pitch = 1.35
@@ -9894,6 +9906,18 @@ tracks/85/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/86/type = "value"
+tracks/86/imported = false
+tracks/86/enabled = true
+tracks/86/path = NodePath("HeadBone/HeadPoint/DiveThuum:transparency")
+tracks/86/interp = 1
+tracks/86/loop_wrap = true
+tracks/86/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_630pu"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d1upl0f3iefyd"]
+[gd_scene load_steps=28 format=3 uid="uid://d1upl0f3iefyd"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_oo354"]
 expanded_output_ports = [0]
@@ -44,12 +44,13 @@ default_input_values = [0, 0.0, 1, 0.25]
 operator = 5
 
 [sub_resource type="Gradient" id="Gradient_oo354"]
-offsets = PackedFloat32Array(0, 0.21875)
+offsets = PackedFloat32Array(0, 0.388489)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_b02sm"]
 noise_type = 5
-frequency = 1.0
+seed = 14
+frequency = 0.2001
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ybp0n"]
 width = 100
@@ -202,6 +203,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-576.859, -172.636)
 modes/cull = 2
 flags/unshaded = true
 nodes/fragment/0/position = Vector2(1480, 240)
@@ -253,6 +255,20 @@ shader_parameter/CutoffPercentage = 0.4
 shader_parameter/TaperPower = 0.1
 shader_parameter/AlphaMult = 1.0
 
+[sub_resource type="Gradient" id="Gradient_b02sm"]
+offsets = PackedFloat32Array(0.490079, 1)
+colors = PackedColorArray(1, 0.384314, 0, 0, 1, 0.384314, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ybp0n"]
+gradient = SubResource("Gradient_b02sm")
+fill_from = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s24yq"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_ybp0n")
+
 [sub_resource type="SphereMesh" id="SphereMesh_ybp0n"]
 lightmap_size_hint = Vector2i(17, 9)
 height = 0.5
@@ -263,4 +279,5 @@ is_hemisphere = true
 [node name="Thuum" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_61rwh")
+material_overlay = SubResource("StandardMaterial3D_s24yq")
 mesh = SubResource("SphereMesh_ybp0n")
