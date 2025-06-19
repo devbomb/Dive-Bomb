@@ -1,5 +1,25 @@
 [gd_scene load_steps=10 format=3 uid="uid://d1upl0f3iefyd"]
 
+[sub_resource type="Shader" id="Shader_oo354"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx, unshaded;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+
+void fragment() 
+{
+	vec2 texture_uv = UV;
+	texture_uv.y -= TIME * 2.0;
+
+	vec4 albedo_tex = texture(texture_albedo, texture_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	ALPHA *= albedo.a * albedo_tex.a;
+	if (UV.y > 0.5)
+		ALPHA = 0.0;
+}
+"
+
 [sub_resource type="Gradient" id="Gradient_ybp0n"]
 offsets = PackedFloat32Array(0, 0.400794)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -16,13 +36,11 @@ seamless_blend_skirt = 0.343
 color_ramp = SubResource("Gradient_ybp0n")
 noise = SubResource("FastNoiseLite_s24yq")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo354"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(1, 0.443137, 0, 1)
-albedo_texture = SubResource("NoiseTexture2D_k604o")
-uv1_offset = Vector3(0, -37.1721, 0)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b02sm"]
+render_priority = 0
+shader = SubResource("Shader_oo354")
+shader_parameter/albedo = Color(1, 0.443137, 0, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_k604o")
 
 [sub_resource type="Gradient" id="Gradient_b02sm"]
 offsets = PackedFloat32Array(0.490079, 0.746032, 0.922619, 1)
@@ -45,24 +63,9 @@ radial_segments = 32
 rings = 16
 is_hemisphere = true
 
-[sub_resource type="GDScript" id="GDScript_b02sm"]
-script/source = "@tool
-extends Node
-@export var material: StandardMaterial3D
-
-func _process(delta: float):
-	if (Engine.is_editor_hint() && EditorInterface.get_edited_scene_root() == get_parent()):
-		return
-	material.uv1_offset.y -= delta
-"
-
 [node name="Thuum" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_oo354")
+material_override = SubResource("ShaderMaterial_b02sm")
 material_overlay = SubResource("StandardMaterial3D_s24yq")
 cast_shadow = 0
 mesh = SubResource("SphereMesh_ybp0n")
-
-[node name="TextureAnimator" type="Node" parent="."]
-script = SubResource("GDScript_b02sm")
-material = SubResource("StandardMaterial3D_oo354")
