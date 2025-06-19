@@ -79,11 +79,13 @@ shader_parameter/taper_power = 0.225
 shader_parameter/time_scale = 2.0
 
 [sub_resource type="Gradient" id="Gradient_b02sm"]
-offsets = PackedFloat32Array(0.458333, 0.757937, 1)
-colors = PackedColorArray(1, 0.384314, 0, 0, 1, 0.384314, 0, 0.443137, 1, 0.384314, 0, 1)
+offsets = PackedFloat32Array(0.517857, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.993455, 0.422899, 7.70092e-07, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ybp0n"]
 gradient = SubResource("Gradient_b02sm")
+width = 8
+height = 8
 fill_from = Vector2(1, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s24yq"]
@@ -95,8 +97,8 @@ albedo_texture = SubResource("GradientTexture2D_ybp0n")
 [sub_resource type="SphereMesh" id="SphereMesh_ybp0n"]
 lightmap_size_hint = Vector2i(17, 9)
 height = 0.5
-radial_segments = 32
-rings = 16
+radial_segments = 16
+rings = 8
 is_hemisphere = true
 
 [node name="Thuum" type="MeshInstance3D"]
