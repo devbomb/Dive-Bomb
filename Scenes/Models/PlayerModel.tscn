@@ -131,5 +131,5 @@ external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="DiveThuum" parent="HeadBone/HeadPoint" instance=ExtResource("5_518xa")]
-transform = Transform3D(10, 0, 0, 0, 9.44721, -3.27878, 0, 3.27878, 9.44721, -2.11758e-21, -0.196229, -0.323299)
+transform = Transform3D(10, 0, 0, 0, 7.58249, -6.51966, 0, 6.51966, 7.58249, -2.11758e-21, -0.196229, -0.323299)
 skeleton = NodePath("../../..")
