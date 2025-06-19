@@ -58,14 +58,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_s24yq"]
 noise_type = 5
-frequency = 0.2669
+frequency = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k604o"]
-width = 50
-height = 20
+width = 20
+height = 8
 generate_mipmaps = false
-seamless = true
-seamless_blend_skirt = 0.343
+seamless_blend_skirt = 0.0
 color_ramp = SubResource("Gradient_ybp0n")
 noise = SubResource("FastNoiseLite_s24yq")
 
@@ -76,7 +75,7 @@ shader = SubResource("Shader_oo354")
 shader_parameter/albedo = Color(1, 0.443137, 0, 1)
 shader_parameter/texture_albedo = SubResource("NoiseTexture2D_k604o")
 shader_parameter/sphere_fraction = 0.4
-shader_parameter/taper_power = 0.01
+shader_parameter/taper_power = 0.225
 shader_parameter/time_scale = 2.0
 
 [sub_resource type="Gradient" id="Gradient_b02sm"]
