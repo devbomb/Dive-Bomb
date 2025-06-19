@@ -1,115 +1,5 @@
 [gd_scene load_steps=10 format=3 uid="uid://d1upl0f3iefyd"]
 
-[sub_resource type="Shader" id="Shader_oo354"]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
-
-uniform float TimeScale = 1.0;
-uniform sampler2D tex_frg_2 : source_color;
-uniform vec4 FlameColor : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
-uniform float CutoffPercentage : hint_range(0.0, 1.0) = 0.5;
-uniform float TaperPower = 0.5;
-uniform float AlphaMult : hint_range(0.0, 1.0) = 1.0;
-
-
-
-void fragment() {
-// Input:3
-	vec2 n_out3p0 = UV;
-
-
-// Input:5
-	float n_out5p0 = TIME;
-
-
-// FloatParameter:12
-	float n_out12p0 = TimeScale;
-
-
-// FloatOp:11
-	float n_out11p0 = n_out5p0 * n_out12p0;
-
-
-// VectorCompose:6
-	float n_in6p0 = 0.00000;
-	vec2 n_out6p0 = vec2(n_in6p0, n_out11p0);
-
-
-// VectorOp:4
-	vec2 n_out4p0 = n_out3p0 - n_out6p0;
-
-
-// Texture2D:2
-	vec4 n_out2p0 = texture(tex_frg_2, n_out4p0);
-
-
-// ColorParameter:15
-	vec4 n_out15p0 = FlameColor;
-
-
-// VectorOp:14
-	vec4 n_out14p0 = n_out2p0 * n_out15p0;
-	float n_out14p1 = n_out14p0.r;
-	float n_out14p2 = n_out14p0.g;
-	float n_out14p3 = n_out14p0.b;
-	float n_out14p4 = n_out14p0.a;
-
-
-// Input:10
-	vec2 n_out10p0 = UV;
-	float n_out10p2 = n_out10p0.g;
-
-
-// FloatParameter:13
-	float n_out13p0 = CutoffPercentage;
-
-
-	float n_out17p0;
-// Remap:17
-	float n_in17p1 = 0.00000;
-	float n_in17p4 = 0.00000;
-	{
-		float __input_range = n_out13p0 - n_in17p1;
-		float __output_range = n_in17p4 - n_out14p4;
-		n_out17p0 = n_out14p4 + __output_range * ((n_out10p2 - n_in17p1) / __input_range);
-	}
-
-
-// FloatParameter:20
-	float n_out20p0 = TaperPower;
-
-
-// FloatOp:19
-	float n_out19p0 = pow(n_out17p0, n_out20p0);
-
-
-// Clamp:18
-	float n_in18p1 = 0.00000;
-	float n_in18p2 = 1.00000;
-	float n_out18p0 = clamp(n_out19p0, n_in18p1, n_in18p2);
-
-
-// FloatParameter:22
-	float n_out22p0 = AlphaMult;
-
-
-// FloatOp:21
-	float n_out21p0 = n_out18p0 * n_out22p0;
-
-
-// VectorCompose:16
-	vec4 n_out16p0 = vec4(n_out14p1, n_out14p2, n_out14p3, n_out21p0);
-	float n_out16p4 = n_out16p0.a;
-
-
-// Output:0
-	ALBEDO = vec3(n_out16p0.xyz);
-	ALPHA = n_out16p4;
-
-
-}
-"
-
 [sub_resource type="Gradient" id="Gradient_ybp0n"]
 offsets = PackedFloat32Array(0, 0.400794)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -126,19 +16,17 @@ seamless_blend_skirt = 0.343
 color_ramp = SubResource("Gradient_ybp0n")
 noise = SubResource("FastNoiseLite_s24yq")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_61rwh"]
-render_priority = 0
-shader = SubResource("Shader_oo354")
-shader_parameter/TimeScale = 1.0
-shader_parameter/tex_frg_2 = SubResource("NoiseTexture2D_k604o")
-shader_parameter/FlameColor = Color(1, 0.658824, 0.2, 1)
-shader_parameter/CutoffPercentage = 0.4
-shader_parameter/TaperPower = 0.265
-shader_parameter/AlphaMult = 1.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo354"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0.443137, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_k604o")
+uv1_offset = Vector3(0, -37.1721, 0)
 
 [sub_resource type="Gradient" id="Gradient_b02sm"]
-offsets = PackedFloat32Array(0.490079, 1)
-colors = PackedColorArray(1, 0.384314, 0, 0, 1, 0.384314, 0, 1)
+offsets = PackedFloat32Array(0.490079, 0.746032, 0.922619, 1)
+colors = PackedColorArray(1, 0.384314, 0, 0, 1, 0.384314, 0, 0.109804, 1, 0.384314, 0, 0.443137, 1, 0.384314, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ybp0n"]
 gradient = SubResource("Gradient_b02sm")
@@ -157,8 +45,24 @@ radial_segments = 32
 rings = 16
 is_hemisphere = true
 
+[sub_resource type="GDScript" id="GDScript_b02sm"]
+script/source = "@tool
+extends Node
+@export var material: StandardMaterial3D
+
+func _process(delta: float):
+	if (Engine.is_editor_hint() && EditorInterface.get_edited_scene_root() == get_parent()):
+		return
+	material.uv1_offset.y -= delta
+"
+
 [node name="Thuum" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_61rwh")
+material_override = SubResource("StandardMaterial3D_oo354")
 material_overlay = SubResource("StandardMaterial3D_s24yq")
+cast_shadow = 0
 mesh = SubResource("SphereMesh_ybp0n")
+
+[node name="TextureAnimator" type="Node" parent="."]
+script = SubResource("GDScript_b02sm")
+material = SubResource("StandardMaterial3D_oo354")
