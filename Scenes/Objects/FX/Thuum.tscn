@@ -5,24 +5,29 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx, unshaded;
 
 uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D texture_albedo : source_color, repeat_enable;
+
+uniform float sphere_fraction = 0.5;
+uniform float time_scale = 2.0;
 
 void fragment() 
 {
 	vec2 texture_uv = UV;
-	texture_uv.y -= TIME * 2.0;
+	texture_uv.y -= TIME * time_scale;
 
 	vec4 albedo_tex = texture(texture_albedo, texture_uv);
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
 	ALPHA *= albedo.a * albedo_tex.a;
-	if (UV.y > 0.5)
-		ALPHA = 0.0;
+	
+	float closeness_to_end = (sphere_fraction - UV.y) / sphere_fraction;
+	closeness_to_end = clamp(closeness_to_end, 0.0, 1.0);
+	ALPHA *= closeness_to_end;
 }
 "
 
 [sub_resource type="Gradient" id="Gradient_ybp0n"]
 offsets = PackedFloat32Array(0, 0.400794)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_s24yq"]
 noise_type = 5
@@ -41,6 +46,8 @@ render_priority = 0
 shader = SubResource("Shader_oo354")
 shader_parameter/albedo = Color(1, 0.443137, 0, 1)
 shader_parameter/texture_albedo = SubResource("NoiseTexture2D_k604o")
+shader_parameter/sphere_fraction = 0.4
+shader_parameter/time_scale = 2.0
 
 [sub_resource type="Gradient" id="Gradient_b02sm"]
 offsets = PackedFloat32Array(0.490079, 0.746032, 0.922619, 1)
