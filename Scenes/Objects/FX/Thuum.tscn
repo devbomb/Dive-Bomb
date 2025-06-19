@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d1upl0f3iefyd"]
+[gd_scene load_steps=23 format=3 uid="uid://d1upl0f3iefyd"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_oo354"]
 expanded_output_ports = [0]
@@ -39,19 +39,24 @@ default_input_values = [1, 0.0, 2, 1.0, 3, 0.0, 4, 0.0, 0, 0.0]
 
 [sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_b02sm"]
 
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_oo354"]
+default_input_values = [0, 0.0, 1, 0.25]
+operator = 5
+
 [sub_resource type="Gradient" id="Gradient_oo354"]
 offsets = PackedFloat32Array(0, 0.21875)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_b02sm"]
 noise_type = 5
-frequency = 0.1327
-fractal_type = 0
+frequency = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ybp0n"]
-height = 50
-seamless = true
+width = 100
+height = 20
+generate_mipmaps = false
 seamless_blend_skirt = 0.256
+normalize = false
 color_ramp = SubResource("Gradient_oo354")
 noise = SubResource("FastNoiseLite_b02sm")
 
@@ -59,6 +64,11 @@ noise = SubResource("FastNoiseLite_b02sm")
 expanded_output_ports = [0]
 texture = SubResource("NoiseTexture2D_ybp0n")
 texture_type = 1
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_b02sm"]
+parameter_name = "TaperPower"
+default_value_enabled = true
+default_value = 0.5
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_k604o"]
 input_name = "uv"
@@ -82,6 +92,7 @@ uniform float TimeScale = 1.0;
 uniform sampler2D tex_frg_2 : source_color;
 uniform vec4 FlameColor : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
 uniform float CutoffPercentage : hint_range(0.0, 1.0) = 0.5;
+uniform float TaperPower = 0.5;
 
 
 
@@ -147,10 +158,18 @@ void fragment() {
 	}
 
 
+// FloatParameter:20
+	float n_out20p0 = TaperPower;
+
+
+// FloatOp:19
+	float n_out19p0 = pow(n_out17p0, n_out20p0);
+
+
 // Clamp:18
 	float n_in18p1 = 0.00000;
 	float n_in18p2 = 1.00000;
-	float n_out18p0 = clamp(n_out17p0, n_in18p1, n_in18p2);
+	float n_out18p0 = clamp(n_out19p0, n_in18p1, n_in18p2);
 
 
 // VectorCompose:16
@@ -165,10 +184,10 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-613.801, -216.659)
+graph_offset = Vector2(-381.628, -231.926)
 modes/cull = 2
 flags/unshaded = true
-nodes/fragment/0/position = Vector2(900, 240)
+nodes/fragment/0/position = Vector2(1260, 240)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_s24yq")
 nodes/fragment/2/position = Vector2(-500, 120)
 nodes/fragment/3/node = SubResource("VisualShaderNodeInput_k604o")
@@ -192,19 +211,24 @@ nodes/fragment/14/position = Vector2(-240, 100)
 nodes/fragment/15/node = SubResource("VisualShaderNodeColorParameter_b02sm")
 nodes/fragment/15/position = Vector2(-560, 540)
 nodes/fragment/16/node = SubResource("VisualShaderNodeVectorCompose_oo354")
-nodes/fragment/16/position = Vector2(680, 160)
+nodes/fragment/16/position = Vector2(1040, 160)
 nodes/fragment/17/node = SubResource("VisualShaderNodeRemap_oo354")
 nodes/fragment/17/position = Vector2(40, -460)
 nodes/fragment/18/node = SubResource("VisualShaderNodeClamp_b02sm")
-nodes/fragment/18/position = Vector2(220, -460)
-nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 6, 0, 4, 1, 4, 0, 2, 0, 5, 0, 11, 0, 11, 0, 6, 1, 12, 0, 11, 1, 2, 0, 14, 0, 15, 0, 14, 1, 16, 0, 0, 0, 14, 1, 16, 0, 14, 2, 16, 1, 14, 3, 16, 2, 16, 4, 0, 1, 13, 0, 17, 2, 10, 2, 17, 0, 14, 4, 17, 3, 17, 0, 18, 0, 18, 0, 16, 3)
+nodes/fragment/18/position = Vector2(680, -360)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatOp_oo354")
+nodes/fragment/19/position = Vector2(520, -460)
+nodes/fragment/20/node = SubResource("VisualShaderNodeFloatParameter_b02sm")
+nodes/fragment/20/position = Vector2(240, -320)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 6, 0, 4, 1, 4, 0, 2, 0, 5, 0, 11, 0, 11, 0, 6, 1, 12, 0, 11, 1, 2, 0, 14, 0, 15, 0, 14, 1, 16, 0, 0, 0, 14, 1, 16, 0, 14, 2, 16, 1, 14, 3, 16, 2, 16, 4, 0, 1, 13, 0, 17, 2, 10, 2, 17, 0, 14, 4, 17, 3, 17, 0, 19, 0, 19, 0, 18, 0, 18, 0, 16, 3, 20, 0, 19, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61rwh"]
 render_priority = 0
 shader = SubResource("VisualShader_6hfx5")
-shader_parameter/TimeScale = 2.0
+shader_parameter/TimeScale = 1.0
 shader_parameter/FlameColor = Color(1, 0.658824, 0.2, 1)
 shader_parameter/CutoffPercentage = 0.4
+shader_parameter/TaperPower = 0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_ybp0n"]
 lightmap_size_hint = Vector2i(17, 9)
