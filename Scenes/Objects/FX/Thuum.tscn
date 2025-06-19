@@ -8,6 +8,7 @@ uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color, repeat_enable;
 
 uniform float sphere_fraction = 0.5;
+uniform float taper_power = 0.5;
 uniform float time_scale = 2.0;
 
 void fragment() 
@@ -21,7 +22,7 @@ void fragment()
 	
 	float closeness_to_end = (sphere_fraction - UV.y) / sphere_fraction;
 	closeness_to_end = clamp(closeness_to_end, 0.0, 1.0);
-	ALPHA *= closeness_to_end;
+	ALPHA *= pow(closeness_to_end, taper_power);
 }
 "
 
@@ -48,6 +49,7 @@ shader = SubResource("Shader_oo354")
 shader_parameter/albedo = Color(0, 0, 0, 0.564706)
 shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ybp0n")
 shader_parameter/sphere_fraction = 0.5
+shader_parameter/taper_power = 0.1
 shader_parameter/time_scale = 2.0
 
 [sub_resource type="Gradient" id="Gradient_ybp0n"]
@@ -59,8 +61,9 @@ noise_type = 5
 frequency = 0.2669
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k604o"]
-width = 100
+width = 50
 height = 20
+generate_mipmaps = false
 seamless = true
 seamless_blend_skirt = 0.343
 color_ramp = SubResource("Gradient_ybp0n")
@@ -73,6 +76,7 @@ shader = SubResource("Shader_oo354")
 shader_parameter/albedo = Color(1, 0.443137, 0, 1)
 shader_parameter/texture_albedo = SubResource("NoiseTexture2D_k604o")
 shader_parameter/sphere_fraction = 0.4
+shader_parameter/taper_power = 0.5
 shader_parameter/time_scale = 2.0
 
 [sub_resource type="Gradient" id="Gradient_b02sm"]
