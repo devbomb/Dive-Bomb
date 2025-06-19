@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dykig0tcxggvr"]
+[gd_scene load_steps=17 format=3 uid="uid://dykig0tcxggvr"]
 
 [ext_resource type="PackedScene" uid="uid://df4m2ng2nc375" path="res://BlenderModels/Parachute.blend" id="1_d1yau"]
 [ext_resource type="PackedScene" uid="uid://bytmfm6g78uxa" path="res://BlenderModels/KennifiedPlayerModel.blend" id="1_gwhpy"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="1_x2wfw"]
 [ext_resource type="PackedScene" uid="uid://bdmpiimo8xv4a" path="res://Scenes/Objects/AnchoredLine3D.tscn" id="2_6kq2t"]
+[ext_resource type="PackedScene" uid="uid://d1upl0f3iefyd" path="res://Scenes/Objects/FX/Thuum.tscn" id="5_518xa"]
 
 [sub_resource type="Gradient" id="Gradient_x8atq"]
 interpolation_mode = 2
@@ -118,3 +119,17 @@ external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
 
 [node name="RightHandPoint" type="Marker3D" parent="RightHandBone"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.283, 0)
+
+[node name="HeadBone" type="BoneAttachment3D" parent="."]
+transform = Transform3D(1, 1.42109e-14, -2.84217e-14, -3.55271e-15, 0.9916, 0.129339, 2.13163e-14, -0.129339, 0.9916, -4.7368e-09, 1.03822, -0.0198675)
+bone_name = "Head"
+bone_idx = 6
+use_external_skeleton = true
+external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
+
+[node name="HeadPoint" type="Marker3D" parent="HeadBone"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="DiveThuum" parent="HeadBone/HeadPoint" instance=ExtResource("5_518xa")]
+transform = Transform3D(10, 0, 0, 0, 9.44721, -3.27878, 0, 3.27878, 9.44721, -2.11758e-21, -0.196229, -0.323299)
+skeleton = NodePath("../../..")
