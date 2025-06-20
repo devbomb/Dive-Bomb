@@ -109,6 +109,11 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.287892, 9.27155e-09)
 visible = false
 
+[node name="DiveThuum" parent="Model" instance=ExtResource("5_2j7te")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.287892, -0.366892)
+visible = false
+
 [node name="AnimatorSoundPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 bus = &"Sfx"
