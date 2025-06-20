@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Scenes/Objects/Player/TimeTrialManager.tscn" id="2_eu73y"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="3_fw7ex"]
 [ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Scenes/Objects/Player/PlayerCamera.tscn" id="4_ne5gw"]
-[ext_resource type="PackedScene" uid="uid://d1upl0f3iefyd" path="res://Scenes/Objects/FX/Thuum.tscn" id="5_2j7te"]
+[ext_resource type="PackedScene" uid="uid://d1upl0f3iefyd" path="res://Scenes/FX/Thuum.tscn" id="5_2j7te"]
 [ext_resource type="AudioStream" uid="uid://l73s7j3svjwy" path="res://Audio/SFX/Roll.wav" id="5_4kc40"]
 [ext_resource type="AudioStream" uid="uid://dghyx6ev3y6q6" path="res://Audio/SFX/Bonk.wav" id="6_wmg1a"]
 [ext_resource type="AudioStream" uid="uid://bg3t5q648uwq" path="res://Audio/SFX/FlipDamage.wav" id="7_anupw"]
