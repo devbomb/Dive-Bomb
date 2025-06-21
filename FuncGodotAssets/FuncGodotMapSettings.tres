@@ -3,21 +3,21 @@
 [ext_resource type="Resource" uid="uid://6khm227w3xab" path="res://FuncGodotAssets/FuncGodotFGDFile.tres" id="2_i8c3b"]
 [ext_resource type="Script" uid="uid://btk5fxpo2w57h" path="res://addons/func_godot/src/map/func_godot_map_settings.gd" id="3_hoqnw"]
 
-[sub_resource type="PlaceholderMaterial" id="PlaceholderMaterial_jf6ms"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jf6ms"]
 
 [resource]
 script = ExtResource("3_hoqnw")
 inverse_scale_factor = 16.0
 entity_fgd = ExtResource("2_i8c3b")
 entity_name_property = ""
-base_texture_dir = "res://textures"
+base_texture_dir = "res://Textures"
 texture_file_extensions = Array[String](["png", "jpg", "jpeg", "bmp", "tga", "webp"])
 clip_texture = "special/clip"
 skip_texture = "special/skip"
 origin_texture = "special/origin"
 texture_wads = Array[Resource]([])
 material_file_extension = "tres"
-default_material = SubResource("PlaceholderMaterial_jf6ms")
+default_material = SubResource("StandardMaterial3D_jf6ms")
 default_material_albedo_uniform = ""
 albedo_map_pattern = "%s_albedo.%s"
 normal_map_pattern = "%s_normal.%s"
