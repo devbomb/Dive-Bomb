@@ -1,15 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://d15wioac2j1yk"]
 
 [ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_1ltlf"]
-
-[sub_resource type="GDScript" id="GDScript_1ltlf"]
-script/source = "extends Area3D
-
-@export var CycleId: String
-
-func _on_body_entered(body: Node3D) -> void:
-	$\"/root/SignalBus\".EmitCycleStarted(CycleId)
-"
+[ext_resource type="Script" uid="uid://cxyygy85qplh2" path="res://Scenes/Entities/Trigger_/CycleStarter.gd" id="2_swcc4"]
 
 [resource]
 script = ExtResource("1_1ltlf")
@@ -21,8 +13,8 @@ shadow_casting_setting = 1
 build_occlusion = false
 render_layers = 1
 collision_shape_type = 1
-collision_layer = 1
-collision_mask = 1
+collision_layer = 0
+collision_mask = 8
 collision_priority = 1.0
 collision_shape_margin = 0.04
 add_textures_metadata = false
@@ -30,7 +22,7 @@ add_vertex_metadata = false
 add_face_position_metadata = false
 add_face_normal_metadata = false
 add_collision_shape_face_range_metadata = false
-script_class = SubResource("GDScript_1ltlf")
+script_class = ExtResource("2_swcc4")
 classname = "Trigger_/CycleStarter"
 description = "Causes objects that share this trigger's CycleId to start their cycle when the player enters it"
 func_godot_internal = false
