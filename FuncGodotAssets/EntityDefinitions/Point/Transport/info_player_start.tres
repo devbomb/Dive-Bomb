@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cd3h00t6nxbfu"]
 
-[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_jfmcv"]
-[ext_resource type="PackedScene" uid="uid://ba2ixu535q7o3" path="res://Scenes/Entities/Transport_/PlayerSpawn.tscn" id="1_qg4vi"]
+[ext_resource type="PackedScene" uid="uid://ba2ixu535q7o3" path="res://Scenes/Entities/Transport_/PlayerSpawn.tscn" id="1_uedkl"]
+[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_d134s"]
 
 [resource]
-script = ExtResource("1_jfmcv")
-scene_file = ExtResource("1_qg4vi")
+script = ExtResource("2_d134s")
+scene_file = ExtResource("1_uedkl")
 apply_rotation_on_map_build = true
 apply_scale_on_map_build = true
 classname = "info_player_start"
@@ -14,7 +14,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {}
 class_property_descriptions = {}
-auto_apply_to_matching_node_properties = false
+auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

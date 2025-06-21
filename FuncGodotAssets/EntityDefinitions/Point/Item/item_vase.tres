@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://ce1myq2ywbh75"]
 
-[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_5b35u"]
-[ext_resource type="PackedScene" uid="uid://dlh8rir7h1xac" path="res://Scenes/Entities/Item_/Vase.tscn" id="1_vtxl3"]
+[ext_resource type="PackedScene" uid="uid://dlh8rir7h1xac" path="res://Scenes/Entities/Item_/Vase.tscn" id="1_j1arq"]
+[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_dry2w"]
 
 [resource]
-script = ExtResource("1_5b35u")
-scene_file = ExtResource("1_vtxl3")
+script = ExtResource("2_dry2w")
+scene_file = ExtResource("1_j1arq")
 apply_rotation_on_map_build = true
 apply_scale_on_map_build = true
 classname = "Item_/Vase"
@@ -14,7 +14,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {}
 class_property_descriptions = {}
-auto_apply_to_matching_node_properties = false
+auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)
