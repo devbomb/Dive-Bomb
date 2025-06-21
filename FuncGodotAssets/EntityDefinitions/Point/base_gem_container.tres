@@ -17,8 +17,10 @@ class_properties = {
 "Yellow": 10
 }
 }
-class_property_descriptions = {}
-auto_apply_to_matching_node_properties = false
+class_property_descriptions = {
+"GemColor": ["The color/value of the gem this thing should drop", 1]
+}
+auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)
