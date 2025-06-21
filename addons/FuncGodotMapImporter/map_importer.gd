@@ -50,11 +50,17 @@ func _import(
 
 	if (!source_file.begins_with("res://FuncGodotMaps")):
 		return OK
-
 	print("Importing (with func_godot) " + source_file)
 	var filePath = "%s.%s" % [save_path, _get_save_extension()]
+	
+	var mapBuilder = FuncGodotMap.new()
+	mapBuilder.block_until_complete = true
+	mapBuilder.local_map_file = source_file
+	mapBuilder.map_settings = ResourceLoader.load("res://FuncGodotAssets/FuncGodotMapSettings.tres")
+	mapBuilder.verify_and_build()
+	
 	var scene = PackedScene.new()
-	scene.pack(Node3D.new())
+	scene.pack(mapBuilder)
 
 	var saveResult = ResourceSaver.save(scene, filePath)
 	if (saveResult != OK):
