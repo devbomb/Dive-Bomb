@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=4 format=3 uid="uid://deiedh0yxw0fo"]
+
+[ext_resource type="Resource" uid="uid://cd3h00t6nxbfu" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/info_player_start.tres" id="1_x2g08"]
+[ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_yq3vo"]
+[ext_resource type="Resource" uid="uid://cmteywe02tmf7" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_player_spawn.tres" id="2_no0rq"]
+
+[resource]
+script = ExtResource("1_yq3vo")
+export_file = false
+target_map_editor = 1
+fgd_name = "Transport"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_x2g08"), ExtResource("2_no0rq")])
+metadata/_custom_type_script = "uid://vm1fvi5045um"
