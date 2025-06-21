@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://bt7p631ybqxdo"]
 
 [ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_fmqay"]
-[ext_resource type="Script" uid="uid://ck80j7qyk8fw3" path="res://Scenes/Entities/Hazard_/MoltenGlass.cs" id="2_fmqay"]
+[ext_resource type="Script" uid="uid://ba7lr7rl16xou" path="res://FuncGodotAssets/EntityDefinitions/Solid/Hazard/hazard_molten_glass_cube.gd" id="2_fmqay"]
 
 [resource]
 script = ExtResource("1_fmqay")
