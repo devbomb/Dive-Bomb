@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://muwxx8ltp1ss"]
 
-[ext_resource type="PackedScene" uid="uid://bdshm0cut77ja" path="res://TrenchbroomMaps/TestMap.map" id="1_um13f"]
 [ext_resource type="Environment" uid="uid://cnsj2vqr0q41w" path="res://Environments/DaySky.tres" id="2_0of0g"]
+[ext_resource type="PackedScene" uid="uid://kqobos7vcecw" path="res://FuncGodotMaps/TestMap.map" id="2_bkha8"]
 
 [node name="TestMap" type="Node3D"]
 
@@ -13,4 +13,4 @@ transform = Transform3D(0.958038, 0.253313, -0.13415, -0.134871, 0.811326, 0.568
 layers = 3
 sky_mode = 1
 
-[node name="TestMap" parent="." instance=ExtResource("1_um13f")]
+[node name="TestMap" parent="." instance=ExtResource("2_bkha8")]
