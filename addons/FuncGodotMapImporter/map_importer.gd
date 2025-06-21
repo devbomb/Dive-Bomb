@@ -57,12 +57,39 @@ func _import(
 	mapBuilder.block_until_complete = true
 	mapBuilder.local_map_file = source_file
 	mapBuilder.map_settings = ResourceLoader.load("res://FuncGodotAssets/FuncGodotMapSettings.tres")
+	
+	print("Calling verify_and_build()")
 	mapBuilder.verify_and_build()
+	print("verify_and_build() done.")
+	
+	for node in all_nodes_directly_in_scene(mapBuilder):
+		# Set the map root as the owner---otherwise, it won't be saved to the
+		# packed scene!
+		node.owner = mapBuilder
 	
 	var scene = PackedScene.new()
 	scene.pack(mapBuilder)
 
 	var saveResult = ResourceSaver.save(scene, filePath)
+	
 	if (saveResult != OK):
 		return saveResult
 	return OK
+
+# Returns all nodes that are directly inside the given scene
+# (IE: were not brought in by a child scene)
+func all_nodes_directly_in_scene(sceneRoot: Node) -> Array[Node]:
+	var array: Array[Node] = []
+	for child in sceneRoot.get_children():
+		_all_nodes_directly_in_scene(child, sceneRoot, array)
+	return array
+
+func _all_nodes_directly_in_scene(node: Node, sceneRoot: Node, array: Array[Node]):
+	var is_from_another_scene: bool = node.owner != null && node.owner != sceneRoot
+	if is_from_another_scene:
+		return
+
+	array.append(node)
+
+	for child in node.get_children():
+		_all_nodes_directly_in_scene(child, sceneRoot, array)
