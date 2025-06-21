@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=4 uid="uid://4d752lj10l8y"]
+
+[ext_resource type="Script" uid="uid://euc7tu2c4dog" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_cf1ut"]
+[ext_resource type="Resource" uid="uid://pgh6d0v7fyip" path="res://FuncGodotAssets/FuncGodotMapSettings.tres" id="2_tmolc"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="3_mdjd4"]
+[ext_resource type="PackedScene" uid="uid://ba2ixu535q7o3" path="res://Scenes/Entities/Transport_/PlayerSpawn.tscn" id="4_mdjd4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ktqh"]
+albedo_texture = ExtResource("3_mdjd4")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4t5ev"]
+_surfaces = [{
+"aabb": AABB(-1.75, -1.25, -2.75, 5, 3.5, 4),
+"attribute_data": PackedByteArray("AACAvwAAgL4AAIC/AACAPgAAgD8AAIA+AACAPwAAgL4AAIC/AACAvgAAgD8AAIC+AACAPwAAgD4AAIC/AACAPgAAgL8AAIC/AACAvwAAgD8AAIA/AACAPwAAgD8AAIC/AACAvwAAgL8AAIA/AACAvwAAgD8AAIA/AACAvwAAgD8AAIC/AACAvgAAgL8AAIA+AACAPwAAgD4AAIA/AACAvgAAgL8AAIC+AACAPwAAgL4AAIA/AACAPgAAgL8AAIA+AADAvwAAwL8AAMC/AAAAAAAAgL8AAAAAAACAvwAAwL8AAAA/AADAvwAAgD8AAMC/AACAPwAAAAAAAAA/AAAAAAAAAD8AAIA/AAAAPwAAwD8AAIA/AADAPwAAgD8AAIA/AAAAPwAAgD8AAIA/AACAPwAAgD8AAMA/AAAAPwAAwD8AAAA/AADAvwAAAD8AAAAAAACAPwAAAAAAAIA/AADAvwAAwL8AAMC/AACAvwAAwL8AAIC/AAAAAAAAwL8AAAAA"),
+"format": 34359742487,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8A"),
+"material": SubResource("StandardMaterial3D_2ktqh"),
+"name": "__TB_empty",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AABAvwAAgL4AADDAAABAvwAAoL8AADDAAABQQAAAoL8AADDAAABQQAAAgL4AADDAAABAvwAAgL4AADDAAABAvwAAgL4AAKA/AABAvwAAoL8AAKA/AABAvwAAoL8AADDAAABQQAAAoL8AADDAAABAvwAAoL8AADDAAABAvwAAoL8AAKA/AABQQAAAoL8AAKA/AABQQAAAgL4AADDAAABQQAAAgL4AAKA/AABAvwAAgL4AAKA/AABAvwAAgL4AADDAAABQQAAAgL4AADDAAABQQAAAoL8AADDAAABQQAAAoL8AAKA/AABQQAAAgL4AAKA/AABAvwAAgL4AAKA/AABQQAAAgL4AAKA/AABQQAAAoL8AAKA/AABAvwAAoL8AAKA/AADgvwAAEEAAAIA+AADgvwAAQL8AAIA+AABAvwAAQL8AAIA+AABAvwAAEEAAAIA+AADgvwAAEEAAAIA+AADgvwAAEEAAAKA/AADgvwAAQL8AAKA/AADgvwAAQL8AAIA+AABAvwAAQL8AAIA+AADgvwAAQL8AAIA+AADgvwAAQL8AAKA/AABAvwAAQL8AAKA/AABAvwAAEEAAAIA+AABAvwAAEEAAAKA/AADgvwAAEEAAAKA/AADgvwAAEEAAAIA+AABAvwAAEEAAAIA+AABAvwAAQL8AAIA+AABAvwAAQL8AAKA/AABAvwAAEEAAAKA/AADgvwAAEEAAAKA/AABAvwAAEEAAAKA/AABAvwAAQL8AAKA/AADgvwAAQL8AAKA//////////z//////////P/////////8//////////z8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//P////3//f/8/////f/9//z////9//3//P/9//3////+//3//f////7//f/9/////v/9//3////+//////////z//////////P/////////8//////////z8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//P////3//f/8/////f/9//z////9//3//P/9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[node name="FuncGodotTest" type="Node3D"]
+
+[node name="FuncGodotMap" type="Node3D" parent="."]
+script = ExtResource("1_cf1ut")
+local_map_file = "uid://b7i8sbw1gyyws"
+map_settings = ExtResource("2_tmolc")
+metadata/_custom_type_script = "uid://euc7tu2c4dog"
+
+[node name="entity_0_worldspawn" type="Node3D" parent="FuncGodotMap"]
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+cast_shadow = 2
+gi_mode = 0
+mesh = SubResource("ArrayMesh_4t5ev")
+
+[node name="entity_1_info_player_start" parent="FuncGodotMap" instance=ExtResource("4_mdjd4")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.25, 0)
