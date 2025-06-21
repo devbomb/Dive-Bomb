@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=4 format=3 uid="uid://6khm227w3xab"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=5 format=3 uid="uid://6khm227w3xab"]
 
 [ext_resource type="Resource" uid="uid://bdji3873bg32h" path="res://addons/func_godot/fgd/worldspawn.tres" id="1_1pkhh"]
 [ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_6hw37"]
 [ext_resource type="Resource" uid="uid://cd3h00t6nxbfu" path="res://FuncGodotAssets/EntityDefinitions/info_player_start.tres" id="1_flh77"]
+[ext_resource type="Resource" uid="uid://cmteywe02tmf7" path="res://FuncGodotAssets/EntityDefinitions/transport_player_spawn.tres" id="3_7elv0"]
 
 [resource]
 script = ExtResource("1_6hw37")
@@ -10,5 +11,5 @@ export_file = false
 target_map_editor = 1
 fgd_name = "DiveBomb"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_1pkhh"), ExtResource("1_flh77")])
+entity_definitions = Array[Resource]([ExtResource("1_1pkhh"), ExtResource("1_flh77"), ExtResource("3_7elv0")])
 metadata/_custom_type_script = "uid://vm1fvi5045um"
