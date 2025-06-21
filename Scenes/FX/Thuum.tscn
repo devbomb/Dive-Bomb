@@ -1,0 +1,128 @@
+[gd_scene load_steps=15 format=3 uid="uid://d1upl0f3iefyd"]
+
+[sub_resource type="Shader" id="Shader_oo354"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, unshaded;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, repeat_enable, filter_nearest;
+
+uniform float sphere_fraction = 0.5;
+uniform float taper_power = 0.5;
+uniform float time_scale = 2.0;
+
+void fragment() 
+{
+	vec2 texture_uv = UV;
+	texture_uv.y -= TIME * time_scale;
+
+	vec4 albedo_tex = texture(texture_albedo, texture_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	ALPHA *= albedo.a * albedo_tex.a;
+	
+	float closeness_to_end = (sphere_fraction - UV.y) / sphere_fraction;
+	closeness_to_end = clamp(closeness_to_end, 0.0, 1.0);
+	ALPHA *= pow(closeness_to_end, taper_power);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_oo354"]
+offsets = PackedFloat32Array(0, 0.400794)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b02sm"]
+noise_type = 5
+seed = 2
+frequency = 0.2669
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ybp0n"]
+width = 100
+height = 20
+seamless = true
+seamless_blend_skirt = 0.343
+color_ramp = SubResource("Gradient_oo354")
+noise = SubResource("FastNoiseLite_b02sm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ybp0n"]
+render_priority = 0
+shader = SubResource("Shader_oo354")
+shader_parameter/albedo = Color(0, 0, 0, 0.564706)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ybp0n")
+shader_parameter/sphere_fraction = 0.4
+shader_parameter/taper_power = 0.05
+shader_parameter/time_scale = 2.0
+
+[sub_resource type="Gradient" id="Gradient_ybp0n"]
+offsets = PackedFloat32Array(0, 0.400794)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s24yq"]
+noise_type = 5
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k604o"]
+width = 20
+height = 8
+generate_mipmaps = false
+seamless_blend_skirt = 0.0
+color_ramp = SubResource("Gradient_ybp0n")
+noise = SubResource("FastNoiseLite_s24yq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b02sm"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_ybp0n")
+shader = SubResource("Shader_oo354")
+shader_parameter/albedo = Color(1, 0.443137, 0, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_k604o")
+shader_parameter/sphere_fraction = 0.4
+shader_parameter/taper_power = 0.225
+shader_parameter/time_scale = 2.0
+
+[sub_resource type="Shader" id="Shader_b02sm"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, cull_disabled, unshaded;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
+
+void fragment() {
+	vec2 base_uv = UV;
+	base_uv.y *= 1.0 - abs((cos(TIME * 20.0) * 0.05));
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_b02sm"]
+offsets = PackedFloat32Array(0.56746, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.992157, 0.423529, 0, 0.580392)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ybp0n"]
+gradient = SubResource("Gradient_b02sm")
+width = 10
+height = 20
+fill_from = Vector2(1, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s24yq"]
+render_priority = 0
+shader = SubResource("Shader_b02sm")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_ybp0n")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ybp0n"]
+lightmap_size_hint = Vector2i(17, 9)
+height = 0.5
+radial_segments = 16
+rings = 8
+is_hemisphere = true
+
+[node name="Thuum" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_b02sm")
+material_overlay = SubResource("ShaderMaterial_s24yq")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_ybp0n")

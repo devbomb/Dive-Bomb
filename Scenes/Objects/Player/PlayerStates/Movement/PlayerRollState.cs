@@ -15,13 +15,16 @@ namespace FastDragon
         private bool _isGroundRoll;
 
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
-        private List<IBreakable> _unbrokenObjects= new List<IBreakable>();
+        private List<IBreakable> _unbrokenObjects = new List<IBreakable>();
 
         private AudioStreamPlayer _rollSoundPlayer => Self.GetNode<AudioStreamPlayer>("%RollSoundPlayer");
+        private MeshInstance3D _thuum => Self.GetNode<MeshInstance3D>("%RollThuum");
+        private GpuParticles3D _dust => Self.GetNode<GpuParticles3D>("%RollDust");
 
         public override void OnStateEntered(IState oldState)
         {
             Self.Animator.Play("Roll");
+            _thuum.Visible = true;
 
             _timer = 0;
             _isGroundRoll = !(oldState is PlayerDiveState);
@@ -34,12 +37,23 @@ namespace FastDragon
         public override void OnStateExited()
         {
             Self.Animator.SpeedScale = 1;
+            _thuum.Visible = false;
+            _dust.Emitting = false;
         }
 
         public override void _Process(double deltaD)
         {
             float scale = Self.Velocity.Length() / RollingCircumference;
             Self.Animator.SpeedScale = scale;
+
+            float speedPercent = Mathf.InverseLerp(
+                Player.Roll.MinSpeed,
+                Player.Roll.InitialSpeed,
+                Self.Velocity.Length()
+            );
+            _thuum.Transparency = 1f - speedPercent;
+
+            _dust.Emitting = Self.IsOnFloor();
         }
 
         public override void _Input(InputEvent ev)

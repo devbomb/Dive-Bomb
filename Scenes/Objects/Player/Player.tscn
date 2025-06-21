@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=28 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Scenes/Objects/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Scenes/Objects/Player/LedgeDetector.tscn" id="2_0esln"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Scenes/Objects/Player/TimeTrialManager.tscn" id="2_eu73y"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Models/PlayerModel.tscn" id="3_fw7ex"]
 [ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Scenes/Objects/Player/PlayerCamera.tscn" id="4_ne5gw"]
+[ext_resource type="PackedScene" uid="uid://d1upl0f3iefyd" path="res://Scenes/FX/Thuum.tscn" id="5_2j7te"]
 [ext_resource type="AudioStream" uid="uid://l73s7j3svjwy" path="res://Audio/SFX/Roll.wav" id="5_4kc40"]
+[ext_resource type="PackedScene" uid="uid://wv54wlebftcd" path="res://Scenes/FX/RollDust.tscn" id="5_e40ui"]
 [ext_resource type="AudioStream" uid="uid://dghyx6ev3y6q6" path="res://Audio/SFX/Bonk.wav" id="6_wmg1a"]
 [ext_resource type="AudioStream" uid="uid://bg3t5q648uwq" path="res://Audio/SFX/FlipDamage.wav" id="7_anupw"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
@@ -102,6 +104,21 @@ playback_default_blend_time = 0.1
 
 [node name="Model" parent="." instance=ExtResource("3_fw7ex")]
 unique_name_in_owner = true
+
+[node name="RollDust" parent="Model" instance=ExtResource("5_e40ui")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260567, -0.232747)
+emitting = false
+
+[node name="RollThuum" parent="Model" instance=ExtResource("5_2j7te")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.287892, 9.27155e-09)
+visible = false
+
+[node name="DiveThuum" parent="Model" instance=ExtResource("5_2j7te")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.287892, -0.366892)
+visible = false
 
 [node name="AnimatorSoundPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

@@ -5,6 +5,8 @@ namespace FastDragon
 {
     public partial class PlayerDiveState : PlayerState
     {
+        private const float ThuumFadeTime = 0.5f;
+
         public override bool DisableCameraInput => _redirectTimer <= 0;
 
         private float _redirectTimer;
@@ -14,9 +16,14 @@ namespace FastDragon
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
         private List<IBreakable> _unbrokenObjects = new List<IBreakable>();
 
+        private MeshInstance3D _thuum => Self.GetNode<MeshInstance3D>("%DiveThuum");
+
         public override void OnStateEntered()
         {
             Self.Animator.Play("Dive");
+            _thuum.Visible = true;
+            _thuum.Transparency = 1;
+
             Self.VSpeed = Player.Dive.InitialVSpeed;
             Self.FSpeed = Player.Dive.FSpeed;
 
@@ -29,11 +36,18 @@ namespace FastDragon
         public override void OnStateExited()
         {
             ResetModelPitch();
+            _thuum.Visible = false;
         }
 
         public override void _Process(double deltaD)
         {
             float delta = (float)deltaD;
+
+            _thuum.Transparency = Mathf.MoveToward(
+                _thuum.Transparency,
+                0,
+                delta / ThuumFadeTime
+            );
 
             AngleModelPitchWithVelocity(delta);
 
