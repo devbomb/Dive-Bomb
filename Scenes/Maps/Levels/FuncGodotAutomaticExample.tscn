@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://k1q2355wnaap"]
+
+[ext_resource type="PackedScene" uid="uid://b7i8sbw1gyyws" path="res://FuncGodotMaps/unnamed.map" id="1_stbtb"]
+
+[node name="FuncGodotAutomaticExample" type="Node3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("1_stbtb")]
