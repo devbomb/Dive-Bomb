@@ -12,7 +12,9 @@ classname = "Item_/Fairy"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([])
-class_properties = {}
+class_properties = {
+"GemCost": 0
+}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
 meta_properties = {

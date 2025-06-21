@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://uhqf0u1eeajg"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://uhqf0u1eeajg"]
 
 [ext_resource type="PackedScene" uid="uid://dbxajif4g4buk" path="res://Scenes/Entities/Item_/Basket.tscn" id="1_a5qj5"]
+[ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="1_qa472"]
 [ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_qa472"]
 
 [resource]
@@ -11,7 +12,7 @@ apply_scale_on_map_build = true
 classname = "Item_/Basket"
 description = ""
 func_godot_internal = false
-base_classes = Array[Resource]([])
+base_classes = Array[Resource]([ExtResource("1_qa472")])
 class_properties = {}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
