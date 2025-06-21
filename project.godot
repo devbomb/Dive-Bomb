@@ -43,13 +43,6 @@ enabled=PackedStringArray("res://addons/FuncGodotMapImporter/plugin.cfg", "res:/
 PhysicsInterpolated=""
 UnsafeGround="If a collision object is tagged with this, it is not considered \"safe\" ground.  The player will not update its \"last safe ground\" position when standing on it."
 
-[importer_defaults]
-
-func_godot_map_importer={
-&"texture_material_map": Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("res://addons/MapImporter/MaterialMap.gd"),"texture_to_material":Dictionary[Texture2D, Material]({}))
-
-}
-
 [input]
 
 ui_accept={
