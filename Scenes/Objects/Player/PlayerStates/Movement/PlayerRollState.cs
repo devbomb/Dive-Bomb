@@ -19,6 +19,7 @@ namespace FastDragon
 
         private AudioStreamPlayer _rollSoundPlayer => Self.GetNode<AudioStreamPlayer>("%RollSoundPlayer");
         private MeshInstance3D _thuum => Self.GetNode<MeshInstance3D>("%RollThuum");
+        private GpuParticles3D _dust => Self.GetNode<GpuParticles3D>("%RollDust");
 
         public override void OnStateEntered(IState oldState)
         {
@@ -37,6 +38,7 @@ namespace FastDragon
         {
             Self.Animator.SpeedScale = 1;
             _thuum.Visible = false;
+            _dust.Emitting = false;
         }
 
         public override void _Process(double deltaD)
@@ -50,6 +52,8 @@ namespace FastDragon
                 Self.Velocity.Length()
             );
             _thuum.Transparency = 1f - speedPercent;
+
+            _dust.Emitting = Self.IsOnFloor();
         }
 
         public override void _Input(InputEvent ev)
