@@ -2779,12 +2779,12 @@
 "classname" "Wall_/BulletproofGlassWall"
 // brush 0
 {
-( 296 544 424 ) ( 296 560 400 ) ( 296 560 424 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 328 544 424 ) ( 296 544 400 ) ( 296 544 424 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 328 560 400 ) ( 296 544 400 ) ( 328 544 400 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 328 560 424 ) ( 296 544 424 ) ( 296 560 424 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 328 560 424 ) ( 296 560 400 ) ( 328 560 400 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 328 560 424 ) ( 328 544 400 ) ( 328 544 424 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 296 544 424 ) ( 296 560 400 ) ( 296 560 424 ) Textures/Grate 0 0 0 1 1
+( 328 544 424 ) ( 296 544 400 ) ( 296 544 424 ) Textures/Grate 0 0 0 1 1
+( 328 560 400 ) ( 296 544 400 ) ( 328 544 400 ) Textures/Grate 0 0 0 1 1
+( 328 560 424 ) ( 296 544 424 ) ( 296 560 424 ) Textures/Grate 0 0 0 1 1
+( 328 560 424 ) ( 296 560 400 ) ( 328 560 400 ) Textures/Grate 0 0 0 1 1
+( 328 560 424 ) ( 328 544 400 ) ( 328 544 424 ) Textures/Grate 0 0 0 1 1
 }
 }
 // entity 76
