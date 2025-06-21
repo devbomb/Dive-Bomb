@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MaterialMap" load_steps=10 format=3 uid="uid://dgvjaxeitfghe"]
+[gd_resource type="Resource" script_class="MaterialMap" load_steps=12 format=3 uid="uid://dgvjaxeitfghe"]
 
 [ext_resource type="Script" uid="uid://cb8n0ec7vcom" path="res://addons/MapImporter/MaterialMap.gd" id="1_4o1u0"]
 [ext_resource type="Texture2D" uid="uid://px3g1sk1iywm" path="res://Textures/Textures/BigMetalSquares.png" id="4_4qu2l"]
@@ -9,6 +9,8 @@
 [ext_resource type="Material" uid="uid://dp8hf7rertopp" path="res://Materials/ManuallyDrawnPanels.tres" id="7_sfm7b"]
 [ext_resource type="Texture2D" uid="uid://b7rs5b8s4x1aa" path="res://Textures/Textures/Grate.png" id="8_kyo2g"]
 [ext_resource type="Material" uid="uid://djjv3erqamsem" path="res://Materials/BulletproofGlassWall.tres" id="9_ml6ww"]
+[ext_resource type="Texture2D" uid="uid://chn1mf3rkq4ea" path="res://Textures/Textures/DivableGlassPlaceholder.png" id="10_ltube"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="11_rlpyx"]
 
 [resource]
 script = ExtResource("1_4o1u0")
@@ -16,5 +18,6 @@ texture_to_material = Dictionary[Texture2D, Material]({
 ExtResource("4_4qu2l"): ExtResource("5_1acbw"),
 ExtResource("6_205iw"): ExtResource("7_sfm7b"),
 ExtResource("6_sfm7b"): ExtResource("7_kyo2g"),
-ExtResource("8_kyo2g"): ExtResource("9_ml6ww")
+ExtResource("8_kyo2g"): ExtResource("9_ml6ww"),
+ExtResource("10_ltube"): ExtResource("11_rlpyx")
 })
