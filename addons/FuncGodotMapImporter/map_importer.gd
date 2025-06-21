@@ -55,7 +55,7 @@ func _import(
 	var mapBuilder = FuncGodotMap.new()
 	mapBuilder.block_until_complete = true
 	mapBuilder.local_map_file = source_file
-	mapBuilder.map_settings = ResourceLoader.load("res://FuncGodotAssets/FuncGodotMapSettings.tres")
+	mapBuilder.map_settings = preload("res://FuncGodotAssets/FuncGodotMapSettings.tres")
 	
 	print("Calling verify_and_build()")
 	mapBuilder.verify_and_build()
