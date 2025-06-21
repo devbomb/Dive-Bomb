@@ -78,6 +78,10 @@ func _import(
 	options: Dictionary,
 	r_platform_variants: Array[String],
 	r_gen_files: Array[String]) -> Error:
+		
+	if (!source_file.begins_with("res://TrenchbroomMaps")):
+		return OK
+
 	print("Importing " + source_file)
 	var tbLoader: TBLoader = TBLoader.new()
 
