@@ -5,6 +5,8 @@ namespace FastDragon
 {
     public partial class PlayerDiveState : PlayerState
     {
+        private const float ThuumFadeTime = 0.5f;
+
         public override bool DisableCameraInput => _redirectTimer <= 0;
 
         private float _redirectTimer;
@@ -20,6 +22,7 @@ namespace FastDragon
         {
             Self.Animator.Play("Dive");
             _thuum.Visible = true;
+            _thuum.Transparency = 1;
 
             Self.VSpeed = Player.Dive.InitialVSpeed;
             Self.FSpeed = Player.Dive.FSpeed;
@@ -39,6 +42,12 @@ namespace FastDragon
         public override void _Process(double deltaD)
         {
             float delta = (float)deltaD;
+
+            _thuum.Transparency = Mathf.MoveToward(
+                _thuum.Transparency,
+                0,
+                delta / ThuumFadeTime
+            );
 
             AngleModelPitchWithVelocity(delta);
 
