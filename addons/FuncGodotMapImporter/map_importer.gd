@@ -51,7 +51,6 @@ func _import(
 	if (!source_file.begins_with("res://FuncGodotMaps")):
 		return OK
 	print("Importing (with func_godot) " + source_file)
-	var filePath = "%s.%s" % [save_path, _get_save_extension()]
 	
 	var mapBuilder = FuncGodotMap.new()
 	mapBuilder.block_until_complete = true
@@ -61,20 +60,61 @@ func _import(
 	print("Calling verify_and_build()")
 	mapBuilder.verify_and_build()
 	print("verify_and_build() done.")
-	
-	for node in all_nodes_directly_in_scene(mapBuilder):
+
+	var mapRoot = Node3D.new()
+	mapRoot.name = get_root_node_name(source_file)
+
+	move_children(mapBuilder, mapRoot)
+	fix_duplicate_node_names(mapRoot)
+
+	for node in all_nodes_directly_in_scene(mapRoot):
 		# Set the map root as the owner---otherwise, it won't be saved to the
 		# packed scene!
-		node.owner = mapBuilder
-	
-	var scene = PackedScene.new()
-	scene.pack(mapBuilder)
+		node.owner = mapRoot
 
-	var saveResult = ResourceSaver.save(scene, filePath)
+	# Save the map as a packed scene
+	var filePath = "%s.%s" % [save_path, _get_save_extension()]
+	var scene = PackedScene.new()
+	scene.pack(mapRoot)
 	
+	var saveResult = ResourceSaver.save(scene, filePath)
 	if (saveResult != OK):
 		return saveResult
+	
+	# HACK: ResourceSaver.save() has a bug where signal connections from
+	# instantiated child scenes are unnecessarily saved again in the parent
+	# scene, resulting in a "Signal 'Foo' is already connected" error.
+	# See https://github.com/godotengine/godot/issues/48064
+	#
+	# The workaround: edit the generated .tscn file and delete the "connection"
+	# lines.
+	_strip_duplicate_signal_connections(filePath)
 	return OK
+
+func fix_duplicate_node_names(node: Node):
+	var nameCounts: Dictionary = {}
+	for child in node.get_children():
+		var originalName = child.name
+
+		if nameCounts.has(originalName):
+			child.name = originalName + str(nameCounts[originalName])
+			nameCounts[originalName] += 1
+		else:
+			nameCounts[originalName] = 1
+
+		fix_duplicate_node_names(child)
+
+func move_children(src: Node, dst: Node):
+	for child in src.get_children():
+		src.remove_child(child)
+		dst.add_child(child)
+
+func get_root_node_name(source_file: String):
+	var parts = source_file.trim_prefix("res://").split("/")
+	return parts[parts.size() - 1].trim_suffix(".map")
+
+func is_root_of_another_scene(node: Node) -> bool:
+	return node.scene_file_path != ""
 
 # Returns all nodes that are directly inside the given scene
 # (IE: were not brought in by a child scene)
@@ -93,3 +133,32 @@ func _all_nodes_directly_in_scene(node: Node, sceneRoot: Node, array: Array[Node
 
 	for child in node.get_children():
 		_all_nodes_directly_in_scene(child, sceneRoot, array)
+
+func replace_materials(meshInstance: MeshInstance3D, textureToMaterial: Dictionary[Texture2D, Material]):
+	for surfaceIndex in meshInstance.mesh.get_surface_count():
+		var surfaceMaterial: Material = meshInstance.mesh.surface_get_material(surfaceIndex)
+		if !(surfaceMaterial is StandardMaterial3D):
+			continue
+
+		var texture: Texture2D = surfaceMaterial.albedo_texture
+		if texture == null:
+			continue
+		
+		if !textureToMaterial.has(texture):
+			continue
+
+		var replacementMaterial: Material = textureToMaterial.get(texture)
+		meshInstance.set_surface_override_material(surfaceIndex, replacementMaterial)
+
+func _strip_duplicate_signal_connections(filePath: String) -> Error:
+	var originalText: String = FileAccess.get_file_as_string(filePath)
+	
+	var regex = RegEx.new()
+	regex.compile("\\[connection signal=.+\\]\\n")
+	var strippedText: String = regex.sub(originalText, "", true)
+	
+	var file: FileAccess = FileAccess.open(filePath, FileAccess.WRITE)
+	file.store_string(strippedText)
+	file.close()
+	# TODO: catch and return errors?
+	return OK
