@@ -32,7 +32,16 @@ func _get_preset_name(preset_index) -> String:
 			return "Unknown"
 
 func _get_import_options(path, preset_index) -> Array[Dictionary]:
-	return []
+	match preset_index:
+		Presets.DEFAULT:
+			return [
+				{
+					"name": "texture_material_map",
+					"default_value": MaterialMap.new()
+				}
+			]
+		_:
+			return []
 
 func _get_import_order() -> int:
 	return 101 # Make it process _after_ .tscn files, to ensure the entities
@@ -68,6 +77,10 @@ func _import(
 		# Set the map root as the owner---otherwise, it won't be saved to the
 		# packed scene!
 		node.owner = mapRoot
+		
+		# Map textures to their materials based on the provided map
+		if node is MeshInstance3D && !is_root_of_another_scene(node):
+			replace_materials(node, options.texture_material_map.texture_to_material)
 
 	# Save the map as a packed scene
 	var filePath = "%s.%s" % [save_path, _get_save_extension()]

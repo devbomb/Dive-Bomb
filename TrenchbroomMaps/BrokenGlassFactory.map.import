@@ -12,3 +12,4 @@ dest_files=["res://.godot/imported/BrokenGlassFactory.map-4861f0a5f626518e1a0218
 
 [params]
 
+texture_material_map=Resource("res://TextureMaterialMap.tres")
