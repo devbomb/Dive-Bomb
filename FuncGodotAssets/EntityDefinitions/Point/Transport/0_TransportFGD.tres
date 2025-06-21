@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=6 format=3 uid="uid://deiedh0yxw0fo"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=7 format=3 uid="uid://deiedh0yxw0fo"]
 
 [ext_resource type="Resource" uid="uid://cd3h00t6nxbfu" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/info_player_start.tres" id="1_xccv5"]
 [ext_resource type="Resource" uid="uid://cmteywe02tmf7" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_player_spawn.tres" id="2_ortqs"]
 [ext_resource type="Resource" uid="uid://dixxg22ofgal" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_checkpoint.tres" id="3_qtl80"]
 [ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="4_438nx"]
 [ext_resource type="Resource" uid="uid://luikrf3moe4d" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_vent.tres" id="4_ortqs"]
+[ext_resource type="Resource" uid="uid://bkt5cyfqbtv86" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_standard_portal.tres" id="5_qtl80"]
 
 [resource]
 script = ExtResource("4_438nx")
@@ -12,5 +13,5 @@ export_file = false
 target_map_editor = 1
 fgd_name = "Transport"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_xccv5"), ExtResource("2_ortqs"), ExtResource("3_qtl80"), ExtResource("4_ortqs")])
+entity_definitions = Array[Resource]([ExtResource("1_xccv5"), ExtResource("2_ortqs"), ExtResource("3_qtl80"), ExtResource("4_ortqs"), ExtResource("5_qtl80")])
 metadata/_custom_type_script = "uid://vm1fvi5045um"
