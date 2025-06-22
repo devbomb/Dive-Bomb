@@ -48,6 +48,13 @@ func _generate_model() -> void:
 	var path = _get_export_dir()
 	var node = _get_node()
 	if node == null: return
+	
+	# ALEX HACK: For whatever reason, scenes with AnimationPlayers in them
+	# sometimes cause Godot to freeze when you try to append them to a
+	# GLTFDocument.  Add it to the list of Godot bullshit I've needed to
+	# work around.
+	_strip_animation_player(node)
+	
 	if not _create_gltf_file(gltf_state, path, node):
 		printerr("could not create gltf file")
 		return
@@ -66,6 +73,15 @@ func _generate_model() -> void:
 	
 	if generate_size_property:
 		meta_properties["size"] = _generate_size_from_aabb(gltf_state.meshes)
+
+func _strip_animation_player(node: Node):
+	var children := node.get_children()
+	for child in children:
+		if (child is AnimationPlayer):
+			node.remove_child(child)
+			child.queue_free()
+			continue
+		_strip_animation_player(child)
 
 func _get_node() -> Node3D:
 	var node := scene_file.instantiate()
