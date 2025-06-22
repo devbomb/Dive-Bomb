@@ -1,6 +1,6 @@
 [remap]
 
-importer="map_importer"
+importer="func_godot_map_importer"
 type="PackedScene"
 uid="uid://dad4aqqyc8v3i"
 path="res://.godot/imported/Castle.map-70a5990fe8f09fa1ffbf396238f740b3.tscn"
@@ -12,10 +12,5 @@ dest_files=["res://.godot/imported/Castle.map-70a5990fe8f09fa1ffbf396238f740b3.t
 
 [params]
 
-map_inverse_scale=16
-entity_path="res://Scenes/Entities"
-texture_path="res://Textures"
-visual_layer_mask=9
-collision_layer_mask=3
 texture_material_map=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("res://addons/MapImporter/MaterialMap.gd"),"texture_to_material":Dictionary[Texture2D, Material]({}))
 
