@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cba4moeixonmi"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://bblbx4r2eswhn"]
 
-[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_0wtuc"]
-[ext_resource type="PackedScene" uid="uid://bnvl0dea6a42y" path="res://Scenes/Entities/Detail_/WallTorch.tscn" id="1_e2f5e"]
+[ext_resource type="PackedScene" uid="uid://bnvl0dea6a42y" path="res://Scenes/Entities/Detail_/WallTorch.tscn" id="1_jjwek"]
+[ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_ogtll"]
 
 [resource]
-script = ExtResource("1_0wtuc")
-scene_file = ExtResource("1_e2f5e")
+script = ExtResource("1_ogtll")
+target_map_editor = 1
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("1_jjwek")
 apply_rotation_on_map_build = true
 apply_scale_on_map_build = true
 classname = "Detail_/WallTorch"
@@ -21,4 +26,4 @@ meta_properties = {
 }
 node_class = ""
 name_property = ""
-metadata/_custom_type_script = "uid://cddjtiy8pj12o"
+metadata/_custom_type_script = "uid://bnr5edjnhrq6k"

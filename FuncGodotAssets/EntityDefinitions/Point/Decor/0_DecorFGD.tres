@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=3 format=3 uid="uid://487bbv258iii"]
 
 [ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_5c013"]
-[ext_resource type="Resource" uid="uid://cba4moeixonmi" path="res://FuncGodotAssets/EntityDefinitions/Point/Decor/decor_wall_torch.tres" id="1_hwpjn"]
+[ext_resource type="Resource" uid="uid://bblbx4r2eswhn" path="res://FuncGodotAssets/EntityDefinitions/Point/Decor/decor_wall_torch.tres" id="1_hwpjn"]
 
 [resource]
 script = ExtResource("1_5c013")
