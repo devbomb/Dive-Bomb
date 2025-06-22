@@ -12,7 +12,11 @@ classname = "Transport_/PlayerSpawn"
 description = "The player's spawn point"
 func_godot_internal = false
 base_classes = Array[Resource]([])
-class_properties = {}
+class_properties = {
+"FlyInDistance": 10.0,
+"FlyInDuration": 4.0,
+"FlyInHeight": 10.0
+}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
 meta_properties = {

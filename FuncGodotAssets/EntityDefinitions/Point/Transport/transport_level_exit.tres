@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cu33001l7qyev"]
 
-[ext_resource type="PackedScene" uid="uid://dahuf8m47kslw" path="res://Scenes/Entities/Transport_/StandardPortal.tscn" id="1_tp8hl"]
+[ext_resource type="PackedScene" uid="uid://chupa7p5expn4" path="res://Scenes/Entities/Transport_/ReturnHomePlatform.tscn" id="1_tp8hl"]
 [ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_oqchi"]
 
 [resource]
@@ -12,7 +12,9 @@ classname = "Transport_/ReturnHomePlatform"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([])
-class_properties = {}
+class_properties = {
+"ExitHeight": 15.0
+}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
