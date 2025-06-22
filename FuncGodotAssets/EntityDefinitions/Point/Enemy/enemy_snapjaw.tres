@@ -13,8 +13,14 @@ classname = "Enemy_/Snapjaw"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_yp1rd")])
-class_properties = {}
-class_property_descriptions = {}
+class_properties = {
+"CycleId": "",
+"CycleOffset": 0.0
+}
+class_property_descriptions = {
+"CycleId": "The enemy's attack pattern does not start until the CycleStartedsignal is fired with this parameter.  Set to an empty string if youwant it to start as soon as the level is loaded.",
+"CycleOffset": "How long to delay before starting the attack pattern after the cycle starts"
+}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
