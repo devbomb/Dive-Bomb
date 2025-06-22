@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://c5tj8mv5kw2ek"]
+
+[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_ed1lc"]
+[ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="1_k8gr3"]
+[ext_resource type="PackedScene" uid="uid://ch0y87teuvqc8" path="res://Scenes/Entities/Enemy_/EnemyHandCannoner.tscn" id="2_k8gr3"]
+
+[resource]
+script = ExtResource("1_ed1lc")
+scene_file = ExtResource("2_k8gr3")
+apply_rotation_on_map_build = true
+apply_scale_on_map_build = true
+classname = "Enemy_/EnemyHandCannoner"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_k8gr3")])
+class_properties = {
+"AggroRadius": 20.0
+}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = true
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://cddjtiy8pj12o"
