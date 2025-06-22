@@ -4,11 +4,19 @@ namespace FastDragon
 {
     public partial class XRayWall : StaticBody3D
     {
-        private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast");
+        private readonly RayCast3D _raycast = new RayCast3D();
         private Player _player;
 
         private float _transparency = 0;
         private float _targetTransparency = 0;
+
+        public override void _Ready()
+        {
+            AddChild(_raycast);
+            _raycast.HitFromInside = true;
+            _raycast.ExcludeParent = false;
+            _raycast.DebugShapeCustomColor = new Color(1, 0, 0);
+        }
 
         public override void _Process(double deltaD)
         {
