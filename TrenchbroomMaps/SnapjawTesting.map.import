@@ -12,5 +12,4 @@ dest_files=["res://.godot/imported/SnapjawTesting.map-2fec3e49d57551dd8a09f02494
 
 [params]
 
-texture_material_map=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("res://addons/MapImporter/MaterialMap.gd"),"texture_to_material":Dictionary[Texture2D, Material]({}))
-
+texture_material_map=Resource("res://TextureMaterialMap.tres")
