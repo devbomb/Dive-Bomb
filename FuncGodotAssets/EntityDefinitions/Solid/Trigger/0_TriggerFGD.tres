@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=4 format=3 uid="uid://ojky55i8ybpd"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=5 format=3 uid="uid://ojky55i8ybpd"]
 
 [ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_14g6l"]
 [ext_resource type="Resource" uid="uid://d15wioac2j1yk" path="res://FuncGodotAssets/EntityDefinitions/Solid/Trigger/trigger_cycle_starter.tres" id="1_ad4h3"]
 [ext_resource type="Resource" uid="uid://7b1x4taaxo0m" path="res://FuncGodotAssets/EntityDefinitions/Solid/Trigger/trigger_camera_suggestion_zone.tres" id="2_gttou"]
+[ext_resource type="Resource" uid="uid://vtntahh4vrh7" path="res://FuncGodotAssets/EntityDefinitions/Solid/Trigger/trigger_fixed_camera_zone.tres" id="3_hgfud"]
 
 [resource]
 script = ExtResource("1_14g6l")
@@ -10,5 +11,5 @@ export_file = false
 target_map_editor = 1
 fgd_name = "Trigger"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_ad4h3"), ExtResource("2_gttou")])
+entity_definitions = Array[Resource]([ExtResource("1_ad4h3"), ExtResource("2_gttou"), ExtResource("3_hgfud")])
 metadata/_custom_type_script = "uid://vm1fvi5045um"
