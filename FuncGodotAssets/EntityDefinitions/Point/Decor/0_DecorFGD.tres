@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=3 format=3 uid="uid://487bbv258iii"]
+
+[ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_5c013"]
+[ext_resource type="Resource" uid="uid://cba4moeixonmi" path="res://FuncGodotAssets/EntityDefinitions/Point/Decor/decor_wall_torch.tres" id="1_hwpjn"]
+
+[resource]
+script = ExtResource("1_5c013")
+export_file = false
+target_map_editor = 1
+fgd_name = "Decor"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_hwpjn")])
+metadata/_custom_type_script = "uid://vm1fvi5045um"
