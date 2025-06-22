@@ -2701,12 +2701,12 @@
 }
 // brush 16
 {
-( -608 1520 32 ) ( -608 1984 32 ) ( -608 1520 144 ) __TB_empty 0 0 0 1 1
-( -608 1520 144 ) ( -592 1520 144 ) ( -608 1520 32 ) __TB_empty 0 0 0 1 1
-( -608 1520 32 ) ( -592 1520 32 ) ( -608 1984 32 ) __TB_empty 0 0 0 1 1
+( -608 1520 32 ) ( -608 1984 32 ) ( -608 1520 144 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1520 144 ) ( -592 1520 144 ) ( -608 1520 32 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1520 32 ) ( -592 1520 32 ) ( -608 1984 32 ) Textures/PaleBricks 0 0 0 1 1
 ( -608 1984 144 ) ( -592 1984 144 ) ( -608 1520 144 ) Textures/PaleBricks 0 0 0 1 1
-( -608 1984 32 ) ( -592 1984 32 ) ( -608 1984 144 ) __TB_empty 0 0 0 1 1
-( -592 1984 144 ) ( -592 1984 32 ) ( -592 1520 144 ) __TB_empty 0 0 0 1 1
+( -608 1984 32 ) ( -592 1984 32 ) ( -608 1984 144 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1984 144 ) ( -592 1984 32 ) ( -592 1520 144 ) Textures/PaleBricks 0 0 0 1 1
 }
 // brush 17
 {
@@ -2990,30 +2990,6 @@
 "_tb_group" "6"
 }
 // entity 142
-{
-"classname" "Detail_/Fireplace"
-"origin" "-584 1752 40"
-"_tb_group" "6"
-}
-// entity 143
-{
-"classname" "Detail_/Fireplace"
-"origin" "-584 1768 40"
-"_tb_group" "6"
-}
-// entity 144
-{
-"classname" "Detail_/Fireplace"
-"origin" "-584 1736 40"
-"_tb_group" "6"
-}
-// entity 145
-{
-"classname" "Detail_/Fireplace"
-"origin" "-584 1784 40"
-"_tb_group" "6"
-}
-// entity 146
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3379,25 +3355,25 @@
 ( -128 992 672 ) ( -128 992 673 ) ( -128 993 672 ) Textures/PaleBricks 0 0 0 1 1
 }
 }
-// entity 147
+// entity 143
 {
 "classname" "Item_/Fairy"
 "origin" "-168 1224 576"
 "_tb_group" "7"
 }
-// entity 148
+// entity 144
 {
 "classname" "Item_/GreenGem"
 "origin" "-188 1268 576"
 "_tb_group" "7"
 }
-// entity 149
+// entity 145
 {
 "classname" "Item_/RedGem"
 "origin" "-204 1180 576"
 "_tb_group" "7"
 }
-// entity 150
+// entity 146
 {
 "classname" "Trigger_/CameraSuggestionZone"
 "SuggestedDistance" "12"
@@ -3413,34 +3389,34 @@
 ( -320 1344 576 ) ( -320 960 496 ) ( -320 960 576 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 151
+// entity 147
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-200 1144 256"
 "angles" "0 -90 0"
 "_tb_group" "7"
 }
-// entity 152
+// entity 148
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "120 1152 304"
 "angles" "0 180 0"
 "_tb_group" "7"
 }
-// entity 153
+// entity 149
 {
 "classname" "Detail_/WallTorch"
 "origin" "-136 1000 272"
 "angles" "0 90 0"
 "_tb_group" "7"
 }
-// entity 154
+// entity 150
 {
 "classname" "Item_/GreenGem"
 "origin" "-204 996 256"
 "_tb_group" "7"
 }
-// entity 155
+// entity 151
 {
 "classname" "Hazard_/DrowningWater"
 // brush 0
@@ -3453,7 +3429,7 @@
 ( 576 320 -160 ) ( 576 320 -159 ) ( 576 321 -160 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
-// entity 156
+// entity 152
 {
 "classname" "Transport_/Checkpoint"
 "origin" "-224 1488 32"
