@@ -12,5 +12,4 @@ dest_files=["res://.godot/imported/Castle.map-70a5990fe8f09fa1ffbf396238f740b3.t
 
 [params]
 
-texture_material_map=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("res://addons/MapImporter/MaterialMap.gd"),"texture_to_material":Dictionary[Texture2D, Material]({}))
-
+texture_material_map=Resource("res://TextureMaterialMap.tres")
