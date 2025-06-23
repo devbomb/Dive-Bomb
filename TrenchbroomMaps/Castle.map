@@ -2107,51 +2107,51 @@
 }
 // entity 93
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "400 1320 32"
 "angles" "0 -90 0"
 "GemColor" "2"
 }
 // entity 94
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-120 600 0"
 }
 // entity 95
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "480 536 0"
 }
 // entity 96
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-344 1144 112"
 "angles" "0 90 0"
 "GemColor" "2"
 }
 // entity 97
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-312 840 176"
 "angles" "0 90 0"
 "GemColor" "2"
 }
 // entity 98
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-8 928 432"
 "angles" "0 -90 0"
 }
 // entity 99
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-472 1160 352"
 "angles" "0 -90 0"
 "GemColor" "2"
 }
 // entity 100
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-392 1160 352"
 "angles" "0 -90 0"
 "GemColor" "2"
@@ -2168,14 +2168,14 @@
 }
 // entity 103
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-16 1408 352"
 "angles" "0 180 0"
 "GemColor" "5"
 }
 // entity 104
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "0 1816 448"
 "angles" "0 -90 0"
 "GemColor" "10"
@@ -2323,7 +2323,7 @@
 }
 // entity 109
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "792 1592 32"
 "GemColor" "5"
 "_tb_group" "4"
@@ -2572,7 +2572,7 @@
 }
 // entity 122
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "8 1624 32"
 "angles" "0 90 0"
 "AggroRadius" "40"
@@ -2581,7 +2581,7 @@
 }
 // entity 123
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-88 1896 32"
 "angles" "0 -90 0"
 "AggroRadius" "80"
@@ -2590,7 +2590,7 @@
 }
 // entity 124
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "104 1624 32"
 "angles" "0 90 0"
 "AggroRadius" "40"
@@ -2599,7 +2599,7 @@
 }
 // entity 125
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-88 1624 32"
 "angles" "0 90 0"
 "AggroRadius" "40"
@@ -2608,7 +2608,7 @@
 }
 // entity 126
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "104 1896 32"
 "angles" "0 -90 0"
 "AggroRadius" "80"
@@ -2617,7 +2617,7 @@
 }
 // entity 127
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "8 1896 32"
 "angles" "0 -90 0"
 "AggroRadius" "80"
@@ -3464,14 +3464,14 @@
 }
 // entity 154
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-200 1144 256"
 "angles" "0 -90 0"
 "_tb_group" "7"
 }
 // entity 155
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "120 1152 304"
 "angles" "0 180 0"
 "_tb_group" "7"

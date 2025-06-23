@@ -65,31 +65,31 @@
 }
 // entity 4
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "120 -8 64"
 "CycleOffset" "0"
 }
 // entity 5
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "184 -8 64"
 "CycleOffset" "0.5"
 }
 // entity 6
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "264 -8 48"
 "CycleOffset" "1"
 }
 // entity 7
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "376 -8 48"
 "CycleOffset" "1.5"
 }
 // entity 8
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "472 -8 48"
 "CycleOffset" "2"
 }

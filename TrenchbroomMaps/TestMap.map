@@ -327,7 +327,7 @@
 }
 // entity 32
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "360 368 -16"
 "CycleId" "SnapjawCycle"
 }
