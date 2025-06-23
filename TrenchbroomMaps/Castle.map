@@ -934,12 +934,12 @@
 }
 // brush 104
 {
-( -624 2064 336 ) ( -624 2080 32 ) ( -624 2080 336 ) __TB_empty 0 0 0 1 1
-( 640 2064 336 ) ( -624 2064 32 ) ( -624 2064 336 ) __TB_empty 0 0 0 1 1
-( 640 2080 0 ) ( -624 2064 0 ) ( 640 2064 0 ) __TB_empty 0 0 0 1 1
-( 640 2080 336 ) ( -624 2064 336 ) ( -624 2080 336 ) __TB_empty 0 0 0 1 1
-( 640 2080 336 ) ( -624 2080 32 ) ( 640 2080 32 ) __TB_empty 0 0 0 1 1
-( 640 2080 336 ) ( 640 2064 32 ) ( 640 2064 336 ) __TB_empty 0 0 0 1 1
+( -624 2064 336 ) ( -624 2080 32 ) ( -624 2080 336 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2064 336 ) ( -624 2064 32 ) ( -624 2064 336 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2080 0 ) ( -624 2064 0 ) ( 640 2064 0 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2080 336 ) ( -624 2064 336 ) ( -624 2080 336 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2080 336 ) ( -624 2080 32 ) ( 640 2080 32 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2080 336 ) ( 640 2064 32 ) ( 640 2064 336 ) Textures/PaleBricks 0 0 0 1 1
 }
 // brush 105
 {
@@ -952,21 +952,21 @@
 }
 // brush 106
 {
-( 608 1120 336 ) ( 608 1904 224 ) ( 608 1904 336 ) __TB_empty 0 0 0 1 1
-( 640 1120 336 ) ( 608 1120 224 ) ( 608 1120 336 ) __TB_empty 0 0 0 1 1
-( 640 1904 224 ) ( 608 1120 224 ) ( 640 1120 224 ) __TB_empty 0 0 0 1 1
-( 640 1904 336 ) ( 608 1120 336 ) ( 608 1904 336 ) __TB_empty 0 0 0 1 1
-( 640 2064 336 ) ( 608 2064 224 ) ( 640 2064 224 ) __TB_empty 0 0 0 1 1
-( 640 1904 336 ) ( 640 1120 224 ) ( 640 1120 336 ) __TB_empty 0 0 0 1 1
+( 608 1120 336 ) ( 608 1904 224 ) ( 608 1904 336 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1120 336 ) ( 608 1120 224 ) ( 608 1120 336 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1904 224 ) ( 608 1120 224 ) ( 640 1120 224 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1904 336 ) ( 608 1120 336 ) ( 608 1904 336 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2064 336 ) ( 608 2064 224 ) ( 640 2064 224 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1904 336 ) ( 640 1120 224 ) ( 640 1120 336 ) Textures/PaleBricks 0 0 0 1 1
 }
 // brush 107
 {
-( 608 1856 224 ) ( 608 2064 32 ) ( 608 2064 224 ) __TB_empty 0 0 0 1 1
-( 640 1856 224 ) ( 608 1856 32 ) ( 608 1856 224 ) __TB_empty 0 0 0 1 1
-( 640 2064 0 ) ( 608 1856 0 ) ( 640 1856 0 ) __TB_empty 0 0 0 1 1
-( 640 2064 224 ) ( 608 1856 224 ) ( 608 2064 224 ) __TB_empty 0 0 0 1 1
-( 640 2064 224 ) ( 608 2064 32 ) ( 640 2064 32 ) __TB_empty 0 0 0 1 1
-( 640 2064 224 ) ( 640 1856 32 ) ( 640 1856 224 ) __TB_empty 0 0 0 1 1
+( 608 1856 224 ) ( 608 2064 32 ) ( 608 2064 224 ) Textures/PaleBricks 0 0 0 1 1
+( 640 1856 224 ) ( 608 1856 32 ) ( 608 1856 224 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2064 0 ) ( 608 1856 0 ) ( 640 1856 0 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2064 224 ) ( 608 1856 224 ) ( 608 2064 224 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2064 224 ) ( 608 2064 32 ) ( 640 2064 32 ) Textures/PaleBricks 0 0 0 1 1
+( 640 2064 224 ) ( 640 1856 32 ) ( 640 1856 224 ) Textures/PaleBricks 0 0 0 1 1
 }
 // brush 108
 {
@@ -1235,15 +1235,6 @@
 }
 // brush 1
 {
-( -44 2400 544 ) ( -44 2401 544 ) ( -44 2400 545 ) __TB_empty 0 0 0 1 1
-( -48 2400 544 ) ( -48 2400 545 ) ( -47 2400 544 ) __TB_empty 0 0 0 1 1
-( -48 2400 544 ) ( -47 2400 544 ) ( -48 2401 544 ) __TB_empty 0 0 0 1 1
-( -16 2416 588 ) ( -16 2417 588 ) ( -15 2416 588 ) __TB_empty 0 0 0 1 1
-( -16 2408 560 ) ( -15 2408 560 ) ( -16 2408 561 ) __TB_empty 0 0 0 1 1
-( -20 2416 560 ) ( -20 2416 561 ) ( -20 2417 560 ) __TB_empty 0 0 0 1 1
-}
-// brush 2
-{
 ( -256 1792 448 ) ( -256 1793 448 ) ( -256 1792 449 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -256 1792 448 ) ( -256 1792 449 ) ( -255 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -256 1792 448 ) ( -255 1792 448 ) ( -256 1793 448 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1251,7 +1242,7 @@
 ( -224 2496 480 ) ( -223 2496 480 ) ( -224 2496 481 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -224 2496 480 ) ( -224 2496 481 ) ( -224 2497 480 ) Textures/ThroneRoomWalls 0 0 0 1 1
 }
-// brush 3
+// brush 2
 {
 ( 224 1792 448 ) ( 224 1793 448 ) ( 224 1792 449 ) Textures/ThroneRoomWalls 0 0 0 1 1
 ( 224 1792 448 ) ( 224 1792 449 ) ( 225 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1260,7 +1251,7 @@
 ( 256 2496 480 ) ( 257 2496 480 ) ( 256 2496 481 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 256 2496 480 ) ( 256 2496 481 ) ( 256 2497 480 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 4
+// brush 3
 {
 ( -256 2496 416 ) ( -256 2497 416 ) ( -256 2496 417 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -256 2496 416 ) ( -256 2496 417 ) ( -255 2496 416 ) Textures/ThroneRoomWalls 0 0 0 1 1
@@ -1269,7 +1260,7 @@
 ( 256 2528 448 ) ( 257 2528 448 ) ( 256 2528 449 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 256 2528 448 ) ( 256 2528 449 ) ( 256 2529 448 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 5
+// brush 4
 {
 ( 96 2496 544 ) ( 96 2336 544 ) ( 96 2112 448 ) Textures/Smoothstone 0 0 0 1 1
 ( 96 2336 544 ) ( 224 2336 544 ) ( 224 2112 448 ) Textures/Smoothstone 0 0 0 1 1
@@ -1278,7 +1269,7 @@
 ( 224 2496 448 ) ( 224 2496 544 ) ( 96 2496 544 ) Textures/Smoothstone 0 0 0 1 1
 ( 224 2336 544 ) ( 224 2496 544 ) ( 224 2496 448 ) Textures/Smoothstone 0 0 0 1 1
 }
-// brush 6
+// brush 5
 {
 ( -224 2496 544 ) ( -224 2336 544 ) ( -224 2112 448 ) Textures/Smoothstone 0 0 0 1 1
 ( -224 2336 544 ) ( -96 2336 544 ) ( -96 2112 448 ) Textures/Smoothstone 0 0 0 1 1
@@ -1287,70 +1278,7 @@
 ( -96 2496 448 ) ( -96 2496 544 ) ( -224 2496 544 ) Textures/Smoothstone 0 0 0 1 1
 ( -96 2336 544 ) ( -96 2496 544 ) ( -96 2496 448 ) Textures/Smoothstone 0 0 0 1 1
 }
-// brush 7
-{
-( -24 2400 560 ) ( -24 2384 560 ) ( -24 2400 544 ) __TB_empty 0 0 0 1 1
-( -16 2384 544 ) ( -24 2384 544 ) ( -16 2384 560 ) __TB_empty 0 0 0 1 1
-( -16 2400 544 ) ( -24 2400 544 ) ( -16 2384 544 ) __TB_empty 0 0 0 1 1
-( -16 2384 560 ) ( -24 2384 560 ) ( -16 2400 560 ) __TB_empty 0 0 0 1 1
-( -16 2400 560 ) ( -24 2400 560 ) ( -16 2400 544 ) __TB_empty 0 0 0 1 1
-( -20 2384 560 ) ( -20 2400 560 ) ( -20 2384 544 ) __TB_empty 0 0 0 1 1
-}
-// brush 8
-{
-( -44 2384 544 ) ( -44 2400 544 ) ( -44 2384 560 ) __TB_empty 0 0 0 1 1
-( -48 2384 560 ) ( -40 2384 560 ) ( -48 2384 544 ) __TB_empty 0 0 0 1 1
-( -48 2384 544 ) ( -40 2384 544 ) ( -48 2400 544 ) __TB_empty 0 0 0 1 1
-( -48 2400 560 ) ( -40 2400 560 ) ( -48 2384 560 ) __TB_empty 0 0 0 1 1
-( -48 2400 544 ) ( -40 2400 544 ) ( -48 2400 560 ) __TB_empty 0 0 0 1 1
-( -40 2384 544 ) ( -40 2384 560 ) ( -40 2400 544 ) __TB_empty 0 0 0 1 1
-}
-// brush 9
-{
-( -40 2400 544 ) ( -40 2400 552 ) ( -40 2384 544 ) __TB_empty 0 0 0 1 1
-( -40 2384 544 ) ( -40 2384 552 ) ( -24 2384 544 ) __TB_empty 0 0 0 1 1
-( -24 2400 544 ) ( -40 2400 544 ) ( -24 2384 544 ) __TB_empty 0 0 0 1 1
-( -24 2384 552 ) ( -40 2384 552 ) ( -24 2400 552 ) __TB_empty 0 0 0 1 1
-( -24 2400 544 ) ( -24 2400 552 ) ( -40 2400 544 ) __TB_empty 0 0 0 1 1
-( -24 2384 544 ) ( -24 2384 552 ) ( -24 2400 544 ) __TB_empty 0 0 0 1 1
-}
-// brush 10
-{
-( 8 2384 544 ) ( 8 2400 544 ) ( 8 2384 560 ) __TB_empty 0 0 0 1 1
-( 4 2384 560 ) ( 12 2384 560 ) ( 4 2384 544 ) __TB_empty 0 0 0 1 1
-( 4 2384 544 ) ( 12 2384 544 ) ( 4 2400 544 ) __TB_empty 0 0 0 1 1
-( 4 2400 560 ) ( 12 2400 560 ) ( 4 2384 560 ) __TB_empty 0 0 0 1 1
-( 4 2400 544 ) ( 12 2400 544 ) ( 4 2400 560 ) __TB_empty 0 0 0 1 1
-( 12 2384 544 ) ( 12 2384 560 ) ( 12 2400 544 ) __TB_empty 0 0 0 1 1
-}
-// brush 11
-{
-( 12 2400 544 ) ( 12 2400 552 ) ( 12 2384 544 ) __TB_empty 0 0 0 1 1
-( 12 2384 544 ) ( 12 2384 552 ) ( 28 2384 544 ) __TB_empty 0 0 0 1 1
-( 28 2400 544 ) ( 12 2400 544 ) ( 28 2384 544 ) __TB_empty 0 0 0 1 1
-( 28 2384 552 ) ( 12 2384 552 ) ( 28 2400 552 ) __TB_empty 0 0 0 1 1
-( 28 2400 544 ) ( 28 2400 552 ) ( 12 2400 544 ) __TB_empty 0 0 0 1 1
-( 28 2384 544 ) ( 28 2384 552 ) ( 28 2400 544 ) __TB_empty 0 0 0 1 1
-}
-// brush 12
-{
-( 28 2400 560 ) ( 28 2384 560 ) ( 28 2400 544 ) __TB_empty 0 0 0 1 1
-( 36 2384 544 ) ( 28 2384 544 ) ( 36 2384 560 ) __TB_empty 0 0 0 1 1
-( 36 2400 544 ) ( 28 2400 544 ) ( 36 2384 544 ) __TB_empty 0 0 0 1 1
-( 36 2384 560 ) ( 28 2384 560 ) ( 36 2400 560 ) __TB_empty 0 0 0 1 1
-( 36 2400 560 ) ( 28 2400 560 ) ( 36 2400 544 ) __TB_empty 0 0 0 1 1
-( 32 2384 560 ) ( 32 2400 560 ) ( 32 2384 544 ) __TB_empty 0 0 0 1 1
-}
-// brush 13
-{
-( 8 2400 544 ) ( 8 2401 544 ) ( 8 2400 545 ) __TB_empty 0 0 0 1 1
-( 4 2400 544 ) ( 4 2400 545 ) ( 5 2400 544 ) __TB_empty 0 0 0 1 1
-( 4 2400 544 ) ( 5 2400 544 ) ( 4 2401 544 ) __TB_empty 0 0 0 1 1
-( 36 2416 588 ) ( 36 2417 588 ) ( 37 2416 588 ) __TB_empty 0 0 0 1 1
-( 36 2408 560 ) ( 37 2408 560 ) ( 36 2408 561 ) __TB_empty 0 0 0 1 1
-( 32 2416 560 ) ( 32 2416 561 ) ( 32 2417 560 ) __TB_empty 0 0 0 1 1
-}
-// brush 14
+// brush 6
 {
 ( -96 2464 544 ) ( -96 2465 544 ) ( -96 2464 545 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -96 2464 544 ) ( -96 2464 545 ) ( -95 2464 544 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1359,7 +1287,7 @@
 ( 96 2496 560 ) ( 97 2496 560 ) ( 96 2496 561 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 96 2496 560 ) ( 96 2496 561 ) ( 96 2497 560 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 15
+// brush 7
 {
 ( 64 1824 1024 ) ( 64 1792 1024 ) ( 64 1824 448 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 224 1792 448 ) ( 64 1792 448 ) ( 224 1792 1024 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1368,7 +1296,7 @@
 ( 224 1824 1024 ) ( 64 1824 1024 ) ( 224 1824 448 ) Textures/ThroneRoomWalls 0 0 0 1 1
 ( 224 1792 1024 ) ( 224 1824 1024 ) ( 224 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 16
+// brush 8
 {
 ( -224 1792 448 ) ( -224 1824 448 ) ( -224 1792 1024 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -224 1792 1024 ) ( -64 1792 1024 ) ( -224 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1377,7 +1305,7 @@
 ( -224 1824 448 ) ( -64 1824 448 ) ( -224 1824 1024 ) Textures/ThroneRoomWalls 0 0 0 1 1
 ( -64 1792 448 ) ( -64 1792 1024 ) ( -64 1824 448 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 17
+// brush 9
 {
 ( -64 1792 1024 ) ( -64 1792 800 ) ( -64 1824 1024 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 64 1792 544 ) ( 64 1824 544 ) ( -64 1792 800 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1386,7 +1314,7 @@
 ( -64 1824 1024 ) ( -64 1824 800 ) ( 64 1824 1024 ) Textures/ThroneRoomWalls 0 0 0 1 1
 ( 64 1824 1024 ) ( 64 1824 544 ) ( 64 1792 1024 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 18
+// brush 10
 {
 ( -64 1792 800 ) ( -64 1792 544 ) ( -64 1824 800 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -64 1792 800 ) ( 0 1792 672 ) ( -64 1792 544 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1394,7 +1322,7 @@
 ( 0 1824 672 ) ( -64 1824 544 ) ( 0 1792 672 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -64 1824 800 ) ( 0 1824 672 ) ( -64 1792 800 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 19
+// brush 11
 {
 ( 0 1792 672 ) ( -32 1792 608 ) ( 0 1824 672 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 0 1792 672 ) ( 32 1792 608 ) ( -32 1792 608 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1402,7 +1330,7 @@
 ( 0 1824 672 ) ( -32 1824 608 ) ( 32 1824 608 ) Textures/ThroneRoomWalls 0 0 0 1 1
 ( 0 1824 672 ) ( 32 1824 608 ) ( 0 1792 672 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 20
+// brush 12
 {
 ( 240 1808 896 ) ( 240 1809 896 ) ( 240 1808 897 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 240 1808 896 ) ( 240 1808 897 ) ( 241 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1411,7 +1339,7 @@
 ( 256 2512 912 ) ( 257 2512 912 ) ( 256 2512 913 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 256 2496 912 ) ( 256 2496 913 ) ( 256 2497 912 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 21
+// brush 13
 {
 ( -256 2512 896 ) ( -256 2513 896 ) ( -256 2512 897 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -256 2512 896 ) ( -256 2512 897 ) ( -255 2512 896 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1420,7 +1348,7 @@
 ( 256 2528 912 ) ( 257 2528 912 ) ( 256 2528 913 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 256 2528 912 ) ( 256 2528 913 ) ( 256 2529 912 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 22
+// brush 14
 {
 ( -256 1808 896 ) ( -256 1809 896 ) ( -256 1808 897 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -256 1808 896 ) ( -256 1808 897 ) ( -255 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1429,7 +1357,7 @@
 ( -240 2512 912 ) ( -239 2512 912 ) ( -240 2512 913 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -240 2512 912 ) ( -240 2512 913 ) ( -240 2513 912 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 23
+// brush 15
 {
 ( 208 1792 928 ) ( 208 1792 896 ) ( 208 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 256 1792 896 ) ( 208 1792 896 ) ( 256 1792 928 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1438,7 +1366,7 @@
 ( 256 1808 928 ) ( 208 1808 928 ) ( 256 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 256 1792 928 ) ( 256 1808 928 ) ( 256 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 24
+// brush 16
 {
 ( 40 1792 928 ) ( 40 1792 896 ) ( 40 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 40 1792 928 ) ( 128 1792 928 ) ( 40 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1447,7 +1375,7 @@
 ( 40 1808 896 ) ( 128 1808 896 ) ( 40 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 128 1792 896 ) ( 128 1792 928 ) ( 128 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 25
+// brush 17
 {
 ( 128 1808 896 ) ( 128 1808 912 ) ( 128 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 128 1792 896 ) ( 128 1792 912 ) ( 208 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1456,7 +1384,7 @@
 ( 208 1808 896 ) ( 208 1808 912 ) ( 128 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 208 1792 896 ) ( 208 1792 912 ) ( 208 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 26
+// brush 18
 {
 ( -128 1808 928 ) ( -128 1792 928 ) ( -128 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -128 1792 928 ) ( -40 1792 928 ) ( -128 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1465,7 +1393,7 @@
 ( -128 1808 896 ) ( -40 1808 896 ) ( -128 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -40 1808 928 ) ( -40 1808 896 ) ( -40 1792 928 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 27
+// brush 19
 {
 ( -40 1808 896 ) ( -40 1808 912 ) ( -40 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -40 1792 896 ) ( -40 1792 912 ) ( 40 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1474,7 +1402,7 @@
 ( 40 1808 896 ) ( 40 1808 912 ) ( -40 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( 40 1792 896 ) ( 40 1792 912 ) ( 40 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 28
+// brush 20
 {
 ( -256 1792 896 ) ( -256 1808 896 ) ( -256 1792 928 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -256 1792 928 ) ( -208 1792 928 ) ( -256 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1483,7 +1411,7 @@
 ( -256 1808 896 ) ( -208 1808 896 ) ( -256 1808 928 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -208 1792 896 ) ( -208 1792 928 ) ( -208 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 29
+// brush 21
 {
 ( -208 1808 896 ) ( -208 1808 912 ) ( -208 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -208 1792 896 ) ( -208 1792 912 ) ( -128 1792 896 ) Textures/darkbrown_bricks 0 0 0 1 1
@@ -1492,14 +1420,59 @@
 ( -128 1808 896 ) ( -128 1808 912 ) ( -208 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 ( -128 1792 896 ) ( -128 1792 912 ) ( -128 1808 896 ) Textures/darkbrown_bricks 0 0 0 1 1
 }
-// brush 30
+// brush 22
 {
-( -256 2048 384 ) ( -256 2049 384 ) ( -256 2048 385 ) Textures/darkbrown_bricks 0 0 0 1 1
-( -256 1792 384 ) ( -256 1792 385 ) ( -255 1792 384 ) Textures/darkbrown_bricks 0 0 0 1 1
-( -256 2048 416 ) ( -255 2048 416 ) ( -256 2049 416 ) Textures/darkbrown_bricks 0 0 0 1 1
-( 256 2496 448 ) ( 256 2497 448 ) ( 257 2496 448 ) Textures/ThroneRoomFloor 0 0 0 1 1
-( 256 2496 448 ) ( 257 2496 448 ) ( 256 2496 449 ) Textures/darkbrown_bricks 0 0 0 1 1
-( 256 2496 448 ) ( 256 2496 449 ) ( 256 2497 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2496 448 ) ( 40 1792 448 ) ( 40 2496 416 ) Textures/ThroneRoomRug 40 0 0 1 1
+( 256 1792 416 ) ( 40 1792 416 ) ( 256 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 2496 416 ) ( 40 2496 416 ) ( 256 1792 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 1792 448 ) ( 40 1792 448 ) ( 256 2496 448 ) Textures/ThroneRoomFloor 0 0 0 1 1
+( 256 2496 448 ) ( 40 2496 448 ) ( 256 2496 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 256 1792 448 ) ( 256 2496 448 ) ( 256 1792 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+// brush 23
+{
+( -256 1792 416 ) ( -256 2496 416 ) ( -256 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1792 448 ) ( -40 1792 448 ) ( -256 1792 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 1792 416 ) ( -40 1792 416 ) ( -256 2496 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -256 2496 448 ) ( -40 2496 448 ) ( -256 1792 448 ) Textures/ThroneRoomFloor 0 0 0 1 1
+( -256 2496 416 ) ( -40 2496 416 ) ( -256 2496 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 1792 416 ) ( -40 1792 448 ) ( -40 2496 416 ) Textures/ThroneRoomRug 40 0 0 1 1
+}
+// brush 24
+{
+( -40 2496 448 ) ( -40 2336 448 ) ( -40 2496 416 ) Textures/ThroneRoomRug 40 0 0 1 1
+( 40 2336 448 ) ( 40 2336 416 ) ( -40 2336 448 ) Textures/ThroneRoomRug 40 0 0 1 1
+( -40 2496 416 ) ( -40 2336 416 ) ( 40 2496 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2496 448 ) ( 40 2336 448 ) ( -40 2496 448 ) Textures/ThroneRoomFloor 0 0 0 1 1
+( 40 2496 448 ) ( -40 2496 448 ) ( 40 2496 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2496 416 ) ( 40 2336 416 ) ( 40 2496 448 ) Textures/ThroneRoomRug 40 0 0 1 1
+}
+// brush 25
+{
+( -40 1792 416 ) ( -40 1888 416 ) ( -40 1792 448 ) Textures/ThroneRoomRug 40 0 0 1 1
+( 40 1792 416 ) ( -40 1792 416 ) ( 40 1792 448 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 1792 416 ) ( 40 1888 416 ) ( -40 1792 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( -40 1792 448 ) ( -40 1888 448 ) ( 40 1792 448 ) Textures/ThroneRoomFloor 0 0 0 1 1
+( -40 1824 416 ) ( 40 1824 416 ) ( -40 1824 448 ) Textures/ThroneRoomRug 40 0 0 1 1
+( 40 1792 448 ) ( 40 1888 448 ) ( 40 1792 416 ) Textures/ThroneRoomRug 40 0 0 1 1
+}
+// brush 26
+{
+( -40 2336 416 ) ( -40 2336 432 ) ( -40 1888 416 ) Textures/ThroneRoomRug 40 0 0 1 1
+( -40 1888 416 ) ( -40 1888 432 ) ( 40 1888 416 ) Textures/ThroneRoomRug 40 0 0 1 1
+( -40 2336 416 ) ( -40 1888 416 ) ( 40 2336 416 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 40 2336 432 ) ( 40 1888 432 ) ( -40 2336 432 ) Textures/ThroneRoomRug 40 0 0 1 1
+( 40 2336 416 ) ( 40 2336 432 ) ( -40 2336 416 ) Textures/ThroneRoomRug 40 0 0 1 1
+( 40 1888 416 ) ( 40 1888 432 ) ( 40 2336 416 ) Textures/ThroneRoomRug 40 0 0 1 1
+}
+// brush 27
+{
+( -40 2304 424 ) ( -40 2305 424 ) ( -40 2304 425 ) Textures/ThroneRoomRug 40 0 0 1 1
+( -48 1824 424 ) ( -48 1824 425 ) ( -47 1824 424 ) Textures/ThroneRoomRug 40 0 0 1 1
+( -48 2304 424 ) ( -47 2304 424 ) ( -48 2305 424 ) Textures/ThroneRoomRug 40 0 0 1 1
+( 48 2336 448 ) ( 48 2337 448 ) ( 49 2336 448 ) Textures/ThroneRoomRug 40 0 0 1 1
+( 48 2336 440 ) ( 49 2336 440 ) ( 48 2336 441 ) Textures/ThroneRoomRug 40 0 0 1 1
+( 40 2336 440 ) ( 40 2336 441 ) ( 40 2337 440 ) Textures/ThroneRoomRug 40 0 0 1 1
 }
 }
 // entity 10
@@ -1613,53 +1586,33 @@
 }
 // entity 11
 {
-"classname" "Item_/Fairy"
-"origin" "0 2064 448"
-"angles" "0 90 0"
-"GemCost" "250"
-"_tb_group" "1"
-}
-// entity 12
-{
-"classname" "Detail_/Decal"
-"origin" "0 2070.93 448"
-"SizeX" "5"
-"SizeY" "0.25"
-"SizeZ" "34"
-"angles" "0 90 0"
-"TexturePath" "res://Textures/Textures/ThroneRoomRug.png"
-"GemCost" "250"
-"_tb_group" "1"
-}
-// entity 13
-{
 "classname" "Item_/YellowGem"
 "origin" "12 2164 448"
 "GemCost" "250"
 "_tb_group" "1"
 }
-// entity 14
+// entity 12
 {
 "classname" "Item_/PurpleGem"
 "origin" "52 2196 448"
 "GemCost" "250"
 "_tb_group" "1"
 }
-// entity 15
+// entity 13
 {
 "classname" "Item_/PurpleGem"
 "origin" "-52 2196 448"
 "GemCost" "250"
 "_tb_group" "1"
 }
-// entity 16
+// entity 14
 {
 "classname" "Item_/YellowGem"
 "origin" "-12 2164 448"
 "GemCost" "250"
 "_tb_group" "1"
 }
-// entity 17
+// entity 15
 {
 "classname" "Transport_/ReturnHomePlatform"
 "origin" "0 2240 448"
@@ -1667,30 +1620,150 @@
 "GemCost" "250"
 "_tb_group" "1"
 }
+// entity 16
+{
+"classname" "Item_/Fairy"
+"origin" "0 2064 448"
+"angles" "0 90 0"
+"GemCost" "250"
+"_tb_group" "1"
+}
+// entity 17
+{
+"classname" "Wall_/DivableWall"
+"_tb_group" "1"
+// brush 0
+{
+( -44 2400 544 ) ( -44 2401 544 ) ( -44 2400 545 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -48 2400 544 ) ( -48 2400 545 ) ( -47 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -48 2400 544 ) ( -47 2400 544 ) ( -48 2401 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -16 2416 588 ) ( -16 2417 588 ) ( -15 2416 588 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -16 2408 560 ) ( -15 2408 560 ) ( -16 2408 561 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -20 2416 560 ) ( -20 2416 561 ) ( -20 2417 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
 // entity 18
+{
+"classname" "Wall_/DivableWall"
+"_tb_group" "1"
+// brush 0
+{
+( -24 2400 560 ) ( -24 2384 560 ) ( -24 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -16 2384 544 ) ( -24 2384 544 ) ( -16 2384 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -16 2400 544 ) ( -24 2400 544 ) ( -16 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -16 2384 560 ) ( -24 2384 560 ) ( -16 2400 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -16 2400 560 ) ( -24 2400 560 ) ( -16 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -20 2384 560 ) ( -20 2400 560 ) ( -20 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 19
+{
+"classname" "Wall_/DivableWall"
+"_tb_group" "1"
+// brush 0
+{
+( -40 2400 544 ) ( -40 2400 552 ) ( -40 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -40 2384 544 ) ( -40 2384 552 ) ( -24 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -24 2400 544 ) ( -40 2400 544 ) ( -24 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -24 2384 552 ) ( -40 2384 552 ) ( -24 2400 552 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -24 2400 544 ) ( -24 2400 552 ) ( -40 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -24 2384 544 ) ( -24 2384 552 ) ( -24 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 20
+{
+"classname" "Wall_/DivableWall"
+"_tb_group" "1"
+// brush 0
+{
+( -44 2384 544 ) ( -44 2400 544 ) ( -44 2384 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -48 2384 560 ) ( -40 2384 560 ) ( -48 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -48 2384 544 ) ( -40 2384 544 ) ( -48 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -48 2400 560 ) ( -40 2400 560 ) ( -48 2384 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -48 2400 544 ) ( -40 2400 544 ) ( -48 2400 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( -40 2384 544 ) ( -40 2384 560 ) ( -40 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 21
+{
+"classname" "Wall_/DivableWall"
+"_tb_group" "1"
+// brush 0
+{
+( 8 2400 544 ) ( 8 2401 544 ) ( 8 2400 545 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 4 2400 544 ) ( 4 2400 545 ) ( 5 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 4 2400 544 ) ( 5 2400 544 ) ( 4 2401 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 36 2416 588 ) ( 36 2417 588 ) ( 37 2416 588 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 36 2408 560 ) ( 37 2408 560 ) ( 36 2408 561 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 32 2416 560 ) ( 32 2416 561 ) ( 32 2417 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 22
+{
+"classname" "Wall_/DivableWall"
+"_tb_group" "1"
+// brush 0
+{
+( 8 2384 544 ) ( 8 2400 544 ) ( 8 2384 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 4 2384 560 ) ( 12 2384 560 ) ( 4 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 4 2384 544 ) ( 12 2384 544 ) ( 4 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 4 2400 560 ) ( 12 2400 560 ) ( 4 2384 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 4 2400 544 ) ( 12 2400 544 ) ( 4 2400 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 12 2384 544 ) ( 12 2384 560 ) ( 12 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 23
+{
+"classname" "Wall_/DivableWall"
+"_tb_group" "1"
+// brush 0
+{
+( 28 2400 560 ) ( 28 2384 560 ) ( 28 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 36 2384 544 ) ( 28 2384 544 ) ( 36 2384 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 36 2400 544 ) ( 28 2400 544 ) ( 36 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 36 2384 560 ) ( 28 2384 560 ) ( 36 2400 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 36 2400 560 ) ( 28 2400 560 ) ( 36 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 32 2384 560 ) ( 32 2400 560 ) ( 32 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 24
+{
+"classname" "Wall_/DivableWall"
+"_tb_group" "1"
+// brush 0
+{
+( 12 2400 544 ) ( 12 2400 552 ) ( 12 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 12 2384 544 ) ( 12 2384 552 ) ( 28 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 28 2400 544 ) ( 12 2400 544 ) ( 28 2384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 28 2384 552 ) ( 12 2384 552 ) ( 28 2400 552 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 28 2400 544 ) ( 28 2400 552 ) ( 12 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 28 2384 544 ) ( 28 2384 552 ) ( 28 2400 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 25
 {
 "classname" "Detail_/WallTorch"
 "origin" "-88 880 144"
 "angles" "0 -90 0"
 }
-// entity 19
+// entity 26
 {
 "classname" "Detail_/WallTorch"
 "origin" "-200 808 224"
 }
-// entity 20
+// entity 27
 {
 "classname" "Detail_/WallTorch"
 "origin" "400 1464 224"
 "angles" "0 180 0"
 }
-// entity 21
+// entity 28
 {
 "classname" "Detail_/WallTorch"
 "origin" "-280 1504 128"
 "angles" "0 -90 0"
 }
-// entity 22
+// entity 29
 {
 "classname" "Transport_/Vent"
 "origin" "0 312 -104"
@@ -1698,7 +1771,7 @@
 "TargetVentId" "Detail_/FireplaceTransport_/Vent"
 "VentId" "MoatTransport_/Vent"
 }
-// entity 23
+// entity 30
 {
 "classname" "Hazard_/DrowningWater"
 // brush 0
@@ -1711,403 +1784,403 @@
 ( -128 320 -160 ) ( -128 320 -159 ) ( -128 321 -160 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
-// entity 24
+// entity 31
 {
 "classname" "Item_/Fairy"
 "origin" "152 1376 112"
 }
-// entity 25
+// entity 32
 {
 "classname" "Item_/GreenGem"
 "origin" "148 1316 112"
 }
-// entity 26
+// entity 33
 {
 "classname" "Item_/GreenGem"
 "origin" "148 1436 112"
 }
-// entity 27
+// entity 34
 {
 "classname" "Item_/RedGem"
 "origin" "-236 1324 48"
 }
-// entity 28
+// entity 35
 {
 "classname" "Item_/RedGem"
 "origin" "-236 1292 64"
 }
-// entity 29
+// entity 36
 {
 "classname" "Item_/MagentaGem"
 "origin" "164 1412 112"
 }
-// entity 30
+// entity 37
 {
 "classname" "Item_/MagentaGem"
 "origin" "164 1340 112"
 }
-// entity 31
+// entity 38
 {
 "classname" "Item_/Basket"
 "origin" "-72 1304 32"
 "GemColor" "2"
 }
-// entity 32
+// entity 39
 {
 "classname" "Item_/Basket"
 "origin" "-24 1304 32"
 "GemColor" "2"
 }
-// entity 33
+// entity 40
 {
 "classname" "Item_/Fairy"
 "origin" "0 104 -160"
 }
-// entity 34
+// entity 41
 {
 "classname" "Item_/YellowGem"
 "origin" "-68 124 -160"
 }
-// entity 35
+// entity 42
 {
 "classname" "Item_/YellowGem"
 "origin" "68 124 -160"
 }
-// entity 36
+// entity 43
 {
 "classname" "Item_/PurpleGem"
 "origin" "4 228 -160"
 }
-// entity 37
+// entity 44
 {
 "classname" "Item_/PurpleGem"
 "origin" "-4 180 -160"
 }
-// entity 38
+// entity 45
 {
 "classname" "Item_/MagentaGem"
 "origin" "0 68 -160"
 }
-// entity 39
+// entity 46
 {
 "classname" "Item_/Basket"
 "origin" "-56 296 -160"
 "GemColor" "2"
 }
-// entity 40
+// entity 47
 {
 "classname" "Item_/Basket"
 "origin" "56 296 -160"
 "GemColor" "2"
 }
-// entity 41
+// entity 48
 {
 "classname" "Item_/RedGem"
 "origin" "-584 1644 144"
 }
-// entity 42
+// entity 49
 {
 "classname" "Item_/Vase"
 "origin" "232 912 48"
 }
-// entity 43
+// entity 50
 {
 "classname" "Item_/PurpleGem"
 "origin" "228 868 48"
 }
-// entity 44
+// entity 51
 {
 "classname" "Item_/RedGem"
 "origin" "-24 296 0"
 }
-// entity 45
+// entity 52
 {
 "classname" "Item_/RedGem"
 "origin" "24 296 0"
 }
-// entity 46
+// entity 53
 {
 "classname" "Item_/PurpleGem"
 "origin" "508 516 0"
 }
-// entity 47
+// entity 54
 {
 "classname" "Item_/PurpleGem"
 "origin" "508 612 0"
 }
-// entity 48
+// entity 55
 {
 "classname" "Item_/RedGem"
 "origin" "324 412 0"
 }
-// entity 49
+// entity 56
 {
 "classname" "Item_/Basket"
 "origin" "296 584 0"
 }
-// entity 50
+// entity 57
 {
 "classname" "Item_/Basket"
 "origin" "296 520 0"
 }
-// entity 51
+// entity 58
 {
 "classname" "Item_/Vase"
 "origin" "376 520 64"
 "GemColor" "5"
 }
-// entity 52
+// entity 59
 {
 "classname" "Item_/Vase"
 "origin" "376 600 64"
 "GemColor" "5"
 }
-// entity 53
+// entity 60
 {
 "classname" "Item_/PurpleGem"
 "origin" "372 476 64"
 }
-// entity 54
+// entity 61
 {
 "classname" "Item_/PurpleGem"
 "origin" "372 628 64"
 }
-// entity 55
+// entity 62
 {
 "classname" "Item_/GreenGem"
 "origin" "372 560 64"
 }
-// entity 56
+// entity 63
 {
 "classname" "Item_/Basket"
 "origin" "40 936 32"
 }
-// entity 57
+// entity 64
 {
 "classname" "Item_/Basket"
 "origin" "88 936 32"
 }
-// entity 58
+// entity 65
 {
 "classname" "Item_/YellowGem"
 "origin" "-244 596 96"
 }
-// entity 59
+// entity 66
 {
 "classname" "Item_/GreenGem"
 "origin" "-212 628 96"
 }
-// entity 60
+// entity 67
 {
 "classname" "Item_/RedGem"
 "origin" "-228 500 16"
 }
-// entity 61
+// entity 68
 {
 "classname" "Item_/Vase"
 "origin" "-296 632 0"
 "GemColor" "2"
 }
-// entity 62
+// entity 69
 {
 "classname" "Item_/Vase"
 "origin" "-296 600 0"
 "GemColor" "2"
 }
-// entity 63
+// entity 70
 {
 "classname" "Item_/Basket"
 "origin" "-184 616 0"
 }
-// entity 64
+// entity 71
 {
 "classname" "Item_/GreenGem"
 "origin" "324 708 0"
 }
-// entity 65
+// entity 72
 {
 "classname" "Item_/GreenGem"
 "origin" "260 724 0"
 }
-// entity 66
+// entity 73
 {
 "classname" "Item_/GreenGem"
 "origin" "180 700 0"
 }
-// entity 67
+// entity 74
 {
 "classname" "Item_/RedGem"
 "origin" "244 412 0"
 }
-// entity 68
+// entity 75
 {
 "classname" "Item_/RedGem"
 "origin" "452 428 0"
 }
-// entity 69
+// entity 76
 {
 "classname" "Item_/Vase"
 "origin" "336 1048 64"
 }
-// entity 70
+// entity 77
 {
 "classname" "Item_/Vase"
 "origin" "336 1112 64"
 }
-// entity 71
+// entity 78
 {
 "classname" "Item_/GreenGem"
 "origin" "468 1236 56"
 }
-// entity 72
+// entity 79
 {
 "classname" "Item_/RedGem"
 "origin" "468 1180 56"
 }
-// entity 73
+// entity 80
 {
 "classname" "Item_/PurpleGem"
 "origin" "324 1452 32"
 }
-// entity 74
+// entity 81
 {
 "classname" "Item_/PurpleGem"
 "origin" "324 1420 32"
 }
-// entity 75
+// entity 82
 {
 "classname" "Item_/Basket"
 "origin" "448 824 112"
 }
-// entity 76
+// entity 83
 {
 "classname" "Item_/RedGem"
 "origin" "-172 932 216"
 }
-// entity 77
+// entity 84
 {
 "classname" "Item_/PurpleGem"
 "origin" "-204 844 176"
 }
-// entity 78
+// entity 85
 {
 "classname" "Item_/Vase"
 "origin" "-368 920 176"
 "GemColor" "2"
 }
-// entity 79
+// entity 86
 {
 "classname" "Item_/Basket"
 "origin" "-184 1048 112"
 }
-// entity 80
+// entity 87
 {
 "classname" "Item_/Basket"
 "origin" "-264 1048 112"
 }
-// entity 81
+// entity 88
 {
 "classname" "Item_/Vase"
 "origin" "184 840 352"
 "GemColor" "5"
 }
-// entity 82
+// entity 89
 {
 "classname" "Item_/Vase"
 "origin" "104 840 352"
 "GemColor" "5"
 }
-// entity 83
+// entity 90
 {
 "classname" "Item_/GreenGem"
 "origin" "396 1076 352"
 }
-// entity 84
+// entity 91
 {
 "classname" "Item_/GreenGem"
 "origin" "396 996 352"
 }
-// entity 85
+// entity 92
 {
 "classname" "Item_/GreenGem"
 "origin" "348 916 352"
 }
-// entity 86
+// entity 93
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "400 1320 32"
 "angles" "0 -90 0"
 "GemColor" "2"
 }
-// entity 87
+// entity 94
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-120 600 0"
 }
-// entity 88
+// entity 95
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "480 536 0"
 }
-// entity 89
+// entity 96
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-344 1144 112"
 "angles" "0 90 0"
 "GemColor" "2"
 }
-// entity 90
+// entity 97
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-312 840 176"
 "angles" "0 90 0"
 "GemColor" "2"
 }
-// entity 91
+// entity 98
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-8 928 432"
 "angles" "0 -90 0"
 }
-// entity 92
+// entity 99
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-472 1160 352"
 "angles" "0 -90 0"
 "GemColor" "2"
 }
-// entity 93
+// entity 100
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-392 1160 352"
 "angles" "0 -90 0"
 "GemColor" "2"
 }
-// entity 94
+// entity 101
 {
 "classname" "Item_/RedGem"
 "origin" "-116 1652 352"
 }
-// entity 95
+// entity 102
 {
 "classname" "Item_/RedGem"
 "origin" "-140 1604 352"
 }
-// entity 96
+// entity 103
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-16 1408 352"
 "angles" "0 180 0"
 "GemColor" "5"
 }
-// entity 97
+// entity 104
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "0 1816 448"
 "angles" "0 -90 0"
 "GemColor" "10"
 }
-// entity 98
+// entity 105
 {
 "classname" "Hazard_/DeathBarrier"
 // brush 0
@@ -2120,7 +2193,7 @@
 ( 1696 320 -192 ) ( 1696 32 -832 ) ( 1696 32 -192 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 99
+// entity 106
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2236,72 +2309,72 @@
 ( 880 1856 224 ) ( 880 1856 225 ) ( 880 1857 224 ) Textures/PaleBricks 0 0 0 1 1
 }
 }
-// entity 100
+// entity 107
 {
 "classname" "Item_/PurpleGem"
 "origin" "852 1588 32"
 "_tb_group" "4"
 }
-// entity 101
+// entity 108
 {
 "classname" "Item_/PurpleGem"
 "origin" "852 1684 32"
 "_tb_group" "4"
 }
-// entity 102
+// entity 109
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "792 1592 32"
 "GemColor" "5"
 "_tb_group" "4"
 }
-// entity 103
+// entity 110
 {
 "classname" "Item_/Vase"
 "origin" "840 1352 80"
 "GemColor" "5"
 "_tb_group" "4"
 }
-// entity 104
+// entity 111
 {
 "classname" "Item_/PurpleGem"
 "origin" "852 1636 32"
 "_tb_group" "4"
 }
-// entity 105
+// entity 112
 {
 "classname" "Item_/GreenGem"
 "origin" "788 1260 32"
 "_tb_group" "4"
 }
-// entity 106
+// entity 113
 {
 "classname" "Item_/RedGem"
 "origin" "788 1212 32"
 "_tb_group" "4"
 }
-// entity 107
+// entity 114
 {
 "classname" "Item_/Vase"
 "origin" "840 1304 80"
 "GemColor" "5"
 "_tb_group" "4"
 }
-// entity 108
+// entity 115
 {
 "classname" "Item_/Basket"
 "origin" "712 1160 80"
 "GemColor" "2"
 "_tb_group" "4"
 }
-// entity 109
+// entity 116
 {
 "classname" "Item_/Basket"
 "origin" "776 1160 80"
 "GemColor" "2"
 "_tb_group" "4"
 }
-// entity 110
+// entity 117
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2469,35 +2542,35 @@
 ( -368 1792 32 ) ( -368 1728 16 ) ( -368 1728 32 ) Textures/DarkWood 0 0 0 1 1
 }
 }
-// entity 111
+// entity 118
 {
 "classname" "Item_/Vase"
 "origin" "-152 1760 48"
 "GemColor" "2"
 "_tb_group" "5"
 }
-// entity 112
+// entity 119
 {
 "classname" "Item_/Vase"
 "origin" "56 1760 48"
 "GemColor" "2"
 "_tb_group" "5"
 }
-// entity 113
+// entity 120
 {
 "classname" "Item_/Vase"
 "origin" "136 1760 48"
 "GemColor" "2"
 "_tb_group" "5"
 }
-// entity 114
+// entity 121
 {
 "classname" "Item_/Vase"
 "origin" "-72 1760 48"
 "GemColor" "2"
 "_tb_group" "5"
 }
-// entity 115
+// entity 122
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "8 1624 32"
@@ -2506,7 +2579,7 @@
 "GemColor" "5"
 "_tb_group" "5"
 }
-// entity 116
+// entity 123
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-88 1896 32"
@@ -2515,7 +2588,7 @@
 "GemColor" "5"
 "_tb_group" "5"
 }
-// entity 117
+// entity 124
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "104 1624 32"
@@ -2524,7 +2597,7 @@
 "GemColor" "5"
 "_tb_group" "5"
 }
-// entity 118
+// entity 125
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-88 1624 32"
@@ -2533,7 +2606,7 @@
 "GemColor" "5"
 "_tb_group" "5"
 }
-// entity 119
+// entity 126
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "104 1896 32"
@@ -2542,7 +2615,7 @@
 "GemColor" "5"
 "_tb_group" "5"
 }
-// entity 120
+// entity 127
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "8 1896 32"
@@ -2551,7 +2624,7 @@
 "GemColor" "5"
 "_tb_group" "5"
 }
-// entity 121
+// entity 128
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2701,12 +2774,12 @@
 }
 // brush 16
 {
-( -608 1520 32 ) ( -608 1984 32 ) ( -608 1520 144 ) __TB_empty 0 0 0 1 1
-( -608 1520 144 ) ( -592 1520 144 ) ( -608 1520 32 ) __TB_empty 0 0 0 1 1
-( -608 1520 32 ) ( -592 1520 32 ) ( -608 1984 32 ) __TB_empty 0 0 0 1 1
+( -608 1520 32 ) ( -608 1984 32 ) ( -608 1520 144 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1520 144 ) ( -592 1520 144 ) ( -608 1520 32 ) Textures/PaleBricks 0 0 0 1 1
+( -608 1520 32 ) ( -592 1520 32 ) ( -608 1984 32 ) Textures/PaleBricks 0 0 0 1 1
 ( -608 1984 144 ) ( -592 1984 144 ) ( -608 1520 144 ) Textures/PaleBricks 0 0 0 1 1
-( -608 1984 32 ) ( -592 1984 32 ) ( -608 1984 144 ) __TB_empty 0 0 0 1 1
-( -592 1984 144 ) ( -592 1984 32 ) ( -592 1520 144 ) __TB_empty 0 0 0 1 1
+( -608 1984 32 ) ( -592 1984 32 ) ( -608 1984 144 ) Textures/PaleBricks 0 0 0 1 1
+( -592 1984 144 ) ( -592 1984 32 ) ( -592 1520 144 ) Textures/PaleBricks 0 0 0 1 1
 }
 // brush 17
 {
@@ -2862,68 +2935,68 @@
 ( -416 1808 32 ) ( -416 1712 16 ) ( -416 1712 32 ) Textures/DarkWood 0 0 0 1 1
 }
 }
-// entity 122
+// entity 129
 {
 "classname" "Item_/PurpleGem"
 "origin" "-532 1892 80"
 "_tb_group" "6"
 }
-// entity 123
+// entity 130
 {
 "classname" "Item_/GreenGem"
 "origin" "-444 1892 80"
 "_tb_group" "6"
 }
-// entity 124
+// entity 131
 {
 "classname" "Detail_/WallTorch"
 "origin" "-552 1688 80"
 "angles" "0 -90 0"
 "_tb_group" "6"
 }
-// entity 125
+// entity 132
 {
 "classname" "Item_/RedGem"
 "origin" "-476 1628 32"
 "_tb_group" "6"
 }
-// entity 126
+// entity 133
 {
 "classname" "Item_/GreenGem"
 "origin" "-500 1588 32"
 "_tb_group" "6"
 }
-// entity 127
+// entity 134
 {
 "classname" "Item_/GreenGem"
 "origin" "-480 1552 32"
 "_tb_group" "6"
 }
-// entity 128
+// entity 135
 {
 "classname" "Item_/GreenGem"
 "origin" "-488 1512 160"
 "_tb_group" "6"
 }
-// entity 129
+// entity 136
 {
 "classname" "Detail_/WallTorch"
 "origin" "-456 1496 72"
 "_tb_group" "6"
 }
-// entity 130
+// entity 137
 {
 "classname" "Item_/RedGem"
 "origin" "-584 1764 144"
 "_tb_group" "6"
 }
-// entity 131
+// entity 138
 {
 "classname" "Item_/RedGem"
 "origin" "-584 1892 144"
 "_tb_group" "6"
 }
-// entity 132
+// entity 139
 {
 "classname" "Transport_/Vent"
 "origin" "-488 1496 72"
@@ -2932,88 +3005,64 @@
 "VentId" "Detail_/FireplaceTransport_/Vent"
 "_tb_group" "6"
 }
-// entity 133
+// entity 140
 {
 "classname" "Item_/RedGem"
 "origin" "-476 1924 80"
 "_tb_group" "6"
 }
-// entity 134
+// entity 141
 {
 "classname" "Item_/Basket"
 "origin" "-520 1512 160"
 "_tb_group" "6"
 }
-// entity 135
+// entity 142
 {
 "classname" "Detail_/WallTorch"
 "origin" "-520 1496 72"
 "_tb_group" "6"
 }
-// entity 136
+// entity 143
 {
 "classname" "Item_/Basket"
 "origin" "-544 1968 112"
 "GemColor" "2"
 "_tb_group" "6"
 }
-// entity 137
+// entity 144
 {
 "classname" "Item_/Basket"
 "origin" "-432 1968 112"
 "GemColor" "2"
 "_tb_group" "6"
 }
-// entity 138
+// entity 145
 {
 "classname" "Detail_/WallTorch"
 "origin" "-488 1976 160"
 "angles" "0 180 0"
 "_tb_group" "6"
 }
-// entity 139
+// entity 146
 {
 "classname" "Item_/RedGem"
 "origin" "-500 1924 80"
 "_tb_group" "6"
 }
-// entity 140
+// entity 147
 {
 "classname" "Item_/RedGem"
 "origin" "-488 1520 32"
 "_tb_group" "6"
 }
-// entity 141
+// entity 148
 {
 "classname" "Item_/Basket"
 "origin" "-456 1512 160"
 "_tb_group" "6"
 }
-// entity 142
-{
-"classname" "Detail_/Fireplace"
-"origin" "-584 1752 40"
-"_tb_group" "6"
-}
-// entity 143
-{
-"classname" "Detail_/Fireplace"
-"origin" "-584 1768 40"
-"_tb_group" "6"
-}
-// entity 144
-{
-"classname" "Detail_/Fireplace"
-"origin" "-584 1736 40"
-"_tb_group" "6"
-}
-// entity 145
-{
-"classname" "Detail_/Fireplace"
-"origin" "-584 1784 40"
-"_tb_group" "6"
-}
-// entity 146
+// entity 149
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3379,25 +3428,25 @@
 ( -128 992 672 ) ( -128 992 673 ) ( -128 993 672 ) Textures/PaleBricks 0 0 0 1 1
 }
 }
-// entity 147
+// entity 150
 {
 "classname" "Item_/Fairy"
 "origin" "-168 1224 576"
 "_tb_group" "7"
 }
-// entity 148
+// entity 151
 {
 "classname" "Item_/GreenGem"
 "origin" "-188 1268 576"
 "_tb_group" "7"
 }
-// entity 149
+// entity 152
 {
 "classname" "Item_/RedGem"
 "origin" "-204 1180 576"
 "_tb_group" "7"
 }
-// entity 150
+// entity 153
 {
 "classname" "Trigger_/CameraSuggestionZone"
 "SuggestedDistance" "12"
@@ -3413,34 +3462,34 @@
 ( -320 1344 576 ) ( -320 960 496 ) ( -320 960 576 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 151
+// entity 154
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "-200 1144 256"
 "angles" "0 -90 0"
 "_tb_group" "7"
 }
-// entity 152
+// entity 155
 {
 "classname" "Enemy_/EnemyHandCannoner"
 "origin" "120 1152 304"
 "angles" "0 180 0"
 "_tb_group" "7"
 }
-// entity 153
+// entity 156
 {
 "classname" "Detail_/WallTorch"
 "origin" "-136 1000 272"
 "angles" "0 90 0"
 "_tb_group" "7"
 }
-// entity 154
+// entity 157
 {
 "classname" "Item_/GreenGem"
 "origin" "-204 996 256"
 "_tb_group" "7"
 }
-// entity 155
+// entity 158
 {
 "classname" "Hazard_/DrowningWater"
 // brush 0
@@ -3453,7 +3502,7 @@
 ( 576 320 -160 ) ( 576 320 -159 ) ( 576 321 -160 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
-// entity 156
+// entity 159
 {
 "classname" "Transport_/Checkpoint"
 "origin" "-224 1488 32"

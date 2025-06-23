@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://hg2eioubyrtq"]
+
+[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_c4k4h"]
+[ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="1_yp1rd"]
+[ext_resource type="PackedScene" uid="uid://ri50s5tjym3n" path="res://Scenes/Entities/Enemy_/Snapjaw.tscn" id="2_eiprv"]
+
+[resource]
+script = ExtResource("1_c4k4h")
+scene_file = ExtResource("2_eiprv")
+apply_rotation_on_map_build = true
+apply_scale_on_map_build = true
+classname = "Enemy_/Snapjaw"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_yp1rd")])
+class_properties = {
+"CycleId": "",
+"CycleOffset": 0.0
+}
+class_property_descriptions = {
+"CycleId": "The enemy's attack pattern does not start until the CycleStartedsignal is fired with this parameter.  Set to an empty string if youwant it to start as soon as the level is loaded.",
+"CycleOffset": "How long to delay before starting the attack pattern after the cycle starts"
+}
+auto_apply_to_matching_node_properties = true
+meta_properties = {
+"color": Color(0.230467, 0.461324, 0.259854, 1),
+"size": AABB(-8, -8, 0, 8, 8, 16)
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://cddjtiy8pj12o"

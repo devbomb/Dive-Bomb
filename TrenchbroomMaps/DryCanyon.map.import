@@ -1,6 +1,6 @@
 [remap]
 
-importer="map_importer"
+importer="func_godot_map_importer"
 type="PackedScene"
 uid="uid://dmq02rkuu7422"
 path="res://.godot/imported/DryCanyon.map-57cb39837375cd2174459bc1cc2fc101.tscn"
@@ -12,9 +12,4 @@ dest_files=["res://.godot/imported/DryCanyon.map-57cb39837375cd2174459bc1cc2fc10
 
 [params]
 
-map_inverse_scale=16
-entity_path="res://Scenes/Entities"
-texture_path="res://Textures"
-visual_layer_mask=9
-collision_layer_mask=3
 texture_material_map=Resource("res://TextureMaterialMap.tres")

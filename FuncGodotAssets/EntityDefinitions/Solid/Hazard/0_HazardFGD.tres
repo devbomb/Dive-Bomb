@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=5 format=3 uid="uid://d1mt13b22xulu"]
+
+[ext_resource type="Resource" uid="uid://ghufva1d8fir" path="res://FuncGodotAssets/EntityDefinitions/Solid/Hazard/hazard_death_barrier.tres" id="1_iflkq"]
+[ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_tedmp"]
+[ext_resource type="Resource" uid="uid://damgb1gsoyi7d" path="res://FuncGodotAssets/EntityDefinitions/Solid/Hazard/hazard_drowning_water.tres" id="2_eiyqy"]
+[ext_resource type="Resource" uid="uid://bt7p631ybqxdo" path="res://FuncGodotAssets/EntityDefinitions/Solid/Hazard/hazard_molten_glass_cube.tres" id="3_8lg0m"]
+
+[resource]
+script = ExtResource("1_tedmp")
+export_file = false
+target_map_editor = 1
+fgd_name = "FuncGodot"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_iflkq"), ExtResource("2_eiyqy"), ExtResource("3_8lg0m")])
+metadata/_custom_type_script = "uid://vm1fvi5045um"
