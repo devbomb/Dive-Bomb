@@ -42,52 +42,52 @@
 }
 // entity 1
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "-20 28 16"
 }
 // entity 2
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "20 28 16"
 }
 // entity 3
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "-36 -4 16"
 }
 // entity 4
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "-28 -20 16"
 }
 // entity 5
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "-12 -28 16"
 }
 // entity 6
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "12 -28 16"
 }
 // entity 7
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "28 -20 16"
 }
 // entity 8
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "36 -4 16"
 }
 // entity 9
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "-4 -28 16"
 }
 // entity 10
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "4 -28 16"
 }
 // entity 11
@@ -106,7 +106,7 @@
 }
 // entity 13
 {
-"classname" "Item_/Fairy"
+"classname" "item_fairy"
 "origin" "152 88 16"
 "angles" "0 90 0"
 }
