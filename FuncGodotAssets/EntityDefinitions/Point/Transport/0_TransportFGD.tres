@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=7 format=3 uid="uid://deiedh0yxw0fo"]
 
-[ext_resource type="Resource" uid="uid://cmteywe02tmf7" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_player_spawn.tres" id="2_ortqs"]
-[ext_resource type="Resource" uid="uid://dixxg22ofgal" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_checkpoint.tres" id="3_qtl80"]
+[ext_resource type="Resource" uid="uid://bga7n1igtl78e" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_player_spawn.tres" id="2_ortqs"]
+[ext_resource type="Resource" uid="uid://ct1vkdjq3brne" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_checkpoint.tres" id="3_qtl80"]
 [ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="4_438nx"]
 [ext_resource type="Resource" uid="uid://hmm0acu4gvh1" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_vent.tres" id="5_438nx"]
-[ext_resource type="Resource" uid="uid://bkt5cyfqbtv86" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_standard_portal.tres" id="5_qtl80"]
-[ext_resource type="Resource" uid="uid://cu33001l7qyev" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_level_exit.tres" id="6_438nx"]
+[ext_resource type="Resource" uid="uid://cceb6rvbc2qf" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_standard_portal.tres" id="5_qtl80"]
+[ext_resource type="Resource" uid="uid://crw4cy4ilgl5y" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/transport_level_exit.tres" id="6_438nx"]
 
 [resource]
 script = ExtResource("4_438nx")
