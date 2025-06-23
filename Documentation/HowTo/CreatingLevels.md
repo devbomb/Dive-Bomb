@@ -1,6 +1,6 @@
 # Overview
 Before you can create levels, you need to make sure Trenchbroom is set up to
-work with Dive Bomb.  See [Setting up Trenchbroom](#setting-up-trenchbroom).
+work with Dive Bomb.  See [Setting up Trenchbroom and func_godot](#setting-up-trenchbroom-and-func_godot).
 
 A Dive Bomb level consists of:
 * A [.map file](#creating-the-map-file) created in Trenchbroom, which contains
@@ -9,7 +9,7 @@ A Dive Bomb level consists of:
 
 * A [.tscn file](#creating-the-tscn-file), which acts as the "official" scene
     for the level.  It contains an 
-    [instance](#how-it-works-mapimporter-and-tbloader) of the map file, along 
+    [instance](#how-it-works-funcgodotmapimporter) of the map file, along 
     with a few Godot-specific nodes that are inconvenient to create in 
     Trenchbroom.
 
@@ -19,28 +19,34 @@ A Dive Bomb level consists of:
 * A [portal](#creating-a-portal) leading to the level from one of the
     home worlds.
 
-# Setting up Trenchbroom
+# Setting up Trenchbroom and func_godot
 1. Install Trenchbroom.  Dive Bomb requires version 2025.2 or later.
-2. Clone this repo
-3. Open the project in Godot, and then click 
-    `Project -> Tools -> Generate Trenchbroom Entity Models`
-    * You will need to repeat this any time a new entity type is added to the
-        game.  Otherwise, you won't be able to see its model in Trenchbroom.
-4. Install Dive Bomb's Trenchbroom config file.  There are two ways to do this:
-    * **Beginner method** (easy to start, but less convenient long-term):
-        * Copy the contents of  `<this repo>/addons/tbloader/tb-gameconfig/` to
-            `<trenchbroom install folder>/games/FastDragon/`.
-        * You will need to repeat the above any time a .fgd file changes; IE: if
-            a new enemy is added to the game that you want to use.
-    * **Reccommended method**(complicated at first, but easier long-term):
-        * Create a symlink from `<trenchbroom install folder>/games/FastDragon`
-            to `<this repo>/addons/tbloader/tb-gameconfig`
-        * On Windows, you can use 
-            [Link Shell Extension](https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html) 
-            to do this without opening a terminal.
-        * On Linux or Mac, run the following command in a terminal:
-            `ln -s <this repo>/addons/tbloader/tb-gameconfig <trenchbroom install folder>/games/FastDragon`
-5. In Trenchbroom's preferences, set "FastDragon"'s "Game Path" to the root
+1. Create an empty folder at the path `<trenchbroom install folder>/games/FastDragon`
+1. Clone this repo
+1. In the [func_godot local config](https://func-godot.github.io/func_godot_docs/FuncGodot%20Manual/FuncGodot%20Manual.html),
+    make these changes:
+    * Set "Fgd Output Folder" to `<trenchbroom install folder>/games/FastDragon`
+    * Set "Trenchbroom Game Config Folder" to `<trenchbroom install folder>/games/FastDragon`
+    * Set "Map Editor Game Path" to the root of this repo
+    * Set "Game Path Models Folder" to "TrenchbroomEntityModels"
+    * Check "Export Func Godot Settings"
+        * You will not actually see a checkmark appear, but that's OK.  This
+            property is more like a button than a checkbox.
+    > **Don't worry:** the absolute file paths you entered into this resource
+        will NOT be saved into the git repo!  The properties on this resource
+        are "fake"; they get diverted into a JSON file located elsewhere on your
+        computer instead of getting serialized here.
+1. In Godot, open the file `res://FuncGodotAssets/TrenchBroomConfig.tres` and
+    check "Export file".
+    * This is another one of those "button" properties, similar to 
+        "Export Func Godot Settings", so you won't see a checkmark appear.
+    * When you click it, you'll find that some
+        files have been generated in `<trenchbroom install folder>/games/FastDragon`.
+        These files give Trenchbroom metadata needed for displaying entities
+        specific to this game.
+    * You will need to repeat this step every time a new entity type is added to
+        the game(or when an existing entity type is changed).
+1. In Trenchbroom's preferences, set "FastDragon"'s "Game Path" to the root
     of this repo.
 
 # Creating the .map file
@@ -95,7 +101,7 @@ common entities you'll use are:
         wall torch there to subtly draw their attention to it.
 
 There is no need to "compile" or "export" maps you make; Dive Bomb uses a 
-[custom plug-in](#how-it-works-mapimporter-and-tbloader) to automatically import 
+[custom plug-in](#how-it-works-funcgodotmapimporter) to automatically import 
 .map files in a manner similar to .blend files, so godot will treat them just
 like any other scene.
 
@@ -104,7 +110,7 @@ Trenchbroom is great for creating level geometry and placing entities, but there
 are some things that are easier to do in the Godot editor.  For that reason the
 "official" scene for each level is a plain old .tscn file.  The .tscn file
 contains these key nodes:
-* An [instance](#how-it-works-mapimporter-and-tbloader) of the map you created
+* An [instance](#how-it-works-funcgodotmapimporter) of the map you created
     in Trenchbroom
 * A `DirectionalLight3D` that acts as this level's "sun"
 * A `WorldEnvironment` that sets the level's [skybox](#creating-the-skybox)
@@ -135,7 +141,7 @@ with the following parameters:
     the level's name(as defined in the PlayerSpawn's parameters), but this is
     not enforced.
 
-# How it works: MapImporter and TBLoader
+# How it works: FuncGodotMapImporter
 
 When creating levels for Dive Bomb, there is no need to click a "build" button
 to convert your map to a `.tscn`.  Instead, the map files get automatically
@@ -143,11 +149,30 @@ imported in the same way `.blend` files are.  This avoids the need to store
 duplicate, possibly-conflicting information in the git repo.
 
 This is accomplished by combining
-[TBLoader](https://github.com/codecat/godot-tbloader) with a custom-made
-[import plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/import_plugins.html) 
-called "MapImporter".  MapImporter invokes TBLoader to convert the map file
-to a tree of Godot nodes, does some post-processing to inject custom materials
-and work around some bugs, and then saves the result in the `.godot` folder.
+[func_godot](https://func-godot.github.io/func_godot_docs/FuncGodot%20Manual/FuncGodot%20Manual.html) 
+with a custom-made [import plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/import_plugins.html) 
+called "FuncGodotMapImporter".  FuncGodotMapImporter invokes func_godot to 
+convert the map file to a tree of Godot nodes, does some post-processing to 
+inject custom materials and work around some bugs, and then saves the result 
+in the `.godot` folder.
 
 This means you can drag and drop a `.map` file into a scene, just like you can
 with a `.blend` file.
+
+## Tweaks were made to func_godot to make this work
+This project uses a modified version of [this release](https://github.com/func-godot/func_godot_plugin/releases/tag/2025.1)
+of func_godot.  These were small modifications needed to work around some bugs.
+Namely:
+* It now uses `is_inside_tree()` to check if the current node is inside the
+    tree, rather than checking if `get_tree()` returned null.  This is because
+    calling `get_tree()` from outside the tree was causing a scary-looking (but
+    harmless) error to be spammed in the console.  `is_inside_tree()` is
+    probably better practice in general anyway.
+    > TODO: Submit a PR to func_godot's repo with this fix
+
+* When generating trenchbroom entity models, it now removes any `AnimationPlayer`
+    nodes from the scene it's converting to gltf.  This is to work around a
+    Godot bug where `GLTFDocument.append_from_scene()` will sometimes freeze
+    the editor if you pass a node into it that contains an `AnimationPlayer`.
+    > TODO: Submit a GitHub issue to the Godot repo after creating a minimal
+        reproduction project.
