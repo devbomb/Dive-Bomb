@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://d15wioac2j1yk"]
 
 [ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_1ltlf"]
-[ext_resource type="Script" path="res://Scenes/Entities/Trigger_/CycleStarter.gd" id="2_swcc4"]
+[ext_resource type="Script" uid="uid://cxyygy85qplh2" path="res://Scenes/Entities/Trigger_/CycleStarter.gd" id="2_swcc4"]
 
 [resource]
 script = ExtResource("1_1ltlf")
