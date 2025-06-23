@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjujipi1lgsuv"]
-
-[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Scenes/Entities/Hazard_/DeathBarrier.cs" id="1_5yy7t"]
-
-[node name="DeathBarrier" type="Area3D"]
-visible = false
-script = ExtResource("1_5yy7t")
