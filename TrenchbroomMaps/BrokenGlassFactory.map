@@ -2321,7 +2321,7 @@
 }
 // entity 10
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 // brush 0
 {
 ( 176 100 352 ) ( 176 116 272 ) ( 176 116 352 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
@@ -2395,7 +2395,7 @@
 }
 // entity 22
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 // brush 0
 {
 ( 176 -32 192 ) ( 176 -31 192 ) ( 176 -32 193 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
@@ -2431,7 +2431,7 @@
 }
 // entity 27
 {
-"classname" "Wall_/XRayWall"
+"classname" "wall_x_ray"
 // brush 0
 {
 ( 352 -96 320 ) ( 352 -64 192 ) ( 352 -64 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2444,7 +2444,7 @@
 }
 // entity 28
 {
-"classname" "Wall_/XRayWall"
+"classname" "wall_x_ray"
 // brush 0
 {
 ( 448 -64 320 ) ( 448 0 192 ) ( 448 0 320 ) Textures/BigMetalSquares 0 0 0 1 1
@@ -2457,7 +2457,7 @@
 }
 // entity 29
 {
-"classname" "Wall_/XRayWall"
+"classname" "wall_x_ray"
 // brush 0
 {
 ( 256 -160 32 ) ( 256 -128 32 ) ( 256 -160 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2587,7 +2587,7 @@
 }
 // entity 52
 {
-"classname" "Wall_/BulletproofGlassWall"
+"classname" "wall_transparent"
 // brush 0
 {
 ( 160 -288 288 ) ( 160 -32 192 ) ( 160 -32 288 ) Textures/Grate 0 0 0 1 1
@@ -2630,7 +2630,7 @@
 }
 // entity 59
 {
-"classname" "Wall_/BulletproofGlassWall"
+"classname" "wall_transparent"
 // brush 0
 {
 ( 318.34314575051394 -313.65685424949334 284 ) ( 324 -308 228 ) ( 324 -308 284 ) Textures/Grate 0 0 0 1 1
@@ -2643,7 +2643,7 @@
 }
 // entity 60
 {
-"classname" "Wall_/BulletproofGlassWall"
+"classname" "wall_transparent"
 // brush 0
 {
 ( 280 -312 284 ) ( 280 -304 228 ) ( 280 -304 284 ) Textures/Grate 0 0 0 1 1
@@ -2656,7 +2656,7 @@
 }
 // entity 61
 {
-"classname" "Wall_/NonCameraObstructingWall"
+"classname" "wall_non_camera_obstructing"
 // brush 0
 {
 ( 344 -384 224 ) ( 344 -380 224 ) ( 344 -384 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2669,7 +2669,7 @@
 }
 // entity 62
 {
-"classname" "Wall_/NonCameraObstructingWall"
+"classname" "wall_non_camera_obstructing"
 // brush 0
 {
 ( 272 -312 224 ) ( 272 -304 224 ) ( 272 -312 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2682,7 +2682,7 @@
 }
 // entity 63
 {
-"classname" "Wall_/NonCameraObstructingWall"
+"classname" "wall_non_camera_obstructing"
 // brush 0
 {
 ( 342.3431457505103 -337.6568542494897 284 ) ( 344 -340 288 ) ( 344 -340 284 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2695,7 +2695,7 @@
 }
 // entity 64
 {
-"classname" "Wall_/NonCameraObstructingWall"
+"classname" "wall_non_camera_obstructing"
 // brush 0
 {
 ( 316 -312 288 ) ( 316 -304 284 ) ( 316 -304 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -2730,7 +2730,7 @@
 }
 // entity 69
 {
-"classname" "Wall_/BulletproofGlassWall"
+"classname" "wall_transparent"
 // brush 0
 {
 ( 160 288 432 ) ( 160 304 368 ) ( 160 304 432 ) Textures/Grate 0 0 0 1 1
@@ -2763,7 +2763,7 @@
 }
 // entity 74
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 // brush 0
 {
 ( 32 320 544 ) ( 32 384 448 ) ( 32 384 544 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
@@ -2776,7 +2776,7 @@
 }
 // entity 75
 {
-"classname" "Wall_/BulletproofGlassWall"
+"classname" "wall_transparent"
 // brush 0
 {
 ( 296 544 424 ) ( 296 560 400 ) ( 296 560 424 ) Textures/Grate 0 0 0 1 1
@@ -2794,7 +2794,7 @@
 }
 // entity 77
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 // brush 0
 {
 ( 288 544 528 ) ( 288 544 544 ) ( 240 496 528 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
@@ -2822,7 +2822,7 @@
 }
 // entity 80
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 // brush 0
 {
 ( -448 256 688 ) ( -448 240 688 ) ( -448 240 608 ) Textures/DivableGlassPlaceholder 0 -68 0 1 1
@@ -2835,7 +2835,7 @@
 }
 // entity 81
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 // brush 0
 {
 ( -448 160 544 ) ( -448 80 584 ) ( -448 80 568 ) Textures/DivableGlassPlaceholder 28 -28 0 1 1
@@ -3101,7 +3101,7 @@
 }
 // entity 84
 {
-"classname" "Wall_/BulletproofGlassWall"
+"classname" "wall_transparent"
 "GemCost" "120"
 "_tb_group" "3"
 // brush 0
@@ -3131,7 +3131,7 @@
 }
 // entity 87
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "GemCost" "120"
 "_tb_group" "3"
 // brush 0
@@ -3146,7 +3146,7 @@
 }
 // entity 88
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 // brush 0
 {
 ( -448 192 688 ) ( -448 200 578.6666666666665 ) ( -448 216 584 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
@@ -3189,7 +3189,7 @@
 }
 // entity 94
 {
-"classname" "Wall_/BulletproofGlassWall"
+"classname" "wall_transparent"
 // brush 0
 {
 ( -448 272 720 ) ( -448 400 704 ) ( -448 400 720 ) Textures/Grate 0 0 0 1 1
@@ -3368,7 +3368,7 @@
 }
 // entity 124
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 // brush 0
 {
 ( 320 288 464 ) ( 320 304 352 ) ( 320 304 464 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
@@ -3574,7 +3574,7 @@
 }
 // entity 128
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "HomeWorldMap" "res://Scenes/Maps/Levels/TestMap.tscn"
 "FlyInDuration" "6"
 "FlyInHeight" "90"
@@ -3757,7 +3757,7 @@
 }
 // entity 162
 {
-"classname" "Wall_/XRayWall"
+"classname" "wall_x_ray"
 // brush 0
 {
 ( 224 448 256 ) ( 224 560 256 ) ( 224 448 528 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -3925,7 +3925,7 @@
 }
 // entity 172
 {
-"classname" "Wall_/BulletproofGlassWall"
+"classname" "wall_transparent"
 // brush 0
 {
 ( 344 -380 284 ) ( 344 -340 228 ) ( 344 -340 284 ) Textures/Grate 0 0 0 1 1

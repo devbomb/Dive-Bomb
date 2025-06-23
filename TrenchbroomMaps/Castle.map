@@ -1630,7 +1630,7 @@
 }
 // entity 17
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "_tb_group" "1"
 // brush 0
 {
@@ -1644,7 +1644,7 @@
 }
 // entity 18
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "_tb_group" "1"
 // brush 0
 {
@@ -1658,7 +1658,7 @@
 }
 // entity 19
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "_tb_group" "1"
 // brush 0
 {
@@ -1672,7 +1672,7 @@
 }
 // entity 20
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "_tb_group" "1"
 // brush 0
 {
@@ -1686,7 +1686,7 @@
 }
 // entity 21
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "_tb_group" "1"
 // brush 0
 {
@@ -1700,7 +1700,7 @@
 }
 // entity 22
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "_tb_group" "1"
 // brush 0
 {
@@ -1714,7 +1714,7 @@
 }
 // entity 23
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "_tb_group" "1"
 // brush 0
 {
@@ -1728,7 +1728,7 @@
 }
 // entity 24
 {
-"classname" "Wall_/DivableWall"
+"classname" "wall_divable"
 "_tb_group" "1"
 // brush 0
 {
