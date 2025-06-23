@@ -13,7 +13,7 @@ generate_gd_ignore_file = false
 scene_file = ExtResource("1_jjwek")
 apply_rotation_on_map_build = true
 apply_scale_on_map_build = true
-classname = "Detail_/WallTorch"
+classname = "decor_wall_torch"
 description = "A torch that goes on the wall.  Acts like this game's \"yellow paint\", subtly(or un-subtly) marking the \"correct\" path.  The player is encouraged to ignore them and go the opposite way."
 func_godot_internal = false
 base_classes = Array[Resource]([])
@@ -22,6 +22,7 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
+"model": "\"TrenchbroomEntityModels/Detail_/WallTorch.glb\"",
 "size": AABB(-8, -8, -8, 8, 8, 8)
 }
 node_class = ""

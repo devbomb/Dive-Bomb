@@ -1174,36 +1174,36 @@
 }
 // entity 2
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "24 808 128"
 "energy" "1"
 }
 // entity 3
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-408 808 288"
 }
 // entity 4
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "472 888 128"
 "angles" "0 90 0"
 }
 // entity 5
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-80 760 80"
 "angles" "0 -180 0"
 }
 // entity 6
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "80 760 80"
 "angles" "0 -180 0"
 }
 // entity 7
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-256 1016 160"
 }
 // entity 8
@@ -1742,24 +1742,24 @@
 }
 // entity 25
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-88 880 144"
 "angles" "0 -90 0"
 }
 // entity 26
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-200 808 224"
 }
 // entity 27
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "400 1464 224"
 "angles" "0 180 0"
 }
 // entity 28
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-280 1504 128"
 "angles" "0 -90 0"
 }
@@ -2949,7 +2949,7 @@
 }
 // entity 131
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-552 1688 80"
 "angles" "0 -90 0"
 "_tb_group" "6"
@@ -2980,7 +2980,7 @@
 }
 // entity 136
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-456 1496 72"
 "_tb_group" "6"
 }
@@ -3019,7 +3019,7 @@
 }
 // entity 142
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-520 1496 72"
 "_tb_group" "6"
 }
@@ -3039,7 +3039,7 @@
 }
 // entity 145
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-488 1976 160"
 "angles" "0 180 0"
 "_tb_group" "6"
@@ -3478,7 +3478,7 @@
 }
 // entity 156
 {
-"classname" "Detail_/WallTorch"
+"classname" "decor_wall_torch"
 "origin" "-136 1000 272"
 "angles" "0 90 0"
 "_tb_group" "7"
