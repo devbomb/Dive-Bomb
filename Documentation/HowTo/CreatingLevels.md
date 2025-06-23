@@ -59,7 +59,7 @@ Trenchbroom's not-so-helpful autosaves are properly gitignored and gdignored.
 
 This is where you'll create the level geometry and place entities.  The most
 common entities you'll use are:
-* `Transport_/PlayerSpawn`: the player's spawn point.  Every level needs exactly
+* `transport_player_spawn`: the player's spawn point.  Every level needs exactly
     one.  There are a few required parameters:
     * `LevelName`: the name of this level.  This is what the level will be
         called in the inventory screen and in Time Trial mode.
@@ -67,22 +67,22 @@ common entities you'll use are:
         return to when the exit is reached(or "exit level" is chosen in the
         pause menu).  Must start with "res://"
 
-* `Transport_/ReturnHomePlatform`: the level exit.  Levels without one of these
+* `transport_level_exit`: the level exit.  Levels without one of these
     cannot be played in Time Trial mode.
 
-* `Transport_/Checkpoint`: A checkpoint.  Each checkpoint needs to be given a
+* `transport_checkpoint`: A checkpoint.  Each checkpoint needs to be given a
     unique name so it can be identified in the save file.  If two checkpoints
     have the same name, Bad Things (tm) will happen.
 
-* `Hazard_/DeathBarrier`: A trigger volume that triggers a "falling death" when
+* `hazard_death_barrier`: A trigger volume that triggers a "falling death" when
     the player touches it.  Place a giant one underneath the level to prevent
     the player from falling for eternity.  You can also place smaller ones
     inside individual bottomless pits.
 
-* `Item_/Fairy`: The McGuffin of this game.  Every level should have about 5 of 
+* `item_fairy`: The McGuffin of this game.  Every level should have about 5 of 
     them for the player to rescue, with one of them being near the exit.
 
-* `Item_/RedGem`, `Item_/GreenGem`, etc: the "coins" of this game.  These should
+* `item_gem_red`, `item_gem_green`, etc: the "coins" of this game.  These should
     be scattered all over the place.  Each gem color has a different value.  The
     total value of all the gems in the level should be a multiple of 100,
     because that looks nice in the inventory screen.
@@ -91,9 +91,9 @@ common entities you'll use are:
         hunt for that one lone gem you hid in the most remote corner of the 
         world.
 
-* `Item_/Basket` and `Item_/Vase`: Breakable objects that contain gems.
+* `item_basket` and `item_vase`: Breakable objects that contain gems.
 
-* `Detail_/WallTorch`: A torch you can place on a wall.  This is the only light
+* `decor_wall_torch`: A torch you can place on a wall.  This is the only light
     source you should place from Trenchbroom; any other lighting should be done
     in the Godot editor.
     * Note: Wall torches also act as this game's "yellow paint" equivalent.  If
