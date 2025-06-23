@@ -2373,7 +2373,7 @@
 }
 // entity 18
 {
-"classname" "Transport_/Checkpoint"
+"classname" "transport_checkpoint"
 "origin" "400 -128 336"
 "angles" "0 90 0"
 "CheckpointName" "FloatingPlatformBridge"
@@ -2807,7 +2807,7 @@
 }
 // entity 78
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "312 568 440"
 "angles" "0 90 0"
 "VentId" "SmokestackEscapeDest"
@@ -2815,7 +2815,7 @@
 }
 // entity 79
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "264 536 440"
 "angles" "0 -90 0"
 "TargetVentId" "SmokestackEscapeDest"
@@ -3116,7 +3116,7 @@
 }
 // entity 85
 {
-"classname" "Transport_/ReturnHomePlatform"
+"classname" "transport_level_exit"
 "origin" "-652 4 -80"
 "ExitHeight" "71"
 "GemCost" "120"
@@ -3202,7 +3202,7 @@
 }
 // entity 95
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "-416 408 752"
 "angles" "0 -90 0"
 "TargetVentId" "VortexEscapeSource"
@@ -3210,7 +3210,7 @@
 }
 // entity 96
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "-344 -72 48"
 "angles" "0 180 0"
 "TargetVentId" "VortexEscapeDest"
@@ -3346,7 +3346,7 @@
 }
 // entity 120
 {
-"classname" "Transport_/Checkpoint"
+"classname" "transport_checkpoint"
 "origin" "-416 240 720"
 "CheckpointName" "Rooftops"
 "angles" "0 0 0"
@@ -3562,7 +3562,7 @@
 }
 // entity 127
 {
-"classname" "Transport_/PlayerSpawn"
+"classname" "transport_player_spawn"
 "origin" "-152 -264 144"
 "LevelName" "Broken Glass Factory"
 "angles" "0 90 0"
@@ -3909,7 +3909,7 @@
 }
 // entity 170
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "176 -408 284"
 "angles" "0 0 0"
 "TargetVentId" "SkipWallJumpDest"
@@ -3917,7 +3917,7 @@
 }
 // entity 171
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "264 -280 360"
 "angles" "0 270 0"
 "TargetVentId" "SkipWallJumpSrc"

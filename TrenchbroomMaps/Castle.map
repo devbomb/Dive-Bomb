@@ -1165,7 +1165,7 @@
 }
 // entity 1
 {
-"classname" "Transport_/PlayerSpawn"
+"classname" "transport_player_spawn"
 "origin" "0 112 0"
 "angles" "0 90 0"
 "FlyInHeight" "80"
@@ -1614,7 +1614,7 @@
 }
 // entity 15
 {
-"classname" "Transport_/ReturnHomePlatform"
+"classname" "transport_level_exit"
 "origin" "0 2240 448"
 "ExitHeight" "30"
 "GemCost" "250"
@@ -1765,11 +1765,11 @@
 }
 // entity 29
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "0 312 -104"
 "angles" "0 -90 0"
-"TargetVentId" "Detail_/FireplaceTransport_/Vent"
-"VentId" "MoatTransport_/Vent"
+"TargetVentId" "Detail_/Fireplacetransport_vent"
+"VentId" "Moattransport_vent"
 }
 // entity 30
 {
@@ -2998,11 +2998,11 @@
 }
 // entity 139
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "-488 1496 72"
 "angles" "0 90 0"
-"TargetVentId" "MoatTransport_/Vent"
-"VentId" "Detail_/FireplaceTransport_/Vent"
+"TargetVentId" "Moattransport_vent"
+"VentId" "Detail_/Fireplacetransport_vent"
 "_tb_group" "6"
 }
 // entity 140
@@ -3504,7 +3504,7 @@
 }
 // entity 159
 {
-"classname" "Transport_/Checkpoint"
+"classname" "transport_checkpoint"
 "origin" "-224 1488 32"
 "angles" "0 -90 0"
 "CheckpointName" "DiningRoom"

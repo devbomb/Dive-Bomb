@@ -130,7 +130,7 @@
 }
 // entity 1
 {
-"classname" "Transport_/PlayerSpawn"
+"classname" "transport_player_spawn"
 "origin" "0 24 16"
 "LevelName" "Test Homeworld"
 }
@@ -245,7 +245,7 @@
 }
 // entity 22
 {
-"classname" "Transport_/StandardPortal"
+"classname" "transport_standard_portal"
 "origin" "88 220 -64"
 "angles" "0 -90 0"
 "TargetMap" "res://Scenes/Maps/Levels/SeamonsterBossMap.tscn"
@@ -254,7 +254,7 @@
 }
 // entity 23
 {
-"classname" "Transport_/StandardPortal"
+"classname" "transport_standard_portal"
 "origin" "588 -88 -64"
 "angles" "0 180 0"
 "TargetMap" "res://Scenes/Maps/Levels/BrokenGlassFactory.tscn"
@@ -269,22 +269,22 @@
 }
 // entity 25
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "-72 -8 -24"
 "angles" "0 180 0"
-"TargetVentId" "Transport_/VentB"
-"VentId" "Transport_/VentA"
+"TargetVentId" "transport_ventB"
+"VentId" "transport_ventA"
 }
 // entity 26
 {
-"classname" "Transport_/Vent"
+"classname" "transport_vent"
 "origin" "360 -216 -24"
-"VentId" "Transport_/VentB"
-"TargetVentId" "Transport_/VentA"
+"VentId" "transport_ventB"
+"TargetVentId" "transport_ventA"
 }
 // entity 27
 {
-"classname" "Transport_/StandardPortal"
+"classname" "transport_standard_portal"
 "origin" "120 -468 -64"
 "angles" "0 90 0"
 "TargetMap" "res://Scenes/Maps/Levels/Castle.tscn"
@@ -293,19 +293,19 @@
 }
 // entity 28
 {
-"classname" "Transport_/Checkpoint"
+"classname" "transport_checkpoint"
 "origin" "16 -368 -64"
 "CheckpointName" "Test"
 }
 // entity 29
 {
-"classname" "Transport_/Checkpoint"
+"classname" "transport_checkpoint"
 "origin" "272 -384 -64"
-"CheckpointName" "OtherTransport_/Checkpoint"
+"CheckpointName" "Othertransport_checkpoint"
 }
 // entity 30
 {
-"classname" "Transport_/StandardPortal"
+"classname" "transport_standard_portal"
 "origin" "-308 -52 -64"
 "angles" "0 0 0"
 "TargetMap" "res://Scenes/Maps/Levels/DryCanyon.tscn"

@@ -92,7 +92,7 @@
 }
 // entity 11
 {
-"classname" "Transport_/PlayerSpawn"
+"classname" "transport_player_spawn"
 "origin" "8 -136 48"
 "angles" "0 90 0"
 "LevelName" "Night Dummy Map"
@@ -100,7 +100,7 @@
 }
 // entity 12
 {
-"classname" "Transport_/ReturnHomePlatform"
+"classname" "transport_level_exit"
 "origin" "160 152 16"
 "angles" "0 -90 0"
 }

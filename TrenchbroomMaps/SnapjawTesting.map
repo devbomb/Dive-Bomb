@@ -34,7 +34,7 @@
 }
 // entity 1
 {
-"classname" "Transport_/PlayerSpawn"
+"classname" "transport_player_spawn"
 "origin" "-8 -8 24"
 }
 // entity 2
