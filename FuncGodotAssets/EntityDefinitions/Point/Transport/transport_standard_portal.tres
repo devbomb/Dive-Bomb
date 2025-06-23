@@ -22,10 +22,10 @@ class_properties = {
 "TargetMap": null
 }
 class_property_descriptions = {}
-auto_apply_to_matching_node_properties = false
+auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"TrenchbroomEntityModels/Transport_/ReturnHomePlatform.glb\"",
+"model": "\"TrenchbroomEntityModels/Transport_/StandardPortal.glb\"",
 "size": AABB(-8, -8, 0, 8, 8, 16)
 }
 node_class = ""
