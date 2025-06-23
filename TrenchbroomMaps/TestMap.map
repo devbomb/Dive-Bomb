@@ -333,7 +333,7 @@
 }
 // entity 33
 {
-"classname" "Trigger_/CycleStarter"
+"classname" "trigger_cycle_starter"
 "CycleId" "SnapjawCycle"
 // brush 0
 {

@@ -3085,7 +3085,7 @@
 }
 // entity 83
 {
-"classname" "Trigger_/CameraSuggestionZone"
+"classname" "trigger_camera_suggestion_zone"
 "SuggestedYawDeg" "315"
 "GemCost" "120"
 "_tb_group" "3"
@@ -3218,7 +3218,7 @@
 }
 // entity 97
 {
-"classname" "Trigger_/CameraSuggestionZone"
+"classname" "trigger_camera_suggestion_zone"
 "SuggestedYawDeg" "180"
 "SuggestedPitchDeg" "-45"
 // brush 0
@@ -3385,7 +3385,7 @@
 }
 // entity 125
 {
-"classname" "Trigger_/CameraSuggestionZone"
+"classname" "trigger_camera_suggestion_zone"
 "SuggestedYawDeg" "180"
 // brush 0
 {
@@ -3781,7 +3781,7 @@
 }
 // entity 163
 {
-"classname" "Trigger_/CameraSuggestionZone"
+"classname" "trigger_camera_suggestion_zone"
 "SuggestedYawDeg" "225"
 // brush 0
 {
@@ -3955,7 +3955,7 @@
 }
 // entity 174
 {
-"classname" "Trigger_/CameraSuggestionZone"
+"classname" "trigger_camera_suggestion_zone"
 "SuggestedPitchDeg" "-20"
 "_tb_layer" "2"
 // brush 0

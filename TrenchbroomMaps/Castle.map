@@ -3448,7 +3448,7 @@
 }
 // entity 153
 {
-"classname" "Trigger_/CameraSuggestionZone"
+"classname" "trigger_camera_suggestion_zone"
 "SuggestedDistance" "12"
 "SuggestedYawDeg" "180"
 "_tb_group" "7"
