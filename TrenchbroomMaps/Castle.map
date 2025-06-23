@@ -1773,7 +1773,7 @@
 }
 // entity 30
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( -576 32 -192 ) ( -576 33 -192 ) ( -576 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1
@@ -2182,7 +2182,7 @@
 }
 // entity 105
 {
-"classname" "Hazard_/DeathBarrier"
+"classname" "hazard_death_barrier"
 // brush 0
 {
 ( -1824 32 -192 ) ( -1824 320 -832 ) ( -1824 320 -192 ) __TB_empty 0 0 0 1 1
@@ -3491,7 +3491,7 @@
 }
 // entity 158
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( 128 32 -192 ) ( 128 33 -192 ) ( 128 32 -191 ) Textures/PeaceKeepersWater 0 0 0 1 1

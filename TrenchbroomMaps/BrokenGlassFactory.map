@@ -2262,7 +2262,7 @@
 }
 // entity 1
 {
-"classname" "Hazard_/DeathBarrier"
+"classname" "hazard_death_barrier"
 // brush 0
 {
 ( -1312 -624 -368 ) ( -1312 -623 -368 ) ( -1312 -624 -367 ) __TB_empty 0 0 0 1 1
@@ -3795,7 +3795,7 @@
 }
 // entity 164
 {
-"classname" "Hazard_/MoltenGlassCube"
+"classname" "hazard_molten_glass_cube"
 // brush 0
 {
 ( 244 48 32 ) ( 244 192 16 ) ( 244 192 32 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3808,7 +3808,7 @@
 }
 // entity 165
 {
-"classname" "Hazard_/MoltenGlassCube"
+"classname" "hazard_molten_glass_cube"
 // brush 0
 {
 ( 288 64 158 ) ( 288 96 30 ) ( 288 96 158 ) Textures/MoltenGlass 48 -16 0 1 1
@@ -3821,7 +3821,7 @@
 }
 // entity 166
 {
-"classname" "Hazard_/MoltenGlassCube"
+"classname" "hazard_molten_glass_cube"
 // brush 0
 {
 ( 288 64 400 ) ( 288 96 288 ) ( 288 96 400 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3883,7 +3883,7 @@
 }
 // entity 168
 {
-"classname" "Hazard_/MoltenGlassCube"
+"classname" "hazard_molten_glass_cube"
 // brush 0
 {
 ( -384 304 384 ) ( -384 305 384 ) ( -384 304 385 ) Textures/MoltenGlass 0 0 0 1 1
@@ -3896,7 +3896,7 @@
 }
 // entity 169
 {
-"classname" "Hazard_/MoltenGlassCube"
+"classname" "hazard_molten_glass_cube"
 // brush 0
 {
 ( -240 304 400 ) ( -240 400 384 ) ( -240 400 400 ) Textures/MoltenGlass 0 0 0 1 1

@@ -1299,7 +1299,7 @@
 }
 // entity 27
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( -384 -192 0 ) ( -448 -64 0 ) ( -448 -64 16 ) Textures/PeaceKeepersWater 0 0 0 1 1
@@ -1897,7 +1897,7 @@
 }
 // entity 34
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( 386.74516600406093 189.25483399592554 16 ) ( 375.4314575050628 123.31370849902744 16 ) ( 375.4314575050776 123.31370849898764 -16 ) Textures/PeaceKeepersWater -0.64675903 0 0 0.70710677 1
@@ -1912,7 +1912,7 @@
 }
 // entity 35
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( 257.95104715674915 939.0272720574221 0 ) ( 257.95104715674915 939.0272720574221 1 ) ( 258.45104715674915 938.1612466536377 0 ) Textures/PeaceKeepersWater -0.7046509 0 180 0.8660254 -1
@@ -1933,7 +1933,7 @@
 }
 // entity 37
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "30"
 // brush 0
 {
@@ -1948,7 +1948,7 @@
 }
 // entity 38
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "30"
 // brush 0
 {
@@ -1962,7 +1962,7 @@
 }
 // entity 39
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "30"
 // brush 0
 {
@@ -1976,7 +1976,7 @@
 }
 // entity 40
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "30"
 // brush 0
 {
@@ -1990,7 +1990,7 @@
 }
 // entity 41
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( -16 384 8 ) ( 32 496 -8 ) ( 32 496 8 ) Textures/PeaceKeepersWater 0 0 0 1 1
@@ -2398,7 +2398,7 @@
 }
 // entity 100
 {
-"classname" "Hazard_/DeathBarrier"
+"classname" "hazard_death_barrier"
 // brush 0
 {
 ( -2688 -592 -192 ) ( -2688 -591 -192 ) ( -2688 -592 -191 ) __TB_empty 0 0 0 1 1
@@ -3090,7 +3090,7 @@
 }
 // entity 111
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "35"
 // brush 0
 {
@@ -3105,7 +3105,7 @@
 }
 // entity 112
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "35"
 // brush 0
 {
@@ -3118,7 +3118,7 @@
 }
 // entity 113
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "35"
 // brush 0
 {

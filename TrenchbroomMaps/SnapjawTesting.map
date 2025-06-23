@@ -39,7 +39,7 @@
 }
 // entity 2
 {
-"classname" "Hazard_/DeathBarrier"
+"classname" "hazard_death_barrier"
 // brush 0
 {
 ( -240 -32 -96 ) ( -240 -31 -96 ) ( -240 -32 -95 ) __TB_empty 0 0 0 1 1
@@ -52,7 +52,7 @@
 }
 // entity 3
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( 64 -64 16 ) ( 64 64 -16 ) ( 64 64 16 ) Textures/PeaceKeepersWater 0 0 0 1 1
