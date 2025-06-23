@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://ce1myq2ywbh75"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://lp6a1kpk06k4"]
 
 [ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="1_dry2w"]
 [ext_resource type="PackedScene" uid="uid://dlh8rir7h1xac" path="res://Scenes/Entities/Item_/Vase.tscn" id="1_j1arq"]
-[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_dry2w"]
+[ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_ygttp"]
 
 [resource]
-script = ExtResource("2_dry2w")
+script = ExtResource("1_ygttp")
+target_map_editor = 1
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
 scene_file = ExtResource("1_j1arq")
 apply_rotation_on_map_build = true
 apply_scale_on_map_build = true
@@ -17,9 +22,9 @@ class_properties = {}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
-"color": Color(0.490196, 0.490196, 0.490196, 1),
+"color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, 0, 8, 8, 16)
 }
 node_class = ""
 name_property = ""
-metadata/_custom_type_script = "uid://cddjtiy8pj12o"
+metadata/_custom_type_script = "uid://bnr5edjnhrq6k"

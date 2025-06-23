@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=10 format=3 uid="uid://bygbgojyubj38"]
 
-[ext_resource type="Resource" uid="uid://ce1myq2ywbh75" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_vase.tres" id="1_23d1b"]
+[ext_resource type="Resource" uid="uid://lp6a1kpk06k4" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_vase.tres" id="1_23d1b"]
 [ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_84xb5"]
 [ext_resource type="Resource" uid="uid://bb3shackwns1j" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_gem_red.tres" id="2_kjhvy"]
 [ext_resource type="Resource" uid="uid://c1p5hhdmv4im3" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_gem_green.tres" id="3_mycoc"]
 [ext_resource type="Resource" uid="uid://johh8ns2ub0m" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_gem_purple.tres" id="4_ntsl2"]
 [ext_resource type="Resource" uid="uid://dwsbe4ftmlhgj" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_gem_yellow.tres" id="5_nhdd4"]
 [ext_resource type="Resource" uid="uid://duoskvsc4joya" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_gem_magenta.tres" id="6_6atw4"]
-[ext_resource type="Resource" uid="uid://uhqf0u1eeajg" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_basket.tres" id="7_nhdd4"]
+[ext_resource type="Resource" uid="uid://dir3omedhp16m" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_basket.tres" id="7_nhdd4"]
 [ext_resource type="Resource" uid="uid://dtrewu5mef3im" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_fairy.tres" id="7_ntsl2"]
 
 [resource]
