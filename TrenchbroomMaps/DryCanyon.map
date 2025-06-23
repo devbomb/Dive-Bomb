@@ -946,7 +946,7 @@
 }
 // entity 2
 {
-"classname" "Transport_/PlayerSpawn"
+"classname" "transport_player_spawn"
 "origin" "307.86 -311.453 16"
 "angles" "0 90 0"
 "FlyInHeight" "40"
@@ -1051,31 +1051,31 @@
 }
 // entity 4
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "344 120 16"
 "GemColor" "10"
 }
 // entity 5
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "360 72 16"
 "GemColor" "10"
 }
 // entity 6
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "392 24 16"
 "GemColor" "5"
 }
 // entity 7
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "456 -232 16"
 "GemColor" "10"
 }
 // entity 8
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "296 200 16"
 "GemColor" "10"
 }
@@ -1198,108 +1198,108 @@
 }
 // entity 11
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "-392 416 16"
 "GemColor" "2"
 }
 // entity 12
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "-392 512 16"
 "GemColor" "2"
 }
 // entity 13
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "-392 608 16"
 "GemColor" "2"
 }
 // entity 14
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-88 1176 16"
 "GemColor" "10"
 "angles" "0 -60 0"
 }
 // entity 15
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-296 808 16"
 "GemColor" "2"
 "angles" "0 -90 0"
 }
 // entity 16
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-104 296 16"
 "GemColor" "2"
 "angles" "0 -35 0"
 }
 // entity 17
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-24 264 16"
 "GemColor" "5"
 "angles" "0 -35 0"
 }
 // entity 18
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "200 136 16"
 "GemColor" "2"
 "angles" "0 -45 0"
 }
 // entity 19
 {
-"classname" "Item_/Vase"
+"classname" "item_vase"
 "origin" "-88 -296 16"
 "GemColor" "5"
 }
 // entity 20
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "-24 -312 16"
 "GemColor" "2"
 }
 // entity 21
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "-152 -248 16"
 "GemColor" "2"
 }
 // entity 22
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "-280 -216 16"
 "GemColor" "2"
 }
 // entity 23
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "-344 -216 16"
 "GemColor" "2"
 }
 // entity 24
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "-408 -184 16"
 "GemColor" "2"
 }
 // entity 25
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-200 -424 16"
 "GemColor" "2"
 }
 // entity 26
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-296 -360 16"
 "GemColor" "2"
 }
 // entity 27
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( -384 -192 0 ) ( -448 -64 0 ) ( -448 -64 16 ) Textures/PeaceKeepersWater 0 0 0 1 1
@@ -1897,7 +1897,7 @@
 }
 // entity 34
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( 386.74516600406093 189.25483399592554 16 ) ( 375.4314575050628 123.31370849902744 16 ) ( 375.4314575050776 123.31370849898764 -16 ) Textures/PeaceKeepersWater -0.64675903 0 0 0.70710677 1
@@ -1912,7 +1912,7 @@
 }
 // entity 35
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( 257.95104715674915 939.0272720574221 0 ) ( 257.95104715674915 939.0272720574221 1 ) ( 258.45104715674915 938.1612466536377 0 ) Textures/PeaceKeepersWater -0.7046509 0 180 0.8660254 -1
@@ -1933,7 +1933,7 @@
 }
 // entity 37
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "30"
 // brush 0
 {
@@ -1948,7 +1948,7 @@
 }
 // entity 38
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "30"
 // brush 0
 {
@@ -1962,7 +1962,7 @@
 }
 // entity 39
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "30"
 // brush 0
 {
@@ -1976,7 +1976,7 @@
 }
 // entity 40
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "30"
 // brush 0
 {
@@ -1990,7 +1990,7 @@
 }
 // entity 41
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( -16 384 8 ) ( 32 496 -8 ) ( 32 496 8 ) Textures/PeaceKeepersWater 0 0 0 1 1
@@ -2005,311 +2005,311 @@
 }
 // entity 42
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "76 324 16"
 }
 // entity 43
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "108 340 16"
 }
 // entity 44
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "92 308 16"
 }
 // entity 45
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "124 308 16"
 }
 // entity 46
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "-108 1284 144"
 }
 // entity 47
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "-76 1300 144"
 }
 // entity 48
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "-168 1224 144"
 "GemColor" "2"
 "angles" "0 -135 0"
 }
 // entity 49
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "168 1256 48"
 "GemColor" "5"
 "angles" "0 180 0"
 }
 // entity 50
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "376 1080 16"
 "GemColor" "10"
 }
 // entity 51
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "360 1240 48"
 "GemColor" "10"
 "angles" "0 180 0"
 }
 // entity 52
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "348 988 16"
 }
 // entity 53
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "316 1020 16"
 }
 // entity 54
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "436 1268 16"
 }
 // entity 55
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "468 1236 16"
 }
 // entity 56
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "500 1204 16"
 }
 // entity 57
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "532 1172 16"
 }
 // entity 58
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "564 1140 16"
 }
 // entity 59
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "648 648 144"
 "GemColor" "10"
 "angles" "0 115 0"
 }
 // entity 60
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "536 360 176"
 "GemColor" "5"
 "angles" "0 90 0"
 }
 // entity 61
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "444 332 144"
 }
 // entity 62
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "412 316 144"
 }
 // entity 63
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "648 -56 176"
 "GemColor" "5"
 "angles" "0 90 0"
 }
 // entity 64
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "584 8 144"
 "GemColor" "25"
 }
 // entity 65
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "176 -384 160"
 "GemColor" "5"
 }
 // entity 66
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "80 -128 144"
 "GemColor" "10"
 }
 // entity 67
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "80 -48 144"
 "GemColor" "5"
 }
 // entity 68
 {
-"classname" "Item_/Vase"
+"classname" "item_vase"
 "origin" "-48 -192 144"
 "GemColor" "5"
 }
 // entity 69
 {
-"classname" "Item_/Vase"
+"classname" "item_vase"
 "origin" "-96 -160 144"
 "GemColor" "5"
 }
 // entity 70
 {
-"classname" "Item_/Vase"
+"classname" "item_vase"
 "origin" "-128 -112 144"
 "GemColor" "2"
 }
 // entity 71
 {
-"classname" "Item_/Vase"
+"classname" "item_vase"
 "origin" "-128 -64 144"
 "GemColor" "2"
 }
 // entity 72
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "228 -88 152"
 }
 // entity 73
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "260 -88 156"
 }
 // entity 74
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "308 -88 160"
 }
 // entity 75
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "356 -88 160"
 }
 // entity 76
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "236 892 144"
 }
 // entity 77
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "88 728 143.652"
 "GemColor" "5"
 }
 // entity 78
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "200 696 143.652"
 "GemColor" "5"
 "angles" "0 90 0"
 }
 // entity 79
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "-44 732 192"
 }
 // entity 80
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "-68 732 192"
 }
 // entity 81
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "-92 732 192"
 }
 // entity 82
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "44 364 152"
 }
 // entity 83
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "76 364 168"
 }
 // entity 84
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "116 380 176"
 }
 // entity 85
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "1708 20 48"
 }
 // entity 86
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "1748 20 48"
 }
 // entity 87
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "1556 1420 48"
 }
 // entity 88
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "1548 1356 48"
 }
 // entity 89
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "1532 1292 48"
 }
 // entity 90
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "916 308 160"
 }
 // entity 91
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "900 292 160"
 }
 // entity 92
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "916 292 160"
 }
 // entity 93
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "900 308 160"
 }
 // entity 94
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "940 -180 256"
 }
 // entity 95
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "924 -180 256"
 }
 // entity 96
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "908 -180 256"
 }
 // entity 97
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "924 -196 256"
 }
 // entity 98
 {
-"classname" "Transport_/ReturnHomePlatform"
+"classname" "transport_level_exit"
 "origin" "-8 -88 144"
 }
 // entity 99
@@ -2398,7 +2398,7 @@
 }
 // entity 100
 {
-"classname" "Hazard_/DeathBarrier"
+"classname" "hazard_death_barrier"
 // brush 0
 {
 ( -2688 -592 -192 ) ( -2688 -591 -192 ) ( -2688 -592 -191 ) __TB_empty 0 0 0 1 1
@@ -2411,49 +2411,49 @@
 }
 // entity 101
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "248 712 144"
 "GemColor" "5"
 }
 // entity 102
 {
-"classname" "Item_/Fairy"
+"classname" "item_fairy"
 "origin" "192 500.686 192"
 "angles" "0 45 0"
 }
 // entity 103
 {
-"classname" "Item_/Fairy"
+"classname" "item_fairy"
 "origin" "1096 -712 112"
 "angles" "0 -90 0"
 }
 // entity 104
 {
-"classname" "Item_/Fairy"
+"classname" "item_fairy"
 "origin" "1400 104 0"
 "angles" "0 -90 0"
 }
 // entity 105
 {
-"classname" "Item_/Fairy"
+"classname" "item_fairy"
 "origin" "104 -88 144"
 "angles" "0 180 0"
 "GemCost" "220"
 }
 // entity 106
 {
-"classname" "Item_/Fairy"
+"classname" "item_fairy"
 "origin" "776 776 224"
 }
 // entity 107
 {
-"classname" "Item_/Fairy"
+"classname" "item_fairy"
 "origin" "157.072 666.928 144"
 "angles" "0 -120 0"
 }
 // entity 108
 {
-"classname" "Item_/Fairy"
+"classname" "item_fairy"
 "origin" "-168 808 56"
 }
 // entity 109
@@ -3090,7 +3090,7 @@
 }
 // entity 111
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "35"
 // brush 0
 {
@@ -3105,7 +3105,7 @@
 }
 // entity 112
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "35"
 // brush 0
 {
@@ -3118,7 +3118,7 @@
 }
 // entity 113
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 "_tb_group" "35"
 // brush 0
 {
@@ -3134,19 +3134,19 @@
 }
 // entity 114
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1284 644 144"
 "_tb_layer" "22"
 }
 // entity 115
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "1308 676 144"
 "_tb_layer" "22"
 }
 // entity 116
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "1384 648 80"
 "GemColor" "2"
 "angles" "0 90 0"
@@ -3154,7 +3154,7 @@
 }
 // entity 117
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "1544 648 80"
 "GemColor" "2"
 "angles" "0 90 0"
@@ -3162,14 +3162,14 @@
 }
 // entity 118
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1448 568 48"
 "GemColor" "5"
 "_tb_layer" "22"
 }
 // entity 119
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "1800 232 80"
 "GemColor" "2"
 "angles" "0 90 0"
@@ -3177,7 +3177,7 @@
 }
 // entity 120
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "1672 120 80"
 "GemColor" "2"
 "angles" "0 90 0"
@@ -3185,7 +3185,7 @@
 }
 // entity 121
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "1784 40 48"
 "GemColor" "5"
 "angles" "0 120 0"
@@ -3193,49 +3193,49 @@
 }
 // entity 122
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1688 200 48"
 "GemColor" "5"
 "_tb_layer" "22"
 }
 // entity 123
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "936 296 160"
 "GemColor" "5"
 "_tb_layer" "22"
 }
 // entity 124
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "920 -168 256"
 "GemColor" "1"
 "_tb_layer" "22"
 }
 // entity 125
 {
-"classname" "Item_/Vase"
+"classname" "item_vase"
 "origin" "776 8 224"
 "GemColor" "2"
 "_tb_layer" "22"
 }
 // entity 126
 {
-"classname" "Item_/Vase"
+"classname" "item_vase"
 "origin" "808 8 224"
 "GemColor" "2"
 "_tb_layer" "22"
 }
 // entity 127
 {
-"classname" "Item_/Vase"
+"classname" "item_vase"
 "origin" "840 8 224"
 "GemColor" "2"
 "_tb_layer" "22"
 }
 // entity 128
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "1048 56 80"
 "GemColor" "2"
 "angles" "0 90 0"
@@ -3243,7 +3243,7 @@
 }
 // entity 129
 {
-"classname" "Enemy_/EnemyVulture"
+"classname" "enemy_vulture"
 "origin" "1160 56 80"
 "GemColor" "5"
 "angles" "0 90 0"
@@ -3251,106 +3251,106 @@
 }
 // entity 130
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1096 136 48"
 "GemColor" "5"
 "_tb_layer" "22"
 }
 // entity 131
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "1028 -236 16"
 "_tb_layer" "22"
 }
 // entity 132
 {
-"classname" "Item_/GreenGem"
+"classname" "item_gem_green"
 "origin" "1108 -252 16"
 "_tb_layer" "22"
 }
 // entity 133
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1236 -124 48"
 "_tb_layer" "22"
 }
 // entity 134
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1364 -124 104"
 "_tb_layer" "22"
 }
 // entity 135
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1428 -140 120"
 "_tb_layer" "22"
 }
 // entity 136
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1492 -44 144"
 "_tb_layer" "22"
 }
 // entity 137
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1524 -60 144"
 "_tb_layer" "22"
 }
 // entity 138
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1524 -92 144"
 "_tb_layer" "22"
 }
 // entity 139
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1432 120 176"
 "GemColor" "2"
 "_tb_layer" "22"
 }
 // entity 140
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1384 120 176"
 "GemColor" "2"
 "_tb_layer" "22"
 }
 // entity 141
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1340 116 176"
 "_tb_layer" "22"
 }
 // entity 142
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1364 172 0"
 "_tb_layer" "22"
 }
 // entity 143
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1436 172 0"
 "_tb_layer" "22"
 }
 // entity 144
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1340 156 0"
 "_tb_layer" "22"
 }
 // entity 145
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1460 156 0"
 "_tb_layer" "22"
 }
 // entity 146
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1400 180 0"
 "_tb_layer" "22"
 }
@@ -3364,31 +3364,31 @@
 }
 // entity 148
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1444 820 48"
 "_tb_layer" "27"
 }
 // entity 149
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1444 852 48"
 "_tb_layer" "27"
 }
 // entity 150
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1364 988 48"
 "_tb_layer" "27"
 }
 // entity 151
 {
-"classname" "Item_/RedGem"
+"classname" "item_gem_red"
 "origin" "1380 1036 48"
 "_tb_layer" "27"
 }
 // entity 152
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "1488 1104 48"
 "GemColor" "2"
 "angles" "0 78 0"
@@ -3396,7 +3396,7 @@
 }
 // entity 153
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "1472 1192 48"
 "GemColor" "2"
 "angles" "0 90 0"
@@ -3404,7 +3404,7 @@
 }
 // entity 154
 {
-"classname" "Enemy_/EnemyHandCannoner"
+"classname" "enemy_hand_cannoner"
 "origin" "1536 1184 48"
 "GemColor" "2"
 "angles" "0 90 0"
@@ -3412,28 +3412,28 @@
 }
 // entity 155
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1560 1488 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
 // entity 156
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1136 1768 48"
 "GemColor" "5"
 "_tb_layer" "27"
 }
 // entity 157
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1088 1752 48"
 "GemColor" "2"
 "_tb_layer" "27"
 }
 // entity 158
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1032 1712 48"
 "GemColor" "2"
 "_tb_layer" "27"
@@ -3761,60 +3761,60 @@
 }
 // entity 163
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1016 -664 112"
 "GemColor" "2"
 "_tb_layer" "36"
 }
 // entity 164
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1016 -712 112"
 "GemColor" "2"
 "_tb_layer" "36"
 }
 // entity 165
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1048 -744 112"
 "GemColor" "2"
 "_tb_layer" "36"
 }
 // entity 166
 {
-"classname" "Item_/Vase"
+"classname" "item_vase"
 "origin" "1096 -760 112"
 "GemColor" "10"
 "_tb_layer" "36"
 }
 // entity 167
 {
-"classname" "Item_/PurpleGem"
+"classname" "item_gem_purple"
 "origin" "1100 -788 112"
 "_tb_layer" "36"
 }
 // entity 168
 {
-"classname" "Item_/PurpleGem"
+"classname" "item_gem_purple"
 "origin" "1084 -772 112"
 "_tb_layer" "36"
 }
 // entity 169
 {
-"classname" "Item_/PurpleGem"
+"classname" "item_gem_purple"
 "origin" "1100 -772 112"
 "_tb_layer" "36"
 }
 // entity 170
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1144 -744 112"
 "GemColor" "5"
 "_tb_layer" "36"
 }
 // entity 171
 {
-"classname" "Item_/Basket"
+"classname" "item_basket"
 "origin" "1176 -696 112"
 "GemColor" "5"
 "_tb_layer" "36"

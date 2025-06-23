@@ -34,12 +34,12 @@
 }
 // entity 1
 {
-"classname" "Transport_/PlayerSpawn"
+"classname" "transport_player_spawn"
 "origin" "-8 -8 24"
 }
 // entity 2
 {
-"classname" "Hazard_/DeathBarrier"
+"classname" "hazard_death_barrier"
 // brush 0
 {
 ( -240 -32 -96 ) ( -240 -31 -96 ) ( -240 -32 -95 ) __TB_empty 0 0 0 1 1
@@ -52,7 +52,7 @@
 }
 // entity 3
 {
-"classname" "Hazard_/DrowningWater"
+"classname" "hazard_drowning_water"
 // brush 0
 {
 ( 64 -64 16 ) ( 64 64 -16 ) ( 64 64 16 ) Textures/PeaceKeepersWater 0 0 0 1 1
@@ -65,31 +65,31 @@
 }
 // entity 4
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "120 -8 64"
 "CycleOffset" "0"
 }
 // entity 5
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "184 -8 64"
 "CycleOffset" "0.5"
 }
 // entity 6
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "264 -8 48"
 "CycleOffset" "1"
 }
 // entity 7
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "376 -8 48"
 "CycleOffset" "1.5"
 }
 // entity 8
 {
-"classname" "Enemy_/Snapjaw"
+"classname" "enemy_snapjaw"
 "origin" "472 -8 48"
 "CycleOffset" "2"
 }
