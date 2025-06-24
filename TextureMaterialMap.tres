@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://4uwtrknctulw" path="res://Materials/BigMetalSquares.tres" id="5_1acbw"]
 [ext_resource type="Texture2D" uid="uid://bqvdqwued36vr" path="res://Textures/Textures/ManuallyDrawnPanels.png" id="6_205iw"]
 [ext_resource type="Texture2D" uid="uid://dsq2gmifj0jny" path="res://Textures/Textures/MoltenGlass.png" id="6_sfm7b"]
-[ext_resource type="Material" uid="uid://cfompnq7cbshh" path="res://Materials/MoltenGlass.tres" id="7_kyo2g"]
+[ext_resource type="Material" uid="uid://cfompnq7cbshh" path="res://Scenes/Entities/Hazard_/MoltenGlassCube/MoltenGlass.tres" id="7_kyo2g"]
 [ext_resource type="Material" uid="uid://dp8hf7rertopp" path="res://Materials/ManuallyDrawnPanels.tres" id="7_sfm7b"]
 [ext_resource type="Texture2D" uid="uid://b7rs5b8s4x1aa" path="res://Textures/Textures/Grate.png" id="8_kyo2g"]
 [ext_resource type="Material" uid="uid://djjv3erqamsem" path="res://Materials/BulletproofGlassWall.tres" id="9_ml6ww"]

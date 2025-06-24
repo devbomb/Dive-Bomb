@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=11 format=3 uid="uid://cfompnq7cbshh"]
 
-[ext_resource type="Shader" uid="uid://b54w5o8wflvth" path="res://Shaders/MoltenGlass.gdshader" id="1_200c1"]
+[ext_resource type="Shader" uid="uid://b54w5o8wflvth" path="res://Scenes/Entities/Hazard_/MoltenGlassCube/MoltenGlass.gdshader" id="1_200c1"]
 
 [sub_resource type="Gradient" id="Gradient_200c1"]
 offsets = PackedFloat32Array(0, 0.724014)
