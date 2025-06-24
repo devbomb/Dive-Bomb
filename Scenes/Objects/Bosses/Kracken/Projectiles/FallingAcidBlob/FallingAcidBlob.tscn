@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cktr85700gpf0" path="res://Scenes/Objects/Bosses/Kracken/Projectiles/FallingAcidBlob/FallingAcidBlob.cs" id="1_7tjkq"]
 [ext_resource type="AudioStream" uid="uid://blmvtlrrqpdbh" path="res://Scenes/Objects/Bosses/Kracken/SFX/AcidBlobFall.wav" id="2_dr3lt"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="2_kv134"]
-[ext_resource type="AudioStream" uid="uid://cqk8bk8k8ve18" path="res://Audio/SFX/BlobSplash.wav" id="3_up6se"]
+[ext_resource type="AudioStream" uid="uid://cqk8bk8k8ve18" path="res://Scenes/Objects/Bosses/Kracken/Projectiles/FallingAcidBlob/BlobSplash.wav" id="3_up6se"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wc42"]
 transparency = 1
