@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnvl0dea6a42y"]
 
-[ext_resource type="PackedScene" uid="uid://rrdmdw8nh4af" path="res://BlenderModels/WallTorch.blend" id="1_4kpki"]
+[ext_resource type="PackedScene" uid="uid://rrdmdw8nh4af" path="res://Scenes/Entities/Detail/WallTorch/WallTorch.blend" id="1_4kpki"]
 
 [sub_resource type="GDScript" id="GDScript_seutu"]
 script/source = "@tool

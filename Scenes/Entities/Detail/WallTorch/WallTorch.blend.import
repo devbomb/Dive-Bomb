@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://rrdmdw8nh4af"
-path="res://.godot/imported/WallTorch.blend-c479d4cc42b01f13a27e5c4efb722422.scn"
+path="res://.godot/imported/WallTorch.blend-84717908d653d1363bf5952032fff236.scn"
 
 [deps]
 
-source_file="res://BlenderModels/WallTorch.blend"
-dest_files=["res://.godot/imported/WallTorch.blend-c479d4cc42b01f13a27e5c4efb722422.scn"]
+source_file="res://Scenes/Entities/Detail/WallTorch/WallTorch.blend"
+dest_files=["res://.godot/imported/WallTorch.blend-84717908d653d1363bf5952032fff236.scn"]
 
 [params]
 
