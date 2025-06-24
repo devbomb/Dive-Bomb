@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b4vxdysdoipqr"
-path="res://.godot/imported/Vase.blend-76f31c51516768515c7177c974d568cc.scn"
+path="res://.godot/imported/Vase.blend-1d3d523893de9e5e8c096551504bc3a9.scn"
 
 [deps]
 
-source_file="res://BlenderModels/Vase.blend"
-dest_files=["res://.godot/imported/Vase.blend-76f31c51516768515c7177c974d568cc.scn"]
+source_file="res://Scenes/Entities/Item_/Vase/Vase.blend"
+dest_files=["res://.godot/imported/Vase.blend-1d3d523893de9e5e8c096551504bc3a9.scn"]
 
 [params]
 

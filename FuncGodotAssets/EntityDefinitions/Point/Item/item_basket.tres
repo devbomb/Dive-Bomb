@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://dir3omedhp16m"]
 
-[ext_resource type="PackedScene" uid="uid://dbxajif4g4buk" path="res://Scenes/Entities/Item_/Basket.tscn" id="1_a5qj5"]
+[ext_resource type="PackedScene" uid="uid://dbxajif4g4buk" path="res://Scenes/Entities/Item_/Basket/Basket.tscn" id="1_a5qj5"]
 [ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="1_qa472"]
 [ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_6gccd"]
 

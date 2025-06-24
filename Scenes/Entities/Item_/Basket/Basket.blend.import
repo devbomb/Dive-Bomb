@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cs4ajngj450ms"
-path="res://.godot/imported/Basket.blend-4621d40b598389b0ef0b0903510b8f45.scn"
+path="res://.godot/imported/Basket.blend-0eb5b69c0a886a802f6b90c47681cafa.scn"
 
 [deps]
 
-source_file="res://BlenderModels/Basket.blend"
-dest_files=["res://.godot/imported/Basket.blend-4621d40b598389b0ef0b0903510b8f45.scn"]
+source_file="res://Scenes/Entities/Item_/Basket/Basket.blend"
+dest_files=["res://.godot/imported/Basket.blend-0eb5b69c0a886a802f6b90c47681cafa.scn"]
 
 [params]
 

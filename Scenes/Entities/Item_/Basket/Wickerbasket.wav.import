@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cykliris0hyip"
-path="res://.godot/imported/Wickerbasket.wav-3bcd2568b0ab779982d120d2e491168c.sample"
+path="res://.godot/imported/Wickerbasket.wav-b8b82f012f918fa139f99b1dce432af2.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/Wickerbasket.wav"
-dest_files=["res://.godot/imported/Wickerbasket.wav-3bcd2568b0ab779982d120d2e491168c.sample"]
+source_file="res://Scenes/Entities/Item_/Basket/Wickerbasket.wav"
+dest_files=["res://.godot/imported/Wickerbasket.wav-b8b82f012f918fa139f99b1dce432af2.sample"]
 
 [params]
 

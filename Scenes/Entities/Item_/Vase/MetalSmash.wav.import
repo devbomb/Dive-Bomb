@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bd5tqywmbqpnj"
-path="res://.godot/imported/MetalSmash.wav-b3e59df68490ef0792d278915844a49f.sample"
+path="res://.godot/imported/MetalSmash.wav-b5deb85d1cd0bf3a1ce8e70b8b5b50aa.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/MetalSmash.wav"
-dest_files=["res://.godot/imported/MetalSmash.wav-b3e59df68490ef0792d278915844a49f.sample"]
+source_file="res://Scenes/Entities/Item_/Vase/MetalSmash.wav"
+dest_files=["res://.godot/imported/MetalSmash.wav-b5deb85d1cd0bf3a1ce8e70b8b5b50aa.sample"]
 
 [params]
 
