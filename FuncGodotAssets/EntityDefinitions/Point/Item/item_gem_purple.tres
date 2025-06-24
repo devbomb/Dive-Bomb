@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://johh8ns2ub0m"]
 
-[ext_resource type="PackedScene" uid="uid://c7f2hh0jtakwr" path="res://Scenes/Entities/Item_/PurpleGem.tscn" id="1_5uopv"]
+[ext_resource type="PackedScene" uid="uid://c7f2hh0jtakwr" path="res://Scenes/Entities/Item/PurpleGem.tscn" id="1_5uopv"]
 [ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_fcfd6"]
 
 [resource]

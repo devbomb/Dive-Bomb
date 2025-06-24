@@ -1,0 +1,67 @@
+[gd_resource type="ShaderMaterial" load_steps=11 format=3 uid="uid://cfompnq7cbshh"]
+
+[ext_resource type="Shader" uid="uid://b54w5o8wflvth" path="res://Scenes/Entities/Hazard/MoltenGlassCube/MoltenGlass.gdshader" id="1_200c1"]
+
+[sub_resource type="Gradient" id="Gradient_200c1"]
+offsets = PackedFloat32Array(0, 0.724014)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_200c1"]
+noise_type = 2
+frequency = 0.0957
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mahdj"]
+invert = true
+seamless = true
+seamless_blend_skirt = 0.79
+color_ramp = SubResource("Gradient_200c1")
+noise = SubResource("FastNoiseLite_200c1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mxrww"]
+frequency = 0.1207
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_ghmmh"]
+width = 16
+height = 16
+depth = 16
+seamless = true
+seamless_blend_skirt = 0.735
+noise = SubResource("FastNoiseLite_mxrww")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j4su6"]
+seed = 1
+frequency = 0.1207
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_ib3j0"]
+width = 16
+height = 16
+depth = 16
+seamless = true
+seamless_blend_skirt = 0.735
+noise = SubResource("FastNoiseLite_j4su6")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lw3yd"]
+seed = 2
+frequency = 0.1207
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_8lytn"]
+width = 16
+height = 16
+depth = 16
+seamless = true
+seamless_blend_skirt = 0.735
+noise = SubResource("FastNoiseLite_lw3yd")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_200c1")
+shader_parameter/minAmplitude = 0.09
+shader_parameter/minAmplitudeDepth = 1.0
+shader_parameter/maxAmplitude = 0.15
+shader_parameter/maxAmplitudeDepth = 20.0
+shader_parameter/frequency = 1.5
+shader_parameter/albedoTexture = SubResource("NoiseTexture3D_mahdj")
+shader_parameter/warbleDirectionMapX = SubResource("NoiseTexture3D_ghmmh")
+shader_parameter/warbleDirectionMapY = SubResource("NoiseTexture3D_ib3j0")
+shader_parameter/warbleDirectionMapZ = SubResource("NoiseTexture3D_8lytn")

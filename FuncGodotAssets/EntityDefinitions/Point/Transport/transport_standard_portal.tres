@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://cceb6rvbc2qf"]
 
-[ext_resource type="PackedScene" uid="uid://dahuf8m47kslw" path="res://Scenes/Entities/Transport_/StandardPortal/StandardPortal.tscn" id="1_wuwau"]
+[ext_resource type="PackedScene" uid="uid://dahuf8m47kslw" path="res://Scenes/Entities/Transport/StandardPortal/StandardPortal.tscn" id="1_wuwau"]
 [ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="2_5rkmw"]
 
 [resource]

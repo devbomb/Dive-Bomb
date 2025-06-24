@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_ed1lc"]
 [ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="1_k8gr3"]
-[ext_resource type="PackedScene" uid="uid://ch0y87teuvqc8" path="res://Scenes/Entities/Enemy_/HandCannoner/EnemyHandCannoner.tscn" id="2_k8gr3"]
+[ext_resource type="PackedScene" uid="uid://ch0y87teuvqc8" path="res://Scenes/Entities/Enemy/HandCannoner/EnemyHandCannoner.tscn" id="2_k8gr3"]
 
 [resource]
 script = ExtResource("1_ed1lc")

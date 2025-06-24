@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dtrewu5mef3im"]
 
-[ext_resource type="PackedScene" uid="uid://b6d7vas8km3kd" path="res://Scenes/Entities/Item_/Fairy/Fairy.tscn" id="1_x8mxr"]
+[ext_resource type="PackedScene" uid="uid://b6d7vas8km3kd" path="res://Scenes/Entities/Item/Fairy/Fairy.tscn" id="1_x8mxr"]
 [ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_2sy0l"]
 
 [resource]
