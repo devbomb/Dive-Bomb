@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://x13onvsmyky7"
-path="res://.godot/imported/Bonjour1.wav-132a161173c1e6bcc2e6b675e3968ea5.sample"
+path="res://.godot/imported/Bonjour1.wav-1c895962de5894c73abc1fadde4b201a.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/Snapjaw/Bonjour1.wav"
-dest_files=["res://.godot/imported/Bonjour1.wav-132a161173c1e6bcc2e6b675e3968ea5.sample"]
+source_file="res://Scenes/Entities/Enemy_/Snapjaw/SFX/Bonjour1.wav"
+dest_files=["res://.godot/imported/Bonjour1.wav-1c895962de5894c73abc1fadde4b201a.sample"]
 
 [params]
 

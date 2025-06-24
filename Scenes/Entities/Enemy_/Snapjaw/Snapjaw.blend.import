@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bj6kfebqy4yxg"
-path="res://.godot/imported/Snapjaw.blend-04861973352c587eb58548441919fc55.scn"
+path="res://.godot/imported/Snapjaw.blend-fefe95b5a6841daf0313a77b669caad8.scn"
 
 [deps]
 
-source_file="res://BlenderModels/Snapjaw.blend"
-dest_files=["res://.godot/imported/Snapjaw.blend-04861973352c587eb58548441919fc55.scn"]
+source_file="res://Scenes/Entities/Enemy_/Snapjaw/Snapjaw.blend"
+dest_files=["res://.godot/imported/Snapjaw.blend-fefe95b5a6841daf0313a77b669caad8.scn"]
 
 [params]
 
