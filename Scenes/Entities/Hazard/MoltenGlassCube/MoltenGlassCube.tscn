@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ck80j7qyk8fw3" path="res://Scenes/Entities/Hazard/MoltenGlassCube/MoltenGlass.cs" id="1_1pcia"]
 [ext_resource type="Material" uid="uid://cfompnq7cbshh" path="res://Scenes/Entities/Hazard/MoltenGlassCube/MoltenGlass.tres" id="1_kkmwj"]
-[ext_resource type="ArrayMesh" uid="uid://dwb87ab7wgpq6" path="res://BlenderModels/MoltenGlassCube.obj" id="2_1pcia"]
+[ext_resource type="ArrayMesh" uid="uid://dwb87ab7wgpq6" path="res://Scenes/Entities/Hazard/MoltenGlassCube/MoltenGlassCube.obj" id="2_1pcia"]
 
 [node name="MoltenGlassCube" type="Area3D"]
 script = ExtResource("1_1pcia")

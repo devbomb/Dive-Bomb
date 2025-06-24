@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dwb87ab7wgpq6"
+path="res://.godot/imported/MoltenGlassCube.obj-0d7c25ec1c0dae87e2f25b86e90e601c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/MoltenGlassCube.obj-0d7c25ec1c0dae87e2f25b86e90e601c.mesh"]
+
+source_file="res://Scenes/Entities/Hazard/MoltenGlassCube/MoltenGlassCube.obj"
+dest_files=["res://.godot/imported/MoltenGlassCube.obj-0d7c25ec1c0dae87e2f25b86e90e601c.mesh", "res://.godot/imported/MoltenGlassCube.obj-0d7c25ec1c0dae87e2f25b86e90e601c.mesh"]
+
+[params]
+
+generate_tangents=false
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
