@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bojobea40tjay"
-path="res://.godot/imported/Gem.wav-16f721df443351df8e824385cc99deb2.sample"
+path="res://.godot/imported/Gem.wav-9e290818c72bb69f7daf49362e0b108f.sample"
 
 [deps]
 
-source_file="res://Scenes/Objects/Gem/Gem.wav"
-dest_files=["res://.godot/imported/Gem.wav-16f721df443351df8e824385cc99deb2.sample"]
+source_file="res://Scenes/Entities/Item/Gems/BaseGem/Gem.wav"
+dest_files=["res://.godot/imported/Gem.wav-9e290818c72bb69f7daf49362e0b108f.sample"]
 
 [params]
 

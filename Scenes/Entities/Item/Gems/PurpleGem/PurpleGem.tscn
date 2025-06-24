@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7f2hh0jtakwr"]
 
-[ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem/Gem.tscn" id="1_adv7y"]
-[ext_resource type="PackedScene" uid="uid://crlqwtcxxmg76" path="res://Scenes/Models/PurpleGemModel.tscn" id="2_qcnmx"]
+[ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Entities/Item/Gems/BaseGem/Gem.tscn" id="1_adv7y"]
+[ext_resource type="PackedScene" uid="uid://crlqwtcxxmg76" path="res://Scenes/Entities/Item/Gems/PurpleGem/PurpleGemModel.tscn" id="2_qcnmx"]
 
 [node name="PurpleGem" instance=ExtResource("1_adv7y")]
 Value = 5

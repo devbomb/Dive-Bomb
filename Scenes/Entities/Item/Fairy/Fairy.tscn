@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://ilt6j85e4n8e" path="res://Scripts/DecoratorNodes/BillboardToCameraDecorator.gd" id="4_g18ww"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_ioiy7"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="5_pebs6"]
-[ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Scenes/Models/RedGemModel.tscn" id="5_vio7c"]
+[ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Scenes/Entities/Item/Gems/RedGem/RedGemModel.tscn" id="5_vio7c"]
 [ext_resource type="Script" uid="uid://vpf40mbrhlr" path="res://Scripts/DecoratorNodes/SpinDecorator.gd" id="6_vio7c"]
 [ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="7_wl47v"]
 

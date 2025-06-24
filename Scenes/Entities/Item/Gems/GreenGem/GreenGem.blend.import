@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d14ab0v6egjp2"
-path="res://.godot/imported/PurpleGem.blend-d82063f44bbbee17a120cd9b327ff887.scn"
+uid="uid://bisy7ffvbcyyj"
+path="res://.godot/imported/GreenGem.blend-d343ea2a852d2ddf81c1d63165cd6eb9.scn"
 
 [deps]
 
-source_file="res://BlenderModels/PurpleGem.blend"
-dest_files=["res://.godot/imported/PurpleGem.blend-d82063f44bbbee17a120cd9b327ff887.scn"]
+source_file="res://Scenes/Entities/Item/Gems/GreenGem/GreenGem.blend"
+dest_files=["res://.godot/imported/GreenGem.blend-d343ea2a852d2ddf81c1d63165cd6eb9.scn"]
 
 [params]
 

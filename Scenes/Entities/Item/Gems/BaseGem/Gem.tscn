@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://cpn1spfliqp15"]
 
-[ext_resource type="Script" uid="uid://bo6unbh4sy1dw" path="res://Scenes/Objects/Gem/Gem.cs" id="1_ajgr5"]
-[ext_resource type="AudioStream" uid="uid://bojobea40tjay" path="res://Scenes/Objects/Gem/Gem.wav" id="2_m4rpn"]
+[ext_resource type="Script" uid="uid://bo6unbh4sy1dw" path="res://Scenes/Entities/Item/Gems/BaseGem/Gem.cs" id="1_ajgr5"]
+[ext_resource type="AudioStream" uid="uid://bojobea40tjay" path="res://Scenes/Entities/Item/Gems/BaseGem/Gem.wav" id="2_m4rpn"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="3_4j54j"]
-[ext_resource type="AudioStream" uid="uid://g15icso2xyaa" path="res://Scenes/Objects/Gem/GemHomeIn.wav" id="3_025us"]
+[ext_resource type="AudioStream" uid="uid://g15icso2xyaa" path="res://Scenes/Entities/Item/Gems/BaseGem/GemHomeIn.wav" id="3_025us"]
 
 [sub_resource type="Animation" id="Animation_jfllq"]
 length = 0.001

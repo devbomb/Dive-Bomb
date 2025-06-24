@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://be5v4cuys7g1s"]
 
-[ext_resource type="PackedScene" uid="uid://bisy7ffvbcyyj" path="res://BlenderModels/GreenGem.blend" id="1_32fpc"]
+[ext_resource type="PackedScene" uid="uid://bisy7ffvbcyyj" path="res://Scenes/Entities/Item/Gems/GreenGem/GreenGem.blend" id="1_32fpc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xl3c"]
 albedo_color = Color(0, 1, 0, 1)

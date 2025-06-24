@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://caj1kvvqt3xrv"
-path="res://.godot/imported/RedGem.blend-3fa36674ae74e30963da25cb42c3f154.scn"
+uid="uid://cke3knfgvssx"
+path="res://.godot/imported/YellowGem.blend-513f25284383e80ac15f807ec0c33e8e.scn"
 
 [deps]
 
-source_file="res://BlenderModels/RedGem.blend"
-dest_files=["res://.godot/imported/RedGem.blend-3fa36674ae74e30963da25cb42c3f154.scn"]
+source_file="res://Scenes/Entities/Item/Gems/YellowGem/YellowGem.blend"
+dest_files=["res://.godot/imported/YellowGem.blend-513f25284383e80ac15f807ec0c33e8e.scn"]
 
 [params]
 

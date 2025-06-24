@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crlqwtcxxmg76"]
 
-[ext_resource type="PackedScene" uid="uid://d14ab0v6egjp2" path="res://BlenderModels/PurpleGem.blend" id="1_etx4h"]
+[ext_resource type="PackedScene" uid="uid://d14ab0v6egjp2" path="res://Scenes/Entities/Item/Gems/PurpleGem/PurpleGem.blend" id="1_etx4h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otaoo"]
 albedo_color = Color(0.560784, 0.0784314, 1, 1)
