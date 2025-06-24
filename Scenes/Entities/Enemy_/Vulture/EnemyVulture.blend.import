@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bksx43c001y1k"
-path="res://.godot/imported/EnemyVulture.blend-ea5be14a4dad4abd6c8a371e86502cc5.scn"
+path="res://.godot/imported/EnemyVulture.blend-3f72ac849167f146a6c06cbc7b9bddef.scn"
 
 [deps]
 
-source_file="res://BlenderModels/EnemyVulture.blend"
-dest_files=["res://.godot/imported/EnemyVulture.blend-ea5be14a4dad4abd6c8a371e86502cc5.scn"]
+source_file="res://Scenes/Entities/Enemy_/Vulture/EnemyVulture.blend"
+dest_files=["res://.godot/imported/EnemyVulture.blend-3f72ac849167f146a6c06cbc7b9bddef.scn"]
 
 [params]
 
