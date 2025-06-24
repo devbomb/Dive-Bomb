@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dtoyyu1x2olbc"
-path="res://.godot/imported/KrackenPlatform.blend-e6422db502459c3bd2ef073582f1d0d2.scn"
+path="res://.godot/imported/KrackenPlatform.blend-cb4aa96d4431783a3b6e0def3927cb2c.scn"
 
 [deps]
 
-source_file="res://BlenderModels/KrackenPlatform.blend"
-dest_files=["res://.godot/imported/KrackenPlatform.blend-e6422db502459c3bd2ef073582f1d0d2.scn"]
+source_file="res://Scenes/Maps/Levels/SeamonsterBossMap/KrackenPlatform.blend"
+dest_files=["res://.godot/imported/KrackenPlatform.blend-cb4aa96d4431783a3b6e0def3927cb2c.scn"]
 
 [params]
 
