@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=3 format=3 uid="uid://c82wj8igkmkj"]
+
+[ext_resource type="Resource" uid="uid://cso21pf46g65m" path="res://FuncGodotAssets/EntityDefinitions/Point/Info/info_named_marker.tres" id="1_gbp5k"]
+[ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_oyuwa"]
+
+[resource]
+script = ExtResource("1_oyuwa")
+export_file = false
+target_map_editor = 1
+fgd_name = "Info"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_gbp5k")])
+metadata/_custom_type_script = "uid://vm1fvi5045um"

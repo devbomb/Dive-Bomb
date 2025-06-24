@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cso21pf46g65m"]
+
+[ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Scenes/Entities/Info/NamedMarker/NamedMarker3D.tscn" id="1_jufp7"]
+[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_tgbyy"]
+
+[resource]
+script = ExtResource("1_tgbyy")
+scene_file = ExtResource("1_jufp7")
+apply_rotation_on_map_build = true
+apply_scale_on_map_build = true
+classname = "info_named_marker"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"MarkerId": ""
+}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = true
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://cddjtiy8pj12o"
