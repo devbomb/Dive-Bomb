@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cxrfdnblu768c"
-path="res://.godot/imported/EnemyHandCannoner.blend-cdc33320daac7c263c1b60db98238df7.scn"
+path="res://.godot/imported/EnemyHandCannoner.blend-dff0d620554b2950096dc84341e073b7.scn"
 
 [deps]
 
-source_file="res://BlenderModels/EnemyHandCannoner.blend"
-dest_files=["res://.godot/imported/EnemyHandCannoner.blend-cdc33320daac7c263c1b60db98238df7.scn"]
+source_file="res://Scenes/Entities/Enemy_/HandCannoner/EnemyHandCannoner.blend"
+dest_files=["res://.godot/imported/EnemyHandCannoner.blend-dff0d620554b2950096dc84341e073b7.scn"]
 
 [params]
 

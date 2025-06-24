@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cl6pd72tshp26"
-path="res://.godot/imported/Aim0.wav-a5fb2ee6c68c2d7175a832423776d524.sample"
+path="res://.godot/imported/Aim0.wav-c44fa44909252a988f74c81076a334ec.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/EnemyHandCannoner/Aim0.wav"
-dest_files=["res://.godot/imported/Aim0.wav-a5fb2ee6c68c2d7175a832423776d524.sample"]
+source_file="res://Scenes/Entities/Enemy_/HandCannoner/SFX/Aim0.wav"
+dest_files=["res://.godot/imported/Aim0.wav-c44fa44909252a988f74c81076a334ec.sample"]
 
 [params]
 
