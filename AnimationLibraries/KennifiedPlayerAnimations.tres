@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cj0cbpek5hnn7" path="res://Audio/SFX/ParachuteDeploy.wav" id="5_rvkxb"]
 [ext_resource type="AudioStream" uid="uid://ctxkawuv3irk7" path="res://Audio/SFX/Skid.wav" id="5_tjt4m"]
 [ext_resource type="AudioStream" uid="uid://cbugnr8emhdrm" path="res://Audio/SFX/ParachuteLand.wav" id="6_myp5l"]
-[ext_resource type="AudioStream" uid="uid://bgjbnvtp2qryy" path="res://Audio/SFX/VentEnterSwoosh.wav" id="7_y6mkr"]
+[ext_resource type="AudioStream" uid="uid://bgjbnvtp2qryy" path="res://Scenes/Entities/Transport_/Vent/SFX/VentEnterSwoosh.wav" id="7_y6mkr"]
 
 [sub_resource type="Animation" id="Animation_gd5kq"]
 resource_name = "Bonk"

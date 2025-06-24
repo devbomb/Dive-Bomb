@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cnh40ih5ik4pc"
-path="res://.godot/imported/Vent.blend-785482445cd2987e1b0b742df85c3065.scn"
+uid="uid://b7e27lthcl3fx"
+path="res://.godot/imported/StandardPortalFrame.blend-4e9cab416849d93853ef5dbbd4ecd554.scn"
 
 [deps]
 
-source_file="res://BlenderModels/Vent.blend"
-dest_files=["res://.godot/imported/Vent.blend-785482445cd2987e1b0b742df85c3065.scn"]
+source_file="res://Scenes/Entities/Transport_/StandardPortal/StandardPortalFrame.blend"
+dest_files=["res://.godot/imported/StandardPortalFrame.blend-4e9cab416849d93853ef5dbbd4ecd554.scn"]
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false

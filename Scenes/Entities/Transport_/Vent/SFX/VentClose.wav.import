@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dfh41rudw4sh2"
-path="res://.godot/imported/VentClose.wav-56bad91f4181ddd35a5f1ccb194dfb8a.sample"
+path="res://.godot/imported/VentClose.wav-650db6a3497fce28f987e04f100efe73.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/VentClose.wav"
-dest_files=["res://.godot/imported/VentClose.wav-56bad91f4181ddd35a5f1ccb194dfb8a.sample"]
+source_file="res://Scenes/Entities/Transport_/Vent/SFX/VentClose.wav"
+dest_files=["res://.godot/imported/VentClose.wav-650db6a3497fce28f987e04f100efe73.sample"]
 
 [params]
 

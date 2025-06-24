@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://1bbms5s4bt3d"
-path="res://.godot/imported/FairyRing.blend-beb08e7d2b8cb9d9f74576b4582aec85.scn"
+path="res://.godot/imported/FairyRing.blend-46ce36875216cd912e4c056e311ff734.scn"
 
 [deps]
 
-source_file="res://BlenderModels/FairyRing.blend"
-dest_files=["res://.godot/imported/FairyRing.blend-beb08e7d2b8cb9d9f74576b4582aec85.scn"]
+source_file="res://Scenes/Entities/Transport_/Checkpoint/FairyRing.blend"
+dest_files=["res://.godot/imported/FairyRing.blend-46ce36875216cd912e4c056e311ff734.scn"]
 
 [params]
 

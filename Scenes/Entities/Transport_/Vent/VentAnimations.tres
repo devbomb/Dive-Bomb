@@ -1,8 +1,8 @@
 [gd_resource type="AnimationLibrary" load_steps=7 format=3 uid="uid://mph1dfth0pie"]
 
-[ext_resource type="AudioStream" uid="uid://b3ygwxc228jgo" path="res://Audio/SFX/VentEmerge.wav" id="1_b0s3a"]
-[ext_resource type="AudioStream" uid="uid://dfh41rudw4sh2" path="res://Audio/SFX/VentClose.wav" id="1_di45n"]
-[ext_resource type="AudioStream" uid="uid://bi8cse8tndq1x" path="res://Audio/SFX/VentCloseGentle.wav" id="2_yucmb"]
+[ext_resource type="AudioStream" uid="uid://b3ygwxc228jgo" path="res://Scenes/Entities/Transport_/Vent/SFX/VentEmerge.wav" id="1_b0s3a"]
+[ext_resource type="AudioStream" uid="uid://dfh41rudw4sh2" path="res://Scenes/Entities/Transport_/Vent/SFX/VentClose.wav" id="1_di45n"]
+[ext_resource type="AudioStream" uid="uid://bi8cse8tndq1x" path="res://Scenes/Entities/Transport_/Vent/SFX/VentCloseGentle.wav" id="2_yucmb"]
 
 [sub_resource type="Animation" id="Animation_x6mdr"]
 resource_name = "BurstOpen"

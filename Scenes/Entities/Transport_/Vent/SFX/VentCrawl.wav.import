@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bauujitx78i1j"
-path="res://.godot/imported/VentCrawl.wav-763589e366f81ed1b76d6c9196ecfffe.sample"
+path="res://.godot/imported/VentCrawl.wav-4c33df8d807254ea16edb1319e4a7b89.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/VentCrawl.wav"
-dest_files=["res://.godot/imported/VentCrawl.wav-763589e366f81ed1b76d6c9196ecfffe.sample"]
+source_file="res://Scenes/Entities/Transport_/Vent/SFX/VentCrawl.wav"
+dest_files=["res://.godot/imported/VentCrawl.wav-4c33df8d807254ea16edb1319e4a7b89.sample"]
 
 [params]
 

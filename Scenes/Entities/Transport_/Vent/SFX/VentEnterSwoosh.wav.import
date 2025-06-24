@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bgjbnvtp2qryy"
-path="res://.godot/imported/VentEnterSwoosh.wav-f6b49f27b6cab5140cb76baa93f5992e.sample"
+path="res://.godot/imported/VentEnterSwoosh.wav-34955c69a609562562681b589a93517b.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/VentEnterSwoosh.wav"
-dest_files=["res://.godot/imported/VentEnterSwoosh.wav-f6b49f27b6cab5140cb76baa93f5992e.sample"]
+source_file="res://Scenes/Entities/Transport_/Vent/SFX/VentEnterSwoosh.wav"
+dest_files=["res://.godot/imported/VentEnterSwoosh.wav-34955c69a609562562681b589a93517b.sample"]
 
 [params]
 

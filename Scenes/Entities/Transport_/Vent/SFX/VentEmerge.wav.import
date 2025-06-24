@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b3ygwxc228jgo"
-path="res://.godot/imported/VentEmerge.wav-07e06241e10986a78e8ffa81c90e2dbf.sample"
+path="res://.godot/imported/VentEmerge.wav-6c364f51a3c2b5d010c9bb0f98fe5df0.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/VentEmerge.wav"
-dest_files=["res://.godot/imported/VentEmerge.wav-07e06241e10986a78e8ffa81c90e2dbf.sample"]
+source_file="res://Scenes/Entities/Transport_/Vent/SFX/VentEmerge.wav"
+dest_files=["res://.godot/imported/VentEmerge.wav-6c364f51a3c2b5d010c9bb0f98fe5df0.sample"]
 
 [params]
 

@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dki5doabmw5bc"
-path="res://.godot/imported/ReturnHomePlatform.blend-e9adedd48b8035d52ccd709c33eb8388.scn"
+uid="uid://cnh40ih5ik4pc"
+path="res://.godot/imported/Vent.blend-4562a8477980ed100f1fe088b96d7536.scn"
 
 [deps]
 
-source_file="res://BlenderModels/ReturnHomePlatform.blend"
-dest_files=["res://.godot/imported/ReturnHomePlatform.blend-e9adedd48b8035d52ccd709c33eb8388.scn"]
+source_file="res://Scenes/Entities/Transport_/Vent/Vent.blend"
+dest_files=["res://.godot/imported/Vent.blend-4562a8477980ed100f1fe088b96d7536.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -33,7 +33,7 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-blender/nodes/visible=1
+blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true

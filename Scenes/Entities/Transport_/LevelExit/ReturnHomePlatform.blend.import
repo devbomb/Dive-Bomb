@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b7e27lthcl3fx"
-path="res://.godot/imported/StandardPortalFrame.blend-688edbdd77781d7d1513a38a3411ab0c.scn"
+uid="uid://dki5doabmw5bc"
+path="res://.godot/imported/ReturnHomePlatform.blend-79104edd6cc06956e7c004fa24aa71ed.scn"
 
 [deps]
 
-source_file="res://BlenderModels/StandardPortalFrame.blend"
-dest_files=["res://.godot/imported/StandardPortalFrame.blend-688edbdd77781d7d1513a38a3411ab0c.scn"]
+source_file="res://Scenes/Entities/Transport_/LevelExit/ReturnHomePlatform.blend"
+dest_files=["res://.godot/imported/ReturnHomePlatform.blend-79104edd6cc06956e7c004fa24aa71ed.scn"]
 
 [params]
 
@@ -33,7 +33,7 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-blender/nodes/visible=0
+blender/nodes/visible=1
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
