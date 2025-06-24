@@ -1,6 +1,6 @@
 [gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://cixu1tgmo6shy"]
 
-[ext_resource type="AudioStream" uid="uid://bilyd7s4ryh37" path="res://Audio/SFX/Smooch.wav" id="1_olf8a"]
+[ext_resource type="AudioStream" uid="uid://bilyd7s4ryh37" path="res://Scenes/Entities/Item_/Fairy/SFX/Smooch.wav" id="1_olf8a"]
 
 [sub_resource type="Animation" id="Animation_eoewg"]
 resource_name = "FlyAway"

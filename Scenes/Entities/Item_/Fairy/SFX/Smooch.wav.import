@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bilyd7s4ryh37"
-path="res://.godot/imported/Smooch.wav-114ebd8bf11dd14616ee2345acc15038.sample"
+path="res://.godot/imported/Smooch.wav-504ced5bd7c7cf3e721793063b5a46e1.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/Smooch.wav"
-dest_files=["res://.godot/imported/Smooch.wav-114ebd8bf11dd14616ee2345acc15038.sample"]
+source_file="res://Scenes/Entities/Item_/Fairy/SFX/Smooch.wav"
+dest_files=["res://.godot/imported/Smooch.wav-504ced5bd7c7cf3e721793063b5a46e1.sample"]
 
 [params]
 
