@@ -4,7 +4,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://phpkdehj2kfx" path="res://Scenes/Entities/Enemy/Vulture/VultureAnimations.tres" id="2_4b7rt"]
 [ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Scripts/Objects/GemSpawner.cs" id="2_alb8d"]
 [ext_resource type="PackedScene" uid="uid://bksx43c001y1k" path="res://Scenes/Entities/Enemy/Vulture/EnemyVulture.blend" id="2_ni8ar"]
-[ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Scenes/Objects/AggroSphere.tscn" id="4_l56o7"]
+[ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Scenes/Objects/AggroSphere/AggroSphere.tscn" id="4_l56o7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uo6qh"]
 

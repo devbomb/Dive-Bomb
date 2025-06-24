@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d0afp41b8absv" path="res://Scenes/Entities/Transport/LevelExit/Boss/BossReturnHomePlatform.tscn" id="4_5cr18"]
 [ext_resource type="PackedScene" uid="uid://dtoyyu1x2olbc" path="res://BlenderModels/KrackenPlatform.blend" id="4_78ou1"]
 [ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Scenes/Entities/Info/NamedMarker/NamedMarker3D.tscn" id="4_elxet"]
-[ext_resource type="PackedScene" uid="uid://btcofpq2vamxe" path="res://Scenes/Objects/PowerOrb.tscn" id="5_6lj42"]
+[ext_resource type="PackedScene" uid="uid://btcofpq2vamxe" path="res://Scenes/Objects/PowerOrb/PowerOrb.tscn" id="5_6lj42"]
 [ext_resource type="Script" uid="uid://c4dmx1el10jag" path="res://Scenes/Entities/Hazard/DrowningWater.cs" id="5_ps4q3"]
 [ext_resource type="PackedScene" uid="uid://u1dg26oq81vl" path="res://Scenes/Objects/Bosses/Kracken/SeamonsterBoss.tscn" id="5_pv6rf"]
 

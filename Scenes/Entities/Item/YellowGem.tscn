@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dorgtewj4e22i"]
 
-[ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem.tscn" id="1_5tw4j"]
+[ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Scenes/Objects/Gem/Gem.tscn" id="1_5tw4j"]
 [ext_resource type="PackedScene" uid="uid://byj33t3fmjjmx" path="res://Scenes/Models/YellowGemModel.tscn" id="2_pp4to"]
 
 [node name="YellowGem" instance=ExtResource("1_5tw4j")]
