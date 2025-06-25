@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://ch0y87teuvqc8"]
+
+[ext_resource type="Script" uid="uid://dbq24o3s8vbso" path="res://Entities/Enemy/HandCannoner/EnemyHandCannoner.cs" id="1_x80xv"]
+[ext_resource type="PackedScene" uid="uid://cka17uxpf4jsi" path="res://Entities/Enemy/HandCannoner/CanonBall/HandCannonBall.tscn" id="2_7j68t"]
+[ext_resource type="PackedScene" uid="uid://cxrfdnblu768c" path="res://Entities/Enemy/HandCannoner/EnemyHandCannoner.blend" id="2_a37ce"]
+[ext_resource type="AnimationLibrary" uid="uid://dpi267kv74gnc" path="res://Entities/Enemy/HandCannoner/EnemyHandCannoner.tres" id="3_t3ybc"]
+[ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Common/Components/AggroSphere/AggroSphere.tscn" id="4_hle72"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="6_4be38"]
+[ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Common/Components/GemSpawner.cs" id="7_6ule0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8vnft"]
+
+[node name="EnemyHandCannoner" type="StaticBody3D" groups=["UnsafeGround"]]
+script = ExtResource("1_x80xv")
+ProjectilePrefab = ExtResource("2_7j68t")
+
+[node name="GemSpawner" type="Node3D" parent="."]
+script = ExtResource("7_6ule0")
+metadata/_custom_type_script = "uid://dhjvxdov8gnkp"
+
+[node name="SnoreSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+max_distance = 30.0
+
+[node name="FireSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+volume_db = 3.575
+
+[node name="KillSoundPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationVoicePlayer" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+deterministic = true
+libraries = {
+&"": ExtResource("3_t3ybc")
+}
+
+[node name="Model" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="EnemyHandCannoner" parent="Model" instance=ExtResource("2_a37ce")]
+
+[node name="BodyShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_8vnft")
+
+[node name="ProjectileSpawnPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, -0.6)
+
+[node name="AggroSphere" parent="." instance=ExtResource("4_hle72")]
+unique_name_in_owner = true
+
+[node name="BlobShadow" parent="." instance=ExtResource("6_4be38")]
+unique_name_in_owner = true
+
+[connection signal="Killed" from="." to="GemSpawner" method="Reveal"]

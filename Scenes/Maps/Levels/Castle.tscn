@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dad4aqqyc8v3i" path="res://TrenchbroomMaps/Castle.map" id="1_4ems5"]
 [ext_resource type="Environment" uid="uid://dp38ywrpiuhjq" path="res://Environments/Castle.tres" id="1_7bxwh"]
-[ext_resource type="PackedScene" uid="uid://t1vahhcvv1hb" path="res://Scenes/Entities/Detail/Fireplace.tscn" id="3_ss8in"]
+[ext_resource type="PackedScene" uid="uid://t1vahhcvv1hb" path="res://Entities/Detail/Fireplace.tscn" id="3_ss8in"]
 
 [node name="Castle" type="Node3D"]
 

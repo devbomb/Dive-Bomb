@@ -1,7 +1,7 @@
 @tool
 extends StaticBody3D
 
-var scene: PackedScene = preload("res://Scenes/Entities/Wall/DivableWall/DivableWall.tscn")
+var scene: PackedScene = preload("res://Entities/Wall/DivableWall/DivableWall.tscn")
 
 func _ready():
 	replace.call_deferred()

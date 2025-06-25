@@ -1,0 +1,243 @@
+[gd_scene load_steps=28 format=3 uid="uid://c26712jp7rfwp"]
+
+[ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Entities/Player/Player.cs" id="1_a4opu"]
+[ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.tscn" id="2_0esln"]
+[ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://Entities/Player/KennifiedPlayerAnimations.tres" id="2_dijyt"]
+[ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Entities/Player/Parts/TimeTrialManager/TimeTrialManager.tscn" id="2_eu73y"]
+[ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="3_fw7ex"]
+[ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Entities/Player/Parts/PlayerCamera/PlayerCamera.tscn" id="4_ne5gw"]
+[ext_resource type="PackedScene" uid="uid://d1upl0f3iefyd" path="res://Entities/Player/FX/Thuum.tscn" id="5_2j7te"]
+[ext_resource type="AudioStream" uid="uid://l73s7j3svjwy" path="res://Entities/Player/SFX/Roll.wav" id="5_4kc40"]
+[ext_resource type="PackedScene" uid="uid://wv54wlebftcd" path="res://Entities/Player/FX/RollDust.tscn" id="5_e40ui"]
+[ext_resource type="AudioStream" uid="uid://dghyx6ev3y6q6" path="res://Entities/Player/SFX/Bonk.wav" id="6_wmg1a"]
+[ext_resource type="AudioStream" uid="uid://bg3t5q648uwq" path="res://Entities/Player/SFX/FlipDamage.wav" id="7_anupw"]
+[ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://UI/Menus/PauseMenu/PauseMenu.tscn" id="7_jm41t"]
+[ext_resource type="AudioStream" uid="uid://b8p3vq40pffrv" path="res://Entities/Player/SFX/DrownWaterEnterSplash.wav" id="8_pxges"]
+[ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://UI/Menus/HUD/HUD.tscn" id="9_m2xb1"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="9_vmh20"]
+[ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Entities/Player/Parts/GemGravityGloves/GemGravityGloves.tscn" id="10_dedpk"]
+
+[sub_resource type="GDScript" id="GDScript_cpnxc"]
+script/source = "extends Node
+
+var _startY : float = 0
+var _maxHeight : float = 0
+var _printedMaxHeight : bool = false
+
+func _physics_process(_delta):
+    var player : CharacterBody3D = get_parent()
+    
+    if (player.is_on_floor()):
+        _startY = player.global_position.y
+        _maxHeight = 0
+        _printedMaxHeight = false
+        return
+    
+    var height : float = player.global_position.y - _startY
+
+    if (height >= _maxHeight):
+        _maxHeight = height
+    elif (!_printedMaxHeight):
+        _printedMaxHeight = true
+        print(_maxHeight)
+        
+"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1rf0g"]
+height = 1.5
+radius = 1.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uxvrm"]
+radius = 1.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtu1o"]
+height = 1.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8oevv"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="GDScript" id="GDScript_pxges"]
+script/source = "extends Node3D
+
+func _physics_process(_delta: float) -> void:
+	global_transform = get_parent().LastSafeGroundPos
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxges"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_2j7te"]
+material = SubResource("StandardMaterial3D_pxges")
+size = Vector3(0.3, 0.3, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e40ui"]
+shading_mode = 0
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sioah"]
+material = SubResource("StandardMaterial3D_e40ui")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.075
+radial_segments = 8
+
+[node name="Player" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
+collision_layer = 9
+script = ExtResource("1_a4opu")
+
+[node name="TimeTrialManager" parent="." instance=ExtResource("2_eu73y")]
+
+[node name="MaxJumpHeightPrinter" type="Node" parent="."]
+script = SubResource("GDScript_cpnxc")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+deterministic = true
+root_node = NodePath("../Model")
+libraries = {
+&"": ExtResource("2_dijyt")
+}
+playback_default_blend_time = 0.1
+
+[node name="Model" parent="." instance=ExtResource("3_fw7ex")]
+unique_name_in_owner = true
+
+[node name="RollDust" parent="Model" instance=ExtResource("5_e40ui")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260567, -0.232747)
+emitting = false
+
+[node name="RollThuum" parent="Model" instance=ExtResource("5_2j7te")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.287892, 9.27155e-09)
+visible = false
+
+[node name="DiveThuum" parent="Model" instance=ExtResource("5_2j7te")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.287892, -0.366892)
+visible = false
+
+[node name="AnimatorSoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Sfx"
+
+[node name="RollSoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_4kc40")
+pitch_scale = 1.13
+max_polyphony = 3
+bus = &"Sfx"
+
+[node name="BonkSoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_wmg1a")
+volume_db = -5.81
+bus = &"Sfx"
+
+[node name="FlipDamageSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_anupw")
+volume_db = -3.443
+bus = &"Sfx"
+
+[node name="DrownStartSplashSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_pxges")
+bus = &"Sfx"
+
+[node name="FairyKissPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.09052e-08, 0.618845, -0.412131)
+
+[node name="FairyKissCamRightPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 1.124, -0.364)
+
+[node name="FairyKissCamLeftPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 1.124, -0.364)
+
+[node name="KickHitbox" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KickHitbox"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.26022e-08, 0.381694, -0.182095)
+shape = SubResource("CylinderShape3D_1rf0g")
+
+[node name="DiveExtraHitbox" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiveExtraHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_uxvrm")
+
+[node name="RollExtraHitbox" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollExtraHitbox"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_rtu1o")
+
+[node name="Camera" parent="." node_paths=PackedStringArray("FollowTarget") instance=ExtResource("4_ne5gw")]
+unique_name_in_owner = true
+FollowTarget = NodePath("../CameraFocus")
+
+[node name="CameraFocus" type="Marker3D" parent="." groups=["PhysicsInterpolated"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+top_level = true
+
+[node name="CameraFocusRestPos" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="BodyShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_b8til")
+
+[node name="LedgeDetector" parent="." instance=ExtResource("2_0esln")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45037, 0)
+visible = false
+
+[node name="LedgeGrabPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.387, -0.492)
+
+[node name="ReferenceLedge" type="MeshInstance3D" parent="LedgeGrabPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.5)
+visible = false
+mesh = SubResource("BoxMesh_8oevv")
+skeleton = NodePath("../..")
+
+[node name="MinLedgeGrabHeight" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25565, 0)
+
+[node name="BlobShadow" parent="." node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("9_vmh20")]
+ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
+
+[node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
+mouse_filter = 2
+
+[node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint") instance=ExtResource("10_dedpk")]
+LeftHandPoint = NodePath("../Model/LeftHandBone/LeftHandPoint")
+RightHandPoint = NodePath("../Model/RightHandBone/RightHandPoint")
+
+[node name="LastSafeGroundVisualizer" type="Node3D" parent="."]
+top_level = true
+visible = false
+script = SubResource("GDScript_pxges")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LastSafeGroundVisualizer"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.075, -0.0374239)
+mesh = SubResource("PrismMesh_2j7te")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LastSafeGroundVisualizer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.038, 0)
+mesh = SubResource("CylinderMesh_sioah")

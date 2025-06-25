@@ -1,7 +1,7 @@
 @tool
 extends Area3D
 
-var scene: PackedScene = preload("res://Scenes/Entities/Hazard/MoltenGlassCube/MoltenGlassCube.tscn")
+var scene: PackedScene = preload("res://Entities/Hazard/MoltenGlassCube/MoltenGlassCube.tscn")
 
 func _ready():
 	replace.call_deferred()

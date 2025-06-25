@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_c4k4h"]
 [ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="1_yp1rd"]
-[ext_resource type="PackedScene" uid="uid://ri50s5tjym3n" path="res://Scenes/Entities/Enemy/Snapjaw/Snapjaw.tscn" id="2_eiprv"]
+[ext_resource type="PackedScene" uid="uid://ri50s5tjym3n" path="res://Entities/Enemy/Snapjaw/Snapjaw.tscn" id="2_eiprv"]
 
 [resource]
 script = ExtResource("1_c4k4h")

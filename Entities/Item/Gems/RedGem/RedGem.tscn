@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bby552c364kaj"]
+
+[ext_resource type="PackedScene" uid="uid://cpn1spfliqp15" path="res://Entities/Item/Gems/BaseGem/Gem.tscn" id="1_und47"]
+[ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="2_7kupr"]
+
+[node name="RedGem" instance=ExtResource("1_und47")]
+Value = 1
+
+[node name="RedGemModel" parent="ModelPoint" index="0" instance=ExtResource("2_7kupr")]

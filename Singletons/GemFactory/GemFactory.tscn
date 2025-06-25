@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://qaotikaq1yfc"]
 
 [ext_resource type="Script" uid="uid://dhgwspomv021g" path="res://Singletons/GemFactory/GemFactory.cs" id="1_4svqp"]
-[ext_resource type="PackedScene" uid="uid://bby552c364kaj" path="res://Scenes/Entities/Item/Gems/RedGem/RedGem.tscn" id="2_lbsq3"]
-[ext_resource type="PackedScene" uid="uid://b5l4dithnhgqx" path="res://Scenes/Entities/Item/Gems/GreenGem/GreenGem.tscn" id="3_wycfq"]
-[ext_resource type="PackedScene" uid="uid://c7f2hh0jtakwr" path="res://Scenes/Entities/Item/Gems/PurpleGem/PurpleGem.tscn" id="4_gs8wl"]
-[ext_resource type="PackedScene" uid="uid://dorgtewj4e22i" path="res://Scenes/Entities/Item/Gems/YellowGem/YellowGem.tscn" id="5_4aujh"]
-[ext_resource type="PackedScene" uid="uid://djpeind8lnpd3" path="res://Scenes/Entities/Item/Gems/MagentaGem/MagentaGem.tscn" id="6_ehxbi"]
+[ext_resource type="PackedScene" uid="uid://bby552c364kaj" path="res://Entities/Item/Gems/RedGem/RedGem.tscn" id="2_lbsq3"]
+[ext_resource type="PackedScene" uid="uid://b5l4dithnhgqx" path="res://Entities/Item/Gems/GreenGem/GreenGem.tscn" id="3_wycfq"]
+[ext_resource type="PackedScene" uid="uid://c7f2hh0jtakwr" path="res://Entities/Item/Gems/PurpleGem/PurpleGem.tscn" id="4_gs8wl"]
+[ext_resource type="PackedScene" uid="uid://dorgtewj4e22i" path="res://Entities/Item/Gems/YellowGem/YellowGem.tscn" id="5_4aujh"]
+[ext_resource type="PackedScene" uid="uid://djpeind8lnpd3" path="res://Entities/Item/Gems/MagentaGem/MagentaGem.tscn" id="6_ehxbi"]
 
 [node name="GemFactory" type="Node"]
 script = ExtResource("1_4svqp")

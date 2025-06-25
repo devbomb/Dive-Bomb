@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://ghufva1d8fir"]
 
 [ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_xsao7"]
-[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Scenes/Entities/Hazard/DeathBarrier.cs" id="2_s7527"]
+[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier.cs" id="2_s7527"]
 
 [resource]
 script = ExtResource("1_xsao7")
