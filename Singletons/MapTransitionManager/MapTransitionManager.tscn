@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cb32y0ekuw0op"]
 
-[ext_resource type="Script" uid="uid://c8wwlnkv67vs2" path="res://Scenes/Singletons/MapTransitionManager/MapTransitionManager.cs" id="1_onbea"]
+[ext_resource type="Script" uid="uid://c8wwlnkv67vs2" path="res://Singletons/MapTransitionManager/MapTransitionManager.cs" id="1_onbea"]
 [ext_resource type="PackedScene" uid="uid://bckjgvq8udjn3" path="res://Scenes/Maps/Screens/PortalLoadingScreen/PortalLoadingScreen.tscn" id="2_lrjqs"]
-[ext_resource type="PackedScene" uid="uid://cimgukuoywob1" path="res://Scenes/Singletons/MapTransitionManager/NonPlayerFadeCurtain/NonPlayerFadeCurtain.tscn" id="4_elvu7"]
+[ext_resource type="PackedScene" uid="uid://cimgukuoywob1" path="res://Singletons/MapTransitionManager/NonPlayerFadeCurtain/NonPlayerFadeCurtain.tscn" id="4_elvu7"]
 
 [node name="MapTransitionManager" type="Node"]
 script = ExtResource("1_onbea")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://qaotikaq1yfc"]
 
-[ext_resource type="Script" uid="uid://dhgwspomv021g" path="res://Scenes/Singletons/GemFactory/GemFactory.cs" id="1_4svqp"]
+[ext_resource type="Script" uid="uid://dhgwspomv021g" path="res://Singletons/GemFactory/GemFactory.cs" id="1_4svqp"]
 [ext_resource type="PackedScene" uid="uid://bby552c364kaj" path="res://Scenes/Entities/Item/Gems/RedGem/RedGem.tscn" id="2_lbsq3"]
 [ext_resource type="PackedScene" uid="uid://b5l4dithnhgqx" path="res://Scenes/Entities/Item/Gems/GreenGem/GreenGem.tscn" id="3_wycfq"]
 [ext_resource type="PackedScene" uid="uid://c7f2hh0jtakwr" path="res://Scenes/Entities/Item/Gems/PurpleGem/PurpleGem.tscn" id="4_gs8wl"]
