@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Scenes/Objects/Bosses/Kracken/Projectiles/StraightWave/StraightWave.tscn" id="2_4jp8p"]
 [ext_resource type="Script" uid="uid://blpfmbcbfae1y" path="res://Common/Components/BreakableArea3D.cs" id="2_rlh65"]
 [ext_resource type="PackedScene" uid="uid://cgshrb63523oq" path="res://Scenes/Objects/Bosses/Kracken/Projectiles/FallingAcidBlob/FallingAcidBlob.tscn" id="3_mh7lc"]
-[ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="3_phdjg"]
+[ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="3_phdjg"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bgcglvens6c8e" path="res://Scenes/Objects/Bosses/Kracken/KrackenAnimationTree.tres" id="4_intgd"]
 [ext_resource type="AnimationLibrary" uid="uid://bn1ba67n5ehrt" path="res://Scenes/Objects/Bosses/Kracken/KrackenAnimations.tres" id="4_l26sy"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_mmiw0"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://nwvggnggdtmc"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_ifn8o"]
-[ext_resource type="Script" uid="uid://dgu4y68tv3spi" path="res://Scenes/UIMenus/UserSettingsMenu.cs" id="2_vmbxq"]
+[ext_resource type="Script" uid="uid://dgu4y68tv3spi" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.cs" id="2_vmbxq"]
 
 [sub_resource type="GDScript" id="GDScript_cjhiv"]
 script/source = "extends CheckButton

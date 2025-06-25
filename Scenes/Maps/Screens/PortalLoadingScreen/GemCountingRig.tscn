@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://crlqwtcxxmg76" path="res://Scenes/Entities/Item/Gems/PurpleGem/PurpleGemModel.tscn" id="4_o7chy"]
 [ext_resource type="PackedScene" uid="uid://byj33t3fmjjmx" path="res://Scenes/Entities/Item/Gems/YellowGem/YellowGemModel.tscn" id="5_k00r0"]
 [ext_resource type="PackedScene" uid="uid://bmpnfs8rauqo" path="res://Scenes/Entities/Item/Gems/MagentaGem/MagentaGemModel.tscn" id="6_5kyev"]
-[ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://Scripts/UIWidgets/MeshLabel3D.cs" id="7_1t3ap"]
+[ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="7_1t3ap"]
 [ext_resource type="AudioStream" uid="uid://bojobea40tjay" path="res://Scenes/Entities/Item/Gems/BaseGem/Gem.wav" id="7_3qivj"]
 [ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="8_7xmdk"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="9_res2x"]

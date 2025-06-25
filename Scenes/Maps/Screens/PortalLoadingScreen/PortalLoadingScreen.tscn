@@ -6,7 +6,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://Scenes/Objects/Player/KennifiedPlayerAnimations.tres" id="9_x2eyu"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Objects/Player/Parts/PlayerModel/PlayerModel.tscn" id="10_fcuss"]
 [ext_resource type="Script" uid="uid://dinu4neoq8exm" path="res://Common/Components/OrbitCamera.cs" id="11_euysw"]
-[ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://Scenes/UIWidgets/FPSCounter.tscn" id="16_b5m5h"]
+[ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://UI/Menus/HUD/FPSCounter.tscn" id="16_b5m5h"]
 
 [node name="PortalLoadingScreen" type="Node3D"]
 script = ExtResource("1_uqld0")
