@@ -1,0 +1,125 @@
+[gd_scene load_steps=17 format=3 uid="uid://cgshrb63523oq"]
+
+[ext_resource type="Script" uid="uid://cktr85700gpf0" path="res://Scenes/Entities/Boss/Kracken/Projectiles/FallingAcidBlob/FallingAcidBlob.cs" id="1_7tjkq"]
+[ext_resource type="AudioStream" uid="uid://blmvtlrrqpdbh" path="res://Scenes/Entities/Boss/Kracken/SFX/AcidBlobFall.wav" id="2_dr3lt"]
+[ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Common/Components/SimpleParticles.cs" id="2_kv134"]
+[ext_resource type="AudioStream" uid="uid://cqk8bk8k8ve18" path="res://Scenes/Entities/Boss/Kracken/Projectiles/FallingAcidBlob/BlobSplash.wav" id="3_up6se"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wc42"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0.745098, 0, 0.870588)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ct1ba"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_veg6n"]
+height = 0.5
+
+[sub_resource type="Gradient" id="Gradient_txljt"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.489712, 0.757202)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ke404"]
+gradient = SubResource("Gradient_txljt")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyy55"]
+transparency = 1
+albedo_color = Color(0, 1, 0.113725, 0.623529)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ngaiq"]
+material = SubResource("StandardMaterial3D_kyy55")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.01
+cap_bottom = false
+
+[sub_resource type="Curve" id="Curve_th8h4"]
+_data = [Vector2(0.25239, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_si5ek"]
+curve = SubResource("Curve_th8h4")
+
+[sub_resource type="Curve" id="Curve_4o0py"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0898661, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_okuql"]
+curve = SubResource("Curve_4o0py")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1ayyb"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_okuql")
+color = Color(0, 0.376471, 0, 1)
+alpha_curve = SubResource("CurveTexture_si5ek")
+
+[node name="FallingAcidBlob" type="Node3D"]
+script = ExtResource("1_7tjkq")
+
+[node name="WhistleSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dr3lt")
+volume_db = -10.331
+autoplay = true
+bus = &"Sfx"
+
+[node name="SplashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_up6se")
+bus = &"ReverbSfx"
+
+[node name="BlobModel" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19423, 0)
+material_override = SubResource("StandardMaterial3D_2wc42")
+mesh = SubResource("SphereMesh_ct1ba")
+
+[node name="PuddleArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="PuddleShape" type="CollisionShape3D" parent="PuddleArea"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_veg6n")
+
+[node name="Shadow" type="Decal" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0353006, 0)
+size = Vector3(2, 1, 2)
+texture_albedo = SubResource("GradientTexture2D_ke404")
+upper_fade = 0.000585938
+lower_fade = 0.000565979
+cull_mask = 8
+
+[node name="PuddleModel" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+visible = false
+mesh = SubResource("CylinderMesh_ngaiq")
+
+[node name="PermanentParticles" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550711, 0)
+script = ExtResource("2_kv134")
+Emitting = false
+Amount = 8
+AmountRatio = 1.0
+Lifetime = 1.0
+SpeedScale = 1.0
+FixedFps = 30
+ProcessMaterial = SubResource("ParticleProcessMaterial_1ayyb")
+
+[connection signal="HitGround" from="." to="SplashSound" method="play"]
