@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu8mmnh1cn5nb"]
+
+[ext_resource type="Script" uid="uid://b8m54tbf2ojjb" path="res://Entities/Boss/Kracken/KrackenSplashTentacle/KrackenSplashTentacle.cs" id="1_8wc7c"]
+[ext_resource type="PackedScene" uid="uid://dv18f3wonrtm2" path="res://Entities/Boss/Kracken/KrackenSplashTentacle/KrackenTentacle.blend" id="1_60w2y"]
+[ext_resource type="AnimationLibrary" uid="uid://b1qmtyyaaywuq" path="res://Entities/Boss/Kracken/KrackenSplashTentacle/KrackenTentacleAnimations.tres" id="1_l8kec"]
+[ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Entities/Boss/Kracken/Projectiles/StraightWave/StraightWave.tscn" id="2_r5q12"]
+[ext_resource type="AudioStream" uid="uid://d3alaj81l5q0s" path="res://Entities/Boss/Kracken/SFX/TentacleSplash.wav" id="3_un38s"]
+
+[node name="KrackenSplashTentacle" type="Node3D"]
+script = ExtResource("1_8wc7c")
+StraightWavePrefab = ExtResource("2_r5q12")
+
+[node name="SplashSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_un38s")
+volume_db = -15.216
+bus = &"Sfx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": ExtResource("1_l8kec")
+}
+
+[node name="KrackenTentacle" parent="." instance=ExtResource("1_60w2y")]

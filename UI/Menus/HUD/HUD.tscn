@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://byhmelsic6fu5"]
+
+[ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://UI/Menus/HUD/HealthDisplay.tscn" id="1_54kkr"]
+[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="2_yq8w4"]
+[ext_resource type="Script" uid="uid://cromiohdg3esv" path="res://UI/Widgets/ContextuallyHiddenControl.cs" id="3_8mrjo"]
+[ext_resource type="PackedScene" uid="uid://dpa1avddef2b" path="res://UI/Widgets/CountingLabel/CountingLabel.tscn" id="4_khe3g"]
+[ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://UI/Menus/HUD/FPSCounter.tscn" id="5_k3tfm"]
+
+[sub_resource type="GDScript" id="GDScript_h7bdc"]
+script/source = "extends Control
+
+func _ready():
+	$'%GemCountLabel'.ForceSet(GemCount())
+
+func _process(_delta):
+	$'%GemCountHider'.ObservedValue = GemCount()
+	$'%GemCountLabel'.Value = GemCount()
+
+func GemCount() -> int:
+	return $'/root/SaveFile'.Current().TotalGemCount
+"
+
+[sub_resource type="Theme" id="Theme_ux4dw"]
+Label/colors/font_color = Color(0.921569, 0.858824, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.67451)
+Label/font_sizes/font_size = 35
+Label/fonts/font = ExtResource("2_yq8w4")
+
+[sub_resource type="GDScript" id="GDScript_iydpn"]
+script/source = "extends VBoxContainer
+func _process(_delta): visible = $/root/UserSettings.Instance().ShowPerformanceStats
+"
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_h7bdc")
+
+[node name="HealthDisplay" parent="." instance=ExtResource("1_54kkr")]
+layout_mode = 1
+
+[node name="GemCountHider" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 160.0
+offset_bottom = 74.0
+theme = SubResource("Theme_ux4dw")
+script = ExtResource("3_8mrjo")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="GemCountHider"]
+layout_mode = 2
+text = "Gems:"
+
+[node name="GemCountLabel" parent="GemCountHider" instance=ExtResource("4_khe3g")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PerformanceStats" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 8.0
+script = SubResource("GDScript_iydpn")
+
+[node name="FPSCounter" parent="PerformanceStats" instance=ExtResource("5_k3tfm")]
+layout_mode = 2

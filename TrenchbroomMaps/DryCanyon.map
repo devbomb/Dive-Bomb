@@ -951,7 +951,7 @@
 "angles" "0 90 0"
 "FlyInHeight" "40"
 "LevelName" "Plagiarism Canyon"
-"HomeWorldMap" "res://Scenes/Maps/Levels/TestMap.tscn"
+"HomeWorldMap" "res://Levels/TestMap.tscn"
 }
 // entity 3
 {

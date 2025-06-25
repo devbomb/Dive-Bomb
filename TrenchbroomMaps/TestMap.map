@@ -248,7 +248,7 @@
 "classname" "transport_standard_portal"
 "origin" "88 220 -64"
 "angles" "0 -90 0"
-"TargetMap" "res://Scenes/Maps/Levels/SeamonsterBossMap.tscn"
+"TargetMap" "res://Levels/SeamonsterBossMap.tscn"
 "SkyboxEnvironment" "res://Environments/StormClouds.tres"
 "Text" "Kracken Boss"
 }
@@ -257,7 +257,7 @@
 "classname" "transport_standard_portal"
 "origin" "588 -88 -64"
 "angles" "0 180 0"
-"TargetMap" "res://Scenes/Maps/Levels/BrokenGlassFactory.tscn"
+"TargetMap" "res://Levels/BrokenGlassFactory.tscn"
 "SkyboxEnvironment" "res://Environments/BrokenGlassFactory.tres"
 "Text" "Broken Glass Factory"
 }
@@ -287,7 +287,7 @@
 "classname" "transport_standard_portal"
 "origin" "120 -468 -64"
 "angles" "0 90 0"
-"TargetMap" "res://Scenes/Maps/Levels/Castle.tscn"
+"TargetMap" "res://Levels/Castle.tscn"
 "SkyboxEnvironment" "res://Environments/Castle.tres"
 "Text" "Sunset Castle"
 }
@@ -308,7 +308,7 @@
 "classname" "transport_standard_portal"
 "origin" "-308 -52 -64"
 "angles" "0 0 0"
-"TargetMap" "res://Scenes/Maps/Levels/DryCanyon.tscn"
+"TargetMap" "res://Levels/DryCanyon.tscn"
 "SkyboxEnvironment" "res://Environments/DryCanyonSky.tres"
 "Text" "Plagiarism Canyon"
 }

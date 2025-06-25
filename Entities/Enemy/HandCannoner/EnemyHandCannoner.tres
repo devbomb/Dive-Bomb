@@ -1,0 +1,1379 @@
+[gd_resource type="AnimationLibrary" load_steps=33 format=3 uid="uid://dpi267kv74gnc"]
+
+[ext_resource type="AudioStream" uid="uid://cl6pd72tshp26" path="res://Entities/Enemy/HandCannoner/SFX/Aim0.wav" id="1_8gvmy"]
+[ext_resource type="AudioStream" uid="uid://cwqlapqmck7ss" path="res://Entities/Enemy/HandCannoner/SFX/Snooze.wav" id="1_hnm5h"]
+[ext_resource type="AudioStream" uid="uid://bcacefufvwqmf" path="res://Entities/Enemy/HandCannoner/SFX/Alert0.wav" id="2_0grrb"]
+[ext_resource type="AudioStream" uid="uid://8j1okw4er7ct" path="res://Entities/Enemy/HandCannoner/SFX/Aim1.wav" id="2_1y1ab"]
+[ext_resource type="AudioStream" uid="uid://doi2c7f3773bj" path="res://Entities/Enemy/HandCannoner/SFX/Alert1.wav" id="3_45isc"]
+[ext_resource type="AudioStream" uid="uid://dgv1shv7heduy" path="res://Entities/Enemy/HandCannoner/SFX/Aim2.wav" id="3_h84qr"]
+[ext_resource type="AudioStream" uid="uid://vvew2j01qg8c" path="res://Entities/Enemy/HandCannoner/SFX/Alert2.wav" id="4_gtjld"]
+[ext_resource type="AudioStream" uid="uid://c50q1d5oya4tb" path="res://Entities/Enemy/HandCannoner/SFX/Aim3.wav" id="4_tsj7q"]
+[ext_resource type="AudioStream" uid="uid://bwvjan1khljii" path="res://Entities/Enemy/HandCannoner/SFX/Aim4.wav" id="5_fdota"]
+[ext_resource type="AudioStream" uid="uid://7npik10abums" path="res://Entities/Enemy/HandCannoner/SFX/Hurt0.wav" id="6_6v8jd"]
+[ext_resource type="AudioStream" uid="uid://dmbpl73gxqeiq" path="res://Entities/Enemy/HandCannoner/SFX/Fire0.wav" id="6_fdota"]
+[ext_resource type="AudioStream" uid="uid://8nkljtiprgjh" path="res://Entities/Enemy/HandCannoner/SFX/Fire1.wav" id="7_6x8cy"]
+[ext_resource type="AudioStream" uid="uid://ckuqqn2xiy7cf" path="res://Entities/Enemy/HandCannoner/SFX/Hurt1.wav" id="7_t6hd1"]
+[ext_resource type="AudioStream" uid="uid://mj6kvlyy7jk6" path="res://Entities/Enemy/HandCannoner/SFX/Fire2.wav" id="8_7achj"]
+[ext_resource type="AudioStream" uid="uid://n62vnwnyy6x1" path="res://Entities/Enemy/HandCannoner/SFX/Hurt2.wav" id="8_m2ett"]
+[ext_resource type="AudioStream" uid="uid://cssp4v3t02f5v" path="res://Entities/Enemy/HandCannoner/SFX/Fire3.wav" id="9_2pb3t"]
+[ext_resource type="AudioStream" uid="uid://ck5auu6tkhw37" path="res://Entities/Enemy/HandCannoner/SFX/HurtThud0.wav" id="9_d3ntl"]
+[ext_resource type="AudioStream" uid="uid://cogiwdqlpr36x" path="res://Entities/Enemy/HandCannoner/SFX/HurtThud1.wav" id="10_1dej5"]
+[ext_resource type="AudioStream" uid="uid://cfukvolacyevq" path="res://Entities/Enemy/HandCannoner/SFX/GunFire.wav" id="10_6x8cy"]
+[ext_resource type="AudioStream" uid="uid://dte4h5guyotpq" path="res://Common/Audio/SFX/GenericKill.wav" id="11_t6hd1"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6x8cy"]
+streams_count = 5
+stream_0/stream = ExtResource("1_8gvmy")
+stream_1/stream = ExtResource("2_1y1ab")
+stream_2/stream = ExtResource("3_h84qr")
+stream_3/stream = ExtResource("4_tsj7q")
+stream_4/stream = ExtResource("5_fdota")
+
+[sub_resource type="Animation" id="Animation_8dsxe"]
+resource_name = "Aim"
+length = 2.0
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_R")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.337513, -0.229073, -0.639858, 0.6513)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.0168543, -0.207778, 0.343779, 0.91562)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_R")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.023733, -6.15252e-05, -0.00257062, 0.999715)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.254782, 0.106415, 0.352276, 0.894239)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_R")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.408495, 0.0530327, 0.252974, 0.875399)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_L")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.451098, -0.228379, -0.165451, 0.846746)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Head")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.42513, -0.258485, -0.229695, 0.836475)
+tracks/7/type = "scale_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_R")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1, 1, 0.284104)
+tracks/8/type = "scale_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_L")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 1, 1, 1.86878)
+tracks/9/type = "position_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_L")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.0433649, 0.0521096, 0.013088)
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.785398, 0)]
+}
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AnimationVoicePlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_6x8cy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/11/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o1ydf"]
+streams_count = 3
+stream_0/stream = ExtResource("6_6v8jd")
+stream_1/stream = ExtResource("7_t6hd1")
+stream_2/stream = ExtResource("8_m2ett")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rhey7"]
+streams_count = 2
+stream_0/stream = ExtResource("9_d3ntl")
+stream_1/stream = ExtResource("10_1dej5")
+
+[sub_resource type="Animation" id="Animation_6jv4s"]
+resource_name = "Death"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.35, 0.5, 0.6, 0.65, 0.75, 1.35, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 0.5, 0.5), Vector3(1, 1, 1.5), Vector3(1.1, 1.1, 1.1), Vector3(1, 1.5, 1), Vector3(1, 1, 1), Vector3(1, 0.9, 1.5), Vector3(1, 1, 1.5), Vector3(1.25, 1, 0.5), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35, 0.6, 0.65, 0.75, 1.35, 1.65),
+"transitions": PackedFloat32Array(1, 0.594604, 1.86607, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.7, 0.5), Vector3(0, 1.9, 1.5), Vector3(0, 0.2, 1.625), Vector3(0, 0.1, 1.625), Vector3(0, 0.2, 1.625), Vector3(0, 0.2, 1.625), Vector3(0, 0, 2.125)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(1.5708, 0, 0)]
+}
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 0.05, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 0.35, 1, 0.987341, -9.20071e-17, 1.27227e-16, -0.158615, 0.6, 1, -0.825995, 2.91231e-17, -1.54285e-16, 0.563677, 0.65, 1, 0.987341, -9.20071e-17, 1.27227e-16, -0.158615, 0.75, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Neck")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.207913, 0, 0, 0.978147, 0.05, 1, 0.137659, 0, 0, 0.99048, 0.35, 1, -0.542259, 0, 0, 0.840211, 0.6, 1, -0.542259, 0, 0, 0.840211, 0.65, 1, 0.137659, 0, 0, 0.99048, 0.7, 1, -0.529647, 0, 0, 0.848218, 0.75, 1, -0.245512, 0, 0, 0.969394, 0.8, 1, -0.417504, 0, 0, 0.908675, 0.85, 1, -0.245512, 0, 0, 0.969394)
+tracks/5/type = "scale_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 1.00048, 0.100475, 1.00048, 0.05, 1, 1.00048, 0.100475, 1.00048, 0.15, 1, 1, 1, 2, 0.65, 1, 1, 1, 2, 0.7, 1, 1.00048, 0.100475, 1.00048)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.0773484, -0.000323263, -0.677502, 0.731442, 0.05, 1, 0.0773484, -0.000323263, -0.677502, 0.731442, 0.1, 1, 0.649703, -0.0203537, 0.0636941, 0.757241, 0.15, 1, 0.649703, -0.0203537, 0.0636941, 0.757241, 0.35, 1, -0.0155214, 0.0877115, -0.696457, 0.712049, 0.65, 1, -0.00239202, 0.0614756, -0.783236, 0.618673, 0.75, 1, -0.211703, -0.0355942, 0.149882, 0.965117, 0.8, 1, -0.205246, -0.0629225, 0.0226269, 0.976424)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.0773484, 0.000323257, 0.677502, 0.731442, 0.05, 1, 0.0773484, 0.000323257, 0.677502, 0.731442, 0.1, 1, 0.649703, 0.0203535, -0.0636942, 0.757241, 0.15, 1, 0.649703, 0.0203535, -0.0636942, 0.757241, 0.35, 1, 0.265246, -0.631365, 0.412636, 0.600628, 0.65, 1, -0.00239211, -0.0614758, 0.783235, 0.618674, 0.75, 1, -0.211703, 0.0355942, -0.149882, 0.965117, 0.8, 1, -0.205245, 0.0629225, -0.022627, 0.976424)
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlobShadow:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35),
+"transitions": PackedFloat32Array(1, 0.594604, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.745776), Vector3(0, 0, 2.17296)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BlobShadow:diameter")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.35, 1.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AnimationVoicePlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_o1ydf")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_rhey7")
+}],
+"times": PackedFloat32Array(0, 0.65)
+}
+tracks/10/use_blend = true
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("KillSoundPlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_t6hd1")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/11/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q1t0j"]
+streams_count = 4
+stream_0/stream = ExtResource("6_fdota")
+stream_0/weight = 0.5
+stream_1/stream = ExtResource("7_6x8cy")
+stream_2/stream = ExtResource("8_7achj")
+stream_2/weight = 0.5
+stream_3/stream = ExtResource("9_2pb3t")
+
+[sub_resource type="Animation" id="Animation_bhbp3"]
+resource_name = "FireRecoil"
+length = 1.3
+step = 0.01
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_R")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.337513, -0.229073, -0.639858, 0.6513)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.0168543, -0.207778, 0.343779, 0.91562, 0.13, 1, 0.861805, 0.222266, 0.307185, 0.336939, 0.26, 1, 0.508729, 0.00392997, 0.379143, 0.772936, 0.455, 1, 0.460902, -0.0190781, 0.378683, 0.802374, 0.585, 1, 0.460902, -0.0190781, 0.378683, 0.802374, 0.845, 1, 0.295809, -0.0924637, 0.367716, 0.876774, 1.04, 1, -0.116, -0.3065, 0.436381, 0.837958, 1.3, 1, -0.0168543, -0.207778, 0.343779, 0.91562)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_R")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.023733, -6.15252e-05, -0.00257062, 0.999715)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.254782, 0.106415, 0.352276, 0.894239, 0.26, 1, 0.194112, 0.196363, -0.0194585, 0.960928, 0.325, 1, 0.194112, 0.196363, -0.0194585, 0.960928, 0.455, 1, 0.0772289, 0.197279, 0.00427984, 0.977291, 0.585, 1, 0.283944, 0.19365, -0.0379056, 0.938317, 0.715, 1, 0.0772289, 0.197279, 0.00427984, 0.977291, 0.845, 1, 0.283944, 0.19365, -0.0379056, 0.938317, 1.04, 1, 0.0772289, 0.197279, 0.00427984, 0.977291, 1.17, 1, -0.251314, 0.148495, -0.0883523, 0.952357)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_R")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.408495, 0.0530327, 0.252974, 0.875399, 0.26, 1, -0.0144584, 0.151919, 0.209115, 0.96591, 0.39, 1, -0.240379, 0.0986919, 0.23889, 0.935633, 0.715, 1, -0.0144584, 0.151919, 0.209115, 0.96591, 1.04, 1, -0.564659, -0.275163, 0.283565, 0.724594, 1.17, 1, -0.317568, -0.175899, 0.353813, 0.86199)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_L")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.451098, -0.228379, -0.165451, 0.846746, 0.26, 1, -0.262695, 0.0272516, 0.192978, 0.944991, 0.585, 1, -0.262695, 0.0272516, 0.192978, 0.944991, 0.91, 1, -0.378494, -0.118016, -0.00592526, 0.91803, 1.17, 1, -0.289401, 0.26705, -0.38355, 0.835357)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Head")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.42513, -0.258485, -0.229695, 0.836475, 0.26, 1, 0.538653, -0.326467, -0.0666454, 0.773841, 0.585, 1, 0.538653, -0.326467, -0.0666454, 0.773841, 0.91, 1, 0.426555, 0.0146443, 0.0102248, 0.904285)
+tracks/7/type = "scale_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_R")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1, 1, 0.284104, 0.13, 1, 1.00048, 1.00048, 1.00048)
+tracks/8/type = "scale_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_L")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 1, 1, 1.86878, 0.13, 1, 1.00048, 1.00048, 1.00048)
+tracks/9/type = "position_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_L")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.0433649, 0.0521096, 0.013088, 0.13, 1, -0.039, 0.052, 0.013)
+tracks/10/type = "scale_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Hand_R")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 2.00048, 0.500475, 2.00048, 0.26, 1, 1.00048, 1.00048, 1.00048, 0.585, 1, 1.00048, 1.00048, 1.00048)
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Model:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.26, 0.585, 1.17),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.785398, 0), Vector3(0.542361, 0.971237, 0.646809), Vector3(0.542361, 0.971237, 0.646809), Vector3(0, 0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Model:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.26, 0.585, 1.17),
+"transitions": PackedFloat32Array(0.406126, 3.24901, 1, 1, 0.406126),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.323281, 0), Vector3(0, 0.143456, 0), Vector3(0, 0.143456, 0), Vector3(0, 0, 0)]
+}
+tracks/13/type = "scale_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.13, 1, 1.00048, 1.00048, 0.100475, 0.455, 1, 1.00048, 1.00048, 0.100475, 0.585, 1, 1, 1, 1, 0.845, 1, 1, 1, 1)
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Model:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.26, 0.39, 0.585, 1.04, 1.235),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 0.75, 1), Vector3(1, 1.2, 1), Vector3(1, 0.9, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 0.8, 1), Vector3(1, 1, 1)]
+}
+tracks/15/type = "audio"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AnimationVoicePlayer")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_q1t0j")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/15/use_blend = true
+tracks/16/type = "audio"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("FireSoundPlayer")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_6x8cy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/16/use_blend = true
+
+[sub_resource type="Animation" id="Animation_v62uv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Root")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.717421, 0, 0, 0.696639)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Neck")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.207913, 0, 0, 0.978147)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Head")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.419158, 6.59514e-17, 1.79071e-16, 0.907913)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.707107, 0, -1.9083e-16, 0.707107)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, -0.707107, 9.07141e-24, -1.9083e-16, 0.707107)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_L")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -7.37966e-08, -5.70178e-24, 7.99554e-31, 1)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopOuter_L")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0, -2.35099e-38, 2.77337e-31, 1)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_L")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0, -2.35099e-38, 2.77337e-31, 1)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomOuter_L")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0, -2.35099e-38, 2.77337e-31, 1)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomInner_L")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 0, -2.35099e-38, 2.77337e-31, 1)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_R")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, -7.37966e-08, -5.70178e-24, 7.99554e-31, 1)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopOuter_R")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, 0, -2.35099e-38, 2.77337e-31, 1)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_R")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 0, -2.35099e-38, 2.77337e-31, 1)
+tracks/16/type = "rotation_3d"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomOuter_R")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, 0, -2.35099e-38, 2.77337e-31, 1)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomInner_R")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, 0, -2.35099e-38, 2.77337e-31, 1)
+tracks/18/type = "rotation_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_L")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, -0.463173, 0.360749, 0.572446, 0.572395)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, 0.054465, -0.0549222, 0.0381416, 0.996274)
+tracks/20/type = "rotation_3d"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_L")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = PackedFloat32Array(0, 1, -0.0025688, 0.0025691, -0.000194748, 0.999993)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_R")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, -0.463173, -0.360749, -0.572446, 0.572395)
+tracks/22/type = "rotation_3d"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = PackedFloat32Array(0, 1, 0.054465, 0.0549222, -0.0381416, 0.996274)
+tracks/23/type = "rotation_3d"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_R")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = PackedFloat32Array(0, 1, -0.0025688, -0.0025691, 0.000194748, 0.999993)
+tracks/24/type = "rotation_3d"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Pelvis")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = PackedFloat32Array(0, 1, -0.674453, 0, 0, 0.738318)
+tracks/25/type = "rotation_3d"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Pelvis_L")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = PackedFloat32Array(0, 1, 0.280793, -0.384025, 0.408178, 0.779148)
+tracks/26/type = "rotation_3d"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_L")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = PackedFloat32Array(0, 1, -0.244314, 0.359528, -0.413733, 0.799922)
+tracks/27/type = "rotation_3d"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_L")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = PackedFloat32Array(0, 1, 0.650623, 2.04405e-08, -0.015491, 0.759243)
+tracks/28/type = "rotation_3d"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Pelvis_R")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = PackedFloat32Array(0, 1, 0.280793, 0.384025, -0.408178, 0.779148)
+tracks/29/type = "rotation_3d"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_R")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = PackedFloat32Array(0, 1, -0.244314, -0.359528, 0.413733, 0.799922)
+tracks/30/type = "rotation_3d"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_R")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = PackedFloat32Array(0, 1, 0.650623, -2.04405e-08, 0.015491, 0.759243)
+tracks/31/type = "position_3d"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Root")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = PackedFloat32Array(0, 1, 0, 0.249822, 0.0565403)
+tracks/32/type = "scale_3d"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Root")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/33/type = "position_3d"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Torso")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = PackedFloat32Array(0, 1, 0, 0.0119313, -2.20025e-08)
+tracks/34/type = "scale_3d"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Torso")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/35/type = "position_3d"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Neck")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = PackedFloat32Array(0, 1, 0, 0.229952, -2.6077e-08)
+tracks/36/type = "scale_3d"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Neck")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/37/type = "position_3d"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Head")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = PackedFloat32Array(0, 1, 0, 0.0626232, 6.70552e-08)
+tracks/38/type = "scale_3d"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Head")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/39/type = "position_3d"
+tracks/39/imported = false
+tracks/39/enabled = true
+tracks/39/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
+tracks/39/interp = 1
+tracks/39/loop_wrap = true
+tracks/39/keys = PackedFloat32Array(0, 1, -2.31611e-23, 0.081616, -2.73296e-09)
+tracks/40/type = "scale_3d"
+tracks/40/imported = false
+tracks/40/enabled = true
+tracks/40/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
+tracks/40/interp = 1
+tracks/40/loop_wrap = true
+tracks/40/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/41/type = "position_3d"
+tracks/41/imported = false
+tracks/41/enabled = true
+tracks/41/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/41/interp = 1
+tracks/41/loop_wrap = true
+tracks/41/keys = PackedFloat32Array(0, 1, 5.00398e-17, 0.154378, -0.0310414)
+tracks/42/type = "scale_3d"
+tracks/42/imported = false
+tracks/42/enabled = true
+tracks/42/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/42/interp = 1
+tracks/42/loop_wrap = true
+tracks/42/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/43/type = "position_3d"
+tracks/43/imported = false
+tracks/43/enabled = true
+tracks/43/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_L")
+tracks/43/interp = 1
+tracks/43/loop_wrap = true
+tracks/43/keys = PackedFloat32Array(0, 1, 0.050361, 0.0579287, -2.82262e-08)
+tracks/44/type = "scale_3d"
+tracks/44/imported = false
+tracks/44/enabled = true
+tracks/44/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_L")
+tracks/44/interp = 1
+tracks/44/loop_wrap = true
+tracks/44/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/45/type = "position_3d"
+tracks/45/imported = false
+tracks/45/enabled = true
+tracks/45/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopOuter_L")
+tracks/45/interp = 1
+tracks/45/loop_wrap = true
+tracks/45/keys = PackedFloat32Array(0, 1, 0.031794, 0.0521096, 0.024799)
+tracks/46/type = "scale_3d"
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopOuter_L")
+tracks/46/interp = 1
+tracks/46/loop_wrap = true
+tracks/46/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/47/type = "position_3d"
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_L")
+tracks/47/interp = 1
+tracks/47/loop_wrap = true
+tracks/47/keys = PackedFloat32Array(0, 1, -0.038788, 0.0521096, 0.025435)
+tracks/48/type = "scale_3d"
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_L")
+tracks/48/interp = 1
+tracks/48/loop_wrap = true
+tracks/48/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/49/type = "position_3d"
+tracks/49/imported = false
+tracks/49/enabled = true
+tracks/49/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomOuter_L")
+tracks/49/interp = 1
+tracks/49/loop_wrap = true
+tracks/49/keys = PackedFloat32Array(0, 1, 0.033701, 0.0521096, -0.020984)
+tracks/50/type = "scale_3d"
+tracks/50/imported = false
+tracks/50/enabled = true
+tracks/50/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomOuter_L")
+tracks/50/interp = 1
+tracks/50/loop_wrap = true
+tracks/50/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/51/type = "position_3d"
+tracks/51/imported = false
+tracks/51/enabled = true
+tracks/51/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomInner_L")
+tracks/51/interp = 1
+tracks/51/loop_wrap = true
+tracks/51/keys = PackedFloat32Array(0, 1, -0.038788, 0.0521096, -0.02162)
+tracks/52/type = "scale_3d"
+tracks/52/imported = false
+tracks/52/enabled = true
+tracks/52/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomInner_L")
+tracks/52/interp = 1
+tracks/52/loop_wrap = true
+tracks/52/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/53/type = "position_3d"
+tracks/53/imported = false
+tracks/53/enabled = true
+tracks/53/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_R")
+tracks/53/interp = 1
+tracks/53/loop_wrap = true
+tracks/53/keys = PackedFloat32Array(0, 1, -0.050361, 0.0579287, -2.82262e-08)
+tracks/54/type = "scale_3d"
+tracks/54/imported = false
+tracks/54/enabled = true
+tracks/54/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_R")
+tracks/54/interp = 1
+tracks/54/loop_wrap = true
+tracks/54/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/55/type = "position_3d"
+tracks/55/imported = false
+tracks/55/enabled = true
+tracks/55/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopOuter_R")
+tracks/55/interp = 1
+tracks/55/loop_wrap = true
+tracks/55/keys = PackedFloat32Array(0, 1, -0.031794, 0.0521096, 0.024799)
+tracks/56/type = "scale_3d"
+tracks/56/imported = false
+tracks/56/enabled = true
+tracks/56/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopOuter_R")
+tracks/56/interp = 1
+tracks/56/loop_wrap = true
+tracks/56/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/57/type = "position_3d"
+tracks/57/imported = false
+tracks/57/enabled = true
+tracks/57/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_R")
+tracks/57/interp = 1
+tracks/57/loop_wrap = true
+tracks/57/keys = PackedFloat32Array(0, 1, 0.038788, 0.0521096, 0.025435)
+tracks/58/type = "scale_3d"
+tracks/58/imported = false
+tracks/58/enabled = true
+tracks/58/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_R")
+tracks/58/interp = 1
+tracks/58/loop_wrap = true
+tracks/58/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/59/type = "position_3d"
+tracks/59/imported = false
+tracks/59/enabled = true
+tracks/59/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomOuter_R")
+tracks/59/interp = 1
+tracks/59/loop_wrap = true
+tracks/59/keys = PackedFloat32Array(0, 1, -0.033701, 0.0521096, -0.020984)
+tracks/60/type = "scale_3d"
+tracks/60/imported = false
+tracks/60/enabled = true
+tracks/60/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomOuter_R")
+tracks/60/interp = 1
+tracks/60/loop_wrap = true
+tracks/60/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/61/type = "position_3d"
+tracks/61/imported = false
+tracks/61/enabled = true
+tracks/61/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomInner_R")
+tracks/61/interp = 1
+tracks/61/loop_wrap = true
+tracks/61/keys = PackedFloat32Array(0, 1, 0.038788, 0.0521096, -0.02162)
+tracks/62/type = "scale_3d"
+tracks/62/imported = false
+tracks/62/enabled = true
+tracks/62/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_BottomInner_R")
+tracks/62/interp = 1
+tracks/62/loop_wrap = true
+tracks/62/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/63/type = "position_3d"
+tracks/63/imported = false
+tracks/63/enabled = true
+tracks/63/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_L")
+tracks/63/interp = 1
+tracks/63/loop_wrap = true
+tracks/63/keys = PackedFloat32Array(0, 1, 0, 0.229952, -2.6077e-08)
+tracks/64/type = "scale_3d"
+tracks/64/imported = false
+tracks/64/enabled = true
+tracks/64/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_L")
+tracks/64/interp = 1
+tracks/64/loop_wrap = true
+tracks/64/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/65/type = "position_3d"
+tracks/65/imported = false
+tracks/65/enabled = true
+tracks/65/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
+tracks/65/interp = 1
+tracks/65/loop_wrap = true
+tracks/65/keys = PackedFloat32Array(0, 1, 1.19326e-09, 0.193345, -8.56817e-08)
+tracks/66/type = "scale_3d"
+tracks/66/imported = false
+tracks/66/enabled = true
+tracks/66/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
+tracks/66/interp = 1
+tracks/66/loop_wrap = true
+tracks/66/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/67/type = "position_3d"
+tracks/67/imported = false
+tracks/67/enabled = true
+tracks/67/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_L")
+tracks/67/interp = 1
+tracks/67/loop_wrap = true
+tracks/67/keys = PackedFloat32Array(0, 1, -8.46921e-09, 0.0921281, -1.30385e-08)
+tracks/68/type = "scale_3d"
+tracks/68/imported = false
+tracks/68/enabled = true
+tracks/68/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_L")
+tracks/68/interp = 1
+tracks/68/loop_wrap = true
+tracks/68/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/69/type = "position_3d"
+tracks/69/imported = false
+tracks/69/enabled = true
+tracks/69/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_R")
+tracks/69/interp = 1
+tracks/69/loop_wrap = true
+tracks/69/keys = PackedFloat32Array(0, 1, 0, 0.229952, -2.6077e-08)
+tracks/70/type = "scale_3d"
+tracks/70/imported = false
+tracks/70/enabled = true
+tracks/70/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_R")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/71/type = "position_3d"
+tracks/71/imported = false
+tracks/71/enabled = true
+tracks/71/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
+tracks/71/interp = 1
+tracks/71/loop_wrap = true
+tracks/71/keys = PackedFloat32Array(0, 1, -1.19326e-09, 0.193345, -8.56817e-08)
+tracks/72/type = "scale_3d"
+tracks/72/imported = false
+tracks/72/enabled = true
+tracks/72/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
+tracks/72/interp = 1
+tracks/72/loop_wrap = true
+tracks/72/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/73/type = "position_3d"
+tracks/73/imported = false
+tracks/73/enabled = true
+tracks/73/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_R")
+tracks/73/interp = 1
+tracks/73/loop_wrap = true
+tracks/73/keys = PackedFloat32Array(0, 1, 8.46921e-09, 0.0921281, -1.30385e-08)
+tracks/74/type = "scale_3d"
+tracks/74/imported = false
+tracks/74/enabled = true
+tracks/74/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_R")
+tracks/74/interp = 1
+tracks/74/loop_wrap = true
+tracks/74/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/75/type = "position_3d"
+tracks/75/imported = false
+tracks/75/enabled = true
+tracks/75/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Pelvis")
+tracks/75/interp = 1
+tracks/75/loop_wrap = true
+tracks/75/keys = PackedFloat32Array(0, 1, 0, 0.0119313, -2.20025e-08)
+tracks/76/type = "scale_3d"
+tracks/76/imported = false
+tracks/76/enabled = true
+tracks/76/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Pelvis")
+tracks/76/interp = 1
+tracks/76/loop_wrap = true
+tracks/76/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/77/type = "position_3d"
+tracks/77/imported = false
+tracks/77/enabled = true
+tracks/77/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Pelvis_L")
+tracks/77/interp = 1
+tracks/77/loop_wrap = true
+tracks/77/keys = PackedFloat32Array(0, 1, 0, 0.0811648, -5.58794e-09)
+tracks/78/type = "scale_3d"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Pelvis_L")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/79/type = "position_3d"
+tracks/79/imported = false
+tracks/79/enabled = true
+tracks/79/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_L")
+tracks/79/interp = 1
+tracks/79/loop_wrap = true
+tracks/79/keys = PackedFloat32Array(0, 1, -1.11759e-08, 0.122065, 1.86265e-08)
+tracks/80/type = "scale_3d"
+tracks/80/imported = false
+tracks/80/enabled = true
+tracks/80/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_L")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/81/type = "position_3d"
+tracks/81/imported = false
+tracks/81/enabled = true
+tracks/81/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_L")
+tracks/81/interp = 1
+tracks/81/loop_wrap = true
+tracks/81/keys = PackedFloat32Array(0, 1, 7.77072e-09, 0.0810966, 9.31323e-10)
+tracks/82/type = "scale_3d"
+tracks/82/imported = false
+tracks/82/enabled = true
+tracks/82/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_L")
+tracks/82/interp = 1
+tracks/82/loop_wrap = true
+tracks/82/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/83/type = "position_3d"
+tracks/83/imported = false
+tracks/83/enabled = true
+tracks/83/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Pelvis_R")
+tracks/83/interp = 1
+tracks/83/loop_wrap = true
+tracks/83/keys = PackedFloat32Array(0, 1, 0, 0.0811648, -5.58794e-09)
+tracks/84/type = "scale_3d"
+tracks/84/imported = false
+tracks/84/enabled = true
+tracks/84/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Pelvis_R")
+tracks/84/interp = 1
+tracks/84/loop_wrap = true
+tracks/84/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/85/type = "position_3d"
+tracks/85/imported = false
+tracks/85/enabled = true
+tracks/85/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_R")
+tracks/85/interp = 1
+tracks/85/loop_wrap = true
+tracks/85/keys = PackedFloat32Array(0, 1, 1.11759e-08, 0.122065, 1.86265e-08)
+tracks/86/type = "scale_3d"
+tracks/86/imported = false
+tracks/86/enabled = true
+tracks/86/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_R")
+tracks/86/interp = 1
+tracks/86/loop_wrap = true
+tracks/86/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/87/type = "position_3d"
+tracks/87/imported = false
+tracks/87/enabled = true
+tracks/87/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_R")
+tracks/87/interp = 1
+tracks/87/loop_wrap = true
+tracks/87/keys = PackedFloat32Array(0, 1, -7.77072e-09, 0.0810966, 9.31323e-10)
+tracks/88/type = "scale_3d"
+tracks/88/imported = false
+tracks/88/enabled = true
+tracks/88/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_R")
+tracks/88/interp = 1
+tracks/88/loop_wrap = true
+tracks/88/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/89/type = "rotation_3d"
+tracks/89/imported = false
+tracks/89/enabled = true
+tracks/89/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Hand_L")
+tracks/89/interp = 1
+tracks/89/loop_wrap = true
+tracks/89/keys = PackedFloat32Array(0, 1, 0.00919459, -0.00919459, 0.000635938, 0.999915)
+tracks/90/type = "rotation_3d"
+tracks/90/imported = false
+tracks/90/enabled = true
+tracks/90/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Hand_R")
+tracks/90/interp = 1
+tracks/90/loop_wrap = true
+tracks/90/keys = PackedFloat32Array(0, 1, 0.00919459, 0.00919459, -0.000635938, 0.999915)
+tracks/91/type = "value"
+tracks/91/imported = false
+tracks/91/enabled = true
+tracks/91/path = NodePath("BlobShadow:position")
+tracks/91/interp = 1
+tracks/91/loop_wrap = true
+tracks/91/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/92/type = "value"
+tracks/92/imported = false
+tracks/92/enabled = true
+tracks/92/path = NodePath("BlobShadow:diameter")
+tracks/92/interp = 1
+tracks/92/loop_wrap = true
+tracks/92/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_edirh"]
+resource_name = "Shield"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.0847106, -0.0544819, -0.501265, 0.859412)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_L")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.0482336, 0.0850974, -0.514806, 0.851708)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Shoulder_L")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.530891, 0.152608, 0.278623, 0.785643)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.0461484, -0.0250369, -0.35114, 0.93485)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_L")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -8.46921e-09, 0.0921281, -1.30385e-08)
+
+[sub_resource type="Animation" id="Animation_6ofv0"]
+resource_name = "Sleeping"
+length = 13.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.3, 1.66667, 2.9, 3.3, 4.23333, 4.53333, 5.9, 6.26667, 7.63333, 7.96667, 9.43333, 9.93333, 11.1, 11.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1.2, 1.2, 1.2)]
+}
+tracks/3/type = "scale_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 1, 1, 0.1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 1.3, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 1.66667, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 2.9, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 3.3, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 4.23333, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 4.53333, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 5.9, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 6.23333, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 7.66667, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 7.96667, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 9.43333, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 9.93333, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 11.1, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182, 11.4, 1, 0.911101, -5.53912e-17, 1.46914e-16, -0.412182)
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SnoreSoundPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_hnm5h")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r3x1m"]
+streams_count = 3
+stream_0/stream = ExtResource("2_0grrb")
+stream_1/stream = ExtResource("3_45isc")
+stream_2/stream = ExtResource("4_gtjld")
+
+[sub_resource type="Animation" id="Animation_wovws"]
+resource_name = "WakeUp"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.65),
+"transitions": PackedFloat32Array(0.378929, 0.378929, 2.37841, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 1, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eyes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1.2, 1, 0.1, 0.2, 1, 1.2, 1, 2, 0.5, 1, 1.2, 1, 2, 0.8, 1, 1, 1, 1)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_L")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.038788, 0.0521096, 0.025435, 0.2, 1, -0.038788, 0.0521096, 0.049502, 0.5, 1, -0.038788, 0.0521096, 0.049502, 0.8, 1, -0.038788, 0.0521096, 0.025435)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Eye_TopInner_R")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.038788, 0.0521096, 0.025435, 0.2, 1, 0.039, 0.052, 0.05, 0.5, 1, 0.039, 0.052, 0.05, 0.8, 1, 0.038788, 0.0521096, 0.025435)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Jaw")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107, 0.2, 1, 0.990112, -9.43505e-17, 1.25499e-16, -0.140279, 0.5, 1, 0.990112, -9.43505e-17, 1.25499e-16, -0.140279, 0.8, 1, -0.707107, 2.33962e-23, -1.57009e-16, 0.707107)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_L")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.0766445, -0.0104165, -0.576234, 0.813617, 0.2, 1, 0.184039, -0.0494739, 0.044984, 0.980642, 0.6, 1, 0.184039, -0.0494739, 0.044984, 0.980642, 0.8, 1, -0.330939, -0.0653376, 0.0142203, 0.94128)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:UpperArm_R")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.0766445, 0.0104165, 0.576234, 0.813617, 0.2, 1, 0.431577, 0.0361454, -0.056256, 0.899594, 0.6, 1, 0.431577, 0.0361454, -0.056256, 0.899594, 0.8, 1, -0.330939, 0.0653377, -0.0142204, 0.94128)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_L")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, -0.00360198, 0.000474461, -0.608912, 0.79323, 0.2, 1, -0.00256875, 0.00256916, -0.000194694, 0.999993, 0.7, 1, -0.00256875, 0.00256916, -0.000194694, 0.999993)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:LowerArm_R")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -0.00360199, -0.000474475, 0.608912, 0.79323, 0.2, 1, -0.00256873, -0.00256916, 0.000194716, 0.999993, 0.7, 1, -0.00256873, -0.00256916, 0.000194716, 0.999993)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_L")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0.650623, 2.2693e-08, -0.015491, 0.759243, 0.2, 1, 0.310548, 0.00592816, -0.0143118, 0.950431, 0.7, 1, 0.310548, 0.00592816, -0.0143118, 0.950431, 0.8, 1, 0.650623, 2.2693e-08, -0.015491, 0.759243)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Foot_R")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.650623, -2.2693e-08, 0.015491, 0.759243, 0.2, 1, 0.310548, -0.00592816, 0.0143118, 0.950431, 0.7, 1, 0.310548, -0.00592816, 0.0143118, 0.950431, 0.8, 1, 0.650623, -2.2693e-08, 0.015491, 0.759243)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_L")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, -0.244314, 0.359528, -0.413733, 0.799923, 0.2, 1, -0.142936, 0.41051, -0.1926, 0.879748, 0.3, 1, -0.591532, 0.323295, -0.265008, 0.68945, 0.4, 1, 0.23746, 0.128458, 0.0676619, 0.960486, 0.5, 1, -0.591532, 0.323295, -0.265008, 0.68945, 0.6, 1, 0.23746, 0.128458, 0.0676619, 0.960486, 0.7, 1, -0.487701, 0.465379, -0.0775351, 0.734546, 0.8, 1, -0.244314, 0.359528, -0.413733, 0.799923)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Leg_R")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, -0.244314, -0.359528, 0.413733, 0.799923, 0.1, 1, 0.266209, -0.186575, 0.0239377, 0.945383, 0.2, 1, -0.732372, -0.241469, 0.303091, 0.559875, 0.3, 1, 0.266209, -0.186575, 0.0239377, 0.945383, 0.4, 1, -0.732372, -0.241469, 0.303091, 0.559875, 0.5, 1, 0.174546, -0.274247, 0.383898, 0.86426, 0.6, 1, -0.244314, -0.359528, 0.413733, 0.799923)
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Model:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.65, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 0.5, 1), Vector3(1, 0.5, 1), Vector3(0.75, 1.5, 1), Vector3(1, 1, 1), Vector3(1, 0.75, 1), Vector3(1, 1, 1)]
+}
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Model/EnemyHandCannoner/Armature/Skeleton3D:Neck")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -0.207913, 0, 0, 0.978147, 0.2, 1, 0.275275, 0, 0, 0.961365, 0.5, 1, 0.275275, 0, 0, 0.961365, 0.55, 1, -0.207913, 0, 0, 0.978147, 0.65, 1, -0.207913, 0, 0, 0.978147, 0.7, 1, -0.318564, 0, 0, 0.947901, 0.8, 1, -0.207913, 0, 0, 0.978147)
+tracks/15/type = "audio"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AnimationVoicePlayer")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_r3x1m")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/15/use_blend = true
+
+[resource]
+_data = {
+&"Aim": SubResource("Animation_8dsxe"),
+&"Death": SubResource("Animation_6jv4s"),
+&"FireRecoil": SubResource("Animation_bhbp3"),
+&"RESET": SubResource("Animation_v62uv"),
+&"Shield": SubResource("Animation_edirh"),
+&"Sleep": SubResource("Animation_6ofv0"),
+&"WakeUp": SubResource("Animation_wovws")
+}

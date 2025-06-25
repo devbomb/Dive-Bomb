@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://duaxv01wdol62"]
-
-[ext_resource type="Script" uid="uid://u706mf64s5ag" path="res://Scenes/Entities/Wall_/XRayWall.cs" id="1_wdluk"]
-
-[node name="XRayWall" type="StaticBody3D"]
-script = ExtResource("1_wdluk")

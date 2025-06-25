@@ -11,20 +11,20 @@ config_version=5
 [application]
 
 config/name="Fast Dragon"
-run/main_scene="res://Scenes/Maps/Screens/TitleScreen.tscn"
+run/main_scene="res://Screens/TitleScreen/TitleScreen.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Log="*res://Scripts/Services/Log.cs"
-SignalBus="*res://Scripts/Services/SignalBus.cs"
-GemFactory="*res://Scenes/Singletons/GemFactory.tscn"
-MapTransitionManager="*res://Scenes/Singletons/MapTransitionManager.tscn"
-SaveFile="*res://Scripts/GDScriptAdaptors/SaveFileGDScriptAdaptor.cs"
-UserSettings="*res://Scripts/GDScriptAdaptors/UserSettingsGDScriptAdaptor.cs"
-PhysicsInterpolatorSingleton="*res://Scripts/PhysicsInterpolation/PhysicsInterpolatorSingleton.cs"
-HitStopManager="*res://Scripts/Services/HitStopManager.cs"
+Log="*res://Singletons/Log.cs"
+SignalBus="*res://Singletons/SignalBus.cs"
+GemFactory="*res://Singletons/GemFactory/GemFactory.tscn"
+MapTransitionManager="*res://Singletons/MapTransitionManager/MapTransitionManager.tscn"
+SaveFile="*res://Common/Scripts/Services/SaveFileGDScriptAdaptor.cs"
+UserSettings="*res://Common/Scripts/Services/UserSettingsGDScriptAdaptor.cs"
+PhysicsInterpolatorSingleton="*res://Common/Scripts/PhysicsInterpolation/PhysicsInterpolatorSingleton.cs"
+HitStopManager="*res://Singletons/HitStopManager.cs"
 
 [dotnet]
 

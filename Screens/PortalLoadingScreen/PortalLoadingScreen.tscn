@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://bckjgvq8udjn3"]
+
+[ext_resource type="Script" uid="uid://w5odecg6wwfh" path="res://Screens/PortalLoadingScreen/PortalLoadingScreen.cs" id="1_uqld0"]
+[ext_resource type="PackedScene" uid="uid://desy5vwopnilu" path="res://Screens/PortalLoadingScreen/GemCountingRig.tscn" id="7_nkdy5"]
+[ext_resource type="AudioStream" uid="uid://bck1j6xyd3npi" path="res://Common/Audio/SFX/SkyDiveWind.wav" id="7_thdtk"]
+[ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://Entities/Player/KennifiedPlayerAnimations.tres" id="9_x2eyu"]
+[ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="10_fcuss"]
+[ext_resource type="Script" uid="uid://dinu4neoq8exm" path="res://Common/Components/OrbitCamera.cs" id="11_euysw"]
+[ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://UI/Menus/HUD/FPSCounter.tscn" id="16_b5m5h"]
+
+[node name="PortalLoadingScreen" type="Node3D"]
+script = ExtResource("1_uqld0")
+
+[node name="WindSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_thdtk")
+volume_db = -17.219
+pitch_scale = 0.01
+autoplay = true
+bus = &"Sfx"
+
+[node name="WorldEnv" type="WorldEnvironment" parent="."]
+unique_name_in_owner = true
+
+[node name="PlayerAnimator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+deterministic = true
+root_node = NodePath("../PlayerModel")
+libraries = {
+&"": ExtResource("9_x2eyu")
+}
+
+[node name="AnimatorSoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Sfx"
+
+[node name="PlayerModel" parent="." instance=ExtResource("10_fcuss")]
+unique_name_in_owner = true
+
+[node name="OrbitCamera" type="Camera3D" parent="." node_paths=PackedStringArray("FollowTarget")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -7)
+script = ExtResource("11_euysw")
+FollowTarget = NodePath("../CameraFocus")
+
+[node name="GemCountingRig" parent="OrbitCamera" instance=ExtResource("7_nkdy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="CameraFocus" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CameraFocusRestPos" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FPSCounter" parent="HUD" instance=ExtResource("16_b5m5h")]
+layout_mode = 0
+
+[connection signal="DoneMovingToRest" from="." to="OrbitCamera/GemCountingRig" method="Start"]
+[connection signal="DoneSkipping" from="." to="OrbitCamera/GemCountingRig" method="StartAfterSkipped"]
+[connection signal="Done" from="OrbitCamera/GemCountingRig" to="." method="OnAnimationsDone"]

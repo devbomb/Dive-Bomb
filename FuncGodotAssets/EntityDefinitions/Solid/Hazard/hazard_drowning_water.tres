@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://damgb1gsoyi7d"]
 
 [ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_jijjc"]
-[ext_resource type="Script" uid="uid://c4dmx1el10jag" path="res://Scenes/Entities/Hazard_/DrowningWater.cs" id="2_jijjc"]
+[ext_resource type="Script" uid="uid://c4dmx1el10jag" path="res://Entities/Hazard/DrowningWater.cs" id="2_jijjc"]
 
 [resource]
 script = ExtResource("1_jijjc")

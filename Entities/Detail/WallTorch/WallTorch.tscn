@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnvl0dea6a42y"]
+
+[ext_resource type="PackedScene" uid="uid://rrdmdw8nh4af" path="res://Entities/Detail/WallTorch/WallTorch.blend" id="1_4kpki"]
+
+[sub_resource type="GDScript" id="GDScript_seutu"]
+script/source = "@tool
+extends Node3D
+
+@export var energy: float = 1
+
+func _ready():
+	# So I don't need to enable editable-children
+	%Model/Flame.layers = 2
+	%Model/Flame.cast_shadow = false
+	%WorldLight.light_energy = energy
+"
+
+[sub_resource type="Animation" id="Animation_r5bg5"]
+resource_name = "Flicker"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Flame:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.5, 1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_2gxe4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Flame:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uihpi"]
+_data = {
+&"Flicker": SubResource("Animation_r5bg5"),
+&"RESET": SubResource("Animation_2gxe4")
+}
+
+[node name="WallTorch" type="Node3D"]
+script = SubResource("GDScript_seutu")
+
+[node name="Model" parent="." instance=ExtResource("1_4kpki")]
+unique_name_in_owner = true
+
+[node name="FireLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23467, 0.790777, 0)
+light_energy = 0.5
+light_size = 0.295
+light_bake_mode = 1
+light_cull_mask = 4293918722
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_reverse_cull_face = true
+omni_range = 0.270998
+
+[node name="WorldLight" type="OmniLight3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161154, 0.749756, 0)
+light_color = Color(1, 0.752941, 0, 1)
+light_bake_mode = 1
+light_cull_mask = 4294967293
+shadow_enabled = true
+shadow_bias = 0.01
+shadow_normal_bias = 1.048
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_uihpi")
+}
+autoplay = "Flicker"
