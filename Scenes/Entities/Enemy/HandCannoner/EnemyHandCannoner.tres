@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://ck5auu6tkhw37" path="res://Scenes/Entities/Enemy/HandCannoner/SFX/HurtThud0.wav" id="9_d3ntl"]
 [ext_resource type="AudioStream" uid="uid://cogiwdqlpr36x" path="res://Scenes/Entities/Enemy/HandCannoner/SFX/HurtThud1.wav" id="10_1dej5"]
 [ext_resource type="AudioStream" uid="uid://cfukvolacyevq" path="res://Scenes/Entities/Enemy/HandCannoner/SFX/GunFire.wav" id="10_6x8cy"]
-[ext_resource type="AudioStream" uid="uid://dte4h5guyotpq" path="res://Audio/SFX/GenericKill.wav" id="11_t6hd1"]
+[ext_resource type="AudioStream" uid="uid://dte4h5guyotpq" path="res://Common/Audio/SFX/GenericKill.wav" id="11_t6hd1"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6x8cy"]
 streams_count = 5

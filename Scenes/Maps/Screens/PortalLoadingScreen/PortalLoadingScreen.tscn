@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://w5odecg6wwfh" path="res://Scenes/Maps/Screens/PortalLoadingScreen/PortalLoadingScreen.cs" id="1_uqld0"]
 [ext_resource type="PackedScene" uid="uid://desy5vwopnilu" path="res://Scenes/Maps/Screens/PortalLoadingScreen/GemCountingRig.tscn" id="7_nkdy5"]
-[ext_resource type="AudioStream" uid="uid://bck1j6xyd3npi" path="res://Audio/SFX/SkyDiveWind.wav" id="7_thdtk"]
+[ext_resource type="AudioStream" uid="uid://bck1j6xyd3npi" path="res://Common/Audio/SFX/SkyDiveWind.wav" id="7_thdtk"]
 [ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://Scenes/Objects/Player/KennifiedPlayerAnimations.tres" id="9_x2eyu"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Scenes/Objects/Player/Parts/PlayerModel/PlayerModel.tscn" id="10_fcuss"]
 [ext_resource type="Script" uid="uid://dinu4neoq8exm" path="res://Scripts/Objects/OrbitCamera.cs" id="11_euysw"]

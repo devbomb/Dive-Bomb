@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://blpfmbcbfae1y" path="res://Scripts/Objects/BreakableArea3D.cs" id="1_58fhs"]
 [ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Scripts/Objects/GemSpawner.cs" id="2_8sopg"]
 [ext_resource type="Script" uid="uid://4lt3umf3fct" path="res://Scenes/Objects/DamagePlayerArea.cs" id="2_sroyn"]
-[ext_resource type="AudioStream" uid="uid://dte4h5guyotpq" path="res://Audio/SFX/GenericKill.wav" id="3_a38kv"]
+[ext_resource type="AudioStream" uid="uid://dte4h5guyotpq" path="res://Common/Audio/SFX/GenericKill.wav" id="3_a38kv"]
 [ext_resource type="AudioStream" uid="uid://cf23sty34cbqu" path="res://Scenes/Entities/Enemy/Snapjaw/SFX/Marde.wav" id="5_4utbh"]
 [ext_resource type="AudioStream" uid="uid://cfcux1p4socfk" path="res://Scenes/Entities/Enemy/Snapjaw/SFX/LeChomp1.wav" id="6_xaiic"]
 [ext_resource type="AudioStream" uid="uid://bfjhqi7kapw6q" path="res://Scenes/Entities/Enemy/Snapjaw/SFX/SacreBleu.wav" id="7_2mt67"]

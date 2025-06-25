@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bck1j6xyd3npi"
-path="res://.godot/imported/SkyDiveWind.wav-584cfa2ccf2429817b4140ead8b56ce4.sample"
+path="res://.godot/imported/SkyDiveWind.wav-0fb60c6fc8e3c0f863a131c40d250ace.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/SkyDiveWind.wav"
-dest_files=["res://.godot/imported/SkyDiveWind.wav-584cfa2ccf2429817b4140ead8b56ce4.sample"]
+source_file="res://Common/Audio/SFX/SkyDiveWind.wav"
+dest_files=["res://.godot/imported/SkyDiveWind.wav-0fb60c6fc8e3c0f863a131c40d250ace.sample"]
 
 [params]
 
