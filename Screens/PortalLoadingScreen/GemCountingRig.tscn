@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://desy5vwopnilu"]
 
-[ext_resource type="Script" uid="uid://w3vuer5jnq04" path="res://Scenes/Maps/Screens/PortalLoadingScreen/GemCountingRig.cs" id="1_d3gao"]
+[ext_resource type="Script" uid="uid://w3vuer5jnq04" path="res://Screens/PortalLoadingScreen/GemCountingRig.cs" id="1_d3gao"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="2_3qivj"]
 [ext_resource type="PackedScene" uid="uid://be5v4cuys7g1s" path="res://Entities/Item/Gems/GreenGem/GreenGemModel.tscn" id="3_rp877"]
 [ext_resource type="PackedScene" uid="uid://crlqwtcxxmg76" path="res://Entities/Item/Gems/PurpleGem/PurpleGemModel.tscn" id="4_o7chy"]
