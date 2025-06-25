@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://1bbms5s4bt3d" path="res://Scenes/Entities/Transport/Checkpoint/FairyRing.blend" id="1_lpb68"]
 [ext_resource type="Script" uid="uid://cfqry8cyhwe4l" path="res://Scenes/Entities/Transport/Checkpoint/Checkpoint.cs" id="1_tl6tw"]
 [ext_resource type="AudioStream" uid="uid://d3d3ewp2ua3qv" path="res://Scenes/Entities/Transport/Checkpoint/Checkpoint.wav" id="2_xw0qj"]
-[ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="3_sjo5e"]
+[ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Common/Components/SimpleParticles.cs" id="3_sjo5e"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_67wg3"]
 radius = 1.0

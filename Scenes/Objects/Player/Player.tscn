@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://Scenes/UIMenus/PauseMenu.tscn" id="7_jm41t"]
 [ext_resource type="AudioStream" uid="uid://b8p3vq40pffrv" path="res://Scenes/Objects/Player/SFX/DrownWaterEnterSplash.wav" id="8_pxges"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://Scenes/UIWidgets/HUD.tscn" id="9_m2xb1"]
-[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="9_vmh20"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="9_vmh20"]
 [ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Scenes/Objects/Player/Parts/GemGravityGloves/GemGravityGloves.tscn" id="10_dedpk"]
 
 [sub_resource type="GDScript" id="GDScript_cpnxc"]

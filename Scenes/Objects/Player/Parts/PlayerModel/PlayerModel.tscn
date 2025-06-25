@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://df4m2ng2nc375" path="res://Scenes/Objects/Player/Parts/PlayerModel/Parachute.blend" id="1_d1yau"]
 [ext_resource type="PackedScene" uid="uid://bytmfm6g78uxa" path="res://Scenes/Objects/Player/Parts/PlayerModel/KennifiedPlayerModel.blend" id="1_gwhpy"]
-[ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Scripts/Objects/SimpleParticles.cs" id="1_x2wfw"]
-[ext_resource type="PackedScene" uid="uid://bdmpiimo8xv4a" path="res://Scenes/Objects/AnchoredLine3D.tscn" id="2_6kq2t"]
+[ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Common/Components/SimpleParticles.cs" id="1_x2wfw"]
+[ext_resource type="PackedScene" uid="uid://bdmpiimo8xv4a" path="res://Common/Components/AnchoredLine3D.tscn" id="2_6kq2t"]
 
 [sub_resource type="Gradient" id="Gradient_x8atq"]
 interpolation_mode = 2

@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cka17uxpf4jsi" path="res://Scenes/Entities/Enemy/HandCannoner/CanonBall/HandCannonBall.tscn" id="2_7j68t"]
 [ext_resource type="PackedScene" uid="uid://cxrfdnblu768c" path="res://Scenes/Entities/Enemy/HandCannoner/EnemyHandCannoner.blend" id="2_a37ce"]
 [ext_resource type="AnimationLibrary" uid="uid://dpi267kv74gnc" path="res://Scenes/Entities/Enemy/HandCannoner/EnemyHandCannoner.tres" id="3_t3ybc"]
-[ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Scenes/Objects/AggroSphere/AggroSphere.tscn" id="4_hle72"]
-[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="6_4be38"]
-[ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Scripts/Objects/GemSpawner.cs" id="7_6ule0"]
+[ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Common/Components/AggroSphere/AggroSphere.tscn" id="4_hle72"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="6_4be38"]
+[ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Common/Components/GemSpawner.cs" id="7_6ule0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8vnft"]
 

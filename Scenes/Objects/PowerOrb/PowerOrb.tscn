@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://djngs7hwn3v5q" path="res://Scenes/Objects/PowerOrb/PowerOrb.cs" id="1_33fc2"]
 [ext_resource type="AudioStream" uid="uid://ccronnj46nywl" path="res://Scenes/Objects/PowerOrb/PowerOrbBreak.wav" id="2_k6hmf"]
-[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Scenes/Objects/BlobShadow.tscn" id="2_mqwyj"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="2_mqwyj"]
 [ext_resource type="PackedScene" uid="uid://lufx1acikyaw" path="res://Scenes/Objects/PowerOrb/PowerOrb.blend" id="2_wnb6r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dnv66"]
