@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://7ix6x15b1vqy"]
 
-[ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://TrenchbroomMaps/SnapjawTesting.map" id="1_e4jik"]
+[ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://TrenchbroomMaps/SnapjawSwamp.map" id="1_e4jik"]
 
 [node name="SnapjawTesting" type="Node3D"]
 
