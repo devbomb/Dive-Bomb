@@ -71,8 +71,8 @@ namespace FastDragon
 
         private class Shattering : State<DivableWall>
         {
-            private const float Duration = 2f / 60;
-            private const float EndScale = 2f;
+            private const float Duration = 4f / 60;
+            private const float EndScale = 4f;
             private const float HitStopDuration = 0.2f;
 
             private float _timer;
@@ -105,7 +105,7 @@ namespace FastDragon
 
                 float t = _modelTimer / Duration;
                 Self._meshGrowPoint.Scale = Vector3.One.Lerp(Vector3.One * EndScale, t * t);
-                Self.SetTransparency(t);
+                Self.SetTransparency(Mathf.Min(t * 2, 1));
             }
 
             public override void _PhysicsProcess(double deltaD)
