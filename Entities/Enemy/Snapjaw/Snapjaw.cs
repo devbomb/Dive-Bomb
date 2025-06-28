@@ -8,6 +8,7 @@ namespace FastDragon
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public string CycleId = null;
         [Export] public double CycleOffset;
+        [Export] public double PeekDuration = 1;
 
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
         private AnimationTree _animator => GetNode<AnimationTree>("%AnimationTree");
@@ -117,20 +118,18 @@ namespace FastDragon
             {
                 _timer -= delta;
                 if (_timer <= 0)
-                    ChangeState<Watching>();
+                    ChangeState<Peeking>();
             }
         }
 
-        private class Watching : State<Snapjaw>
+        private class Peeking : State<Snapjaw>
         {
-            private const double Duration = 2;
-
             private double _timer;
 
             public override void OnStateEntered()
             {
                 Self.MoveToWatchingPosition();
-                _timer = Duration;
+                _timer = Self.PeekDuration;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -251,7 +250,7 @@ namespace FastDragon
                 Self.GlobalPosition = Self._targetPos.Lerp(Self._floorPos, t);
 
                 if (_timer >= Duration)
-                    ChangeState<Watching>();
+                    ChangeState<Peeking>();
             }
         }
 

@@ -15,7 +15,8 @@ func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_yp1rd")])
 class_properties = {
 "CycleId": "",
-"CycleOffset": 0.0
+"CycleOffset": 0.0,
+"PeekDuration": 1.0
 }
 class_property_descriptions = {
 "CycleId": "The enemy's attack pattern does not start until the CycleStartedsignal is fired with this parameter.  Set to an empty string if youwant it to start as soon as the level is loaded.",
