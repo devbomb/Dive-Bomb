@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs28xrm5onq8k"]
+[gd_scene load_steps=9 format=3 uid="uid://bs28xrm5onq8k"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_1b2l8"]
 [ext_resource type="Script" uid="uid://cvqi1xaairncb" path="res://Screens/TitleScreen/TitleScreen.cs" id="1_q3h6t"]
 [ext_resource type="Script" uid="uid://chudgtyjw2v1a" path="res://UI/Widgets/PageNavigator.cs" id="3_l50tw"]
 [ext_resource type="Script" uid="uid://la5dtjohmevd" path="res://UI/Widgets/Page.cs" id="3_ml6io"]
+[ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="5_v4stu"]
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.tscn" id="5_xa3gf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w4jl7"]
@@ -101,6 +102,7 @@ offset_right = 46.0
 offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_v4stu")
 
 [node name="Continue" type="Button" parent="PageNavigator/MainPage/Buttons"]
 unique_name_in_owner = true
