@@ -481,7 +481,7 @@ namespace FastDragon
             if (isUnsafe)
                 return;
 
-            Self.LastSafeGroundPos = Self.GlobalTransform;
+            Self.SetLastSafeGroundHere();
         }
     }
 }

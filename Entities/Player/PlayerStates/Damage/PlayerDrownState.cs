@@ -28,18 +28,10 @@ namespace FastDragon
             if (_timer <= 0)
             {
                 if (SaveFile.Current.PlayerHealth > 0)
-                    ReturnToLastSafePlace();
+                    Self.ReturnToLastSafeGround();
                 else
                     MapTransitionManager.Instance.RespawnPlayerAfterDeath();
             }
-        }
-
-        private void ReturnToLastSafePlace()
-        {
-            Self.GlobalTransform = Self.LastSafeGroundPos;
-            Self.ResetPhysicsInterpolation3D();
-            Self.Velocity = Vector3.Zero;
-            Self.ChangeState<PlayerStandState>();
         }
     }
 }
