@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqh4hyr3v2be8"]
+[gd_scene load_steps=7 format=3 uid="uid://dqh4hyr3v2be8"]
 
 [ext_resource type="Script" uid="uid://bk4u4lef56yoa" path="res://UI/Menus/TimeTrial/TimeTrialBriefingMenu.cs" id="1_g7ix7"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="2_4p3tb"]
+[ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="3_vcnhx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2i6y4"]
 font_size = 20
@@ -103,6 +104,7 @@ theme = ExtResource("2_4p3tb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
+script = ExtResource("3_vcnhx")
 
 [node name="StartButton" type="Button" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true

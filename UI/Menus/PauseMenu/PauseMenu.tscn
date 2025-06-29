@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0vpyujcojrlr"]
+[gd_scene load_steps=7 format=3 uid="uid://d0vpyujcojrlr"]
 
 [ext_resource type="Script" uid="uid://brneuhryr7gx3" path="res://UI/Menus/PauseMenu/PauseMenu.cs" id="1_6unmj"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_wwjmo"]
 [ext_resource type="PackedScene" uid="uid://dk14uy27kbnyn" path="res://UI/Menus/AtlasMenu/AtlasMenu.tscn" id="3_0fbh4"]
 [ext_resource type="Script" uid="uid://la5dtjohmevd" path="res://UI/Widgets/Page.cs" id="3_2prw7"]
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.tscn" id="4_cbwi1"]
+[ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="4_kb3w6"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -36,6 +37,7 @@ script = ExtResource("3_2prw7")
 [node name="Buttons" type="VBoxContainer" parent="MainPage"]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("4_kb3w6")
 
 [node name="Continue" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
@@ -86,6 +88,7 @@ script = ExtResource("3_2prw7")
 [node name="TimeTrialButtons" type="VBoxContainer" parent="TimeTrialMainPage"]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("4_kb3w6")
 
 [node name="Continue" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
 layout_mode = 2
