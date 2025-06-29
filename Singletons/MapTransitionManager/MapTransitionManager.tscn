@@ -6,8 +6,8 @@
 
 [node name="MapTransitionManager" type="Node"]
 script = ExtResource("1_onbea")
-TimeTrialLevelSelectMap = "res://Scenes/Maps/Screens/TimeTrialLevelSelectScreen.tscn"
-TitleScreenMap = "res://Scenes/Maps/Screens/TitleScreen.tscn"
+TimeTrialLevelSelectMap = "uid://dpeq0las3r0em"
+TitleScreenMap = "uid://bs28xrm5onq8k"
 PortalLoadingScreenPrefab = ExtResource("2_lrjqs")
 
 [node name="NonPlayerFadeCurtain" parent="." instance=ExtResource("4_elvu7")]
