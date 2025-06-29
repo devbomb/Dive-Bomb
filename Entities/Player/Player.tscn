@@ -223,7 +223,6 @@ ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 [node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
 
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
-mouse_filter = 2
 
 [node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint") instance=ExtResource("10_dedpk")]
 LeftHandPoint = NodePath("../Model/LeftHandBone/LeftHandPoint")
