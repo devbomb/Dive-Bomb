@@ -1,8 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=5 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://TrenchbroomMaps/SnapjawSwamp.map" id="1_e4jik"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
+sky_top_color = Color(0, 0.777333, 0.88, 1)
+sky_horizon_color = Color(3.85046e-07, 0.622873, 0.597764, 1)
+ground_bottom_color = Color(0.156679, 0.324256, 0.382582, 1)
+ground_horizon_color = Color(0, 0.58, 0.357667, 1)
+
+[sub_resource type="Sky" id="Sky_y5wxh"]
+sky_material = SubResource("ProceduralSkyMaterial_ribmb")
+
+[sub_resource type="Environment" id="Environment_37qkj"]
+background_mode = 2
+sky = SubResource("Sky_y5wxh")
+ssr_enabled = true
+ssr_max_steps = 512
+fog_density = 0.0
+fog_sky_affect = 0.248
+volumetric_fog_density = 0.008
+volumetric_fog_albedo = Color(0.699653, 0.699653, 0.699653, 1)
+volumetric_fog_emission = Color(0, 0.286312, 1.44392e-07, 1)
+volumetric_fog_temporal_reprojection_enabled = false
+
 [node name="SnapjawTesting" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_37qkj")
 
 [node name="SnapjawTesting" parent="." instance=ExtResource("1_e4jik")]
 

@@ -165,12 +165,12 @@
 "classname" "hazard_drowning_water"
 // brush 0
 {
-( -1664 -64 16 ) ( -1664 64 -16 ) ( -1664 64 16 ) Textures/PeaceKeepersWater 0 0 0 1 1
-( 128 -2048 16 ) ( 64 -2048 -16 ) ( 64 -2048 16 ) Textures/PeaceKeepersWater 0 0 0 1 1
-( 128 64 -8 ) ( 64 -64 -8 ) ( 128 -64 -8 ) Textures/PeaceKeepersWater 0 0 0 1 1
-( 128 64 8 ) ( 64 -64 8 ) ( 64 64 8 ) Textures/PeaceKeepersWater 0 0 0 1 1
-( 128 2304 16 ) ( 64 2304 -16 ) ( 128 2304 -16 ) Textures/PeaceKeepersWater 0 0 0 1 1
-( 2048 64 16 ) ( 2048 -64 -16 ) ( 2048 -64 16 ) Textures/PeaceKeepersWater 0 0 0 1 1
+( -1664 -64 16 ) ( -1664 64 -16 ) ( -1664 64 16 ) Textures/SwampGoo 0 0 0 1 1
+( 128 -2048 16 ) ( 64 -2048 -16 ) ( 64 -2048 16 ) Textures/SwampGoo 0 0 0 1 1
+( 128 64 -8 ) ( 64 -64 -8 ) ( 128 -64 -8 ) Textures/SwampGoo 0 0 0 1 1
+( 128 64 8 ) ( 64 -64 8 ) ( 64 64 8 ) Textures/SwampGoo 0 0 0 1 1
+( 128 2304 16 ) ( 64 2304 -16 ) ( 128 2304 -16 ) Textures/SwampGoo 0 0 0 1 1
+( 2048 64 16 ) ( 2048 -64 -16 ) ( 2048 -64 16 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
 // entity 3
