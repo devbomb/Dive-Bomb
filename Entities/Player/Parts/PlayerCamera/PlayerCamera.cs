@@ -12,6 +12,8 @@ namespace FastDragon
         [Export] public bool AllowAutoRotate { get; set; }
         public bool DisableInput { get; set; }
 
+        public bool IsUsingFixedPosition => _stateMachine.CurrentState is UsingFixedPosition;
+
         public Node3D TimeTrialFairyRescuePos => GetNode<Node3D>("%TimeTrialFairyRescuePos");
 
         public float OrbitDistance { get; set; } = 6;
