@@ -12,41 +12,18 @@ namespace FastDragon
         [Export] public bool AllowAutoRotate { get; set; }
         public bool DisableInput { get; set; }
 
+        public bool IsUsingFixedPosition => _stateMachine.CurrentState is UsingFixedPosition;
+
         public Node3D TimeTrialFairyRescuePos => GetNode<Node3D>("%TimeTrialFairyRescuePos");
 
-        public float OrbitDistance
-        {
-            get => _orbitDistance;
-            set
-            {
-                _orbitDistance = value;
-            }
-        }
+        public float OrbitDistance { get; set; } = 6;
 
-        public float OrbitYawRad
-        {
-            get => _orbitYawRad;
-            set
-            {
-                _orbitYawRad = value;
-            }
-        }
+        public float OrbitYawRad { get; set; }
 
-        public float OrbitPitchRad
-        {
-            get => _orbitPitchRad;
-            set
-            {
-                _orbitPitchRad = value;
-            }
-        }
+        public float OrbitPitchRad { get; set; }
 
         private Camera3D _camera => GetNode<Camera3D>("%Camera");
         private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast");
-
-        private float _orbitDistance = 6;
-        private float _orbitYawRad;
-        private float _orbitPitchRad;
 
         private float _suggestedYawRad;
         private float _suggestedPitchRad;
@@ -306,8 +283,8 @@ namespace FastDragon
                 transform.Origin = targetPos + (dir * FollowDistance);
                 transform = transform.LookingAt(targetPos);
 
-                Self._orbitYawRad = transform.Basis.GetEuler().Y;
-                Self._orbitPitchRad = transform.Basis.GetEuler().X;
+                Self.OrbitYawRad = transform.Basis.GetEuler().Y;
+                Self.OrbitPitchRad = transform.Basis.GetEuler().X;
                 ClampOrbitAngles();
 
                 Self.ApplyAnglesAndDistance();

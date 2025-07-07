@@ -103,7 +103,18 @@ namespace FastDragon
         /// <summary>
         /// The location the player will teleport to if they fall in water
         /// </summary>
-        public Transform3D LastSafeGroundPos;
+        public SafeGroundPos LastSafeGround;
+        public struct SafeGroundPos
+        {
+            public Transform3D PlayerPos;
+            public float CameraYawRad;
+            public float CameraPitchRad;
+        }
+
+        /// <summary>
+        /// An accessor for <see cref="LastSafeGround"/> that GDScript can see
+        /// </summary>
+        public Transform3D LastSafeGroundPos => LastSafeGround.PlayerPos;
 
         private readonly StateMachine _stateMachine = new StateMachine();
         private Transform3D _spawnPos;
@@ -150,8 +161,6 @@ namespace FastDragon
                 ? _spawnPos
                 : checkpoint.GlobalTransform;
 
-            LastSafeGroundPos = GlobalTransform;
-
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
@@ -163,8 +172,39 @@ namespace FastDragon
             Animator.Advance(0);
             ChangeState<PlayerWalkState>();
 
+            SetLastSafeGroundHere();
+
             EarlyJumpBufferTimer = 0;
             _damageCooldownTimer = 0;
+        }
+
+        public void SetLastSafeGroundHere()
+        {
+            LastSafeGround = new SafeGroundPos
+            {
+                PlayerPos = GlobalTransform,
+                CameraYawRad = Camera.OrbitYawRad,
+                CameraPitchRad = Camera.OrbitPitchRad
+            };
+        }
+
+        public void ReturnToLastSafeGround()
+        {
+            GlobalTransform = LastSafeGround.PlayerPos;
+            this.ResetPhysicsInterpolation3D();
+            Velocity = Vector3.Zero;
+            ChangeState<PlayerStandState>();
+
+            if (!Camera.IsUsingFixedPosition)
+            {
+                CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
+                CameraFocus.ResetPhysicsInterpolation3D();
+
+                Camera.OrbitYawRad = LastSafeGround.CameraYawRad;
+                Camera.OrbitPitchRad = LastSafeGround.CameraPitchRad;
+                Camera.StopSuggestingAngle();
+                Camera.ResetPhysicsInterpolation3D();
+            }
         }
 
         public void SetVisibleInPortals(bool visible)
