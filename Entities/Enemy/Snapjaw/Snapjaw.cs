@@ -16,6 +16,7 @@ namespace FastDragon
 
         private Vector3 _targetPos;
         private Vector3 _floorPos;
+        private Vector3 _floorNormal = Vector3.Up;
         private bool _foundFloorPos = false;
 
         public override void _Ready()
@@ -33,14 +34,18 @@ namespace FastDragon
             Callable.From(() =>
             {
                 Visible = true;
-
-                _floorDetector.ForceRaycastUpdate();
-                _floorPos = _floorDetector.GetCollisionPoint();
-                _floorPos.Y += 1;
-
-                _floorDetector.Enabled = false;
+                DetectHeight();
                 Reset();
             }).CallDeferred();
+        }
+
+        private void DetectHeight()
+        {
+            _floorDetector.ForceRaycastUpdate();
+            _floorDetector.Enabled = false;
+
+            _floorNormal = _floorDetector.GetCollisionNormal();
+            _floorPos = _floorDetector.GetCollisionPoint() + _floorNormal;
         }
 
         private void Reset()
@@ -73,9 +78,9 @@ namespace FastDragon
 
             GlobalRotation = GlobalPosition
                     .DirectionTo(player.GlobalPosition)
-                    .Flattened()
+                    .Flattened(_floorNormal)
                     .Normalized()
-                    .ForwardToEulerAnglesRad();
+                    .ForwardToEulerAnglesRad(_floorNormal);
         }
 
         private class WaitingForCycleStart : State<Snapjaw>
