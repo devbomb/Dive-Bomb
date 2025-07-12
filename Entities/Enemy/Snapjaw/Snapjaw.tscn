@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ri50s5tjym3n"]
+[gd_scene load_steps=57 format=3 uid="uid://ri50s5tjym3n"]
 
 [ext_resource type="Script" uid="uid://b5064ks5nmy4u" path="res://Entities/Enemy/Snapjaw/Snapjaw.cs" id="1_1q2op"]
 [ext_resource type="PackedScene" uid="uid://bj6kfebqy4yxg" path="res://Entities/Enemy/Snapjaw/Snapjaw.blend" id="1_6h8uk"]
@@ -60,6 +60,9 @@ animation = &"DeathFlip"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a38kv"]
 animation = &"Fall"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6tpik"]
+animation = &"Hold"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1q2op"]
 animation = &"RESET"
 
@@ -95,14 +98,14 @@ xfade_time = 0.03
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_siaue"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5iau"]
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jv5sa"]
 advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6d3q5"]
 xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c2p2u"]
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6h8uk"]
 states/Attack/node = SubResource("AnimationNodeAnimation_sroyn")
@@ -113,13 +116,15 @@ states/DeathFlip/node = SubResource("AnimationNodeAnimation_xaiic")
 states/DeathFlip/position = Vector2(600, 210)
 states/Fall/node = SubResource("AnimationNodeAnimation_a38kv")
 states/Fall/position = Vector2(651, 100)
+states/Hold/node = SubResource("AnimationNodeAnimation_6tpik")
+states/Hold/position = Vector2(200, 167)
 states/RESET/node = SubResource("AnimationNodeAnimation_1q2op")
 states/RESET/position = Vector2(214, 250)
 states/Watch/node = SubResource("AnimationNodeStateMachine_jv5sa")
 states/Watch/position = Vector2(305, 100)
 states/WindUp/node = SubResource("AnimationNodeAnimation_ruhx5")
 states/WindUp/position = Vector2(428, 100)
-transitions = ["Attack", "Fall", SubResource("AnimationNodeStateMachineTransition_2mt67"), "Fall", "DeathFlip", SubResource("AnimationNodeStateMachineTransition_4utbh"), "Attack", "DeathFlip", SubResource("AnimationNodeStateMachineTransition_xq8qg"), "DeathFlip", "DeathFall", SubResource("AnimationNodeStateMachineTransition_siaue"), "Start", "Watch", SubResource("AnimationNodeStateMachineTransition_s5iau"), "Watch", "WindUp", SubResource("AnimationNodeStateMachineTransition_jv5sa"), "WindUp", "Attack", SubResource("AnimationNodeStateMachineTransition_6d3q5")]
+transitions = ["Attack", "Fall", SubResource("AnimationNodeStateMachineTransition_2mt67"), "Fall", "DeathFlip", SubResource("AnimationNodeStateMachineTransition_4utbh"), "Attack", "DeathFlip", SubResource("AnimationNodeStateMachineTransition_xq8qg"), "DeathFlip", "DeathFall", SubResource("AnimationNodeStateMachineTransition_siaue"), "Watch", "WindUp", SubResource("AnimationNodeStateMachineTransition_jv5sa"), "WindUp", "Attack", SubResource("AnimationNodeStateMachineTransition_6d3q5"), "Start", "Hold", SubResource("AnimationNodeStateMachineTransition_c2p2u")]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xaiic"]
 streams_count = 1
@@ -544,6 +549,60 @@ tracks/5/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_6tpik"]
+resource_name = "Hold"
+length = 0.001
+step = 0.0166667
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = PackedFloat32Array(0, 1, 0.5, 0.5, 0.5, 0.5)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Armature/Skeleton3D:UpperJaw")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = PackedFloat32Array(0, 1, 0.141424, 3.07834e-08, -1.44389e-08, 0.989949)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Armature/Skeleton3D:Root")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Armature/Skeleton3D:LowerJaw")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = PackedFloat32Array(0, 1, -3.796e-08, 0.978236, -0.207493, 6.43992e-08)
+tracks/4/type = "scale_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Armature/Skeleton3D:Torso")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Model/Armature/Skeleton3D:Hat")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.591124, 0.00136044, -0.00181391, 0.806578)
+tracks/6/type = "position_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Model/Armature/Skeleton3D:Hat")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.0261059, 0.0544039, 0.239603)
+
 [sub_resource type="Animation" id="Animation_6h8uk"]
 resource_name = "RESET"
 tracks/0/type = "position_3d"
@@ -895,6 +954,7 @@ _data = {
 &"DeathFall": SubResource("Animation_xaiic"),
 &"DeathFlip": SubResource("Animation_a38kv"),
 &"Fall": SubResource("Animation_1q2op"),
+&"Hold": SubResource("Animation_6tpik"),
 &"RESET": SubResource("Animation_6h8uk"),
 &"SurfacePeek": SubResource("Animation_4utbh"),
 &"Watch": SubResource("Animation_58fhs"),

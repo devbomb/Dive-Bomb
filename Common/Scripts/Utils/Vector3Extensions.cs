@@ -4,25 +4,29 @@ namespace FastDragon
 {
     public static class Vector3Extensions
     {
-        public static Vector3 Flattened(this Vector3 v)
+        public static Vector3 Flattened(this Vector3 v, Vector3? upDirection = null)
         {
-            var result = v;
-            result.Y = 0;
-            return result;
+            Vector3 up = upDirection ?? Vector3.Up;
+            return v.ProjectOnPlane(up);
         }
 
-        public static Vector3 ForwardToEulerAnglesRad(this Vector3 forward)
+        public static Vector3 ForwardToEulerAnglesRad(
+            this Vector3 forward,
+            Vector3? upDirection = null
+        )
         {
-            if (forward.IsParallelTo(Vector3.Up))
+            Vector3 up = upDirection ?? Vector3.Up;
+
+            if (forward.IsParallelTo(up))
             {
-                if (forward.Y > 0)
+                if (forward.ComponentAlong(up) > 0)
                     return new Vector3(Mathf.DegToRad(90), 0, 0);
                 else
                     return new Vector3(Mathf.DegToRad(-90), 0, 0);
             }
 
             return Transform3D.Identity
-                .LookingAt(forward, Vector3.Up)
+                .LookingAt(forward, up)
                 .Basis
                 .GetEuler();
         }

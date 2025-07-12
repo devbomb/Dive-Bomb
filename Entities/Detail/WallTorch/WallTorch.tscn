@@ -13,6 +13,21 @@ func _ready():
 	%Model/Flame.layers = 2
 	%Model/Flame.cast_shadow = false
 	%WorldLight.light_energy = energy
+	
+	if (!Engine.is_editor_hint()):
+		snap_to_wall()
+
+func snap_to_wall():
+	%RayCast3D.force_raycast_update()
+
+	if (!%RayCast3D.is_colliding()):
+		return
+
+	var normal = %RayCast3D.get_collision_normal()
+	var point = %RayCast3D.get_collision_point()
+	look_at_from_position(point, point + normal)
+	global_position += normal * 0.5
+	global_rotation_degrees.y -= 90
 "
 
 [sub_resource type="Animation" id="Animation_r5bg5"]
@@ -55,6 +70,11 @@ _data = {
 
 [node name="WallTorch" type="Node3D"]
 script = SubResource("GDScript_seutu")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+enabled = false
+target_position = Vector3(3, 0, 0)
 
 [node name="Model" parent="." instance=ExtResource("1_4kpki")]
 unique_name_in_owner = true
