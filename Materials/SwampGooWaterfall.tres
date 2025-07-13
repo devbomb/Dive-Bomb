@@ -14,8 +14,8 @@ uniform float scale_albedo = 0.05;
 uniform float scale_normal_a = 0.01;
 uniform float scale_normal_b = 0.01;
 
-const float time_scale_albedo_a = 15.0;
-const float time_scale_albedo_b = 20.0;
+const float time_scale_albedo_a = 20.0;
+const float time_scale_albedo_b = 12.0;
 const float time_scale_normal_a = 5.0;
 const float time_scale_normal_b = 5.0;
 
@@ -32,7 +32,7 @@ void fragment()
 	
 	METALLIC = 0.5;
 	SPECULAR = 0.0;
-	ROUGHNESS = 0.0;
+	ROUGHNESS = 0.99;
 	ALBEDO = mix(albedo_a_color, albedo_b_color, 0.5);
 	NORMAL_MAP = mix(
 		texture(normal_a, scale_normal_a * (UV + offset_normal_a)).xyz,
@@ -43,8 +43,8 @@ void fragment()
 "
 
 [sub_resource type="Gradient" id="Gradient_q56l5"]
-offsets = PackedFloat32Array(0, 0.490458, 1)
-colors = PackedColorArray(0.227451, 0.509804, 0.486275, 1, 0.391102, 0.613643, 0.595098, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.969466, 1)
+colors = PackedColorArray(0.0481279, 0.157862, 0.148856, 1, 0.231915, 0.517811, 0.493967, 1, 0.883416, 0.974862, 0.963785, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mhd6h"]
 domain_warp_enabled = true
@@ -59,8 +59,8 @@ color_ramp = SubResource("Gradient_q56l5")
 noise = SubResource("FastNoiseLite_mhd6h")
 
 [sub_resource type="Gradient" id="Gradient_mhd6h"]
-offsets = PackedFloat32Array(0, 0.490458, 1)
-colors = PackedColorArray(0.227451, 0.509804, 0.486275, 1, 0.391102, 0.613643, 0.595098, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.641221, 0.959924, 1)
+colors = PackedColorArray(0.0481279, 0.157862, 0.148856, 1, 0.07005, 0.201073, 0.19028, 1, 0.217772, 0.49225, 0.469413, 1, 0.883416, 0.974862, 0.963785, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gdfgp"]
 frequency = 0.1053
