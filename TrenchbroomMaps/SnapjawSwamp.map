@@ -759,38 +759,38 @@
 "classname" "hazard_drowning_water"
 // brush 0
 {
-( 512 384 8 ) ( 544 368 32 ) ( 512 368 8 ) Textures/SwampGoo 0 0 0 1 1
-( 512 368 8 ) ( 544 368 32 ) ( 544 328 8 ) Textures/SwampGoo 0 0 0 1 1
-( 512 384 8 ) ( 544 384 24 ) ( 544 368 32 ) Textures/SwampGoo 0 0 0 1 1
-( 544 368 32 ) ( 688 368 32 ) ( 688 328 8 ) Textures/SwampGoo 0 0 0 1 1
-( 720 368 8 ) ( 720 384 8 ) ( 512 384 8 ) Textures/SwampGoo 0 0 0 1 1
-( 544 384 24 ) ( 688 384 24 ) ( 688 368 32 ) Textures/SwampGoo 0 0 0 1 1
-( 512 384 8 ) ( 720 384 8 ) ( 688 384 24 ) Textures/SwampGoo 0 0 0 1 1
-( 688 384 24 ) ( 720 384 8 ) ( 688 368 32 ) Textures/SwampGoo 0 0 0 1 1
-( 688 368 32 ) ( 720 368 8 ) ( 688 328 8 ) Textures/SwampGoo 0 0 0 1 1
-( 688 368 32 ) ( 720 384 8 ) ( 720 368 8 ) Textures/SwampGoo 0 0 0 1 1
+( 512 384 8 ) ( 544 368 32 ) ( 512 368 8 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 512 368 8 ) ( 544 368 32 ) ( 544 328 8 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 512 384 8 ) ( 544 384 24 ) ( 544 368 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 544 368 32 ) ( 688 368 32 ) ( 688 328 8 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 720 368 8 ) ( 720 384 8 ) ( 512 384 8 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 544 384 24 ) ( 688 384 24 ) ( 688 368 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 512 384 8 ) ( 720 384 8 ) ( 688 384 24 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 688 384 24 ) ( 720 384 8 ) ( 688 368 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 688 368 32 ) ( 720 368 8 ) ( 688 328 8 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 688 368 32 ) ( 720 384 8 ) ( 720 368 8 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 // brush 1
 {
-( 688 384 48 ) ( 688 368 32 ) ( 688 384 24 ) Textures/SwampGoo 0 0 0 1 1
-( 720 384 8 ) ( 688 384 24 ) ( 688 368 32 ) Textures/SwampGoo 0 0 0 1 1
-( 720 384 8 ) ( 688 384 48 ) ( 688 384 24 ) Textures/SwampGoo 0 0 0 1 1
-( 720 384 8 ) ( 688 368 32 ) ( 688 384 48 ) Textures/SwampGoo 0 0 0 1 1
+( 688 384 48 ) ( 688 368 32 ) ( 688 384 24 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 720 384 8 ) ( 688 384 24 ) ( 688 368 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 720 384 8 ) ( 688 384 48 ) ( 688 384 24 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 720 384 8 ) ( 688 368 32 ) ( 688 384 48 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 // brush 2
 {
-( 544 384 48 ) ( 544 368 32 ) ( 512 384 8 ) Textures/SwampGoo 0 0 0 1 1
-( 544 384 48 ) ( 512 384 8 ) ( 544 384 24 ) Textures/SwampGoo 0 0 0 1 1
-( 544 384 24 ) ( 512 384 8 ) ( 544 368 32 ) Textures/SwampGoo 0 0 0 1 1
-( 544 384 48 ) ( 544 384 24 ) ( 544 368 32 ) Textures/SwampGoo 0 0 0 1 1
+( 544 384 48 ) ( 544 368 32 ) ( 512 384 8 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 544 384 48 ) ( 512 384 8 ) ( 544 384 24 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 544 384 24 ) ( 512 384 8 ) ( 544 368 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 544 384 48 ) ( 544 384 24 ) ( 544 368 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 // brush 3
 {
-( 544 384 48 ) ( 544 368 32 ) ( 544 384 32 ) Textures/SwampGoo 0 0 0 1 1
-( 688 384 48 ) ( 544 368 32 ) ( 544 384 48 ) Textures/SwampGoo 0 0 0 1 1
-( 688 384 32 ) ( 544 368 32 ) ( 688 368 32 ) Textures/SwampGoo 0 0 0 1 1
-( 688 384 48 ) ( 544 384 32 ) ( 688 384 32 ) Textures/SwampGoo 0 0 0 1 1
-( 688 384 48 ) ( 688 384 32 ) ( 688 368 32 ) Textures/SwampGoo 0 0 0 1 1
+( 544 384 48 ) ( 544 368 32 ) ( 544 384 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 688 384 48 ) ( 544 368 32 ) ( 544 384 48 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 688 384 32 ) ( 544 368 32 ) ( 688 368 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 688 384 48 ) ( 544 384 32 ) ( 688 384 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 688 384 48 ) ( 688 384 32 ) ( 688 368 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
 // entity 16
@@ -1016,20 +1016,20 @@
 "classname" "wall_no_collision"
 // brush 0
 {
-( 592 1440 432 ) ( 592 1472 0 ) ( 592 1472 432 ) Textures/SwampGoo 0 0 0 1 1
-( 704 1448 432 ) ( 592 1448 0 ) ( 592 1448 432 ) Textures/SwampGoo 0 0 0 1 1
-( 704 1472 0 ) ( 592 1440 0 ) ( 704 1440 0 ) Textures/SwampGoo 0 0 0 1 1
-( 704 1472 448 ) ( 592 1440 448 ) ( 592 1472 448 ) Textures/SwampGoo 0 0 0 1 1
-( 704 1472 432 ) ( 592 1472 0 ) ( 704 1472 0 ) Textures/SwampGoo 0 0 0 1 1
-( 704 1472 432 ) ( 704 1440 0 ) ( 704 1440 432 ) Textures/SwampGoo 0 0 0 1 1
+( 592 1440 432 ) ( 592 1472 0 ) ( 592 1472 432 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 704 1448 432 ) ( 592 1448 0 ) ( 592 1448 432 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 704 1472 0 ) ( 592 1440 0 ) ( 704 1440 0 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 704 1472 448 ) ( 592 1440 448 ) ( 592 1472 448 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 704 1472 432 ) ( 592 1472 0 ) ( 704 1472 0 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 704 1472 432 ) ( 704 1440 0 ) ( 704 1440 432 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 // brush 1
 {
-( 592 1472 472 ) ( 592 1448 448 ) ( 592 1472 448 ) Textures/SwampGoo 0 0 0 1 1
-( 704 1472 472 ) ( 592 1448 448 ) ( 592 1472 472 ) Textures/SwampGoo 0 0 0 1 1
-( 704 1472 448 ) ( 592 1448 448 ) ( 704 1448 448 ) Textures/SwampGoo 0 0 0 1 1
-( 704 1472 472 ) ( 592 1472 448 ) ( 704 1472 448 ) Textures/SwampGoo 0 0 0 1 1
-( 704 1472 472 ) ( 704 1472 448 ) ( 704 1448 448 ) Textures/SwampGoo 0 0 0 1 1
+( 592 1472 472 ) ( 592 1448 448 ) ( 592 1472 448 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 704 1472 472 ) ( 592 1448 448 ) ( 592 1472 472 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 704 1472 448 ) ( 592 1448 448 ) ( 704 1448 448 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 704 1472 472 ) ( 592 1472 448 ) ( 704 1472 448 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 704 1472 472 ) ( 704 1472 448 ) ( 704 1448 448 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 // brush 2
 {
