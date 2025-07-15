@@ -47,12 +47,13 @@ offsets = PackedFloat32Array(0, 0.969466, 1)
 colors = PackedColorArray(0.0481279, 0.157862, 0.148856, 1, 0.231915, 0.517811, 0.493967, 1, 0.883416, 0.974862, 0.963785, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mhd6h"]
+offset = Vector3(9, 0, 0)
 domain_warp_enabled = true
 domain_warp_type = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ehvcr"]
 width = 64
-height = 64
+height = 32
 seamless = true
 seamless_blend_skirt = 0.6
 color_ramp = SubResource("Gradient_q56l5")
