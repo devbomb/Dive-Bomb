@@ -40,3 +40,11 @@ light_energy = 0.448
 
 [node name="WaterfallSplashParticles" parent="." instance=ExtResource("2_37qkj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.7668, 1.60317, 40.7665)
+
+[node name="WaterfallSplashParticles2" parent="." instance=ExtResource("2_37qkj")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 100.834, 12.5526, 53.7883)
+amount = 25
+
+[node name="WaterfallSplashParticles3" parent="." instance=ExtResource("2_37qkj")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 111.65, 12.5526, 53.7883)
+amount = 25
