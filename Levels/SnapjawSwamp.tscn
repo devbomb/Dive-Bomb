@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=6 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://TrenchbroomMaps/SnapjawSwamp.map" id="1_e4jik"]
+[ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="2_37qkj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
 sky_top_color = Color(0, 0.777333, 0.88, 1)
@@ -23,36 +24,6 @@ volumetric_fog_albedo = Color(0.699653, 0.699653, 0.699653, 1)
 volumetric_fog_emission = Color(0, 0.286312, 1.44392e-07, 1)
 volumetric_fog_temporal_reprojection_enabled = false
 
-[sub_resource type="Gradient" id="Gradient_ribmb"]
-offsets = PackedFloat32Array(0, 0.70935)
-colors = PackedColorArray(0, 0.176, 0.22, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_y5wxh"]
-gradient = SubResource("Gradient_ribmb")
-
-[sub_resource type="Curve" id="Curve_ribmb"]
-_limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.123552, 0.945442), 1.61139, 1.61139, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_y5wxh"]
-curve = SubResource("Curve_ribmb")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_37qkj"]
-emission_shape = 3
-emission_box_extents = Vector3(2, 1, 4)
-gravity = Vector3(0, 0, 0)
-scale_max = 1.2
-scale_curve = SubResource("CurveTexture_y5wxh")
-color_ramp = SubResource("GradientTexture1D_y5wxh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsapv"]
-shading_mode = 0
-vertex_color_use_as_albedo = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_oy4oy"]
-material = SubResource("StandardMaterial3D_rsapv")
-
 [node name="SnapjawTesting" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -67,9 +38,5 @@ transform = Transform3D(1, 0, 0, 0, 0.748389, 0.66326, 0, -0.66326, 0.748389, 0,
 transform = Transform3D(1, 0, 0, 0, -0.977743, 0.209806, 0, -0.209806, -0.977743, 0, 0, 0)
 light_energy = 0.448
 
-[node name="WaterfallSplashParticles" type="GPUParticles3D" parent="."]
+[node name="WaterfallSplashParticles" parent="." instance=ExtResource("2_37qkj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.7668, 1.60317, 40.7665)
-amount = 50
-transform_align = 1
-process_material = SubResource("ParticleProcessMaterial_37qkj")
-draw_pass_1 = SubResource("QuadMesh_oy4oy")
