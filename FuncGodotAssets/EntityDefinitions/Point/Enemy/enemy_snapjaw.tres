@@ -16,7 +16,9 @@ base_classes = Array[Resource]([ExtResource("1_yp1rd")])
 class_properties = {
 "CycleId": "",
 "CycleOffset": 0.0,
+"FallDuration": 0.5,
 "FallbackAggroRadius": 4.0,
+"HoverDuration": 0.5,
 "PeekDuration": 1.0
 }
 class_property_descriptions = {

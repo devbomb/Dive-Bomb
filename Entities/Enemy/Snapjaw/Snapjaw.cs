@@ -9,6 +9,8 @@ namespace FastDragon
         [Export] public string CycleId = null;
         [Export] public double CycleOffset;
         [Export] public double PeekDuration = 1;
+        [Export] public double HoverDuration = 0.5;
+        [Export] public double FallDuration = 0.5;
         [Export] public float FallbackAggroRadius = 4;
 
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
@@ -222,13 +224,11 @@ namespace FastDragon
 
         private class Hovering : State<Snapjaw>
         {
-            private const double Duration = 0.5;
-
             private double _timer;
 
             public override void OnStateEntered()
             {
-                _timer = Duration;
+                _timer = Self.HoverDuration;
                 Self.GlobalPosition = Self._targetPos;
             }
 
