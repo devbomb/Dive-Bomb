@@ -6,12 +6,16 @@ namespace FastDragon
     public partial class Snapjaw : Node3D, IGemContainer
     {
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
+
         [Export] public string CycleId = null;
         [Export] public double CycleOffset;
+        [Export] public float FallbackAggroRadius = 4;
+
+        [Export] public float PeekHeight = 1;
+
         [Export] public double PeekDuration = 1;
         [Export] public double HoverDuration = 0.5;
         [Export] public double FallDuration = 0.5;
-        [Export] public float FallbackAggroRadius = 4;
 
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
         private Area3D _fallbackAggroTrigger => GetNode<Area3D>("%FallbackAggroTrigger");
@@ -52,7 +56,8 @@ namespace FastDragon
             _floorDetector.Enabled = false;
 
             _floorNormal = _floorDetector.GetCollisionNormal();
-            _floorPos = _floorDetector.GetCollisionPoint() + _floorNormal;
+            _floorPos = _floorDetector.GetCollisionPoint();
+            _floorPos += _floorNormal * PeekHeight;
 
             // Make the fallback aggro trigger tall enough to reach the ground
             float height = _floorDetector.GlobalPosition.DistanceTo(_floorPos);

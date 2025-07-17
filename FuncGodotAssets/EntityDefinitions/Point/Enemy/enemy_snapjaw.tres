@@ -19,12 +19,14 @@ class_properties = {
 "FallDuration": 0.5,
 "FallbackAggroRadius": 4.0,
 "HoverDuration": 0.5,
-"PeekDuration": 1.0
+"PeekDuration": 1.0,
+"PeekHeight": 1.0
 }
 class_property_descriptions = {
 "CycleId": "The enemy's attack pattern does not start until the CycleStartedsignal is fired with this parameter.  Set to an empty string if youwant it to start as soon as the level is loaded.",
 "CycleOffset": "How long to delay before starting the attack pattern after the cycle starts",
-"FallbackAggroRadius": "The enemy's attack pattern will also start if the player gets within this radius (in case they somehow skipped the cycle trigger)"
+"FallbackAggroRadius": "The enemy's attack pattern will also start if the player gets within this radius (in case they somehow skipped the cycle trigger)",
+"PeekHeight": "How far above the ground the snapjaw's resting position is.  Tune this so his eyes just barely peek out of the water"
 }
 auto_apply_to_matching_node_properties = true
 meta_properties = {
