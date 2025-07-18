@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=5 format=3 uid="uid://dlbx0gh1n3j8n"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=6 format=3 uid="uid://dlbx0gh1n3j8n"]
 
 [ext_resource type="Resource" uid="uid://d1mt13b22xulu" path="res://FuncGodotAssets/EntityDefinitions/Solid/Hazard/0_HazardFGD.tres" id="1_6apyq"]
 [ext_resource type="Resource" uid="uid://ojky55i8ybpd" path="res://FuncGodotAssets/EntityDefinitions/Solid/Trigger/0_TriggerFGD.tres" id="2_kp26b"]
 [ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="2_oah72"]
 [ext_resource type="Resource" uid="uid://cscoq8fu2oy7p" path="res://FuncGodotAssets/EntityDefinitions/Solid/Wall/0_WallFGD.tres" id="3_kp26b"]
+[ext_resource type="Resource" uid="uid://dxghsjw0cvqws" path="res://FuncGodotAssets/EntityDefinitions/Solid/Reference/0_ReferenceFGD.tres" id="4_ivubl"]
 
 [resource]
 script = ExtResource("2_oah72")
 export_file = false
 target_map_editor = 1
 fgd_name = "Solid"
-base_fgd_files = Array[Resource]([ExtResource("1_6apyq"), ExtResource("2_kp26b"), ExtResource("3_kp26b")])
+base_fgd_files = Array[Resource]([ExtResource("1_6apyq"), ExtResource("2_kp26b"), ExtResource("3_kp26b"), ExtResource("4_ivubl")])
 entity_definitions = Array[Resource]([])
 metadata/_custom_type_script = "uid://vm1fvi5045um"
