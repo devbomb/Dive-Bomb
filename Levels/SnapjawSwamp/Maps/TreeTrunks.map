@@ -326,3 +326,16 @@
 "angle" "110"
 "_tb_group" "7"
 }
+// entity 18
+{
+"classname" "reference_placeholder"
+// brush 0
+{
+( -784 128 -64 ) ( -784 256 -96 ) ( -784 256 -64 ) Textures/SwampGoo 0 0 0 1 1
+( -1200 -128 -64 ) ( -1264 -128 -96 ) ( -1264 -128 -64 ) Textures/SwampGoo 0 0 0 1 1
+( -1200 256 -88 ) ( -1264 128 -88 ) ( -1200 128 -88 ) Textures/SwampGoo 0 0 0 1 1
+( -1200 256 -72 ) ( -1264 128 -72 ) ( -1264 256 -72 ) Textures/SwampGoo 0 0 0 1 1
+( -1200 1360 -64 ) ( -1264 1360 -96 ) ( -1200 1360 -96 ) Textures/SwampGoo 0 0 0 1 1
+( 592 256 -64 ) ( 592 128 -96 ) ( 592 128 -64 ) Textures/SwampGoo 0 0 0 1 1
+}
+}

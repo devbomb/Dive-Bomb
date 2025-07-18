@@ -1451,3 +1451,16 @@
 ( 240 48 560 ) ( 240 -80 528 ) ( 240 -80 560 ) Textures/Grate 0 0 0 1 1
 }
 }
+// entity 39
+{
+"classname" "reference_placeholder"
+// brush 0
+{
+( -520 -176 64 ) ( -520 -48 32 ) ( -520 -48 64 ) Textures/SwampGoo 0 0 0 1 1
+( -1104 -552 64 ) ( -1168 -552 32 ) ( -1168 -552 64 ) Textures/SwampGoo 0 0 0 1 1
+( -1104 -48 40 ) ( -1168 -176 40 ) ( -1104 -176 40 ) Textures/SwampGoo 0 0 0 1 1
+( -1104 -48 56 ) ( -1168 -176 56 ) ( -1168 -48 56 ) Textures/SwampGoo 0 0 0 1 1
+( -1104 744 64 ) ( -1168 744 32 ) ( -1104 744 32 ) Textures/SwampGoo 0 0 0 1 1
+( 656 -48 64 ) ( 656 -176 32 ) ( 656 -176 64 ) Textures/SwampGoo 0 0 0 1 1
+}
+}
