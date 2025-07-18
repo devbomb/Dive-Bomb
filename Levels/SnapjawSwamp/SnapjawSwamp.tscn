@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
-[ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://Levels/SnapjawSwamp/Maps/SnapjawSwamp.map" id="2_oad5x"]
+[ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://Levels/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="4_e7jdb"]
 
@@ -27,12 +27,12 @@ volumetric_fog_albedo = Color(0.699653, 0.699653, 0.699653, 1)
 volumetric_fog_emission = Color(0, 0.286312, 1.44392e-07, 1)
 volumetric_fog_temporal_reprojection_enabled = false
 
-[node name="SnapjawTesting" type="Node3D"]
+[node name="SnapjawSwamp" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_37qkj")
 
-[node name="SnapjawTesting" parent="." instance=ExtResource("2_oad5x")]
+[node name="Intro" parent="." instance=ExtResource("2_oad5x")]
 
 [node name="TreeTrunks" parent="." instance=ExtResource("1_oad5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 5, 0)
