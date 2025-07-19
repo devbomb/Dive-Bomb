@@ -590,3 +590,10 @@
 ( 592 256 -64 ) ( 592 128 -96 ) ( 592 128 -64 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
+// entity 24
+{
+"classname" "transport_checkpoint"
+"origin" "376 664 432"
+"angle" "135"
+"CheckpointName" "TreeTops"
+}
