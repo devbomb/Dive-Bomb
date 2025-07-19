@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=8 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://Levels/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
-[ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="4_e7jdb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
 sky_top_color = Color(0, 0.777333, 0.88, 1)
@@ -57,10 +56,3 @@ transform = Transform3D(1, 0, 0, 0, 0.748389, 0.66326, 0, -0.66326, 0.748389, 0,
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalLight3D"]
 transform = Transform3D(1, 0, 0, 0, -0.977743, 0.209806, 0, -0.209806, -0.977743, 0, 0, 0)
 light_energy = 0.448
-
-[node name="MeshLabel3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.7515, 34.6787, 20.403)
-script = ExtResource("4_e7jdb")
-Text = "That's everything so far."
-FontSize = 44
-metadata/_custom_type_script = "uid://gemyx0pb1hj5"
