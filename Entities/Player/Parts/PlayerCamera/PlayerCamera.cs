@@ -47,7 +47,7 @@ namespace FastDragon
         public override void _Ready()
         {
             AddChild(_stateMachine);
-            _stateMachine.ChangeState<Unlocked>();
+            _stateMachine.ChangeState<Following>();
 
             _raycast.AddException(GetParent<Player>());
         }
@@ -60,10 +60,10 @@ namespace FastDragon
             _shakeTimer = 0;
             _shakeDuration = 0;
 
-            OrbitDistance = Unlocked.FollowDistance;
+            OrbitDistance = Following.FollowDistance;
             ForceRecenter();
 
-            _stateMachine.ChangeState<Unlocked>();
+            _stateMachine.ChangeState<Following>();
         }
 
         public override void _Process(double deltaD)
@@ -146,22 +146,17 @@ namespace FastDragon
             _stateMachine.ChangeState<SuggestingAngle>();
         }
 
-        public void StopSuggestingAngle()
+        public void StartFollowing(float transitionDuration = 0)
         {
-            _stateMachine.ChangeState<Unlocked>();
+            // HACK: Reuse the lag code to make it smoothly return to normal
+            Lag(transitionDuration);
+            _stateMachine.ChangeState<Following>();
         }
 
         public void FixPosition(Transform3D position)
         {
             _fixedPosition = position;
             _stateMachine.ChangeState<UsingFixedPosition>();
-        }
-
-        public void StopFixingPosition()
-        {
-            // HACK: Reuse the lag code to make it smoothly return to normal
-            Lag(1);
-            _stateMachine.ChangeState<Unlocked>();
         }
 
         public void Recenter()
@@ -202,7 +197,7 @@ namespace FastDragon
             }
         }
 
-        private class Unlocked : State<PlayerCamera>
+        private class Following : State<PlayerCamera>
         {
             public const float FollowDistance = 6;
             public const float ZoomSpeed = 4;
@@ -345,7 +340,7 @@ namespace FastDragon
 
                 // ...unless the player has their OWN idea for a camera angle.
                 if (InputService.RightStick.Length() > 0.01f)
-                    ChangeState<Unlocked>();
+                    ChangeState<Following>();
             }
         }
 
@@ -408,7 +403,7 @@ namespace FastDragon
                 if (_timer > Duration)
                 {
                     Self.ForceRecenter();
-                    ChangeState<Unlocked>();
+                    ChangeState<Following>();
                     return;
                 }
 

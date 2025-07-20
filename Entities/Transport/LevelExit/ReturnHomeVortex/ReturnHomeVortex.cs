@@ -82,7 +82,7 @@ namespace FastDragon
             p.ChangeState<PlayerManhandledState>();
             p.Animator.Play("Glide");
 
-            GetTree().FindNode<PlayerCamera>().StopFixingPosition();
+            GetTree().FindNode<PlayerCamera>().StartFollowing(1);
 
             SignalBus.Instance.EmitExitReached();
         }

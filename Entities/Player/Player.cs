@@ -202,7 +202,7 @@ namespace FastDragon
 
                 Camera.OrbitYawRad = LastSafeGround.CameraYawRad;
                 Camera.OrbitPitchRad = LastSafeGround.CameraPitchRad;
-                Camera.StopSuggestingAngle();
+                Camera.StartFollowing();
                 Camera.ResetPhysicsInterpolation3D();
             }
         }
