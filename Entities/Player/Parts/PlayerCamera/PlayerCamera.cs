@@ -22,6 +22,16 @@ namespace FastDragon
 
         public float OrbitPitchRad { get; set; }
 
+        /// <summary>
+        /// The global position that the camera will assume while it's being
+        /// manhandled (see <see cref="StartManhandling"/>).
+        ///
+        /// Modify this instead of <see cref="GlobalTransform"/> to ensure
+        /// transitions into and out of the manhandled state remain smooth.
+        /// </summary>
+        public Transform3D ManhandledPosition;
+        private float _manhandledTransitionDuration;
+
         private Camera3D _camera => GetNode<Camera3D>("%Camera");
         private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast");
 
@@ -41,9 +51,6 @@ namespace FastDragon
         private float _lagTimer;
         private float _lagDuration;
         private Transform3D _lagPosition;
-
-        private float _manhandledTransitionDuration;
-        private Transform3D _manhandledPosition;
 
         public override void _Ready()
         {
@@ -156,7 +163,7 @@ namespace FastDragon
 
         public void StartManhandling(Transform3D position, float transitionDuration = 0)
         {
-            _manhandledPosition = position;
+            ManhandledPosition = position;
             _manhandledTransitionDuration = 1;
             _stateMachine.ChangeState<Manhandled>();
         }
@@ -371,7 +378,7 @@ namespace FastDragon
                 float t = _timer / Self._manhandledTransitionDuration;
 
                 Self.GlobalTransform = _initialPos.InterpolateWith(
-                    Self._manhandledPosition,
+                    Self.ManhandledPosition,
                     MathUtils.LerpSinusoidal(0, 1, t)
                 );
             }
