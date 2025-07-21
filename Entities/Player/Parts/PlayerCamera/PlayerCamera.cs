@@ -42,6 +42,7 @@ namespace FastDragon
         private float _lagDuration;
         private Transform3D _lagPosition;
 
+        private float _manhandledTransitionDuration;
         private Transform3D _manhandledPosition;
 
         public override void _Ready()
@@ -153,10 +154,16 @@ namespace FastDragon
             _stateMachine.ChangeState<Following>();
         }
 
-        public void FixPosition(Transform3D position)
+        public void StartManhandling(Transform3D position, float transitionDuration = 0)
         {
             _manhandledPosition = position;
+            _manhandledTransitionDuration = 1;
             _stateMachine.ChangeState<Manhandled>();
+        }
+
+        public void FixPosition(Transform3D position)
+        {
+            StartManhandling(position, 1);
         }
 
         public void Recenter()
@@ -346,8 +353,6 @@ namespace FastDragon
 
         private class Manhandled : State<PlayerCamera>
         {
-            private const float TransitionDuration = 1;
-
             private Transform3D _initialPos;
             private float _timer;
 
@@ -360,10 +365,10 @@ namespace FastDragon
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
-                if (_timer > TransitionDuration)
-                    _timer = TransitionDuration;
+                if (_timer > Self._manhandledTransitionDuration)
+                    _timer = Self._manhandledTransitionDuration;
 
-                float t = _timer / TransitionDuration;
+                float t = _timer / Self._manhandledTransitionDuration;
 
                 Self.GlobalTransform = _initialPos.InterpolateWith(
                     Self._manhandledPosition,
