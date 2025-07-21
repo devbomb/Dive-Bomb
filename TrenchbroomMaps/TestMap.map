@@ -248,7 +248,7 @@
 "classname" "transport_standard_portal"
 "origin" "88 220 -64"
 "angles" "0 -90 0"
-"TargetMap" "res://Levels/SeamonsterBossMap.tscn"
+"TargetMap" "res://Levels/SeamonsterBossMap/SeamonsterBossMap.tscn"
 "SkyboxEnvironment" "res://Environments/StormClouds.tres"
 "Text" "Kracken Boss"
 }

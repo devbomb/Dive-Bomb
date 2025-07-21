@@ -195,14 +195,14 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             ChangeState<PlayerStandState>();
 
-            if (!Camera.IsUsingFixedPosition)
+            if (!Camera.IsBeingManhandled)
             {
                 CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
                 CameraFocus.ResetPhysicsInterpolation3D();
 
                 Camera.OrbitYawRad = LastSafeGround.CameraYawRad;
                 Camera.OrbitPitchRad = LastSafeGround.CameraPitchRad;
-                Camera.StopSuggestingAngle();
+                Camera.StartFollowing();
                 Camera.ResetPhysicsInterpolation3D();
             }
         }

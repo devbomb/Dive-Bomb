@@ -12,7 +12,7 @@ namespace FastDragon
         [Export] public bool AllowAutoRotate { get; set; }
         public bool DisableInput { get; set; }
 
-        public bool IsUsingFixedPosition => _stateMachine.CurrentState is UsingFixedPosition;
+        public bool IsBeingManhandled => _stateMachine.CurrentState is Manhandled;
 
         public Node3D TimeTrialFairyRescuePos => GetNode<Node3D>("%TimeTrialFairyRescuePos");
 
@@ -21,6 +21,16 @@ namespace FastDragon
         public float OrbitYawRad { get; set; }
 
         public float OrbitPitchRad { get; set; }
+
+        /// <summary>
+        /// The global position that the camera will assume while it's being
+        /// manhandled (see <see cref="StartManhandling"/>).
+        ///
+        /// Modify this instead of <see cref="GlobalTransform"/> to ensure
+        /// transitions into and out of the manhandled state remain smooth.
+        /// </summary>
+        public Transform3D ManhandledPosition;
+        private float _manhandledTransitionDuration;
 
         private Camera3D _camera => GetNode<Camera3D>("%Camera");
         private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast");
@@ -42,12 +52,10 @@ namespace FastDragon
         private float _lagDuration;
         private Transform3D _lagPosition;
 
-        private Transform3D _fixedPosition;
-
         public override void _Ready()
         {
             AddChild(_stateMachine);
-            _stateMachine.ChangeState<Unlocked>();
+            _stateMachine.ChangeState<Following>();
 
             _raycast.AddException(GetParent<Player>());
         }
@@ -60,10 +68,10 @@ namespace FastDragon
             _shakeTimer = 0;
             _shakeDuration = 0;
 
-            OrbitDistance = Unlocked.FollowDistance;
+            OrbitDistance = Following.FollowDistance;
             ForceRecenter();
 
-            _stateMachine.ChangeState<Unlocked>();
+            _stateMachine.ChangeState<Following>();
         }
 
         public override void _Process(double deltaD)
@@ -146,22 +154,23 @@ namespace FastDragon
             _stateMachine.ChangeState<SuggestingAngle>();
         }
 
-        public void StopSuggestingAngle()
+        public void StartFollowing(float transitionDuration = 0)
         {
-            _stateMachine.ChangeState<Unlocked>();
+            // HACK: Reuse the lag code to make it smoothly return to normal
+            Lag(transitionDuration);
+            _stateMachine.ChangeState<Following>();
+        }
+
+        public void StartManhandling(Transform3D position, float transitionDuration = 0)
+        {
+            ManhandledPosition = position;
+            _manhandledTransitionDuration = 1;
+            _stateMachine.ChangeState<Manhandled>();
         }
 
         public void FixPosition(Transform3D position)
         {
-            _fixedPosition = position;
-            _stateMachine.ChangeState<UsingFixedPosition>();
-        }
-
-        public void StopFixingPosition()
-        {
-            // HACK: Reuse the lag code to make it smoothly return to normal
-            Lag(1);
-            _stateMachine.ChangeState<Unlocked>();
+            StartManhandling(position, 1);
         }
 
         public void Recenter()
@@ -202,7 +211,7 @@ namespace FastDragon
             }
         }
 
-        private class Unlocked : State<PlayerCamera>
+        private class Following : State<PlayerCamera>
         {
             public const float FollowDistance = 6;
             public const float ZoomSpeed = 4;
@@ -345,14 +354,12 @@ namespace FastDragon
 
                 // ...unless the player has their OWN idea for a camera angle.
                 if (InputService.RightStick.Length() > 0.01f)
-                    ChangeState<Unlocked>();
+                    ChangeState<Following>();
             }
         }
 
-        private class UsingFixedPosition : State<PlayerCamera>
+        private class Manhandled : State<PlayerCamera>
         {
-            private const float TransitionDuration = 1;
-
             private Transform3D _initialPos;
             private float _timer;
 
@@ -365,13 +372,13 @@ namespace FastDragon
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
-                if (_timer > TransitionDuration)
-                    _timer = TransitionDuration;
+                if (_timer > Self._manhandledTransitionDuration)
+                    _timer = Self._manhandledTransitionDuration;
 
-                float t = _timer / TransitionDuration;
+                float t = _timer / Self._manhandledTransitionDuration;
 
                 Self.GlobalTransform = _initialPos.InterpolateWith(
-                    Self._fixedPosition,
+                    Self.ManhandledPosition,
                     MathUtils.LerpSinusoidal(0, 1, t)
                 );
             }
@@ -408,7 +415,7 @@ namespace FastDragon
                 if (_timer > Duration)
                 {
                     Self.ForceRecenter();
-                    ChangeState<Unlocked>();
+                    ChangeState<Following>();
                     return;
                 }
 

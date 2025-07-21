@@ -30,7 +30,7 @@ namespace FastDragon
         {
             if (body is Player player)
             {
-                player.Camera.StopSuggestingAngle();
+                player.Camera.StartFollowing();
             }
         }
     }
