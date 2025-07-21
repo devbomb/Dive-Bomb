@@ -12,7 +12,7 @@ namespace FastDragon
         [Export] public bool AllowAutoRotate { get; set; }
         public bool DisableInput { get; set; }
 
-        public bool IsUsingFixedPosition => _stateMachine.CurrentState is UsingFixedPosition;
+        public bool IsBeingManhandled => _stateMachine.CurrentState is Manhandled;
 
         public Node3D TimeTrialFairyRescuePos => GetNode<Node3D>("%TimeTrialFairyRescuePos");
 
@@ -42,7 +42,7 @@ namespace FastDragon
         private float _lagDuration;
         private Transform3D _lagPosition;
 
-        private Transform3D _fixedPosition;
+        private Transform3D _manhandledPosition;
 
         public override void _Ready()
         {
@@ -155,8 +155,8 @@ namespace FastDragon
 
         public void FixPosition(Transform3D position)
         {
-            _fixedPosition = position;
-            _stateMachine.ChangeState<UsingFixedPosition>();
+            _manhandledPosition = position;
+            _stateMachine.ChangeState<Manhandled>();
         }
 
         public void Recenter()
@@ -344,7 +344,7 @@ namespace FastDragon
             }
         }
 
-        private class UsingFixedPosition : State<PlayerCamera>
+        private class Manhandled : State<PlayerCamera>
         {
             private const float TransitionDuration = 1;
 
@@ -366,7 +366,7 @@ namespace FastDragon
                 float t = _timer / TransitionDuration;
 
                 Self.GlobalTransform = _initialPos.InterpolateWith(
-                    Self._fixedPosition,
+                    Self._manhandledPosition,
                     MathUtils.LerpSinusoidal(0, 1, t)
                 );
             }

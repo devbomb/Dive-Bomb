@@ -195,7 +195,7 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             ChangeState<PlayerStandState>();
 
-            if (!Camera.IsUsingFixedPosition)
+            if (!Camera.IsBeingManhandled)
             {
                 CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
                 CameraFocus.ResetPhysicsInterpolation3D();
