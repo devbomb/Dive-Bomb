@@ -164,7 +164,7 @@ namespace FastDragon
         public void StartManhandling(Transform3D position, float transitionDuration = 0)
         {
             ManhandledPosition = position;
-            _manhandledTransitionDuration = 1;
+            _manhandledTransitionDuration = transitionDuration;
             _stateMachine.ChangeState<Manhandled>();
         }
 
