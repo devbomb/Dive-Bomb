@@ -1,0 +1,37 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dsmqjue10knjl"]
+
+[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/BigBricks.png" id="1_784vs"]
+
+[sub_resource type="Shader" id="Shader_skod2"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+
+const float displacement_strength = 0.1;
+const vec2 displacement_frequency = 5.0 * vec2(1.0, 1.0);
+
+vec2 displacement_noise(vec2 uv)
+{
+	return vec2(cos(uv.x), sin(uv.y));
+}
+
+void fragment() 
+{
+	vec2 base_uv = UV;
+	base_uv += displacement_strength * displacement_noise(base_uv * displacement_frequency);
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+}"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_skod2")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("1_784vs")
+shader_parameter/albedo_texture_size = Vector2i(32, 64)
