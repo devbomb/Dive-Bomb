@@ -7,8 +7,8 @@
 [ext_resource type="Material" uid="uid://wlu2q001eekk" path="res://Materials/SwampGoo.tres" id="13_ey5st"]
 [ext_resource type="Texture2D" uid="uid://di3trk4gw4f61" path="res://Textures/Textures/SwampGooWaterfall.png" id="14_4lelr"]
 [ext_resource type="Material" uid="uid://b5a214apdag3m" path="res://Materials/SwampGooWaterfall.tres" id="15_m2ou7"]
-[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/BigBricks.png" id="16_fwc8x"]
-[ext_resource type="Material" uid="uid://dsmqjue10knjl" path="res://Materials/BigBricks.tres" id="17_3cn5e"]
+[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="16_fwc8x"]
+[ext_resource type="Material" uid="uid://dsmqjue10knjl" path="res://Materials/MayanTempleBricks.tres" id="17_3cn5e"]
 
 [resource]
 script = ExtResource("1_4o1u0")

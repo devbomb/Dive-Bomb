@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dsmqjue10knjl"]
 
-[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/BigBricks.png" id="1_784vs"]
+[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="1_784vs"]
 
 [sub_resource type="Shader" id="Shader_skod2"]
 code = "shader_type spatial;
