@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://omge2vyfbm2s"]
 
-[ext_resource type="Environment" uid="uid://c0q1voerd055g" path="res://Environments/DryCanyonSky.tres" id="2_7dedk"]
-[ext_resource type="PackedScene" uid="uid://dmq02rkuu7422" path="res://TrenchbroomMaps/DryCanyon.map" id="2_wahdv"]
+[ext_resource type="Environment" uid="uid://c0q1voerd055g" path="res://Levels/PlagiarismCanyon/Skybox.tres" id="2_7dedk"]
+[ext_resource type="PackedScene" uid="uid://dmq02rkuu7422" path="res://Levels/PlagiarismCanyon/Maps/PlagiarismCanyon.map" id="2_wahdv"]
 
 [node name="DryCanyon" type="Node3D"]
 

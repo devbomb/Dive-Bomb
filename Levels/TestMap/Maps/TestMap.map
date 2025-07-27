@@ -308,8 +308,8 @@
 "classname" "transport_standard_portal"
 "origin" "-308 -52 -64"
 "angles" "0 0 0"
-"TargetMap" "res://Levels/DryCanyon.tscn"
-"SkyboxEnvironment" "res://Environments/DryCanyonSky.tres"
+"TargetMap" "res://Levels/PlagiarismCanyon/PlagiarismCanyon.tscn"
+"SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
 "Text" "Plagiarism Canyon"
 }
 // entity 31
