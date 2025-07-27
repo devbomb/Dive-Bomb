@@ -24,6 +24,8 @@ noise = SubResource("FastNoiseLite_i0hs5")
 transparency = 1
 albedo_texture = SubResource("NoiseTexture2D_ihamb")
 uv1_scale = Vector3(0.013, 0.013, 0.013)
+distance_fade_mode = 1
+distance_fade_min_distance = 100.0
 
 [sub_resource type="Shader" id="Shader_skod2"]
 code = "shader_type spatial;
