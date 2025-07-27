@@ -1,6 +1,6 @@
 [gd_resource type="Environment" load_steps=5 format=3 uid="uid://ddi5qgg5b3fmy"]
 
-[ext_resource type="Texture2D" uid="uid://cnas38j11xxs3" path="res://Environments/BrokenGlassFactorySky.png" id="1_oee7l"]
+[ext_resource type="Texture2D" uid="uid://cnas38j11xxs3" path="res://Levels/BrokenGlassFactory/BrokenGlassFactorySky.png" id="1_oee7l"]
 
 [sub_resource type="Shader" id="Shader_oee7l"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.4.stable.mono's ProceduralSkyMaterial.

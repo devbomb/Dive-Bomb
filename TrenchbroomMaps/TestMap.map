@@ -257,8 +257,8 @@
 "classname" "transport_standard_portal"
 "origin" "588 -88 -64"
 "angles" "0 180 0"
-"TargetMap" "res://Levels/BrokenGlassFactory.tscn"
-"SkyboxEnvironment" "res://Environments/BrokenGlassFactory.tres"
+"TargetMap" "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
+"SkyboxEnvironment" "res://Levels/BrokenGlassFactory/Skybox.tres"
 "Text" "Broken Glass Factory"
 }
 // entity 24

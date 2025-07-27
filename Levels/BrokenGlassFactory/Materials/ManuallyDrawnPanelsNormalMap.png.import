@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl12en3jq6cup"
-path.s3tc="res://.godot/imported/BigMetalSquaresNormalMap.png-90c96e606006cb72886d972f5a97bbcf.s3tc.ctex"
+uid="uid://by616n1su1xp7"
+path="res://.godot/imported/ManuallyDrawnPanelsNormalMap.png-53d0a22492b574c3461b3bae8d6f893b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Materials/BigMetalSquaresNormalMap.png"
-dest_files=["res://.godot/imported/BigMetalSquaresNormalMap.png-90c96e606006cb72886d972f5a97bbcf.s3tc.ctex"]
+source_file="res://Levels/BrokenGlassFactory/Materials/ManuallyDrawnPanelsNormalMap.png"
+dest_files=["res://.godot/imported/ManuallyDrawnPanelsNormalMap.png-53d0a22492b574c3461b3bae8d6f893b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -25,7 +24,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://Materials/BigMetalSquaresNormalMap.png"
+roughness/src_normal="res://Materials/ManuallyDrawnPanelsNormalMap.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
