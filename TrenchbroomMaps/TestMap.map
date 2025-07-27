@@ -287,8 +287,8 @@
 "classname" "transport_standard_portal"
 "origin" "120 -468 -64"
 "angles" "0 90 0"
-"TargetMap" "res://Levels/Castle.tscn"
-"SkyboxEnvironment" "res://Environments/Castle.tres"
+"TargetMap" "res://Levels/SunsetCastle/SunsetCastle.tscn"
+"SkyboxEnvironment" "res://Levels/SunsetCastle/Skybox.tres"
 "Text" "Sunset Castle"
 }
 // entity 28
