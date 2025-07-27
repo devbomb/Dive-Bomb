@@ -14,6 +14,7 @@
 
 [resource]
 script = ExtResource("1_4o1u0")
+inherited_material_maps = Array[ExtResource("1_4o1u0")]([])
 texture_to_material = Dictionary[Texture2D, Material]({
 ExtResource("4_4qu2l"): ExtResource("5_1acbw"),
 ExtResource("6_205iw"): ExtResource("7_sfm7b"),
