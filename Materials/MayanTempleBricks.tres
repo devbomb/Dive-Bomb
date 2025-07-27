@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dsmqjue10knjl"]
 
-[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="1_784vs"]
+[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="1_cep7e"]
 
 [sub_resource type="Shader" id="Shader_skod2"]
 code = "shader_type spatial;
@@ -17,7 +17,7 @@ uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color, filter_nearest_mipmap, repeat_enable;
 uniform ivec2 albedo_texture_size;
 
-const float displacement_strength = 0.1;
+const float displacement_strength = 0.02;
 const vec2 displacement_frequency = vec2(1.0, 2.0);
 
 vec2 nearest_pixel(vec2 uv, float pixel_size)
@@ -30,7 +30,7 @@ vec2 nearest_pixel(vec2 uv, float pixel_size)
 vec2 displacement_noise(vec2 uv)
 {
 	uv *= displacement_frequency;
-	uv = nearest_pixel(uv, 0.2);
+	uv = nearest_pixel(uv, 0.1);
 	return vec2
 	(
 		perlin_noise_2d_seedless(uv),
@@ -51,5 +51,5 @@ void fragment()
 render_priority = 0
 shader = SubResource("Shader_skod2")
 shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/texture_albedo = ExtResource("1_784vs")
-shader_parameter/albedo_texture_size = Vector2i(32, 64)
+shader_parameter/texture_albedo = ExtResource("1_cep7e")
+shader_parameter/albedo_texture_size = Vector2i(32, 32)

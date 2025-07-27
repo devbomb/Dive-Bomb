@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=9 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://Levels/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
+[ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
@@ -32,6 +33,12 @@ volumetric_fog_temporal_reprojection_enabled = false
 environment = SubResource("Environment_37qkj")
 
 [node name="Intro" parent="." instance=ExtResource("2_oad5x")]
+
+[node name="Decal" type="Decal" parent="Intro"]
+transform = Transform3D(-1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, -1, -1, 1, 5)
+texture_albedo = ExtResource("2_uop5j")
+modulate = Color(0.370364, 0.370364, 0.370364, 1)
+cull_mask = 8
 
 [node name="TreeTrunks" parent="." instance=ExtResource("1_oad5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 5, 0)
