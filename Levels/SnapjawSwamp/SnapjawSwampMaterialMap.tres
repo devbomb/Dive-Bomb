@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaterialMap" load_steps=3 format=3 uid="uid://b14jplhtk3wpt"]
+
+[ext_resource type="Script" uid="uid://cb8n0ec7vcom" path="res://addons/FuncGodotMapImporter/MaterialMap.gd" id="1_8uvc8"]
+[ext_resource type="Resource" uid="uid://dgvjaxeitfghe" path="res://TextureMaterialMap.tres" id="2_paysf"]
+
+[resource]
+script = ExtResource("1_8uvc8")
+inherited_material_maps = Array[ExtResource("1_8uvc8")]([ExtResource("2_paysf")])
+texture_to_material = Dictionary[Texture2D, Material]({})
+metadata/_custom_type_script = "uid://cb8n0ec7vcom"
