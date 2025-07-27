@@ -1,10 +1,20 @@
-[gd_resource type="Resource" script_class="MaterialMap" load_steps=3 format=3 uid="uid://b14jplhtk3wpt"]
+[gd_resource type="Resource" script_class="MaterialMap" load_steps=9 format=3 uid="uid://b14jplhtk3wpt"]
 
 [ext_resource type="Script" uid="uid://cb8n0ec7vcom" path="res://addons/FuncGodotMapImporter/MaterialMap.gd" id="1_8uvc8"]
 [ext_resource type="Resource" uid="uid://dgvjaxeitfghe" path="res://TextureMaterialMap.tres" id="2_paysf"]
+[ext_resource type="Texture2D" uid="uid://dx0o2dnef1rvj" path="res://Textures/Textures/SwampGoo.png" id="3_l1nn4"]
+[ext_resource type="Material" uid="uid://wlu2q001eekk" path="res://Levels/SnapjawSwamp/Materials/SwampGoo.tres" id="4_1k7ij"]
+[ext_resource type="Texture2D" uid="uid://di3trk4gw4f61" path="res://Textures/Textures/SwampGooWaterfall.png" id="5_d2gm3"]
+[ext_resource type="Material" uid="uid://b5a214apdag3m" path="res://Levels/SnapjawSwamp/Materials/SwampGooWaterfall.tres" id="6_dvxqn"]
+[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="7_4q6ww"]
+[ext_resource type="Material" uid="uid://dsmqjue10knjl" path="res://Levels/SnapjawSwamp/Materials/MayanTempleBricks.tres" id="8_5lls7"]
 
 [resource]
 script = ExtResource("1_8uvc8")
 inherited_material_maps = Array[ExtResource("1_8uvc8")]([ExtResource("2_paysf")])
-texture_to_material = Dictionary[Texture2D, Material]({})
+texture_to_material = Dictionary[Texture2D, Material]({
+ExtResource("3_l1nn4"): ExtResource("4_1k7ij"),
+ExtResource("5_d2gm3"): ExtResource("6_dvxqn"),
+ExtResource("7_4q6ww"): ExtResource("8_5lls7")
+})
 metadata/_custom_type_script = "uid://cb8n0ec7vcom"
