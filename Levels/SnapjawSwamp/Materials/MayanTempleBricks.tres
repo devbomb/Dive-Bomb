@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://dsmqjue10knjl"]
+[gd_resource type="ShaderMaterial" load_steps=11 format=3 uid="uid://dsmqjue10knjl"]
 
 [ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="1_cep7e"]
 
@@ -20,7 +20,31 @@ seamless = true
 color_ramp = SubResource("Gradient_p8i5c")
 noise = SubResource("FastNoiseLite_i0hs5")
 
+[sub_resource type="Gradient" id="Gradient_i0hs5"]
+offsets = PackedFloat32Array(0.433929, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ihamb"]
+frequency = 0.0352
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uuvia"]
+invert = true
+seamless = true
+color_ramp = SubResource("Gradient_i0hs5")
+noise = SubResource("FastNoiseLite_ihamb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vwng"]
+transparency = 2
+alpha_scissor_threshold = 0.529
+alpha_antialiasing_mode = 0
+albedo_color = Color(2.76752e-06, 0.559168, 5.77569e-07, 1)
+albedo_texture = SubResource("NoiseTexture2D_uuvia")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+distance_fade_mode = 1
+distance_fade_min_distance = 50.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uuvia"]
+next_pass = SubResource("StandardMaterial3D_0vwng")
 transparency = 1
 albedo_texture = SubResource("NoiseTexture2D_ihamb")
 uv1_scale = Vector3(0.013, 0.013, 0.013)
