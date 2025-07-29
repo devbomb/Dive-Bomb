@@ -10,21 +10,21 @@ vec2 random_vec2_2d_seedless(vec2 uv)
 }
 
 // taken from https://godotshaders.com/snippet/2d-noise/
-float perlin_noise_2d_seedless(vec2 uv) 
+float perlin_noise_2d_seedless(vec2 uv)
 {
 	vec2 uv_index = floor(uv);
 	vec2 uv_fract = fract(uv);
-	
+
 	vec2 blur = smoothstep(0.0, 1.0, uv_fract);
-	
+
 	return mix
 	(
 		mix
-		( 
+		(
 			dot
 			(
-				random_vec2_2d_seedless(uv_index + vec2(0.0,0.0)), 
-				uv_fract - vec2(0.0,0.0) 
+				random_vec2_2d_seedless(uv_index + vec2(0.0,0.0)),
+				uv_fract - vec2(0.0,0.0)
 			),
             dot
 			(
