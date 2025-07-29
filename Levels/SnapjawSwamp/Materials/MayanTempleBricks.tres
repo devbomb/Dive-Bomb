@@ -21,15 +21,14 @@ color_ramp = SubResource("Gradient_p8i5c")
 noise = SubResource("FastNoiseLite_i0hs5")
 
 [sub_resource type="Gradient" id="Gradient_i0hs5"]
-offsets = PackedFloat32Array(0.532143, 0.578571, 0.610714)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.525, 0.555357, 0.594643)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ihamb"]
 frequency = 0.0022
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uuvia"]
-invert = true
-in_3d_space = true
 seamless = true
 normalize = false
 color_ramp = SubResource("Gradient_i0hs5")
@@ -51,19 +50,23 @@ invert = true
 in_3d_space = true
 seamless = true
 as_normal_map = true
-bump_strength = 16.3
+bump_strength = 2.7
 color_ramp = SubResource("Gradient_ihamb")
 noise = SubResource("FastNoiseLite_uuvia")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vwng"]
 render_priority = 1
 transparency = 2
-alpha_scissor_threshold = 0.754
+alpha_scissor_threshold = 0.412
 alpha_antialiasing_mode = 0
-albedo_color = Color(2.76752e-06, 0.559168, 5.77569e-07, 1)
+albedo_color = Color(3.11647e-06, 0.508417, 1.92523e-07, 1)
 albedo_texture = SubResource("NoiseTexture2D_uuvia")
-normal_scale = 16.0
+metallic_specular = 1.0
+normal_scale = 0.1
 normal_texture = SubResource("NoiseTexture2D_0vwng")
+rim_enabled = true
+rim = 0.17
+rim_tint = 1.0
 uv1_scale = Vector3(0.1, -0.045, 0.1)
 texture_filter = 2
 distance_fade_min_distance = 60.0
