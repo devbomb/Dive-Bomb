@@ -628,3 +628,23 @@
 "origin" "-24 72 560"
 "GemCost" "1"
 }
+// entity 23
+{
+"classname" "trigger_cylinder_camera_zone"
+"TargetMarkerId" "CylinderCenter"
+// brush 0
+{
+( 0 464 560 ) ( 0 465 560 ) ( 0 464 561 ) Textures/Grate 0 0 0 1 1
+( 48 464 560 ) ( 48 464 561 ) ( 49 464 560 ) Textures/Grate 0 0 0 1 1
+( 48 464 464 ) ( 49 464 464 ) ( 48 465 464 ) Textures/Grate 0 0 0 1 1
+( 288 704 576 ) ( 288 705 576 ) ( 289 704 576 ) Textures/Grate 0 0 0 1 1
+( 288 832 576 ) ( 289 832 576 ) ( 288 832 577 ) Textures/Grate 0 0 0 1 1
+( 288 704 576 ) ( 288 704 577 ) ( 288 705 576 ) Textures/Grate 0 0 0 1 1
+}
+}
+// entity 24
+{
+"classname" "info_named_marker"
+"origin" "136 648 584"
+"MarkerId" "CylinderCenter"
+}
