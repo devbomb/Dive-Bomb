@@ -67,9 +67,9 @@ normal_texture = SubResource("NoiseTexture2D_0vwng")
 rim_enabled = true
 rim = 0.17
 rim_tint = 1.0
-uv1_scale = Vector3(0.1, -0.045, 0.1)
+uv1_scale = Vector3(0.1, 0.1, 0.1)
 texture_filter = 2
-distance_fade_min_distance = 60.0
+distance_fade_min_distance = 20.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uuvia"]
 next_pass = SubResource("StandardMaterial3D_0vwng")
@@ -94,7 +94,7 @@ uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color, filter_nearest_mipmap, repeat_enable;
 uniform ivec2 albedo_texture_size;
 
-const float displacement_strength = 0.02;
+const float displacement_strength = 0.6;
 const vec2 displacement_frequency = vec2(1.0, 2.0);
 
 vec2 nearest_pixel(vec2 uv, float pixel_size)
