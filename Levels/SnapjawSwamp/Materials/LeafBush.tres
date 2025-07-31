@@ -1,0 +1,50 @@
+[gd_resource type="SphereMesh" load_steps=6 format=3 uid="uid://b8e0qnn3m5h5h"]
+
+[sub_resource type="Gradient" id="Gradient_oad5x"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uop5j"]
+frequency = 0.0699
+fractal_octaves = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e7jdb"]
+color_ramp = SubResource("Gradient_oad5x")
+noise = SubResource("FastNoiseLite_uop5j")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oad5x"]
+render_priority = -1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 2
+albedo_color = Color(0, 0.230417, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_e7jdb")
+uv1_scale = Vector3(2, 2, 2)
+uv1_offset = Vector3(0.27, 0, 0)
+grow = true
+grow_amount = -1.417
+proximity_fade_distance = 81.71
+distance_fade_mode = 1
+distance_fade_max_distance = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e42vu"]
+next_pass = SubResource("StandardMaterial3D_oad5x")
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 2
+albedo_color = Color(6.97896e-07, 0.457148, 0.0802951, 1)
+albedo_texture = SubResource("NoiseTexture2D_e7jdb")
+proximity_fade_distance = 257.25
+distance_fade_mode = 1
+distance_fade_max_distance = 20.0
+
+[resource]
+material = SubResource("StandardMaterial3D_e42vu")
+radius = 40.0
+height = 30.0
+radial_segments = 8
+rings = 7
+is_hemisphere = true

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=10 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://Levels/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
+[ext_resource type="SphereMesh" uid="uid://b8e0qnn3m5h5h" path="res://Levels/SnapjawSwamp/Materials/LeafBush.tres" id="4_uop5j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
 sky_top_color = Color(0, 0.777333, 0.88, 1)
@@ -42,6 +43,10 @@ cull_mask = 8
 
 [node name="TreeTrunks" parent="." instance=ExtResource("1_oad5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TreeTrunks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94884, 31.986, -0.919382)
+mesh = ExtResource("4_uop5j")
 
 [node name="IndoorTemple" parent="." instance=ExtResource("1_66jiy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.372, -3, 47.1364)
