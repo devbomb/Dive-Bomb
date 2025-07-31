@@ -1,52 +1,31 @@
-// taken from https://godotshaders.com/snippet/2d-noise/
-vec2 random_vec2_2d_seedless(vec2 uv)
-{
-	uv = vec2
-	(
-		dot(uv, vec2(127.1,311.7)),
-		dot(uv, vec2(269.5,183.3))
-	);
-	return -1.0 + 2.0 * fract(sin(uv) * 43758.5453123);
-}
+#include "res://Common/ShaderIncludes/FloatHashes.gdshaderinc"
 
 // taken from https://godotshaders.com/snippet/2d-noise/
-float perlin_noise_2d_seedless(vec2 uv)
+float perlin12(vec2 uv)
 {
 	vec2 uv_index = floor(uv);
 	vec2 uv_fract = fract(uv);
 
 	vec2 blur = smoothstep(0.0, 1.0, uv_fract);
 
-	return mix
+	vec2 right = vec2(1.0, 0.0);
+	vec2 up = vec2(0.0, 1.0);
+	vec2 zero = vec2(0.0, 0.0);
+	vec2 one = vec2(1.0, 1.0);
+
+	float a = mix
 	(
-		mix
-		(
-			dot
-			(
-				random_vec2_2d_seedless(uv_index + vec2(0.0,0.0)),
-				uv_fract - vec2(0.0,0.0)
-			),
-            dot
-			(
-				random_vec2_2d_seedless(uv_index + vec2(1.0,0.0)),
-				uv_fract - vec2(1.0,0.0)
-			),
-			blur.x
-		),
-		mix
-		(
-			dot
-			(
-				random_vec2_2d_seedless(uv_index + vec2(0.0,1.0)),
-				uv_fract - vec2(0.0,1.0)
-			),
-			dot
-			(
-				random_vec2_2d_seedless(uv_index + vec2(1.0,1.0)),
-				uv_fract - vec2(1.0,1.0)
-			),
-			blur.x
-		),
-		blur.y
-	) + 0.5;
+		dot(hash22(uv_index + zero), uv_fract - zero),
+		dot(hash22(uv_index + right), uv_fract - right),
+		blur.x
+	);
+	
+	float b = mix
+	(
+		dot(hash22(uv_index + up), uv_fract - up),
+		dot(hash22(uv_index + one), uv_fract - one),
+		blur.x
+	);
+
+	return mix(a, b, blur.y) + 0.5;
 }

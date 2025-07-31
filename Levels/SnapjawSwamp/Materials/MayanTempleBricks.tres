@@ -110,8 +110,8 @@ vec2 displacement_noise(vec2 uv)
 	uv = nearest_pixel(uv, 0.1);
 	return vec2
 	(
-		perlin_noise_2d_seedless(uv),
-		perlin_noise_2d_seedless(uv)
+		perlin12(uv),
+		perlin12(uv)
 	);
 }
 
