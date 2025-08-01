@@ -36,10 +36,6 @@ void fragment()
 	vec3 scrolledGlobalPos = (globalPos * 0.025) + vec3(0, TIME * 0.1, TIME * 0.05);
 	ALBEDO = texture(albedoTexture, scrolledGlobalPos).xyz;
 
-	// Add some noise to the normal
-	vec3 warble = warble_direction(scrolledGlobalPos);
-	NORMAL = (0.5 * NORMAL) + (0.5 * warble);
-
 	// Make the edges redder
 	float redMix = 1.0 - abs(dot(NORMAL, vec3(0, 0, 1)));
 	vec3 rimColor = vec3(1, 0, 0);

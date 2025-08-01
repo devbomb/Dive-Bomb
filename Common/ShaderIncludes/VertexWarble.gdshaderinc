@@ -1,4 +1,5 @@
-#include "res://Common/ShaderIncludes/HashWithoutSine.gdshaderinc"
+#include "res://Common/ShaderIncludes/FloatHashes.gdshaderinc"
+#include "res://Common/ShaderIncludes/Noise.gdshaderinc"
 
 struct VertexWarbleSettings
 {
@@ -32,7 +33,7 @@ float inverse_lerp(float value, float start, float end)
 
 vec3 warble_direction(vec3 worldPos)
 {
-	return normalize(hash33(worldPos));
+	return normalize(perlin33(worldPos));
 }
 
 vec3 warble_vertex(VertexWarbleSettings settings, vec3 vertex, mat4 viewMatrix, float depth)

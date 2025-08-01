@@ -44,3 +44,18 @@ vec2 perlin22(vec2 uv)
 
 	return mix(hash22(uv_index), hash22(uv_index + one), blur);
 }
+
+vec3 perlin33(vec3 point)
+{
+	vec3 point_index = floor(point);
+	vec3 point_fract = fract(point);
+
+	vec3 blur = smoothstep(0.0, 1.0, point_fract);
+
+	vec2 right = vec2(1.0, 0.0);
+	vec2 up = vec2(0.0, 1.0);
+	vec2 zero = vec2(0.0, 0.0);
+	vec3 one = vec3(1.0, 1.0, 1.0);
+
+	return mix(hash33(point_index), hash33(point_index + one), blur);
+}
