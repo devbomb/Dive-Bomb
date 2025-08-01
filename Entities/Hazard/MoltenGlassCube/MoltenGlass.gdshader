@@ -18,14 +18,17 @@ uniform float frequency = 1.5;
 
 uniform sampler3D albedoTexture;
 
-uniform sampler3D warbleDirectionMapX;
-uniform sampler3D warbleDirectionMapY;
-uniform sampler3D warbleDirectionMapZ;
-
 void vertex()
 {
 	float depth = distance(VERTEX, CAMERA_POSITION_WORLD);
-	VERTEX = warble_vertex(default_vertex_warble_settings(), VERTEX, VIEW_MATRIX, depth);
+	VertexWarbleSettings settings = VertexWarbleSettings(
+		frequency,
+		minAmplitude,
+		maxAmplitude,
+		minAmplitudeDepth,
+		maxAmplitudeDepth
+	);
+	VERTEX = warble_vertex(settings, VERTEX, VIEW_MATRIX, depth);
 }
 
 void fragment()
