@@ -29,3 +29,18 @@ float perlin12(vec2 uv)
 
 	return mix(a, b, blur.y) + 0.5;
 }
+
+vec2 perlin22(vec2 uv)
+{
+	vec2 uv_index = floor(uv);
+	vec2 uv_fract = fract(uv);
+
+	vec2 blur = smoothstep(0.0, 1.0, uv_fract);
+
+	vec2 right = vec2(1.0, 0.0);
+	vec2 up = vec2(0.0, 1.0);
+	vec2 zero = vec2(0.0, 0.0);
+	vec2 one = vec2(1.0, 1.0);
+
+	return mix(hash22(uv_index), hash22(uv_index + one), blur);
+}
