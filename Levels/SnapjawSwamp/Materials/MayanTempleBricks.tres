@@ -81,7 +81,7 @@ distance_fade_min_distance = 100.0
 
 [sub_resource type="Shader" id="Shader_skod2"]
 code = "shader_type spatial;
-render_mode 
+render_mode
 	blend_mix,
 	depth_draw_opaque,
 	cull_back,
@@ -115,7 +115,7 @@ vec2 displacement_noise(vec2 uv)
 	);
 }
 
-void fragment() 
+void fragment()
 {
 	vec2 base_uv = UV;
 	base_uv += displacement_strength * displacement_noise(base_uv);
