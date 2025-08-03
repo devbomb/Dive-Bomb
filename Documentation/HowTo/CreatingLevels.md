@@ -3,18 +3,21 @@ Before you can create levels, you need to make sure Trenchbroom is set up to
 work with Dive Bomb.  See [Setting up Trenchbroom and func_godot](#setting-up-trenchbroom-and-func_godot).
 
 A Dive Bomb level consists of:
-* A [.map file](#creating-the-map-file) created in Trenchbroom, which contains
-    the bulk of the level's contents, including level geometry, gem/enemy 
-    placements, the player's spawn point, checkpoints, etc.
+* A [folder](#creating-the-level-folder) containing the following files:
+    * A [.map file](#creating-the-map-file) created in Trenchbroom, which contains
+        the bulk of the level's contents, including level geometry, gem/enemy 
+        placements, the player's spawn point, checkpoints, etc.
 
-* A [.tscn file](#creating-the-tscn-file), which acts as the "official" scene
-    for the level.  It contains an 
-    [instance](#how-it-works-funcgodotmapimporter) of the map file, along 
-    with a few Godot-specific nodes that are inconvenient to create in 
-    Trenchbroom.
+    * A [.tscn file](#creating-the-tscn-file), which acts as the "official" scene
+        for the level.  It contains an 
+        [instance](#how-it-works-funcgodotmapimporter) of the map file, along 
+        with a few Godot-specific nodes that are inconvenient to create in 
+        Trenchbroom.
 
-* A [skybox](#creating-the-skybox), which is used both in the level itself and
-    as a crucial part of the seamless loading screen effect.
+    * A [skybox](#creating-the-skybox), which is used both in the level itself and
+        as a crucial part of the seamless loading screen effect.
+    
+    * Any other level-specific art assets that are only used here
 
 * A [portal](#creating-a-portal) leading to the level from one of the
     home worlds.
@@ -49,13 +52,23 @@ A Dive Bomb level consists of:
 1. In Trenchbroom's preferences, set "FastDragon"'s "Game Path" to the root
     of this repo.
 
+# Creating the level folder
+Create a folder at `res://Levels/<level-id>`.  This is where the
+[.tscn file](#creating-the-tscn-file) will live.  It's also where you should put
+art assets that are specific to this level, such as the skybox, custom materials,
+or background music.
+
 # Creating the .map file
+First, ensure the following files exist:
+* `res://Levels/<level-id>/Maps/autosave/.gdignore`: must be empty
+* `res://Levels/<level-id>/Maps/autosave/.gitignore` must contain "*.map"
 
-In Trenchbroom, create a new .map file(using "FastDragon" as the game) and then
-it to `<this-repo>/TrenchbroomMaps/`.
+Then, in Trenchbroom, create a new .map file(using "FastDragon" as the game) and 
+then save it to `res://Levels/<level-id>/Maps/<level-id>.map`.
 
-> NOTE: You should only save maps to _this_ specific folder, to ensure 
-Trenchbroom's not-so-helpful autosaves are properly gitignored and gdignored.
+> NOTE: You should only save maps into a folder with _this_ specific setup, to 
+ensure Trenchbroom's not-so-helpful autosaves are properly 
+gitignored and gdignored.
 
 This is where you'll create the level geometry and place entities.  The most
 common entities you'll use are:
@@ -127,7 +140,7 @@ directly in the .tscn if one of these is true:
 # Creating the skybox
 Every level needs a skybox, _even indoor levels_.  This is because the seamless
 loading screen uses...well, the skybox.  Create an `Environment` asset and save
-it to `res://Environments` as a `.tres` file.  You should then use it as the
+it to `res://Levels/<level-id>/Skybox.tres`.  You should then use it as the
 parameter in the `.tscn` file's `WorldEnvironment` node.
 
 # Creating a portal

@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://muwxx8ltp1ss"]
 
-[ext_resource type="Environment" uid="uid://cnsj2vqr0q41w" path="res://Environments/DaySky.tres" id="1_2cjbk"]
-[ext_resource type="PackedScene" uid="uid://bdshm0cut77ja" path="res://TrenchbroomMaps/TestMap.map" id="2_vvl46"]
+[ext_resource type="Environment" uid="uid://cnsj2vqr0q41w" path="res://Levels/TestMap/Skybox.tres" id="1_0gxk4"]
+[ext_resource type="PackedScene" uid="uid://bdshm0cut77ja" path="res://Levels/TestMap/Maps/TestMap.map" id="2_678t0"]
 
 [node name="TestMap" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_2cjbk")
+environment = ExtResource("1_0gxk4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.958038, 0.253313, -0.13415, -0.134871, 0.811326, 0.568824, 0.25293, -0.526862, 0.811445, 0, 5.02909, 0)
 layers = 3
 sky_mode = 1
 
-[node name="TestMap" parent="." instance=ExtResource("2_vvl46")]
+[node name="TestMap" parent="." instance=ExtResource("2_678t0")]

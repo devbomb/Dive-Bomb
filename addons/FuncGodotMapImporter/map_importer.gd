@@ -80,7 +80,7 @@ func _import(
 		
 		# Map textures to their materials based on the provided map
 		if node is MeshInstance3D && !is_root_of_another_scene(node):
-			replace_materials(node, options.texture_material_map.texture_to_material)
+			replace_materials(node, options.texture_material_map)
 
 	# Save the map as a packed scene
 	var filePath = "%s.%s" % [save_path, _get_save_extension()]
@@ -144,7 +144,7 @@ func _all_nodes_directly_in_scene(node: Node, sceneRoot: Node, array: Array[Node
 	for child in node.get_children():
 		_all_nodes_directly_in_scene(child, sceneRoot, array)
 
-func replace_materials(meshInstance: MeshInstance3D, textureToMaterial: Dictionary[Texture2D, Material]):
+func replace_materials(meshInstance: MeshInstance3D, textureToMaterial: MaterialMap):
 	for surfaceIndex in meshInstance.mesh.get_surface_count():
 		var surfaceMaterial: Material = meshInstance.mesh.surface_get_material(surfaceIndex)
 		if !(surfaceMaterial is StandardMaterial3D):
@@ -154,10 +154,10 @@ func replace_materials(meshInstance: MeshInstance3D, textureToMaterial: Dictiona
 		if texture == null:
 			continue
 		
-		if !textureToMaterial.has(texture):
+		if !textureToMaterial.has_material_for(texture):
 			continue
 
-		var replacementMaterial: Material = textureToMaterial.get(texture)
+		var replacementMaterial: Material = textureToMaterial.get_material_for(texture)
 		meshInstance.set_surface_override_material(surfaceIndex, replacementMaterial)
 
 func _strip_duplicate_signal_connections(filePath: String) -> Error:

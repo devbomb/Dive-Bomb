@@ -21,7 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q3h6t")
-NewGameMap = "res://Levels/TestMap.tscn"
+NewGameMap = "res://Levels/TestMap/TestMap.tscn"
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1

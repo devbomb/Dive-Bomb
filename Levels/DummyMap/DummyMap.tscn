@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://jfal51r4dflw"]
 
-[ext_resource type="PackedScene" uid="uid://cf2tkkwvrpta4" path="res://TrenchbroomMaps/DummyMap.map" id="2_a3wjm"]
-[ext_resource type="Environment" uid="uid://bhamu4vflo38l" path="res://Environments/NightSky.tres" id="2_nb5xh"]
+[ext_resource type="PackedScene" uid="uid://cf2tkkwvrpta4" path="res://Levels/DummyMap/Maps/DummyMap.map" id="2_a3wjm"]
+[ext_resource type="Environment" uid="uid://bhamu4vflo38l" path="res://Levels/DummyMap/Skybox.tres" id="2_nb5xh"]
 
 [node name="DummyMap" type="Node3D"]
 

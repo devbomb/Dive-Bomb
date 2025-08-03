@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bb2ckyhrk5jdg"]
 
-[ext_resource type="PackedScene" uid="uid://dad4aqqyc8v3i" path="res://TrenchbroomMaps/Castle.map" id="1_4ems5"]
-[ext_resource type="Environment" uid="uid://dp38ywrpiuhjq" path="res://Environments/Castle.tres" id="1_7bxwh"]
+[ext_resource type="PackedScene" uid="uid://dad4aqqyc8v3i" path="res://Levels/SunsetCastle/Maps/SunsetCastle.map" id="1_4ems5"]
+[ext_resource type="Environment" uid="uid://dp38ywrpiuhjq" path="res://Levels/SunsetCastle/Skybox.tres" id="1_7bxwh"]
 [ext_resource type="PackedScene" uid="uid://t1vahhcvv1hb" path="res://Entities/Detail/Fireplace.tscn" id="3_ss8in"]
 
 [node name="Castle" type="Node3D"]
