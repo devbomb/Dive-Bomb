@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://datdj0dmnhnvp"]
+
+[resource]
+resource_name = "BowTie"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.0621762
+roughness = 0.987047

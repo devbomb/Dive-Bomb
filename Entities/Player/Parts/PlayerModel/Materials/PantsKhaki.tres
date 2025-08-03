@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2kmppr12bap3"]
+
+[resource]
+resource_name = "PantsKhaki"
+cull_mode = 2
+albedo_color = Color(0.639993, 0.5628, 0.494928, 1)
+metallic = 0.134715
+roughness = 0.759067

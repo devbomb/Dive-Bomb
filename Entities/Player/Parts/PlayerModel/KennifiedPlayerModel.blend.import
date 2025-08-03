@@ -33,9 +33,34 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
-"nodes": {
-"PATH:OriginalModel": {
-"import/skip_import": true
+"materials": {
+"BowTie": {
+"use_external/enabled": true,
+"use_external/path": "res://Entities/Player/Parts/PlayerModel/Materials/BowTie.tres"
+},
+"JacketBrown": {
+"use_external/enabled": true,
+"use_external/path": "res://Entities/Player/Parts/PlayerModel/Materials/JacketBrown.tres"
+},
+"JacketFuzz": {
+"use_external/enabled": true,
+"use_external/path": "res://Entities/Player/Parts/PlayerModel/Materials/JacketFuzz.tres"
+},
+"Material": {
+"use_external/enabled": true,
+"use_external/path": "res://Entities/Player/Parts/PlayerModel/Materials/Material.tres"
+},
+"PantsKhaki": {
+"use_external/enabled": true,
+"use_external/path": "res://Entities/Player/Parts/PlayerModel/Materials/PantsKhaki.tres"
+},
+"Sunglasses": {
+"use_external/enabled": true,
+"use_external/path": "res://Entities/Player/Parts/PlayerModel/Materials/Sunglasses.tres"
+},
+"skin": {
+"use_external/enabled": true,
+"use_external/path": "res://Entities/Player/Parts/PlayerModel/Materials/skin.tres"
 }
 }
 }
