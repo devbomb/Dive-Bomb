@@ -368,26 +368,6 @@
 }
 // entity 17
 {
-"classname" "trigger_cylinder_camera_zone"
-"TargetMarkerId" "CylinderCenter"
-// brush 0
-{
-( 0 464 560 ) ( 0 465 560 ) ( 0 464 561 ) Textures/Grate 0 0 0 1 1
-( 48 464 560 ) ( 48 464 561 ) ( 49 464 560 ) Textures/Grate 0 0 0 1 1
-( 48 464 464 ) ( 49 464 464 ) ( 48 465 464 ) Textures/Grate 0 0 0 1 1
-( 288 704 576 ) ( 288 705 576 ) ( 289 704 576 ) Textures/Grate 0 0 0 1 1
-( 288 832 576 ) ( 289 832 576 ) ( 288 832 577 ) Textures/Grate 0 0 0 1 1
-( 288 704 576 ) ( 288 704 577 ) ( 288 705 576 ) Textures/Grate 0 0 0 1 1
-}
-}
-// entity 18
-{
-"classname" "info_named_marker"
-"origin" "136 648 584"
-"MarkerId" "CylinderCenter"
-}
-// entity 19
-{
 "classname" "func_group"
 "_tb_type" "_tb_group"
 "_tb_name" "Tree_2"
@@ -663,33 +643,33 @@
 ( 310.05560974369155 797.0555207013405 -168 ) ( 360 632 -168 ) ( 288 640 16 ) Textures/DarkWood 0 0 0 1 1
 }
 }
-// entity 20
+// entity 18
 {
 "classname" "item_gem_red"
 "origin" "-12 580 212"
 "_tb_group" "7"
 }
-// entity 21
+// entity 19
 {
 "classname" "item_fairy"
 "origin" "76 456 240"
 "_tb_group" "7"
 }
-// entity 22
+// entity 20
 {
 "classname" "transport_checkpoint"
 "origin" "232 448 240"
 "CheckpointName" "BeforeSidewaysSnapjawIntro"
 "_tb_group" "7"
 }
-// entity 23
+// entity 21
 {
 "classname" "decor_wall_torch"
 "origin" "12 592 304"
 "angle" "110"
 "_tb_group" "7"
 }
-// entity 24
+// entity 22
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -707,5 +687,31 @@
 ( 400 688 416 ) ( 352 672 400 ) ( 400 672 400 ) Textures/DarkWood 0 0 0 1 1
 ( 400 688 432 ) ( 352 688 416 ) ( 400 688 416 ) Textures/DarkWood 0 0 0 1 1
 ( 400 688 432 ) ( 400 640 416 ) ( 400 640 432 ) Textures/DarkWood 0 0 0 1 1
+}
+}
+// entity 23
+{
+"classname" "info_named_marker"
+"origin" "144 640 584"
+"MarkerId" "CylinderCenter"
+"_tb_group" "7"
+}
+// entity 24
+{
+"classname" "trigger_cylinder_camera_zone"
+"TargetMarkerId" "CylinderCenter"
+"_tb_group" "7"
+// brush 0
+{
+( -64 550.8571428571429 560 ) ( -64 729.1428571428571 432 ) ( -64 729.1428571428571 560 ) Textures/Grate 7.384552 0 0 1.8571424 1
+( 54.857142857142904 432 560 ) ( -64 550.8571428571429 432 ) ( -64 550.8571428571429 560 ) Textures/Grate 13.538513 0 180 1.8571424 -1
+( -64 729.1428571428571 432 ) ( 54.857142857142904 848 560 ) ( -64 729.1428571428571 560 ) Textures/Grate 18.461548 0 0 1.8571424 1
+( 233.1428571428571 432 560 ) ( 54.857142857142904 432 432 ) ( 54.857142857142904 432 560 ) Textures/Grate 2.461525 0 0 1.8571424 1
+( 352 729.1428571428571 432 ) ( 233.1428571428571 432 432 ) ( 352 550.8571428571429 432 ) Textures/Grate 2.461525 -7.384552 0 1.8571424 1.8571424
+( 352 729.1428571428571 528 ) ( 54.857142857142904 848 528 ) ( 233.1428571428571 848 528 ) Textures/Grate 2.461525 -7.384552 0 1.8571424 1.8571424
+( 233.1428571428571 848 560 ) ( 54.857142857142904 848 432 ) ( 233.1428571428571 848 432 ) Textures/Grate 2.461525 0 0 1.8571424 1
+( 352 550.8571428571429 560 ) ( 233.1428571428571 432 432 ) ( 233.1428571428571 432 560 ) Textures/Grate 7.384552 0 0 1.8571424 1
+( 352 729.1428571428571 560 ) ( 233.1428571428571 848 432 ) ( 352 729.1428571428571 432 ) Textures/Grate 7.3845215 0 0 1.8571424 1
+( 352 729.1428571428571 560 ) ( 352 550.8571428571429 432 ) ( 352 550.8571428571429 560 ) Textures/Grate 7.384552 0 0 1.8571424 1
 }
 }
