@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://s2ngbtc5bwsy"]
+
+[resource]
+resource_name = "JacketBrown"
+cull_mode = 2
+albedo_color = Color(0.433326, 0.30341, 0.182452, 1)
+metallic = 0.295337
