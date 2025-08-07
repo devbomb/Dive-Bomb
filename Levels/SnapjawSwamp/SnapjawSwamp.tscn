@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=19 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
 [ext_resource type="SphereMesh" uid="uid://b8e0qnn3m5h5h" path="res://Levels/SnapjawSwamp/Materials/LeafBush.tres" id="4_uop5j"]
+[ext_resource type="PackedScene" uid="uid://c4he06nhgpthi" path="res://Levels/SnapjawSwamp/Maps/WaterfallTrees.map" id="7_e7jdb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
 sky_top_color = Color(0, 0.777333, 0.88, 1)
@@ -257,3 +258,6 @@ transform = Transform3D(1, 0, 0, 0, 0.748389, 0.66326, 0, -0.66326, 0.748389, 0,
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalLight3D"]
 transform = Transform3D(1, 0, 0, 0, -0.977743, 0.209806, 0, -0.209806, -0.977743, 0, 0, 0)
 light_energy = 0.448
+
+[node name="WaterfallTrees" parent="." instance=ExtResource("7_e7jdb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9779, 0, -17)
