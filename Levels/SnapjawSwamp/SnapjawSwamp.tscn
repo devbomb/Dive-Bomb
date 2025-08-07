@@ -260,4 +260,4 @@ transform = Transform3D(1, 0, 0, 0, -0.977743, 0.209806, 0, -0.209806, -0.977743
 light_energy = 0.448
 
 [node name="WaterfallTrees" parent="." instance=ExtResource("7_e7jdb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9779, 0, -17)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 58, 39, -33)
