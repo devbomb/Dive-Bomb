@@ -27,41 +27,31 @@
 }
 // brush 2
 {
-( -48 160 544 ) ( -48 128 560 ) ( -48 -64 560 ) Textures/DarkWood 0 0 0 1 1
-( -48 -64 560 ) ( 16 -64 560 ) ( 16 -64 480 ) Textures/DarkWood 0 0 0 1 1
-( 16 -64 480 ) ( 16 160 480 ) ( -48 160 480 ) Textures/DarkWood 0 0 0 1 1
-( -48 128 560 ) ( 16 128 560 ) ( 16 -64 560 ) Textures/CastleTop 544 544 0 0 1
-( -48 160 544 ) ( 16 160 544 ) ( 16 128 560 ) Textures/CastleTop 544 544 0 1 1
-( 16 160 480 ) ( 16 160 544 ) ( -48 160 544 ) Textures/DarkWood 0 0 0 1 1
-( 16 128 560 ) ( 16 160 544 ) ( 16 160 480 ) Textures/DarkWood 0 0 0 1 1
-}
-// brush 3
-{
 ( -144 96 560 ) ( -144 0 560 ) ( -144 0 480 ) Textures/DarkWood 544 544 0 1 1
 ( -144 0 560 ) ( -80 -64 560 ) ( -80 -64 480 ) Textures/DarkWood 330 544 0 1 1
 ( -80 160 480 ) ( -80 160 544 ) ( -96 144 560 ) Textures/DarkWood 304 544 0 1 1
 ( -80 -64 560 ) ( -48 -64 560 ) ( -48 -64 480 ) Textures/DarkWood 544 544 0 1 1
 ( -48 -64 480 ) ( -48 160 480 ) ( -80 160 480 ) Textures/DarkWood 544 544 0 1 1
-( -96 144 560 ) ( -48 128 560 ) ( -48 -64 560 ) Textures/CastleTop 544 544 0 1 1
+( -96 144 560 ) ( -48 128 560 ) ( -48 -64 560 ) Textures/DryCanyonFloor 544 544 0 1 1
 ( -80 160 544 ) ( -48 160 544 ) ( -96 144 560 ) Textures/CastleTop 544 544 0 1 1
 ( -48 160 480 ) ( -48 160 544 ) ( -80 160 544 ) Textures/DarkWood 544 544 0 1 1
-( -96 144 560 ) ( -48 160 544 ) ( -48 128 560 ) Textures/CastleTop 544 544 0 1 1
+( -96 144 560 ) ( -48 160 544 ) ( -48 128 560 ) Textures/DryCanyonFloor 544 544 0 1 1
 ( -48 128 560 ) ( -48 160 544 ) ( -48 160 480 ) Textures/DarkWood 544 544 0 1 1
 }
-// brush 4
+// brush 3
 {
 ( 16 160 544 ) ( 16 128 560 ) ( 16 -64 560 ) Textures/DarkWood 544 544 0 1 1
-( 16 160 544 ) ( 48 144 560 ) ( 16 128 560 ) Textures/CastleTop 544 544 0 1 1
+( 16 160 544 ) ( 48 144 560 ) ( 16 128 560 ) Textures/DryCanyonFloor 544 544 0 1 1
 ( 16 -64 560 ) ( 32 -64 560 ) ( 32 -64 480 ) Textures/DarkWood 544 544 0 1 1
 ( 96 0 480 ) ( 96 96 480 ) ( 32 160 480 ) Textures/DarkWood 544 544 0 1 1
-( 48 144 560 ) ( 96 96 560 ) ( 96 0 560 ) Textures/CastleTop 544 544 0 1 1
+( 48 144 560 ) ( 96 96 560 ) ( 96 0 560 ) Textures/DryCanyonFloor 544 544 0 1 1
 ( 32 160 544 ) ( 48 144 560 ) ( 16 160 544 ) Textures/DarkWood 544 544 0 1 1
 ( 32 160 480 ) ( 32 160 544 ) ( 16 160 544 ) Textures/DarkWood 544 544 0 1 1
 ( 32 -64 560 ) ( 96 0 560 ) ( 96 0 480 ) Textures/DarkWood 640 544 0 1 1
 ( 96 96 480 ) ( 96 96 560 ) ( 48 144 560 ) Textures/DarkWood 614.6666 544 0 1 1
 ( 96 0 560 ) ( 96 96 560 ) ( 96 96 480 ) Textures/DarkWood 544 544 0 1 1
 }
-// brush 5
+// brush 4
 {
 ( -144 96 480 ) ( -144 0 480 ) ( -144 0 320 ) Textures/DarkWood 0 0 0 1 1
 ( -144 0 480 ) ( -80 -64 480 ) ( -80 -64 320 ) Textures/DarkWood -214 0 0 1 1
@@ -73,6 +63,27 @@
 ( 32 -64 480 ) ( 96 0 480 ) ( 96 0 320 ) Textures/DarkWood 96 0 0 1 1
 ( 96 96 320 ) ( 96 96 480 ) ( 32 160 480 ) Textures/DarkWood 70 0 0 1 1
 ( 96 0 480 ) ( 96 96 480 ) ( 96 96 320 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 5
+{
+( -176 8 560 ) ( -176 40 552 ) ( -176 40 560 ) Textures/DarkWood 0 0 0 1 1
+( -144 32 528 ) ( -176 8 552 ) ( -144 16 528 ) Textures/DarkWood 0 0 0 1 1
+( -144 0 560 ) ( -176 8 552 ) ( -176 8 560 ) Textures/DarkWood 0 0 0 1 1
+( -144 48 560 ) ( -176 40 552 ) ( -144 48 552 ) Textures/DarkWood 0 0 0 1 1
+( -144 16 528 ) ( -176 8 552 ) ( -144 0 552 ) Textures/DarkWood 0 0 0 1 1
+( -144 48 552 ) ( -176 40 552 ) ( -144 32 528 ) Textures/DarkWood 0 0 0 1 1
+( -144 48 560 ) ( -176 8 560 ) ( -176 40 560 ) Textures/DryCanyonFloor 0 0 0 1 1
+( -144 48 560 ) ( -144 0 552 ) ( -144 0 560 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 6
+{
+( -48 160 544 ) ( -48 128 560 ) ( -48 -64 560 ) Textures/DarkWood 0 0 0 1 1
+( -48 -64 560 ) ( 16 -64 560 ) ( 16 -64 480 ) Textures/DarkWood 0 0 0 1 1
+( 16 -64 480 ) ( 16 160 480 ) ( -48 160 480 ) Textures/DarkWood 0 0 0 1 1
+( -48 128 560 ) ( 16 128 560 ) ( 16 -64 560 ) Textures/DryCanyonFloor 544 544 0 0 1
+( -48 160 544 ) ( 16 160 544 ) ( 16 128 560 ) Textures/DryCanyonFloor 544 544 0 1 1
+( 16 160 480 ) ( 16 160 544 ) ( -48 160 544 ) Textures/DarkWood 0 0 0 1 1
+( 16 128 560 ) ( 16 160 544 ) ( 16 160 480 ) Textures/DarkWood 0 0 0 1 1
 }
 }
 // entity 1
