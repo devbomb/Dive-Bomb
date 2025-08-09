@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=10 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://Levels/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
-[ext_resource type="Material" uid="uid://bhbhgixiaciut" path="res://Levels/SnapjawSwamp/Materials/LeafBush.tres" id="4_e7jdb"]
 [ext_resource type="PackedScene" uid="uid://c4he06nhgpthi" path="res://Levels/SnapjawSwamp/Maps/WaterfallTrees.map" id="7_e7jdb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
@@ -29,22 +28,6 @@ volumetric_fog_albedo = Color(0.699653, 0.699653, 0.699653, 1)
 volumetric_fog_emission = Color(0, 0.286312, 1.44392e-07, 1)
 volumetric_fog_temporal_reprojection_enabled = false
 
-[sub_resource type="SphereMesh" id="SphereMesh_e42vu"]
-material = ExtResource("4_e7jdb")
-radius = 30.0
-height = 30.0
-radial_segments = 8
-rings = 7
-is_hemisphere = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_e7jdb"]
-material = ExtResource("4_e7jdb")
-radius = 30.0
-height = 30.0
-radial_segments = 8
-rings = 7
-is_hemisphere = true
-
 [node name="SnapjawSwamp" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -60,14 +43,6 @@ cull_mask = 8
 
 [node name="TreeTrunks" parent="." instance=ExtResource("1_oad5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 5, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TreeTrunks"]
-transform = Transform3D(0.985615, -0.169005, 0, 0.169005, 0.985615, 0, 0, 0, 1, 4.51193, 34.534, -0.919382)
-mesh = SubResource("SphereMesh_e42vu")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="TreeTrunks"]
-transform = Transform3D(0.973734, 0.227688, 0, -0.227688, 0.973734, 0, 0, 0, 1, 38.4015, 39.9755, 9.20862)
-mesh = SubResource("SphereMesh_e7jdb")
 
 [node name="IndoorTemple" parent="." instance=ExtResource("1_66jiy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.372, -3, 47.1364)
