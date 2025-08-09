@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="7_4q6ww"]
 [ext_resource type="Material" uid="uid://dsmqjue10knjl" path="res://Levels/SnapjawSwamp/Materials/MayanTempleBricks.tres" id="8_5lls7"]
 [ext_resource type="Texture2D" uid="uid://cvuba0wdl4pkv" path="res://Textures/Textures/Grass.png" id="9_d2gm3"]
-[ext_resource type="Material" uid="uid://bhbhgixiaciut" path="res://Levels/SnapjawSwamp/Materials/LeafBush.tres" id="10_dvxqn"]
+[ext_resource type="Material" uid="uid://bhbhgixiaciut" path="res://Levels/SnapjawSwamp/Materials/LeafBush.tres" id="10_d2gm3"]
 
 [resource]
 script = ExtResource("1_8uvc8")
@@ -18,6 +18,6 @@ texture_to_material = Dictionary[Texture2D, Material]({
 ExtResource("3_l1nn4"): ExtResource("4_1k7ij"),
 ExtResource("5_d2gm3"): ExtResource("6_dvxqn"),
 ExtResource("7_4q6ww"): ExtResource("8_5lls7"),
-ExtResource("9_d2gm3"): ExtResource("10_dvxqn")
+ExtResource("9_d2gm3"): ExtResource("10_d2gm3")
 })
 metadata/_custom_type_script = "uid://cb8n0ec7vcom"
