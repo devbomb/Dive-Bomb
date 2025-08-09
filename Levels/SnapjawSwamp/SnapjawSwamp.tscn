@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=13 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://Levels/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
-[ext_resource type="SphereMesh" uid="uid://b8e0qnn3m5h5h" path="res://Levels/SnapjawSwamp/Materials/LeafBush.tres" id="4_uop5j"]
+[ext_resource type="Material" uid="uid://bhbhgixiaciut" path="res://Levels/SnapjawSwamp/Materials/LeafBush.tres" id="4_e7jdb"]
 [ext_resource type="PackedScene" uid="uid://c4he06nhgpthi" path="res://Levels/SnapjawSwamp/Maps/WaterfallTrees.map" id="7_e7jdb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
@@ -29,185 +29,16 @@ volumetric_fog_albedo = Color(0.699653, 0.699653, 0.699653, 1)
 volumetric_fog_emission = Color(0, 0.286312, 1.44392e-07, 1)
 volumetric_fog_temporal_reprojection_enabled = false
 
-[sub_resource type="Shader" id="Shader_g6d65"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable.mono's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx, vertex_lighting;
-#include \"res://Common/ShaderIncludes/VertexWarble.gdshaderinc\"
-
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
-uniform float grow : hint_range(-16.0, 16.0, 0.001);
-
-uniform float distance_fade_min : hint_range(0.0, 4096.0, 0.01);
-uniform float distance_fade_max : hint_range(0.0, 4096.0, 0.01);
-uniform float alpha_scissor_threshold : hint_range(0.0, 1.0, 0.001);
-uniform ivec2 albedo_texture_size;
-uniform float point_size : hint_range(0.1, 128.0, 0.1);
-
-uniform float roughness : hint_range(0.0, 1.0);
-uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
-
-uniform float specular : hint_range(0.0, 1.0, 0.01);
-uniform float metallic : hint_range(0.0, 1.0, 0.01);
-
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-void vertex() {
-	// Shading Mode: Per Vertex
-	ROUGHNESS = roughness;
-
-	UV = UV * uv1_scale.xy + uv1_offset.xy;
-
-	// Grow: Enabled
-	VERTEX += NORMAL * grow;
-	
-	VertexWarbleSettings settings = default_vertex_warble_settings();
-	settings.max_amplitude = 0.5;
-	VERTEX = warble_vertex(settings, VERTEX, VIEW_MATRIX, settings.max_amplitude_depth);
-}
-
-void fragment() {
-	vec2 base_uv = UV;
-
-	vec4 albedo_tex = texture(texture_albedo, base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-
-	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	SPECULAR = specular;
-
-	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
-	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	ALPHA *= albedo.a * albedo_tex.a;
-	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
-
-	// Distance Fade: Pixel Alpha
-	ALPHA *= clamp(smoothstep(distance_fade_min, distance_fade_max, length(VERTEX)), 0.0, 1.0);
-}
-"
-
-[sub_resource type="Gradient" id="Gradient_oad5x"]
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_uop5j"]
-frequency = 0.0699
-fractal_octaves = 6
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e7jdb"]
-color_ramp = SubResource("Gradient_oad5x")
-noise = SubResource("FastNoiseLite_uop5j")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6d65"]
-render_priority = -1
-shader = SubResource("Shader_g6d65")
-shader_parameter/albedo = Color(0, 0.230417, 0, 1)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_e7jdb")
-shader_parameter/grow = -1.417
-shader_parameter/distance_fade_min = 0.0
-shader_parameter/distance_fade_max = 20.0
-shader_parameter/alpha_scissor_threshold = 0.5
-shader_parameter/albedo_texture_size = Vector2i(512, 512)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(2, 2, 2)
-shader_parameter/uv1_offset = Vector3(0.27, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
-[sub_resource type="Shader" id="Shader_bfvvj"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable.mono's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx, vertex_lighting;
-#include \"res://Common/ShaderIncludes/VertexWarble.gdshaderinc\"
-
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
-
-uniform float distance_fade_min : hint_range(0.0, 4096.0, 0.01);
-uniform float distance_fade_max : hint_range(0.0, 4096.0, 0.01);
-uniform float alpha_scissor_threshold : hint_range(0.0, 1.0, 0.001);
-uniform ivec2 albedo_texture_size;
-uniform float point_size : hint_range(0.1, 128.0, 0.1);
-
-uniform float roughness : hint_range(0.0, 1.0);
-uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
-
-uniform float specular : hint_range(0.0, 1.0, 0.01);
-uniform float metallic : hint_range(0.0, 1.0, 0.01);
-
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-void vertex() {
-	// Shading Mode: Per Vertex
-	ROUGHNESS = roughness;
-
-	UV = UV * uv1_scale.xy + uv1_offset.xy;
-	VertexWarbleSettings settings = default_vertex_warble_settings();
-	settings.max_amplitude = 0.5;
-	settings.frequency = 1.0;
-	VERTEX = warble_vertex(settings, VERTEX, VIEW_MATRIX, settings.max_amplitude_depth);
-}
-
-void fragment() {
-	vec2 base_uv = UV;
-
-	vec4 albedo_tex = texture(texture_albedo, base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-
-	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	SPECULAR = specular;
-
-	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
-	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	ALPHA *= albedo.a * albedo_tex.a;
-	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
-
-	// Distance Fade: Pixel Alpha
-	ALPHA *= clamp(smoothstep(distance_fade_min, distance_fade_max, length(VERTEX)), 0.0, 1.0);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4gr6i"]
-render_priority = 0
-next_pass = SubResource("ShaderMaterial_g6d65")
-shader = SubResource("Shader_bfvvj")
-shader_parameter/albedo = Color(6.97896e-07, 0.457148, 0.0802951, 1)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_e7jdb")
-shader_parameter/distance_fade_min = 0.0
-shader_parameter/distance_fade_max = 20.0
-shader_parameter/alpha_scissor_threshold = 0.5
-shader_parameter/albedo_texture_size = Vector2i(512, 512)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
+[sub_resource type="SphereMesh" id="SphereMesh_e42vu"]
+material = ExtResource("4_e7jdb")
+radius = 30.0
+height = 30.0
+radial_segments = 8
+rings = 7
+is_hemisphere = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_e7jdb"]
-material = SubResource("ShaderMaterial_4gr6i")
+material = ExtResource("4_e7jdb")
 radius = 30.0
 height = 30.0
 radial_segments = 8
@@ -232,7 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TreeTrunks"]
 transform = Transform3D(0.985615, -0.169005, 0, 0.169005, 0.985615, 0, 0, 0, 1, 4.51193, 34.534, -0.919382)
-mesh = ExtResource("4_uop5j")
+mesh = SubResource("SphereMesh_e42vu")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="TreeTrunks"]
 transform = Transform3D(0.973734, 0.227688, 0, -0.227688, 0.973734, 0, 0, 0, 1, 38.4015, 39.9755, 9.20862)
