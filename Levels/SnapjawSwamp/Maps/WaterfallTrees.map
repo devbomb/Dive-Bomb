@@ -6,21 +6,21 @@
 "classname" "worldspawn"
 // brush 0
 {
-( -128 -352 64 ) ( -128 -351 64 ) ( -128 -352 65 ) Textures/DarkWood 0 0 0 1 1
-( -128 -320 64 ) ( -128 -320 65 ) ( -127 -320 64 ) Textures/DarkWood 0 0 0 1 1
-( -128 -352 64 ) ( -127 -352 64 ) ( -128 -351 64 ) Textures/DarkWood 0 0 0 1 1
-( 16 -256 80 ) ( 16 -255 80 ) ( 17 -256 80 ) Textures/DryCanyonFloor 0 0 0 1 1
-( 16 -256 80 ) ( 17 -256 80 ) ( 16 -256 81 ) Textures/DarkWood 0 0 0 1 1
-( 0 -256 80 ) ( 0 -256 81 ) ( 0 -255 80 ) Textures/DarkWood 0 0 0 1 1
+( -128 -352 48 ) ( -128 -351 48 ) ( -128 -352 49 ) Textures/DarkWood 0 0 0 1 1
+( -128 -320 48 ) ( -128 -320 49 ) ( -127 -320 48 ) Textures/DarkWood 0 0 0 1 1
+( -128 -352 48 ) ( -127 -352 48 ) ( -128 -351 48 ) Textures/DarkWood 0 0 0 1 1
+( 16 -256 64 ) ( 16 -255 64 ) ( 17 -256 64 ) Textures/DryCanyonFloor 0 0 0 1 1
+( 16 -256 64 ) ( 17 -256 64 ) ( 16 -256 65 ) Textures/DarkWood 0 0 0 1 1
+( 0 -256 64 ) ( 0 -256 65 ) ( 0 -255 64 ) Textures/DarkWood 0 0 0 1 1
 }
 // brush 1
 {
-( -80 -240 32 ) ( -80 -239 32 ) ( -80 -240 33 ) Textures/DarkWood 0 0 0 1 1
-( -80 -208 32 ) ( -80 -208 33 ) ( -79 -208 32 ) Textures/DarkWood 0 0 0 1 1
-( -80 -240 32 ) ( -79 -240 32 ) ( -80 -239 32 ) Textures/DarkWood 0 0 0 1 1
-( 144 -144 48 ) ( 144 -143 48 ) ( 145 -144 48 ) Textures/DryCanyonFloor 0 0 0 1 1
-( 144 -128 48 ) ( 145 -128 48 ) ( 144 -128 49 ) Textures/DarkWood 0 0 0 1 1
-( 0 -144 48 ) ( 0 -144 49 ) ( 0 -143 48 ) Textures/DarkWood 0 0 0 1 1
+( -80 -224 32 ) ( -80 -223 32 ) ( -80 -224 33 ) Textures/DarkWood 0 0 0 1 1
+( -80 -168 32 ) ( -80 -168 33 ) ( -79 -168 32 ) Textures/DarkWood 0 0 0 1 1
+( -80 -224 32 ) ( -79 -224 32 ) ( -80 -223 32 ) Textures/DarkWood 0 0 0 1 1
+( 144 -128 48 ) ( 144 -127 48 ) ( 145 -128 48 ) Textures/DryCanyonFloor 0 0 0 1 1
+( 144 -112 48 ) ( 145 -112 48 ) ( 144 -112 49 ) Textures/DarkWood 0 0 0 1 1
+( 0 -128 48 ) ( 0 -128 49 ) ( 0 -127 48 ) Textures/DarkWood 0 0 0 1 1
 }
 // brush 2
 {
@@ -83,12 +83,12 @@
 }
 // brush 8
 {
-( -80 -64 32 ) ( -80 -128 48 ) ( -80 -128 32 ) Textures/DarkWood 0 0 0 1 1
-( -80 -128 48 ) ( 0 -128 48 ) ( 0 -128 32 ) Textures/DarkWood 0 0 0 1 1
-( 0 -128 32 ) ( 0 -64 16 ) ( -80 -64 16 ) Textures/DarkWood 0 0 0 1 1
-( -80 -64 32 ) ( 0 -64 32 ) ( 0 -128 48 ) Textures/DryCanyonFloor 0 0 0 1 1
-( 0 -64 16 ) ( 0 -64 32 ) ( -80 -64 32 ) Textures/DarkWood 0 0 0 1 1
-( 0 -128 48 ) ( 0 -64 32 ) ( 0 -64 16 ) Textures/DarkWood 0 0 0 1 1
+( -80 -48 32 ) ( -80 -112 48 ) ( -80 -112 32 ) Textures/DarkWood 0 0 0 1 1
+( -80 -112 48 ) ( 0 -112 48 ) ( 0 -112 32 ) Textures/DarkWood 0 0 0 1 1
+( 0 -112 32 ) ( 0 -48 16 ) ( -80 -48 16 ) Textures/DarkWood 0 0 0 1 1
+( -80 -48 32 ) ( 0 -48 32 ) ( 0 -112 48 ) Textures/DryCanyonFloor 0 0 0 1 1
+( 0 -48 16 ) ( 0 -48 32 ) ( -80 -48 32 ) Textures/DarkWood 0 0 0 1 1
+( 0 -112 48 ) ( 0 -48 32 ) ( 0 -48 16 ) Textures/DarkWood 0 0 0 1 1
 }
 // brush 9
 {
@@ -434,6 +434,69 @@
 ( -112 -208 224 ) ( -16 -224 336 ) ( -112 -208 256 ) Textures/DarkWood 0 0 0 1 1
 ( -16 -256 336 ) ( -16 -224 336 ) ( -112 -208 224 ) Textures/DarkWood 0 0 0 1 1
 }
+// brush 39
+{
+( -64 -720 48 ) ( -64 -656 16 ) ( -64 -656 48 ) Textures/DarkWood 0 0 0 1 1
+( 176 -720 48 ) ( -48 -720 16 ) ( -48 -720 48 ) Textures/DarkWood 0 0 0 1 1
+( 176 -656 16 ) ( -48 -720 16 ) ( 176 -720 16 ) Textures/DarkWood 0 0 0 1 1
+( 176 -656 48 ) ( -48 -720 48 ) ( -48 -656 48 ) Textures/DryCanyonFloor 0 0 0 1 1
+( 176 -656 48 ) ( -48 -656 16 ) ( 176 -656 16 ) Textures/DarkWood 0 0 0 1 1
+( 176 -656 48 ) ( 176 -720 16 ) ( 176 -720 48 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 40
+{
+( -48 -464 96 ) ( -48 -512 80 ) ( -48 -512 64 ) Textures/DarkWood 0 0 0 1 1
+( -48 -512 80 ) ( 16 -512 80 ) ( 16 -512 64 ) Textures/DarkWood 0 0 0 1 1
+( -48 -464 96 ) ( 16 -464 96 ) ( 16 -512 80 ) Textures/DryCanyonFloor 0 0 0 1 1
+( 16 -512 64 ) ( 16 -464 80 ) ( -48 -464 80 ) Textures/DarkWood 0 0 0 1 1
+( 16 -464 80 ) ( 16 -464 96 ) ( -48 -464 96 ) Textures/DarkWood 0 0 0 1 1
+( 16 -512 80 ) ( 16 -464 96 ) ( 16 -464 80 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 41
+{
+( 176 -672 224 ) ( 64 -720 48 ) ( 64 -656 48 ) Textures/DarkWood 0 0 0 1 1
+( 176 -656 64 ) ( 176 -672 224 ) ( 64 -656 48 ) Textures/DarkWood 0 0 0 1 1
+( 176 -720 224 ) ( 176 -720 48 ) ( 64 -720 48 ) Textures/DarkWood 0 0 0 1 1
+( 176 -656 48 ) ( 64 -720 48 ) ( 176 -720 48 ) Textures/DarkWood 0 0 0 1 1
+( 176 -656 64 ) ( 64 -656 48 ) ( 176 -656 48 ) Textures/DarkWood 0 0 0 1 1
+( 176 -656 64 ) ( 176 -720 224 ) ( 176 -672 224 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 42
+{
+( 16 -464 112 ) ( 16 -528 96 ) ( 16 -528 64 ) Textures/DarkWood 0 0 0 1 1
+( 16 -464 112 ) ( 32 -464 112 ) ( 16 -528 96 ) Textures/DarkWood 0 0 0 1 1
+( 16 -496 64 ) ( 32 -464 80 ) ( 16 -464 80 ) Textures/DarkWood 0 0 0 1 1
+( 32 -464 80 ) ( 32 -464 112 ) ( 16 -464 112 ) Textures/DarkWood 0 0 0 1 1
+( 16 -528 64 ) ( 32 -464 80 ) ( 16 -496 64 ) Textures/DarkWood 0 0 0 1 1
+( 16 -528 96 ) ( 32 -464 112 ) ( 32 -464 80 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 43
+{
+( -48 -528 64 ) ( -64 -464 80 ) ( -64 -464 112 ) Textures/DarkWood 0 0 0 1 1
+( -48 -528 64 ) ( -48 -496 64 ) ( -64 -464 80 ) Textures/DarkWood 0 0 0 1 1
+( -64 -464 112 ) ( -48 -464 112 ) ( -48 -528 96 ) Textures/DarkWood 0 0 0 1 1
+( -48 -496 64 ) ( -48 -464 80 ) ( -64 -464 80 ) Textures/DarkWood 0 0 0 1 1
+( -48 -464 80 ) ( -48 -464 112 ) ( -64 -464 112 ) Textures/DarkWood 0 0 0 1 1
+( -48 -528 96 ) ( -48 -464 112 ) ( -48 -464 80 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 44
+{
+( 32 -448 112 ) ( 16 -464 112 ) ( 16 -464 96 ) Textures/DarkWood 0 0 0 1 1
+( 16 -464 112 ) ( 144 -464 112 ) ( 144 -464 96 ) Textures/DarkWood 0 0 0 1 1
+( 144 -464 96 ) ( 144 -448 96 ) ( 32 -448 96 ) Textures/DarkWood 0 0 0 1 1
+( 32 -448 112 ) ( 144 -448 112 ) ( 144 -464 112 ) Textures/DarkWood 0 0 0 1 1
+( 144 -448 96 ) ( 144 -448 112 ) ( 32 -448 112 ) Textures/DarkWood 0 0 0 1 1
+( 144 -464 112 ) ( 144 -448 112 ) ( 144 -448 96 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 45
+{
+( -48 -512 80 ) ( -48 -528 79 ) ( -48 -528 64 ) Textures/DarkWood 0 0 0 1 1
+( -48 -528 79 ) ( 16 -528 79 ) ( 16 -528 64 ) Textures/DarkWood 0 0 0 1 1
+( -48 -512 80 ) ( 16 -512 80 ) ( 16 -528 79 ) Textures/DryCanyonFloor 0 0 0 1 1
+( 16 -528 64 ) ( 16 -512 64 ) ( -48 -512 64 ) Textures/DarkWood 0 0 0 1 1
+( 16 -512 64 ) ( 16 -512 80 ) ( -48 -512 80 ) Textures/DarkWood 0 0 0 1 1
+( 16 -528 79 ) ( 16 -512 80 ) ( 16 -512 64 ) Textures/DarkWood 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -471,7 +534,7 @@
 // entity 4
 {
 "classname" "enemy_snapjaw"
-"origin" "-52 -224 88"
+"origin" "-52 -224 96"
 "angles" "90 0 0"
 "CycleId" "TreeFallSnapjaws"
 }
@@ -482,7 +545,7 @@
 // brush 0
 {
 ( -128 -528 144 ) ( -128 -527 144 ) ( -128 -528 145 ) Textures/Grate 0 0 0 1 1
-( -128 -528 144 ) ( -128 -528 145 ) ( -127 -528 144 ) Textures/Grate 0 0 0 1 1
+( -128 -544 144 ) ( -128 -544 145 ) ( -127 -544 144 ) Textures/Grate 0 0 0 1 1
 ( -128 -528 32 ) ( -127 -528 32 ) ( -128 -527 32 ) Textures/Grate 0 0 0 1 1
 ( 80 -32 304 ) ( 80 -31 304 ) ( 81 -32 304 ) Textures/Grate 0 0 0 1 1
 ( 80 96 160 ) ( 81 96 160 ) ( 80 96 161 ) Textures/Grate 0 0 0 1 1
