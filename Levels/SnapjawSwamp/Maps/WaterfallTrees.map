@@ -536,9 +536,10 @@
 // entity 3
 {
 "classname" "enemy_snapjaw"
-"origin" "-32 -360 120"
-"angles" "75 90 -90"
+"origin" "-32 -357.929 119.727"
+"angles" "90 0 -180"
 "CycleId" "TreeFallSnapjaws"
+"CycleOffset" "0.5"
 }
 // entity 4
 {
