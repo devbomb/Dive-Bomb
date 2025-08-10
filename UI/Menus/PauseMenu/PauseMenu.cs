@@ -78,6 +78,11 @@ namespace FastDragon
             ChangePage(_userSettingsMenu);
         }
 
+        public void OpenDebugMenu()
+        {
+            ChangePage(GetNode<Page>("%DebugMenu"));
+        }
+
         public void ReturnToCheckpoint()
         {
             Close();
@@ -91,6 +96,14 @@ namespace FastDragon
             using var file = FileAccess.Open("user://Saves/Slot0.json", FileAccess.ModeFlags.Write);
             file.StoreLine(SaveFile.Current.ToJson());
             file.Close();
+        }
+
+        public void FullyResetLevel()
+        {
+            Close();
+            SaveFile.Current.CurrentMapProgress.ResetProgress();
+            SaveFile.Current.CurrentCheckpoint = null;
+            MapTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
 
         public void ExitLevel()

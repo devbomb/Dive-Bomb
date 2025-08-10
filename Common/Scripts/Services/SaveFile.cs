@@ -27,6 +27,12 @@ namespace FastDragon
             public HashSet<string> CollectedFairies = new();
             public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
 
+            public void ResetProgress()
+            {
+                CollectedFairies.Clear();
+                CollectedGems.Clear();
+            }
+
             public void CollectGem(GemColor color, string saveKey)
             {
                 if (!CollectedGems.TryGetValue(color, out var set))
