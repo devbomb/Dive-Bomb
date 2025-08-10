@@ -204,15 +204,6 @@
 }
 // brush 22
 {
-( 280 -24 16 ) ( 280 0 16 ) ( 280 -24 24 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 280 -24 24 ) ( 320 -24 24 ) ( 280 -24 16 ) Textures/MayanTempleBricks -8 0 0 1 1
-( 320 -24 16 ) ( 320 0 16 ) ( 280 -24 16 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 280 -24 24 ) ( 280 0 24 ) ( 320 -24 24 ) Textures/MayanTempleBricks -8 0 0 1 1
-( 280 0 24 ) ( 280 0 16 ) ( 320 0 24 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 320 -24 24 ) ( 320 0 24 ) ( 320 -24 16 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 23
-{
 ( 688 896 64 ) ( 688 384 64 ) ( 688 896 0 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 832 384 0 ) ( 688 384 0 ) ( 832 384 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 832 896 0 ) ( 688 896 0 ) ( 832 384 0 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -221,7 +212,7 @@
 ( 832 384 48 ) ( 784 384 64 ) ( 832 448 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 832 384 64 ) ( 832 896 64 ) ( 832 384 0 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 24
+// brush 23
 {
 ( 704 512 64 ) ( 704 832 160 ) ( 704 800 160 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 704 512 64 ) ( 768 800 160 ) ( 768 512 64 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -230,7 +221,7 @@
 ( 768 832 160 ) ( 704 832 64 ) ( 768 832 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 768 832 160 ) ( 768 512 64 ) ( 768 800 160 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 25
+// brush 24
 {
 ( 704 880 192 ) ( 704 896 176 ) ( 704 896 192 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 768 880 192 ) ( 704 880 176 ) ( 704 880 192 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -239,7 +230,7 @@
 ( 768 896 192 ) ( 704 896 176 ) ( 768 896 176 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 768 896 192 ) ( 768 880 176 ) ( 768 880 192 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 26
+// brush 25
 {
 ( 704 832 176 ) ( 704 800 160 ) ( 704 832 160 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 704 800 160 ) ( 768 832 176 ) ( 768 800 160 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -247,7 +238,7 @@
 ( 768 832 176 ) ( 704 832 160 ) ( 768 832 160 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 768 832 176 ) ( 768 832 160 ) ( 768 800 160 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 27
+// brush 26
 {
 ( 400 896 64 ) ( 400 896 192 ) ( 400 512 64 ) Textures/MayanTempleBricks 0 16 0 1 1
 ( 704 512 64 ) ( 400 512 64 ) ( 704 512 160 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -257,7 +248,7 @@
 ( 544 512 192 ) ( 704 640 192 ) ( 704 512 160 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 704 640 192 ) ( 704 896 192 ) ( 704 512 160 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 28
+// brush 27
 {
 ( 128 512 64 ) ( 128 896 64 ) ( 128 512 192 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 192 512 192 ) ( 224 512 192 ) ( 192 512 64 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -266,7 +257,7 @@
 ( 192 896 64 ) ( 224 896 64 ) ( 192 896 192 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 224 512 64 ) ( 224 512 192 ) ( 224 896 64 ) Textures/MayanTempleBricks 0 16 0 1 1
 }
-// brush 29
+// brush 28
 {
 ( 224 896 192 ) ( 224 640 192 ) ( 224 896 64 ) Textures/MayanTempleBricks 0 16 0 1 1
 ( 400 640 192 ) ( 400 640 64 ) ( 224 640 192 ) Textures/MayanTempleBricks 0 16 0 1 1
@@ -275,7 +266,7 @@
 ( 400 896 192 ) ( 224 896 192 ) ( 400 896 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 400 896 64 ) ( 400 640 64 ) ( 400 896 192 ) Textures/MayanTempleBricks 0 16 0 1 1
 }
-// brush 30
+// brush 29
 {
 ( 224 512 64 ) ( 224 528 64 ) ( 224 512 192 ) Textures/MayanTempleBricks 0 16 0 1 1
 ( 400 512 64 ) ( 224 512 64 ) ( 400 512 192 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -284,7 +275,7 @@
 ( 224 520 64 ) ( 400 520 64 ) ( 224 520 192 ) Textures/MayanTempleBricks 0 16 0 1 1
 ( 400 512 192 ) ( 400 528 192 ) ( 400 512 64 ) Textures/MayanTempleBricks 0 16 0 1 1
 }
-// brush 31
+// brush 30
 {
 ( 224 640 48 ) ( 224 640 160 ) ( 224 528 48 ) __TB_empty 0 0 0 1 1
 ( 224 520 48 ) ( 224 520 160 ) ( 400 520 48 ) __TB_empty 0 0 0 1 1
@@ -293,7 +284,7 @@
 ( 400 640 48 ) ( 400 640 160 ) ( 224 640 48 ) __TB_empty 0 0 0 1 1
 ( 400 528 48 ) ( 400 528 160 ) ( 400 640 48 ) __TB_empty 0 0 0 1 1
 }
-// brush 32
+// brush 31
 {
 ( 192 512 192 ) ( 192 513 192 ) ( 192 512 193 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 192 512 192 ) ( 192 512 193 ) ( 193 512 192 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -302,7 +293,7 @@
 ( 224 520 208 ) ( 225 520 208 ) ( 224 520 209 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 224 528 208 ) ( 224 528 209 ) ( 224 529 208 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 33
+// brush 32
 {
 ( 224 512 256 ) ( 224 528 192 ) ( 224 528 256 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 400 512 192 ) ( 224 512 192 ) ( 224 512 256 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -310,7 +301,7 @@
 ( 400 520 192 ) ( 224 520 256 ) ( 224 520 192 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 400 528 192 ) ( 224 512 256 ) ( 224 528 256 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 34
+// brush 33
 {
 ( 224 528 192 ) ( 224 640 176 ) ( 224 640 192 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 240 520 192 ) ( 224 520 176 ) ( 224 520 192 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -319,7 +310,7 @@
 ( 240 640 192 ) ( 224 640 176 ) ( 240 640 176 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 256 640 192 ) ( 256 528 176 ) ( 256 528 192 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 35
+// brush 34
 {
 ( 312 556 176 ) ( 312 557 176 ) ( 312 556 177 ) Textures/MayanTempleBricks -12 0 0 1 1
 ( 304 564 176 ) ( 304 564 177 ) ( 305 564 176 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -328,7 +319,7 @@
 ( 352 596 192 ) ( 353 596 192 ) ( 352 596 193 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 344 604 192 ) ( 344 604 193 ) ( 344 605 192 ) Textures/MayanTempleBricks -12 0 0 1 1
 }
-// brush 36
+// brush 35
 {
 ( 352 896 192 ) ( 352 992 64 ) ( 352 992 192 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 704 896 192 ) ( 128 896 64 ) ( 128 896 192 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -337,7 +328,7 @@
 ( 704 1024 192 ) ( 128 1024 64 ) ( 704 1024 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 704 992 192 ) ( 704 896 64 ) ( 704 896 192 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 37
+// brush 36
 {
 ( 128 640 64 ) ( 128 896 0 ) ( 128 896 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 192 640 64 ) ( 128 640 0 ) ( 128 640 64 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -346,7 +337,7 @@
 ( 192 896 64 ) ( 128 896 0 ) ( 192 896 0 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 192 896 64 ) ( 192 640 0 ) ( 192 640 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 38
+// brush 37
 {
 ( 352 896 64 ) ( 352 1088 0 ) ( 352 1088 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 832 896 64 ) ( 128 896 0 ) ( 128 896 64 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -355,7 +346,7 @@
 ( 832 1088 64 ) ( 128 1088 0 ) ( 832 1088 0 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 704 1088 64 ) ( 704 896 0 ) ( 704 896 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 39
+// brush 38
 {
 ( 288 1024 64 ) ( 288 1088 0 ) ( 288 1088 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 352 1024 64 ) ( 288 1024 0 ) ( 288 1024 64 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -364,7 +355,7 @@
 ( 352 1088 64 ) ( 288 1088 0 ) ( 352 1088 0 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 352 1088 64 ) ( 352 1024 0 ) ( 352 1024 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 40
+// brush 39
 {
 ( -320 40 16 ) ( -320 40 48 ) ( -320 -40 16 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -296 40 64 ) ( -296 -40 64 ) ( -320 40 48 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -374,7 +365,7 @@
 ( -240 40 64 ) ( -296 40 64 ) ( -112 40 16 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -240 -40 64 ) ( -240 40 64 ) ( -112 -40 16 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 41
+// brush 40
 {
 ( -320 -40 48 ) ( -320 -16 48 ) ( -320 -40 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -320 -40 64 ) ( -296 -40 64 ) ( -320 -40 48 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -382,13 +373,22 @@
 ( -320 -16 64 ) ( -320 -16 48 ) ( -296 -16 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -296 -40 64 ) ( -296 -16 64 ) ( -320 -40 48 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 42
+// brush 41
 {
 ( -320 40 64 ) ( -320 16 64 ) ( -320 40 48 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -320 16 64 ) ( -296 16 64 ) ( -320 16 48 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -296 40 64 ) ( -296 16 64 ) ( -320 40 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -320 40 64 ) ( -320 40 48 ) ( -296 40 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -320 40 48 ) ( -320 16 48 ) ( -296 40 64 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 42
+{
+( 280 -24 16 ) ( 280 0 16 ) ( 280 -24 24 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 280 -24 24 ) ( 320 -24 24 ) ( 280 -24 16 ) Textures/MayanTempleBricks -8 0 0 1 1
+( 320 -24 16 ) ( 320 0 16 ) ( 280 -24 16 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 280 -24 24 ) ( 280 0 24 ) ( 320 -24 24 ) Textures/MayanTempleBricks -8 0 0 1 1
+( 280 0 24 ) ( 280 0 16 ) ( 320 0 24 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 320 -24 24 ) ( 320 0 24 ) ( 320 -24 16 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
 }
 // entity 1
@@ -663,4 +663,34 @@
 "origin" "176 848 192"
 "angle" "90"
 "CheckpointName" "Temple"
+}
+// entity 22
+{
+"classname" "item_gem_red"
+"origin" "340 -12 24"
+}
+// entity 23
+{
+"classname" "item_gem_red"
+"origin" "468 52 16"
+}
+// entity 24
+{
+"classname" "item_gem_red"
+"origin" "452 100 16"
+}
+// entity 25
+{
+"classname" "item_gem_red"
+"origin" "420 -36 16"
+}
+// entity 26
+{
+"classname" "item_gem_red"
+"origin" "-36 52 56"
+}
+// entity 27
+{
+"classname" "item_gem_red"
+"origin" "-28 8 24"
 }
