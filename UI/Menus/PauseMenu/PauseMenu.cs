@@ -78,7 +78,7 @@ namespace FastDragon
             ChangePage(_userSettingsMenu);
         }
 
-        public void ResetLevel()
+        public void ReturnToCheckpoint()
         {
             Close();
             MapTransitionManager.Instance.RespawnPlayerAfterDeath();

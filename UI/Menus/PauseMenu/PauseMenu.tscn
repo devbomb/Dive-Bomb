@@ -55,9 +55,9 @@ text = "Save"
 layout_mode = 2
 text = "Options"
 
-[node name="ResetLevel" type="Button" parent="MainPage/Buttons"]
+[node name="ReturnToCheckpoint" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
-text = "Reset Level"
+text = "Reload Checkpoint"
 
 [node name="ExitLevel" type="Button" parent="MainPage/Buttons"]
 unique_name_in_owner = true
@@ -125,11 +125,11 @@ layout_mode = 1
 [connection signal="pressed" from="MainPage/Buttons/Atlas" to="." method="OpenAtlas"]
 [connection signal="pressed" from="MainPage/Buttons/Save" to="." method="SaveGame"]
 [connection signal="pressed" from="MainPage/Buttons/Options" to="." method="OpenUserSettingsMenu"]
-[connection signal="pressed" from="MainPage/Buttons/ResetLevel" to="." method="ResetLevel"]
+[connection signal="pressed" from="MainPage/Buttons/ReturnToCheckpoint" to="." method="ReturnToCheckpoint"]
 [connection signal="pressed" from="MainPage/Buttons/ExitLevel" to="." method="ExitLevel"]
 [connection signal="pressed" from="MainPage/Buttons/QuitToTitle" to="." method="QuitToTitle"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Continue" to="." method="Close"]
-[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/ResetLevel" to="." method="ResetLevel"]
+[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/ResetLevel" to="." method="ReturnToCheckpoint"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Options" to="." method="OpenUserSettingsMenu"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/QuitToTitle" to="." method="QuitToTitle"]
 [connection signal="BackRequested" from="AtlasMenu" to="." method="OpenMainPage"]
