@@ -442,26 +442,21 @@
 }
 // entity 7
 {
-"classname" "item_gem_red"
-"origin" "212 -20 16"
-}
-// entity 8
-{
 "classname" "enemy_snapjaw"
 "origin" "448 160 72"
 "CycleId" "FirstTemple"
 }
-// entity 9
+// entity 8
 {
 "classname" "enemy_hand_cannoner"
 "origin" "728 488 64"
 }
-// entity 10
+// entity 9
 {
 "classname" "item_gem_red"
 "origin" "740 516 80"
 }
-// entity 11
+// entity 10
 {
 "classname" "enemy_snapjaw"
 "origin" "616 424 96"
@@ -469,7 +464,7 @@
 "PeekDuration" "2"
 "CycleOffset" "0"
 }
-// entity 12
+// entity 11
 {
 "classname" "hazard_drowning_water"
 // brush 0
@@ -482,7 +477,7 @@
 ( 688 464 48 ) ( 688 384 32 ) ( 688 384 48 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 13
+// entity 12
 {
 "classname" "hazard_drowning_water"
 // brush 0
@@ -521,7 +516,7 @@
 ( 688 384 48 ) ( 688 384 32 ) ( 688 368 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
-// entity 14
+// entity 13
 {
 "classname" "trigger_cycle_starter"
 "CycleId" "FirstTemple"
@@ -535,12 +530,12 @@
 ( 800 512 80 ) ( 800 384 16 ) ( 800 384 80 ) Textures/Grate 0 16 0 1 1
 }
 }
-// entity 15
+// entity 14
 {
 "classname" "item_basket"
 "origin" "456 -40 16"
 }
-// entity 16
+// entity 15
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -616,13 +611,13 @@
 ( 616 896 320 ) ( 616 768 288 ) ( 616 768 320 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
 }
-// entity 17
+// entity 16
 {
 "classname" "enemy_snapjaw"
 "origin" "360 580 248"
 "CycleId" "TempleDoubleSnapjaws"
 }
-// entity 18
+// entity 17
 {
 "classname" "enemy_snapjaw"
 "origin" "288 580 248"
@@ -630,7 +625,7 @@
 "CycleOffset" "0.5"
 "FallbackAggroRadius" "4"
 }
-// entity 19
+// entity 18
 {
 "classname" "trigger_cycle_starter"
 "CycleId" "TempleDoubleSnapjaws"
@@ -644,7 +639,7 @@
 ( 672 640 208 ) ( 672 640 209 ) ( 672 641 208 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 20
+// entity 19
 {
 "classname" "hazard_drowning_water"
 // brush 0
@@ -657,40 +652,55 @@
 ( 400 640 192 ) ( 400 528 176 ) ( 400 528 192 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 21
+// entity 20
 {
 "classname" "transport_checkpoint"
 "origin" "176 848 192"
 "angle" "90"
 "CheckpointName" "Temple"
 }
-// entity 22
+// entity 21
 {
 "classname" "item_gem_red"
 "origin" "340 -12 24"
 }
-// entity 23
+// entity 22
 {
 "classname" "item_gem_red"
 "origin" "468 52 16"
 }
-// entity 24
+// entity 23
 {
 "classname" "item_gem_red"
 "origin" "452 100 16"
 }
-// entity 25
+// entity 24
 {
 "classname" "item_gem_red"
 "origin" "420 -36 16"
 }
-// entity 26
+// entity 25
 {
 "classname" "item_gem_red"
 "origin" "-36 52 56"
 }
-// entity 27
+// entity 26
 {
 "classname" "item_gem_red"
 "origin" "-28 8 24"
+}
+// entity 27
+{
+"classname" "item_vase"
+"origin" "448 216 48"
+}
+// entity 28
+{
+"classname" "item_vase"
+"origin" "448 248 48"
+}
+// entity 29
+{
+"classname" "item_gem_red"
+"origin" "212 -20 16"
 }
