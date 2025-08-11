@@ -28,6 +28,13 @@ var _timer: float = 0
 var _lastHealth: int = 0
 
 func _ready() -> void:
+	$'/root/SignalBus'.connect(\"LevelReset\", reset)
+	reset()
+
+func reset() -> void:
+	_timer = 0
+	update_position(0)
+	
 	_lastHealth = $'/root/SaveFile'.Current().PlayerHealth
 	value = _lastHealth
 
@@ -41,7 +48,10 @@ func _process(delta: float) -> void:
 	
 	_timer -= delta
 	var t: float = clamp(_timer, 0, _return_duration) / _return_duration
+	update_position(t)
+
 	
+func update_position(t: float) -> void:
 	anchor_left = lerpf(%RestPoint.anchor_left, %CenterPoint.anchor_left, t)
 	anchor_right = lerpf(%RestPoint.anchor_right, %CenterPoint.anchor_right, t)
 	anchor_top = lerpf(%RestPoint.anchor_top, %CenterPoint.anchor_top, t)
