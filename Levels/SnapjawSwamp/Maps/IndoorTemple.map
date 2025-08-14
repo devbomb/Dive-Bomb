@@ -114,6 +114,15 @@
 ( -176 0 768 ) ( -176 0 688 ) ( -240 -64 688 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -176 416 768 ) ( -176 0 688 ) ( -176 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
+// brush 13
+{
+( 112 280 672 ) ( 112 288 616 ) ( 112 288 672 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 280 672 ) ( 112 280 616 ) ( 112 280 672 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 288 616 ) ( 112 280 616 ) ( 176 280 616 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 288 672 ) ( 112 280 672 ) ( 112 288 672 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 288 672 ) ( 112 288 616 ) ( 176 288 616 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 288 672 ) ( 176 280 616 ) ( 176 280 672 ) Textures/BulletproofGlass 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -1515,4 +1524,181 @@
 ( 208 -144 576 ) ( 144 -144 560 ) ( 208 -144 560 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 176 -144 576 ) ( 176 -160 560 ) ( 176 -160 576 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
+}
+// entity 40
+{
+"classname" "item_gem_red"
+"origin" "-332 -308 368"
+}
+// entity 41
+{
+"classname" "item_gem_red"
+"origin" "-268 -244 368"
+}
+// entity 42
+{
+"classname" "item_gem_red"
+"origin" "-196 -300 368"
+}
+// entity 43
+{
+"classname" "item_vase"
+"origin" "312 -328 384"
+}
+// entity 44
+{
+"classname" "item_vase"
+"origin" "280 -328 384"
+}
+// entity 45
+{
+"classname" "item_basket"
+"origin" "-8 -232 336"
+}
+// entity 46
+{
+"classname" "item_basket"
+"origin" "368 -208 336"
+}
+// entity 47
+{
+"classname" "item_basket"
+"origin" "368 -240 336"
+}
+// entity 48
+{
+"classname" "item_vase"
+"origin" "344 12 360"
+}
+// entity 49
+{
+"classname" "item_vase"
+"origin" "344 168 384"
+}
+// entity 50
+{
+"classname" "item_gem_red"
+"origin" "228 -284 336"
+}
+// entity 51
+{
+"classname" "item_basket"
+"origin" "40 88 496"
+}
+// entity 52
+{
+"classname" "item_basket"
+"origin" "160 120 616"
+"GemColor" "25"
+}
+// entity 53
+{
+"classname" "item_basket"
+"origin" "160 152 616"
+"GemColor" "2"
+}
+// entity 54
+{
+"classname" "item_basket"
+"origin" "280 -12 496"
+}
+// entity 55
+{
+"classname" "item_basket"
+"origin" "280 44 496"
+}
+// entity 56
+{
+"classname" "item_gem_red"
+"origin" "280 16 496"
+}
+// entity 57
+{
+"classname" "item_gem_green"
+"origin" "300 60 496"
+}
+// entity 58
+{
+"classname" "item_gem_red"
+"origin" "276 140 528"
+}
+// entity 59
+{
+"classname" "item_gem_green"
+"origin" "236 180 480"
+}
+// entity 60
+{
+"classname" "item_gem_purple"
+"origin" "276 196 480"
+}
+// entity 61
+{
+"classname" "item_gem_green"
+"origin" "252 244 464"
+}
+// entity 62
+{
+"classname" "item_gem_yellow"
+"origin" "276 108 528"
+}
+// entity 63
+{
+"classname" "item_gem_purple"
+"origin" "260 -92 560"
+}
+// entity 64
+{
+"classname" "item_gem_purple"
+"origin" "260 -132 560"
+}
+// entity 65
+{
+"classname" "item_gem_red"
+"origin" "276 -100 528"
+}
+// entity 66
+{
+"classname" "item_gem_green"
+"origin" "172 -164 528"
+}
+// entity 67
+{
+"classname" "item_gem_green"
+"origin" "108 -164 528"
+}
+// entity 68
+{
+"classname" "item_gem_green"
+"origin" "36 -164 528"
+}
+// entity 69
+{
+"classname" "item_gem_red"
+"origin" "-180 -84 560"
+}
+// entity 70
+{
+"classname" "item_gem_red"
+"origin" "-212 -116 560"
+}
+// entity 71
+{
+"classname" "item_gem_purple"
+"origin" "-28 -164 496"
+}
+// entity 72
+{
+"classname" "item_gem_yellow"
+"origin" "-68 -164 496"
+}
+// entity 73
+{
+"classname" "item_gem_purple"
+"origin" "-108 -164 496"
+}
+// entity 74
+{
+"classname" "item_gem_red"
+"origin" "-292 -172 496"
 }
