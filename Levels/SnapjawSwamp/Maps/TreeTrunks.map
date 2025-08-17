@@ -1018,6 +1018,63 @@
 }
 // entity 30
 {
+"classname" "item_basket"
+"origin" "296 664 432"
+"GemColor" "5"
+"_tb_group" "7"
+}
+// entity 31
+{
+"classname" "item_basket"
+"origin" "120 776 480"
+"GemColor" "5"
+"_tb_group" "7"
+}
+// entity 32
+{
+"classname" "item_gem_red"
+"origin" "284 756 448"
+"_tb_group" "7"
+}
+// entity 33
+{
+"classname" "item_gem_red"
+"origin" "124 812 480"
+"_tb_group" "7"
+}
+// entity 34
+{
+"classname" "item_gem_green"
+"origin" "84 652 560"
+"_tb_group" "7"
+}
+// entity 35
+{
+"classname" "item_gem_green"
+"origin" "116 588 560"
+"_tb_group" "7"
+}
+// entity 36
+{
+"classname" "item_basket"
+"origin" "152 648 560"
+"GemColor" "5"
+"_tb_group" "7"
+}
+// entity 37
+{
+"classname" "item_gem_green"
+"origin" "-68 668 528"
+"_tb_group" "7"
+}
+// entity 38
+{
+"classname" "item_gem_red"
+"origin" "-12 652 544"
+"_tb_group" "7"
+}
+// entity 39
+{
 "classname" "func_group"
 "_tb_type" "_tb_group"
 "_tb_name" "branch"
@@ -1074,7 +1131,7 @@
 ( 300 68 726 ) ( 300 52 678 ) ( 300 52 726 ) Textures/DarkWood 580 -74 0 1 1
 }
 }
-// entity 31
+// entity 40
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1132,33 +1189,33 @@
 ( -237.25483399593907 -163.88225099390854 696 ) ( -238.01633360644973 -156.15846923018069 650.650887573962 ) ( -237.25483399593907 -163.88225099390854 648 ) Textures/DarkWood 664 -80 180 1 -1
 }
 }
-// entity 32
+// entity 41
 {
 "classname" "item_gem_red"
 "origin" "76 468 560"
 }
-// entity 33
+// entity 42
 {
 "classname" "item_gem_red"
 "origin" "12 292 528"
 }
-// entity 34
+// entity 43
 {
 "classname" "enemy_hand_cannoner"
 "origin" "-16 152 544"
 }
-// entity 35
+// entity 44
 {
 "classname" "item_gem_red"
 "origin" "-12 196 536"
 }
-// entity 36
+// entity 45
 {
 "classname" "decor_wall_torch"
 "origin" "28 320 512"
 "angle" "345"
 }
-// entity 37
+// entity 46
 {
 "classname" "wall_no_collision"
 "_phong" "1"
@@ -1207,7 +1264,7 @@
 ( 528 794.372549019608 813.1241585387594 ) ( 528 469.62745098039227 690.8758414612403 ) ( 528 469.62745098039227 813.1241585387594 ) Textures/Grass 0 0 0 1 1
 }
 }
-// entity 38
+// entity 47
 {
 "classname" "wall_no_collision"
 "_phong" "1"
