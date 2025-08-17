@@ -73,161 +73,6 @@
 ( -240 32 272 ) ( -288 32 64 ) ( -240 32 64 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -240 32 272 ) ( -240 -64 64 ) ( -240 -64 560 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 8
-{
-( -176 0 768 ) ( -240 -64 688 ) ( -176 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 -64 688 ) ( -176 0 768 ) ( 208 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 -64 688 ) ( -176 0 688 ) ( -240 -64 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 208 0 768 ) ( -176 0 688 ) ( 208 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 -64 688 ) ( 208 0 768 ) ( 208 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 9
-{
-( 208 0 768 ) ( 208 144 688 ) ( 208 144 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 -64 688 ) ( 208 0 688 ) ( 208 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 144 688 ) ( 208 0 688 ) ( 272 -64 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 144 688 ) ( 208 144 768 ) ( 208 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 144 688 ) ( 208 0 768 ) ( 208 144 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 10
-{
-( 160 352 768 ) ( 160 144 768 ) ( 160 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 352 688 ) ( 224 416 688 ) ( 160 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 144 768 ) ( 224 144 688 ) ( 160 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 224 144 688 ) ( 224 416 688 ) ( 160 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 352 768 ) ( 224 416 688 ) ( 224 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 11
-{
-( 112 280 672 ) ( 112 288 616 ) ( 112 288 672 ) Textures/BulletproofGlass 0 0 0 1 1
-( 176 280 672 ) ( 112 280 616 ) ( 112 280 672 ) Textures/BulletproofGlass 0 0 0 1 1
-( 176 288 616 ) ( 112 280 616 ) ( 176 280 616 ) Textures/BulletproofGlass 0 0 0 1 1
-( 176 288 672 ) ( 112 280 672 ) ( 112 288 672 ) Textures/BulletproofGlass 0 0 0 1 1
-( 176 288 672 ) ( 112 288 616 ) ( 176 288 616 ) Textures/BulletproofGlass 0 0 0 1 1
-( 176 288 672 ) ( 176 280 616 ) ( 176 280 672 ) Textures/BulletproofGlass 0 0 0 1 1
-}
-// brush 12
-{
-( 160 416 752 ) ( 160 -64 752 ) ( 160 -64 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 224 0 752 ) ( -240 0 688 ) ( -240 0 752 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 224 416 688 ) ( -240 -64 688 ) ( 224 -64 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 224 416 768 ) ( -240 -64 768 ) ( -240 416 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 224 144 752 ) ( -240 144 688 ) ( 224 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 208 416 752 ) ( 208 -64 688 ) ( 208 -64 752 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 13
-{
-( -240 -64 688 ) ( -176 0 768 ) ( -176 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -240 416 688 ) ( -176 352 768 ) ( -176 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -176 0 688 ) ( -176 416 688 ) ( -240 416 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -176 352 768 ) ( -240 416 688 ) ( -176 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -176 352 768 ) ( -176 416 688 ) ( -176 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 14
-{
-( -176 352 688 ) ( -240 416 688 ) ( -176 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 352 768 ) ( 224 352 688 ) ( -176 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 224 352 688 ) ( 224 416 688 ) ( -240 416 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -240 416 688 ) ( 224 416 688 ) ( 160 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 352 768 ) ( 224 416 688 ) ( 160 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 15
-{
-( 128 352 768 ) ( 128 0 768 ) ( 128 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 0 688 ) ( 144 0 688 ) ( 160 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 352 688 ) ( 144 352 688 ) ( 160 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 0 768 ) ( 144 0 768 ) ( 160 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 352 768 ) ( 144 352 768 ) ( 160 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 0 768 ) ( 160 352 768 ) ( 160 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 16
-{
-( -176 0 688 ) ( -176 352 688 ) ( -176 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -176 0 768 ) ( -160 0 768 ) ( -176 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -176 0 688 ) ( -160 0 688 ) ( -176 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -176 352 768 ) ( -160 352 768 ) ( -176 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -176 352 688 ) ( -160 352 688 ) ( -176 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -144 0 688 ) ( -144 0 768 ) ( -144 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 17
-{
-( -160 352 768 ) ( -160 336 768 ) ( -160 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 320 768 ) ( 144 320 688 ) ( -160 320 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 352 688 ) ( -160 336 688 ) ( 144 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 352 768 ) ( 144 336 768 ) ( -160 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 352 768 ) ( -160 352 768 ) ( 144 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 128 352 688 ) ( 128 336 688 ) ( 128 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 18
-{
-( -144 0 688 ) ( -144 16 688 ) ( -144 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 0 688 ) ( -160 0 688 ) ( 144 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 0 688 ) ( 144 16 688 ) ( -160 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 0 768 ) ( -160 16 768 ) ( 144 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 32 688 ) ( 144 32 688 ) ( -160 32 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 128 0 768 ) ( 128 16 768 ) ( 128 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 19
-{
-( -144 96 768 ) ( -144 16 768 ) ( -144 16 704 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -144 32 768 ) ( -16 32 704 ) ( -144 32 704 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -16 16 720 ) ( -16 96 720 ) ( -144 96 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -144 96 704 ) ( -16 96 704 ) ( -144 96 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -144 96 768 ) ( -16 96 704 ) ( -16 16 704 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 20
-{
-( 80 16 768 ) ( 80 336 704 ) ( 80 336 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 32 768 ) ( 80 32 704 ) ( 80 32 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 336 720 ) ( 80 16 720 ) ( 144 16 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 336 752 ) ( 80 16 752 ) ( 80 336 752 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 320 768 ) ( 80 320 704 ) ( 144 320 704 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 128 336 768 ) ( 128 16 704 ) ( 128 16 768 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 21
-{
-( 80 336 752 ) ( -16 256 720 ) ( -16 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 80 256 752 ) ( 80 256 720 ) ( -16 256 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 80 336 720 ) ( -16 256 720 ) ( 80 256 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 80 320 752 ) ( -16 320 720 ) ( 80 320 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 80 336 752 ) ( 80 256 720 ) ( 80 256 752 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 22
-{
-( -144 336 688 ) ( -144 336 704 ) ( -144 16 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 96 688 ) ( -160 96 704 ) ( 144 96 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 336 720 ) ( 144 16 720 ) ( -160 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 256 688 ) ( 144 256 704 ) ( -160 256 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -96 336 688 ) ( -96 16 688 ) ( -96 336 704 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 23
-{
-( -128 336 688 ) ( -128 336 704 ) ( -128 16 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 32 688 ) ( -160 32 704 ) ( 144 32 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 336 720 ) ( 144 16 720 ) ( -160 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 96 688 ) ( 144 96 688 ) ( -160 96 704 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 16 688 ) ( 144 16 704 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 24
-{
-( -144 336 688 ) ( -144 336 704 ) ( -144 16 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 256 688 ) ( -160 256 688 ) ( 144 256 704 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 336 720 ) ( 144 16 720 ) ( -160 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 320 688 ) ( 144 320 704 ) ( -160 320 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 128 16 688 ) ( 128 16 704 ) ( 128 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 25
-{
-( 80 16 688 ) ( 80 336 688 ) ( 80 16 704 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 96 688 ) ( -160 96 704 ) ( 144 96 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 336 720 ) ( 144 16 720 ) ( -160 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 144 256 688 ) ( 144 256 704 ) ( -160 256 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 128 16 688 ) ( 128 16 704 ) ( 128 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
 }
 // entity 1
 {
@@ -1030,29 +875,158 @@
 }
 // brush 70
 {
-( 232 -112 560 ) ( 232 -112 584 ) ( 208 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 232 -144 560 ) ( 208 -144 560 ) ( 208 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 232 -144 560 ) ( 232 -112 560 ) ( 208 -144 560 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 208 -144 584 ) ( 232 -112 584 ) ( 232 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 232 -144 584 ) ( 232 -112 584 ) ( 232 -112 560 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 128 352 768 ) ( 128 0 768 ) ( 128 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 0 688 ) ( 144 0 688 ) ( 160 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 352 688 ) ( 144 352 688 ) ( 160 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 0 768 ) ( 144 0 768 ) ( 160 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 352 768 ) ( 144 352 768 ) ( 160 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 0 768 ) ( 160 352 768 ) ( 160 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
 // brush 71
 {
-( 176 -160 592 ) ( 176 -144 560 ) ( 176 -144 592 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 208 -160 584 ) ( 176 -160 560 ) ( 176 -160 592 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 208 -144 560 ) ( 176 -160 560 ) ( 208 -160 560 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 208 -144 584 ) ( 176 -144 560 ) ( 208 -144 560 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 208 -144 584 ) ( 176 -160 592 ) ( 176 -144 592 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 208 -144 584 ) ( 208 -160 560 ) ( 208 -160 584 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -144 336 688 ) ( -144 336 704 ) ( -144 16 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 96 688 ) ( -160 96 704 ) ( 144 96 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 336 720 ) ( 144 16 720 ) ( -160 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 256 688 ) ( 144 256 704 ) ( -160 256 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -96 336 688 ) ( -96 16 688 ) ( -96 336 704 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
 // brush 72
 {
-( 208 -160 584 ) ( 208 -144 560 ) ( 208 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 -160 584 ) ( 208 -160 560 ) ( 208 -160 584 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 -144 560 ) ( 208 -160 560 ) ( 272 -160 560 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 -144 584 ) ( 208 -160 584 ) ( 208 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 272 -144 584 ) ( 208 -144 560 ) ( 272 -144 560 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 232 -144 584 ) ( 216 -160 584 ) ( 216 -160 712 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -128 336 688 ) ( -128 336 704 ) ( -128 16 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 32 688 ) ( -160 32 704 ) ( 144 32 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 336 720 ) ( 144 16 720 ) ( -160 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 96 688 ) ( 144 96 688 ) ( -160 96 704 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 16 688 ) ( 144 16 704 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 73
+{
+( 80 16 768 ) ( 80 336 704 ) ( 80 336 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 32 768 ) ( 80 32 704 ) ( 80 32 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 336 720 ) ( 80 16 720 ) ( 144 16 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 336 752 ) ( 80 16 752 ) ( 80 336 752 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 320 768 ) ( 80 320 704 ) ( 144 320 704 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 128 336 768 ) ( 128 16 704 ) ( 128 16 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 74
+{
+( -144 336 688 ) ( -144 336 704 ) ( -144 16 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 256 688 ) ( -160 256 688 ) ( 144 256 704 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 336 720 ) ( 144 16 720 ) ( -160 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 320 688 ) ( 144 320 704 ) ( -160 320 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 128 16 688 ) ( 128 16 704 ) ( 128 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 75
+{
+( -160 352 768 ) ( -160 336 768 ) ( -160 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 320 768 ) ( 144 320 688 ) ( -160 320 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 352 688 ) ( -160 336 688 ) ( 144 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 352 768 ) ( 144 336 768 ) ( -160 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 352 768 ) ( -160 352 768 ) ( 144 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 128 352 688 ) ( 128 336 688 ) ( 128 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 76
+{
+( 80 336 752 ) ( -16 256 720 ) ( -16 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 80 256 752 ) ( 80 256 720 ) ( -16 256 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 80 336 720 ) ( -16 256 720 ) ( 80 256 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 80 320 752 ) ( -16 320 720 ) ( 80 320 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 80 336 752 ) ( 80 256 720 ) ( 80 256 752 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 77
+{
+( -144 96 768 ) ( -144 16 768 ) ( -144 16 704 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -144 32 768 ) ( -16 32 704 ) ( -144 32 704 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -16 16 720 ) ( -16 96 720 ) ( -144 96 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -144 96 704 ) ( -16 96 704 ) ( -144 96 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -144 96 768 ) ( -16 96 704 ) ( -16 16 704 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 78
+{
+( -176 0 688 ) ( -176 352 688 ) ( -176 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -176 0 768 ) ( -160 0 768 ) ( -176 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -176 0 688 ) ( -160 0 688 ) ( -176 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -176 352 768 ) ( -160 352 768 ) ( -176 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -176 352 688 ) ( -160 352 688 ) ( -176 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -144 0 688 ) ( -144 0 768 ) ( -144 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 79
+{
+( -144 0 688 ) ( -144 16 688 ) ( -144 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 0 688 ) ( -160 0 688 ) ( 144 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 0 688 ) ( 144 16 688 ) ( -160 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 0 768 ) ( -160 16 768 ) ( 144 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 32 688 ) ( 144 32 688 ) ( -160 32 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 128 0 768 ) ( 128 16 768 ) ( 128 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 80
+{
+( -176 352 688 ) ( -240 416 688 ) ( -176 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 352 768 ) ( 224 352 688 ) ( -176 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 224 352 688 ) ( 224 416 688 ) ( -240 416 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -240 416 688 ) ( 224 416 688 ) ( 160 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 352 768 ) ( 224 416 688 ) ( 160 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 81
+{
+( -240 -64 688 ) ( -176 0 768 ) ( -176 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -240 416 688 ) ( -176 352 768 ) ( -176 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -176 0 688 ) ( -176 416 688 ) ( -240 416 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -176 352 768 ) ( -240 416 688 ) ( -176 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -176 352 768 ) ( -176 416 688 ) ( -176 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 82
+{
+( 160 416 752 ) ( 160 -64 752 ) ( 160 -64 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 224 0 752 ) ( -240 0 688 ) ( -240 0 752 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 224 416 688 ) ( -240 -64 688 ) ( 224 -64 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 224 416 768 ) ( -240 -64 768 ) ( -240 416 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 224 144 752 ) ( -240 144 688 ) ( 224 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 208 416 752 ) ( 208 -64 688 ) ( 208 -64 752 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 83
+{
+( 208 0 768 ) ( 208 144 688 ) ( 208 144 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 -64 688 ) ( 208 0 688 ) ( 208 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 144 688 ) ( 208 0 688 ) ( 272 -64 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 144 688 ) ( 208 144 768 ) ( 208 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 144 688 ) ( 208 0 768 ) ( 208 144 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 84
+{
+( -176 0 768 ) ( -240 -64 688 ) ( -176 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 -64 688 ) ( -176 0 768 ) ( 208 0 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 -64 688 ) ( -176 0 688 ) ( -240 -64 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 208 0 768 ) ( -176 0 688 ) ( 208 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 -64 688 ) ( 208 0 768 ) ( 208 0 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 85
+{
+( 160 352 768 ) ( 160 144 768 ) ( 160 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 352 688 ) ( 224 416 688 ) ( 160 352 768 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 144 768 ) ( 224 144 688 ) ( 160 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 224 144 688 ) ( 224 416 688 ) ( 160 352 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 160 352 768 ) ( 224 416 688 ) ( 224 144 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 86
+{
+( 80 16 688 ) ( 80 336 688 ) ( 80 16 704 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 96 688 ) ( -160 96 704 ) ( 144 96 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 336 720 ) ( 144 16 720 ) ( -160 336 720 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 144 256 688 ) ( 144 256 704 ) ( -160 256 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 128 16 688 ) ( 128 16 704 ) ( 128 336 688 ) Textures/MayanTempleBricks 0 0 0 1 1
+}
+// brush 87
+{
+( 112 280 672 ) ( 112 288 616 ) ( 112 288 672 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 280 672 ) ( 112 280 616 ) ( 112 280 672 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 288 616 ) ( 112 280 616 ) ( 176 280 616 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 288 672 ) ( 112 280 672 ) ( 112 288 672 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 288 672 ) ( 112 288 616 ) ( 176 288 616 ) Textures/BulletproofGlass 0 0 0 1 1
+( 176 288 672 ) ( 176 280 616 ) ( 176 280 672 ) Textures/BulletproofGlass 0 0 0 1 1
 }
 }
 // entity 7
@@ -1273,6 +1247,109 @@
 }
 // entity 27
 {
+"classname" "item_vase"
+"origin" "104 232 752"
+"GemColor" "5"
+"_tb_group" "6"
+}
+// entity 28
+{
+"classname" "item_gem_purple"
+"origin" "140 68 768"
+"_tb_group" "6"
+}
+// entity 29
+{
+"classname" "item_vase"
+"origin" "104 168 752"
+"GemColor" "5"
+"_tb_group" "6"
+}
+// entity 30
+{
+"classname" "item_vase"
+"origin" "104 104 752"
+"GemColor" "5"
+"_tb_group" "6"
+}
+// entity 31
+{
+"classname" "item_gem_green"
+"origin" "140 132 768"
+"_tb_group" "6"
+}
+// entity 32
+{
+"classname" "item_gem_purple"
+"origin" "140 260 768"
+"_tb_group" "6"
+}
+// entity 33
+{
+"classname" "item_gem_green"
+"origin" "140 196 768"
+"_tb_group" "6"
+}
+// entity 34
+{
+"classname" "item_gem_red"
+"origin" "-124 140 720"
+"_tb_group" "6"
+}
+// entity 35
+{
+"classname" "item_fairy"
+"origin" "104 296 752"
+"_tb_group" "6"
+}
+// entity 36
+{
+"classname" "item_gem_green"
+"origin" "36 288 736"
+"_tb_group" "6"
+}
+// entity 37
+{
+"classname" "hazard_drowning_water"
+"_tb_group" "6"
+// brush 0
+{
+( -96 336 688 ) ( -96 336 704 ) ( -96 16 688 ) Textures/SwampGoo 0 0 0 1 1
+( -160 96 688 ) ( -160 96 704 ) ( 144 96 688 ) Textures/SwampGoo 0 0 0 1 1
+( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/SwampGoo 0 0 0 1 1
+( 144 336 712 ) ( 144 16 712 ) ( -160 336 712 ) Textures/SwampGoo 0 0 0 1 1
+( 144 256 688 ) ( 144 256 704 ) ( -160 256 688 ) Textures/SwampGoo 0 0 0 1 1
+( 80 16 688 ) ( 80 16 704 ) ( 80 336 688 ) Textures/SwampGoo 0 0 0 1 1
+}
+}
+// entity 38
+{
+"classname" "item_basket"
+"origin" "160 120 616"
+"GemColor" "25"
+"_tb_group" "6"
+}
+// entity 39
+{
+"classname" "item_basket"
+"origin" "160 152 616"
+"GemColor" "2"
+"_tb_group" "6"
+}
+// entity 40
+{
+"classname" "item_basket"
+"origin" "40 88 496"
+"_tb_group" "6"
+}
+// entity 41
+{
+"classname" "item_gem_green"
+"origin" "20 64 720"
+"_tb_group" "6"
+}
+// entity 42
+{
 "classname" "func_group"
 "_tb_type" "_tb_group"
 "_tb_name" "NiceTrick"
@@ -1414,7 +1491,7 @@
 ( 304 -208 496 ) ( 304 224 496 ) ( 304 224 48 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
 }
-// entity 28
+// entity 43
 {
 "classname" "wall_no_collision"
 "_tb_group" "7"
@@ -1428,7 +1505,7 @@
 ( 304 128 512 ) ( 320 128 496 ) ( 320 80 496 ) Textures/SwampGooWaterfall 8 8 90 1 1
 }
 }
-// entity 29
+// entity 44
 {
 "classname" "wall_no_collision"
 "_tb_group" "7"
@@ -1451,7 +1528,7 @@
 ( 320 -96 48 ) ( 320 -96 224 ) ( 320 -48 48 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
-// entity 30
+// entity 45
 {
 "classname" "wall_no_collision"
 "_tb_group" "7"
@@ -1483,7 +1560,7 @@
 ( 312 80 48 ) ( 312 80 224 ) ( 312 128 48 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
-// entity 31
+// entity 46
 {
 "classname" "trigger_cycle_starter"
 "CycleId" "NicerSidewaysSnapjaw"
@@ -1498,7 +1575,7 @@
 ( 384 80 352 ) ( 384 80 353 ) ( 384 81 352 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 32
+// entity 47
 {
 "classname" "hazard_drowning_water"
 "_tb_group" "7"
@@ -1512,7 +1589,7 @@
 ( 400 176 240 ) ( 400 -144 224 ) ( 400 -144 240 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 33
+// entity 48
 {
 "classname" "wall_no_collision"
 "_tb_group" "7"
@@ -1526,7 +1603,7 @@
 ( 304 -48 512 ) ( 320 -48 496 ) ( 320 -96 496 ) Textures/SwampGooWaterfall 8 8 90 1 1
 }
 }
-// entity 34
+// entity 49
 {
 "classname" "enemy_snapjaw"
 "origin" "336 104 400"
@@ -1535,7 +1612,7 @@
 "CycleOffset" "0.5"
 "_tb_group" "7"
 }
-// entity 35
+// entity 50
 {
 "classname" "enemy_snapjaw"
 "origin" "344 -72 384"
@@ -1544,7 +1621,7 @@
 "CycleOffset" "0"
 "_tb_group" "7"
 }
-// entity 36
+// entity 51
 {
 "classname" "trigger_camera_suggestion_zone"
 "SuggestedYawDeg" "-90"
@@ -1558,7 +1635,7 @@
 ( 384 -224 464 ) ( 384 -304 336 ) ( 384 -304 464 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 37
+// entity 52
 {
 "classname" "trigger_cycle_starter"
 "CycleId" "IndoorSection"
@@ -1572,7 +1649,7 @@
 ( 240 48 560 ) ( 240 -80 528 ) ( 240 -80 560 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 38
+// entity 53
 {
 "classname" "reference_placeholder"
 // brush 0
@@ -1585,7 +1662,7 @@
 ( 656 -48 64 ) ( 656 -176 32 ) ( 656 -176 64 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 39
+// entity 54
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1629,257 +1706,197 @@
 ( 208 -144 576 ) ( 144 -144 560 ) ( 208 -144 560 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 176 -144 576 ) ( 176 -160 560 ) ( 176 -160 576 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-}
-// entity 40
+// brush 4
 {
-"classname" "item_gem_red"
-"origin" "-332 -308 368"
+( 176 -160 592 ) ( 176 -144 560 ) ( 176 -144 592 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 208 -160 584 ) ( 176 -160 560 ) ( 176 -160 592 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 208 -144 560 ) ( 176 -160 560 ) ( 208 -160 560 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 208 -144 584 ) ( 176 -144 560 ) ( 208 -144 560 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 208 -144 584 ) ( 176 -160 592 ) ( 176 -144 592 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 208 -144 584 ) ( 208 -160 560 ) ( 208 -160 584 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// entity 41
+// brush 5
 {
-"classname" "item_gem_red"
-"origin" "-268 -244 368"
+( 208 -160 584 ) ( 208 -144 560 ) ( 208 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 -160 584 ) ( 208 -160 560 ) ( 208 -160 584 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 -144 560 ) ( 208 -160 560 ) ( 272 -160 560 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 -144 584 ) ( 208 -160 584 ) ( 208 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 272 -144 584 ) ( 208 -144 560 ) ( 272 -144 560 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 232 -144 584 ) ( 216 -160 584 ) ( 216 -160 712 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// entity 42
+// brush 6
 {
-"classname" "item_gem_red"
-"origin" "-196 -300 368"
+( 232 -112 560 ) ( 232 -112 584 ) ( 208 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 232 -144 560 ) ( 208 -144 560 ) ( 208 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 232 -144 560 ) ( 232 -112 560 ) ( 208 -144 560 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 208 -144 584 ) ( 232 -112 584 ) ( 232 -144 584 ) Textures/MayanTempleBricks 0 0 0 1 1
+( 232 -144 584 ) ( 232 -112 584 ) ( 232 -112 560 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// entity 43
-{
-"classname" "item_vase"
-"origin" "312 -328 384"
-}
-// entity 44
-{
-"classname" "item_vase"
-"origin" "280 -328 384"
-}
-// entity 45
-{
-"classname" "item_basket"
-"origin" "-8 -232 336"
-}
-// entity 46
-{
-"classname" "item_basket"
-"origin" "368 -208 336"
-}
-// entity 47
-{
-"classname" "item_basket"
-"origin" "368 -240 336"
-}
-// entity 48
-{
-"classname" "item_vase"
-"origin" "344 12 360"
-}
-// entity 49
-{
-"classname" "item_vase"
-"origin" "344 168 384"
-}
-// entity 50
-{
-"classname" "item_gem_red"
-"origin" "228 -284 336"
-}
-// entity 51
-{
-"classname" "item_basket"
-"origin" "40 88 496"
-}
-// entity 52
-{
-"classname" "item_basket"
-"origin" "160 120 616"
-"GemColor" "25"
-}
-// entity 53
-{
-"classname" "item_basket"
-"origin" "160 152 616"
-"GemColor" "2"
-}
-// entity 54
-{
-"classname" "item_basket"
-"origin" "280 -12 496"
 }
 // entity 55
 {
-"classname" "item_basket"
-"origin" "280 44 496"
+"classname" "item_gem_red"
+"origin" "-212 -116 560"
+"_tb_group" "8"
 }
 // entity 56
 {
 "classname" "item_gem_red"
-"origin" "280 16 496"
+"origin" "-180 -84 560"
+"_tb_group" "8"
 }
 // entity 57
 {
-"classname" "item_gem_green"
-"origin" "300 60 496"
+"classname" "item_gem_red"
+"origin" "-332 -308 368"
 }
 // entity 58
 {
 "classname" "item_gem_red"
-"origin" "276 140 528"
+"origin" "-268 -244 368"
 }
 // entity 59
 {
-"classname" "item_gem_green"
-"origin" "236 180 480"
+"classname" "item_gem_red"
+"origin" "-196 -300 368"
 }
 // entity 60
 {
-"classname" "item_gem_purple"
-"origin" "276 196 480"
+"classname" "item_vase"
+"origin" "312 -328 384"
 }
 // entity 61
 {
-"classname" "item_gem_green"
-"origin" "252 244 464"
+"classname" "item_vase"
+"origin" "280 -328 384"
 }
 // entity 62
 {
-"classname" "item_gem_yellow"
-"origin" "276 108 528"
+"classname" "item_basket"
+"origin" "-8 -232 336"
 }
 // entity 63
 {
-"classname" "item_gem_purple"
-"origin" "260 -92 560"
+"classname" "item_basket"
+"origin" "368 -208 336"
 }
 // entity 64
 {
-"classname" "item_gem_purple"
-"origin" "260 -132 560"
+"classname" "item_basket"
+"origin" "368 -240 336"
 }
 // entity 65
 {
-"classname" "item_gem_red"
-"origin" "276 -100 528"
+"classname" "item_vase"
+"origin" "344 12 360"
 }
 // entity 66
 {
-"classname" "item_gem_green"
-"origin" "172 -164 528"
+"classname" "item_vase"
+"origin" "344 168 384"
 }
 // entity 67
 {
-"classname" "item_gem_green"
-"origin" "108 -164 528"
+"classname" "item_gem_red"
+"origin" "228 -284 336"
 }
 // entity 68
 {
-"classname" "item_gem_green"
-"origin" "36 -164 528"
+"classname" "item_basket"
+"origin" "280 -12 496"
 }
 // entity 69
 {
-"classname" "item_gem_red"
-"origin" "-180 -84 560"
+"classname" "item_basket"
+"origin" "280 44 496"
 }
 // entity 70
 {
 "classname" "item_gem_red"
-"origin" "-212 -116 560"
+"origin" "280 16 496"
 }
 // entity 71
 {
-"classname" "item_gem_purple"
-"origin" "-28 -164 496"
+"classname" "item_gem_green"
+"origin" "300 60 496"
 }
 // entity 72
 {
-"classname" "item_gem_yellow"
-"origin" "-68 -164 496"
+"classname" "item_gem_red"
+"origin" "276 140 528"
 }
 // entity 73
 {
-"classname" "item_gem_purple"
-"origin" "-108 -164 496"
+"classname" "item_gem_green"
+"origin" "236 180 480"
 }
 // entity 74
 {
-"classname" "item_gem_red"
-"origin" "-292 -172 496"
+"classname" "item_gem_purple"
+"origin" "276 196 480"
 }
 // entity 75
 {
-"classname" "hazard_drowning_water"
-// brush 0
-{
-( -96 336 688 ) ( -96 336 704 ) ( -96 16 688 ) Textures/SwampGoo 0 0 0 1 1
-( -160 96 688 ) ( -160 96 704 ) ( 144 96 688 ) Textures/SwampGoo 0 0 0 1 1
-( -160 336 688 ) ( -160 16 688 ) ( 144 336 688 ) Textures/SwampGoo 0 0 0 1 1
-( 144 336 712 ) ( 144 16 712 ) ( -160 336 712 ) Textures/SwampGoo 0 0 0 1 1
-( 144 256 688 ) ( 144 256 704 ) ( -160 256 688 ) Textures/SwampGoo 0 0 0 1 1
-( 80 16 688 ) ( 80 16 704 ) ( 80 336 688 ) Textures/SwampGoo 0 0 0 1 1
-}
+"classname" "item_gem_green"
+"origin" "252 244 464"
 }
 // entity 76
 {
-"classname" "item_fairy"
-"origin" "104 296 752"
+"classname" "item_gem_yellow"
+"origin" "276 108 528"
 }
 // entity 77
 {
 "classname" "item_gem_purple"
-"origin" "140 260 768"
+"origin" "260 -92 560"
 }
 // entity 78
 {
-"classname" "item_gem_green"
-"origin" "140 196 768"
+"classname" "item_gem_purple"
+"origin" "260 -132 560"
 }
 // entity 79
 {
-"classname" "item_gem_green"
-"origin" "140 132 768"
+"classname" "item_gem_red"
+"origin" "276 -100 528"
 }
 // entity 80
 {
-"classname" "item_gem_purple"
-"origin" "140 68 768"
+"classname" "item_gem_green"
+"origin" "172 -164 528"
 }
 // entity 81
 {
 "classname" "item_gem_green"
-"origin" "20 64 720"
+"origin" "108 -164 528"
 }
 // entity 82
 {
 "classname" "item_gem_green"
-"origin" "36 288 736"
+"origin" "36 -164 528"
 }
 // entity 83
 {
-"classname" "item_gem_red"
-"origin" "-108 212 720"
+"classname" "item_gem_purple"
+"origin" "-28 -164 496"
 }
 // entity 84
 {
-"classname" "item_vase"
-"origin" "104 232 752"
-"GemColor" "5"
+"classname" "item_gem_yellow"
+"origin" "-68 -164 496"
 }
 // entity 85
 {
-"classname" "item_vase"
-"origin" "104 168 752"
-"GemColor" "5"
+"classname" "item_gem_purple"
+"origin" "-108 -164 496"
 }
 // entity 86
 {
-"classname" "item_vase"
-"origin" "104 104 752"
-"GemColor" "5"
+"classname" "item_gem_red"
+"origin" "-292 -172 496"
 }
 // entity 87
 {
 "classname" "item_gem_red"
-"origin" "-124 140 720"
+"origin" "-108 212 720"
 }
