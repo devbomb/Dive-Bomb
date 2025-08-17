@@ -27,7 +27,9 @@ classname = "trigger_fixed_camera_zone"
 description = "Forces the camera into the specified position while the player is inside this trigger.  The player cannot override it."
 func_godot_internal = false
 base_classes = Array[Resource]([])
-class_properties = {}
+class_properties = {
+"TargetMarkerId": ""
+}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
