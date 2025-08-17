@@ -1202,7 +1202,7 @@
 // entity 43
 {
 "classname" "enemy_hand_cannoner"
-"origin" "-16 152 544"
+"origin" "-24 24 560"
 }
 // entity 44
 {
@@ -1358,4 +1358,19 @@
 ( 96 96 592 ) ( 64 128 560 ) ( 96 96 560 ) Textures/DarkWood 0 0 0 1 1
 ( 96 96 592 ) ( 96 0 560 ) ( 96 0 592 ) Textures/DarkWood 0 0 0 1 1
 }
+}
+// entity 49
+{
+"classname" "item_gem_red"
+"origin" "20 68 560"
+}
+// entity 50
+{
+"classname" "item_gem_green"
+"origin" "-84 52 560"
+}
+// entity 51
+{
+"classname" "item_gem_red"
+"origin" "-156 28 560"
 }
