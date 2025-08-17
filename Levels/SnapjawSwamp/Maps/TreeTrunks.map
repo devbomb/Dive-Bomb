@@ -332,6 +332,23 @@
 ( -336 688 -96 ) ( -240 592 -96 ) ( -272 584 -24 ) Textures/DarkWood -1004.8679 -677.191 0 1 1
 ( -240 464 -96 ) ( -272 472 -24 ) ( -272 584 -24 ) Textures/DarkWood 0 0 0 1 1
 }
+// brush 5
+{
+( -640 496 192 ) ( -640 560 176 ) ( -640 560 192 ) Textures/DarkWood 0 0 0 1 1
+( -528 480 192 ) ( -592 480 176 ) ( -592 480 192 ) Textures/DarkWood 0 0 0 1 1
+( -528 560 176 ) ( -592 496 176 ) ( -528 496 176 ) Textures/DarkWood 0 0 0 1 1
+( -528 560 192 ) ( -592 496 192 ) ( -592 560 192 ) Textures/DryCanyonFloor 0 0 0 1 1
+( -528 576 192 ) ( -592 576 176 ) ( -528 576 176 ) Textures/DarkWood 0 0 0 1 1
+( -528 560 192 ) ( -528 496 176 ) ( -528 496 192 ) Textures/DarkWood 0 0 0 1 1
+}
+// brush 6
+{
+( -528 512 144 ) ( -528 544 144 ) ( -640 576 176 ) Textures/DarkWood 0 0 0 1 1
+( -528 480 176 ) ( -528 512 144 ) ( -640 480 176 ) Textures/DarkWood 0 347.4286 0 1 1
+( -640 576 176 ) ( -528 576 176 ) ( -528 480 176 ) Textures/DarkWood 0 0 0 1 1
+( -528 544 144 ) ( -528 576 176 ) ( -640 576 176 ) Textures/DarkWood 0 393.14282 0 1 1
+( -528 480 176 ) ( -528 576 176 ) ( -528 544 144 ) Textures/DarkWood 0 0 0 1 1
+}
 }
 // entity 11
 {
@@ -348,6 +365,29 @@
 }
 // entity 13
 {
+"classname" "transport_vent"
+"origin" "-536 528 240"
+"angle" "180"
+"TargetVentId" "SideWallDest"
+"VentId" "SideWallSrc"
+"_tb_group" "8"
+}
+// entity 14
+{
+"classname" "item_basket"
+"origin" "-584 496 192"
+"GemColor" "10"
+"_tb_group" "8"
+}
+// entity 15
+{
+"classname" "item_basket"
+"origin" "-584 560 192"
+"GemColor" "10"
+"_tb_group" "8"
+}
+// entity 16
+{
 "classname" "reference_placeholder"
 // brush 0
 {
@@ -359,14 +399,14 @@
 ( 592 256 -64 ) ( 592 128 -96 ) ( 592 128 -64 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 14
+// entity 17
 {
 "classname" "transport_checkpoint"
 "origin" "376 664 432"
 "angle" "135"
 "CheckpointName" "TreeTops"
 }
-// entity 15
+// entity 18
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -720,33 +760,33 @@
 ( 200 736 584 ) ( 168 528 584 ) ( 168 528 712 ) Textures/DarkWood 0 0 0 1 1
 }
 }
-// entity 16
+// entity 19
 {
 "classname" "item_gem_red"
 "origin" "-12 580 212"
 "_tb_group" "7"
 }
-// entity 17
+// entity 20
 {
 "classname" "item_fairy"
 "origin" "76 456 240"
 "_tb_group" "7"
 }
-// entity 18
+// entity 21
 {
 "classname" "transport_checkpoint"
 "origin" "232 448 240"
 "CheckpointName" "BeforeSidewaysSnapjawIntro"
 "_tb_group" "7"
 }
-// entity 19
+// entity 22
 {
 "classname" "decor_wall_torch"
 "origin" "12 592 304"
 "angle" "110"
 "_tb_group" "7"
 }
-// entity 20
+// entity 23
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -766,14 +806,14 @@
 ( 400 688 432 ) ( 400 640 416 ) ( 400 640 432 ) Textures/DarkWood 0 0 0 1 1
 }
 }
-// entity 21
+// entity 24
 {
 "classname" "info_named_marker"
 "origin" "144 640 584"
 "MarkerId" "CylinderCenter"
 "_tb_group" "7"
 }
-// entity 22
+// entity 25
 {
 "classname" "trigger_cylinder_camera_zone"
 "TargetMarkerId" "CylinderCenter"
@@ -792,7 +832,7 @@
 ( 352 729.1428571428571 560 ) ( 352 550.8571428571429 432 ) ( 352 550.8571428571429 560 ) Textures/Grate 7.384552 0 0 1.8571424 1
 }
 }
-// entity 23
+// entity 26
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -851,7 +891,7 @@
 ( 464 648 796 ) ( 464 632 748 ) ( 464 632 796 ) Textures/DarkWood 0 92 0 1 1
 }
 }
-// entity 24
+// entity 27
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -910,7 +950,7 @@
 ( 148 956 792 ) ( 148 940 744 ) ( 148 940 792 ) Textures/DarkWood -676 88 0 1 1
 }
 }
-// entity 25
+// entity 28
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -969,14 +1009,14 @@
 ( 175.7573593128804 322.2725933896874 794 ) ( 175.75735931288037 338.2725933896875 746 ) ( 175.7573593128804 322.2725933896874 746 ) Textures/DarkWood 602.2726 90 180 1 -1
 }
 }
-// entity 26
+// entity 29
 {
 "classname" "decor_wall_torch"
 "origin" "132 468 568"
 "angle" "90"
 "_tb_group" "7"
 }
-// entity 27
+// entity 30
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1034,7 +1074,7 @@
 ( 300 68 726 ) ( 300 52 678 ) ( 300 52 726 ) Textures/DarkWood 580 -74 0 1 1
 }
 }
-// entity 28
+// entity 31
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1092,33 +1132,33 @@
 ( -237.25483399593907 -163.88225099390854 696 ) ( -238.01633360644973 -156.15846923018069 650.650887573962 ) ( -237.25483399593907 -163.88225099390854 648 ) Textures/DarkWood 664 -80 180 1 -1
 }
 }
-// entity 29
+// entity 32
 {
 "classname" "item_gem_red"
 "origin" "76 468 560"
 }
-// entity 30
+// entity 33
 {
 "classname" "item_gem_red"
 "origin" "12 292 528"
 }
-// entity 31
+// entity 34
 {
 "classname" "enemy_hand_cannoner"
 "origin" "-16 152 544"
 }
-// entity 32
+// entity 35
 {
 "classname" "item_gem_red"
 "origin" "-12 196 536"
 }
-// entity 33
+// entity 36
 {
 "classname" "decor_wall_torch"
 "origin" "28 320 512"
 "angle" "345"
 }
-// entity 34
+// entity 37
 {
 "classname" "wall_no_collision"
 "_phong" "1"
@@ -1167,7 +1207,7 @@
 ( 528 794.372549019608 813.1241585387594 ) ( 528 469.62745098039227 690.8758414612403 ) ( 528 469.62745098039227 813.1241585387594 ) Textures/Grass 0 0 0 1 1
 }
 }
-// entity 35
+// entity 38
 {
 "classname" "wall_no_collision"
 "_phong" "1"
