@@ -705,7 +705,7 @@
 // entity 7
 {
 "classname" "decor_wall_torch"
-"origin" "-16 -16 64"
+"origin" "-16 16 64"
 "angle" "90"
 }
 // entity 8
@@ -1175,4 +1175,9 @@
 ( -21.734920697497728 -56 32 ) ( -8 192 49.77460325559514 ) ( -21.734920697499625 192 32 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 ( -8 192 86.22539674442675 ) ( -8 -64 49.774603255587934 ) ( -8 -64 86.22539674442669 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 }
+}
+// entity 23
+{
+"classname" "enemy_hand_cannoner"
+"origin" "-44 -28 32"
 }

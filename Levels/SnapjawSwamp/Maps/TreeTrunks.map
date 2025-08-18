@@ -1374,3 +1374,10 @@
 "classname" "item_gem_red"
 "origin" "-156 28 560"
 }
+// entity 52
+{
+"classname" "transport_checkpoint"
+"origin" "88 504 560"
+"angle" "255"
+"CheckpointName" "TopOfSpinnyTree"
+}
