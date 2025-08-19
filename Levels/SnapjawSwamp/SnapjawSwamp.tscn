@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=11 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
 [ext_resource type="PackedScene" uid="uid://c4he06nhgpthi" path="res://Levels/SnapjawSwamp/Maps/WaterfallTrees.map" id="7_e7jdb"]
+[ext_resource type="AudioStream" uid="uid://gjlcrblpc5hw" path="res://Levels/SnapjawSwamp/SnapjawSwamp.mp3" id="7_e42vu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
 sky_top_color = Color(0, 0.777333, 0.88, 1)
@@ -67,3 +68,8 @@ light_energy = 0.448
 
 [node name="WaterfallTrees" parent="." instance=ExtResource("7_e7jdb")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 58, 39, -33)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_e42vu")
+autoplay = true
+bus = &"Music"
