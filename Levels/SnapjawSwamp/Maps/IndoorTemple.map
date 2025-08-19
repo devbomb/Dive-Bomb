@@ -188,12 +188,14 @@
 "origin" "88 -264 376"
 "angles" "90 0 90"
 "CycleId" "SidwaysSnapjawIntro"
+"GemColor" "10"
 "_tb_group" "5"
 }
 // entity 3
 {
 "classname" "item_vase"
 "origin" "-8 -312 336"
+"GemColor" "5"
 "_tb_group" "5"
 }
 // entity 4
@@ -1091,6 +1093,7 @@
 "CycleId" "IndoorSection"
 "PeekDuration" "0.5"
 "HoverDuration" "0.2"
+"GemColor" "2"
 "_tb_group" "6"
 }
 // entity 12
@@ -1116,6 +1119,7 @@
 "CycleOffset" "0"
 "PeekDuration" "0.5"
 "HoverDuration" "0.2"
+"GemColor" "2"
 "_tb_group" "6"
 }
 // entity 14
@@ -1159,6 +1163,7 @@
 "PeekDuration" "0.5"
 "HoverDuration" "0.2"
 "PeekHeight" "0.25"
+"GemColor" "2"
 "_tb_group" "6"
 }
 // entity 17
@@ -1222,12 +1227,14 @@
 {
 "classname" "item_vase"
 "origin" "224 24 560"
+"GemColor" "2"
 "_tb_group" "6"
 }
 // entity 24
 {
 "classname" "item_vase"
 "origin" "224 -24 560"
+"GemColor" "2"
 "_tb_group" "6"
 }
 // entity 25
@@ -1340,6 +1347,7 @@
 {
 "classname" "item_basket"
 "origin" "40 88 496"
+"GemColor" "5"
 "_tb_group" "6"
 }
 // entity 41
@@ -1610,6 +1618,7 @@
 "angles" "90 0 0"
 "CycleId" "NicerSidewaysSnapjaw"
 "CycleOffset" "0.5"
+"GemColor" "2"
 "_tb_group" "7"
 }
 // entity 50
@@ -1619,6 +1628,7 @@
 "angles" "90 0 0"
 "CycleId" "NicerSidewaysSnapjaw"
 "CycleOffset" "0"
+"GemColor" "2"
 "_tb_group" "7"
 }
 // entity 51
@@ -1764,36 +1774,43 @@
 {
 "classname" "item_vase"
 "origin" "312 -328 384"
+"GemColor" "2"
 }
 // entity 61
 {
 "classname" "item_vase"
 "origin" "280 -328 384"
+"GemColor" "2"
 }
 // entity 62
 {
 "classname" "item_basket"
 "origin" "-8 -232 336"
+"GemColor" "2"
 }
 // entity 63
 {
 "classname" "item_basket"
 "origin" "368 -208 336"
+"GemColor" "2"
 }
 // entity 64
 {
 "classname" "item_basket"
 "origin" "368 -240 336"
+"GemColor" "2"
 }
 // entity 65
 {
 "classname" "item_vase"
 "origin" "344 12 360"
+"GemColor" "5"
 }
 // entity 66
 {
 "classname" "item_vase"
 "origin" "344 168 384"
+"GemColor" "5"
 }
 // entity 67
 {

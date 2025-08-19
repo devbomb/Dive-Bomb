@@ -1203,6 +1203,7 @@
 {
 "classname" "enemy_hand_cannoner"
 "origin" "-24 24 560"
+"GemColor" "10"
 }
 // entity 44
 {

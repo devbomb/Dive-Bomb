@@ -1553,6 +1553,7 @@
 {
 "classname" "enemy_hand_cannoner"
 "origin" "-44 -28 32"
+"GemColor" "10"
 }
 // entity 24
 {
@@ -1630,6 +1631,7 @@
 {
 "classname" "item_basket"
 "origin" "187 -87 306"
+"GemColor" "2"
 }
 // entity 39
 {
