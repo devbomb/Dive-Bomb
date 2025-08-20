@@ -1524,7 +1524,7 @@
 {
 "classname" "item_fairy"
 "origin" "408 -576 272"
-"GemCost" "1"
+"GemCost" "300"
 }
 // entity 21
 {
