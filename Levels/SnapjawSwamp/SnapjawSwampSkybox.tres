@@ -1,12 +1,18 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://btae5lbyfvcts"]
+[gd_resource type="Environment" load_steps=6 format=3 uid="uid://btae5lbyfvcts"]
 
-[ext_resource type="Texture2D" uid="uid://bxmtsl8bkea35" path="res://Levels/SnapjawSwamp/SnapjawSwampSkyboxTexture.png" id="1_asej6"]
+[ext_resource type="Shader" uid="uid://dmyuuvawg8dd" path="res://Levels/SnapjawSwamp/SnapjawSwampSkyboxShader.gdshader" id="1_id4o0"]
+[ext_resource type="Texture2D" uid="uid://dtuxp4y3awt8t" path="res://Levels/SnapjawSwamp/Textures/SkyboxLeaves.png" id="2_eq4h2"]
+[ext_resource type="Texture2D" uid="uid://bwvi4qowplprv" path="res://Levels/SnapjawSwamp/Textures/SkyboxTrunks.png" id="3_1u4tt"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_asej6"]
-panorama = ExtResource("1_asej6")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eq4h2"]
+shader = ExtResource("1_id4o0")
+shader_parameter/sky_color = Color(0.14902, 0.690196, 0.545098, 1)
+shader_parameter/trunks_texture = ExtResource("3_1u4tt")
+shader_parameter/leaves_texture = ExtResource("2_eq4h2")
+shader_parameter/exposure = 1.0
 
 [sub_resource type="Sky" id="Sky_y5wxh"]
-sky_material = SubResource("PanoramaSkyMaterial_asej6")
+sky_material = SubResource("ShaderMaterial_eq4h2")
 
 [resource]
 background_mode = 2
