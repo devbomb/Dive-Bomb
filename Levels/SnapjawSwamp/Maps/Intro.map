@@ -472,6 +472,11 @@
 {
 "classname" "transport_player_spawn"
 "origin" "-264 0 64"
+"HomeWorldMap" "res://Levels/TestMap/TestMap.tscn"
+"LevelName" "Snapjaw Swamp"
+"FlyInDistance" "10"
+"FlyInHeight" "100"
+"FlyInDuration" "5"
 }
 // entity 2
 {

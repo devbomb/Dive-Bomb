@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=9 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
+[ext_resource type="Environment" uid="uid://btae5lbyfvcts" path="res://Levels/SnapjawSwamp/SnapjawSwampSkybox.tres" id="1_e42vu"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://Levels/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
@@ -8,31 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://c4he06nhgpthi" path="res://Levels/SnapjawSwamp/Maps/WaterfallTrees.map" id="7_e7jdb"]
 [ext_resource type="AudioStream" uid="uid://gjlcrblpc5hw" path="res://Levels/SnapjawSwamp/SnapjawSwamp.mp3" id="7_e42vu"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
-sky_top_color = Color(0, 0.777333, 0.88, 1)
-sky_horizon_color = Color(3.85046e-07, 0.622873, 0.597764, 1)
-ground_bottom_color = Color(0.156679, 0.324256, 0.382582, 1)
-ground_horizon_color = Color(0, 0.58, 0.357667, 1)
-
-[sub_resource type="Sky" id="Sky_y5wxh"]
-sky_material = SubResource("ProceduralSkyMaterial_ribmb")
-
-[sub_resource type="Environment" id="Environment_37qkj"]
-background_mode = 2
-sky = SubResource("Sky_y5wxh")
-ssr_enabled = true
-ssr_max_steps = 512
-fog_density = 0.0
-fog_sky_affect = 0.248
-volumetric_fog_density = 0.008
-volumetric_fog_albedo = Color(0.699653, 0.699653, 0.699653, 1)
-volumetric_fog_emission = Color(0, 0.286312, 1.44392e-07, 1)
-volumetric_fog_temporal_reprojection_enabled = false
-
 [node name="SnapjawSwamp" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_37qkj")
+environment = ExtResource("1_e42vu")
 
 [node name="Intro" parent="." instance=ExtResource("2_oad5x")]
 
