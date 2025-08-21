@@ -18,14 +18,15 @@ description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
-"SkyboxEnvironment": null,
-"TargetMap": null
+"SkyboxEnvironment": "",
+"TargetMap": "",
+"Text": ""
 }
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"TrenchbroomEntityModels/Transport_/StandardPortal.glb\"",
+"model": "\"TrenchbroomEntityModels/transport_standard_portal.glb\"",
 "size": AABB(-8, -8, 0, 8, 8, 16)
 }
 node_class = ""
