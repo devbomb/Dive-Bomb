@@ -1,13 +1,12 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://btae5lbyfvcts"]
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://btae5lbyfvcts"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ribmb"]
-sky_top_color = Color(0, 0.777333, 0.88, 1)
-sky_horizon_color = Color(3.85046e-07, 0.622873, 0.597764, 1)
-ground_bottom_color = Color(0.156679, 0.324256, 0.382582, 1)
-ground_horizon_color = Color(0, 0.58, 0.357667, 1)
+[ext_resource type="Texture2D" uid="uid://bxmtsl8bkea35" path="res://Levels/SnapjawSwamp/SnapjawSwampSkyboxTexture.png" id="1_asej6"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_asej6"]
+panorama = ExtResource("1_asej6")
 
 [sub_resource type="Sky" id="Sky_y5wxh"]
-sky_material = SubResource("ProceduralSkyMaterial_ribmb")
+sky_material = SubResource("PanoramaSkyMaterial_asej6")
 
 [resource]
 background_mode = 2
