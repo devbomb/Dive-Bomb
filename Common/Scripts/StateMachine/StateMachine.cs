@@ -29,6 +29,22 @@ namespace FastDragon
             CurrentState?._PhysicsProcess(delta);
         }
 
+        public override void _ExitTree()
+        {
+            // Give the current state a chance to un-subscribe from any
+            // SignalBus signals, to avoid a memory leak (and potential
+            // ObjectDisposedExceptions).
+            //
+            // It will have a chance to re-subscribe to them again if the
+            // state machine is added back to the tree.
+            CurrentState?.UnsubscribeFromSignals();
+        }
+
+        public override void _EnterTree()
+        {
+            CurrentState?.SubscribeToSignals();
+        }
+
         public void ChangeState<TState>() where TState : IState, new()
         {
             var stateType = typeof(TState);
@@ -47,10 +63,12 @@ namespace FastDragon
 
             // Let the previous state know that it's exiting
             CurrentState?.OnStateExited();
+            CurrentState?.UnsubscribeFromSignals();
 
             // Switch to the new state and enable it.
             IState prevState = CurrentState;
             CurrentState = incomingState;
+            CurrentState.SubscribeToSignals();
             CurrentState.OnStateEntered(prevState);
             CurrentState.OnStateEntered();
         }

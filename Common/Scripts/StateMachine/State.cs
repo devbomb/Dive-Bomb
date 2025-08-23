@@ -18,6 +18,27 @@ namespace FastDragon
 
         void _Process(double delta) {}
         void _PhysicsProcess(double delta) {}
+
+        /// <summary>
+        ///     Override this to subscribe to SignalBus signals.  Make sure to
+        ///     unsubscribe from them again in <see cref="UnsubscribeFromSignals"/>
+        ///     to avoid a memory leak (and potential ObjectDisposedExceptions).
+        ///
+        ///     Called when the state is entered (BEFORE <see cref="OnStateEntered"/>),
+        ///     OR when the state machine is added to the tree while in this
+        ///     state.
+        /// </summary>
+        void SubscribeToSignals();
+
+        /// <summary>
+        ///     Override this to unsubscribe from signals you subscribed to in
+        ///     <see cref="SubscribeToSignals"/>.
+        ///
+        ///     Called when the state is exited (AFTER <see cref="OnStateExited"/>),
+        ///     OR when the state machine is removed from the tree while in this
+        ///     state.
+        /// </summary>
+        void UnsubscribeFromSignals();
     }
 
     public abstract class State<TSelf> : IState where TSelf : Node
@@ -49,5 +70,10 @@ namespace FastDragon
         {
             _stateMachine.ChangeState<TState>();
         }
+
+        /// <inheritdoc />
+        public virtual void SubscribeToSignals() {}
+        /// <inheritdoc />
+        public virtual void UnsubscribeFromSignals() {}
     }
 }
