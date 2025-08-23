@@ -31,6 +31,7 @@ stream_4/stream = ExtResource("13_htdwr")
 stream_5/stream = ExtResource("14_vt71p")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6tpik"]
+resource_local_to_scene = true
 radius = 4.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sroyn"]
