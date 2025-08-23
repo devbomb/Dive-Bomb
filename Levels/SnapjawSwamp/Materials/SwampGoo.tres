@@ -15,11 +15,11 @@ uniform float scale_b = 0.01;
 const float time_scale_a = 1.0;
 const float time_scale_b = 1.0;
 
-void fragment() 
+void fragment()
 {
 	vec2 offset_a = time_scale_a * vec2(TIME, TIME);
 	vec2 offset_b = time_scale_b * vec2(-TIME, -TIME);
-	
+
 	METALLIC = 1.0;
 	SPECULAR = 0.0;
 	ROUGHNESS = 0.0;
