@@ -158,7 +158,7 @@ namespace FastDragon
             {
                 _timer -= delta;
                 if (_timer <= 0)
-                    ChangeState<Peeking>();
+                    ChangeState<WindingUp>();
             }
         }
 
