@@ -217,6 +217,35 @@ namespace FastDragon
         }
 
         /// <summary>
+        /// If the player is currently vulnerable, deals 1 damage.
+        ///
+        /// If the player is not currently vulnerable, then this method does
+        /// nothing.
+        ///
+        /// Returns true if the player was successfully damaged, or false otherwise
+        /// </summary>
+        /// <param name="invulnerablePeriod">
+        ///     How many seconds of invulnerability the player receives after
+        ///     getting hit by this attack.  If the player is in a damange
+        ///     animation state (such as <see cref="PlayerDamageFlipState"/>),
+        ///     the timer won't start until AFTER that state is completed and
+        ///     the player is actionable again.
+        /// </param>
+        /// <typeparam name="TState"></typeparam>
+        public bool TryDamage(float invulnerablePeriod = 0)
+        {
+            if (_damageCooldownTimer > 0)
+                return false;
+
+            if (CurrentState.Invincible)
+                return false;
+
+            _damageCooldownTimer = invulnerablePeriod;
+            SaveFile.Current.PlayerHealth--;
+            return true;
+        }
+
+        /// <summary>
         /// If the player is currently vulnerable, deals 1 damage and changes
         /// to the given state.  The given state should be some sort of damage
         /// animation state.
@@ -235,16 +264,12 @@ namespace FastDragon
         /// <typeparam name="TState"></typeparam>
         public bool TryDamage<TState>(float invulnerablePeriod = 0) where TState : PlayerState, new()
         {
-            if (_damageCooldownTimer > 0)
-                return false;
+            bool result = TryDamage(invulnerablePeriod);
 
-            if (CurrentState.Invincible)
-                return false;
+            if (result)
+                ChangeState<TState>();
 
-            _damageCooldownTimer = invulnerablePeriod;
-            SaveFile.Current.PlayerHealth--;
-            ChangeState<TState>();
-            return true;
+            return result;
         }
 
         private void UpdateAtlasCache()

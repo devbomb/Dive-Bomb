@@ -1,0 +1,112 @@
+[gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://b5a214apdag3m"]
+
+[sub_resource type="Shader" id="Shader_xq3oj"]
+code = "shader_type spatial;
+render_mode diffuse_lambert_wrap;
+
+uniform sampler2D albedo_a : filter_nearest;
+uniform sampler2D albedo_b : filter_nearest;
+
+uniform sampler2D normal_a : hint_normal;
+uniform sampler2D normal_b : hint_normal;
+
+uniform float scale_albedo = 0.05;
+uniform float scale_normal_a = 0.01;
+uniform float scale_normal_b = 0.01;
+
+const float time_scale_albedo_a = 20.0;
+const float time_scale_albedo_b = 12.0;
+const float time_scale_normal_a = 5.0;
+const float time_scale_normal_b = 5.0;
+
+void fragment() 
+{
+	vec2 offset_normal_a = time_scale_normal_a * vec2(TIME, TIME);
+	vec2 offset_normal_b = time_scale_normal_b * vec2(-TIME, -TIME);
+	
+	vec2 offset_albedo_a = time_scale_albedo_a * vec2(0, -TIME);
+	vec2 offset_albedo_b = time_scale_albedo_b * vec2(0, -TIME);
+	
+	vec3 albedo_a_color = texture(albedo_a, scale_albedo * (UV + offset_albedo_a)).xyz;
+	vec3 albedo_b_color = texture(albedo_b, scale_albedo * (UV + offset_albedo_b)).xyz;
+	
+	METALLIC = 0.5;
+	SPECULAR = 0.0;
+	ROUGHNESS = 0.99;
+	ALBEDO = mix(albedo_a_color, albedo_b_color, 0.5);
+	NORMAL_MAP = mix(
+		texture(normal_a, scale_normal_a * (UV + offset_normal_a)).xyz,
+		texture(normal_b, scale_normal_b * (UV + offset_normal_b)).xyz,
+		0.5
+	);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_q56l5"]
+offsets = PackedFloat32Array(0, 0.969466, 1)
+colors = PackedColorArray(0.0481279, 0.157862, 0.148856, 1, 0.231915, 0.517811, 0.493967, 1, 0.883416, 0.974862, 0.963785, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mhd6h"]
+offset = Vector3(9, 0, 0)
+domain_warp_enabled = true
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ehvcr"]
+width = 64
+height = 32
+seamless = true
+seamless_blend_skirt = 0.6
+color_ramp = SubResource("Gradient_q56l5")
+noise = SubResource("FastNoiseLite_mhd6h")
+
+[sub_resource type="Gradient" id="Gradient_mhd6h"]
+offsets = PackedFloat32Array(0, 0.641221, 0.959924, 1)
+colors = PackedColorArray(0.0481279, 0.157862, 0.148856, 1, 0.07005, 0.201073, 0.19028, 1, 0.217772, 0.49225, 0.469413, 1, 0.883416, 0.974862, 0.963785, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gdfgp"]
+frequency = 0.1053
+offset = Vector3(32, 0, 0)
+domain_warp_enabled = true
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_df55x"]
+width = 64
+height = 64
+seamless = true
+seamless_blend_skirt = 0.6
+color_ramp = SubResource("Gradient_mhd6h")
+noise = SubResource("FastNoiseLite_gdfgp")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xq3oj"]
+frequency = 0.042
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gdfgp"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_xq3oj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_frr61"]
+noise_type = 0
+seed = 3
+frequency = 0.0258
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dj2bn"]
+in_3d_space = true
+seamless = true
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_frr61")
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_xq3oj")
+shader_parameter/albedo_a = SubResource("NoiseTexture2D_ehvcr")
+shader_parameter/albedo_b = SubResource("NoiseTexture2D_df55x")
+shader_parameter/normal_a = SubResource("NoiseTexture2D_gdfgp")
+shader_parameter/normal_b = SubResource("NoiseTexture2D_dj2bn")
+shader_parameter/scale_albedo = 0.05
+shader_parameter/scale_normal_a = 0.01
+shader_parameter/scale_normal_b = 0.01

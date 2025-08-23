@@ -1,0 +1,133 @@
+[gd_resource type="ShaderMaterial" load_steps=14 format=3 uid="uid://dsmqjue10knjl"]
+
+[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="1_cep7e"]
+
+[sub_resource type="Gradient" id="Gradient_p8i5c"]
+colors = PackedColorArray(0, 0.337255, 0, 0, 0, 0.478431, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i0hs5"]
+noise_type = 2
+frequency = 0.0085
+offset = Vector3(0, 50, 272.73)
+fractal_type = 2
+fractal_octaves = 10
+domain_warp_enabled = true
+domain_warp_fractal_octaves = 7
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ihamb"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_p8i5c")
+noise = SubResource("FastNoiseLite_i0hs5")
+
+[sub_resource type="Gradient" id="Gradient_i0hs5"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.525, 0.555357, 0.594643)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ihamb"]
+frequency = 0.0022
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uuvia"]
+seamless = true
+normalize = false
+color_ramp = SubResource("Gradient_i0hs5")
+noise = SubResource("FastNoiseLite_ihamb")
+
+[sub_resource type="Gradient" id="Gradient_ihamb"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.466071, 0.578571, 0.691071)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uuvia"]
+fractal_octaves = 3
+domain_warp_type = 2
+domain_warp_fractal_octaves = 1
+domain_warp_fractal_lacunarity = 4.68
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0vwng"]
+invert = true
+in_3d_space = true
+seamless = true
+as_normal_map = true
+bump_strength = 2.7
+color_ramp = SubResource("Gradient_ihamb")
+noise = SubResource("FastNoiseLite_uuvia")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vwng"]
+render_priority = 1
+transparency = 2
+alpha_scissor_threshold = 0.412
+alpha_antialiasing_mode = 0
+albedo_color = Color(3.11647e-06, 0.508417, 1.92523e-07, 1)
+albedo_texture = SubResource("NoiseTexture2D_uuvia")
+metallic_specular = 1.0
+normal_scale = 0.1
+normal_texture = SubResource("NoiseTexture2D_0vwng")
+rim_enabled = true
+rim = 0.17
+rim_tint = 1.0
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+texture_filter = 2
+distance_fade_min_distance = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uuvia"]
+next_pass = SubResource("StandardMaterial3D_0vwng")
+transparency = 1
+albedo_texture = SubResource("NoiseTexture2D_ihamb")
+uv1_scale = Vector3(0.013, 0.013, 0.013)
+distance_fade_mode = 1
+distance_fade_min_distance = 100.0
+
+[sub_resource type="Shader" id="Shader_skod2"]
+code = "shader_type spatial;
+render_mode
+	blend_mix,
+	depth_draw_opaque,
+	cull_back,
+	diffuse_burley,
+	specular_schlick_ggx;
+
+#include \"res://Common/ShaderIncludes/Noise.gdshaderinc\"
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+
+const float displacement_strength = 0.6;
+const vec2 displacement_frequency = vec2(1.0, 2.0);
+
+vec2 nearest_pixel(vec2 uv, float pixel_size)
+{
+	vec2 scaled = uv / pixel_size;
+	vec2 rounded = vec2(floor(scaled.x), floor(scaled.y));
+	return pixel_size * rounded;
+}
+
+vec2 displacement_noise(vec2 uv)
+{
+	uv *= displacement_frequency;
+	uv = nearest_pixel(uv, 0.1);
+	return vec2
+	(
+		perlin12(uv),
+		perlin12(uv)
+	);
+}
+
+void fragment()
+{
+	vec2 base_uv = UV;
+	base_uv += displacement_strength * displacement_noise(base_uv);
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+}"
+
+[resource]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_uuvia")
+shader = SubResource("Shader_skod2")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("1_cep7e")
+shader_parameter/albedo_texture_size = Vector2i(32, 32)

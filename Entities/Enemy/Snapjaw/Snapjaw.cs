@@ -6,10 +6,21 @@ namespace FastDragon
     public partial class Snapjaw : Node3D, IGemContainer
     {
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
+
         [Export] public string CycleId = null;
         [Export] public double CycleOffset;
+        [Export] public float FallbackAggroRadius = 4;
+
+        [Export] public float PeekHeight = 1;
+
+        [Export] public double PeekDuration = 1;
+        [Export] public double HoverDuration = 0.5;
+        [Export] public double FallDuration = 0.5;
 
         private RayCast3D _floorDetector => GetNode<RayCast3D>("%FloorDetector");
+        private Area3D _fallbackAggroTrigger => GetNode<Area3D>("%FallbackAggroTrigger");
+        private CollisionShape3D _aggroTriggerShape => GetNode<CollisionShape3D>("%AggroTriggerShape");
+
         private AnimationTree _animator => GetNode<AnimationTree>("%AnimationTree");
         private Node3D _model => GetNode<Node3D>("%Model");
         private readonly StateMachine _stateMachine = new StateMachine();
@@ -45,15 +56,23 @@ namespace FastDragon
             _floorDetector.Enabled = false;
 
             _floorNormal = _floorDetector.GetCollisionNormal();
-            _floorPos = _floorDetector.GetCollisionPoint() + _floorNormal;
+            _floorPos = _floorDetector.GetCollisionPoint();
+            _floorPos += _floorNormal * PeekHeight;
+
+            // Make the fallback aggro trigger tall enough to reach the ground
+            float height = _floorDetector.GlobalPosition.DistanceTo(_floorPos);
+            var triggerPos = _aggroTriggerShape.Position;
+            triggerPos.Y = height / 2;
+            _aggroTriggerShape.Position = triggerPos;
+
+            var cylidner = (CylinderShape3D)_aggroTriggerShape.Shape;
+            cylidner.Height = height;
+            cylidner.Radius = FallbackAggroRadius;
         }
 
         private void Reset()
         {
-            if (string.IsNullOrEmpty(CycleId))
-                _stateMachine.ChangeState<WaitingForCycleOffset>();
-            else
-                _stateMachine.ChangeState<WaitingForCycleStart>();
+            _stateMachine.ChangeState<WaitingForCycleStart>();
         }
 
         public void OnBroken()
@@ -88,18 +107,26 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 SignalBus.Instance.CycleStarted += OnCycleStarted;
+                Self._fallbackAggroTrigger.BodyEntered += OnFallbackTriggerEntered;
+
                 Self.MoveToWatchingPosition();
             }
 
             public override void OnStateExited()
             {
                 SignalBus.Instance.CycleStarted -= OnCycleStarted;
+                Self._fallbackAggroTrigger.BodyEntered -= OnFallbackTriggerEntered;
             }
 
             private void OnCycleStarted(string cycleId)
             {
                 if (cycleId == Self.CycleId)
                     ChangeState<WaitingForCycleOffset>();
+            }
+
+            private void OnFallbackTriggerEntered(object body)
+            {
+                ChangeState<WaitingForCycleOffset>();
             }
         }
 
@@ -117,20 +144,18 @@ namespace FastDragon
             {
                 _timer -= delta;
                 if (_timer <= 0)
-                    ChangeState<Watching>();
+                    ChangeState<Peeking>();
             }
         }
 
-        private class Watching : State<Snapjaw>
+        private class Peeking : State<Snapjaw>
         {
-            private const double Duration = 2;
-
             private double _timer;
 
             public override void OnStateEntered()
             {
                 Self.MoveToWatchingPosition();
-                _timer = Duration;
+                _timer = Self.PeekDuration;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -204,13 +229,11 @@ namespace FastDragon
 
         private class Hovering : State<Snapjaw>
         {
-            private const double Duration = 0.5;
-
             private double _timer;
 
             public override void OnStateEntered()
             {
-                _timer = Duration;
+                _timer = Self.HoverDuration;
                 Self.GlobalPosition = Self._targetPos;
             }
 
@@ -251,7 +274,7 @@ namespace FastDragon
                 Self.GlobalPosition = Self._targetPos.Lerp(Self._floorPos, t);
 
                 if (_timer >= Duration)
-                    ChangeState<Watching>();
+                    ChangeState<Peeking>();
             }
         }
 

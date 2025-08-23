@@ -1,0 +1,15 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://cfn6esny62ln4"
+path="res://.godot/imported/Intro.map-cc284347b589aef0581bdffd0b67fda7.tscn"
+
+[deps]
+
+source_file="res://Levels/SnapjawSwamp/Maps/Intro.map"
+dest_files=["res://.godot/imported/Intro.map-cc284347b589aef0581bdffd0b67fda7.tscn"]
+
+[params]
+
+texture_material_map=Resource("res://Levels/SnapjawSwamp/SnapjawSwampMaterialMap.tres")

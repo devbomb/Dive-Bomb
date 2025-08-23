@@ -20,13 +20,15 @@ base_classes = Array[Resource]([])
 class_properties = {
 "FlyInDistance": 10.0,
 "FlyInDuration": 4.0,
-"FlyInHeight": 10.0
+"FlyInHeight": 10.0,
+"HomeWorldMap": "",
+"LevelName": ""
 }
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"TrenchbroomEntityModels/Transport_/PlayerSpawn.glb\"",
+"model": "\"TrenchbroomEntityModels/transport_player_spawn.glb\"",
 "size": AABB(-8, -8, 0, 8, 8, 16)
 }
 node_class = ""

@@ -75,39 +75,39 @@
 }
 // brush 8
 {
-( 432 432 -64 ) ( 432 288 -64 ) ( 432 432 -80 ) __TB_empty 0 0 0 1 1
-( 464 288 -80 ) ( 432 288 -80 ) ( 464 288 -64 ) __TB_empty 0 0 0 1 1
-( 464 432 -80 ) ( 432 432 -80 ) ( 464 288 -80 ) __TB_empty 0 0 0 1 1
-( 464 288 -64 ) ( 432 288 -64 ) ( 464 432 -64 ) __TB_empty 0 0 0 1 1
-( 464 432 -64 ) ( 432 432 -64 ) ( 464 432 -80 ) __TB_empty 0 0 0 1 1
-( 464 288 -64 ) ( 464 432 -64 ) ( 464 288 -80 ) __TB_empty 0 0 0 1 1
+( 432 432 -64 ) ( 432 288 -64 ) ( 432 432 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 288 -80 ) ( 432 288 -80 ) ( 464 288 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 432 -80 ) ( 432 432 -80 ) ( 464 288 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 288 -64 ) ( 432 288 -64 ) ( 464 432 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 432 -64 ) ( 432 432 -64 ) ( 464 432 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 288 -64 ) ( 464 432 -64 ) ( 464 288 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
 }
 // brush 9
 {
-( 256 288 -80 ) ( 256 432 -80 ) ( 256 288 -64 ) __TB_empty 0 0 0 1 1
-( 256 288 -64 ) ( 288 288 -64 ) ( 256 288 -80 ) __TB_empty 0 0 0 1 1
-( 256 288 -80 ) ( 288 288 -80 ) ( 256 432 -80 ) __TB_empty 0 0 0 1 1
-( 256 432 -64 ) ( 288 432 -64 ) ( 256 288 -64 ) __TB_empty 0 0 0 1 1
-( 256 432 -80 ) ( 288 432 -80 ) ( 256 432 -64 ) __TB_empty 0 0 0 1 1
-( 288 288 -80 ) ( 288 288 -64 ) ( 288 432 -80 ) __TB_empty 0 0 0 1 1
+( 256 288 -80 ) ( 256 432 -80 ) ( 256 288 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 256 288 -64 ) ( 288 288 -64 ) ( 256 288 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 256 288 -80 ) ( 288 288 -80 ) ( 256 432 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 256 432 -64 ) ( 288 432 -64 ) ( 256 288 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 256 432 -80 ) ( 288 432 -80 ) ( 256 432 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 288 288 -80 ) ( 288 288 -64 ) ( 288 432 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
 }
 // brush 10
 {
-( 288 432 -64 ) ( 288 416 -64 ) ( 288 432 -80 ) __TB_empty 0 0 0 1 1
-( 432 416 -64 ) ( 432 416 -80 ) ( 288 416 -64 ) __TB_empty 0 0 0 1 1
-( 288 432 -80 ) ( 288 416 -80 ) ( 432 432 -80 ) __TB_empty 0 0 0 1 1
-( 432 432 -64 ) ( 432 416 -64 ) ( 288 432 -64 ) __TB_empty 0 0 0 1 1
-( 432 432 -64 ) ( 288 432 -64 ) ( 432 432 -80 ) __TB_empty 0 0 0 1 1
-( 432 432 -80 ) ( 432 416 -80 ) ( 432 432 -64 ) __TB_empty 0 0 0 1 1
+( 288 432 -64 ) ( 288 416 -64 ) ( 288 432 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 432 416 -64 ) ( 432 416 -80 ) ( 288 416 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 288 432 -80 ) ( 288 416 -80 ) ( 432 432 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 432 432 -64 ) ( 432 416 -64 ) ( 288 432 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 432 432 -64 ) ( 288 432 -64 ) ( 432 432 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 432 432 -80 ) ( 432 416 -80 ) ( 432 432 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
 }
 // brush 11
 {
-( 288 288 -80 ) ( 288 320 -80 ) ( 288 288 -64 ) __TB_empty 0 0 0 1 1
-( 432 288 -80 ) ( 288 288 -80 ) ( 432 288 -64 ) __TB_empty 0 0 0 1 1
-( 432 288 -80 ) ( 432 320 -80 ) ( 288 288 -80 ) __TB_empty 0 0 0 1 1
-( 288 288 -64 ) ( 288 320 -64 ) ( 432 288 -64 ) __TB_empty 0 0 0 1 1
-( 288 320 -80 ) ( 432 320 -80 ) ( 288 320 -64 ) __TB_empty 0 0 0 1 1
-( 432 288 -64 ) ( 432 320 -64 ) ( 432 288 -80 ) __TB_empty 0 0 0 1 1
+( 288 288 -80 ) ( 288 320 -80 ) ( 288 288 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 432 288 -80 ) ( 288 288 -80 ) ( 432 288 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 432 288 -80 ) ( 432 320 -80 ) ( 288 288 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 288 288 -64 ) ( 288 320 -64 ) ( 432 288 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 288 320 -80 ) ( 432 320 -80 ) ( 288 320 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 432 288 -64 ) ( 432 320 -64 ) ( 432 288 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
 }
 // brush 12
 {
@@ -120,12 +120,12 @@
 }
 // brush 13
 {
-( 256 432 -64 ) ( 256 544 -80 ) ( 256 544 -64 ) __TB_empty 0 0 0 1 1
-( 464 432 -64 ) ( 256 432 -80 ) ( 256 432 -64 ) __TB_empty 0 0 0 1 1
-( 464 544 -80 ) ( 256 432 -80 ) ( 464 432 -80 ) __TB_empty 0 0 0 1 1
-( 464 544 -64 ) ( 256 432 -64 ) ( 256 544 -64 ) __TB_empty 0 0 0 1 1
-( 464 544 -64 ) ( 256 544 -80 ) ( 464 544 -80 ) __TB_empty 0 0 0 1 1
-( 464 544 -64 ) ( 464 432 -80 ) ( 464 432 -64 ) __TB_empty 0 0 0 1 1
+( 256 432 -64 ) ( 256 544 -80 ) ( 256 544 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 432 -64 ) ( 256 432 -80 ) ( 256 432 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 544 -80 ) ( 256 432 -80 ) ( 464 432 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 544 -64 ) ( 256 432 -64 ) ( 256 544 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 544 -64 ) ( 256 544 -80 ) ( 464 544 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 544 -64 ) ( 464 432 -80 ) ( 464 432 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
 }
 }
 // entity 1
@@ -344,4 +344,13 @@
 ( 464 592 -48 ) ( 465 592 -48 ) ( 464 592 -47 ) Textures/Grate 0 0 0 1 1
 ( 560 544 -48 ) ( 560 544 -47 ) ( 560 545 -48 ) Textures/Grate 0 0 0 1 1
 }
+}
+// entity 34
+{
+"classname" "transport_standard_portal"
+"origin" "360 536 -64"
+"angle" "270"
+"SkyboxEnvironment" "res://Levels/SnapjawSwamp/SnapjawSwampSkybox.tres"
+"TargetMap" "res://Levels/SnapjawSwamp/SnapjawSwamp.tscn"
+"Text" "Snapjaw Swamp"
 }
