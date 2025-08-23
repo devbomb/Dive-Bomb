@@ -106,13 +106,16 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                SignalBus.Instance.CycleStarted += OnCycleStarted;
-                Self._fallbackAggroTrigger.BodyEntered += OnFallbackTriggerEntered;
-
                 Self.MoveToWatchingPosition();
             }
 
-            public override void OnStateExited()
+            public override void SubscribeToSignals()
+            {
+                SignalBus.Instance.CycleStarted += OnCycleStarted;
+                Self._fallbackAggroTrigger.BodyEntered += OnFallbackTriggerEntered;
+            }
+
+            public override void UnsubscribeFromSignals()
             {
                 SignalBus.Instance.CycleStarted -= OnCycleStarted;
                 Self._fallbackAggroTrigger.BodyEntered -= OnFallbackTriggerEntered;
