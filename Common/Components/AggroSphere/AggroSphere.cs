@@ -19,10 +19,10 @@ namespace FastDragon
 
         private Area3D _area => GetNode<Area3D>("%Area3D");
 
-        public Player SearchForPlayer()
+        public Player SearchForPlayer(int safetyTimer = 2)
         {
             return _area
-                    .GetOverlappingBodies()
+                    .GetOverlappingBodiesResetSafe(safetyTimer)
                     .Where(body => body is Player)
                     .Cast<Player>()
                     .FirstOrDefault(HasLineOfSightTo);
