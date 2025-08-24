@@ -1046,7 +1046,7 @@
 "origin" "-32 -357.929 119.727"
 "angles" "90 0 -180"
 "CycleId" "TreeFallSnapjaws"
-"CycleOffset" "0.5"
+"CycleOffset" "1"
 }
 // entity 4
 {
@@ -1054,6 +1054,7 @@
 "origin" "-52 -224 96"
 "angles" "90 0 0"
 "CycleId" "TreeFallSnapjaws"
+"CycleOffset" "0.5"
 }
 // entity 5
 {

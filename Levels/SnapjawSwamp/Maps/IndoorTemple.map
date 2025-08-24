@@ -189,6 +189,7 @@
 "angles" "90 0 90"
 "CycleId" "SidwaysSnapjawIntro"
 "GemColor" "10"
+"CycleOffset" "0.5"
 "_tb_group" "5"
 }
 // entity 3
@@ -1617,7 +1618,7 @@
 "origin" "336 104 400"
 "angles" "90 0 0"
 "CycleId" "NicerSidewaysSnapjaw"
-"CycleOffset" "0.5"
+"CycleOffset" "1"
 "GemColor" "2"
 "_tb_group" "7"
 }
@@ -1627,7 +1628,7 @@
 "origin" "344 -72 384"
 "angles" "90 0 0"
 "CycleId" "NicerSidewaysSnapjaw"
-"CycleOffset" "0"
+"CycleOffset" "0.5"
 "GemColor" "2"
 "_tb_group" "7"
 }

@@ -495,7 +495,7 @@
 {
 "classname" "enemy_snapjaw"
 "origin" "140 0 64"
-"CycleOffset" "0"
+"CycleOffset" "0.5"
 "CycleId" "TutorialSnapjaw"
 "GemColor" "2"
 }
@@ -531,6 +531,7 @@
 "origin" "448 160 72"
 "CycleId" "FirstTemple"
 "GemColor" "2"
+"CycleOffset" "0.5"
 }
 // entity 8
 {
@@ -549,7 +550,7 @@
 "origin" "616 424 96"
 "CycleId" "FirstTemple"
 "PeekDuration" "2"
-"CycleOffset" "0"
+"CycleOffset" "1.5"
 "GemColor" "2"
 }
 // entity 11
@@ -785,13 +786,14 @@
 "origin" "360 580 248"
 "CycleId" "TempleDoubleSnapjaws"
 "GemColor" "2"
+"CycleOffset" "0.5"
 }
 // entity 26
 {
 "classname" "enemy_snapjaw"
 "origin" "288 580 248"
 "CycleId" "TempleDoubleSnapjaws"
-"CycleOffset" "0.5"
+"CycleOffset" "1"
 "FallbackAggroRadius" "4"
 "GemColor" "2"
 }
