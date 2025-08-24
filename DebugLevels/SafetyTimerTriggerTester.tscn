@@ -52,8 +52,7 @@ func _physics_process(_delta: float) -> void:
 		visible = true
 
 func _is_player_in_trigger() -> bool:
-	var timer = $\"/root/Area3dSafetyTimer\"
-	return timer.GetOverlappingBodies(%PlayerDetector, 2).size() > 0
+	return Area3DSafetyTimer.GetOverlappingBodies(%PlayerDetector, 2).size() > 0
 "
 
 [sub_resource type="GDScript" id="GDScript_4olr5"]
