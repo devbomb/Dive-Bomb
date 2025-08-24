@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcitfag8gaqcs"]
+[gd_scene load_steps=12 format=3 uid="uid://dxrm5nxliml4y"]
 
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="1_4olr5"]
 [ext_resource type="PackedScene" uid="uid://bbfrncy1cgsc1" path="res://Entities/Transport/Checkpoint/Checkpoint.tscn" id="2_x75wr"]
@@ -35,6 +35,25 @@ func _physics_process(_delta: float) -> void:
 
 func _is_player_in_trigger() -> bool:
 	return %PlayerDetector.get_overlapping_bodies().size() > 0
+"
+
+[sub_resource type="GDScript" id="GDScript_ida8r"]
+script/source = "extends Label
+
+func _ready():
+	SignalBus.connect(\"LevelReset\", _reset)
+	_reset()
+
+func _reset():
+	visible = false
+
+func _physics_process(_delta: float) -> void:
+	if (!visible && _is_player_in_trigger()):
+		visible = true
+
+func _is_player_in_trigger() -> bool:
+	var timer = $\"/root/Area3dSafetyTimer\"
+	return timer.GetOverlappingBodies(%PlayerDetector, 2).size() > 0
 "
 
 [sub_resource type="GDScript" id="GDScript_4olr5"]
@@ -101,6 +120,13 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Polling: entered once"
 script = SubResource("GDScript_x75wr")
+metadata/_edit_use_anchors_ = true
+
+[node name="PollingListener_SafetyTimer" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Polling (safety timer): entered once"
+script = SubResource("GDScript_ida8r")
 metadata/_edit_use_anchors_ = true
 
 [node name="SignalListener" type="Label" parent="VBoxContainer"]

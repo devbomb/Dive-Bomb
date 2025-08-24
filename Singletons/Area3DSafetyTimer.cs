@@ -51,9 +51,21 @@ namespace FastDragon
 
     public static class Area3DSafetyTimerExtensions
     {
-        public static Godot.Collections.Array<Node3D> GetOverlappingBodies(
+        /// <summary>
+        ///     Like Godot's GetOverlappingBodies(), but it returns an empty
+        ///     array if it's been too soon since the last level reset.
+        ///
+        ///     This avoids some egregious false positives that can happen
+        ///     if a body gets moved outside of an Area3D during a level reset.
+        ///
+        ///     For whatever reason, updates to an Area3D's overlapping bodies
+        ///     are delayed by a few physics frames.  Waiting for a few frames
+        ///     ensures the overlapping bodies list has had enough time to
+        ///     update.
+        /// </summary>
+        public static Godot.Collections.Array<Node3D> GetOverlappingBodiesResetSafe(
             this Area3D area,
-            int safetyTimer
+            int safetyTimer = 2
         )
         {
             return Area3DSafetyTimer.Instance.GetOverlappingBodies(
