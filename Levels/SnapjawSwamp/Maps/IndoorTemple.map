@@ -189,6 +189,7 @@
 "angles" "90 0 90"
 "CycleId" "SidwaysSnapjawIntro"
 "GemColor" "10"
+"CycleOffset" "0.5"
 "_tb_group" "5"
 }
 // entity 3
@@ -1132,10 +1133,10 @@
 {
 ( 128 320 512 ) ( 128 384 432 ) ( 128 384 512 ) Textures/Grate 0 0 0 1 1
 ( 208 320 512 ) ( 128 320 432 ) ( 128 320 512 ) Textures/Grate 0 0 0 1 1
-( 208 384 432 ) ( 128 320 432 ) ( 208 320 432 ) Textures/Grate 0 0 0 1 1
+( 208 384 416 ) ( 128 320 416 ) ( 208 320 416 ) Textures/Grate 0 0 0 1 1
 ( 208 384 512 ) ( 128 320 512 ) ( 128 384 512 ) Textures/Grate 0 0 0 1 1
 ( 208 384 512 ) ( 128 384 432 ) ( 208 384 432 ) Textures/Grate 0 0 0 1 1
-( 208 384 512 ) ( 208 320 432 ) ( 208 320 512 ) Textures/Grate 0 0 0 1 1
+( 240 384 512 ) ( 240 320 432 ) ( 240 320 512 ) Textures/Grate 0 0 0 1 1
 }
 }
 // entity 15
@@ -1617,7 +1618,7 @@
 "origin" "336 104 400"
 "angles" "90 0 0"
 "CycleId" "NicerSidewaysSnapjaw"
-"CycleOffset" "0.5"
+"CycleOffset" "1"
 "GemColor" "2"
 "_tb_group" "7"
 }
@@ -1627,7 +1628,7 @@
 "origin" "344 -72 384"
 "angles" "90 0 0"
 "CycleId" "NicerSidewaysSnapjaw"
-"CycleOffset" "0"
+"CycleOffset" "0.5"
 "GemColor" "2"
 "_tb_group" "7"
 }
