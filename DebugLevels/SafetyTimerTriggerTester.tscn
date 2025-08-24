@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcitfag8gaqcs"]
+[gd_scene load_steps=10 format=3 uid="uid://dcitfag8gaqcs"]
 
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="1_4olr5"]
 
@@ -48,6 +48,13 @@ func _reset():
 
 func on_player_entered():
 	visible = true
+"
+
+[sub_resource type="GDScript" id="GDScript_e14f1"]
+script/source = "extends Button
+
+func reset_level():
+	SignalBus.EmitLevelReset()
 "
 
 [node name="SafetyTimerTriggerTester" type="Node3D"]
@@ -100,4 +107,10 @@ layout_mode = 2
 text = "Signal: entered once"
 script = SubResource("GDScript_4olr5")
 
+[node name="ResetButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Reset Level Without Pausing"
+script = SubResource("GDScript_e14f1")
+
 [connection signal="body_entered" from="PlayerDetector" to="VBoxContainer/SignalListener" method="on_player_entered" unbinds=1]
+[connection signal="pressed" from="VBoxContainer/ResetButton" to="VBoxContainer/ResetButton" method="reset_level"]
