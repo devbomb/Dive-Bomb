@@ -548,10 +548,8 @@
 {
 "classname" "enemy_snapjaw"
 "origin" "616 424 96"
-"CycleId" "FirstTemple"
-"PeekDuration" "2"
-"CycleOffset" "1.5"
 "GemColor" "2"
+"FallbackAggroRadius" "20"
 }
 // entity 11
 {
