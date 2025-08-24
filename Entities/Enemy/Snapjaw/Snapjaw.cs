@@ -104,11 +104,8 @@ namespace FastDragon
 
         private class WaitingForCycleStart : State<Snapjaw>
         {
-            private int _safetyTimer;
-
             public override void OnStateEntered()
             {
-                _safetyTimer = 2;
                 Self.MoveToWatchingPosition();
             }
 
@@ -124,16 +121,7 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double delta)
             {
-                // HACK: When the level resets, Area3Ds take a few extra frames
-                // to update their overlapping bodies.  Waiting a few frames
-                // prevents a false positive.
-                if (_safetyTimer > 0)
-                {
-                    _safetyTimer--;
-                    return;
-                }
-
-                if (Self._fallbackAggroTrigger.GetOverlappingBodies().Count > 0)
+                if (Self._fallbackAggroTrigger.GetOverlappingBodiesResetSafe().Count > 0)
                     ChangeState<WaitingForCycleOffset>();
             }
 

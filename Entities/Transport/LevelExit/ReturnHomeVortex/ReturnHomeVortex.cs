@@ -13,7 +13,6 @@ namespace FastDragon
         private Node3D _spinny => GetNode<Node3D>("%Spinny");
         private Area3D _trigger => GetNode<Area3D>("%Trigger");
         private Player _ensnaredPlayer = null;
-        private int _safetyTimer;
 
         public override void _Ready()
         {
@@ -23,7 +22,6 @@ namespace FastDragon
         private void OnLevelReset()
         {
             _ensnaredPlayer = null;
-            _safetyTimer = 2;
         }
 
         public override void _Process(double deltaD)
@@ -48,24 +46,7 @@ namespace FastDragon
 
         private void TryEnsarePlayer()
         {
-            // HACK: Wait a few physics ticks before checking the trigger.
-            //
-            // This is to avoid a bug where resetting the level during the
-            // exit animation(EG: at the end of a time trial) causes the
-            // exit animation to immediately trigger again when the game is
-            // unpaused.
-            //
-            // For whatever reason, the trigger doesn't seem to update its
-            // overlapping bodies for a few ticks after the level resets.
-            // This causes the trigger to think the player is still touching
-            // it, even though they're clearly not.
-            if (_safetyTimer > 0)
-            {
-                _safetyTimer--;
-                return;
-            }
-
-            var bodies = _trigger.GetOverlappingBodies();
+            var bodies = _trigger.GetOverlappingBodiesResetSafe();
             foreach (var body in bodies)
             {
                 if (body is Player p)

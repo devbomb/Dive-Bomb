@@ -69,13 +69,10 @@ namespace FastDragon
 
         private class Idle : VultureState
         {
-            private int _framesToWait;
-
             public override void OnStateEntered()
             {
                 Self.GlobalPosition = Self._spawnPoint;
                 Self.ResetPhysicsInterpolation3D();
-                _framesToWait = 2;
 
                 Self._animator.Play("Idle");
             }
@@ -83,23 +80,6 @@ namespace FastDragon
             public override void _PhysicsProcess(double deltaD)
             {
                 float delta = (float)deltaD;
-
-                // HACK: Wait 2 frames before calling FirstPlayerInRange(), to
-                // avoid a false positive.
-                //
-                // If the level resets while the player is still within aggro
-                // range, then there is a 2 physics-frame window where, for some
-                // reason, FirstPlayerInRange() thinks the player is still in
-                // range.  If we don't wait out that 2-frame window, then the
-                // vulture will immediately re-aggro after the player respawns,
-                // regardless of how far away they are.
-                //
-                // TODO: Figure out why this happens.  Until then, blame Godot.
-                if (_framesToWait > 0)
-                {
-                    _framesToWait--;
-                    return;
-                }
 
                 Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
                     Self._spawnRotation,

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Log="*res://Singletons/Log.cs"
 SignalBus="*res://Singletons/SignalBus.cs"
+Area3DSafetyTimer="*res://Singletons/Area3DSafetyTimer.cs"
 GemFactory="*res://Singletons/GemFactory/GemFactory.tscn"
 MapTransitionManager="*res://Singletons/MapTransitionManager/MapTransitionManager.tscn"
 SaveFile="*res://Common/Scripts/Services/SaveFileGDScriptAdaptor.cs"
