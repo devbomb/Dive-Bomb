@@ -32,6 +32,8 @@ namespace FastDragon
                 mesh.GlobalTransform = globalPos;
             }
 
+            Broken += StartShattering;
+
             SignalBus.Instance.LevelReset += Reset;
             Reset();
         }
