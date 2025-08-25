@@ -14,6 +14,7 @@ namespace FastDragon
 
         [JsonIgnore] public string[] UnlockedMaps => Maps
             .Where(kvp => kvp.Value.SomethingUnlocked)
+            .Where(kvp => ResourceLoader.Exists(kvp.Key)) // HACK: don't show levels that have been deleted
             .Select(kvp => kvp.Key)
             .ToArray();
 
