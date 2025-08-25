@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyfwcwip8ncw0"]
+[gd_scene load_steps=11 format=3 uid="uid://cyfwcwip8ncw0"]
 
+[ext_resource type="Script" uid="uid://cgmt2nue2tixk" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.cs" id="1_2i6pq"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="2_2i6pq"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="2_e6war"]
 [ext_resource type="PackedScene" uid="uid://iuj2nywxldyj" path="res://Common/Components/ShatterableWall/ShatterableWall.tscn" id="3_agwsh"]
@@ -28,7 +29,8 @@ scale_curve = SubResource("CurveTexture_ioojh")
 material = ExtResource("2_e6war")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="LevelExitCanon" type="Node3D"]
+[node name="LevelExitCanon" type="Node3D" groups=["PhysicsInterpolated"]]
+script = ExtResource("1_2i6pq")
 
 [node name="ShatterParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
@@ -44,14 +46,17 @@ stream = ExtResource("2_2i6pq")
 bus = &"Sfx"
 
 [node name="Crystal" parent="." node_paths=PackedStringArray("ShatterPartciles") instance=ExtResource("3_agwsh")]
+unique_name_in_owner = true
 ShatterPartciles = NodePath("../ShatterParticles")
 ShatterDuration = 0.1
 HitStopDuration = 0.75
+Rollable = false
 Kickable = false
 
 [node name="Crystal" parent="Crystal/MeshGrowPoint/MeshHolder" index="0" instance=ExtResource("4_iluh0")]
 
-[node name="MeshReferencingCollisionShape3D" type="CollisionShape3D" parent="Crystal"]
+[node name="CrystalCollisionShape" type="CollisionShape3D" parent="Crystal"]
+unique_name_in_owner = true
 script = ExtResource("5_okmgd")
 mesh_path = NodePath("../MeshGrowPoint/MeshHolder/Crystal/Crystal")
 metadata/_custom_type_script = "uid://b44v5ywbov0io"
