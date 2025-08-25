@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://iuj2nywxldyj"]
+
+[ext_resource type="Script" uid="uid://bhykxwp3vafhp" path="res://Common/Components/ShatterableWall/ShatterableWall.cs" id="1_utyhc"]
+
+[node name="ShatterableWall" type="StaticBody3D"]
+script = ExtResource("1_utyhc")
+
+[node name="MeshGrowPoint" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="MeshHolder" type="Node3D" parent="MeshGrowPoint"]
+unique_name_in_owner = true
