@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyfwcwip8ncw0"]
+
+[ext_resource type="PackedScene" uid="uid://c5sm2sr88beki" path="res://Entities/Transport/LevelExit/Canon/Components/Crystal/LevelExitCanonCrystal.tscn" id="3_8y1e1"]
+
+[node name="LevelExitCanon" type="Node3D"]
+
+[node name="Crystal" parent="." instance=ExtResource("3_8y1e1")]

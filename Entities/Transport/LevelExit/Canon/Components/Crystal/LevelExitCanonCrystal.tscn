@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5sm2sr88beki"]
+
+[ext_resource type="PackedScene" uid="uid://ldv8mrqdyja2" path="res://Entities/Transport/LevelExit/Canon/Components/Crystal/LevelExitCanonCrystal.blend" id="2_4gxxu"]
+[ext_resource type="PackedScene" uid="uid://iuj2nywxldyj" path="res://Common/Components/ShatterableWall/ShatterableWall.tscn" id="2_pjanc"]
+[ext_resource type="Script" uid="uid://b44v5ywbov0io" path="res://Common/Components/MeshReferencingCollisionShape3D.gd" id="3_eg0rj"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="5_28f5u"]
+[ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="5_pjanc"]
+
+[sub_resource type="Curve" id="Curve_inouk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ioojh"]
+curve = SubResource("Curve_inouk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4djmr"]
+lifetime_randomness = 0.33
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -22.05, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_ioojh")
+
+[sub_resource type="PrismMesh" id="PrismMesh_43ud7"]
+material = ExtResource("5_28f5u")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="Crystal" type="Node3D"]
+
+[node name="ShatterableWall" parent="." node_paths=PackedStringArray("ShatterPartciles") instance=ExtResource("2_pjanc")]
+ShatterPartciles = NodePath("../ExplosionParticles")
+HitStopDuration = 1.0
+Kickable = false
+
+[node name="Crystal" parent="ShatterableWall/MeshGrowPoint/MeshHolder" index="0" instance=ExtResource("2_4gxxu")]
+
+[node name="MeshReferencingCollisionShape3D" type="CollisionShape3D" parent="ShatterableWall"]
+script = ExtResource("3_eg0rj")
+mesh_path = NodePath("../MeshGrowPoint/MeshHolder/Crystal/Crystal")
+metadata/_custom_type_script = "uid://b44v5ywbov0io"
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4djmr")
+draw_pass_1 = SubResource("PrismMesh_43ud7")
+
+[node name="ShatterSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pjanc")
+bus = &"Sfx"
+
+[connection signal="Broken" from="ShatterableWall" to="ShatterSound" method="play"]
+
+[editable path="ShatterableWall"]
