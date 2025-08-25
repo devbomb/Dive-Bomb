@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ldv8mrqdyja2"
-path="res://.godot/imported/LevelExitCanonCrystal.blend-8b1611d440cbaf6cb1d1875f553d6e9b.scn"
+path="res://.godot/imported/LevelExitCanonCrystal.blend-9bd2e16e8ee1a58afdd3dc10142fb983.scn"
 
 [deps]
 
-source_file="res://Entities/Transport/LevelExit/Canon/Components/Crystal/LevelExitCanonCrystal.blend"
-dest_files=["res://.godot/imported/LevelExitCanonCrystal.blend-8b1611d440cbaf6cb1d1875f553d6e9b.scn"]
+source_file="res://Entities/Transport/LevelExit/Canon/LevelExitCanonCrystal.blend"
+dest_files=["res://.godot/imported/LevelExitCanonCrystal.blend-9bd2e16e8ee1a58afdd3dc10142fb983.scn"]
 
 [params]
 
