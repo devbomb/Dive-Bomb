@@ -7,6 +7,7 @@ namespace FastDragon
     public partial class ShatterableWall : BreakableStaticBody3D
     {
         [Export] public GpuParticles3D ShatterPartciles;
+        [Export] public float ShatterDuration = 4f / 60;
         [Export] public double HitStopDuration = 0.2;
 
         private Node3D _meshHolder => GetNode<Node3D>("%MeshHolder");
@@ -73,7 +74,6 @@ namespace FastDragon
 
         private class Shattering : State<ShatterableWall>
         {
-            private const float Duration = 4f / 60;
             private const float EndScale = 4f;
 
             private float _timer;
@@ -107,7 +107,7 @@ namespace FastDragon
             {
                 _modelTimer += (float)deltaD;
 
-                float t = _modelTimer / Duration;
+                float t = _modelTimer / Self.ShatterDuration;
                 Self._meshGrowPoint.Scale = Vector3.One.Lerp(Vector3.One * EndScale, t * t);
                 Self.SetTransparency(Mathf.Min(t * 2, 1));
             }
@@ -116,7 +116,7 @@ namespace FastDragon
             {
                 _timer += (float)deltaD;
 
-                if (_timer >= Duration)
+                if (_timer >= Self.ShatterDuration)
                 {
                     ChangeState<BrokenState>();
                 }
