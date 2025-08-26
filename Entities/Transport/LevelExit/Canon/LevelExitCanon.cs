@@ -8,6 +8,7 @@ namespace FastDragon
         [Export] public float HiddenHeight = -6;
         [Export] public double RevealDuration = 1;
 
+        private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private BreakableStaticBody3D _crystal => GetNode<BreakableStaticBody3D>("%Crystal");
         private CollisionShape3D _crystalShape => GetNode<CollisionShape3D>("%CrystalCollisionShape");
         private Node3D _playerLandPoint => GetNode<Node3D>("%PlayerLandPoint");
@@ -28,6 +29,9 @@ namespace FastDragon
 
         private void Reset()
         {
+            _animator.Play("RESET");
+            _animator.Advance(0);
+
             if (StartHidden)
                 _stateMachine.ChangeState<Hidden>();
             else
@@ -184,13 +188,13 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                Self._animator.Play("MissionClear");
+
                 _player = GetTree().FindNode<Player>();
                 _player.Animator.Play("Glide");
                 _player.Camera.Shake(2, 10, 0.5f);
 
                 _rotSpeedDeg = InitRotSpeedDeg;
-
-                Self.GetNode<AudioStreamPlayer>("%VictoryMusic").Play();
             }
 
             public override void _PhysicsProcess(double deltaD)

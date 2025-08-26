@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyfwcwip8ncw0"]
+[gd_scene load_steps=13 format=3 uid="uid://cyfwcwip8ncw0"]
 
 [ext_resource type="Script" uid="uid://cgmt2nue2tixk" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.cs" id="1_2i6pq"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="2_2i6pq"]
-[ext_resource type="AudioStream" uid="uid://dagvj3prtvinx" path="res://Entities/Transport/LevelExit/Canon/Audio/MissionClear.mp3" id="2_agwsh"]
+[ext_resource type="AnimationLibrary" uid="uid://0j7jt301c3br" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanonAnimations.tres" id="2_agwsh"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="2_e6war"]
 [ext_resource type="PackedScene" uid="uid://iuj2nywxldyj" path="res://Common/Components/ShatterableWall/ShatterableWall.tscn" id="3_agwsh"]
 [ext_resource type="PackedScene" uid="uid://ldv8mrqdyja2" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanonCrystal.blend" id="4_iluh0"]
 [ext_resource type="Script" uid="uid://b44v5ywbov0io" path="res://Common/Components/MeshReferencingCollisionShape3D.gd" id="5_okmgd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_agwsh"]
+font_size = 56
 
 [sub_resource type="Curve" id="Curve_y7wo7"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -33,10 +36,44 @@ size = Vector3(0.25, 0.25, 0.25)
 [node name="LevelExitCanon" type="Node3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_2i6pq")
 
-[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+[node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("2_agwsh")
+libraries = {
+&"": ExtResource("2_agwsh")
+}
+
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="Animator"]
 bus = &"Music"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.5
+offset_top = -78.5
+offset_right = 117.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "MISSION
+CLEAR "
+label_settings = SubResource("LabelSettings_agwsh")
+horizontal_alignment = 1
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
 
 [node name="ShatterParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
