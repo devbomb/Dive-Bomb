@@ -63,7 +63,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Mis" type="Label" parent="Control"]
+[node name="MissionHolder" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Mis" type="Label" parent="Control/MissionHolder"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -71,7 +80,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_top = -100.0
-offset_right = 20.0
+offset_right = 20.0002
 grow_horizontal = 2
 grow_vertical = 2
 text = "MISS"
@@ -79,7 +88,7 @@ label_settings = SubResource("LabelSettings_agwsh")
 horizontal_alignment = 2
 visible_characters_behavior = 1
 
-[node name="Sion" type="Label" parent="Control"]
+[node name="Sion" type="Label" parent="Control/MissionHolder"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -89,7 +98,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 20.0
 offset_top = -100.0
-offset_right = 1.00006
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "ION"
