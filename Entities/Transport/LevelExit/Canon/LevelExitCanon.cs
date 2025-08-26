@@ -186,8 +186,12 @@ namespace FastDragon
             private Player _player;
             private float _rotSpeedDeg;
 
+            private bool _isTimeTrial;
+
             public override void OnStateEntered()
             {
+                _isTimeTrial = Self.GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
+
                 Self._animator.Play("MissionClear");
 
                 _player = GetTree().FindNode<Player>();
@@ -222,7 +226,7 @@ namespace FastDragon
                 );
 
                 // Move on when the animation is finished
-                if (!Self._animator.IsPlaying())
+                if (!Self._animator.IsPlaying() && !_isTimeTrial)
                     MapTransitionManager.Instance.ExitLevel();
             }
         }
