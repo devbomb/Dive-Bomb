@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://crw4cy4ilgl5y"]
 
 [ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_li456"]
-[ext_resource type="PackedScene" uid="uid://chupa7p5expn4" path="res://Entities/Transport/LevelExit/Vortex/Standard/ReturnHomePlatform.tscn" id="1_n7f88"]
+[ext_resource type="PackedScene" uid="uid://cyfwcwip8ncw0" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.tscn" id="1_tp8hl"]
 
 [resource]
 script = ExtResource("1_li456")
@@ -10,7 +10,7 @@ models_sub_folder = ""
 scale_expression = ""
 generate_size_property = false
 generate_gd_ignore_file = false
-scene_file = ExtResource("1_n7f88")
+scene_file = ExtResource("1_tp8hl")
 apply_rotation_on_map_build = true
 apply_scale_on_map_build = true
 classname = "transport_level_exit"
