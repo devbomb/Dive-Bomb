@@ -12,7 +12,7 @@
 font_size = 56
 
 [sub_resource type="LabelSettings" id="LabelSettings_iluh0"]
-font_size = 56
+font_size = 121
 
 [sub_resource type="Curve" id="Curve_y7wo7"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -68,7 +68,7 @@ offset_top = -78.0
 offset_right = 1.00006
 grow_horizontal = 2
 grow_vertical = 2
-text = "MIS"
+text = "MISS"
 label_settings = SubResource("LabelSettings_agwsh")
 horizontal_alignment = 2
 visible_characters_behavior = 1
@@ -85,7 +85,7 @@ offset_top = -78.0
 offset_right = 1.00006
 grow_horizontal = 2
 grow_vertical = 2
-text = "SION"
+text = "ION"
 label_settings = SubResource("LabelSettings_agwsh")
 visible_characters_behavior = 1
 
