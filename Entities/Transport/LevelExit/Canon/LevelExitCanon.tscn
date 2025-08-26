@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyfwcwip8ncw0"]
+[gd_scene load_steps=14 format=3 uid="uid://cyfwcwip8ncw0"]
 
 [ext_resource type="Script" uid="uid://cgmt2nue2tixk" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.cs" id="1_2i6pq"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="2_2i6pq"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://b44v5ywbov0io" path="res://Common/Components/MeshReferencingCollisionShape3D.gd" id="5_okmgd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_agwsh"]
+font_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_iluh0"]
 font_size = 56
 
 [sub_resource type="Curve" id="Curve_y7wo7"]
@@ -54,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Mission" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -67,13 +70,40 @@ offset_right = 117.5
 offset_bottom = 78.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "MISSION
-CLEAR "
+text = "MISSION"
 label_settings = SubResource("LabelSettings_agwsh")
 horizontal_alignment = 1
 visible_characters = 0
 visible_characters_behavior = 1
 visible_ratio = 0.0
+
+[node name="ClearHolder" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.528
+anchor_right = 0.5
+anchor_bottom = 0.528
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Clear" type="Label" parent="Control/ClearHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -40.5
+offset_right = 85.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CLEAR"
+label_settings = SubResource("LabelSettings_iluh0")
+horizontal_alignment = 1
 
 [node name="ShatterParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
