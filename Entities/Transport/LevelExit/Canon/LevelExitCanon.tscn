@@ -57,25 +57,37 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Mission" type="Label" parent="Control"]
+[node name="Mis" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = -1
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -117.5
-offset_top = -78.5
-offset_right = 117.5
-offset_bottom = 78.5
+offset_top = -78.0
+offset_right = 1.00006
 grow_horizontal = 2
 grow_vertical = 2
-text = "MISSION"
+text = "MIS"
 label_settings = SubResource("LabelSettings_agwsh")
-horizontal_alignment = 1
-visible_characters = 0
+horizontal_alignment = 2
 visible_characters_behavior = 1
-visible_ratio = 0.0
+
+[node name="Sion" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -78.0
+offset_right = 1.00006
+grow_horizontal = 2
+grow_vertical = 2
+text = "SION"
+label_settings = SubResource("LabelSettings_agwsh")
+visible_characters_behavior = 1
 
 [node name="ClearHolder" type="Control" parent="Control"]
 visible = false
