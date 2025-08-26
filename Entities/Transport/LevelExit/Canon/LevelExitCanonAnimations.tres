@@ -88,7 +88,7 @@ tracks/6/path = NodePath("Control/ClearHolder:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(2.71667, 2.78333, 2.9),
+"times": PackedFloat32Array(2.78333, 2.85, 2.96667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0.5, 0), Vector2(1.5, 2), Vector2(1, 1)]
