@@ -189,6 +189,8 @@ namespace FastDragon
                 _player.Camera.Shake(2, 10, 0.5f);
 
                 _rotSpeedDeg = InitRotSpeedDeg;
+
+                Self.GetNode<AudioStreamPlayer>("%VictoryMusic").Play();
             }
 
             public override void _PhysicsProcess(double deltaD)

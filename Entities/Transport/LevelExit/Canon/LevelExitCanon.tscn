@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyfwcwip8ncw0"]
+[gd_scene load_steps=12 format=3 uid="uid://cyfwcwip8ncw0"]
 
 [ext_resource type="Script" uid="uid://cgmt2nue2tixk" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.cs" id="1_2i6pq"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="2_2i6pq"]
+[ext_resource type="AudioStream" uid="uid://dagvj3prtvinx" path="res://Entities/Transport/LevelExit/Canon/Audio/MissionClear.mp3" id="2_agwsh"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="2_e6war"]
 [ext_resource type="PackedScene" uid="uid://iuj2nywxldyj" path="res://Common/Components/ShatterableWall/ShatterableWall.tscn" id="3_agwsh"]
 [ext_resource type="PackedScene" uid="uid://ldv8mrqdyja2" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanonCrystal.blend" id="4_iluh0"]
@@ -31,6 +32,11 @@ size = Vector3(0.25, 0.25, 0.25)
 
 [node name="LevelExitCanon" type="Node3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_2i6pq")
+
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_agwsh")
+bus = &"Music"
 
 [node name="ShatterParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
