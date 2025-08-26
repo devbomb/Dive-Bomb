@@ -46,7 +46,12 @@ libraries = {
 }
 
 [node name="VictoryMusic" type="AudioStreamPlayer" parent="Animator"]
+volume_db = -3.034
 bus = &"Music"
+
+[node name="Explosion" type="AudioStreamPlayer" parent="Animator"]
+volume_db = -2.483
+bus = &"Sfx"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
