@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dympqtsl60os7"]
+[gd_scene load_steps=5 format=3 uid="uid://dympqtsl60os7"]
 
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="1_ds1y7"]
-[ext_resource type="PackedScene" uid="uid://dki5doabmw5bc" path="res://Entities/Transport/LevelExit/Vortex/ReturnHomePlatform.blend" id="1_qp38o"]
 [ext_resource type="PackedScene" uid="uid://cyfwcwip8ncw0" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.tscn" id="2_ds1y7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x75wr"]
@@ -20,9 +19,6 @@ shape = SubResource("BoxShape3D_x75wr")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 layers = 9
 mesh = SubResource("BoxMesh_e14f1")
-
-[node name="ReturnHomePlatform" parent="StaticBody3D" instance=ExtResource("1_qp38o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56708, 0.5, -4.20386)
 
 [node name="Player" parent="." instance=ExtResource("1_ds1y7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.776, 0.5, 8.667)
