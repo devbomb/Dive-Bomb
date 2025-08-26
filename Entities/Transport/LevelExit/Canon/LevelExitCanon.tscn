@@ -61,6 +61,11 @@ script = ExtResource("5_okmgd")
 mesh_path = NodePath("../MeshGrowPoint/MeshHolder/Crystal/Crystal")
 metadata/_custom_type_script = "uid://b44v5ywbov0io"
 
+[node name="PlayerLandPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[connection signal="Broken" from="Crystal" to="." method="OnCrystalShattered"]
 [connection signal="Broken" from="Crystal" to="ShatterSound" method="play"]
 
 [editable path="Crystal"]
