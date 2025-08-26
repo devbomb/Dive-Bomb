@@ -220,6 +220,10 @@ namespace FastDragon
                     2,
                     delta
                 );
+
+                // Move on when the animation is finished
+                if (!Self._animator.IsPlaying())
+                    MapTransitionManager.Instance.ExitLevel();
             }
         }
     }
