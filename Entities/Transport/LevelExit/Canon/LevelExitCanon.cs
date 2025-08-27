@@ -186,11 +186,12 @@ namespace FastDragon
             private Player _player;
             private float _rotSpeedDeg;
 
-            private bool _isTimeTrial;
+            private TimeTrialManager _timeTrialManager;
+            private bool _detectedAnimationFinished;
 
             public override void OnStateEntered()
             {
-                _isTimeTrial = Self.GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
+                _timeTrialManager = Self.GetTree().FindNode<TimeTrialManager>();
 
                 Self._animator.Play("MissionClear");
 
@@ -199,6 +200,7 @@ namespace FastDragon
                 _player.Camera.Shake(2, 10, 0.5f);
 
                 _rotSpeedDeg = InitRotSpeedDeg;
+                _detectedAnimationFinished = false;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -226,8 +228,18 @@ namespace FastDragon
                 );
 
                 // Move on when the animation is finished
-                if (!Self._animator.IsPlaying() && !_isTimeTrial)
+                if (!Self._animator.IsPlaying() && !_detectedAnimationFinished)
+                {
+                    _detectedAnimationFinished = true;
+
+                    if (_timeTrialManager?.IsTimeTrialMode ?? false)
+                    {
+                        _timeTrialManager.ShowResultsScreen();
+                        return;
+                    }
+
                     MapTransitionManager.Instance.ExitLevel();
+                }
             }
         }
     }

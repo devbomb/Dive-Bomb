@@ -86,7 +86,11 @@ namespace FastDragon
 
         private void OnExitReached()
         {
-            Finish();
+            if (IsTimeTrialMode)
+            {
+                Finish();
+                return;
+            }
 
             // Unlock time trial modes
             // TODO: Only do this if currently NOT in time trial mode
@@ -103,6 +107,11 @@ namespace FastDragon
                 TimeTrialSaveData.Instance.UnlockCategory(currentMap, TimeTrialCategory.FairyPercent);
         }
 
+        public void ShowResultsScreen()
+        {
+            _pageNav.ChangePage(_resultsPage);
+        }
+
         public void Start()
         {
             _pageNav.ChangePage(null);
@@ -112,11 +121,7 @@ namespace FastDragon
 
         private void Finish()
         {
-            if (!IsTimeTrialMode)
-                return;
-
             IsTimerRunning = false;
-            _pageNav.ChangePage(_resultsPage);
 
             if (TimerPhysicsTicks < GetSavedBestTime())
                 SetSavedBestTime(TimerPhysicsTicks);

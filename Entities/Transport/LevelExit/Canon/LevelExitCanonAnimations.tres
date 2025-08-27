@@ -5,7 +5,7 @@
 
 [sub_resource type="Animation" id="Animation_agwsh"]
 resource_name = "MissionClear"
-length = 6.0
+length = 4.51667
 step = 0.0166667
 tracks/0/type = "audio"
 tracks/0/imported = false
