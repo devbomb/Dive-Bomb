@@ -14,6 +14,7 @@ namespace FastDragon
         public uint TargetTimePhysicsTicks {get; private set;}
 
         private Label _timerLabel => GetNode<Label>("%TimerLabel");
+        private AnimationPlayer _timeAnnouncementAnimator => GetNode<AnimationPlayer>("%TimeAnnouncementAnimator");
 
         private PageNavigator _pageNav => GetNode<PageNavigator>("%PageNavigator");
         private Page _briefingPage => GetNode<Page>("%TimeTrialBriefingPage");
@@ -122,6 +123,7 @@ namespace FastDragon
         private void Finish()
         {
             IsTimerRunning = false;
+            _timeAnnouncementAnimator.Play("TIME");
 
             if (TimerPhysicsTicks < GetSavedBestTime())
                 SetSavedBestTime(TimerPhysicsTicks);
