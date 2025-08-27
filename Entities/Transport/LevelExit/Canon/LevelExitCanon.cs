@@ -16,11 +16,13 @@ namespace FastDragon
         private readonly StateMachine _stateMachine = new StateMachine();
 
         private Vector3 _revealedPosition;
+        private TimeTrialManager _timeTrialManager;
 
         public override void _Ready()
         {
             AddChild(_stateMachine);
 
+            _timeTrialManager = GetTree().FindNode<TimeTrialManager>();
             _revealedPosition = GlobalPosition;
 
             SignalBus.Instance.LevelReset += Reset;
@@ -52,6 +54,8 @@ namespace FastDragon
         {
             _crystalShape.Disabled = !enabled;
         }
+
+        private bool IsTimeTrialMode() => _timeTrialManager?.IsTimeTrialMode ?? false;
 
         private class Hidden : State<LevelExitCanon>
         {
@@ -101,14 +105,25 @@ namespace FastDragon
 
         private class Revealed : State<LevelExitCanon>
         {
+            private TimeTrialManager _timeTrialManager;
+
             public override void OnStateEntered()
             {
+                _timeTrialManager = Self.GetTree().FindNode<TimeTrialManager>();
                 Self._crystal.Rollable = true;
             }
 
             public override void OnStateExited()
             {
                 Self._crystal.Rollable = false;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                if (Self.IsTimeTrialMode())
+                {
+                    Self._crystal.Disabled = !Self._timeTrialManager.RequirementsMet();
+                }
             }
         }
 
@@ -186,13 +201,10 @@ namespace FastDragon
             private Player _player;
             private float _rotSpeedDeg;
 
-            private TimeTrialManager _timeTrialManager;
             private bool _detectedAnimationFinished;
 
             public override void OnStateEntered()
             {
-                _timeTrialManager = Self.GetTree().FindNode<TimeTrialManager>();
-
                 Self._animator.Play("MissionClear");
 
                 _player = GetTree().FindNode<Player>();
@@ -232,9 +244,9 @@ namespace FastDragon
                 {
                     _detectedAnimationFinished = true;
 
-                    if (_timeTrialManager?.IsTimeTrialMode ?? false)
+                    if (Self.IsTimeTrialMode())
                     {
-                        _timeTrialManager.ShowResultsScreen();
+                        Self._timeTrialManager.ShowResultsScreen();
                         return;
                     }
 
