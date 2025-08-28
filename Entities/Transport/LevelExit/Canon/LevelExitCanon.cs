@@ -182,6 +182,8 @@ namespace FastDragon
 
                 player.Animator.Play("ParachuteLand");
                 _timer = Duration;
+
+                Self._animator.Play("Phoomp");
             }
 
             public override void _PhysicsProcess(double delta)

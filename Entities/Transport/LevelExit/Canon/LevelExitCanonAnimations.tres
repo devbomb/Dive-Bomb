@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=5 format=3 uid="uid://0j7jt301c3br"]
+[gd_resource type="AnimationLibrary" load_steps=6 format=3 uid="uid://0j7jt301c3br"]
 
 [ext_resource type="AudioStream" uid="uid://csp6xfepqtqhh" path="res://Common/Audio/SFX/Explosions/StarFoxInspiredExplosion.wav" id="1_fy702"]
 [ext_resource type="AudioStream" uid="uid://dagvj3prtvinx" path="res://Entities/Transport/LevelExit/Canon/Audio/MissionClear.mp3" id="1_s4h3o"]
@@ -280,9 +280,38 @@ tracks/9/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanonHole:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fy702"]
+resource_name = "Phoomp"
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanonHole:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 0.772, 1.1), Vector3(1, 1, 1)]
+}
 
 [resource]
 _data = {
 &"MissionClear": SubResource("Animation_agwsh"),
+&"Phoomp": SubResource("Animation_fy702"),
 &"RESET": SubResource("Animation_iluh0")
 }
