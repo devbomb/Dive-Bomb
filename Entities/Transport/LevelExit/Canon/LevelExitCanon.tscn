@@ -166,6 +166,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
 [node name="Crystal" parent="." node_paths=PackedStringArray("ShatterPartciles") instance=ExtResource("3_agwsh")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09981, 0)
 ShatterPartciles = NodePath("../ShatterParticles")
 ShatterDuration = 0.1
 HitStopDuration = 0.75
