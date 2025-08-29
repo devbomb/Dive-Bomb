@@ -57,10 +57,15 @@ namespace FastDragon
 
         private bool IsTimeTrialMode() => _timeTrialManager?.IsTimeTrialMode ?? false;
 
+        private Vector3 HiddenPos() => _revealedPosition + (Vector3.Up * HiddenHeight);
+
         private class Hidden : State<LevelExitCanon>
         {
             public override void OnStateEntered()
             {
+                Self.GlobalPosition = Self.HiddenPos();
+                Self.ResetPhysicsInterpolation3D();
+
                 Self.Visible = false;
                 Self.SetCollisionEnabled(false);
             }
@@ -75,12 +80,10 @@ namespace FastDragon
         private class Revealing : State<LevelExitCanon>
         {
             private double _timer;
-            private Vector3 _hiddenPosition;
 
             public override void OnStateEntered()
             {
-                _hiddenPosition = Self._revealedPosition + (Vector3.Up * Self.HiddenHeight);
-                Self.GlobalPosition = _hiddenPosition;
+                Self.GlobalPosition = Self.HiddenPos();
                 Self.ResetPhysicsInterpolation3D();
                 _timer = 0;
             }
@@ -91,7 +94,7 @@ namespace FastDragon
 
                 float t = (float)(_timer / Self.RevealDuration);
                 t = Mathf.SmoothStep(0, 1, t);
-                Self.GlobalPosition = _hiddenPosition.Lerp(Self._revealedPosition, t);
+                Self.GlobalPosition = Self.HiddenPos().Lerp(Self._revealedPosition, t);
 
                 if (_timer > Self.RevealDuration)
                     ChangeState<Revealed>();
