@@ -6,7 +6,7 @@ namespace FastDragon
     public partial class SeamonsterBoss : CharacterBody3D
     {
         [Export] public int[] PhaseMaxHealths = new int[0];
-        [Export] public BossReturnHomePlatform ReturnHomeVortex;
+        [Signal] public delegate void DefeatedEventHandler();
 
         public int CurrentHealth => _health.CurrentHealth;
         public int MaxHealth => _health.MaxHealth;
@@ -31,6 +31,7 @@ namespace FastDragon
             AddChild(_stateMachine);
 
             SignalBus.Instance.LevelReset += Respawn;
+            SignalBus.Instance.ExitReached += OnExitReached;
 
             // Defer respawning to ensure the player is ready, since we'll be
             // hijacking the camera.
@@ -47,6 +48,12 @@ namespace FastDragon
             _stateMachine.ChangeState<Submerged>();
 
             UseBossCameraAngle();
+        }
+
+        private void OnExitReached()
+        {
+            var camera = GetTree().FindNode<PlayerCamera>();
+            camera.StartFollowing(1);
         }
 
         private void UseCameraAngle(Transform3D position)

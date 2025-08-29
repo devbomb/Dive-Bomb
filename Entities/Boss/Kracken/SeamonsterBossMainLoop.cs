@@ -243,7 +243,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 Self.UseBossCameraAngle();
-                Self.ReturnHomeVortex.Reveal();
+                Self.EmitSignal(SignalName.Defeated);
 
                 Self._bossHud.Visible = false;
             }

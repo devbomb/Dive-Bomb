@@ -14,6 +14,7 @@ namespace FastDragon
         public uint TargetTimePhysicsTicks {get; private set;}
 
         private Label _timerLabel => GetNode<Label>("%TimerLabel");
+        private AnimationPlayer _timeAnnouncementAnimator => GetNode<AnimationPlayer>("%TimeAnnouncementAnimator");
 
         private PageNavigator _pageNav => GetNode<PageNavigator>("%PageNavigator");
         private Page _briefingPage => GetNode<Page>("%TimeTrialBriefingPage");
@@ -86,7 +87,11 @@ namespace FastDragon
 
         private void OnExitReached()
         {
-            Finish();
+            if (IsTimeTrialMode)
+            {
+                Finish();
+                return;
+            }
 
             // Unlock time trial modes
             // TODO: Only do this if currently NOT in time trial mode
@@ -103,6 +108,11 @@ namespace FastDragon
                 TimeTrialSaveData.Instance.UnlockCategory(currentMap, TimeTrialCategory.FairyPercent);
         }
 
+        public void ShowResultsScreen()
+        {
+            _pageNav.ChangePage(_resultsPage);
+        }
+
         public void Start()
         {
             _pageNav.ChangePage(null);
@@ -112,11 +122,8 @@ namespace FastDragon
 
         private void Finish()
         {
-            if (!IsTimeTrialMode)
-                return;
-
             IsTimerRunning = false;
-            _pageNav.ChangePage(_resultsPage);
+            _timeAnnouncementAnimator.Play("TIME");
 
             if (TimerPhysicsTicks < GetSavedBestTime())
                 SetSavedBestTime(TimerPhysicsTicks);

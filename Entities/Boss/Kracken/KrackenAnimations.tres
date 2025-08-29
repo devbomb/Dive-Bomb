@@ -3,7 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://7iuw75niosxj" path="res://Entities/Boss/Kracken/SFX/EmergeRoarAngry.wav" id="1_5qk1u"]
 [ext_resource type="AudioStream" uid="uid://dc66vxvhib0hr" path="res://Entities/Boss/Kracken/SFX/Growl0.wav" id="1_7sa1r"]
 [ext_resource type="AudioStream" uid="uid://h1bee3yxird1" path="res://Entities/Boss/Kracken/SFX/Blrroww.wav" id="1_vklea"]
-[ext_resource type="AudioStream" uid="uid://csp6xfepqtqhh" path="res://Entities/Boss/Kracken/SFX/HeadExplode.wav" id="2_6a56y"]
+[ext_resource type="AudioStream" uid="uid://csp6xfepqtqhh" path="res://Common/Audio/SFX/Explosions/StarFoxInspiredExplosion.wav" id="2_6a56y"]
 [ext_resource type="AudioStream" uid="uid://bkpkt2tcm758j" path="res://Entities/Boss/Kracken/SFX/Roar1.wav" id="2_7sa1r"]
 [ext_resource type="AudioStream" uid="uid://q6bhkexy7cco" path="res://Entities/Boss/Kracken/SFX/HeadExplodeBurpVoice.wav" id="3_n3fno"]
 [ext_resource type="AudioStream" uid="uid://da7367gbgwaoq" path="res://Entities/Boss/Kracken/SFX/Indigestion.wav" id="3_q5in4"]
