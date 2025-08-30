@@ -10,16 +10,17 @@ namespace FastDragon
         public const float RevealJumpVelocity = 10;
         public const float Gravity = 30;
 
-        public bool IsCollected => SaveFile.Current.IsGemCollected(
-            SaveFile.Current.CurrentLevel,
-            Value,
-            GetSaveKey());
+        public bool IsCollected => this.GetLevel()
+            ?.GetProgress()
+            ?.IsGemCollected(Value, SaveKey) ?? false;
 
         [Export] public GemColor Value;
 
         public bool StartHidden = false;
         public bool TouchedGroundOnce {get; private set;} = false;
         public bool IsRevealed => _stateMachine.CurrentState is Revealed;
+
+        public string SaveKey { get; private set; }
 
         public Area3D CollectionArea => GetNode<Area3D>("%CollectionArea");
 
@@ -41,6 +42,7 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            SaveKey = GenerateSaveKey();
             base._Ready();
 
             _visibleEnabler = GetNode<VisibleOnScreenEnabler3D>("%VisibleEnabler");
@@ -89,13 +91,17 @@ namespace FastDragon
 
         public void Collect()
         {
-            var saveFile = SaveFile.Current;
-            saveFile.CollectGem(saveFile.CurrentLevel, Value, GetSaveKey());
+            var level = this.GetLevel();
+            if (level != null)
+            {
+                level.GetProgress().CollectGem(Value, SaveKey);
+
+                if (!level.IsTimeTrialMode)
+                    SaveFile.Current.AddUntalliedGem(Value);
+            }
 
             _collectSound.Play();
             ChangeState<Hidden>();
-
-            GD.Print($"{saveFile.TotalGemCount}: Collected gem {GetSaveKey()}");
         }
 
         public void Sparkle()
@@ -103,7 +109,7 @@ namespace FastDragon
             _sparkleAnim.Play("Sparkle");
         }
 
-        public string GetSaveKey()
+        private string GenerateSaveKey()
         {
             var builder = new System.Text.StringBuilder();
             Visit(this);

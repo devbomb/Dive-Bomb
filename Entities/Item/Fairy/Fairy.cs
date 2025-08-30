@@ -14,8 +14,10 @@ namespace FastDragon
         public bool CausesBonk => !CanBreak();
 
         public bool CanBreak() => EnoughGems() || IsTimeTrialMode();
-        public bool EnoughGems() => SaveFile.Current.TotalGemCount >= GemCost;
+        public bool EnoughGems() => (this.GetLevel()?.TotalGems ?? 0) >= GemCost;
         public bool ShowPriceTag() => GemCost > 0 && !IsTimeTrialMode();
+
+        public string SaveKey { get; private set; }
 
         private readonly StateMachine _stateMachine = new StateMachine();
         private Transform3D _initialModelPos;
@@ -35,10 +37,12 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            SaveKey = GenerateSaveKey();
             _initialModelPos = Model.GlobalTransform;
 
             SignalBus.Instance.LevelReset += Reset;
             AddChild(_stateMachine);
+
             Reset();
         }
 
@@ -50,43 +54,34 @@ namespace FastDragon
             Animator.Play("RESET");
             Animator.Advance(0);
 
-            if (SaveFile.Current.CurrentLevelProgress.CollectedFairies.Contains(GetSaveKey()))
+            bool collected = this.GetLevel()
+                ?.GetProgress()
+                ?.CollectedFairies
+                ?.Contains(SaveKey) ?? false;
+
+            if (collected)
                 _stateMachine.ChangeState<Rescued>();
             else
                 _stateMachine.ChangeState<Idle>();
         }
 
-        public string GetSaveKey()
-        {
-            var builder = new System.Text.StringBuilder();
-            Visit(this);
-            return builder.ToString();
-
-            void Visit(Node n)
-            {
-                if (n.GetParent() == GetTree().Root)
-                {
-                    builder.Append(n.Name);
-                    return;
-                }
-
-                Visit(n.GetParent());
-                builder.Append("/");
-                builder.Append(n.GetIndex());
-            }
-        }
-
         public void OnBroken()
         {
-            if (IsTimeTrialMode())
+            var level = this.GetLevel();
+            if (level != null)
             {
-                _stateMachine.ChangeState<QuickRescue>();
+                level.GetProgress().CollectedFairies.Add(SaveKey);
+                level.GetProgress().SpentGems += GemCost;
+
+                if (level.IsTimeTrialMode)
+                {
+                    _stateMachine.ChangeState<QuickRescue>();
+                    return;
+                }
             }
-            else
-            {
-                SaveFile.Current.SpendGems(GemCost);
-                _stateMachine.ChangeState<Shattering>();
-            }
+
+            SaveFile.Current.UntalliedGemsSpent += GemCost;
+            _stateMachine.ChangeState<Shattering>();
         }
 
         public void OnBreakRejected()
@@ -108,6 +103,26 @@ namespace FastDragon
                 : ProcessModeEnum.Inherit;
 
             Player.ProcessMode = ProcessMode;
+        }
+
+        private string GenerateSaveKey()
+        {
+            var builder = new System.Text.StringBuilder();
+            Visit(this);
+            return builder.ToString();
+
+            void Visit(Node n)
+            {
+                if (n.GetParent() == GetTree().Root)
+                {
+                    builder.Append(n.Name);
+                    return;
+                }
+
+                Visit(n.GetParent());
+                builder.Append("/");
+                builder.Append(n.GetIndex());
+            }
         }
 
         private class Idle : State<Fairy>
@@ -154,8 +169,6 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SaveFile.Current.CollectFairy(SaveFile.Current.CurrentLevel, Self.GetSaveKey());
-
                 // Pause the game (except the player and fairy) during the
                 // cutscene to prevent the player from getting hit by enemies.
                 // Don't worry, the pause menu won't open if the game is already
@@ -360,8 +373,6 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SaveFile.Current.CurrentLevelProgress.CollectedFairies.Add(Self.GetSaveKey());
-
                 Self.Glass.Visible = false;
                 Self.GlassParticles.Emitting = true;
                 Self.ShatterSound.Play();

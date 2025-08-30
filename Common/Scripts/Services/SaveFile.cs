@@ -6,26 +6,29 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class SaveFile : Resource
+    [JsonObject(MemberSerialization.OptIn)]
+    public partial class SaveFile : RefCounted
     {
         public static SaveFile Current = new SaveFile();
 
-        public int PlayerHealth = Player.MaxHealth;
-        public string CurrentLevel;
-        public string CurrentCheckpoint = null;
+        [JsonProperty] public int PlayerHealth = Player.MaxHealth;
+        [JsonProperty] public string CurrentLevel;
+        [JsonProperty] public string CurrentCheckpoint = null;
 
-        public int UntalliedGemsSpent;
-        public Dictionary<GemColor, int> UntalliedGemsCollected = new Dictionary<GemColor, int>();
+        [JsonProperty] public int UntalliedGemsSpent;
+        [JsonProperty] public Dictionary<GemColor, int> UntalliedGemsCollected = new();
 
-        public Dictionary<string, LevelProgress> Levels = new Dictionary<string, LevelProgress>();
+        [JsonProperty] public Dictionary<string, LevelProgress> Levels = new();
+
+        [JsonObject(MemberSerialization.OptIn)]
         public class LevelProgress
         {
-            [JsonIgnore] public int FairiesCollected => CollectedFairies.Count;
-            [JsonIgnore] public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);
+            [JsonProperty] public HashSet<string> CollectedFairies = new();
+            [JsonProperty] public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
+            [JsonProperty] public int SpentGems = 0;
 
-            public HashSet<string> CollectedFairies = new();
-            public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
-            public int SpentGems = 0;
+            public int FairiesCollected => CollectedFairies.Count;
+            public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);
 
             public void ResetProgress()
             {
@@ -54,10 +57,10 @@ namespace FastDragon
             }
         }
 
-        [JsonIgnore] public int TotalGemsSpent => Levels.Values.Sum(l => l.SpentGems);
-        [JsonIgnore] public int TotalGemCount => Levels.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
-        [JsonIgnore] public int TotalFairyCount => Levels.Values.Sum(l => l.CollectedFairies.Count);
-        [JsonIgnore] public LevelProgress CurrentLevelProgress => GetLevelProgress(CurrentLevel);
+        public int TotalGemsSpent => Levels.Values.Sum(l => l.SpentGems);
+        public int TotalGemCount => Levels.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
+        public int TotalFairyCount => Levels.Values.Sum(l => l.CollectedFairies.Count);
+        public LevelProgress CurrentLevelProgress => GetLevelProgress(CurrentLevel);
 
         public static void Reset()
         {
@@ -76,7 +79,6 @@ namespace FastDragon
                 new JsonSerializerSettings
                 {
                     Formatting = Formatting.Indented,
-
                 }
             );
         }
@@ -86,34 +88,14 @@ namespace FastDragon
             return GetLevelProgress(level).IsGemCollected(color, saveKey);
         }
 
-        public void CollectGem(string level, GemColor color, string saveKey)
+        public void AddUntalliedGem(GemColor color)
         {
-            GetLevelProgress(level).CollectGem(color, saveKey);
-
             if (!UntalliedGemsCollected.ContainsKey(color))
             {
                 UntalliedGemsCollected[color] = 0;
             }
 
             UntalliedGemsCollected[color]++;
-        }
-
-        public void SpendGems(int amount)
-        {
-            CurrentLevelProgress.SpentGems += amount;
-            UntalliedGemsSpent += amount;
-        }
-
-        public void CollectFairy(string level, string saveKey)
-        {
-            var progress = GetLevelProgress(level);
-            progress.CollectedFairies.Add(saveKey);
-        }
-
-        public bool IsFairyCollected(string level, string saveKey)
-        {
-            var progress = GetLevelProgress(level);
-            return progress.CollectedFairies.Contains(saveKey);
         }
 
         public LevelProgress GetLevelProgress(string level)

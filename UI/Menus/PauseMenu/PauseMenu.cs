@@ -30,7 +30,7 @@ namespace FastDragon
         public override void _Ready()
         {
             Close();
-            _exitLevelButton.Visible = !LevelTransitionManager.Instance.CurrentLevelIsHomeWorld;
+            _exitLevelButton.Visible = this.GetLevel()?.HomeWorldLevel != null;
         }
 
         public void Open()

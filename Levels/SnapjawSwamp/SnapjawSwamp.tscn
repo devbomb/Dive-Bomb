@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=11 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="Environment" uid="uid://btae5lbyfvcts" path="res://Levels/SnapjawSwamp/SnapjawSwampSkybox.tres" id="1_e42vu"]
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_f80cs"]
 [ext_resource type="PackedScene" uid="uid://hb1dlkkjemtj" path="res://Levels/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://cfn6esny62ln4" path="res://Levels/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
@@ -11,6 +12,10 @@
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="9_bdp2e"]
 
 [node name="SnapjawSwamp" type="Node3D"]
+script = ExtResource("1_f80cs")
+LevelName = "Snapjaw Swamp"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
+metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_e42vu")

@@ -17,7 +17,11 @@ func _process(_delta):
 	$'%GemCountLabel'.Value = GemCount()
 
 func GemCount() -> int:
-	return $'/root/SaveFile'.Current().TotalGemCount
+	var level = DiveBombLevel.GetLevel(self)
+	if (level == null):
+		return 0
+		
+	return level.TotalGems
 "
 
 [sub_resource type="Theme" id="Theme_ux4dw"]

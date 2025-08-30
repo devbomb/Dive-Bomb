@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://jfal51r4dflw"]
+[gd_scene load_steps=4 format=3 uid="uid://jfal51r4dflw"]
 
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_210mw"]
 [ext_resource type="PackedScene" uid="uid://cf2tkkwvrpta4" path="res://Levels/DummyMap/Maps/DummyMap.map" id="2_a3wjm"]
 [ext_resource type="Environment" uid="uid://bhamu4vflo38l" path="res://Levels/DummyMap/Skybox.tres" id="2_nb5xh"]
 
 [node name="DummyMap" type="Node3D"]
+script = ExtResource("1_210mw")
+LevelName = "Dummy Map"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
+metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_nb5xh")
