@@ -31,6 +31,11 @@ namespace FastDragon
             ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
             : SaveFile.Current.TotalGemCount;
 
+        public override void _EnterTree()
+        {
+            SaveFile.Current.CurrentLevel = SceneFilePath;
+        }
+
         public override void _Ready()
         {
             AtlasCache.Instance.UpdateCache(SceneFilePath, this);

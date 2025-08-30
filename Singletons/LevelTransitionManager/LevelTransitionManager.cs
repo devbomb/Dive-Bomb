@@ -19,18 +19,10 @@ namespace FastDragon
         public override void _Ready()
         {
             Instance = this;
-            SaveFile.Current.CurrentLevel = GetTree().CurrentScene.SceneFilePath;
-        }
-
-        public string GetHomeWorldLevel()
-        {
-            return GetTree().FindNode<DiveBombLevel>()?.HomeWorldLevel;
         }
 
         public void ChangeSceneToNode(Node scene)
         {
-            SaveFile.Current.CurrentLevel = scene.SceneFilePath;
-
             var tree = GetTree();
 
             // Unload the old scene
@@ -68,7 +60,6 @@ namespace FastDragon
 
         public void GoToLevel(string levelSceneFile)
         {
-            SaveFile.Current.CurrentLevel = levelSceneFile;
             GetTree().ChangeSceneToFile(levelSceneFile);
         }
 
@@ -102,9 +93,10 @@ namespace FastDragon
                     true
                 );
 
-                SaveFile.Current.CurrentLevel = levelSceneFile;
+                var levelRoot = ResourceLoader
+                    .Load<PackedScene>(levelSceneFile)
+                    .Instantiate<DiveBombLevel>();
 
-                var levelRoot = ResourceLoader.Load<PackedScene>(levelSceneFile).Instantiate<Node>();
                 ChangeSceneToNode(levelRoot);
 
                 Log.FinishedGoToLevelWithFade();
@@ -270,6 +262,11 @@ namespace FastDragon
             var loadingScreen = PortalLoadingScreenPrefab.Instantiate<PortalLoadingScreen>();
             ChangeSceneToNode(loadingScreen);
             loadingScreen.Initialize(parameters);
+        }
+
+        private string GetHomeWorldLevel()
+        {
+            return GetTree().FindNode<DiveBombLevel>()?.HomeWorldLevel;
         }
     }
 }
