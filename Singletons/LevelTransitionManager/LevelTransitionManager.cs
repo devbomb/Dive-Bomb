@@ -7,8 +7,6 @@ namespace FastDragon
     {
         public static LevelTransitionManager Instance {get; private set;}
 
-        public bool CurrentLevelIsHomeWorld => string.IsNullOrEmpty(GetHomeWorldLevel());
-
         [Export(PropertyHint.File)] public string TimeTrialLevelSelectScene;
         [Export(PropertyHint.File)] public string TitleScreenScene;
 
