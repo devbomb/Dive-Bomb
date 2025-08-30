@@ -3,14 +3,14 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class MapTransitionManager : Node
+    public partial class LevelTransitionManager : Node
     {
-        public static MapTransitionManager Instance {get; private set;}
+        public static LevelTransitionManager Instance {get; private set;}
 
-        public bool CurrentMapIsHomeWorld => string.IsNullOrEmpty(GetHomeWorldMap());
+        public bool CurrentLevelIsHomeWorld => string.IsNullOrEmpty(GetHomeWorldLevel());
 
-        [Export(PropertyHint.File)] public string TimeTrialLevelSelectMap;
-        [Export(PropertyHint.File)] public string TitleScreenMap;
+        [Export(PropertyHint.File)] public string TimeTrialLevelSelectScene;
+        [Export(PropertyHint.File)] public string TitleScreenScene;
 
         [Export] public PackedScene PortalLoadingScreenPrefab;
 
@@ -19,18 +19,18 @@ namespace FastDragon
         public override void _Ready()
         {
             Instance = this;
-            SaveFile.Current.CurrentMap = GetTree().CurrentScene.SceneFilePath;
+            SaveFile.Current.CurrentLevel = GetTree().CurrentScene.SceneFilePath;
         }
 
-        public string GetHomeWorldMap()
+        public string GetHomeWorldLevel()
         {
             var worldSpawn = GetTree().FindNode<Player>();
-            return worldSpawn?.HomeWorldMap;
+            return worldSpawn?.HomeWorldLevel;
         }
 
         public void ChangeSceneToNode(Node scene)
         {
-            SaveFile.Current.CurrentMap = scene.SceneFilePath;
+            SaveFile.Current.CurrentLevel = scene.SceneFilePath;
 
             var tree = GetTree();
 
@@ -49,46 +49,46 @@ namespace FastDragon
 
         public void GoToTimeTrialLevelSelect()
         {
-            GetTree().ChangeSceneToFile(TimeTrialLevelSelectMap);
+            GetTree().ChangeSceneToFile(TimeTrialLevelSelectScene);
         }
 
         public void GoToTitleScreen()
         {
             DoThingWithFadeToBlack(() =>
             {
-                Log.StartedGoToMap(
+                Log.StartedGoToLevelWithFade(
                     GetTree().CurrentScene.Name,
-                    TitleScreenMap,
+                    TitleScreenScene,
                     true,
                     false
                 );
-                GetTree().ChangeSceneToFile(TitleScreenMap);
-                Log.FinishedGoToMap();
+                GetTree().ChangeSceneToFile(TitleScreenScene);
+                Log.FinishedGoToLevelWithFade();
             });
         }
 
-        public void GoToMap(string mapSceneFile)
+        public void GoToLevel(string levelSceneFile)
         {
-            SaveFile.Current.CurrentMap = mapSceneFile;
-            GetTree().ChangeSceneToFile(mapSceneFile);
+            SaveFile.Current.CurrentLevel = levelSceneFile;
+            GetTree().ChangeSceneToFile(levelSceneFile);
         }
 
-        public void GoToMapWithFadeToBlack(string mapSceneFile)
+        public void GoToLevelWithFadeToBlack(string levelSceneFile)
         {
             DoThingWithFadeToBlack(() =>
             {
-                Log.StartedGoToMap(
+                Log.StartedGoToLevelWithFade(
                     GetTree().CurrentScene.Name,
-                    mapSceneFile,
+                    levelSceneFile,
                     true,
                     false
                 );
-                GoToMap(mapSceneFile);
-                Log.FinishedGoToMap();
+                GoToLevel(levelSceneFile);
+                Log.FinishedGoToLevelWithFade();
             });
         }
 
-        public void GoToMapForTimeTrial(string mapSceneFile, TimeTrialCategory mode)
+        public void GoToLevelForTimeTrial(string levelSceneFile, TimeTrialCategory mode)
         {
             // Use a dummy save file to ensure we don't accidentally modify
             // a real one when collectables are collected
@@ -96,19 +96,19 @@ namespace FastDragon
 
             DoThingWithFadeToBlack(() =>
             {
-                Log.StartedGoToMap(
+                Log.StartedGoToLevelWithFade(
                     GetTree().CurrentScene.Name,
-                    mapSceneFile,
+                    levelSceneFile,
                     true,
                     true
                 );
 
-                SaveFile.Current.CurrentMap = mapSceneFile;
+                SaveFile.Current.CurrentLevel = levelSceneFile;
 
-                var mapNode = ResourceLoader.Load<PackedScene>(mapSceneFile).Instantiate<Node>();
-                ChangeSceneToNode(mapNode);
+                var levelRoot = ResourceLoader.Load<PackedScene>(levelSceneFile).Instantiate<Node>();
+                ChangeSceneToNode(levelRoot);
 
-                Log.FinishedGoToMap();
+                Log.FinishedGoToLevelWithFade();
 
                 GetTree().FindNode<TimeTrialManager>().Initialize(mode);
                 SignalBus.Instance.EmitLevelReset();
@@ -177,7 +177,7 @@ namespace FastDragon
         {
             var oldScene = GetTree().CurrentScene;
 
-            // Use the previous map's skybox during the loading screen.
+            // Use the previous level's skybox during the loading screen.
             // If the level doesn't have one, use a placeholder.
             Environment skyBoxEnvironment = oldScene.FindNode<WorldEnvironment>()?.Environment;
             if (skyBoxEnvironment == null)
@@ -185,9 +185,9 @@ namespace FastDragon
                 skyBoxEnvironment = ResourceLoader.Load<Environment>("res://Environments/DaySky.tres");
             }
 
-            string levelSceneFile = GetHomeWorldMap();
-            string previousMapFile = oldScene.SceneFilePath;
-            GoToPortalLoadingScreen(levelSceneFile, previousMapFile, skyBoxEnvironment);
+            string levelSceneFile = GetHomeWorldLevel();
+            string previousLevelSceneFile = oldScene.SceneFilePath;
+            GoToPortalLoadingScreen(levelSceneFile, previousLevelSceneFile, skyBoxEnvironment);
             SaveFile.Current.CurrentCheckpoint = null;
         }
 
@@ -257,13 +257,13 @@ namespace FastDragon
 
         private void GoToPortalLoadingScreen(
             string levelSceneFile,
-            string previousMapFile,
+            string previousLevelSceneFile,
             Environment skyBoxEnvironment
         )
         {
-            var parameters = LoadingScreenParameters.FromCurrentMap(
+            var parameters = LoadingScreenParameters.FromCurrentLevel(
                 levelSceneFile,
-                previousMapFile,
+                previousLevelSceneFile,
                 skyBoxEnvironment,
                 GetTree()
             );

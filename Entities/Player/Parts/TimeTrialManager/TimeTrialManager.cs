@@ -43,10 +43,10 @@ namespace FastDragon
                 case TimeTrialCategory.FairyPercent:
                 {
                     var saveFile = SaveFile.Current;
-                    var mapEntry = AtlasCache.Instance.GetEntry(saveFile.CurrentMap);
-                    int fairiesFound = saveFile.CurrentMapProgress.CollectedFairies.Count;
+                    var levelEntry = AtlasCache.Instance.GetEntry(saveFile.CurrentLevel);
+                    int fairiesFound = saveFile.CurrentLevelProgress.CollectedFairies.Count;
 
-                    return fairiesFound >= mapEntry.TotalFairiesInLevel;
+                    return fairiesFound >= levelEntry.TotalFairiesInLevel;
                 }
 
                 default: return true;
@@ -72,9 +72,9 @@ namespace FastDragon
 
             // Reset the save file, to respawn any collectables that may have
             // been collected on the previous attempt.
-            string currentMap = SaveFile.Current.CurrentMap;
+            string currentLevel = SaveFile.Current.CurrentLevel;
             SaveFile.Current = new SaveFile();
-            SaveFile.Current.CurrentMap = currentMap;
+            SaveFile.Current.CurrentLevel = currentLevel;
 
             // HACK: We don't technically know which order the LevelReset
             // handlers will run in.  Some gems may have already reset
@@ -95,17 +95,17 @@ namespace FastDragon
 
             // Unlock time trial modes
             // TODO: Only do this if currently NOT in time trial mode
-            string currentMap = SaveFile.Current.CurrentMap;
-            var mapProgress = SaveFile.Current.CurrentMapProgress;
-            var atlasEntry = AtlasCache.Instance.GetEntry(currentMap);
+            string currentLevel = SaveFile.Current.CurrentLevel;
+            var levelProgress = SaveFile.Current.CurrentLevelProgress;
+            var atlasEntry = AtlasCache.Instance.GetEntry(currentLevel);
 
             bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
             bool levelHasFairies = atlasEntry.TotalFairiesInLevel > 0;
 
-            TimeTrialSaveData.Instance.UnlockCategory(currentMap, TimeTrialCategory.AnyPercent);
+            TimeTrialSaveData.Instance.UnlockCategory(currentLevel, TimeTrialCategory.AnyPercent);
 
-            if (levelHasFairies && mapProgress.FairiesCollected >= atlasEntry.TotalFairiesInLevel)
-                TimeTrialSaveData.Instance.UnlockCategory(currentMap, TimeTrialCategory.FairyPercent);
+            if (levelHasFairies && levelProgress.FairiesCollected >= atlasEntry.TotalFairiesInLevel)
+                TimeTrialSaveData.Instance.UnlockCategory(currentLevel, TimeTrialCategory.FairyPercent);
         }
 
         public void ShowResultsScreen()
@@ -160,7 +160,7 @@ namespace FastDragon
         {
             return TimeTrialSaveData
                 .Instance
-                .GetEntry(SaveFile.Current.CurrentMap, Mode.Value);
+                .GetEntry(SaveFile.Current.CurrentLevel, Mode.Value);
         }
     }
 }

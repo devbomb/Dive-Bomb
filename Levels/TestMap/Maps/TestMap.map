@@ -248,7 +248,7 @@
 "classname" "transport_standard_portal"
 "origin" "88 220 -64"
 "angles" "0 -90 0"
-"TargetMap" "res://Levels/SeamonsterBossMap/SeamonsterBossMap.tscn"
+"TargetLevel" "res://Levels/SeamonsterBossMap/SeamonsterBossMap.tscn"
 "SkyboxEnvironment" "res://Levels/SeamonsterBossMap/Skybox.tres"
 "Text" "Kracken Boss"
 }
@@ -257,7 +257,7 @@
 "classname" "transport_standard_portal"
 "origin" "588 -88 -64"
 "angles" "0 180 0"
-"TargetMap" "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
+"TargetLevel" "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
 "SkyboxEnvironment" "res://Levels/BrokenGlassFactory/Skybox.tres"
 "Text" "Broken Glass Factory"
 }
@@ -287,7 +287,7 @@
 "classname" "transport_standard_portal"
 "origin" "120 -468 -64"
 "angles" "0 90 0"
-"TargetMap" "res://Levels/SunsetCastle/SunsetCastle.tscn"
+"TargetLevel" "res://Levels/SunsetCastle/SunsetCastle.tscn"
 "SkyboxEnvironment" "res://Levels/SunsetCastle/Skybox.tres"
 "Text" "Sunset Castle"
 }
@@ -308,7 +308,7 @@
 "classname" "transport_standard_portal"
 "origin" "-308 -52 -64"
 "angles" "0 0 0"
-"TargetMap" "res://Levels/PlagiarismCanyon/PlagiarismCanyon.tscn"
+"TargetLevel" "res://Levels/PlagiarismCanyon/PlagiarismCanyon.tscn"
 "SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
 "Text" "Plagiarism Canyon"
 }
@@ -351,6 +351,6 @@
 "origin" "360 536 -64"
 "angle" "270"
 "SkyboxEnvironment" "res://Levels/SnapjawSwamp/SnapjawSwampSkybox.tres"
-"TargetMap" "res://Levels/SnapjawSwamp/SnapjawSwamp.tscn"
+"TargetLevel" "res://Levels/SnapjawSwamp/SnapjawSwamp.tscn"
 "Text" "Snapjaw Swamp"
 }

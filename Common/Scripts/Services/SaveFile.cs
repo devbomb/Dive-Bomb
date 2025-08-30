@@ -11,14 +11,14 @@ namespace FastDragon
         public static SaveFile Current = new SaveFile();
 
         public int PlayerHealth = Player.MaxHealth;
-        public string CurrentMap;
+        public string CurrentLevel;
         public string CurrentCheckpoint = null;
 
         public int UntalliedGemsSpent;
         public Dictionary<GemColor, int> UntalliedGemsCollected = new Dictionary<GemColor, int>();
 
-        public Dictionary<string, MapProgress> Maps = new Dictionary<string, MapProgress>();
-        public class MapProgress
+        public Dictionary<string, LevelProgress> Levels = new Dictionary<string, LevelProgress>();
+        public class LevelProgress
         {
             [JsonIgnore] public int FairiesCollected => CollectedFairies.Count;
             [JsonIgnore] public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);
@@ -54,10 +54,10 @@ namespace FastDragon
             }
         }
 
-        [JsonIgnore] public int TotalGemsSpent => Maps.Values.Sum(l => l.SpentGems);
-        [JsonIgnore] public int TotalGemCount => Maps.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
-        [JsonIgnore] public int TotalFairyCount => Maps.Values.Sum(l => l.CollectedFairies.Count);
-        [JsonIgnore] public MapProgress CurrentMapProgress => GetMapProgress(CurrentMap);
+        [JsonIgnore] public int TotalGemsSpent => Levels.Values.Sum(l => l.SpentGems);
+        [JsonIgnore] public int TotalGemCount => Levels.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
+        [JsonIgnore] public int TotalFairyCount => Levels.Values.Sum(l => l.CollectedFairies.Count);
+        [JsonIgnore] public LevelProgress CurrentLevelProgress => GetLevelProgress(CurrentLevel);
 
         public static void Reset()
         {
@@ -81,14 +81,14 @@ namespace FastDragon
             );
         }
 
-        public bool IsGemCollected(string map, GemColor color, string saveKey)
+        public bool IsGemCollected(string level, GemColor color, string saveKey)
         {
-            return GetMapProgress(map).IsGemCollected(color, saveKey);
+            return GetLevelProgress(level).IsGemCollected(color, saveKey);
         }
 
-        public void CollectGem(string map, GemColor color, string saveKey)
+        public void CollectGem(string level, GemColor color, string saveKey)
         {
-            GetMapProgress(map).CollectGem(color, saveKey);
+            GetLevelProgress(level).CollectGem(color, saveKey);
 
             if (!UntalliedGemsCollected.ContainsKey(color))
             {
@@ -100,34 +100,34 @@ namespace FastDragon
 
         public void SpendGems(int amount)
         {
-            CurrentMapProgress.SpentGems += amount;
+            CurrentLevelProgress.SpentGems += amount;
             UntalliedGemsSpent += amount;
         }
 
-        public void CollectFairy(string map, string saveKey)
+        public void CollectFairy(string level, string saveKey)
         {
-            var progress = GetMapProgress(map);
+            var progress = GetLevelProgress(level);
             progress.CollectedFairies.Add(saveKey);
         }
 
-        public bool IsFairyCollected(string map, string saveKey)
+        public bool IsFairyCollected(string level, string saveKey)
         {
-            var progress = GetMapProgress(map);
+            var progress = GetLevelProgress(level);
             return progress.CollectedFairies.Contains(saveKey);
         }
 
-        public MapProgress GetMapProgress(string map)
+        public LevelProgress GetLevelProgress(string level)
         {
-            if (!Maps.ContainsKey(map))
-                Maps.Add(map, new MapProgress());
+            if (!Levels.ContainsKey(level))
+                Levels.Add(level, new LevelProgress());
 
-            return Maps[map];
+            return Levels[level];
         }
 
-        public double GetPercentComplete(string mapFilePath)
+        public double GetPercentComplete(string levelSceneFile)
         {
-            var cacheEntry = AtlasCache.Instance.GetEntry(mapFilePath);
-            var progress = GetMapProgress(mapFilePath);
+            var cacheEntry = AtlasCache.Instance.GetEntry(levelSceneFile);
+            var progress = GetLevelProgress(levelSceneFile);
             int categories = 0;
             double totalPercent = 0;
 

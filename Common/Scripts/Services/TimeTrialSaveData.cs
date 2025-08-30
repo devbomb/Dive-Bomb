@@ -12,14 +12,14 @@ namespace FastDragon
 
         public static TimeTrialSaveData Instance { get; } = LoadFromJson();
 
-        [JsonIgnore] public string[] UnlockedMaps => Maps
+        [JsonIgnore] public string[] UnlockedLevels => Levels
             .Where(kvp => kvp.Value.SomethingUnlocked)
             .Where(kvp => ResourceLoader.Exists(kvp.Key)) // HACK: don't show levels that have been deleted
             .Select(kvp => kvp.Key)
             .ToArray();
 
-        [JsonProperty] private Dictionary<string, MapEntry> Maps = new Dictionary<string, MapEntry>();
-        private class MapEntry : Dictionary<TimeTrialCategory, CategoryEntry>
+        [JsonProperty] private Dictionary<string, LevelEntry> Levels = new Dictionary<string, LevelEntry>();
+        private class LevelEntry : Dictionary<TimeTrialCategory, CategoryEntry>
         {
             [JsonIgnore] public bool SomethingUnlocked => Values.Any(c => c.Unlocked);
         }
@@ -30,20 +30,20 @@ namespace FastDragon
             public uint? BestTimePhysicsTicks;
         }
 
-        public CategoryEntry GetEntry(string mapFilePath, TimeTrialCategory category)
+        public CategoryEntry GetEntry(string levelScenePath, TimeTrialCategory category)
         {
-            if (!Maps.ContainsKey(mapFilePath))
-                Maps[mapFilePath] = new MapEntry();
+            if (!Levels.ContainsKey(levelScenePath))
+                Levels[levelScenePath] = new LevelEntry();
 
-            if (!Maps[mapFilePath].ContainsKey(category))
-                Maps[mapFilePath][category] = new CategoryEntry();
+            if (!Levels[levelScenePath].ContainsKey(category))
+                Levels[levelScenePath][category] = new CategoryEntry();
 
-            return Maps[mapFilePath][category];
+            return Levels[levelScenePath][category];
         }
 
-        public void UnlockCategory(string mapFilePath, TimeTrialCategory category)
+        public void UnlockCategory(string levelScenePath, TimeTrialCategory category)
         {
-            GetEntry(mapFilePath, category).Unlocked = true;
+            GetEntry(levelScenePath, category).Unlocked = true;
             SaveToJson();
         }
 

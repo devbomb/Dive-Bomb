@@ -41,16 +41,16 @@ namespace FastDragon
             _table.Clear();
             _table.CreateItem();    // The table is actually a tree, so it needs a root
 
-            foreach (string mapName in SaveFile.Current.Maps.Keys.OrderBy(name => name))
+            foreach (string levelScenePath in SaveFile.Current.Levels.Keys.OrderBy(k => k))
             {
-                AddRow(mapName);
+                AddRow(levelScenePath);
             }
         }
 
-        private void AddRow(string mapFilePath)
+        private void AddRow(string levelScenePath)
         {
-            var progress = SaveFile.Current.Maps[mapFilePath];
-            var cacheEntry = AtlasCache.Instance.GetEntry(mapFilePath);
+            var progress = SaveFile.Current.Levels[levelScenePath];
+            var cacheEntry = AtlasCache.Instance.GetEntry(levelScenePath);
 
             var row = _table.CreateItem();
 
@@ -63,7 +63,7 @@ namespace FastDragon
             row.SetText((int)Column.Fairies, $"{progress.CollectedFairies.Count} / {cacheEntry.TotalFairiesInLevel}");
             row.SetTextAlignment((int)Column.Fairies, HorizontalAlignment.Center);
 
-            string percentComplete = (SaveFile.Current.GetPercentComplete(mapFilePath) * 100)
+            string percentComplete = (SaveFile.Current.GetPercentComplete(levelScenePath) * 100)
                 .ToString("0");
             row.SetText((int)Column.PercentComplete, $"{percentComplete}%");
             row.SetTextAlignment((int)Column.PercentComplete, HorizontalAlignment.Center);

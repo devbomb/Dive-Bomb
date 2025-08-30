@@ -6,7 +6,7 @@ namespace FastDragon
     public partial class Portal : Node3D
     {
         [Export(PropertyHint.File)] public string SkyboxEnvironment;
-        [Export(PropertyHint.File)] public string TargetMap;
+        [Export(PropertyHint.File)] public string TargetLevel;
         [Export] public string Text;
 
         [Export] public float ExitAnimationDuration = 2.5f;
@@ -25,7 +25,7 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            _surface.TargetMap = TargetMap;
+            _surface.TargetLevel = TargetLevel;
             _surface.SetSkybox(SkyboxEnvironment);
 
             _frontLabel.Text = Text;

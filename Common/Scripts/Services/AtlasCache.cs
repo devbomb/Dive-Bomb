@@ -35,7 +35,7 @@ namespace FastDragon
         public static AtlasCache Instance { get; } = LoadFromJson();
 
         [JsonProperty]
-        private Dictionary<string, Entry> Maps = new Dictionary<string, Entry>();
+        private Dictionary<string, Entry> Levels = new Dictionary<string, Entry>();
         public class Entry
         {
             public string HumanReadableName;
@@ -43,9 +43,9 @@ namespace FastDragon
             public int TotalFairiesInLevel;
         }
 
-        public void UpdateCache(string mapFilePath, Node levelRoot)
+        public void UpdateCache(string levelSceneFile, Node levelRoot)
         {
-            Maps[mapFilePath] = new Entry
+            Levels[levelSceneFile] = new Entry
             {
                 HumanReadableName = levelRoot.FindNode<Player>()?.LevelName
                     ?? "No level name specified, or scene does not have a Player",
@@ -62,26 +62,26 @@ namespace FastDragon
             SaveToJson();
         }
 
-        public Entry GetEntry(string mapFilePath)
+        public Entry GetEntry(string levelSceneFile)
         {
             // If the player moves their save file to a different computer, then
             // they may have levels in their save file that aren't in the new
             // computer's cache.  If that happens, sneakily load the level and
             // update the cache.  This will be slow, but is expected to be rare.
-            if (!Maps.ContainsKey(mapFilePath))
+            if (!Levels.ContainsKey(levelSceneFile))
             {
-                GD.PushWarning($"Atlas cache miss: {mapFilePath}");
+                GD.PushWarning($"Atlas cache miss: {levelSceneFile}");
 
                 var levelRoot = ResourceLoader
-                    .Load<PackedScene>(mapFilePath)
+                    .Load<PackedScene>(levelSceneFile)
                     .Instantiate<Node>();
 
-                UpdateCache(mapFilePath, levelRoot);
+                UpdateCache(levelSceneFile, levelRoot);
 
                 levelRoot.Free();
             }
 
-            return Maps[mapFilePath];
+            return Levels[levelSceneFile];
         }
 
         private void SaveToJson()

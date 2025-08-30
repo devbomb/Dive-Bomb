@@ -23,7 +23,7 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"TrenchbroomEntityModels/Item_/Basket.glb\"",
+"model": "\"TrenchbroomEntityModels/item_basket.glb\"",
 "size": AABB(-8, -8, 0, 8, 8, 16)
 }
 node_class = ""

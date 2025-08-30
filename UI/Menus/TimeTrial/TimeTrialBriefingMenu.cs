@@ -24,7 +24,7 @@ namespace FastDragon
 
         public void OnQuitToTitlePressed()
         {
-            MapTransitionManager.Instance.GoToTitleScreen();
+            LevelTransitionManager.Instance.GoToTitleScreen();
         }
     }
 }

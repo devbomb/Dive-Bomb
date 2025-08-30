@@ -11,7 +11,7 @@ namespace FastDragon
         public const float Gravity = 30;
 
         public bool IsCollected => SaveFile.Current.IsGemCollected(
-            SaveFile.Current.CurrentMap,
+            SaveFile.Current.CurrentLevel,
             Value,
             GetSaveKey());
 
@@ -90,7 +90,7 @@ namespace FastDragon
         public void Collect()
         {
             var saveFile = SaveFile.Current;
-            saveFile.CollectGem(saveFile.CurrentMap, Value, GetSaveKey());
+            saveFile.CollectGem(saveFile.CurrentLevel, Value, GetSaveKey());
 
             _collectSound.Play();
             ChangeState<Hidden>();

@@ -14,9 +14,9 @@ namespace FastDragon
         //
         // tldr: If you use the += syntax to connect to a signal created using
         // the [Signal] attribute, the Callable won't be disconnected when the
-        // handler node is QueueFreed()'d (EG: because you changed maps).
+        // handler node is QueueFreed()'d (EG: because you changed levels).
         // That's a problem for us because SignalBus is a singleton that
-        // persists between map changes.
+        // persists between level changes.
         public event Action LevelReset
         {
             add => ConnectAction(value);

@@ -12,7 +12,7 @@ namespace FastDragon
         public void OnBodyEntered(Node3D body)
         {
             if (body is Player)
-                MapTransitionManager.Instance.RespawnPlayerAfterDeath();
+                LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
     }
 }

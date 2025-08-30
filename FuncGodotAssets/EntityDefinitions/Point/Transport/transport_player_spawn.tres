@@ -21,7 +21,7 @@ class_properties = {
 "FlyInDistance": 10.0,
 "FlyInDuration": 4.0,
 "FlyInHeight": 10.0,
-"HomeWorldMap": "",
+"HomeWorldLevel": "",
 "LevelName": ""
 }
 class_property_descriptions = {}

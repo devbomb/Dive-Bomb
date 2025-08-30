@@ -4,12 +4,12 @@ namespace FastDragon
 {
     public class LoadingScreenParameters
     {
-        public string TargetMapSceneFilePath;
-        public string PreviousMapSceneFilePath;
+        public string TargetLevelScenePath;
+        public string PreviousLevelScenePath;
         public Environment SkyBoxEnvironment;
 
         /// <summary>
-        /// A clone of the main DirectionalLight3D from the previous map.
+        /// A clone of the main DirectionalLight3D from the previous level.
         /// Included so the loading screen can avoid jarring lighting changes.
         /// </summary>
         public DirectionalLight3D OldSun;
@@ -23,9 +23,9 @@ namespace FastDragon
         public float CameraYawRad;
         public float CameraPitchRad;
 
-        public static LoadingScreenParameters FromCurrentMap(
-            string targetMapSceneFilePath,
-            string previousMapSceneFilePath,
+        public static LoadingScreenParameters FromCurrentLevel(
+            string targetLevelScenePath,
+            string previousLevelScenePath,
             Environment skyBoxEnvironment,
             SceneTree sceneTree
         )
@@ -35,8 +35,8 @@ namespace FastDragon
 
             return new LoadingScreenParameters
             {
-                TargetMapSceneFilePath = targetMapSceneFilePath,
-                PreviousMapSceneFilePath = previousMapSceneFilePath,
+                TargetLevelScenePath = targetLevelScenePath,
+                PreviousLevelScenePath = previousLevelScenePath,
                 SkyBoxEnvironment = skyBoxEnvironment,
 
                 OldSun = (DirectionalLight3D)oldScene.FindNode<DirectionalLight3D>().Duplicate(),

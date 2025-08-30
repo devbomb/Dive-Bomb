@@ -36,7 +36,7 @@ namespace FastDragon
                 _animator.Queue("NewHighScore");
         }
 
-        public void OnRetryPressed() => MapTransitionManager.Instance.RespawnPlayerAfterDeath();
-        public void OnQuitToTitlePressed() => MapTransitionManager.Instance.GoToTitleScreen();
+        public void OnRetryPressed() => LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
+        public void OnQuitToTitlePressed() => LevelTransitionManager.Instance.GoToTitleScreen();
     }
 }

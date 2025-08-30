@@ -76,7 +76,7 @@ common entities you'll use are:
     one.  There are a few required parameters:
     * `LevelName`: the name of this level.  This is what the level will be
         called in the inventory screen and in Time Trial mode.
-    * `HomeWorldMap`: The path to the .tscn file of the level the player should
+    * `HomeWorldLevel`: The path to the .tscn file of the level the player should
         return to when the exit is reached(or "exit level" is chosen in the
         pause menu).  Must start with "res://"
 
@@ -148,7 +148,7 @@ In the home world's .map file, place a `Transport_/StandardPortal` entity
 with the following parameters:
 * `SkyboxEnvironment`: the path to the `.tres` file of the `Environment` asset
     you created in the last step.  Must start with "res://"
-* `TargetMap`: the path to the `.tscn` file for this level.  Must start with
+* `TargetLevel`: the path to the `.tscn` file for this level.  Must start with
     "res://"
 * `Text`: the text that floats in front of the portal.  Should be the same as
     the level's name(as defined in the PlayerSpawn's parameters), but this is

@@ -12,6 +12,7 @@ domain_warp_fractal_octaves = 1
 domain_warp_fractal_lacunarity = 0.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i7go5"]
+resource_name = "_albedo"
 width = 1024
 height = 1024
 invert = true
