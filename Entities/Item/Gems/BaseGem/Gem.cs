@@ -10,10 +10,7 @@ namespace FastDragon
         public const float RevealJumpVelocity = 10;
         public const float Gravity = 30;
 
-        public bool IsCollected => SaveFile.Current.IsGemCollected(
-            SaveFile.Current.CurrentLevel,
-            Value,
-            GetSaveKey());
+        public bool IsCollected => this.GetLevel()?.IsGemInInventory(this) ?? false;
 
         [Export] public GemColor Value;
 
@@ -89,13 +86,10 @@ namespace FastDragon
 
         public void Collect()
         {
-            var saveFile = SaveFile.Current;
-            saveFile.CollectGem(saveFile.CurrentLevel, Value, GetSaveKey());
+            this.GetLevel()?.AddGemToInventory(this);
 
             _collectSound.Play();
             ChangeState<Hidden>();
-
-            GD.Print($"{saveFile.TotalGemCount}: Collected gem {GetSaveKey()}");
         }
 
         public void Sparkle()

@@ -86,10 +86,8 @@ namespace FastDragon
             return GetLevelProgress(level).IsGemCollected(color, saveKey);
         }
 
-        public void CollectGem(string level, GemColor color, string saveKey)
+        public void AddUntalliedGem(GemColor color)
         {
-            GetLevelProgress(level).CollectGem(color, saveKey);
-
             if (!UntalliedGemsCollected.ContainsKey(color))
             {
                 UntalliedGemsCollected[color] = 0;
