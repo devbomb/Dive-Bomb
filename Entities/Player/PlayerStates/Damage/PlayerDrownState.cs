@@ -29,7 +29,7 @@ namespace FastDragon
                 if (SaveFile.Current.PlayerHealth > 0)
                     Self.ReturnToLastSafeGround();
                 else
-                    MapTransitionManager.Instance.RespawnPlayerAfterDeath();
+                    LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
             }
         }
     }

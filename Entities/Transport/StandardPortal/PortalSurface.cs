@@ -5,7 +5,7 @@ namespace FastDragon
     public partial class PortalSurface : Area3D
     {
         [Export(PropertyHint.File)] public string SkyboxEnvironment;
-        [Export(PropertyHint.File)] public string TargetMap;
+        [Export(PropertyHint.File)] public string TargetLevel;
 
         private Camera3D _portalCamera => GetNode<Camera3D>("%PortalCamera");
 
@@ -109,8 +109,8 @@ namespace FastDragon
 
                 if (CameraIsTouchingPortal() && CameraIsBehindPlayer())
                 {
-                    MapTransitionManager.Instance.EnterLevel(
-                        Self.TargetMap,
+                    LevelTransitionManager.Instance.EnterLevel(
+                        Self.TargetLevel,
                         Self._portalCamera.Environment
                     );
                 }

@@ -67,7 +67,6 @@ transform = Transform3D(1, 0, 0, 0, 0.799884, 0.600155, 0, -0.600155, 0.799884, 
 
 [node name="Player" parent="." instance=ExtResource("1_0rosg")]
 LevelName = "Seamonster Boss"
-HomeWorldMap = "res://Levels/TestMap/TestMap.tscn"
 
 [node name="KrackenPlatform" parent="." instance=ExtResource("4_78ou1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

@@ -30,7 +30,7 @@ namespace FastDragon
         public override void _Ready()
         {
             Close();
-            _exitLevelButton.Visible = !MapTransitionManager.Instance.CurrentMapIsHomeWorld;
+            _exitLevelButton.Visible = !LevelTransitionManager.Instance.CurrentLevelIsHomeWorld;
         }
 
         public void Open()
@@ -86,7 +86,7 @@ namespace FastDragon
         public void ReturnToCheckpoint()
         {
             Close();
-            MapTransitionManager.Instance.RespawnPlayerAfterDeath();
+            LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
 
         public void SaveGame()
@@ -101,21 +101,21 @@ namespace FastDragon
         public void FullyResetLevel()
         {
             Close();
-            SaveFile.Current.CurrentMapProgress.ResetProgress();
+            SaveFile.Current.CurrentLevelProgress.ResetProgress();
             SaveFile.Current.CurrentCheckpoint = null;
-            MapTransitionManager.Instance.RespawnPlayerAfterDeath();
+            LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
 
         public void ExitLevel()
         {
             Close();
-            MapTransitionManager.Instance.ExitLevelFromPauseMenu();
+            LevelTransitionManager.Instance.ExitLevelFromPauseMenu();
         }
 
         public void QuitToTitle()
         {
             Close();
-            MapTransitionManager.Instance.GoToTitleScreen();
+            LevelTransitionManager.Instance.GoToTitleScreen();
         }
     }
 }

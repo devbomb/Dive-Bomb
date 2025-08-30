@@ -50,7 +50,7 @@ namespace FastDragon
             Animator.Play("RESET");
             Animator.Advance(0);
 
-            if (SaveFile.Current.CurrentMapProgress.CollectedFairies.Contains(GetSaveKey()))
+            if (SaveFile.Current.CurrentLevelProgress.CollectedFairies.Contains(GetSaveKey()))
                 _stateMachine.ChangeState<Rescued>();
             else
                 _stateMachine.ChangeState<Idle>();
@@ -154,7 +154,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SaveFile.Current.CollectFairy(SaveFile.Current.CurrentMap, Self.GetSaveKey());
+                SaveFile.Current.CollectFairy(SaveFile.Current.CurrentLevel, Self.GetSaveKey());
 
                 // Pause the game (except the player and fairy) during the
                 // cutscene to prevent the player from getting hit by enemies.
@@ -360,7 +360,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SaveFile.Current.CurrentMapProgress.CollectedFairies.Add(Self.GetSaveKey());
+                SaveFile.Current.CurrentLevelProgress.CollectedFairies.Add(Self.GetSaveKey());
 
                 Self.Glass.Visible = false;
                 Self.GlassParticles.Emitting = true;

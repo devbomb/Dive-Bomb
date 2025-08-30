@@ -11,20 +11,20 @@ namespace FastDragon
         private Control _levelButtons => GetNode<Control>("%LevelButtons");
         private Control _categoryButtons => GetNode<Control>("%CategoryButtons");
 
-        private string _selectedMapFilePath;
+        private string _selectedLevelScenePath;
 
         public override void _Ready()
         {
-            foreach (string mapFilePath in AllUnlockedLevels())
+            foreach (string levelScenePath in AllUnlockedLevels())
             {
-                string capturedFilePath = mapFilePath;  // Saving it for the closure
-                var cacheEntry = AtlasCache.Instance.GetEntry(mapFilePath);
+                string capturedFilePath = levelScenePath;  // Saving it for the closure
+                var cacheEntry = AtlasCache.Instance.GetEntry(levelScenePath);
 
                 var button = new Button();
                 button.Text = cacheEntry.HumanReadableName;
                 button.Pressed += () =>
                 {
-                    _selectedMapFilePath = capturedFilePath;
+                    _selectedLevelScenePath = capturedFilePath;
                     ShowCategorySelectPage();
                 };
                 _levelButtons.AddChild(button);
@@ -36,7 +36,7 @@ namespace FastDragon
 
         public void OnBackPressed() => _pageNav.CurrentPage?.GoBack();
 
-        public void ReturnToTitle() => MapTransitionManager.Instance.GoToTitleScreen();
+        public void ReturnToTitle() => LevelTransitionManager.Instance.GoToTitleScreen();
 
         public void ShowLevelSelectPage()
         {
@@ -51,7 +51,7 @@ namespace FastDragon
             var saveData = TimeTrialSaveData.Instance;
             foreach (var category in Enum.GetValues<TimeTrialCategory>())
             {
-                bool unlocked = saveData.GetEntry(_selectedMapFilePath, category).Unlocked;
+                bool unlocked = saveData.GetEntry(_selectedLevelScenePath, category).Unlocked;
                 _categoryButtons.GetNode<Button>(category.ToString()).Disabled = !unlocked;
             }
         }
@@ -68,13 +68,13 @@ namespace FastDragon
 
         private string[] AllUnlockedLevels()
         {
-            return TimeTrialSaveData.Instance.UnlockedMaps;
+            return TimeTrialSaveData.Instance.UnlockedLevels;
         }
 
         private void Start(TimeTrialCategory mode)
         {
-            MapTransitionManager.Instance.GoToMapForTimeTrial(
-                _selectedMapFilePath,
+            LevelTransitionManager.Instance.GoToLevelForTimeTrial(
+                _selectedLevelScenePath,
                 mode
             );
         }

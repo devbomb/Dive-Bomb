@@ -8,7 +8,7 @@ namespace FastDragon
     {
         private const string Slot0Path = "user://Saves/Slot0.json";
 
-        [Export(PropertyHint.File)] public string NewGameMap;
+        [Export(PropertyHint.File)] public string NewGameLevel;
 
         private Control _buttons => GetNode<Control>("%Buttons");
         private Button _continueButton => GetNode<Button>("%Continue");
@@ -23,7 +23,7 @@ namespace FastDragon
         public void NewGame()
         {
             SaveFile.Current = new SaveFile();
-            MapTransitionManager.Instance.GoToMapWithFadeToBlack(NewGameMap);
+            LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(NewGameLevel);
         }
 
         public void Continue()
@@ -35,12 +35,12 @@ namespace FastDragon
             file.Close();
 
             SaveFile.Current = SaveFile.FromJson(json);
-            MapTransitionManager.Instance.GoToMapWithFadeToBlack(SaveFile.Current.CurrentMap);
+            LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(SaveFile.Current.CurrentLevel);
         }
 
         public void TimeTrialMode()
         {
-            MapTransitionManager.Instance.GoToTimeTrialLevelSelect();
+            LevelTransitionManager.Instance.GoToTimeTrialLevelSelect();
         }
 
         public void OpenMainPage()

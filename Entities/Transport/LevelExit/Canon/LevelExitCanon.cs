@@ -255,7 +255,7 @@ namespace FastDragon
                         return;
                     }
 
-                    MapTransitionManager.Instance.ExitLevel();
+                    LevelTransitionManager.Instance.ExitLevel();
                 }
             }
         }

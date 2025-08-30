@@ -19,7 +19,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
 "SkyboxEnvironment": "",
-"TargetMap": "",
+"TargetLevel": "",
 "Text": ""
 }
 class_property_descriptions = {}

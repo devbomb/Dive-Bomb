@@ -49,7 +49,7 @@ namespace FastDragon
 
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
-        private bool _isReturningHome => _parameters.PreviousMapSceneFilePath != null;
+        private bool _isReturningHome => _parameters.PreviousLevelScenePath != null;
         private Node3D _loadedSceneNode;
 
         private StateMachine _stateMachine = new StateMachine();
@@ -70,8 +70,8 @@ namespace FastDragon
         {
             _parameters = parameters;
             Log.LoadingScreenStarted(
-                parameters.PreviousMapSceneFilePath,
-                parameters.TargetMapSceneFilePath,
+                parameters.PreviousLevelScenePath,
+                parameters.TargetLevelScenePath,
                 _isReturningHome,
                 SaveFile.Current.TotalGemCount + SaveFile.Current.TotalGemsSpent,
                 SaveFile.Current.TotalGemsSpent
@@ -90,7 +90,7 @@ namespace FastDragon
             // See https://github.com/godotengine/godot/issues/107548
             new System.Threading.Thread(() =>
             {
-                var loadedScene = ResourceLoader.Load<PackedScene>(parameters.TargetMapSceneFilePath);
+                var loadedScene = ResourceLoader.Load<PackedScene>(parameters.TargetLevelScenePath);
                 SetDeferred(nameof(LoadedScene), loadedScene);
             }).Start();
 
@@ -146,10 +146,10 @@ namespace FastDragon
         }
 
 
-        private void GoToTargetMap()
+        private void GoToTargetLevel()
         {
             double animationPos = _playerAnimator.CurrentAnimationPosition;
-            MapTransitionManager.Instance.ChangeSceneToNode(_loadedSceneNode);
+            LevelTransitionManager.Instance.ChangeSceneToNode(_loadedSceneNode);
 
             var realPlayer = _loadedSceneNode.FindNode<Player>();
             realPlayer.Animator.Play(_playerAnimator.AssignedAnimation, 0);
@@ -173,7 +173,7 @@ namespace FastDragon
         {
             return sceneRoot
                 .EnumerateDescendantsOfType<Portal>()
-                .First(p => p.TargetMap == _parameters.PreviousMapSceneFilePath);
+                .First(p => p.TargetLevel == _parameters.PreviousLevelScenePath);
 
         }
 
@@ -270,7 +270,7 @@ namespace FastDragon
                     TweenPlayerToPortal(tween.Parallel());
                 }
 
-                tween.TweenCallback(Callable.From(Self.GoToTargetMap));
+                tween.TweenCallback(Callable.From(Self.GoToTargetLevel));
             }
 
             private void TweenSun(Tween tween)

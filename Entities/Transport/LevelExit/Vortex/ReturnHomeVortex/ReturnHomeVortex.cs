@@ -87,7 +87,7 @@ namespace FastDragon
             bool isTimeTrialMode = GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
             if (playerReachedExitHeight && !isTimeTrialMode)
             {
-                MapTransitionManager.Instance.ExitLevel();
+                LevelTransitionManager.Instance.ExitLevel();
             }
         }
 

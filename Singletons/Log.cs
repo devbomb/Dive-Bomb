@@ -78,14 +78,14 @@ namespace FastDragon
             _logger.Value.Information("Loading screen finished");
         }
 
-        public static void StartedGoToMap(
+        public static void StartedGoToSceneWithFade(
             string previousScene,
             string nextScene,
             bool fadedToBlack,
             bool forTimeTrial
         )
         {
-            string template = "Started GoToMap()"
+            string template = "Started going to a non-level scene with a fade"
                 + " {PreviousScene}"
                 + " {NextScene}"
                 + " {FadedToBlack}"
@@ -100,9 +100,36 @@ namespace FastDragon
             );
         }
 
-        public static void FinishedGoToMap()
+        public static void FinishedGoToSceneWithFade()
         {
-            _logger.Value.Information("Finished GoToMap()");
+            _logger.Value.Information("Finished going to a non-level scene with a fade");
+        }
+
+        public static void StartedGoToLevelWithFade(
+            string previousScene,
+            string nextScene,
+            bool fadedToBlack,
+            bool forTimeTrial
+        )
+        {
+            string template = "Started going to a level with a fade"
+                + " {PreviousScene}"
+                + " {NextScene}"
+                + " {FadedToBlack}"
+                + " {ForTimeTrial}";
+
+            _logger.Value.Information(
+                template,
+                previousScene,
+                nextScene,
+                fadedToBlack,
+                forTimeTrial
+            );
+        }
+
+        public static void FinishedGoToLevelWithFade()
+        {
+            _logger.Value.Information("Finished going to a level with a fade");
         }
     }
 }

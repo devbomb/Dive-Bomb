@@ -11,14 +11,14 @@ namespace FastDragon
 
         public override void _Process(double deltaD)
         {
-            string currentMap = SaveFile.Current.CurrentMap;
-            var mapProgress = SaveFile.Current.CurrentMapProgress;
-            var atlasEntry = AtlasCache.Instance.GetEntry(currentMap);
+            string currentLevel = SaveFile.Current.CurrentLevel;
+            var levelProgress = SaveFile.Current.CurrentLevelProgress;
+            var atlasEntry = AtlasCache.Instance.GetEntry(currentLevel);
 
             int prevCollected = _fairiesCollected;
             int prevInLevel = _fairiesInLevel;
 
-            _fairiesCollected = mapProgress.FairiesCollected;
+            _fairiesCollected = levelProgress.FairiesCollected;
             _fairiesInLevel = atlasEntry.TotalFairiesInLevel;
             if (prevCollected != _fairiesCollected || prevInLevel != _fairiesInLevel)
             {

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cimgukuoywob1"]
 
 [ext_resource type="Script" uid="uid://casqflr2c8ms3" path="res://Common/Components/CopycatCamera.cs" id="1_ru3ge"]
-[ext_resource type="Script" uid="uid://cs5mkwt1qtl8v" path="res://Singletons/MapTransitionManager/NonPlayerFadeCurtain/NonPlayerFadeCurtain.cs" id="1_y01ha"]
+[ext_resource type="Script" uid="uid://cs5mkwt1qtl8v" path="res://Singletons/LevelTransitionManager/NonPlayerFadeCurtain/NonPlayerFadeCurtain.cs" id="1_y01ha"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gf552"]
 shading_mode = 0
