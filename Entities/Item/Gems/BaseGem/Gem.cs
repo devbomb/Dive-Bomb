@@ -18,6 +18,8 @@ namespace FastDragon
         public bool TouchedGroundOnce {get; private set;} = false;
         public bool IsRevealed => _stateMachine.CurrentState is Revealed;
 
+        public string SaveKey { get; private set; }
+
         public Area3D CollectionArea => GetNode<Area3D>("%CollectionArea");
 
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
@@ -38,6 +40,7 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            SaveKey = GenerateSaveKey();
             base._Ready();
 
             _visibleEnabler = GetNode<VisibleOnScreenEnabler3D>("%VisibleEnabler");
@@ -97,7 +100,7 @@ namespace FastDragon
             _sparkleAnim.Play("Sparkle");
         }
 
-        public string GetSaveKey()
+        private string GenerateSaveKey()
         {
             var builder = new System.Text.StringBuilder();
             Visit(this);

@@ -15,30 +15,30 @@ namespace FastDragon
 
         public bool IsGemInInventory(Gem gem)
         {
-            return GetProgress().IsGemCollected(gem.Value, gem.GetSaveKey());
+            return GetProgress().IsGemCollected(gem.Value, gem.SaveKey);
         }
 
         public void AddGemToInventory(Gem gem)
         {
-            GetProgress().CollectGem(gem.Value, gem.GetSaveKey());
+            GetProgress().CollectGem(gem.Value, gem.SaveKey);
 
             if (!IsTimeTrialMode)
             {
                 var saveFile = SaveFile.Current;
 
                 saveFile.AddUntalliedGem(gem.Value);
-                GD.Print($"{saveFile.TotalGemCount}: Collected gem {gem.GetSaveKey()}");
+                GD.Print($"{saveFile.TotalGemCount}: Collected gem {gem.SaveKey}");
             }
         }
 
         public bool IsFairyInInventory(Fairy fairy)
         {
-            return GetProgress().CollectedFairies.Contains(fairy.GetSaveKey());
+            return GetProgress().CollectedFairies.Contains(fairy.SaveKey);
         }
 
         public void AddFairyToInventory(Fairy fairy)
         {
-            GetProgress().CollectedFairies.Add(fairy.GetSaveKey());
+            GetProgress().CollectedFairies.Add(fairy.SaveKey);
         }
 
         public void SpendGems(int amount)
