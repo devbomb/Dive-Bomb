@@ -51,7 +51,7 @@ namespace FastDragon
             }
         }
 
-        private SaveFile.LevelProgress GetProgress()
+        public SaveFile.LevelProgress GetProgress()
         {
             // TODO: Return a separate one if we're in time trial mode
             return SaveFile.Current.CurrentLevelProgress;
