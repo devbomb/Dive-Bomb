@@ -98,11 +98,6 @@ namespace FastDragon
             UntalliedGemsCollected[color]++;
         }
 
-        public void AddUntalliedSpentGems(int amount)
-        {
-            UntalliedGemsSpent += amount;
-        }
-
         public LevelProgress GetLevelProgress(string level)
         {
             if (!Levels.ContainsKey(level))

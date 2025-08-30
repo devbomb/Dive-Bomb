@@ -54,7 +54,12 @@ namespace FastDragon
             Animator.Play("RESET");
             Animator.Advance(0);
 
-            if (this.GetLevel()?.IsFairyInInventory(this) ?? false)
+            bool collected = this.GetLevel()
+                ?.GetProgress()
+                ?.CollectedFairies
+                ?.Contains(SaveKey) ?? false;
+
+            if (collected)
                 _stateMachine.ChangeState<Rescued>();
             else
                 _stateMachine.ChangeState<Idle>();
@@ -62,17 +67,21 @@ namespace FastDragon
 
         public void OnBroken()
         {
-            this.GetLevel()?.AddFairyToInventory(this);
-            this.GetLevel()?.SpendGems(GemCost);
+            var level = this.GetLevel();
+            if (level != null)
+            {
+                level.GetProgress().CollectedFairies.Add(SaveKey);
+                level.GetProgress().SpentGems += GemCost;
 
-            if (IsTimeTrialMode())
-            {
-                _stateMachine.ChangeState<QuickRescue>();
+                if (level.IsTimeTrialMode)
+                {
+                    _stateMachine.ChangeState<QuickRescue>();
+                    return;
+                }
             }
-            else
-            {
-                _stateMachine.ChangeState<Shattering>();
-            }
+
+            SaveFile.Current.UntalliedGemsSpent += GemCost;
+            _stateMachine.ChangeState<Shattering>();
         }
 
         public void OnBreakRejected()
