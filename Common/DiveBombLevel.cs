@@ -5,6 +5,8 @@ namespace FastDragon
     [GlobalClass]
     public partial class DiveBombLevel : Node3D
     {
+        public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
+
         public bool IsTimeTrialMode => GetTree()
             .FindNode<TimeTrialManager>()
             ?.IsTimeTrialMode ?? false;
