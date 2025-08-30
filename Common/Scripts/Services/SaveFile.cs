@@ -6,26 +6,29 @@ using Godot;
 
 namespace FastDragon
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class SaveFile : RefCounted
     {
         public static SaveFile Current = new SaveFile();
 
-        public int PlayerHealth = Player.MaxHealth;
-        public string CurrentLevel;
-        public string CurrentCheckpoint = null;
+        [JsonProperty] public int PlayerHealth = Player.MaxHealth;
+        [JsonProperty] public string CurrentLevel;
+        [JsonProperty] public string CurrentCheckpoint = null;
 
-        public int UntalliedGemsSpent;
-        public Dictionary<GemColor, int> UntalliedGemsCollected = new Dictionary<GemColor, int>();
+        [JsonProperty] public int UntalliedGemsSpent;
+        [JsonProperty] public Dictionary<GemColor, int> UntalliedGemsCollected = new();
 
-        public Dictionary<string, LevelProgress> Levels = new Dictionary<string, LevelProgress>();
+        [JsonProperty] public Dictionary<string, LevelProgress> Levels = new();
+
+        [JsonObject(MemberSerialization.OptIn)]
         public class LevelProgress
         {
-            [JsonIgnore] public int FairiesCollected => CollectedFairies.Count;
-            [JsonIgnore] public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);
+            [JsonProperty] public HashSet<string> CollectedFairies = new();
+            [JsonProperty] public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
+            [JsonProperty] public int SpentGems = 0;
 
-            public HashSet<string> CollectedFairies = new();
-            public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
-            public int SpentGems = 0;
+            public int FairiesCollected => CollectedFairies.Count;
+            public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);
 
             public void ResetProgress()
             {
@@ -54,10 +57,10 @@ namespace FastDragon
             }
         }
 
-        [JsonIgnore] public int TotalGemsSpent => Levels.Values.Sum(l => l.SpentGems);
-        [JsonIgnore] public int TotalGemCount => Levels.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
-        [JsonIgnore] public int TotalFairyCount => Levels.Values.Sum(l => l.CollectedFairies.Count);
-        [JsonIgnore] public LevelProgress CurrentLevelProgress => GetLevelProgress(CurrentLevel);
+        public int TotalGemsSpent => Levels.Values.Sum(l => l.SpentGems);
+        public int TotalGemCount => Levels.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
+        public int TotalFairyCount => Levels.Values.Sum(l => l.CollectedFairies.Count);
+        public LevelProgress CurrentLevelProgress => GetLevelProgress(CurrentLevel);
 
         public static void Reset()
         {
