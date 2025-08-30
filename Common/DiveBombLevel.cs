@@ -23,11 +23,9 @@ namespace FastDragon
 
         public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
 
-        public bool IsTimeTrialMode => GetTree()
-            .FindNode<TimeTrialManager>()
-            ?.IsTimeTrialMode ?? false;
+        public TimeTrialManager TimeTrial => GetTree().FindNode<TimeTrialManager>();
 
-        public int TotalGems => IsTimeTrialMode
+        public int TotalGems => TimeTrial.IsTimeTrialMode
             ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
             : SaveFile.Current.TotalGemCount;
 

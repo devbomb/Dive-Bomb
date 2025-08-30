@@ -56,7 +56,7 @@ namespace FastDragon
 
         public void OpenMainPage()
         {
-            if (GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false)
+            if (this.GetLevel()?.TimeTrial?.IsTimeTrialMode ?? false)
             {
                 ChangePage(_timeTrialMainPage);
                 _timeTrialButtons.GetChild<Button>(0).GrabFocus();

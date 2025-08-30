@@ -99,7 +99,7 @@ namespace FastDragon
 
                 Log.FinishedGoToLevelWithFade();
 
-                GetTree().FindNode<TimeTrialManager>().Initialize(mode);
+                levelRoot.TimeTrial.Initialize(mode);
                 SignalBus.Instance.EmitLevelReset();
             });
         }

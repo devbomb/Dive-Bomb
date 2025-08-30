@@ -34,7 +34,7 @@ namespace FastDragon
                 // Defer checking this, because we don't necessarily know if the
                 // time trial manager is ready yet by the time our own Ready()
                 // is called.
-                _isTimeTrial = GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
+                _isTimeTrial = this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
             }).CallDeferred();
         }
 

@@ -8,8 +8,8 @@ namespace FastDragon
 
         public override void OnPageEntered()
         {
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            GetNode<Control>($"%Instructions/{timeTrialManager.Mode}").Visible = true;
+            var mode = this.GetLevel().TimeTrial.Mode;
+            GetNode<Control>($"%Instructions/{mode}").Visible = true;
 
             GetNode<Button>("%StartButton").GrabFocus();
         }

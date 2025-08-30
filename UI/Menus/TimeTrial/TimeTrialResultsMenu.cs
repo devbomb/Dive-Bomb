@@ -21,7 +21,7 @@ namespace FastDragon
 
         public override void OnPageEntered()
         {
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
+            var timeTrialManager = this.GetLevel().TimeTrial;
             _yourTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(timeTrialManager.TimerPhysicsTicks);
             _bestTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(timeTrialManager.TargetTimePhysicsTicks);
 
