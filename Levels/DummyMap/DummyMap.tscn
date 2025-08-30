@@ -6,6 +6,8 @@
 
 [node name="DummyMap" type="Node3D"]
 script = ExtResource("1_210mw")
+LevelName = "Dummy Map"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

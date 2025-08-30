@@ -5,6 +5,22 @@ namespace FastDragon
     [GlobalClass]
     public partial class DiveBombLevel : Node3D
     {
+        /// <summary>
+        /// The current level's human-friendly name.
+        /// Will be stored in the Atlas cache.
+        /// </summary>
+        /// <returns></returns>
+        [Export] public string LevelName;
+
+        /// <summary>
+        /// The level we should return to when "exit level" is selected in the
+        /// pause menu, or when a vortex is used.
+        ///
+        /// Set to null to indicate that this level is a home world.
+        /// </summary>
+        /// <returns></returns>
+        [Export(PropertyHint.File)] public string HomeWorldLevel;
+
         public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
 
         public bool IsTimeTrialMode => GetTree()
@@ -14,6 +30,11 @@ namespace FastDragon
         public int TotalGems => IsTimeTrialMode
             ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
             : SaveFile.Current.TotalGemCount;
+
+        public override void _Ready()
+        {
+            AtlasCache.Instance.UpdateCache(SceneFilePath, this);
+        }
 
         public SaveFile.LevelProgress GetProgress()
         {

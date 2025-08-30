@@ -6,6 +6,8 @@
 
 [node name="DryCanyon" type="Node3D"]
 script = ExtResource("1_844c3")
+LevelName = "Plagiarism Canyon"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

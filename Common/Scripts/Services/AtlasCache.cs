@@ -43,11 +43,11 @@ namespace FastDragon
             public int TotalFairiesInLevel;
         }
 
-        public void UpdateCache(string levelSceneFile, Node levelRoot)
+        public void UpdateCache(string levelSceneFile, DiveBombLevel levelRoot)
         {
             Levels[levelSceneFile] = new Entry
             {
-                HumanReadableName = levelRoot.FindNode<Player>()?.LevelName
+                HumanReadableName = levelRoot.LevelName
                     ?? "No level name specified, or scene does not have a Player",
 
                 TotalGemsInLevel = levelRoot
@@ -74,7 +74,7 @@ namespace FastDragon
 
                 var levelRoot = ResourceLoader
                     .Load<PackedScene>(levelSceneFile)
-                    .Instantiate<Node>();
+                    .Instantiate<DiveBombLevel>();
 
                 UpdateCache(levelSceneFile, levelRoot);
 

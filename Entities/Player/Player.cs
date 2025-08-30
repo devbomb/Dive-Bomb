@@ -9,22 +9,6 @@ namespace FastDragon
     {
         [Signal] public delegate void RespawningEventHandler();
 
-        /// <summary>
-        /// The current level's human-friendly name.
-        /// Will be stored in the Atlas cache.
-        /// </summary>
-        /// <returns></returns>
-        [Export] public string LevelName;
-
-        /// <summary>
-        /// The level we should return to when "exit level" is selected in the
-        /// pause menu, or when a vortex is used.
-        ///
-        /// Set to null to indicate that this level is a home world.
-        /// </summary>
-        /// <returns></returns>
-        [Export(PropertyHint.File)] public string HomeWorldLevel;
-
         [Export] public float FlyInHeight = 10;
         [Export] public float FlyInDistance = 10;
         [Export] public float FlyInDuration = 4;
@@ -132,13 +116,6 @@ namespace FastDragon
             _spawnPos = GlobalTransform;
 
             Respawn();
-
-            // Count all the gems/fairies in the level, including the collected
-            // ones, and then cache it.
-            //
-            // Defer doing so until the next frame, because we don't know if
-            // all of the gem containers have spawned in yet.
-            Callable.From(UpdateAtlasCache).CallDeferred();
         }
 
         public override void _Input(InputEvent ev)
@@ -270,11 +247,6 @@ namespace FastDragon
                 ChangeState<TState>();
 
             return result;
-        }
-
-        private void UpdateAtlasCache()
-        {
-            AtlasCache.Instance.UpdateCache(SaveFile.Current.CurrentLevel, GetTree().CurrentScene);
         }
 
         public override void _PhysicsProcess(double deltaD)

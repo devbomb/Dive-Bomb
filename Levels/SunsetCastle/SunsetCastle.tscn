@@ -7,6 +7,8 @@
 
 [node name="Castle" type="Node3D"]
 script = ExtResource("1_7a71f")
+LevelName = "Sunset Castle"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

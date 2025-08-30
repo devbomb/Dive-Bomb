@@ -24,8 +24,7 @@ namespace FastDragon
 
         public string GetHomeWorldLevel()
         {
-            var worldSpawn = GetTree().FindNode<Player>();
-            return worldSpawn?.HomeWorldLevel;
+            return GetTree().FindNode<DiveBombLevel>()?.HomeWorldLevel;
         }
 
         public void ChangeSceneToNode(Node scene)

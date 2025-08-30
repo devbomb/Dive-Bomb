@@ -6,6 +6,7 @@
 
 [node name="TestMap" type="Node3D"]
 script = ExtResource("1_678t0")
+LevelName = "Test Hub World"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
