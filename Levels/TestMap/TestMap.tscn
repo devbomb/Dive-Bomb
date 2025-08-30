@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://muwxx8ltp1ss"]
+[gd_scene load_steps=4 format=3 uid="uid://muwxx8ltp1ss"]
 
 [ext_resource type="Environment" uid="uid://cnsj2vqr0q41w" path="res://Levels/TestMap/Skybox.tres" id="1_0gxk4"]
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_678t0"]
 [ext_resource type="PackedScene" uid="uid://bdshm0cut77ja" path="res://Levels/TestMap/Maps/TestMap.map" id="2_678t0"]
 
 [node name="TestMap" type="Node3D"]
+script = ExtResource("1_678t0")
+metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_0gxk4")
