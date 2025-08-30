@@ -6,7 +6,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class SaveFile : Resource
+    public partial class SaveFile : RefCounted
     {
         public static SaveFile Current = new SaveFile();
 
@@ -76,7 +76,6 @@ namespace FastDragon
                 new JsonSerializerSettings
                 {
                     Formatting = Formatting.Indented,
-
                 }
             );
         }
