@@ -96,22 +96,9 @@ namespace FastDragon
             UntalliedGemsCollected[color]++;
         }
 
-        public void SpendGems(int amount)
+        public void AddUntalliedSpentGems(int amount)
         {
-            CurrentLevelProgress.SpentGems += amount;
             UntalliedGemsSpent += amount;
-        }
-
-        public void CollectFairy(string level, string saveKey)
-        {
-            var progress = GetLevelProgress(level);
-            progress.CollectedFairies.Add(saveKey);
-        }
-
-        public bool IsFairyCollected(string level, string saveKey)
-        {
-            var progress = GetLevelProgress(level);
-            return progress.CollectedFairies.Contains(saveKey);
         }
 
         public LevelProgress GetLevelProgress(string level)

@@ -14,7 +14,7 @@ namespace FastDragon
         public bool CausesBonk => !CanBreak();
 
         public bool CanBreak() => EnoughGems() || IsTimeTrialMode();
-        public bool EnoughGems() => SaveFile.Current.TotalGemCount >= GemCost;
+        public bool EnoughGems() => (this.GetLevel()?.TotalGems ?? 0) >= GemCost;
         public bool ShowPriceTag() => GemCost > 0 && !IsTimeTrialMode();
 
         private readonly StateMachine _stateMachine = new StateMachine();
@@ -50,7 +50,7 @@ namespace FastDragon
             Animator.Play("RESET");
             Animator.Advance(0);
 
-            if (SaveFile.Current.CurrentLevelProgress.CollectedFairies.Contains(GetSaveKey()))
+            if (this.GetLevel()?.IsFairyInInventory(this) ?? false)
                 _stateMachine.ChangeState<Rescued>();
             else
                 _stateMachine.ChangeState<Idle>();
@@ -78,13 +78,15 @@ namespace FastDragon
 
         public void OnBroken()
         {
+            this.GetLevel()?.AddFairyToInventory(this);
+            this.GetLevel()?.SpendGems(GemCost);
+
             if (IsTimeTrialMode())
             {
                 _stateMachine.ChangeState<QuickRescue>();
             }
             else
             {
-                SaveFile.Current.SpendGems(GemCost);
                 _stateMachine.ChangeState<Shattering>();
             }
         }
@@ -154,8 +156,6 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SaveFile.Current.CollectFairy(SaveFile.Current.CurrentLevel, Self.GetSaveKey());
-
                 // Pause the game (except the player and fairy) during the
                 // cutscene to prevent the player from getting hit by enemies.
                 // Don't worry, the pause menu won't open if the game is already
@@ -360,8 +360,6 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SaveFile.Current.CurrentLevelProgress.CollectedFairies.Add(Self.GetSaveKey());
-
                 Self.Glass.Visible = false;
                 Self.GlassParticles.Emitting = true;
                 Self.ShatterSound.Play();

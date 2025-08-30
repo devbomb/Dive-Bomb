@@ -9,6 +9,10 @@ namespace FastDragon
             .FindNode<TimeTrialManager>()
             ?.IsTimeTrialMode ?? false;
 
+        public int TotalGems => IsTimeTrialMode
+            ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
+            : SaveFile.Current.TotalGemCount;
+
         public bool IsGemInInventory(Gem gem)
         {
             return GetProgress().IsGemCollected(gem.Value, gem.GetSaveKey());
@@ -24,6 +28,26 @@ namespace FastDragon
 
                 saveFile.AddUntalliedGem(gem.Value);
                 GD.Print($"{saveFile.TotalGemCount}: Collected gem {gem.GetSaveKey()}");
+            }
+        }
+
+        public bool IsFairyInInventory(Fairy fairy)
+        {
+            return GetProgress().CollectedFairies.Contains(fairy.GetSaveKey());
+        }
+
+        public void AddFairyToInventory(Fairy fairy)
+        {
+            GetProgress().CollectedFairies.Add(fairy.GetSaveKey());
+        }
+
+        public void SpendGems(int amount)
+        {
+            GetProgress().SpentGems += amount;
+
+            if (!IsTimeTrialMode)
+            {
+                SaveFile.Current.AddUntalliedSpentGems(amount);
             }
         }
 
