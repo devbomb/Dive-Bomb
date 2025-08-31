@@ -13,12 +13,10 @@ namespace FastDragon
         public uint TimerPhysicsTicks {get; private set;}
         public uint TargetTimePhysicsTicks {get; private set;}
 
-        private Label _timerLabel => GetNode<Label>("%TimerLabel");
-        private AnimationPlayer _timeAnnouncementAnimator => GetNode<AnimationPlayer>("%TimeAnnouncementAnimator");
-
-        private PageNavigator _pageNav => GetNode<PageNavigator>("%PageNavigator");
-        private Page _briefingPage => GetNode<Page>("%TimeTrialBriefingPage");
-        private Page _resultsPage => GetNode<Page>("%TimeTrialResultsPage");
+        [Signal] public delegate void ReadyToShowBriefingEventHandler();
+        [Signal] public delegate void TimeTrialStartedEventHandler();
+        [Signal] public delegate void TimeTrialFinishedEventHandler();
+        [Signal] public delegate void ReadyToShowResultsEventHandler();
 
         private bool _isResettingSaveFile = false;
 
@@ -26,8 +24,6 @@ namespace FastDragon
         {
             SignalBus.Instance.LevelReset += OnLevelReset;
             SignalBus.Instance.ExitReached += OnExitReached;
-
-            _pageNav.ChangePage(null);
         }
 
         public void Initialize(TimeTrialCategory mode)
@@ -68,7 +64,7 @@ namespace FastDragon
             TargetTimePhysicsTicks = GetSavedBestTime();
 
             IsTimerRunning = false;
-            _pageNav.ChangePage(_briefingPage);
+            EmitSignal(SignalName.ReadyToShowBriefing);
 
             // Reset the save file, to respawn any collectables that may have
             // been collected on the previous attempt.
@@ -110,23 +106,25 @@ namespace FastDragon
 
         public void ShowResultsScreen()
         {
-            _pageNav.ChangePage(_resultsPage);
+            EmitSignal(SignalName.ReadyToShowResults);
         }
 
         public void Start()
         {
-            _pageNav.ChangePage(null);
-            IsTimerRunning = true;
             GetTree().Paused = false;
+            IsTimerRunning = true;
+
+            EmitSignal(SignalName.TimeTrialStarted);
         }
 
         private void Finish()
         {
             IsTimerRunning = false;
-            _timeAnnouncementAnimator.Play("TIME");
 
             if (TimerPhysicsTicks < GetSavedBestTime())
                 SetSavedBestTime(TimerPhysicsTicks);
+
+            EmitSignal(SignalName.TimeTrialFinished);
         }
 
         public override void _PhysicsProcess(double delta)
@@ -136,9 +134,6 @@ namespace FastDragon
                 TimerPhysicsTicks++;
                 // TODO: compensate for slo-mo effects?
             }
-
-            _timerLabel.Visible = IsTimeTrialMode;
-            _timerLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(TimerPhysicsTicks);
         }
 
         private uint GetSavedBestTime()
