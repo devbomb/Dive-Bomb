@@ -103,21 +103,21 @@ namespace FastDragon
 
         public double GetPercentComplete(string levelSceneFile)
         {
-            var cacheEntry = AtlasCache.Instance.GetEntry(levelSceneFile);
+            var levelSummary = AtlasCache.Instance.GetEntry(levelSceneFile);
             var progress = GetLevelProgress(levelSceneFile);
             int categories = 0;
             double totalPercent = 0;
 
-            if (cacheEntry.TotalFairiesInLevel != 0)
+            if (levelSummary.TotalFairiesInLevel != 0)
             {
                 categories++;
-                totalPercent += ((double)progress.TotalGemsCollected) / cacheEntry.TotalGemsInLevel;
+                totalPercent += ((double)progress.TotalGemsCollected) / levelSummary.TotalGemsInLevel;
             }
 
-            if (cacheEntry.TotalGemsInLevel != 0)
+            if (levelSummary.TotalGemsInLevel != 0)
             {
                 categories++;
-                totalPercent += ((double)progress.CollectedFairies.Count) / cacheEntry.TotalFairiesInLevel;
+                totalPercent += ((double)progress.CollectedFairies.Count) / levelSummary.TotalFairiesInLevel;
             }
 
             return categories == 0

@@ -35,17 +35,11 @@ namespace FastDragon
         public static AtlasCache Instance { get; } = LoadFromJson();
 
         [JsonProperty]
-        private Dictionary<string, Entry> Levels = new Dictionary<string, Entry>();
-        public class Entry
-        {
-            public string HumanReadableName;
-            public int TotalGemsInLevel;
-            public int TotalFairiesInLevel;
-        }
+        private Dictionary<string, LevelSummary> Levels = new Dictionary<string, LevelSummary>();
 
         public void UpdateCache(string levelSceneFile, DiveBombLevel levelRoot)
         {
-            Levels[levelSceneFile] = new Entry
+            Levels[levelSceneFile] = new LevelSummary
             {
                 HumanReadableName = levelRoot.LevelName
                     ?? "No level name specified, or scene does not have a Player",
@@ -62,7 +56,7 @@ namespace FastDragon
             SaveToJson();
         }
 
-        public Entry GetEntry(string levelSceneFile)
+        public LevelSummary GetEntry(string levelSceneFile)
         {
             // If the player moves their save file to a different computer, then
             // they may have levels in their save file that aren't in the new

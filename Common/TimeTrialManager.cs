@@ -49,10 +49,10 @@ namespace FastDragon
                 case TimeTrialCategory.FairyPercent:
                 {
                     var level = this.GetLevel();
-                    var atlasEntry = AtlasCache.Instance.GetEntry(level.SceneFilePath);
+                    var levelSummary = AtlasCache.Instance.GetEntry(level.SceneFilePath);
                     int fairiesFound = level.GetProgress().CollectedFairies.Count;
 
-                    return fairiesFound >= atlasEntry.TotalFairiesInLevel;
+                    return fairiesFound >= levelSummary.TotalFairiesInLevel;
                 }
 
                 default: return true;
