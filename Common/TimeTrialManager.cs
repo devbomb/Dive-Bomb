@@ -13,7 +13,7 @@ namespace FastDragon
         public uint TimerPhysicsTicks {get; private set;}
         public uint TargetTimePhysicsTicks {get; private set;}
 
-        public SaveFile.LevelProgress DummyProgress { get; private set; } = new();
+        public LevelProgress DummyProgress { get; private set; } = new();
 
         [Signal] public delegate void ReadyToShowBriefingEventHandler();
         [Signal] public delegate void TimeTrialStartedEventHandler();
@@ -78,7 +78,7 @@ namespace FastDragon
 
             // Respawn any collectables that may have been collected on the
             // previous attempt.
-            DummyProgress = new SaveFile.LevelProgress();
+            DummyProgress = new LevelProgress();
 
             // HACK: We don't technically know which order the LevelReset
             // handlers will run in.  Some gems may have already reset

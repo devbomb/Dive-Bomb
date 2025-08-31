@@ -44,7 +44,7 @@ namespace FastDragon
             AtlasCache.Instance.UpdateCache(SceneFilePath, this);
         }
 
-        public SaveFile.LevelProgress GetProgress()
+        public LevelProgress GetProgress()
         {
             return TimeTrial.IsTimeTrialMode
                 ? TimeTrial.DummyProgress
