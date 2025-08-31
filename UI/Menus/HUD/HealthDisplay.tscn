@@ -35,11 +35,11 @@ func reset() -> void:
 	_timer = 0
 	update_position(0)
 	
-	_lastHealth = $'/root/SaveFile'.Current().PlayerHealth
+	_lastHealth = SaveFileManager.CurrentFile.PlayerHealth
 	value = _lastHealth
 
 func _process(delta: float) -> void:
-	var health: int = $'/root/SaveFile'.Current().PlayerHealth
+	var health: int = SaveFileManager.CurrentFile.PlayerHealth
 	value = health
 	
 	if (value < _lastHealth):

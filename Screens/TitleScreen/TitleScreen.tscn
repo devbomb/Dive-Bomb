@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cvqi1xaairncb" path="res://Screens/TitleScreen/TitleScreen.cs" id="1_q3h6t"]
 [ext_resource type="Script" uid="uid://chudgtyjw2v1a" path="res://UI/Widgets/PageNavigator.cs" id="3_l50tw"]
 [ext_resource type="Script" uid="uid://la5dtjohmevd" path="res://UI/Widgets/Page.cs" id="3_ml6io"]
-[ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="5_v4stu"]
+[ext_resource type="Script" path="res://UI/VerticalLoopingMenu.gd" id="5_v4stu"]
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.tscn" id="5_xa3gf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w4jl7"]

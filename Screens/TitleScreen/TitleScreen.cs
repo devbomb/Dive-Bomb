@@ -6,8 +6,6 @@ namespace FastDragon
 {
     public partial class TitleScreen : Control
     {
-        private const string Slot0Path = "user://Saves/Slot0.json";
-
         [Export(PropertyHint.File)] public string NewGameLevel;
 
         private Control _buttons => GetNode<Control>("%Buttons");
@@ -22,20 +20,14 @@ namespace FastDragon
 
         public void NewGame()
         {
-            SaveFileManager.Current = new SaveFile();
+            SaveFileManager.Instance.StartNewGame();
             LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(NewGameLevel);
         }
 
         public void Continue()
         {
             // TODO: Ask the player which save file to load
-
-            using var file = FileAccess.Open(Slot0Path, FileAccess.ModeFlags.Read);
-            string json = file.GetAsText();
-            file.Close();
-
-            SaveFileManager.Current = SaveFile.FromJson(json);
-            LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(SaveFileManager.Current.CurrentLevel);
+            SaveFileManager.Instance.LoadFromSlot(0);
         }
 
         public void TimeTrialMode()
@@ -47,7 +39,7 @@ namespace FastDragon
         {
             _pageNav.ChangePage(GetNode<Page>("%MainPage"));
 
-            _continueButton.Visible = FileAccess.FileExists(Slot0Path);
+            _continueButton.Visible = SaveFileManager.Instance.SlotHasData(0);
 
             _buttons.EnumerateChildren()
                 .Cast<Button>()

@@ -18,11 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 Log="*res://Singletons/Log.cs"
+SaveFileManager="*res://Singletons/SaveFileManager.cs"
 SignalBus="*res://Singletons/SignalBus.cs"
 Area3DSafetyTimer="*res://Singletons/Area3DSafetyTimer.cs"
 GemFactory="*res://Singletons/GemFactory/GemFactory.tscn"
 LevelTransitionManager="*res://Singletons/LevelTransitionManager/LevelTransitionManager.tscn"
-SaveFile="*res://Common/Scripts/Services/SaveFileGDScriptAdaptor.cs"
 UserSettings="*res://Common/Scripts/Services/UserSettingsGDScriptAdaptor.cs"
 PhysicsInterpolatorSingleton="*res://Common/Scripts/PhysicsInterpolation/PhysicsInterpolatorSingleton.cs"
 HitStopManager="*res://Singletons/HitStopManager.cs"
