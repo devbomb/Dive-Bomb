@@ -4,6 +4,6 @@ namespace FastDragon
 {
     public partial class SaveFileGDScriptAdaptor : Node
     {
-        public SaveFile Current() => SaveFile.Current;
+        public SaveFile Current() => SaveFileManager.Current;
     }
 }

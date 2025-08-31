@@ -26,7 +26,7 @@ namespace FastDragon
             _timer -= delta;
             if (_timer <= 0)
             {
-                if (SaveFile.Current.PlayerHealth > 0)
+                if (SaveFileManager.Current.PlayerHealth > 0)
                     Self.ReturnToLastSafeGround();
                 else
                     LevelTransitionManager.Instance.RespawnPlayerAfterDeath();

@@ -27,7 +27,7 @@ namespace FastDragon
 
         public int TotalGems => TimeTrial.IsTimeTrialMode
             ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
-            : SaveFile.Current.TotalGemCount;
+            : SaveFileManager.Current.TotalGemCount;
 
         public DiveBombLevel()
         {
@@ -36,7 +36,7 @@ namespace FastDragon
 
         public override void _EnterTree()
         {
-            SaveFile.Current.CurrentLevel = SceneFilePath;
+            SaveFileManager.Current.CurrentLevel = SceneFilePath;
         }
 
         public override void _Ready()
@@ -48,7 +48,7 @@ namespace FastDragon
         {
             return TimeTrial.IsTimeTrialMode
                 ? TimeTrial.DummyProgress
-                : SaveFile.Current.CurrentLevelProgress;
+                : SaveFileManager.Current.CurrentLevelProgress;
         }
     }
 

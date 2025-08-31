@@ -218,7 +218,7 @@ namespace FastDragon
                 return false;
 
             _damageCooldownTimer = invulnerablePeriod;
-            SaveFile.Current.PlayerHealth--;
+            SaveFileManager.Current.PlayerHealth--;
             return true;
         }
 

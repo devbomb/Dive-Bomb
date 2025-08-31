@@ -9,8 +9,6 @@ namespace FastDragon
     [JsonObject(MemberSerialization.OptIn)]
     public partial class SaveFile : RefCounted
     {
-        public static SaveFile Current = new SaveFile();
-
         [JsonProperty] public int PlayerHealth = Player.MaxHealth;
         [JsonProperty] public string CurrentLevel;
         [JsonProperty] public string CurrentCheckpoint = null;
@@ -24,11 +22,6 @@ namespace FastDragon
         public int TotalGemCount => Levels.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
         public int TotalFairyCount => Levels.Values.Sum(l => l.CollectedFairies.Count);
         public LevelProgress CurrentLevelProgress => GetLevelProgress(CurrentLevel);
-
-        public static void Reset()
-        {
-            Current = new SaveFile();
-        }
 
         public static SaveFile FromJson(string json)
         {

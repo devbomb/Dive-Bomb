@@ -38,7 +38,7 @@ namespace FastDragon
                     return;
                 }
 
-                int currentHealth = (int)SaveFile.Current.PlayerHealth;
+                int currentHealth = (int)SaveFileManager.Current.PlayerHealth;
 
                 if (currentHealth <= 0)
                 {

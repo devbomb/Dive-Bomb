@@ -22,7 +22,7 @@ namespace FastDragon
 
         public void NewGame()
         {
-            SaveFile.Current = new SaveFile();
+            SaveFileManager.Current = new SaveFile();
             LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(NewGameLevel);
         }
 
@@ -34,8 +34,8 @@ namespace FastDragon
             string json = file.GetAsText();
             file.Close();
 
-            SaveFile.Current = SaveFile.FromJson(json);
-            LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(SaveFile.Current.CurrentLevel);
+            SaveFileManager.Current = SaveFile.FromJson(json);
+            LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(SaveFileManager.Current.CurrentLevel);
         }
 
         public void TimeTrialMode()

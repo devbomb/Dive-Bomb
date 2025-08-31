@@ -80,7 +80,7 @@ namespace FastDragon
                 }
             }
 
-            SaveFile.Current.UntalliedGemsSpent += GemCost;
+            SaveFileManager.Current.UntalliedGemsSpent += GemCost;
             _stateMachine.ChangeState<Shattering>();
         }
 

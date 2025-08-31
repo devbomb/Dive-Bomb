@@ -32,7 +32,7 @@ namespace FastDragon
         public void EnterTimeTrialMode(TimeTrialCategory mode)
         {
             Mode = mode;
-            SaveFile.Current.CurrentCheckpoint = null;
+            SaveFileManager.Current.CurrentCheckpoint = null;
             SignalBus.Instance.EmitLevelReset();
         }
 
@@ -100,8 +100,8 @@ namespace FastDragon
 
             // Unlock time trial modes
             // TODO: Only do this if currently NOT in time trial mode
-            string currentLevel = SaveFile.Current.CurrentLevel;
-            var levelProgress = SaveFile.Current.CurrentLevelProgress;
+            string currentLevel = SaveFileManager.Current.CurrentLevel;
+            var levelProgress = SaveFileManager.Current.CurrentLevelProgress;
             var atlasEntry = AtlasCache.Instance.GetEntry(currentLevel);
 
             bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
@@ -164,7 +164,7 @@ namespace FastDragon
         {
             return TimeTrialSaveData
                 .Instance
-                .GetEntry(SaveFile.Current.CurrentLevel, Mode.Value);
+                .GetEntry(SaveFileManager.Current.CurrentLevel, Mode.Value);
         }
     }
 }
