@@ -83,11 +83,6 @@ namespace FastDragon
             );
         }
 
-        public bool IsGemCollected(string level, GemColor color, string saveKey)
-        {
-            return GetLevelProgress(level).IsGemCollected(color, saveKey);
-        }
-
         public void AddUntalliedGem(GemColor color)
         {
             if (!UntalliedGemsCollected.ContainsKey(color))
