@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://c7kxpukikuc0h"]
 
-[ext_resource type="Script" uid="uid://dy8m08f2ftrs" path="res://UI/Menus/TimeTrial/InLevelUI/TimeTrialInLevelUI.cs" id="1_ndsy6"]
+[ext_resource type="Script" uid="uid://dy8m08f2ftrs" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialInLevelUI.cs" id="1_ndsy6"]
 [ext_resource type="Script" uid="uid://chudgtyjw2v1a" path="res://UI/Widgets/PageNavigator.cs" id="1_uxt8t"]
-[ext_resource type="PackedScene" uid="uid://dqh4hyr3v2be8" path="res://UI/Menus/TimeTrial/InLevelUI/TimeTrialBriefingPage.tscn" id="2_vrhgy"]
-[ext_resource type="PackedScene" uid="uid://drf8cyvxudjxn" path="res://UI/Menus/TimeTrial/InLevelUI/TimeTrialResultsPage.tscn" id="3_5esov"]
+[ext_resource type="PackedScene" uid="uid://dqh4hyr3v2be8" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialBriefingPage.tscn" id="2_vrhgy"]
+[ext_resource type="PackedScene" uid="uid://drf8cyvxudjxn" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialResultsPage.tscn" id="3_5esov"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bn2qp"]
 font_size = 30
@@ -156,7 +156,7 @@ func _on_level_reset():
 	advance(0)
 "
 
-[node name="UI" type="Control"]
+[node name="TimeTrialInLevelUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

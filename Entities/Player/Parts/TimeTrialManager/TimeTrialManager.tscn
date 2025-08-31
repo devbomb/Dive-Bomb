@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://r1oepshljstr"]
-
-[ext_resource type="Script" uid="uid://cnb1gwesfjr6b" path="res://Entities/Player/Parts/TimeTrialManager/TimeTrialManager.cs" id="1_e1abn"]
-[ext_resource type="PackedScene" uid="uid://c7kxpukikuc0h" path="res://UI/Menus/TimeTrial/InLevelUI/TimeTrialInLevelUI.tscn" id="2_dikft"]
-
-[node name="TimeTrialManager" type="Node"]
-script = ExtResource("1_e1abn")
-
-[node name="TimeTrialInLevelUI" parent="." instance=ExtResource("2_dikft")]

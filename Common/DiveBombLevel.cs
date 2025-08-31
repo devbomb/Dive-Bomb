@@ -23,11 +23,16 @@ namespace FastDragon
 
         public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
 
-        public TimeTrialManager TimeTrial => GetTree().FindNode<TimeTrialManager>();
+        public readonly TimeTrialManager TimeTrial = new TimeTrialManager();
 
         public int TotalGems => TimeTrial.IsTimeTrialMode
             ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
             : SaveFile.Current.TotalGemCount;
+
+        public DiveBombLevel()
+        {
+            AddChild(TimeTrial);
+        }
 
         public override void _EnterTree()
         {

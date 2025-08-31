@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://drf8cyvxudjxn"]
 
-[ext_resource type="Script" uid="uid://bguu511rb2uj2" path="res://UI/Menus/TimeTrial/InLevelUI/TimeTrialResultsMenu.cs" id="1_nnmc3"]
+[ext_resource type="Script" uid="uid://bguu511rb2uj2" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialResultsMenu.cs" id="1_nnmc3"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="2_ivodr"]
 [ext_resource type="Script" path="res://UI/VerticalLoopingMenu.gd" id="3_xj5vp"]
 
