@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dympqtsl60os7"]
+[gd_scene load_steps=6 format=3 uid="uid://dympqtsl60os7"]
 
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="1_ds1y7"]
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_qp38o"]
 [ext_resource type="PackedScene" uid="uid://cyfwcwip8ncw0" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.tscn" id="2_ds1y7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x75wr"]
@@ -10,6 +11,8 @@ size = Vector3(20, 1, 20)
 size = Vector3(20, 1, 20)
 
 [node name="LevelExitCanonTester" type="Node3D"]
+script = ExtResource("1_qp38o")
+metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

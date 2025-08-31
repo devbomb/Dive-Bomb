@@ -1,15 +1,78 @@
-[gd_scene load_steps=11 format=3 uid="uid://r1oepshljstr"]
+[gd_scene load_steps=11 format=3 uid="uid://c7kxpukikuc0h"]
 
-[ext_resource type="Script" uid="uid://cnb1gwesfjr6b" path="res://Entities/Player/Parts/TimeTrialManager/TimeTrialManager.cs" id="1_e1abn"]
-[ext_resource type="Script" uid="uid://chudgtyjw2v1a" path="res://UI/Widgets/PageNavigator.cs" id="2_jdmjo"]
-[ext_resource type="PackedScene" uid="uid://dqh4hyr3v2be8" path="res://UI/Menus/TimeTrial/TimeTrialBriefingPage.tscn" id="3_xwoof"]
-[ext_resource type="PackedScene" uid="uid://drf8cyvxudjxn" path="res://UI/Menus/TimeTrial/TimeTrialResultsPage.tscn" id="4_elsja"]
+[ext_resource type="Script" uid="uid://dy8m08f2ftrs" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialInLevelUI.cs" id="1_ndsy6"]
+[ext_resource type="Script" uid="uid://chudgtyjw2v1a" path="res://UI/Widgets/PageNavigator.cs" id="1_uxt8t"]
+[ext_resource type="PackedScene" uid="uid://dqh4hyr3v2be8" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialBriefingPage.tscn" id="2_vrhgy"]
+[ext_resource type="PackedScene" uid="uid://drf8cyvxudjxn" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialResultsPage.tscn" id="3_5esov"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bn2qp"]
 font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_omsfd"]
 font_size = 60
+
+[sub_resource type="Animation" id="Animation_eiknr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-44.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:offset_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [44.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_s6ani"]
 resource_name = "NoHighScore"
@@ -75,69 +138,6 @@ tracks/4/keys = {
 "values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_eiknr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:anchor_top")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:anchor_bottom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset_top")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-44.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:offset_bottom")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [44.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vk4ub"]
 _data = {
 &"RESET": SubResource("Animation_eiknr"),
@@ -156,18 +156,16 @@ func _on_level_reset():
 	advance(0)
 "
 
-[node name="TimeTrialManager" type="Node"]
-script = ExtResource("1_e1abn")
-
-[node name="UI" type="Control" parent="."]
+[node name="TimeTrialInLevelUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ndsy6")
 
-[node name="PageNavigator" type="Control" parent="UI"]
+[node name="PageNavigator" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -175,19 +173,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_jdmjo")
+script = ExtResource("1_uxt8t")
 
-[node name="TimeTrialBriefingPage" parent="UI/PageNavigator" instance=ExtResource("3_xwoof")]
+[node name="TimeTrialBriefingPage" parent="PageNavigator" instance=ExtResource("2_vrhgy")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="TimeTrialResultsPage" parent="UI/PageNavigator" instance=ExtResource("4_elsja")]
+[node name="TimeTrialResultsPage" parent="PageNavigator" instance=ExtResource("3_5esov")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="TimerLabel" type="Label" parent="UI"]
+[node name="TimerLabel" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -202,7 +200,7 @@ grow_vertical = 0
 text = "00:00.00"
 label_settings = SubResource("LabelSettings_bn2qp")
 
-[node name="TimeAnnouncement" type="Label" parent="UI"]
+[node name="TimeAnnouncement" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -220,11 +218,11 @@ label_settings = SubResource("LabelSettings_omsfd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimeAnnouncementAnimator" type="AnimationPlayer" parent="UI/TimeAnnouncement"]
+[node name="TimeAnnouncementAnimator" type="AnimationPlayer" parent="TimeAnnouncement"]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_vk4ub")
 }
 script = SubResource("GDScript_7511j")
 
-[connection signal="StartPressed" from="UI/PageNavigator/TimeTrialBriefingPage" to="." method="Start"]
+[connection signal="StartPressed" from="PageNavigator/TimeTrialBriefingPage" to="." method="Start"]

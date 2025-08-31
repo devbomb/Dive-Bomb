@@ -23,13 +23,16 @@ namespace FastDragon
 
         public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
 
-        public bool IsTimeTrialMode => GetTree()
-            .FindNode<TimeTrialManager>()
-            ?.IsTimeTrialMode ?? false;
+        public readonly TimeTrialManager TimeTrial = new TimeTrialManager();
 
-        public int TotalGems => IsTimeTrialMode
+        public int TotalGems => TimeTrial.IsTimeTrialMode
             ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
             : SaveFile.Current.TotalGemCount;
+
+        public DiveBombLevel()
+        {
+            AddChild(TimeTrial);
+        }
 
         public override void _EnterTree()
         {
@@ -43,8 +46,9 @@ namespace FastDragon
 
         public SaveFile.LevelProgress GetProgress()
         {
-            // TODO: Return a separate one if we're in time trial mode
-            return SaveFile.Current.CurrentLevelProgress;
+            return TimeTrial.IsTimeTrialMode
+                ? TimeTrial.DummyProgress
+                : SaveFile.Current.CurrentLevelProgress;
         }
     }
 

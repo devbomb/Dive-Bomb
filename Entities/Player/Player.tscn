@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.tscn" id="2_0esln"]
 [ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://Entities/Player/KennifiedPlayerAnimations.tres" id="2_dijyt"]
-[ext_resource type="PackedScene" uid="uid://r1oepshljstr" path="res://Entities/Player/Parts/TimeTrialManager/TimeTrialManager.tscn" id="2_eu73y"]
+[ext_resource type="PackedScene" uid="uid://c7kxpukikuc0h" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialInLevelUI.tscn" id="2_samso"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="3_fw7ex"]
 [ext_resource type="PackedScene" uid="uid://di4tqrhb11cow" path="res://Entities/Player/Parts/PlayerCamera/PlayerCamera.tscn" id="4_ne5gw"]
 [ext_resource type="PackedScene" uid="uid://d1upl0f3iefyd" path="res://Entities/Player/FX/Thuum.tscn" id="5_2j7te"]
@@ -88,7 +88,7 @@ radial_segments = 8
 collision_layer = 9
 script = ExtResource("1_a4opu")
 
-[node name="TimeTrialManager" parent="." instance=ExtResource("2_eu73y")]
+[node name="TimeTrialInLevelUI" parent="." instance=ExtResource("2_samso")]
 
 [node name="MaxJumpHeightPrinter" type="Node" parent="."]
 script = SubResource("GDScript_cpnxc")

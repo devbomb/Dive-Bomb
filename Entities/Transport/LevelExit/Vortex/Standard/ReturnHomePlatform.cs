@@ -31,8 +31,8 @@ namespace FastDragon
 
         private void Reset()
         {
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            if (timeTrialManager.IsTimeTrialMode)
+            var timeTrialManager = this.GetLevel()?.TimeTrial;
+            if (timeTrialManager?.IsTimeTrialMode ?? false)
             {
                 if (timeTrialManager.RequirementsMet())
                     _stateMachine.ChangeState<Open>();
@@ -53,7 +53,8 @@ namespace FastDragon
 
         private bool CanBreak()
         {
-            return GetTree().FindNode<TimeTrialManager>().RequirementsMet();
+            var timeTrialManager = this.GetLevel()?.TimeTrial;
+            return timeTrialManager == null || timeTrialManager.RequirementsMet();
         }
 
         private void SetRequirementsVisible(bool visible)
@@ -61,11 +62,10 @@ namespace FastDragon
             foreach (var m in Enum.GetValues<TimeTrialCategory>())
                 _requirementsDisplay.GetNode<Node3D>(m.ToString()).Visible = !visible;
 
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            var currentMode = timeTrialManager?.Mode;
+            var currentTimeTrialMode = this.GetLevel()?.TimeTrial;
 
-            if (currentMode != null)
-                _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
+            if (currentTimeTrialMode != null)
+                _requirementsDisplay.GetNode<Node3D>(currentTimeTrialMode.ToString()).Visible = visible;
         }
 
         private class Closed : State<ReturnHomePlatform>

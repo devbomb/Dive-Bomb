@@ -84,7 +84,7 @@ namespace FastDragon
             );
 
             bool playerReachedExitHeight = _ensnaredPlayer.GlobalPosition.Y >= GlobalPosition.Y + ExitHeight;
-            bool isTimeTrialMode = GetTree().FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
+            bool isTimeTrialMode = this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
             if (playerReachedExitHeight && !isTimeTrialMode)
             {
                 LevelTransitionManager.Instance.ExitLevel();

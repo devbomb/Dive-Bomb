@@ -73,7 +73,7 @@ namespace FastDragon
                 level.GetProgress().CollectedFairies.Add(SaveKey);
                 level.GetProgress().SpentGems += GemCost;
 
-                if (level.IsTimeTrialMode)
+                if (level.TimeTrial.IsTimeTrialMode)
                 {
                     _stateMachine.ChangeState<QuickRescue>();
                     return;
@@ -91,7 +91,7 @@ namespace FastDragon
 
         private bool IsTimeTrialMode()
         {
-            return GetTree().Root.FindNode<TimeTrialManager>()?.IsTimeTrialMode ?? false;
+            return this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
         }
 
         private void SetPausedForCutscene(bool paused)

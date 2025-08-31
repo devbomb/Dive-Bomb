@@ -16,8 +16,7 @@ namespace FastDragon
 
         private void Reset()
         {
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            SetRequirementsVisible(timeTrialManager?.IsTimeTrialMode ?? false);
+            SetRequirementsVisible(this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false);
         }
 
         private void OnExitReached()
@@ -39,8 +38,7 @@ namespace FastDragon
             foreach (var m in Enum.GetValues<TimeTrialCategory>())
                 _requirementsDisplay.GetNode<Node3D>(m.ToString()).Visible = false;
 
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            var currentMode = timeTrialManager?.Mode;
+            var currentMode = this.GetLevel()?.TimeTrial?.Mode;
 
             if (currentMode != null)
                 _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;

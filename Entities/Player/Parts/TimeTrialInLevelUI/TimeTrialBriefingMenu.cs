@@ -6,10 +6,12 @@ namespace FastDragon
     {
         [Signal] public delegate void StartPressedEventHandler();
 
+        private Control _instructionsRoot => GetNode<Control>("%Instructions");
+
         public override void OnPageEntered()
         {
-            var timeTrialManager = GetTree().FindNode<TimeTrialManager>();
-            GetNode<Control>($"%Instructions/{timeTrialManager.Mode}").Visible = true;
+            var mode = this.GetLevel().TimeTrial.Mode;
+            ShowInstructionsFor(mode);
 
             GetNode<Button>("%StartButton").GrabFocus();
         }
@@ -25,6 +27,17 @@ namespace FastDragon
         public void OnQuitToTitlePressed()
         {
             LevelTransitionManager.Instance.GoToTitleScreen();
+        }
+
+        private void ShowInstructionsFor(TimeTrialCategory? category)
+        {
+            foreach (var label in _instructionsRoot.GetChildren())
+            {
+                (label as Label).Visible = false;
+            }
+
+            if (category != null)
+                GetNode<Control>($"%Instructions/{category}").Visible = true;
         }
     }
 }

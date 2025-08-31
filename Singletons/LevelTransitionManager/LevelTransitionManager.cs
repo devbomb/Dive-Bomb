@@ -78,10 +78,6 @@ namespace FastDragon
 
         public void GoToLevelForTimeTrial(string levelSceneFile, TimeTrialCategory mode)
         {
-            // Use a dummy save file to ensure we don't accidentally modify
-            // a real one when collectables are collected
-            SaveFile.Current = new SaveFile();
-
             DoThingWithFadeToBlack(() =>
             {
                 Log.StartedGoToLevelWithFade(
@@ -99,8 +95,7 @@ namespace FastDragon
 
                 Log.FinishedGoToLevelWithFade();
 
-                GetTree().FindNode<TimeTrialManager>().Initialize(mode);
-                SignalBus.Instance.EmitLevelReset();
+                levelRoot.TimeTrial.EnterTimeTrialMode(mode);
             });
         }
 

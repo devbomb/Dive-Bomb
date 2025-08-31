@@ -16,13 +16,11 @@ namespace FastDragon
         private readonly StateMachine _stateMachine = new StateMachine();
 
         private Vector3 _revealedPosition;
-        private TimeTrialManager _timeTrialManager;
 
         public override void _Ready()
         {
             AddChild(_stateMachine);
 
-            _timeTrialManager = GetTree().FindNode<TimeTrialManager>();
             _revealedPosition = GlobalPosition;
 
             SignalBus.Instance.LevelReset += Reset;
@@ -55,7 +53,7 @@ namespace FastDragon
             _crystalShape.Disabled = !enabled;
         }
 
-        private bool IsTimeTrialMode() => _timeTrialManager?.IsTimeTrialMode ?? false;
+        private bool IsTimeTrialMode() => this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
 
         private Vector3 HiddenPos() => _revealedPosition + (Vector3.Up * HiddenHeight);
 
@@ -108,11 +106,8 @@ namespace FastDragon
 
         private class Revealed : State<LevelExitCanon>
         {
-            private TimeTrialManager _timeTrialManager;
-
             public override void OnStateEntered()
             {
-                _timeTrialManager = Self.GetTree().FindNode<TimeTrialManager>();
                 Self._crystal.Rollable = true;
             }
 
@@ -125,7 +120,7 @@ namespace FastDragon
             {
                 if (Self.IsTimeTrialMode())
                 {
-                    Self._crystal.Disabled = !Self._timeTrialManager.RequirementsMet();
+                    Self._crystal.Disabled = !Self.GetLevel().TimeTrial.RequirementsMet();
                 }
             }
         }
@@ -251,7 +246,7 @@ namespace FastDragon
 
                     if (Self.IsTimeTrialMode())
                     {
-                        Self._timeTrialManager.ShowResultsScreen();
+                        Self.GetLevel().TimeTrial.ShowResultsScreen();
                         return;
                     }
 

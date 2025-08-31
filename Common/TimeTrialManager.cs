@@ -13,27 +13,32 @@ namespace FastDragon
         public uint TimerPhysicsTicks {get; private set;}
         public uint TargetTimePhysicsTicks {get; private set;}
 
-        private Label _timerLabel => GetNode<Label>("%TimerLabel");
-        private AnimationPlayer _timeAnnouncementAnimator => GetNode<AnimationPlayer>("%TimeAnnouncementAnimator");
+        public SaveFile.LevelProgress DummyProgress { get; private set; } = new();
 
-        private PageNavigator _pageNav => GetNode<PageNavigator>("%PageNavigator");
-        private Page _briefingPage => GetNode<Page>("%TimeTrialBriefingPage");
-        private Page _resultsPage => GetNode<Page>("%TimeTrialResultsPage");
+        [Signal] public delegate void ReadyToShowBriefingEventHandler();
+        [Signal] public delegate void TimeTrialStartedEventHandler();
+        [Signal] public delegate void TimeTrialFinishedEventHandler();
+        [Signal] public delegate void ReadyToShowResultsEventHandler();
 
-        private bool _isResettingSaveFile = false;
+        private bool _isResettingLevelProgress = false;
 
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += OnLevelReset;
             SignalBus.Instance.ExitReached += OnExitReached;
-
-            _pageNav.ChangePage(null);
+            ProcessMode = ProcessModeEnum.Always;
         }
 
-        public void Initialize(TimeTrialCategory mode)
+        public void EnterTimeTrialMode(TimeTrialCategory mode)
         {
             Mode = mode;
-            ProcessMode = ProcessModeEnum.Always;
+            SignalBus.Instance.EmitLevelReset();
+        }
+
+        public void ExitTimeTrialMode()
+        {
+            Mode = null;
+            SignalBus.Instance.EmitLevelReset();
         }
 
         public bool RequirementsMet()
@@ -58,9 +63,9 @@ namespace FastDragon
             if (!IsTimeTrialMode)
                 return;
 
-            if (_isResettingSaveFile)
+            if (_isResettingLevelProgress)
             {
-                _isResettingSaveFile = false;
+                _isResettingLevelProgress = false;
                 return;
             }
 
@@ -68,20 +73,19 @@ namespace FastDragon
             TargetTimePhysicsTicks = GetSavedBestTime();
 
             IsTimerRunning = false;
-            _pageNav.ChangePage(_briefingPage);
+            EmitSignal(SignalName.ReadyToShowBriefing);
 
-            // Reset the save file, to respawn any collectables that may have
-            // been collected on the previous attempt.
-            string currentLevel = SaveFile.Current.CurrentLevel;
-            SaveFile.Current = new SaveFile();
-            SaveFile.Current.CurrentLevel = currentLevel;
+            // Respawn any collectables that may have been collected on the
+            // previous attempt.
+            DummyProgress = new SaveFile.LevelProgress();
 
             // HACK: We don't technically know which order the LevelReset
             // handlers will run in.  Some gems may have already reset
-            // themselves based on the previous save file before we had time to
-            // swap it.  So, let's fire the reset event one more time to ensure
-            // EVERYONE sees the clean save file.
-            _isResettingSaveFile = true;
+            // themselves based on the previous level progress before we had
+            // time to swap it.
+            // So, let's fire the reset event one more time to ensure EVERYONE
+            // sees the clean save file.
+            _isResettingLevelProgress = true;
             SignalBus.Instance.EmitLevelReset();
         }
 
@@ -110,23 +114,25 @@ namespace FastDragon
 
         public void ShowResultsScreen()
         {
-            _pageNav.ChangePage(_resultsPage);
+            EmitSignal(SignalName.ReadyToShowResults);
         }
 
         public void Start()
         {
-            _pageNav.ChangePage(null);
-            IsTimerRunning = true;
             GetTree().Paused = false;
+            IsTimerRunning = true;
+
+            EmitSignal(SignalName.TimeTrialStarted);
         }
 
         private void Finish()
         {
             IsTimerRunning = false;
-            _timeAnnouncementAnimator.Play("TIME");
 
             if (TimerPhysicsTicks < GetSavedBestTime())
                 SetSavedBestTime(TimerPhysicsTicks);
+
+            EmitSignal(SignalName.TimeTrialFinished);
         }
 
         public override void _PhysicsProcess(double delta)
@@ -136,9 +142,6 @@ namespace FastDragon
                 TimerPhysicsTicks++;
                 // TODO: compensate for slo-mo effects?
             }
-
-            _timerLabel.Visible = IsTimeTrialMode;
-            _timerLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(TimerPhysicsTicks);
         }
 
         private uint GetSavedBestTime()
