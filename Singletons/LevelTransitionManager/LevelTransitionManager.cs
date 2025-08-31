@@ -95,8 +95,7 @@ namespace FastDragon
 
                 Log.FinishedGoToLevelWithFade();
 
-                levelRoot.TimeTrial.Initialize(mode);
-                SignalBus.Instance.EmitLevelReset();
+                levelRoot.TimeTrial.EnterTimeTrialMode(mode);
             });
         }
 

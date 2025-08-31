@@ -106,6 +106,10 @@ text = "Reset"
 layout_mode = 2
 text = "Options"
 
+[node name="DebugMenu" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
+layout_mode = 2
+text = "Debug Menu"
+
 [node name="QuitToTitle" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
 layout_mode = 2
 text = "Quit to title"
@@ -127,6 +131,7 @@ layout_mode = 1
 
 [node name="DebugMenu" type="PanelContainer" parent="." node_paths=PackedStringArray("FocusedControl")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -150,6 +155,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Reset Level Progress"
 
+[node name="TimeTrialAnyPercent" type="Button" parent="DebugMenu/VBoxContainer"]
+layout_mode = 2
+text = "Time trial mode (Any%)"
+
+[node name="TimeTrialFairyPercent" type="Button" parent="DebugMenu/VBoxContainer"]
+layout_mode = 2
+text = "Time trial mode (Fairy%)"
+
+[node name="TimeTrialExit" type="Button" parent="DebugMenu/VBoxContainer"]
+layout_mode = 2
+text = "Exit Time Trial Mode"
+
 [node name="Back" type="Button" parent="DebugMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -166,9 +183,13 @@ text = "Back"
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Continue" to="." method="Close"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/ResetLevel" to="." method="ReturnToCheckpoint"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Options" to="." method="OpenUserSettingsMenu"]
+[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/DebugMenu" to="." method="OpenDebugMenu"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/QuitToTitle" to="." method="QuitToTitle"]
 [connection signal="BackRequested" from="AtlasMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="UserSettingsMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="DebugMenu" to="." method="OpenMainPage"]
 [connection signal="pressed" from="DebugMenu/VBoxContainer/FullResetLevel" to="." method="FullyResetLevel"]
+[connection signal="pressed" from="DebugMenu/VBoxContainer/TimeTrialAnyPercent" to="." method="EnterTimeTrialAnyPercent"]
+[connection signal="pressed" from="DebugMenu/VBoxContainer/TimeTrialFairyPercent" to="." method="EnterTimeTrialFairyPercent"]
+[connection signal="pressed" from="DebugMenu/VBoxContainer/TimeTrialExit" to="." method="ExitTimeTrialMode"]
 [connection signal="pressed" from="DebugMenu/VBoxContainer/Back" to="DebugMenu" method="GoBack"]

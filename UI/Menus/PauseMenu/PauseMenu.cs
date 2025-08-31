@@ -117,5 +117,23 @@ namespace FastDragon
             Close();
             LevelTransitionManager.Instance.GoToTitleScreen();
         }
+
+        public void EnterTimeTrialAnyPercent()
+        {
+            Close();
+            this.GetLevel()?.TimeTrial.EnterTimeTrialMode(TimeTrialCategory.AnyPercent);
+        }
+
+        public void EnterTimeTrialFairyPercent()
+        {
+            Close();
+            this.GetLevel()?.TimeTrial.EnterTimeTrialMode(TimeTrialCategory.FairyPercent);
+        }
+
+        public void ExitTimeTrialMode()
+        {
+            Close();
+            this.GetLevel()?.TimeTrial.ExitTimeTrialMode();
+        }
     }
 }

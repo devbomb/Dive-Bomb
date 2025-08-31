@@ -26,12 +26,19 @@ namespace FastDragon
         {
             SignalBus.Instance.LevelReset += OnLevelReset;
             SignalBus.Instance.ExitReached += OnExitReached;
+            ProcessMode = ProcessModeEnum.Always;
         }
 
-        public void Initialize(TimeTrialCategory mode)
+        public void EnterTimeTrialMode(TimeTrialCategory mode)
         {
             Mode = mode;
-            ProcessMode = ProcessModeEnum.Always;
+            SignalBus.Instance.EmitLevelReset();
+        }
+
+        public void ExitTimeTrialMode()
+        {
+            Mode = null;
+            SignalBus.Instance.EmitLevelReset();
         }
 
         public bool RequirementsMet()
