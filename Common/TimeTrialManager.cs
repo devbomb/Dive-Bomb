@@ -13,12 +13,14 @@ namespace FastDragon
         public uint TimerPhysicsTicks {get; private set;}
         public uint TargetTimePhysicsTicks {get; private set;}
 
+        public SaveFile.LevelProgress DummyProgress { get; private set; } = new();
+
         [Signal] public delegate void ReadyToShowBriefingEventHandler();
         [Signal] public delegate void TimeTrialStartedEventHandler();
         [Signal] public delegate void TimeTrialFinishedEventHandler();
         [Signal] public delegate void ReadyToShowResultsEventHandler();
 
-        private bool _isResettingSaveFile = false;
+        private bool _isResettingLevelProgress = false;
 
         public override void _Ready()
         {
@@ -54,9 +56,9 @@ namespace FastDragon
             if (!IsTimeTrialMode)
                 return;
 
-            if (_isResettingSaveFile)
+            if (_isResettingLevelProgress)
             {
-                _isResettingSaveFile = false;
+                _isResettingLevelProgress = false;
                 return;
             }
 
@@ -66,18 +68,17 @@ namespace FastDragon
             IsTimerRunning = false;
             EmitSignal(SignalName.ReadyToShowBriefing);
 
-            // Reset the save file, to respawn any collectables that may have
-            // been collected on the previous attempt.
-            string currentLevel = SaveFile.Current.CurrentLevel;
-            SaveFile.Current = new SaveFile();
-            SaveFile.Current.CurrentLevel = currentLevel;
+            // Respawn any collectables that may have been collected on the
+            // previous attempt.
+            DummyProgress = new SaveFile.LevelProgress();
 
             // HACK: We don't technically know which order the LevelReset
             // handlers will run in.  Some gems may have already reset
-            // themselves based on the previous save file before we had time to
-            // swap it.  So, let's fire the reset event one more time to ensure
-            // EVERYONE sees the clean save file.
-            _isResettingSaveFile = true;
+            // themselves based on the previous level progress before we had
+            // time to swap it.
+            // So, let's fire the reset event one more time to ensure EVERYONE
+            // sees the clean save file.
+            _isResettingLevelProgress = true;
             SignalBus.Instance.EmitLevelReset();
         }
 
