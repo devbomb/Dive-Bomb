@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using Godot;
 
 namespace FastDragon
@@ -20,8 +21,6 @@ namespace FastDragon
         private SimpleParticles _sparkleRing => GetNode<SimpleParticles>("%SparkleRing");
         private SimpleParticles _sparkleBurst => GetNode<SimpleParticles>("%SparkleBurst");
 
-        private bool _isTimeTrial;
-
         public override void _Ready()
         {
             BodyEntered += OnBodyEntered;
@@ -29,25 +28,23 @@ namespace FastDragon
             if (CheckpointName == null)
                 throw new System.Exception("CheckpointName cannot be null");
 
-            Callable.From(() =>
-            {
-                // Defer checking this, because we don't necessarily know if the
-                // time trial manager is ready yet by the time our own Ready()
-                // is called.
-                _isTimeTrial = this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
-            }).CallDeferred();
+            SignalBus.Instance.LevelReset += Reset;
+            Reset();
+        }
+
+        private void Reset()
+        {
+            Visible = !IsTimeTrialMode();
         }
 
         public override void _Process(double deltaD)
         {
             _sparkleRing.Emitting = IsCurrent;
-
-            Visible = !_isTimeTrial;
         }
 
         private void OnBodyEntered(Node3D body)
         {
-            if (body is Player player && !IsCurrent && !_isTimeTrial)
+            if (body is Player player && !IsCurrent && !IsTimeTrialMode())
             {
                 SaveFile.Current.CurrentCheckpoint = CheckpointName;
                 _sparkleBurst.Emitting = true;
@@ -55,5 +52,7 @@ namespace FastDragon
                 player.Camera.Shake(1, 5, 0.2f);
             }
         }
+
+        private bool IsTimeTrialMode() => this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
     }
 }
