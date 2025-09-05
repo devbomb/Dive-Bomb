@@ -99,9 +99,8 @@ namespace FastDragon
             }
 
             // Unlock time trial modes
-            // TODO: Only do this if currently NOT in time trial mode
             string currentLevel = SaveFileManager.Current.CurrentLevel;
-            var levelProgress = SaveFileManager.Current.CurrentLevelProgress;
+            var levelProgress = this.GetLevel().GetProgress();
             var atlasEntry = AtlasCache.Instance.GetEntry(currentLevel);
 
             bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;

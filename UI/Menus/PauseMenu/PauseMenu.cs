@@ -98,7 +98,7 @@ namespace FastDragon
         public void FullyResetLevel()
         {
             Close();
-            SaveFileManager.Current.CurrentLevelProgress.ResetProgress();
+            this.GetLevel()?.GetProgress().ResetProgress();
             SaveFileManager.Current.CurrentCheckpoint = null;
             LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
         }

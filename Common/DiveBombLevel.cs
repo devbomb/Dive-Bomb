@@ -34,13 +34,9 @@ namespace FastDragon
             AddChild(TimeTrial);
         }
 
-        public override void _EnterTree()
-        {
-            SaveFileManager.Current.CurrentLevel = SceneFilePath;
-        }
-
         public override void _Ready()
         {
+            SaveFileManager.Current.CurrentLevel = SceneFilePath;
             AtlasCache.Instance.UpdateCache(SceneFilePath, this);
         }
 
@@ -48,7 +44,7 @@ namespace FastDragon
         {
             return TimeTrial.IsTimeTrialMode
                 ? TimeTrial.DummyProgress
-                : SaveFileManager.Current.CurrentLevelProgress;
+                : SaveFileManager.Current.GetLevelProgress(SceneFilePath);
         }
     }
 

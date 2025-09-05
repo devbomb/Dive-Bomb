@@ -21,7 +21,6 @@ namespace FastDragon
         public int TotalGemsSpent => Levels.Values.Sum(l => l.SpentGems);
         public int TotalGemCount => Levels.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
         public int TotalFairyCount => Levels.Values.Sum(l => l.CollectedFairies.Count);
-        public LevelProgress CurrentLevelProgress => GetLevelProgress(CurrentLevel);
 
         public static SaveFile FromJson(string json)
         {
