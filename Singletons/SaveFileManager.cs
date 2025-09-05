@@ -11,15 +11,17 @@ namespace FastDragon
         public static SaveFileManager Instance { get; private set; }
         public static SaveFile Current => Instance.CurrentFile;
 
-        public SaveFile CurrentFile = new();
+        public int ActiveSlot { get; private set; } = 0;
+        public SaveFile CurrentFile { get; private set; } = new();
 
         public override void _Ready()
         {
             Instance = this;
         }
 
-        public void StartNewGame()
+        public void StartNewGame(int slotNumber)
         {
+            ActiveSlot = slotNumber;
             CurrentFile = new();
         }
 
@@ -35,7 +37,9 @@ namespace FastDragon
             string json = file.GetAsText();
             file.Close();
 
+            ActiveSlot = slotNumber;
             CurrentFile = SaveFile.FromJson(json);
+
             LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(CurrentFile.CurrentLevel);
         }
 
@@ -47,6 +51,8 @@ namespace FastDragon
             using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write);
             file.StoreLine(CurrentFile.ToJson());
             file.Close();
+
+            ActiveSlot = slotNumber;
         }
 
         private static string SlotFilePath(int number)

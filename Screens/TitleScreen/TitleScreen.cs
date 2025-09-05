@@ -20,7 +20,7 @@ namespace FastDragon
 
         public void NewGame()
         {
-            SaveFileManager.Instance.StartNewGame();
+            SaveFileManager.Instance.StartNewGame(0);
             LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(NewGameLevel);
         }
 
