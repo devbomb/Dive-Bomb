@@ -32,6 +32,7 @@ namespace FastDragon
         public void EnterTimeTrialMode(TimeTrialCategory mode)
         {
             Mode = mode;
+            SaveFile.Current.CurrentCheckpoint = null;
             SignalBus.Instance.EmitLevelReset();
         }
 
