@@ -91,8 +91,7 @@ namespace FastDragon
 
         public void SaveGame()
         {
-            // TODO: Ask the player which save file to overwrite
-            SaveFileManager.Instance.SaveToSlot(0);
+            SaveFileManager.Instance.SaveToSlot(SaveFileManager.Instance.ActiveSlot);
         }
 
         public void FullyResetLevel()
