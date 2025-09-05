@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs28xrm5onq8k"]
+[gd_scene load_steps=10 format=3 uid="uid://bs28xrm5onq8k"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_1b2l8"]
 [ext_resource type="Script" uid="uid://cvqi1xaairncb" path="res://Screens/TitleScreen/TitleScreen.cs" id="1_q3h6t"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://la5dtjohmevd" path="res://UI/Widgets/Page.cs" id="3_ml6io"]
 [ext_resource type="Script" path="res://UI/VerticalLoopingMenu.gd" id="5_v4stu"]
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.tscn" id="5_xa3gf"]
+[ext_resource type="PackedScene" uid="uid://jbl1i07t5wl2" path="res://UI/Menus/SaveSlotManagementMenu/SaveSlotManagementMenu.tscn" id="7_bkufi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w4jl7"]
 font_size = 100
@@ -21,7 +22,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q3h6t")
-NewGameLevel = "res://Levels/TestMap/TestMap.tscn"
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -78,7 +78,7 @@ grow_vertical = 2
 theme = ExtResource("1_1b2l8")
 script = ExtResource("3_l50tw")
 
-[node name="MainPage" type="Control" parent="PageNavigator"]
+[node name="MainPage" type="Control" parent="PageNavigator" node_paths=PackedStringArray("FocusedControl")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -87,6 +87,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_ml6io")
+FocusedControl = NodePath("Buttons/Start")
 
 [node name="Buttons" type="VBoxContainer" parent="PageNavigator/MainPage"]
 unique_name_in_owner = true
@@ -104,15 +105,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_v4stu")
 
-[node name="Continue" type="Button" parent="PageNavigator/MainPage/Buttons"]
-unique_name_in_owner = true
+[node name="Start" type="Button" parent="PageNavigator/MainPage/Buttons"]
 layout_mode = 2
-text = "Continue"
-
-[node name="NewGame" type="Button" parent="PageNavigator/MainPage/Buttons"]
-layout_mode = 2
-text = "New Game
-"
+text = "Start"
 
 [node name="TimeTrial" type="Button" parent="PageNavigator/MainPage/Buttons"]
 layout_mode = 2
@@ -127,8 +122,22 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="PageNavigator/MainPage/Buttons/Continue" to="." method="Continue"]
-[connection signal="pressed" from="PageNavigator/MainPage/Buttons/NewGame" to="." method="NewGame"]
+[node name="SaveSlotManagementMenu" parent="PageNavigator" instance=ExtResource("7_bkufi")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -40.36
+offset_right = 80.0
+offset_bottom = 39.64
+
+[connection signal="pressed" from="PageNavigator/MainPage/Buttons/Start" to="." method="OpenSaveFilesMenu"]
 [connection signal="pressed" from="PageNavigator/MainPage/Buttons/TimeTrial" to="." method="TimeTrialMode"]
 [connection signal="pressed" from="PageNavigator/MainPage/Buttons/Options" to="." method="OpenUserSettingsMenu"]
 [connection signal="BackRequested" from="PageNavigator/UserSettingsMenu" to="." method="OpenMainPage"]
+[connection signal="BackRequested" from="PageNavigator/SaveSlotManagementMenu" to="." method="OpenMainPage"]

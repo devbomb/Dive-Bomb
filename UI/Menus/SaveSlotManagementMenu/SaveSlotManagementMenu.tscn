@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://jbl1i07t5wl2"]
+
+[ext_resource type="Script" uid="uid://bfymvfpen7yyf" path="res://UI/Menus/SaveSlotManagementMenu/SaveSlotManagementMenu.cs" id="1_wxgf2"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_wxgf2"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_flfsu"]
+events = [SubResource("InputEventAction_wxgf2")]
+
+[node name="SaveSlotManagementMenu" type="VBoxContainer" node_paths=PackedStringArray("FocusedControl")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wxgf2")
+NewGameLevel = "uid://muwxx8ltp1ss"
+FocusedControl = NodePath("Slot0")
+
+[node name="Slot0" type="Button" parent="."]
+layout_mode = 2
+text = "New Game"
+flat = true
+alignment = 0
+
+[node name="Slot1" type="Button" parent="."]
+layout_mode = 2
+text = "New Game"
+flat = true
+alignment = 0
+
+[node name="Slot2" type="Button" parent="."]
+layout_mode = 2
+text = "New Game"
+flat = true
+alignment = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+shortcut = SubResource("Shortcut_flfsu")
+text = "Back"
+flat = true
+
+[connection signal="pressed" from="Slot0" to="." method="OnSlotChosen" binds= [0]]
+[connection signal="pressed" from="Slot1" to="." method="OnSlotChosen" binds= [1]]
+[connection signal="pressed" from="Slot2" to="." method="OnSlotChosen" binds= [2]]
+[connection signal="pressed" from="Button" to="." method="GoBack"]
