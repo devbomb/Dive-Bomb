@@ -109,10 +109,6 @@ script = ExtResource("5_v4stu")
 layout_mode = 2
 text = "Start"
 
-[node name="TimeTrial" type="Button" parent="PageNavigator/MainPage/Buttons"]
-layout_mode = 2
-text = "Time Trial Mode"
-
 [node name="Options" type="Button" parent="PageNavigator/MainPage/Buttons"]
 layout_mode = 2
 text = "Options"
@@ -137,7 +133,6 @@ offset_right = 256.0
 offset_bottom = 39.64
 
 [connection signal="pressed" from="PageNavigator/MainPage/Buttons/Start" to="." method="OpenSaveFilesMenu"]
-[connection signal="pressed" from="PageNavigator/MainPage/Buttons/TimeTrial" to="." method="TimeTrialMode"]
 [connection signal="pressed" from="PageNavigator/MainPage/Buttons/Options" to="." method="OpenUserSettingsMenu"]
 [connection signal="BackRequested" from="PageNavigator/UserSettingsMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="PageNavigator/SaveSlotManagementMenu" to="." method="OpenMainPage"]
