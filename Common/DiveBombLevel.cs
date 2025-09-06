@@ -44,7 +44,7 @@ namespace FastDragon
         {
             return TimeTrial.IsTimeTrialMode
                 ? TimeTrial.DummyProgress
-                : SaveFileManager.Current.GetLevelProgress(SceneFilePath);
+                : SaveFileManager.Current.GetLevelSaveData(SceneFilePath).Progress;
         }
     }
 
