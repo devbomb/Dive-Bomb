@@ -95,21 +95,7 @@ namespace FastDragon
             if (IsTimeTrialMode)
             {
                 Finish();
-                return;
             }
-
-            // Unlock time trial modes
-            string currentLevel = SaveFileManager.Current.CurrentLevel;
-            var levelProgress = this.GetLevel().GetProgress();
-            var atlasEntry = AtlasCache.Instance.GetEntry(currentLevel);
-
-            bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
-            bool levelHasFairies = atlasEntry.TotalFairiesInLevel > 0;
-
-            TimeTrialSaveData.Instance.UnlockCategory(currentLevel, TimeTrialCategory.AnyPercent);
-
-            if (levelHasFairies && levelProgress.FairiesCollected >= atlasEntry.TotalFairiesInLevel)
-                TimeTrialSaveData.Instance.UnlockCategory(currentLevel, TimeTrialCategory.FairyPercent);
         }
 
         public void ShowResultsScreen()
