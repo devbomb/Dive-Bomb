@@ -8,6 +8,8 @@ namespace FastDragon
 {
     public partial class SaveFileManager : Node
     {
+        private const string SavesFolder = "user://Saves";
+
         public static SaveFileManager Instance { get; private set; }
         public static SaveFile Current => Instance.CurrentFile;
 
@@ -61,7 +63,7 @@ namespace FastDragon
 
         public void SaveToSlot(int slotNumber)
         {
-            DirAccess.MakeDirRecursiveAbsolute("user://Saves");
+            DirAccess.MakeDirRecursiveAbsolute(SavesFolder);
 
             string filePath = SlotFilePath(slotNumber);
             using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write);
@@ -71,9 +73,15 @@ namespace FastDragon
             ActiveSlot = slotNumber;
         }
 
+        public void EraseSlot(int slotNumber)
+        {
+            string globalizedPath = ProjectSettings.GlobalizePath(SlotFilePath(slotNumber));
+            OS.MoveToTrash(globalizedPath);
+        }
+
         private static string SlotFilePath(int number)
         {
-            return $"user://Saves/Slot{number}.json";
+            return $"{SavesFolder}/Slot{number}.json";
         }
     }
 }
