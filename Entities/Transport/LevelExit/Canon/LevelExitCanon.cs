@@ -45,6 +45,13 @@ namespace FastDragon
 
         public void OnCrystalShattered()
         {
+            if (this.GetLevel() != null)
+            {
+                this.GetLevel().GetProgress().ExitReached = true;
+            }
+
+            SignalBus.Instance.EmitExitReached();
+
             _stateMachine.ChangeState<AligningPlayer>();
         }
 
@@ -134,8 +141,6 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SignalBus.Instance.EmitExitReached();
-
                 _timer = 0;
 
                 _player = Self.GetTree().FindNode<Player>();
