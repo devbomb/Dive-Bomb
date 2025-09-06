@@ -1,17 +1,8 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dfo7m2hjbbpml"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dfo7m2hjbbpml"]
 
-[ext_resource type="FontVariation" uid="uid://deohuqm10bn1f" path="res://Fonts/VT323/VT323-Widened.tres" id="1_cinqa"]
-[ext_resource type="StyleBox" uid="uid://clk60wmckrjlc" path="res://Themes/StyleBoxes/HackerTerminalBackground.tres" id="2_c8rdn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_byeby"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r2iqq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v61kq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3vls"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yview"]
+[ext_resource type="FontVariation" uid="uid://deohuqm10bn1f" path="res://Fonts/VT323/VT323-Widened.tres" id="1_u1uuh"]
+[ext_resource type="StyleBox" uid="uid://clk60wmckrjlc" path="res://Themes/StyleBoxes/HackerTerminalBackground.tres" id="2_41e44"]
+[ext_resource type="StyleBox" uid="uid://67ve41gmpcr" path="res://Themes/StyleBoxes/HackerTerminalButton.tres" id="2_bn8tx"]
 
 [resource]
 Button/colors/font_color = Color(0, 0.97857, 0, 1)
@@ -20,11 +11,11 @@ Button/colors/font_hover_color = Color(0.780962, 1, 0.758588, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 0.4, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/font_sizes/font_size = 16
-Button/fonts/font = ExtResource("1_cinqa")
-Button/styles/disabled = SubResource("StyleBoxEmpty_byeby")
-Button/styles/focus = SubResource("StyleBoxEmpty_r2iqq")
-Button/styles/hover = SubResource("StyleBoxEmpty_v61kq")
-Button/styles/normal = SubResource("StyleBoxEmpty_i3vls")
-Button/styles/pressed = SubResource("StyleBoxEmpty_yview")
-Panel/styles/panel = ExtResource("2_c8rdn")
-PanelContainer/styles/panel = ExtResource("2_c8rdn")
+Button/fonts/font = ExtResource("1_u1uuh")
+Button/styles/disabled = ExtResource("2_bn8tx")
+Button/styles/focus = ExtResource("2_bn8tx")
+Button/styles/hover = ExtResource("2_bn8tx")
+Button/styles/normal = ExtResource("2_bn8tx")
+Button/styles/pressed = ExtResource("2_bn8tx")
+Panel/styles/panel = ExtResource("2_41e44")
+PanelContainer/styles/panel = ExtResource("2_41e44")
