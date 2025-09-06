@@ -87,29 +87,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_ml6io")
-FocusedControl = NodePath("Buttons/Start")
+FocusedControl = NodePath("PanelContainer/Buttons/Start")
 
-[node name="Buttons" type="VBoxContainer" parent="PageNavigator/MainPage"]
-unique_name_in_owner = true
+[node name="PanelContainer" type="PanelContainer" parent="PageNavigator/MainPage"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -46.0
-offset_top = -26.0
-offset_right = 46.0
-offset_bottom = 26.0
+offset_left = -64.5
+offset_top = -31.5
+offset_right = 64.5
+offset_bottom = 31.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Buttons" type="VBoxContainer" parent="PageNavigator/MainPage/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 script = ExtResource("5_v4stu")
 
-[node name="Start" type="Button" parent="PageNavigator/MainPage/Buttons"]
+[node name="Start" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons"]
 layout_mode = 2
 text = "Start"
 
-[node name="Options" type="Button" parent="PageNavigator/MainPage/Buttons"]
+[node name="Options" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons"]
 layout_mode = 2
 text = "Options"
 
@@ -132,7 +135,7 @@ offset_top = -90.36
 offset_right = 256.0
 offset_bottom = 39.64
 
-[connection signal="pressed" from="PageNavigator/MainPage/Buttons/Start" to="." method="OpenSaveFilesMenu"]
-[connection signal="pressed" from="PageNavigator/MainPage/Buttons/Options" to="." method="OpenUserSettingsMenu"]
+[connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Start" to="." method="OpenSaveFilesMenu"]
+[connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Options" to="." method="OpenUserSettingsMenu"]
 [connection signal="BackRequested" from="PageNavigator/UserSettingsMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="PageNavigator/SaveSlotManagementMenu" to="." method="OpenMainPage"]
