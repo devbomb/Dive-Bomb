@@ -42,36 +42,44 @@ script = ExtResource("4_kb3w6")
 [node name="Continue" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Continue"
+flat = true
 
 [node name="Atlas" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Atlas"
+flat = true
 
 [node name="Save" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Save"
+flat = true
 
 [node name="Options" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Options"
+flat = true
 
 [node name="DebugMenu" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Debug Menu"
+flat = true
 
 [node name="ReturnToCheckpoint" type="Button" parent="MainPage/Buttons"]
 layout_mode = 2
 text = "Reload Checkpoint"
+flat = true
 
 [node name="ExitLevel" type="Button" parent="MainPage/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit Level"
+flat = true
 
 [node name="QuitToTitle" type="Button" parent="MainPage/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to title"
+flat = true
 
 [node name="TimeTrialMainPage" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -98,14 +106,17 @@ script = ExtResource("4_kb3w6")
 [node name="Continue" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
 layout_mode = 2
 text = "Continue"
+flat = true
 
 [node name="ResetLevel" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
 layout_mode = 2
 text = "Reset"
+flat = true
 
 [node name="Options" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
 layout_mode = 2
 text = "Options"
+flat = true
 
 [node name="AtlasMenu" parent="." instance=ExtResource("3_0fbh4")]
 unique_name_in_owner = true
@@ -147,15 +158,18 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Reset Level Progress"
+flat = true
 
 [node name="TimeTrialEnter" type="Button" parent="DebugMenu/VBoxContainer"]
 layout_mode = 2
 text = "Enter Time Trial Mode"
+flat = true
 
 [node name="Back" type="Button" parent="DebugMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
+flat = true
 
 [connection signal="pressed" from="MainPage/Buttons/Continue" to="." method="Close"]
 [connection signal="pressed" from="MainPage/Buttons/Atlas" to="." method="OpenAtlas"]

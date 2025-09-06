@@ -54,17 +54,20 @@ script = ExtResource("3_e6io1")
 [node name="ShowPerformanceStats" type="CheckButton" parent="Panel/Buttons"]
 layout_mode = 2
 text = "Show Performance Stats"
+flat = true
 script = SubResource("GDScript_cjhiv")
 
 [node name="UsePhysicsInterpolation" type="CheckButton" parent="Panel/Buttons"]
 layout_mode = 2
 text = "Frame Interpolation"
+flat = true
 script = SubResource("GDScript_yo1g3")
 
 [node name="Back" type="Button" parent="Panel/Buttons"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_ncc13")
 text = "Back"
+flat = true
 
 [connection signal="toggled" from="Panel/Buttons/ShowPerformanceStats" to="." method="ToggleShowPerformanceStatus"]
 [connection signal="toggled" from="Panel/Buttons/UsePhysicsInterpolation" to="." method="ToggleUsePhysicsInterpolation"]

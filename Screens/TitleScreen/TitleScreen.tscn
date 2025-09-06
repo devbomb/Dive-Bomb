@@ -111,10 +111,12 @@ script = ExtResource("5_v4stu")
 [node name="Start" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons"]
 layout_mode = 2
 text = "Start"
+flat = true
 
 [node name="Options" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons"]
 layout_mode = 2
 text = "Options"
+flat = true
 
 [node name="UserSettingsMenu" parent="PageNavigator" instance=ExtResource("5_xa3gf")]
 unique_name_in_owner = true

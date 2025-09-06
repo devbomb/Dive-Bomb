@@ -275,6 +275,7 @@ script = ExtResource("3_xj5vp")
 [node name="ContinueButton" type="Button" parent="Buttons/VBoxContainer"]
 layout_mode = 2
 text = "Continue"
+flat = true
 
 [node name="YourTime" type="VBoxContainer" parent="."]
 layout_mode = 1
