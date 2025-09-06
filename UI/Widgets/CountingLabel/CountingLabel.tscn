@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpa1avddef2b"]
+[gd_scene load_steps=7 format=3 uid="uid://dpa1avddef2b"]
 
 [ext_resource type="Script" uid="uid://bn1okvxdu26gw" path="res://UI/Widgets/CountingLabel/CountingLabel.cs" id="1_tt4pu"]
 [ext_resource type="PackedScene" uid="uid://d1vvq00bwo8pm" path="res://UI/Widgets/SpinningCounter3D/SpinningCounter3D.tscn" id="2_5rvke"]
@@ -8,6 +8,13 @@
 font = ExtResource("2_ox7c8")
 font_size = 30
 font_color = Color(1, 1, 1, 0)
+
+[sub_resource type="Environment" id="Environment_3rxh2"]
+background_mode = 1
+background_color = Color(0, 0.176471, 0, 1)
+
+[sub_resource type="World3D" id="World3D_nlynk"]
+environment = SubResource("Environment_3rxh2")
 
 [node name="CountingLabel" type="Control"]
 layout_mode = 3
@@ -38,7 +45,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="TextSizeLabel/SubViewportContainer"]
 own_world_3d = true
-transparent_bg = true
+world_3d = SubResource("World3D_nlynk")
 handle_input_locally = false
 size = Vector2i(75, 29)
 render_target_update_mode = 4
