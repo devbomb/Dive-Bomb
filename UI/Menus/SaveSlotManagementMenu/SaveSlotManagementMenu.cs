@@ -8,6 +8,8 @@ namespace FastDragon
     {
         [Export(PropertyHint.File, hintString: "*.tscn")] public string NewGameLevel;
 
+        private int? _slotTargettedForDeletion;
+
         public override void OnPageEntered()
         {
             Refresh();
@@ -72,8 +74,13 @@ namespace FastDragon
 
         public void OnDeleteButtonPressed(int slotNumber)
         {
-            // TODO: Show a confirmation dialog first
-            SaveFileManager.Instance.EraseSlot(slotNumber);
+            _slotTargettedForDeletion = slotNumber;
+            GetNode<Popup>("%ConfirmDeletePrompt").PopupCentered();
+        }
+
+        public void OnDeleteConfirmed()
+        {
+            SaveFileManager.Instance.EraseSlot(_slotTargettedForDeletion.Value);
             Refresh();
         }
 
