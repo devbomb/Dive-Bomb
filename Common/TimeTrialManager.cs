@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 namespace FastDragon
@@ -71,7 +72,7 @@ namespace FastDragon
             }
 
             TimerPhysicsTicks = 0;
-            TargetTimePhysicsTicks = GetSavedBestTime();
+            TargetTimePhysicsTicks = GetSavedBestTime() ?? uint.MaxValue;
 
             IsTimerRunning = false;
             EmitSignal(SignalName.ReadyToShowBriefing);
@@ -130,26 +131,25 @@ namespace FastDragon
             }
         }
 
-        private uint GetSavedBestTime()
+        private uint? GetSavedBestTime()
         {
-            var entry = CurrentCategoryEntry();
-
-            return entry.BestTimePhysicsTicks == null
-                ? uint.MaxValue
-                : entry.BestTimePhysicsTicks.Value;
+            var saveData = CurrentLevelSaveData();
+            return saveData.TimeTrialBestTimePhysicsTicks.TryGetValue(Mode.Value, out var time)
+                ? time
+                : null;
         }
 
         private void SetSavedBestTime(uint timePhysicsTicks)
         {
-            CurrentCategoryEntry().BestTimePhysicsTicks = timePhysicsTicks;
-            TimeTrialSaveData.Instance.SaveToJson();
+            var save = CurrentLevelSaveData();
+            save.TimeTrialBestTimePhysicsTicks[Mode.Value] = timePhysicsTicks;
         }
 
-        private TimeTrialSaveData.CategoryEntry CurrentCategoryEntry()
+        private LevelSaveData CurrentLevelSaveData()
         {
-            return TimeTrialSaveData
-                .Instance
-                .GetEntry(SaveFileManager.Current.CurrentLevel, Mode.Value);
+            return SaveFileManager
+                .Current
+                .GetLevelSaveData(this.GetLevel().SceneFilePath);
         }
     }
 }
