@@ -1,9 +1,0 @@
-[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://deohuqm10bn1f"]
-
-[ext_resource type="FontFile" uid="uid://qq204vhurfj7" path="res://Fonts/VT323/VT323-Regular.ttf" id="1_1qxbn"]
-
-[resource]
-base_font = ExtResource("1_1qxbn")
-variation_transform = Transform2D(1.5, 0, 0, 1, 0, 0)
-spacing_glyph = 2
-spacing_space = 2

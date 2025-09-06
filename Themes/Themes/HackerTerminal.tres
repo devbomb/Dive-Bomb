@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dfo7m2hjbbpml"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dfo7m2hjbbpml"]
 
-[ext_resource type="FontVariation" uid="uid://deohuqm10bn1f" path="res://Fonts/VT323/VT323-Widened.tres" id="1_u1uuh"]
 [ext_resource type="StyleBox" uid="uid://clk60wmckrjlc" path="res://Themes/StyleBoxes/HackerTerminalBackground.tres" id="2_41e44"]
 [ext_resource type="StyleBox" uid="uid://67ve41gmpcr" path="res://Themes/StyleBoxes/HackerTerminalButton.tres" id="2_bn8tx"]
 [ext_resource type="StyleBox" uid="uid://brjat4v76rwt4" path="res://Themes/StyleBoxes/HackerTerminalButtonFocus.tres" id="3_bn8tx"]
@@ -12,8 +11,8 @@ Button/colors/font_focus_color = Color(0.780392, 1, 0.756863, 1)
 Button/colors/font_hover_color = Color(0.780962, 1, 0.758588, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 0.4, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/font_sizes/font_size = 16
-Button/fonts/font = ExtResource("1_u1uuh")
+Button/font_sizes/font_size = 14
+Button/fonts/font = ExtResource("4_bpdmg")
 Button/styles/disabled = ExtResource("2_bn8tx")
 Button/styles/focus = ExtResource("3_bn8tx")
 Button/styles/hover = ExtResource("3_bn8tx")
