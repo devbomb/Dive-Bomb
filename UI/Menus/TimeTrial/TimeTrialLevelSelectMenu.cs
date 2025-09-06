@@ -18,10 +18,10 @@ namespace FastDragon
             foreach (string levelScenePath in AllUnlockedLevels())
             {
                 string capturedFilePath = levelScenePath;  // Saving it for the closure
-                var cacheEntry = AtlasCache.Instance.GetEntry(levelScenePath);
+                var levelSummary = AtlasCache.Instance.GetEntry(levelScenePath);
 
                 var button = new Button();
-                button.Text = cacheEntry.HumanReadableName;
+                button.Text = levelSummary.HumanReadableName;
                 button.Pressed += () =>
                 {
                     _selectedLevelScenePath = capturedFilePath;

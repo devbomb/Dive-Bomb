@@ -3,14 +3,15 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class UserSettings : Resource
+    [JsonObject(MemberSerialization.OptIn)]
+    public partial class UserSettings : RefCounted
     {
         private const string FilePath = "user://UserSettings.json";
 
         public static UserSettings Instance { get; } = LoadFromJson();
 
-        public bool ShowPerformanceStats = false;
-        public bool UsePhysicsInterpolation = true;
+        [JsonProperty] public bool ShowPerformanceStats = false;
+        [JsonProperty] public bool UsePhysicsInterpolation = true;
 
         public void SaveToJson()
         {

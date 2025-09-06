@@ -73,8 +73,8 @@ namespace FastDragon
                 parameters.PreviousLevelScenePath,
                 parameters.TargetLevelScenePath,
                 _isReturningHome,
-                SaveFile.Current.TotalGemCount + SaveFile.Current.TotalGemsSpent,
-                SaveFile.Current.TotalGemsSpent
+                SaveFileManager.Current.TotalGemCount + SaveFileManager.Current.TotalGemsSpent,
+                SaveFileManager.Current.TotalGemsSpent
             );
 
             _worldEnv.Environment = parameters.SkyBoxEnvironment;

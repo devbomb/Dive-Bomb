@@ -9,8 +9,6 @@ namespace FastDragon
     [JsonObject(MemberSerialization.OptIn)]
     public partial class SaveFile : RefCounted
     {
-        public static SaveFile Current = new SaveFile();
-
         [JsonProperty] public int PlayerHealth = Player.MaxHealth;
         [JsonProperty] public string CurrentLevel;
         [JsonProperty] public string CurrentCheckpoint = null;
@@ -20,52 +18,9 @@ namespace FastDragon
 
         [JsonProperty] public Dictionary<string, LevelProgress> Levels = new();
 
-        [JsonObject(MemberSerialization.OptIn)]
-        public class LevelProgress
-        {
-            [JsonProperty] public HashSet<string> CollectedFairies = new();
-            [JsonProperty] public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
-            [JsonProperty] public int SpentGems = 0;
-
-            public int FairiesCollected => CollectedFairies.Count;
-            public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);
-
-            public void ResetProgress()
-            {
-                CollectedFairies.Clear();
-                CollectedGems.Clear();
-                SpentGems = 0;
-            }
-
-            public void CollectGem(GemColor color, string saveKey)
-            {
-                if (!CollectedGems.TryGetValue(color, out var set))
-                {
-                    set = new HashSet<string>();
-                    CollectedGems[color] = set;
-                }
-
-                set.Add(saveKey);
-            }
-
-            public bool IsGemCollected(GemColor color, string saveKey)
-            {
-                if (!CollectedGems.TryGetValue(color, out var set))
-                    return false;
-
-                return set.Contains(saveKey);
-            }
-        }
-
         public int TotalGemsSpent => Levels.Values.Sum(l => l.SpentGems);
         public int TotalGemCount => Levels.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
         public int TotalFairyCount => Levels.Values.Sum(l => l.CollectedFairies.Count);
-        public LevelProgress CurrentLevelProgress => GetLevelProgress(CurrentLevel);
-
-        public static void Reset()
-        {
-            Current = new SaveFile();
-        }
 
         public static SaveFile FromJson(string json)
         {
@@ -81,11 +36,6 @@ namespace FastDragon
                     Formatting = Formatting.Indented,
                 }
             );
-        }
-
-        public bool IsGemCollected(string level, GemColor color, string saveKey)
-        {
-            return GetLevelProgress(level).IsGemCollected(color, saveKey);
         }
 
         public void AddUntalliedGem(GemColor color)
@@ -108,21 +58,21 @@ namespace FastDragon
 
         public double GetPercentComplete(string levelSceneFile)
         {
-            var cacheEntry = AtlasCache.Instance.GetEntry(levelSceneFile);
+            var levelSummary = AtlasCache.Instance.GetEntry(levelSceneFile);
             var progress = GetLevelProgress(levelSceneFile);
             int categories = 0;
             double totalPercent = 0;
 
-            if (cacheEntry.TotalFairiesInLevel != 0)
+            if (levelSummary.TotalFairiesInLevel != 0)
             {
                 categories++;
-                totalPercent += ((double)progress.TotalGemsCollected) / cacheEntry.TotalGemsInLevel;
+                totalPercent += ((double)progress.TotalGemsCollected) / levelSummary.TotalGemsInLevel;
             }
 
-            if (cacheEntry.TotalGemsInLevel != 0)
+            if (levelSummary.TotalGemsInLevel != 0)
             {
                 categories++;
-                totalPercent += ((double)progress.CollectedFairies.Count) / cacheEntry.TotalFairiesInLevel;
+                totalPercent += ((double)progress.CollectedFairies.Count) / levelSummary.TotalFairiesInLevel;
             }
 
             return categories == 0

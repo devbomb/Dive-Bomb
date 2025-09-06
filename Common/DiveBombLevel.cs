@@ -27,28 +27,24 @@ namespace FastDragon
 
         public int TotalGems => TimeTrial.IsTimeTrialMode
             ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
-            : SaveFile.Current.TotalGemCount;
+            : SaveFileManager.Current.TotalGemCount;
 
         public DiveBombLevel()
         {
             AddChild(TimeTrial);
         }
 
-        public override void _EnterTree()
-        {
-            SaveFile.Current.CurrentLevel = SceneFilePath;
-        }
-
         public override void _Ready()
         {
+            SaveFileManager.Current.CurrentLevel = SceneFilePath;
             AtlasCache.Instance.UpdateCache(SceneFilePath, this);
         }
 
-        public SaveFile.LevelProgress GetProgress()
+        public LevelProgress GetProgress()
         {
             return TimeTrial.IsTimeTrialMode
                 ? TimeTrial.DummyProgress
-                : SaveFile.Current.CurrentLevelProgress;
+                : SaveFileManager.Current.GetLevelProgress(SceneFilePath);
         }
     }
 

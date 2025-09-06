@@ -41,7 +41,7 @@ namespace FastDragon
             _table.Clear();
             _table.CreateItem();    // The table is actually a tree, so it needs a root
 
-            foreach (string levelScenePath in SaveFile.Current.Levels.Keys.OrderBy(k => k))
+            foreach (string levelScenePath in SaveFileManager.Current.Levels.Keys.OrderBy(k => k))
             {
                 AddRow(levelScenePath);
             }
@@ -49,21 +49,21 @@ namespace FastDragon
 
         private void AddRow(string levelScenePath)
         {
-            var progress = SaveFile.Current.Levels[levelScenePath];
-            var cacheEntry = AtlasCache.Instance.GetEntry(levelScenePath);
+            var progress = SaveFileManager.Current.Levels[levelScenePath];
+            var summary = AtlasCache.Instance.GetEntry(levelScenePath);
 
             var row = _table.CreateItem();
 
-            row.SetText((int)Column.LevelName, cacheEntry.HumanReadableName);
+            row.SetText((int)Column.LevelName, summary.HumanReadableName);
             row.SetTextAlignment((int)Column.LevelName, HorizontalAlignment.Left);
 
-            row.SetText((int)Column.Gems, $"{progress.TotalGemsCollected} / {cacheEntry.TotalGemsInLevel}");
+            row.SetText((int)Column.Gems, $"{progress.TotalGemsCollected} / {summary.TotalGemsInLevel}");
             row.SetTextAlignment((int)Column.Gems, HorizontalAlignment.Center);
 
-            row.SetText((int)Column.Fairies, $"{progress.CollectedFairies.Count} / {cacheEntry.TotalFairiesInLevel}");
+            row.SetText((int)Column.Fairies, $"{progress.CollectedFairies.Count} / {summary.TotalFairiesInLevel}");
             row.SetTextAlignment((int)Column.Fairies, HorizontalAlignment.Center);
 
-            string percentComplete = (SaveFile.Current.GetPercentComplete(levelScenePath) * 100)
+            string percentComplete = (SaveFileManager.Current.GetPercentComplete(levelScenePath) * 100)
                 .ToString("0");
             row.SetText((int)Column.PercentComplete, $"{percentComplete}%");
             row.SetTextAlignment((int)Column.PercentComplete, HorizontalAlignment.Center);

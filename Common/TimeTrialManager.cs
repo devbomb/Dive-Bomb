@@ -13,7 +13,7 @@ namespace FastDragon
         public uint TimerPhysicsTicks {get; private set;}
         public uint TargetTimePhysicsTicks {get; private set;}
 
-        public SaveFile.LevelProgress DummyProgress { get; private set; } = new();
+        public LevelProgress DummyProgress { get; private set; } = new();
 
         [Signal] public delegate void ReadyToShowBriefingEventHandler();
         [Signal] public delegate void TimeTrialStartedEventHandler();
@@ -32,7 +32,7 @@ namespace FastDragon
         public void EnterTimeTrialMode(TimeTrialCategory mode)
         {
             Mode = mode;
-            SaveFile.Current.CurrentCheckpoint = null;
+            SaveFileManager.Current.CurrentCheckpoint = null;
             SignalBus.Instance.EmitLevelReset();
         }
 
@@ -49,10 +49,10 @@ namespace FastDragon
                 case TimeTrialCategory.FairyPercent:
                 {
                     var level = this.GetLevel();
-                    var atlasEntry = AtlasCache.Instance.GetEntry(level.SceneFilePath);
+                    var levelSummary = AtlasCache.Instance.GetEntry(level.SceneFilePath);
                     int fairiesFound = level.GetProgress().CollectedFairies.Count;
 
-                    return fairiesFound >= atlasEntry.TotalFairiesInLevel;
+                    return fairiesFound >= levelSummary.TotalFairiesInLevel;
                 }
 
                 default: return true;
@@ -78,7 +78,7 @@ namespace FastDragon
 
             // Respawn any collectables that may have been collected on the
             // previous attempt.
-            DummyProgress = new SaveFile.LevelProgress();
+            DummyProgress = new LevelProgress();
 
             // HACK: We don't technically know which order the LevelReset
             // handlers will run in.  Some gems may have already reset
@@ -99,9 +99,8 @@ namespace FastDragon
             }
 
             // Unlock time trial modes
-            // TODO: Only do this if currently NOT in time trial mode
-            string currentLevel = SaveFile.Current.CurrentLevel;
-            var levelProgress = SaveFile.Current.CurrentLevelProgress;
+            string currentLevel = SaveFileManager.Current.CurrentLevel;
+            var levelProgress = this.GetLevel().GetProgress();
             var atlasEntry = AtlasCache.Instance.GetEntry(currentLevel);
 
             bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
@@ -164,7 +163,7 @@ namespace FastDragon
         {
             return TimeTrialSaveData
                 .Instance
-                .GetEntry(SaveFile.Current.CurrentLevel, Mode.Value);
+                .GetEntry(SaveFileManager.Current.CurrentLevel, Mode.Value);
         }
     }
 }

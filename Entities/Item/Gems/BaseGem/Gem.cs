@@ -97,7 +97,7 @@ namespace FastDragon
                 level.GetProgress().CollectGem(Value, SaveKey);
 
                 if (!level.TimeTrial.IsTimeTrialMode)
-                    SaveFile.Current.AddUntalliedGem(Value);
+                    SaveFileManager.Current.AddUntalliedGem(Value);
             }
 
             _collectSound.Play();

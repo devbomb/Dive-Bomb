@@ -91,18 +91,14 @@ namespace FastDragon
 
         public void SaveGame()
         {
-            // TODO: Ask the player which save file to overwrite
-            DirAccess.MakeDirRecursiveAbsolute("user://Saves");
-            using var file = FileAccess.Open("user://Saves/Slot0.json", FileAccess.ModeFlags.Write);
-            file.StoreLine(SaveFile.Current.ToJson());
-            file.Close();
+            SaveFileManager.Instance.SaveToSlot(SaveFileManager.Instance.ActiveSlot);
         }
 
         public void FullyResetLevel()
         {
             Close();
-            SaveFile.Current.CurrentLevelProgress.ResetProgress();
-            SaveFile.Current.CurrentCheckpoint = null;
+            this.GetLevel()?.GetProgress().ResetProgress();
+            SaveFileManager.Current.CurrentCheckpoint = null;
             LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
 

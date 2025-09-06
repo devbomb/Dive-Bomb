@@ -14,7 +14,7 @@ namespace FastDragon
         /// </summary>
         [Export] public bool DebugSpawnHere;
 
-        public bool IsCurrent => SaveFile.Current.CurrentCheckpoint == CheckpointName;
+        public bool IsCurrent => SaveFileManager.Current.CurrentCheckpoint == CheckpointName;
 
         [Signal] public delegate void ActivatedEventHandler();
 
@@ -46,7 +46,7 @@ namespace FastDragon
         {
             if (body is Player player && !IsCurrent && !IsTimeTrialMode())
             {
-                SaveFile.Current.CurrentCheckpoint = CheckpointName;
+                SaveFileManager.Current.CurrentCheckpoint = CheckpointName;
                 _sparkleBurst.Emitting = true;
                 EmitSignal(SignalName.Activated);
                 player.Camera.Shake(1, 5, 0.2f);

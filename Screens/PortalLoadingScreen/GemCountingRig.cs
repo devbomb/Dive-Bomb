@@ -41,13 +41,13 @@ namespace FastDragon
             AddChild(_stateMachine);
             _stateMachine.ChangeState<Idle>();
 
-            _untalliedGems = SaveFile.Current.UntalliedGemsCollected;
-            SaveFile.Current.UntalliedGemsCollected = new Dictionary<GemColor, int>();
+            _untalliedGems = SaveFileManager.Current.UntalliedGemsCollected;
+            SaveFileManager.Current.UntalliedGemsCollected = new Dictionary<GemColor, int>();
 
-            _untalliedSpentGems = SaveFile.Current.UntalliedGemsSpent;
-            SaveFile.Current.UntalliedGemsSpent = 0;
+            _untalliedSpentGems = SaveFileManager.Current.UntalliedGemsSpent;
+            SaveFileManager.Current.UntalliedGemsSpent = 0;
 
-            _talliedGems = SaveFile.Current.TotalGemCount;
+            _talliedGems = SaveFileManager.Current.TotalGemCount;
             _talliedGems -= TotalUntalliedGems();
             _talliedGems += _untalliedSpentGems;
         }
@@ -217,7 +217,7 @@ namespace FastDragon
                 Self.UpdateLabelText();
                 Self._gemCountSound.Play();
 
-                if (Self._talliedGems >= SaveFile.Current.TotalGemCount + Self._untalliedSpentGems)
+                if (Self._talliedGems >= SaveFileManager.Current.TotalGemCount + Self._untalliedSpentGems)
                     ChangeState<MovingTotalToTop>();
             }
 
@@ -405,7 +405,7 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
-                Self._talliedGems = SaveFile.Current.TotalGemCount;
+                Self._talliedGems = SaveFileManager.Current.TotalGemCount;
                 Self._untalliedSpentGems = 0;
                 Self.UpdateLabelText();
             }
@@ -439,7 +439,7 @@ namespace FastDragon
                 Self.SetLabelsVisible(true);
 
                 Self._untalliedGems.Clear();
-                Self._talliedGems = SaveFile.Current.TotalGemCount;
+                Self._talliedGems = SaveFileManager.Current.TotalGemCount;
                 Self.UpdateLabelText();
             }
 
