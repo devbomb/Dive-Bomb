@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://byhmelsic6fu5"]
+[gd_scene load_steps=12 format=3 uid="uid://byhmelsic6fu5"]
 
 [ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://UI/Menus/HUD/HealthDisplay.tscn" id="1_54kkr"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="2_yq8w4"]
 [ext_resource type="Script" uid="uid://cromiohdg3esv" path="res://UI/Widgets/ContextuallyHiddenControl.cs" id="3_8mrjo"]
+[ext_resource type="StyleBox" uid="uid://clk60wmckrjlc" path="res://Themes/StyleBoxes/HackerTerminalBackground.tres" id="4_8mrjo"]
 [ext_resource type="PackedScene" uid="uid://dpa1avddef2b" path="res://UI/Widgets/CountingLabel/CountingLabel.tscn" id="4_khe3g"]
 [ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://UI/Menus/HUD/FPSCounter.tscn" id="5_k3tfm"]
+[ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="5_khe3g"]
 
 [sub_resource type="GDScript" id="GDScript_h7bdc"]
 script/source = "extends Control
@@ -30,6 +32,10 @@ Label/colors/font_shadow_color = Color(0, 0, 0, 0.67451)
 Label/font_sizes/font_size = 35
 Label/fonts/font = ExtResource("2_yq8w4")
 
+[sub_resource type="LabelSettings" id="LabelSettings_k3tfm"]
+font = ExtResource("5_khe3g")
+font_size = 26
+
 [sub_resource type="GDScript" id="GDScript_iydpn"]
 script/source = "extends VBoxContainer
 func _process(_delta): visible = $/root/UserSettings.Instance().ShowPerformanceStats
@@ -48,10 +54,9 @@ script = SubResource("GDScript_h7bdc")
 [node name="HealthDisplay" parent="." instance=ExtResource("1_54kkr")]
 layout_mode = 1
 
-[node name="GemCountHider" type="HBoxContainer" parent="."]
+[node name="GemCountHider" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = -1
 offset_left = 40.0
 offset_top = 40.0
 offset_right = 160.0
@@ -60,13 +65,29 @@ theme = SubResource("Theme_ux4dw")
 script = ExtResource("3_8mrjo")
 metadata/_edit_use_anchors_ = true
 
+[node name="Panel" type="Panel" parent="GemCountHider"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 32.0
+theme_override_styles/panel = ExtResource("4_8mrjo")
+
 [node name="Label" type="Label" parent="GemCountHider"]
 layout_mode = 2
+offset_top = -3.0
+offset_right = 78.0
+offset_bottom = 31.0
 text = "Gems:"
+label_settings = SubResource("LabelSettings_k3tfm")
 
 [node name="GemCountLabel" parent="GemCountHider" instance=ExtResource("4_khe3g")]
 unique_name_in_owner = true
 layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 80.0
+offset_right = 162.0
+offset_bottom = 34.0
 
 [node name="PerformanceStats" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
