@@ -150,7 +150,7 @@ namespace FastDragon
                 string levelScenePath = saveFile.CurrentLevel;
                 string levelName = AtlasCache.Instance.GetEntry(levelScenePath).HumanReadableName;
 
-                return $"Continue -- {levelName}";
+                return levelName;
             }
         }
     }
