@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://jbl1i07t5wl2"]
 
-[ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="1_flfsu"]
+[ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="1_flfsu"]
 [ext_resource type="Script" uid="uid://bfymvfpen7yyf" path="res://UI/Menus/SaveSlotManagementMenu/SaveSlotManagementMenu.cs" id="1_wxgf2"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_wxgf2"]
