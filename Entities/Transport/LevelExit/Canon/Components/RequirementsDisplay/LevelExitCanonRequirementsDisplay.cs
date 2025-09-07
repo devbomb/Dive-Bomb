@@ -38,10 +38,8 @@ namespace FastDragon
             foreach (var m in Enum.GetValues<TimeTrialCategory>())
                 _requirementsDisplay.GetNode<Node3D>(m.ToString()).Visible = false;
 
-            var currentMode = this.GetLevel()?.TimeTrial?.Mode;
-
-            if (currentMode != null)
-                _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
+            var display = _requirementsDisplay.GetNode<Node3D>(TimeTrialCategory.AnyPercent.ToString());
+            display.Visible = visible;
         }
     }
 }

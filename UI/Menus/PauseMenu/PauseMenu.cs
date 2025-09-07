@@ -114,16 +114,10 @@ namespace FastDragon
             LevelTransitionManager.Instance.GoToTitleScreen();
         }
 
-        public void EnterTimeTrialAnyPercent()
+        public void EnterTimeTrialMode()
         {
             Close();
-            this.GetLevel()?.TimeTrial.EnterTimeTrialMode(TimeTrialCategory.AnyPercent);
-        }
-
-        public void EnterTimeTrialFairyPercent()
-        {
-            Close();
-            this.GetLevel()?.TimeTrial.EnterTimeTrialMode(TimeTrialCategory.FairyPercent);
+            this.GetLevel()?.TimeTrial.EnterTimeTrialMode();
         }
 
         public void ExitTimeTrialMode()

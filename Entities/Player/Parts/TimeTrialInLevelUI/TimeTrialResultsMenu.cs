@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace FastDragon
@@ -7,6 +8,8 @@ namespace FastDragon
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private Control _buttons => GetNode<Control>("%Buttons");
 
+        private TimeTrialCategoryHighScoresTable _categoriesTable => GetNode<TimeTrialCategoryHighScoresTable>("%CategoriesTable");
+        private Label _categoryLabel => GetNode<Label>("%Category");
         private Label _yourTimeLabel => GetNode<Label>("%YourTimeLabel");
         private Label _bestTimeLabel => GetNode<Label>("%BestTimeLabel");
 
@@ -16,26 +19,45 @@ namespace FastDragon
             {
                 _buttons.Visible = true;
                 FocusedControl.GrabFocus();
+
+                _categoriesTable.Visible = true;
+                _categoriesTable.Refresh();
             };
         }
 
         public override void OnPageEntered()
         {
-            var timeTrialManager = this.GetLevel().TimeTrial;
-            _yourTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(timeTrialManager.TimerPhysicsTicks);
-            _bestTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(timeTrialManager.TargetTimePhysicsTicks);
+            var ttm = this.GetLevel().TimeTrial;
+            _yourTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(ttm.TimerPhysicsTicks);
+            _bestTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(TargetTimePhysicsTicks());
+            _categoryLabel.Text = GuessCategory().HumanReadableName();
 
             _buttons.Visible = false;
+            _categoriesTable.Visible = false;
 
             _animator.Play("RESET");
             _animator.Advance(0);
 
             _animator.Play("Open");
 
-            if (timeTrialManager.TimerPhysicsTicks < timeTrialManager.TargetTimePhysicsTicks)
+            if (ttm.TimerPhysicsTicks < TargetTimePhysicsTicks())
                 _animator.Queue("NewHighScore");
         }
 
         public void OnContinuePressed() => LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
+
+        private uint TargetTimePhysicsTicks()
+        {
+            var ttm = this.GetLevel().TimeTrial;
+            return ttm.TargetTimePhysicsTicks(GuessCategory());
+        }
+
+        private TimeTrialCategory GuessCategory()
+        {
+            var ttm = this.GetLevel().TimeTrial;
+            return ttm.RequirementsMet(TimeTrialCategory.FairyPercent)
+                ? TimeTrialCategory.FairyPercent
+                : TimeTrialCategory.AnyPercent;
+        }
     }
 }

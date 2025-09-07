@@ -76,7 +76,7 @@ namespace FastDragon
             });
         }
 
-        public void GoToLevelForTimeTrial(string levelSceneFile, TimeTrialCategory mode)
+        public void GoToLevelForTimeTrial(string levelSceneFile)
         {
             DoThingWithFadeToBlack(() =>
             {
@@ -95,7 +95,7 @@ namespace FastDragon
 
                 Log.FinishedGoToLevelWithFade();
 
-                levelRoot.TimeTrial.EnterTimeTrialMode(mode);
+                levelRoot.TimeTrial.EnterTimeTrialMode();
             });
         }
 

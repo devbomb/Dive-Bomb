@@ -5,10 +5,8 @@ namespace FastDragon
 {
     public partial class TimeTrialInLevelUI : Control
     {
-        public bool IsTimeTrialMode => Mode != null;
+        public bool IsTimeTrialMode => this.GetLevel()?.TimeTrial?.IsTimeTrialMode ?? false;
         public bool IsTimerRunning => this.GetLevel()?.TimeTrial?.IsTimerRunning ?? false;
-
-        public TimeTrialCategory? Mode => this.GetLevel()?.TimeTrial.Mode;
 
 
         private Label _timerLabel => GetNode<Label>("%TimerLabel");

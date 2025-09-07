@@ -122,14 +122,6 @@ namespace FastDragon
             {
                 Self._crystal.Rollable = false;
             }
-
-            public override void _PhysicsProcess(double delta)
-            {
-                if (Self.IsTimeTrialMode())
-                {
-                    Self._crystal.Disabled = !Self.GetLevel().TimeTrial.RequirementsMet();
-                }
-            }
         }
 
         private class AligningPlayer : State<LevelExitCanon>
