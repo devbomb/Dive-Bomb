@@ -51,9 +51,11 @@ namespace FastDragon
                 {
                     var level = this.GetLevel();
                     var levelSummary = AtlasCache.Instance.GetEntry(level.SceneFilePath);
+
+                    int fairiesInLevel = levelSummary.TotalFairiesInLevel;
                     int fairiesFound = level.GetProgress().CollectedFairies.Count;
 
-                    return fairiesFound >= levelSummary.TotalFairiesInLevel;
+                    return fairiesInLevel > 0 && fairiesFound >= fairiesInLevel;
                 }
 
                 default: return true;
