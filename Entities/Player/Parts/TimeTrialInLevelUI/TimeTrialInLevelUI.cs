@@ -54,6 +54,13 @@ namespace FastDragon
             this.GetLevel().TimeTrial.Start();
         }
 
+        public void ExitTimeTrialMode()
+        {
+            _pageNav.ChangePage(null);
+            GetTree().Paused = false;
+            this.GetLevel().TimeTrial.ExitTimeTrialMode();
+        }
+
         public override void _PhysicsProcess(double delta)
         {
             if (IsTimeTrialMode)

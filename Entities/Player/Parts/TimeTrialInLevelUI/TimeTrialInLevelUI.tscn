@@ -225,4 +225,5 @@ libraries = {
 }
 script = SubResource("GDScript_7511j")
 
+[connection signal="ExitPressed" from="PageNavigator/TimeTrialBriefingPage" to="." method="ExitTimeTrialMode"]
 [connection signal="StartPressed" from="PageNavigator/TimeTrialBriefingPage" to="." method="Start"]

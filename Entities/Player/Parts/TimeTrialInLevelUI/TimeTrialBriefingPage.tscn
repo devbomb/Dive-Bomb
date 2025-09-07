@@ -111,9 +111,9 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Start"
 
-[node name="QuitToTitle" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit to Title"
+text = "Exit Time Trial Mode"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/StartButton" to="." method="OnStartPressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/QuitToTitle" to="." method="OnQuitToTitlePressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ExitButton" to="." method="OnExitPressed"]

@@ -5,6 +5,7 @@ namespace FastDragon
     public partial class TimeTrialBriefingMenu : Page
     {
         [Signal] public delegate void StartPressedEventHandler();
+        [Signal] public delegate void ExitPressedEventHandler();
 
         private Control _instructionsRoot => GetNode<Control>("%Instructions");
 
@@ -23,11 +24,7 @@ namespace FastDragon
         }
 
         public void OnStartPressed() => EmitSignal(SignalName.StartPressed);
-
-        public void OnQuitToTitlePressed()
-        {
-            LevelTransitionManager.Instance.GoToTitleScreen();
-        }
+        public void OnExitPressed() => EmitSignal(SignalName.ExitPressed);
 
         private void ShowInstructionsFor(TimeTrialCategory? category)
         {
