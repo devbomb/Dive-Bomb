@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bguu511rb2uj2" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialResultsMenu.cs" id="1_nnmc3"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="2_ivodr"]
-[ext_resource type="Script" path="res://UI/VerticalLoopingMenu.gd" id="3_xj5vp"]
+[ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="3_xj5vp"]
 
 [sub_resource type="Animation" id="Animation_8df8q"]
 resource_name = "NewHighScore"
@@ -205,7 +205,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nnmc3")
-FocusedControl = NodePath("Buttons/VBoxContainer/RetryButton")
+FocusedControl = NodePath("Buttons/VBoxContainer/ContinueButton")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -247,13 +247,9 @@ theme = ExtResource("2_ivodr")
 layout_mode = 2
 script = ExtResource("3_xj5vp")
 
-[node name="RetryButton" type="Button" parent="Buttons/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="Buttons/VBoxContainer"]
 layout_mode = 2
-text = "Retry"
-
-[node name="QuitToTitle" type="Button" parent="Buttons/VBoxContainer"]
-layout_mode = 2
-text = "Quit to Title"
+text = "Continue"
 
 [node name="YourTime" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -302,5 +298,4 @@ label_settings = SubResource("LabelSettings_3t4o0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="Buttons/VBoxContainer/RetryButton" to="." method="OnRetryPressed"]
-[connection signal="pressed" from="Buttons/VBoxContainer/QuitToTitle" to="." method="OnQuitToTitlePressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/ContinueButton" to="." method="OnContinuePressed"]
