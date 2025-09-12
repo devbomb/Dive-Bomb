@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bckjgvq8udjn3"]
+[gd_scene load_steps=10 format=3 uid="uid://bckjgvq8udjn3"]
 
 [ext_resource type="Script" uid="uid://w5odecg6wwfh" path="res://Screens/PortalLoadingScreen/PortalLoadingScreen.cs" id="1_uqld0"]
 [ext_resource type="PackedScene" uid="uid://desy5vwopnilu" path="res://Screens/PortalLoadingScreen/GemCountingRig.tscn" id="7_nkdy5"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="10_fcuss"]
 [ext_resource type="Script" uid="uid://dinu4neoq8exm" path="res://Common/Components/OrbitCamera.cs" id="11_euysw"]
 [ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://UI/Menus/HUD/FPSCounter.tscn" id="16_b5m5h"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_o2yvu"]
+action = &"Interact"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_oul1r"]
+events = [SubResource("InputEventAction_o2yvu")]
 
 [node name="PortalLoadingScreen" type="Node3D"]
 script = ExtResource("1_uqld0")
@@ -80,6 +87,9 @@ offset_bottom = -30.0
 grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
+action_mode = 0
+shortcut = SubResource("Shortcut_oul1r")
+shortcut_in_tooltip = false
 text = "Time Trial Mode"
 
 [connection signal="DoneMovingToRest" from="." to="OrbitCamera/GemCountingRig" method="Start"]
