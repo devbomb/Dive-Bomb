@@ -8,6 +8,7 @@ namespace FastDragon
     public partial class Player : CharacterBody3D
     {
         [Signal] public delegate void RespawningEventHandler();
+        [Signal] public delegate void FlyInFinishedEventHandler();
 
         [Export] public float FlyInHeight = 10;
         [Export] public float FlyInDistance = 10;

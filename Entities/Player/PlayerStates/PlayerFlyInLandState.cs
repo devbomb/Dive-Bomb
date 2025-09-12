@@ -23,7 +23,10 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             if (!Self.Animator.IsPlaying())
+            {
                 Self.Respawn();
+                Self.EmitSignal(Player.SignalName.FlyInFinished);
+            }
         }
     }
 }
