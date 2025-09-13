@@ -21,6 +21,8 @@ namespace FastDragon
         /// <returns></returns>
         [Export(PropertyHint.File)] public string HomeWorldLevel;
 
+        public bool IsHomeWorld => HomeWorldLevel == null;
+
         public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
 
         public readonly TimeTrialManager TimeTrial = new TimeTrialManager();
