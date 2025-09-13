@@ -12,6 +12,8 @@ namespace FastDragon
         [JsonProperty] public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
         [JsonProperty] public int SpentGems = 0;
 
+        [JsonProperty] public bool ExitReached;
+
         public int FairiesCollected => CollectedFairies.Count;
         public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);
 

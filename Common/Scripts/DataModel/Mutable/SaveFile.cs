@@ -16,11 +16,11 @@ namespace FastDragon
         [JsonProperty] public int UntalliedGemsSpent;
         [JsonProperty] public Dictionary<GemColor, int> UntalliedGemsCollected = new();
 
-        [JsonProperty] public Dictionary<string, LevelProgress> Levels = new();
+        [JsonProperty] public Dictionary<string, LevelSaveData> Levels = new();
 
-        public int TotalGemsSpent => Levels.Values.Sum(l => l.SpentGems);
-        public int TotalGemCount => Levels.Values.Sum(l => l.TotalGemsCollected) - TotalGemsSpent;
-        public int TotalFairyCount => Levels.Values.Sum(l => l.CollectedFairies.Count);
+        public int TotalGemsSpent => Levels.Values.Sum(l => l.Progress.SpentGems);
+        public int TotalGemCount => Levels.Values.Sum(l => l.Progress.TotalGemsCollected) - TotalGemsSpent;
+        public int TotalFairyCount => Levels.Values.Sum(l => l.Progress.CollectedFairies.Count);
 
         public static SaveFile FromJson(string json)
         {
@@ -48,18 +48,39 @@ namespace FastDragon
             UntalliedGemsCollected[color]++;
         }
 
-        public LevelProgress GetLevelProgress(string level)
+        public LevelSaveData GetLevelSaveData(string level)
         {
             if (!Levels.ContainsKey(level))
-                Levels.Add(level, new LevelProgress());
+                Levels.Add(level, new LevelSaveData());
 
             return Levels[level];
+        }
+
+        public bool IsTimeTrialUnlocked(string level, TimeTrialCategory category)
+        {
+            var progress = GetLevelSaveData(level).Progress;
+
+            switch (category)
+            {
+                case TimeTrialCategory.AnyPercent:
+                {
+                    return progress.ExitReached;
+                }
+
+                case TimeTrialCategory.FairyPercent:
+                {
+                    var summary = AtlasCache.Instance.GetEntry(level);
+                    return progress.ExitReached && progress.FairiesCollected >= summary.TotalFairiesInLevel;
+                }
+
+                default: return false;
+            }
         }
 
         public double GetPercentComplete(string levelSceneFile)
         {
             var levelSummary = AtlasCache.Instance.GetEntry(levelSceneFile);
-            var progress = GetLevelProgress(levelSceneFile);
+            var progress = GetLevelSaveData(levelSceneFile).Progress;
             int categories = 0;
             double totalPercent = 0;
 

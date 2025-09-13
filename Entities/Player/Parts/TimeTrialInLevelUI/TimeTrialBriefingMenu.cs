@@ -5,16 +5,7 @@ namespace FastDragon
     public partial class TimeTrialBriefingMenu : Page
     {
         [Signal] public delegate void StartPressedEventHandler();
-
-        private Control _instructionsRoot => GetNode<Control>("%Instructions");
-
-        public override void OnPageEntered()
-        {
-            var mode = this.GetLevel().TimeTrial.Mode;
-            ShowInstructionsFor(mode);
-
-            GetNode<Button>("%StartButton").GrabFocus();
-        }
+        [Signal] public delegate void ExitPressedEventHandler();
 
         public override void _Process(double deltaD)
         {
@@ -23,21 +14,6 @@ namespace FastDragon
         }
 
         public void OnStartPressed() => EmitSignal(SignalName.StartPressed);
-
-        public void OnQuitToTitlePressed()
-        {
-            LevelTransitionManager.Instance.GoToTitleScreen();
-        }
-
-        private void ShowInstructionsFor(TimeTrialCategory? category)
-        {
-            foreach (var label in _instructionsRoot.GetChildren())
-            {
-                (label as Label).Visible = false;
-            }
-
-            if (category != null)
-                GetNode<Control>($"%Instructions/{category}").Visible = true;
-        }
+        public void OnExitPressed() => EmitSignal(SignalName.ExitPressed);
     }
 }

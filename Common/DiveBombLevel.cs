@@ -21,6 +21,8 @@ namespace FastDragon
         /// <returns></returns>
         [Export(PropertyHint.File)] public string HomeWorldLevel;
 
+        public bool IsHomeWorld => HomeWorldLevel == null;
+
         public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
 
         public readonly TimeTrialManager TimeTrial = new TimeTrialManager();
@@ -44,7 +46,14 @@ namespace FastDragon
         {
             return TimeTrial.IsTimeTrialMode
                 ? TimeTrial.DummyProgress
-                : SaveFileManager.Current.GetLevelProgress(SceneFilePath);
+                : SaveFileManager.Current.GetLevelSaveData(SceneFilePath).Progress;
+        }
+        public LevelSummary GetSummary()
+        {
+            if (!IsNodeReady())
+                throw new System.Exception("Don't call GetSummary() before the level is ready!");
+
+            return AtlasCache.Instance.GetEntry(SceneFilePath);
         }
     }
 

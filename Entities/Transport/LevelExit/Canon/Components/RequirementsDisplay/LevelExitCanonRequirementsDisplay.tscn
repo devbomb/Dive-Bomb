@@ -1,20 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://djnbli61q61ld"]
+[gd_scene load_steps=4 format=3 uid="uid://djnbli61q61ld"]
 
 [ext_resource type="PackedScene" uid="uid://2yvv5qgiulnp" path="res://UI/Widgets/FairiesInLevelProgress/FairiesInLevelProgress.tscn" id="1_cnufe"]
 [ext_resource type="Script" uid="uid://cql6uog0dk85p" path="res://Entities/Transport/LevelExit/Canon/Components/RequirementsDisplay/LevelExitCanonRequirementsDisplay.cs" id="1_hhbvs"]
+[ext_resource type="PackedScene" uid="uid://d0tarm2enjii8" path="res://UI/Widgets/GemsInLevelProgress/GemsInLevelProgress.tscn" id="2_s1w7k"]
 
 [node name="LevelExitCanonRequirementsDisplay" type="Node3D" groups=["PhysicsInterpolated"]]
 script = ExtResource("1_hhbvs")
 
 [node name="RequirementsDisplay" type="Node3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[node name="None" type="Node3D" parent="RequirementsDisplay"]
-visible = false
+[node name="Gems" parent="RequirementsDisplay" instance=ExtResource("2_s1w7k")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24559, 0)
 
-[node name="AnyPercent" type="Node3D" parent="RequirementsDisplay"]
-visible = false
-
-[node name="FairyPercent" parent="RequirementsDisplay" instance=ExtResource("1_cnufe")]
-visible = false
+[node name="Fairies" parent="RequirementsDisplay" instance=ExtResource("1_cnufe")]
+unique_name_in_owner = true

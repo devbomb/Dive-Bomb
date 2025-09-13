@@ -5,10 +5,8 @@ namespace FastDragon
 {
     public partial class TimeTrialInLevelUI : Control
     {
-        public bool IsTimeTrialMode => Mode != null;
+        public bool IsTimeTrialMode => this.GetLevel()?.TimeTrial?.IsTimeTrialMode ?? false;
         public bool IsTimerRunning => this.GetLevel()?.TimeTrial?.IsTimerRunning ?? false;
-
-        public TimeTrialCategory? Mode => this.GetLevel()?.TimeTrial.Mode;
 
 
         private Label _timerLabel => GetNode<Label>("%TimerLabel");
@@ -52,6 +50,13 @@ namespace FastDragon
         {
             _pageNav.ChangePage(null);
             this.GetLevel().TimeTrial.Start();
+        }
+
+        public void ExitTimeTrialMode()
+        {
+            _pageNav.ChangePage(null);
+            GetTree().Paused = false;
+            this.GetLevel().TimeTrial.ExitTimeTrialMode();
         }
 
         public override void _PhysicsProcess(double delta)

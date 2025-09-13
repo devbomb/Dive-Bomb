@@ -40,6 +40,15 @@ namespace FastDragon
                 if (mesh != _portalMaterialHolder)
                     mesh.MaterialOverride = _portalMaterialHolder.MaterialOverride;
             }
+
+            SignalBus.Instance.LevelReset += Reset;
+            Reset();
+        }
+
+        private void Reset()
+        {
+            _player?.SetVisibleInPortals(false);
+            _stateMachine.ChangeState<Idle>();
         }
 
         private void OnBodyEntered(Node3D body)

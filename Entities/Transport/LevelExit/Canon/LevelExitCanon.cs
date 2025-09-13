@@ -45,6 +45,13 @@ namespace FastDragon
 
         public void OnCrystalShattered()
         {
+            if (this.GetLevel() != null)
+            {
+                this.GetLevel().GetProgress().ExitReached = true;
+            }
+
+            SignalBus.Instance.EmitExitReached();
+
             _stateMachine.ChangeState<AligningPlayer>();
         }
 
@@ -115,14 +122,6 @@ namespace FastDragon
             {
                 Self._crystal.Rollable = false;
             }
-
-            public override void _PhysicsProcess(double delta)
-            {
-                if (Self.IsTimeTrialMode())
-                {
-                    Self._crystal.Disabled = !Self.GetLevel().TimeTrial.RequirementsMet();
-                }
-            }
         }
 
         private class AligningPlayer : State<LevelExitCanon>
@@ -134,8 +133,6 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SignalBus.Instance.EmitExitReached();
-
                 _timer = 0;
 
                 _player = Self.GetTree().FindNode<Player>();

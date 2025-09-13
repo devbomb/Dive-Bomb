@@ -15,6 +15,7 @@ namespace FastDragon
         private UserSettingsMenu _userSettingsMenu => GetNode<UserSettingsMenu>("%UserSettingsMenu");
 
         private Button _exitLevelButton => GetNode<Button>("%ExitLevel");
+        private Button _quitToTitleButton => GetNode<Button>("%QuitToTitle");
 
         public override void _Input(InputEvent ev)
         {
@@ -30,7 +31,8 @@ namespace FastDragon
         public override void _Ready()
         {
             Close();
-            _exitLevelButton.Visible = this.GetLevel()?.HomeWorldLevel != null;
+            _quitToTitleButton.Visible = this.GetLevel()?.IsHomeWorld ?? true;
+            _exitLevelButton.Visible = !_quitToTitleButton.Visible;
         }
 
         public void Open()
@@ -114,22 +116,10 @@ namespace FastDragon
             LevelTransitionManager.Instance.GoToTitleScreen();
         }
 
-        public void EnterTimeTrialAnyPercent()
+        public void EnterTimeTrialMode()
         {
             Close();
-            this.GetLevel()?.TimeTrial.EnterTimeTrialMode(TimeTrialCategory.AnyPercent);
-        }
-
-        public void EnterTimeTrialFairyPercent()
-        {
-            Close();
-            this.GetLevel()?.TimeTrial.EnterTimeTrialMode(TimeTrialCategory.FairyPercent);
-        }
-
-        public void ExitTimeTrialMode()
-        {
-            Close();
-            this.GetLevel()?.TimeTrial.ExitTimeTrialMode();
+            this.GetLevel()?.TimeTrial.EnterTimeTrialMode();
         }
     }
 }

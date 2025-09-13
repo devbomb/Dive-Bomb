@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dk14uy27kbnyn" path="res://UI/Menus/AtlasMenu/AtlasMenu.tscn" id="3_0fbh4"]
 [ext_resource type="Script" uid="uid://la5dtjohmevd" path="res://UI/Widgets/Page.cs" id="3_2prw7"]
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.tscn" id="4_cbwi1"]
-[ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="4_kb3w6"]
+[ext_resource type="Script" path="res://UI/VerticalLoopingMenu.gd" id="4_kb3w6"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -69,6 +69,7 @@ layout_mode = 2
 text = "Exit Level"
 
 [node name="QuitToTitle" type="Button" parent="MainPage/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to title"
 
@@ -105,14 +106,6 @@ text = "Reset"
 [node name="Options" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
 layout_mode = 2
 text = "Options"
-
-[node name="DebugMenu" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
-layout_mode = 2
-text = "Debug Menu"
-
-[node name="QuitToTitle" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
-layout_mode = 2
-text = "Quit to title"
 
 [node name="AtlasMenu" parent="." instance=ExtResource("3_0fbh4")]
 unique_name_in_owner = true
@@ -155,17 +148,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Reset Level Progress"
 
-[node name="TimeTrialAnyPercent" type="Button" parent="DebugMenu/VBoxContainer"]
+[node name="TimeTrialEnter" type="Button" parent="DebugMenu/VBoxContainer"]
 layout_mode = 2
-text = "Time trial mode (Any%)"
-
-[node name="TimeTrialFairyPercent" type="Button" parent="DebugMenu/VBoxContainer"]
-layout_mode = 2
-text = "Time trial mode (Fairy%)"
-
-[node name="TimeTrialExit" type="Button" parent="DebugMenu/VBoxContainer"]
-layout_mode = 2
-text = "Exit Time Trial Mode"
+text = "Enter Time Trial Mode"
 
 [node name="Back" type="Button" parent="DebugMenu/VBoxContainer"]
 layout_mode = 2
@@ -183,13 +168,9 @@ text = "Back"
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Continue" to="." method="Close"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/ResetLevel" to="." method="ReturnToCheckpoint"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Options" to="." method="OpenUserSettingsMenu"]
-[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/DebugMenu" to="." method="OpenDebugMenu"]
-[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/QuitToTitle" to="." method="QuitToTitle"]
 [connection signal="BackRequested" from="AtlasMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="UserSettingsMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="DebugMenu" to="." method="OpenMainPage"]
 [connection signal="pressed" from="DebugMenu/VBoxContainer/FullResetLevel" to="." method="FullyResetLevel"]
-[connection signal="pressed" from="DebugMenu/VBoxContainer/TimeTrialAnyPercent" to="." method="EnterTimeTrialAnyPercent"]
-[connection signal="pressed" from="DebugMenu/VBoxContainer/TimeTrialFairyPercent" to="." method="EnterTimeTrialFairyPercent"]
-[connection signal="pressed" from="DebugMenu/VBoxContainer/TimeTrialExit" to="." method="ExitTimeTrialMode"]
+[connection signal="pressed" from="DebugMenu/VBoxContainer/TimeTrialEnter" to="." method="EnterTimeTrialMode"]
 [connection signal="pressed" from="DebugMenu/VBoxContainer/Back" to="DebugMenu" method="GoBack"]

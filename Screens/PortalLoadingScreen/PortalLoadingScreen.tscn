@@ -1,12 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://bckjgvq8udjn3"]
+[gd_scene load_steps=12 format=3 uid="uid://bckjgvq8udjn3"]
 
 [ext_resource type="Script" uid="uid://w5odecg6wwfh" path="res://Screens/PortalLoadingScreen/PortalLoadingScreen.cs" id="1_uqld0"]
 [ext_resource type="PackedScene" uid="uid://desy5vwopnilu" path="res://Screens/PortalLoadingScreen/GemCountingRig.tscn" id="7_nkdy5"]
 [ext_resource type="AudioStream" uid="uid://bck1j6xyd3npi" path="res://Common/Audio/SFX/SkyDiveWind.wav" id="7_thdtk"]
+[ext_resource type="Script" uid="uid://vjratart1cb3" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="8_oul1r"]
 [ext_resource type="AnimationLibrary" uid="uid://dodb8qndnr6cw" path="res://Entities/Player/KennifiedPlayerAnimations.tres" id="9_x2eyu"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="10_fcuss"]
 [ext_resource type="Script" uid="uid://dinu4neoq8exm" path="res://Common/Components/OrbitCamera.cs" id="11_euysw"]
 [ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://UI/Menus/HUD/FPSCounter.tscn" id="16_b5m5h"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_o2yvu"]
+action = &"Interact"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_oul1r"]
+events = [SubResource("InputEventAction_o2yvu")]
+
+[sub_resource type="Texture2D" id="Texture2D_ayfj7"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("8_oul1r")
+path = "Interact"
+show_mode = 2
+force_controller_icon_style = -1
+force_type = 0
+force_device = 16
+metadata/_custom_type_script = "uid://vjratart1cb3"
 
 [node name="PortalLoadingScreen" type="Node3D"]
 script = ExtResource("1_uqld0")
@@ -64,6 +83,35 @@ grow_vertical = 2
 
 [node name="FPSCounter" parent="HUD" instance=ExtResource("16_b5m5h")]
 layout_mode = 0
+
+[node name="TimeTrialToggleHolder" type="HBoxContainer" parent="HUD"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -173.0
+offset_top = -40.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TimeTrialToggle" type="CheckButton" parent="HUD/TimeTrialToggleHolder"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+shortcut = SubResource("Shortcut_oul1r")
+shortcut_in_tooltip = false
+text = "Time Trial Mode"
+
+[node name="TriangleGlyph" type="TextureRect" parent="HUD/TimeTrialToggleHolder"]
+layout_mode = 2
+texture = SubResource("Texture2D_ayfj7")
+expand_mode = 3
 
 [connection signal="DoneMovingToRest" from="." to="OrbitCamera/GemCountingRig" method="Start"]
 [connection signal="DoneSkipping" from="." to="OrbitCamera/GemCountingRig" method="StartAfterSkipped"]

@@ -1,27 +1,36 @@
 using System;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
 {
     public partial class LevelExitCanonRequirementsDisplay : Node3D
     {
-        private Node3D _requirementsDisplay => GetNode<Node3D>("%RequirementsDisplay");
+        private Node3D _fairies => GetNode<Node3D>("%Fairies");
+        private Node3D _gems => GetNode<Node3D>("%Gems");
 
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += Reset;
             SignalBus.Instance.ExitReached += OnExitReached;
             Reset();
+
+            Callable.From(() =>
+            {
+                var summary = this.GetLevel()?.GetSummary();
+                _fairies.Visible = (summary?.TotalFairiesInLevel ?? 0) > 0;
+                _gems.Visible = (summary?.TotalGemsInLevel ?? 0) > 0;
+            }).CallDeferred();
         }
 
         private void Reset()
         {
-            SetRequirementsVisible(this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false);
+            Visible = true;
         }
 
         private void OnExitReached()
         {
-            SetRequirementsVisible(false);
+            Visible = false;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -31,17 +40,6 @@ namespace FastDragon
 
             if (GlobalPosition.DistanceTo(lookPoint) > 0.1f)
                 LookAt(lookPoint);
-        }
-
-        private void SetRequirementsVisible(bool visible)
-        {
-            foreach (var m in Enum.GetValues<TimeTrialCategory>())
-                _requirementsDisplay.GetNode<Node3D>(m.ToString()).Visible = false;
-
-            var currentMode = this.GetLevel()?.TimeTrial?.Mode;
-
-            if (currentMode != null)
-                _requirementsDisplay.GetNode<Node3D>(currentMode.ToString()).Visible = visible;
         }
     }
 }

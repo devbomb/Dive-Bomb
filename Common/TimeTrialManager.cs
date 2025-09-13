@@ -1,17 +1,16 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
 {
     public partial class TimeTrialManager : Node
     {
-        public bool IsTimeTrialMode => Mode != null;
-        public bool IsTimerRunning {get; private set;} = false;
-
-        public TimeTrialCategory? Mode {get; private set;} = null;
+        public bool IsTimeTrialMode { get; private set; } = false;
+        public bool IsTimerRunning { get; private set; } = false;
 
         public uint TimerPhysicsTicks {get; private set;}
-        public uint TargetTimePhysicsTicks {get; private set;}
 
         public LevelProgress DummyProgress { get; private set; } = new();
 
@@ -22,6 +21,8 @@ namespace FastDragon
 
         private bool _isResettingLevelProgress = false;
 
+        private Dictionary<TimeTrialCategory, uint> _targetTimes = new();
+
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += OnLevelReset;
@@ -29,34 +30,65 @@ namespace FastDragon
             ProcessMode = ProcessModeEnum.Always;
         }
 
-        public void EnterTimeTrialMode(TimeTrialCategory mode)
+        public void EnterTimeTrialMode()
         {
-            Mode = mode;
+            IsTimeTrialMode = true;
+
+            _targetTimes = CopyBestTimes();
             SaveFileManager.Current.CurrentCheckpoint = null;
             SignalBus.Instance.EmitLevelReset();
         }
 
         public void ExitTimeTrialMode()
         {
-            Mode = null;
+            IsTimeTrialMode = false;
+            IsTimerRunning = false;
             SignalBus.Instance.EmitLevelReset();
         }
 
-        public bool RequirementsMet()
+        public bool RequirementsMet(TimeTrialCategory category)
         {
-            switch (Mode)
+            var level = this.GetLevel();
+            var levelSummary = level.GetSummary();
+            var progress = level.GetProgress();
+
+            switch (category)
             {
                 case TimeTrialCategory.FairyPercent:
                 {
-                    var level = this.GetLevel();
-                    var levelSummary = AtlasCache.Instance.GetEntry(level.SceneFilePath);
-                    int fairiesFound = level.GetProgress().CollectedFairies.Count;
+                    int fairiesInLevel = levelSummary.TotalFairiesInLevel;
+                    int fairiesFound = progress.CollectedFairies.Count;
 
-                    return fairiesFound >= levelSummary.TotalFairiesInLevel;
+                    return fairiesInLevel > 0 && fairiesFound >= fairiesInLevel;
                 }
 
                 default: return true;
             }
+        }
+
+        /// <summary>
+        ///     Whether or not the given category even makes sense for this
+        ///     level.  (IE: fairy percent doesn't make sense in levels without
+        ///     any fairies)
+        /// </summary>
+        public bool IsRelevant(TimeTrialCategory category)
+        {
+            var level = this.GetLevel();
+            var levelSummary = level.GetSummary();
+
+            switch (category)
+            {
+                case TimeTrialCategory.AnyPercent: return true;
+                case TimeTrialCategory.FairyPercent: return levelSummary.TotalFairiesInLevel > 0;
+                default: return false;
+            }
+        }
+
+        public uint TargetTimePhysicsTicks(TimeTrialCategory category)
+        {
+            return _targetTimes.TryGetValue(category, out uint value)
+                ? value
+                : uint.MaxValue;
         }
 
         private void OnLevelReset()
@@ -71,7 +103,7 @@ namespace FastDragon
             }
 
             TimerPhysicsTicks = 0;
-            TargetTimePhysicsTicks = GetSavedBestTime();
+            _targetTimes = CopyBestTimes();
 
             IsTimerRunning = false;
             EmitSignal(SignalName.ReadyToShowBriefing);
@@ -95,21 +127,7 @@ namespace FastDragon
             if (IsTimeTrialMode)
             {
                 Finish();
-                return;
             }
-
-            // Unlock time trial modes
-            string currentLevel = SaveFileManager.Current.CurrentLevel;
-            var levelProgress = this.GetLevel().GetProgress();
-            var atlasEntry = AtlasCache.Instance.GetEntry(currentLevel);
-
-            bool levelHasGems = atlasEntry.TotalGemsInLevel > 0;
-            bool levelHasFairies = atlasEntry.TotalFairiesInLevel > 0;
-
-            TimeTrialSaveData.Instance.UnlockCategory(currentLevel, TimeTrialCategory.AnyPercent);
-
-            if (levelHasFairies && levelProgress.FairiesCollected >= atlasEntry.TotalFairiesInLevel)
-                TimeTrialSaveData.Instance.UnlockCategory(currentLevel, TimeTrialCategory.FairyPercent);
         }
 
         public void ShowResultsScreen()
@@ -129,8 +147,17 @@ namespace FastDragon
         {
             IsTimerRunning = false;
 
-            if (TimerPhysicsTicks < GetSavedBestTime())
-                SetSavedBestTime(TimerPhysicsTicks);
+            // Update the best time for all categories that the player has met
+            // the requirements for
+            foreach (var category in Enum.GetValues<TimeTrialCategory>())
+            {
+                if (!RequirementsMet(category))
+                    continue;
+
+                uint targetTimePhysicsTicks = GetSavedBestTime(category) ?? uint.MaxValue;
+                if (TimerPhysicsTicks < targetTimePhysicsTicks)
+                    SetSavedBestTime(category, TimerPhysicsTicks);
+            }
 
             EmitSignal(SignalName.TimeTrialFinished);
         }
@@ -144,26 +171,32 @@ namespace FastDragon
             }
         }
 
-        private uint GetSavedBestTime()
+        public uint? GetSavedBestTime(TimeTrialCategory category)
         {
-            var entry = CurrentCategoryEntry();
-
-            return entry.BestTimePhysicsTicks == null
-                ? uint.MaxValue
-                : entry.BestTimePhysicsTicks.Value;
+            var saveData = CurrentLevelSaveData();
+            return saveData.TimeTrialBestTimePhysicsTicks.TryGetValue(category, out var time)
+                ? time
+                : null;
         }
 
-        private void SetSavedBestTime(uint timePhysicsTicks)
+        private void SetSavedBestTime(TimeTrialCategory category, uint timePhysicsTicks)
         {
-            CurrentCategoryEntry().BestTimePhysicsTicks = timePhysicsTicks;
-            TimeTrialSaveData.Instance.SaveToJson();
+            var save = CurrentLevelSaveData();
+            save.TimeTrialBestTimePhysicsTicks[category] = timePhysicsTicks;
         }
 
-        private TimeTrialSaveData.CategoryEntry CurrentCategoryEntry()
+        private LevelSaveData CurrentLevelSaveData()
         {
-            return TimeTrialSaveData
-                .Instance
-                .GetEntry(SaveFileManager.Current.CurrentLevel, Mode.Value);
+            return SaveFileManager
+                .Current
+                .GetLevelSaveData(this.GetLevel().SceneFilePath);
+        }
+
+        private Dictionary<TimeTrialCategory, uint> CopyBestTimes()
+        {
+            return CurrentLevelSaveData()
+                .TimeTrialBestTimePhysicsTicks
+                .ToDictionary();
         }
     }
 }

@@ -49,10 +49,13 @@ namespace FastDragon
 
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
-        private bool _isReturningHome => _parameters.PreviousLevelScenePath != null;
-        private Node3D _loadedSceneNode;
+        private Control _timeTrialToggleHolder => GetNode<Control>("%TimeTrialToggleHolder");
+        private CheckButton _timeTrialToggle => GetNode<CheckButton>("%TimeTrialToggle");
 
-        private StateMachine _stateMachine = new StateMachine();
+        private bool _isReturningHome => _parameters.PreviousLevelScenePath != null;
+        private DiveBombLevel _loadedSceneNode;
+
+        private readonly StateMachine _stateMachine = new StateMachine();
 
         public override void _Ready()
         {
@@ -76,6 +79,8 @@ namespace FastDragon
                 SaveFileManager.Current.TotalGemCount + SaveFileManager.Current.TotalGemsSpent,
                 SaveFileManager.Current.TotalGemsSpent
             );
+
+            _timeTrialToggleHolder.Visible = !_isReturningHome;
 
             _worldEnv.Environment = parameters.SkyBoxEnvironment;
             _oldSun = parameters.OldSun;
@@ -166,6 +171,14 @@ namespace FastDragon
                 realPlayer.ChangeState<PlayerFlyInState>();
             }
 
+            if (_timeTrialToggle.ButtonPressed && !_isReturningHome)
+            {
+                realPlayer.FlyInFinished += () =>
+                {
+                    _loadedSceneNode.TimeTrial.EnterTimeTrialMode();
+                };
+            }
+
             Log.LoadingScreenFinished();
         }
 
@@ -174,7 +187,6 @@ namespace FastDragon
             return sceneRoot
                 .EnumerateDescendantsOfType<Portal>()
                 .First(p => p.TargetLevel == _parameters.PreviousLevelScenePath);
-
         }
 
         private abstract partial class LoadingScreenState : State<PortalLoadingScreen>
@@ -247,7 +259,7 @@ namespace FastDragon
             {
                 if (Self.LoadedScene != null)
                 {
-                    Self._loadedSceneNode = Self.LoadedScene.Instantiate<Node3D>();
+                    Self._loadedSceneNode = Self.LoadedScene.Instantiate<DiveBombLevel>();
                     ChangeState<CorrectingAngle>();
                 }
             }

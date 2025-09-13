@@ -49,7 +49,7 @@ namespace FastDragon
 
         private void AddRow(string levelScenePath)
         {
-            var progress = SaveFileManager.Current.Levels[levelScenePath];
+            var progress = SaveFileManager.Current.Levels[levelScenePath].Progress;
             var summary = AtlasCache.Instance.GetEntry(levelScenePath);
 
             var row = _table.CreateItem();
