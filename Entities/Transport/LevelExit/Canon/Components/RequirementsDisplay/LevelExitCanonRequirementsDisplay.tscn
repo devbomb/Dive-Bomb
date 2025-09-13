@@ -10,11 +10,4 @@ script = ExtResource("1_hhbvs")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[node name="None" type="Node3D" parent="RequirementsDisplay"]
-visible = false
-
-[node name="AnyPercent" type="Node3D" parent="RequirementsDisplay"]
-visible = false
-
-[node name="FairyPercent" parent="RequirementsDisplay" instance=ExtResource("1_cnufe")]
-visible = false
+[node name="Fairies" parent="RequirementsDisplay" instance=ExtResource("1_cnufe")]

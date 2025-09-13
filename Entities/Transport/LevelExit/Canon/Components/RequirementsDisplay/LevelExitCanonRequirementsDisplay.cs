@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -16,7 +17,7 @@ namespace FastDragon
 
         private void Reset()
         {
-            SetRequirementsVisible(this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false);
+            SetRequirementsVisible(true);
         }
 
         private void OnExitReached()
@@ -35,11 +36,8 @@ namespace FastDragon
 
         private void SetRequirementsVisible(bool visible)
         {
-            foreach (var m in Enum.GetValues<TimeTrialCategory>())
-                _requirementsDisplay.GetNode<Node3D>(m.ToString()).Visible = false;
-
-            var display = _requirementsDisplay.GetNode<Node3D>(TimeTrialCategory.AnyPercent.ToString());
-            display.Visible = visible;
+            foreach (var display in _requirementsDisplay.EnumerateChildren().Cast<Node3D>())
+                display.Visible = visible;
         }
     }
 }
