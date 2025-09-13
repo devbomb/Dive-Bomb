@@ -119,11 +119,5 @@ namespace FastDragon
             Close();
             this.GetLevel()?.TimeTrial.EnterTimeTrialMode();
         }
-
-        public void ExitTimeTrialMode()
-        {
-            Close();
-            this.GetLevel()?.TimeTrial.ExitTimeTrialMode();
-        }
     }
 }
