@@ -7,6 +7,7 @@ namespace FastDragon
     public partial class LevelExitCanonRequirementsDisplay : Node3D
     {
         private Node3D _fairies => GetNode<Node3D>("%Fairies");
+        private Node3D _gems => GetNode<Node3D>("%Gems");
 
         public override void _Ready()
         {
@@ -18,6 +19,7 @@ namespace FastDragon
             {
                 var summary = this.GetLevel()?.GetSummary();
                 _fairies.Visible = (summary?.TotalFairiesInLevel ?? 0) > 0;
+                _gems.Visible = (summary?.TotalGemsInLevel ?? 0) > 0;
             }).CallDeferred();
         }
 
