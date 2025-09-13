@@ -9,11 +9,14 @@ namespace FastDragon
 {
     public enum TimeTrialCategory
     {
-        [Display(Name = "Any %")]
+        [Display(Name = "Any Percent")]
         AnyPercent,
 
         [Display(Name = "All Fairies")]
-        FairyPercent
+        FairyPercent,
+
+        [Display(Name = "100%")]
+        HundredPercent,
     }
 
     public static class TimeTrialCategoryExtensions
