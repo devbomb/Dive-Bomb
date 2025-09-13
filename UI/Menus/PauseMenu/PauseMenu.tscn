@@ -106,10 +106,6 @@ text = "Reset"
 layout_mode = 2
 text = "Options"
 
-[node name="QuitToTitle" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
-layout_mode = 2
-text = "Quit to title"
-
 [node name="AtlasMenu" parent="." instance=ExtResource("3_0fbh4")]
 unique_name_in_owner = true
 visible = false
@@ -171,7 +167,6 @@ text = "Back"
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Continue" to="." method="Close"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/ResetLevel" to="." method="ReturnToCheckpoint"]
 [connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/Options" to="." method="OpenUserSettingsMenu"]
-[connection signal="pressed" from="TimeTrialMainPage/TimeTrialButtons/QuitToTitle" to="." method="QuitToTitle"]
 [connection signal="BackRequested" from="AtlasMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="UserSettingsMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="DebugMenu" to="." method="OpenMainPage"]
