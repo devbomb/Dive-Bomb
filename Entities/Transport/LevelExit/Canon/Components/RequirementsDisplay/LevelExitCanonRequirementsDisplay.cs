@@ -6,23 +6,29 @@ namespace FastDragon
 {
     public partial class LevelExitCanonRequirementsDisplay : Node3D
     {
-        private Node3D _requirementsDisplay => GetNode<Node3D>("%RequirementsDisplay");
+        private Node3D _fairies => GetNode<Node3D>("%Fairies");
 
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += Reset;
             SignalBus.Instance.ExitReached += OnExitReached;
             Reset();
+
+            Callable.From(() =>
+            {
+                var summary = this.GetLevel()?.GetSummary();
+                _fairies.Visible = (summary?.TotalFairiesInLevel ?? 0) > 0;
+            }).CallDeferred();
         }
 
         private void Reset()
         {
-            SetRequirementsVisible(true);
+            Visible = true;
         }
 
         private void OnExitReached()
         {
-            SetRequirementsVisible(false);
+            Visible = false;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -32,12 +38,6 @@ namespace FastDragon
 
             if (GlobalPosition.DistanceTo(lookPoint) > 0.1f)
                 LookAt(lookPoint);
-        }
-
-        private void SetRequirementsVisible(bool visible)
-        {
-            foreach (var display in _requirementsDisplay.EnumerateChildren().Cast<Node3D>())
-                display.Visible = visible;
         }
     }
 }
