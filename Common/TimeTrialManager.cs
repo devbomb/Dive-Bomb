@@ -62,6 +62,19 @@ namespace FastDragon
                     return fairiesInLevel > 0 && fairiesFound >= fairiesInLevel;
                 }
 
+                case TimeTrialCategory.HundredPercent:
+                {
+                    int fairiesInLevel = levelSummary.TotalFairiesInLevel;
+                    int fairiesFound = progress.CollectedFairies.Count;
+                    bool allFairies = fairiesFound >= fairiesInLevel;
+
+                    int gemsInLevel = levelSummary.TotalGemsInLevel;
+                    int gemsFound = progress.TotalGemsCollected;
+                    bool allGems = gemsFound >= gemsInLevel;
+
+                    return allFairies && allGems;
+                }
+
                 default: return true;
             }
         }
@@ -79,7 +92,14 @@ namespace FastDragon
             switch (category)
             {
                 case TimeTrialCategory.AnyPercent: return true;
-                case TimeTrialCategory.FairyPercent: return levelSummary.TotalFairiesInLevel > 0;
+
+                case TimeTrialCategory.FairyPercent: return
+                    levelSummary.TotalFairiesInLevel > 0;
+
+                case TimeTrialCategory.HundredPercent: return
+                    levelSummary.TotalFairiesInLevel > 0 &&
+                    levelSummary.TotalGemsInLevel > 0;
+
                 default: return false;
             }
         }

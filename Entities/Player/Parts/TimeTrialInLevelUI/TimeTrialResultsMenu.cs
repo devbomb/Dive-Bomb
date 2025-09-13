@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -55,9 +56,18 @@ namespace FastDragon
         private TimeTrialCategory GuessCategory()
         {
             var ttm = this.GetLevel().TimeTrial;
-            return ttm.RequirementsMet(TimeTrialCategory.FairyPercent)
-                ? TimeTrialCategory.FairyPercent
-                : TimeTrialCategory.AnyPercent;
+
+            var prioritizedCategories = new[]
+            {
+                TimeTrialCategory.HundredPercent,
+                TimeTrialCategory.FairyPercent,
+                TimeTrialCategory.AnyPercent,
+            };
+
+            return prioritizedCategories
+                .Where(ttm.IsRelevant)
+                .Where(ttm.RequirementsMet)
+                .First();
         }
     }
 }
