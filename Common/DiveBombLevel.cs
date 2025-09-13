@@ -46,6 +46,13 @@ namespace FastDragon
                 ? TimeTrial.DummyProgress
                 : SaveFileManager.Current.GetLevelSaveData(SceneFilePath).Progress;
         }
+        public LevelSummary GetSummary()
+        {
+            if (!IsNodeReady())
+                throw new System.Exception("Don't call GetSummary() before the level is ready!");
+
+            return AtlasCache.Instance.GetEntry(SceneFilePath);
+        }
     }
 
     public static class DiveBombLevelExtensions
