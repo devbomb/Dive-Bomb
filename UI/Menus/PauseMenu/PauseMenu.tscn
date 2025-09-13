@@ -127,11 +127,13 @@ offset_left = 200.0
 offset_top = 100.0
 offset_right = -200.0
 offset_bottom = -100.0
+theme = null
 
 [node name="UserSettingsMenu" parent="." instance=ExtResource("4_cbwi1")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+theme = null
 
 [node name="DebugMenu" type="PanelContainer" parent="." node_paths=PackedStringArray("FocusedControl")]
 unique_name_in_owner = true
