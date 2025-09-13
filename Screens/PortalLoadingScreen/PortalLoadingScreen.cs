@@ -49,6 +49,7 @@ namespace FastDragon
 
         private WorldEnvironment _worldEnv => GetNode<WorldEnvironment>("%WorldEnv");
 
+        private Control _timeTrialToggleHolder => GetNode<Control>("%TimeTrialToggleHolder");
         private CheckButton _timeTrialToggle => GetNode<CheckButton>("%TimeTrialToggle");
 
         private bool _isReturningHome => _parameters.PreviousLevelScenePath != null;
@@ -79,7 +80,7 @@ namespace FastDragon
                 SaveFileManager.Current.TotalGemsSpent
             );
 
-            _timeTrialToggle.Visible = !_isReturningHome;
+            _timeTrialToggleHolder.Visible = !_isReturningHome;
 
             _worldEnv.Environment = parameters.SkyBoxEnvironment;
             _oldSun = parameters.OldSun;
