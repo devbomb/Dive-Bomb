@@ -48,20 +48,39 @@ namespace FastDragon
 
         public bool RequirementsMet(TimeTrialCategory category)
         {
+            var level = this.GetLevel();
+            var levelSummary = level.GetSummary();
+            var progress = level.GetProgress();
+
             switch (category)
             {
                 case TimeTrialCategory.FairyPercent:
                 {
-                    var level = this.GetLevel();
-                    var levelSummary = AtlasCache.Instance.GetEntry(level.SceneFilePath);
-
                     int fairiesInLevel = levelSummary.TotalFairiesInLevel;
-                    int fairiesFound = level.GetProgress().CollectedFairies.Count;
+                    int fairiesFound = progress.CollectedFairies.Count;
 
                     return fairiesInLevel > 0 && fairiesFound >= fairiesInLevel;
                 }
 
                 default: return true;
+            }
+        }
+
+        /// <summary>
+        ///     Whether or not the given category even makes sense for this
+        ///     level.  (IE: fairy percent doesn't make sense in levels without
+        ///     any fairies)
+        /// </summary>
+        public bool IsRelevant(TimeTrialCategory category)
+        {
+            var level = this.GetLevel();
+            var levelSummary = level.GetSummary();
+
+            switch (category)
+            {
+                case TimeTrialCategory.AnyPercent: return true;
+                case TimeTrialCategory.FairyPercent: return levelSummary.TotalFairiesInLevel > 0;
+                default: return false;
             }
         }
 

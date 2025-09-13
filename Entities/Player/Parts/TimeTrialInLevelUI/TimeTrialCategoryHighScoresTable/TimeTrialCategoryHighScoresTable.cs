@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -14,8 +15,16 @@ namespace FastDragon
             Clear();
             this.CreateItem();
 
-            foreach (var category in Enum.GetValues<TimeTrialCategory>())
-                AddCategoryRow(category);
+            var level = this.GetLevel();
+            if (level != null)
+            {
+                var categories = Enum
+                    .GetValues<TimeTrialCategory>()
+                    .Where(level.TimeTrial.IsRelevant);
+
+                foreach (var category in categories)
+                    AddCategoryRow(category);
+            }
         }
 
         private void AddCategoryRow(TimeTrialCategory category)

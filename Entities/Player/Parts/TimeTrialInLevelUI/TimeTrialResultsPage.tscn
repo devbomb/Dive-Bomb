@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bguu511rb2uj2" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialResultsMenu.cs" id="1_nnmc3"]
 [ext_resource type="PackedScene" uid="uid://cyqo0c0lksca7" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialCategoryHighScoresTable/TimeTrialCategoryHighScoresTable.tscn" id="2_dc1xc"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/PauseMenuTheme.tres" id="2_ivodr"]
-[ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="3_xj5vp"]
+[ext_resource type="Script" path="res://UI/VerticalLoopingMenu.gd" id="3_xj5vp"]
 
 [sub_resource type="Animation" id="Animation_8df8q"]
 resource_name = "NewHighScore"
