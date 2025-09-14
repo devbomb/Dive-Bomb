@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://db05gfycomjg2"]
+[gd_scene load_steps=5 format=3 uid="uid://db05gfycomjg2"]
 
-[ext_resource type="AnimationLibrary" uid="uid://xa4nbsqof2y3" path="res://Entities/Player/Parts/DiageticPauseMenu/PauseMenuAnimations.res" id="1_8b5jp"]
+[ext_resource type="AnimationLibrary" uid="uid://bajs4t3m415k5" path="res://Entities/Player/Parts/DiageticPauseMenu/PauseMenuAnimations.tres" id="1_8b5jp"]
 [ext_resource type="PackedScene" uid="uid://bytmfm6g78uxa" path="res://Entities/Player/Parts/PlayerModel/KennifiedPlayerModel.blend" id="1_a78w3"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://UI/Menus/PauseMenu/PauseMenu.tscn" id="2_8b5jp"]
+
+[sub_resource type="GDScript" id="GDScript_rxxnv"]
+script/source = "extends Control
+
+func _process(delta: float):
+	if %PauseMenu.IsOpen:
+		%Animator.advance(delta)
+	else:
+		%Animator.advance(-delta)
+"
 
 [node name="DiageticPauseMenu" type="Control"]
 process_mode = 3
@@ -12,12 +22,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_rxxnv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 deterministic = true
+callback_mode_process = 2
 libraries = {
 &"": ExtResource("1_8b5jp")
 }
+autoplay = "Open"
+playback_auto_capture = false
 
 [node name="Wrist" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -44,6 +59,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14113, -0.114416)
 transform = Transform3D(0.778123, -0.444042, 0.444243, 0, 0.707267, 0.706946, -0.628112, -0.550091, 0.550341, 0, 0, 0)
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_8b5jp")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
