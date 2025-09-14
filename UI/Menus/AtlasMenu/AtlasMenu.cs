@@ -5,19 +5,10 @@ namespace FastDragon
 {
     public partial class AtlasMenu : Page
     {
-        private Tree _table => GetNode<Tree>("%Table");
-
-        private enum Column
-        {
-            LevelName,
-            Gems,
-            Fairies,
-            PercentComplete
-        }
+        private GridContainer _table => GetNode<GridContainer>("%Table");
 
         public override void _Ready()
         {
-            CreateColumns();
             Refresh();
         }
 
@@ -27,19 +18,17 @@ namespace FastDragon
             GetNode<Button>("%BackButton").GrabFocus();
         }
 
-        private void CreateColumns()
-        {
-            _table.Columns = System.Enum.GetValues<Column>().Length;
-            _table.SetColumnTitle((int)Column.LevelName, "Level Name");
-            _table.SetColumnTitle((int)Column.Gems, "Gems");
-            _table.SetColumnTitle((int)Column.Fairies, "Fairies");
-            _table.SetColumnTitle((int)Column.PercentComplete, "% Complete");
-        }
-
         public void Refresh()
         {
-            _table.Clear();
-            _table.CreateItem();    // The table is actually a tree, so it needs a root
+            var nonHeaderItems = _table.EnumerateChildren()
+                .Where(c => !c.IsInGroup("HeaderItem"))
+                .ToArray();
+
+            foreach (var child in nonHeaderItems)
+            {
+                _table.RemoveChild(child);
+                child.QueueFree();
+            }
 
             foreach (string levelScenePath in SaveFileManager.Current.Levels.Keys.OrderBy(k => k))
             {
@@ -52,21 +41,32 @@ namespace FastDragon
             var progress = SaveFileManager.Current.Levels[levelScenePath].Progress;
             var summary = AtlasCache.Instance.GetEntry(levelScenePath);
 
-            var row = _table.CreateItem();
+            AddLabel(summary.HumanReadableName);
+            AddSpacer();
 
-            row.SetText((int)Column.LevelName, summary.HumanReadableName);
-            row.SetTextAlignment((int)Column.LevelName, HorizontalAlignment.Left);
+            AddLabel($"{progress.TotalGemsCollected} / {summary.TotalGemsInLevel}");
+            AddSpacer();
 
-            row.SetText((int)Column.Gems, $"{progress.TotalGemsCollected} / {summary.TotalGemsInLevel}");
-            row.SetTextAlignment((int)Column.Gems, HorizontalAlignment.Center);
-
-            row.SetText((int)Column.Fairies, $"{progress.CollectedFairies.Count} / {summary.TotalFairiesInLevel}");
-            row.SetTextAlignment((int)Column.Fairies, HorizontalAlignment.Center);
+            AddLabel($"{progress.CollectedFairies.Count} / {summary.TotalFairiesInLevel}");
+            AddSpacer();
 
             string percentComplete = (SaveFileManager.Current.GetPercentComplete(levelScenePath) * 100)
                 .ToString("0");
-            row.SetText((int)Column.PercentComplete, $"{percentComplete}%");
-            row.SetTextAlignment((int)Column.PercentComplete, HorizontalAlignment.Center);
+
+            AddLabel($"{percentComplete}%");
+        }
+
+        private void AddLabel(string text)
+        {
+            _table.AddChild(new Label
+            {
+                Text = text
+            });
+        }
+
+        private void AddSpacer()
+        {
+            _table.AddChild(new Control());
         }
     }
 }
