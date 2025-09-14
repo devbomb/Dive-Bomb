@@ -5,6 +5,8 @@ namespace FastDragon
 {
     public partial class PauseMenu : PageNavigator
     {
+        public bool Open => _open;
+
         private bool _open = false;
         private Control _buttons => GetNode<Control>("%Buttons");
         private Control _timeTrialButtons => GetNode<Control>("%TimeTrialButtons");
