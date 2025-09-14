@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0vpyujcojrlr"]
+[gd_scene load_steps=9 format=3 uid="uid://d0vpyujcojrlr"]
 
 [ext_resource type="Script" uid="uid://brneuhryr7gx3" path="res://UI/Menus/PauseMenu/PauseMenu.cs" id="1_6unmj"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="1_wwjmo"]
 [ext_resource type="PackedScene" uid="uid://dk14uy27kbnyn" path="res://UI/Menus/AtlasMenu/AtlasMenu.tscn" id="3_0fbh4"]
 [ext_resource type="Script" uid="uid://la5dtjohmevd" path="res://UI/Widgets/Page.cs" id="3_2prw7"]
+[ext_resource type="AudioStream" uid="uid://6qbhwmehub1l" path="res://UI/Menus/PauseMenu/PauseOpen.wav" id="3_sv0rs"]
+[ext_resource type="AudioStream" uid="uid://chv8uuwcwx68d" path="res://UI/Menus/PauseMenu/PauseClose.wav" id="4_bjpjc"]
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.tscn" id="4_cbwi1"]
 [ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="4_kb3w6"]
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("OpenSound", "CloseSound")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -17,6 +19,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_wwjmo")
 script = ExtResource("1_6unmj")
+OpenSound = NodePath("OpenSound")
+CloseSound = NodePath("CloseSound")
+
+[node name="OpenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sv0rs")
+bus = &"Sfx"
+
+[node name="CloseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bjpjc")
+bus = &"Sfx"
 
 [node name="MainPage" type="PanelContainer" parent="."]
 unique_name_in_owner = true

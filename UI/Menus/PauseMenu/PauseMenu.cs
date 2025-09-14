@@ -5,6 +5,9 @@ namespace FastDragon
 {
     public partial class PauseMenu : PageNavigator
     {
+        [Export] public AudioStreamPlayer OpenSound;
+        [Export] public AudioStreamPlayer CloseSound;
+
         public bool IsOpen => _open;
 
         private bool _open = false;
@@ -49,6 +52,9 @@ namespace FastDragon
             GetTree().Paused = true;
 
             OpenMainPage();
+
+            CloseSound.Stop();
+            OpenSound.Play();
         }
 
         public void Close()
@@ -56,6 +62,9 @@ namespace FastDragon
             _open = false;
             Visible = false;
             GetTree().Paused = false;
+
+            OpenSound.Stop();
+            CloseSound.Play();
         }
 
         public void OpenMainPage()
