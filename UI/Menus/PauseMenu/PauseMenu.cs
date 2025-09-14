@@ -59,12 +59,15 @@ namespace FastDragon
 
         public void Close()
         {
+            OpenSound.Stop();
+
+            // HACK: don't play the sound when the level initially loads
+            if (_open)
+                CloseSound.Play();
+
             _open = false;
             Visible = false;
             GetTree().Paused = false;
-
-            OpenSound.Stop();
-            CloseSound.Play();
         }
 
         public void OpenMainPage()
