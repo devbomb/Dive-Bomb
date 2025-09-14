@@ -42,7 +42,6 @@ var _radius: float = 0.5
 var _perimeter_points: int = 8
 
 var _all_ray_casts: Array[RayCast3D] = []
-@onready var _shortest_ray_cast_length: float = max_length
 
 var _decal: Decal:
 	get: return %Decal
@@ -68,10 +67,8 @@ func _update_everything():
 
 	if (!is_inside_tree()):
 		return
-
-	_update_ray_casts()
 	
-	var length = _shortest_ray_cast_length + height_margin
+	var length = _get_length() + height_margin
 	_decal.size = Vector3(radius * 2, length, radius * 2)
 	_decal.position.y = -length / 2
 	_decal.position.y += height_margin
@@ -89,8 +86,8 @@ func _recreate_perimeter_points():
 	_all_ray_casts.append(%CentralRayCast)
 	_all_ray_casts.append_array(%PerimeterRayCasts.get_children())
 
-func _update_ray_casts():
-	_shortest_ray_cast_length = max_length
+func _get_length() -> float:
+	var shortest_length: float = max_length
 	
 	# Make sure all of the perimeter raycasts are in the right spot
 	for i in range(0, perimeter_points):
@@ -114,8 +111,10 @@ func _update_ray_casts():
 			continue
 		
 		var length = ray_cast.get_collision_point().distance_to(ray_cast.global_position)
-		if (length < _shortest_ray_cast_length):
-			_shortest_ray_cast_length = length
+		if (length < shortest_length):
+			shortest_length = length
+	
+	return shortest_length
 "
 
 [sub_resource type="Gradient" id="Gradient_txljt"]
