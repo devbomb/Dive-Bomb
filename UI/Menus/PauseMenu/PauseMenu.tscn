@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dk14uy27kbnyn" path="res://UI/Menus/AtlasMenu/AtlasMenu.tscn" id="3_0fbh4"]
 [ext_resource type="Script" uid="uid://la5dtjohmevd" path="res://UI/Widgets/Page.cs" id="3_2prw7"]
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.tscn" id="4_cbwi1"]
-[ext_resource type="Script" path="res://UI/VerticalLoopingMenu.gd" id="4_kb3w6"]
+[ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="4_kb3w6"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
