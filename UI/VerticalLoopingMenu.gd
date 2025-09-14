@@ -3,7 +3,7 @@ extends VBoxContainer
 var _first: Control
 var _last: Control
 
-func _process(delta: float):
+func _process(_delta: float):
 	# Doing this every frame instead of once at startup
 	# in case an option's visibility changes
 	update_first_and_last()
