@@ -87,7 +87,7 @@ func _recreate_perimeter_points():
 	_all_ray_casts.append_array(%PerimeterRayCasts.get_children())
 
 func _get_length() -> float:
-	var shortest_length: float = max_length
+	var longest_length: float = 0
 	
 	# Make sure all of the perimeter raycasts are in the right spot
 	for i in range(0, perimeter_points):
@@ -108,13 +108,13 @@ func _get_length() -> float:
 		ray_cast.force_raycast_update()
 		
 		if (!ray_cast.is_colliding()):
-			continue
+			return max_length
 		
 		var length = ray_cast.get_collision_point().distance_to(ray_cast.global_position)
-		if (length < shortest_length):
-			shortest_length = length
+		if (length > longest_length):
+			longest_length = length
 	
-	return shortest_length
+	return longest_length
 "
 
 [sub_resource type="Gradient" id="Gradient_txljt"]
