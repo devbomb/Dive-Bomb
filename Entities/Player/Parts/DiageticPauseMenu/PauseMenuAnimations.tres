@@ -1,0 +1,280 @@
+[gd_resource type="AnimationLibrary" load_steps=4 format=3 uid="uid://bajs4t3m415k5"]
+
+[sub_resource type="Animation" id="Animation_rxxnv"]
+resource_name = "Close"
+length = 0.34
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Arm_L")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.143513, -0.0182599, -0.650267, 0.745804, 0.166667, 1, 0.143513, -0.0182599, -0.650267, 0.745804, 0.333333, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:ForeArm_L")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.0666667, 1, 0.0183594, -0.0218792, -0.794347, 0.606792, 0.333333, 1, 0, 0, 0, 1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wrist/SubViewport/Camera3D:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.786009, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PauseMenu:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.266667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9), Vector2(0.25, 2), Vector2(2, 0.1), Vector2(2, 0)]
+}
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L.003")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.585138, -0.00126592, -0.0126575, 0.810834, 0.166667, 1, -0.0125226, -0.0083136, -0.00962808, 0.999841)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L.001")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.521294, 0.0463902, -0.00249136, 0.852112, 0.166667, 1, -0.0484129, 0.0395035, -0.0244485, 0.997746)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Thumb_L")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.308807, 0.194441, -0.427215, 0.827235, 0.166667, 1, -0.12106, 0.0966405, -0.459327, 0.874657)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Thumb_L.001")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, -0.55269, -0.080151, 0.0935018, 0.824237, 0.166667, 1, 0.0303194, -0.0107531, 0.122683, 0.991924)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -0.0341418, 0.043284, -0.0792966, 0.995326, 0.166667, 1, -0.0307608, 0.0457486, -0.00358258, 0.998473)
+tracks/9/type = "scale_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.133333, 1, 1, 0.9, 1, 0.166667, 1, 1, 1.1, 1, 0.266667, 1, 1, 1, 1)
+tracks/10/type = "scale_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Neck")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_a78w3"]
+resource_name = "Open"
+length = 0.34
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Arm_L")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.166667, 1, 0.143513, -0.0182599, -0.650267, 0.745804)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:ForeArm_L")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.266667, 1, 0.0183594, -0.0218792, -0.794347, 0.606792)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wrist/SubViewport/Camera3D:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.786009, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PauseMenu:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.266667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 0), Vector2(2, 0.1), Vector2(0.25, 2), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L.003")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0.166667, 1, -0.0125226, -0.0083136, -0.00962808, 0.999841, 0.266667, 1, -0.585138, -0.00126592, -0.0126575, 0.810834)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L.001")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0.166667, 1, -0.0484129, 0.0395035, -0.0244485, 0.997746, 0.266667, 1, -0.521294, 0.0463902, -0.00249136, 0.852112)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Thumb_L")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0.166667, 1, -0.12106, 0.0966405, -0.459327, 0.874657, 0.266667, 1, -0.308807, 0.194441, -0.427215, 0.827235)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Thumb_L.001")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0.166667, 1, 0.0303194, -0.0107531, 0.122683, 0.991924, 0.266667, 1, -0.55269, -0.080151, 0.0935018, 0.824237)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0.166667, 1, -0.0307608, 0.0457486, -0.00358258, 0.998473, 0.266667, 1, -0.0341418, 0.043284, -0.0792966, 0.995326)
+tracks/9/type = "scale_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0.0666667, 1, 1, 1, 1, 0.166667, 1, 1, 1.1, 1, 0.2, 1, 1, 0.9, 1, 0.333333, 1, 1, 1, 1)
+tracks/10/type = "scale_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Neck")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_8b5jp"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Arm_L")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.127487, -0.0213455, -0.0799206, 0.988385)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:ForeArm_L")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.00482157, -0.0281517, -0.0506541, 0.998308)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wrist/SubViewport/Camera3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PauseMenu:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L.003")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.0125226, -0.0083136, -0.00962808, 0.999841)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L.001")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.0484129, 0.0395035, -0.0244485, 0.997746)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Thumb_L")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.12106, 0.0966405, -0.459327, 0.874657)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Thumb_L.001")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.0303194, -0.0107531, 0.122683, 0.991924)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -0.0307608, 0.0457486, -0.00358258, 0.998473)
+tracks/9/type = "scale_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Neck")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/10/type = "scale_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Wrist/SubViewport/PlayerModel/Armature/Skeleton3D:Hand_L")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[resource]
+_data = {
+&"Close": SubResource("Animation_rxxnv"),
+&"Open": SubResource("Animation_a78w3"),
+&"RESET": SubResource("Animation_8b5jp")
+}

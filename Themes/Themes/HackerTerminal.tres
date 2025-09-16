@@ -1,0 +1,24 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dfo7m2hjbbpml"]
+
+[ext_resource type="StyleBox" uid="uid://clk60wmckrjlc" path="res://Themes/StyleBoxes/HackerTerminalBackground.tres" id="2_41e44"]
+[ext_resource type="StyleBox" uid="uid://67ve41gmpcr" path="res://Themes/StyleBoxes/HackerTerminalButton.tres" id="2_bn8tx"]
+[ext_resource type="StyleBox" uid="uid://brjat4v76rwt4" path="res://Themes/StyleBoxes/HackerTerminalButtonFocus.tres" id="3_bn8tx"]
+[ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="4_bpdmg"]
+
+[resource]
+Button/colors/font_color = Color(0, 0.97857, 0, 1)
+Button/colors/font_focus_color = Color(0.780392, 1, 0.756863, 1)
+Button/colors/font_hover_color = Color(0.780962, 1, 0.758588, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 0.4, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 14
+Button/fonts/font = ExtResource("4_bpdmg")
+Button/styles/disabled = ExtResource("2_bn8tx")
+Button/styles/focus = ExtResource("3_bn8tx")
+Button/styles/hover = ExtResource("3_bn8tx")
+Button/styles/normal = ExtResource("2_bn8tx")
+Button/styles/pressed = ExtResource("2_bn8tx")
+Label/colors/font_color = Color(0, 0.980392, 0, 1)
+Label/fonts/font = ExtResource("4_bpdmg")
+Panel/styles/panel = ExtResource("2_41e44")
+PanelContainer/styles/panel = ExtResource("2_41e44")

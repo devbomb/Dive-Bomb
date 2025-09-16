@@ -11,11 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://wv54wlebftcd" path="res://Entities/Player/FX/RollDust.tscn" id="5_e40ui"]
 [ext_resource type="AudioStream" uid="uid://dghyx6ev3y6q6" path="res://Entities/Player/SFX/Bonk.wav" id="6_wmg1a"]
 [ext_resource type="AudioStream" uid="uid://bg3t5q648uwq" path="res://Entities/Player/SFX/FlipDamage.wav" id="7_anupw"]
-[ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://UI/Menus/PauseMenu/PauseMenu.tscn" id="7_jm41t"]
 [ext_resource type="AudioStream" uid="uid://b8p3vq40pffrv" path="res://Entities/Player/SFX/DrownWaterEnterSplash.wav" id="8_pxges"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://UI/Menus/HUD/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="9_vmh20"]
 [ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Entities/Player/Parts/GemGravityGloves/GemGravityGloves.tscn" id="10_dedpk"]
+[ext_resource type="PackedScene" uid="uid://db05gfycomjg2" path="res://Entities/Player/Parts/DiageticPauseMenu/DiageticPauseMenu.tscn" id="14_samso"]
 
 [sub_resource type="GDScript" id="GDScript_cpnxc"]
 script/source = "extends Node
@@ -220,7 +220,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25565, 0)
 [node name="BlobShadow" parent="." node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("9_vmh20")]
 ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("7_jm41t")]
+[node name="DiageticPauseMenu" parent="." instance=ExtResource("14_samso")]
 
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
 

@@ -5,6 +5,11 @@ namespace FastDragon
 {
     public partial class PauseMenu : PageNavigator
     {
+        [Export] public AudioStreamPlayer OpenSound;
+        [Export] public AudioStreamPlayer CloseSound;
+
+        public bool IsOpen => _open;
+
         private bool _open = false;
         private Control _buttons => GetNode<Control>("%Buttons");
         private Control _timeTrialButtons => GetNode<Control>("%TimeTrialButtons");
@@ -47,10 +52,19 @@ namespace FastDragon
             GetTree().Paused = true;
 
             OpenMainPage();
+
+            CloseSound.Stop();
+            OpenSound.Play();
         }
 
         public void Close()
         {
+            OpenSound.Stop();
+
+            // HACK: don't play the sound when the level initially loads
+            if (_open)
+                CloseSound.Play();
+
             _open = false;
             Visible = false;
             GetTree().Paused = false;

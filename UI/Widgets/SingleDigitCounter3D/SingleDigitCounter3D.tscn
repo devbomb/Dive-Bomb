@@ -1,14 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://bnlbwr8pjop0o"]
 
-[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="1_e0l3e"]
 [ext_resource type="Script" uid="uid://dkvd8i2y8mo22" path="res://UI/Widgets/SingleDigitCounter3D/SingleDigitCounter3D.cs" id="1_tkvxm"]
-[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="3_khrkr"]
+[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="2_fwwem"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_immvi"]
+albedo_color = Color(0, 0.713726, 0, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.41
+emission_enabled = true
+emission = Color(0, 0.611765, 0, 1)
+heightmap_enabled = true
 
 [sub_resource type="TextMesh" id="TextMesh_5lnjq"]
 resource_local_to_scene = true
-material = ExtResource("3_khrkr")
+material = SubResource("StandardMaterial3D_immvi")
 text = "0"
-font = ExtResource("1_e0l3e")
+font = ExtResource("2_fwwem")
 curve_step = 10.0
 depth = 0.025
 
