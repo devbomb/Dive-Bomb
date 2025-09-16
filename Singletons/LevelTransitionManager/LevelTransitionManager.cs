@@ -76,29 +76,6 @@ namespace FastDragon
             });
         }
 
-        public void GoToLevelForTimeTrial(string levelSceneFile)
-        {
-            DoThingWithFadeToBlack(() =>
-            {
-                Log.StartedGoToLevelWithFade(
-                    GetTree().CurrentScene.Name,
-                    levelSceneFile,
-                    true,
-                    true
-                );
-
-                var levelRoot = ResourceLoader
-                    .Load<PackedScene>(levelSceneFile)
-                    .Instantiate<DiveBombLevel>();
-
-                ChangeSceneToNode(levelRoot);
-
-                Log.FinishedGoToLevelWithFade();
-
-                levelRoot.TimeTrial.EnterTimeTrialMode();
-            });
-        }
-
         public void EnterLevel(
             string levelSceneFile,
             Environment skyBoxEnvironment
