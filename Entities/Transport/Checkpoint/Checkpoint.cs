@@ -47,6 +47,8 @@ namespace FastDragon
             if (body is Player player && !IsCurrent && !IsTimeTrialMode())
             {
                 SaveFileManager.Current.CurrentCheckpoint = CheckpointName;
+                SaveFileManager.Instance.RequestAutosave();
+
                 _sparkleBurst.Emitting = true;
                 EmitSignal(SignalName.Activated);
                 player.Camera.Shake(1, 5, 0.2f);

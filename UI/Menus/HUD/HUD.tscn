@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://byhmelsic6fu5"]
+[gd_scene load_steps=14 format=3 uid="uid://byhmelsic6fu5"]
 
 [ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://UI/Menus/HUD/HealthDisplay.tscn" id="1_54kkr"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="2_yq8w4"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dpa1avddef2b" path="res://UI/Widgets/CountingLabel/CountingLabel.tscn" id="4_khe3g"]
 [ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://UI/Menus/HUD/FPSCounter.tscn" id="5_k3tfm"]
 [ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="5_khe3g"]
+[ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="8_khe3g"]
 
 [sub_resource type="GDScript" id="GDScript_h7bdc"]
 script/source = "extends Control
@@ -39,6 +40,13 @@ font_size = 26
 [sub_resource type="GDScript" id="GDScript_iydpn"]
 script/source = "extends VBoxContainer
 func _process(_delta): visible = $/root/UserSettings.Instance().ShowPerformanceStats
+"
+
+[sub_resource type="GDScript" id="GDScript_8mrjo"]
+script/source = "extends Label
+
+func _ready():
+	visible = SaveFileManager.NoActiveSlot()
 "
 
 [node name="HUD" type="Control"]
@@ -101,3 +109,22 @@ script = SubResource("GDScript_iydpn")
 
 [node name="FPSCounter" parent="PerformanceStats" instance=ExtResource("5_k3tfm")]
 layout_mode = 2
+
+[node name="NoSaveWarning" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -257.0
+offset_top = -79.0
+offset_right = 257.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = ExtResource("8_khe3g")
+text = "Warning: Progress will not be saved.
+Return to the title screen and pick a save slot to enable saving."
+horizontal_alignment = 1
+script = SubResource("GDScript_8mrjo")
