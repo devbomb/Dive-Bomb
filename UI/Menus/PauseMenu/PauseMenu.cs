@@ -105,11 +105,6 @@ namespace FastDragon
             LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
         }
 
-        public void SaveGame()
-        {
-            SaveFileManager.Instance.SaveToSlot(SaveFileManager.Instance.ActiveSlot);
-        }
-
         public void FullyResetLevel()
         {
             Close();

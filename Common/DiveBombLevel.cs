@@ -39,6 +39,7 @@ namespace FastDragon
         public override void _Ready()
         {
             SaveFileManager.Current.CurrentLevel = SceneFilePath;
+            SaveFileManager.Instance.RequestAutosave();
             AtlasCache.Instance.UpdateCache(SceneFilePath, this);
         }
 

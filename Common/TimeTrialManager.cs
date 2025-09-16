@@ -179,6 +179,8 @@ namespace FastDragon
                     SetSavedBestTime(category, TimerPhysicsTicks);
             }
 
+            SaveFileManager.Instance.RequestAutosave();
+
             EmitSignal(SignalName.TimeTrialFinished);
         }
 

@@ -13,8 +13,14 @@ namespace FastDragon
         public static SaveFileManager Instance { get; private set; }
         public static SaveFile Current => Instance.CurrentFile;
 
-        public int ActiveSlot { get; private set; } = 0;
+        public int ActiveSlot { get; private set; } = -1;
         public SaveFile CurrentFile { get; private set; } = new();
+
+        /// <summary>
+        /// True if a level was started directly from the Godot editor.
+        /// The game will not autosave if this is true.
+        /// </summary>
+        public bool NoActiveSlot() => ActiveSlot < 0;
 
         public override void _Ready()
         {
@@ -71,6 +77,15 @@ namespace FastDragon
             file.Close();
 
             ActiveSlot = slotNumber;
+        }
+
+        /// <summary>
+        /// Saves the game to the active slot, if a slot is active.
+        /// </summary>
+        public void RequestAutosave()
+        {
+            if (!NoActiveSlot())
+                SaveToSlot(ActiveSlot);
         }
 
         public void EraseSlot(int slotNumber)

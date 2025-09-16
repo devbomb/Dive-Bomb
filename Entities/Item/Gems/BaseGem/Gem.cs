@@ -102,6 +102,8 @@ namespace FastDragon
 
             _collectSound.Play();
             ChangeState<Hidden>();
+
+            SaveFileManager.Instance.RequestAutosave();
         }
 
         public void Sparkle()
