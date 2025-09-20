@@ -23,6 +23,7 @@
 {
 "classname" "hazard_conveyor_belt"
 "DirectionMarkerId" "ConveyorBelt0Direction"
+"Speed" "5"
 // brush 0
 {
 ( -16 16 16 ) ( -16 17 16 ) ( -16 16 17 ) Textures/ConveyorBelt 0 0 270 1 1
@@ -30,7 +31,7 @@
 ( -16 16 16 ) ( -15 16 16 ) ( -16 17 16 ) Textures/ConveyorBelt 0 0 270 1 1
 ( 128 32 24 ) ( 128 33 24 ) ( 129 32 24 ) Textures/ConveyorBelt 0 0 270 1 1
 ( 128 32 32 ) ( 129 32 32 ) ( 128 32 33 ) Textures/ConveyorBelt 0 0 270 1 1
-( 128 32 32 ) ( 128 32 33 ) ( 128 33 32 ) Textures/ConveyorBelt 0 0 270 1 1
+( 304 32 32 ) ( 304 32 33 ) ( 304 33 32 ) Textures/ConveyorBelt 0 0 270 1 1
 }
 }
 // entity 3
@@ -38,4 +39,19 @@
 "classname" "info_named_marker"
 "origin" "40 16 56"
 "MarkerId" "ConveyorBelt0Direction"
+}
+// entity 4
+{
+"classname" "hazard_conveyor_belt"
+"DirectionMarkerId" "ConveyorBelt0Direction"
+"Speed" "3"
+// brush 0
+{
+( -16 -16 24 ) ( -16 -48 24 ) ( -16 -48 16 ) Textures/ConveyorBelt 0 0 270 1 1
+( -16 -16 24 ) ( 304 -16 103.11111111111131 ) ( 304 -48 103.11111111111114 ) Textures/ConveyorBelt 0 0 270 1 1
+( -16 -48 24 ) ( 304 -48 103.11111111111114 ) ( 304 -48 95.1111111111111 ) Textures/ConveyorBelt 0 0 270 1 1
+( 304 -16 95.11111111111131 ) ( 304 -16 103.11111111111131 ) ( -16 -16 24 ) Textures/ConveyorBelt 0 0 270 1 1
+( -16 -16 16 ) ( -16 -48 16 ) ( 304 -48 95.1111111111111 ) Textures/ConveyorBelt 0 0 270 1 1
+( 304 -48 103.11111111111114 ) ( 304 -16 103.11111111111131 ) ( 304 -16 95.11111111111131 ) Textures/ConveyorBelt 0 0 270 1 1
+}
 }
