@@ -12,5 +12,4 @@ dest_files=["res://.godot/imported/ConveyorBeltTester.map-558cc13ba550a5db75fa9b
 
 [params]
 
-texture_material_map=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("res://addons/FuncGodotMapImporter/MaterialMap.gd"),"inherited_material_maps":Array[Resource("res://addons/FuncGodotMapImporter/MaterialMap.gd")]([]),"texture_to_material":Dictionary[Texture2D, Material]({}))
-
+texture_material_map=Resource("res://TextureMaterialMap.tres")

@@ -13,7 +13,16 @@
 ( 64 64 16 ) ( 65 64 16 ) ( 64 64 17 ) __TB_empty 0 0 0 1 1
 ( 544 64 16 ) ( 544 64 17 ) ( 544 65 16 ) __TB_empty 0 0 0 1 1
 }
-// brush 1
+}
+// entity 1
+{
+"classname" "transport_player_spawn"
+"origin" "-40 -8 16"
+}
+// entity 2
+{
+"classname" "hazard_conveyor_belt"
+// brush 0
 {
 ( -16 16 16 ) ( -16 17 16 ) ( -16 16 17 ) Textures/ConveyorBelt 0 0 270 1 1
 ( -16 0 16 ) ( -16 0 17 ) ( -15 0 16 ) Textures/ConveyorBelt 0 0 270 1 1
@@ -22,9 +31,4 @@
 ( 128 32 32 ) ( 129 32 32 ) ( 128 32 33 ) Textures/ConveyorBelt 0 0 270 1 1
 ( 128 32 32 ) ( 128 32 33 ) ( 128 33 32 ) Textures/ConveyorBelt 0 0 270 1 1
 }
-}
-// entity 1
-{
-"classname" "transport_player_spawn"
-"origin" "-40 -8 16"
 }
