@@ -22,6 +22,7 @@
 // entity 2
 {
 "classname" "hazard_conveyor_belt"
+"DirectionMarkerId" "ConveyorBelt0Direction"
 // brush 0
 {
 ( -16 16 16 ) ( -16 17 16 ) ( -16 16 17 ) Textures/ConveyorBelt 0 0 270 1 1
@@ -31,4 +32,10 @@
 ( 128 32 32 ) ( 129 32 32 ) ( 128 32 33 ) Textures/ConveyorBelt 0 0 270 1 1
 ( 128 32 32 ) ( 128 32 33 ) ( 128 33 32 ) Textures/ConveyorBelt 0 0 270 1 1
 }
+}
+// entity 3
+{
+"classname" "info_named_marker"
+"origin" "40 16 56"
+"MarkerId" "ConveyorBelt0Direction"
 }
