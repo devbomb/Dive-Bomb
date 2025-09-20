@@ -43,10 +43,9 @@ namespace FastDragon
 
             ConstantLinearVelocity = direction * Speed;
 
-            var scrollSpeed = new Vector2(direction.X, direction.Z).Normalized() * Speed;
             foreach (var meshInstance in this.EnumerateDescendantsOfType<MeshInstance3D>())
             {
-                meshInstance.SetInstanceShaderParameter("scroll_speed", scrollSpeed);
+                meshInstance.SetInstanceShaderParameter("scroll_speed", new Vector2(0, Speed));
             }
         }
     }
