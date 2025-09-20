@@ -7,10 +7,10 @@
 // brush 0
 {
 ( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) __TB_empty 0 0 0 1 1
-( -64 -64 -16 ) ( -64 -64 -15 ) ( -63 -64 -16 ) __TB_empty 0 0 0 1 1
+( -64 -416 -16 ) ( -64 -416 -15 ) ( -63 -416 -16 ) __TB_empty 0 0 0 1 1
 ( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) __TB_empty 0 0 0 1 1
 ( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) __TB_empty 0 0 0 1 1
-( 64 64 16 ) ( 65 64 16 ) ( 64 64 17 ) __TB_empty 0 0 0 1 1
+( 64 248 16 ) ( 65 248 16 ) ( 64 248 17 ) __TB_empty 0 0 0 1 1
 ( 544 64 16 ) ( 544 64 17 ) ( 544 65 16 ) __TB_empty 0 0 0 1 1
 }
 }
@@ -31,7 +31,7 @@
 ( -16 16 16 ) ( -15 16 16 ) ( -16 17 16 ) Textures/ConveyorBelt 0 0 270 1 1
 ( 128 32 24 ) ( 128 33 24 ) ( 129 32 24 ) Textures/ConveyorBelt 0 0 270 1 1
 ( 128 32 32 ) ( 129 32 32 ) ( 128 32 33 ) Textures/ConveyorBelt 0 0 270 1 1
-( 304 32 32 ) ( 304 32 33 ) ( 304 33 32 ) Textures/ConveyorBelt 0 0 270 1 1
+( 176 32 32 ) ( 176 32 33 ) ( 176 33 32 ) Textures/ConveyorBelt 0 0 270 1 1
 }
 }
 // entity 3
@@ -52,6 +52,28 @@
 ( -16 -48 24 ) ( 304 -48 103.11111111111114 ) ( 304 -48 95.1111111111111 ) Textures/ConveyorBelt 0 0 270 1 1
 ( 304 -16 95.11111111111131 ) ( 304 -16 103.11111111111131 ) ( -16 -16 24 ) Textures/ConveyorBelt 0 0 270 1 1
 ( -16 -16 16 ) ( -16 -48 16 ) ( 304 -48 95.1111111111111 ) Textures/ConveyorBelt 0 0 270 1 1
-( 304 -48 103.11111111111114 ) ( 304 -16 103.11111111111131 ) ( 304 -16 95.11111111111131 ) Textures/ConveyorBelt 0 0 270 1 1
+( 176 -48 103.11111111111114 ) ( 176 -16 103.11111111111131 ) ( 176 -16 95.11111111111131 ) Textures/ConveyorBelt 0 0 270 1 1
+}
+}
+// entity 5
+{
+"classname" "info_named_marker"
+"origin" "104 104 32"
+"MarkerId" "ConveyorBeltLeft"
+"angle" "90"
+}
+// entity 6
+{
+"classname" "hazard_conveyor_belt"
+"DirectionMarkerId" "ConveyorBeltLeft"
+"Speed" "5"
+// brush 0
+{
+( 120 144 40 ) ( 120 40 24 ) ( 120 40 16 ) Textures/ConveyorBelt 0 0 0 1 1
+( 120 40 24 ) ( 144 40 24 ) ( 144 40 16 ) Textures/ConveyorBelt 0 0 0 1 1
+( 120 144 40 ) ( 144 144 40 ) ( 144 40 24 ) Textures/ConveyorBelt 0 0 0 1 1
+( 144 40 16 ) ( 144 144 32 ) ( 120 144 32 ) Textures/ConveyorBelt 0 0 0 1 1
+( 144 144 32 ) ( 144 144 40 ) ( 120 144 40 ) Textures/ConveyorBelt 0 0 0 1 1
+( 144 40 24 ) ( 144 144 40 ) ( 144 144 32 ) Textures/ConveyorBelt 0 0 0 1 1
 }
 }
