@@ -155,6 +155,41 @@ namespace FastDragon
                 b.CameraShakeDuration
             );
         }
+
+        private void AccelerateWithLeftStickAgainstDrag(
+            float maxSpeed,
+            float minAccel,
+            float maxAccel,
+            float delta
+        )
+        {
+            Vector3 leftStick3D = LeftStick3D();
+            Vector3 flatVel = Self.Velocity.Flattened();
+
+            // Apply a drag force in the opposite direction of the current
+            // motion
+            float flatSpeed = flatVel.Length();
+            float drag = Mathf.Lerp(0, maxAccel, flatSpeed / maxSpeed);
+            flatVel -= flatVel.Normalized() * drag * delta;
+
+            // Apply acceleration in the direction the stick is being pushed.
+            // If the stick isn't being pushed at all, then apply the minimum
+            // acceleration in the current facing direction.
+            float accel = Mathf.Lerp(minAccel, maxAccel, leftStick3D.Length());
+
+            if (leftStick3D.IsZeroApprox())
+            {
+                flatVel += Self.GlobalForward() * accel * delta;
+            }
+            else
+            {
+                flatVel += leftStick3D.Normalized() * accel * delta;
+            }
+
+            // Save it
+            flatVel.Y = Self.Velocity.Y;
+            Self.Velocity = flatVel;
+        }
     }
 }
 
