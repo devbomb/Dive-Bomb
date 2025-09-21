@@ -100,13 +100,6 @@ namespace FastDragon
             Self.GlobalRotation = rot;
         }
 
-        protected void RedirectFSpeedTowardYaw()
-        {
-            Vector3 vel = Self.GlobalForward() * Self.FSpeed;
-            vel.Y = Self.VSpeed;
-            Self.Velocity = vel;
-        }
-
         protected void AccelerateWithLeftStickAgainstDrag(
             float maxSpeed,
             float minAccel,

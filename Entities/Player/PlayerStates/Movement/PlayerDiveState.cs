@@ -155,5 +155,12 @@ namespace FastDragon
                 b.CameraShakeDuration
             );
         }
+
+        private void RedirectFSpeedTowardYaw()
+        {
+            Vector3 vel = Self.GlobalForward() * Self.FSpeed;
+            vel.Y = Self.VSpeed;
+            Self.Velocity = vel;
+        }
     }
 }
