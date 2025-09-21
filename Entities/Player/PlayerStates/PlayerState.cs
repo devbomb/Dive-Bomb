@@ -166,42 +166,6 @@ namespace FastDragon
             Self.Velocity = v;
         }
 
-        /// <summary>
-        /// Gradually moves the camera behind the player, using exponential
-        /// decay to smooth things out.
-        /// </summary>
-        protected void ContinuouslyRecenterCamera(
-            float targetYawRad,
-            float cameraDistance,
-            float cameraPitchDeg,
-            float decayRate,
-            float delta
-        )
-        {
-            var camera = Self.Camera;
-
-            camera.OrbitDistance = MathUtils.DecayToward(
-                camera.OrbitDistance,
-                cameraDistance,
-                decayRate,
-                delta
-            );
-
-            camera.OrbitPitchRad = AngleMath.DecayToward(
-                camera.OrbitPitchRad,
-                Mathf.DegToRad(cameraPitchDeg),
-                decayRate,
-                delta
-            );
-
-            camera.OrbitYawRad = AngleMath.DecayToward(
-                camera.OrbitYawRad,
-                targetYawRad,
-                decayRate,
-                delta
-            );
-        }
-
         protected void AngleModelPitchWithVelocity(float delta)
         {
             var rot = Self.Velocity.Normalized().ForwardToEulerAnglesRad();
