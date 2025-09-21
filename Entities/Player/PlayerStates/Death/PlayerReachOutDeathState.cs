@@ -9,6 +9,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             Self.Animator.Play("ReachOutDeath", 0);
+            Self.Velocity = Vector3.Zero;
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -16,7 +17,6 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             ApplyGravity(delta);
-            DecelerateHSpeedToZero(delta);
             Self.MoveAndSlide();
 
             if (!Self.Animator.IsPlaying())
