@@ -31,35 +31,6 @@ namespace FastDragon
                             .LimitLength(1);
         }
 
-        /// <summary>
-        /// Propels the player forward, letting them steer using the left
-        /// stick's x axis.
-        ///
-        /// This changes the player's velocity, but does not call MoveAndSlide()
-        /// or MoveAndCollide().
-        ///
-        /// Only the player's x and z velocities are affected; the y velocity
-        /// remains untouched.
-        ///
-        /// Use this for states where the player automatically moves forward,
-        /// such as charging or gliding.
-        /// </summary>
-        protected void TurningControls(
-            float forwardSpeed,
-            float turnSpeedDeg,
-            float delta
-        )
-        {
-            // Rotate with the left stick
-            float rotDeg = Self.RotationDegrees.Y;
-            rotDeg -= InputService.LeftStick.X * turnSpeedDeg * delta;
-            Self.RotationDegrees = new Vector3(0, rotDeg, 0);
-
-            // Update the horizontal velocity, without changing the vertical
-            // speed.
-            Self.FSpeed = forwardSpeed;
-        }
-
         protected void RotateTowardLeftStick(float rotSpeedRad, float delta)
         {
             var leftStick2D = InputService.LeftStick;
