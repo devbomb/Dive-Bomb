@@ -77,3 +77,30 @@
 ( 144 40 24 ) ( 144 144 40 ) ( 144 144 32 ) Textures/ConveyorBelt 0 0 0 1 1
 }
 }
+// entity 7
+{
+"classname" "hazard_conveyor_belt"
+"Speed" "7.8"
+"DirectionMarkerId" "EndlessConveyorBeltDirection"
+// brush 0
+{
+( 32 248 8 ) ( 32 249 8 ) ( 32 248 9 ) Textures/ConveyorBelt 0 0 0 1 1
+( 32 248 8 ) ( 32 248 9 ) ( 33 248 8 ) Textures/ConveyorBelt 0 0 0 1 1
+( 32 248 8 ) ( 33 248 8 ) ( 32 249 8 ) Textures/ConveyorBelt 0 0 0 1 1
+( 27432 408 16 ) ( 27432 409 16 ) ( 27433 408 16 ) Textures/ConveyorBelt 0 0 -90 1 1
+( 27432 408 16 ) ( 27433 408 16 ) ( 27432 408 17 ) Textures/ConveyorBelt 0 0 0 1 1
+( 27432 408 16 ) ( 27432 408 17 ) ( 27432 409 16 ) Textures/ConveyorBelt 0 0 0 1 1
+}
+}
+// entity 8
+{
+"classname" "info_named_marker"
+"origin" "48 -32 24"
+"MarkerId" "ConveyorBelt0Direction"
+}
+// entity 9
+{
+"classname" "info_named_marker"
+"origin" "224 296 24"
+"MarkerId" "EndlessConveyorBeltDirection"
+}
