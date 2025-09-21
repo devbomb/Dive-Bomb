@@ -162,5 +162,11 @@ namespace FastDragon
             vel.Y = Self.VSpeed;
             Self.Velocity = vel;
         }
+
+        private void AngleModelPitchWithVelocity(float delta)
+        {
+            var rot = Self.Velocity.Normalized().ForwardToEulerAnglesRad();
+            Self.ModelPitchRad = rot.X;
+        }
     }
 }
