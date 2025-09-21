@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=30 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.tscn" id="2_0esln"]
@@ -63,7 +63,14 @@ size = Vector3(1, 2, 1)
 script/source = "extends Label
 
 func _process(_delta):
-	text = str(owner.velocity)
+	text = \"Velocity: \" + str(owner.velocity)
+"
+
+[sub_resource type="GDScript" id="GDScript_hl213"]
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	text = \"Platform velocity: \" + str(owner.get_platform_velocity())
 "
 
 [sub_resource type="GDScript" id="GDScript_pxges"]
@@ -250,6 +257,11 @@ grow_vertical = 0
 layout_mode = 2
 text = "Velocity:"
 script = SubResource("GDScript_samso")
+
+[node name="PlatformVelocity" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "Platform Velocity:"
+script = SubResource("GDScript_hl213")
 
 [node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint") instance=ExtResource("10_dedpk")]
 LeftHandPoint = NodePath("../Model/LeftHandBone/LeftHandPoint")
