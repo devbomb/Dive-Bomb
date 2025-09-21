@@ -67,5 +67,14 @@ namespace FastDragon
             Self.Animator.Play("RESET", 0);
             Self.Animator.Seek(0, true);
         }
+
+        private void DecelerateHSpeedToZero(float delta)
+        {
+            var v = Self.Velocity.Flattened();
+            v = v.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
+            v.Y = Self.Velocity.Y;
+
+            Self.Velocity = v;
+        }
     }
 }

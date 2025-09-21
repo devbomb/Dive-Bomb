@@ -122,15 +122,6 @@ namespace FastDragon
             Self.Velocity += Vector3.Down * gravity * delta;
         }
 
-        protected void DecelerateHSpeedToZero(float delta, float friction = Player.Walk.Decel)
-        {
-            var v = Self.Velocity.Flattened();
-            v = v.MoveToward(Vector3.Zero, friction * delta);
-            v.Y = Self.Velocity.Y;
-
-            Self.Velocity = v;
-        }
-
         protected void ResetModelPitch()
         {
             Self.ModelPitchRad = 0;
