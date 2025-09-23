@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=31 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.tscn" id="2_0esln"]
