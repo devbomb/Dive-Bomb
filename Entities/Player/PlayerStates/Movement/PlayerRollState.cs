@@ -129,7 +129,7 @@ namespace FastDragon
             if (!IsCurrent)
                 return;
 
-            UpdateLastSafeGroundPos();
+            Self.SafeGround.UpdateLastSafeGroundPos();
 
             if (_timer >= Player.Roll.Duration)
             {

@@ -41,7 +41,7 @@ namespace FastDragon
             float delta = (float)deltaD;
             Self.Velocity = Self.Velocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
             Self.MoveAndSlide();
-            UpdateLastSafeGroundPos();
+            Self.SafeGround.UpdateLastSafeGroundPos();
 
             if (!Self.IsOnFloor())
             {

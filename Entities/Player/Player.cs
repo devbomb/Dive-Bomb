@@ -34,6 +34,8 @@ namespace FastDragon
         public Node3D FairyKissCamRightPoint => GetNode<Node3D>("%FairyKissCamRightPoint");
         public Node3D FairyKissCamLeftPoint => GetNode<Node3D>("%FairyKissCamLeftPoint");
 
+        public readonly PlayerSafeGround SafeGround;
+
         /// <summary>
         /// Used to let the player press "jump" slightly before landing and
         /// still have it count.
@@ -85,25 +87,19 @@ namespace FastDragon
         }
 
         /// <summary>
-        /// The location the player will teleport to if they fall in water
-        /// </summary>
-        public SafeGroundPos LastSafeGround;
-        public struct SafeGroundPos
-        {
-            public Transform3D PlayerPos;
-            public float CameraYawRad;
-            public float CameraPitchRad;
-        }
-
-        /// <summary>
         /// An accessor for <see cref="LastSafeGround"/> that GDScript can see
         /// </summary>
-        public Transform3D LastSafeGroundPos => LastSafeGround.PlayerPos;
+        public Transform3D LastSafeGroundPos => SafeGround.LastSafeGround.PlayerPos;
 
         private readonly StateMachine _stateMachine = new StateMachine();
         private Transform3D _spawnPos;
 
         private float _damageCooldownTimer;
+
+        public Player()
+        {
+            SafeGround = new(this);
+        }
 
         public override void _Ready()
         {
@@ -148,38 +144,10 @@ namespace FastDragon
             Animator.Advance(0);
             ChangeState<PlayerWalkState>();
 
-            SetLastSafeGroundHere();
+            SafeGround.SetLastSafeGroundHere();
 
             EarlyJumpBufferTimer = 0;
             _damageCooldownTimer = 0;
-        }
-
-        public void SetLastSafeGroundHere()
-        {
-            LastSafeGround = new SafeGroundPos
-            {
-                PlayerPos = GlobalTransform,
-                CameraYawRad = Camera.OrbitYawRad,
-                CameraPitchRad = Camera.OrbitPitchRad
-            };
-        }
-
-        public void ReturnToLastSafeGround()
-        {
-            GlobalTransform = LastSafeGround.PlayerPos;
-            this.ResetPhysicsInterpolation3D();
-            Velocity = Vector3.Zero;
-            ChangeState<PlayerStandState>();
-
-            if (!Camera.IsBeingManhandled)
-            {
-                CameraFocus.Reset();
-
-                Camera.OrbitYawRad = LastSafeGround.CameraYawRad;
-                Camera.OrbitPitchRad = LastSafeGround.CameraPitchRad;
-                Camera.StartFollowing();
-                Camera.ResetPhysicsInterpolation3D();
-            }
         }
 
         public void SetVisibleInPortals(bool visible)
