@@ -139,12 +139,11 @@ namespace FastDragon
 
             CameraFocus.Reset();
             Camera.Reset();
+            SafeGround.Reset();
 
             Animator.Play("RESET", 0);
             Animator.Advance(0);
             ChangeState<PlayerWalkState>();
-
-            SafeGround.SetLastSafeGroundHere();
 
             EarlyJumpBufferTimer = 0;
             _damageCooldownTimer = 0;

@@ -8,7 +8,7 @@ namespace FastDragon
         /// <summary>
         /// The location the player will teleport to if they fall in water
         /// </summary>
-        public SafeGroundPos LastSafeGround;
+        public SafeGroundPos LastSafeGround { get; private set; }
         public struct SafeGroundPos
         {
             public Transform3D PlayerPos;
@@ -23,14 +23,9 @@ namespace FastDragon
             _player = player;
         }
 
-        public void SetLastSafeGroundHere()
+        public void Reset()
         {
-            LastSafeGround = new SafeGroundPos
-            {
-                PlayerPos = _player.GlobalTransform,
-                CameraYawRad = _player.Camera.OrbitYawRad,
-                CameraPitchRad = _player.Camera.OrbitPitchRad
-            };
+            SetLastSafeGroundHere();
         }
 
         public void ReturnToLastSafeGround()
@@ -94,6 +89,16 @@ namespace FastDragon
                 return;
 
             SetLastSafeGroundHere();
+        }
+
+        private void SetLastSafeGroundHere()
+        {
+            LastSafeGround = new SafeGroundPos
+            {
+                PlayerPos = _player.GlobalTransform,
+                CameraYawRad = _player.Camera.OrbitYawRad,
+                CameraPitchRad = _player.Camera.OrbitPitchRad
+            };
         }
     }
 }
