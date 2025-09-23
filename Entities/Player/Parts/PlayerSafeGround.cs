@@ -73,6 +73,9 @@ namespace FastDragon
             if (collision.GetCollider() is not StaticBody3D ground)
                 return;
 
+            if (ground is AnimatableBody3D)
+                return;
+
             if (ground.ConstantLinearVelocity != Vector3.Zero)
                 return;
 
