@@ -17,8 +17,7 @@ namespace FastDragon
         public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
         public PlayerCamera Camera => GetNode<PlayerCamera>("%Camera");
-        public Node3D CameraFocus => GetNode<Node3D>("%CameraFocus");
-        public Node3D CameraFocusRestPos => GetNode<Node3D>("%CameraFocusRestPos");
+        public PlayerCameraFocusPoint CameraFocus => GetNode<PlayerCameraFocusPoint>("%CameraFocus");
 
         public Node3D Model => GetNode<Node3D>("%Model");
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
@@ -142,8 +141,7 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
-            CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
-            CameraFocus.ResetPhysicsInterpolation3D();
+            CameraFocus.Reset();
             Camera.Reset();
 
             Animator.Play("RESET", 0);
@@ -175,8 +173,7 @@ namespace FastDragon
 
             if (!Camera.IsBeingManhandled)
             {
-                CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
-                CameraFocus.ResetPhysicsInterpolation3D();
+                CameraFocus.Reset();
 
                 Camera.OrbitYawRad = LastSafeGround.CameraYawRad;
                 Camera.OrbitPitchRad = LastSafeGround.CameraPitchRad;
@@ -261,63 +258,6 @@ namespace FastDragon
 
             if (_damageCooldownTimer > 0 && !CurrentState.PauseDamageCooldownTimer)
                 _damageCooldownTimer -= delta;
-
-            AdjustCameraFocusPoint(delta);
-        }
-
-        private void AdjustCameraFocusPoint(float delta)
-        {
-            if (CurrentState.UseMario64CameraFocus)
-            {
-                var groundPos = FindGroundPosition();
-                float yFocusGround = groundPos.Y + CameraFocusRestPos.Position.Y;
-                float targetYFocus = Mathf.Max(
-                    yFocusGround,
-                    GlobalPosition.Y
-                );
-
-                var focusPos = CameraFocusRestPos.GlobalPosition;
-                focusPos.Y = AccelMath.SmoothStepToward(
-                    CameraFocus.GlobalPosition.Y,
-                    targetYFocus,
-                    Player.Default.Gravity,
-                    delta,
-                    ref _cameraFocusYSpeed
-                );
-                CameraFocus.GlobalPosition = focusPos;
-            }
-            else
-            {
-                CameraFocus.GlobalPosition = CameraFocusRestPos.GlobalPosition;
-            }
-
-            // HACK: Keep the camera focus rotated with the player, so recentering
-            // works correctly.
-            //
-            // The camera uses the global rotation of whatever it's following to
-            // determine where to go when it recenters.  Its follow target
-            // happens to be the camera focus.  The camera focus is top-level
-            // (I forget why), so it doesn't rotate when the player rotates.
-            // Thus, it always has a global rotation of (0, 0, 0) unless we
-            // intervene, so the camera always faces north when it recenters.
-            // To avoid this, just manually change the focus's rotation.
-            CameraFocus.GlobalRotation = GlobalRotation;
-        }
-
-        private float _cameraFocusYSpeed = 0;
-
-        private Vector3 FindGroundPosition()
-        {
-            const float maxHeight = 10;
-            var collision = MoveAndCollide(
-                Vector3.Down * maxHeight,
-                testOnly: true,
-                recoveryAsCollision: true
-            );
-
-            return collision == null
-                ? (GlobalPosition + (Vector3.Down * maxHeight))
-                : collision.GetPosition();
         }
 
         public void ChangeState<TState>() where TState : PlayerState, new()

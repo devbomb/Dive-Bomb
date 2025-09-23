@@ -32,8 +32,7 @@ namespace FastDragon
             Self.GlobalRotation = Vector3.Zero;
             Self.ResetPhysicsInterpolation3D();
 
-            Self.CameraFocus.GlobalPosition = Self.CameraFocusRestPos.GlobalPosition;
-            Self.CameraFocus.ResetPhysicsInterpolation3D();
+            Self.CameraFocus.Reset();
 
             _startPos = Self.GlobalPosition;
             _startRotRad = Self.GlobalRotation;

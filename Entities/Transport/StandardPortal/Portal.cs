@@ -47,8 +47,7 @@ namespace FastDragon
             player.GlobalPosition = _exitAnimationStartPos;
             player.ResetPhysicsInterpolation3D();
 
-            player.CameraFocus.GlobalPosition = player.CameraFocusRestPos.GlobalPosition;
-            player.CameraFocus.ResetPhysicsInterpolation3D();
+            player.CameraFocus.Reset();
 
             player.Camera.OrbitYawRad = _playerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
             player.Camera.OrbitPitchRad = 0;
