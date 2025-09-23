@@ -206,7 +206,6 @@ namespace FastDragon
         ///     the timer won't start until AFTER that state is completed and
         ///     the player is actionable again.
         /// </param>
-        /// <typeparam name="TState"></typeparam>
         public bool TryDamage(float invulnerablePeriod = 0)
         {
             if (_damageCooldownTimer > 0)
