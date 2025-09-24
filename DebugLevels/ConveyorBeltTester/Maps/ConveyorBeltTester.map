@@ -104,3 +104,13 @@
 "origin" "224 296 24"
 "MarkerId" "EndlessConveyorBeltDirection"
 }
+// entity 10
+{
+"classname" "item_fairy"
+"origin" "456 368 16"
+}
+// entity 11
+{
+"classname" "item_fairy"
+"origin" "424 192 16"
+}
