@@ -243,6 +243,7 @@ ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
 
 [node name="VelocityStats" type="VBoxContainer" parent="HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
