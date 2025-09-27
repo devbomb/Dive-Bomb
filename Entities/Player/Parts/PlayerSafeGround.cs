@@ -33,6 +33,10 @@ namespace FastDragon
             _player.GlobalTransform = LastSafeGround.PlayerPos;
             _player.ResetPhysicsInterpolation3D();
             _player.Velocity = Vector3.Zero;
+            _player.LastPlatformVelocity = Vector3.Zero;
+            // Moving platforms are never considered safe ground, so using zero
+            // as the last platform velocity is OK here.
+
             _player.ChangeState<PlayerStandState>();
 
             if (!_player.Camera.IsBeingManhandled)

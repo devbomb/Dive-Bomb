@@ -12,7 +12,7 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            Self.Velocity = Vector3.Zero;
+            Self.LocalVelocity = Vector3.Zero;
 
             _timer = Self.Animator.GetAnimation(RecoverAnim).Length;
             Self.Animator.Play(RecoverAnim, customBlend: 0);

@@ -51,7 +51,7 @@ namespace FastDragon
             ApplyGravity(delta);
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
 
-            if (!Self.Velocity.Flattened().IsZeroApprox())
+            if (!Self.LocalVelocity.Flattened().IsZeroApprox())
                 RotateInstantlyTowardVelocity();
 
             Self.MoveAndSlide();

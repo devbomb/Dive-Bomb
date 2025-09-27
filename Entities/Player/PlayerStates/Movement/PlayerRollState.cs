@@ -28,7 +28,7 @@ namespace FastDragon
 
             _timer = 0;
             _isGroundRoll = !(oldState is PlayerDiveState);
-            Self.Velocity = Self.GlobalForward() * Player.Roll.InitialSpeed;
+            Self.LocalVelocity = Self.GlobalForward() * Player.Roll.InitialSpeed;
             Self.Camera.Lag(CameraLagDuration);
 
             _rollSoundPlayer.Play(0.025f);
@@ -43,13 +43,13 @@ namespace FastDragon
 
         public override void _Process(double deltaD)
         {
-            float scale = Self.Velocity.Length() / RollingCircumference;
+            float scale = Self.LocalVelocity.Length() / RollingCircumference;
             Self.Animator.SpeedScale = scale;
 
             float speedPercent = Mathf.InverseLerp(
                 Player.Roll.MinSpeed,
                 Player.Roll.InitialSpeed,
-                Self.Velocity.Length()
+                Self.LocalVelocity.Length()
             );
             _thuum.Transparency = 1f - speedPercent;
 
@@ -164,7 +164,7 @@ namespace FastDragon
         )
         {
             Vector3 leftStick3D = LeftStick3D();
-            Vector3 flatVel = Self.Velocity.Flattened();
+            Vector3 flatVel = Self.LocalVelocity.Flattened();
 
             // Apply a drag force in the opposite direction of the current
             // motion
@@ -187,8 +187,8 @@ namespace FastDragon
             }
 
             // Save it
-            flatVel.Y = Self.Velocity.Y;
-            Self.Velocity = flatVel;
+            flatVel.Y = Self.LocalVelocity.Y;
+            Self.LocalVelocity = flatVel;
         }
     }
 }

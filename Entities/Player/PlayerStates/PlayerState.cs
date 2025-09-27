@@ -63,8 +63,11 @@ namespace FastDragon
 
         protected void RotateInstantlyTowardVelocity()
         {
+            if (Self.LocalVelocity.Flattened().IsZeroApprox())
+                return;
+
             Vector3 rot = Self.GlobalRotation;
-            rot.Y = Self.Velocity
+            rot.Y = Self.LocalVelocity
                 .Flattened()
                 .ForwardToEulerAnglesRad()
                 .Y;
@@ -78,7 +81,7 @@ namespace FastDragon
         )
         {
             Vector3 leftStick3D = LeftStick3D();
-            Vector3 flatVel = Self.Velocity.Flattened();
+            Vector3 flatVel = Self.LocalVelocity.Flattened();
 
             // Apply a drag force in the opposite direction of the current
             // motion, but only if we're exceeding the speed limit
@@ -94,8 +97,8 @@ namespace FastDragon
             flatVel += leftStick3D.Normalized() * accel * delta;
 
             // Save it
-            flatVel.Y = Self.Velocity.Y;
-            Self.Velocity = flatVel;
+            flatVel.Y = Self.LocalVelocity.Y;
+            Self.LocalVelocity = flatVel;
         }
 
         protected void StrafeWithLeftStick(
@@ -105,12 +108,12 @@ namespace FastDragon
         )
         {
             Vector3 targetFlatVel = LeftStick3D() * maxSpeed;
-            Vector3 flatVel = Self.Velocity.Flattened();
+            Vector3 flatVel = Self.LocalVelocity.Flattened();
             flatVel = flatVel.MoveToward(targetFlatVel, accel * delta);
 
-            Self.Velocity = new Vector3(
+            Self.LocalVelocity = new Vector3(
                 flatVel.X,
-                Self.Velocity.Y,
+                Self.LocalVelocity.Y,
                 flatVel.Z
             );
         }
@@ -119,7 +122,7 @@ namespace FastDragon
             float delta,
             float gravity = Player.Default.Gravity)
         {
-            Self.Velocity += Vector3.Down * gravity * delta;
+            Self.LocalVelocity += Vector3.Down * gravity * delta;
         }
 
         protected void ResetModelPitch()

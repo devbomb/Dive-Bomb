@@ -160,12 +160,12 @@ namespace FastDragon
         {
             Vector3 vel = Self.GlobalForward() * Self.FSpeed;
             vel.Y = Self.VSpeed;
-            Self.Velocity = vel;
+            Self.LocalVelocity = vel;
         }
 
         private void AngleModelPitchWithVelocity(float delta)
         {
-            var rot = Self.Velocity.Normalized().ForwardToEulerAnglesRad();
+            var rot = Self.LocalVelocity.Normalized().ForwardToEulerAnglesRad();
             Self.ModelPitchRad = rot.X;
         }
     }

@@ -10,8 +10,8 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             Self.Animator.Play("Bonk", 0);
-            Self.Velocity = Self.GlobalForward() * -Player.Bonk.InitHSpeed;
-            Self.Velocity += Vector3.Up * Player.Bonk.InitVSpeed;
+            Self.LocalVelocity = Self.GlobalForward() * -Player.Bonk.InitHSpeed;
+            Self.LocalVelocity += Vector3.Up * Player.Bonk.InitVSpeed;
 
             _bonkSoundPlayer.Play();
 
@@ -27,10 +27,10 @@ namespace FastDragon
             float delta = (float)deltaD;
 
             // Slow down horizontally, but not vertically
-            Vector3 newVel = Self.Velocity.Flattened();
+            Vector3 newVel = Self.LocalVelocity.Flattened();
             newVel = newVel.MoveToward(Vector3.Zero, Player.Bonk.Friction * delta);
-            newVel.Y = Self.Velocity.Y;
-            Self.Velocity = newVel;
+            newVel.Y = Self.LocalVelocity.Y;
+            Self.LocalVelocity = newVel;
 
             ApplyGravity(delta, Player.Bonk.Gravity);
 

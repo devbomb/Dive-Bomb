@@ -37,6 +37,57 @@ namespace FastDragon
         public readonly PlayerSafeGround SafeGround;
 
         /// <summary>
+        /// The velocity of the last platform the player stood on.
+        /// Useful for enforcing a mid-air speed cap that's relative to the
+        /// platform the player just jumped from.
+        /// </summary>
+        public Vector3 LastPlatformVelocity { get; set; }
+        private bool _wasOnFloorLastPhysicsFrame;
+
+        /// <summary>
+        /// The player's velocity relative to the last platform they stood on
+        /// (regardless of if they're in the air or on the ground).
+        /// </summary>
+        public Vector3 LocalVelocity
+        {
+            // Godot treats the Velocity property differently depending on if
+            // you're in the air or on the ground.
+            //
+            // In the air, Velocity is your "absolute" velocity, relative to
+            // the raw coordinate system.
+            //
+            // On the ground, Velocity is how fast you're moving relative to
+            // the ground you're currently standing on, hence why we only
+            // subtract LastPlatformVelocity in the air.
+            get => IsOnFloor()
+                ? Velocity
+                : Velocity - LastPlatformVelocity;
+
+            set
+            {
+                if (IsOnFloor())
+                    Velocity = value;
+                else
+                    Velocity = value + LastPlatformVelocity;
+            }
+        }
+
+        public Vector3 TotalVelocity
+        {
+            get => IsOnFloor()
+                ? Velocity + GetPlatformVelocity()
+                : Velocity;
+
+            set
+            {
+                if (IsOnFloor())
+                    Velocity = value - GetPlatformVelocity();
+                else
+                    Velocity = value;
+            }
+        }
+
+        /// <summary>
         /// Used to let the player press "jump" slightly before landing and
         /// still have it count.
         /// </summary>
@@ -44,23 +95,23 @@ namespace FastDragon
 
         public float FSpeed
         {
-            get => Velocity.Flattened().Length();
+            get => LocalVelocity.Flattened().Length();
             set
             {
                 Vector3 vel = this.GlobalForward() * value;
-                vel.Y = Velocity.Y;
-                Velocity = vel;
+                vel.Y = LocalVelocity.Y;
+                LocalVelocity = vel;
             }
         }
 
         public float VSpeed
         {
-            get => Velocity.Y;
+            get => LocalVelocity.Y;
             set
             {
-                Vector3 vel = Velocity;
+                Vector3 vel = LocalVelocity;
                 vel.Y = value;
-                Velocity = vel;
+                LocalVelocity = vel;
             }
         }
 
@@ -105,6 +156,7 @@ namespace FastDragon
         {
             AddChild(_stateMachine);
             _stateMachine.StateChanging += OnStateChanging;
+            _stateMachine.AfterPhysicsProcess += AfterStatePhysicsProcess;
 
             base._Ready();
 
@@ -133,9 +185,13 @@ namespace FastDragon
             GlobalTransform = checkpoint == null
                 ? _spawnPos
                 : checkpoint.GlobalTransform;
+            this.ResetPhysicsInterpolation3D();
 
             Velocity = Vector3.Zero;
-            this.ResetPhysicsInterpolation3D();
+            LastPlatformVelocity = Vector3.Zero;    // The respawn point will
+                                                    // never be on a moving
+                                                    // platform, so this is OK.
+            _wasOnFloorLastPhysicsFrame = true;
 
             CameraFocus.Reset();
             Camera.Reset();
@@ -226,6 +282,15 @@ namespace FastDragon
                 _damageCooldownTimer -= delta;
         }
 
+        /// <summary>
+        /// Occurs after the current state's _PhysicsProcess().
+        /// Put things here if they need to occur after MoveAndSlide()
+        /// </summary>
+        private void AfterStatePhysicsProcess(double delta)
+        {
+            UpdatePlatformVelocity();
+        }
+
         public void ChangeState<TState>() where TState : PlayerState, new()
         {
             _stateMachine.ChangeState<TState>();
@@ -234,6 +299,36 @@ namespace FastDragon
         private void OnStateChanging(IState currentState, IState incomingState)
         {
             GD.Print($"Changing state to {incomingState.GetType().Name}");
+        }
+
+        private void UpdatePlatformVelocity()
+        {
+            bool onFloor = IsOnFloor();
+            bool wasOnFloor = _wasOnFloorLastPhysicsFrame;
+            _wasOnFloorLastPhysicsFrame = onFloor;
+
+            if (onFloor)
+                LastPlatformVelocity = GetPlatformVelocity();
+
+            // Adjust velocity to be relative to the platform velocity, so the
+            // player doesn't "skip forward" when landing on a moving platform
+            // at the same horizontal speed as it.
+            if (onFloor && !wasOnFloor)
+            {
+                Velocity -= GetPlatformVelocity();
+
+                // HACK: IsOnFloor() only works reliably if Velocity.Y is at
+                // least a little bit negative.  It being exactly zero results
+                // in it flickering between returning true and false.
+                //
+                // Furthermore, a velocity of exactly zero results in the
+                // following error:
+                // "instance_set_transform: Condition "!v.is_finite()" is true."
+                //
+                // Adding a little bit of downward velocity when landing fixes
+                // both problems.
+                Velocity += Vector3.Down;
+            }
         }
     }
 }

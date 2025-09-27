@@ -39,7 +39,7 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
-            Self.Velocity = Self.Velocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
+            Self.LocalVelocity = Self.LocalVelocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
             Self.MoveAndSlide();
             Self.SafeGround.UpdateLastSafeGroundPos();
 

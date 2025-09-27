@@ -70,7 +70,7 @@ func _process(_delta):
 script/source = "extends Label
 
 func _process(delta: float) -> void:
-	text = \"Platform velocity: \" + str(owner.get_platform_velocity())
+	text = \"Last platform velocity: \" + str(owner.LastPlatformVelocity)
 "
 
 [sub_resource type="GDScript" id="GDScript_pxges"]
@@ -196,9 +196,10 @@ unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_rtu1o")
 
-[node name="Camera" parent="." node_paths=PackedStringArray("FollowTarget") instance=ExtResource("4_ne5gw")]
+[node name="Camera" parent="." node_paths=PackedStringArray("FollowTarget", "Player") instance=ExtResource("4_ne5gw")]
 unique_name_in_owner = true
 FollowTarget = NodePath("../CameraFocus")
+Player = NodePath("..")
 
 [node name="CameraFocus" type="Marker3D" parent="." node_paths=PackedStringArray("Player", "RestPos") groups=["PhysicsInterpolated"]]
 unique_name_in_owner = true

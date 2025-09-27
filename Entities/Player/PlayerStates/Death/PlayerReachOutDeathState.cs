@@ -9,7 +9,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             Self.Animator.Play("ReachOutDeath", 0);
-            Self.Velocity = Vector3.Zero;
+            Self.LocalVelocity = Vector3.Zero;
         }
 
         public override void _PhysicsProcess(double deltaD)

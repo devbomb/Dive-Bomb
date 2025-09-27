@@ -7,7 +7,10 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             Self.Animator.Play("GrabLedge");
-            Self.Velocity = Vector3.Zero;
+            Self.LocalVelocity = Vector3.Zero;
+
+            // TODO: Set LastPlatformVelocity to the ledge's velocity.
+            // And make the player travel with the ledge as it moves.
 
             // Snap to the correct height.
             // The height should be such that the ledge grab point is at exactly

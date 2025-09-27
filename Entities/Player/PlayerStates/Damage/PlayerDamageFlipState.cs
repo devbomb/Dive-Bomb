@@ -70,11 +70,11 @@ namespace FastDragon
 
         private void DecelerateHSpeedToZero(float delta)
         {
-            var v = Self.Velocity.Flattened();
+            var v = Self.LocalVelocity.Flattened();
             v = v.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
-            v.Y = Self.Velocity.Y;
+            v.Y = Self.LocalVelocity.Y;
 
-            Self.Velocity = v;
+            Self.LocalVelocity = v;
         }
     }
 }
