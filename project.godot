@@ -27,6 +27,7 @@ LevelTransitionManager="*res://Singletons/LevelTransitionManager/LevelTransition
 UserSettings="*res://Common/Scripts/Services/UserSettingsGDScriptAdaptor.cs"
 PhysicsInterpolatorSingleton="*res://Common/Scripts/PhysicsInterpolation/PhysicsInterpolatorSingleton.cs"
 HitStopManager="*res://Singletons/HitStopManager.cs"
+ShaderUnpausedTimer="res://Singletons/ShaderUnpausedTimer.gd"
 
 [dotnet]
 
@@ -175,3 +176,10 @@ Interact={
 common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
 jolt_physics_3d/simulation/areas_detect_static_bodies=true
+
+[shader_globals]
+
+UNPAUSED_TIME={
+"type": "float",
+"value": 0.0
+}
