@@ -155,5 +155,18 @@ namespace FastDragon
                 b.CameraShakeDuration
             );
         }
+
+        private void RedirectFSpeedTowardYaw()
+        {
+            Vector3 vel = Self.GlobalForward() * Self.FSpeed;
+            vel.Y = Self.VSpeed;
+            Self.LocalVelocity = vel;
+        }
+
+        private void AngleModelPitchWithVelocity(float delta)
+        {
+            var rot = Self.LocalVelocity.Normalized().ForwardToEulerAnglesRad();
+            Self.ModelPitchRad = rot.X;
+        }
     }
 }

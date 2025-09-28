@@ -31,35 +31,6 @@ namespace FastDragon
                             .LimitLength(1);
         }
 
-        /// <summary>
-        /// Propels the player forward, letting them steer using the left
-        /// stick's x axis.
-        ///
-        /// This changes the player's velocity, but does not call MoveAndSlide()
-        /// or MoveAndCollide().
-        ///
-        /// Only the player's x and z velocities are affected; the y velocity
-        /// remains untouched.
-        ///
-        /// Use this for states where the player automatically moves forward,
-        /// such as charging or gliding.
-        /// </summary>
-        protected void TurningControls(
-            float forwardSpeed,
-            float turnSpeedDeg,
-            float delta
-        )
-        {
-            // Rotate with the left stick
-            float rotDeg = Self.RotationDegrees.Y;
-            rotDeg -= InputService.LeftStick.X * turnSpeedDeg * delta;
-            Self.RotationDegrees = new Vector3(0, rotDeg, 0);
-
-            // Update the horizontal velocity, without changing the vertical
-            // speed.
-            Self.FSpeed = forwardSpeed;
-        }
-
         protected void RotateTowardLeftStick(float rotSpeedRad, float delta)
         {
             var leftStick2D = InputService.LeftStick;
@@ -92,54 +63,15 @@ namespace FastDragon
 
         protected void RotateInstantlyTowardVelocity()
         {
+            if (Self.LocalVelocity.Flattened().IsZeroApprox())
+                return;
+
             Vector3 rot = Self.GlobalRotation;
-            rot.Y = Self.Velocity
+            rot.Y = Self.LocalVelocity
                 .Flattened()
                 .ForwardToEulerAnglesRad()
                 .Y;
             Self.GlobalRotation = rot;
-        }
-
-        protected void RedirectFSpeedTowardYaw()
-        {
-            Vector3 vel = Self.GlobalForward() * Self.FSpeed;
-            vel.Y = Self.VSpeed;
-            Self.Velocity = vel;
-        }
-
-        protected void AccelerateWithLeftStickAgainstDrag(
-            float maxSpeed,
-            float minAccel,
-            float maxAccel,
-            float delta
-        )
-        {
-            Vector3 leftStick3D = LeftStick3D();
-            Vector3 flatVel = Self.Velocity.Flattened();
-
-            // Apply a drag force in the opposite direction of the current
-            // motion
-            float flatSpeed = flatVel.Length();
-            float drag = Mathf.Lerp(0, maxAccel, flatSpeed / maxSpeed);
-            flatVel -= flatVel.Normalized() * drag * delta;
-
-            // Apply acceleration in the direction the stick is being pushed.
-            // If the stick isn't being pushed at all, then apply the minimum
-            // acceleration in the current facing direction.
-            float accel = Mathf.Lerp(minAccel, maxAccel, leftStick3D.Length());
-
-            if (leftStick3D.IsZeroApprox())
-            {
-                flatVel += Self.GlobalForward() * accel * delta;
-            }
-            else
-            {
-                flatVel += leftStick3D.Normalized() * accel * delta;
-            }
-
-            // Save it
-            flatVel.Y = Self.Velocity.Y;
-            Self.Velocity = flatVel;
         }
 
         protected void AccelerateWithLeftStick(
@@ -149,7 +81,7 @@ namespace FastDragon
         )
         {
             Vector3 leftStick3D = LeftStick3D();
-            Vector3 flatVel = Self.Velocity.Flattened();
+            Vector3 flatVel = Self.LocalVelocity.Flattened();
 
             // Apply a drag force in the opposite direction of the current
             // motion, but only if we're exceeding the speed limit
@@ -165,8 +97,8 @@ namespace FastDragon
             flatVel += leftStick3D.Normalized() * accel * delta;
 
             // Save it
-            flatVel.Y = Self.Velocity.Y;
-            Self.Velocity = flatVel;
+            flatVel.Y = Self.LocalVelocity.Y;
+            Self.LocalVelocity = flatVel;
         }
 
         protected void StrafeWithLeftStick(
@@ -176,12 +108,12 @@ namespace FastDragon
         )
         {
             Vector3 targetFlatVel = LeftStick3D() * maxSpeed;
-            Vector3 flatVel = Self.Velocity.Flattened();
+            Vector3 flatVel = Self.LocalVelocity.Flattened();
             flatVel = flatVel.MoveToward(targetFlatVel, accel * delta);
 
-            Self.Velocity = new Vector3(
+            Self.LocalVelocity = new Vector3(
                 flatVel.X,
-                Self.Velocity.Y,
+                Self.LocalVelocity.Y,
                 flatVel.Z
             );
         }
@@ -190,58 +122,7 @@ namespace FastDragon
             float delta,
             float gravity = Player.Default.Gravity)
         {
-            Self.Velocity += Vector3.Down * gravity * delta;
-        }
-
-        protected void DecelerateHSpeedToZero(float delta, float friction = Player.Walk.Decel)
-        {
-            var v = Self.Velocity.Flattened();
-            v = v.MoveToward(Vector3.Zero, friction * delta);
-            v.Y = Self.Velocity.Y;
-
-            Self.Velocity = v;
-        }
-
-        /// <summary>
-        /// Gradually moves the camera behind the player, using exponential
-        /// decay to smooth things out.
-        /// </summary>
-        protected void ContinuouslyRecenterCamera(
-            float targetYawRad,
-            float cameraDistance,
-            float cameraPitchDeg,
-            float decayRate,
-            float delta
-        )
-        {
-            var camera = Self.Camera;
-
-            camera.OrbitDistance = MathUtils.DecayToward(
-                camera.OrbitDistance,
-                cameraDistance,
-                decayRate,
-                delta
-            );
-
-            camera.OrbitPitchRad = AngleMath.DecayToward(
-                camera.OrbitPitchRad,
-                Mathf.DegToRad(cameraPitchDeg),
-                decayRate,
-                delta
-            );
-
-            camera.OrbitYawRad = AngleMath.DecayToward(
-                camera.OrbitYawRad,
-                targetYawRad,
-                decayRate,
-                delta
-            );
-        }
-
-        protected void AngleModelPitchWithVelocity(float delta)
-        {
-            var rot = Self.Velocity.Normalized().ForwardToEulerAnglesRad();
-            Self.ModelPitchRad = rot.X;
+            Self.LocalVelocity += Vector3.Down * gravity * delta;
         }
 
         protected void ResetModelPitch()
@@ -441,47 +322,6 @@ namespace FastDragon
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Sets the player's last safe pos to here, if they're currently
-        /// standing on solid ground that isn't flagged as "unsafe".
-        ///
-        /// Call this after MoveAndSlide() if the current state is one where
-        /// you're comfortable updating it.
-        /// </summary>
-        protected void UpdateLastSafeGroundPos()
-        {
-            var collision = new KinematicCollision3D();
-            bool onGround = Self.TestMove(
-                Self.GlobalTransform,
-                -Self.UpDirection * 0.1f,
-                collision);
-
-            if (!onGround)
-                return;
-
-            if (collision.GetCollider() is not StaticBody3D ground)
-                return;
-
-            if (ground.ConstantLinearVelocity != Vector3.Zero)
-                return;
-
-            if (ground.ConstantAngularVelocity != Vector3.Zero)
-                return;
-
-            // Don't consider the ground "safe" if the normal vector is too
-            // sloped.  This prevents the player from being respawned at the
-            // very very edge of a platform(which would just lead to them
-            // falling again)
-            if (collision.GetAngle() > Mathf.DegToRad(45))
-                return;
-
-            bool isUnsafe = ((Node)collision.GetCollider()).IsInGroup("UnsafeGround");
-            if (isUnsafe)
-                return;
-
-            Self.SetLastSafeGroundHere();
         }
     }
 }

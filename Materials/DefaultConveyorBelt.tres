@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dpukm1co5myqt"]
+
+[ext_resource type="Shader" uid="uid://x843frqmung3" path="res://Entities/Hazard/ConveyorBelt/ConveyorBelt.gdshader" id="1_cf32m"]
+[ext_resource type="Texture2D" uid="uid://deembyvogylvb" path="res://Textures/Textures/ConveyorBelt.png" id="2_hc6kd"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cf32m")
+shader_parameter/albedo = ExtResource("2_hc6kd")

@@ -28,7 +28,7 @@ namespace FastDragon
 
             _timer = 0;
             _isGroundRoll = !(oldState is PlayerDiveState);
-            Self.Velocity = Self.GlobalForward() * Player.Roll.InitialSpeed;
+            Self.LocalVelocity = Self.GlobalForward() * Player.Roll.InitialSpeed;
             Self.Camera.Lag(CameraLagDuration);
 
             _rollSoundPlayer.Play(0.025f);
@@ -43,13 +43,13 @@ namespace FastDragon
 
         public override void _Process(double deltaD)
         {
-            float scale = Self.Velocity.Length() / RollingCircumference;
+            float scale = Self.LocalVelocity.Length() / RollingCircumference;
             Self.Animator.SpeedScale = scale;
 
             float speedPercent = Mathf.InverseLerp(
                 Player.Roll.MinSpeed,
                 Player.Roll.InitialSpeed,
-                Self.Velocity.Length()
+                Self.LocalVelocity.Length()
             );
             _thuum.Transparency = 1f - speedPercent;
 
@@ -129,7 +129,7 @@ namespace FastDragon
             if (!IsCurrent)
                 return;
 
-            UpdateLastSafeGroundPos();
+            Self.SafeGround.UpdateLastSafeGroundPos();
 
             if (_timer >= Player.Roll.Duration)
             {
@@ -154,6 +154,41 @@ namespace FastDragon
                 b.CameraShakeFrequency,
                 b.CameraShakeDuration
             );
+        }
+
+        private void AccelerateWithLeftStickAgainstDrag(
+            float maxSpeed,
+            float minAccel,
+            float maxAccel,
+            float delta
+        )
+        {
+            Vector3 leftStick3D = LeftStick3D();
+            Vector3 flatVel = Self.LocalVelocity.Flattened();
+
+            // Apply a drag force in the opposite direction of the current
+            // motion
+            float flatSpeed = flatVel.Length();
+            float drag = Mathf.Lerp(0, maxAccel, flatSpeed / maxSpeed);
+            flatVel -= flatVel.Normalized() * drag * delta;
+
+            // Apply acceleration in the direction the stick is being pushed.
+            // If the stick isn't being pushed at all, then apply the minimum
+            // acceleration in the current facing direction.
+            float accel = Mathf.Lerp(minAccel, maxAccel, leftStick3D.Length());
+
+            if (leftStick3D.IsZeroApprox())
+            {
+                flatVel += Self.GlobalForward() * accel * delta;
+            }
+            else
+            {
+                flatVel += leftStick3D.Normalized() * accel * delta;
+            }
+
+            // Save it
+            flatVel.Y = Self.LocalVelocity.Y;
+            Self.LocalVelocity = flatVel;
         }
     }
 }

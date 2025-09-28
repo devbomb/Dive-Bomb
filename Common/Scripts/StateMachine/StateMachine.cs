@@ -7,8 +7,20 @@ namespace FastDragon
 {
     public partial class StateMachine : Node
     {
+        // This isn't a signal because IState isn't a type that's allowed in
+        // signal handler parameters.
         public delegate void StateChangingEventHandler(IState currentState, IState incomingState);
         public event StateChangingEventHandler StateChanging;
+
+        /// <summary>
+        /// Fired immediately the current state's _Process().
+        /// </summary>
+        [Signal] public delegate void AfterProcessEventHandler(double delta);
+
+        /// <summary>
+        /// Fired immediately the current state's _PhysicsProcess().
+        /// </summary>
+        [Signal] public delegate void AfterPhysicsProcessEventHandler(double delta);
 
         public IState CurrentState { get; private set; }
 
@@ -22,11 +34,13 @@ namespace FastDragon
         public override void _Process(double delta)
         {
             CurrentState?._Process(delta);
+            EmitSignal(SignalName.AfterProcess, delta);
         }
 
         public override void _PhysicsProcess(double delta)
         {
             CurrentState?._PhysicsProcess(delta);
+            EmitSignal(SignalName.AfterPhysicsProcess, delta);
         }
 
         public override void _ExitTree()

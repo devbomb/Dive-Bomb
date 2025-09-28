@@ -17,8 +17,7 @@ namespace FastDragon
         public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
         public PlayerCamera Camera => GetNode<PlayerCamera>("%Camera");
-        public Node3D CameraFocus => GetNode<Node3D>("%CameraFocus");
-        public Node3D CameraFocusRestPos => GetNode<Node3D>("%CameraFocusRestPos");
+        public PlayerCameraFocusPoint CameraFocus => GetNode<PlayerCameraFocusPoint>("%CameraFocus");
 
         public Node3D Model => GetNode<Node3D>("%Model");
         public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
@@ -35,6 +34,59 @@ namespace FastDragon
         public Node3D FairyKissCamRightPoint => GetNode<Node3D>("%FairyKissCamRightPoint");
         public Node3D FairyKissCamLeftPoint => GetNode<Node3D>("%FairyKissCamLeftPoint");
 
+        public readonly PlayerSafeGround SafeGround;
+
+        /// <summary>
+        /// The velocity of the last platform the player stood on.
+        /// Useful for enforcing a mid-air speed cap that's relative to the
+        /// platform the player just jumped from.
+        /// </summary>
+        public Vector3 LastPlatformVelocity { get; set; }
+        private bool _wasOnFloorLastPhysicsFrame;
+
+        /// <summary>
+        /// The player's velocity relative to the last platform they stood on
+        /// (regardless of if they're in the air or on the ground).
+        /// </summary>
+        public Vector3 LocalVelocity
+        {
+            // Godot treats the Velocity property differently depending on if
+            // you're in the air or on the ground.
+            //
+            // In the air, Velocity is your "absolute" velocity, relative to
+            // the raw coordinate system.
+            //
+            // On the ground, Velocity is how fast you're moving relative to
+            // the ground you're currently standing on, hence why we only
+            // subtract LastPlatformVelocity in the air.
+            get => IsOnFloor()
+                ? Velocity
+                : Velocity - LastPlatformVelocity;
+
+            set
+            {
+                if (IsOnFloor())
+                    Velocity = value;
+                else
+                    Velocity = value + LastPlatformVelocity;
+            }
+        }
+
+        public Vector3 TotalVelocity
+        {
+            get => IsOnFloor()
+                ? Velocity + GetPlatformVelocity()
+                : Velocity;
+
+            set
+            {
+                if (IsOnFloor())
+                    Velocity = value - GetPlatformVelocity();
+                else
+                    Velocity = value;
+            }
+        }
+
         /// <summary>
         /// Used to let the player press "jump" slightly before landing and
         /// still have it count.
@@ -43,23 +95,23 @@ namespace FastDragon
 
         public float FSpeed
         {
-            get => Velocity.Flattened().Length();
+            get => LocalVelocity.Flattened().Length();
             set
             {
                 Vector3 vel = this.GlobalForward() * value;
-                vel.Y = Velocity.Y;
-                Velocity = vel;
+                vel.Y = LocalVelocity.Y;
+                LocalVelocity = vel;
             }
         }
 
         public float VSpeed
         {
-            get => Velocity.Y;
+            get => LocalVelocity.Y;
             set
             {
-                Vector3 vel = Velocity;
+                Vector3 vel = LocalVelocity;
                 vel.Y = value;
-                Velocity = vel;
+                LocalVelocity = vel;
             }
         }
 
@@ -86,30 +138,25 @@ namespace FastDragon
         }
 
         /// <summary>
-        /// The location the player will teleport to if they fall in water
-        /// </summary>
-        public SafeGroundPos LastSafeGround;
-        public struct SafeGroundPos
-        {
-            public Transform3D PlayerPos;
-            public float CameraYawRad;
-            public float CameraPitchRad;
-        }
-
-        /// <summary>
         /// An accessor for <see cref="LastSafeGround"/> that GDScript can see
         /// </summary>
-        public Transform3D LastSafeGroundPos => LastSafeGround.PlayerPos;
+        public Transform3D LastSafeGroundPos => SafeGround.LastSafeGround.PlayerPos;
 
         private readonly StateMachine _stateMachine = new StateMachine();
         private Transform3D _spawnPos;
 
         private float _damageCooldownTimer;
 
+        public Player()
+        {
+            SafeGround = new(this);
+        }
+
         public override void _Ready()
         {
             AddChild(_stateMachine);
             _stateMachine.StateChanging += OnStateChanging;
+            _stateMachine.AfterPhysicsProcess += AfterStatePhysicsProcess;
 
             base._Ready();
 
@@ -138,51 +185,24 @@ namespace FastDragon
             GlobalTransform = checkpoint == null
                 ? _spawnPos
                 : checkpoint.GlobalTransform;
-
-            Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
-            CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
-            CameraFocus.ResetPhysicsInterpolation3D();
+            Velocity = Vector3.Zero;
+            LastPlatformVelocity = Vector3.Zero;    // The respawn point will
+                                                    // never be on a moving
+                                                    // platform, so this is OK.
+            _wasOnFloorLastPhysicsFrame = true;
+
+            CameraFocus.Reset();
             Camera.Reset();
+            SafeGround.Reset();
 
             Animator.Play("RESET", 0);
             Animator.Advance(0);
             ChangeState<PlayerWalkState>();
 
-            SetLastSafeGroundHere();
-
             EarlyJumpBufferTimer = 0;
             _damageCooldownTimer = 0;
-        }
-
-        public void SetLastSafeGroundHere()
-        {
-            LastSafeGround = new SafeGroundPos
-            {
-                PlayerPos = GlobalTransform,
-                CameraYawRad = Camera.OrbitYawRad,
-                CameraPitchRad = Camera.OrbitPitchRad
-            };
-        }
-
-        public void ReturnToLastSafeGround()
-        {
-            GlobalTransform = LastSafeGround.PlayerPos;
-            this.ResetPhysicsInterpolation3D();
-            Velocity = Vector3.Zero;
-            ChangeState<PlayerStandState>();
-
-            if (!Camera.IsBeingManhandled)
-            {
-                CameraFocus.GlobalTransform = CameraFocusRestPos.GlobalTransform;
-                CameraFocus.ResetPhysicsInterpolation3D();
-
-                Camera.OrbitYawRad = LastSafeGround.CameraYawRad;
-                Camera.OrbitPitchRad = LastSafeGround.CameraPitchRad;
-                Camera.StartFollowing();
-                Camera.ResetPhysicsInterpolation3D();
-            }
         }
 
         public void SetVisibleInPortals(bool visible)
@@ -209,7 +229,6 @@ namespace FastDragon
         ///     the timer won't start until AFTER that state is completed and
         ///     the player is actionable again.
         /// </param>
-        /// <typeparam name="TState"></typeparam>
         public bool TryDamage(float invulnerablePeriod = 0)
         {
             if (_damageCooldownTimer > 0)
@@ -261,63 +280,15 @@ namespace FastDragon
 
             if (_damageCooldownTimer > 0 && !CurrentState.PauseDamageCooldownTimer)
                 _damageCooldownTimer -= delta;
-
-            AdjustCameraFocusPoint(delta);
         }
 
-        private void AdjustCameraFocusPoint(float delta)
+        /// <summary>
+        /// Occurs after the current state's _PhysicsProcess().
+        /// Put things here if they need to occur after MoveAndSlide()
+        /// </summary>
+        private void AfterStatePhysicsProcess(double delta)
         {
-            if (CurrentState.UseMario64CameraFocus)
-            {
-                var groundPos = FindGroundPosition();
-                float yFocusGround = groundPos.Y + CameraFocusRestPos.Position.Y;
-                float targetYFocus = Mathf.Max(
-                    yFocusGround,
-                    GlobalPosition.Y
-                );
-
-                var focusPos = CameraFocusRestPos.GlobalPosition;
-                focusPos.Y = AccelMath.SmoothStepToward(
-                    CameraFocus.GlobalPosition.Y,
-                    targetYFocus,
-                    Player.Default.Gravity,
-                    delta,
-                    ref _cameraFocusYSpeed
-                );
-                CameraFocus.GlobalPosition = focusPos;
-            }
-            else
-            {
-                CameraFocus.GlobalPosition = CameraFocusRestPos.GlobalPosition;
-            }
-
-            // HACK: Keep the camera focus rotated with the player, so recentering
-            // works correctly.
-            //
-            // The camera uses the global rotation of whatever it's following to
-            // determine where to go when it recenters.  Its follow target
-            // happens to be the camera focus.  The camera focus is top-level
-            // (I forget why), so it doesn't rotate when the player rotates.
-            // Thus, it always has a global rotation of (0, 0, 0) unless we
-            // intervene, so the camera always faces north when it recenters.
-            // To avoid this, just manually change the focus's rotation.
-            CameraFocus.GlobalRotation = GlobalRotation;
-        }
-
-        private float _cameraFocusYSpeed = 0;
-
-        private Vector3 FindGroundPosition()
-        {
-            const float maxHeight = 10;
-            var collision = MoveAndCollide(
-                Vector3.Down * maxHeight,
-                testOnly: true,
-                recoveryAsCollision: true
-            );
-
-            return collision == null
-                ? (GlobalPosition + (Vector3.Down * maxHeight))
-                : collision.GetPosition();
+            UpdatePlatformVelocity();
         }
 
         public void ChangeState<TState>() where TState : PlayerState, new()
@@ -328,6 +299,36 @@ namespace FastDragon
         private void OnStateChanging(IState currentState, IState incomingState)
         {
             GD.Print($"Changing state to {incomingState.GetType().Name}");
+        }
+
+        private void UpdatePlatformVelocity()
+        {
+            bool onFloor = IsOnFloor();
+            bool wasOnFloor = _wasOnFloorLastPhysicsFrame;
+            _wasOnFloorLastPhysicsFrame = onFloor;
+
+            if (onFloor)
+                LastPlatformVelocity = GetPlatformVelocity();
+
+            // Adjust velocity to be relative to the platform velocity, so the
+            // player doesn't "skip forward" when landing on a moving platform
+            // at the same horizontal speed as it.
+            if (onFloor && !wasOnFloor)
+            {
+                Velocity -= GetPlatformVelocity();
+
+                // HACK: IsOnFloor() only works reliably if Velocity.Y is at
+                // least a little bit negative.  It being exactly zero results
+                // in it flickering between returning true and false.
+                //
+                // Furthermore, a velocity of exactly zero results in the
+                // following error:
+                // "instance_set_transform: Condition "!v.is_finite()" is true."
+                //
+                // Adding a little bit of downward velocity when landing fixes
+                // both problems.
+                Velocity += Vector3.Down;
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ namespace FastDragon
     public partial class PlayerCamera : Node3D
     {
         [Export] public Node3D FollowTarget;
+        [Export] public Player Player;
 
         [Export] public bool AllowAutoRotate { get; set; }
         public bool DisableInput { get; set; }
@@ -244,6 +245,13 @@ namespace FastDragon
             public override void _PhysicsProcess(double deltaD)
             {
                 float delta = (float)deltaD;
+
+                // Don't let the motion of moving platforms affect auto-rotation;
+                // in an empty void, the player shouldn't be able to tell the
+                // difference between standing on a moving platform or a
+                // stationary one.
+                _prevPos += Self.Player.LastPlatformVelocity * delta;
+                Self.GlobalPosition += Self.Player.LastPlatformVelocity * delta;
 
                 if (Self.DisableInput)
                 {

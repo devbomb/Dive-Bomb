@@ -1,0 +1,116 @@
+// Game: FastDragon
+// Format: Standard
+// entity 0
+{
+"wad" ""
+"classname" "worldspawn"
+// brush 0
+{
+( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) __TB_empty 0 0 0 1 1
+( -64 -416 -16 ) ( -64 -416 -15 ) ( -63 -416 -16 ) __TB_empty 0 0 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) __TB_empty 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) __TB_empty 0 0 0 1 1
+( 64 248 16 ) ( 65 248 16 ) ( 64 248 17 ) __TB_empty 0 0 0 1 1
+( 544 64 16 ) ( 544 64 17 ) ( 544 65 16 ) __TB_empty 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "transport_player_spawn"
+"origin" "-40 -8 16"
+}
+// entity 2
+{
+"classname" "hazard_conveyor_belt"
+"DirectionMarkerId" "ConveyorBelt0Direction"
+"Speed" "5"
+// brush 0
+{
+( -16 16 16 ) ( -16 17 16 ) ( -16 16 17 ) Textures/ConveyorBelt 0 0 270 1 1
+( -16 0 16 ) ( -16 0 17 ) ( -15 0 16 ) Textures/ConveyorBelt 0 0 270 1 1
+( -16 16 16 ) ( -15 16 16 ) ( -16 17 16 ) Textures/ConveyorBelt 0 0 270 1 1
+( 128 32 24 ) ( 128 33 24 ) ( 129 32 24 ) Textures/ConveyorBelt 0 0 270 1 1
+( 128 32 32 ) ( 129 32 32 ) ( 128 32 33 ) Textures/ConveyorBelt 0 0 270 1 1
+( 176 32 32 ) ( 176 32 33 ) ( 176 33 32 ) Textures/ConveyorBelt 0 0 270 1 1
+}
+}
+// entity 3
+{
+"classname" "info_named_marker"
+"origin" "40 16 56"
+"MarkerId" "ConveyorBelt0Direction"
+}
+// entity 4
+{
+"classname" "hazard_conveyor_belt"
+"DirectionMarkerId" "ConveyorBelt0Direction"
+"Speed" "3"
+// brush 0
+{
+( -16 -16 24 ) ( -16 -48 24 ) ( -16 -48 16 ) Textures/ConveyorBelt 0 0 270 1 1
+( -16 -16 24 ) ( 304 -16 103.11111111111131 ) ( 304 -48 103.11111111111114 ) Textures/ConveyorBelt 0 0 270 1 1
+( -16 -48 24 ) ( 304 -48 103.11111111111114 ) ( 304 -48 95.1111111111111 ) Textures/ConveyorBelt 0 0 270 1 1
+( 304 -16 95.11111111111131 ) ( 304 -16 103.11111111111131 ) ( -16 -16 24 ) Textures/ConveyorBelt 0 0 270 1 1
+( -16 -16 16 ) ( -16 -48 16 ) ( 304 -48 95.1111111111111 ) Textures/ConveyorBelt 0 0 270 1 1
+( 176 -48 103.11111111111114 ) ( 176 -16 103.11111111111131 ) ( 176 -16 95.11111111111131 ) Textures/ConveyorBelt 0 0 270 1 1
+}
+}
+// entity 5
+{
+"classname" "info_named_marker"
+"origin" "104 104 32"
+"MarkerId" "ConveyorBeltLeft"
+"angle" "90"
+}
+// entity 6
+{
+"classname" "hazard_conveyor_belt"
+"DirectionMarkerId" "ConveyorBeltLeft"
+"Speed" "5"
+// brush 0
+{
+( 120 144 40 ) ( 120 40 24 ) ( 120 40 16 ) Textures/ConveyorBelt 0 0 0 1 1
+( 120 40 24 ) ( 144 40 24 ) ( 144 40 16 ) Textures/ConveyorBelt 0 0 0 1 1
+( 120 144 40 ) ( 144 144 40 ) ( 144 40 24 ) Textures/ConveyorBelt 0 0 0 1 1
+( 144 40 16 ) ( 144 144 32 ) ( 120 144 32 ) Textures/ConveyorBelt 0 0 0 1 1
+( 144 144 32 ) ( 144 144 40 ) ( 120 144 40 ) Textures/ConveyorBelt 0 0 0 1 1
+( 144 40 24 ) ( 144 144 40 ) ( 144 144 32 ) Textures/ConveyorBelt 0 0 0 1 1
+}
+}
+// entity 7
+{
+"classname" "hazard_conveyor_belt"
+"Speed" "7.8"
+"DirectionMarkerId" "EndlessConveyorBeltDirection"
+// brush 0
+{
+( 32 248 8 ) ( 32 249 8 ) ( 32 248 9 ) Textures/ConveyorBelt 0 0 0 1 1
+( 32 248 8 ) ( 32 248 9 ) ( 33 248 8 ) Textures/ConveyorBelt 0 0 0 1 1
+( 32 248 8 ) ( 33 248 8 ) ( 32 249 8 ) Textures/ConveyorBelt 0 0 0 1 1
+( 27432 408 16 ) ( 27432 409 16 ) ( 27433 408 16 ) Textures/ConveyorBelt 0 0 -90 1 1
+( 27432 408 16 ) ( 27433 408 16 ) ( 27432 408 17 ) Textures/ConveyorBelt 0 0 0 1 1
+( 27432 408 16 ) ( 27432 408 17 ) ( 27432 409 16 ) Textures/ConveyorBelt 0 0 0 1 1
+}
+}
+// entity 8
+{
+"classname" "info_named_marker"
+"origin" "48 -32 24"
+"MarkerId" "ConveyorBelt0Direction"
+}
+// entity 9
+{
+"classname" "info_named_marker"
+"origin" "224 296 24"
+"MarkerId" "EndlessConveyorBeltDirection"
+}
+// entity 10
+{
+"classname" "item_fairy"
+"origin" "456 368 16"
+}
+// entity 11
+{
+"classname" "item_fairy"
+"origin" "424 192 16"
+}

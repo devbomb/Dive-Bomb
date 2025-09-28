@@ -19,7 +19,7 @@ namespace FastDragon
         {
             Self.Animator.Play(RunAnim);
 
-            if (Self.Velocity.Length() < Player.Walk.MinSpeed)
+            if (Self.LocalVelocity.Length() < Player.Walk.MinSpeed)
                 Self.FSpeed = Player.Walk.MinSpeed;
 
             _sideFlipDisableTimer = Player.Walk.MinTimeBeforeSideFlip;
@@ -56,7 +56,7 @@ namespace FastDragon
             // Adjust the animation speed to match our actual speed
             float animLen = (float)Self.Animator.CurrentAnimationLength;
             float distancePerCycle = StrideLength * 2;
-            float speed = Self.Velocity.Length();
+            float speed = Self.LocalVelocity.Length();
             float speedScale = speed * animLen / distancePerCycle;
             Self.Animator.SpeedScale = speedScale;
 
@@ -108,7 +108,7 @@ namespace FastDragon
             StrafeWithLeftStick(Player.Walk.Speed, Player.Walk.Accel, delta);
             RotateInstantlyTowardVelocity();
             Self.MoveAndSlide();
-            UpdateLastSafeGroundPos();
+            Self.SafeGround.UpdateLastSafeGroundPos();
 
             PlaySkidAnimIfTurningHard();
 
@@ -118,7 +118,7 @@ namespace FastDragon
                 return;
             }
 
-            if (Self.Velocity.Length() < Player.Walk.MinSpeed)
+            if (Self.LocalVelocity.Length() < Player.Walk.MinSpeed)
             {
                 Self.ChangeState<PlayerStandState>();
                 return;

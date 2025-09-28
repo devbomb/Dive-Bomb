@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=31 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.tscn" id="2_0esln"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://UI/Menus/HUD/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="9_vmh20"]
 [ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Entities/Player/Parts/GemGravityGloves/GemGravityGloves.tscn" id="10_dedpk"]
+[ext_resource type="Script" uid="uid://ccrtsrl3md7i8" path="res://Entities/Player/Parts/PlayerCameraFocusPoint.cs" id="12_hl213"]
 [ext_resource type="PackedScene" uid="uid://db05gfycomjg2" path="res://Entities/Player/Parts/DiageticPauseMenu/DiageticPauseMenu.tscn" id="14_samso"]
 
 [sub_resource type="GDScript" id="GDScript_cpnxc"]
@@ -57,6 +58,20 @@ height = 1.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_8oevv"]
 size = Vector3(1, 2, 1)
+
+[sub_resource type="GDScript" id="GDScript_samso"]
+script/source = "extends Label
+
+func _process(_delta):
+	text = \"Velocity: \" + str(owner.velocity)
+"
+
+[sub_resource type="GDScript" id="GDScript_hl213"]
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	text = \"Last platform velocity: \" + str(owner.LastPlatformVelocity)
+"
 
 [sub_resource type="GDScript" id="GDScript_pxges"]
 script/source = "extends Node3D
@@ -181,17 +196,20 @@ unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_rtu1o")
 
-[node name="Camera" parent="." node_paths=PackedStringArray("FollowTarget") instance=ExtResource("4_ne5gw")]
+[node name="Camera" parent="." node_paths=PackedStringArray("FollowTarget", "Player") instance=ExtResource("4_ne5gw")]
 unique_name_in_owner = true
 FollowTarget = NodePath("../CameraFocus")
+Player = NodePath("..")
 
-[node name="CameraFocus" type="Marker3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="CameraFocus" type="Marker3D" parent="." node_paths=PackedStringArray("Player", "RestPos") groups=["PhysicsInterpolated"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 top_level = true
+script = ExtResource("12_hl213")
+Player = NodePath("..")
+RestPos = NodePath("../CameraFocusRestPos")
 
 [node name="CameraFocusRestPos" type="Marker3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
@@ -223,6 +241,29 @@ ignore_bodies = [NodePath(".."), NodePath("../LedgeDetector")]
 [node name="DiageticPauseMenu" parent="." instance=ExtResource("14_samso")]
 
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
+
+[node name="VelocityStats" type="VBoxContainer" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Velocity" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "Velocity:"
+script = SubResource("GDScript_samso")
+
+[node name="PlatformVelocity" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "Platform Velocity:"
+script = SubResource("GDScript_hl213")
 
 [node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint") instance=ExtResource("10_dedpk")]
 LeftHandPoint = NodePath("../Model/LeftHandBone/LeftHandPoint")
