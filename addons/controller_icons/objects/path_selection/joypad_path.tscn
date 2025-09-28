@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://b3lplrf2w6kh7"]
 
-[ext_resource type="Script" path="res://addons/controller_icons/objects/path_selection/JoypadPathSelector.gd" id="1_4ryog"]
-[ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="2_yxfq6"]
+[ext_resource type="Script" path="res://addons/controller_icons/objects/path_selection/JoypadPathSelector.cs" id="1_4ryog"]
+[ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="2_yxfq6"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_haylq"]
 
@@ -9,189 +9,168 @@
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/l_stick"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_6klsb"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/l_stick_click"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_bij8j"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/r_stick"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_2h0w3"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/r_stick_click"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_kvj2q"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/lb"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_wtcrq"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/lt"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_lfpf5"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/rb"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_b3bsp"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/rt"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_u40go"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/a"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_rnqww"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/b"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_1a2yv"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/x"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_hktfi"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/y"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_2ksy6"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/select"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_08sqi"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/start"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_tivgf"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/home"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_87fow"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/share"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_n4i6p"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/dpad"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_eoyuo"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/dpad_down"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_c660e"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/dpad_right"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_riwus"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/dpad_left"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [sub_resource type="Texture2D" id="Texture2D_onmvf"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("2_yxfq6")
-_horizontal_repeat = 1
 path = "joypad/dpad_up"
-show_only = 0
+show_mode = 0
 force_type = 0
 
 [node name="Joypad Path" type="Panel"]
@@ -635,44 +614,44 @@ icon = SubResource("Texture2D_onmvf")
 expand_icon = true
 
 [connection signal="pressed" from="VBoxContainer/Control/LStick" to="." method="_on_l_stick_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/LStick" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/LStick" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/LStickClick" to="." method="_on_l_stick_click_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/LStickClick" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/RStick" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/LStickClick" to="." method="OnButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/Control/RStick" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/RStick" to="." method="_on_r_stick_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/RStickClick" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/RStickClick" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/RStickClick" to="." method="_on_r_stick_click_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/LB" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/LB" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/LB" to="." method="_on_lb_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/LT" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/LT" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/LT" to="." method="_on_lt_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/RB" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/RB" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/RB" to="." method="_on_rb_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/RT" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/RT" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/RT" to="." method="_on_rt_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/A" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/A" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/A" to="." method="_on_a_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/B" to="." method="_on_b_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/B" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/X" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/B" to="." method="OnButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/Control/X" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/X" to="." method="_on_x_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/Y" to="." method="_on_y_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/Y" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/Select" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/Y" to="." method="OnButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/Control/Select" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/Select" to="." method="_on_select_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/Start" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/Start" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/Home" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/Home" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/Home" to="." method="_on_home_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/Share" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/Share" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/Share" to="." method="_on_share_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/DPAD" to="." method="_on_dpad_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/DPAD" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/DPADDown" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/DPAD" to="." method="OnButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/Control/DPADDown" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/DPADDown" to="." method="_on_dpad_down_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/DPADRight" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/DPADRight" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/DPADRight" to="." method="_on_dpad_right_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/DPADLeft" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/DPADLeft" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/DPADLeft" to="." method="_on_dpad_left_pressed"]
-[connection signal="pressed" from="VBoxContainer/Control/DPADUp" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/DPADUp" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/DPADUp" to="." method="_on_dpad_up_pressed"]

@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 Log="*res://Singletons/Log.cs"
 SaveFileManager="*res://Singletons/SaveFileManager.cs"
 SignalBus="*res://Singletons/SignalBus.cs"
@@ -28,6 +27,7 @@ UserSettings="*res://Common/Scripts/Services/UserSettingsGDScriptAdaptor.cs"
 PhysicsInterpolatorSingleton="*res://Common/Scripts/PhysicsInterpolation/PhysicsInterpolatorSingleton.cs"
 HitStopManager="*res://Singletons/HitStopManager.cs"
 ShaderUnpausedTimer="res://Singletons/ShaderUnpausedTimer.gd"
+ControllerIcons="*res://addons/controller_icons/ControllerIcons.cs"
 
 [dotnet]
 
