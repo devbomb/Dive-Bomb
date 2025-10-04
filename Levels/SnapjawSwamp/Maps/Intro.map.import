@@ -12,4 +12,4 @@ dest_files=["res://.godot/imported/Intro.map-cc284347b589aef0581bdffd0b67fda7.ts
 
 [params]
 
-texture_material_map=Resource("res://Levels/SnapjawSwamp/SnapjawSwampMaterialMap.tres")
+texture_material_map=Resource("uid://b14jplhtk3wpt", "res://Levels/SnapjawSwamp/SnapjawSwampMaterialMap.tres")

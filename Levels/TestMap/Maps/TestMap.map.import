@@ -12,4 +12,4 @@ dest_files=["res://.godot/imported/TestMap.map-f59cc87944244e78c35459f802d3a091.
 
 [params]
 
-texture_material_map=Resource("res://TextureMaterialMap.tres")
+texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")

@@ -12,4 +12,4 @@ dest_files=["res://.godot/imported/PlagiarismCanyon.map-cd69872d2fc20ad5c20b482a
 
 [params]
 
-texture_material_map=Resource("res://TextureMaterialMap.tres")
+texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")
