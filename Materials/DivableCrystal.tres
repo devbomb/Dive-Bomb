@@ -15,12 +15,12 @@ domain_warp_fractal_lacunarity = 0.0
 resource_name = "_albedo"
 width = 1024
 height = 1024
-invert = true
+noise = SubResource("FastNoiseLite_8v0sr")
+color_ramp = SubResource("Gradient_mya5v")
 seamless = true
+invert = true
 seamless_blend_skirt = 0.31
 bump_strength = 32.0
-color_ramp = SubResource("Gradient_mya5v")
-noise = SubResource("FastNoiseLite_8v0sr")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mnj54"]
 noise_type = 2
@@ -32,12 +32,12 @@ domain_warp_fractal_lacunarity = 0.0
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ghw7u"]
 width = 1024
 height = 1024
-invert = true
-seamless = true
-seamless_blend_skirt = 0.31
-as_normal_map = true
-bump_strength = 32.0
 noise = SubResource("FastNoiseLite_mnj54")
+seamless = true
+invert = true
+as_normal_map = true
+seamless_blend_skirt = 0.31
+bump_strength = 32.0
 
 [resource]
 transparency = 1

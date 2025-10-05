@@ -12,11 +12,11 @@ frequency = 0.0957
 fractal_octaves = 1
 
 [sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mahdj"]
-invert = true
-seamless = true
-seamless_blend_skirt = 0.79
-color_ramp = SubResource("Gradient_200c1")
 noise = SubResource("FastNoiseLite_200c1")
+color_ramp = SubResource("Gradient_200c1")
+seamless = true
+invert = true
+seamless_blend_skirt = 0.79
 
 [resource]
 render_priority = 0
