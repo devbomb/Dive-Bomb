@@ -61,9 +61,20 @@ func _delete_unnecessary_tracks_from(animation: Animation, reset_animation: Anim
 		var track_type = animation.track_get_type(track_idx)
 		var track_value: Variant = animation.track_get_key_value(track_idx, 0)
 		
-		var reset_track_idx: int = reset_animation.find_track(track_path, track_type)
-		var reset_track_value: Variant = reset_animation.track_get_key_value(reset_track_idx, 0)
+		var disallowed_types: Array[Animation.TrackType] = [
+			Animation.TrackType.TYPE_AUDIO,
+			Animation.TrackType.TYPE_METHOD,
+			Animation.TrackType.TYPE_ANIMATION
+		]
+		if (disallowed_types.has(track_type)):
+			continue
 		
+		var reset_track_idx: int = reset_animation.find_track(track_path, track_type)
+		if (reset_track_idx == -1):
+			print("!!! " + str(track_path) + "(" + str(track_type) + ") doesn't have a RESET value")
+			continue
+
+		var reset_track_value: Variant = reset_animation.track_get_key_value(reset_track_idx, 0)
 		if (track_value == reset_track_value):
 			print("Deleting track " + str(track_path) + "(" + str(track_type) + ")")
 			animation.remove_track(track_idx)
