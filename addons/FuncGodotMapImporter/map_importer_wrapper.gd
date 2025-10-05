@@ -34,27 +34,36 @@ func _find_map_files(directory: EditorFileSystemDirectory, files: Array[String])
 func _delete_unnecessary_player_animation_tracks():
 	var library: AnimationLibrary = ResourceLoader.load("res://Entities/Player/KennifiedPlayerAnimations.tres")
 	var reset_animation: Animation = library.get_animation("RESET")
-	var bonk_animation: Animation = ResourceLoader.load("res://Entities/Player/Animations/Bonk.tres")
 	
-	print("Deleting unnecessary tracks from " + bonk_animation.resource_path)
+	for animation_name in library.get_animation_list():
+		if (animation_name == "RESET"):
+			continue
+			
+		var animation = library.get_animation(animation_name)
+		if (animation.is_built_in()):
+			continue
+			
+		_delete_unnecessary_tracks_from(animation, reset_animation)
+		ResourceSaver.save(animation, animation.resource_path)
+
+func _delete_unnecessary_tracks_from(animation: Animation, reset_animation: Animation) -> void:
+	print("Deleting unnecessary tracks from " + animation.resource_path)
 	
 	# Iterating the tracks in reverse so the remaining track indices don't shift
 	# when we delete them.
-	var track_idxs = range(bonk_animation.get_track_count())
+	var track_idxs = range(animation.get_track_count())
 	track_idxs.reverse()
 	for track_idx in track_idxs:
-		if (bonk_animation.track_get_key_count(track_idx) > 1):
+		if (animation.track_get_key_count(track_idx) > 1):
 			continue
 			
-		var track_path = bonk_animation.track_get_path(track_idx)
-		var track_type = bonk_animation.track_get_type(track_idx)
-		var track_value: Variant = bonk_animation.track_get_key_value(track_idx, 0)
+		var track_path = animation.track_get_path(track_idx)
+		var track_type = animation.track_get_type(track_idx)
+		var track_value: Variant = animation.track_get_key_value(track_idx, 0)
 		
 		var reset_track_idx: int = reset_animation.find_track(track_path, track_type)
 		var reset_track_value: Variant = reset_animation.track_get_key_value(reset_track_idx, 0)
 		
 		if (track_value == reset_track_value):
 			print("Deleting track " + str(track_path) + "(" + str(track_type) + ")")
-			bonk_animation.remove_track(track_idx)
-	
-	ResourceSaver.save(bonk_animation, bonk_animation.resource_path)
+			animation.remove_track(track_idx)
