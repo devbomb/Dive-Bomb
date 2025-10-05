@@ -11,11 +11,11 @@ domain_warp_frequency = 1.0
 metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4lakl"]
-in_3d_space = true
-seamless = true
-seamless_blend_skirt = 0.423
-color_ramp = SubResource("Gradient_ox7jp")
 noise = SubResource("FastNoiseLite_8f80j")
+color_ramp = SubResource("Gradient_ox7jp")
+seamless = true
+in_3d_space = true
+seamless_blend_skirt = 0.423
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nj4n5"]
 sky_top_color = Color(0.168627, 0.847059, 1, 1)
