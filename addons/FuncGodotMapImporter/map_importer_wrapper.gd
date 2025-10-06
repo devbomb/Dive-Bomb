@@ -85,26 +85,26 @@ func _delete_unnecessary_tracks_from(animation: Animation, reset_animation: Anim
 		if (track_value != reset_track_value):
 			continue
 		
-		# Don't delete if it has a rest pose which doesn't match the RESET value
+		# Don't delete if it's one of the tracks I've specifically made un-deletable
 		const bone_prefix = "KennifiedPlayerModel/Armature/Skeleton3D:"
 		if (str(track_path).begins_with(bone_prefix)):
 			var bone_name = str(track_path).trim_prefix(bone_prefix)
-			var bone_idx = skeleton.find_bone(bone_name)
-			if (bone_idx == -1):
+			var undeletable_bones: Array[String] = [
+				"Hand_L",
+				"Hand_L.002",
+				"Hand_L.001",
+				"Hand_L.003",
+				"Thumb_L",
+				"Thumb_L.001",
+				"Hand_R",
+				"Hand_R.002",
+				"Hand_R.001",
+				"Hand_R.003",
+				"Thumb_R",
+				"Thumb_R.001",
+			]
+			if (undeletable_bones.has(bone_name)):
 				continue
-				
-			var rest_pose = skeleton.get_bone_rest(bone_idx)
-			
-			match (track_type):
-				Animation.TrackType.TYPE_POSITION_3D:
-					if (!rest_pose.origin.is_equal_approx(track_value)):
-						continue
-				Animation.TrackType.TYPE_ROTATION_3D:
-					if (!rest_pose.basis.get_rotation_quaternion().is_equal_approx(track_value)):
-						continue
-				Animation.TrackType.TYPE_SCALE_3D:
-					if (!rest_pose.basis.get_scale().is_equal_approx(track_value)):
-						continue
 		
 		# OK, fine, you can delete it
 		print("Deleting track " + str(track_path) + "(" + str(track_type) + ")")
