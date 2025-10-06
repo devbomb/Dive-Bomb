@@ -163,105 +163,98 @@ tracks/21/keys = PackedFloat32Array(0, 1, -0.026856, 0, 0, 0.999639, 0.125, 1, 0
 tracks/22/type = "rotation_3d"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Neck")
+tracks/22/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Leg_L")
 tracks/22/interp = 2
 tracks/22/loop_wrap = true
-tracks/22/keys = PackedFloat32Array(0, 1, -0.219868, 5.56463e-08, 5.30851e-08, 0.97553)
+tracks/22/keys = PackedFloat32Array(0, 1, 0.995551, -0.0856476, 0.00392587, 0.0390787, 0.125, 1, 0.995551, -0.0856476, 0.00392587, 0.0390787, 0.416667, 1, -0.950904, 0.254519, 0.00671427, 0.175948, 0.625, 1, -0.943228, 0.183977, 0.00107506, 0.276537, 1.04167, 1, 0.982223, -0.0360302, -0.0122415, 0.18382, 1.25, 1, 0.991101, -0.0362233, -0.0101432, 0.12769)
 tracks/23/type = "rotation_3d"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Leg_L")
+tracks/23/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:LowerLeg_L")
 tracks/23/interp = 2
 tracks/23/loop_wrap = true
-tracks/23/keys = PackedFloat32Array(0, 1, 0.995551, -0.0856476, 0.00392587, 0.0390787, 0.125, 1, 0.995551, -0.0856476, 0.00392587, 0.0390787, 0.416667, 1, -0.950904, 0.254519, 0.00671427, 0.175948, 0.625, 1, -0.943228, 0.183977, 0.00107506, 0.276537, 1.04167, 1, 0.982223, -0.0360302, -0.0122415, 0.18382, 1.25, 1, 0.991101, -0.0362233, -0.0101432, 0.12769)
+tracks/23/keys = PackedFloat32Array(0, 1, -0.0597682, 0.00789684, -0.0473479, 0.997057, 0.125, 1, -0.0597682, 0.00789684, -0.0473479, 0.997058, 0.416667, 1, 0.20846, -0.00502409, -0.0477384, 0.976852, 1.04167, 1, -0.17989, 0.0135643, -0.046045, 0.982515, 1.25, 1, -0.0614839, 0.00797879, -0.0473337, 0.996953)
 tracks/24/type = "rotation_3d"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:LowerLeg_L")
+tracks/24/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Leg_R")
 tracks/24/interp = 2
 tracks/24/loop_wrap = true
-tracks/24/keys = PackedFloat32Array(0, 1, -0.0597682, 0.00789684, -0.0473479, 0.997057, 0.125, 1, -0.0597682, 0.00789684, -0.0473479, 0.997058, 0.416667, 1, 0.20846, -0.00502409, -0.0477384, 0.976852, 1.04167, 1, -0.17989, 0.0135643, -0.046045, 0.982515, 1.25, 1, -0.0614839, 0.00797879, -0.0473337, 0.996953)
+tracks/24/keys = PackedFloat32Array(0, 1, 0.995551, 0.0856476, -0.00392587, 0.0390787, 0.125, 1, 0.995551, 0.0856476, -0.00392587, 0.0390787, 0.416667, 1, -0.950897, -0.254433, -0.00676237, 0.176104, 0.625, 1, -0.943215, -0.184044, -0.00107237, 0.276535, 1.04167, 1, 0.982223, 0.0360377, 0.0122412, 0.18382, 1.25, 1, 0.991101, 0.0362233, 0.0101432, 0.12769)
 tracks/25/type = "rotation_3d"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:Leg_R")
+tracks/25/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:LowerLeg_R")
 tracks/25/interp = 2
 tracks/25/loop_wrap = true
-tracks/25/keys = PackedFloat32Array(0, 1, 0.995551, 0.0856476, -0.00392587, 0.0390787, 0.125, 1, 0.995551, 0.0856476, -0.00392587, 0.0390787, 0.416667, 1, -0.950897, -0.254433, -0.00676237, 0.176104, 0.625, 1, -0.943215, -0.184044, -0.00107237, 0.276535, 1.04167, 1, 0.982223, 0.0360377, 0.0122412, 0.18382, 1.25, 1, 0.991101, 0.0362233, 0.0101432, 0.12769)
-tracks/26/type = "rotation_3d"
+tracks/25/keys = PackedFloat32Array(0, 1, -0.0597682, -0.00789684, 0.0473479, 0.997057, 0.125, 1, -0.0597682, -0.00789684, 0.0473479, 0.997058, 0.416667, 1, 0.20846, 0.00502408, 0.0477384, 0.976852, 1.04167, 1, -0.17989, -0.0135643, 0.046045, 0.982515, 1.25, 1, -0.061484, -0.00797879, 0.0473337, 0.996953)
+tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("KennifiedPlayerModel/Armature/Skeleton3D:LowerLeg_R")
-tracks/26/interp = 2
+tracks/26/path = NodePath("Parachute:visible")
+tracks/26/interp = 1
 tracks/26/loop_wrap = true
-tracks/26/keys = PackedFloat32Array(0, 1, -0.0597682, -0.00789684, 0.0473479, 0.997057, 0.125, 1, -0.0597682, -0.00789684, 0.0473479, 0.997058, 0.416667, 1, 0.20846, 0.00502408, 0.0477384, 0.976852, 1.04167, 1, -0.17989, -0.0135643, 0.046045, 0.982515, 1.25, 1, -0.061484, -0.00797879, 0.0473337, 0.996953)
-tracks/27/type = "value"
-tracks/27/imported = false
-tracks/27/enabled = true
-tracks/27/path = NodePath("Parachute:visible")
-tracks/27/interp = 1
-tracks/27/loop_wrap = true
-tracks/27/keys = {
+tracks/26/keys = {
 "times": PackedFloat32Array(0, 0.125),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/28/type = "value"
-tracks/28/imported = false
-tracks/28/enabled = true
-tracks/28/path = NodePath("Parachute:scale")
-tracks/28/interp = 2
-tracks/28/loop_wrap = true
-tracks/28/keys = {
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Parachute:scale")
+tracks/27/interp = 2
+tracks/27/loop_wrap = true
+tracks/27/keys = {
 "times": PackedFloat32Array(0, 0.125, 0.416667, 0.5, 1.04167),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(0.1, 0.1, 0.1), Vector3(1, 1, 1), Vector3(1, 2, 1), Vector3(1, 1, 1)]
 }
-tracks/29/type = "value"
-tracks/29/imported = false
-tracks/29/enabled = true
-tracks/29/path = NodePath("Parachute:position")
-tracks/29/interp = 2
-tracks/29/loop_wrap = true
-tracks/29/keys = {
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Parachute:position")
+tracks/28/interp = 2
+tracks/28/loop_wrap = true
+tracks/28/keys = {
 "times": PackedFloat32Array(0, 0.125, 0.208334, 0.333334, 0.416667, 0.625001, 1.04167, 1.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0.6, -0.3), Vector3(0, 0.895, -0.195), Vector3(0, 0.8, -0.162), Vector3(0, 0.845, 0.31), Vector3(0, 0.72, 0.61), Vector3(0, 1.025, -0.085), Vector3(0, 1.025, 0.03)]
 }
-tracks/30/type = "value"
-tracks/30/imported = false
-tracks/30/enabled = true
-tracks/30/path = NodePath("Parachute/LeftStringHandle:position")
-tracks/30/interp = 2
-tracks/30/loop_wrap = true
-tracks/30/keys = {
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Parachute/LeftStringHandle:position")
+tracks/29/interp = 2
+tracks/29/loop_wrap = true
+tracks/29/keys = {
 "times": PackedFloat32Array(0, 0.125, 0.208334, 0.333334, 0.416667, 0.5, 1.04167),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(-1.04712, -1.06525, -0.657244), Vector3(-1.04712, -1.06525, -0.657244), Vector3(-0.781512, 2.35281, -1.52572), Vector3(-0.182694, 0.90311, 0.0182386), Vector3(-0.0868723, 0.347925, -0.0197482), Vector3(-0.0957683, 0.112423, -0.0197482), Vector3(-0.255132, 0.339468, -0.00992054)]
 }
-tracks/31/type = "value"
-tracks/31/imported = false
-tracks/31/enabled = true
-tracks/31/path = NodePath("Parachute/RightStringHandle:position")
-tracks/31/interp = 2
-tracks/31/loop_wrap = true
-tracks/31/keys = {
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Parachute/RightStringHandle:position")
+tracks/30/interp = 2
+tracks/30/loop_wrap = true
+tracks/30/keys = {
 "times": PackedFloat32Array(0, 0.125, 0.208333, 0.333333, 0.416667, 0.5, 1.04167),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1.047, -1.065, -0.657), Vector3(1.047, -1.065, -0.657), Vector3(0.782, 2.353, -0.657), Vector3(0.183, 0.903, 0.018), Vector3(0.087, 0.348, -0.02), Vector3(0.096, 0.112, -0.02), Vector3(0.255, 0.339, -0.01)]
 }
-tracks/32/type = "audio"
-tracks/32/imported = false
-tracks/32/enabled = true
-tracks/32/path = NodePath("../AnimatorSoundPlayer")
-tracks/32/interp = 1
-tracks/32/loop_wrap = true
-tracks/32/keys = {
+tracks/31/type = "audio"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("../AnimatorSoundPlayer")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -269,4 +262,4 @@ tracks/32/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/32/use_blend = true
+tracks/31/use_blend = true
