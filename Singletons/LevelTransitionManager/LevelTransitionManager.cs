@@ -153,6 +153,15 @@ namespace FastDragon
 
             // Fade to black, reset the level, and then unfade.
             DoThingWithFadeToBlack(SignalBus.Instance.EmitLevelReset);
+
+            // Increment the death counter
+            if (!GetTree().FindNode<TimeTrialManager>().IsTimeTrialMode)
+            {
+                SaveFileManager.Current.TotalDeaths++;
+                SaveFileManager.Current.CurrentLevelVisit.Deaths++;
+                SaveFileManager.Instance.RequestAutosave();
+                GD.Print($"Deaths: {SaveFileManager.Current.TotalDeaths}");
+            }
         }
 
         private void DoThingWithFadeToBlack(System.Action action)

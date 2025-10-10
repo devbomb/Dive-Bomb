@@ -16,11 +16,32 @@ namespace FastDragon
         [JsonProperty] public int UntalliedGemsSpent;
         [JsonProperty] public Dictionary<GemColor, int> UntalliedGemsCollected = new();
 
+        /// <summary>
+        /// The number of times the player has died outside of time trial mode.
+        /// You don't get punished for this; it's just a fun little counter.
+        ///
+        /// Reloading a checkpoint from the pause menu counts as a death, btw.
+        /// Otherwise, you'd be able to cheese it by pausing and reloading right
+        /// before you die.
+        /// </summary>
+        [JsonProperty] public int TotalDeaths;
+
         [JsonProperty] public Dictionary<string, LevelSaveData> Levels = new();
 
         public int TotalGemsSpent => Levels.Values.Sum(l => l.Progress.SpentGems);
         public int TotalGemCount => Levels.Values.Sum(l => l.Progress.TotalGemsCollected) - TotalGemsSpent;
         public int TotalFairyCount => Levels.Values.Sum(l => l.Progress.CollectedFairies.Count);
+
+        /// <summary>
+        /// Data about your current visit to the level you're currently on.
+        /// Used for showing stats at the end of the level.
+        /// </summary>
+        [JsonProperty] public LevelVisit CurrentLevelVisit = new();
+        [JsonObject(MemberSerialization.OptIn)]
+        public class LevelVisit
+        {
+            [JsonProperty] public int Deaths;
+        }
 
         public static SaveFile FromJson(string json)
         {
