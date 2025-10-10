@@ -8,7 +8,6 @@ namespace FastDragon
         private const string RecoverAnim = "BonkRecover";
 
         private float _timer;
-        private bool _startedRecoverAnimation;
 
         public override void OnStateEntered()
         {
