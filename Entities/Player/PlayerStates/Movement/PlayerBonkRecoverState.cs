@@ -4,7 +4,6 @@ namespace FastDragon
 {
     public partial class PlayerBonkRecoverState : PlayerState
     {
-        private const string LandAnim = "BonkLand";
         private const string RecoverAnim = "BonkRecover";
 
         private float _timer;
@@ -22,7 +21,7 @@ namespace FastDragon
         {
             _timer -= (float)deltaD;
 
-            if (!Self.Animator.IsPlaying())
+            if (_timer <= 0)
                 Self.ChangeState<PlayerStandState>();
         }
     }
