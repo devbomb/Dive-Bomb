@@ -56,27 +56,6 @@ namespace FastDragon
             return Levels[level];
         }
 
-        public bool IsTimeTrialUnlocked(string level, TimeTrialCategory category)
-        {
-            var progress = GetLevelSaveData(level).Progress;
-
-            switch (category)
-            {
-                case TimeTrialCategory.AnyPercent:
-                {
-                    return progress.ExitReached;
-                }
-
-                case TimeTrialCategory.FairyPercent:
-                {
-                    var summary = AtlasCache.Instance.GetEntry(level);
-                    return progress.ExitReached && progress.FairiesCollected >= summary.TotalFairiesInLevel;
-                }
-
-                default: return false;
-            }
-        }
-
         public double GetPercentComplete(string levelSceneFile)
         {
             var levelSummary = AtlasCache.Instance.GetEntry(levelSceneFile);

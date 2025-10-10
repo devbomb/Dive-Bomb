@@ -6,7 +6,6 @@
 
 [node name="LevelTransitionManager" type="Node"]
 script = ExtResource("1_onbea")
-TimeTrialLevelSelectScene = "uid://dpeq0las3r0em"
 TitleScreenScene = "uid://bs28xrm5onq8k"
 PortalLoadingScreenPrefab = ExtResource("2_lrjqs")
 
