@@ -9,6 +9,7 @@ namespace FastDragon
 
         [Export(PropertyHint.File)] public string TitleScreenScene;
 
+        [Export] public PackedScene MissionStatsScreenPrefab;
         [Export] public PackedScene PortalLoadingScreenPrefab;
 
         private ColorRect _fadeCurtain => GetNode<ColorRect>("%FadeCurtain");
@@ -144,6 +145,28 @@ namespace FastDragon
             string previousLevelSceneFile = oldScene.SceneFilePath;
             GoToPortalLoadingScreen(levelSceneFile, previousLevelSceneFile, skyBoxEnvironment);
             SaveFileManager.Current.CurrentCheckpoint = null;
+        }
+
+        public void GoToMissionStatsScreen()
+        {
+            var prevLevel = (DiveBombLevel)GetTree().CurrentScene;
+            var player = prevLevel.FindNode<Player>();
+
+            var parameters = new MissionStatsScreen.Parameters
+            {
+                SkyBoxEnvironment = prevLevel.FindNode<WorldEnvironment>().Environment,
+
+                PreviousLevelScenePath = prevLevel.SceneFilePath,
+                HomeWorldScenePath = prevLevel.HomeWorldLevel,
+
+                PlayerAnimationTime = player.Animator.CurrentAnimationPosition,
+                PlayerStartPos = player.GlobalTransform,
+                CameraStartPos = player.Camera.GlobalTransform
+            };
+
+            var statsScreen = MissionStatsScreenPrefab.Instantiate<MissionStatsScreen>();
+            ChangeSceneToNode(statsScreen);
+            statsScreen.Initialize(parameters);
         }
 
         public void RespawnPlayerAfterDeath()

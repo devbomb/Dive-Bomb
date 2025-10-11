@@ -247,7 +247,7 @@ namespace FastDragon
                         return;
                     }
 
-                    LevelTransitionManager.Instance.ExitLevel();
+                    LevelTransitionManager.Instance.GoToMissionStatsScreen();
                 }
             }
         }

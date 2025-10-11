@@ -1,0 +1,88 @@
+[gd_scene load_steps=16 format=3 uid="uid://dy7b124lbdiio"]
+
+[ext_resource type="Script" uid="uid://bjpuwynctw616" path="res://Screens/MissionStatsScreen/MissionStatsScreen.cs" id="1_6jabo"]
+[ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="1_r07vy"]
+[ext_resource type="Animation" uid="uid://x6mu3r3ccuui" path="res://Entities/Player/Animations/Glide.tres" id="2_6jabo"]
+[ext_resource type="Animation" uid="uid://bkne2eg3fawi7" path="res://Entities/Player/Animations/Idle.tres" id="3_6jabo"]
+[ext_resource type="Animation" uid="uid://dmdys32n4neh1" path="res://Entities/Player/Animations/Levitate.tres" id="5_lohnw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r07vy"]
+sky_top_color = Color(0.81279045, 0, 0.4203841, 1)
+
+[sub_resource type="Sky" id="Sky_6jabo"]
+sky_material = SubResource("ProceduralSkyMaterial_r07vy")
+
+[sub_resource type="Environment" id="Environment_h4j4i"]
+background_mode = 2
+sky = SubResource("Sky_6jabo")
+
+[sub_resource type="Gradient" id="Gradient_lohnw"]
+offsets = PackedFloat32Array(0.37531486, 0.6523929)
+colors = PackedColorArray(0.10747973, 0.10747976, 0.107479624, 1, 0.014275214, 0.014275223, 0.014275194, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5fhbi"]
+gradient = SubResource("Gradient_lohnw")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhxad"]
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_5fhbi")
+
+[sub_resource type="SphereMesh" id="SphereMesh_y0kov"]
+material = SubResource("StandardMaterial3D_dhxad")
+flip_faces = true
+radius = 100.0
+height = 200.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4j4i"]
+_data = {
+&"Glide": ExtResource("2_6jabo"),
+&"Idle": ExtResource("3_6jabo"),
+&"Levitate": ExtResource("5_lohnw")
+}
+
+[sub_resource type="Animation" id="Animation_dhxad"]
+resource_name = "RESET"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0kov"]
+_data = {
+&"RESET": SubResource("Animation_dhxad")
+}
+
+[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "Camera", "PlayerAnimator")]
+script = ExtResource("1_6jabo")
+PreviousLevelScenePath = "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
+HomeWorldScenePath = "res://Levels/TestMap/TestMap.tscn"
+Backdrop = NodePath("Backdrop")
+PlayerModel = NodePath("PlayerModel")
+Camera = NodePath("Camera")
+PlayerAnimator = NodePath("PlayerModel/PlayerAnimator")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h4j4i")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.9723455, -0.23354727, 0, 0.23354727, -0.9723455, 0, 0, 0)
+sky_mode = 1
+
+[node name="Backdrop" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_y0kov")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.8687254, 0.9774054, -1.4740758)
+current = true
+
+[node name="PlayerModel" parent="." instance=ExtResource("1_r07vy")]
+
+[node name="PlayerAnimator" type="AnimationPlayer" parent="PlayerModel"]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_h4j4i")
+}
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y0kov")
+}
