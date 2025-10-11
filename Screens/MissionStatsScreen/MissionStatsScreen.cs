@@ -11,6 +11,7 @@ namespace FastDragon
         [Export] public MeshInstance3D Backdrop;
         [Export] public Node3D PlayerModel;
         [Export] public Camera3D Camera;
+        [Export] public AudioStreamPlayer MusicPlayer;
 
         [Export] public AnimationPlayer PlayerAnimator;
 
@@ -145,9 +146,15 @@ namespace FastDragon
 
         private partial class ShowingStats : State<MissionStatsScreen>
         {
-            public override void _Process(double delta)
+            public override void OnStateEntered()
             {
-                ChangeState<WaitingForLoad>();
+                Self.MusicPlayer.Play();
+            }
+
+            public override void _Input(InputEvent ev)
+            {
+                if (InputService.SkipJustPressed(ev))
+                    ChangeState<WaitingForLoad>();
             }
         }
 
@@ -175,12 +182,16 @@ namespace FastDragon
             private Transform3D _cameraStart;
             private Transform3D _cameraEnd;
 
+            private float _volumeStart;
+
 
             public override void OnStateEntered()
             {
                 GD.Print("Exiting");
                 _loadedHomeWorldRoot = Self._loadedHomeWorld.Instantiate<Node3D>();
                 _timer = 0;
+
+                _volumeStart = Self.MusicPlayer.VolumeLinear;
 
                 var portal = GetTargetPortal();
 
@@ -220,6 +231,7 @@ namespace FastDragon
                 Self.PlayerModel.GlobalTransform = _playerStart.InterpolateWith(_playerEnd, t);
                 Self.Camera.GlobalTransform = _cameraStart.InterpolateWith(_cameraEnd, t);
                 Self.Backdrop.Transparency = t;
+                Self.MusicPlayer.VolumeLinear = Mathf.Lerp(_volumeStart, 0, t);
 
                 // TODO: Tween the sun, too.
 

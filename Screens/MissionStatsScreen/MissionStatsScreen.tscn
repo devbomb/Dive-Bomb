@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dy7b124lbdiio"]
+[gd_scene load_steps=17 format=3 uid="uid://dy7b124lbdiio"]
 
 [ext_resource type="Script" uid="uid://bjpuwynctw616" path="res://Screens/MissionStatsScreen/MissionStatsScreen.cs" id="1_6jabo"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="1_r07vy"]
+[ext_resource type="AudioStream" uid="uid://m2yl3exag46m" path="res://Screens/MissionStatsScreen/Music/BoomDiggityScat.mp3" id="2_5fhbi"]
 [ext_resource type="Animation" uid="uid://x6mu3r3ccuui" path="res://Entities/Player/Animations/Glide.tres" id="2_6jabo"]
 [ext_resource type="Animation" uid="uid://bkne2eg3fawi7" path="res://Entities/Player/Animations/Idle.tres" id="3_6jabo"]
 [ext_resource type="Animation" uid="uid://dmdys32n4neh1" path="res://Entities/Player/Animations/Levitate.tres" id="5_lohnw"]
@@ -52,14 +53,20 @@ _data = {
 &"RESET": SubResource("Animation_dhxad")
 }
 
-[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "Camera", "PlayerAnimator")]
+[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "Camera", "MusicPlayer", "PlayerAnimator")]
 script = ExtResource("1_6jabo")
 PreviousLevelScenePath = "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
 HomeWorldScenePath = "res://Levels/TestMap/TestMap.tscn"
 Backdrop = NodePath("Backdrop")
 PlayerModel = NodePath("PlayerModel")
 Camera = NodePath("Camera")
+MusicPlayer = NodePath("MusicPlayer")
 PlayerAnimator = NodePath("PlayerModel/PlayerAnimator")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5fhbi")
+bus = &"Music"
+parameters/looping = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h4j4i")
