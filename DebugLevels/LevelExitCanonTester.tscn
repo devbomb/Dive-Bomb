@@ -23,6 +23,7 @@ size = Vector3(20, 1, 20)
 
 [node name="LevelExitCanonTester" type="Node3D"]
 script = ExtResource("1_qp38o")
+HomeWorldLevel = "uid://muwxx8ltp1ss"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
