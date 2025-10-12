@@ -26,7 +26,9 @@ fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhxad"]
+transparency = 1
 shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.9882353)
 albedo_texture = SubResource("GradientTexture2D_5fhbi")
 
 [sub_resource type="SphereMesh" id="SphereMesh_y0kov"]
