@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -10,10 +11,24 @@ namespace FastDragon
 
         [Export] public MeshInstance3D Backdrop;
         [Export] public Node3D PlayerModel;
+        [Export] public Node3D ChalkboardModel;
         [Export] public Camera3D Camera;
-        [Export] public AudioStreamPlayer MusicPlayer;
+
 
         [Export] public AnimationPlayer PlayerAnimator;
+        [Export] public AnimationPlayer ChalkboardAnimator;
+
+        [ExportGroup("Sounds")]
+        [Export] public AudioStreamPlayer MusicPlayer;
+        [Export] public AudioStreamPlayer GemCountSound;
+        [Export] public AudioStreamPlayer GemSpentSound;
+
+        [ExportGroup("Labels")]
+        [ExportSubgroup("This level")]
+        [Export] public Label TotalGemsLabel;
+        [Export] public Label GemsFoundLabel;
+        [Export] public Label GemsSpentLabel;
+        [Export] public Label DeathsLabel;
 
         private Parameters _parameters = null;
         public class Parameters
@@ -54,6 +69,7 @@ namespace FastDragon
                 bool launchedDirectlyFromEditor = _parameters == null;
                 if (launchedDirectlyFromEditor)
                 {
+                    SaveFileManager.Current.CurrentLevelVisit = GetTestStats();
                     Initialize(GetTestParameters());
                 }
             }).CallDeferred();
@@ -72,6 +88,20 @@ namespace FastDragon
             // in the inspector.
             PreviousLevelScenePath = PreviousLevelScenePath,
             HomeWorldScenePath = HomeWorldScenePath,
+        };
+
+        private SaveFile.LevelVisit GetTestStats() => new()
+        {
+            Deaths = 10,
+            GemsSpent = 200,
+            GemsFound = new()
+            {
+                { GemColor.Red, 30 },
+                { GemColor.Green, 31 },
+                { GemColor.Purple, 34 },
+                { GemColor.Yellow, 11 },
+                { GemColor.Magenta, 1 }
+            }
         };
 
         public void Initialize(Parameters parameters)
@@ -118,6 +148,8 @@ namespace FastDragon
                 Self.PlayerAnimator.PlaySection("Glide", Self._parameters.PlayerAnimationTime);
                 Self.PlayerAnimator.Advance(0);
                 Self.PlayerAnimator.Play("BoomDiggityScat", customBlend: Duration);
+
+                Self.ChalkboardModel.Visible = false;
             }
 
             public override void _Process(double delta)
@@ -146,16 +178,186 @@ namespace FastDragon
 
         private partial class ShowingStats : State<MissionStatsScreen>
         {
+            private Coroutine _coroutine;
+
             public override void OnStateEntered()
             {
                 Self.MusicPlayer.Play();
+                _coroutine = new Coroutine(ShowStatsCoroutine());
+
+                Self.TotalGemsLabel.Text = TotalGemsBeforeCounting().ToString();
+
+                Self.ChalkboardModel.Visible = false;
+                Self.GemsFoundLabel.Visible = false;
+                Self.GemsSpentLabel.Visible = false;
+                Self.DeathsLabel.Visible = false;
+            }
+
+            public override void OnStateExited()
+            {
+                var stats = SaveFileManager.Current.CurrentLevelVisit;
+
+                Self.TotalGemsLabel.Text = SaveFileManager.Current.TotalGemCount.ToString();
+
+                Self.ChalkboardModel.Visible = true;
+                Self.ChalkboardAnimator.Play("RESET");
+                Self.ChalkboardAnimator.Advance(0);
+
+                Self.GemsFoundLabel.Visible = true;
+                Self.GemsFoundLabel.Text = $"Gems found: {stats.TotalGemsFound}";
+
+                Self.GemsSpentLabel.Visible = true;
+                Self.GemsSpentLabel.Text = $"Gems spent: {stats.GemsSpent}";
+
+                Self.DeathsLabel.Visible = true;
+                Self.DeathsLabel.Text = $"Deaths: {stats.Deaths}";
             }
 
             public override void _Input(InputEvent ev)
             {
                 if (InputService.SkipJustPressed(ev))
+                    ChangeState<LettingPlayerReadStats>();
+            }
+
+            public override void _Process(double delta)
+            {
+                _coroutine.Tick(delta);
+
+                if (_coroutine.Done)
+                    ChangeState<LettingPlayerReadStats>();
+            }
+
+            private IEnumerator<YieldInstruction> ShowStatsCoroutine()
+            {
+                Self.ChalkboardModel.Visible = true;
+                Self.ChalkboardAnimator.Play("SwingIn");
+                while (Self.ChalkboardAnimator.IsPlaying())
+                    yield return default;
+
+                yield return Coroutine.WaitFor(SlideLabelIn(Self.GemsFoundLabel, 0.1));
+                yield return Coroutine.WaitSeconds(0.25);
+                yield return Coroutine.WaitFor(CountGemsFound());
+                yield return Coroutine.WaitSeconds(0.5);
+
+                yield return Coroutine.WaitFor(SlideLabelIn(Self.GemsSpentLabel, 0.1));
+                yield return Coroutine.WaitSeconds(0.25);
+                yield return Coroutine.WaitFor(CountGemsSpent());
+                yield return Coroutine.WaitSeconds(0.5);
+            }
+
+            private IEnumerator<YieldInstruction> CountGemsFound()
+            {
+                const double countInterval = 2.0 / 60;
+                const double sfxCooldown = countInterval * 2;
+                const double maxDuration = 1.25;
+                double skipTimer = 0;
+                double sfxCooldownTimer = 0;
+
+                var stats = SaveFileManager.Current.CurrentLevelVisit;
+                int globalTotalGems = TotalGemsBeforeCounting();
+
+                for (int i = 0; i < stats.TotalGemsFound; i++)
+                {
+                    if (sfxCooldownTimer <= 0)
+                    {
+                        Self.GemCountSound.Play();
+                        sfxCooldownTimer += sfxCooldown;
+                    }
+
+                    globalTotalGems++;
+                    Self.TotalGemsLabel.Text = globalTotalGems.ToString();
+                    Self.GemsFoundLabel.Text = $"Gems found: {i + 1}";
+                    yield return Coroutine.WaitSeconds(countInterval);
+
+                    // Cut to the chase if it's taking too long
+                    skipTimer += countInterval;
+                    sfxCooldownTimer -= countInterval;
+
+                    if (skipTimer >= maxDuration)
+                        break;
+                }
+
+                globalTotalGems = TotalGemsBeforeCounting() + stats.TotalGemsFound;
+                Self.TotalGemsLabel.Text = globalTotalGems.ToString();
+                Self.GemsFoundLabel.Text = $"Gems found: {stats.TotalGemsFound}";
+            }
+
+            private IEnumerator<YieldInstruction> CountGemsSpent()
+            {
+                const double countInterval = 2.0 / 60;
+                const double sfxCooldown = countInterval * 2;
+                const double maxDuration = 1.0;
+                double skipTimer = 0;
+                double sfxCooldownTimer = 0;
+
+                var stats = SaveFileManager.Current.CurrentLevelVisit;
+                int globalTotalGems = TotalGemsBeforeCounting() + stats.TotalGemsFound;
+
+                for (int i = 0; i < stats.GemsSpent; i++)
+                {
+                    if (sfxCooldownTimer <= 0)
+                    {
+                        Self.GemSpentSound.Play();
+                        sfxCooldownTimer += sfxCooldown;
+                    }
+
+                    globalTotalGems--;
+                    Self.TotalGemsLabel.Text = globalTotalGems.ToString();
+                    Self.GemsSpentLabel.Text = $"Gems spent: {i + 1}";
+                    yield return Coroutine.WaitSeconds(countInterval);
+
+                    // Cut to the chase if it's taking too long
+                    skipTimer += countInterval;
+                    sfxCooldownTimer -= countInterval;
+
+                    if (skipTimer >= maxDuration)
+                        break;
+                }
+
+                globalTotalGems = SaveFileManager.Current.TotalGemCount;
+                Self.TotalGemsLabel.Text = globalTotalGems.ToString();
+                Self.GemsSpentLabel.Text = $"Gems spent: {stats.GemsSpent}";
+            }
+
+            private IEnumerator<YieldInstruction> SlideLabelIn(Label label, double duration)
+            {
+                label.Visible = true;
+
+                var start = new Vector2(-100, 0);
+                var end = new Vector2(0, 0);
+
+                label.Position = start;
+
+                double timer = 0;
+                while (timer < duration)
+                {
+                    timer += Self.GetProcessDeltaTime();
+                    label.Position = start.Lerp(end, (float)(timer / duration));
+                    yield return default;
+                }
+
+                label.Position = end;
+            }
+
+            private int TotalGemsBeforeCounting()
+            {
+                var stats = SaveFileManager.Current.CurrentLevelVisit;
+                int totalGemsBeforeCounting = SaveFileManager.Current.TotalGemCount;
+                totalGemsBeforeCounting += stats.GemsSpent;
+                totalGemsBeforeCounting -= stats.TotalGemsFound;
+
+                return totalGemsBeforeCounting;
+            }
+        }
+
+        private partial class LettingPlayerReadStats : State<MissionStatsScreen>
+        {
+            public override void _Input(InputEvent ev)
+            {
+                if (InputService.SkipJustPressed(ev))
                     ChangeState<WaitingForLoad>();
             }
+
         }
 
         private partial class WaitingForLoad : State<MissionStatsScreen>

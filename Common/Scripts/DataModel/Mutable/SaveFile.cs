@@ -42,6 +42,8 @@ namespace FastDragon
             [JsonProperty] public int GemsSpent;
             [JsonProperty] public Dictionary<GemColor, int> GemsFound = new();
 
+            public int TotalGemsFound => GemsFound.Sum(x => (int)x.Key * x.Value);
+
             public void AddToGemsFound(GemColor color)
             {
                 if (!GemsFound.ContainsKey(color))
