@@ -73,8 +73,8 @@ frequency = 0.0699
 fractal_octaves = 6
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wtiqy"]
-color_ramp = SubResource("Gradient_0otwe")
 noise = SubResource("FastNoiseLite_oy63v")
+color_ramp = SubResource("Gradient_0otwe")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmsos"]
 render_priority = -1
@@ -165,8 +165,8 @@ frequency = 0.0699
 fractal_octaves = 6
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2ln22"]
-color_ramp = SubResource("Gradient_eud5j")
 noise = SubResource("FastNoiseLite_8b2nb")
+color_ramp = SubResource("Gradient_eud5j")
 
 [resource]
 render_priority = 0

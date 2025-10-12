@@ -161,7 +161,6 @@ namespace FastDragon
         private class Moving : VentState
         {
             private float _timer;
-            private float _camTimer;
 
             private Transform3D _camStart;
 
@@ -169,7 +168,6 @@ namespace FastDragon
             {
                 _timer = 0;
 
-                _camTimer = 0;
                 _camStart = Self._cutsceneCam.GlobalTransform;
 
                 Player.GlobalTransform = Self._targetVent._spawnPoint.GlobalTransform;

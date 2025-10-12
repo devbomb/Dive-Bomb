@@ -7,7 +7,6 @@ namespace FastDragon
     {
         public static LevelTransitionManager Instance {get; private set;}
 
-        [Export(PropertyHint.File)] public string TimeTrialLevelSelectScene;
         [Export(PropertyHint.File)] public string TitleScreenScene;
 
         [Export] public PackedScene PortalLoadingScreenPrefab;
@@ -34,11 +33,6 @@ namespace FastDragon
             // Change to the new one
             tree.Root.AddChild(scene);
             tree.CurrentScene = scene;
-        }
-
-        public void GoToTimeTrialLevelSelect()
-        {
-            GetTree().ChangeSceneToFile(TimeTrialLevelSelectScene);
         }
 
         public void GoToTitleScreen()

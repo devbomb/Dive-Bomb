@@ -54,10 +54,10 @@ domain_warp_type = 2
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ehvcr"]
 width = 64
 height = 32
+noise = SubResource("FastNoiseLite_mhd6h")
+color_ramp = SubResource("Gradient_q56l5")
 seamless = true
 seamless_blend_skirt = 0.6
-color_ramp = SubResource("Gradient_q56l5")
-noise = SubResource("FastNoiseLite_mhd6h")
 
 [sub_resource type="Gradient" id="Gradient_mhd6h"]
 offsets = PackedFloat32Array(0, 0.641221, 0.959924, 1)
@@ -72,20 +72,20 @@ domain_warp_type = 2
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_df55x"]
 width = 64
 height = 64
+noise = SubResource("FastNoiseLite_gdfgp")
+color_ramp = SubResource("Gradient_mhd6h")
 seamless = true
 seamless_blend_skirt = 0.6
-color_ramp = SubResource("Gradient_mhd6h")
-noise = SubResource("FastNoiseLite_gdfgp")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xq3oj"]
 frequency = 0.042
 fractal_type = 0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gdfgp"]
+noise = SubResource("FastNoiseLite_xq3oj")
 seamless = true
 as_normal_map = true
 bump_strength = 1.0
-noise = SubResource("FastNoiseLite_xq3oj")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_frr61"]
 noise_type = 0
@@ -94,11 +94,11 @@ frequency = 0.0258
 fractal_type = 0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dj2bn"]
-in_3d_space = true
+noise = SubResource("FastNoiseLite_frr61")
 seamless = true
+in_3d_space = true
 as_normal_map = true
 bump_strength = 1.0
-noise = SubResource("FastNoiseLite_frr61")
 
 [resource]
 render_priority = 0

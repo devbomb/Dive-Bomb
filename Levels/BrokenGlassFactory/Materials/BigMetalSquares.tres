@@ -11,12 +11,12 @@ colors = PackedColorArray(0, 0, 0, 1, 0.417406, 0.417406, 0.417406, 1, 1, 1, 1, 
 frequency = 0.0006
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gu3ey"]
+noise = SubResource("FastNoiseLite_0uoos")
+color_ramp = SubResource("Gradient_c4rir")
+seamless = true
 invert = true
 in_3d_space = true
-seamless = true
 as_normal_map = true
-color_ramp = SubResource("Gradient_c4rir")
-noise = SubResource("FastNoiseLite_0uoos")
 
 [resource]
 albedo_texture = ExtResource("1_poqrj")

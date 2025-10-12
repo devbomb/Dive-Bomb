@@ -16,11 +16,6 @@ namespace FastDragon
             OpenMainPage();
         }
 
-        public void TimeTrialMode()
-        {
-            LevelTransitionManager.Instance.GoToTimeTrialLevelSelect();
-        }
-
         public void OpenMainPage()
         {
             _pageNav.ChangePage(GetNode<Page>("%MainPage"));

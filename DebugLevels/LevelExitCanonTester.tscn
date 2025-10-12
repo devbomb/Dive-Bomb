@@ -1,10 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://dympqtsl60os7"]
+[gd_scene load_steps=11 format=3 uid="uid://dympqtsl60os7"]
 
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="1_ds1y7"]
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_qp38o"]
 [ext_resource type="PackedScene" uid="uid://cyfwcwip8ncw0" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.tscn" id="2_ds1y7"]
 [ext_resource type="PackedScene" uid="uid://djpeind8lnpd3" path="res://Entities/Item/Gems/MagentaGem/MagentaGem.tscn" id="5_16wl4"]
 [ext_resource type="PackedScene" uid="uid://b6d7vas8km3kd" path="res://Entities/Item/Fairy/Fairy.tscn" id="5_ibrm5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_16wl4"]
+
+[sub_resource type="Sky" id="Sky_ibrm5"]
+sky_material = SubResource("ProceduralSkyMaterial_16wl4")
+
+[sub_resource type="Environment" id="Environment_6nf20"]
+background_mode = 2
+sky = SubResource("Sky_ibrm5")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x75wr"]
 size = Vector3(20, 1, 20)
@@ -14,7 +23,11 @@ size = Vector3(20, 1, 20)
 
 [node name="LevelExitCanonTester" type="Node3D"]
 script = ExtResource("1_qp38o")
+HomeWorldLevel = "uid://muwxx8ltp1ss"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6nf20")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
