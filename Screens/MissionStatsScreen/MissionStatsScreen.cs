@@ -117,7 +117,7 @@ namespace FastDragon
 
                 Self.PlayerAnimator.PlaySection("Glide", Self._parameters.PlayerAnimationTime);
                 Self.PlayerAnimator.Advance(0);
-                Self.PlayerAnimator.Play("Idle", customBlend: Duration);
+                Self.PlayerAnimator.Play("BoomDiggityScat", customBlend: Duration);
             }
 
             public override void _Process(double delta)

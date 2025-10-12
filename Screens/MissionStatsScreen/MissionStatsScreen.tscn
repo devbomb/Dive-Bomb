@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dy7b124lbdiio"]
+[gd_scene load_steps=19 format=3 uid="uid://dy7b124lbdiio"]
 
 [ext_resource type="Script" uid="uid://bjpuwynctw616" path="res://Screens/MissionStatsScreen/MissionStatsScreen.cs" id="1_6jabo"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="1_r07vy"]
@@ -6,6 +6,8 @@
 [ext_resource type="Animation" uid="uid://x6mu3r3ccuui" path="res://Entities/Player/Animations/Glide.tres" id="2_6jabo"]
 [ext_resource type="Animation" uid="uid://bkne2eg3fawi7" path="res://Entities/Player/Animations/Idle.tres" id="3_6jabo"]
 [ext_resource type="Animation" uid="uid://dmdys32n4neh1" path="res://Entities/Player/Animations/Levitate.tres" id="5_lohnw"]
+[ext_resource type="Animation" uid="uid://c20acbspnk86w" path="res://Screens/MissionStatsScreen/PlayerAnimations/BoomDiggityScat.tres" id="7_y0kov"]
+[ext_resource type="Animation" uid="uid://l3nmkbwx1cy1" path="res://Entities/Player/Animations/RESET.tres" id="8_txvya"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r07vy"]
 sky_top_color = Color(0.81279045, 0, 0.4203841, 1)
@@ -40,9 +42,11 @@ height = 200.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4j4i"]
 _data = {
+&"BoomDiggityScat": ExtResource("7_y0kov"),
 &"Glide": ExtResource("2_6jabo"),
 &"Idle": ExtResource("3_6jabo"),
-&"Levitate": ExtResource("5_lohnw")
+&"Levitate": ExtResource("5_lohnw"),
+&"RESET": ExtResource("8_txvya")
 }
 
 [sub_resource type="Animation" id="Animation_dhxad"]
