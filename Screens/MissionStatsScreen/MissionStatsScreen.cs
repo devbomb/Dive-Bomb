@@ -18,6 +18,8 @@ namespace FastDragon
         [Export] public AnimationPlayer PlayerAnimator;
         [Export] public AnimationPlayer ChalkboardAnimator;
 
+        [Export] public Control ContinueButtonPrompt;
+
         [ExportGroup("Sounds")]
         [Export] public AudioStreamPlayer MusicPlayer;
         [Export] public AudioStreamPlayer GemCountSound;
@@ -358,6 +360,15 @@ namespace FastDragon
                     ChangeState<WaitingForLoad>();
             }
 
+            public override void OnStateEntered()
+            {
+                Self.ContinueButtonPrompt.Visible = true;
+            }
+
+            public override void OnStateExited()
+            {
+                Self.ContinueButtonPrompt.Visible = false;
+            }
         }
 
         private partial class WaitingForLoad : State<MissionStatsScreen>
