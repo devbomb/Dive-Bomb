@@ -24,6 +24,7 @@ namespace FastDragon
         [Export] public AudioStreamPlayer MusicPlayer;
         [Export] public AudioStreamPlayer GemCountSound;
         [Export] public AudioStreamPlayer GemSpentSound;
+        [Export] public AudioStreamPlayer ContinuePressedSound;
 
         [ExportGroup("Labels")]
         [ExportSubgroup("This level")]
@@ -357,7 +358,11 @@ namespace FastDragon
             public override void _Input(InputEvent ev)
             {
                 if (InputService.SkipJustPressed(ev))
+                {
                     ChangeState<WaitingForLoad>();
+                    Self.ContinuePressedSound.Play();
+                    Self.MusicPlayer.Stop();
+                }
             }
 
             public override void OnStateEntered()
@@ -395,16 +400,11 @@ namespace FastDragon
             private Transform3D _cameraStart;
             private Transform3D _cameraEnd;
 
-            private float _volumeStart;
-
-
             public override void OnStateEntered()
             {
                 GD.Print("Exiting");
                 _loadedHomeWorldRoot = Self._loadedHomeWorld.Instantiate<Node3D>();
                 _timer = 0;
-
-                _volumeStart = Self.MusicPlayer.VolumeLinear;
 
                 var portal = GetTargetPortal();
 
@@ -444,7 +444,6 @@ namespace FastDragon
                 Self.PlayerModel.GlobalTransform = _playerStart.InterpolateWith(_playerEnd, t);
                 Self.Camera.GlobalTransform = _cameraStart.InterpolateWith(_cameraEnd, t);
                 Self.Backdrop.Transparency = t;
-                Self.MusicPlayer.VolumeLinear = Mathf.Lerp(_volumeStart, 0, t);
 
                 // TODO: Tween the sun, too.
 
