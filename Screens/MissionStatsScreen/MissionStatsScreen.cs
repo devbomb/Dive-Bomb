@@ -24,6 +24,7 @@ namespace FastDragon
         [Export] public AudioStreamPlayer MusicPlayer;
         [Export] public AudioStreamPlayer GemCountSound;
         [Export] public AudioStreamPlayer GemSpentSound;
+        [Export] public AudioStreamPlayer DeathCountIncreaseSound;
         [Export] public AudioStreamPlayer ContinuePressedSound;
 
         [ExportGroup("Labels")]
@@ -31,7 +32,8 @@ namespace FastDragon
         [Export] public Label TotalGemsLabel;
         [Export] public Label GemsFoundLabel;
         [Export] public Label GemsSpentLabel;
-        [Export] public Label DeathsLabel;
+        [Export] public Control DeathsLabelHolder;
+        [Export] public Label DeathsLabelNumber;
 
         private Parameters _parameters = null;
         public class Parameters
@@ -193,7 +195,7 @@ namespace FastDragon
                 Self.ChalkboardModel.Visible = false;
                 Self.GemsFoundLabel.Visible = false;
                 Self.GemsSpentLabel.Visible = false;
-                Self.DeathsLabel.Visible = false;
+                Self.DeathsLabelHolder.Visible = false;
             }
 
             public override void OnStateExited()
@@ -212,8 +214,8 @@ namespace FastDragon
                 Self.GemsSpentLabel.Visible = true;
                 Self.GemsSpentLabel.Text = $"Gems spent: {stats.GemsSpent}";
 
-                Self.DeathsLabel.Visible = true;
-                Self.DeathsLabel.Text = $"Deaths: {stats.Deaths}";
+                Self.DeathsLabelHolder.Visible = true;
+                Self.DeathsLabelNumber.Text = stats.Deaths.ToString();
             }
 
             public override void _Input(InputEvent ev)
@@ -245,6 +247,11 @@ namespace FastDragon
                 yield return Coroutine.WaitFor(SlideLabelIn(Self.GemsSpentLabel, 0.1));
                 yield return Coroutine.WaitSeconds(0.25);
                 yield return Coroutine.WaitFor(CountGemsSpent());
+                yield return Coroutine.WaitSeconds(0.5);
+
+                yield return Coroutine.WaitFor(SlideLabelIn(Self.DeathsLabelHolder, 0.1));
+                yield return Coroutine.WaitSeconds(0.25);
+                yield return Coroutine.WaitFor(CountDeaths());
                 yield return Coroutine.WaitSeconds(0.5);
             }
 
@@ -322,7 +329,46 @@ namespace FastDragon
                 Self.GemsSpentLabel.Text = $"Gems spent: {stats.GemsSpent}";
             }
 
-            private IEnumerator<YieldInstruction> SlideLabelIn(Label label, double duration)
+            private IEnumerator<YieldInstruction> CountDeaths()
+            {
+                const double countInterval = 1.0 / 3;
+                const double pulseDuration = countInterval / 2;
+
+                var stats = SaveFileManager.Current.CurrentLevelVisit;
+                int deaths = 0;
+                Self.DeathsLabelNumber.Text = deaths.ToString();
+
+                for (int i = 0; i < stats.Deaths; i++)
+                {
+                    Self.DeathCountIncreaseSound.Play();
+                    deaths++;
+                    Self.DeathsLabelNumber.Text = deaths.ToString();
+
+                    // Ensure the pivot for the pulsing animation is always the
+                    // center of the label, regardless of how many digits there
+                    // are.
+                    Self.DeathsLabelNumber.UpdateMinimumSize();
+                    Self.DeathsLabelNumber.PivotOffset = Self.DeathsLabelNumber.GetMinimumSize() / 2;
+
+                    // Play a pulsing animation
+                    double timer = 0;
+                    while (timer < pulseDuration)
+                    {
+                        timer += Self.GetProcessDeltaTime();
+                        float t = (float)(timer / pulseDuration);
+                        float pingPongT = Mathf.PingPong(t * 2, 1);
+
+                        Vector2 maxScale = Vector2.One * 1.5f;
+                        Self.DeathsLabelNumber.Scale = Vector2.One.Lerp(maxScale, pingPongT);
+                        yield return default;
+                    }
+
+                    Self.DeathsLabelNumber.Scale = Vector2.One;
+                    yield return Coroutine.WaitSeconds(countInterval - timer);
+                }
+            }
+
+            private IEnumerator<YieldInstruction> SlideLabelIn(Control label, double duration)
             {
                 label.Visible = true;
 

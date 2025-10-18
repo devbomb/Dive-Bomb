@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dy7b124lbdiio"]
+[gd_scene load_steps=35 format=3 uid="uid://dy7b124lbdiio"]
 
 [ext_resource type="Script" uid="uid://bjpuwynctw616" path="res://Screens/MissionStatsScreen/MissionStatsScreen.cs" id="1_6jabo"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="1_r07vy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Animation" uid="uid://bkne2eg3fawi7" path="res://Entities/Player/Animations/Idle.tres" id="3_6jabo"]
 [ext_resource type="AudioStream" uid="uid://bojobea40tjay" path="res://Entities/Item/Gems/BaseGem/Gem.wav" id="3_xl4t0"]
 [ext_resource type="AudioStream" uid="uid://co0p0lrcj853b" path="res://Screens/MissionStatsScreen/Music/ContinuePressed.mp3" id="4_dkfbr"]
+[ext_resource type="AudioStream" uid="uid://ct5a7ee6hy0j" path="res://Screens/MissionStatsScreen/SFX/DeathCountIncrease.wav" id="4_dw18r"]
 [ext_resource type="Animation" uid="uid://dmdys32n4neh1" path="res://Entities/Player/Animations/Levitate.tres" id="5_lohnw"]
 [ext_resource type="Animation" uid="uid://c20acbspnk86w" path="res://Screens/MissionStatsScreen/PlayerAnimations/BoomDiggityScat.tres" id="7_y0kov"]
 [ext_resource type="Animation" uid="uid://l3nmkbwx1cy1" path="res://Entities/Player/Animations/RESET.tres" id="8_txvya"]
@@ -92,6 +93,8 @@ font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_dkfbr"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_dw18r"]
+
 [sub_resource type="Texture2D" id="Texture2D_ly71n"]
 resource_local_to_scene = false
 resource_name = ""
@@ -99,7 +102,7 @@ script = ExtResource("12_bt743")
 path = "ui_accept"
 metadata/_custom_type_script = "uid://d2ars665qqq5j"
 
-[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueButtonPrompt", "ContinuePressedSound", "MusicPlayer", "GemCountSound", "GemSpentSound", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabel")]
+[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueButtonPrompt", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber")]
 script = ExtResource("1_6jabo")
 PreviousLevelScenePath = "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
 HomeWorldScenePath = "res://Levels/TestMap/TestMap.tscn"
@@ -110,14 +113,16 @@ Camera = NodePath("Camera")
 PlayerAnimator = NodePath("PlayerModel/PlayerAnimator")
 ChalkboardAnimator = NodePath("Chalkboard/ChalkboardAnimator")
 ContinueButtonPrompt = NodePath("Control/PressToContinuePrompt")
-ContinuePressedSound = NodePath("ContinuePressedSound")
 MusicPlayer = NodePath("MusicPlayer")
 GemCountSound = NodePath("GemCountSound")
 GemSpentSound = NodePath("GemSpentSound")
+DeathCountIncreaseSound = NodePath("DeathCountIncreaseSound")
+ContinuePressedSound = NodePath("ContinuePressedSound")
 TotalGemsLabel = NodePath("Chalkboard/SubViewport/Control/Totals/TotalGems")
 GemsFoundLabel = NodePath("Chalkboard/SubViewport/Control/ThisLevel/GemsFoundHolder/GemsFound")
 GemsSpentLabel = NodePath("Chalkboard/SubViewport/Control/ThisLevel/GemsSpentHolder/GemsSpent")
-DeathsLabel = NodePath("Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/Deaths")
+DeathsLabelHolder = NodePath("Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder")
+DeathsLabelNumber = NodePath("Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild/DeathsNumber")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_5fhbi")
@@ -133,6 +138,12 @@ bus = &"Sfx"
 stream = ExtResource("3_xl4t0")
 pitch_scale = 1.73
 max_polyphony = 10
+bus = &"Sfx"
+
+[node name="DeathCountIncreaseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dw18r")
+volume_db = -7.978
+pitch_scale = 1.2
 bus = &"Sfx"
 
 [node name="ContinuePressedSound" type="AudioStreamPlayer" parent="."]
@@ -241,15 +252,40 @@ text = "Gems Spent: 0"
 label_settings = SubResource("LabelSettings_dkfbr")
 
 [node name="DeathsHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 
-[node name="Deaths" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder"]
+[node name="DeathsLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder"]
 layout_mode = 0
-offset_right = 99.0
+offset_right = 115.0
 offset_bottom = 23.0
-text = "Deaths: 0"
+
+[node name="DeathsTitle" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder"]
+layout_mode = 2
+text = "Deaths: "
 label_settings = SubResource("LabelSettings_dkfbr")
+
+[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder"]
+layout_mode = 2
+script = ExtResource("12_ly71n")
+metadata/_custom_type_script = "uid://ugacr7gb8aji"
+
+[node name="DeathsNumber" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_dw18r")
+vertical_alignment = 1
 
 [node name="Totals" type="VBoxContainer" parent="Chalkboard/SubViewport/Control"]
 layout_mode = 1
