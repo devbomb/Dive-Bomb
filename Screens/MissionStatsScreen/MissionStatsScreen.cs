@@ -17,6 +17,7 @@ namespace FastDragon
 
         [Export] public AnimationPlayer PlayerAnimator;
         [Export] public AnimationPlayer ChalkboardAnimator;
+        [Export] public AnimationPlayer ContinueFlashAnimator;
 
         [Export] public Control ContinueButtonPrompt;
 
@@ -407,6 +408,7 @@ namespace FastDragon
                 {
                     ChangeState<WaitingForLoad>();
                     Self.ContinuePressedSound.Play();
+                    Self.ContinueFlashAnimator.Play("Flash");
                     Self.MusicPlayer.Stop();
                 }
             }
