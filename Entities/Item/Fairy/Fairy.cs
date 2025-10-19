@@ -67,6 +67,15 @@ namespace FastDragon
 
         public void OnBroken()
         {
+            // TODO: I suspect this might be getting called twice sometimes, but
+            // very rarely.  Log if that happens.
+            if (_stateMachine.CurrentState is not Idle)
+            {
+                string msg = "OnBroken() was called outside of the idle state.  Is it firing twice?!";
+                GD.PushError(msg);
+                throw new System.Exception(msg);
+            }
+
             var level = this.GetLevel();
             bool isTimeTrialMode = level?.TimeTrial.IsTimeTrialMode ?? false;
 
