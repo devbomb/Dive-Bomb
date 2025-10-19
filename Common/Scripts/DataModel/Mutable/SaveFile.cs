@@ -38,6 +38,7 @@ namespace FastDragon
         public class LevelVisit
         {
             [JsonProperty] public int Deaths;
+            [JsonProperty] public int FairiesFound;
             [JsonProperty] public int GemsSpent;
             [JsonProperty] public Dictionary<GemColor, int> GemsFound = new();
 

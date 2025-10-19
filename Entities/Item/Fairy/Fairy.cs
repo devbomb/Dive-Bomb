@@ -68,19 +68,22 @@ namespace FastDragon
         public void OnBroken()
         {
             var level = this.GetLevel();
+            bool isTimeTrialMode = level?.TimeTrial.IsTimeTrialMode ?? false;
+
             if (level != null)
             {
                 level.GetProgress().CollectedFairies.Add(SaveKey);
                 level.GetProgress().SpentGems += GemCost;
+            }
 
-                if (level.TimeTrial.IsTimeTrialMode)
-                {
-                    _stateMachine.ChangeState<QuickRescue>();
-                    return;
-                }
+            if (isTimeTrialMode)
+            {
+                _stateMachine.ChangeState<QuickRescue>();
+                return;
             }
 
             SaveFileManager.Current.CurrentLevelVisit.GemsSpent += GemCost;
+            SaveFileManager.Current.CurrentLevelVisit.FairiesFound++;
             SaveFileManager.Instance.RequestAutosave();
 
             _stateMachine.ChangeState<Shattering>();
