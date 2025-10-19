@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dy7b124lbdiio"]
+[gd_scene load_steps=41 format=3 uid="uid://dy7b124lbdiio"]
 
 [ext_resource type="Script" uid="uid://bjpuwynctw616" path="res://Screens/MissionStatsScreen/MissionStatsScreen.cs" id="1_6jabo"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="1_r07vy"]
@@ -15,6 +15,8 @@
 [ext_resource type="FontFile" uid="uid://c78bp7xshedrh" path="res://Fonts/Frijole/Frijole-Regular.ttf" id="9_txvya"]
 [ext_resource type="Script" uid="uid://d2ars665qqq5j" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="12_bt743"]
 [ext_resource type="Script" uid="uid://ugacr7gb8aji" path="res://Common/Components/MinimumSizeMatchesChild.gd" id="12_ly71n"]
+[ext_resource type="Shader" uid="uid://c0eebxlfwvunx" path="res://Screens/MissionStatsScreen/GemParticleProcessShader.gdshader" id="16_6c5sh"]
+[ext_resource type="ArrayMesh" uid="uid://dist27am75xd" path="res://Screens/MissionStatsScreen/GemMesh.tres" id="16_rdsha"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r07vy"]
 sky_top_color = Color(0.81279045, 0, 0.4203841, 1)
@@ -95,21 +97,6 @@ font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_dw18r"]
 
-[sub_resource type="Animation" id="Animation_dw18r"]
-resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_rdsha"]
 resource_name = "Flash"
 tracks/0/type = "value"
@@ -125,6 +112,21 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_dw18r"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rdsha"]
 _data = {
 &"Flash": SubResource("Animation_rdsha"),
@@ -138,7 +140,30 @@ script = ExtResource("12_bt743")
 path = "ui_accept"
 metadata/_custom_type_script = "uid://d2ars665qqq5j"
 
-[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ojbqg"]
+shader = ExtResource("16_6c5sh")
+shader_parameter/direction = Vector3(0, -1, 0)
+shader_parameter/spread = 0.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 3.0
+shader_parameter/initial_linear_velocity_max = 3.0
+shader_parameter/directional_velocity_min = 1.0
+shader_parameter/directional_velocity_max = 1.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 90.0
+shader_parameter/scale_min = 0.075
+shader_parameter/scale_max = 0.075
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(0.25, 1, 0.25)
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/emission_box_extents = Vector3(1.35, 0.06, 0.815)
+shader_parameter/gravity = Vector3(0, -9.8, 0)
+
+[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber")]
 script = ExtResource("1_6jabo")
 PreviousLevelScenePath = "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
 HomeWorldScenePath = "res://Levels/TestMap/TestMap.tscn"
@@ -150,6 +175,14 @@ PlayerAnimator = NodePath("PlayerModel/PlayerAnimator")
 ChalkboardAnimator = NodePath("Chalkboard/ChalkboardAnimator")
 ContinueFlashAnimator = NodePath("Control/ContinueFlash/ContinueFlashAnimator")
 ContinueButtonPrompt = NodePath("Control/PressToContinuePrompt")
+GemSpawner = NodePath("GemSpawner")
+GemColors = Dictionary[int, Color]({
+1: Color(1, 0, 0, 1),
+2: Color(0, 0.7647059, 0, 1),
+5: Color(0.44705883, 0, 0.81960785, 1),
+10: Color(1, 1, 0, 1),
+25: Color(0.9321456, 0.1513373, 0.8844942, 1)
+})
 MusicPlayer = NodePath("MusicPlayer")
 GemCountSound = NodePath("GemCountSound")
 GemSpentSound = NodePath("GemSpentSound")
@@ -419,3 +452,12 @@ expand_mode = 1
 [node name="Label" type="Label" parent="Control/PressToContinuePrompt"]
 layout_mode = 2
 text = "Continue"
+
+[node name="GemSpawner" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.98504627, 0, 0.17229015, 0, 1, 0, -0.17229015, 0, 0.98504627, 0.13122201, 2.2328708, -0.19630821)
+emitting = false
+amount = 1000
+speed_scale = 2.0
+draw_order = 3
+process_material = SubResource("ShaderMaterial_ojbqg")
+draw_pass_1 = ExtResource("16_rdsha")

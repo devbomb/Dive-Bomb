@@ -21,6 +21,10 @@ namespace FastDragon
 
         [Export] public Control ContinueButtonPrompt;
 
+        [ExportGroup("Gems")]
+        [Export] public GpuParticles3D GemSpawner;
+        [Export] public Godot.Collections.Dictionary<GemColor, Color> GemColors;
+
         [ExportGroup("Sounds")]
         [Export] public AudioStreamPlayer MusicPlayer;
         [Export] public AudioStreamPlayer GemCountSound;
@@ -259,16 +263,25 @@ namespace FastDragon
 
             private IEnumerator<YieldInstruction> CountGemsFound()
             {
+                var rng = new System.Random();
+
                 const double countInterval = 2.0 / 60;
-                const double sfxCooldown = countInterval * 2;
                 const double maxDuration = 1.25;
-                double skipTimer = 0;
+
+                const double sfxCooldown = countInterval * 2;
                 double sfxCooldownTimer = 0;
 
                 var stats = SaveFileManager.Current.CurrentLevelVisit;
-                int globalTotalGems = TotalGemsBeforeCounting();
+                var untalliedGems = stats.GemsFound.ToDictionary();
 
-                for (int i = 0; i < stats.TotalGemsFound; i++)
+                int globalTotalGems = TotalGemsBeforeCounting();
+                int levelTotalGems = 0;
+
+                const double maxCycles = maxDuration / countInterval;
+                double totalIndividualGems = untalliedGems.Sum(kvp => kvp.Value);
+                int gemsPerCycle = Mathf.CeilToInt(totalIndividualGems / maxCycles);
+
+                while (!AllGemsCounted())
                 {
                     if (sfxCooldownTimer <= 0)
                     {
@@ -276,22 +289,40 @@ namespace FastDragon
                         sfxCooldownTimer += sfxCooldown;
                     }
 
-                    globalTotalGems++;
-                    Self.TotalGemsLabel.Text = globalTotalGems.ToString();
-                    Self.GemsFoundLabel.Text = $"Gems found: {i + 1}";
+                    for (int i = 0; i < gemsPerCycle && !AllGemsCounted(); i++)
+                    {
+                        GemColor color = rng.PickFromWeighted(untalliedGems);
+                        SpawnAndCountGem(color);
+                    }
+
                     yield return Coroutine.WaitSeconds(countInterval);
-
-                    // Cut to the chase if it's taking too long
-                    skipTimer += countInterval;
                     sfxCooldownTimer -= countInterval;
-
-                    if (skipTimer >= maxDuration)
-                        break;
                 }
 
                 globalTotalGems = TotalGemsBeforeCounting() + stats.TotalGemsFound;
                 Self.TotalGemsLabel.Text = globalTotalGems.ToString();
                 Self.GemsFoundLabel.Text = $"Gems found: {stats.TotalGemsFound}";
+
+                bool AllGemsCounted() => untalliedGems.Sum(kvp => kvp.Value) <= 0;
+
+                void SpawnAndCountGem(GemColor color)
+                {
+                    untalliedGems[color]--;
+
+                    globalTotalGems += (int)color;
+                    levelTotalGems += (int)color;
+
+                    Self.GemSpawner.EmitParticle(
+                        default,
+                        default,
+                        Self.GemColors[color],
+                        default,
+                        (uint)GpuParticles3D.EmitFlags.Color
+                    );
+
+                    Self.TotalGemsLabel.Text = globalTotalGems.ToString();
+                    Self.GemsFoundLabel.Text = $"Gems found: {levelTotalGems}";
+                }
             }
 
             private IEnumerator<YieldInstruction> CountGemsSpent()
