@@ -34,9 +34,14 @@ namespace FastDragon
 
         [ExportGroup("Labels")]
         [ExportSubgroup("This level")]
+        [Export] public Label TotalFairiesLabel;
+        [Export] public Control FairiesLabelHolder;
+        [Export] public Label FairiesLabelNumber;
+
         [Export] public Label TotalGemsLabel;
         [Export] public Label GemsFoundLabel;
         [Export] public Label GemsSpentLabel;
+
         [Export] public Control DeathsLabelHolder;
         [Export] public Label DeathsLabelNumber;
 
@@ -103,6 +108,7 @@ namespace FastDragon
         private SaveFile.LevelVisit GetTestStats() => new()
         {
             Deaths = 10,
+            FairiesFound = 3,
             GemsSpent = 200,
             GemsFound = new()
             {
@@ -195,9 +201,11 @@ namespace FastDragon
                 Self.MusicPlayer.Play();
                 _coroutine = new Coroutine(ShowStatsCoroutine());
 
+                Self.TotalFairiesLabel.Text = TotalFairiesBeforeCounting().ToString();
                 Self.TotalGemsLabel.Text = TotalGemsBeforeCounting().ToString();
 
                 Self.ChalkboardModel.Visible = false;
+                Self.FairiesLabelHolder.Visible = false;
                 Self.GemsFoundLabel.Visible = false;
                 Self.GemsSpentLabel.Visible = false;
                 Self.DeathsLabelHolder.Visible = false;
@@ -205,13 +213,18 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
-                var stats = SaveFileManager.Current.CurrentLevelVisit;
+                var saveFile = SaveFileManager.Current;
+                var stats = saveFile.CurrentLevelVisit;
 
-                Self.TotalGemsLabel.Text = SaveFileManager.Current.TotalGemCount.ToString();
+                Self.TotalFairiesLabel.Text = saveFile.TotalFairyCount.ToString();
+                Self.TotalGemsLabel.Text = saveFile.TotalGemCount.ToString();
 
                 Self.ChalkboardModel.Visible = true;
                 Self.ChalkboardAnimator.Play("RESET");
                 Self.ChalkboardAnimator.Advance(0);
+
+                Self.FairiesLabelHolder.Visible = true;
+                Self.FairiesLabelNumber.Text = stats.FairiesFound.ToString();
 
                 Self.GemsFoundLabel.Visible = true;
                 Self.GemsFoundLabel.Text = $"Gems found: {stats.TotalGemsFound}";
@@ -245,6 +258,11 @@ namespace FastDragon
                 while (Self.ChalkboardAnimator.IsPlaying())
                     yield return default;
 
+                yield return Coroutine.WaitFor(SlideLabelIn(Self.FairiesLabelHolder, 0.1));
+                yield return Coroutine.WaitSeconds(0.25);
+                yield return Coroutine.WaitFor(CountFairies());
+                yield return Coroutine.WaitSeconds(0.5);
+
                 yield return Coroutine.WaitFor(SlideLabelIn(Self.GemsFoundLabel, 0.1));
                 yield return Coroutine.WaitSeconds(0.25);
                 yield return Coroutine.WaitFor(CountGemsFound());
@@ -259,6 +277,32 @@ namespace FastDragon
                 yield return Coroutine.WaitSeconds(0.25);
                 yield return Coroutine.WaitFor(CountDeaths());
                 yield return Coroutine.WaitSeconds(0.5);
+            }
+
+            private IEnumerator<YieldInstruction> CountFairies()
+            {
+                const double countInterval = 1.0 / 3;
+                const double pulseDuration = countInterval / 2;
+
+                var stats = SaveFileManager.Current.CurrentLevelVisit;
+                int totalFairies = TotalFairiesBeforeCounting();
+                int fairies = 0;
+
+                Self.FairiesLabelNumber.Text = fairies.ToString();
+
+                for (int i = 0; i < stats.FairiesFound; i++)
+                {
+                    Self.DeathCountIncreaseSound.Play(); // TODO: Play a different sound
+
+                    fairies++;
+                    Self.FairiesLabelNumber.Text = fairies.ToString();
+
+                    totalFairies++;
+                    Self.TotalFairiesLabel.Text = totalFairies.ToString();
+
+                    yield return Coroutine.WaitFor(PulseLabel(pulseDuration, Self.FairiesLabelNumber));
+                    yield return Coroutine.WaitSeconds(countInterval - pulseDuration);
+                }
             }
 
             private IEnumerator<YieldInstruction> CountGemsFound()
@@ -377,27 +421,8 @@ namespace FastDragon
                     deaths++;
                     Self.DeathsLabelNumber.Text = deaths.ToString();
 
-                    // Ensure the pivot for the pulsing animation is always the
-                    // center of the label, regardless of how many digits there
-                    // are.
-                    Self.DeathsLabelNumber.UpdateMinimumSize();
-                    Self.DeathsLabelNumber.PivotOffset = Self.DeathsLabelNumber.GetMinimumSize() / 2;
-
-                    // Play a pulsing animation
-                    double timer = 0;
-                    while (timer < pulseDuration)
-                    {
-                        timer += Self.GetProcessDeltaTime();
-                        float t = (float)(timer / pulseDuration);
-                        float pingPongT = Mathf.PingPong(t * 2, 1);
-
-                        Vector2 maxScale = Vector2.One * 1.5f;
-                        Self.DeathsLabelNumber.Scale = Vector2.One.Lerp(maxScale, pingPongT);
-                        yield return default;
-                    }
-
-                    Self.DeathsLabelNumber.Scale = Vector2.One;
-                    yield return Coroutine.WaitSeconds(countInterval - timer);
+                    yield return Coroutine.WaitFor(PulseLabel(pulseDuration, Self.DeathsLabelNumber));
+                    yield return Coroutine.WaitSeconds(countInterval - pulseDuration);
                 }
             }
 
@@ -419,6 +444,46 @@ namespace FastDragon
                 }
 
                 label.Position = end;
+            }
+
+            private IEnumerator<YieldInstruction> PulseLabel(
+                double pulseDuration,
+                Label label
+            )
+            {
+                // Ensure the pivot for the pulsing animation is always the
+                // center of the label, regardless of how many digits there
+                // are.
+                label.UpdateMinimumSize();
+                label.PivotOffset = label.GetMinimumSize() / 2;
+
+                double timer = 0;
+                while (true)
+                {
+                    timer += Self.GetProcessDeltaTime();
+                    float t = (float)(timer / pulseDuration);
+                    float pingPongT = Mathf.PingPong(t * 2, 1);
+
+                    if (timer < pulseDuration)
+                    {
+                        Vector2 maxScale = Vector2.One * 1.5f;
+                        label.Scale = Vector2.One.Lerp(maxScale, pingPongT);
+                        yield return default;
+                    }
+                    else
+                    {
+                        yield break;
+                    }
+                }
+            }
+
+            private int TotalFairiesBeforeCounting()
+            {
+                var stats = SaveFileManager.Current.CurrentLevelVisit;
+                int totalFairies = SaveFileManager.Current.TotalFairyCount;
+                totalFairies -= stats.FairiesFound;
+
+                return totalFairies;
             }
 
             private int TotalGemsBeforeCounting()

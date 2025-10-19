@@ -163,7 +163,7 @@ shader_parameter/velocity_pivot = Vector3(0, 0, 0)
 shader_parameter/emission_box_extents = Vector3(1.35, 0.06, 0.815)
 shader_parameter/gravity = Vector3(0, -9.8, 0)
 
-[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber")]
+[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalFairiesLabel", "FairiesLabelHolder", "FairiesLabelNumber", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber")]
 script = ExtResource("1_6jabo")
 PreviousLevelScenePath = "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
 HomeWorldScenePath = "res://Levels/TestMap/TestMap.tscn"
@@ -188,6 +188,9 @@ GemCountSound = NodePath("GemCountSound")
 GemSpentSound = NodePath("GemSpentSound")
 DeathCountIncreaseSound = NodePath("DeathCountIncreaseSound")
 ContinuePressedSound = NodePath("ContinuePressedSound")
+TotalFairiesLabel = NodePath("Chalkboard/SubViewport/Control/Totals/TotalFairies")
+FairiesLabelHolder = NodePath("Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder")
+FairiesLabelNumber = NodePath("Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild/FairiesNumber")
 TotalGemsLabel = NodePath("Chalkboard/SubViewport/Control/Totals/TotalGems")
 GemsFoundLabel = NodePath("Chalkboard/SubViewport/Control/ThisLevel/GemsFoundHolder/GemsFound")
 GemsSpentLabel = NodePath("Chalkboard/SubViewport/Control/ThisLevel/GemsSpentHolder/GemsSpent")
@@ -302,6 +305,41 @@ offset_right = 182.0
 offset_bottom = 38.5
 grow_vertical = 2
 
+[node name="FairiesHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="FairiesLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder"]
+layout_mode = 0
+offset_right = 115.0
+offset_bottom = 23.0
+
+[node name="FairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder"]
+layout_mode = 2
+text = "Fairies: "
+label_settings = SubResource("LabelSettings_dkfbr")
+
+[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder"]
+layout_mode = 2
+script = ExtResource("12_ly71n")
+
+[node name="FairiesNumber" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_dw18r")
+vertical_alignment = 1
+
 [node name="GemsFoundHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
@@ -373,6 +411,22 @@ offset_bottom = 21.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
+
+[node name="TotalFairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+layout_mode = 2
+text = "Total Fairies"
+label_settings = SubResource("LabelSettings_nodp0")
+
+[node name="TotalFairies" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+layout_mode = 2
+text = "XXX"
+label_settings = SubResource("LabelSettings_nodp0")
+horizontal_alignment = 1
+
+[node name="Spacer" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_nodp0")
+horizontal_alignment = 1
 
 [node name="TotalGemsTitle" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
 layout_mode = 2
