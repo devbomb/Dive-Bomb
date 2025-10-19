@@ -237,6 +237,7 @@ namespace FastDragon
             {
                 Self.ChalkboardModel.Visible = true;
                 Self.ChalkboardAnimator.Play("SwingIn");
+                Self.ChalkboardAnimator.Advance(0);
                 while (Self.ChalkboardAnimator.IsPlaying())
                     yield return default;
 
