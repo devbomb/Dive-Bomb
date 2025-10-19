@@ -168,18 +168,20 @@ parameters/looping = true
 
 [node name="GemCountSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xl4t0")
+volume_db = -12.536
 max_polyphony = 10
 bus = &"Sfx"
 
 [node name="GemSpentSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xl4t0")
+volume_db = -10.543
 pitch_scale = 1.73
 max_polyphony = 10
 bus = &"Sfx"
 
 [node name="DeathCountIncreaseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_dw18r")
-volume_db = -7.978
+volume_db = -23.364
 pitch_scale = 1.2
 bus = &"Sfx"
 
