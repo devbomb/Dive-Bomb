@@ -563,12 +563,11 @@ namespace FastDragon
                 _timer = 0;
 
                 var portal = GetTargetPortal();
-
                 Transform3D playerSpawn = portal.PlayerSpawn.GetGlobalTransformOutsideOfTree();
+                playerSpawn.Origin = Self.PlayerModel.GlobalTransform.Origin;
+
                 _playerStart = Self.PlayerModel.GlobalTransform;
-                _playerEnd = playerSpawn
-                    .Translated(Vector3.Up * portal.ExitAnimationStartHeight)
-                    .TranslatedLocal(Vector3.Back * (CameraDist + 2));
+                _playerEnd = playerSpawn;
 
                 _cameraStart = Self.Camera.GlobalTransform;
                 _cameraEnd = _playerEnd
