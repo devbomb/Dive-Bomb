@@ -576,6 +576,7 @@ namespace FastDragon
                     .Translated(Vector3.Up * 2);
 
                 Self.PlayerAnimator.Play("Levitate", 0.5);
+                Self.ChalkboardAnimator.Play("Vanish");
 
                 // HACK: Sneakily switch to using the portal's skybox while
                 // the backdrop is still covering it.
