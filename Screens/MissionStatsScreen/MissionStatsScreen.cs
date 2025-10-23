@@ -238,6 +238,8 @@ namespace FastDragon
 
                 Self.DeathsLabelHolder.Visible = true;
                 Self.DeathsLabelNumber.Text = stats.Deaths.ToString();
+
+                Self.FairyPath.Visible = false;
             }
 
             public override void _Input(InputEvent ev)
