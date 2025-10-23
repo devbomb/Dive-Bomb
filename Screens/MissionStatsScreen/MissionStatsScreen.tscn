@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://dy7b124lbdiio"]
+[gd_scene load_steps=43 format=3 uid="uid://dy7b124lbdiio"]
 
 [ext_resource type="Script" uid="uid://bjpuwynctw616" path="res://Screens/MissionStatsScreen/MissionStatsScreen.cs" id="1_6jabo"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="1_r07vy"]
+[ext_resource type="PackedScene" uid="uid://bj5cb4ewimgvw" path="res://Screens/MissionStatsScreen/Parts/ParadingFairy.tscn" id="2_2xr6s"]
 [ext_resource type="AudioStream" uid="uid://m2yl3exag46m" path="res://Screens/MissionStatsScreen/Music/BoomDiggityScat.mp3" id="2_5fhbi"]
 [ext_resource type="Animation" uid="uid://x6mu3r3ccuui" path="res://Entities/Player/Animations/Glide.tres" id="2_6jabo"]
 [ext_resource type="Animation" uid="uid://bkne2eg3fawi7" path="res://Entities/Player/Animations/Idle.tres" id="3_6jabo"]
@@ -163,7 +164,14 @@ shader_parameter/velocity_pivot = Vector3(0, 0, 0)
 shader_parameter/emission_box_extents = Vector3(1.35, 0.06, 0.815)
 shader_parameter/gravity = Vector3(0, -9.8, 0)
 
-[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalFairiesLabel", "FairiesLabelHolder", "FairiesLabelNumber", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber")]
+[sub_resource type="Curve3D" id="Curve3D_xw706"]
+_data = {
+"points": PackedVector3Array(0.41348803, 0.63402075, -0.115064144, -0.41348803, -0.63402075, 0.115064144, 2.0022662, 1.0644027, -0.91559494, 0.44103193, -0.1658485, 0.089995384, -0.44103193, 0.1658485, -0.089995384, 0.5772127, 0.9635489, -0.46882206, -1.6153315, 0.558937, -0.16680193, 1.6153315, -0.558937, 0.16680193, 1.2510349, 0.26218593, 0.9455403),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "FairyPath", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalFairiesLabel", "FairiesLabelHolder", "FairiesLabelNumber", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber")]
 script = ExtResource("1_6jabo")
 PreviousLevelScenePath = "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
 HomeWorldScenePath = "res://Levels/TestMap/TestMap.tscn"
@@ -175,6 +183,8 @@ PlayerAnimator = NodePath("PlayerModel/PlayerAnimator")
 ChalkboardAnimator = NodePath("Chalkboard/ChalkboardAnimator")
 ContinueFlashAnimator = NodePath("Control/ContinueFlash/ContinueFlashAnimator")
 ContinueButtonPrompt = NodePath("Control/PressToContinuePrompt")
+FairyPrefab = ExtResource("2_2xr6s")
+FairyPath = NodePath("FairyParadePath")
 GemSpawner = NodePath("GemSpawner")
 GemColors = Dictionary[int, Color]({
 1: Color(1, 0, 0, 1),
@@ -515,3 +525,6 @@ speed_scale = 2.0
 draw_order = 3
 process_material = SubResource("ShaderMaterial_ojbqg")
 draw_pass_1 = ExtResource("16_rdsha")
+
+[node name="FairyParadePath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_xw706")

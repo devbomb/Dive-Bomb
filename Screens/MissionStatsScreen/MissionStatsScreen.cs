@@ -21,6 +21,10 @@ namespace FastDragon
 
         [Export] public Control ContinueButtonPrompt;
 
+        [ExportGroup("Fairies")]
+        [Export] public PackedScene FairyPrefab;
+        [Export] public Path3D FairyPath;
+
         [ExportGroup("Gems")]
         [Export] public GpuParticles3D GemSpawner;
         [Export] public Godot.Collections.Dictionary<GemColor, Color> GemColors;
@@ -293,6 +297,7 @@ namespace FastDragon
                 for (int i = 0; i < stats.FairiesFound; i++)
                 {
                     Self.DeathCountIncreaseSound.Play(); // TODO: Play a different sound
+                    SpawnFairy();
 
                     fairies++;
                     Self.FairiesLabelNumber.Text = fairies.ToString();
@@ -302,6 +307,12 @@ namespace FastDragon
 
                     yield return Coroutine.WaitFor(PulseLabel(pulseDuration, Self.FairiesLabelNumber));
                     yield return Coroutine.WaitSeconds(countInterval - pulseDuration);
+                }
+
+                void SpawnFairy()
+                {
+                    var fairy = Self.FairyPrefab.Instantiate<PathFollow3D>();
+                    Self.FairyPath.AddChild(fairy);
                 }
             }
 
