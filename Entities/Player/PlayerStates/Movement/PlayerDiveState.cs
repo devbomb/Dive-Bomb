@@ -109,7 +109,7 @@ namespace FastDragon
             _brokenObjects.Clear();
             _unbrokenObjects.Clear();
 
-            bool bonked = MoveAndSlideBreakingObjects<IBreakable>(
+            MoveAndSlideBreakingObjects<IBreakable>(
                 isVulnerable: b => b.VulnerableToRoll,
                 causesBonkWhenBroken: b => b.CausesBonk,
                 brokenObjects: _brokenObjects,
@@ -126,9 +126,6 @@ namespace FastDragon
             foreach (var b in _unbrokenObjects)
                 b.OnBreakRejected();
 
-            if (bonked)
-                return;
-
             // Apply an extra-wide hitbox to catch objects that the player
             // barely grazes past without touching.
             // TODO: Don't apply the extra hitbox to objects that have already
@@ -138,6 +135,13 @@ namespace FastDragon
                 b => b.VulnerableToRoll,
                 b => b.OnRolledInto()
             );
+
+            // It's possible for the objects hit by the hitbox to change the
+            // current state(IE: because you bonked, or you freed a fairy).
+            // We don't want to overwrite that state change if it happened right
+            // as we hit the ground.
+            if (!IsCurrent)
+                return;
 
             if (Self.IsOnFloor())
             {

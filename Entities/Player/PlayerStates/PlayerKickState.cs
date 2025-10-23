@@ -43,7 +43,8 @@ namespace FastDragon
             );
 
             // It's possible for the objects hit by the hitbox to change the
-            // current state.  If that happens, we don't want the normal logic
+            // current state(IE: because you bonked, or you freed a fairy).
+            // If that happens, we don't want the normal logic
             // for this state to run for an extra frame.
             if (!IsCurrent)
                 return;

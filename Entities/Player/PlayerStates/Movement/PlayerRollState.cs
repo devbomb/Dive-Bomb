@@ -124,7 +124,8 @@ namespace FastDragon
             );
 
             // It's possible for the objects hit by the hitbox to change the
-            // current state.  We don't want to overwrite that state change if
+            // current state(IE: because you bonked, or you freed a fairy).
+            // We don't want to overwrite that state change if
             // it happened to happen on the final frame of the timer.
             if (!IsCurrent)
                 return;
