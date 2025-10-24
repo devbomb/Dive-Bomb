@@ -13,7 +13,7 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             Self.Animator.Play("DamageFlip");
-            Self.GetNode<AudioStreamPlayer>("%FlipDamageSound").Play();
+            Self.FlipDamageSound.Play();
             Self.VSpeed = VSpeed;
             Self.FSpeed = 0;
             _startedLandingAnimation = false;

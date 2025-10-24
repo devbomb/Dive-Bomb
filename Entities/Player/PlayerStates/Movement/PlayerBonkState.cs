@@ -5,7 +5,6 @@ namespace FastDragon
 {
     public partial class PlayerBonkState : PlayerState
     {
-        private AudioStreamPlayer _bonkSoundPlayer => Self.GetNode<AudioStreamPlayer>("%BonkSoundPlayer");
 
         public override void OnStateEntered()
         {
@@ -13,7 +12,7 @@ namespace FastDragon
             Self.LocalVelocity = Self.GlobalForward() * -Player.Bonk.InitHSpeed;
             Self.LocalVelocity += Vector3.Up * Player.Bonk.InitVSpeed;
 
-            _bonkSoundPlayer.Play();
+            Self.BonkSoundPlayer.Play();
 
             Self.Camera.Shake(
                 magnitude: new Vector2(0, 1),
