@@ -13,7 +13,7 @@ namespace FastDragon
         {
             _timer = DrownDuration;
             Self.Animator.Play("Drown");
-            Self.GetNode<AudioStreamPlayer>("%DrownStartSplashSound").Play();
+            Self.DrownStartSplashSound.Play();
         }
 
         public override void _PhysicsProcess(double deltaD)

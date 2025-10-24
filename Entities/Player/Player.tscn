@@ -99,11 +99,15 @@ func _physics_process(_delta):
         
 "
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Model", "Animator", "Camera", "CameraFocus", "KickHitbox", "DiveExtraHitbox", "RollExtraHitbox", "LedgeDetector", "LedgeGrabPoint", "MinLedgeGrabHeight", "FairyKissPoint", "FairyKissCamRightPoint", "FairyKissCamLeftPoint") groups=["PhysicsInterpolated"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Model", "Animator", "RollSoundPlayer", "BonkSoundPlayer", "FlipDamageSound", "DrownStartSplashSound", "Camera", "CameraFocus", "KickHitbox", "DiveExtraHitbox", "RollExtraHitbox", "LedgeDetector", "LedgeGrabPoint", "MinLedgeGrabHeight", "FairyKissPoint", "FairyKissCamRightPoint", "FairyKissCamLeftPoint") groups=["PhysicsInterpolated"]]
 collision_layer = 9
 script = ExtResource("1_a4opu")
 Model = NodePath("Model")
 Animator = NodePath("Animator")
+RollSoundPlayer = NodePath("SoundPlayers/RollSoundPlayer")
+BonkSoundPlayer = NodePath("SoundPlayers/BonkSoundPlayer")
+FlipDamageSound = NodePath("SoundPlayers/FlipDamageSound")
+DrownStartSplashSound = NodePath("SoundPlayers/DrownStartSplashSound")
 Camera = NodePath("Camera/PlayerCamera")
 CameraFocus = NodePath("Camera/CameraFocus")
 KickHitbox = NodePath("Hitboxes/KickHitbox")
@@ -204,26 +208,22 @@ bus = &"Sfx"
 [node name="SoundPlayers" type="Node" parent="."]
 
 [node name="RollSoundPlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
-unique_name_in_owner = true
 stream = ExtResource("5_4kc40")
 pitch_scale = 1.13
 max_polyphony = 3
 bus = &"Sfx"
 
 [node name="BonkSoundPlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
-unique_name_in_owner = true
 stream = ExtResource("6_wmg1a")
 volume_db = -5.81
 bus = &"Sfx"
 
 [node name="FlipDamageSound" type="AudioStreamPlayer" parent="SoundPlayers"]
-unique_name_in_owner = true
 stream = ExtResource("7_anupw")
 volume_db = -3.443
 bus = &"Sfx"
 
 [node name="DrownStartSplashSound" type="AudioStreamPlayer" parent="SoundPlayers"]
-unique_name_in_owner = true
 stream = ExtResource("8_pxges")
 bus = &"Sfx"
 

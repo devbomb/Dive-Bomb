@@ -19,6 +19,12 @@ namespace FastDragon
         [Export] public Node3D Model;
         [Export] public AnimationPlayer Animator;
 
+        [ExportGroup("Sound Players")]
+        [Export] public AudioStreamPlayer RollSoundPlayer;
+        [Export] public AudioStreamPlayer BonkSoundPlayer;
+        [Export] public AudioStreamPlayer FlipDamageSound;
+        [Export] public AudioStreamPlayer DrownStartSplashSound;
+
         [ExportGroup("Camera")]
         [Export] public PlayerCamera Camera;
         [Export] public PlayerCameraFocusPoint CameraFocus;
