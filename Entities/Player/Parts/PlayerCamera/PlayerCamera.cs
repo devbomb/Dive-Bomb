@@ -58,7 +58,7 @@ namespace FastDragon
             AddChild(_stateMachine);
             _stateMachine.ChangeState<Following>();
 
-            _raycast.AddException(GetParent<Player>());
+            _raycast.AddException(Player);
         }
 
         public void Reset()
