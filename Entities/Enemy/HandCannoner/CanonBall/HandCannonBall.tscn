@@ -135,4 +135,5 @@ process_material = SubResource("ParticleProcessMaterial_0a0af")
 draw_pass_1 = SubResource("QuadMesh_u0ubv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("SphereShape3D_j1jka")

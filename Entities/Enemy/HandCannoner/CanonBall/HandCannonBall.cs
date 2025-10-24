@@ -7,58 +7,75 @@ namespace FastDragon
         public float Speed = 10;
         public float Lifetime = 3;
 
-        private float _despawnTimer;
-
         private Node3D _model => GetNode<Node3D>("%Model");
         private GpuParticles3D _trailParticles => GetNode<GpuParticles3D>("%TrailParticles");
         private GpuParticles3D _explosionParticles => GetNode<GpuParticles3D>("%ExplosionParticles");
+        private CollisionShape3D _collisionShape => GetNode<CollisionShape3D>("%CollisionShape3D");
 
-        private bool _destroyed = false;
+        private readonly StateMachine _stateMachine = new();
+
+        public HandCannonBall()
+        {
+            AddChild(_stateMachine);
+        }
 
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += QueueFree;
+            _stateMachine.ChangeState<Flying>();
         }
 
-        public override void _PhysicsProcess(double deltaD)
+        private class Flying : State<HandCannonBall>
         {
-            float delta = (float)deltaD;
+            private double _timer;
 
-            if (_destroyed)
+            public override void OnStateEntered()
             {
-                if (!_explosionParticles.Emitting)
-                    QueueFree();
-
-                return;
+                _timer = Self.Lifetime;
             }
 
-            _despawnTimer += delta;
-            if (_despawnTimer >= Lifetime)
+            public override void _PhysicsProcess(double delta)
             {
-                Destroy();
-                return;
-            }
+                _timer -= delta;
+                if (_timer <= 0)
+                {
+                    ChangeState<Exploding>();
+                    return;
+                }
 
-            var velocity = this.GlobalForward() * Speed;
-            var collision = MoveAndCollide(velocity * delta);
+                var velocity = Self.GlobalForward() * Self.Speed;
+                var collision = Self.MoveAndCollide(velocity * (float)delta);
 
-            if (collision == null)
-                return;
+                if (collision != null)
+                {
+                    if (collision.GetCollider() is Player p)
+                        p.TryDamage<PlayerDamageFlipState>();
 
-            Destroy();
-
-            if (collision.GetCollider() is Player p)
-            {
-                p.TryDamage<PlayerDamageFlipState>();
+                    ChangeState<Exploding>();
+                }
             }
         }
 
-        private void Destroy()
+        private class Exploding : State<HandCannonBall>
         {
-            _destroyed = true;
-            _model.Visible = false;
-            _explosionParticles.Emitting = true;
-            _trailParticles.Emitting = false;
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                Self._model.Visible = false;
+                Self._collisionShape.Disabled = true;
+                Self._explosionParticles.Emitting = true;
+                Self._trailParticles.Emitting = false;
+
+                _timer = Self._explosionParticles.Lifetime * 2;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer -= delta;
+                if (_timer <= 0)
+                    Self.QueueFree();
+            }
         }
     }
 }
