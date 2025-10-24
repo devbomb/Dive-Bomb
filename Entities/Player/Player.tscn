@@ -99,9 +99,22 @@ bottom_radius = 0.25
 height = 0.075
 radial_segments = 8
 
-[node name="Player" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Model", "Animator", "Camera", "CameraFocus", "KickHitbox", "DiveExtraHitbox", "RollExtraHitbox", "LedgeDetector", "LedgeGrabPoint", "MinLedgeGrabHeight", "FairyKissPoint", "FairyKissCamRightPoint", "FairyKissCamLeftPoint") groups=["PhysicsInterpolated"]]
 collision_layer = 9
 script = ExtResource("1_a4opu")
+Model = NodePath("Model")
+Animator = NodePath("Animator")
+Camera = NodePath("Camera")
+CameraFocus = NodePath("CameraFocus")
+KickHitbox = NodePath("KickHitbox")
+DiveExtraHitbox = NodePath("DiveExtraHitbox")
+RollExtraHitbox = NodePath("RollExtraHitbox")
+LedgeDetector = NodePath("LedgeDetector")
+LedgeGrabPoint = NodePath("LedgeGrabPoint")
+MinLedgeGrabHeight = NodePath("MinLedgeGrabHeight")
+FairyKissPoint = NodePath("FairyKissPoint")
+FairyKissCamRightPoint = NodePath("FairyKissCamRightPoint")
+FairyKissCamLeftPoint = NodePath("FairyKissCamLeftPoint")
 
 [node name="TimeTrialInLevelUI" parent="." instance=ExtResource("2_samso")]
 
@@ -109,7 +122,6 @@ script = ExtResource("1_a4opu")
 script = SubResource("GDScript_cpnxc")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
 deterministic = true
 root_node = NodePath("../Model")
 libraries = {
@@ -118,7 +130,6 @@ libraries = {
 playback_default_blend_time = 0.1
 
 [node name="Model" parent="." instance=ExtResource("3_fw7ex")]
-unique_name_in_owner = true
 
 [node name="RollDust" parent="Model" instance=ExtResource("5_e40ui")]
 unique_name_in_owner = true
@@ -164,45 +175,37 @@ stream = ExtResource("8_pxges")
 bus = &"Sfx"
 
 [node name="FairyKissPoint" type="Marker3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.09052e-08, 0.618845, -0.412131)
 
 [node name="FairyKissCamRightPoint" type="Marker3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 1.124, -0.364)
 
 [node name="FairyKissCamLeftPoint" type="Marker3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 1.124, -0.364)
 
 [node name="KickHitbox" type="Area3D" parent="."]
-unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KickHitbox"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.26022e-08, 0.381694, -0.182095)
 shape = SubResource("CylinderShape3D_1rf0g")
 
 [node name="DiveExtraHitbox" type="Area3D" parent="."]
-unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiveExtraHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_uxvrm")
 
 [node name="RollExtraHitbox" type="Area3D" parent="."]
-unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RollExtraHitbox"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_rtu1o")
 
 [node name="Camera" parent="." node_paths=PackedStringArray("FollowTarget", "Player") instance=ExtResource("4_ne5gw")]
-unique_name_in_owner = true
 FollowTarget = NodePath("../CameraFocus")
 Player = NodePath("..")
 
 [node name="CameraFocus" type="Marker3D" parent="." node_paths=PackedStringArray("Player", "RestPos") groups=["PhysicsInterpolated"]]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 top_level = true
 script = ExtResource("12_hl213")
@@ -217,12 +220,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_b8til")
 
 [node name="LedgeDetector" parent="." instance=ExtResource("2_0esln")]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45037, 0)
 visible = false
 
 [node name="LedgeGrabPoint" type="Marker3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.387, -0.492)
 
 [node name="ReferenceLedge" type="MeshInstance3D" parent="LedgeGrabPoint"]
@@ -232,7 +233,6 @@ mesh = SubResource("BoxMesh_8oevv")
 skeleton = NodePath("../..")
 
 [node name="MinLedgeGrabHeight" type="Marker3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25565, 0)
 
 [node name="BlobShadow" parent="." node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("9_vmh20")]

@@ -16,23 +16,27 @@ namespace FastDragon
 
         public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
-        public PlayerCamera Camera => GetNode<PlayerCamera>("%Camera");
-        public PlayerCameraFocusPoint CameraFocus => GetNode<PlayerCameraFocusPoint>("%CameraFocus");
+        [Export] public Node3D Model;
+        [Export] public AnimationPlayer Animator;
 
-        public Node3D Model => GetNode<Node3D>("%Model");
-        public AnimationPlayer Animator => GetNode<AnimationPlayer>("%Animator");
+        [ExportGroup("Camera")]
+        [Export] public PlayerCamera Camera;
+        [Export] public PlayerCameraFocusPoint CameraFocus;
 
-        public Area3D KickHitbox => GetNode<Area3D>("%KickHitbox");
-        public Area3D DiveExtraHitbox => GetNode<Area3D>("%DiveExtraHitbox");
-        public Area3D RollExtraHitbox => GetNode<Area3D>("%RollExtraHitbox");
+        [ExportGroup("Hitboxes")]
+        [Export] public Area3D KickHitbox;
+        [Export] public Area3D DiveExtraHitbox;
+        [Export] public Area3D RollExtraHitbox;
 
-        public LedgeDetector LedgeDetector => GetNode<LedgeDetector>("%LedgeDetector");
-        public Node3D LedgeGrabPoint => GetNode<Node3D>("%LedgeGrabPoint");
-        public Node3D MinLedgeGrabHeight => GetNode<Node3D>("%MinLedgeGrabHeight");
+        [ExportGroup("Ledge grabbing")]
+        [Export] public LedgeDetector LedgeDetector;
+        [Export] public Node3D LedgeGrabPoint;
+        [Export] public Node3D MinLedgeGrabHeight;
 
-        public Node3D FairyKissPoint => GetNode<Node3D>("%FairyKissPoint");
-        public Node3D FairyKissCamRightPoint => GetNode<Node3D>("%FairyKissCamRightPoint");
-        public Node3D FairyKissCamLeftPoint => GetNode<Node3D>("%FairyKissCamLeftPoint");
+        [ExportGroup("Fairy kiss")]
+        [Export] public Node3D FairyKissPoint;
+        [Export] public Node3D FairyKissCamRightPoint;
+        [Export] public Node3D FairyKissCamLeftPoint;
 
         public readonly PlayerSafeGround SafeGround;
 
