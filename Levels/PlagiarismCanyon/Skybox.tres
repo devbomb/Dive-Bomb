@@ -15,11 +15,11 @@ fractal_type = 2
 domain_warp_fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3i6o0"]
+noise = SubResource("FastNoiseLite_jnb7k")
+color_ramp = SubResource("Gradient_ulxdg")
+seamless = true
 invert = true
 in_3d_space = true
-seamless = true
-color_ramp = SubResource("Gradient_ulxdg")
-noise = SubResource("FastNoiseLite_jnb7k")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xs22"]
 sky_top_color = Color(0.2, 0, 0.447059, 1)
