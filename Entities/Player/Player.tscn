@@ -99,7 +99,7 @@ func _physics_process(_delta):
         
 "
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Model", "Animator", "RollSoundPlayer", "BonkSoundPlayer", "FlipDamageSound", "DrownStartSplashSound", "Camera", "CameraFocus", "KickHitbox", "DiveExtraHitbox", "RollExtraHitbox", "LedgeDetector", "LedgeGrabPoint", "MinLedgeGrabHeight", "FairyKissPoint", "FairyKissCamRightPoint", "FairyKissCamLeftPoint") groups=["PhysicsInterpolated"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Model", "Animator", "RollSoundPlayer", "BonkSoundPlayer", "FlipDamageSound", "DrownStartSplashSound", "RollDust", "RollThuum", "DiveThuum", "Camera", "CameraFocus", "KickHitbox", "DiveExtraHitbox", "RollExtraHitbox", "LedgeDetector", "LedgeGrabPoint", "MinLedgeGrabHeight", "FairyKissPoint", "FairyKissCamRightPoint", "FairyKissCamLeftPoint") groups=["PhysicsInterpolated"]]
 collision_layer = 9
 script = ExtResource("1_a4opu")
 Model = NodePath("Model")
@@ -108,6 +108,9 @@ RollSoundPlayer = NodePath("SoundPlayers/RollSoundPlayer")
 BonkSoundPlayer = NodePath("SoundPlayers/BonkSoundPlayer")
 FlipDamageSound = NodePath("SoundPlayers/FlipDamageSound")
 DrownStartSplashSound = NodePath("SoundPlayers/DrownStartSplashSound")
+RollDust = NodePath("Model/RollDust")
+RollThuum = NodePath("Model/RollThuum")
+DiveThuum = NodePath("Model/DiveThuum")
 Camera = NodePath("Camera/PlayerCamera")
 CameraFocus = NodePath("Camera/CameraFocus")
 KickHitbox = NodePath("Hitboxes/KickHitbox")
@@ -176,17 +179,14 @@ shape = SubResource("CapsuleShape3D_rtu1o")
 [node name="Model" parent="." instance=ExtResource("3_fw7ex")]
 
 [node name="RollDust" parent="Model" instance=ExtResource("5_e40ui")]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260567, -0.232747)
 emitting = false
 
 [node name="RollThuum" parent="Model" instance=ExtResource("5_2j7te")]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.287892, 9.27155e-09)
 visible = false
 
 [node name="DiveThuum" parent="Model" instance=ExtResource("5_2j7te")]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.287892, -0.366892)
 visible = false
 

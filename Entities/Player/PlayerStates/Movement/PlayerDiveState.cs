@@ -16,13 +16,11 @@ namespace FastDragon
         private List<IBreakable> _brokenObjects = new List<IBreakable>();
         private List<IBreakable> _unbrokenObjects = new List<IBreakable>();
 
-        private MeshInstance3D _thuum => Self.GetNode<MeshInstance3D>("%DiveThuum");
-
         public override void OnStateEntered()
         {
             Self.Animator.Play("Dive");
-            _thuum.Visible = true;
-            _thuum.Transparency = 1;
+            Self.DiveThuum.Visible = true;
+            Self.DiveThuum.Transparency = 1;
 
             Self.VSpeed = Player.Dive.InitialVSpeed;
             Self.FSpeed = Player.Dive.FSpeed;
@@ -36,15 +34,15 @@ namespace FastDragon
         public override void OnStateExited()
         {
             ResetModelPitch();
-            _thuum.Visible = false;
+            Self.DiveThuum.Visible = false;
         }
 
         public override void _Process(double deltaD)
         {
             float delta = (float)deltaD;
 
-            _thuum.Transparency = Mathf.MoveToward(
-                _thuum.Transparency,
+            Self.DiveThuum.Transparency = Mathf.MoveToward(
+                Self.DiveThuum.Transparency,
                 0,
                 delta / ThuumFadeTime
             );

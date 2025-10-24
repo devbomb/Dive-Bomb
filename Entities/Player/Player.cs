@@ -25,6 +25,11 @@ namespace FastDragon
         [Export] public AudioStreamPlayer FlipDamageSound;
         [Export] public AudioStreamPlayer DrownStartSplashSound;
 
+        [ExportGroup("FX")]
+        [Export] public GpuParticles3D RollDust;
+        [Export] public MeshInstance3D RollThuum;
+        [Export] public MeshInstance3D DiveThuum;
+
         [ExportGroup("Camera")]
         [Export] public PlayerCamera Camera;
         [Export] public PlayerCameraFocusPoint CameraFocus;
