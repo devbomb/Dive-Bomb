@@ -104,17 +104,19 @@ size = Vector2(0.5, 0.5)
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1jka"]
 radius = 0.25
 
-[node name="HandCannonBall" type="StaticBody3D" groups=["UnsafeGround"]]
+[node name="HandCannonBall" type="StaticBody3D" node_paths=PackedStringArray("Model", "CollisionShape", "TrailParticles", "ExplosionParticles") groups=["UnsafeGround"]]
 script = ExtResource("1_lvbtc")
+Model = NodePath("Model")
+CollisionShape = NodePath("CollisionShape3D")
+TrailParticles = NodePath("TrailParticles")
+ExplosionParticles = NodePath("ExplosionParticles")
 
 [node name="Model" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
 mesh = SubResource("SphereMesh_21e0u")
 
 [node name="BlobShadow" parent="Model" instance=ExtResource("2_7mk11")]
 
 [node name="ExplosionParticles" type="GPUParticles3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
 emitting = false
 amount = 16
@@ -124,7 +126,6 @@ process_material = SubResource("ParticleProcessMaterial_qarqo")
 draw_pass_1 = SubResource("PrismMesh_jeg1m")
 
 [node name="TrailParticles" type="GPUParticles3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.138586)
 amount = 16
 lifetime = 2.0
@@ -135,5 +136,4 @@ process_material = SubResource("ParticleProcessMaterial_0a0af")
 draw_pass_1 = SubResource("QuadMesh_u0ubv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-unique_name_in_owner = true
 shape = SubResource("SphereShape3D_j1jka")
