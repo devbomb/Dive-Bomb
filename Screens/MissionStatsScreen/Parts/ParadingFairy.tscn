@@ -1,34 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bj5cb4ewimgvw"]
+[gd_scene load_steps=8 format=3 uid="uid://bj5cb4ewimgvw"]
 
-[ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://Entities/Item/Fairy/FairyAnimations.tres" id="1_erbr5"]
+[ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Entities/Item/Fairy/Animations/Hovering.tres" id="1_ac07m"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Entities/Item/Fairy/Fairy.blend" id="1_ymyij"]
-
-[sub_resource type="Animation" id="Animation_erbr5"]
-resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Fairy:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
+[ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Entities/Item/Fairy/Animations/RESET.tres" id="2_p58e8"]
 
 [sub_resource type="Animation" id="Animation_ac07m"]
 resource_name = "FollowPath"
@@ -58,10 +32,43 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -1.5707964, 0), Vector3(0, -1.4119713, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_erbr5"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fairy:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ac07m"]
 _data = {
 &"FollowPath": SubResource("Animation_ac07m"),
 &"RESET": SubResource("Animation_erbr5")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iej36"]
+_data = {
+&"Hovering": ExtResource("1_ac07m"),
+&"RESET": ExtResource("2_p58e8")
 }
 
 [node name="ParadingFairy" type="PathFollow3D"]
@@ -77,10 +84,10 @@ libraries = {
 autoplay = "FollowPath"
 
 [node name="FairyAnimator" type="AnimationPlayer" parent="."]
+deterministic = true
 libraries = {
-&"FairyAnimations": ExtResource("1_erbr5")
+&"": SubResource("AnimationLibrary_iej36")
 }
-autoplay = "FairyAnimations/Hovering"
+autoplay = "Hovering"
 
 [node name="Fairy" parent="." instance=ExtResource("1_ymyij")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.182, 0)

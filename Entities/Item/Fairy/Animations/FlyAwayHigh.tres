@@ -1,0 +1,146 @@
+[gd_resource type="Animation" format=3 uid="uid://k7kf8ocstec"]
+
+[resource]
+resource_name = "FlyAwayHigh"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fairy:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.013, 0.13), Vector3(0, 5, 0.681)]
+}
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fairy/Root/Skeleton3D:LeftUpLeg")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.993888, 0.0718632, 0.0601217, -0.0583833, 1.1, 1, 0.993005, 0.0790958, 0.0502273, 0.0718447)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fairy/Root/Skeleton3D:RightUpLeg")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.980452, -0.0452524, -0.0485746, -0.185223, 1.1, 1, 0.980452, -0.0452524, -0.0485746, -0.185223)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fairy/Root/Skeleton3D:LeftLeg")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.0388609, 0.0343096, 0.0674191, 0.996377, 1.1, 1, 0.630566, 0.0804302, 0.13786, 0.759547)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Fairy/Root/Skeleton3D:RightLeg")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.295418, -0.0505899, -0.0562419, 0.952368, 1.1, 1, -0.0890899, -0.0203008, -0.0162326, 0.995684)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Fairy/Root/Skeleton3D:LeftArm")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.308292, 0.709242, -0.165063, 0.612116)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Fairy/Root/Skeleton3D:LeftForeArm")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.0585816, 0.0130904, -0.0130778, 0.998111)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Fairy/Root/Skeleton3D:RightArm")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, -0.308291, -0.709242, 0.165063, 0.612117)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Fairy/Root/Skeleton3D:RightForeArm")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0.0585816, -0.0130897, 0.0130784, 0.998111)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Fairy/Root/Skeleton3D:LeftHand")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.205788, 0.708141, 0.151889, 0.658116)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Fairy/Root/Skeleton3D:RightHand")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, -0.205788, -0.708142, -0.151889, 0.658116)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Fairy/Root/Skeleton3D:Spine")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, -0.302553, -1.16482e-16, 3.88797e-16, 0.953133)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Fairy/Root/Skeleton3D:Neck")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 0.187975, 0.0749291, -0.014384, 0.979206)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Fairy/Root/Skeleton3D:Hips")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 0.000466256, 0.260875, 0.965372, 0.00136884, 0.1, 1, 0.000466256, 0.260875, 0.965372, 0.00136884, 1.1, 1, 0.971717, -0.00142423, 0.000250344, -0.236143)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Fairy/Root/Skeleton3D:RightWing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 0.1, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 0.2, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 0.3, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 0.4, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 0.5, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 0.6, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 0.7, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 0.8, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 0.9, 1, 0.242326, -0.0716352, 0.647233, 0.719191, 1, 1, 0.245678, 0.0591251, 0.200925, 0.946454, 1.1, 1, 0.242326, -0.0716352, 0.647233, 0.719191)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Fairy/Root/Skeleton3D:LeftWing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 0.1, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 0.2, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 0.3, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 0.4, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 0.5, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 0.6, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 0.7, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 0.8, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 0.9, 1, 0.242564, 0.0716999, -0.646819, 0.719477, 1, 1, 0.245917, -0.0591882, -0.200423, 0.946495, 1.1, 1, 0.242564, 0.0716999, -0.646819, 0.719477)
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Fairy:scale")
+tracks/16/interp = 2
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.01, 0.01, 0.01)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Fairy:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
