@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj5cb4ewimgvw"]
+
+[ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://Entities/Item/Fairy/FairyAnimations.tres" id="1_erbr5"]
+[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Entities/Item/Fairy/Fairy.blend" id="1_ymyij"]
+
+[sub_resource type="Animation" id="Animation_erbr5"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fairy:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ac07m"]
+resource_name = "FollowPath"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8666667, 1.2666667, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.15, 0.25, 0.5, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fairy:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.86666673, 1.2666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5707964, 0), Vector3(0, -1.4119713, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ac07m"]
+_data = {
+&"FollowPath": SubResource("Animation_ac07m"),
+&"RESET": SubResource("Animation_erbr5")
+}
+
+[node name="ParadingFairy" type="PathFollow3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+rotation_mode = 1
+loop = false
+
+[node name="PathAnimator" type="AnimationPlayer" parent="."]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_ac07m")
+}
+autoplay = "FollowPath"
+
+[node name="FairyAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"FairyAnimations": ExtResource("1_erbr5")
+}
+autoplay = "FairyAnimations/Hovering"
+
+[node name="Fairy" parent="." instance=ExtResource("1_ymyij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.182, 0)

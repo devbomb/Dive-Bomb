@@ -1,0 +1,123 @@
+[gd_resource type="AnimationLibrary" load_steps=4 format=3 uid="uid://c4n01nx7mss8u"]
+
+[sub_resource type="Animation" id="Animation_dhxad"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chalkboard:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Chalkboard:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.5772897, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Chalkboard:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.1098372, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Chalkboard:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.10207217, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "scale_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Chalkboard")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_54vmd"]
+resource_name = "SwingIn"
+length = 1.0000017
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chalkboard:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.4666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Chalkboard:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0),
+"points": PackedFloat32Array(3.6948934, 0, 0, 0.083333336, -0.35293397, 3.6948934, 0, 0, 0.083333336, -0.35293397, 1.5075951, -0.044444453, 0.28234717, 0.01111111, -0.07058678, 1.5772897, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.20000005, 0.4666667, 0.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Chalkboard:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1.1098372, 0, 0, 0.083333336, 0, 1.1098372, 0, 0, 0.083333336, 0, 1.1098372, -0.044444453, 0, 0.01111111, 0, 1.1098372, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.20000005, 0.4666667, 0.6)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Chalkboard:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-0.40276366, 0, 0, 0.083333336, 0.08413931, -0.40276366, 0, 0, 0.083333336, 0.08413931, 0.118687384, -0.044444453, -0.06731145, 0.01111111, 0.016827857, 0.10207217, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.20000005, 0.4666667, 0.6)
+}
+
+[sub_resource type="Animation" id="Animation_k50f1"]
+resource_name = "Vanish"
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chalkboard")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.1, 1, 3, 0.1, 1, 0.16666667, 1, 2.5, 0.1, 1, 0.23333333, 1, 0, 0.05, 1)
+
+[resource]
+_data = {
+&"RESET": SubResource("Animation_dhxad"),
+&"SwingIn": SubResource("Animation_54vmd"),
+&"Vanish": SubResource("Animation_k50f1")
+}

@@ -13,14 +13,45 @@ namespace FastDragon
         [JsonProperty] public string CurrentLevel;
         [JsonProperty] public string CurrentCheckpoint = null;
 
-        [JsonProperty] public int UntalliedGemsSpent;
-        [JsonProperty] public Dictionary<GemColor, int> UntalliedGemsCollected = new();
+        /// <summary>
+        /// The number of times the player has died outside of time trial mode.
+        /// You don't get punished for this; it's just a fun little counter.
+        ///
+        /// Reloading a checkpoint from the pause menu counts as a death, btw.
+        /// Otherwise, you'd be able to cheese it by pausing and reloading right
+        /// before you die.
+        /// </summary>
+        [JsonProperty] public int TotalDeaths;
 
         [JsonProperty] public Dictionary<string, LevelSaveData> Levels = new();
 
         public int TotalGemsSpent => Levels.Values.Sum(l => l.Progress.SpentGems);
         public int TotalGemCount => Levels.Values.Sum(l => l.Progress.TotalGemsCollected) - TotalGemsSpent;
         public int TotalFairyCount => Levels.Values.Sum(l => l.Progress.CollectedFairies.Count);
+
+        /// <summary>
+        /// Data about your current visit to the level you're currently on.
+        /// Used for showing stats at the end of the level.
+        /// </summary>
+        [JsonProperty] public LevelVisit CurrentLevelVisit = new();
+        [JsonObject(MemberSerialization.OptIn)]
+        public class LevelVisit
+        {
+            [JsonProperty] public int Deaths;
+            [JsonProperty] public int FairiesFound;
+            [JsonProperty] public int GemsSpent;
+            [JsonProperty] public Dictionary<GemColor, int> GemsFound = new();
+
+            public int TotalGemsFound => GemsFound.Sum(x => (int)x.Key * x.Value);
+
+            public void AddToGemsFound(GemColor color)
+            {
+                if (!GemsFound.ContainsKey(color))
+                    GemsFound[color] = 0;
+
+                GemsFound[color]++;
+            }
+        }
 
         public static SaveFile FromJson(string json)
         {
@@ -36,16 +67,6 @@ namespace FastDragon
                     Formatting = Formatting.Indented,
                 }
             );
-        }
-
-        public void AddUntalliedGem(GemColor color)
-        {
-            if (!UntalliedGemsCollected.ContainsKey(color))
-            {
-                UntalliedGemsCollected[color] = 0;
-            }
-
-            UntalliedGemsCollected[color]++;
         }
 
         public LevelSaveData GetLevelSaveData(string level)

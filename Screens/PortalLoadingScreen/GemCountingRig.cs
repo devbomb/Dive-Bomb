@@ -41,11 +41,8 @@ namespace FastDragon
             AddChild(_stateMachine);
             _stateMachine.ChangeState<Idle>();
 
-            _untalliedGems = SaveFileManager.Current.UntalliedGemsCollected;
-            SaveFileManager.Current.UntalliedGemsCollected = new Dictionary<GemColor, int>();
-
-            _untalliedSpentGems = SaveFileManager.Current.UntalliedGemsSpent;
-            SaveFileManager.Current.UntalliedGemsSpent = 0;
+            _untalliedGems = SaveFileManager.Current.CurrentLevelVisit.GemsFound.ToDictionary();
+            _untalliedSpentGems = SaveFileManager.Current.CurrentLevelVisit.GemsSpent;
 
             _talliedGems = SaveFileManager.Current.TotalGemCount;
             _talliedGems -= TotalUntalliedGems();

@@ -38,9 +38,15 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            SaveFileManager.Current.CurrentLevel = SceneFilePath;
-            SaveFileManager.Instance.RequestAutosave();
             AtlasCache.Instance.UpdateCache(SceneFilePath, this);
+
+            bool isLoadingSaveFile = SaveFileManager.Current.CurrentLevel == SceneFilePath;
+            if (!isLoadingSaveFile)
+            {
+                SaveFileManager.Current.CurrentLevel = SceneFilePath;
+                SaveFileManager.Current.CurrentLevelVisit = new();
+                SaveFileManager.Instance.RequestAutosave();
+            }
         }
 
         public LevelProgress GetProgress()

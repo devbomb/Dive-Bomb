@@ -1,0 +1,530 @@
+[gd_scene load_steps=43 format=3 uid="uid://dy7b124lbdiio"]
+
+[ext_resource type="Script" uid="uid://bjpuwynctw616" path="res://Screens/MissionStatsScreen/MissionStatsScreen.cs" id="1_6jabo"]
+[ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="1_r07vy"]
+[ext_resource type="PackedScene" uid="uid://bj5cb4ewimgvw" path="res://Screens/MissionStatsScreen/Parts/ParadingFairy.tscn" id="2_2xr6s"]
+[ext_resource type="AudioStream" uid="uid://m2yl3exag46m" path="res://Screens/MissionStatsScreen/Music/BoomDiggityScat.mp3" id="2_5fhbi"]
+[ext_resource type="Animation" uid="uid://x6mu3r3ccuui" path="res://Entities/Player/Animations/Glide.tres" id="2_6jabo"]
+[ext_resource type="Animation" uid="uid://bkne2eg3fawi7" path="res://Entities/Player/Animations/Idle.tres" id="3_6jabo"]
+[ext_resource type="AudioStream" uid="uid://bojobea40tjay" path="res://Entities/Item/Gems/BaseGem/Gem.wav" id="3_xl4t0"]
+[ext_resource type="AudioStream" uid="uid://ct5a7ee6hy0j" path="res://Screens/MissionStatsScreen/SFX/DeathCountIncrease.wav" id="4_dw18r"]
+[ext_resource type="AudioStream" uid="uid://ln0cyx5kabc3" path="res://Screens/MissionStatsScreen/SFX/ResultsContinueConfirm.wav" id="5_dw18r"]
+[ext_resource type="Animation" uid="uid://dmdys32n4neh1" path="res://Entities/Player/Animations/Levitate.tres" id="5_lohnw"]
+[ext_resource type="Animation" uid="uid://c20acbspnk86w" path="res://Screens/MissionStatsScreen/PlayerAnimations/BoomDiggityScat.tres" id="7_y0kov"]
+[ext_resource type="Animation" uid="uid://l3nmkbwx1cy1" path="res://Entities/Player/Animations/RESET.tres" id="8_txvya"]
+[ext_resource type="AnimationLibrary" uid="uid://c4n01nx7mss8u" path="res://Screens/MissionStatsScreen/ChalkboardAnimations.tres" id="9_nodp0"]
+[ext_resource type="FontFile" uid="uid://c78bp7xshedrh" path="res://Fonts/Frijole/Frijole-Regular.ttf" id="9_txvya"]
+[ext_resource type="Script" uid="uid://d2ars665qqq5j" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="12_bt743"]
+[ext_resource type="Script" uid="uid://ugacr7gb8aji" path="res://Common/Components/MinimumSizeMatchesChild.gd" id="12_ly71n"]
+[ext_resource type="Shader" uid="uid://c0eebxlfwvunx" path="res://Screens/MissionStatsScreen/GemParticleProcessShader.gdshader" id="16_6c5sh"]
+[ext_resource type="ArrayMesh" uid="uid://dist27am75xd" path="res://Screens/MissionStatsScreen/GemMesh.tres" id="16_rdsha"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r07vy"]
+sky_top_color = Color(0.81279045, 0, 0.4203841, 1)
+
+[sub_resource type="Sky" id="Sky_6jabo"]
+sky_material = SubResource("ProceduralSkyMaterial_r07vy")
+
+[sub_resource type="Environment" id="Environment_h4j4i"]
+background_mode = 2
+sky = SubResource("Sky_6jabo")
+
+[sub_resource type="Gradient" id="Gradient_lohnw"]
+offsets = PackedFloat32Array(0.37531486, 0.6523929)
+colors = PackedColorArray(0.10747973, 0.10747976, 0.107479624, 1, 0.014275214, 0.014275223, 0.014275194, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5fhbi"]
+gradient = SubResource("Gradient_lohnw")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhxad"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.9882353)
+albedo_texture = SubResource("GradientTexture2D_5fhbi")
+
+[sub_resource type="SphereMesh" id="SphereMesh_y0kov"]
+material = SubResource("StandardMaterial3D_dhxad")
+flip_faces = true
+radius = 100.0
+height = 200.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4j4i"]
+_data = {
+&"BoomDiggityScat": ExtResource("7_y0kov"),
+&"Glide": ExtResource("2_6jabo"),
+&"Idle": ExtResource("3_6jabo"),
+&"Levitate": ExtResource("5_lohnw"),
+&"RESET": ExtResource("8_txvya")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y0kov"]
+viewport_path = NodePath("Chalkboard/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txvya"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_y0kov")
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nodp0"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_txvya")
+size = Vector2(-2, 1.75)
+orientation = 2
+
+[sub_resource type="Theme" id="Theme_txvya"]
+default_font = ExtResource("9_txvya")
+
+[sub_resource type="Gradient" id="Gradient_xl4t0"]
+offsets = PackedFloat32Array(0.08470588, 0.89411765)
+colors = PackedColorArray(0.09239707, 0.09239706, 0.09239706, 1, 0.15748273, 0.15748276, 0.15748273, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bt743"]
+noise_type = 5
+frequency = 0.0021
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ly71n"]
+noise = SubResource("FastNoiseLite_bt743")
+color_ramp = SubResource("Gradient_xl4t0")
+invert = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_nodp0"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkfbr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dw18r"]
+
+[sub_resource type="Animation" id="Animation_rdsha"]
+resource_name = "Flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dw18r"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rdsha"]
+_data = {
+&"Flash": SubResource("Animation_rdsha"),
+&"RESET": SubResource("Animation_dw18r")
+}
+
+[sub_resource type="Texture2D" id="Texture2D_ly71n"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("12_bt743")
+path = "ui_accept"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ojbqg"]
+shader = ExtResource("16_6c5sh")
+shader_parameter/direction = Vector3(0, -1, 0)
+shader_parameter/spread = 0.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 3.0
+shader_parameter/initial_linear_velocity_max = 3.0
+shader_parameter/directional_velocity_min = 1.0
+shader_parameter/directional_velocity_max = 1.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 90.0
+shader_parameter/scale_min = 0.075
+shader_parameter/scale_max = 0.075
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(0.25, 1, 0.25)
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/emission_box_extents = Vector3(1.35, 0.06, 0.815)
+shader_parameter/gravity = Vector3(0, -9.8, 0)
+
+[sub_resource type="Curve3D" id="Curve3D_xw706"]
+_data = {
+"points": PackedVector3Array(0.41348803, 0.63402075, -0.115064144, -0.41348803, -0.63402075, 0.115064144, 2.0022662, 1.0644027, -0.91559494, 0.44103193, -0.1658485, 0.089995384, -0.44103193, 0.1658485, -0.089995384, 0.5772127, 0.9635489, -0.46882206, -1.6153315, 0.558937, -0.16680193, 1.6153315, -0.558937, 0.16680193, 1.2510349, 0.26218593, 0.9455403),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "FairyPath", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalFairiesLabel", "FairiesLabelHolder", "FairiesLabelNumber", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber")]
+script = ExtResource("1_6jabo")
+PreviousLevelScenePath = "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
+HomeWorldScenePath = "res://Levels/TestMap/TestMap.tscn"
+Backdrop = NodePath("Backdrop")
+PlayerModel = NodePath("PlayerModel")
+ChalkboardModel = NodePath("Chalkboard")
+Camera = NodePath("Camera")
+PlayerAnimator = NodePath("PlayerModel/PlayerAnimator")
+ChalkboardAnimator = NodePath("Chalkboard/ChalkboardAnimator")
+ContinueFlashAnimator = NodePath("Control/ContinueFlash/ContinueFlashAnimator")
+ContinueButtonPrompt = NodePath("Control/PressToContinuePrompt")
+FairyPrefab = ExtResource("2_2xr6s")
+FairyPath = NodePath("FairyParadePath")
+GemSpawner = NodePath("GemSpawner")
+GemColors = Dictionary[int, Color]({
+1: Color(1, 0, 0, 1),
+2: Color(0, 0.7647059, 0, 1),
+5: Color(0.44705883, 0, 0.81960785, 1),
+10: Color(1, 1, 0, 1),
+25: Color(0.9321456, 0.1513373, 0.8844942, 1)
+})
+MusicPlayer = NodePath("MusicPlayer")
+GemCountSound = NodePath("GemCountSound")
+GemSpentSound = NodePath("GemSpentSound")
+DeathCountIncreaseSound = NodePath("DeathCountIncreaseSound")
+ContinuePressedSound = NodePath("ContinuePressedSound")
+TotalFairiesLabel = NodePath("Chalkboard/SubViewport/Control/Totals/TotalFairies")
+FairiesLabelHolder = NodePath("Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder")
+FairiesLabelNumber = NodePath("Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild/FairiesNumber")
+TotalGemsLabel = NodePath("Chalkboard/SubViewport/Control/Totals/TotalGems")
+GemsFoundLabel = NodePath("Chalkboard/SubViewport/Control/ThisLevel/GemsFoundHolder/GemsFound")
+GemsSpentLabel = NodePath("Chalkboard/SubViewport/Control/ThisLevel/GemsSpentHolder/GemsSpent")
+DeathsLabelHolder = NodePath("Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder")
+DeathsLabelNumber = NodePath("Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild/DeathsNumber")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5fhbi")
+bus = &"Music"
+parameters/looping = true
+
+[node name="GemCountSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xl4t0")
+volume_db = -12.536
+max_polyphony = 10
+bus = &"Sfx"
+
+[node name="GemSpentSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xl4t0")
+volume_db = -10.543
+pitch_scale = 1.73
+max_polyphony = 10
+bus = &"Sfx"
+
+[node name="DeathCountIncreaseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dw18r")
+volume_db = -23.364
+pitch_scale = 1.2
+bus = &"Sfx"
+
+[node name="ContinuePressedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dw18r")
+volume_db = -12.252
+bus = &"Sfx"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h4j4i")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.9723455, -0.23354727, 0, 0.23354727, -0.9723455, 0, 0, 0)
+sky_mode = 1
+
+[node name="Backdrop" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_y0kov")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.8687254, 0.9774054, -1.4740758)
+current = true
+
+[node name="PlayerModel" parent="." instance=ExtResource("1_r07vy")]
+
+[node name="PlayerAnimator" type="AnimationPlayer" parent="PlayerModel"]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_h4j4i")
+}
+
+[node name="Chalkboard" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.97273946, 0, 0.2319007, 0, 1, 0, -0.2319007, 0, 0.97273946, 1.5772897, 1.1098372, 0.10207217)
+mesh = SubResource("PlaneMesh_nodp0")
+
+[node name="ChalkboardAnimator" type="AnimationPlayer" parent="Chalkboard"]
+root_node = NodePath("../..")
+libraries = {
+&"": ExtResource("9_nodp0")
+}
+
+[node name="SubViewport" type="SubViewport" parent="Chalkboard"]
+disable_3d = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(512, 448)
+
+[node name="Control" type="Control" parent="Chalkboard/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_txvya")
+
+[node name="ChalkBackground" type="TextureRect" parent="Chalkboard/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_ly71n")
+
+[node name="Title" type="Label" parent="Chalkboard/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -111.5
+offset_right = 111.5
+offset_bottom = 28.0
+grow_horizontal = 2
+text = "Mission Results"
+label_settings = SubResource("LabelSettings_nodp0")
+
+[node name="ThisLevel" type="VBoxContainer" parent="Chalkboard/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -38.5
+offset_right = 182.0
+offset_bottom = 38.5
+grow_vertical = 2
+
+[node name="FairiesHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="FairiesLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder"]
+layout_mode = 0
+offset_right = 115.0
+offset_bottom = 23.0
+
+[node name="FairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder"]
+layout_mode = 2
+text = "Fairies: "
+label_settings = SubResource("LabelSettings_dkfbr")
+
+[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder"]
+layout_mode = 2
+script = ExtResource("12_ly71n")
+
+[node name="FairiesNumber" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_dw18r")
+vertical_alignment = 1
+
+[node name="GemsFoundHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="GemsFound" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/GemsFoundHolder"]
+layout_mode = 0
+offset_right = 156.0
+offset_bottom = 23.0
+text = "Gems Found: 0"
+label_settings = SubResource("LabelSettings_dkfbr")
+
+[node name="GemsSpentHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="GemsSpent" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/GemsSpentHolder"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 23.0
+text = "Gems Spent: 0"
+label_settings = SubResource("LabelSettings_dkfbr")
+
+[node name="DeathsHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="DeathsLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder"]
+layout_mode = 0
+offset_right = 115.0
+offset_bottom = 23.0
+
+[node name="DeathsTitle" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder"]
+layout_mode = 2
+text = "Deaths: "
+label_settings = SubResource("LabelSettings_dkfbr")
+
+[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder"]
+layout_mode = 2
+script = ExtResource("12_ly71n")
+metadata/_custom_type_script = "uid://ugacr7gb8aji"
+
+[node name="DeathsNumber" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_dw18r")
+vertical_alignment = 1
+
+[node name="Totals" type="VBoxContainer" parent="Chalkboard/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TotalFairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+layout_mode = 2
+text = "Total Fairies"
+label_settings = SubResource("LabelSettings_nodp0")
+
+[node name="TotalFairies" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+layout_mode = 2
+text = "XXX"
+label_settings = SubResource("LabelSettings_nodp0")
+horizontal_alignment = 1
+
+[node name="Spacer" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_nodp0")
+horizontal_alignment = 1
+
+[node name="TotalGemsTitle" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+layout_mode = 2
+text = "Total Gems"
+label_settings = SubResource("LabelSettings_nodp0")
+
+[node name="TotalGems" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+layout_mode = 2
+text = "XXXXX"
+label_settings = SubResource("LabelSettings_nodp0")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Chalkboard/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -38.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ContinueFlash" type="ColorRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ContinueFlashAnimator" type="AnimationPlayer" parent="Control/ContinueFlash"]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_rdsha")
+}
+
+[node name="PressToContinuePrompt" type="HBoxContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MinimumSizeMatchesChild" type="Control" parent="Control/PressToContinuePrompt"]
+layout_mode = 2
+script = ExtResource("12_ly71n")
+metadata/_custom_type_script = "uid://ugacr7gb8aji"
+
+[node name="TextureRect" type="TextureRect" parent="Control/PressToContinuePrompt/MinimumSizeMatchesChild"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = SubResource("Texture2D_ly71n")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/PressToContinuePrompt"]
+layout_mode = 2
+text = "Continue"
+
+[node name="GemSpawner" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.98504627, 0, 0.17229015, 0, 1, 0, -0.17229015, 0, 0.98504627, 0.13122201, 2.2328708, -0.19630821)
+emitting = false
+amount = 1000
+speed_scale = 2.0
+draw_order = 3
+process_material = SubResource("ShaderMaterial_ojbqg")
+draw_pass_1 = ExtResource("16_rdsha")
+
+[node name="FairyParadePath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_xw706")

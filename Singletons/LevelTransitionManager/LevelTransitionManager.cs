@@ -9,6 +9,7 @@ namespace FastDragon
 
         [Export(PropertyHint.File)] public string TitleScreenScene;
 
+        [Export] public PackedScene MissionStatsScreenPrefab;
         [Export] public PackedScene PortalLoadingScreenPrefab;
 
         private ColorRect _fadeCurtain => GetNode<ColorRect>("%FadeCurtain");
@@ -146,6 +147,28 @@ namespace FastDragon
             SaveFileManager.Current.CurrentCheckpoint = null;
         }
 
+        public void GoToMissionStatsScreen()
+        {
+            var prevLevel = (DiveBombLevel)GetTree().CurrentScene;
+            var player = prevLevel.FindNode<Player>();
+
+            var parameters = new MissionStatsScreen.Parameters
+            {
+                SkyBoxEnvironment = prevLevel.FindNode<WorldEnvironment>().Environment,
+
+                PreviousLevelScenePath = prevLevel.SceneFilePath,
+                HomeWorldScenePath = prevLevel.HomeWorldLevel,
+
+                PlayerAnimationTime = player.Animator.CurrentAnimationPosition,
+                PlayerStartPos = player.GlobalTransform,
+                CameraStartPos = player.Camera.GlobalTransform
+            };
+
+            var statsScreen = MissionStatsScreenPrefab.Instantiate<MissionStatsScreen>();
+            ChangeSceneToNode(statsScreen);
+            statsScreen.Initialize(parameters);
+        }
+
         public void RespawnPlayerAfterDeath()
         {
             // Heal the player back to full
@@ -153,6 +176,15 @@ namespace FastDragon
 
             // Fade to black, reset the level, and then unfade.
             DoThingWithFadeToBlack(SignalBus.Instance.EmitLevelReset);
+
+            // Increment the death counter
+            if (!GetTree().FindNode<TimeTrialManager>().IsTimeTrialMode)
+            {
+                SaveFileManager.Current.TotalDeaths++;
+                SaveFileManager.Current.CurrentLevelVisit.Deaths++;
+                SaveFileManager.Instance.RequestAutosave();
+                GD.Print($"Deaths: {SaveFileManager.Current.TotalDeaths}");
+            }
         }
 
         private void DoThingWithFadeToBlack(System.Action action)

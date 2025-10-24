@@ -67,20 +67,32 @@ namespace FastDragon
 
         public void OnBroken()
         {
+            // TODO: I suspect this might be getting called twice sometimes, but
+            // very rarely.  Log if that happens.
+            if (_stateMachine.CurrentState is not Idle)
+            {
+                string msg = "OnBroken() was called outside of the idle state.  Is it firing twice?!";
+                GD.PushError(msg);
+                throw new System.Exception(msg);
+            }
+
             var level = this.GetLevel();
+            bool isTimeTrialMode = level?.TimeTrial.IsTimeTrialMode ?? false;
+
             if (level != null)
             {
                 level.GetProgress().CollectedFairies.Add(SaveKey);
                 level.GetProgress().SpentGems += GemCost;
-
-                if (level.TimeTrial.IsTimeTrialMode)
-                {
-                    _stateMachine.ChangeState<QuickRescue>();
-                    return;
-                }
             }
 
-            SaveFileManager.Current.UntalliedGemsSpent += GemCost;
+            if (isTimeTrialMode)
+            {
+                _stateMachine.ChangeState<QuickRescue>();
+                return;
+            }
+
+            SaveFileManager.Current.CurrentLevelVisit.GemsSpent += GemCost;
+            SaveFileManager.Current.CurrentLevelVisit.FairiesFound++;
             SaveFileManager.Instance.RequestAutosave();
 
             _stateMachine.ChangeState<Shattering>();
