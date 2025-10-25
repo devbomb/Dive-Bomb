@@ -34,7 +34,7 @@ namespace FastDragon
             var ttm = this.GetLevel().TimeTrial;
 
             string yourTime = ttm.RequirementsMet(category)
-                ? ttm.TimerPhysicsTicks.FormatStopwatch()
+                ? ttm.Timer.FormatStopwatch()
                 : "did not qualify";
 
             PhysicsTicks? bestTimeTicks = ttm.GetSavedBestTime(category);
