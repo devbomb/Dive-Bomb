@@ -47,7 +47,7 @@ namespace FastDragon
 
         public void OnContinuePressed() => LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
 
-        private uint TargetTimePhysicsTicks()
+        private PhysicsTicks TargetTimePhysicsTicks()
         {
             var ttm = this.GetLevel().TimeTrial;
             return ttm.TargetTimePhysicsTicks(GuessCategory());

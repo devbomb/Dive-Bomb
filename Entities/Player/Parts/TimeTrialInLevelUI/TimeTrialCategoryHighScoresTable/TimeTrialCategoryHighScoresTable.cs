@@ -37,7 +37,7 @@ namespace FastDragon
                 ? TimeUtils.FormatPhysicsTicksStopwatch(ttm.TimerPhysicsTicks)
                 : "did not qualify";
 
-            uint? bestTimeTicks = ttm.GetSavedBestTime(category);
+            PhysicsTicks? bestTimeTicks = ttm.GetSavedBestTime(category);
             string bestTime = bestTimeTicks != null
                 ? TimeUtils.FormatPhysicsTicksStopwatch(bestTimeTicks.Value)
                 : "--";

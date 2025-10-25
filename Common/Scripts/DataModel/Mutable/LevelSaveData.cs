@@ -7,6 +7,6 @@ namespace FastDragon
     {
         public LevelProgress Progress { get; set; } = new();
 
-        public Dictionary<TimeTrialCategory, uint> TimeTrialBestTimePhysicsTicks = new();
+        public Dictionary<TimeTrialCategory, PhysicsTicks> TimeTrialBestTimePhysicsTicks = new();
     }
 }
