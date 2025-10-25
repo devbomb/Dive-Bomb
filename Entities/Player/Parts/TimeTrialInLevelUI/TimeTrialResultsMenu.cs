@@ -29,8 +29,8 @@ namespace FastDragon
         public override void OnPageEntered()
         {
             var ttm = this.GetLevel().TimeTrial;
-            _yourTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(ttm.TimerPhysicsTicks);
-            _bestTimeLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(TargetTimePhysicsTicks());
+            _yourTimeLabel.Text = ttm.TimerPhysicsTicks.FormatStopwatch();
+            _bestTimeLabel.Text = TargetTimePhysicsTicks().FormatStopwatch();
             _categoryLabel.Text = GuessCategory().HumanReadableName();
 
             _buttons.Visible = false;

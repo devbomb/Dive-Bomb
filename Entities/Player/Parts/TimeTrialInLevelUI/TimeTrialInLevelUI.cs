@@ -64,7 +64,7 @@ namespace FastDragon
             if (IsTimeTrialMode)
             {
                 var ticks = this.GetLevel().TimeTrial.TimerPhysicsTicks;
-                _timerLabel.Text = TimeUtils.FormatPhysicsTicksStopwatch(ticks);
+                _timerLabel.Text = ticks.FormatStopwatch();
                 _timerLabel.Visible = true;
             }
             else

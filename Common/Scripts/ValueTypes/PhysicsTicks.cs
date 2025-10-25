@@ -1,4 +1,5 @@
 using System;
+using Godot;
 using Newtonsoft.Json;
 
 namespace FastDragon
@@ -7,7 +8,7 @@ namespace FastDragon
     public struct PhysicsTicks
     {
         public uint Ticks;
-        public double Seconds => Ticks * (1.0 / 60);
+        public double Seconds => ((double)Ticks) / Engine.PhysicsTicksPerSecond;
 
         public static PhysicsTicks MaxValue => uint.MaxValue;
 
@@ -20,6 +21,11 @@ namespace FastDragon
         public static implicit operator PhysicsTicks(uint ticks) => new PhysicsTicks(ticks);
 
         public override string ToString() => Ticks.ToString();
+
+        public string FormatStopwatch()
+        {
+            return TimeSpan.FromSeconds(Seconds).ToString(@"mm\:ss\.ff");
+        }
     }
 
     public class PhysicsTicksJsonConverter : JsonConverter<PhysicsTicks>

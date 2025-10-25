@@ -34,12 +34,12 @@ namespace FastDragon
             var ttm = this.GetLevel().TimeTrial;
 
             string yourTime = ttm.RequirementsMet(category)
-                ? TimeUtils.FormatPhysicsTicksStopwatch(ttm.TimerPhysicsTicks)
+                ? ttm.TimerPhysicsTicks.FormatStopwatch()
                 : "did not qualify";
 
             PhysicsTicks? bestTimeTicks = ttm.GetSavedBestTime(category);
             string bestTime = bestTimeTicks != null
-                ? TimeUtils.FormatPhysicsTicksStopwatch(bestTimeTicks.Value)
+                ? bestTimeTicks.Value.FormatStopwatch()
                 : "--";
 
             var item = this.CreateItem();
