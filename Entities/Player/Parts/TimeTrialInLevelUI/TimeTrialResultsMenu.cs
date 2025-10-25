@@ -29,8 +29,10 @@ namespace FastDragon
         public override void OnPageEntered()
         {
             var ttm = this.GetLevel().TimeTrial;
+            var targetTime = ttm.TargetTime(GuessCategory());
+
             _yourTimeLabel.Text = ttm.Timer.FormatStopwatch();
-            _bestTimeLabel.Text = TargetTime().FormatStopwatch();
+            _bestTimeLabel.Text = targetTime?.FormatStopwatch() ?? "--";
             _categoryLabel.Text = GuessCategory().HumanReadableName();
 
             _buttons.Visible = false;
@@ -41,17 +43,11 @@ namespace FastDragon
 
             _animator.Play("Open");
 
-            if (ttm.Timer < TargetTime())
+            if (ttm.Timer < (targetTime ?? PhysicsTicks.MaxValue))
                 _animator.Queue("NewHighScore");
         }
 
         public void OnContinuePressed() => LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
-
-        private PhysicsTicks TargetTime()
-        {
-            var ttm = this.GetLevel().TimeTrial;
-            return ttm.TargetTime(GuessCategory());
-        }
 
         private TimeTrialCategory GuessCategory()
         {

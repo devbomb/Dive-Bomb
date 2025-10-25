@@ -104,11 +104,11 @@ namespace FastDragon
             }
         }
 
-        public PhysicsTicks TargetTime(TimeTrialCategory category)
+        public PhysicsTicks? TargetTime(TimeTrialCategory category)
         {
             return _targetTimes.TryGetValue(category, out PhysicsTicks value)
                 ? value
-                : PhysicsTicks.MaxValue;
+                : null;
         }
 
         private void OnLevelReset()
@@ -174,7 +174,7 @@ namespace FastDragon
                 if (!RequirementsMet(category))
                     continue;
 
-                PhysicsTicks targetTime = GetSavedBestTime(category) ?? PhysicsTicks.MaxValue;
+                var targetTime = GetSavedBestTime(category) ?? PhysicsTicks.MaxValue;
                 if (Timer < targetTime)
                     SetSavedBestTime(category, Timer);
             }
