@@ -5,10 +5,6 @@ namespace FastDragon
 {
     public partial class TimeTrialInLevelUI : Control
     {
-        public bool IsTimeTrialMode => this.GetLevel()?.TimeTrial?.IsTimeTrialMode ?? false;
-        public bool IsTimerRunning => this.GetLevel()?.TimeTrial?.IsTimerRunning ?? false;
-
-
         private Label _timerLabel => GetNode<Label>("%TimerLabel");
         private AnimationPlayer _timeAnnouncementAnimator => GetNode<AnimationPlayer>("%TimeAnnouncementAnimator");
 
@@ -61,7 +57,7 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double delta)
         {
-            if (IsTimeTrialMode)
+            if (this.IsTimeTrialMode())
             {
                 var ticks = this.GetLevel().TimeTrial.Timer;
                 _timerLabel.Text = ticks.FormatStopwatch();

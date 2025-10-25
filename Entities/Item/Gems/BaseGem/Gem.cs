@@ -96,7 +96,7 @@ namespace FastDragon
             {
                 level.GetProgress().CollectGem(Value, SaveKey);
 
-                if (!level.TimeTrial.IsTimeTrialMode)
+                if (!this.IsTimeTrialMode())
                     SaveFileManager.Current.CurrentLevelVisit.AddToGemsFound(Value);
             }
 
