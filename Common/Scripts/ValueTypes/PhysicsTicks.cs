@@ -26,6 +26,11 @@ namespace FastDragon
         {
             return TimeSpan.FromSeconds(Seconds).ToString(@"mm\:ss\.ff");
         }
+
+        public string FormatStopwatchWithHours()
+        {
+            return TimeSpan.FromSeconds(Seconds).ToString(@"hh\:mm\:ss\.ff");
+        }
     }
 
     public class PhysicsTicksJsonConverter : JsonConverter<PhysicsTicks>
