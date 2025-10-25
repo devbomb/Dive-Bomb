@@ -23,6 +23,25 @@ namespace FastDragon
         /// </summary>
         [JsonProperty] public int TotalDeaths;
 
+        /// <summary>
+        /// The total amount of time the player has spent in a level or home
+        /// world.
+        ///
+        /// Does NOT increase during loading screens (including the "mission
+        /// results" screen)
+        ///
+        /// Does NOT increase during levels that don't have a
+        /// <see cref="DiveBombLevel"/> as their root. (Though such levels
+        /// shouldn't exist in the first place)
+        ///
+        /// Does NOT increase while the game is paused (including cutscenes that
+        /// technically pause the game, such as the fairy kiss or fade-to-black)
+        ///
+        /// DOES increase while non-game-pausing cutscenes are playing (such as
+        /// the vent animation)
+        /// </summary>
+        [JsonProperty] public PhysicsTicks TotalPlaytime;
+
         [JsonProperty] public Dictionary<string, LevelSaveData> Levels = new();
 
         public int TotalGemsSpent => Levels.Values.Sum(l => l.Progress.SpentGems);
@@ -37,6 +56,7 @@ namespace FastDragon
         [JsonObject(MemberSerialization.OptIn)]
         public class LevelVisit
         {
+            [JsonProperty] public PhysicsTicks Playtime;
             [JsonProperty] public int Deaths;
             [JsonProperty] public int FairiesFound;
             [JsonProperty] public int GemsSpent;
