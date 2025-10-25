@@ -40,26 +40,24 @@ namespace FastDragon
             {
                 bool needsHealing = SaveFileManager.Current.PlayerHealth < Player.MaxHealth;
 
-                if ((!IsCurrent && !IsTimeTrialMode()) || needsHealing)
+                if (!IsCurrent || needsHealing)
                     Activate();
             }
         }
 
-        private bool IsTimeTrialMode() => this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
-
         private void Activate()
         {
+            SaveFileManager.Current.CurrentCheckpoint = CheckpointName;
             SaveFileManager.Current.PlayerHealth = Player.MaxHealth;
+
+            if (!this.IsTimeTrialMode())
+            {
+                SaveFileManager.Instance.RequestAutosave();
+            }
 
             _sparkleBurst.Emitting = true;
             EmitSignal(SignalName.Activated);
             GetTree().FindNode<Player>().Camera.Shake(1, 5, 0.2f);
-
-            if (!IsTimeTrialMode())
-            {
-                SaveFileManager.Current.CurrentCheckpoint = CheckpointName;
-                SaveFileManager.Instance.RequestAutosave();
-            }
         }
     }
 }

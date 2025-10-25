@@ -193,13 +193,7 @@ namespace FastDragon
         {
             EmitSignal(SignalName.Respawning);
 
-            var checkpoint = GetTree().Root
-                .EnumerateDescendantsOfType<Checkpoint>()
-                .FirstOrDefault(c => c.IsCurrent || c.DebugSpawnHere);
-
-            GlobalTransform = checkpoint == null
-                ? _spawnPos
-                : checkpoint.GlobalTransform;
+            GlobalTransform = GetRespawnPoint();
             this.ResetPhysicsInterpolation3D();
 
             Velocity = Vector3.Zero;
@@ -218,6 +212,20 @@ namespace FastDragon
 
             EarlyJumpBufferTimer = 0;
             _damageCooldownTimer = 0;
+        }
+
+        private Transform3D GetRespawnPoint()
+        {
+            if (this.IsTimeTrialMode())
+                return _spawnPos;
+
+            var checkpoint = GetTree().Root
+                .EnumerateDescendantsOfType<Checkpoint>()
+                .FirstOrDefault(c => c.IsCurrent || c.DebugSpawnHere);
+
+            return checkpoint == null
+                ? _spawnPos
+                : checkpoint.GlobalTransform;
         }
 
         public void SetVisibleInPortals(bool visible)
