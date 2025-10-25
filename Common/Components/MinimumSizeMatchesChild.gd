@@ -1,33 +1,27 @@
 @tool
 class_name MinimumSizeMatchesChild extends Control
 
-var _size_provider: Control:
-	get: return _size_provider
-	set(value):
-		if (is_instance_valid(_size_provider)):
-			_size_provider.resized.disconnect(update_minimum_size)
-		
-		_size_provider = value
-		if (is_instance_valid(_size_provider)):
-			_size_provider.resized.connect(update_minimum_size)
-		
-		update_minimum_size()
+var _last_min_size: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	child_order_changed.connect(_on_child_order_changed)
-	_size_provider = _find_size_provider()
+	_last_min_size = _get_minimum_size()
+	update_minimum_size()
 
-func _on_child_order_changed() -> void:
-	_size_provider = _find_size_provider()
-
-func _find_size_provider() -> Control:
-	for child in get_children():
-		if (child is Control):
-			return child
-	return null
+func _process(_delta: float) -> void:
+	var min_size = _get_minimum_size()
+	if (min_size != _last_min_size):
+		_last_min_size = min_size
+		update_minimum_size()
 
 func _get_minimum_size() -> Vector2:
+	var min_size: Vector2 = Vector2.ZERO
+	
 	for child in get_children():
 		if (child is Control):
-			return child.size
-	return Vector2.ZERO
+			var child_min: Vector2 = child.size
+			if (child_min.x > min_size.x):
+				min_size.x = child_min.x
+			if (child_min.y > min_size.y):
+				min_size.y = child_min.y
+				
+	return min_size
