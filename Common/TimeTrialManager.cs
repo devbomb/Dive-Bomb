@@ -10,7 +10,7 @@ namespace FastDragon
         public bool IsTimeTrialMode { get; private set; } = false;
         public bool IsTimerRunning { get; private set; } = false;
 
-        public uint TimerPhysicsTicks {get; private set;}
+        public PhysicsTicks Timer {get; private set;}
 
         public LevelProgress DummyProgress { get; private set; } = new();
 
@@ -21,7 +21,7 @@ namespace FastDragon
 
         private bool _isResettingLevelProgress = false;
 
-        private Dictionary<TimeTrialCategory, uint> _targetTimes = new();
+        private Dictionary<TimeTrialCategory, PhysicsTicks> _targetTimes = new();
 
         public override void _Ready()
         {
@@ -104,11 +104,11 @@ namespace FastDragon
             }
         }
 
-        public uint TargetTimePhysicsTicks(TimeTrialCategory category)
+        public PhysicsTicks? TargetTime(TimeTrialCategory category)
         {
-            return _targetTimes.TryGetValue(category, out uint value)
+            return _targetTimes.TryGetValue(category, out PhysicsTicks value)
                 ? value
-                : uint.MaxValue;
+                : null;
         }
 
         private void OnLevelReset()
@@ -122,7 +122,7 @@ namespace FastDragon
                 return;
             }
 
-            TimerPhysicsTicks = 0;
+            Timer = 0;
             _targetTimes = CopyBestTimes();
 
             IsTimerRunning = false;
@@ -174,9 +174,9 @@ namespace FastDragon
                 if (!RequirementsMet(category))
                     continue;
 
-                uint targetTimePhysicsTicks = GetSavedBestTime(category) ?? uint.MaxValue;
-                if (TimerPhysicsTicks < targetTimePhysicsTicks)
-                    SetSavedBestTime(category, TimerPhysicsTicks);
+                var targetTime = GetSavedBestTime(category) ?? PhysicsTicks.MaxValue;
+                if (Timer < targetTime)
+                    SetSavedBestTime(category, Timer);
             }
 
             SaveFileManager.Instance.RequestAutosave();
@@ -188,23 +188,23 @@ namespace FastDragon
         {
             if (IsTimerRunning && IsTimeTrialMode && !GetTree().Paused)
             {
-                TimerPhysicsTicks++;
+                Timer++;
                 // TODO: compensate for slo-mo effects?
             }
         }
 
-        public uint? GetSavedBestTime(TimeTrialCategory category)
+        public PhysicsTicks? GetSavedBestTime(TimeTrialCategory category)
         {
             var saveData = CurrentLevelSaveData();
-            return saveData.TimeTrialBestTimePhysicsTicks.TryGetValue(category, out var time)
+            return saveData.TimeTrialBestTime.TryGetValue(category, out var time)
                 ? time
                 : null;
         }
 
-        private void SetSavedBestTime(TimeTrialCategory category, uint timePhysicsTicks)
+        private void SetSavedBestTime(TimeTrialCategory category, PhysicsTicks time)
         {
             var save = CurrentLevelSaveData();
-            save.TimeTrialBestTimePhysicsTicks[category] = timePhysicsTicks;
+            save.TimeTrialBestTime[category] = time;
         }
 
         private LevelSaveData CurrentLevelSaveData()
@@ -214,10 +214,10 @@ namespace FastDragon
                 .GetLevelSaveData(this.GetLevel().SceneFilePath);
         }
 
-        private Dictionary<TimeTrialCategory, uint> CopyBestTimes()
+        private Dictionary<TimeTrialCategory, PhysicsTicks> CopyBestTimes()
         {
             return CurrentLevelSaveData()
-                .TimeTrialBestTimePhysicsTicks
+                .TimeTrialBestTime
                 .ToDictionary();
         }
     }
