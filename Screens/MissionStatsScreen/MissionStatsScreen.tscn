@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dy7b124lbdiio"]
+[gd_scene load_steps=44 format=3 uid="uid://dy7b124lbdiio"]
 
 [ext_resource type="Script" uid="uid://bjpuwynctw616" path="res://Screens/MissionStatsScreen/MissionStatsScreen.cs" id="1_6jabo"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="1_r07vy"]
@@ -97,6 +97,8 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_dkfbr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dw18r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ojbqg"]
 
 [sub_resource type="Animation" id="Animation_rdsha"]
 resource_name = "Flash"
@@ -198,14 +200,14 @@ GemCountSound = NodePath("GemCountSound")
 GemSpentSound = NodePath("GemSpentSound")
 DeathCountIncreaseSound = NodePath("DeathCountIncreaseSound")
 ContinuePressedSound = NodePath("ContinuePressedSound")
-TotalFairiesLabel = NodePath("Chalkboard/SubViewport/Control/Totals/TotalFairies")
-FairiesLabelHolder = NodePath("Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder")
-FairiesLabelNumber = NodePath("Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild/FairiesNumber")
-TotalGemsLabel = NodePath("Chalkboard/SubViewport/Control/Totals/TotalGems")
-GemsFoundLabel = NodePath("Chalkboard/SubViewport/Control/ThisLevel/GemsFoundHolder/GemsFound")
-GemsSpentLabel = NodePath("Chalkboard/SubViewport/Control/ThisLevel/GemsSpentHolder/GemsSpent")
-DeathsLabelHolder = NodePath("Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder")
-DeathsLabelNumber = NodePath("Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild/DeathsNumber")
+TotalFairiesLabel = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals/TotalFairies")
+FairiesLabelHolder = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder")
+FairiesLabelNumber = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild/FairiesNumber")
+TotalGemsLabel = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals/TotalGems")
+GemsFoundLabel = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/GemsFoundHolder/GemsFound")
+GemsSpentLabel = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/GemsSpentHolder/GemsSpent")
+DeathsLabelHolder = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder")
+DeathsLabelNumber = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild/DeathsNumber")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_5fhbi")
@@ -279,6 +281,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_txvya")
@@ -305,36 +311,53 @@ text = "Mission Results"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="ThisLevel" type="VBoxContainer" parent="Chalkboard/SubViewport/Control"]
+[node name="Content" type="Control" parent="Chalkboard/SubViewport/Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -38.5
-offset_right = 182.0
-offset_bottom = 38.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 100.0
+grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FairiesHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
+[node name="NonTimeStats" type="Control" parent="Chalkboard/SubViewport/Control/Content"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 207.0
+grow_horizontal = 0
+script = ExtResource("12_ly71n")
+metadata/_custom_type_script = "uid://ugacr7gb8aji"
+
+[node name="ThisLevel" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -52.0
+offset_right = 162.0
+offset_bottom = 52.0
+grow_vertical = 2
+
+[node name="FairiesHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel"]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 
-[node name="FairiesLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder"]
+[node name="FairiesLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder"]
 layout_mode = 0
 offset_right = 115.0
 offset_bottom = 23.0
 
-[node name="FairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder"]
+[node name="FairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder"]
 layout_mode = 2
 text = "Fairies: "
 label_settings = SubResource("LabelSettings_dkfbr")
 
-[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder"]
+[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder"]
 layout_mode = 2
 script = ExtResource("12_ly71n")
 
-[node name="FairiesNumber" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild"]
+[node name="FairiesNumber" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -351,48 +374,48 @@ text = "0"
 label_settings = SubResource("LabelSettings_dw18r")
 vertical_alignment = 1
 
-[node name="GemsFoundHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
+[node name="GemsFoundHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel"]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 
-[node name="GemsFound" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/GemsFoundHolder"]
+[node name="GemsFound" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/GemsFoundHolder"]
 layout_mode = 0
 offset_right = 156.0
 offset_bottom = 23.0
 text = "Gems Found: 0"
 label_settings = SubResource("LabelSettings_dkfbr")
 
-[node name="GemsSpentHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
+[node name="GemsSpentHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel"]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 
-[node name="GemsSpent" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/GemsSpentHolder"]
+[node name="GemsSpent" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/GemsSpentHolder"]
 layout_mode = 0
 offset_right = 150.0
 offset_bottom = 23.0
 text = "Gems Spent: 0"
 label_settings = SubResource("LabelSettings_dkfbr")
 
-[node name="DeathsHolder" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel"]
+[node name="DeathsHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel"]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 
-[node name="DeathsLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder"]
+[node name="DeathsLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder"]
 layout_mode = 0
 offset_right = 115.0
 offset_bottom = 23.0
 
-[node name="DeathsTitle" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder"]
+[node name="DeathsTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder"]
 layout_mode = 2
 text = "Deaths: "
 label_settings = SubResource("LabelSettings_dkfbr")
 
-[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder"]
+[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder"]
 layout_mode = 2
 script = ExtResource("12_ly71n")
 metadata/_custom_type_script = "uid://ugacr7gb8aji"
 
-[node name="DeathsNumber" type="Label" parent="Chalkboard/SubViewport/Control/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild"]
+[node name="DeathsNumber" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -409,61 +432,46 @@ text = "0"
 label_settings = SubResource("LabelSettings_dw18r")
 vertical_alignment = 1
 
-[node name="Totals" type="VBoxContainer" parent="Chalkboard/SubViewport/Control"]
+[node name="Totals" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -21.0
-offset_right = -20.0
-offset_bottom = 21.0
+anchor_bottom = 1.0
+offset_left = -270.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="TotalFairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+[node name="TotalFairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
 layout_mode = 2
 text = "Total Fairies"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="TotalFairies" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+[node name="TotalFairies" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
 layout_mode = 2
 text = "XXX"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="Spacer" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+[node name="Spacer" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-label_settings = SubResource("LabelSettings_nodp0")
+label_settings = SubResource("LabelSettings_ojbqg")
 horizontal_alignment = 1
 
-[node name="TotalGemsTitle" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+[node name="TotalGemsTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
 layout_mode = 2
 text = "Total Gems"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="TotalGems" type="Label" parent="Chalkboard/SubViewport/Control/Totals"]
+[node name="TotalGems" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
 layout_mode = 2
 text = "XXXXX"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
-
-[node name="GridContainer" type="GridContainer" parent="Chalkboard/SubViewport/Control"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -38.5
-offset_bottom = 38.5
-grow_horizontal = 2
-grow_vertical = 2
-columns = 2
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
