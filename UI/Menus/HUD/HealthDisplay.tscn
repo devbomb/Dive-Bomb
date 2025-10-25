@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 	var health: int = SaveFileManager.CurrentFile.PlayerHealth
 	value = health
 	
-	if (value < _lastHealth):
+	if (value != _lastHealth):
 		_lastHealth = health
 		_timer = _hang_duration + _return_duration
 	
