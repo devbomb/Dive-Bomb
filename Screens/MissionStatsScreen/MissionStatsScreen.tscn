@@ -173,7 +173,7 @@ _data = {
 }
 point_count = 3
 
-[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "FairyPath", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalFairiesLabel", "FairiesLabelHolder", "FairiesLabelNumber", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber")]
+[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "FairyPath", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalFairiesLabel", "FairiesLabelHolder", "FairiesLabelNumber", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber", "TimeStatsHolder", "LevelTime", "TotalPlaytime")]
 script = ExtResource("1_6jabo")
 PreviousLevelScenePath = "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
 HomeWorldScenePath = "res://Levels/TestMap/TestMap.tscn"
@@ -208,6 +208,9 @@ GemsFoundLabel = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/T
 GemsSpentLabel = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/GemsSpentHolder/GemsSpent")
 DeathsLabelHolder = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder")
 DeathsLabelNumber = NodePath("Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild/DeathsNumber")
+TimeStatsHolder = NodePath("Chalkboard/SubViewport/Control/Content/TimeStats")
+LevelTime = NodePath("Chalkboard/SubViewport/Control/Content/TimeStats/Level/VBoxContainer/LevelTime")
+TotalPlaytime = NodePath("Chalkboard/SubViewport/Control/Content/TimeStats/Total/VBoxContainer/TotalTime")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_5fhbi")
