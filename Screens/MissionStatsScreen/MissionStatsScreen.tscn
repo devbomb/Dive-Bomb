@@ -311,7 +311,7 @@ text = "Mission Results"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="Content" type="Control" parent="Chalkboard/SubViewport/Control"]
+[node name="Content" type="VBoxContainer" parent="Chalkboard/SubViewport/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -321,11 +321,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="NonTimeStats" type="Control" parent="Chalkboard/SubViewport/Control/Content"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 207.0
-grow_horizontal = 0
+layout_mode = 2
 script = ExtResource("12_ly71n")
 metadata/_custom_type_script = "uid://ugacr7gb8aji"
 
@@ -471,6 +467,78 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "XXXXX"
 label_settings = SubResource("LabelSettings_nodp0")
+horizontal_alignment = 1
+
+[node name="Spacer" type="Label" parent="Chalkboard/SubViewport/Control/Content"]
+layout_mode = 2
+
+[node name="TimeStats" type="Control" parent="Chalkboard/SubViewport/Control/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Level" type="Control" parent="Chalkboard/SubViewport/Control/Content/TimeStats"]
+layout_mode = 1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Level"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -11.5
+offset_right = 50.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Level/VBoxContainer"]
+layout_mode = 2
+text = "Time"
+horizontal_alignment = 1
+
+[node name="LevelTime" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Level/VBoxContainer"]
+layout_mode = 2
+text = "XX:XX.XX"
+horizontal_alignment = 1
+
+[node name="Total" type="Control" parent="Chalkboard/SubViewport/Control/Content/TimeStats"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Total"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -25.0
+offset_right = 90.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Total/VBoxContainer"]
+layout_mode = 2
+text = "Total Playtime"
+horizontal_alignment = 1
+
+[node name="TotalTime" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Total/VBoxContainer"]
+layout_mode = 2
+text = "XX:XX:XX.XX"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="."]
