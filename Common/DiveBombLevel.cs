@@ -40,6 +40,9 @@ namespace FastDragon
         {
             AtlasCache.Instance.UpdateCache(SceneFilePath, this);
 
+            // Start a new level visit
+            // ...unless the game is currently being loaded from a save file,
+            // in which case we don't want to overwrite the existing level visit.
             bool isLoadingSaveFile = SaveFileManager.Current.CurrentLevel == SceneFilePath;
             if (!isLoadingSaveFile)
             {
@@ -47,6 +50,15 @@ namespace FastDragon
                 SaveFileManager.Current.CurrentLevelVisit = new();
                 SaveFileManager.Instance.RequestAutosave();
             }
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            // Why increment the playtime _here_, instead of some autoload
+            // singleton?  Simple: we don't want it to increase during a loading
+            // screen.  Doing it here ensures that for free.
+            SaveFileManager.Current.TotalPlaytime++;
+            SaveFileManager.Current.CurrentLevelVisit.Playtime++;
         }
 
         public LevelProgress GetProgress()

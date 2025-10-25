@@ -37,17 +37,24 @@ namespace FastDragon
         [Export] public AudioStreamPlayer ContinuePressedSound;
 
         [ExportGroup("Labels")]
-        [ExportSubgroup("This level")]
+        [ExportSubgroup("Fairies")]
         [Export] public Label TotalFairiesLabel;
         [Export] public Control FairiesLabelHolder;
         [Export] public Label FairiesLabelNumber;
 
+        [ExportSubgroup("Gems")]
         [Export] public Label TotalGemsLabel;
         [Export] public Label GemsFoundLabel;
         [Export] public Label GemsSpentLabel;
 
+        [ExportSubgroup("Deaths")]
         [Export] public Control DeathsLabelHolder;
         [Export] public Label DeathsLabelNumber;
+
+        [ExportSubgroup("Time")]
+        [Export] public Control TimeStatsHolder;
+        [Export] public Label LevelTime;
+        [Export] public Label TotalPlaytime;
 
         private Parameters _parameters = null;
         public class Parameters
@@ -213,6 +220,17 @@ namespace FastDragon
                 Self.GemsFoundLabel.Visible = false;
                 Self.GemsSpentLabel.Visible = false;
                 Self.DeathsLabelHolder.Visible = false;
+
+                Self.TimeStatsHolder.Visible = false;
+                Self.LevelTime.Text = SaveFileManager
+                    .Current
+                    .CurrentLevelVisit
+                    .Playtime
+                    .FormatStopwatch();
+                Self.TotalPlaytime.Text = SaveFileManager
+                    .Current
+                    .TotalPlaytime
+                    .FormatStopwatchWithHours();
             }
 
             public override void OnStateExited()
@@ -238,6 +256,8 @@ namespace FastDragon
 
                 Self.DeathsLabelHolder.Visible = true;
                 Self.DeathsLabelNumber.Text = stats.Deaths.ToString();
+
+                Self.TimeStatsHolder.Visible = true;
 
                 Self.FairyPath.Visible = false;
             }
@@ -283,6 +303,8 @@ namespace FastDragon
                 yield return Coroutine.WaitSeconds(0.25);
                 yield return Coroutine.WaitFor(CountDeaths());
                 yield return Coroutine.WaitSeconds(0.5);
+
+                Self.TimeStatsHolder.Visible = true;
             }
 
             private IEnumerator<YieldInstruction> CountFairies()
