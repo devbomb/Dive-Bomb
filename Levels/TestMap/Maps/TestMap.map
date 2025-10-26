@@ -250,7 +250,7 @@
 "angles" "0 -90 0"
 "TargetLevel" "res://Levels/SeamonsterBossMap/SeamonsterBossMap.tscn"
 "SkyboxEnvironment" "res://Levels/SeamonsterBossMap/Skybox.tres"
-"Text" "Kracken Boss"
+"Text" "Smackin' Da Kracken"
 }
 // entity 23
 {

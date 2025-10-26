@@ -62,7 +62,7 @@ func _process(delta):
 
 [node name="SeamonsterBossMap" type="Node3D"]
 script = ExtResource("1_fdoft")
-LevelName = "Kracken Boss"
+LevelName = "Smackin' Da Kracken"
 HomeWorldLevel = "uid://muwxx8ltp1ss"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
