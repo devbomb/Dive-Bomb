@@ -150,6 +150,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.435)
 StartHidden = true
 
 [connection signal="Defeated" from="SeamonsterBoss" to="LevelExitCanon" method="Reveal"]
+[connection signal="LastHitDealt" from="SeamonsterBoss" to="BackgroundMusicPlayer" method="stop"]
 
 [editable path="PowerOrbs/Center"]
 [editable path="PowerOrbs/Center/Model/Model"]

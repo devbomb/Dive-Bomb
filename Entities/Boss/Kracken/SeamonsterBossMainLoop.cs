@@ -182,6 +182,7 @@ namespace FastDragon
 
                 if (Self._health.CurrentHealth <= 0)
                 {
+                    Self.EmitSignal(SignalName.LastHitDealt);
                     Self._leftSplashTentacle.Submerge();
                     Self._rightSplashTentacle.Submerge();
                 }
