@@ -118,6 +118,11 @@ layout_mode = 2
 text = "Options"
 flat = true
 
+[node name="Quit" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons"]
+layout_mode = 2
+text = "Quit"
+flat = true
+
 [node name="UserSettingsMenu" parent="PageNavigator" instance=ExtResource("5_xa3gf")]
 unique_name_in_owner = true
 visible = false
@@ -139,5 +144,6 @@ offset_bottom = 39.64
 
 [connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Start" to="." method="OpenSaveFilesMenu"]
 [connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Options" to="." method="OpenUserSettingsMenu"]
+[connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Quit" to="." method="QuitToDesktop"]
 [connection signal="BackRequested" from="PageNavigator/UserSettingsMenu" to="." method="OpenMainPage"]
 [connection signal="BackRequested" from="PageNavigator/SaveSlotManagementMenu" to="." method="OpenMainPage"]
