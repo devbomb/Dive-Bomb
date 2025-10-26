@@ -51,6 +51,7 @@ animation = &"Blink"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc15q"]
 graph_offset = Vector2(-568.095, -36.1712)
+nodes/output/position = Vector2(480, -20)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_b2gux")
 nodes/Add2/position = Vector2(20, 0)
 "nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_srhge")
@@ -61,8 +62,7 @@ nodes/Animation/position = Vector2(-240, 20)
 "nodes/Animation 2/position" = Vector2(-240, 240)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_44hj8")
 "nodes/Animation 3/position" = Vector2(-240, 440)
-nodes/output/position = Vector2(480, -20)
-node_connections = [&"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"Add2 2", 0, &"Add2", &"Add2 2", 1, &"Animation 3", &"output", 0, &"Add2 2"]
+node_connections = [&"output", 0, &"Add2 2", &"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"Add2 2", 0, &"Add2", &"Add2 2", 1, &"Animation 3"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3xfu1"]
 animation = &"Laugh"

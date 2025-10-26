@@ -6,6 +6,7 @@ namespace FastDragon
     public partial class SeamonsterBoss : CharacterBody3D
     {
         [Export] public int[] PhaseMaxHealths = new int[0];
+        [Signal] public delegate void LastHitDealtEventHandler();
         [Signal] public delegate void DefeatedEventHandler();
 
         public int CurrentHealth => _health.CurrentHealth;
