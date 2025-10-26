@@ -4,30 +4,68 @@ namespace FastDragon
 {
     public partial class PortalSurface : Area3D
     {
-        [Export(PropertyHint.File)] public string SkyboxEnvironment;
-        [Export(PropertyHint.File)] public string TargetLevel;
+        [Export] public Shader PortalSurfaceShader;
 
-        private Camera3D _portalCamera => GetNode<Camera3D>("%PortalCamera");
+        private readonly SubViewport _subViewport = new();
+        private readonly Camera3D _portalCamera = new();
 
-        private MeshInstance3D _portalMaterialHolder => GetNode<MeshInstance3D>("%PortalMaterialHolder");
-
-        private Player _player;
-        private Vector3 _playerTargetRotRad;
-
-        public void SetSkybox(string skyboxEnvironment)
+        public void SetSkybox(Environment skyboxEnvironment)
         {
-            _portalCamera.Environment = ResourceLoader.Load<Environment>(skyboxEnvironment);
+            _portalCamera.Environment = skyboxEnvironment;
         }
 
         public override void _Ready()
         {
-            if (ResourceLoader.Exists(SkyboxEnvironment))
-                _portalCamera.Environment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
+            _subViewport.AddChild(_portalCamera);
+            AddChild(_subViewport);
 
+            // Ensure the sub viewport's resolution always matches the main one.
+            GetViewport().Connect(Viewport.SignalName.SizeChanged, Callable.From(SyncViewportSize));
+            SyncViewportSize();
+
+            // Ensure we update the portal camera's position _after_ the main
+            // camera has already updated its own.
+            ProcessPriority = int.MaxValue;
+
+            // The main camera sometimes moves while the game is paused.  We
+            // need to make sure the portal camera moves when that happens, too,
+            // to avoid breaking the illusion.
+            ProcessMode = ProcessModeEnum.Always;
+
+            // Only render objects that are on the "visible in portals" layer
+            _portalCamera.CullMask = 2;
+
+            // Create the portal surface material
+            var material = new ShaderMaterial();
+            material.Shader = PortalSurfaceShader;
+            material.SetShaderParameter("viewport_texture", _subViewport.GetTexture());
+
+            // Assign the portal material to all child meshes
             foreach (var mesh in this.EnumerateDescendantsOfType<MeshInstance3D>())
             {
-                if (mesh != _portalMaterialHolder)
-                    mesh.MaterialOverride = _portalMaterialHolder.MaterialOverride;
+                mesh.MaterialOverride = material;
+            }
+        }
+
+        public override void _Process(double delta)
+        {
+            SyncCamera();
+        }
+
+        private void SyncViewportSize()
+        {
+            Vector2 sizeFloat = GetViewport().GetTexture().GetSize();
+            _subViewport.Size = new Vector2I((int)sizeFloat.X, (int)sizeFloat.Y);
+        }
+
+        private void SyncCamera()
+        {
+            var mainCamera = GetTree().Root.GetCamera3D();
+            _portalCamera.Visible = mainCamera != null;
+
+            if (_portalCamera.Visible)
+            {
+                _portalCamera.GlobalTransform = mainCamera.GlobalTransform;
             }
         }
     }

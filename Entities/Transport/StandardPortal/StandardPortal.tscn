@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dahuf8m47kslw"]
+[gd_scene load_steps=10 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://b7e27lthcl3fx" path="res://Entities/Transport/StandardPortal/StandardPortalFrame.blend" id="2_gcmbj"]
@@ -13,11 +13,12 @@ size = Vector3(6, 5, 0.25)
 [sub_resource type="BoxMesh" id="BoxMesh_yv7cl"]
 size = Vector3(6, 5, 0.25)
 
-[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("_normalDetector", "_cameraDetector", "_portalCamera")]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lle10"]
+
+[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("_normalDetector", "_cameraDetector")]
 script = ExtResource("1_6lbsj")
 _normalDetector = NodePath("PortalSurface/NormalDetector")
 _cameraDetector = NodePath("PortalSurface/CameraDetector")
-_portalCamera = NodePath("PortalSurface/SubViewport/PortalCamera")
 
 [node name="StandardPortalFrame" parent="." instance=ExtResource("2_gcmbj")]
 
@@ -31,6 +32,18 @@ shape = SubResource("BoxShape3D_ut6y6")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PortalSurface"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 mesh = SubResource("BoxMesh_yv7cl")
+
+[node name="NormalDetector" type="RayCast3D" parent="PortalSurface"]
+exclude_parent = false
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="CameraDetector" type="Area3D" parent="PortalSurface"]
+
+[node name="CameraDetectorPlane" type="CollisionShape3D" parent="PortalSurface/CameraDetector"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_lle10")
 
 [node name="PlayerSpawnPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true

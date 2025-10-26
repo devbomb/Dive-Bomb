@@ -18,7 +18,6 @@ namespace FastDragon
         [ExportGroup("Internal")]
         [Export] public RayCast3D _normalDetector;
         [Export] public Area3D _cameraDetector;
-        [Export] public Camera3D _portalCamera;
 
 
         private PortalSurface _surface => GetNode<PortalSurface>("%PortalSurface");
@@ -28,6 +27,7 @@ namespace FastDragon
 
         private readonly StateMachine _stateMachine = new();
 
+        private Environment _skyboxEnvironment;
         private Vector3 _playerTargetRotRad;
 
         public Portal()
@@ -37,8 +37,8 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            _surface.TargetLevel = TargetLevel;
-            _surface.SetSkybox(SkyboxEnvironment);
+            _skyboxEnvironment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
+            _surface.SetSkybox(_skyboxEnvironment);
             _surface.BodyEntered += OnBodyEntered;
 
             _frontLabel.Text = Text;
@@ -137,7 +137,7 @@ namespace FastDragon
                 {
                     LevelTransitionManager.Instance.EnterLevel(
                         Self.TargetLevel,
-                        Self._portalCamera.Environment
+                        Self._skyboxEnvironment
                     );
                 }
             }
