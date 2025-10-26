@@ -13,8 +13,11 @@ size = Vector3(6, 5, 0.25)
 [sub_resource type="BoxMesh" id="BoxMesh_yv7cl"]
 size = Vector3(6, 5, 0.25)
 
-[node name="StandardPortal" type="Node3D"]
+[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("_normalDetector", "_cameraDetector", "_portalCamera")]
 script = ExtResource("1_6lbsj")
+_normalDetector = NodePath("PortalSurface/NormalDetector")
+_cameraDetector = NodePath("PortalSurface/CameraDetector")
+_portalCamera = NodePath("PortalSurface/SubViewport/PortalCamera")
 
 [node name="StandardPortalFrame" parent="." instance=ExtResource("2_gcmbj")]
 
