@@ -20,9 +20,12 @@ namespace FastDragon
         private MeshLabel3D _frontLabel => GetNode<MeshLabel3D>("%FrontLabel");
         private MeshLabel3D _backLabel => GetNode<MeshLabel3D>("%BackLabel");
 
-        private Vector3 _exitAnimationStartPos;
-        private float _exitAnimationTimer;
-        private bool _playingExitAnimation = false;
+        private readonly StateMachine _stateMachine = new();
+
+        public Portal()
+        {
+            AddChild(_stateMachine);
+        }
 
         public override void _Ready()
         {
@@ -31,57 +34,74 @@ namespace FastDragon
 
             _frontLabel.Text = Text;
             _backLabel.Text = Text;
+
+            _stateMachine.ChangeState<Idle>();
         }
 
         public void PlayExitAnimation()
         {
-            var player = GetTree().FindNode<Player>();
-
-            // Warp the player to the start pos of the animation
-            _exitAnimationStartPos = PlayerSpawn.GlobalPosition;
-            _exitAnimationStartPos += Vector3.Up * ExitAnimationStartHeight;
-            _exitAnimationStartPos -= PlayerSpawn.GlobalForward() * (player.Camera.OrbitDistance + 2);
-
-            player.SetVisibleInPortals(true);
-            player.ChangeState<PlayerManhandledState>();
-            player.GlobalRotation = PlayerSpawn.GlobalRotation;
-            player.GlobalPosition = _exitAnimationStartPos;
-            player.ResetPhysicsInterpolation3D();
-
-            player.CameraFocus.Reset();
-
-            player.Camera.OrbitYawRad = PlayerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
-            player.Camera.OrbitPitchRad = 0;
-
-            // Start tweening the player to the spawn point
-            _exitAnimationTimer = 0;
-            _playingExitAnimation = true;
+            _stateMachine.ChangeState<Exiting>();
         }
 
-        public override void _PhysicsProcess(double deltaD)
+        private class Idle : State<Portal>
         {
-            float delta = (float)deltaD;
 
-            if (!_playingExitAnimation)
-                return;
+        }
 
-            _exitAnimationTimer += delta;
-            float t = _exitAnimationTimer / ExitAnimationDuration;
+        private class Exiting : State<Portal>
+        {
+            private Vector3 _exitAnimationStartPos;
+            private double _timer;
 
-            var player = GetTree().FindNode<Player>();
-            player.GlobalPosition = _exitAnimationStartPos.LerpParabola(
-                PlayerSpawn.GlobalPosition,
-                ExitAnimationParabolaHeight,
-                t
-            );
-
-            if (_exitAnimationTimer > ExitAnimationDuration)
+            public override void OnStateEntered()
             {
-                _playingExitAnimation = false;
-                player.GlobalPosition = PlayerSpawn.GlobalPosition;
+                var player = GetTree().FindNode<Player>();
+                _timer = 0;
+
+                // Warp the player to the start pos of the animation
+                _exitAnimationStartPos = Self.PlayerSpawn.GlobalPosition;
+                _exitAnimationStartPos += Vector3.Up * Self.ExitAnimationStartHeight;
+                _exitAnimationStartPos -= Self.PlayerSpawn.GlobalForward() * (player.Camera.OrbitDistance + 2);
+
+                player.SetVisibleInPortals(true);
+                player.ChangeState<PlayerManhandledState>();
+                player.GlobalRotation = Self.PlayerSpawn.GlobalRotation;
+                player.GlobalPosition = _exitAnimationStartPos;
                 player.ResetPhysicsInterpolation3D();
-                player.ChangeState<PlayerWalkState>();
+
+                player.CameraFocus.Reset();
+
+                player.Camera.OrbitYawRad = Self.PlayerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
+                player.Camera.OrbitPitchRad = 0;
+            }
+
+            public override void OnStateExited()
+            {
+                var player = GetTree().FindNode<Player>();
                 player.SetVisibleInPortals(false);
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer += delta;
+
+                float t = (float)_timer / Self.ExitAnimationDuration;
+
+                var player = GetTree().FindNode<Player>();
+                player.GlobalPosition = _exitAnimationStartPos.LerpParabola(
+                    Self.PlayerSpawn.GlobalPosition,
+                    Self.ExitAnimationParabolaHeight,
+                    t
+                );
+
+                if (_timer > Self.ExitAnimationDuration)
+                {
+                    player.GlobalPosition = Self.PlayerSpawn.GlobalPosition;
+                    player.ResetPhysicsInterpolation3D();
+                    player.ChangeState<PlayerWalkState>();
+
+                    ChangeState<Idle>();
+                }
             }
         }
     }
