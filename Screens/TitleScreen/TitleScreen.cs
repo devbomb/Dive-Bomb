@@ -30,5 +30,10 @@ namespace FastDragon
         {
             _pageNav.ChangePage(GetNode<Page>("%UserSettingsMenu"));
         }
+
+        public void QuitToDesktop()
+        {
+            GetTree().Quit();
+        }
     }
 }
