@@ -21,10 +21,10 @@ domain_warp_fractal_octaves = 1
 resource_local_to_scene = true
 width = 1000
 height = 1000
+noise = SubResource("FastNoiseLite_6g4jw")
 seamless = true
 as_normal_map = true
 bump_strength = 18.7
-noise = SubResource("FastNoiseLite_6g4jw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7bj12"]
 transparency = 1
