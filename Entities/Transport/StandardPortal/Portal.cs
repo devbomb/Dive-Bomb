@@ -39,7 +39,6 @@ namespace FastDragon
         {
             _skyboxEnvironment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
             _surface.SetSkybox(_skyboxEnvironment);
-            _surface.BodyEntered += OnBodyEntered;
 
             _frontLabel.Text = Text;
             _backLabel.Text = Text;
@@ -54,7 +53,7 @@ namespace FastDragon
             _stateMachine.ChangeState<Idle>();
         }
 
-        private void OnBodyEntered(Node3D body)
+        public void OnBodyEntered(Node3D body)
         {
             if (body is Player player && !(player.CurrentState is PlayerManhandledState))
             {

@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PortalSurface : Area3D
+    public partial class PortalSurface : MeshInstance3D
     {
         [Export] public Shader PortalSurfaceShader;
 
@@ -39,12 +39,7 @@ namespace FastDragon
             var material = new ShaderMaterial();
             material.Shader = PortalSurfaceShader;
             material.SetShaderParameter("viewport_texture", _subViewport.GetTexture());
-
-            // Assign the portal material to all child meshes
-            foreach (var mesh in this.EnumerateDescendantsOfType<MeshInstance3D>())
-            {
-                mesh.MaterialOverride = material;
-            }
+            MaterialOverride = material;
         }
 
         public override void _Process(double delta)
