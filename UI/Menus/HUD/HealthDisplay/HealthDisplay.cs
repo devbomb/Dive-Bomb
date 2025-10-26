@@ -80,6 +80,7 @@ namespace FastDragon
             public override void OnStateExited()
             {
                 Self.UpdatePosition(0);
+                Self.ProgressBar.Scale = Vector2.One;
             }
 
             public override void _Process(double delta)
@@ -89,12 +90,27 @@ namespace FastDragon
 
             private IEnumerator<YieldInstruction> CoroutineExecutor()
             {
-                yield return Coroutine.WaitSeconds(DrainDelay);
+                yield return Coroutine.WaitFor(Pulse());
                 yield return Coroutine.WaitFor(Drain());
                 yield return Coroutine.WaitSeconds(HangDuration);
                 yield return Coroutine.WaitFor(Return());
 
                 ChangeState<Resting>();
+            }
+
+            private IEnumerator<YieldInstruction> Pulse()
+            {
+                var maxScale = Vector2.One * 1.25f;
+                var minScale = Vector2.One;
+
+                for (double timer = 0; timer <= DrainDelay; timer += Self.GetProcessDeltaTime())
+                {
+                    double t = Math.Min(timer / DrainDelay, 1.0);
+                    t = Mathf.PingPong(t * 2, 1.0);
+                    Self.ProgressBar.Scale = minScale.Lerp(maxScale, (float)t);
+
+                    yield return default;
+                }
             }
 
             private IEnumerator<YieldInstruction> Drain()
