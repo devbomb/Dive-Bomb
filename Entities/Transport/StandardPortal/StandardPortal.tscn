@@ -1,33 +1,52 @@
-[gd_scene load_steps=9 format=3 uid="uid://dahuf8m47kslw"]
+[gd_scene load_steps=11 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://b7e27lthcl3fx" path="res://Entities/Transport/StandardPortal/StandardPortalFrame.blend" id="2_gcmbj"]
-[ext_resource type="PackedScene" uid="uid://bi1df8rnwev2k" path="res://Entities/Transport/StandardPortal/PortalSurface.tscn" id="3_mjatk"]
+[ext_resource type="Script" uid="uid://2c4cobid61l8" path="res://Entities/Transport/StandardPortal/PortalSurface.cs" id="3_smk44"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="4_5wu7r"]
+[ext_resource type="Shader" uid="uid://w4lfqpwrni8i" path="res://Entities/Transport/StandardPortal/PortalSurface.gdshader" id="4_lnpha"]
 [ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="5_wlovi"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="6_ud3tx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut6y6"]
 size = Vector3(6, 5, 0.25)
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lle10"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_yv7cl"]
 size = Vector3(6, 5, 0.25)
 
-[node name="StandardPortal" type="Node3D"]
+[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("_normalDetector", "_cameraDetector")]
 script = ExtResource("1_6lbsj")
+_normalDetector = NodePath("PlayerDetector/NormalDetector")
+_cameraDetector = NodePath("CameraDetector")
 
 [node name="StandardPortalFrame" parent="." instance=ExtResource("2_gcmbj")]
 
-[node name="PortalSurface" parent="." instance=ExtResource("3_mjatk")]
-unique_name_in_owner = true
+[node name="PlayerDetector" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PortalSurface"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("BoxShape3D_ut6y6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PortalSurface"]
+[node name="NormalDetector" type="RayCast3D" parent="PlayerDetector"]
+exclude_parent = false
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="CameraDetector" type="Area3D" parent="."]
+
+[node name="CameraDetectorPlane" type="CollisionShape3D" parent="CameraDetector"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_lle10")
+
+[node name="PortalSurface" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 mesh = SubResource("BoxMesh_yv7cl")
+script = ExtResource("3_smk44")
+PortalSurfaceShader = ExtResource("4_lnpha")
 
 [node name="PlayerSpawnPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true
@@ -50,3 +69,5 @@ Text = "Level Name"
 Material = ExtResource("5_wlovi")
 Font = ExtResource("6_ud3tx")
 FontSize = 60
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="OnBodyEntered"]
