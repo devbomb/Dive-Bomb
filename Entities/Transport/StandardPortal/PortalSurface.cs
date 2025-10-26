@@ -2,6 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
+    [GlobalClass]
     public partial class PortalSurface : MeshInstance3D
     {
         [Export] public Shader PortalSurfaceShader;

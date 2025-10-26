@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi1df8rnwev2k"]
-
-[ext_resource type="Script" uid="uid://2c4cobid61l8" path="res://Entities/Transport/StandardPortal/PortalSurface.cs" id="1_0sdk0"]
-[ext_resource type="Shader" uid="uid://w4lfqpwrni8i" path="res://Entities/Transport/StandardPortal/PortalSurface.gdshader" id="2_ocb77"]
-
-[node name="PortalSurface" type="MeshInstance3D"]
-script = ExtResource("1_0sdk0")
-PortalSurfaceShader = ExtResource("2_ocb77")
