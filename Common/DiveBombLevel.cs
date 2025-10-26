@@ -92,5 +92,10 @@ namespace FastDragon
 
             return node.GetParent()?.GetLevel();
         }
+
+        public static bool IsTimeTrialMode(this Node node)
+        {
+            return node.GetLevel()?.TimeTrial?.IsTimeTrialMode ?? false;
+        }
     }
 }

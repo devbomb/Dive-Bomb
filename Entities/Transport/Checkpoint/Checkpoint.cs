@@ -27,14 +27,6 @@ namespace FastDragon
 
             if (CheckpointName == null)
                 throw new System.Exception("CheckpointName cannot be null");
-
-            SignalBus.Instance.LevelReset += Reset;
-            Reset();
-        }
-
-        private void Reset()
-        {
-            Visible = !IsTimeTrialMode();
         }
 
         public override void _Process(double deltaD)
@@ -44,17 +36,28 @@ namespace FastDragon
 
         private void OnBodyEntered(Node3D body)
         {
-            if (body is Player player && !IsCurrent && !IsTimeTrialMode())
+            if (body is Player)
             {
-                SaveFileManager.Current.CurrentCheckpoint = CheckpointName;
-                SaveFileManager.Instance.RequestAutosave();
+                bool needsHealing = SaveFileManager.Current.PlayerHealth < Player.MaxHealth;
 
-                _sparkleBurst.Emitting = true;
-                EmitSignal(SignalName.Activated);
-                player.Camera.Shake(1, 5, 0.2f);
+                if (!IsCurrent || needsHealing)
+                    Activate();
             }
         }
 
-        private bool IsTimeTrialMode() => this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
+        private void Activate()
+        {
+            SaveFileManager.Current.CurrentCheckpoint = CheckpointName;
+            SaveFileManager.Current.PlayerHealth = Player.MaxHealth;
+
+            if (!this.IsTimeTrialMode())
+            {
+                SaveFileManager.Instance.RequestAutosave();
+            }
+
+            _sparkleBurst.Emitting = true;
+            EmitSignal(SignalName.Activated);
+            GetTree().FindNode<Player>().Camera.Shake(1, 5, 0.2f);
+        }
     }
 }

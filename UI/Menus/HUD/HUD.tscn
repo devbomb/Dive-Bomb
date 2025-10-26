@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://byhmelsic6fu5"]
 
-[ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://UI/Menus/HUD/HealthDisplay.tscn" id="1_54kkr"]
+[ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://UI/Menus/HUD/HealthDisplay/HealthDisplay.tscn" id="1_54kkr"]
 [ext_resource type="Script" uid="uid://b0d0o6cg22h0r" path="res://UI/Menus/HUD/HUD.cs" id="1_k3tfm"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="2_yq8w4"]
 [ext_resource type="Script" uid="uid://cromiohdg3esv" path="res://UI/Widgets/ContextuallyHiddenControl.cs" id="3_8mrjo"]
@@ -82,6 +82,8 @@ anchor_bottom = 0.0
 offset_left = 80.0
 offset_right = 162.0
 offset_bottom = 34.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PerformanceStats" type="VBoxContainer" parent="."]
 unique_name_in_owner = true

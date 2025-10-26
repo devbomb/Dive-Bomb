@@ -72,7 +72,7 @@ namespace FastDragon
 
         public void OpenMainPage()
         {
-            if (this.GetLevel()?.TimeTrial?.IsTimeTrialMode ?? false)
+            if (this.IsTimeTrialMode())
             {
                 ChangePage(_timeTrialMainPage);
                 _timeTrialButtons.GetChild<Button>(0).GrabFocus();

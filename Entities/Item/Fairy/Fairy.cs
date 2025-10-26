@@ -13,9 +13,9 @@ namespace FastDragon
         public bool VulnerableToRoll => CanBreak();
         public bool CausesBonk => !CanBreak();
 
-        public bool CanBreak() => EnoughGems() || IsTimeTrialMode();
+        public bool CanBreak() => EnoughGems() || this.IsTimeTrialMode();
         public bool EnoughGems() => (this.GetLevel()?.TotalGems ?? 0) >= GemCost;
-        public bool ShowPriceTag() => GemCost > 0 && !IsTimeTrialMode();
+        public bool ShowPriceTag() => GemCost > 0 && !this.IsTimeTrialMode();
 
         public string SaveKey { get; private set; }
 
@@ -77,15 +77,13 @@ namespace FastDragon
             }
 
             var level = this.GetLevel();
-            bool isTimeTrialMode = level?.TimeTrial.IsTimeTrialMode ?? false;
-
             if (level != null)
             {
                 level.GetProgress().CollectedFairies.Add(SaveKey);
                 level.GetProgress().SpentGems += GemCost;
             }
 
-            if (isTimeTrialMode)
+            if (this.IsTimeTrialMode())
             {
                 _stateMachine.ChangeState<QuickRescue>();
                 return;
@@ -101,11 +99,6 @@ namespace FastDragon
         public void OnBreakRejected()
         {
             EmitSignal(SignalName.BreakRejected);
-        }
-
-        private bool IsTimeTrialMode()
-        {
-            return this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
         }
 
         private void SetPausedForCutscene(bool paused)

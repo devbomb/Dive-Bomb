@@ -60,8 +60,6 @@ namespace FastDragon
             _crystalShape.Disabled = !enabled;
         }
 
-        private bool IsTimeTrialMode() => this.GetLevel()?.TimeTrial.IsTimeTrialMode ?? false;
-
         private Vector3 HiddenPos() => _revealedPosition + (Vector3.Up * HiddenHeight);
 
         private class Hidden : State<LevelExitCanon>

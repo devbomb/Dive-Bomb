@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://cys7esjw83l4i"]
+
+[ext_resource type="Script" uid="uid://c3lfwblqmkfgi" path="res://UI/Menus/HUD/HealthDisplay/HealthDisplay.cs" id="1_bhyls"]
+
+[sub_resource type="Gradient" id="Gradient_d043o"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.38735178, 0.5494071, 0.60474306)
+colors = PackedColorArray(0.5600576, 0, 0, 1.0214912, 0.72, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_562a7"]
+gradient = SubResource("Gradient_d043o")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_ywhaq"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.3043478, 0.47826087, 0.5612648, 0.58498025, 0.65217394, 0.681553)
+colors = PackedColorArray(0.49, 1, 0.49, 1, 0.3174373, 0.8189223, 0.3174373, 1, 0, 0.6, 0, 1, 0.26, 0.26, 0.26, 1, 0.53, 0.53, 0.53, 1, 0.42, 0.42, 0.42, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oxnwy"]
+gradient = SubResource("Gradient_ywhaq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="HealthDisplay" type="Control" node_paths=PackedStringArray("ProgressBar", "RestPoint", "CenterPoint")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_bhyls")
+ProgressBar = NodePath("ProgressBar")
+RestPoint = NodePath("RestPoint")
+CenterPoint = NodePath("CenterPoint")
+
+[node name="RestPoint" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 80.0
+grow_horizontal = 0
+
+[node name="CenterPoint" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 80.0
+grow_horizontal = 0
+pivot_offset = Vector2(32, 32)
+max_value = 4.0
+step = 0.0
+value = 3.0
+fill_mode = 5
+texture_under = SubResource("GradientTexture2D_562a7")
+texture_progress = SubResource("GradientTexture2D_oxnwy")

@@ -33,8 +33,9 @@ namespace FastDragon
         public void EnterTimeTrialMode()
         {
             IsTimeTrialMode = true;
-
+            IsTimerRunning = false;
             _targetTimes = CopyBestTimes();
+
             SaveFileManager.Current.CurrentCheckpoint = null;
             SignalBus.Instance.EmitLevelReset();
         }
@@ -43,6 +44,8 @@ namespace FastDragon
         {
             IsTimeTrialMode = false;
             IsTimerRunning = false;
+
+            SaveFileManager.Current.CurrentCheckpoint = null;
             SignalBus.Instance.EmitLevelReset();
         }
 
