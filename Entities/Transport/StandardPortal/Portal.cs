@@ -16,11 +16,9 @@ namespace FastDragon
         public Node3D PlayerSpawn => GetNode<Node3D>("%PlayerSpawnPoint");
 
         [ExportGroup("Internal")]
+        [Export] public PortalSurface PortalSurface;
         [Export] public RayCast3D _normalDetector;
         [Export] public Area3D _cameraDetector;
-
-
-        private PortalSurface _surface => GetNode<PortalSurface>("%PortalSurface");
 
         private MeshLabel3D _frontLabel => GetNode<MeshLabel3D>("%FrontLabel");
         private MeshLabel3D _backLabel => GetNode<MeshLabel3D>("%BackLabel");
@@ -38,7 +36,7 @@ namespace FastDragon
         public override void _Ready()
         {
             _skyboxEnvironment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
-            _surface.SetSkybox(_skyboxEnvironment);
+            PortalSurface.SetSkybox(_skyboxEnvironment);
 
             _frontLabel.Text = Text;
             _backLabel.Text = Text;
