@@ -49,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="FrontLabel" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.31054, 1.31197)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.189473, 1.31197)
 script = ExtResource("4_5wu7r")
 Text = "Level Name"
 Material = ExtResource("5_wlovi")
@@ -58,7 +58,7 @@ FontSize = 60
 
 [node name="BackLabel" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.311, -1.312)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.189933, -1.312)
 script = ExtResource("4_5wu7r")
 Text = "Level Name"
 Material = ExtResource("5_wlovi")
