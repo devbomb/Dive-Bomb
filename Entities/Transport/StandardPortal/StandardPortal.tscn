@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dahuf8m47kslw"]
+[gd_scene load_steps=20 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://bl17o4o3beiat" path="res://Entities/Transport/StandardPortal/LevelEntrancePortal.blend" id="2_u61om"]
@@ -58,6 +58,44 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="Animation" id="Animation_lle10"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_smk44"]
+resource_name = "Pulse"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 2.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smk44"]
+_data = {
+&"Pulse": SubResource("Animation_smk44"),
+&"RESET": SubResource("Animation_lle10")
+}
 
 [node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "FrontLabel", "BackLabel", "LabelAnimator", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
 script = ExtResource("1_6lbsj")
@@ -159,6 +197,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5497394, -2.5675054)
+
+[node name="LightPulseAnimator" type="AnimationPlayer" parent="OmniLight3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_smk44")
+}
+autoplay = "Pulse"
 
 [connection signal="body_entered" from="LabelEnabler" to="." method="ShowLabels" unbinds=1]
 [connection signal="body_exited" from="LabelEnabler" to="." method="HideLabels" unbinds=1]
