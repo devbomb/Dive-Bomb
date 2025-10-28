@@ -19,13 +19,16 @@ namespace FastDragon
         [Export] public PortalSurface PortalSurface;
         [Export] public TextureRect FullScreenPortalCamTexture;
 
-        [ExportSubgroup("Front")]
+        [ExportSubgroup("Labels")]
         [Export] public MeshInstance3D FrontLabel;
+        [Export] public MeshInstance3D BackLabel;
+        [Export] public AnimationPlayer LabelAnimator;
+
+        [ExportSubgroup("Front")]
         [Export] public Node3D PlayerEnterFrontPoint;
         [Export] public PathFollow3D CameraEnterFrontPath;
 
         [ExportSubgroup("Back")]
-        [Export] public MeshInstance3D BackLabel;
         [Export] public Node3D PlayerEnterBackPoint;
         [Export] public PathFollow3D CameraEnterBackPath;
 
@@ -43,12 +46,6 @@ namespace FastDragon
         {
             _skyboxEnvironment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
             PortalSurface.SetSkybox(_skyboxEnvironment);
-
-            // FrontLabel and BackLabel have the same non-unique(but still
-            // scene-local) TextMesh assigned to them in the editor, so we only
-            // need to modify one of them to update both of them.
-            var textMesh = (TextMesh)FrontLabel.Mesh;
-            textMesh.Text = Text;
 
             SignalBus.Instance.LevelReset += Reset;
             Reset();
@@ -78,6 +75,33 @@ namespace FastDragon
             _stateMachine.ChangeState<Exiting>();
         }
 
+        public void ShowLabels()
+        {
+            // Generating TextMesh text is relatively CPU-intensive; if every
+            // portal were to generate its text all at once at the start of the
+            // level, it would cause a noticeable hitch, which would spoil the
+            // smooth transition illusion.
+            //
+            // Therefore, we defer generating the mesh until the player comes
+            // within some range of the portal(detected via an Area3D placed in
+            // the editor, hence why it looks like nothing calls this method).
+            // That ensures at most one portal is generating text on frame 1 of
+            // the level, keeping the hitch short.
+            LabelAnimator.Play("Appear");
+
+            // FrontLabel and BackLabel have the same non-unique(but still
+            // scene-local) TextMesh assigned to them in the editor, so we only
+            // need to modify one of them to update both of them.
+            var textMesh = (TextMesh)FrontLabel.Mesh;
+            if (textMesh.Text != Text)
+                textMesh.Text = Text;
+        }
+
+        public void HideLabels()
+        {
+            LabelAnimator.Play("Disappear");
+        }
+
         private class Idle : State<Portal>
         {
         }
@@ -97,6 +121,8 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                Self.HideLabels();
+
                 _player = GetTree().FindNode<Player>();
                 _player.ChangeState<PlayerManhandledState>();
                 _player.SetVisibleInPortals(true);
@@ -136,9 +162,6 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
-                Self.FrontLabel.Scale = Vector3.One;
-                Self.BackLabel.Scale = Vector3.One;
-
                 _player.SetVisibleInPortals(false);
                 _player.BodyCollisionShape.Disabled = false;
             }
@@ -147,11 +170,6 @@ namespace FastDragon
             {
                 _timer += delta;
                 float t = (float)(_timer / Duration);
-
-                // Gradually hide the labels so they don't suddenly vanish when
-                // the animation completes
-                Self.FrontLabel.Scale = Vector3.One.Lerp(Vector3.Zero, t);
-                Self.BackLabel.Scale = Vector3.One.Lerp(Vector3.Zero, t);
 
                 // Continue the player's trajectory
                 _player.LocalVelocity += Vector3.Down * Player.Default.Gravity * (float)delta;
@@ -204,12 +222,6 @@ namespace FastDragon
                 var player = GetTree().FindNode<Player>();
                 _timer = 0;
 
-                // Start the labels hidden.  We'll gradually unhide them as the
-                // animation progresses, so they aren't suddenly visible when
-                // the level loads in.
-                Self.FrontLabel.Scale = Vector3.Zero;
-                Self.BackLabel.Scale = Vector3.Zero;
-
                 // Warp the player to the start pos of the animation
                 _exitAnimationStartPos = Self.PlayerSpawn.GlobalPosition;
                 _exitAnimationStartPos += Vector3.Up * Self.ExitAnimationStartHeight;
@@ -246,9 +258,6 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
-                Self.FrontLabel.Scale = Vector3.One;
-                Self.BackLabel.Scale = Vector3.One;
-
                 Self.FullScreenPortalCamTexture.Visible = false;
 
                 var player = GetTree().FindNode<Player>();
@@ -260,11 +269,6 @@ namespace FastDragon
                 _timer += delta;
 
                 float t = (float)_timer / Self.ExitAnimationDuration;
-
-                // Gradually reveal the labels so they don't suddenly appear
-                // when the level loads in
-                Self.FrontLabel.Scale = Vector3.Zero.Lerp(Vector3.One, t);
-                Self.BackLabel.Scale = Vector3.Zero.Lerp(Vector3.One, t);
 
                 // Move the player
                 var player = GetTree().FindNode<Player>();
