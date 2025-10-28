@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dahuf8m47kslw"]
+[gd_scene load_steps=17 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://bl17o4o3beiat" path="res://Entities/Transport/StandardPortal/LevelEntrancePortal.blend" id="2_u61om"]
@@ -14,6 +14,7 @@ radius = 15.0
 size = Vector3(5.227173, 2.7233887, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smk44"]
+transparency = 1
 albedo_color = Color(0, 0.9329225, 0, 1)
 metallic = 0.57
 metallic_specular = 0.0
@@ -26,6 +27,23 @@ resource_name = "LabelTextMesh"
 text = "Level Name"
 font = ExtResource("6_smk44")
 font_size = 60
+
+[sub_resource type="Gradient" id="Gradient_lle10"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.22222222, 0.3935185, 0.6157407, 0.7962963, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6975779, 0, 0, 0, 0.8235294, 0, 0, 0, 0.8235294, 0, 0, 0, 0.6945429, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_smk44"]
+gradient = SubResource("Gradient_lle10")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnpha"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_smk44")
+
+[sub_resource type="QuadMesh" id="QuadMesh_je0xt"]
+material = SubResource("StandardMaterial3D_lnpha")
+size = Vector2(8, 0.6)
 
 [sub_resource type="Curve3D" id="Curve3D_smk44"]
 _data = {
@@ -95,11 +113,19 @@ material_override = SubResource("StandardMaterial3D_smk44")
 mesh = SubResource("TextMesh_lle10")
 skeleton = NodePath("../../Front")
 
+[node name="Backdrop" type="MeshInstance3D" parent="Labels/FrontLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_je0xt")
+
 [node name="BackLabel" type="MeshInstance3D" parent="Labels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.312)
 material_override = SubResource("StandardMaterial3D_smk44")
 mesh = SubResource("TextMesh_lle10")
 skeleton = NodePath("../../Back")
+
+[node name="Backdrop" type="MeshInstance3D" parent="Labels/BackLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_je0xt")
 
 [node name="Front" type="Node3D" parent="."]
 
