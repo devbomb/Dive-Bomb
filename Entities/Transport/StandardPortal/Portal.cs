@@ -17,6 +17,7 @@ namespace FastDragon
 
         [ExportGroup("Internal")]
         [Export] public PortalSurface PortalSurface;
+        [Export] public TextureRect FullScreenPortalCamTexture;
 
         [ExportSubgroup("Front")]
         [Export] public MeshLabel3D FrontLabel;
@@ -221,12 +222,31 @@ namespace FastDragon
 
                 player.Camera.OrbitYawRad = Self.PlayerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
                 player.Camera.OrbitPitchRad = 0;
+                player.Camera.ApplyAnglesAndDistance();
+                player.Camera.ResetPhysicsInterpolation3D();
+
+                // HACK: For whatever reason, portal surface textures don't
+                // become visible immediately when the level loads.  To prevent
+                // the player from briefly seeing behind the portal, temporarily
+                // make the portal cam's texture occupy the entire screen.
+                Self.PortalSurface.PortalCamera.GlobalTransform = player.Camera.GlobalTransform;
+                Self.FullScreenPortalCamTexture.Texture = Self.PortalSurface.SubViewport.GetTexture();
+                Self.FullScreenPortalCamTexture.Visible = true;
+            }
+
+            public override void _Process(double delta)
+            {
+                // HACK: Hide the portal cam screen overlay after we know
+                // the portal texture is visible
+                Self.FullScreenPortalCamTexture.Visible = false;
             }
 
             public override void OnStateExited()
             {
                 Self.FrontLabel.Scale = Vector3.One;
                 Self.BackLabel.Scale = Vector3.One;
+
+                Self.FullScreenPortalCamTexture.Visible = false;
 
                 var player = GetTree().FindNode<Player>();
                 player.SetVisibleInPortals(false);
@@ -243,6 +263,7 @@ namespace FastDragon
                 Self.FrontLabel.Scale = Vector3.Zero.Lerp(Vector3.One, t);
                 Self.BackLabel.Scale = Vector3.Zero.Lerp(Vector3.One, t);
 
+                // Move the player
                 var player = GetTree().FindNode<Player>();
                 player.GlobalPosition = _exitAnimationStartPos.LerpParabola(
                     Self.PlayerSpawn.GlobalPosition,

@@ -25,10 +25,11 @@ _data = {
 }
 point_count = 2
 
-[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FrontLabel", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "BackLabel", "PlayerEnterBackPoint", "CameraEnterBackPath")]
+[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "FrontLabel", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "BackLabel", "PlayerEnterBackPoint", "CameraEnterBackPath")]
 script = ExtResource("1_6lbsj")
 PlayerSpawn = NodePath("PlayerSpawnPoint")
 PortalSurface = NodePath("LevelEntrancePortal/PortalSurface")
+FullScreenPortalCamTexture = NodePath("FullScreenPortalCamTexture")
 FrontLabel = NodePath("Front/FrontLabel")
 PlayerEnterFrontPoint = NodePath("Front/PlayerEnterFrontPoint")
 CameraEnterFrontPath = NodePath("Front/CameraEnterFrontPath/CameraEnterFrontPathFollower")
@@ -90,6 +91,15 @@ curve = SubResource("Curve3D_lnpha")
 
 [node name="CameraEnterBackPathFollower" type="PathFollow3D" parent="Back/CameraEnterBackPath"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="FullScreenPortalCamTexture" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="OnBodyEntered"]
 
