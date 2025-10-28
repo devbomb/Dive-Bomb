@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bm8o1f2kf22ac"]
+
+[ext_resource type="Shader" uid="uid://bdepvbjc4oe3i" path="res://Entities/Transport/StandardPortal/Materials/LEDBlink.gdshader" id="1_kkdsv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1w3kv"]
+render_priority = 0
+shader = ExtResource("1_kkdsv")
+shader_parameter/on_color = Color(1, 0, 0, 1)
+shader_parameter/off_color = Color(0.28235295, 0, 0, 1)
+shader_parameter/blink_period = 1.0
+shader_parameter/blink_time_offset = 0.0
+
+[resource]
+resource_name = "RedLED"
+next_pass = SubResource("ShaderMaterial_1w3kv")
+cull_mode = 1
+shading_mode = 2
+albedo_color = Color(0.36453345, 0, 0.018237006, 1)
+grow = true
+grow_amount = 0.2
