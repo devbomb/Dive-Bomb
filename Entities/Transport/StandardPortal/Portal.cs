@@ -20,12 +20,12 @@ namespace FastDragon
         [Export] public TextureRect FullScreenPortalCamTexture;
 
         [ExportSubgroup("Front")]
-        [Export] public MeshLabel3D FrontLabel;
+        [Export] public MeshInstance3D FrontLabel;
         [Export] public Node3D PlayerEnterFrontPoint;
         [Export] public PathFollow3D CameraEnterFrontPath;
 
         [ExportSubgroup("Back")]
-        [Export] public MeshLabel3D BackLabel;
+        [Export] public MeshInstance3D BackLabel;
         [Export] public Node3D PlayerEnterBackPoint;
         [Export] public PathFollow3D CameraEnterBackPath;
 
@@ -44,8 +44,11 @@ namespace FastDragon
             _skyboxEnvironment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
             PortalSurface.SetSkybox(_skyboxEnvironment);
 
-            FrontLabel.Text = Text;
-            BackLabel.Text = Text;
+            // FrontLabel and BackLabel have the same non-unique(but still
+            // scene-local) TextMesh assigned to them in the editor, so we only
+            // need to modify one of them to update both of them.
+            var textMesh = (TextMesh)FrontLabel.Mesh;
+            textMesh.Text = Text;
 
             SignalBus.Instance.LevelReset += Reset;
             Reset();

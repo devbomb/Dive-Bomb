@@ -3,13 +3,20 @@
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://bl17o4o3beiat" path="res://Entities/Transport/StandardPortal/LevelEntrancePortal.blend" id="2_u61om"]
 [ext_resource type="Script" uid="uid://2c4cobid61l8" path="res://Entities/Transport/StandardPortal/PortalSurface.cs" id="3_smk44"]
-[ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="4_5wu7r"]
 [ext_resource type="Shader" uid="uid://w4lfqpwrni8i" path="res://Entities/Transport/StandardPortal/PortalSurface.gdshader" id="4_lnpha"]
 [ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="5_wlovi"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="6_ud3tx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut6y6"]
 size = Vector3(5.227173, 2.7233887, 0.25)
+
+[sub_resource type="TextMesh" id="TextMesh_lle10"]
+resource_local_to_scene = true
+resource_name = "LabelTextMesh"
+material = ExtResource("5_wlovi")
+text = "Level Name"
+font = ExtResource("6_ud3tx")
+font_size = 60
 
 [sub_resource type="Curve3D" id="Curve3D_smk44"]
 _data = {
@@ -54,13 +61,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="Front" type="Node3D" parent="."]
 
-[node name="FrontLabel" type="Node3D" parent="Front"]
+[node name="FrontLabel" type="MeshInstance3D" parent="Front"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.189933, -1.312)
-script = ExtResource("4_5wu7r")
-Text = "Level Name"
-Material = ExtResource("5_wlovi")
-Font = ExtResource("6_ud3tx")
-FontSize = 60
+mesh = SubResource("TextMesh_lle10")
 
 [node name="PlayerEnterFrontPoint" type="Marker3D" parent="Front"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.103, 4)
@@ -74,13 +77,9 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 
 [node name="Back" type="Node3D" parent="."]
 
-[node name="BackLabel" type="Node3D" parent="Back"]
+[node name="BackLabel" type="MeshInstance3D" parent="Back"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.189473, 1.31197)
-script = ExtResource("4_5wu7r")
-Text = "Level Name"
-Material = ExtResource("5_wlovi")
-Font = ExtResource("6_ud3tx")
-FontSize = 60
+mesh = SubResource("TextMesh_lle10")
 
 [node name="PlayerEnterBackPoint" type="Marker3D" parent="Back"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.103, -4)
