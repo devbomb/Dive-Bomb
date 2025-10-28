@@ -35,6 +35,7 @@ namespace FastDragon
         [Export] public PlayerCameraFocusPoint CameraFocus;
 
         [ExportGroup("Hitboxes")]
+        [Export] public CollisionShape3D BodyCollisionShape;
         [Export] public Area3D KickHitbox;
         [Export] public Area3D DiveExtraHitbox;
         [Export] public Area3D RollExtraHitbox;

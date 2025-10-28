@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dahuf8m47kslw"]
+[gd_scene load_steps=11 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://bl17o4o3beiat" path="res://Entities/Transport/StandardPortal/LevelEntrancePortal.blend" id="2_u61om"]
@@ -11,13 +11,30 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut6y6"]
 size = Vector3(5.227173, 2.7233887, 0.25)
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lle10"]
+[sub_resource type="Curve3D" id="Curve3D_smk44"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
-[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PortalSurface", "_normalDetector", "_cameraDetector")]
+[sub_resource type="Curve3D" id="Curve3D_lnpha"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FrontLabel", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "BackLabel", "PlayerEnterBackPoint", "CameraEnterBackPath")]
 script = ExtResource("1_6lbsj")
+PlayerSpawn = NodePath("PlayerSpawnPoint")
 PortalSurface = NodePath("LevelEntrancePortal/PortalSurface")
-_normalDetector = NodePath("PlayerDetector/NormalDetector")
-_cameraDetector = NodePath("CameraDetector")
+FrontLabel = NodePath("Front/FrontLabel")
+PlayerEnterFrontPoint = NodePath("Front/PlayerEnterFrontPoint")
+CameraEnterFrontPath = NodePath("Front/CameraEnterFrontPath/CameraEnterFrontPathFollower")
+BackLabel = NodePath("Back/BackLabel")
+PlayerEnterBackPoint = NodePath("Back/PlayerEnterBackPoint")
+CameraEnterBackPath = NodePath("Back/CameraEnterBackPath/CameraEnterBackPathFollower")
 
 [node name="LevelEntrancePortal" parent="." instance=ExtResource("2_u61om")]
 
@@ -31,24 +48,32 @@ PortalSurfaceShader = ExtResource("4_lnpha")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020812988, 2.6514893, 0)
 shape = SubResource("BoxShape3D_ut6y6")
 
-[node name="NormalDetector" type="RayCast3D" parent="PlayerDetector"]
-exclude_parent = false
-collide_with_areas = true
-collide_with_bodies = false
-
-[node name="CameraDetector" type="Area3D" parent="."]
-
-[node name="CameraDetectorPlane" type="CollisionShape3D" parent="CameraDetector"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_lle10")
-
 [node name="PlayerSpawnPoint" type="Marker3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
-[node name="FrontLabel" type="Node3D" parent="."]
-unique_name_in_owner = true
+[node name="Front" type="Node3D" parent="."]
+
+[node name="FrontLabel" type="Node3D" parent="Front"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.189933, -1.312)
+script = ExtResource("4_5wu7r")
+Text = "Level Name"
+Material = ExtResource("5_wlovi")
+Font = ExtResource("6_ud3tx")
+FontSize = 60
+
+[node name="PlayerEnterFrontPoint" type="Marker3D" parent="Front"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.103, 4)
+
+[node name="CameraEnterFrontPath" type="Path3D" parent="Front"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.633176, -0.8445691)
+curve = SubResource("Curve3D_smk44")
+
+[node name="CameraEnterFrontPathFollower" type="PathFollow3D" parent="Front/CameraEnterFrontPath"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -2)
+
+[node name="Back" type="Node3D" parent="."]
+
+[node name="BackLabel" type="Node3D" parent="Back"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.189473, 1.31197)
 script = ExtResource("4_5wu7r")
 Text = "Level Name"
@@ -56,14 +81,15 @@ Material = ExtResource("5_wlovi")
 Font = ExtResource("6_ud3tx")
 FontSize = 60
 
-[node name="BackLabel" type="Node3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.189933, -1.312)
-script = ExtResource("4_5wu7r")
-Text = "Level Name"
-Material = ExtResource("5_wlovi")
-Font = ExtResource("6_ud3tx")
-FontSize = 60
+[node name="PlayerEnterBackPoint" type="Marker3D" parent="Back"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.103, -4)
+
+[node name="CameraEnterBackPath" type="Path3D" parent="Back"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.633, 0.845)
+curve = SubResource("Curve3D_lnpha")
+
+[node name="CameraEnterBackPathFollower" type="PathFollow3D" parent="Back/CameraEnterBackPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="OnBodyEntered"]
 

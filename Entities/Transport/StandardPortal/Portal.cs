@@ -13,15 +13,20 @@ namespace FastDragon
         [Export] public float ExitAnimationStartHeight = 0;
         [Export] public float ExitAnimationParabolaHeight = 2;
 
-        public Node3D PlayerSpawn => GetNode<Node3D>("%PlayerSpawnPoint");
+        [Export] public Node3D PlayerSpawn;
 
         [ExportGroup("Internal")]
         [Export] public PortalSurface PortalSurface;
-        [Export] public RayCast3D _normalDetector;
-        [Export] public Area3D _cameraDetector;
 
-        private MeshLabel3D _frontLabel => GetNode<MeshLabel3D>("%FrontLabel");
-        private MeshLabel3D _backLabel => GetNode<MeshLabel3D>("%BackLabel");
+        [ExportSubgroup("Front")]
+        [Export] public MeshLabel3D FrontLabel;
+        [Export] public Node3D PlayerEnterFrontPoint;
+        [Export] public PathFollow3D CameraEnterFrontPath;
+
+        [ExportSubgroup("Back")]
+        [Export] public MeshLabel3D BackLabel;
+        [Export] public Node3D PlayerEnterBackPoint;
+        [Export] public PathFollow3D CameraEnterBackPath;
 
         private readonly StateMachine _stateMachine = new();
 
@@ -38,8 +43,8 @@ namespace FastDragon
             _skyboxEnvironment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
             PortalSurface.SetSkybox(_skyboxEnvironment);
 
-            _frontLabel.Text = Text;
-            _backLabel.Text = Text;
+            FrontLabel.Text = Text;
+            BackLabel.Text = Text;
 
             SignalBus.Instance.LevelReset += Reset;
             Reset();
@@ -61,12 +66,7 @@ namespace FastDragon
 
         public void PlayEnterAnimation(Player player)
         {
-            UpdatePlayerTargetRot(player);
-
-            if (player.IsOnFloor())
-                _stateMachine.ChangeState<Jumping>();
-            else
-                _stateMachine.ChangeState<Flying>();
+            _stateMachine.ChangeState<Entering>();
         }
 
         public void PlayExitAnimation()
@@ -78,60 +78,104 @@ namespace FastDragon
         {
         }
 
-        private class Jumping : State<Portal>
+        private class Entering : State<Portal>
         {
+            private const double Duration = 1;
+
             private Player _player;
+            private Transform3D _playerStartPos;
+            private Transform3D _playerTrajectoryPos;
+            private Transform3D _playerTargetPos;
+
+            private PathFollow3D _cameraPath;
+
+            private double _timer;
 
             public override void OnStateEntered()
             {
                 _player = GetTree().FindNode<Player>();
-
-                _player.SetVisibleInPortals(true);
                 _player.ChangeState<PlayerManhandledState>();
-                _player.Animator.Play("Jump");
-                _player.Velocity = Vector3.Up * Player.Jump.InitVSpeed;
-            }
-
-            public override void _PhysicsProcess(double deltaD)
-            {
-                float delta = (float)deltaD;
-
-                _player.Velocity += Vector3.Down * Player.Default.Gravity * delta;
-                _player.GlobalPosition += _player.Velocity * delta;
-
-                Self.RotatePlayer(_player,  delta);
-                Self.RecenterCamera(_player, delta);
-
-                if (_player.Velocity.Y <= 0)
-                    ChangeState<Flying>();
-            }
-        }
-
-        private class Flying : State<Portal>
-        {
-            private Player _player;
-
-            public override void OnStateEntered()
-            {
-                _player = GetTree().FindNode<Player>();
-
                 _player.SetVisibleInPortals(true);
-                _player.ChangeState<PlayerManhandledState>();
-                _player.Animator.Play("Dive");
-            }
+                _playerStartPos = _player.GlobalTransform;
+                _playerTrajectoryPos = _player.GlobalTransform;
 
-            public override void _PhysicsProcess(double deltaD)
-            {
-                float delta = (float)deltaD;
-
-                if (CameraIsBehindPlayer())
-                    _player.GlobalPosition += _player.GlobalForward() * Player.Glide.MaxFSpeed * delta;
-
-                Self.RotatePlayer(_player, delta);
-                Self.RecenterCamera(_player, delta);
-
-                if (CameraIsTouchingPortal() && CameraIsBehindPlayer())
+                // Force the player into a diving-like motion if they weren't
+                // already diving to begin with
+                if (_player.Animator.CurrentAnimation != "Dive")
                 {
+                    _player.Animator.Play("Dive");
+                    _player.VSpeed = Player.Dive.InitialVSpeed;
+                    _player.FSpeed = Player.Dive.FSpeed;
+                }
+
+                // Disable the player's collision so they don't die when this
+                // animation inevitably takes them out of bounds
+                _player.BodyCollisionShape.Disabled = true;
+
+                _player.Camera.StartManhandling(_player.Camera.GlobalTransform, (float)Duration);
+
+                if (IsEnteringFromFront(_player.Velocity))
+                {
+                    _cameraPath = Self.CameraEnterFrontPath;
+                    _playerTargetPos = Self.PlayerEnterFrontPoint.GlobalTransform;
+                }
+                else
+                {
+                    _cameraPath = Self.CameraEnterBackPath;
+                    _playerTargetPos = Self.PlayerEnterBackPoint.GlobalTransform;
+                }
+
+                _cameraPath.ProgressRatio = 0;
+
+                _timer = 0;
+            }
+
+            public override void OnStateExited()
+            {
+                Self.FrontLabel.Scale = Vector3.One;
+                Self.BackLabel.Scale = Vector3.One;
+
+                _player.SetVisibleInPortals(false);
+                _player.BodyCollisionShape.Disabled = false;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer += delta;
+                float t = (float)(_timer / Duration);
+
+                // Gradually hide the labels so they don't suddenly vanish when
+                // the animation completes
+                Self.FrontLabel.Scale = Vector3.One.Lerp(Vector3.Zero, t);
+                Self.BackLabel.Scale = Vector3.One.Lerp(Vector3.Zero, t);
+
+                // Continue the player's trajectory
+                _player.LocalVelocity += Vector3.Down * Player.Default.Gravity * (float)delta;
+                _playerTrajectoryPos.Origin += _player.Velocity * (float)delta;
+
+                var rot = _player.LocalVelocity.Normalized().ForwardToEulerAnglesRad();
+                _player.ModelPitchRad = rot.X;
+
+                // Smoothly transition the player from following the trajectory
+                // toward being lerped to the target point
+                var lerpPos = _playerStartPos.InterpolateWith(_playerTargetPos, t);
+                _player.GlobalTransform = _playerTrajectoryPos.InterpolateWith(lerpPos, t);
+
+                // Move the camera along the path
+                _cameraPath.ProgressRatio = t;
+                _player.Camera.ManhandledPosition = _cameraPath.GlobalTransform.LookingAt(_player.CameraFocus.GlobalPosition);
+
+                // Go to the loading screen when the player and camera are in
+                // position
+                if (_timer >= Duration)
+                {
+                    _player.GlobalTransform = _playerTargetPos;
+
+                    _cameraPath.ProgressRatio = 1;
+                    _player.Camera.ManhandledPosition = _cameraPath.GlobalTransform.LookingAt(_player.CameraFocus.GlobalPosition);
+                    _player.Camera.GlobalTransform = _player.Camera.ManhandledPosition;
+                    _player.Camera.ResetPhysicsInterpolation3D();
+
                     LevelTransitionManager.Instance.EnterLevel(
                         Self.TargetLevel,
                         Self._skyboxEnvironment
@@ -139,27 +183,10 @@ namespace FastDragon
                 }
             }
 
-            private bool CameraIsTouchingPortal()
+            private bool IsEnteringFromFront(Vector3 playerVelocity)
             {
-                foreach (var area in Self._cameraDetector.GetOverlappingAreas())
-                {
-                    if (area.IsInGroup("CameraArea"))
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-
-            private bool CameraIsBehindPlayer()
-            {
-                float angleDiffRad = Mathf.AngleDifference(
-                    Self._playerTargetRotRad.Y,
-                    _player.Camera.OrbitYawRad
-                );
-
-                return Mathf.Abs(angleDiffRad) < Mathf.DegToRad(45);
+                var forward = Self.GlobalForward();
+                return playerVelocity.ComponentAlong(forward) < 0;
             }
         }
 
@@ -172,6 +199,12 @@ namespace FastDragon
             {
                 var player = GetTree().FindNode<Player>();
                 _timer = 0;
+
+                // Start the labels hidden.  We'll gradually unhide them as the
+                // animation progresses, so they aren't suddenly visible when
+                // the level loads in.
+                Self.FrontLabel.Scale = Vector3.Zero;
+                Self.BackLabel.Scale = Vector3.Zero;
 
                 // Warp the player to the start pos of the animation
                 _exitAnimationStartPos = Self.PlayerSpawn.GlobalPosition;
@@ -192,6 +225,9 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
+                Self.FrontLabel.Scale = Vector3.One;
+                Self.BackLabel.Scale = Vector3.One;
+
                 var player = GetTree().FindNode<Player>();
                 player.SetVisibleInPortals(false);
             }
@@ -201,6 +237,11 @@ namespace FastDragon
                 _timer += delta;
 
                 float t = (float)_timer / Self.ExitAnimationDuration;
+
+                // Gradually reveal the labels so they don't suddenly appear
+                // when the level loads in
+                Self.FrontLabel.Scale = Vector3.Zero.Lerp(Vector3.One, t);
+                Self.BackLabel.Scale = Vector3.Zero.Lerp(Vector3.One, t);
 
                 var player = GetTree().FindNode<Player>();
                 player.GlobalPosition = _exitAnimationStartPos.LerpParabola(
@@ -220,64 +261,5 @@ namespace FastDragon
             }
         }
 
-        private void UpdatePlayerTargetRot(Player player)
-        {
-            // Use a raycast to find what the collision with the player would
-            // be, if the portal were solid
-            _normalDetector.GlobalPosition = player.GlobalPosition;
-            _normalDetector.TargetPosition = GlobalPosition - _normalDetector.GlobalPosition;
-            _normalDetector.GlobalRotation = Vector3.Zero;
-            _normalDetector.ForceUpdateTransform();
-            _normalDetector.ForceRaycastUpdate();
-
-            // Decide which way to rotate the player when they start flying
-            Vector3 forwardDir = _normalDetector.GetCollisionNormal();
-            Vector3 forwardRad = forwardDir.ForwardToEulerAnglesRad();
-            Vector3 backwardRad = forwardRad + (Vector3.Up * Mathf.DegToRad(180));
-            float angleToPlayerRad = (GlobalPosition - player.GlobalPosition)
-                .ForwardToEulerAnglesRad()
-                .Y;
-
-            float diffToForwardRad = AngleMath.Difference(angleToPlayerRad, forwardRad.Y);
-            float diffToBackwardRad = AngleMath.Difference(angleToPlayerRad, backwardRad.Y);
-
-            bool isForward = Mathf.Abs(diffToForwardRad) < Mathf.Abs(diffToBackwardRad);
-
-            _playerTargetRotRad = isForward
-                ? forwardRad
-                : backwardRad;
-
-            // Orient the camera detector plane to be perpendicular to the
-            // normal
-            _cameraDetector.GlobalPosition = _normalDetector.GetCollisionPoint();
-            _cameraDetector.GlobalRotation = isForward
-                ? backwardRad
-                : forwardRad;
-        }
-
-        private void RotatePlayer(Player player, float delta)
-        {
-            player.GlobalRotation = player.GlobalRotation.RotateTowardEulerRad(
-                _playerTargetRotRad,
-                delta * Mathf.DegToRad(180)
-            );
-        }
-
-        private void RecenterCamera(Player player, float delta)
-        {
-            player.Camera.OrbitYawRad = AngleMath.DecayToward(
-                player.Camera.OrbitYawRad,
-                _playerTargetRotRad.Y,
-                5,
-                delta
-            );
-
-            player.Camera.OrbitPitchRad = AngleMath.DecayToward(
-                player.Camera.OrbitPitchRad,
-                0,
-                5,
-                delta
-            );
-        }
     }
 }

@@ -43,12 +43,12 @@ namespace FastDragon
 
                 AnimationName = oldPlayer.Animator.AssignedAnimation,
                 AnimationStartTime = oldPlayer.Animator.CurrentAnimationPosition,
-                PlayerStartRotRad = oldPlayer.GlobalRotation,
+                PlayerStartRotRad = oldPlayer.Model.GlobalRotation,
 
                 CameraFocusPos = oldPlayer.CameraFocus.GlobalPosition - oldPlayer.GlobalPosition,
-                CameraDist = oldPlayer.Camera.OrbitDistance,
-                CameraYawRad = oldPlayer.Camera.OrbitYawRad,
-                CameraPitchRad = oldPlayer.Camera.OrbitPitchRad
+                CameraDist = oldPlayer.Camera.GlobalPosition.DistanceTo(oldPlayer.CameraFocus.GlobalPosition),
+                CameraYawRad = oldPlayer.Camera.GlobalRotation.Y,
+                CameraPitchRad = oldPlayer.Camera.GlobalRotation.X
             };
         }
     }
