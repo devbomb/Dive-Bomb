@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dewbsecj6bvvu"]
+
+[resource]
+resource_name = "HoseBlack"
+cull_mode = 2
+shading_mode = 2
+albedo_color = Color(0.30894136, 0.2293566, 0.3102152, 1)
+roughness = 0.71761656

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://deysw1iny31lb"]
+
+[resource]
+resource_name = "Feet"
+cull_mode = 2
+shading_mode = 2
+albedo_color = Color(0.47483435, 0.47017914, 0.06250864, 1)
