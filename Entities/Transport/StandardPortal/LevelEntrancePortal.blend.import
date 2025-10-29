@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b7e27lthcl3fx"
-path="res://.godot/imported/StandardPortalFrame.blend-f8ae13ac0a225979a232863462ac193e.scn"
+uid="uid://bl17o4o3beiat"
+path="res://.godot/imported/LevelEntrancePortal.blend-a9877cbd6dec06777ec38d28060ff298.scn"
 
 [deps]
 
-source_file="res://Entities/Transport/StandardPortal/StandardPortalFrame.blend"
-dest_files=["res://.godot/imported/StandardPortalFrame.blend-f8ae13ac0a225979a232863462ac193e.scn"]
+source_file="res://Entities/Transport/StandardPortal/LevelEntrancePortal.blend"
+dest_files=["res://.godot/imported/LevelEntrancePortal.blend-a9877cbd6dec06777ec38d28060ff298.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -34,9 +34,9 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=0
+materials/extract=1
 materials/extract_format=0
-materials/extract_path=""
+materials/extract_path="res://Entities/Transport/StandardPortal/Materials"
 _subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
@@ -56,4 +56,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2

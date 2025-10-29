@@ -1,73 +1,216 @@
-[gd_scene load_steps=11 format=3 uid="uid://dahuf8m47kslw"]
+[gd_scene load_steps=20 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
-[ext_resource type="PackedScene" uid="uid://b7e27lthcl3fx" path="res://Entities/Transport/StandardPortal/StandardPortalFrame.blend" id="2_gcmbj"]
+[ext_resource type="PackedScene" uid="uid://bl17o4o3beiat" path="res://Entities/Transport/StandardPortal/LevelEntrancePortal.blend" id="2_u61om"]
 [ext_resource type="Script" uid="uid://2c4cobid61l8" path="res://Entities/Transport/StandardPortal/PortalSurface.cs" id="3_smk44"]
-[ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="4_5wu7r"]
 [ext_resource type="Shader" uid="uid://w4lfqpwrni8i" path="res://Entities/Transport/StandardPortal/PortalSurface.gdshader" id="4_lnpha"]
-[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="5_wlovi"]
-[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="6_ud3tx"]
+[ext_resource type="AnimationLibrary" uid="uid://b806gdpivx17x" path="res://Entities/Transport/StandardPortal/PortalLabelAnimations.tres" id="5_smk44"]
+[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="6_smk44"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_smk44"]
+radius = 15.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut6y6"]
-size = Vector3(6, 5, 0.25)
+size = Vector3(5.227173, 2.7233887, 0.25)
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lle10"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smk44"]
+transparency = 1
+albedo_color = Color(0, 0.9329225, 0, 1)
+metallic = 0.57
+metallic_specular = 0.0
+roughness = 0.51
+rim_enabled = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_yv7cl"]
-size = Vector3(6, 5, 0.25)
+[sub_resource type="TextMesh" id="TextMesh_lle10"]
+resource_local_to_scene = true
+resource_name = "LabelTextMesh"
+text = "Level Name"
+font = ExtResource("6_smk44")
+font_size = 60
 
-[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("_normalDetector", "_cameraDetector")]
+[sub_resource type="Gradient" id="Gradient_lle10"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.22222222, 0.3935185, 0.6157407, 0.7962963, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6975779, 0, 0, 0, 0.8235294, 0, 0, 0, 0.8235294, 0, 0, 0, 0.6945429, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_smk44"]
+gradient = SubResource("Gradient_lle10")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnpha"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_smk44")
+
+[sub_resource type="QuadMesh" id="QuadMesh_je0xt"]
+material = SubResource("StandardMaterial3D_lnpha")
+size = Vector2(8, 0.6)
+
+[sub_resource type="Curve3D" id="Curve3D_smk44"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_lnpha"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_smk44"]
+resource_name = "Pulse"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 2.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_lle10"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smk44"]
+_data = {
+&"Pulse": SubResource("Animation_smk44"),
+&"RESET": SubResource("Animation_lle10")
+}
+
+[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "FrontLabel", "BackLabel", "LabelAnimator", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
 script = ExtResource("1_6lbsj")
-_normalDetector = NodePath("PlayerDetector/NormalDetector")
-_cameraDetector = NodePath("CameraDetector")
+PlayerSpawn = NodePath("PlayerSpawnPoint")
+PortalSurface = NodePath("LevelEntrancePortal/PortalSurface")
+FullScreenPortalCamTexture = NodePath("FullScreenPortalCamTexture")
+FrontLabel = NodePath("Labels/FrontLabel")
+BackLabel = NodePath("Labels/BackLabel")
+LabelAnimator = NodePath("Labels/LabelAnimator")
+PlayerEnterFrontPoint = NodePath("Front/PlayerEnterFrontPoint")
+CameraEnterFrontPath = NodePath("Front/CameraEnterFrontPath/CameraEnterFrontPathFollower")
+PlayerEnterBackPoint = NodePath("Back/PlayerEnterBackPoint")
+CameraEnterBackPath = NodePath("Back/CameraEnterBackPath/CameraEnterBackPathFollower")
 
-[node name="StandardPortalFrame" parent="." instance=ExtResource("2_gcmbj")]
+[node name="LevelEntrancePortal" parent="." instance=ExtResource("2_u61om")]
+
+[node name="PortalSurface" parent="LevelEntrancePortal" index="2"]
+script = ExtResource("3_smk44")
+PortalSurfaceShader = ExtResource("4_lnpha")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-3.5, 0, -1, 7, 6, 2)
+
+[node name="LabelEnabler" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LabelEnabler"]
+shape = SubResource("SphereShape3D_smk44")
 
 [node name="PlayerDetector" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020812988, 2.6514893, 0)
 shape = SubResource("BoxShape3D_ut6y6")
 
-[node name="NormalDetector" type="RayCast3D" parent="PlayerDetector"]
-exclude_parent = false
-collide_with_areas = true
-collide_with_bodies = false
-
-[node name="CameraDetector" type="Area3D" parent="."]
-
-[node name="CameraDetectorPlane" type="CollisionShape3D" parent="CameraDetector"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_lle10")
-
-[node name="PortalSurface" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-mesh = SubResource("BoxMesh_yv7cl")
-script = ExtResource("3_smk44")
-PortalSurfaceShader = ExtResource("4_lnpha")
-
 [node name="PlayerSpawnPoint" type="Marker3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
-[node name="FrontLabel" type="Node3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.31054, 1.31197)
-script = ExtResource("4_5wu7r")
-Text = "Level Name"
-Material = ExtResource("5_wlovi")
-Font = ExtResource("6_ud3tx")
-FontSize = 60
+[node name="Labels" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19, 0)
+visible = false
 
-[node name="BackLabel" type="Node3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.311, -1.312)
-script = ExtResource("4_5wu7r")
-Text = "Level Name"
-Material = ExtResource("5_wlovi")
-Font = ExtResource("6_ud3tx")
-FontSize = 60
+[node name="LabelAnimator" type="AnimationPlayer" parent="Labels"]
+deterministic = true
+libraries = {
+&"": ExtResource("5_smk44")
+}
+next/Appear = &"Hover"
+blend_times = [&"Appear", &"Hover", 1.0]
 
+[node name="FrontLabel" type="MeshInstance3D" parent="Labels"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.312)
+material_override = SubResource("StandardMaterial3D_smk44")
+mesh = SubResource("TextMesh_lle10")
+skeleton = NodePath("../../Front")
+
+[node name="Backdrop" type="MeshInstance3D" parent="Labels/FrontLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_je0xt")
+
+[node name="BackLabel" type="MeshInstance3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.312)
+material_override = SubResource("StandardMaterial3D_smk44")
+mesh = SubResource("TextMesh_lle10")
+skeleton = NodePath("../../Back")
+
+[node name="Backdrop" type="MeshInstance3D" parent="Labels/BackLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_je0xt")
+
+[node name="Front" type="Node3D" parent="."]
+
+[node name="PlayerEnterFrontPoint" type="Marker3D" parent="Front"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.103, 4)
+
+[node name="CameraEnterFrontPath" type="Path3D" parent="Front"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.633176, -0.8445691)
+curve = SubResource("Curve3D_smk44")
+
+[node name="CameraEnterFrontPathFollower" type="PathFollow3D" parent="Front/CameraEnterFrontPath"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -2)
+
+[node name="Back" type="Node3D" parent="."]
+
+[node name="PlayerEnterBackPoint" type="Marker3D" parent="Back"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.103, -4)
+
+[node name="CameraEnterBackPath" type="Path3D" parent="Back"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.633, 0.845)
+curve = SubResource("Curve3D_lnpha")
+
+[node name="CameraEnterBackPathFollower" type="PathFollow3D" parent="Back/CameraEnterBackPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="FullScreenPortalCamTexture" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5497394, -2.5675054)
+
+[node name="LightPulseAnimator" type="AnimationPlayer" parent="OmniLight3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_smk44")
+}
+autoplay = "Pulse"
+
+[connection signal="body_entered" from="LabelEnabler" to="." method="ShowLabels" unbinds=1]
+[connection signal="body_exited" from="LabelEnabler" to="." method="HideLabels" unbinds=1]
 [connection signal="body_entered" from="PlayerDetector" to="." method="OnBodyEntered"]
+
+[editable path="LevelEntrancePortal"]

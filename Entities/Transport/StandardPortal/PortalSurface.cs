@@ -7,18 +7,18 @@ namespace FastDragon
     {
         [Export] public Shader PortalSurfaceShader;
 
-        private readonly SubViewport _subViewport = new();
-        private readonly Camera3D _portalCamera = new();
+        public SubViewport SubViewport { get; } = new();
+        public Camera3D PortalCamera  { get; } = new();
 
         public void SetSkybox(Environment skyboxEnvironment)
         {
-            _portalCamera.Environment = skyboxEnvironment;
+            PortalCamera.Environment = skyboxEnvironment;
         }
 
         public override void _Ready()
         {
-            _subViewport.AddChild(_portalCamera);
-            AddChild(_subViewport);
+            SubViewport.AddChild(PortalCamera);
+            AddChild(SubViewport);
 
             // Ensure the sub viewport's resolution always matches the main one.
             GetViewport().Connect(Viewport.SignalName.SizeChanged, Callable.From(SyncViewportSize));
@@ -34,12 +34,12 @@ namespace FastDragon
             ProcessMode = ProcessModeEnum.Always;
 
             // Only render objects that are on the "visible in portals" layer
-            _portalCamera.CullMask = 2;
+            PortalCamera.CullMask = 2;
 
             // Create the portal surface material
             var material = new ShaderMaterial();
             material.Shader = PortalSurfaceShader;
-            material.SetShaderParameter("viewport_texture", _subViewport.GetTexture());
+            material.SetShaderParameter("viewport_texture", SubViewport.GetTexture());
             MaterialOverride = material;
         }
 
@@ -51,17 +51,17 @@ namespace FastDragon
         private void SyncViewportSize()
         {
             Vector2 sizeFloat = GetViewport().GetTexture().GetSize();
-            _subViewport.Size = new Vector2I((int)sizeFloat.X, (int)sizeFloat.Y);
+            SubViewport.Size = new Vector2I((int)sizeFloat.X, (int)sizeFloat.Y);
         }
 
         private void SyncCamera()
         {
             var mainCamera = GetTree().Root.GetCamera3D();
-            _portalCamera.Visible = mainCamera != null;
+            PortalCamera.Visible = mainCamera != null;
 
-            if (_portalCamera.Visible)
+            if (PortalCamera.Visible)
             {
-                _portalCamera.GlobalTransform = mainCamera.GlobalTransform;
+                PortalCamera.GlobalTransform = mainCamera.GlobalTransform;
             }
         }
     }

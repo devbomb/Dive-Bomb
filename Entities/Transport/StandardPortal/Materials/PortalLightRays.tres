@@ -1,0 +1,41 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://byhavk6dt3tp3"]
+
+[sub_resource type="Shader" id="Shader_e6cb2"]
+code = "shader_type spatial;
+render_mode cull_disabled;
+
+#include \"res://Common/ShaderIncludes/VertexWarble.gdshaderinc\"
+
+uniform sampler2D albedo : filter_nearest;
+uniform vec2 scroll_speed = vec2(0.0, 0.0);
+uniform vec2 uv_scale = vec2(1.0, 1.0);
+
+void vertex()
+{
+	VERTEX = warble_vertex(default_vertex_warble_settings(), VERTEX, VIEW_MATRIX, 10.0);
+}
+
+void fragment()
+{
+	vec2 uv = uv_scale * (UV + (scroll_speed * TIME));
+	vec4 color = texture(albedo, uv);
+	ALPHA = mix(color.a, 0.0, 1.0 - (UV.x * UV.x));
+	ALBEDO = color.rgb;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_e6cb2"]
+offsets = PackedFloat32Array(0, 0.29310346, 0.5215517, 0.6896552, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qy6oi"]
+gradient = SubResource("Gradient_e6cb2")
+fill_from = Vector2(0.60683763, 1)
+
+[resource]
+resource_name = "PortalLightRays"
+render_priority = 0
+shader = SubResource("Shader_e6cb2")
+shader_parameter/albedo = SubResource("GradientTexture2D_qy6oi")
+shader_parameter/scroll_speed = Vector2(1, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
