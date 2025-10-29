@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=4 format=3 uid="uid://b806gdpivx17x"]
+[gd_resource type="AnimationLibrary" load_steps=5 format=3 uid="uid://b806gdpivx17x"]
 
 [sub_resource type="Animation" id="Animation_7v46n"]
 resource_name = "Appear"
@@ -67,10 +67,52 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.19, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6dk2i"]
+resource_name = "Hover"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.9, 0), Vector3(0, 3.1, 0)]
+}
 
 [resource]
 _data = {
 &"Appear": SubResource("Animation_7v46n"),
 &"Disappear": SubResource("Animation_2fymf"),
+&"Hover": SubResource("Animation_6dk2i"),
 &"RESET": SubResource("Animation_d67m7")
 }
