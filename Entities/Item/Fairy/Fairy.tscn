@@ -6,8 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://b1kkywgiv08uj" path="res://Entities/Item/Fairy/SFX/MagicalGlassShatter.wav" id="2_wcnnd"]
 [ext_resource type="AudioStream" uid="uid://eqg1m3m28yi3" path="res://Entities/Item/Fairy/SFX/FairyJingle.wav" id="3_p435h"]
 [ext_resource type="Script" uid="uid://ilt6j85e4n8e" path="res://Common/Components/DecoratorNodes/BillboardToCameraDecorator.gd" id="4_g18ww"]
-[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="4_w4eob"]
-[ext_resource type="Material" uid="uid://due37fi2ml3qp" path="res://Common/Materials/DigitalMetalText.tres" id="5_bs0wh"]
+[ext_resource type="FontVariation" uid="uid://bmr44as3fvbhe" path="res://Fonts/FontVariations/TekturBolder.tres" id="4_w4eob"]
+[ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="5_bs0wh"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="5_pebs6"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="5_vio7c"]
 [ext_resource type="Script" uid="uid://vpf40mbrhlr" path="res://Common/Components/DecoratorNodes/SpinDecorator.gd" id="6_vio7c"]
@@ -211,6 +211,16 @@ mesh = SubResource("TextMesh_aq6wb")
 transform = Transform3D(0.5, 0, -1.10134124e-13, 0, 0.5, 0, 1.10134124e-13, 0, 0.5, -0.019762814, -0.0024496317, -0.0425)
 mesh = SubResource("QuadMesh_bs0wh")
 skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Glass/PriceTag/Label"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.097564705, 0, 0.056633588)
+distance_fade_enabled = true
+omni_range = 0.27735668
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Glass/PriceTag/Label"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.07017431, 0, 0.056633588)
+distance_fade_enabled = true
+omni_range = 0.27735668
 
 [node name="GlassParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
