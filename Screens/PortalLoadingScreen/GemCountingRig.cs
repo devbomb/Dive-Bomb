@@ -85,9 +85,9 @@ namespace FastDragon
 
         private void UpdateLabelText()
         {
-            _untalliedGemsLabel.Text = $"Treasure found: {TotalUntalliedGems()}";
-            _spentGemsLabel.Text = $"Tresure spent: -{_untalliedSpentGems}";
-            _talliedGemsLabel.Text = $"Total treasure: {_talliedGems}";
+            _untalliedGemsLabel.Text = $"Gems found: {TotalUntalliedGems()}";
+            _spentGemsLabel.Text = $"Gems spent: -{_untalliedSpentGems}";
+            _talliedGemsLabel.Text = $"Total Gems: {_talliedGems}";
         }
 
         private abstract class RigState : State<GemCountingRig>
