@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://desy5vwopnilu"]
+[gd_scene load_steps=23 format=3 uid="uid://desy5vwopnilu"]
 
 [ext_resource type="Script" uid="uid://w3vuer5jnq04" path="res://Screens/PortalLoadingScreen/GemCountingRig.cs" id="1_d3gao"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="2_3qivj"]
@@ -173,6 +173,23 @@ _data = {
 &"SlideOut": SubResource("Animation_rp877")
 }
 
+[sub_resource type="Gradient" id="Gradient_lle10"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.22222222, 0.3935185, 0.6157407, 0.7962963, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6975779, 0, 0, 0, 0.8235294, 0, 0, 0, 0.8235294, 0, 0, 0, 0.6945429, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uycbv"]
+gradient = SubResource("Gradient_lle10")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnpha"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_uycbv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kh25b"]
+material = SubResource("StandardMaterial3D_lnpha")
+size = Vector2(6, 0.3)
+
 [node name="GemCountingRig" type="Node3D"]
 script = ExtResource("1_d3gao")
 RedGemPrefab = ExtResource("2_3qivj")
@@ -216,6 +233,10 @@ Material = ExtResource("9_o2lq2")
 Font = ExtResource("10_kh25b")
 FontSize = 32
 
+[node name="Backdrop" type="MeshInstance3D" parent="UntalliedGemsLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_kh25b")
+
 [node name="TalliedGemsLabel" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203, 3.143, 0)
@@ -225,6 +246,10 @@ Material = ExtResource("9_o2lq2")
 Font = ExtResource("10_kh25b")
 FontSize = 32
 
+[node name="Backdrop" type="MeshInstance3D" parent="TalliedGemsLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_kh25b")
+
 [node name="SpentGemsLabel" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.82991, 2.79569, 0)
@@ -233,6 +258,10 @@ Text = "Treasure Spent: -999"
 Material = ExtResource("9_o2lq2")
 Font = ExtResource("10_kh25b")
 FontSize = 32
+
+[node name="Backdrop" type="MeshInstance3D" parent="SpentGemsLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_kh25b")
 
 [node name="GemPoints" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.153, 0, -2.394)
