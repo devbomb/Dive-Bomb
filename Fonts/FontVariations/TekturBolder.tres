@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bmr44as3fvbhe"]
+
+[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="1_1qoay"]
+
+[resource]
+base_font = ExtResource("1_1qoay")
+variation_embolden = 0.91

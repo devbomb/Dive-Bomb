@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cb8n0ec7vcom" path="res://addons/FuncGodotMapImporter/MaterialMap.gd" id="1_4o1u0"]
 [ext_resource type="Texture2D" uid="uid://cfhc0yp1js0ng" path="res://Textures/Textures/BulletproofGlass.png" id="4_4qu2l"]
-[ext_resource type="Material" uid="uid://djjv3erqamsem" path="res://Materials/BulletproofGlassWall.tres" id="5_1acbw"]
+[ext_resource type="Material" uid="uid://djjv3erqamsem" path="res://Common/Materials/BulletproofGlassWall.tres" id="5_1acbw"]
 [ext_resource type="Texture2D" uid="uid://deembyvogylvb" path="res://Textures/Textures/ConveyorBelt.png" id="6_205iw"]
-[ext_resource type="Material" uid="uid://dpukm1co5myqt" path="res://Materials/DefaultConveyorBelt.tres" id="7_sfm7b"]
+[ext_resource type="Material" uid="uid://dpukm1co5myqt" path="res://Common/Materials/DefaultConveyorBelt.tres" id="7_sfm7b"]
 [ext_resource type="Texture2D" uid="uid://chn1mf3rkq4ea" path="res://Textures/Textures/DivableGlassPlaceholder.png" id="10_ltube"]
-[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Materials/DivableCrystal.tres" id="11_rlpyx"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="11_rlpyx"]
 
 [resource]
 script = ExtResource("1_4o1u0")

@@ -1,20 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://byhmelsic6fu5"]
+[gd_scene load_steps=12 format=3 uid="uid://byhmelsic6fu5"]
 
 [ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://UI/Menus/HUD/HealthDisplay/HealthDisplay.tscn" id="1_54kkr"]
 [ext_resource type="Script" uid="uid://b0d0o6cg22h0r" path="res://UI/Menus/HUD/HUD.cs" id="1_k3tfm"]
-[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="2_yq8w4"]
 [ext_resource type="Script" uid="uid://cromiohdg3esv" path="res://UI/Widgets/ContextuallyHiddenControl.cs" id="3_8mrjo"]
 [ext_resource type="StyleBox" uid="uid://clk60wmckrjlc" path="res://Themes/StyleBoxes/HackerTerminalBackground.tres" id="4_8mrjo"]
 [ext_resource type="PackedScene" uid="uid://dpa1avddef2b" path="res://UI/Widgets/CountingLabel/CountingLabel.tscn" id="4_khe3g"]
 [ext_resource type="PackedScene" uid="uid://3t5uuk0vlnxe" path="res://UI/Menus/HUD/FPSCounter.tscn" id="5_k3tfm"]
 [ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="5_khe3g"]
 [ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="8_khe3g"]
-
-[sub_resource type="Theme" id="Theme_ux4dw"]
-Label/colors/font_color = Color(0.921569, 0.858824, 0, 1)
-Label/colors/font_shadow_color = Color(0, 0, 0, 0.67451)
-Label/font_sizes/font_size = 35
-Label/fonts/font = ExtResource("2_yq8w4")
 
 [sub_resource type="LabelSettings" id="LabelSettings_k3tfm"]
 font = ExtResource("5_khe3g")
@@ -55,7 +48,6 @@ offset_left = 40.0
 offset_top = 40.0
 offset_right = 160.0
 offset_bottom = 74.0
-theme = SubResource("Theme_ux4dw")
 script = ExtResource("3_8mrjo")
 metadata/_edit_use_anchors_ = true
 

@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0tarm2enjii8"]
+[gd_scene load_steps=13 format=3 uid="uid://d0tarm2enjii8"]
 
 [ext_resource type="Script" uid="uid://cgvkbyilaclq1" path="res://UI/Widgets/GemsInLevelProgress/GemsInLevelProgress.cs" id="1_rn6my"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="2_huvxw"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="2_rn6my"]
-[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="3_a82x8"]
-[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_27unj"]
+[ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="4_rn6my"]
+[ext_resource type="FontVariation" uid="uid://bmr44as3fvbhe" path="res://Fonts/FontVariations/TekturBolder.tres" id="5_rn6my"]
 
 [sub_resource type="Animation" id="Animation_rn6my"]
 resource_name = "RESET"
@@ -43,6 +43,23 @@ _data = {
 &"Rotate": SubResource("Animation_up6ok")
 }
 
+[sub_resource type="Gradient" id="Gradient_5yv8q"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.22222222, 0.3935185, 0.6157407, 0.7962963, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6975779, 0, 0, 0, 0.8235294, 0, 0, 0, 0.8235294, 0, 0, 0, 0.6945429, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qil4o"]
+gradient = SubResource("Gradient_5yv8q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ro5c4"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_qil4o")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ekaw8"]
+material = SubResource("StandardMaterial3D_ro5c4")
+size = Vector2(1.5, 0.3)
+
 [node name="GemsInLevelProgress" type="Node3D"]
 script = ExtResource("1_rn6my")
 
@@ -61,6 +78,30 @@ unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("2_huvxw")
 Text = "999/999"
-Material = ExtResource("3_a82x8")
-Font = ExtResource("4_27unj")
+Material = ExtResource("4_rn6my")
+Font = ExtResource("5_rn6my")
 FontSize = 24
+
+[node name="Backdrop" type="MeshInstance3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_ekaw8")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4206246, 0, 0.1538737)
+distance_fade_enabled = true
+omni_range = 0.27735668
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14519127, 0, 0.15387371)
+distance_fade_enabled = true
+omni_range = 0.27735668
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19796948, 0, 0.15387374)
+distance_fade_enabled = true
+omni_range = 0.27735668
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42888713, 0, 0.15387377)
+distance_fade_enabled = true
+omni_range = 0.27735668

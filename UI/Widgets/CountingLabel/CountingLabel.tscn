@@ -1,12 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpa1avddef2b"]
 
 [ext_resource type="Script" uid="uid://bn1okvxdu26gw" path="res://UI/Widgets/CountingLabel/CountingLabel.cs" id="1_tt4pu"]
+[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="2_3rxh2"]
 [ext_resource type="PackedScene" uid="uid://d1vvq00bwo8pm" path="res://UI/Widgets/SpinningCounter3D/SpinningCounter3D.tscn" id="2_5rvke"]
-[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="2_ox7c8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wsjjg"]
-font = ExtResource("2_ox7c8")
-font_size = 30
+font = ExtResource("2_3rxh2")
 font_color = Color(1, 1, 1, 0)
 
 [sub_resource type="Environment" id="Environment_3rxh2"]
