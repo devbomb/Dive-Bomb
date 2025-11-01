@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cgvkbyilaclq1" path="res://UI/Widgets/GemsInLevelProgress/GemsInLevelProgress.cs" id="1_rn6my"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="2_huvxw"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="2_rn6my"]
-[ext_resource type="Material" uid="uid://due37fi2ml3qp" path="res://Common/Materials/DigitalMetalText.tres" id="4_rn6my"]
-[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="5_up6ok"]
+[ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="4_rn6my"]
+[ext_resource type="FontVariation" uid="uid://bmr44as3fvbhe" path="res://Fonts/FontVariations/TekturBolder.tres" id="5_rn6my"]
 
 [sub_resource type="Animation" id="Animation_rn6my"]
 resource_name = "RESET"
@@ -79,9 +79,29 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 script = ExtResource("2_huvxw")
 Text = "999/999"
 Material = ExtResource("4_rn6my")
-Font = ExtResource("5_up6ok")
+Font = ExtResource("5_rn6my")
 FontSize = 24
 
 [node name="Backdrop" type="MeshInstance3D" parent="Label"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_ekaw8")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4206246, 0, 0.1538737)
+distance_fade_enabled = true
+omni_range = 0.27735668
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14519127, 0, 0.15387371)
+distance_fade_enabled = true
+omni_range = 0.27735668
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19796948, 0, 0.15387374)
+distance_fade_enabled = true
+omni_range = 0.27735668
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42888713, 0, 0.15387377)
+distance_fade_enabled = true
+omni_range = 0.27735668

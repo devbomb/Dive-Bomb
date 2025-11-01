@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cx2bahro6fr1n" path="res://UI/Widgets/FairiesInLevelProgress/FairiesInLevelProgress.cs" id="1_5js4f"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="1_etdow"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Entities/Item/Fairy/Fairy.blend" id="3_tmx4v"]
-[ext_resource type="Material" uid="uid://due37fi2ml3qp" path="res://Common/Materials/DigitalMetalText.tres" id="3_wh3v3"]
-[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="4_pou1x"]
+[ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="3_wh3v3"]
+[ext_resource type="FontVariation" uid="uid://bmr44as3fvbhe" path="res://Fonts/FontVariations/TekturBolder.tres" id="4_wh3v3"]
 [ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Entities/Item/Fairy/Animations/Hovering.tres" id="5_wh3v3"]
 [ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Entities/Item/Fairy/Animations/RESET.tres" id="6_pou1x"]
 
@@ -40,12 +40,22 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 script = ExtResource("1_etdow")
 Text = "9/9"
 Material = ExtResource("3_wh3v3")
-Font = ExtResource("4_pou1x")
+Font = ExtResource("4_wh3v3")
 FontSize = 24
 
 [node name="Backdrop" type="MeshInstance3D" parent="Label"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_w6oip")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109183446, 0, 0.15387371)
+distance_fade_enabled = true
+omni_range = 0.27338353
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12381823, 0, 0.15387374)
+distance_fade_enabled = true
+omni_range = 0.27338353
 
 [node name="FairyModel" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.431, -0.35, 0)
