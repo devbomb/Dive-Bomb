@@ -72,7 +72,15 @@ namespace FastDragon
         public void Initialize(LoadingScreenParameters parameters)
         {
             _parameters = parameters;
-            Log.LoadingScreenStarted(
+
+            string logTemplate = "Loading screen started"
+                + " {PreviousScene}"
+                + " {NextScene}"
+                + " {ReturningHome}"
+                + " {TotalTreasure}"
+                + " {GemsSpent}";
+            Log.Information(
+                logTemplate,
                 parameters.PreviousLevelScenePath,
                 parameters.TargetLevelScenePath,
                 _isReturningHome,
@@ -179,7 +187,7 @@ namespace FastDragon
                 };
             }
 
-            Log.LoadingScreenFinished();
+            Log.Information("Loading screen finished");
         }
 
         private Portal GetTargetPortal(Node sceneRoot)
@@ -207,7 +215,7 @@ namespace FastDragon
             public override void OnStateEntered(IState prevState)
             {
                 GD.Print("Skipping animations");
-                Log.LoadingScreenSkipped(prevState.GetType().Name);
+                Log.Information("Loading screen skipped {State}", prevState.GetType().Name);
 
                 var tween = Self.CreateTween();
                 tween.TweenRotRadSinusoidal(Self._playerModel, "global_rotation", Vector3.Zero, SkipDuration);

@@ -40,14 +40,9 @@ namespace FastDragon
         {
             DoThingWithFadeToBlack(() =>
             {
-                Log.StartedGoToLevelWithFade(
-                    GetTree().CurrentScene.Name,
-                    TitleScreenScene,
-                    true,
-                    false
-                );
+                LogStartedGoToLevelWithFade(TitleScreenScene);
                 GetTree().ChangeSceneToFile(TitleScreenScene);
-                Log.FinishedGoToLevelWithFade();
+                LogFinishedGoToLevelWithFade();
             });
         }
 
@@ -60,14 +55,9 @@ namespace FastDragon
         {
             DoThingWithFadeToBlack(() =>
             {
-                Log.StartedGoToLevelWithFade(
-                    GetTree().CurrentScene.Name,
-                    levelSceneFile,
-                    true,
-                    false
-                );
+                LogStartedGoToLevelWithFade(levelSceneFile);
                 GoToLevel(levelSceneFile);
-                Log.FinishedGoToLevelWithFade();
+                LogFinishedGoToLevelWithFade();
             });
         }
 
@@ -263,6 +253,24 @@ namespace FastDragon
         private string GetHomeWorldLevel()
         {
             return GetTree().FindNode<DiveBombLevel>()?.HomeWorldLevel;
+        }
+
+        private void LogStartedGoToLevelWithFade(string nextScene)
+        {
+            string template = "Started going to a level with a fade"
+                + " {PreviousScene}"
+                + " {NextScene}";
+
+            Log.Information(
+                template,
+                GetTree().CurrentScene.Name,
+                nextScene
+            );
+        }
+
+        private void LogFinishedGoToLevelWithFade()
+        {
+            Log.Information("Finished going to a level with a fade");
         }
     }
 }
