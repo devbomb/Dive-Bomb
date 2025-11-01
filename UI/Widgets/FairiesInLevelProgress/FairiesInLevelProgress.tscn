@@ -1,12 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://2yvv5qgiulnp"]
+[gd_scene load_steps=13 format=3 uid="uid://2yvv5qgiulnp"]
 
 [ext_resource type="Script" uid="uid://cx2bahro6fr1n" path="res://UI/Widgets/FairiesInLevelProgress/FairiesInLevelProgress.cs" id="1_5js4f"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="1_etdow"]
-[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Common/Materials/TextGoldMat.tres" id="2_omm1n"]
-[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="3_rnvmb"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Entities/Item/Fairy/Fairy.blend" id="3_tmx4v"]
+[ext_resource type="Material" uid="uid://due37fi2ml3qp" path="res://Common/Materials/DigitalMetalText.tres" id="3_wh3v3"]
+[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="4_pou1x"]
 [ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Entities/Item/Fairy/Animations/Hovering.tres" id="5_wh3v3"]
 [ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Entities/Item/Fairy/Animations/RESET.tres" id="6_pou1x"]
+
+[sub_resource type="Gradient" id="Gradient_nda6u"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.22222222, 0.3935185, 0.6157407, 0.7962963, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6975779, 0, 0, 0, 0.8235294, 0, 0, 0, 0.8235294, 0, 0, 0, 0.6945429, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5noto"]
+gradient = SubResource("Gradient_nda6u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gefh1"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_5noto")
+
+[sub_resource type="QuadMesh" id="QuadMesh_w6oip"]
+material = SubResource("StandardMaterial3D_gefh1")
+size = Vector2(1, 0.3)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nda6u"]
 _data = {
@@ -22,9 +39,13 @@ unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_etdow")
 Text = "9/9"
-Material = ExtResource("2_omm1n")
-Font = ExtResource("3_rnvmb")
+Material = ExtResource("3_wh3v3")
+Font = ExtResource("4_pou1x")
 FontSize = 24
+
+[node name="Backdrop" type="MeshInstance3D" parent="Label"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_w6oip")
 
 [node name="FairyModel" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.431, -0.35, 0)
