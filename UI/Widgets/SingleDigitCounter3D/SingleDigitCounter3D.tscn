@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkvd8i2y8mo22" path="res://UI/Widgets/SingleDigitCounter3D/SingleDigitCounter3D.cs" id="1_tkvxm"]
 [ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="2_fwwem"]
-[ext_resource type="Material" uid="uid://due37fi2ml3qp" path="res://Materials/DigitalMetalText.tres" id="3_fwwem"]
+[ext_resource type="Material" uid="uid://due37fi2ml3qp" path="res://Common/Materials/DigitalMetalText.tres" id="3_fwwem"]
 
 [sub_resource type="TextMesh" id="TextMesh_5lnjq"]
 resource_local_to_scene = true

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cgvkbyilaclq1" path="res://UI/Widgets/GemsInLevelProgress/GemsInLevelProgress.cs" id="1_rn6my"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="2_huvxw"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="2_rn6my"]
-[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="3_a82x8"]
+[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Common/Materials/TextGoldMat.tres" id="3_a82x8"]
 [ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="4_27unj"]
 
 [sub_resource type="Animation" id="Animation_rn6my"]

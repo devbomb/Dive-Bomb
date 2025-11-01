@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="5_pebs6"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="5_vio7c"]
 [ext_resource type="Script" uid="uid://vpf40mbrhlr" path="res://Common/Components/DecoratorNodes/SpinDecorator.gd" id="6_vio7c"]
-[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Materials/TextGoldMat.tres" id="7_wl47v"]
+[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Common/Materials/TextGoldMat.tres" id="7_wl47v"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ohivc"]
 height = 1.5
