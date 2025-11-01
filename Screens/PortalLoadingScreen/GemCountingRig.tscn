@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bmpnfs8rauqo" path="res://Entities/Item/Gems/MagentaGem/MagentaGemModel.tscn" id="6_5kyev"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="7_1t3ap"]
 [ext_resource type="AudioStream" uid="uid://bojobea40tjay" path="res://Entities/Item/Gems/BaseGem/Gem.wav" id="7_3qivj"]
-[ext_resource type="Material" uid="uid://bd2s22vr5cot0" path="res://Common/Materials/TextGoldMat.tres" id="8_7xmdk"]
-[ext_resource type="FontFile" uid="uid://b7w5taf7i8h1j" path="res://Fonts/LithographBold.ttf" id="9_res2x"]
+[ext_resource type="Material" uid="uid://due37fi2ml3qp" path="res://Common/Materials/DigitalMetalText.tres" id="9_o2lq2"]
+[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="10_kh25b"]
 [ext_resource type="Script" uid="uid://cag7kxi13wlpq" path="res://Common/Components/DecoratorNodes/VisibleOnlyInEditorDecorator.cs" id="10_u1aj1"]
 
 [sub_resource type="Animation" id="Animation_3qivj"]
@@ -223,8 +223,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203, 4, 0)
 script = ExtResource("7_1t3ap")
 Text = "Treasure Found: 999"
-Material = ExtResource("8_7xmdk")
-Font = ExtResource("9_res2x")
+Material = ExtResource("9_o2lq2")
+Font = ExtResource("10_kh25b")
 FontSize = 32
 
 [node name="Backdrop" type="Sprite3D" parent="UntalliedGemsLabel"]
@@ -259,8 +259,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203, 3.143, 0)
 script = ExtResource("7_1t3ap")
 Text = "Total Treasure: 999"
-Material = ExtResource("8_7xmdk")
-Font = ExtResource("9_res2x")
+Material = ExtResource("9_o2lq2")
+Font = ExtResource("10_kh25b")
 FontSize = 32
 
 [node name="TextLights" type="Node3D" parent="TalliedGemsLabel"]
@@ -317,8 +317,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.82991, 2.79569, 0)
 script = ExtResource("7_1t3ap")
 Text = "Treasure Spent: -999"
-Material = ExtResource("8_7xmdk")
-Font = ExtResource("9_res2x")
+Material = ExtResource("9_o2lq2")
+Font = ExtResource("10_kh25b")
 FontSize = 32
 
 [node name="Backdrop" type="Sprite3D" parent="SpentGemsLabel"]
