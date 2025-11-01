@@ -288,7 +288,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_kh25b")
 
 [node name="GemPoints" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.153, 0, -2.394)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1159222, 0, -2.394)
 
 [node name="GemSpawn" type="Marker3D" parent="GemPoints"]
 unique_name_in_owner = true
