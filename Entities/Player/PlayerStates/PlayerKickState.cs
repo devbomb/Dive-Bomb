@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace FastDragon
@@ -38,6 +39,7 @@ namespace FastDragon
 
             ApplyHitboxToBreakableObjects(
                 Self.KickHitbox,
+                null,
                 b => b.VulnerableToKick,
                 b => b.OnKicked()
             );
