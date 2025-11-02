@@ -13,8 +13,9 @@ namespace FastDragon
         private float _targetCameraYawRad;
         private float _startY;
 
-        private List<IBreakable> _brokenObjects = new List<IBreakable>();
-        private List<IBreakable> _unbrokenObjects = new List<IBreakable>();
+        private List<IBreakable> _brokenObjects = new();
+        private List<IBreakable> _unbrokenObjects = new();
+        private List<IBreakable> _detectedObjects = new();
 
         public override void OnStateEntered()
         {
@@ -106,6 +107,7 @@ namespace FastDragon
 
             _brokenObjects.Clear();
             _unbrokenObjects.Clear();
+            _detectedObjects.Clear();
 
             MoveAndSlideBreakingObjects<IBreakable>(
                 isVulnerable: b => b.VulnerableToRoll,
@@ -126,10 +128,12 @@ namespace FastDragon
 
             // Apply an extra-wide hitbox to catch objects that the player
             // barely grazes past without touching.
-            // TODO: Don't apply the extra hitbox to objects that have already
-            // been hit by the main hitbox
+            _detectedObjects.AddRange(_brokenObjects);
+            _detectedObjects.AddRange(_unbrokenObjects);
+
             ApplyHitboxToBreakableObjects(
                 Self.DiveExtraHitbox,
+                _detectedObjects,
                 b => b.VulnerableToRoll,
                 b => b.OnRolledInto()
             );

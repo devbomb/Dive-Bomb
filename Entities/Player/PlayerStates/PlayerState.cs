@@ -246,12 +246,22 @@ namespace FastDragon
         /// If a breakable object is detected but it isn't vulnerable to this
         /// particular kind of attack, its <see cref="IBreakable.OnBreakRejected"/>
         /// method is called.
+        ///
+        /// If a breakable object is detected but it also appears inside
+        /// <paramref name="objectsToIgnore"/>, then NEITHER <see cref="IBreakable.OnBroken"/>
+        /// NOR <see cref="IBreakable.OnBreakRejected"/> will be called.
         /// </summary>
         /// <param name="hitbox"></param>
+        /// <param name="objectsToIgnore"></param>
         /// <param name="isVulnerable"></param>
-        /// <param name="onDetected">Called when a breakable object is detected, regardless of if it's vulnerable</param>
+        /// <param name="onDetected">
+        ///     Called when a breakable object is detected, regardless of if
+        ///     it's vulnerable or not.  It will also not be called if the
+        ///     object appears inside <paramref name="objectsToIgnore"/>.
+        /// </param>
         protected void ApplyHitboxToBreakableObjects(
             Area3D hitbox,
+            List<IBreakable> objectsToIgnore,
             Func<IBreakable, bool> isVulnerable,
             Action<IBreakable> onDetected)
         {
@@ -272,6 +282,12 @@ namespace FastDragon
 
             void TryBreak(IBreakable b)
             {
+                if (objectsToIgnore?.Contains(b) ?? false)
+                {
+                    GD.Print($"Ignoring already-broken object: {b}");
+                    return;
+                }
+
                 onDetected(b);
 
                 if (!isVulnerable(b))
