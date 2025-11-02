@@ -109,9 +109,8 @@ namespace FastDragon
             _unbrokenObjects.Clear();
             _detectedObjects.Clear();
 
-            MoveAndSlideBreakingObjects<IBreakable>(
+            MoveAndSlideBreakingObjects(
                 isVulnerable: b => b.VulnerableToRoll,
-                causesBonkWhenBroken: b => b.CausesBonk,
                 brokenObjects: _brokenObjects,
                 unbrokenObjects: _unbrokenObjects,
                 delta

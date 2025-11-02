@@ -146,11 +146,10 @@ namespace FastDragon
         /// frame.  Remember to clear those lists you pass in before calling!
         /// </summary>
         /// <param name="delta"></param>
-        protected bool MoveAndSlideBreakingObjects<TNode>(
-            Func<TNode, bool> isVulnerable,
-            Func<TNode, bool> causesBonkWhenBroken,
-            List<TNode> brokenObjects,
-            List<TNode> unbrokenObjects,
+        protected bool MoveAndSlideBreakingObjects(
+            Func<IBreakable, bool> isVulnerable,
+            List<IBreakable> brokenObjects,
+            List<IBreakable> unbrokenObjects,
             float delta
         )
         {
@@ -165,14 +164,14 @@ namespace FastDragon
                 var collision = Self.GetSlideCollision(i);
                 var hitObject = collision.GetCollider();
 
-                if (hitObject is not TNode n)
+                if (hitObject is not IBreakable b)
                     continue;
 
-                if (isVulnerable(n))
+                if (isVulnerable(b))
                 {
-                    brokenObjects.Add(n);
+                    brokenObjects.Add(b);
 
-                    if (causesBonkWhenBroken(n))
+                    if (b.CausesBonk)
                         return Bonk();
 
                     // Rewind and try again, but this time ignore this object
@@ -182,7 +181,6 @@ namespace FastDragon
                     Self.AddCollisionExceptionWith((Node)hitObject);
                     bool bonked = MoveAndSlideBreakingObjects(
                         isVulnerable,
-                        causesBonkWhenBroken,
                         brokenObjects,
                         unbrokenObjects,
                         delta);
@@ -192,7 +190,7 @@ namespace FastDragon
                 }
                 else
                 {
-                    unbrokenObjects.Add(n);
+                    unbrokenObjects.Add(b);
                 }
             }
 
