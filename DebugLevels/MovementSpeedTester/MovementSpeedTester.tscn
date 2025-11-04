@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdhifktrq7xd7"]
+[gd_scene load_steps=17 format=3 uid="uid://bdhifktrq7xd7"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_5rtvj"]
+[ext_resource type="Script" uid="uid://hnixn8wg1n8f" path="res://DebugLevels/MovementSpeedTester/MovementSpeedTester.cs" id="2_2m3uo"]
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="2_yarhr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yarhr"]
@@ -103,3 +104,29 @@ mesh = SubResource("PlaneMesh_yarhr")
 script = SubResource("GDScript_yarhr")
 
 [node name="Player" parent="." instance=ExtResource("2_yarhr")]
+
+[node name="Tester" type="Control" parent="." node_paths=PackedStringArray("Player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_2m3uo")
+Player = NodePath("../Player")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tester"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="WalkButton" type="Button" parent="Tester/VBoxContainer"]
+layout_mode = 2
+text = "Start walk test"
+
+[connection signal="pressed" from="Tester/VBoxContainer/WalkButton" to="Tester" method="StartWalkTest"]
