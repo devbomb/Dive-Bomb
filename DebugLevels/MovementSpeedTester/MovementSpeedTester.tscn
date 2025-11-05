@@ -136,9 +136,10 @@ label_settings = SubResource("LabelSettings_2m3uo")
 
 [node name="Buttons" type="VBoxContainer" parent="Tester"]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = -1
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = 20.0
 offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 20.0
@@ -147,6 +148,10 @@ grow_vertical = 2
 [node name="WalkButton" type="Button" parent="Tester/Buttons"]
 layout_mode = 2
 text = "Start walk test"
+
+[node name="RollButton" type="Button" parent="Tester/Buttons"]
+layout_mode = 2
+text = "Start perfect roll test"
 
 [node name="ProgressBar" type="ProgressBar" parent="Tester"]
 layout_mode = 1
@@ -180,3 +185,4 @@ text = "sss"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Tester/Buttons/WalkButton" to="Tester" method="StartWalkTest"]
+[connection signal="pressed" from="Tester/Buttons/RollButton" to="Tester" method="StartRollTest"]

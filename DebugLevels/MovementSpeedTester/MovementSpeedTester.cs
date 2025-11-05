@@ -54,7 +54,33 @@ namespace FastDragon
             {
                 while (PlayerTravelDistance() < GoalDistance)
                 {
-                    Input.ActionPress("LeftStickUp", 1);
+                    Input.ActionPress("LeftStickUp");
+                    yield return default;
+                }
+            }
+        }
+
+        public void StartRollTest()
+        {
+            SignalBus.Instance.EmitLevelReset();
+            _coroutine = new Coroutine(Test());
+
+            IEnumerator<YieldInstruction> Test()
+            {
+                while (PlayerTravelDistance() < GoalDistance)
+                {
+                    Input.ActionPress("LeftStickUp");
+
+                    if (Player.CurrentState is not PlayerRollState)
+                    {
+                        var ev = new InputEventAction
+                        {
+                            Action = "Roll",
+                            Pressed = true
+                        };
+                        Input.ParseInputEvent(ev);
+                    }
+
                     yield return default;
                 }
             }
