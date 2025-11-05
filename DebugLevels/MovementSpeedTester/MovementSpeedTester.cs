@@ -86,6 +86,41 @@ namespace FastDragon
             }
         }
 
+        public void StartDiveOnlyTest()
+        {
+            SignalBus.Instance.EmitLevelReset();
+            _coroutine = new Coroutine(Test());
+
+            IEnumerator<YieldInstruction> Test()
+            {
+                while (PlayerTravelDistance() < GoalDistance)
+                {
+                    Input.ActionPress("LeftStickUp");
+
+                    if (Player.IsOnFloor())
+                    {
+                        var ev = new InputEventAction
+                        {
+                            Action = "Jump",
+                            Pressed = true
+                        };
+                        Input.ParseInputEvent(ev);
+                    }
+                    else
+                    {
+                        var ev = new InputEventAction
+                        {
+                            Action = "Roll",
+                            Pressed = true
+                        };
+                        Input.ParseInputEvent(ev);
+                    }
+
+                    yield return default;
+                }
+            }
+        }
+
         private float PlayerTravelDistance() => Player
             .GlobalPosition
             .Flattened()
