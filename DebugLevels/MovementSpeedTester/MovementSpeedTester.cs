@@ -26,6 +26,10 @@ namespace FastDragon
         {
             _timer = 0;
             _coroutine = null;
+
+            ProgressBar.Value = 0;
+            DistanceLabel.Text = "0";
+            TimerLabel.Text = "--";
         }
 
         public override void _PhysicsProcess(double delta)
