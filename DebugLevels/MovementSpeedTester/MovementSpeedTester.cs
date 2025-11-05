@@ -6,11 +6,14 @@ namespace FastDragon
 {
     public partial class MovementSpeedTester : Node
     {
-        public const double GoalDistance = 100.0;
+        public const float GoalDistance = 100;
 
         [Export] public Player Player;
+        [Export] public Label TimerLabel;
+        [Export] public Label DistanceLabel;
+        [Export] public ProgressBar ProgressBar;
 
-        private double _timer = 0;
+        private PhysicsTicks _timer = 0;
         private Coroutine _coroutine = null;
 
         public override void _Ready()
@@ -27,8 +30,19 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double delta)
         {
-            _timer += delta;
-            _coroutine?.Tick(delta);
+            if (!_coroutine?.Done ?? false)
+            {
+                _timer++;
+                _coroutine.Tick(delta);
+                float dist = PlayerTravelDistance();
+
+                TimerLabel.Text = _timer.FormatStopwatch();
+                DistanceLabel.Text = dist.ToString("#.##");
+
+                ProgressBar.MaxValue = GoalDistance;
+                ProgressBar.MinValue = 0;
+                ProgressBar.Value = dist;
+            }
         }
 
         public void StartWalkTest()
@@ -43,8 +57,6 @@ namespace FastDragon
                     Input.ActionPress("LeftStickUp", 1);
                     yield return default;
                 }
-
-                GD.Print(_timer);
             }
         }
 
