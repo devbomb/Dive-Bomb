@@ -43,6 +43,9 @@ namespace FastDragon
                 ProgressBar.MinValue = 0;
                 ProgressBar.Value = dist;
             }
+
+            if (PlayerTravelDistance() >= GoalDistance)
+                _coroutine = null;
         }
 
         public void StartWalkTest()
@@ -52,7 +55,7 @@ namespace FastDragon
 
             IEnumerator<YieldInstruction> Test()
             {
-                while (PlayerTravelDistance() < GoalDistance)
+                while (true)
                 {
                     Input.ActionPress("LeftStickUp");
                     yield return default;
@@ -67,18 +70,13 @@ namespace FastDragon
 
             IEnumerator<YieldInstruction> Test()
             {
-                while (PlayerTravelDistance() < GoalDistance)
+                while (true)
                 {
                     Input.ActionPress("LeftStickUp");
 
                     if (Player.CurrentState is not PlayerRollState)
                     {
-                        var ev = new InputEventAction
-                        {
-                            Action = "Roll",
-                            Pressed = true
-                        };
-                        Input.ParseInputEvent(ev);
+                        PressButton("Roll");
                     }
 
                     yield return default;
@@ -93,32 +91,60 @@ namespace FastDragon
 
             IEnumerator<YieldInstruction> Test()
             {
-                while (PlayerTravelDistance() < GoalDistance)
+                while (true)
                 {
                     Input.ActionPress("LeftStickUp");
 
                     if (Player.IsOnFloor())
                     {
-                        var ev = new InputEventAction
-                        {
-                            Action = "Jump",
-                            Pressed = true
-                        };
-                        Input.ParseInputEvent(ev);
+                        PressButton("Jump");
                     }
                     else
                     {
-                        var ev = new InputEventAction
-                        {
-                            Action = "Roll",
-                            Pressed = true
-                        };
-                        Input.ParseInputEvent(ev);
+                        PressButton("Roll");
                     }
 
                     yield return default;
                 }
             }
+        }
+
+        public void StartJumpDiveRollTest()
+        {
+            SignalBus.Instance.EmitLevelReset();
+            _coroutine = new Coroutine(Test());
+
+            IEnumerator<YieldInstruction> Test()
+            {
+                while (true)
+                {
+                    Input.ActionPress("LeftStickUp");
+
+                    PressButton("Jump");
+                    yield return Coroutine.WaitFor(StateToBe<PlayerWalkJumpState>());
+
+                    PressButton("Roll");
+                    yield return Coroutine.WaitFor(StateToBe<PlayerRollState>());
+                    yield return Coroutine.WaitSeconds(0.25);
+                }
+            }
+
+            IEnumerator<YieldInstruction> StateToBe<TPlayerState>()
+            {
+                while (Player.CurrentState is not TPlayerState)
+                    yield return default;
+            }
+        }
+
+        private void PressButton(string action)
+        {
+            var ev = new InputEventAction
+            {
+                Action = action,
+                Pressed = true
+            };
+
+            Input.ParseInputEvent(ev);
         }
 
         private float PlayerTravelDistance() => Player

@@ -157,6 +157,10 @@ text = "Start perfect roll test"
 layout_mode = 2
 text = "Start dive-only test"
 
+[node name="JumpDiveRollButton" type="Button" parent="Tester/Buttons"]
+layout_mode = 2
+text = "Start jump-dive-roll test"
+
 [node name="ProgressBar" type="ProgressBar" parent="Tester"]
 layout_mode = 1
 anchors_preset = -1
@@ -191,3 +195,4 @@ horizontal_alignment = 1
 [connection signal="pressed" from="Tester/Buttons/WalkButton" to="Tester" method="StartWalkTest"]
 [connection signal="pressed" from="Tester/Buttons/RollButton" to="Tester" method="StartRollTest"]
 [connection signal="pressed" from="Tester/Buttons/DiveOnlyButton" to="Tester" method="StartDiveOnlyTest"]
+[connection signal="pressed" from="Tester/Buttons/JumpDiveRollButton" to="Tester" method="StartJumpDiveRollTest"]
