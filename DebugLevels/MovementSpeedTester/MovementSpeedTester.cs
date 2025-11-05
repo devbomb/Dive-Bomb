@@ -6,7 +6,7 @@ namespace FastDragon
 {
     public partial class MovementSpeedTester : Node
     {
-        public const float GoalDistance = 100;
+        public const float GoalDistance = 200;
 
         [Export] public Player Player;
         [Export] public Label TimerLabel;
