@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bdhifktrq7xd7"]
+[gd_scene load_steps=19 format=3 uid="uid://bdhifktrq7xd7"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_5rtvj"]
 [ext_resource type="Script" uid="uid://hnixn8wg1n8f" path="res://DebugLevels/MovementSpeedTester/MovementSpeedTester.cs" id="2_2m3uo"]
@@ -84,6 +84,13 @@ func _process(_delta) -> void:
 [sub_resource type="LabelSettings" id="LabelSettings_2m3uo"]
 font_size = 36
 
+[sub_resource type="GDScript" id="GDScript_2m3uo"]
+script/source = "extends Label
+
+func _process(_delta: float) -> void:
+	text = str(get_parent().value)
+"
+
 [node name="MovementSpeedTester" type="Node3D"]
 script = ExtResource("1_5rtvj")
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
@@ -108,7 +115,7 @@ script = SubResource("GDScript_yarhr")
 
 [node name="Player" parent="." instance=ExtResource("2_yarhr")]
 
-[node name="Tester" type="Control" parent="." node_paths=PackedStringArray("Player", "TimerLabel", "DistanceLabel", "ProgressBar")]
+[node name="Tester" type="Control" parent="." node_paths=PackedStringArray("Player", "TimerLabel", "DistanceLabel", "ProgressBar", "JumpDelayFramesSlider", "DiveDelayFramesSlider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,6 +127,8 @@ Player = NodePath("../Player")
 TimerLabel = NodePath("TimerLabel")
 DistanceLabel = NodePath("ProgressBar/DistanceLabel")
 ProgressBar = NodePath("ProgressBar")
+JumpDelayFramesSlider = NodePath("Sliders/JumpDelaySlider")
+DiveDelayFramesSlider = NodePath("Sliders/DiveDelaySlider")
 
 [node name="TimerLabel" type="Label" parent="Tester"]
 layout_mode = 1
@@ -160,6 +169,69 @@ text = "Start dive-only test"
 [node name="JumpDiveRollButton" type="Button" parent="Tester/Buttons"]
 layout_mode = 2
 text = "Start jump-dive-roll test"
+
+[node name="Sliders" type="VBoxContainer" parent="Tester"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 16.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Tester/Sliders"]
+layout_mode = 2
+text = "Dive delay (ticks)"
+
+[node name="DiveDelaySlider" type="HSlider" parent="Tester/Sliders"]
+layout_mode = 2
+max_value = 60.0
+scrollable = false
+tick_count = 60
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Tester/Sliders/DiveDelaySlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_2m3uo")
+
+[node name="Label2" type="Label" parent="Tester/Sliders"]
+layout_mode = 2
+text = "Jump delay (ticks)"
+
+[node name="JumpDelaySlider" type="HSlider" parent="Tester/Sliders"]
+layout_mode = 2
+max_value = 60.0
+scrollable = false
+tick_count = 60
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Tester/Sliders/JumpDelaySlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_2m3uo")
 
 [node name="ProgressBar" type="ProgressBar" parent="Tester"]
 layout_mode = 1

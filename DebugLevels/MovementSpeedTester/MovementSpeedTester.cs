@@ -13,6 +13,9 @@ namespace FastDragon
         [Export] public Label DistanceLabel;
         [Export] public ProgressBar ProgressBar;
 
+        [Export] public Slider JumpDelayFramesSlider;
+        [Export] public Slider DiveDelayFramesSlider;
+
         private PhysicsTicks _timer = 0;
         private Coroutine _coroutine = null;
 
@@ -125,19 +128,19 @@ namespace FastDragon
                     Input.ActionPress("LeftStickUp");
 
                     PressButton("Jump");
-                    yield return Coroutine.WaitFor(StateToBe<PlayerWalkJumpState>());
+                    yield return Coroutine.WaitTicks((PhysicsTicks)DiveDelayFramesSlider.Value);
 
                     PressButton("Roll");
                     yield return Coroutine.WaitFor(StateToBe<PlayerRollState>());
-                    yield return Coroutine.WaitSeconds(0.25);
+                    yield return Coroutine.WaitTicks((PhysicsTicks)JumpDelayFramesSlider.Value);
                 }
             }
+        }
 
-            IEnumerator<YieldInstruction> StateToBe<TPlayerState>()
-            {
-                while (Player.CurrentState is not TPlayerState)
-                    yield return default;
-            }
+        private IEnumerator<YieldInstruction> StateToBe<TPlayerState>()
+        {
+            while (Player.CurrentState is not TPlayerState)
+                yield return default;
         }
 
         private void PressButton(string action)
