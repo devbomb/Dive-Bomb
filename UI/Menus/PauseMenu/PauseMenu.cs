@@ -102,7 +102,7 @@ namespace FastDragon
         public void ReturnToCheckpoint()
         {
             Close();
-            LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
+            LevelTransitionManager.Instance.ReloadCheckpoint();
         }
 
         public void FullyResetLevel()
@@ -110,7 +110,7 @@ namespace FastDragon
             Close();
             this.GetLevel()?.GetProgress().ResetProgress();
             SaveFileManager.Current.CurrentCheckpoint = null;
-            LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
+            LevelTransitionManager.Instance.ReloadCheckpoint();
         }
 
         public void ExitLevel()

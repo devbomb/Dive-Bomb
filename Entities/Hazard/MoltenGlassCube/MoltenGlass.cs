@@ -11,8 +11,8 @@ namespace FastDragon
 
         public void OnBodyEntered(Node3D body)
         {
-            if (body is Player)
-                LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
+            if (body is Player p)
+                p.Die();
         }
     }
 }

@@ -47,7 +47,7 @@ namespace FastDragon
                 _animator.Queue("NewHighScore");
         }
 
-        public void OnContinuePressed() => LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
+        public void OnContinuePressed() => LevelTransitionManager.Instance.ReloadCheckpoint();
 
         private TimeTrialCategory GuessCategory()
         {

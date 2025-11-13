@@ -176,10 +176,10 @@ namespace FastDragon
 
             base._Ready();
 
-            SignalBus.Instance.LevelReset += Respawn;
+            SignalBus.Instance.LevelReset += Reset;
             _spawnPos = GlobalTransform;
 
-            Respawn();
+            Reset();
         }
 
         public override void _Input(InputEvent ev)
@@ -190,7 +190,7 @@ namespace FastDragon
             }
         }
 
-        public void Respawn()
+        public void Reset()
         {
             EmitSignal(SignalName.Respawning);
 
@@ -291,6 +291,23 @@ namespace FastDragon
                 ChangeState<TState>();
 
             return result;
+        }
+
+        /// <summary>
+        /// Increments the death counter and reloads the last checkpoint,
+        /// without playing a death animation.
+        /// </summary>
+        public void Die()
+        {
+            LevelTransitionManager.Instance.ReloadCheckpoint();
+
+            if (!this.IsTimeTrialMode())
+            {
+                SaveFileManager.Current.TotalDeaths++;
+                SaveFileManager.Current.CurrentLevelVisit.Deaths++;
+                SaveFileManager.Instance.RequestAutosave();
+                GD.Print($"Deaths: {SaveFileManager.Current.TotalDeaths}");
+            }
         }
 
         public override void _PhysicsProcess(double deltaD)

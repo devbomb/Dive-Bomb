@@ -24,7 +24,7 @@ namespace FastDragon
         {
             if (!Self.Animator.IsPlaying())
             {
-                Self.Respawn();
+                Self.Reset();
                 Self.EmitSignal(Player.SignalName.FlyInFinished);
             }
         }
