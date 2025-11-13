@@ -48,7 +48,7 @@ namespace FastDragon
 
             // Respawn when the timer is finally up
             if (_timer <= 0)
-                LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
+                LevelTransitionManager.Instance.ReloadCheckpoint();
         }
     }
 }

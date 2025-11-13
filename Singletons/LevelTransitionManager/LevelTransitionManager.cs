@@ -159,7 +159,7 @@ namespace FastDragon
             statsScreen.Initialize(parameters);
         }
 
-        public void RespawnPlayerAfterDeath()
+        public void ReloadCheckpoint()
         {
             // Heal the player back to full
             SaveFileManager.Current.PlayerHealth = Player.MaxHealth;

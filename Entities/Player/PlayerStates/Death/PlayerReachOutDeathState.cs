@@ -20,7 +20,7 @@ namespace FastDragon
             Self.MoveAndSlide();
 
             if (!Self.Animator.IsPlaying())
-                LevelTransitionManager.Instance.RespawnPlayerAfterDeath();
+                LevelTransitionManager.Instance.ReloadCheckpoint();
         }
     }
 }
