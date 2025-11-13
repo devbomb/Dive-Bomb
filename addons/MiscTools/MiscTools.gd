@@ -16,12 +16,27 @@ func _create_new_level(level_id: String, parent_folder: String) -> void:
 	var level_folder: String = parent_folder.path_join(level_id)
 	DirAccess.make_dir_absolute(level_folder)
 	
+	# Create a maps folder, along with a "hazardous waste containment"
+	# folder for all of those pesky autosaves Trenchbroom likes to create.
+	var maps_folder: String = level_folder.path_join("Maps")
+	DirAccess.make_dir_absolute(maps_folder)
+	
+	var autosaves_folder: String = level_folder.path_join("Maps/autosave")
+	print("autosaves folder: " + autosaves_folder)
+	DirAccess.make_dir_absolute(autosaves_folder)
+	
+	var gitignore_file: FileAccess = FileAccess.open(autosaves_folder.path_join(".gitignore"), FileAccess.WRITE)
+	gitignore_file.store_string("*.map")
+	gitignore_file.close()
+	
+	var gdignore_file: FileAccess = FileAccess.open(autosaves_folder.path_join(".gdignore"), FileAccess.WRITE)
+	gdignore_file.close()
+	
 	# Create a placeholder skybox
 	var environment = Environment.new()
 	ResourceSaver.save(environment, level_folder.path_join(level_id + "Skybox.tres"))
 	
-	# TODO: Create a maps folder, along with a "hazardous waste containment"
-	# folder for all of those pesky autosaves Trenchbroom likes to create.
+	# TODO: Create the "official" scene
 	
 	# Refresh the editor so the new folder can be seen
 	get_editor_interface().get_resource_filesystem().scan()
