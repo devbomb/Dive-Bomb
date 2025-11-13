@@ -1,34 +1,20 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://bga7n1igtl78e"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cold377yyeosy"]
 
 [ext_resource type="PackedScene" uid="uid://ba2ixu535q7o3" path="res://Entities/Transport/PlayerSpawn.tscn" id="1_rj034"]
-[ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="2_tcka0"]
+[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_rj034"]
 
 [resource]
-script = ExtResource("2_tcka0")
-target_map_editor = 1
-models_sub_folder = ""
-scale_expression = ""
-generate_size_property = false
-generate_gd_ignore_file = false
+script = ExtResource("2_rj034")
 scene_file = ExtResource("1_rj034")
-apply_rotation_on_map_build = true
-apply_scale_on_map_build = true
 classname = "transport_player_spawn"
-description = ""
-func_godot_internal = false
-base_classes = Array[Resource]([])
 class_properties = {
 "FlyInDistance": 10.0,
 "FlyInDuration": 4.0,
 "FlyInHeight": 10.0
 }
-class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
-"color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"TrenchbroomEntityModels/transport_player_spawn.glb\"",
-"size": AABB(-8, -8, 0, 8, 8, 16)
+"color": Color(0.45, 0.3291, 0.216, 1),
+"size": AABB(-4, -4, 0, 4, 4, 20)
 }
-node_class = ""
-name_property = ""
-metadata/_custom_type_script = "uid://bnr5edjnhrq6k"
+metadata/_custom_type_script = "uid://cddjtiy8pj12o"
