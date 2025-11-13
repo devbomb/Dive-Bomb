@@ -7,8 +7,6 @@
 
 [resource]
 script = ExtResource("1_6hw37")
-export_file = false
-target_map_editor = 1
 fgd_name = "DiveBomb"
 base_fgd_files = Array[Resource]([ExtResource("1_7elv0"), ExtResource("2_7elv0")])
 entity_definitions = Array[Resource]([ExtResource("3_7elv0")])
