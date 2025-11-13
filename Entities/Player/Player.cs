@@ -176,10 +176,10 @@ namespace FastDragon
 
             base._Ready();
 
-            SignalBus.Instance.LevelReset += Respawn;
+            SignalBus.Instance.LevelReset += Reset;
             _spawnPos = GlobalTransform;
 
-            Respawn();
+            Reset();
         }
 
         public override void _Input(InputEvent ev)
@@ -190,7 +190,7 @@ namespace FastDragon
             }
         }
 
-        public void Respawn()
+        public void Reset()
         {
             EmitSignal(SignalName.Respawning);
 
