@@ -39,7 +39,7 @@ import/use_multiple_threads=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/FuncGodotMapImporter/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/func_godot/plugin.cfg")
+enabled=PackedStringArray("res://addons/FuncGodotMapImporter/plugin.cfg", "res://addons/MiscTools/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/func_godot/plugin.cfg")
 
 [global_group]
 

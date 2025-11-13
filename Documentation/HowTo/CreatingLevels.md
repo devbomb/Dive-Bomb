@@ -2,21 +2,25 @@
 Before you can create levels, you need to make sure Trenchbroom is set up to
 work with Dive Bomb.  See [Setting up Trenchbroom and func_godot](#setting-up-trenchbroom-and-func_godot).
 
+After you've done that, you can create a new blank level by clicking
+`Project -> Tools -> Dive Bomb: Create new level`.  That will run an editor
+plugin to create all of the required files for a blank level.
+
 A Dive Bomb level consists of:
 * A [folder](#creating-the-level-folder) containing the following files:
     * A [.map file](#creating-the-map-file) created in Trenchbroom, which contains
-        the bulk of the level's contents, including level geometry, gem/enemy 
+        the bulk of the level's contents, including level geometry, gem/enemy
         placements, the player's spawn point, checkpoints, etc.
 
     * A [.tscn file](#creating-the-tscn-file), which acts as the "official" scene
-        for the level.  It contains an 
-        [instance](#how-it-works-funcgodotmapimporter) of the map file, along 
-        with a few Godot-specific nodes that are inconvenient to create in 
+        for the level.  It contains an
+        [instance](#how-it-works-funcgodotmapimporter) of the map file, along
+        with a few Godot-specific nodes that are inconvenient to create in
         Trenchbroom.
 
     * A [skybox](#creating-the-skybox), which is used both in the level itself and
         as a crucial part of the seamless loading screen effect.
-    
+
     * Any other level-specific art assets that are only used here
 
 * A [portal](#creating-a-portal) leading to the level from one of the
