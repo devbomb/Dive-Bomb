@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 func _enter_tree() -> void:
-	add_tool_menu_item("Create new level", execute_create_new_level)
+	add_tool_menu_item("Dive Bomb: Create new level", execute_create_new_level)
 	add_tool_menu_item("Delete all unnecessary player animation tracks", execute_delete_unnecessary_player_animation_tracks)
 
 func execute_create_new_level() -> void:
