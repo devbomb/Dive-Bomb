@@ -20,7 +20,13 @@ namespace FastDragon
             if (Done)
                 return;
 
+            if (!Engine.IsInPhysicsFrame() && _currentInstruction.Type == YieldInstruction.InstructionType.WaitTicks)
+            {
+                throw new Exception("Coroutine.WaitTicks is only valid if your Tick() call is inide _PhysicsProcess()");
+            }
+
             _currentInstruction.SecondsToWait -= delta;
+            _currentInstruction.TicksToWait--;
             _currentInstruction.ChildRunner?.Tick(delta);
 
             if (!_currentInstruction.Done)
@@ -36,6 +42,12 @@ namespace FastDragon
         {
             Type = YieldInstruction.InstructionType.WaitSeconds,
             SecondsToWait = seconds
+        };
+
+        public static YieldInstruction WaitTicks(PhysicsTicks ticks) => new()
+        {
+            Type = YieldInstruction.InstructionType.WaitTicks,
+            TicksToWait = ticks
         };
 
         public static YieldInstruction WaitFor(IEnumerator<YieldInstruction> coroutine) => new()
@@ -56,6 +68,7 @@ namespace FastDragon
         {
             InstructionType.None => true,
             InstructionType.WaitSeconds => SecondsToWait <= 0,
+            InstructionType.WaitTicks => TicksToWait <= 0,
             InstructionType.WaitChildCoroutine => ChildRunner.Done,
             InstructionType.Stop => true,
             _ => throw new ArgumentException()
@@ -67,9 +80,11 @@ namespace FastDragon
             None,
             Stop,
             WaitSeconds,
+            WaitTicks,
             WaitChildCoroutine,
         }
         public double SecondsToWait = 0;
+        public PhysicsTicks TicksToWait = 0;
         public Coroutine ChildRunner = null;
 
         public YieldInstruction() {}
