@@ -22,7 +22,6 @@ func _create_new_level(level_id: String, parent_folder: String) -> void:
 	DirAccess.make_dir_absolute(maps_folder)
 	
 	var autosaves_folder: String = level_folder.path_join("Maps/autosave")
-	print("autosaves folder: " + autosaves_folder)
 	DirAccess.make_dir_absolute(autosaves_folder)
 	
 	var gitignore_file: FileAccess = FileAccess.open(autosaves_folder.path_join(".gitignore"), FileAccess.WRITE)
@@ -33,10 +32,30 @@ func _create_new_level(level_id: String, parent_folder: String) -> void:
 	gdignore_file.close()
 	
 	# Create a placeholder skybox
-	var environment = Environment.new()
-	ResourceSaver.save(environment, level_folder.path_join(level_id + "Skybox.tres"))
+	var environment_resource = Environment.new()
+	ResourceSaver.save(environment_resource, level_folder.path_join(level_id + "Skybox.tres"))
 	
-	# TODO: Create the "official" scene
+	# Create the "official" scene
+	var level_root = DiveBombLevel.new()
+	level_root.name = level_id
+	
+	var environment_node = WorldEnvironment.new()
+	level_root.add_child(environment_node)
+	environment_node.owner = level_root
+	environment_node.name = "WorldEnvironment"
+	environment_node.environment = environment_resource
+	
+	var sun = DirectionalLight3D.new()
+	level_root.add_child(sun)
+	sun.owner = level_root
+	sun.name = "DirectionalLight3D"
+	sun.position.y = 7
+	sun.rotation_degrees.x = -45
+	
+	# Save the scene
+	var scene = PackedScene.new()
+	scene.pack(level_root)
+	ResourceSaver.save(scene, level_folder.path_join(level_id + ".tscn"))
 	
 	# Refresh the editor so the new folder can be seen
 	get_editor_interface().get_resource_filesystem().scan()
