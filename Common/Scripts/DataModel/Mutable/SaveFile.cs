@@ -16,10 +16,6 @@ namespace FastDragon
         /// <summary>
         /// The number of times the player has died outside of time trial mode.
         /// You don't get punished for this; it's just a fun little counter.
-        ///
-        /// Reloading a checkpoint from the pause menu counts as a death, btw.
-        /// Otherwise, you'd be able to cheese it by pausing and reloading right
-        /// before you die.
         /// </summary>
         [JsonProperty] public int TotalDeaths;
 

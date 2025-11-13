@@ -293,6 +293,23 @@ namespace FastDragon
             return result;
         }
 
+        /// <summary>
+        /// Increments the death counter and reloads the last checkpoint,
+        /// without playing a death animation.
+        /// </summary>
+        public void Die()
+        {
+            LevelTransitionManager.Instance.ReloadCheckpoint();
+
+            if (!this.IsTimeTrialMode())
+            {
+                SaveFileManager.Current.TotalDeaths++;
+                SaveFileManager.Current.CurrentLevelVisit.Deaths++;
+                SaveFileManager.Instance.RequestAutosave();
+                GD.Print($"Deaths: {SaveFileManager.Current.TotalDeaths}");
+            }
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
