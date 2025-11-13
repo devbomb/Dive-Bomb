@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://btejrg27q3lyj"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
+[ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
+
+[sub_resource type="Environment" id="Environment_vwhqw"]
+
+[node name="Tutorial" type="Node3D"]
+script = ExtResource("1_vo1h1")
+LevelName = "Tutorial"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vwhqw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
+
+[node name="Intro" parent="." instance=ExtResource("2_vwhqw")]
