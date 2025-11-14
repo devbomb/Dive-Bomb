@@ -1,10 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=10 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
 [ext_resource type="PackedScene" uid="uid://btlc2kyid5u56" path="res://Levels/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
+[ext_resource type="Script" uid="uid://dckrc8pcs474m" path="res://Entities/Trigger/TutorialPopupZone.cs" id="3_bn2em"]
+[ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="4_uhvqi"]
+[ext_resource type="Script" uid="uid://d2ars665qqq5j" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="5_uhvqi"]
 
 [sub_resource type="Environment" id="Environment_vwhqw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u66hf"]
+size = Vector3(10, 3, 6)
+
+[sub_resource type="Texture2D" id="Texture2D_p8bxm"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "Jump"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
 
 [node name="Tutorial" type="Node3D"]
 script = ExtResource("1_vo1h1")
@@ -29,6 +42,44 @@ light_energy = 0.523
 sky_mode = 1
 
 [node name="Intro" parent="." instance=ExtResource("2_vwhqw")]
+
+[node name="JumpTutorialTrigger" type="Area3D" parent="Intro" node_paths=PackedStringArray("ControlToShow")]
+script = ExtResource("3_bn2em")
+ControlToShow = NodePath("Popup")
+metadata/_custom_type_script = "uid://dckrc8pcs474m"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Intro/JumpTutorialTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 3, 6.5)
+shape = SubResource("BoxShape3D_u66hf")
+
+[node name="Popup" type="PanelContainer" parent="Intro/JumpTutorialTrigger"]
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_right = 16.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Intro/JumpTutorialTrigger/Popup"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="Intro/JumpTutorialTrigger/Popup/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_p8bxm")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Intro/JumpTutorialTrigger/Popup/HBoxContainer"]
+layout_mode = 2
+text = "Jump"
 
 [node name="CameraTut" parent="." instance=ExtResource("3_3rttw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 35)
