@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=16 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="4_uhvqi"]
 [ext_resource type="Script" uid="uid://d2ars665qqq5j" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="5_uhvqi"]
 [ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="6_p8bxm"]
+[ext_resource type="PackedScene" uid="uid://cyxbyv7xju8b" path="res://Levels/Tutorial/Maps/RollTut.map" id="8_i3mr3"]
 
 [sub_resource type="Environment" id="Environment_vwhqw"]
 
@@ -178,3 +179,6 @@ size_flags_vertical = 1
 text = "Move Camera"
 label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
+
+[node name="RollTut" parent="CameraTut" instance=ExtResource("8_i3mr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7, 2)
