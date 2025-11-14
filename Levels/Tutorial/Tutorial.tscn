@@ -16,6 +16,17 @@ environment = SubResource("Environment_vwhqw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
+sky_mode = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(0.996646, 0, -0.081834145, 0.081834145, -4.371139e-08, 0.996646, -3.5770842e-09, -1, -4.356478e-08, 0, 0, 0)
+light_energy = 0.523
+sky_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(0.99121547, 1.7459456e-09, 0.13225667, -0.13225667, -4.2598494e-08, 0.99121547, 7.364508e-09, -1, -4.1993374e-08, 0, 0, 0)
+light_energy = 0.523
+sky_mode = 1
 
 [node name="Intro" parent="." instance=ExtResource("2_vwhqw")]
 
