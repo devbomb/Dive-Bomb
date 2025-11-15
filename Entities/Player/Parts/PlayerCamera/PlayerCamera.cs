@@ -356,6 +356,7 @@ namespace FastDragon
 
                 float t = _timer / Duration;
                 t = Mathf.Min(1, t);
+                t = MathUtils.LerpSinusoidal(0, 1, t);
 
                 Self.OrbitPitchRad = Mathf.LerpAngle(
                     _initialPitchRad,
