@@ -274,7 +274,7 @@
 }
 // entity 10
 {
-"classname" "item_basket"
+"classname" "item_vase"
 "origin" "-32 576 48"
 }
 // entity 11
