@@ -141,7 +141,6 @@ vertical_alignment = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 35)
 
 [node name="CameraTutorialPopup" type="PanelContainer" parent="CameraTut"]
-visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
 anchor_left = 0.5
@@ -165,8 +164,9 @@ size_flags_horizontal = 4
 [node name="TextureRect" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_vertical = 4
 texture = SubResource("Texture2D_i3mr3")
-expand_mode = 2
+expand_mode = 1
 
 [node name="Label" type="Label" parent="CameraTut/CameraTutorialPopup/HBoxContainer"]
 layout_mode = 2
@@ -203,8 +203,9 @@ size_flags_horizontal = 4
 [node name="TextureRect" type="TextureRect" parent="RollTut/RecenterCameraTutorialPopup/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_vertical = 4
 texture = SubResource("Texture2D_sob3p")
-expand_mode = 2
+expand_mode = 1
 
 [node name="Label" type="Label" parent="RollTut/RecenterCameraTutorialPopup/HBoxContainer"]
 layout_mode = 2
@@ -214,6 +215,7 @@ label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
 
 [node name="KickTutorialPopup" type="PanelContainer" parent="RollTut"]
+visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
 anchor_left = 0.5
@@ -237,8 +239,9 @@ size_flags_horizontal = 4
 [node name="TextureRect" type="TextureRect" parent="RollTut/KickTutorialPopup/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_vertical = 4
 texture = SubResource("Texture2D_yrnv4")
-expand_mode = 2
+expand_mode = 1
 
 [node name="Label" type="Label" parent="RollTut/KickTutorialPopup/HBoxContainer"]
 layout_mode = 2
