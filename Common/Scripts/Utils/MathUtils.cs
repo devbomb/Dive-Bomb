@@ -38,5 +38,16 @@ namespace FastDragon
 
             return Mathf.LerpAngle(fromRad, toRad, shiftedT);
         }
+
+        public static float SoftLimitMin(float value, float prevValue, float min)
+        {
+            if (value >= min)
+                return value;
+
+            if (value >= prevValue)
+                return value;
+
+            return prevValue;
+        }
     }
 }
