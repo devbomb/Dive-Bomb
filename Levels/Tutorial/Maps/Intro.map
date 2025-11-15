@@ -177,3 +177,17 @@
 "classname" "item_gem_green"
 "origin" "436 -68 112"
 }
+// entity 7
+{
+"classname" "trigger_named_trigger_zone"
+"TriggerName" "JumpTutorialTrigger"
+// brush 0
+{
+( 80 -96 16 ) ( 80 -95 16 ) ( 80 -96 17 ) Textures/Grate 0 0 0 1 1
+( 112 -96 16 ) ( 112 -96 17 ) ( 113 -96 16 ) Textures/Grate 0 0 0 1 1
+( 112 -96 16 ) ( 113 -96 16 ) ( 112 -95 16 ) Textures/Grate 0 0 0 1 1
+( 184 48 64 ) ( 184 49 64 ) ( 185 48 64 ) Textures/Grate 0 0 0 1 1
+( 184 48 64 ) ( 185 48 64 ) ( 184 48 65 ) Textures/Grate 0 0 0 1 1
+( 184 48 64 ) ( 184 48 65 ) ( 184 49 64 ) Textures/Grate 0 0 0 1 1
+}
+}

@@ -322,3 +322,17 @@
 "VentId" "CameraTutorialEnd"
 "TargetVentId" "RollTutorialStart"
 }
+// entity 10
+{
+"classname" "trigger_named_trigger_zone"
+"TriggerName" "CameraTutorialTrigger"
+// brush 0
+{
+( 320 -128 72 ) ( 320 -127 72 ) ( 320 -128 73 ) Textures/Grate 0 0 0 1 1
+( 336 -128 72 ) ( 336 -128 73 ) ( 337 -128 72 ) Textures/Grate 0 0 0 1 1
+( 336 -128 48 ) ( 337 -128 48 ) ( 336 -127 48 ) Textures/Grate 0 0 0 1 1
+( 416 112 160 ) ( 416 113 160 ) ( 417 112 160 ) Textures/Grate 0 0 0 1 1
+( 416 112 160 ) ( 417 112 160 ) ( 416 112 161 ) Textures/Grate 0 0 0 1 1
+( 416 112 160 ) ( 416 112 161 ) ( 416 113 160 ) Textures/Grate 0 0 0 1 1
+}
+}
