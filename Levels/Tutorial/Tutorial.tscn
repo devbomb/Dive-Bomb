@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=18 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="6_p8bxm"]
 [ext_resource type="PackedScene" uid="uid://cyxbyv7xju8b" path="res://Levels/Tutorial/Maps/RollTut.map" id="8_i3mr3"]
 [ext_resource type="Script" uid="uid://bjrp7gxeg424r" path="res://UI/Widgets/TutorialPopup.cs" id="8_sob3p"]
+[ext_resource type="PackedScene" uid="uid://dbo5v5bk2jxh7" path="res://Levels/Tutorial/Maps/KickTut.map" id="8_yrnv4"]
 
 [sub_resource type="Environment" id="Environment_vwhqw"]
 
@@ -183,10 +184,10 @@ text = "Move Camera"
 label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
 
-[node name="RollTut" parent="." instance=ExtResource("8_i3mr3")]
+[node name="KickTut" parent="." instance=ExtResource("8_yrnv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 13, 37)
 
-[node name="RecenterCameraTutorialPopup" type="PanelContainer" parent="RollTut"]
+[node name="RecenterCameraTutorialPopup" type="PanelContainer" parent="KickTut"]
 visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
@@ -204,25 +205,25 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 TriggerName = "RecenterCameraTutorialTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RollTut/RecenterCameraTutorialPopup"]
+[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/RecenterCameraTutorialPopup"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="RollTut/RecenterCameraTutorialPopup/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("Texture2D_sob3p")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="RollTut/RecenterCameraTutorialPopup/HBoxContainer"]
+[node name="Label" type="Label" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Recenter Camera"
 label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
 
-[node name="KickTutorialPopup" type="PanelContainer" parent="RollTut"]
+[node name="KickTutorialPopup" type="PanelContainer" parent="KickTut"]
 visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
@@ -240,23 +241,26 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 TriggerName = "KickTutorialPopupTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RollTut/KickTutorialPopup"]
+[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/KickTutorialPopup"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="RollTut/KickTutorialPopup/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="KickTut/KickTutorialPopup/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("Texture2D_yrnv4")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="RollTut/KickTutorialPopup/HBoxContainer"]
+[node name="Label" type="Label" parent="KickTut/KickTutorialPopup/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Kick"
 label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
+
+[node name="RollTut" parent="." instance=ExtResource("8_i3mr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 13, 27)
 
 [node name="RollTutorialPopup" type="PanelContainer" parent="RollTut"]
 visible = false
