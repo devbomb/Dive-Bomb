@@ -12,5 +12,4 @@ dest_files=["res://.godot/imported/CameraTut.map-99846388b444569368a5d74d644b576
 
 [params]
 
-texture_material_map=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("uid://cb8n0ec7vcom", "res://addons/FuncGodotMapImporter/MaterialMap.gd"),"inherited_material_maps":Array[Resource("uid://cb8n0ec7vcom", "res://addons/FuncGodotMapImporter/MaterialMap.gd")]([]),"texture_to_material":Dictionary[Texture2D, Material]({}))
-
+texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")
