@@ -25,15 +25,18 @@ namespace FastDragon
                 _trigger = GetTree()
                     .Root
                     .EnumerateDescendantsOfType<NamedTriggerZone>()
-                    .First(t => t.TriggerName == TriggerName);
+                    .FirstOrDefault(t => t.TriggerName == TriggerName);
+
+                if (_trigger == null)
+                    throw new System.Exception($"Can't find a trigger named {TriggerName}");
             }).CallDeferred();
         }
 
         public override void _PhysicsProcess(double delta)
         {
-            _playerInside = _trigger.GetOverlappingBodiesResetSafe()
-                .OfType<Player>()
-                .Any();
+            _playerInside = _trigger?.GetOverlappingBodiesResetSafe()
+                ?.OfType<Player>()
+                ?.Any() ?? false;
         }
 
         public override void _Process(double delta)
