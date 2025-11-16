@@ -142,6 +142,7 @@ namespace FastDragon
                 _camTimer += (float)deltaD;
 
                 float camT = Mathf.Min(_camTimer / EnterCameraMoveDuration, 1);
+                camT = MathUtils.LerpSinusoidal(0, 1, camT);
                 Self._cutsceneCam.GlobalTransform = _cameraStart.InterpolateWith(
                     _cameraEnd,
                     camT
@@ -195,6 +196,8 @@ namespace FastDragon
                 _timer +=(float)deltaD;
 
                 float t = Mathf.Min(_timer / MoveDuration, 1);
+                t = Mathf.SmoothStep(0, 1, t);
+
                 Self._cutsceneCam.GlobalTransform = _camStart.InterpolateWith(
                     Player.Camera.GlobalTransform,
                     t
