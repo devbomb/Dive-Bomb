@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -8,10 +9,29 @@ namespace FastDragon
         [Export] public float SuggestedPitchDeg = 0;
         [Export] public float SuggestedDistance = 6;
 
+        [Export] public string DirectionMarkerId;
+
         public override void _Ready()
         {
             BodyEntered += OnBodyEntered;
             BodyExited += OnBodyExited;
+
+            Callable.From(() =>
+            {
+                if (string.IsNullOrEmpty(DirectionMarkerId))
+                    return;
+
+                var marker = GetTree()
+                    .Root
+                    .EnumerateDescendantsOfType<NamedMarker3D>()
+                    .First(m => m.MarkerId == DirectionMarkerId);
+
+                if (marker != null)
+                {
+                    SuggestedYawDeg = marker.GlobalRotationDegrees.Y;
+                    SuggestedPitchDeg = marker.GlobalRotationDegrees.X;
+                }
+            }).CallDeferred();
         }
 
         public void OnBodyEntered(Node3D body)

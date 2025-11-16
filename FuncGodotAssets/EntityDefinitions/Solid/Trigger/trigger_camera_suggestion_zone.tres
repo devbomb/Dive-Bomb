@@ -5,39 +5,22 @@
 
 [resource]
 script = ExtResource("1_2n3s0")
-spawn_type = 2
-origin_type = 4
 build_visuals = false
-use_in_baked_light = true
-shadow_casting_setting = 1
-build_occlusion = false
-render_layers = 1
-collision_shape_type = 1
-collision_layer = 1
-collision_mask = 1
-collision_priority = 1.0
-collision_shape_margin = 0.04
-add_textures_metadata = false
-add_vertex_metadata = false
-add_face_position_metadata = false
-add_face_normal_metadata = false
-add_collision_shape_face_range_metadata = false
 script_class = ExtResource("2_bent3")
 classname = "trigger_camera_suggestion_zone"
 description = "\"Suggests\" a camera angle when the player enters it.  The camera will move to the suggested angle, but there is nothing stopping the player from readjusting it back to their preferred angle."
-func_godot_internal = false
-base_classes = Array[Resource]([])
 class_properties = {
+"DirectionMarkerId": "",
 "SuggestedDistance": 6.0,
 "SuggestedPitchDeg": 0.0,
 "SuggestedYawDeg": 0.0
 }
-class_property_descriptions = {}
-auto_apply_to_matching_node_properties = true
-meta_properties = {
-"color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
+class_property_descriptions = {
+"DirectionMarkerId": "If provided, it will use the rotation of a NamedMarker3D with this id, rather than SuggestedPitchDeg and SuggestedYawDeg.",
+"SuggestedDistance": "How far away the camera is from the focal point",
+"SuggestedPitchDeg": "The camera's pitch in degrees.  Not used if DirectionMarkerId is provided.",
+"SuggestedYawDeg": "The camera's yaw in degrees.  Not used if DirectionMarkerId is provided."
 }
+auto_apply_to_matching_node_properties = true
 node_class = "Area3D"
-name_property = ""
 metadata/_custom_type_script = "uid://ctv13qfisgfqg"

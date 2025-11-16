@@ -300,9 +300,24 @@ namespace FastDragon
                 transform.Origin = targetPos + (dir * FollowDistance);
                 transform = transform.LookingAt(targetPos);
 
+                float oldPitchRad = Self.OrbitPitchRad;
+
                 Self.OrbitYawRad = transform.Basis.GetEuler().Y;
                 Self.OrbitPitchRad = transform.Basis.GetEuler().X;
                 ClampOrbitAngles();
+
+                // Don't allow the camera to auto-rotate downwards unless the
+                // player is actually _moving_ downwards.  This allows the
+                // player to run straight at the camera without the it gradually
+                // rotating above their head.
+                if (Self.Player.LocalVelocity.Y >= 0)
+                {
+                    Self.OrbitPitchRad = MathUtils.SoftLimitMin(
+                        Self.OrbitPitchRad,
+                        oldPitchRad,
+                        Mathf.DegToRad(-25)
+                    );
+                }
 
                 Self.ApplyAnglesAndDistance();
             }
@@ -341,6 +356,7 @@ namespace FastDragon
 
                 float t = _timer / Duration;
                 t = Mathf.Min(1, t);
+                t = MathUtils.LerpSinusoidal(0, 1, t);
 
                 Self.OrbitPitchRad = Mathf.LerpAngle(
                     _initialPitchRad,
