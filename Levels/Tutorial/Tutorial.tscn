@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=20 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bjrp7gxeg424r" path="res://UI/Widgets/TutorialPopup.cs" id="8_sob3p"]
 [ext_resource type="PackedScene" uid="uid://dbo5v5bk2jxh7" path="res://Levels/Tutorial/Maps/KickTut.map" id="8_yrnv4"]
 [ext_resource type="Script" uid="uid://brhva0ikdmdcl" path="res://Entities/Info/NamedMarker/NamedMarker3D.cs" id="10_ipotd"]
+[ext_resource type="PackedScene" uid="uid://dord22pbbqflm" path="res://Levels/Tutorial/Maps/FairyRoom.map" id="11_r652i"]
 
 [sub_resource type="Environment" id="Environment_vwhqw"]
 
@@ -303,3 +304,6 @@ vertical_alignment = 1
 transform = Transform3D(-5.9604645e-08, 0.5, -0.8660254, 0, 0.8660254, 0.5, 1, 2.9802322e-08, -5.1619136e-08, 32, 15, -15)
 script = ExtResource("10_ipotd")
 MarkerId = "FairyRoomWindowCameraSpot"
+
+[node name="FairyRoom" parent="." instance=ExtResource("11_r652i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133, 19, 7)
