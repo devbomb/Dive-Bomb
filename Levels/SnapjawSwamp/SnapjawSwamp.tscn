@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ix6x15b1vqy"]
+[gd_scene load_steps=12 format=3 uid="uid://7ix6x15b1vqy"]
 
 [ext_resource type="PackedScene" uid="uid://iq6182mo1ehd" path="res://Levels/SnapjawSwamp/Maps/IndoorTemple.map" id="1_66jiy"]
 [ext_resource type="Environment" uid="uid://btae5lbyfvcts" path="res://Levels/SnapjawSwamp/SnapjawSwampSkybox.tres" id="1_e42vu"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c4he06nhgpthi" path="res://Levels/SnapjawSwamp/Maps/WaterfallTrees.map" id="7_e7jdb"]
 [ext_resource type="AudioStream" uid="uid://gjlcrblpc5hw" path="res://Levels/SnapjawSwamp/SnapjawSwamp.mp3" id="7_e42vu"]
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="9_bdp2e"]
+[ext_resource type="Script" uid="uid://brhva0ikdmdcl" path="res://Entities/Info/NamedMarker/NamedMarker3D.cs" id="10_duwd4"]
 
 [node name="SnapjawSwamp" type="Node3D"]
 script = ExtResource("1_f80cs")
@@ -50,6 +51,16 @@ amount = 25
 [node name="WaterfallSplashParticles3" parent="IndoorTemple" instance=ExtResource("3_uop5j")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 6.65, 15.5526, 19.7883)
 amount = 25
+
+[node name="AfterDirtyTrickCameraDir" type="Marker3D" parent="IndoorTemple"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -16.71688, 24.43061, 21.323845)
+script = ExtResource("10_duwd4")
+MarkerId = "AfterDirtyTrickCameraDir"
+
+[node name="SideWallSecretCameraDir" type="Marker3D" parent="IndoorTemple"]
+transform = Transform3D(-4.371139e-08, -0.76604444, 0.64278764, 0, 0.64278764, 0.76604444, -1, 3.3484866e-08, -2.809714e-08, 28.862984, 41.17826, -2.860527)
+script = ExtResource("10_duwd4")
+MarkerId = "SideWallSecretCameraDir"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.748389, 0.66326, 0, -0.66326, 0.748389, 0, 4.20436, 0)
