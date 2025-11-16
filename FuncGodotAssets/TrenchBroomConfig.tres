@@ -11,37 +11,26 @@
 [sub_resource type="Resource" id="Resource_37qbo"]
 script = ExtResource("1_kwlnp")
 tag_name = "trigger"
-tag_attributes = Array[String](["transparent"])
 tag_match_type = 1
 tag_pattern = "trigger_*"
-texture_name = ""
 metadata/_custom_type_script = "uid://b6d8nuk41dct6"
 
 [sub_resource type="Resource" id="Resource_kwlnp"]
 script = ExtResource("1_kwlnp")
 tag_name = "SwampGoo"
-tag_attributes = Array[String](["transparent"])
-tag_match_type = 0
 tag_pattern = "SwampGoo"
-texture_name = ""
 metadata/_custom_type_script = "uid://b6d8nuk41dct6"
 
 [resource]
 script = ExtResource("6_7g2id")
-export_file = false
 game_name = "FastDragon"
-icon = ExtResource("5_1pa35")
 map_formats = Array[Dictionary]([{
 "format": "Standard",
 "initialmap": "initial_standard.map"
 }])
 textures_root_folder = "Textures"
-texture_exclusion_patterns = Array[String](["*_albedo", "*_ao", "*_emission", "*_height", "*_metallic", "*_normal", "*_orm", "*_roughness", "*_sss"])
-palette_path = "textures/palette.lmp"
 fgd_file = ExtResource("4_ifj5o")
 entity_scale = "16"
 brush_tags = Array[Resource]([SubResource("Resource_37qbo")])
 brushface_tags = Array[Resource]([ExtResource("1_ifj5o"), ExtResource("2_kwlnp"), ExtResource("3_37qbo"), SubResource("Resource_kwlnp")])
-default_uv_scale = Vector2(1, 1)
-game_config_version = 0
 metadata/_custom_type_script = "uid://drs0otjr832bd"
