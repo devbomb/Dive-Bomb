@@ -21,6 +21,18 @@ namespace FastDragon
         /// <returns></returns>
         [Export(PropertyHint.File)] public string HomeWorldLevel;
 
+        /// <summary>
+        /// Set this to true to prevent the player from exiting the level
+        /// through the pause menu, even if this level isn't a home world.
+        ///
+        /// This is primarily used for the intro tutorial, to prevent the player
+        /// from skipping it.
+        ///
+        /// THIS VALUE WILL BE IGNORED if the player has already reached the
+        /// level exit canon at least once.
+        /// </summary>
+        [Export] public bool ForbidExitLevel;
+
         public bool IsHomeWorld => HomeWorldLevel == null;
 
         public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
@@ -61,12 +73,24 @@ namespace FastDragon
             SaveFileManager.Current.CurrentLevelVisit.Playtime++;
         }
 
+        public bool CanExitLevel()
+        {
+            if (IsHomeWorld)
+                return false;
+
+            if (ForbidExitLevel && !GetProgress().ExitReached)
+                return false;
+
+            return true;
+        }
+
         public LevelProgress GetProgress()
         {
             return TimeTrial.IsTimeTrialMode
                 ? TimeTrial.DummyProgress
                 : SaveFileManager.Current.GetLevelSaveData(SceneFilePath).Progress;
         }
+
         public LevelSummary GetSummary()
         {
             if (!IsNodeReady())
