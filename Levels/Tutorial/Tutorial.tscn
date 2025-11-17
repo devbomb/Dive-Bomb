@@ -67,6 +67,7 @@ metadata/_custom_type_script = "uid://d2ars665qqq5j"
 script = ExtResource("1_vo1h1")
 LevelName = "Tutorial"
 HomeWorldLevel = "uid://muwxx8ltp1ss"
+ForbidExitLevel = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vwhqw")
