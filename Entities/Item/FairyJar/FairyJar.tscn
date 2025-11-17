@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b1kkywgiv08uj" path="res://Entities/Item/FairyJar/SFX/MagicalGlassShatter.wav" id="2_wcnnd"]
 [ext_resource type="AudioStream" uid="uid://eqg1m3m28yi3" path="res://Entities/Item/FairyJar/SFX/FairyJingle.wav" id="3_p435h"]
 [ext_resource type="Script" uid="uid://ilt6j85e4n8e" path="res://Common/Components/DecoratorNodes/BillboardToCameraDecorator.gd" id="4_g18ww"]
+[ext_resource type="PackedScene" uid="uid://dphti8hl7njh4" path="res://Entities/Item/FairyJar/Jar.blend" id="4_ovlfu"]
 [ext_resource type="FontVariation" uid="uid://bmr44as3fvbhe" path="res://Fonts/FontVariations/TekturBolder.tres" id="4_w4eob"]
 [ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="5_bs0wh"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="5_pebs6"]
@@ -14,20 +15,6 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ohivc"]
 height = 1.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hs1pw"]
-transparency = 1
-cull_mode = 1
-albedo_color = Color(0.745098, 0.917647, 1, 0.192157)
-rim = 0.0
-subsurf_scatter_strength = 1.0
-subsurf_scatter_skin_mode = true
-disable_receive_shadows = true
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_r6mq4"]
-material = SubResource("StandardMaterial3D_hs1pw")
-height = 1.5
-radial_segments = 8
 
 [sub_resource type="GDScript" id="GDScript_vio7c"]
 script/source = "extends Node3D
@@ -84,6 +71,15 @@ spread = 180.0
 initial_velocity_min = 5.0
 initial_velocity_max = 5.0
 scale_curve = SubResource("CurveTexture_u312v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hs1pw"]
+transparency = 1
+cull_mode = 1
+albedo_color = Color(0.745098, 0.917647, 1, 0.192157)
+rim = 0.0
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+disable_receive_shadows = true
 
 [sub_resource type="PrismMesh" id="PrismMesh_lu2bc"]
 material = SubResource("StandardMaterial3D_hs1pw")
@@ -181,13 +177,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CylinderShape3D_ohivc")
 disabled = true
 
-[node name="Glass" type="MeshInstance3D" parent="."]
+[node name="Glass" parent="." instance=ExtResource("4_ovlfu")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-mesh = SubResource("CylinderMesh_r6mq4")
 
 [node name="PriceTag" type="Node3D" parent="Glass"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01713, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76713, 0)
 script = SubResource("GDScript_vio7c")
 label_mesh = SubResource("TextMesh_aq6wb")
 
