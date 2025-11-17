@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bj5cb4ewimgvw"]
 
 [ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Entities/Item/FairyJar/Animations/Hovering.tres" id="1_ac07m"]
-[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Entities/Item/FairyJar/Fairy.blend" id="1_ymyij"]
+[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy.blend" id="1_ymyij"]
 [ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Entities/Item/FairyJar/Animations/RESET.tres" id="2_p58e8"]
 
 [sub_resource type="Animation" id="Animation_ac07m"]

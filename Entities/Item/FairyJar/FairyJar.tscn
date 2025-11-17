@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" uid="uid://5c2hnyrbuo5m" path="res://Entities/Item/FairyJar/FairyJar.cs" id="1_qaaot"]
-[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Entities/Item/FairyJar/Fairy.blend" id="2_01sg4"]
+[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy.blend" id="2_01sg4"]
 [ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://Entities/Item/FairyJar/FairyAnimations.tres" id="2_l0xag"]
 [ext_resource type="AudioStream" uid="uid://b1kkywgiv08uj" path="res://Entities/Item/FairyJar/SFX/MagicalGlassShatter.wav" id="2_wcnnd"]
 [ext_resource type="AudioStream" uid="uid://eqg1m3m28yi3" path="res://Entities/Item/FairyJar/SFX/FairyJingle.wav" id="3_p435h"]
@@ -297,5 +297,3 @@ offset_right = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_p435h")
-
-[connection signal="BreakRejected" from="." to="HUD/TooPoor/AnimationPlayer" method="play" binds= ["PoorShaming"]]

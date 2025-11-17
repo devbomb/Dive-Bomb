@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://2va7mwb73ytk"
-path="res://.godot/imported/Fairy.blend-db8e35ea7c3c0075e1623148c40760c4.scn"
+path="res://.godot/imported/Fairy.blend-204e70cb891467fd7650801da570536a.scn"
 
 [deps]
 
-source_file="res://Entities/Item/FairyJar/Fairy.blend"
-dest_files=["res://.godot/imported/Fairy.blend-db8e35ea7c3c0075e1623148c40760c4.scn"]
+source_file="res://Common/Models/Characters/Fairy.blend"
+dest_files=["res://.godot/imported/Fairy.blend-204e70cb891467fd7650801da570536a.scn"]
 
 [params]
 
