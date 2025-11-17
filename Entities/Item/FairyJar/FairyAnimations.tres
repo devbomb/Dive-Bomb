@@ -1,12 +1,12 @@
 [gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://cixu1tgmo6shy"]
 
-[ext_resource type="AudioStream" uid="uid://bilyd7s4ryh37" path="res://Entities/Item/Fairy/SFX/Smooch.wav" id="1_olf8a"]
-[ext_resource type="Animation" uid="uid://dsxmagcv5o3po" path="res://Entities/Item/Fairy/Animations/FlyAway.tres" id="1_xx4uf"]
-[ext_resource type="Animation" uid="uid://k7kf8ocstec" path="res://Entities/Item/Fairy/Animations/FlyAwayHigh.tres" id="2_4tudr"]
-[ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Entities/Item/Fairy/Animations/Hovering.tres" id="3_jkguw"]
-[ext_resource type="Animation" uid="uid://bqoxt8ffx73y2" path="res://Entities/Item/Fairy/Animations/PoundingOnGlass.tres" id="5_p6rea"]
-[ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Entities/Item/Fairy/Animations/RESET.tres" id="6_wrev3"]
-[ext_resource type="Animation" uid="uid://cl2jxxp2nidld" path="res://Entities/Item/Fairy/Animations/Shatter.tres" id="7_wrev3"]
+[ext_resource type="AudioStream" uid="uid://bilyd7s4ryh37" path="res://Entities/Item/FairyJar/SFX/Smooch.wav" id="1_olf8a"]
+[ext_resource type="Animation" uid="uid://dsxmagcv5o3po" path="res://Entities/Item/FairyJar/Animations/FlyAway.tres" id="1_xx4uf"]
+[ext_resource type="Animation" uid="uid://k7kf8ocstec" path="res://Entities/Item/FairyJar/Animations/FlyAwayHigh.tres" id="2_4tudr"]
+[ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Entities/Item/FairyJar/Animations/Hovering.tres" id="3_jkguw"]
+[ext_resource type="Animation" uid="uid://bqoxt8ffx73y2" path="res://Entities/Item/FairyJar/Animations/PoundingOnGlass.tres" id="5_p6rea"]
+[ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Entities/Item/FairyJar/Animations/RESET.tres" id="6_wrev3"]
+[ext_resource type="Animation" uid="uid://cl2jxxp2nidld" path="res://Entities/Item/FairyJar/Animations/Shatter.tres" id="7_wrev3"]
 
 [sub_resource type="Animation" id="Animation_cm1eu"]
 resource_name = "Kiss"

@@ -49,7 +49,7 @@ namespace FastDragon
                     .Sum(g => (int)g.Value),
 
                 TotalFairiesInLevel = levelRoot
-                    .EnumerateDescendantsOfType<Fairy>()
+                    .EnumerateDescendantsOfType<FairyJar>()
                     .Count()
             };
 
