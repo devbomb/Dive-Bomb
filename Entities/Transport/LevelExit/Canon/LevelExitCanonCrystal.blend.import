@@ -41,7 +41,7 @@ _subresources={
 "materials": {
 "Material.001": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Materials/DivableCrystal.tres",
+"use_external/fallback_path": "res://Common/Materials/DivableCrystal.tres",
 "use_external/path": "uid://5h0khi8qcdsc"
 }
 }
