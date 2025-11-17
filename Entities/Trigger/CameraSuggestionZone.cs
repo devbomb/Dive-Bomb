@@ -24,13 +24,13 @@ namespace FastDragon
                 var marker = GetTree()
                     .Root
                     .EnumerateDescendantsOfType<NamedMarker3D>()
-                    .First(m => m.MarkerId == DirectionMarkerId);
+                    .FirstOrDefault(m => m.MarkerId == DirectionMarkerId);
 
-                if (marker != null)
-                {
-                    SuggestedYawDeg = marker.GlobalRotationDegrees.Y;
-                    SuggestedPitchDeg = marker.GlobalRotationDegrees.X;
-                }
+                if (marker == null)
+                    throw new System.Exception($"Couldn't find marker with name {DirectionMarkerId}");
+
+                SuggestedYawDeg = marker.GlobalRotationDegrees.Y;
+                SuggestedPitchDeg = marker.GlobalRotationDegrees.X;
             }).CallDeferred();
         }
 
