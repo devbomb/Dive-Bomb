@@ -9,6 +9,15 @@ namespace FastDragon
 
         [Export] public int GemCost { get; set; }
 
+        /// <summary>
+        /// Optional.  If specified(IE: not null or the empty string), other
+        /// entities can use it to get a reference to this fairy, IE to check
+        /// if it's been freed.
+        ///
+        /// Not to be confused with <see cref="SaveKey"/>!
+        /// </summary>
+        [Export] public string FairyId;
+
         public bool VulnerableToKick => CanBreak();
         public bool VulnerableToRoll => CanBreak();
         public bool CausesBonk => !CanBreak();
@@ -17,6 +26,11 @@ namespace FastDragon
         public bool EnoughGems() => (this.GetLevel()?.TotalGems ?? 0) >= GemCost;
         public bool ShowPriceTag() => GemCost > 0 && !this.IsTimeTrialMode();
 
+        /// <summary>
+        /// The Id used to identify this fairy in the save file.
+        /// Will be equal to <see cref="FairyId"/> if that value is provided.
+        /// Otherwise, it will default to a value derived from this node's path.
+        /// </summary>
         public string SaveKey { get; private set; }
 
         private readonly StateMachine _stateMachine = new StateMachine();
@@ -114,6 +128,9 @@ namespace FastDragon
 
         private string GenerateSaveKey()
         {
+            if (!string.IsNullOrEmpty(FairyId))
+                return FairyId;
+
             var builder = new System.Text.StringBuilder();
             Visit(this);
             return builder.ToString();
