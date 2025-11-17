@@ -127,6 +127,15 @@
 ( -128 -224 208 ) ( -160 -224 208 ) ( -160 -256 176 ) __TB_empty 0 0 0 1 1
 ( -128 -224 208 ) ( -160 -256 176 ) ( -128 -256 208 ) __TB_empty 0 0 0 1 1
 }
+// brush 13
+{
+( 32 -608 240 ) ( 32 -607 240 ) ( 32 -608 241 ) __TB_empty 0 0 0 1 1
+( 32 -608 240 ) ( 32 -608 241 ) ( 33 -608 240 ) __TB_empty 0 0 0 1 1
+( 32 -608 240 ) ( 33 -608 240 ) ( 32 -607 240 ) __TB_empty 0 0 0 1 1
+( 48 -496 352 ) ( 48 -495 352 ) ( 49 -496 352 ) __TB_empty 0 0 0 1 1
+( 48 -496 352 ) ( 49 -496 352 ) ( 48 -496 353 ) __TB_empty 0 0 0 1 1
+( 48 -496 352 ) ( 48 -496 353 ) ( 48 -495 352 ) __TB_empty 0 0 0 1 1
+}
 }
 // entity 2
 {
@@ -310,6 +319,15 @@
 }
 }
 // entity 5
+{
+"classname" "transport_vent"
+"origin" "24 -552 296"
+"angle" "180"
+"VentId" "FairyRoomEntranceDest"
+"TargetVentId" "FairyRoomEntranceSrc"
+"_tb_group" "2"
+}
+// entity 6
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -596,20 +614,20 @@
 ( -512 160 320 ) ( -512 144 304 ) ( -512 144 320 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 6
+// entity 7
 {
 "classname" "transport_checkpoint"
 "origin" "-208 0 80"
 "CheckpointName" "FairyRoom"
 "_tb_group" "3"
 }
-// entity 7
+// entity 8
 {
 "classname" "item_fairy"
 "origin" "-120 152 112"
 "_tb_group" "3"
 }
-// entity 8
+// entity 9
 {
 "classname" "transport_vent"
 "origin" "104 -248 264"
@@ -618,7 +636,7 @@
 "TargetVentId" "FairyRoomWallJumpSkipExit"
 "_tb_group" "3"
 }
-// entity 9
+// entity 10
 {
 "classname" "transport_vent"
 "origin" "120 -248 344"
@@ -627,7 +645,7 @@
 "VentId" "FairyRoomWallJumpSkipExit"
 "_tb_group" "3"
 }
-// entity 10
+// entity 11
 {
 "classname" "trigger_camera_suggestion_zone"
 "DirectionMarkerId" "FairyEscape1"
@@ -643,7 +661,7 @@
 ( 144 176 400 ) ( 144 -256 288 ) ( 144 -256 400 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 11
+// entity 12
 {
 "classname" "trigger_camera_suggestion_zone"
 "DirectionMarkerId" "FairyEscape2"
@@ -659,7 +677,7 @@
 ( -64 208 528 ) ( -64 176 432 ) ( -64 176 528 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 12
+// entity 13
 {
 "classname" "transport_level_exit"
 "origin" "-536 96 320"
