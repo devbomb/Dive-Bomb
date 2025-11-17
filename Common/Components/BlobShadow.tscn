@@ -55,8 +55,11 @@ func _ready():
 func _physics_process(_delta):
 	var moving: bool = !_last_pos.is_equal_approx(global_position)
 	_last_pos = global_position
-
-	global_rotation = Vector3(0, 0, 0) # TODO: is this necessary anymore?
+	
+	if (!Engine.is_editor_hint()): # <-- Prevent spurious changes when animation involving parent node is previewed in the editor
+		# Always ensure it's facing down, in case our parent is rotated
+		# TODO: is this necessary anymore?
+		global_rotation = Vector3(0, 0, 0) 
 
 	if (!only_update_when_moving || moving):
 		_update_everything()
