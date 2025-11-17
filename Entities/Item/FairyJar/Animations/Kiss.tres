@@ -149,7 +149,7 @@ tracks/17/keys = {
 tracks/18/type = "audio"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("../AnimationSoundPlayer")
+tracks/18/path = NodePath("%Model/../AnimationSoundPlayer")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -158,6 +158,6 @@ tracks/18/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("1_y42u6")
 }],
-"times": PackedFloat32Array(0.633333)
+"times": PackedFloat32Array(0.6333)
 }
 tracks/18/use_blend = true
