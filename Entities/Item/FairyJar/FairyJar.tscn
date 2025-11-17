@@ -291,3 +291,5 @@ offset_right = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_p435h")
+
+[connection signal="BreakRejected" from="." to="HUD/TooPoor/AnimationPlayer" method="play" binds= ["PoorShaming"]]
