@@ -3,7 +3,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class Fairy : StaticBody3D, IBreakable
+    public partial class FairyJar : StaticBody3D, IBreakable
     {
         [Signal] public delegate void BreakRejectedEventHandler();
 
@@ -132,7 +132,7 @@ namespace FastDragon
             }
         }
 
-        private class Idle : State<Fairy>
+        private class Idle : State<FairyJar>
         {
             public override void OnStateEntered()
             {
@@ -159,7 +159,7 @@ namespace FastDragon
             }
         }
 
-        private class Shattering : State<Fairy>
+        private class Shattering : State<FairyJar>
         {
             private const float Duration = 2f;
             private const float CameraMoveDelay = 1f;
@@ -272,7 +272,7 @@ namespace FastDragon
             }
         }
 
-        private class FlyingToPlayer : State<Fairy>
+        private class FlyingToPlayer : State<FairyJar>
         {
             private const float Duration = 0.5f;
 
@@ -315,7 +315,7 @@ namespace FastDragon
             }
         }
 
-        private class KissingPlayer : State<Fairy>
+        private class KissingPlayer : State<FairyJar>
         {
             public override void OnStateEntered()
             {
@@ -336,7 +336,7 @@ namespace FastDragon
             }
         }
 
-        private class RestoringCamera : State<Fairy>
+        private class RestoringCamera : State<FairyJar>
         {
             private const float Duration = 0.75f;
             private float _timer;
@@ -369,7 +369,7 @@ namespace FastDragon
             }
         }
 
-        private class QuickRescue : State<Fairy>
+        private class QuickRescue : State<FairyJar>
         {
             private const float MoveToCameraDuration = 0.5f;
 
@@ -414,7 +414,7 @@ namespace FastDragon
             }
         }
 
-        private class Rescued : State<Fairy>
+        private class Rescued : State<FairyJar>
         {
             public override void OnStateEntered()
             {

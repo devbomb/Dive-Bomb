@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bj5cb4ewimgvw"]
 
-[ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Entities/Item/Fairy/Animations/Hovering.tres" id="1_ac07m"]
-[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Entities/Item/Fairy/Fairy.blend" id="1_ymyij"]
-[ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Entities/Item/Fairy/Animations/RESET.tres" id="2_p58e8"]
+[ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Common/Models/Characters/Fairy/Animations/Hovering.tres" id="1_ac07m"]
+[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy/Fairy.blend" id="1_ymyij"]
+[ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Common/Models/Characters/Fairy/Animations/RESET.tres" id="2_p58e8"]
 
 [sub_resource type="Animation" id="Animation_ac07m"]
 resource_name = "FollowPath"
@@ -85,6 +85,7 @@ autoplay = "FollowPath"
 
 [node name="FairyAnimator" type="AnimationPlayer" parent="."]
 deterministic = true
+root_node = NodePath("../Fairy")
 libraries = {
 &"": SubResource("AnimationLibrary_iej36")
 }

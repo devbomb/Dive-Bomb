@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://2va7mwb73ytk"
-path="res://.godot/imported/Fairy.blend-093b709c1070f9cb3d9a8f8da7613077.scn"
+uid="uid://dphti8hl7njh4"
+path="res://.godot/imported/Jar.blend-a5f7e32e139427187e197a68a925a071.scn"
 
 [deps]
 
-source_file="res://Entities/Item/Fairy/Fairy.blend"
-dest_files=["res://.godot/imported/Fairy.blend-093b709c1070f9cb3d9a8f8da7613077.scn"]
+source_file="res://Entities/Item/FairyJar/Jar.blend"
+dest_files=["res://.godot/imported/Jar.blend-a5f7e32e139427187e197a68a925a071.scn"]
 
 [params]
 
@@ -56,4 +56,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://eqg1m3m28yi3"
-path="res://.godot/imported/FairyJingle.wav-6975a079d91ec800b9a04c8123fa2487.sample"
+path="res://.godot/imported/FairyJingle.wav-c2b65c8fd937941f6c3ece336db20f9f.sample"
 
 [deps]
 
-source_file="res://Entities/Item/Fairy/SFX/FairyJingle.wav"
-dest_files=["res://.godot/imported/FairyJingle.wav-6975a079d91ec800b9a04c8123fa2487.sample"]
+source_file="res://Entities/Item/FairyJar/SFX/FairyJingle.wav"
+dest_files=["res://.godot/imported/FairyJingle.wav-c2b65c8fd937941f6c3ece336db20f9f.sample"]
 
 [params]
 

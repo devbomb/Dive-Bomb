@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_qp38o"]
 [ext_resource type="PackedScene" uid="uid://cyfwcwip8ncw0" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.tscn" id="2_ds1y7"]
 [ext_resource type="PackedScene" uid="uid://djpeind8lnpd3" path="res://Entities/Item/Gems/MagentaGem/MagentaGem.tscn" id="5_16wl4"]
-[ext_resource type="PackedScene" uid="uid://b6d7vas8km3kd" path="res://Entities/Item/Fairy/Fairy.tscn" id="5_ibrm5"]
+[ext_resource type="PackedScene" uid="uid://b6d7vas8km3kd" path="res://Entities/Item/FairyJar/FairyJar.tscn" id="5_ibrm5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_16wl4"]
 

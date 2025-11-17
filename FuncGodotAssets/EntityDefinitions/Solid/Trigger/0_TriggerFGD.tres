@@ -8,9 +8,6 @@
 
 [resource]
 script = ExtResource("1_14g6l")
-export_file = false
-target_map_editor = 1
 fgd_name = "Trigger"
-base_fgd_files = Array[Resource]([])
 entity_definitions = Array[Resource]([ExtResource("1_ad4h3"), ExtResource("2_gttou"), ExtResource("3_hgfud"), ExtResource("4_n2n0n")])
 metadata/_custom_type_script = "uid://vm1fvi5045um"

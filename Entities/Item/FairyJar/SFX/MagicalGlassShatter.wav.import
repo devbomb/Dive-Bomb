@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b1kkywgiv08uj"
-path="res://.godot/imported/MagicalGlassShatter.wav-4532ec5c66a10ce55440aa45b3078372.sample"
+path="res://.godot/imported/MagicalGlassShatter.wav-8028544159f1ed7bee16429cbea8ca8f.sample"
 
 [deps]
 
-source_file="res://Entities/Item/Fairy/SFX/MagicalGlassShatter.wav"
-dest_files=["res://.godot/imported/MagicalGlassShatter.wav-4532ec5c66a10ce55440aa45b3078372.sample"]
+source_file="res://Entities/Item/FairyJar/SFX/MagicalGlassShatter.wav"
+dest_files=["res://.godot/imported/MagicalGlassShatter.wav-8028544159f1ed7bee16429cbea8ca8f.sample"]
 
 [params]
 

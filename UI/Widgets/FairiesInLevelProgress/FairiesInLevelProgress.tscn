@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cx2bahro6fr1n" path="res://UI/Widgets/FairiesInLevelProgress/FairiesInLevelProgress.cs" id="1_5js4f"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="1_etdow"]
-[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Entities/Item/Fairy/Fairy.blend" id="3_tmx4v"]
+[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy/Fairy.blend" id="3_tmx4v"]
 [ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="3_wh3v3"]
 [ext_resource type="FontVariation" uid="uid://bmr44as3fvbhe" path="res://Fonts/FontVariations/TekturBolder.tres" id="4_wh3v3"]
-[ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Entities/Item/Fairy/Animations/Hovering.tres" id="5_wh3v3"]
-[ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Entities/Item/Fairy/Animations/RESET.tres" id="6_pou1x"]
+[ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Common/Models/Characters/Fairy/Animations/Hovering.tres" id="5_wh3v3"]
+[ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Common/Models/Characters/Fairy/Animations/RESET.tres" id="6_pou1x"]
 
 [sub_resource type="Gradient" id="Gradient_nda6u"]
 interpolation_mode = 2
@@ -62,6 +62,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.431, -0.35, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FairyModel"]
 deterministic = true
+root_node = NodePath("../Fairy")
 libraries = {
 &"": SubResource("AnimationLibrary_nda6u")
 }
