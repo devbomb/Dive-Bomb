@@ -306,4 +306,4 @@ script = ExtResource("10_ipotd")
 MarkerId = "FairyRoomWindowCameraSpot"
 
 [node name="FairyRoom" parent="." instance=ExtResource("11_r652i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133, 19, 7)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 94, 11, 8.999999)
