@@ -14,6 +14,7 @@ namespace FastDragon
         public bool DisableInput { get; set; }
 
         public bool IsBeingManhandled => _stateMachine.CurrentState is Manhandled;
+        public bool IsSuggestingAngle => _stateMachine.CurrentState is SuggestingAngle;
 
         public Node3D TimeTrialFairyRescuePos => GetNode<Node3D>("%TimeTrialFairyRescuePos");
 

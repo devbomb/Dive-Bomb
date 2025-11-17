@@ -48,9 +48,9 @@ namespace FastDragon
                 delta / ThuumFadeTime
             );
 
-            AngleModelPitchWithVelocity(delta);
+            AngleModelPitchWithVelocity();
 
-            if (_redirectTimer <= 0)
+            if (_redirectTimer <= 0 && !Self.Camera.IsSuggestingAngle)
             {
                 var camera = Self.Camera;
 
@@ -168,7 +168,7 @@ namespace FastDragon
             Self.LocalVelocity = vel;
         }
 
-        private void AngleModelPitchWithVelocity(float delta)
+        private void AngleModelPitchWithVelocity()
         {
             var rot = Self.LocalVelocity.Normalized().ForwardToEulerAnglesRad();
             Self.ModelPitchRad = rot.X;
