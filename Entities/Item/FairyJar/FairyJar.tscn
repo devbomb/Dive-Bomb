@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5c2hnyrbuo5m" path="res://Entities/Item/FairyJar/FairyJar.cs" id="1_qaaot"]
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy.blend" id="2_01sg4"]
-[ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://Entities/Item/FairyJar/FairyAnimations.tres" id="2_l0xag"]
+[ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://Entities/Item/FairyJar/FairyJarAnimations.tres" id="2_l0xag"]
 [ext_resource type="AudioStream" uid="uid://b1kkywgiv08uj" path="res://Entities/Item/FairyJar/SFX/MagicalGlassShatter.wav" id="2_wcnnd"]
 [ext_resource type="AudioStream" uid="uid://eqg1m3m28yi3" path="res://Entities/Item/FairyJar/SFX/FairyJingle.wav" id="3_p435h"]
 [ext_resource type="Script" uid="uid://ilt6j85e4n8e" path="res://Common/Components/DecoratorNodes/BillboardToCameraDecorator.gd" id="4_g18ww"]
@@ -246,7 +246,7 @@ autoplay = "RESET"
 [node name="Fairy" parent="Model" instance=ExtResource("2_01sg4")]
 
 [node name="BlobShadow" parent="Model/Fairy" instance=ExtResource("5_pebs6")]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.99999946, 0, 0, 0, 0.99999815, 0, 0, 0, 0.99999946, 0, 0, 0)
 radius = 0.25
 
 [node name="CutsceneCam" type="Camera3D" parent="." groups=["PhysicsInterpolated"]]
