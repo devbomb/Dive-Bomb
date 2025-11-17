@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://di4tqrhb11cow"]
 
 [ext_resource type="Script" uid="uid://c5gmnqvkwgmlt" path="res://Entities/Player/Parts/PlayerCamera/PlayerCamera.cs" id="1_uc4gx"]
-[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy.blend" id="2_chmc7"]
+[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy/Fairy.blend" id="2_chmc7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vtlv"]
 radius = 0.2
