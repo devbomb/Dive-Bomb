@@ -85,6 +85,7 @@ autoplay = "FollowPath"
 
 [node name="FairyAnimator" type="AnimationPlayer" parent="."]
 deterministic = true
+root_node = NodePath("../Fairy")
 libraries = {
 &"": SubResource("AnimationLibrary_iej36")
 }

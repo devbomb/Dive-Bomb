@@ -62,6 +62,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.431, -0.35, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FairyModel"]
 deterministic = true
+root_node = NodePath("../Fairy")
 libraries = {
 &"": SubResource("AnimationLibrary_nda6u")
 }
