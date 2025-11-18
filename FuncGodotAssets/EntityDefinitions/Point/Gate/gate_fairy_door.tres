@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://yhh5akdgaa22"]
+
+[ext_resource type="PackedScene" uid="uid://dntvrraqou3fd" path="res://Entities/Gate/FairyDoor/FairyDoor.tscn" id="1_pptev"]
+[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_tktla"]
+
+[resource]
+script = ExtResource("1_tktla")
+scene_file = ExtResource("1_pptev")
+classname = "gate_fairy_door"
+description = "A door that opens if the specified fairy is free"
+class_properties = {
+"FairyId": ""
+}
+class_property_descriptions = {
+"FairyId": "Which fairy is needed to open this door"
+}
+auto_apply_to_matching_node_properties = true
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-2, -24, 0, 2, 24, 64)
+}
+node_class = "Node3D"
+metadata/_custom_type_script = "uid://cddjtiy8pj12o"
