@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dntvrraqou3fd"]
+[gd_scene load_steps=4 format=3 uid="uid://dntvrraqou3fd"]
+
+[ext_resource type="Script" uid="uid://dxeadvtxht04s" path="res://Entities/Gate/FairyDoor/FairyDoor.cs" id="1_o030q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c24c4"]
 size = Vector3(3, 4, 0.25)
@@ -6,7 +8,10 @@ size = Vector3(3, 4, 0.25)
 [sub_resource type="BoxMesh" id="BoxMesh_c24c4"]
 size = Vector3(3, 4, 0.25)
 
-[node name="FairyDoor" type="StaticBody3D"]
+[node name="FairyDoor" type="StaticBody3D" node_paths=PackedStringArray("Model", "CollisionShape")]
+script = ExtResource("1_o030q")
+Model = NodePath("MeshInstance3D")
+CollisionShape = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
