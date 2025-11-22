@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 
@@ -35,6 +36,8 @@ namespace FastDragon
 
         private readonly StateMachine _stateMachine = new StateMachine();
         private Transform3D _initialModelPos;
+        private float _initialCameraYawRad;
+        private Node3D _camTarget;
 
         private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private AudioStreamPlayer ShatterSound => GetNode<AudioStreamPlayer>("%ShatterSound");
@@ -44,8 +47,6 @@ namespace FastDragon
         private Node3D Glass => GetNode<Node3D>("%Glass");
         private GpuParticles3D GlassParticles => GetNode<GpuParticles3D>("%GlassParticles");
         private CollisionShape3D CollisionShape => GetNode<CollisionShape3D>("%CollisionShape");
-
-        private Camera3D CutsceneCam => GetNode<Camera3D>("%CutsceneCam");
 
         private Player Player;
 
@@ -180,19 +181,23 @@ namespace FastDragon
         {
             private const float Duration = 2f;
             private const float CameraMoveDelay = 1f;
+            private const float CameraMoveDuration = Duration - CameraMoveDelay;
             private const float TimeScale = 0.5f;
 
             private static float PlayerJumpSpeed => Player.Jump.InitVSpeed;
             private static float PlayerGravity => Player.Jump.ShortHopGravity;
 
             private Player _player => Self.Player;
-            private Node3D _camTarget;
 
             private bool _playerLanded;
+            private bool _cameraManhandled;
             private float _timer;
 
             public override void OnStateEntered()
             {
+                _cameraManhandled = false;
+                _timer = 0;
+
                 // Pause the game (except the player and fairy) during the
                 // cutscene to prevent the player from getting hit by enemies.
                 // Don't worry, the pause menu won't open if the game is already
@@ -201,7 +206,7 @@ namespace FastDragon
 
                 // Hijack control of the player.  We're going to manipulate them
                 // for the cutscene.
-                Self.Player.ChangeState<PlayerManhandledState>();
+                _player.ChangeState<PlayerManhandledState>();
                 _player.Velocity = Vector3.Up * PlayerJumpSpeed;
                 _player.Velocity += _player.GlobalForward() * -1;
                 _playerLanded = false;
@@ -212,12 +217,6 @@ namespace FastDragon
                 Self.ShatterSound.Play();
 
                 Self.Animator.Play("Shatter");
-
-                // Start moving the camera into position
-                _camTarget = CamTarget();
-                Self.CutsceneCam.GlobalTransform = _player.Camera.GlobalTransform;
-                Self.CutsceneCam.MakeCurrent();
-                Self.CutsceneCam.ResetPhysicsInterpolation3D();
 
                 // Do a slow-mo effect until the player lands
                 Engine.TimeScale = TimeScale;
@@ -235,28 +234,11 @@ namespace FastDragon
 
                 _timer += delta / (float)Engine.TimeScale;
 
-                MoveCamera();
                 ApplyGravityToPlayer(delta);
+                MoveCamera();
 
                 if (_playerLanded && !_player.Animator.IsPlaying() && _timer >= Duration)
                     ChangeState<FlyingToPlayer>();
-            }
-
-            private void MoveCamera()
-            {
-                float croppedDuration = Duration - CameraMoveDelay;
-                float croppedTimer = _timer - CameraMoveDelay;
-                if (croppedTimer < 0)
-                    croppedTimer = 0;
-
-                float t = croppedTimer / croppedDuration;
-                t = Mathf.Clamp(t, 0, 1);
-                t = Mathf.SmoothStep(0, 1, t);
-
-                var camStart = _player.Camera.GlobalTransform;
-                Self.CutsceneCam.GlobalTransform = camStart.InterpolateWith(
-                    _camTarget.GlobalTransform,
-                    t);
             }
 
             private void ApplyGravityToPlayer(float delta)
@@ -273,19 +255,46 @@ namespace FastDragon
                 }
             }
 
-            private Node3D CamTarget()
+            private void MoveCamera()
+            {
+                if (_timer < CameraMoveDelay)
+                    return;
+
+                if (!_cameraManhandled)
+                {
+                    Self._initialCameraYawRad = _player.Camera.GlobalRotation.Y;
+                    Self._camTarget = KissPointClosestToCurrentCamPos();
+
+                    _player.Camera.StartManhandling(CamTargetPos(), CameraMoveDuration);
+                    _cameraManhandled = true;
+                }
+
+                _player.Camera.ManhandledPosition = CamTargetPos();
+            }
+
+            private Node3D KissPointClosestToCurrentCamPos()
             {
                 var player = Self.Player;
                 var cam = player.Camera;
+
                 var rightPoint = player.FairyKissCamRightPoint;
                 var leftPoint = player.FairyKissCamLeftPoint;
 
-                float rightDist = cam.GlobalPosition.DistanceTo(rightPoint.GlobalPosition);
-                float leftDist = cam.GlobalPosition.DistanceTo(leftPoint.GlobalPosition);
+                Vector3 playerPosCameraSpace = cam.ToLocal(player.GlobalPosition);
+                Vector3 jarPosCameraSpace = cam.ToLocal(Self.GlobalPosition);
 
-                return rightDist < leftDist
-                    ? rightPoint
-                    : leftPoint;
+                return playerPosCameraSpace.X > jarPosCameraSpace.X
+                    ? leftPoint
+                    : rightPoint;
+            }
+
+            private Transform3D CamTargetPos()
+            {
+                var virtuallyRotatedPlayerPos = Transform3D.Identity
+                    .Rotated(Vector3.Up, Self._initialCameraYawRad - Self._camTarget.Rotation.Y)
+                    .Translated(_player.GlobalPosition);
+
+                return virtuallyRotatedPlayerPos * Self._camTarget.Transform;
             }
         }
 
@@ -294,6 +303,9 @@ namespace FastDragon
             private const float Duration = 0.5f;
 
             private Transform3D _start;
+
+            private float _playerInitialYawRad;
+            private float _playerTargetYawRad;
 
             private float _timer;
 
@@ -306,6 +318,11 @@ namespace FastDragon
 
                 _start = Self.Model.GlobalTransform;
                 _timer = 0;
+
+                // Start rotating the player such that the camera will be
+                // pointing where it originally was when the cutscene is over.
+                _playerInitialYawRad = Self.Player.YawRad;
+                _playerTargetYawRad = Self._initialCameraYawRad - Self._camTarget.Rotation.Y;
             }
 
             public override void OnStateExited()
@@ -316,19 +333,31 @@ namespace FastDragon
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
+
+                RotatePlayer();
+                MoveFairy();
+
+                if (_timer > Duration)
+                {
+                    ChangeState<KissingPlayer>();
+                }
+            }
+
+            private void MoveFairy()
+            {
                 float t = _timer / Duration;
                 t = Mathf.SmoothStep(0, 1, t);
 
                 var player = Self.Player;
-
                 var target = player.FairyKissPoint.GlobalTransform;
                 Self.Model.GlobalTransform = _start.InterpolateWith(target, t);
+            }
 
-                if (_timer > Duration)
-                {
-                    Self.Model.GlobalTransform = target;
-                    ChangeState<KissingPlayer>();
-                }
+            private void RotatePlayer()
+            {
+                float t = _timer / Duration;
+                t = Mathf.Clamp(t, 0, 1);
+                Self.Player.YawRad = Mathf.LerpAngle(_playerInitialYawRad, _playerTargetYawRad, t);
             }
         }
 
@@ -349,37 +378,25 @@ namespace FastDragon
             public override void _PhysicsProcess(double deltaD)
             {
                 if (!Self.Animator.IsPlaying())
-                    ChangeState<RestoringCamera>();
+                    ChangeState<FlyingAway>();
             }
         }
 
-        private class RestoringCamera : State<FairyJar>
+        private class FlyingAway : State<FairyJar>
         {
             private const float Duration = 0.75f;
             private float _timer;
-            private Transform3D _start;
 
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _start = Self.CutsceneCam.GlobalTransform;
+                Self.Player.Camera.StartFollowing(Duration);
                 Self.Animator.Play("FlyAwayHigh");
-            }
-
-            public override void OnStateExited()
-            {
-                Self.Player.Camera.MakeCurrent();
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
-
-                float t = _timer / Duration;
-                t = Mathf.SmoothStep(0, 1, t);
-
-                var end = Self.Player.Camera.GlobalTransform;
-                Self.CutsceneCam.GlobalTransform = _start.InterpolateWith(end, t);
 
                 if (_timer > Duration)
                     ChangeState<Rescued>();
