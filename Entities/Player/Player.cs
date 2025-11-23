@@ -228,11 +228,13 @@ namespace FastDragon
             if (GetTree().CurrentScene.SceneFilePath != targetScene)
                 return;
 
-            Vector3 pos = ProjectSettings.GetSetting("temp/play_from_here/pos").AsVector3();
-            float yawRad = (float)ProjectSettings.GetSetting("temp/play_from_here/yawRad").AsDouble();
+            Transform3D cameraPos = ProjectSettings.GetSetting("temp/play_from_here/pos").AsTransform3D();
+            Vector3 playerPos = cameraPos.TranslatedLocal(Vector3.Forward * 6).Origin;
+            playerPos -= CameraFocus.GlobalPosition;
+
             _spawnPos = Transform3D.Identity
-                .Rotated(Vector3.Up, yawRad)
-                .Translated(pos);
+                .Rotated(Vector3.Up, cameraPos.Basis.GetEuler().Y)
+                .Translated(playerPos);
         }
 
         private Transform3D GetRespawnPoint()

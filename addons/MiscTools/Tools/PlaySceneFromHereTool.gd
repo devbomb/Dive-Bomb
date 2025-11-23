@@ -10,8 +10,7 @@ func execute() -> void:
 	print("camera rot: " + str(camera.global_rotation))
 	
 	ProjectSettings.set_setting("temp/play_from_here/scene", EditorInterface.get_edited_scene_root().scene_file_path)
-	ProjectSettings.set_setting("temp/play_from_here/pos", camera.global_position)
-	ProjectSettings.set_setting("temp/play_from_here/yawRad", camera.global_rotation.y)
+	ProjectSettings.set_setting("temp/play_from_here/pos", camera.global_transform)
 	ProjectSettings.save()
 	
 	EditorInterface.play_current_scene()
@@ -19,5 +18,4 @@ func execute() -> void:
 
 	ProjectSettings.clear("temp/play_from_here/scene")
 	ProjectSettings.clear("temp/play_from_here/pos")
-	ProjectSettings.clear("temp/play_from_here/yawRad")
 	ProjectSettings.save()
