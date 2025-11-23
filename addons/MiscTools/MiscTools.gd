@@ -4,10 +4,17 @@ class_name MiscTools extends EditorPlugin
 func _enter_tree() -> void:
 	_add_tool(CreateNewLevelTool.new())
 	_add_tool(PlaySceneFromHereTool.new())
+	_add_3d_editor_button(PlaySceneFromHereTool.new())
 	_add_tool(DeleteUnnecessaryPlayerAnimationsTool.new())
 
 func _add_tool(tool: MiscTool) -> void:
 	add_tool_menu_item("Dive Bomb:  " + tool.get_text(), tool.execute)
+
+func _add_3d_editor_button(tool: MiscTool) -> void:
+	var button = Button.new()
+	button.pressed.connect(tool.execute)
+	button.text = tool.get_text()
+	add_control_to_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_MENU, button)
 
 # Returns the string the user typed.  Returns the empty string if the dialog was canceled
 static func prompt_string(prompt_text: String) -> String:
