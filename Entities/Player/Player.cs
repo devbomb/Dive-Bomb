@@ -179,13 +179,9 @@ namespace FastDragon
             SignalBus.Instance.LevelReset += Reset;
             _spawnPos = GlobalTransform;
 
-            if (ProjectSettings.HasSetting("temp/play_from_here/pos"))
+            if (ProjectSettings.HasSetting("temp/play_from_here/scene"))
             {
-                Vector3 pos = ProjectSettings.GetSetting("temp/play_from_here/pos").AsVector3();
-                float yawRad = (float)ProjectSettings.GetSetting("temp/play_from_here/yawRad").AsDouble();
-                _spawnPos = Transform3D.Identity
-                    .Rotated(Vector3.Up, yawRad)
-                    .Translated(pos);
+                LoadDebugSpawnPoint();
             }
 
             Reset();
@@ -222,6 +218,21 @@ namespace FastDragon
 
             EarlyJumpBufferTimer = 0;
             _damageCooldownTimer = 0;
+        }
+
+        private void LoadDebugSpawnPoint()
+        {
+            // Only use the debug spawnpoint on the scene that was originally
+            // launched.
+            string targetScene = ProjectSettings.GetSetting("temp/play_from_here/scene").AsString();
+            if (GetTree().CurrentScene.SceneFilePath != targetScene)
+                return;
+
+            Vector3 pos = ProjectSettings.GetSetting("temp/play_from_here/pos").AsVector3();
+            float yawRad = (float)ProjectSettings.GetSetting("temp/play_from_here/yawRad").AsDouble();
+            _spawnPos = Transform3D.Identity
+                .Rotated(Vector3.Up, yawRad)
+                .Translated(pos);
         }
 
         private Transform3D GetRespawnPoint()
