@@ -3,6 +3,7 @@ class_name MiscTools extends EditorPlugin
 
 func _enter_tree() -> void:
 	_add_tool(CreateNewLevelTool.new())
+	_add_tool(PlaySceneFromHereTool.new())
 	_add_tool(DeleteUnnecessaryPlayerAnimationsTool.new())
 
 func _add_tool(tool: MiscTool) -> void:
