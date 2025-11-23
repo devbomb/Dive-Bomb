@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=22 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dbo5v5bk2jxh7" path="res://Levels/Tutorial/Maps/KickTut.map" id="8_yrnv4"]
 [ext_resource type="Script" uid="uid://brhva0ikdmdcl" path="res://Entities/Info/NamedMarker/NamedMarker3D.cs" id="10_ipotd"]
 [ext_resource type="PackedScene" uid="uid://dord22pbbqflm" path="res://Levels/Tutorial/Maps/FairyRoom.map" id="11_r652i"]
+[ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="12_myhx6"]
 
 [sub_resource type="Environment" id="Environment_vwhqw"]
 
@@ -62,6 +63,13 @@ resource_name = ""
 script = ExtResource("5_uhvqi")
 path = "Roll"
 metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Curve3D" id="Curve3D_r652i"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.508234, -1.3115921, 0, 0, 0, 0, 0, 0, 0, -1.6243439, -0.16095734, 8.186096, 0, 0, 0, 0, 0, 0, -10.57838, 0.78362656, 8.339798, 0, 0, 0, 0, 0, 0, -21.399115, 5.4380817, 7.938423, 0, 0, 0, 0, 0, 0, -22.044418, 8.144985, 5.1710205, 0, 0, 0, 0, 0, 0, -21.748394, 10.5003395, 7.2759247, 0, 0, 0, 0, 0, 0, -20.05691, 10.8202095, 9.365295, 0, 0, 0, 0, 0, 0, -11.5257, 12.725849, 9.179459, 0, 0, 0, 0, 0, 0, -0.39034653, 11.44294, 9.220413, 0, 0, 0, 0, 0, 0, 0.30298996, 13.386158, 0.8794708, 0, 0, 0, 0, 0, 0, -0.91290474, 10.316654, -4.7459335, 0, 0, 0, 0, 0, 0, 0.15610313, 10.281395, -23.085152, 0, 0, 0, 0, 0, 0, -3.0328674, 11.018265, -29.024315),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 13
 
 [node name="Tutorial" type="Node3D"]
 script = ExtResource("1_vo1h1")
@@ -318,3 +326,12 @@ MarkerId = "FairyEscape1"
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7, 21, -1)
 script = ExtResource("10_ipotd")
 MarkerId = "FairyEscape2"
+
+[node name="FairyGuidePath" type="Path3D" parent="FairyRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.109985, 11, -1.9642868)
+curve = SubResource("Curve3D_r652i")
+
+[node name="FairyGuide" parent="FairyRoom/FairyGuidePath" node_paths=PackedStringArray("Path") instance=ExtResource("12_myhx6")]
+transform = Transform3D(-0.99083304, 0, 0.13509221, 0, 1, 0, -0.13509223, 0, -0.9908329, -0.508234, -1.3115921, 0)
+FairyId = "TutorialFairy"
+Path = NodePath("..")
