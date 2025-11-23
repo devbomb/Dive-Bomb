@@ -27,6 +27,8 @@ namespace FastDragon
         public bool EnoughGems() => (this.GetLevel()?.TotalGems ?? 0) >= GemCost;
         public bool ShowPriceTag() => GemCost > 0 && !this.IsTimeTrialMode();
 
+        public bool IsReadyForGuide() => _stateMachine.CurrentState is Rescued;
+
         /// <summary>
         /// The Id used to identify this fairy in the save file.
         /// Will be equal to <see cref="FairyId"/> if that value is provided.
@@ -43,7 +45,7 @@ namespace FastDragon
         private AudioStreamPlayer ShatterSound => GetNode<AudioStreamPlayer>("%ShatterSound");
         private AudioStreamPlayer JingleSound => GetNode<AudioStreamPlayer>("%JingleSound");
 
-        private Node3D Model => GetNode<Node3D>("%Model");
+        public Node3D Model => GetNode<Node3D>("%Model");
         private Node3D Glass => GetNode<Node3D>("%Glass");
         private GpuParticles3D GlassParticles => GetNode<GpuParticles3D>("%GlassParticles");
         private CollisionShape3D CollisionShape => GetNode<CollisionShape3D>("%CollisionShape");
@@ -69,15 +71,18 @@ namespace FastDragon
             Animator.Play("RESET");
             Animator.Advance(0);
 
-            bool collected = this.GetLevel()
-                ?.GetProgress()
-                ?.CollectedFairies
-                ?.Contains(SaveKey) ?? false;
-
-            if (collected)
+            if (IsFree())
                 _stateMachine.ChangeState<Rescued>();
             else
                 _stateMachine.ChangeState<Idle>();
+        }
+
+        public bool IsFree()
+        {
+            return this.GetLevel()
+                ?.GetProgress()
+                ?.CollectedFairies
+                ?.Contains(SaveKey) ?? false;
         }
 
         public void OnBroken()
@@ -148,6 +153,13 @@ namespace FastDragon
                 builder.Append("/");
                 builder.Append(n.GetIndex());
             }
+        }
+
+        private bool HasGuide()
+        {
+            return GetTree().Root
+                .EnumerateDescendantsOfType<FairyGuide>()
+                .Any(f => f.FairyId == FairyId);
         }
 
         private class Idle : State<FairyJar>
@@ -373,12 +385,18 @@ namespace FastDragon
             {
                 Self.SetPausedForCutscene(false);
                 Self.Player.ChangeState<PlayerWalkState>();
+                Self.Player.Camera.StartFollowing(0.75f);
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 if (!Self.Animator.IsPlaying())
-                    ChangeState<FlyingAway>();
+                {
+                    if (!Self.HasGuide())
+                        ChangeState<FlyingAway>();
+                    else
+                        ChangeState<Rescued>();
+                }
             }
         }
 
@@ -390,7 +408,6 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _timer = 0;
-                Self.Player.Camera.StartFollowing(Duration);
                 Self.Animator.Play("FlyAwayHigh");
             }
 
@@ -419,7 +436,9 @@ namespace FastDragon
                 Self.ShatterSound.Play();
 
                 Self.Animator.Play("Shatter");
-                Self.Animator.Queue("FlyAway");
+
+                if (!Self.HasGuide())
+                    Self.Animator.Queue("FlyAway");
 
                 _initialOffsetFromCamera = SaveOffsetFromCamera();
                 _targetOffsetFromCamera = Self.Player.Camera.TimeTrialFairyRescuePos.Transform;

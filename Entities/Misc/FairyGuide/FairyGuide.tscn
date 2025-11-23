@@ -1,0 +1,81 @@
+[gd_scene load_steps=17 format=3 uid="uid://b2btapp23vgst"]
+
+[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy/Fairy.blend" id="1_hagoy"]
+[ext_resource type="Script" uid="uid://c4nnr0daaay5s" path="res://Entities/Misc/FairyGuide/FairyGuide.cs" id="1_p1a3n"]
+[ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Common/Models/Characters/Fairy/Animations/RESET.tres" id="2_p1a3n"]
+[ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Common/Models/Characters/Fairy/Animations/Hovering.tres" id="3_kua22"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oecc0"]
+_data = {
+&"Hovering": ExtResource("3_kua22"),
+&"RESET": ExtResource("2_p1a3n")
+}
+
+[sub_resource type="Curve" id="Curve_xjk5o"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.24687499, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_86vpo"]
+curve = SubResource("Curve_xjk5o")
+
+[sub_resource type="Gradient" id="Gradient_xjk5o"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.31632653)
+colors = PackedColorArray(0.5293327, 0.18180674, 9.62615e-08, 1, 1.2513996e-06, 0.5716314, 0.11099333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_86vpo"]
+gradient = SubResource("Gradient_xjk5o")
+
+[sub_resource type="Curve" id="Curve_h2ea4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.503125, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_veayn"]
+curve = SubResource("Curve_h2ea4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tmm2a"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_veayn")
+color = Color(2.8066084, 2.8066084, 2.8066084, 1)
+color_initial_ramp = SubResource("GradientTexture1D_86vpo")
+alpha_curve = SubResource("CurveTexture_86vpo")
+
+[sub_resource type="Gradient" id="Gradient_u2cft"]
+offsets = PackedFloat32Array(0, 0.110738255, 0.20134228, 0.6375839)
+colors = PackedColorArray(1, 1, 1, 1, 0.9151634, 0.9151634, 0.9151634, 0.8727451, 0.5372549, 0.5372549, 0.5372549, 0.30588236, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_row48"]
+gradient = SubResource("Gradient_u2cft")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb284"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_row48")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_tfe2o"]
+material = SubResource("StandardMaterial3D_cb284")
+size = Vector2(0.5, 0.5)
+
+[node name="FairyGuide" type="Node3D" groups=["PhysicsInterpolated"]]
+script = ExtResource("1_p1a3n")
+
+[node name="Fairy" parent="." instance=ExtResource("1_hagoy")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fairy"]
+libraries = {
+&"": SubResource("AnimationLibrary_oecc0")
+}
+autoplay = "Hovering"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Fairy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30459255, 0.29601824)
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_tmm2a")
+draw_pass_1 = SubResource("QuadMesh_tfe2o")
