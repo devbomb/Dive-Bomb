@@ -1,14 +1,16 @@
 @tool
-class_name CreateNewLevelTool
+class_name CreateNewLevelTool extends MiscTool
 
-static func execute() -> void:
+func get_text() -> String: return "Create new level"
+
+func execute() -> void:
 	var level_id: String = await MiscTools.prompt_string("Enter a level id(no spaces)")
 	if (level_id.is_empty()):
 		return
 	
 	_create_new_level(level_id, "res://Levels")
 	
-static func _create_new_level(level_id: String, parent_folder: String) -> void:
+func _create_new_level(level_id: String, parent_folder: String) -> void:
 	var level_folder: String = parent_folder.path_join(level_id)
 	DirAccess.make_dir_absolute(level_folder)
 	

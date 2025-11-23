@@ -1,7 +1,9 @@
 @tool
-class_name DeleteUnnecessaryPlayerAnimationsTool
+class_name DeleteUnnecessaryPlayerAnimationsTool extends MiscTool
 
-static func execute():
+func get_text() -> String: return "Delete all unnecessary player animation tracks"
+
+func execute():
 	var library: AnimationLibrary = ResourceLoader.load("res://Entities/Player/KennifiedPlayerAnimations.tres")
 	var reset_animation: Animation = library.get_animation("RESET")
 	
@@ -20,7 +22,7 @@ static func execute():
 		_delete_unnecessary_tracks_from(animation, reset_animation, skeleton)
 		ResourceSaver.save(animation, animation.resource_path)
 
-static func _delete_unnecessary_tracks_from(animation: Animation, reset_animation: Animation, skeleton: Skeleton3D) -> void:
+func _delete_unnecessary_tracks_from(animation: Animation, reset_animation: Animation, skeleton: Skeleton3D) -> void:
 	print("Deleting unnecessary tracks from " + animation.resource_path)
 	
 	# Iterating the tracks in reverse so the remaining track indices don't shift

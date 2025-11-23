@@ -2,9 +2,12 @@
 class_name MiscTools extends EditorPlugin
 
 func _enter_tree() -> void:
-	add_tool_menu_item("Dive Bomb: Create new level", CreateNewLevelTool.execute)
-	add_tool_menu_item("Delete all unnecessary player animation tracks", DeleteUnnecessaryPlayerAnimationsTool.execute)
-	
+	_add_tool(CreateNewLevelTool.new())
+	_add_tool(DeleteUnnecessaryPlayerAnimationsTool.new())
+
+func _add_tool(tool: MiscTool) -> void:
+	add_tool_menu_item("Dive Bomb:  " + tool.get_text(), tool.execute)
+
 # Returns the string the user typed.  Returns the empty string if the dialog was canceled
 static func prompt_string(prompt_text: String) -> String:
 	var stack_panel = VBoxContainer.new()
