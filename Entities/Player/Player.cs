@@ -179,6 +179,15 @@ namespace FastDragon
             SignalBus.Instance.LevelReset += Reset;
             _spawnPos = GlobalTransform;
 
+            if (ProjectSettings.HasSetting("temp/play_from_here/pos"))
+            {
+                Vector3 pos = ProjectSettings.GetSetting("temp/play_from_here/pos").AsVector3();
+                float yawRad = (float)ProjectSettings.GetSetting("temp/play_from_here/yawRad").AsDouble();
+                _spawnPos = Transform3D.Identity
+                    .Rotated(Vector3.Up, yawRad)
+                    .Translated(pos);
+            }
+
             Reset();
         }
 
