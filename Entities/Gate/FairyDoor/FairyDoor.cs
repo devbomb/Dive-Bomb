@@ -9,6 +9,7 @@ namespace FastDragon
         [Export] public string FairyId;
         [Export] public Node3D Model;
         [Export] public CollisionShape3D CollisionShape;
+        [Export] public Area3D SoftlockFailsafeTrigger;
 
         private FairyJar _fairy;
         private readonly StateMachine _stateMachine = new();
@@ -60,12 +61,23 @@ namespace FastDragon
             {
                 Self.Model.Visible = true;
                 Self.CollisionShape.Disabled = false;
+                Self.SoftlockFailsafeTrigger.BodyEntered += OnSoftlockFailsafeTriggerEntered;
+            }
+
+            public override void OnStateExited()
+            {
+                Self.SoftlockFailsafeTrigger.BodyEntered -= OnSoftlockFailsafeTriggerEntered;
             }
 
             public override void _PhysicsProcess(double delta)
             {
                 if (Self.IsFairyFree())
                     ChangeState<Open>();
+            }
+
+            private void OnSoftlockFailsafeTriggerEntered(Node3D body)
+            {
+                ChangeState<Open>();
             }
         }
 
