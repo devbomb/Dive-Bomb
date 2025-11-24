@@ -12,6 +12,7 @@ namespace FastDragon
         [Export] public float HeadStartMeters = 5;
         [Export] public double MoveFromJarDuration = 1;
         [Export] public Path3D Path;
+        [Export] public bool VanishWhenFinished;
 
         private Player _player;
         private FairyJar _jar;
@@ -177,6 +178,10 @@ namespace FastDragon
                     _idleTimer -= delta;
                 else
                     _idleTimer = MaxIdleTime;
+
+                // Vanish when we reach the end (if that's enabled)
+                if (Self.VanishWhenFinished && Self.IsAtEnd())
+                    ChangeState<Vanished>();
             }
         }
 
@@ -276,6 +281,21 @@ namespace FastDragon
 
                 if (deltaProgress > 0)
                     ChangeState<FollowingPathForward>();
+            }
+        }
+
+        private class Vanished : State<FairyGuide>
+        {
+            public override void OnStateEntered()
+            {
+                // TODO: Play a custom animation, after the fairy's
+                // skeleton/model has been redone.
+                Self.Visible = false;
+            }
+
+            public override void OnStateExited()
+            {
+                Self.Visible = true;
             }
         }
     }
