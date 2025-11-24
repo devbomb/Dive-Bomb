@@ -335,3 +335,4 @@ curve = SubResource("Curve3D_r652i")
 transform = Transform3D(-0.99083304, 0, 0.13509221, 0, 1, 0, -0.13509223, 0, -0.9908329, -0.508234, -1.3115921, 0)
 FairyId = "TutorialFairy"
 Path = NodePath("..")
+VanishWhenFinished = true
