@@ -7,11 +7,14 @@ namespace FastDragon
     public partial class FairyDoor : StaticBody3D
     {
         [Export] public string FairyId;
+
+        [ExportGroup("Internal")]
         [Export] public Node3D Model;
         [Export] public CollisionShape3D CollisionShape;
         [Export] public Area3D SoftlockFailsafeTrigger;
 
-        private FairyJar _fairy;
+        private FairyJar _jar;
+        private FairyGuide _guide;
         private readonly StateMachine _stateMachine = new();
 
         public FairyDoor()
@@ -26,13 +29,18 @@ namespace FastDragon
                 if (string.IsNullOrEmpty(FairyId))
                     throw new Exception("Fairy door doesn't have a FairyId");
 
-                _fairy = GetTree().Root
+                _jar = GetTree().Root
                     .EnumerateDescendantsOfType<FairyJar>()
                     .Where(f => !string.IsNullOrEmpty(f.FairyId))
                     .FirstOrDefault();
 
-                if (_fairy == null)
-                    throw new Exception($"Could not find a fairy with id {FairyId}");
+                if (_jar == null)
+                    throw new Exception($"Could not find a fairy jar with id {FairyId}");
+
+                _guide = GetTree().Root
+                    .EnumerateDescendantsOfType<FairyGuide>()
+                    .Where(f => f.FairyId == FairyId)
+                    .FirstOrDefault();
 
                 SignalBus.Instance.LevelReset += Reset;
                 Reset();
@@ -52,7 +60,7 @@ namespace FastDragon
             return this.GetLevel()
                 ?.GetProgress()
                 ?.CollectedFairies
-                ?.Contains(_fairy.SaveKey) ?? false;
+                ?.Contains(_jar.SaveKey) ?? false;
         }
 
         private class Closed : State<FairyDoor>
@@ -70,7 +78,13 @@ namespace FastDragon
             public override void _PhysicsProcess(double delta)
             {
                 if (Self.IsFairyFree())
-                    ChangeState<Opening>();
+                {
+                    // If this door's fairy has a guide associated with it, then
+                    // don't open the door until the fairy guide reaches it, to
+                    // ensure the player sees the fairy opening the door
+                    if (Self._guide?.IsAtEnd() ?? true)
+                        ChangeState<Opening>();
+                }
             }
 
             private void OnSoftlockFailsafeTriggerEntered(Node3D body)

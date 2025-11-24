@@ -52,10 +52,18 @@ namespace FastDragon
             _stateMachine.ChangeState<Unrescued>();
         }
 
-        private float GetPlayerProgressMeters()
+        public bool IsAtEnd() => GetFairyProgressMeters() >= (Path.Curve.GetBakedLength() - 3f);
+
+        public float GetPlayerProgressMeters()
         {
             Vector3 playerPosInCurveSpace = Path.ToLocal(_player.GlobalPosition);
             return Path.Curve.GetClosestOffset(playerPosInCurveSpace);
+        }
+
+        public float GetFairyProgressMeters()
+        {
+            Vector3 fairyPosInCurveSpace = Path.ToLocal(GlobalPosition);
+            return Path.Curve.GetClosestOffset(fairyPosInCurveSpace);
         }
 
         private Transform3D SamplePath()
