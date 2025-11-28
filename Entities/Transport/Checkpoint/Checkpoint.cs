@@ -14,7 +14,9 @@ namespace FastDragon
         /// </summary>
         [Export] public bool DebugSpawnHere;
 
-        public bool IsCurrent => SaveFileManager.Current.CurrentCheckpoint == CheckpointName;
+        public bool IsCurrent => SaveFileManager.Current
+            .CurrentLevelVisit
+            .LastCheckpoint == CheckpointName;
 
         [Signal] public delegate void ActivatedEventHandler();
 
@@ -47,7 +49,7 @@ namespace FastDragon
 
         private void Activate()
         {
-            SaveFileManager.Current.CurrentCheckpoint = CheckpointName;
+            SaveFileManager.Current.CurrentLevelVisit.LastCheckpoint = CheckpointName;
             SaveFileManager.Current.PlayerHealth = Player.MaxHealth;
 
             if (!this.IsTimeTrialMode())

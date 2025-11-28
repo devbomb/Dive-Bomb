@@ -11,7 +11,6 @@ namespace FastDragon
     {
         [JsonProperty] public int PlayerHealth = Player.MaxHealth;
         [JsonProperty] public string CurrentLevel;
-        [JsonProperty] public string CurrentCheckpoint = null;
 
         /// <summary>
         /// The number of times the player has died outside of time trial mode.
@@ -52,6 +51,8 @@ namespace FastDragon
         [JsonObject(MemberSerialization.OptIn)]
         public class LevelVisit
         {
+            [JsonProperty] public string LastCheckpoint = null;
+
             [JsonProperty] public PhysicsTicks Playtime;
             [JsonProperty] public int Deaths;
             [JsonProperty] public int FairiesFound;

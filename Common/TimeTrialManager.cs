@@ -36,7 +36,6 @@ namespace FastDragon
             IsTimerRunning = false;
             _targetTimes = CopyBestTimes();
 
-            SaveFileManager.Current.CurrentCheckpoint = null;
             SaveFileManager.Current.CurrentLevelVisit = new();
             SignalBus.Instance.EmitLevelReset();
         }
@@ -46,7 +45,7 @@ namespace FastDragon
             IsTimeTrialMode = false;
             IsTimerRunning = false;
 
-            SaveFileManager.Current.CurrentCheckpoint = null;
+            SaveFileManager.Current.CurrentLevelVisit = new();
             SignalBus.Instance.EmitLevelReset();
         }
 

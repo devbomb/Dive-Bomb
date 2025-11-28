@@ -67,7 +67,7 @@ namespace FastDragon
         )
         {
             GoToPortalLoadingScreen(levelSceneFile, null, skyBoxEnvironment);
-            SaveFileManager.Current.CurrentCheckpoint = null;
+            SaveFileManager.Current.CurrentLevelVisit = new();
         }
 
         public void ExitLevelFromPauseMenu()
@@ -134,7 +134,7 @@ namespace FastDragon
             string levelSceneFile = GetHomeWorldLevel();
             string previousLevelSceneFile = oldScene.SceneFilePath;
             GoToPortalLoadingScreen(levelSceneFile, previousLevelSceneFile, skyBoxEnvironment);
-            SaveFileManager.Current.CurrentCheckpoint = null;
+            SaveFileManager.Current.CurrentLevelVisit = new();
         }
 
         public void GoToMissionStatsScreen()
