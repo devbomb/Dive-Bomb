@@ -37,6 +37,7 @@ namespace FastDragon
             _targetTimes = CopyBestTimes();
 
             SaveFileManager.Current.CurrentCheckpoint = null;
+            SaveFileManager.Current.CurrentLevelVisit = new();
             SignalBus.Instance.EmitLevelReset();
         }
 
@@ -131,9 +132,10 @@ namespace FastDragon
             IsTimerRunning = false;
             EmitSignal(SignalName.ReadyToShowBriefing);
 
-            // Respawn any collectables that may have been collected on the
-            // previous attempt.
+            // Respawn any collectables that may have been collected and reset
+            // any flags that may have been set on the previous attempt.
             DummyProgress = new LevelProgress();
+            SaveFileManager.Current.CurrentLevelVisit = new();
 
             // HACK: We don't technically know which order the LevelReset
             // handlers will run in.  Some gems may have already reset
