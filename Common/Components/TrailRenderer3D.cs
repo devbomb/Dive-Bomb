@@ -145,7 +145,7 @@ namespace FastDragon
 
                 float componentAlongUp = startPoint.DirectionTo(endPoint).Dot(Vector3.Up);
                 bool isParallelToUp = Mathf.IsEqualApprox(Mathf.Abs(componentAlongUp), 1);
-                if (!isParallelToUp)
+                if (!isParallelToUp && !GlobalPosition.IsEqualApprox(endPoint))
                     LookAt(endPoint);
                 else
                     GlobalRotationDegrees = new Vector3(-90, 0, 0);
