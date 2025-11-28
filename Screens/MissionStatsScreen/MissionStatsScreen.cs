@@ -558,8 +558,45 @@ namespace FastDragon
 
         private partial class WaitingForLoad : State<MissionStatsScreen>
         {
+            private const double TweenDuration = 1;
+            private const float CameraDist = 6;
+
+            private double _timer;
+
+            private Transform3D _cameraStart;
+            private Transform3D _cameraEnd;
+
+            public override void OnStateEntered()
+            {
+                GD.Print("Waiting for load");
+                _timer = 0;
+
+                Self.PlayerAnimator.Play("Levitate", 0.5);
+                Self.ChalkboardAnimator.Play("Vanish");
+
+                _cameraStart = Self.Camera.GlobalTransform;
+                _cameraEnd = Self.PlayerModel.GlobalTransform
+                    .TranslatedLocal(Vector3.Forward * CameraDist)
+                    .LookingAt(Self.PlayerModel.GlobalTransform.Origin)
+                    .Translated(Vector3.Up * 2);
+            }
+
             public override void _Process(double delta)
             {
+                _timer += delta;
+                float t = (float)(_timer / TweenDuration);
+                t = Mathf.Min(t, 1);
+                t = MathUtils.LerpSinusoidal(0, 1, t);
+
+                Self.Camera.GlobalTransform = _cameraStart.InterpolateWith(_cameraEnd, t);
+
+                // Note: We are intentionally not checking if _timer is complete
+                // here before switching to the Exiting state.
+                //
+                // In most cases, the home world will already have finished
+                // loading before this state's tween finishes, so there's no
+                // need to make the player sit through _two_ full tweens in that
+                // case.
                 if (Self.DoneLoading())
                     ChangeState<Exiting>();
             }
@@ -598,9 +635,6 @@ namespace FastDragon
                     .TranslatedLocal(Vector3.Forward * CameraDist)
                     .LookingAt(_playerEnd.Origin)
                     .Translated(Vector3.Up * 2);
-
-                Self.PlayerAnimator.Play("Levitate", 0.5);
-                Self.ChalkboardAnimator.Play("Vanish");
 
                 // HACK: Sneakily switch to using the portal's skybox while
                 // the backdrop is still covering it.
