@@ -22,6 +22,8 @@ namespace FastDragon
             CollectedFairies.Clear();
             CollectedGems.Clear();
             SpentGems = 0;
+
+            ExitReached = false;
         }
 
         public void CollectGem(GemColor color, string saveKey)
