@@ -26,7 +26,7 @@ namespace FastDragon
             _timer -= delta;
             if (_timer <= 0)
             {
-                if (SaveFileManager.Current.PlayerHealth > 0)
+                if (Self.Health > 0)
                     Self.SafeGround.ReturnToLastSafeGround();
                 else
                     Self.Die();

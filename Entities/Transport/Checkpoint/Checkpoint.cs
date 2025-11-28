@@ -38,19 +38,19 @@ namespace FastDragon
 
         private void OnBodyEntered(Node3D body)
         {
-            if (body is Player)
+            if (body is Player player)
             {
-                bool needsHealing = SaveFileManager.Current.PlayerHealth < Player.MaxHealth;
+                bool needsHealing = player.Health < Player.MaxHealth;
 
                 if (!IsCurrent || needsHealing)
-                    Activate();
+                    Activate(player);
             }
         }
 
-        private void Activate()
+        private void Activate(Player player)
         {
             SaveFileManager.Current.CurrentLevelVisit.LastCheckpoint = CheckpointName;
-            SaveFileManager.Current.PlayerHealth = Player.MaxHealth;
+            player.Health = Player.MaxHealth;
 
             if (!this.IsTimeTrialMode())
             {

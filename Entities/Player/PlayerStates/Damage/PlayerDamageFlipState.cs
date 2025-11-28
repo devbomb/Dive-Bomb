@@ -38,9 +38,7 @@ namespace FastDragon
                     return;
                 }
 
-                int currentHealth = (int)SaveFileManager.Current.PlayerHealth;
-
-                if (currentHealth <= 0)
+                if (Self.Health <= 0)
                 {
                     Self.ChangeState<PlayerReachOutDeathState>();
                 }

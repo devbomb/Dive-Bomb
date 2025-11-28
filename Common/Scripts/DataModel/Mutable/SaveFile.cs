@@ -9,7 +9,6 @@ namespace FastDragon
     [JsonObject(MemberSerialization.OptIn)]
     public partial class SaveFile : RefCounted
     {
-        [JsonProperty] public int PlayerHealth = Player.MaxHealth;
         [JsonProperty] public string CurrentLevel;
 
         /// <summary>

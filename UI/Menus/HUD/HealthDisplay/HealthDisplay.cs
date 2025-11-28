@@ -10,6 +10,8 @@ namespace FastDragon
         [Export] public Control RestPoint;
         [Export] public Control CenterPoint;
 
+        private Player _player;
+
         private int _lastHealth;
 
         private readonly StateMachine _stateMachine = new();
@@ -22,20 +24,24 @@ namespace FastDragon
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += Reset;
-            Reset();
+            Callable.From(() =>
+            {
+                _player = GetTree().Root.FindNode<Player>();
+                Reset();
+            }).CallDeferred();
         }
 
         private void Reset()
         {
-            _lastHealth = SaveFileManager.Current.PlayerHealth;
+            _lastHealth = _player.Health;
             _stateMachine.ChangeState<Resting>();
         }
 
         public override void _Process(double delta)
         {
-            if (_lastHealth != SaveFileManager.Current.PlayerHealth)
+            if (_lastHealth != _player.Health)
             {
-                _lastHealth = SaveFileManager.Current.PlayerHealth;
+                _lastHealth = _player.Health;
                 _stateMachine.ChangeState<Draining>();
             }
         }
@@ -58,7 +64,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 Self.UpdatePosition(0);
-                Self.ProgressBar.Value = SaveFileManager.Current.PlayerHealth;
+                Self.ProgressBar.Value = Self._player.Health;
             }
         }
 
@@ -119,7 +125,7 @@ namespace FastDragon
 
                 for (double timer = 0; timer <= DrainDuration; timer += Self.GetProcessDeltaTime())
                 {
-                    double targetValue = SaveFileManager.Current.PlayerHealth;
+                    double targetValue = Self._player.Health;
                     double t = Math.Min(timer / DrainDuration, 1.0);
                     t *= t;
 
@@ -127,7 +133,7 @@ namespace FastDragon
                     yield return default;
                 }
 
-                Self.ProgressBar.Value = SaveFileManager.Current.PlayerHealth;
+                Self.ProgressBar.Value = Self._player.Health;
             }
 
             private IEnumerator<YieldInstruction> Return()
