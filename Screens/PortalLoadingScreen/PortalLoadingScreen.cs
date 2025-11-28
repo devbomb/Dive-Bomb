@@ -192,9 +192,20 @@ namespace FastDragon
 
         private Portal GetTargetPortal(Node sceneRoot)
         {
+            var matchingPortal = sceneRoot
+                .EnumerateDescendantsOfType<Portal>()
+                .FirstOrDefault(p => p.TargetLevel == _parameters.PreviousLevelScenePath);
+
+            if (matchingPortal != null)
+                return matchingPortal;
+
+            // No matching portal was found, so fall back to the first portal.
             return sceneRoot
                 .EnumerateDescendantsOfType<Portal>()
-                .First(p => p.TargetLevel == _parameters.PreviousLevelScenePath);
+                .First();
+
+            // TODO: What should the fallback be if there are _no_ portals?
+            // Should there even _be_ a fallback for that case?
         }
 
         private abstract partial class LoadingScreenState : State<PortalLoadingScreen>
