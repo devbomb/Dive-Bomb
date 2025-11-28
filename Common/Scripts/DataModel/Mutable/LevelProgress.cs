@@ -14,6 +14,13 @@ namespace FastDragon
 
         [JsonProperty] public bool ExitReached;
 
+        /// <summary>
+        /// Story flags that should persist even between level visits.
+        /// If you want something that will reset when you re-visit the level,
+        /// use <see cref="SaveFile.LevelVisit.StoryFlags"/> instead.
+        /// </summary>
+        [JsonProperty] public HashSet<string> StoryFlags = new();
+
         public int FairiesCollected => CollectedFairies.Count;
         public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);
 
@@ -22,6 +29,9 @@ namespace FastDragon
             CollectedFairies.Clear();
             CollectedGems.Clear();
             SpentGems = 0;
+
+            ExitReached = false;
+            StoryFlags.Clear();
         }
 
         public void CollectGem(GemColor color, string saveKey)

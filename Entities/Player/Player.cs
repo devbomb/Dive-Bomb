@@ -50,6 +50,8 @@ namespace FastDragon
         [Export] public Node3D FairyKissCamRightPoint;
         [Export] public Node3D FairyKissCamLeftPoint;
 
+        public int Health = MaxHealth;
+
         public readonly PlayerSafeGround SafeGround;
 
         /// <summary>
@@ -199,6 +201,8 @@ namespace FastDragon
         {
             EmitSignal(SignalName.Respawning);
 
+            Health = MaxHealth;
+
             GlobalTransform = GetRespawnPoint();
             this.ResetPhysicsInterpolation3D();
 
@@ -284,7 +288,7 @@ namespace FastDragon
                 return false;
 
             _damageCooldownTimer = invulnerablePeriod;
-            SaveFileManager.Current.PlayerHealth--;
+            Health--;
             return true;
         }
 

@@ -14,7 +14,9 @@ namespace FastDragon
         /// </summary>
         [Export] public bool DebugSpawnHere;
 
-        public bool IsCurrent => SaveFileManager.Current.CurrentCheckpoint == CheckpointName;
+        public bool IsCurrent => SaveFileManager.Current
+            .CurrentLevelVisit
+            .LastCheckpoint == CheckpointName;
 
         [Signal] public delegate void ActivatedEventHandler();
 
@@ -36,19 +38,19 @@ namespace FastDragon
 
         private void OnBodyEntered(Node3D body)
         {
-            if (body is Player)
+            if (body is Player player)
             {
-                bool needsHealing = SaveFileManager.Current.PlayerHealth < Player.MaxHealth;
+                bool needsHealing = player.Health < Player.MaxHealth;
 
                 if (!IsCurrent || needsHealing)
-                    Activate();
+                    Activate(player);
             }
         }
 
-        private void Activate()
+        private void Activate(Player player)
         {
-            SaveFileManager.Current.CurrentCheckpoint = CheckpointName;
-            SaveFileManager.Current.PlayerHealth = Player.MaxHealth;
+            SaveFileManager.Current.CurrentLevelVisit.LastCheckpoint = CheckpointName;
+            player.Health = Player.MaxHealth;
 
             if (!this.IsTimeTrialMode())
             {

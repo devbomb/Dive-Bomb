@@ -67,7 +67,7 @@ namespace FastDragon
         )
         {
             GoToPortalLoadingScreen(levelSceneFile, null, skyBoxEnvironment);
-            SaveFileManager.Current.CurrentCheckpoint = null;
+            SaveFileManager.Current.CurrentLevelVisit = new();
         }
 
         public void ExitLevelFromPauseMenu()
@@ -134,7 +134,7 @@ namespace FastDragon
             string levelSceneFile = GetHomeWorldLevel();
             string previousLevelSceneFile = oldScene.SceneFilePath;
             GoToPortalLoadingScreen(levelSceneFile, previousLevelSceneFile, skyBoxEnvironment);
-            SaveFileManager.Current.CurrentCheckpoint = null;
+            SaveFileManager.Current.CurrentLevelVisit = new();
         }
 
         public void GoToMissionStatsScreen()
@@ -161,9 +161,6 @@ namespace FastDragon
 
         public void ReloadCheckpoint()
         {
-            // Heal the player back to full
-            SaveFileManager.Current.PlayerHealth = Player.MaxHealth;
-
             // Fade to black, reset the level, and then unfade.
             DoThingWithFadeToBlack(SignalBus.Instance.EmitLevelReset);
         }
@@ -173,9 +170,6 @@ namespace FastDragon
             const double fadeOutTime = 0.5;
             const double pauseTime = 0.25;
             const double fadeInTime = 0.5;
-
-            // Heal the player back to full
-            SaveFileManager.Current.PlayerHealth = Player.MaxHealth;
 
             var tween = GetTree().CreateTween();
             tween.SetPauseMode(Tween.TweenPauseMode.Process);

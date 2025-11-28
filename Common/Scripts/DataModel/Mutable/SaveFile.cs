@@ -9,9 +9,7 @@ namespace FastDragon
     [JsonObject(MemberSerialization.OptIn)]
     public partial class SaveFile : RefCounted
     {
-        [JsonProperty] public int PlayerHealth = Player.MaxHealth;
         [JsonProperty] public string CurrentLevel;
-        [JsonProperty] public string CurrentCheckpoint = null;
 
         /// <summary>
         /// The number of times the player has died outside of time trial mode.
@@ -46,12 +44,25 @@ namespace FastDragon
 
         /// <summary>
         /// Data about your current visit to the level you're currently on.
-        /// Used for showing stats at the end of the level.
+        ///
+        /// This is for data that should reset when the player leaves the level,
+        /// but that also needs to persist if the player saves and loads
+        /// mid-level.
+        ///
+        /// EG: The stats that we show after you reach the exit
         /// </summary>
         [JsonProperty] public LevelVisit CurrentLevelVisit = new();
         [JsonObject(MemberSerialization.OptIn)]
         public class LevelVisit
         {
+            [JsonProperty] public string LastCheckpoint = null;
+
+            /// <summary>
+            /// Story flags that need to be persisted if the player saves/reloads
+            /// mid-level, but that should still reset on revists.
+            /// </summary>
+            [JsonProperty] public HashSet<string> StoryFlags = new();
+
             [JsonProperty] public PhysicsTicks Playtime;
             [JsonProperty] public int Deaths;
             [JsonProperty] public int FairiesFound;

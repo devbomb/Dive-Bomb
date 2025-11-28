@@ -108,8 +108,10 @@ namespace FastDragon
         public void FullyResetLevel()
         {
             Close();
+
             this.GetLevel()?.GetProgress().ResetProgress();
-            SaveFileManager.Current.CurrentCheckpoint = null;
+            SaveFileManager.Current.CurrentLevelVisit = new();
+
             LevelTransitionManager.Instance.ReloadCheckpoint();
         }
 
