@@ -9,7 +9,9 @@ namespace FastDragon
         [Export] public string FairyId;
 
         [ExportGroup("Internal")]
-        [Export] public Node3D Model;
+        [Export] public Node3D DoorModel;
+        [Export] public Node3D LockModel;
+        [Export] public AnimationPlayer LockAnimator;
         [Export] public CollisionShape3D CollisionShape;
         [Export] public Area3D SoftlockFailsafeTrigger;
 
@@ -97,6 +99,8 @@ namespace FastDragon
         {
             private const double Duration = 0.5;
 
+            private Transform3D _lockStartPos;
+
             private Vector3 _startPos;
             private Vector3 _targetPos;
             private double _timer;
@@ -109,12 +113,22 @@ namespace FastDragon
                 _startPos = Self.GlobalPosition;
                 _targetPos = _startPos + (Vector3.Down * height);
                 _timer = 0;
+
+                _lockStartPos = Self.LockModel.GlobalTransform;
+                Self.LockModel.TopLevel = true;
+                Self.LockModel.GlobalTransform = _lockStartPos;
+                Self.LockAnimator.Play("Unlock");
             }
 
             public override void OnStateExited()
             {
                 Self.GlobalPosition = _startPos;
                 Self.ResetPhysicsInterpolation3D();
+
+                Self.LockAnimator.Play("RESET");
+                Self.LockAnimator.Advance(0);
+                Self.LockModel.TopLevel = false;
+                Self.LockModel.GlobalTransform = _lockStartPos;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -134,13 +148,13 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                Self.Model.Visible = false;
+                Self.Visible = false;
                 Self.CollisionShape.Disabled = true;
             }
 
             public override void OnStateExited()
             {
-                Self.Model.Visible = true;
+                Self.Visible = true;
                 Self.CollisionShape.Disabled = false;
             }
         }
