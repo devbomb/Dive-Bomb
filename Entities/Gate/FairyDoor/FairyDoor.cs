@@ -51,7 +51,7 @@ namespace FastDragon
 
         private void Reset()
         {
-            if (IsFairyFree())
+            if (IsStoryFlagSet())
                 _stateMachine.ChangeState<Open>();
             else
                 _stateMachine.ChangeState<Closed>();
@@ -63,6 +63,26 @@ namespace FastDragon
                 ?.GetProgress()
                 ?.CollectedFairies
                 ?.Contains(_jar.SaveKey) ?? false;
+        }
+
+        private string StoryFlagId() => $"{FairyId}_DoorOpened";
+
+        private bool IsStoryFlagSet()
+        {
+            return this.GetLevel()
+                    ?.GetProgress()
+                    ?.StoryFlags
+                    ?.Contains(StoryFlagId()) ?? false;
+        }
+
+        private void SetStoryFlag()
+        {
+            this.GetLevel()
+                ?.GetProgress()
+                ?.StoryFlags
+                .Add(StoryFlagId());
+
+            SaveFileManager.Instance.RequestAutosave();
         }
 
         private class Closed : State<FairyDoor>
@@ -118,6 +138,8 @@ namespace FastDragon
                 Self.LockModel.TopLevel = true;
                 Self.LockModel.GlobalTransform = _lockStartPos;
                 Self.LockAnimator.Play("Unlock");
+
+                Self.SetStoryFlag();
             }
 
             public override void OnStateExited()
