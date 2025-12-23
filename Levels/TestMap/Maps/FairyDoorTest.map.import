@@ -1,0 +1,16 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://dfcd6v4b3peg1"
+path="res://.godot/imported/FairyDoorTest.map-28dd8f10b724669df18da3a5c061bbc2.tscn"
+
+[deps]
+
+source_file="res://Levels/TestMap/Maps/FairyDoorTest.map"
+dest_files=["res://.godot/imported/FairyDoorTest.map-28dd8f10b724669df18da3a5c061bbc2.tscn"]
+
+[params]
+
+texture_material_map=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("uid://cb8n0ec7vcom", "res://addons/FuncGodotMapImporter/MaterialMap.gd"),"inherited_material_maps":Array[Resource("uid://cb8n0ec7vcom", "res://addons/FuncGodotMapImporter/MaterialMap.gd")]([]),"texture_to_material":Dictionary[Texture2D, Material]({}))
+
