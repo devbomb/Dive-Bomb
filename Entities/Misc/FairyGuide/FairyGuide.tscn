@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2btapp23vgst"]
+[gd_scene load_steps=18 format=3 uid="uid://b2btapp23vgst"]
 
 [ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy/Fairy.blend" id="1_hagoy"]
 [ext_resource type="Script" uid="uid://c4nnr0daaay5s" path="res://Entities/Misc/FairyGuide/FairyGuide.cs" id="1_p1a3n"]
 [ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Common/Models/Characters/Fairy/Animations/RESET.tres" id="2_p1a3n"]
 [ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Common/Models/Characters/Fairy/Animations/Hovering.tres" id="3_kua22"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="5_86vpo"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oecc0"]
 _data = {
@@ -79,3 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30459255, 0.29601824)
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_tmm2a")
 draw_pass_1 = SubResource("QuadMesh_tfe2o")
+
+[node name="BlobShadow" parent="." instance=ExtResource("5_86vpo")]
+radius = 0.25
