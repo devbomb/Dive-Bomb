@@ -243,9 +243,6 @@ autoplay = "RESET"
 [node name="BlobShadow" parent="Model/Fairy" instance=ExtResource("5_pebs6")]
 radius = 0.25
 
-[node name="CutsceneCam" type="Camera3D" parent="." groups=["PhysicsInterpolated"]]
-unique_name_in_owner = true
-
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15

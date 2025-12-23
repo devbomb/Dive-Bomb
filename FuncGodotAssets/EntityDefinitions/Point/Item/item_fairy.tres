@@ -6,21 +6,18 @@
 [resource]
 script = ExtResource("2_2sy0l")
 scene_file = ExtResource("1_x8mxr")
-apply_rotation_on_map_build = true
-apply_scale_on_map_build = true
 classname = "item_fairy"
-description = ""
-func_godot_internal = false
-base_classes = Array[Resource]([])
 class_properties = {
+"FairyId": "",
 "GemCost": 0
 }
-class_property_descriptions = {}
+class_property_descriptions = {
+"FairyId": "Optional.  If specified(IE: not null or the empty string), other entities can use it to get a reference to this fairy, IE to check if it's been freed.",
+"GemCost": "How much this fairy costs to rescue"
+}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.433443, 0.796857, 0.899777, 1),
 "size": AABB(-8, -8, 0, 8, 8, 24)
 }
-node_class = ""
-name_property = ""
 metadata/_custom_type_script = "uid://cddjtiy8pj12o"

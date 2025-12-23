@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://dntvrraqou3fd"]
+
+[ext_resource type="Script" uid="uid://dxeadvtxht04s" path="res://Entities/Gate/FairyDoor/FairyDoor.cs" id="1_o030q"]
+[ext_resource type="PackedScene" uid="uid://dpwg6pwo8jebn" path="res://Entities/Gate/FairyDoor/Lock.blend" id="2_js2ne"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c24c4"]
+size = Vector3(3, 4, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c24c4"]
+size = Vector3(3, 4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o030q"]
+size = Vector3(3, 4, 4)
+
+[sub_resource type="Animation" id="Animation_eco6q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Circle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_js2ne"]
+resource_name = "Unlock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 1.0]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Circle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.06666667, 1, 0.5, 0.5, 1, 0.13333334, 1, 0.5, 0.5, 1, 0.26666668, 1, 2, 2, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hbbej"]
+_data = {
+&"RESET": SubResource("Animation_eco6q"),
+&"Unlock": SubResource("Animation_js2ne")
+}
+
+[node name="FairyDoor" type="StaticBody3D" node_paths=PackedStringArray("DoorModel", "LockModel", "LockAnimator", "CollisionShape", "SoftlockFailsafeTrigger") groups=["PhysicsInterpolated"]]
+script = ExtResource("1_o030q")
+DoorModel = NodePath("DoorModel")
+LockModel = NodePath("Lock")
+LockAnimator = NodePath("Lock/AnimationPlayer")
+CollisionShape = NodePath("CollisionShape3D")
+SoftlockFailsafeTrigger = NodePath("SoftlockFailsafeTrigger")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_c24c4")
+
+[node name="DoorModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_c24c4")
+
+[node name="SoftlockFailsafeTrigger" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftlockFailsafeTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+shape = SubResource("BoxShape3D_o030q")
+
+[node name="Lock" parent="." instance=ExtResource("2_js2ne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.353, -0.18294396)
+
+[node name="Circle" parent="Lock" index="0"]
+cast_shadow = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lock"]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_hbbej")
+}
+
+[editable path="Lock"]

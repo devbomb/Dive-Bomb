@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://muwxx8ltp1ss"]
+[gd_scene load_steps=7 format=3 uid="uid://muwxx8ltp1ss"]
 
 [ext_resource type="Environment" uid="uid://cnsj2vqr0q41w" path="res://Levels/TestMap/Skybox.tres" id="1_0gxk4"]
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_678t0"]
-[ext_resource type="PackedScene" uid="uid://bdshm0cut77ja" path="res://Levels/TestMap/Maps/TestMap.map" id="2_678t0"]
+[ext_resource type="PackedScene" uid="uid://dfcd6v4b3peg1" path="res://Levels/TestMap/Maps/FairyDoorTest.map" id="2_1qi3b"]
+[ext_resource type="PackedScene" uid="uid://bdshm0cut77ja" path="res://Levels/TestMap/Maps/Main.map" id="2_678t0"]
+[ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="5_bnah6"]
+
+[sub_resource type="Curve3D" id="Curve3D_vn0gs"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -3.3735085, 0.30837762, 0.20171809, 3.3735085, -0.30837762, -0.20171809, 1.0809479, 1.6707617, 3.483806, -0.7850342, -0.6329949, -1.5124683, 0.7850342, 0.6329949, 1.5124683, 5.271412, 3.8880384, 3.6475654, -1.1702614, 0.029702663, 0.38114738, 1.1702614, -0.029702663, -0.38114738, 11.401913, 3.580923, 5.6576223, -0.20042801, 0.19396758, 2.8520312, 0.20042801, -0.19396758, -2.8520312, 17.217041, 2.9149063, 0.20222712, 0.91477203, 0.15900588, 2.6550617, -0.91477203, -0.15900588, -2.6550617, 14.475506, 3.5265975, -5.8477583, 0, 0, 0, 0, 0, 0, 20.814034, 3.216451, -8.639998),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
 
 [node name="TestMap" type="Node3D"]
 script = ExtResource("1_678t0")
@@ -17,4 +26,17 @@ transform = Transform3D(0.958038, 0.253313, -0.13415, -0.134871, 0.811326, 0.568
 layers = 3
 sky_mode = 1
 
-[node name="TestMap" parent="." instance=ExtResource("2_678t0")]
+[node name="Main" parent="." instance=ExtResource("2_678t0")]
+
+[node name="FairyDoorTest" parent="." instance=ExtResource("2_1qi3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -5, -7)
+
+[node name="FairyGuide" parent="FairyDoorTest" node_paths=PackedStringArray("Path") instance=ExtResource("5_bnah6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 6)
+FairyId = "FairyDoorTest"
+Path = NodePath("../FairyGuidePath")
+VanishWhenFinished = true
+
+[node name="FairyGuidePath" type="Path3D" parent="FairyDoorTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 6)
+curve = SubResource("Curve3D_vn0gs")

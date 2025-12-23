@@ -1,0 +1,101 @@
+// Game: FastDragon
+// Format: Standard
+// entity 0
+{
+"wad" ""
+"classname" "worldspawn"
+// brush 0
+{
+( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) Textures/GridSquare 0 0 0 1 1
+( -64 -64 -16 ) ( -64 -64 -15 ) ( -63 -64 -16 ) Textures/GridSquare 0 0 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 16 ) ( 65 64 16 ) ( 64 64 17 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 16 ) ( 64 64 17 ) ( 64 65 16 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 1
+{
+( -64 -64 16 ) ( -64 -63 16 ) ( -64 -64 17 ) Textures/GridSquare 0 0 0 1 1
+( -64 -64 16 ) ( -64 -64 17 ) ( -63 -64 16 ) Textures/GridSquare 0 0 0 1 1
+( -64 -64 16 ) ( -63 -64 16 ) ( -64 -63 16 ) Textures/GridSquare 0 0 0 1 1
+( -48 -48 48 ) ( -48 -47 48 ) ( -47 -48 48 ) Textures/GridSquare 0 0 0 1 1
+( -48 -48 48 ) ( -47 -48 48 ) ( -48 -48 49 ) Textures/GridSquare 0 0 0 1 1
+( -48 -48 48 ) ( -48 -48 49 ) ( -48 -47 48 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 2
+{
+( 48 -64 16 ) ( 48 -63 16 ) ( 48 -64 17 ) Textures/GridSquare 0 0 0 1 1
+( 48 -64 16 ) ( 48 -64 17 ) ( 49 -64 16 ) Textures/GridSquare 0 0 0 1 1
+( 48 -64 16 ) ( 49 -64 16 ) ( 48 -63 16 ) Textures/GridSquare 0 0 0 1 1
+( 64 -48 48 ) ( 64 -47 48 ) ( 65 -48 48 ) Textures/GridSquare 0 0 0 1 1
+( 64 -48 48 ) ( 65 -48 48 ) ( 64 -48 49 ) Textures/GridSquare 0 0 0 1 1
+( 64 -48 48 ) ( 64 -48 49 ) ( 64 -47 48 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 3
+{
+( -64 64 0 ) ( -64 65 0 ) ( -64 64 1 ) Textures/GridSquare 0 0 0 1 1
+( -64 64 0 ) ( -64 64 1 ) ( -63 64 0 ) Textures/GridSquare 0 0 0 1 1
+( -64 64 0 ) ( -63 64 0 ) ( -64 65 0 ) Textures/GridSquare 0 0 0 1 1
+( 208 192 16 ) ( 208 193 16 ) ( 209 192 16 ) Textures/GridSquare 0 0 0 1 1
+( 208 192 16 ) ( 209 192 16 ) ( 208 192 17 ) Textures/GridSquare 0 0 0 1 1
+( 208 192 16 ) ( 208 192 17 ) ( 208 193 16 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 4
+{
+( 112 192 0 ) ( 112 193 0 ) ( 112 192 1 ) Textures/GridSquare 0 0 0 1 1
+( 112 192 0 ) ( 112 192 1 ) ( 113 192 0 ) Textures/GridSquare 0 0 0 1 1
+( 112 192 0 ) ( 113 192 0 ) ( 112 193 0 ) Textures/GridSquare 0 0 0 1 1
+( 208 336 64 ) ( 208 337 64 ) ( 209 336 64 ) Textures/GridSquare 0 0 0 1 1
+( 208 336 16 ) ( 209 336 16 ) ( 208 336 17 ) Textures/GridSquare 0 0 0 1 1
+( 208 336 16 ) ( 208 336 17 ) ( 208 337 16 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 5
+{
+( -80 336 64 ) ( -80 400 0 ) ( -80 400 64 ) Textures/GridSquare 0 0 0 1 1
+( 208 336 64 ) ( 112 336 0 ) ( 112 336 64 ) Textures/GridSquare 0 0 0 1 1
+( 208 400 0 ) ( 112 336 0 ) ( 208 336 0 ) Textures/GridSquare 0 0 0 1 1
+( 208 400 64 ) ( 112 336 64 ) ( 112 400 64 ) Textures/GridSquare 0 0 0 1 1
+( 208 416 64 ) ( 112 416 0 ) ( 208 416 0 ) Textures/GridSquare 0 0 0 1 1
+( 208 400 64 ) ( 208 336 0 ) ( 208 336 64 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 6
+{
+( -80 400 64 ) ( -80 401 64 ) ( -80 400 65 ) Textures/GridSquare 0 0 0 1 1
+( -80 400 64 ) ( -80 400 65 ) ( -79 400 64 ) Textures/GridSquare 0 0 0 1 1
+( -80 400 64 ) ( -79 400 64 ) ( -80 401 64 ) Textures/GridSquare 0 0 0 1 1
+( -64 416 128 ) ( -64 417 128 ) ( -63 416 128 ) Textures/GridSquare 0 0 0 1 1
+( -64 416 128 ) ( -63 416 128 ) ( -64 416 129 ) Textures/GridSquare 0 0 0 1 1
+( -56 416 128 ) ( -56 416 129 ) ( -56 417 128 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 7
+{
+( -8 400 64 ) ( -8 401 64 ) ( -8 400 65 ) Textures/GridSquare 0 0 0 1 1
+( 0 400 64 ) ( 0 400 65 ) ( 1 400 64 ) Textures/GridSquare 0 0 0 1 1
+( 0 400 64 ) ( 1 400 64 ) ( 0 401 64 ) Textures/GridSquare 0 0 0 1 1
+( 16 416 128 ) ( 16 417 128 ) ( 17 416 128 ) Textures/GridSquare 0 0 0 1 1
+( 16 416 128 ) ( 17 416 128 ) ( 16 416 129 ) Textures/GridSquare 0 0 0 1 1
+( 16 416 128 ) ( 16 416 129 ) ( 16 417 128 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 8
+{
+( -80 416 48 ) ( -80 417 48 ) ( -80 416 49 ) Textures/GridSquare 0 0 0 1 1
+( -80 416 48 ) ( -80 416 49 ) ( -79 416 48 ) Textures/GridSquare 0 0 0 1 1
+( -80 416 48 ) ( -79 416 48 ) ( -80 417 48 ) Textures/GridSquare 0 0 0 1 1
+( 16 528 64 ) ( 16 529 64 ) ( 17 528 64 ) Textures/GridSquare 0 0 0 1 1
+( 16 528 64 ) ( 17 528 64 ) ( 16 528 65 ) Textures/GridSquare 0 0 0 1 1
+( 80 528 64 ) ( 80 528 65 ) ( 80 529 64 ) Textures/GridSquare 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "gate_fairy_door"
+"origin" "-32 408 64"
+"angle" "-90"
+"FairyId" "FairyDoorTest"
+}
+// entity 2
+{
+"classname" "item_fairy"
+"origin" "-8 120 16"
+"FairyId" "FairyDoorTest"
+}
