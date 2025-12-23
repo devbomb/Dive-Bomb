@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=26 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dord22pbbqflm" path="res://Levels/Tutorial/Maps/FairyRoom.map" id="11_r652i"]
 [ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="12_myhx6"]
 [ext_resource type="PackedScene" uid="uid://c5lrjwtowen30" path="res://Levels/Tutorial/Maps/DrMonocleSpeech.map" id="13_myhx6"]
+[ext_resource type="Script" uid="uid://cdqcpmgk2hqiu" path="res://Common/Components/NamedTriggerListener.cs" id="14_4f2gc"]
+[ext_resource type="AudioStream" uid="uid://droj2kl6k3a4c" path="res://Levels/Tutorial/Audio/Dialog/DrMonocleIntroSpeech.wav" id="15_ym3l3"]
 
 [sub_resource type="Environment" id="Environment_vwhqw"]
 
@@ -71,6 +73,26 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 13
+
+[sub_resource type="GDScript" id="GDScript_kb7u2"]
+script/source = "extends AudioStreamPlayer
+
+var _started_playing: bool = false
+
+func _ready():
+	$\"/root/SignalBus\".connect(\"LevelReset\", _reset)
+
+func _reset():
+	_started_playing = false
+	stop()
+
+func trigger_entered():
+	if (_started_playing):
+		return
+	
+	_started_playing = true;
+	play()
+"
 
 [node name="Tutorial" type="Node3D"]
 script = ExtResource("1_vo1h1")
@@ -340,3 +362,15 @@ VanishWhenFinished = true
 
 [node name="DrMonocleSpeech" parent="." instance=ExtResource("13_myhx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147, 30, 15)
+
+[node name="NamedTriggerListener" type="Node" parent="DrMonocleSpeech"]
+script = ExtResource("14_4f2gc")
+TriggerName = "DrMonocleIntroSpeechStart"
+metadata/_custom_type_script = "uid://cdqcpmgk2hqiu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DrMonocleSpeech"]
+stream = ExtResource("15_ym3l3")
+bus = &"DialogVoice"
+script = SubResource("GDScript_kb7u2")
+
+[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/NamedTriggerListener" to="DrMonocleSpeech/AudioStreamPlayer" method="trigger_entered"]

@@ -131,3 +131,17 @@
 ( 128 592 240 ) ( 128 588 144 ) ( 128 588 240 ) __TB_empty 0 0 0 1 1
 }
 }
+// entity 2
+{
+"classname" "trigger_named_trigger_zone"
+"TriggerName" "DrMonocleIntroSpeechStart"
+// brush 0
+{
+( -96 16 80 ) ( -96 48 16 ) ( -96 48 80 ) Textures/Grate 0 0 0 1 1
+( 96 16 80 ) ( -96 16 16 ) ( -96 16 80 ) Textures/Grate 0 0 0 1 1
+( 96 48 16 ) ( -96 16 16 ) ( 96 16 16 ) Textures/Grate 0 0 0 1 1
+( 96 48 320 ) ( -96 16 320 ) ( -96 48 320 ) Textures/Grate 0 0 0 1 1
+( 96 48 80 ) ( -96 48 16 ) ( 96 48 16 ) Textures/Grate 0 0 0 1 1
+( 96 48 80 ) ( 96 16 16 ) ( 96 16 80 ) Textures/Grate 0 0 0 1 1
+}
+}
