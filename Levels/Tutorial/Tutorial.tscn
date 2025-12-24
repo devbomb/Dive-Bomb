@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dord22pbbqflm" path="res://Levels/Tutorial/Maps/FairyRoom.map" id="11_r652i"]
 [ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="12_myhx6"]
 [ext_resource type="PackedScene" uid="uid://c5lrjwtowen30" path="res://Levels/Tutorial/Maps/DrMonocleSpeech.map" id="13_myhx6"]
-[ext_resource type="Script" uid="uid://cdqcpmgk2hqiu" path="res://Common/Components/NamedTriggerListener.cs" id="14_4f2gc"]
+[ext_resource type="Script" uid="uid://cdqcpmgk2hqiu" path="res://Common/Components/NamedTriggerZoneListener.cs" id="14_4f2gc"]
 [ext_resource type="PackedScene" uid="uid://c3u21ynxwsxm" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutsceneRig.tscn" id="15_ym3l3"]
 
 [sub_resource type="Environment" id="Environment_vwhqw"]
@@ -343,7 +343,7 @@ VanishWhenFinished = true
 [node name="DrMonocleSpeech" parent="." instance=ExtResource("13_myhx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147, 30, 15)
 
-[node name="NamedTriggerListener" type="Node" parent="DrMonocleSpeech"]
+[node name="NamedTriggerZoneListener" type="Node" parent="DrMonocleSpeech"]
 script = ExtResource("14_4f2gc")
 TriggerName = "DrMonocleIntroSpeechStart"
 metadata/_custom_type_script = "uid://cdqcpmgk2hqiu"
@@ -351,4 +351,4 @@ metadata/_custom_type_script = "uid://cdqcpmgk2hqiu"
 [node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" instance=ExtResource("15_ym3l3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27.539627, 5.927231, 0.35410118)
 
-[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/NamedTriggerListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="StartCutscene"]
+[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/NamedTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="StartCutscene"]

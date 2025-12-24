@@ -4,7 +4,7 @@ using Godot;
 namespace FastDragon
 {
     [GlobalClass]
-    public partial class NamedTriggerListener : Node
+    public partial class NamedTriggerZoneListener : Node
     {
         [Signal] public delegate void NamedTriggerEnteredEventHandler();
         [Signal] public delegate void NamedTriggerExitedEventHandler();
