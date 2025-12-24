@@ -100,8 +100,9 @@ namespace FastDragon
                     continue;
                 }
 
+                node.SetNotifyLocalTransform(false);
                 node.Transform = truePos.Prev.InterpolateWith(truePos.Current, (float)t);
-                node.ForceUpdateTransform();
+                node.SetNotifyLocalTransform(true);
             }
         }
 
@@ -114,8 +115,9 @@ namespace FastDragon
             // true positions.
             foreach (var node in AllInterpolatableNodes())
             {
+                node.SetNotifyLocalTransform(false);
                 node.Transform = GetTruePosStruct(node).Current;
-                node.ForceUpdateTransform();
+                node.SetNotifyLocalTransform(true);
             }
         }
 
