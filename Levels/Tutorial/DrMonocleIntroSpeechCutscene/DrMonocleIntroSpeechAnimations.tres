@@ -1,8 +1,9 @@
-[gd_resource type="AnimationLibrary" load_steps=7 format=3 uid="uid://gvjk68l2wgnj"]
+[gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://gvjk68l2wgnj"]
 
 [ext_resource type="AudioStream" uid="uid://droj2kl6k3a4c" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeech.wav" id="1_n3201"]
 [ext_resource type="AudioStream" uid="uid://6qbhwmehub1l" path="res://UI/Menus/PauseMenu/PauseOpen.wav" id="2_mkl1q"]
 [ext_resource type="AudioStream" uid="uid://chv8uuwcwx68d" path="res://UI/Menus/PauseMenu/PauseClose.wav" id="3_av5ye"]
+[ext_resource type="AudioStream" uid="uid://567bvjm24xrd" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSkipTrickDialog.wav" id="4_av5ye"]
 
 [sub_resource type="Animation" id="Animation_mkl1q"]
 resource_name = "Hidden"
@@ -111,9 +112,51 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 1, 0.99999994, 0.99999994)
 
+[sub_resource type="Animation" id="Animation_a74it"]
+resource_name = "Skipping"
+length = 12.0
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadHolder")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 11.233334, 1, 1, 1, 1, 11.333332, 1, 1, 1, 1, 11.533333, 1, 1.1, 1.1, 1.1, 11.633331, 1, 0.25, 1, 0.25, 11.733334, 1, 0, 0, 0)
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DialogAudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_av5ye")
+}],
+"times": PackedFloat32Array(0.033333335)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SfxAudioPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_av5ye")
+}],
+"times": PackedFloat32Array(11.333333)
+}
+tracks/2/use_blend = true
+
 [resource]
 _data = {
 &"Hidden": SubResource("Animation_mkl1q"),
 &"Playing": SubResource("Animation_knfmu"),
-&"RESET": SubResource("Animation_n2kjk")
+&"RESET": SubResource("Animation_n2kjk"),
+&"Skipping": SubResource("Animation_a74it")
 }

@@ -343,12 +343,18 @@ VanishWhenFinished = true
 [node name="DrMonocleSpeech" parent="." instance=ExtResource("13_myhx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147, 30, 15)
 
-[node name="NamedTriggerZoneListener" type="Node" parent="DrMonocleSpeech"]
+[node name="SpeechStartTriggerZoneListener" type="Node" parent="DrMonocleSpeech"]
 script = ExtResource("14_4f2gc")
 TriggerName = "DrMonocleIntroSpeechStart"
+metadata/_custom_type_script = "uid://cdqcpmgk2hqiu"
+
+[node name="SkipSpeechTriggerZoneListener" type="Node" parent="DrMonocleSpeech"]
+script = ExtResource("14_4f2gc")
+TriggerName = "DrMonocleIntroSkipSpeech"
 metadata/_custom_type_script = "uid://cdqcpmgk2hqiu"
 
 [node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" instance=ExtResource("15_ym3l3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27.539627, 5.927231, 0.35410118)
 
-[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/NamedTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="StartCutscene"]
+[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/SpeechStartTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="StartCutscene"]
+[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/SkipSpeechTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="SkipCutscene"]

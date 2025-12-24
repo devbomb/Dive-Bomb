@@ -54,6 +54,14 @@ namespace FastDragon.Levels.Tutorial
             }
         }
 
+        public void SkipCutscene()
+        {
+            if (_stateMachine.CurrentState is Playing)
+            {
+                _stateMachine.ChangeState<Skipping>();
+            }
+        }
+
         private bool IsStoryFlagSet() => this.GetLevel()
             .GetProgress()
             .StoryFlags
@@ -87,12 +95,37 @@ namespace FastDragon.Levels.Tutorial
             private double _timer;
             public override void OnStateEntered()
             {
-                GD.Print("Dr. Monocle speech Started");
+                GD.Print("Dr. Monocle speech started");
 
                 Self.AnimationPlayer.Play("Playing");
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
 
                 Self._entranceDoor.StartClosing();
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer -= delta;
+
+                if (_timer <= 0)
+                    ChangeState<Finished>();
+            }
+        }
+
+        private class Skipping : State<DrMonocleIntroSpeechCutscene>
+        {
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                GD.Print("Dr. Monocle speech skipping");
+                Self.SetStoryFlag();
+                Self.AnimationPlayer.Play("Skipping");
+
+                _timer = Self.AnimationPlayer.CurrentAnimationLength;
+
+                Self._entranceDoor.StartOpening();
+                Self._exitDoor.StartOpening();
             }
 
             public override void _PhysicsProcess(double delta)
