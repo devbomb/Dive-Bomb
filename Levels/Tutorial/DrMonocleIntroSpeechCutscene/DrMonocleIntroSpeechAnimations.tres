@@ -13,6 +13,27 @@ tracks/0/path = NodePath("HeadHolder")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Jaw")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057)
+tracks/2/type = "scale_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Lips.Bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 1, 1.0000001, 1)
+tracks/3/type = "scale_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Lips.Top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 1, 0.99999994, 0.99999994)
 
 [sub_resource type="Animation" id="Animation_knfmu"]
 resource_name = "Playing"
@@ -58,6 +79,27 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 36.633335)
 }
 tracks/2/use_blend = true
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Jaw")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 0.36666667, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 0.4666667, 1, 0.9301814, -7.638755e-15, 2.2177242e-07, -0.36710027, 0.56666666, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 0.6666667, 1, 0.9301814, -7.638755e-15, 2.2177242e-07, -0.36710027, 0.73333335, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 0.8333333, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 0.9333333, 1, 0.94084597, 0, 2.2431503e-07, -0.33883464, 1.0333333, 1, -0.8468778, 9.769963e-15, -2.0191133e-07, 0.5317877, 1.1333333, 1, -0.8391676, 4.4408916e-16, -2.0007306e-07, 0.5438729, 1.2333333, 1, 0.89837646, -3.5591342e-14, 2.1418957e-07, -0.43922636, 1.3333333, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 1.4333334, 1, 0.94084597, 0, 2.2431503e-07, -0.33883464, 1.5000001, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 1.5666667, 1, 0.87402767, -4.064761e-15, 2.0838434e-07, -0.48587617, 1.6333334, 1, -0.8630573, 1.40672e-14, -2.0576881e-07, 0.50510603, 1.7, 1, 0.8860548, -2.4057521e-14, 2.1125182e-07, -0.46358052, 1.7666668, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 2.1666667, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 2.3, 1, 0.8860548, -2.4057521e-14, 2.1125182e-07, -0.46358052, 2.4333334, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 3.0000002, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 3.1666667, 1, 0.91749173, -7.7444044e-15, 2.1874698e-07, -0.39775485, 3.2333336, 1, 0.91749173, -7.7444044e-15, 2.1874698e-07, -0.39775485, 3.3666668, 1, 0.8883578, 4.799031e-14, 2.1180091e-07, -0.45915186, 3.4666667, 1, -0.8490788, -4.0351396e-14, -2.0243606e-07, 0.5282663, 3.5666666, 1, 0.96763253, 2.5700867e-14, 2.3070146e-07, -0.25236332, 3.8666666, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057)
+tracks/4/type = "scale_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Lips.Bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0.8379984, 1, 1, 1.0000001, 1, 0.9333333, 1, 0.5130691, 1.0000001, 0.99999976, 1, 1, 0.39677277, 1.0000001, 0.9999999, 1.0333333, 1, 0.84919393, 1.0000001, 1, 1.1333333, 1, 1, 1.0000001, 1)
+tracks/5/type = "scale_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Lips.Top")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0.8379984, 1, 1, 0.99999994, 0.99999994, 0.9333333, 1, 0.6286635, 0.99999994, 0.9999998, 1, 1, 0.5119312, 0.99999994, 0.99999976, 1.0333333, 1, 0.87798333, 0.99999994, 0.9999999, 1.1333333, 1, 1, 0.99999994, 0.99999994)
 
 [sub_resource type="Animation" id="Animation_mkl1q"]
 resource_name = "Hidden"
