@@ -94,44 +94,44 @@
 ( 48 -64 16 ) ( -48 -64 -16 ) ( 48 -64 -16 ) __TB_empty 0 0 0 1 1
 ( 48 -64 16 ) ( 48 -320 -16 ) ( 48 -320 16 ) __TB_empty 0 0 0 1 1
 }
+// brush 10
+{
+( -48 608 320 ) ( -48 592 320 ) ( -48 608 -16 ) __TB_empty 0 0 0 1 1
+( 160 592 -16 ) ( -48 592 -16 ) ( 160 592 320 ) __TB_empty 0 0 0 1 1
+( 160 608 -16 ) ( -48 608 -16 ) ( 160 592 -16 ) __TB_empty 0 0 0 1 1
+( 160 592 320 ) ( -48 592 320 ) ( 160 608 320 ) __TB_empty 0 0 0 1 1
+( 160 608 320 ) ( -48 608 320 ) ( 160 608 -16 ) __TB_empty 0 0 0 1 1
+( 160 592 320 ) ( 160 608 320 ) ( 160 592 -16 ) __TB_empty 0 0 0 1 1
+}
+// brush 11
+{
+( -160 592 -16 ) ( -160 608 -16 ) ( -160 592 320 ) __TB_empty 0 0 0 1 1
+( -160 592 320 ) ( -128 592 320 ) ( -160 592 -16 ) __TB_empty 0 0 0 1 1
+( -160 592 -16 ) ( -128 592 -16 ) ( -160 608 -16 ) __TB_empty 0 0 0 1 1
+( -160 608 320 ) ( -128 608 320 ) ( -160 592 320 ) __TB_empty 0 0 0 1 1
+( -160 608 -16 ) ( -128 608 -16 ) ( -160 608 320 ) __TB_empty 0 0 0 1 1
+( -128 592 -16 ) ( -128 592 320 ) ( -128 608 -16 ) __TB_empty 0 0 0 1 1
+}
+// brush 12
+{
+( -128 592 320 ) ( -128 592 112 ) ( -128 608 320 ) __TB_empty 0 0 0 1 1
+( -48 592 320 ) ( -48 592 112 ) ( -128 592 320 ) __TB_empty 0 0 0 1 1
+( -48 592 112 ) ( -48 608 112 ) ( -128 592 112 ) __TB_empty 0 0 0 1 1
+( -48 592 320 ) ( -128 592 320 ) ( -48 608 320 ) __TB_empty 0 0 0 1 1
+( -128 608 320 ) ( -128 608 112 ) ( -48 608 320 ) __TB_empty 0 0 0 1 1
+( -48 608 320 ) ( -48 608 112 ) ( -48 592 320 ) __TB_empty 0 0 0 1 1
+}
+// brush 13
+{
+( -128 608 -16 ) ( -128 608 16 ) ( -128 592 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -128 592 -16 ) ( -128 592 16 ) ( -48 592 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -48 608 -16 ) ( -128 608 -16 ) ( -48 592 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -128 608 16 ) ( -48 608 16 ) ( -128 592 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -48 608 -16 ) ( -48 608 16 ) ( -128 608 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -48 592 -16 ) ( -48 592 16 ) ( -48 608 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+}
 }
 // entity 1
-{
-"classname" "func_group"
-"_tb_type" "_tb_group"
-"_tb_name" "FarWall"
-"_tb_id" "1"
-"_tb_linked_group_id" "{bb3ecd26-b100-4d9d-85a3-0034a8975926}"
-"_tb_transformation" "1 0 0 0 0 1 0 192 0 0 1 0 0 0 0 1"
-// brush 0
-{
-( -160 592 16 ) ( -160 608 -16 ) ( -160 608 16 ) __TB_empty 0 0 0 1 1
-( 160 592 16 ) ( -160 592 -16 ) ( -160 592 16 ) __TB_empty 0 0 0 1 1
-( 160 608 -16 ) ( -160 592 -16 ) ( 160 592 -16 ) __TB_empty 0 0 0 1 1
-( 160 608 320 ) ( -160 592 320 ) ( -160 608 320 ) __TB_empty 0 0 0 1 1
-( 160 608 16 ) ( -160 608 -16 ) ( 160 608 -16 ) __TB_empty 0 0 0 1 1
-( 160 608 16 ) ( 160 592 -16 ) ( 160 592 16 ) __TB_empty 0 0 0 1 1
-}
-// brush 1
-{
-( -128 590 112 ) ( -128 592 16 ) ( -128 592 112 ) __TB_empty 0 0 0 1 1
-( -48 590 112 ) ( -128 590 16 ) ( -128 590 112 ) Textures/DarkWood 0 0 0 1 1
-( -48 592 16 ) ( -128 590 16 ) ( -48 590 16 ) __TB_empty 0 0 0 1 1
-( -48 592 112 ) ( -128 590 112 ) ( -128 592 112 ) __TB_empty 0 0 0 1 1
-( -48 592 112 ) ( -128 592 16 ) ( -48 592 16 ) __TB_empty 0 0 0 1 1
-( -48 592 112 ) ( -48 590 16 ) ( -48 590 112 ) __TB_empty 0 0 0 1 1
-}
-// brush 2
-{
-( -48 588 240 ) ( -48 592 144 ) ( -48 592 240 ) __TB_empty 0 0 0 1 1
-( 128 588 240 ) ( -48 588 144 ) ( -48 588 240 ) Textures/DarkWood 0 0 0 1 1
-( 128 592 128 ) ( -48 588 128 ) ( 128 588 128 ) __TB_empty 0 0 0 1 1
-( 128 592 240 ) ( -48 588 240 ) ( -48 592 240 ) __TB_empty 0 0 0 1 1
-( 128 592 240 ) ( -48 592 144 ) ( 128 592 144 ) __TB_empty 0 0 0 1 1
-( 128 592 240 ) ( 128 588 144 ) ( 128 588 240 ) __TB_empty 0 0 0 1 1
-}
-}
-// entity 2
 {
 "classname" "trigger_named_trigger_zone"
 "TriggerName" "DrMonocleIntroSpeechStart"
@@ -144,4 +144,32 @@
 ( 96 48 80 ) ( -96 48 16 ) ( 96 48 16 ) Textures/Grate 0 0 0 1 1
 ( 96 48 80 ) ( 96 16 16 ) ( 96 16 80 ) Textures/Grate 0 0 0 1 1
 }
+}
+// entity 2
+{
+"classname" "wall_openable"
+"OpenableWallId" "DrMonocleSpeech_ExitDoor"
+"ClosedPosMarkerId" "DrMonocleSpeech_ExitDoor_ClosedPoint"
+"OpenPosMarkerId" "DrMonocleSpeech_ExitDoor_OpenPoint"
+// brush 0
+{
+( -128 592 112 ) ( -128 608 16 ) ( -128 608 112 ) Textures/BigMetalSquares 0 0 0 1 1
+( -48 592 112 ) ( -128 592 16 ) ( -128 592 112 ) Textures/BigMetalSquares 0 0 0 1 1
+( -48 608 16 ) ( -128 592 16 ) ( -48 592 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -48 608 112 ) ( -128 592 112 ) ( -128 608 112 ) Textures/BigMetalSquares 0 0 0 1 1
+( -48 608 112 ) ( -128 608 16 ) ( -48 608 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -48 608 112 ) ( -48 592 16 ) ( -48 592 112 ) Textures/BigMetalSquares 0 0 0 1 1
+}
+}
+// entity 3
+{
+"classname" "info_named_marker"
+"origin" "-40 584 120"
+"MarkerId" "DrMonocleSpeech_ExitDoor_ClosedPoint"
+}
+// entity 4
+{
+"classname" "info_named_marker"
+"origin" "-40 584 24"
+"MarkerId" "DrMonocleSpeech_ExitDoor_OpenPoint"
 }

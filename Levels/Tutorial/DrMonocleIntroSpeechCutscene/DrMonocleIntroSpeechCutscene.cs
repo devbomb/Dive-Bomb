@@ -11,6 +11,9 @@ namespace FastDragon.Levels.Tutorial
 
         private StateMachine _stateMachine = new();
 
+        private const string ExitDoorId = "DrMonocleSpeech_ExitDoor";
+        private OpenableWall _exitDoor;
+
         public DrMonocleIntroSpeechCutscene()
         {
             AddChild(_stateMachine);
@@ -19,7 +22,12 @@ namespace FastDragon.Levels.Tutorial
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += Reset;
-            Reset();
+            Callable.From(() =>
+            {
+                _exitDoor = this.GetOpenableWall(ExitDoorId);
+                Reset();
+            }).CallDeferred();
+
         }
 
         private void Reset()
@@ -63,6 +71,8 @@ namespace FastDragon.Levels.Tutorial
                 Self.AnimationPlayer.Play("RESET");
                 Self.AnimationPlayer.Advance(0);
                 Self.AnimationPlayer.Play("Hidden");
+
+                Self._exitDoor.InstantClose();
             }
         }
 
@@ -71,6 +81,8 @@ namespace FastDragon.Levels.Tutorial
             private double _timer;
             public override void OnStateEntered()
             {
+                GD.Print("Dr. Monocle speech finished");
+
                 Self.AnimationPlayer.Play("Playing");
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
             }
@@ -88,9 +100,11 @@ namespace FastDragon.Levels.Tutorial
         {
             public override void OnStateEntered()
             {
+                GD.Print("Dr. Monocle speech finished");
                 Self.SetStoryFlag();
                 Self.AnimationPlayer.Play("Hidden");
-                GD.Print("Cutscene finished.  TODO: Open the door");
+
+                Self._exitDoor.StartOpening();
             }
         }
     }
