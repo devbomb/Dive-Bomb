@@ -4,47 +4,26 @@
 [ext_resource type="AudioStream" uid="uid://6qbhwmehub1l" path="res://UI/Menus/PauseMenu/PauseOpen.wav" id="2_mkl1q"]
 [ext_resource type="AudioStream" uid="uid://chv8uuwcwx68d" path="res://UI/Menus/PauseMenu/PauseClose.wav" id="3_av5ye"]
 
-[sub_resource type="Animation" id="Animation_n2kjk"]
-resource_name = "RESET"
+[sub_resource type="Animation" id="Animation_mkl1q"]
+resource_name = "Hidden"
 tracks/0/type = "scale_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("HeadHolder")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Jaw")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057)
-tracks/2/type = "scale_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Lips.Bottom")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 1, 1.0000001, 1)
-tracks/3/type = "scale_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Lips.Top")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 1, 0.99999994, 0.99999994)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_knfmu"]
 resource_name = "Playing"
-length = 39.0
+length = 22.78
 tracks/0/type = "scale_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("HeadHolder")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.1, 1, 0.5, 2, 0.5, 0.33333334, 1, 1.1, 0.9, 1.1, 0.6666667, 1, 0.95, 1.05, 0.95, 0.96666664, 1, 1.025, 0.975, 1.025, 1.1666666, 1, 1, 1, 1, 5.766667, 1, 1, 1, 1, 36.666668, 1, 1, 1, 1, 36.766666, 1, 1, 1, 1, 36.966667, 1, 1.1, 1.1, 1.1, 37.066666, 1, 0.25, 1, 0.25, 37.166668, 1, 0, 0, 0)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.1, 1, 0.5, 2, 0.5, 0.33333334, 1, 1.1, 0.9, 1.1, 0.6666667, 1, 0.95, 1.05, 0.95, 0.96666664, 1, 1.025, 0.975, 1.025, 1.1666666, 1, 1, 1, 1, 5.766667, 1, 1, 1, 1, 22.166666, 1, 1, 1, 1, 22.266665, 1, 1, 1, 1, 22.466665, 1, 1.1, 1.1, 1.1, 22.566664, 1, 0.25, 1, 0.25, 22.666666, 1, 0, 0, 0)
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -76,7 +55,7 @@ tracks/2/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("3_av5ye")
 }],
-"times": PackedFloat32Array(0, 36.633335)
+"times": PackedFloat32Array(0, 22.133333)
 }
 tracks/2/use_blend = true
 tracks/3/type = "rotation_3d"
@@ -101,15 +80,36 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0.8379984, 1, 1, 0.99999994, 0.99999994, 0.9333333, 1, 0.6286635, 0.99999994, 0.9999998, 1, 1, 0.5119312, 0.99999994, 0.99999976, 1.0333333, 1, 0.87798333, 0.99999994, 0.9999999, 1.1333333, 1, 1, 0.99999994, 0.99999994)
 
-[sub_resource type="Animation" id="Animation_mkl1q"]
-resource_name = "Hidden"
+[sub_resource type="Animation" id="Animation_n2kjk"]
+resource_name = "RESET"
 tracks/0/type = "scale_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("HeadHolder")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Jaw")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057)
+tracks/2/type = "scale_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Lips.Bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 1, 1.0000001, 1)
+tracks/3/type = "scale_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Lips.Top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 1, 0.99999994, 0.99999994)
 
 [resource]
 _data = {
