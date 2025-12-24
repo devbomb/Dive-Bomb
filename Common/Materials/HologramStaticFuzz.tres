@@ -8,10 +8,10 @@ void fragment()
 {
 	ALBEDO = vec3(0.0, 0.0, 0.0);
 	
-	vec2 hash_uv = floor(UV * 100.0) / 100.0;
-	float hash_time = floor(TIME * 20.0) / 20.0;
-	float noise = (0.7 * hash12(fract(hash_uv * hash_time))) + (0.3 * hash12(UV * 0.1 * hash_time));
-	ALPHA = mix(0.0, 0.6, noise);
+	vec2 rounded_uv = floor(UV * 200.0) / 200.0;
+	float rounded_time = floor(fract(TIME) * 20.0) / 20.0;
+	float noise = hash13(vec3(rounded_uv, rounded_time));
+	ALPHA = mix(0.0, 0.3, noise);
 }
 "
 
