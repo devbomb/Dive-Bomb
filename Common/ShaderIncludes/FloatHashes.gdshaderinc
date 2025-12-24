@@ -26,6 +26,14 @@ vec3 hash33(vec3 point)
 
 // Taken and modified from https://godotshaders.com/snippet/random-value/ to
 // extend it to 3D
+float hash12(vec2 point)
+{
+	float a = dot(point.xy, vec2(12.9898, 78.233));
+	return fract(sin(a) * 43758.5453123);
+}
+
+// Taken and modified from https://godotshaders.com/snippet/random-value/ to
+// extend it to 3D
 float hash13(vec3 point)
 {
 	float a = dot(point.xyz, vec3(12.9898, 78.233, 867.5309));

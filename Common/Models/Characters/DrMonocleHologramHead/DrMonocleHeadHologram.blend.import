@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bddx121qjk3j6"
-path="res://.godot/imported/DrMonocleHeadHologram.blend-461ed55fc8afaaf1e1ee17075136b10b.scn"
+path="res://.godot/imported/DrMonocleHeadHologram.blend-c8e6dd5f1b49311b6d5b860f3237fcb9.scn"
 
 [deps]
 
-source_file="res://Common/Models/Characters/DrMonocle/DrMonocleHeadHologram.blend"
-dest_files=["res://.godot/imported/DrMonocleHeadHologram.blend-461ed55fc8afaaf1e1ee17075136b10b.scn"]
+source_file="res://Common/Models/Characters/DrMonocleHologramHead/DrMonocleHeadHologram.blend"
+dest_files=["res://.godot/imported/DrMonocleHeadHologram.blend-c8e6dd5f1b49311b6d5b860f3237fcb9.scn"]
 
 [params]
 
@@ -34,9 +34,9 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=0
+materials/extract=1
 materials/extract_format=0
-materials/extract_path=""
+materials/extract_path="res://Common/Models/Characters/DrMonocleHologramHead"
 _subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false

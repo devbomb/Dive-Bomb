@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://doeiqpfys82k6"]
+
+[ext_resource type="Material" uid="uid://mvm170lhls8a" path="res://Common/Materials/HologramStaticFuzz.tres" id="1_bjhpo"]
+
+[resource]
+resource_name = "ToothEnamel"
+next_pass = ExtResource("1_bjhpo")
+cull_mode = 2
+albedo_color = Color(0.8417704, 0.8290154, 0.6983988, 1)
+roughness = 0.5
