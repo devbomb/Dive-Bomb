@@ -1,0 +1,77 @@
+[gd_resource type="AnimationLibrary" load_steps=7 format=3 uid="uid://gvjk68l2wgnj"]
+
+[ext_resource type="AudioStream" uid="uid://droj2kl6k3a4c" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeech.wav" id="1_n3201"]
+[ext_resource type="AudioStream" uid="uid://6qbhwmehub1l" path="res://UI/Menus/PauseMenu/PauseOpen.wav" id="2_mkl1q"]
+[ext_resource type="AudioStream" uid="uid://chv8uuwcwx68d" path="res://UI/Menus/PauseMenu/PauseClose.wav" id="3_av5ye"]
+
+[sub_resource type="Animation" id="Animation_n2kjk"]
+resource_name = "RESET"
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadHolder")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_knfmu"]
+resource_name = "Playing"
+length = 39.0
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadHolder")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.1, 1, 0.5, 2, 0.5, 0.33333334, 1, 1.1, 0.9, 1.1, 0.6666667, 1, 0.95, 1.05, 0.95, 0.96666664, 1, 1.025, 0.975, 1.025, 1.1666666, 1, 1, 1, 1, 5.766667, 1, 1, 1, 1, 36.666668, 1, 1, 1, 1, 36.766666, 1, 1, 1, 1, 36.966667, 1, 1.1, 1.1, 1.1, 37.066666, 1, 0.25, 1, 0.25, 37.166668, 1, 0, 0, 0)
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DialogAudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_n3201")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SfxAudioPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_mkl1q")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_av5ye")
+}],
+"times": PackedFloat32Array(0, 36.633335)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_mkl1q"]
+resource_name = "Hidden"
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadHolder")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[resource]
+_data = {
+&"Hidden": SubResource("Animation_mkl1q"),
+&"Playing": SubResource("Animation_knfmu"),
+&"RESET": SubResource("Animation_n2kjk")
+}

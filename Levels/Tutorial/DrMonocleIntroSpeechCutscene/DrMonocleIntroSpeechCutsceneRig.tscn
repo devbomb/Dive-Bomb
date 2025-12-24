@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3u21ynxwsxm"]
+
+[ext_resource type="Script" uid="uid://8j77t8goh12i" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutscene.cs" id="1_n2kjk"]
+[ext_resource type="PackedScene" uid="uid://bddx121qjk3j6" path="res://Common/Models/Characters/DrMonocle/DrMonocleHeadHologram.blend" id="1_wxy7p"]
+[ext_resource type="AnimationLibrary" uid="uid://gvjk68l2wgnj" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechAnimations.tres" id="2_egf2y"]
+
+[node name="DrMonocleIntroSpeechCutsceneRig" type="Node3D" node_paths=PackedStringArray("AnimationPlayer")]
+script = ExtResource("1_n2kjk")
+AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": ExtResource("2_egf2y")
+}
+
+[node name="DialogAudioPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"DialogVoice"
+
+[node name="SfxAudioPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
+
+[node name="HeadHolder" type="Node3D" parent="."]
+
+[node name="DrMonocleHeadHologram" parent="HeadHolder" instance=ExtResource("1_wxy7p")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
