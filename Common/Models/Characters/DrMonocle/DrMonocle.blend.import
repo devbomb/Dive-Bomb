@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dssocgv8jmk4u"
-path="res://.godot/imported/DrMonocle.blend-eebe681ef1a424eb0e9953a999013abb.scn"
+path="res://.godot/imported/DrMonocle.blend-d10dbecdd8cf0c51d45d364c3b4b5395.scn"
 
 [deps]
 
-source_file="res://Common/Models/Characters/DrMonocle.blend"
-dest_files=["res://.godot/imported/DrMonocle.blend-eebe681ef1a424eb0e9953a999013abb.scn"]
+source_file="res://Common/Models/Characters/DrMonocle/DrMonocle.blend"
+dest_files=["res://.godot/imported/DrMonocle.blend-d10dbecdd8cf0c51d45d364c3b4b5395.scn"]
 
 [params]
 
