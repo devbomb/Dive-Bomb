@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=26 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
 [ext_resource type="PackedScene" uid="uid://btlc2kyid5u56" path="res://Levels/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
+[ext_resource type="PackedScene" uid="uid://fwwegib0064k" path="res://Levels/Tutorial/AgentDIntroCutscene/AgentDIntroCutscene.tscn" id="3_kb7u2"]
 [ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="4_uhvqi"]
 [ext_resource type="Script" uid="uid://d2ars665qqq5j" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="5_uhvqi"]
 [ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="6_p8bxm"]
@@ -98,6 +99,9 @@ light_energy = 0.523
 sky_mode = 1
 
 [node name="Intro" parent="." instance=ExtResource("2_vwhqw")]
+
+[node name="AgentDIntroCutscene" parent="Intro" instance=ExtResource("3_kb7u2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 4)
 
 [node name="JumpTutorialPopup" type="PanelContainer" parent="Intro"]
 visible = false
