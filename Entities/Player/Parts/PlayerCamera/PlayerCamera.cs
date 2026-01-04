@@ -264,6 +264,7 @@ namespace FastDragon
 
                 if (Self.DisableInput)
                 {
+                    Self.ApplyAnglesAndDistance();
                     _prevPos = Self.GlobalPosition;
                     return;
                 }
