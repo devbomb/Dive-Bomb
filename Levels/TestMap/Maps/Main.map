@@ -308,9 +308,9 @@
 "classname" "transport_standard_portal"
 "origin" "-308 -52 -64"
 "angles" "0 0 0"
-"TargetLevel" "res://Levels/PlagiarismCanyon/PlagiarismCanyon.tscn"
+"TargetLevel" "res://Levels/Tutorial/Tutorial.tscn"
 "SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
-"Text" "Plagiarism Canyon"
+"Text" "Tutorial"
 }
 // entity 31
 {
@@ -353,4 +353,13 @@
 "SkyboxEnvironment" "res://Levels/SnapjawSwamp/SnapjawSwampSkybox.tres"
 "TargetLevel" "res://Levels/SnapjawSwamp/SnapjawSwamp.tscn"
 "Text" "Snapjaw Swamp"
+}
+// entity 35
+{
+"classname" "transport_standard_portal"
+"origin" "-136 -472 -64"
+"angles" "0 90 0"
+"TargetLevel" "res://Levels/PlagiarismCanyon/PlagiarismCanyon.tscn"
+"SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
+"Text" "Plagiarism Canyon"
 }
