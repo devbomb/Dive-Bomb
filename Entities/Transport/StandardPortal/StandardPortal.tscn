@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dahuf8m47kslw"]
+[gd_scene load_steps=21 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://bl17o4o3beiat" path="res://Entities/Transport/StandardPortal/LevelEntrancePortal.blend" id="2_u61om"]
@@ -6,6 +6,9 @@
 [ext_resource type="Shader" uid="uid://w4lfqpwrni8i" path="res://Entities/Transport/StandardPortal/PortalSurface.gdshader" id="4_lnpha"]
 [ext_resource type="AnimationLibrary" uid="uid://b806gdpivx17x" path="res://Entities/Transport/StandardPortal/PortalLabelAnimations.tres" id="5_smk44"]
 [ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="6_smk44"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lle10"]
+size = Vector3(7, 5.5, 2)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_smk44"]
 radius = 15.0
@@ -110,11 +113,22 @@ CameraEnterFrontPath = NodePath("Front/CameraEnterFrontPath/CameraEnterFrontPath
 PlayerEnterBackPoint = NodePath("Back/PlayerEnterBackPoint")
 CameraEnterBackPath = NodePath("Back/CameraEnterBackPath/CameraEnterBackPathFollower")
 
+[node name="CameraBlocker" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraBlocker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("BoxShape3D_lle10")
+
 [node name="LevelEntrancePortal" parent="." instance=ExtResource("2_u61om")]
 
 [node name="PortalSurface" parent="LevelEntrancePortal" index="2"]
 script = ExtResource("3_smk44")
 PortalSurfaceShader = ExtResource("4_lnpha")
+
+[node name="Frame" parent="LevelEntrancePortal" index="3"]
+collision_layer = 3
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-3.5, 0, -1, 7, 6, 2)
@@ -133,7 +147,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020812988, 2.6514893, 0)
 shape = SubResource("BoxShape3D_ut6y6")
 
 [node name="PlayerSpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 
 [node name="Labels" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19, 0)

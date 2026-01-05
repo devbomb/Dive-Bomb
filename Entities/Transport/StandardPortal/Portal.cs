@@ -12,6 +12,7 @@ namespace FastDragon
         [Export] public float ExitAnimationDuration = 2.5f;
         [Export] public float ExitAnimationStartHeight = 0;
         [Export] public float ExitAnimationParabolaHeight = 2;
+        [Export] public float ExitAnimationCameraRotateDuration = 1f;
 
         [Export] public Node3D PlayerSpawn;
 
@@ -223,9 +224,9 @@ namespace FastDragon
                 _timer = 0;
 
                 // Warp the player to the start pos of the animation
-                _exitAnimationStartPos = Self.PlayerSpawn.GlobalPosition;
+                _exitAnimationStartPos = Self.GlobalPosition;
+                _exitAnimationStartPos -= Self.GlobalForward() * (player.Camera.OrbitDistance - 1);
                 _exitAnimationStartPos += Vector3.Up * Self.ExitAnimationStartHeight;
-                _exitAnimationStartPos -= Self.PlayerSpawn.GlobalForward() * (player.Camera.OrbitDistance + 2);
 
                 player.SetVisibleInPortals(true);
                 player.ChangeState<PlayerManhandledState>();
@@ -235,6 +236,7 @@ namespace FastDragon
 
                 player.CameraFocus.Reset();
 
+                player.Camera.IgnoreObstructions = true;
                 player.Camera.OrbitYawRad = Self.PlayerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
                 player.Camera.OrbitPitchRad = 0;
                 player.Camera.ApplyAnglesAndDistance();
@@ -262,12 +264,29 @@ namespace FastDragon
 
                 var player = GetTree().FindNode<Player>();
                 player.SetVisibleInPortals(false);
+                player.Camera.IgnoreObstructions = false;
             }
 
             public override void _PhysicsProcess(double delta)
             {
                 _timer += delta;
 
+                MovePlayer();
+                RotateCamera();
+
+                if (_timer > Self.ExitAnimationDuration)
+                {
+                    var player = GetTree().FindNode<Player>();
+                    player.GlobalPosition = Self.PlayerSpawn.GlobalPosition;
+                    player.ResetPhysicsInterpolation3D();
+                    player.ChangeState<PlayerStandState>();
+
+                    ChangeState<Idle>();
+                }
+            }
+
+            private void MovePlayer()
+            {
                 float t = (float)_timer / Self.ExitAnimationDuration;
 
                 // Move the player
@@ -277,15 +296,28 @@ namespace FastDragon
                     Self.ExitAnimationParabolaHeight,
                     t
                 );
+            }
 
-                if (_timer > Self.ExitAnimationDuration)
-                {
-                    player.GlobalPosition = Self.PlayerSpawn.GlobalPosition;
-                    player.ResetPhysicsInterpolation3D();
-                    player.ChangeState<PlayerWalkState>();
+            private void RotateCamera()
+            {
+                // Rotate the camera behind the player, since they probably
+                // don't want to jump right back into the level they just came
+                // from.
+                float duration = Self.ExitAnimationCameraRotateDuration;
+                float startTime = Self.ExitAnimationDuration - duration;
 
-                    ChangeState<Idle>();
-                }
+                float t = (float)(_timer - startTime) / duration;
+                t = Mathf.Clamp(t, 0, 1);
+                t = Mathf.SmoothStep(0, 1, t);
+
+                float cameraStartYawRad = Self.PlayerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
+                float cameraEndYawRad =  Self.PlayerSpawn.GlobalRotation.Y;
+                var player = GetTree().FindNode<Player>();
+                player.Camera.OrbitYawRad = Mathf.LerpAngle(cameraStartYawRad, cameraEndYawRad, t);
+
+                // All the camera to be obstructed by the portal after it starts
+                // rotating.  Otherwise, the camera will end up behind the portal.
+                player.Camera.IgnoreObstructions = _timer < startTime;
             }
         }
 

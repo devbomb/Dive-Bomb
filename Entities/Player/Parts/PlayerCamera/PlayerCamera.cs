@@ -12,6 +12,7 @@ namespace FastDragon
 
         [Export] public bool AllowAutoRotate { get; set; }
         public bool DisableInput { get; set; }
+        public bool IgnoreObstructions { get; set; }
 
         public bool IsBeingManhandled => _stateMachine.CurrentState is Manhandled;
         public bool IsSuggestingAngle => _stateMachine.CurrentState is SuggestingAngle;
@@ -191,17 +192,24 @@ namespace FastDragon
                 .Translated(FollowTarget.GlobalPosition + offset)
                 .LookingAt(FollowTarget.GlobalPosition);
 
-            _raycast.GlobalPosition = FollowTarget.GlobalPosition;
-            _raycast.TargetPosition = desiredPosition.Origin - _raycast.GlobalPosition;
-            _raycast.GlobalRotation = Vector3.Zero;
-            _raycast.ForceUpdateTransform();
-            _raycast.ForceRaycastUpdate();
-
-            if (_raycast.IsColliding())
+            // Zoom in if our view of the player is obstructed.
+            // ...unless we've been told not to, of course.
+            if (!IgnoreObstructions)
             {
-                desiredPosition.Origin = _raycast.GetCollisionPoint();
+                _raycast.GlobalPosition = FollowTarget.GlobalPosition;
+                _raycast.TargetPosition = desiredPosition.Origin - _raycast.GlobalPosition;
+                _raycast.GlobalRotation = Vector3.Zero;
+                _raycast.ForceUpdateTransform();
+                _raycast.ForceRaycastUpdate();
+
+                if (_raycast.IsColliding())
+                {
+                    desiredPosition.Origin = _raycast.GetCollisionPoint();
+                }
             }
 
+            // If the lag effect is active, tween between our desired position
+            // and the lag position.
             if (_lagTimer < _lagDuration)
             {
                 float t = Mathf.Min(1, _lagTimer / _lagDuration);

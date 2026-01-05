@@ -124,7 +124,7 @@
 ( 464 432 -64 ) ( 256 432 -80 ) ( 256 432 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
 ( 464 544 -80 ) ( 256 432 -80 ) ( 464 432 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
 ( 464 544 -64 ) ( 256 432 -64 ) ( 256 544 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
-( 464 544 -64 ) ( 256 544 -80 ) ( 464 544 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
+( 464 640 -64 ) ( 256 640 -80 ) ( 464 640 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
 ( 464 544 -64 ) ( 464 432 -80 ) ( 464 432 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
 }
 }
@@ -348,7 +348,7 @@
 // entity 34
 {
 "classname" "transport_standard_portal"
-"origin" "360 536 -64"
+"origin" "360 584 -64"
 "angle" "270"
 "SkyboxEnvironment" "res://Levels/SnapjawSwamp/SnapjawSwampSkybox.tres"
 "TargetLevel" "res://Levels/SnapjawSwamp/SnapjawSwamp.tscn"
