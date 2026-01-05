@@ -284,7 +284,7 @@ namespace FastDragon
                 {
                     player.GlobalPosition = Self.PlayerSpawn.GlobalPosition;
                     player.ResetPhysicsInterpolation3D();
-                    player.ChangeState<PlayerWalkState>();
+                    player.ChangeState<PlayerStandState>();
 
                     ChangeState<Idle>();
                 }
