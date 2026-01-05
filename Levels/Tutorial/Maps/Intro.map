@@ -128,6 +128,15 @@
 ( 336 -16 32 ) ( 288 -16 16 ) ( 336 -16 16 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 336 -16 32 ) ( 336 -64 16 ) ( 336 -64 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
+// brush 14
+{
+( -80 48 240 ) ( -80 80 176 ) ( -80 80 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 384 48 240 ) ( -80 48 208 ) ( -80 48 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 384 80 176 ) ( -80 48 208 ) ( 384 48 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 384 80 240 ) ( -80 48 240 ) ( -80 80 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 384 80 240 ) ( -80 80 176 ) ( 384 80 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 128 80 240 ) ( 128 48 208 ) ( 128 48 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -300,5 +309,31 @@
 ( -96 -96 176 ) ( -96 -48 176 ) ( -80 -96 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -96 -48 240 ) ( -96 -48 16 ) ( -80 -48 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -80 -96 240 ) ( -80 -48 240 ) ( -80 -96 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
+}
+// entity 9
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "Ceilings"
+"_tb_id" "2"
+"_tb_layer_sort_index" "0"
+// brush 0
+{
+( 128 -112 256 ) ( 128 96 240 ) ( 128 96 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 -112 256 ) ( 256 -112 240 ) ( 256 -112 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 96 240 ) ( 256 -112 240 ) ( 496 -112 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 96 256 ) ( 256 -112 256 ) ( 256 96 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 96 256 ) ( 256 96 240 ) ( 496 96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 96 256 ) ( 496 -112 240 ) ( 496 -112 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
+// brush 1
+{
+( -80 -96 240 ) ( -80 -64 208 ) ( -80 -64 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -336 -96 240 ) ( 128 -96 176 ) ( -336 -96 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -336 -96 240 ) ( 128 -64 240 ) ( 128 -96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -336 -96 176 ) ( 128 -64 208 ) ( -336 -64 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -336 -64 240 ) ( 128 -64 208 ) ( 128 -64 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 128 -64 240 ) ( 128 -96 176 ) ( 128 -96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
