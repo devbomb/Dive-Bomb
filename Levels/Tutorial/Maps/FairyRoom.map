@@ -755,10 +755,10 @@
 }
 // brush 27
 {
-( -528 144 288 ) ( -528 144 320 ) ( -528 48 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -512 144 288 ) ( -512 144 320 ) ( -512 48 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -512 32 288 ) ( -512 32 320 ) ( -496 32 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -512 144 288 ) ( -512 48 288 ) ( -496 144 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( -512 144 320 ) ( -496 144 320 ) ( -512 48 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -512 144 320 ) ( -496 144 320 ) ( -512 48 320 ) Textures/GridSquare 0 0 0 1 1
 ( -496 160 288 ) ( -496 160 320 ) ( -512 160 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 48 288 ) ( -496 48 320 ) ( -496 144 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }

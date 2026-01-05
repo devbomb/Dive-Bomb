@@ -342,7 +342,7 @@ Path = NodePath("..")
 VanishWhenFinished = true
 
 [node name="DrMonocleSpeech" parent="." instance=ExtResource("13_myhx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147, 30, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146, 30, 15)
 
 [node name="SpeechStartTriggerZoneListener" type="Node" parent="DrMonocleSpeech"]
 script = ExtResource("14_4f2gc")
