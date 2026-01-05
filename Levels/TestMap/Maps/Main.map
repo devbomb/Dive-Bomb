@@ -506,7 +506,7 @@
 "origin" "-308 -48 0"
 "angles" "0 0 0"
 "TargetLevel" "res://Levels/Tutorial/Tutorial.tscn"
-"SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
+"SkyboxEnvironment" "res://Levels/BrokenGlassFactory/Skybox.tres"
 "Text" "Tutorial"
 "_tb_group" "1"
 }
