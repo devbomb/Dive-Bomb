@@ -18,7 +18,7 @@
 ( -80 -64 96 ) ( -80 -48 16 ) ( -80 -48 96 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 -64 96 ) ( -64 -64 16 ) ( -64 -64 96 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 -48 16 ) ( -64 -64 16 ) ( 48 -64 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 48 -48 152 ) ( -64 -64 152 ) ( -64 -48 152 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 48 -48 208 ) ( -64 -64 208 ) ( -64 -48 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 -48 96 ) ( -64 -48 16 ) ( 48 -48 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 80 -48 96 ) ( 80 -64 16 ) ( 80 -64 96 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -36,7 +36,7 @@
 ( -96 -48 8 ) ( -96 120 8 ) ( -96 -48 152 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -96 -48 152 ) ( -72 -48 152 ) ( -96 -48 8 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -96 -48 8 ) ( -72 -48 8 ) ( -96 120 8 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( -96 120 152 ) ( -72 120 152 ) ( -96 -48 152 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 120 208 ) ( -72 120 208 ) ( -96 -48 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -96 128 8 ) ( -72 128 8 ) ( -96 128 152 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -72 120 152 ) ( -72 120 8 ) ( -72 -48 152 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -45,7 +45,7 @@
 ( 72 120 152 ) ( 72 -48 152 ) ( 72 120 8 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 96 -48 8 ) ( 72 -48 8 ) ( 96 -48 152 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 96 120 16 ) ( 72 120 16 ) ( 96 -48 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 96 -48 152 ) ( 72 -48 152 ) ( 96 120 152 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 96 -48 208 ) ( 72 -48 208 ) ( 96 120 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 96 128 152 ) ( 72 128 152 ) ( 96 128 8 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 96 -48 152 ) ( 96 120 152 ) ( 96 -48 8 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -71,7 +71,7 @@
 ( -80 256 144 ) ( -80 288 48 ) ( -80 288 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 128 144 ) ( -64 128 48 ) ( -64 128 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 288 16 ) ( -64 256 16 ) ( -48 256 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( -48 288 144 ) ( -64 256 144 ) ( -64 288 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -48 288 208 ) ( -64 256 208 ) ( -64 288 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 384 144 ) ( -64 384 48 ) ( -48 384 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 288 144 ) ( -48 256 48 ) ( -48 256 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -80,7 +80,7 @@
 ( 48 128 144 ) ( 48 288 16 ) ( 48 288 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 64 128 144 ) ( -48 128 16 ) ( -48 128 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 64 288 16 ) ( -48 128 16 ) ( 64 128 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 64 288 144 ) ( -48 128 144 ) ( -48 288 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 64 288 208 ) ( -48 128 208 ) ( -48 288 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 64 384 144 ) ( -48 384 16 ) ( 64 384 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 80 288 144 ) ( 80 128 16 ) ( 80 128 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -89,7 +89,7 @@
 ( 48 384 144 ) ( 48 448 16 ) ( 48 448 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 80 384 144 ) ( 48 384 16 ) ( 48 384 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 80 448 16 ) ( 48 384 16 ) ( 80 384 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 80 448 144 ) ( 48 384 144 ) ( 48 448 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 80 448 208 ) ( 48 384 208 ) ( 48 448 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 80 624 144 ) ( 48 624 16 ) ( 80 624 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 80 448 144 ) ( 80 384 16 ) ( 80 384 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -97,7 +97,7 @@
 {
 ( 16 608 48 ) ( 48 576 144 ) ( 48 576 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 608 48 ) ( 16 608 48 ) ( 48 576 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 48 608 144 ) ( 48 576 144 ) ( 16 608 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 48 608 208 ) ( 48 576 208 ) ( 16 608 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 608 144 ) ( 16 608 48 ) ( 48 608 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 608 144 ) ( 48 576 48 ) ( 48 576 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -115,7 +115,7 @@
 ( -80 384 144 ) ( -80 448 16 ) ( -80 448 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 384 144 ) ( -80 384 16 ) ( -80 384 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 448 16 ) ( -80 384 16 ) ( -48 384 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( -48 448 144 ) ( -80 384 144 ) ( -80 448 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -48 448 208 ) ( -80 384 208 ) ( -80 448 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 432 144 ) ( -80 432 16 ) ( -48 432 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 448 144 ) ( -48 384 16 ) ( -48 384 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -124,7 +124,7 @@
 ( -80 432 144 ) ( -80 448 48 ) ( -80 448 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 432 144 ) ( -80 432 48 ) ( -80 432 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -48 432 48 ) ( -80 448 48 ) ( -80 432 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( -48 432 144 ) ( -80 448 144 ) ( -64 448 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -48 432 208 ) ( -80 448 208 ) ( -64 448 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -64 448 144 ) ( -80 448 48 ) ( -64 448 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -64 448 48 ) ( -48 432 144 ) ( -64 448 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -150,7 +150,7 @@
 ( -160 608 144 ) ( -160 624 0 ) ( -160 624 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 608 144 ) ( -208 608 0 ) ( -208 608 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 624 0 ) ( -208 608 0 ) ( 48 608 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 48 624 144 ) ( -208 608 144 ) ( -208 624 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 48 624 208 ) ( -208 608 208 ) ( -208 624 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 624 144 ) ( -208 624 0 ) ( 48 624 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 624 144 ) ( 48 608 0 ) ( 48 608 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -159,7 +159,7 @@
 ( -160 432 144 ) ( -160 448 16 ) ( -160 448 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -80 432 144 ) ( -160 432 16 ) ( -160 432 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -80 448 16 ) ( -160 432 16 ) ( -80 432 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( -80 448 144 ) ( -160 432 144 ) ( -160 448 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 448 208 ) ( -160 432 208 ) ( -160 448 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -80 448 144 ) ( -160 448 16 ) ( -80 448 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -80 448 144 ) ( -80 432 16 ) ( -80 432 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
@@ -267,7 +267,7 @@
 {
 ( -48 304 144 ) ( -48 384 48 ) ( -48 384 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -16 352 48 ) ( -48 304 48 ) ( -16 336 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( -16 352 144 ) ( -48 304 144 ) ( -48 384 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -16 352 208 ) ( -48 304 208 ) ( -48 384 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -16 336 144 ) ( -48 304 48 ) ( -48 304 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -16 352 144 ) ( -48 384 48 ) ( -16 352 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -16 352 144 ) ( -16 336 48 ) ( -16 336 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -278,7 +278,24 @@
 ( 48 304 144 ) ( 16 336 48 ) ( 16 336 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 16 352 48 ) ( 48 384 144 ) ( 16 352 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 384 48 ) ( 16 336 48 ) ( 48 304 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 48 384 144 ) ( 16 336 144 ) ( 16 352 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 48 384 208 ) ( 16 336 208 ) ( 16 352 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 48 384 144 ) ( 48 304 48 ) ( 48 304 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
+}
+// entity 16
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "Ceilings"
+"_tb_id" "3"
+"_tb_layer_sort_index" "0"
+// brush 0
+{
+( -160 -48 224 ) ( -160 624 208 ) ( -160 624 224 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 96 -48 224 ) ( -160 -48 208 ) ( -160 -48 224 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 96 624 208 ) ( -160 -48 208 ) ( 96 -48 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 96 624 224 ) ( -160 -48 224 ) ( -160 624 224 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 96 624 224 ) ( -160 624 208 ) ( 96 624 208 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 96 624 224 ) ( 96 -48 208 ) ( 96 -48 224 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
