@@ -531,7 +531,6 @@
 "_tb_name" "Ceilings"
 "_tb_id" "2"
 "_tb_layer_sort_index" "0"
-"_tb_layer_hidden" "1"
 // brush 0
 {
 ( -128 -80 224 ) ( -128 -79 224 ) ( -128 -80 225 ) Textures/ManuallyDrawnPanels 0 0 0 1 1

@@ -861,3 +861,20 @@
 "FairyId" "TutorialFairy"
 "_tb_group" "3"
 }
+// entity 14
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "Ceilings"
+"_tb_id" "5"
+"_tb_layer_sort_index" "0"
+// brush 0
+{
+( -528 -704 544 ) ( -528 -703 544 ) ( -528 -704 545 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -320 -704 544 ) ( -320 -704 545 ) ( -319 -704 544 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -320 -704 544 ) ( -319 -704 544 ) ( -320 -703 544 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 144 -208 560 ) ( 144 -207 560 ) ( 145 -208 560 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 144 288 560 ) ( 145 288 560 ) ( 144 288 561 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 144 -208 560 ) ( 144 -208 561 ) ( 144 -207 560 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
+}
