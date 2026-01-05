@@ -224,9 +224,9 @@ namespace FastDragon
                 _timer = 0;
 
                 // Warp the player to the start pos of the animation
-                _exitAnimationStartPos = Self.PlayerSpawn.GlobalPosition;
+                _exitAnimationStartPos = Self.GlobalPosition;
+                _exitAnimationStartPos -= Self.GlobalForward() * (player.Camera.OrbitDistance - 1);
                 _exitAnimationStartPos += Vector3.Up * Self.ExitAnimationStartHeight;
-                _exitAnimationStartPos -= Self.PlayerSpawn.GlobalForward() * (player.Camera.OrbitDistance + 2);
 
                 player.SetVisibleInPortals(true);
                 player.ChangeState<PlayerManhandledState>();
