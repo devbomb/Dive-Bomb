@@ -235,6 +235,7 @@ namespace FastDragon
 
                 player.CameraFocus.Reset();
 
+                player.Camera.IgnoreObstructions = true;
                 player.Camera.OrbitYawRad = Self.PlayerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
                 player.Camera.OrbitPitchRad = 0;
                 player.Camera.ApplyAnglesAndDistance();
@@ -262,6 +263,7 @@ namespace FastDragon
 
                 var player = GetTree().FindNode<Player>();
                 player.SetVisibleInPortals(false);
+                player.Camera.IgnoreObstructions = false;
             }
 
             public override void _PhysicsProcess(double delta)
