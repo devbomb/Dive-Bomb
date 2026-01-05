@@ -305,15 +305,6 @@
 }
 // entity 30
 {
-"classname" "transport_standard_portal"
-"origin" "-308 -52 -64"
-"angles" "0 0 0"
-"TargetLevel" "res://Levels/Tutorial/Tutorial.tscn"
-"SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
-"Text" "Tutorial"
-}
-// entity 31
-{
 "classname" "hazard_drowning_water"
 // brush 0
 {
@@ -325,13 +316,13 @@
 ( 432 416 -64 ) ( 432 320 -80 ) ( 432 320 -64 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
-// entity 32
+// entity 31
 {
 "classname" "enemy_snapjaw"
 "origin" "360 368 -16"
 "CycleId" "SnapjawCycle"
 }
-// entity 33
+// entity 32
 {
 "classname" "trigger_cycle_starter"
 "CycleId" "SnapjawCycle"
@@ -345,7 +336,7 @@
 ( 560 544 -48 ) ( 560 544 -47 ) ( 560 545 -48 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 34
+// entity 33
 {
 "classname" "transport_standard_portal"
 "origin" "360 584 -64"
@@ -354,7 +345,7 @@
 "TargetLevel" "res://Levels/SnapjawSwamp/SnapjawSwamp.tscn"
 "Text" "Snapjaw Swamp"
 }
-// entity 35
+// entity 34
 {
 "classname" "transport_standard_portal"
 "origin" "-136 -472 -64"
@@ -362,4 +353,160 @@
 "TargetLevel" "res://Levels/PlagiarismCanyon/PlagiarismCanyon.tscn"
 "SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
 "Text" "Plagiarism Canyon"
+}
+// entity 35
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "TutorialPortalPlatform"
+"_tb_id" "1"
+"_tb_linked_group_id" "{33d84625-444a-4167-98ce-a4b74821ec8d}"
+"_tb_transformation" "1 0 0 0 0 1 0 0 0 0 1 -32 0 0 0 1"
+// brush 0
+{
+( -384 32 -28.80000000000001 ) ( -384 32 -64 ) ( -384 96 -28.80000000000291 ) Textures/GridSquare 0 0 0 1 1
+( -384 32 -28.80000000000001 ) ( -325.33333333333337 32 -64 ) ( -384 32 -64 ) Textures/GridSquare 0 0 0 1 1
+( -325.33333333333564 96 -64 ) ( -384 96 -64 ) ( -325.33333333333337 32 -64 ) Textures/GridSquare 0 0 0 1 1
+( -384 96 -28.80000000000291 ) ( -384 96 -64 ) ( -325.33333333333564 96 -64 ) Textures/GridSquare 0 0 0 1 1
+( -384 96 -28.80000000000291 ) ( -325.33333333333564 96 -64 ) ( -384 32 -28.80000000000001 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 1
+{
+( -432 -16 0 ) ( -432 -16 -64 ) ( -432 32 -28.799999999999997 ) Textures/GridSquare 0 0 0 1 1
+( -384 -16 0 ) ( -384 -16 -64 ) ( -432 -16 0 ) Textures/GridSquare 0 0 0 1 1
+( -384 32 -64 ) ( -432 32 -64 ) ( -384 -16 -64 ) Textures/GridSquare 0 0 0 1 1
+( -432 32 -28.799999999999997 ) ( -384 32 -28.799999999999997 ) ( -432 -16 0 ) Textures/GridSquare 0 0 0 1 1
+( -432 32 -28.799999999999997 ) ( -432 32 -64 ) ( -384 32 -28.799999999999997 ) Textures/GridSquare 0 0 0 1 1
+( -384 32 -28.799999999999997 ) ( -384 32 -64 ) ( -384 -16 0 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 2
+{
+( -432 -112 0 ) ( -432 -112 -64 ) ( -432 -16 0 ) Textures/GridSquare 0 0 0 1 1
+( -384 -112 0 ) ( -384 -112 -64 ) ( -432 -112 0 ) Textures/GridSquare 0 0 0 1 1
+( -384 -16 -64 ) ( -432 -16 -64 ) ( -384 -112 -64 ) Textures/GridSquare 0 0 0 1 1
+( -432 -16 0 ) ( -384 -16 0 ) ( -432 -112 0 ) Textures/GridSquare 0 0 0 1 1
+( -432 -16 0 ) ( -432 -16 -64 ) ( -384 -16 0 ) Textures/GridSquare 0 0 0 1 1
+( -384 -16 0 ) ( -384 -16 -64 ) ( -384 -112 0 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 3
+{
+( -432 32 -28.799999999999983 ) ( -432 32 -64 ) ( -432 96 -28.799999999999983 ) Textures/GridSquare 0 0 0 1 1
+( -384 32 -28.799999999999986 ) ( -384 32 -64 ) ( -432 32 -28.799999999999983 ) Textures/GridSquare 0 0 0 1 1
+( -384 96 -64 ) ( -432 96 -64 ) ( -384 32 -64 ) Textures/GridSquare 0 0 0 1 1
+( -432 96 -28.799999999999983 ) ( -432 96 -64 ) ( -384 96 -28.799999999999986 ) Textures/GridSquare 0 0 0 1 1
+( -432 96 -28.799999999999983 ) ( -384 96 -28.799999999999986 ) ( -432 32 -28.799999999999983 ) Textures/GridSquare 0 0 0 1 1
+( -384 96 -28.799999999999986 ) ( -384 96 -64 ) ( -384 32 -28.799999999999986 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 4
+{
+( -384 -112 0 ) ( -384 -112 -64 ) ( -384 16 0 ) Textures/GridSquare 0 0 0 1 1
+( -292 -112 0 ) ( -292 -112 -64 ) ( -384 -112 0 ) Textures/GridSquare 0 0 0 1 1
+( -292 32 -64 ) ( -384 32 -64 ) ( -292 -112 -64 ) Textures/GridSquare 0 0 0 1 1
+( -384 16 0 ) ( -292 16 0 ) ( -384 -112 0 ) Textures/GridSquare 0 0 0 1 1
+( -384 32 -16 ) ( -292 32 -16 ) ( -384 16 0 ) Textures/GridSquare 0 0 0 1 1
+( -384 32 -16 ) ( -384 32 -64 ) ( -292 32 -16 ) Textures/GridSquare 0 0 0 1 1
+( -288 32 -16 ) ( -288 32 -64 ) ( -288 16 0 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 5
+{
+( -440 32 -16 ) ( -440 96 -64 ) ( -440 96 -16 ) Textures/GridSquare 0 0 0 1 1
+( -432 32 -16 ) ( -440 32 -64 ) ( -440 32 -16 ) Textures/GridSquare 0 0 0 1 1
+( -432 96 -64 ) ( -440 32 -64 ) ( -432 32 -64 ) Textures/GridSquare 0 0 0 1 1
+( -432 96 -16 ) ( -440 32 -16 ) ( -440 96 -16 ) Textures/GridSquare 0 0 0 1 1
+( -432 96 -16 ) ( -440 96 -64 ) ( -432 96 -64 ) Textures/GridSquare 0 0 0 1 1
+( -432 96 -16 ) ( -432 32 -64 ) ( -432 32 -16 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 6
+{
+( -384 96 -28.80000000000291 ) ( -384 104 -64 ) ( -384 104 -28.80000000000291 ) Textures/GridSquare 0 0 0 1 1
+( -325.33333333333564 96 -64 ) ( -384 96 -64 ) ( -384 96 -28.80000000000291 ) Textures/GridSquare 0 0 0 1 1
+( -325.33333333333564 104 -64 ) ( -384 96 -64 ) ( -325.33333333333564 96 -64 ) Textures/GridSquare 0 0 0 1 1
+( -325.33333333333564 104 -64 ) ( -384 104 -28.80000000000291 ) ( -384 104 -64 ) Textures/GridSquare 0 0 0 1 1
+( -319.6862745098046 104 -54.58823529411454 ) ( -378.35294117646896 96 -19.38823529411745 ) ( -378.35294117646896 104 -19.38823529411745 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 7
+{
+( -440 96 -24 ) ( -440 104 -64 ) ( -440 104 -24 ) Textures/GridSquare 0 0 0 1 1
+( -384 96 -24 ) ( -440 96 -64 ) ( -440 96 -24 ) Textures/GridSquare 0 0 0 1 1
+( -384 104 -64 ) ( -440 96 -64 ) ( -384 96 -64 ) Textures/GridSquare 0 0 0 1 1
+( -384 104 -16 ) ( -440 96 -16 ) ( -440 104 -16 ) Textures/GridSquare 0 0 0 1 1
+( -384 104 -24 ) ( -440 104 -64 ) ( -384 104 -64 ) Textures/GridSquare 0 0 0 1 1
+( -384 104 -24 ) ( -384 96 -64 ) ( -384 96 -24 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 8
+{
+( -440 -112 0 ) ( -440 -16 -64 ) ( -440 -16 0 ) Textures/GridSquare 0 0 0 1 1
+( -432 -112 0 ) ( -440 -112 -64 ) ( -440 -112 0 ) Textures/GridSquare 0 0 0 1 1
+( -432 -16 -64 ) ( -440 -112 -64 ) ( -432 -112 -64 ) Textures/GridSquare 0 0 0 1 1
+( -432 -16 16 ) ( -440 -112 16 ) ( -440 -16 16 ) Textures/GridSquare 0 0 0 1 1
+( -432 -16 0 ) ( -440 -16 -64 ) ( -432 -16 -64 ) Textures/GridSquare 0 0 0 1 1
+( -432 -16 0 ) ( -432 -112 -64 ) ( -432 -112 0 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 9
+{
+( -440 -16 16 ) ( -440 32 -64 ) ( -440 32 -16 ) Textures/GridSquare 0 0 0 1 1
+( -432 -16 16 ) ( -440 -16 -64 ) ( -440 -16 16 ) Textures/GridSquare 0 0 0 1 1
+( -432 32 -64 ) ( -440 -16 -64 ) ( -432 -16 -64 ) Textures/GridSquare 0 0 0 1 1
+( -432 32 -16 ) ( -440 -16 16 ) ( -440 32 -16 ) Textures/GridSquare 0 0 0 1 1
+( -432 32 -16 ) ( -440 32 -64 ) ( -432 32 -64 ) Textures/GridSquare 0 0 0 1 1
+( -432 32 -16 ) ( -432 -16 -64 ) ( -432 -16 16 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 10
+{
+( -440 -112 16 ) ( -440 -120 16 ) ( -440 -120 -64 ) Textures/GridSquare 0 0 0 1 1
+( -352 -120 12 ) ( -272 -120 0 ) ( -272 -120 -64 ) Textures/GridSquare 0 0 0 1 1
+( -272 -120 -64 ) ( -272 -112 -64 ) ( -440 -112 -64 ) Textures/GridSquare 0 0 0 1 1
+( -272 -112 -64 ) ( -272 -112 0 ) ( -352 -112 12 ) Textures/GridSquare 0 0 0 1 1
+( -440 -112 16 ) ( -352 -112 12 ) ( -352 -120 12 ) Textures/GridSquare 0 0 0 1 1
+( -352 -112 12 ) ( -272 -112 0 ) ( -272 -120 0 ) Textures/GridSquare 0 0 0 1 1
+( -288 -120 0 ) ( -288 -112 0 ) ( -288 -112 -64 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 11
+{
+( -288 -96 0 ) ( -288 -72 -16 ) ( -288 -72 0 ) Textures/GridSquare 0 0 0 1 1
+( -272 -96 0 ) ( -288 -96 -16 ) ( -288 -96 0 ) Textures/GridSquare 0 0 0 1 1
+( -272 -72 -16 ) ( -288 -96 -16 ) ( -272 -96 -16 ) Textures/GridSquare 0 0 0 1 1
+( -272 -72 0 ) ( -288 -96 0 ) ( -288 -72 0 ) Textures/GridSquare 0 0 0 1 1
+( -272 -72 0 ) ( -288 -72 -16 ) ( -272 -72 -16 ) Textures/GridSquare 0 0 0 1 1
+( -280 -72 -16 ) ( -272 -72 -8 ) ( -272 56 -8 ) Textures/GridSquare 0 0 0 1 1
+( -272 -72 0 ) ( -272 -96 -16 ) ( -272 -96 0 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 12
+{
+( -288 -24 0 ) ( -288 0 -16 ) ( -288 0 0 ) Textures/GridSquare 0 0 0 1 1
+( -272 -24 0 ) ( -288 -24 -16 ) ( -288 -24 0 ) Textures/GridSquare 0 0 0 1 1
+( -272 0 -16 ) ( -288 -24 -16 ) ( -272 -24 -16 ) Textures/GridSquare 0 0 0 1 1
+( -272 0 0 ) ( -288 -24 0 ) ( -288 0 0 ) Textures/GridSquare 0 0 0 1 1
+( -272 0 0 ) ( -288 0 -16 ) ( -272 0 -16 ) Textures/GridSquare 0 0 0 1 1
+( -280 -24 -16 ) ( -272 -24 -8 ) ( -272 104 -8 ) Textures/GridSquare 0 0 0 1 1
+( -272 0 0 ) ( -272 -24 -16 ) ( -272 -24 0 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 13
+{
+( -288 -112 0 ) ( -288 -96 -16 ) ( -288 -96 0 ) Textures/GridSquare 0 0 0 1 1
+( -280 -96 -16 ) ( -288 -96 -16 ) ( -288 -104 -16 ) Textures/GridSquare 0 0 0 1 1
+( -272 -96 0 ) ( -288 -112 0 ) ( -288 -96 0 ) Textures/GridSquare 0 0 0 1 1
+( -272 -96 0 ) ( -280 -96 -16 ) ( -272 -96 -8 ) Textures/GridSquare 24.8889 0 0 1 1
+( -272 -96 -8 ) ( -288 -104 -16 ) ( -288 -112 -8 ) Textures/GridSquare 0 0 0 1 1
+( -272 -96 0 ) ( -288 -112 -8 ) ( -288 -112 0 ) Textures/GridSquare -12.686279 0 0 1 1
+}
+// brush 14
+{
+( -288 16 0 ) ( -288 8 -16 ) ( -288 16 -8 ) Textures/GridSquare 24.8889 0 0 1 1
+( -272 0 0 ) ( -288 0 -16 ) ( -288 0 0 ) Textures/GridSquare 0 0 0 1 1
+( -288 8 -16 ) ( -288 0 -16 ) ( -280 0 -16 ) Textures/GridSquare 0 0 0 1 1
+( -288 16 0 ) ( -272 0 0 ) ( -288 0 0 ) Textures/GridSquare 0 0 0 1 1
+( -288 16 -8 ) ( -280 0 -16 ) ( -272 0 -8 ) Textures/GridSquare 0 0 0 1 1
+( -288 16 0 ) ( -272 0 -8 ) ( -272 0 0 ) Textures/GridSquare -12.686279 0 0 1 1
+}
+}
+// entity 36
+{
+"classname" "transport_standard_portal"
+"origin" "-308 -48 0"
+"angles" "0 0 0"
+"TargetLevel" "res://Levels/Tutorial/Tutorial.tscn"
+"SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
+"Text" "Tutorial"
+"_tb_group" "1"
 }
