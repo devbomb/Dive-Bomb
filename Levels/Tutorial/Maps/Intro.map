@@ -6,127 +6,127 @@
 "classname" "worldspawn"
 // brush 0
 {
-( -80 -64 -16 ) ( -80 -63 -16 ) ( -80 -64 -15 ) __TB_empty 0 0 0 1 1
-( -64 -96 -16 ) ( -64 -96 -15 ) ( -63 -96 -16 ) __TB_empty 0 0 0 1 1
-( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) __TB_empty 0 0 0 1 1
-( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) __TB_empty 0 0 0 1 1
-( 64 48 16 ) ( 65 48 16 ) ( 64 48 17 ) __TB_empty 0 0 0 1 1
-( 160 64 16 ) ( 160 64 17 ) ( 160 65 16 ) __TB_empty 0 0 0 1 1
+( -80 -64 -16 ) ( -80 -63 -16 ) ( -80 -64 -15 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -64 -96 -16 ) ( -64 -96 -15 ) ( -63 -96 -16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) Textures/GridSquare 0 0 0 1 1
+( 64 48 16 ) ( 65 48 16 ) ( 64 48 17 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 160 64 16 ) ( 160 64 17 ) ( 160 65 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 1
 {
-( 128 -64 16 ) ( 128 -63 16 ) ( 128 -64 17 ) __TB_empty 0 0 0 1 1
-( 128 -96 16 ) ( 128 -96 17 ) ( 129 -96 16 ) __TB_empty 0 0 0 1 1
-( 128 -64 16 ) ( 129 -64 16 ) ( 128 -63 16 ) __TB_empty 0 0 0 1 1
-( 160 64 32 ) ( 160 65 32 ) ( 161 64 32 ) __TB_empty 0 0 0 1 1
-( 160 80 32 ) ( 161 80 32 ) ( 160 80 33 ) __TB_empty 0 0 0 1 1
-( 160 64 32 ) ( 160 64 33 ) ( 160 65 32 ) __TB_empty 0 0 0 1 1
+( 128 -64 16 ) ( 128 -63 16 ) ( 128 -64 17 ) Textures/BigMetalSquares 0 0 0 1 1
+( 128 -96 16 ) ( 128 -96 17 ) ( 129 -96 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 128 -64 16 ) ( 129 -64 16 ) ( 128 -63 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 160 64 32 ) ( 160 65 32 ) ( 161 64 32 ) Textures/BigMetalSquares 0 0 0 1 1
+( 160 80 32 ) ( 161 80 32 ) ( 160 80 33 ) Textures/BigMetalSquares 0 0 0 1 1
+( 160 64 32 ) ( 160 64 33 ) ( 160 65 32 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 // brush 2
 {
-( -80 -112 16 ) ( -80 -111 16 ) ( -80 -112 17 ) __TB_empty 0 0 0 1 1
-( -64 -112 16 ) ( -64 -112 17 ) ( -63 -112 16 ) __TB_empty 0 0 0 1 1
-( -64 -112 -16 ) ( -63 -112 -16 ) ( -64 -111 -16 ) __TB_empty 0 0 0 1 1
-( -48 -96 240 ) ( -48 -95 240 ) ( -47 -96 240 ) __TB_empty 0 0 0 1 1
-( -48 -96 32 ) ( -47 -96 32 ) ( -48 -96 33 ) __TB_empty 0 0 0 1 1
-( 496 -96 32 ) ( 496 -96 33 ) ( 496 -95 32 ) __TB_empty 0 0 0 1 1
+( -80 -112 16 ) ( -80 -111 16 ) ( -80 -112 17 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -64 -112 16 ) ( -64 -112 17 ) ( -63 -112 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -64 -112 -16 ) ( -63 -112 -16 ) ( -64 -111 -16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -48 -96 240 ) ( -48 -95 240 ) ( -47 -96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -48 -96 32 ) ( -47 -96 32 ) ( -48 -96 33 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 -96 32 ) ( 496 -96 33 ) ( 496 -95 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 3
 {
-( -80 80 128 ) ( -80 96 16 ) ( -80 96 128 ) __TB_empty 0 0 0 1 1
-( 160 80 128 ) ( -48 80 16 ) ( -48 80 128 ) __TB_empty 0 0 0 1 1
-( 160 96 16 ) ( -48 80 16 ) ( 160 80 16 ) __TB_empty 0 0 0 1 1
-( 160 96 240 ) ( -48 80 240 ) ( -48 96 240 ) __TB_empty 0 0 0 1 1
-( 160 96 128 ) ( -48 96 16 ) ( 160 96 16 ) __TB_empty 0 0 0 1 1
-( 416 96 128 ) ( 416 80 16 ) ( 416 80 128 ) __TB_empty 0 0 0 1 1
+( -80 80 128 ) ( -80 96 16 ) ( -80 96 128 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 160 80 128 ) ( -48 80 16 ) ( -48 80 128 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 160 96 16 ) ( -48 80 16 ) ( 160 80 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 160 96 240 ) ( -48 80 240 ) ( -48 96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 160 96 128 ) ( -48 96 16 ) ( 160 96 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 416 96 128 ) ( 416 80 16 ) ( 416 80 128 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 4
 {
-( 160 -96 16 ) ( 160 80 -16 ) ( 160 80 16 ) __TB_empty 0 0 0 1 1
-( 256 -96 16 ) ( 160 -96 -16 ) ( 160 -96 16 ) __TB_empty 0 0 0 1 1
-( 256 80 -16 ) ( 160 -96 -16 ) ( 256 -96 -16 ) __TB_empty 0 0 0 1 1
-( 256 80 16 ) ( 160 -96 16 ) ( 160 80 16 ) __TB_empty 0 0 0 1 1
-( 256 80 16 ) ( 160 80 -16 ) ( 256 80 -16 ) __TB_empty 0 0 0 1 1
-( 336 80 16 ) ( 336 -96 -16 ) ( 336 -96 16 ) __TB_empty 0 0 0 1 1
+( 160 -96 16 ) ( 160 80 -16 ) ( 160 80 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 256 -96 16 ) ( 160 -96 -16 ) ( 160 -96 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 256 80 -16 ) ( 160 -96 -16 ) ( 256 -96 -16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 256 80 16 ) ( 160 -96 16 ) ( 160 80 16 ) Textures/GridSquare 0 0 0 1 1
+( 256 80 16 ) ( 160 80 -16 ) ( 256 80 -16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 336 80 16 ) ( 336 -96 -16 ) ( 336 -96 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 5
 {
-( 336 -96 0 ) ( 336 -95 0 ) ( 336 -96 1 ) __TB_empty 0 0 0 1 1
-( 336 -96 0 ) ( 336 -96 1 ) ( 337 -96 0 ) __TB_empty 0 0 0 1 1
-( 336 -96 -16 ) ( 337 -96 -16 ) ( 336 -95 -16 ) __TB_empty 0 0 0 1 1
-( 368 80 64 ) ( 368 81 64 ) ( 369 80 64 ) __TB_empty 0 0 0 1 1
-( 368 80 16 ) ( 369 80 16 ) ( 368 80 17 ) __TB_empty 0 0 0 1 1
-( 416 80 16 ) ( 416 80 17 ) ( 416 81 16 ) __TB_empty 0 0 0 1 1
+( 336 -96 0 ) ( 336 -95 0 ) ( 336 -96 1 ) Textures/BigMetalSquares 0 0 0 1 1
+( 336 -96 0 ) ( 336 -96 1 ) ( 337 -96 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 336 -96 -16 ) ( 337 -96 -16 ) ( 336 -95 -16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 368 80 64 ) ( 368 81 64 ) ( 369 80 64 ) Textures/GridSquare 0 0 0 1 1
+( 368 80 16 ) ( 369 80 16 ) ( 368 80 17 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 416 80 16 ) ( 416 80 17 ) ( 416 81 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 6
 {
-( 384 80 240 ) ( 384 -16 240 ) ( 384 -16 64 ) __TB_empty 0 0 0 1 1
-( 384 -16 240 ) ( 416 -48 240 ) ( 416 -48 64 ) __TB_empty 16 0 0 1 1
-( 416 -48 64 ) ( 416 80 64 ) ( 384 80 64 ) __TB_empty 0 0 0 1 1
-( 384 80 240 ) ( 416 80 240 ) ( 416 -48 240 ) __TB_empty 0 0 0 1 1
-( 416 80 64 ) ( 416 80 240 ) ( 384 80 240 ) __TB_empty 0 0 0 1 1
-( 416 -48 240 ) ( 416 80 240 ) ( 416 80 64 ) __TB_empty 0 0 0 1 1
+( 384 80 240 ) ( 384 -16 240 ) ( 384 -16 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 384 -16 240 ) ( 416 -48 240 ) ( 416 -48 64 ) Textures/ManuallyDrawnPanels 16 0 0 1 1
+( 416 -48 64 ) ( 416 80 64 ) ( 384 80 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 384 80 240 ) ( 416 80 240 ) ( 416 -48 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 416 80 64 ) ( 416 80 240 ) ( 384 80 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 416 -48 240 ) ( 416 80 240 ) ( 416 80 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 7
 {
-( 336 80 64 ) ( 240 32 16 ) ( 240 80 16 ) __TB_empty 0 0 0 1 1
-( 336 32 64 ) ( 336 32 16 ) ( 240 32 16 ) __TB_empty 0 0 0 1 1
-( 336 80 16 ) ( 240 32 16 ) ( 336 32 16 ) __TB_empty 0 0 0 1 1
-( 336 80 64 ) ( 240 80 16 ) ( 336 80 16 ) __TB_empty 0 0 0 1 1
-( 336 80 64 ) ( 336 32 16 ) ( 336 32 64 ) __TB_empty 0 0 0 1 1
+( 336 80 64 ) ( 240 32 16 ) ( 240 80 16 ) Textures/GridSquare 0 0 0 1 1
+( 336 32 64 ) ( 336 32 16 ) ( 240 32 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 336 80 16 ) ( 240 32 16 ) ( 336 32 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 336 80 64 ) ( 240 80 16 ) ( 336 80 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 336 80 64 ) ( 336 32 16 ) ( 336 32 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 8
 {
-( 416 -96 192 ) ( 416 -32 160 ) ( 416 -32 192 ) __TB_empty 0 0 0 1 1
-( 448 -96 192 ) ( 416 -96 160 ) ( 416 -96 192 ) __TB_empty 0 0 0 1 1
-( 448 -32 192 ) ( 416 -96 192 ) ( 448 -96 192 ) __TB_empty 0 0 0 1 1
-( 448 -32 240 ) ( 416 -96 240 ) ( 416 -32 240 ) __TB_empty 0 0 0 1 1
-( 448 -48 192 ) ( 416 -48 160 ) ( 448 -48 160 ) __TB_empty 0 0 0 1 1
-( 496 -32 192 ) ( 496 -96 160 ) ( 496 -96 192 ) __TB_empty 0 0 0 1 1
+( 416 -96 192 ) ( 416 -32 160 ) ( 416 -32 192 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 448 -96 192 ) ( 416 -96 160 ) ( 416 -96 192 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 448 -32 192 ) ( 416 -96 192 ) ( 448 -96 192 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 448 -32 240 ) ( 416 -96 240 ) ( 416 -32 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 448 -48 192 ) ( 416 -48 160 ) ( 448 -48 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 -32 192 ) ( 496 -96 160 ) ( 496 -96 192 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 9
 {
-( -80 48 48 ) ( -80 80 16 ) ( -80 80 48 ) __TB_empty 0 0 0 1 1
-( 112 48 48 ) ( -48 48 16 ) ( -48 48 48 ) __TB_empty 0 0 0 1 1
-( 112 80 16 ) ( -48 48 16 ) ( 112 48 16 ) __TB_empty 0 0 0 1 1
-( 112 80 48 ) ( -48 48 48 ) ( -48 80 48 ) __TB_empty 0 0 0 1 1
-( 112 80 48 ) ( -48 80 16 ) ( 112 80 16 ) __TB_empty 0 0 0 1 1
-( 128 80 48 ) ( 128 48 16 ) ( 128 48 48 ) __TB_empty 0 0 0 1 1
+( -80 48 48 ) ( -80 80 16 ) ( -80 80 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 48 48 ) ( -48 48 16 ) ( -48 48 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 80 16 ) ( -48 48 16 ) ( 112 48 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 80 48 ) ( -48 48 48 ) ( -48 80 48 ) Textures/GridSquare 0 0 0 1 1
+( 112 80 48 ) ( -48 80 16 ) ( 112 80 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 128 80 48 ) ( 128 48 16 ) ( 128 48 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 10
 {
 ( 128 48 48 ) ( 128 80 32 ) ( 128 80 48 ) __TB_empty 0 0 0 1 1
-( 160 48 32 ) ( 128 48 32 ) ( 128 48 48 ) __TB_empty 0 0 0 1 1
+( 160 48 32 ) ( 128 48 32 ) ( 128 48 48 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 160 80 32 ) ( 128 48 32 ) ( 160 48 32 ) __TB_empty 0 0 0 1 1
 ( 160 80 32 ) ( 128 80 48 ) ( 128 80 32 ) __TB_empty 0 0 0 1 1
-( 160 80 32 ) ( 128 48 48 ) ( 128 80 48 ) __TB_empty 0 0 0 1 1
+( 160 80 32 ) ( 128 48 48 ) ( 128 80 48 ) Textures/GridSquare 0 0 0 1 1
 }
 // brush 11
 {
-( 416 -96 96 ) ( 416 -48 64 ) ( 416 -48 96 ) __TB_empty 0 0 0 1 1
-( 448 -96 96 ) ( 416 -96 64 ) ( 416 -96 96 ) __TB_empty 0 0 0 1 1
-( 448 -48 -16 ) ( 416 -96 -16 ) ( 448 -96 -16 ) __TB_empty 0 0 0 1 1
-( 448 -48 112 ) ( 416 -96 112 ) ( 416 -48 112 ) __TB_empty 0 0 0 1 1
-( 448 -48 96 ) ( 416 -48 64 ) ( 448 -48 64 ) __TB_empty 0 0 0 1 1
-( 496 -48 96 ) ( 496 -96 64 ) ( 496 -96 96 ) __TB_empty 0 0 0 1 1
+( 416 -96 96 ) ( 416 -48 64 ) ( 416 -48 96 ) Textures/BigMetalSquares 0 0 0 1 1
+( 448 -96 96 ) ( 416 -96 64 ) ( 416 -96 96 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 448 -48 -16 ) ( 416 -96 -16 ) ( 448 -96 -16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 448 -48 112 ) ( 416 -96 112 ) ( 416 -48 112 ) Textures/GridSquare 0 0 0 1 1
+( 448 -48 96 ) ( 416 -48 64 ) ( 448 -48 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 -48 96 ) ( 496 -96 64 ) ( 496 -96 96 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 12
 {
-( 416 -48 240 ) ( 416 96 64 ) ( 416 96 240 ) __TB_empty 0 0 0 1 1
-( 496 -48 240 ) ( 416 -48 64 ) ( 416 -48 240 ) __TB_empty 0 0 0 1 1
-( 496 96 64 ) ( 416 -48 64 ) ( 496 -48 64 ) __TB_empty 0 0 0 1 1
-( 496 96 240 ) ( 416 -48 240 ) ( 416 96 240 ) __TB_empty 0 0 0 1 1
-( 496 96 240 ) ( 416 96 64 ) ( 496 96 64 ) __TB_empty 0 0 0 1 1
-( 496 96 240 ) ( 496 -48 64 ) ( 496 -48 240 ) __TB_empty 0 0 0 1 1
+( 416 -48 240 ) ( 416 96 64 ) ( 416 96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 -48 240 ) ( 416 -48 64 ) ( 416 -48 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 96 64 ) ( 416 -48 64 ) ( 496 -48 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 96 240 ) ( 416 -48 240 ) ( 416 96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 96 240 ) ( 416 96 64 ) ( 496 96 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 496 96 240 ) ( 496 -48 64 ) ( 496 -48 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 13
 {
-( 288 -64 32 ) ( 288 -16 16 ) ( 288 -16 32 ) __TB_empty 0 0 0 1 1
-( 336 -64 32 ) ( 288 -64 16 ) ( 288 -64 32 ) __TB_empty 0 0 0 1 1
-( 336 -16 16 ) ( 288 -64 16 ) ( 336 -64 16 ) __TB_empty 0 0 0 1 1
-( 336 -16 40 ) ( 288 -64 40 ) ( 288 -16 40 ) __TB_empty 0 0 0 1 1
-( 336 -16 32 ) ( 288 -16 16 ) ( 336 -16 16 ) __TB_empty 0 0 0 1 1
-( 336 -16 32 ) ( 336 -64 16 ) ( 336 -64 32 ) __TB_empty 0 0 0 1 1
+( 288 -64 32 ) ( 288 -16 16 ) ( 288 -16 32 ) Textures/BigMetalSquares 0 0 0 1 1
+( 336 -64 32 ) ( 288 -64 16 ) ( 288 -64 32 ) Textures/BigMetalSquares 0 0 0 1 1
+( 336 -16 16 ) ( 288 -64 16 ) ( 336 -64 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 336 -16 40 ) ( 288 -64 40 ) ( 288 -16 40 ) Textures/GridSquare 0 0 0 1 1
+( 336 -16 32 ) ( 288 -16 16 ) ( 336 -16 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 336 -16 32 ) ( 336 -64 16 ) ( 336 -64 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
 // entity 1
@@ -195,110 +195,110 @@
 "_tb_transformation" "1 0 0 -32 0 1 0 0 0 0 1 0 0 0 0 1"
 // brush 0
 {
-( -288 -64 16 ) ( -288 -48 0 ) ( -288 -48 16 ) __TB_empty 0 0 0 1 1
-( -96 -64 16 ) ( -288 -64 0 ) ( -288 -64 16 ) __TB_empty 0 0 0 1 1
-( -96 -48 0 ) ( -288 -64 0 ) ( -96 -64 0 ) __TB_empty 0 0 0 1 1
-( -96 -48 176 ) ( -288 -64 176 ) ( -288 -48 176 ) __TB_empty 0 0 0 1 1
-( -96 -48 16 ) ( -288 -48 0 ) ( -96 -48 0 ) __TB_empty 0 0 0 1 1
-( -96 -48 16 ) ( -96 -64 0 ) ( -96 -64 16 ) __TB_empty 0 0 0 1 1
+( -288 -64 16 ) ( -288 -48 0 ) ( -288 -48 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -64 16 ) ( -288 -64 0 ) ( -288 -64 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -48 0 ) ( -288 -64 0 ) ( -96 -64 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -48 176 ) ( -288 -64 176 ) ( -288 -48 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -48 16 ) ( -288 -48 0 ) ( -96 -48 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -48 16 ) ( -96 -64 0 ) ( -96 -64 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 1
 {
-( -288 -48 160 ) ( -288 32 16 ) ( -288 32 160 ) __TB_empty 0 0 0 1 1
-( -272 -48 160 ) ( -288 -48 16 ) ( -288 -48 160 ) __TB_empty 0 0 0 1 1
-( -272 32 16 ) ( -288 -48 16 ) ( -272 -48 16 ) __TB_empty 0 0 0 1 1
-( -272 32 160 ) ( -288 -48 160 ) ( -288 32 160 ) __TB_empty 0 0 0 1 1
-( -272 32 160 ) ( -288 32 16 ) ( -272 32 16 ) __TB_empty 0 0 0 1 1
-( -272 32 160 ) ( -272 -48 16 ) ( -272 -48 160 ) __TB_empty 0 0 0 1 1
+( -288 -48 160 ) ( -288 32 16 ) ( -288 32 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -272 -48 160 ) ( -288 -48 16 ) ( -288 -48 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -272 32 16 ) ( -288 -48 16 ) ( -272 -48 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -272 32 160 ) ( -288 -48 160 ) ( -288 32 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -272 32 160 ) ( -288 32 16 ) ( -272 32 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -272 32 160 ) ( -272 -48 16 ) ( -272 -48 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 2
 {
-( -288 -48 176 ) ( -288 48 160 ) ( -288 48 176 ) __TB_empty 0 0 0 1 1
-( -96 -48 176 ) ( -288 -48 160 ) ( -288 -48 176 ) __TB_empty 0 0 0 1 1
-( -96 48 160 ) ( -288 -48 160 ) ( -96 -48 160 ) __TB_empty 0 0 0 1 1
-( -96 48 176 ) ( -288 -48 176 ) ( -288 48 176 ) __TB_empty 0 0 0 1 1
-( -96 48 176 ) ( -288 48 160 ) ( -96 48 160 ) __TB_empty 0 0 0 1 1
-( -96 48 176 ) ( -96 -48 160 ) ( -96 -48 176 ) __TB_empty 0 0 0 1 1
+( -288 -48 176 ) ( -288 48 160 ) ( -288 48 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -48 176 ) ( -288 -48 160 ) ( -288 -48 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 48 160 ) ( -288 -48 160 ) ( -96 -48 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 48 176 ) ( -288 -48 176 ) ( -288 48 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 48 176 ) ( -288 48 160 ) ( -96 48 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 48 176 ) ( -96 -48 160 ) ( -96 -48 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 3
 {
-( -288 32 160 ) ( -288 48 0 ) ( -288 48 160 ) __TB_empty 0 0 0 1 1
-( -96 32 160 ) ( -288 32 0 ) ( -288 32 160 ) __TB_empty 0 0 0 1 1
-( -96 48 0 ) ( -288 32 0 ) ( -96 32 0 ) __TB_empty 0 0 0 1 1
-( -96 48 160 ) ( -288 32 160 ) ( -288 48 160 ) __TB_empty 0 0 0 1 1
-( -96 48 160 ) ( -288 48 0 ) ( -96 48 0 ) __TB_empty 0 0 0 1 1
-( -96 48 160 ) ( -96 32 0 ) ( -96 32 160 ) __TB_empty 0 0 0 1 1
+( -288 32 160 ) ( -288 48 0 ) ( -288 48 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 32 160 ) ( -288 32 0 ) ( -288 32 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 48 0 ) ( -288 32 0 ) ( -96 32 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 48 160 ) ( -288 32 160 ) ( -288 48 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 48 160 ) ( -288 48 0 ) ( -96 48 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 48 160 ) ( -96 32 0 ) ( -96 32 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 4
 {
-( -288 -48 16 ) ( -288 32 0 ) ( -288 32 16 ) __TB_empty 0 0 0 1 1
-( -208 -48 16 ) ( -288 -48 0 ) ( -288 -48 16 ) __TB_empty 0 0 0 1 1
-( -208 32 0 ) ( -288 -48 0 ) ( -208 -48 0 ) __TB_empty 0 0 0 1 1
-( -208 32 16 ) ( -288 -48 16 ) ( -288 32 16 ) __TB_empty 0 0 0 1 1
-( -208 32 16 ) ( -288 32 0 ) ( -208 32 0 ) __TB_empty 0 0 0 1 1
-( -208 32 16 ) ( -208 -48 0 ) ( -208 -48 16 ) __TB_empty 0 0 0 1 1
+( -288 -48 16 ) ( -288 32 0 ) ( -288 32 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -208 -48 16 ) ( -288 -48 0 ) ( -288 -48 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -208 32 0 ) ( -288 -48 0 ) ( -208 -48 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -208 32 16 ) ( -288 -48 16 ) ( -288 32 16 ) Textures/GridSquare 0 0 0 1 1
+( -208 32 16 ) ( -288 32 0 ) ( -208 32 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -208 32 16 ) ( -208 -48 0 ) ( -208 -48 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 5
 {
-( -208 32 16 ) ( -208 -48 16 ) ( -208 -48 0 ) __TB_empty 0 0 0 1 1
-( -208 32 16 ) ( -128 32 80 ) ( -128 -48 80 ) __TB_empty 0 0 0 1 1
-( -208 -48 16 ) ( -128 -48 80 ) ( -128 -48 64 ) __TB_empty 0 0 0 1 1
-( -128 32 64 ) ( -128 32 80 ) ( -208 32 16 ) __TB_empty 0 0 0 1 1
-( -128 -48 64 ) ( -128 32 64 ) ( -208 32 0 ) __TB_empty 0 0 0 1 1
-( -128 -48 80 ) ( -128 32 80 ) ( -128 32 64 ) __TB_empty 0 0 0 1 1
+( -208 32 16 ) ( -208 -48 16 ) ( -208 -48 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -208 32 16 ) ( -128 32 80 ) ( -128 -48 80 ) Textures/GridSquare 0 0 0 1 1
+( -208 -48 16 ) ( -128 -48 80 ) ( -128 -48 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -128 32 64 ) ( -128 32 80 ) ( -208 32 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -128 -48 64 ) ( -128 32 64 ) ( -208 32 0 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -128 -48 80 ) ( -128 32 80 ) ( -128 32 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 6
 {
-( -128 -48 64 ) ( -128 -47 64 ) ( -128 -48 65 ) __TB_empty 0 0 0 1 1
-( -208 -48 64 ) ( -208 -48 65 ) ( -207 -48 64 ) __TB_empty 0 0 0 1 1
-( -208 -48 64 ) ( -207 -48 64 ) ( -208 -47 64 ) __TB_empty 0 0 0 1 1
-( -96 32 80 ) ( -96 33 80 ) ( -95 32 80 ) __TB_empty 0 0 0 1 1
-( -96 32 80 ) ( -95 32 80 ) ( -96 32 81 ) __TB_empty 0 0 0 1 1
-( -96 32 80 ) ( -96 32 81 ) ( -96 33 80 ) __TB_empty 0 0 0 1 1
+( -128 -48 64 ) ( -128 -47 64 ) ( -128 -48 65 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -208 -48 64 ) ( -208 -48 65 ) ( -207 -48 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -208 -48 64 ) ( -207 -48 64 ) ( -208 -47 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 32 80 ) ( -96 33 80 ) ( -95 32 80 ) Textures/GridSquare 0 0 0 1 1
+( -96 32 80 ) ( -95 32 80 ) ( -96 32 81 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 32 80 ) ( -96 32 81 ) ( -96 33 80 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 7
 {
-( -96 32 16 ) ( -96 32 80 ) ( -96 -48 16 ) __TB_empty 0 0 0 1 1
-( -96 -48 16 ) ( -96 -48 80 ) ( -80 -48 16 ) __TB_empty 0 0 0 1 1
-( -96 32 16 ) ( -96 -48 16 ) ( -80 32 16 ) __TB_empty 0 0 0 1 1
-( -80 -48 80 ) ( -96 -48 80 ) ( -80 32 80 ) __TB_empty 0 0 0 1 1
-( -80 32 16 ) ( -80 32 80 ) ( -96 32 16 ) __TB_empty 0 0 0 1 1
-( -80 -48 16 ) ( -80 -48 80 ) ( -80 32 16 ) __TB_empty 0 0 0 1 1
+( -96 32 16 ) ( -96 32 80 ) ( -96 -48 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -48 16 ) ( -96 -48 80 ) ( -80 -48 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 32 16 ) ( -96 -48 16 ) ( -80 32 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 -48 80 ) ( -96 -48 80 ) ( -80 32 80 ) Textures/GridSquare 0 0 0 1 1
+( -80 32 16 ) ( -80 32 80 ) ( -96 32 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 -48 16 ) ( -80 -48 80 ) ( -80 32 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 8
 {
-( -96 -112 336 ) ( -96 96 176 ) ( -96 96 336 ) __TB_empty 0 0 0 1 1
-( -80 -112 336 ) ( -96 -112 176 ) ( -96 -112 336 ) __TB_empty 0 0 0 1 1
-( -80 96 176 ) ( -96 -112 176 ) ( -80 -112 176 ) __TB_empty 0 0 0 1 1
-( -80 96 240 ) ( -96 -112 240 ) ( -96 96 240 ) __TB_empty 0 0 0 1 1
-( -80 96 336 ) ( -96 96 176 ) ( -80 96 176 ) __TB_empty 0 0 0 1 1
-( -80 96 336 ) ( -80 -112 176 ) ( -80 -112 336 ) __TB_empty 0 0 0 1 1
+( -96 -112 336 ) ( -96 96 176 ) ( -96 96 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 -112 336 ) ( -96 -112 176 ) ( -96 -112 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 96 176 ) ( -96 -112 176 ) ( -80 -112 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 96 240 ) ( -96 -112 240 ) ( -96 96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 96 336 ) ( -96 96 176 ) ( -80 96 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 96 336 ) ( -80 -112 176 ) ( -80 -112 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 9
 {
-( -96 -48 240 ) ( -96 -48 160 ) ( -96 32 240 ) __TB_empty 0 0 0 1 1
-( -80 -48 240 ) ( -80 -48 160 ) ( -96 -48 240 ) __TB_empty 0 0 0 1 1
-( -96 32 160 ) ( -96 -48 160 ) ( -80 32 160 ) __TB_empty 0 0 0 1 1
-( -80 32 176 ) ( -80 -48 176 ) ( -96 32 176 ) __TB_empty 0 0 0 1 1
-( -96 32 240 ) ( -96 32 160 ) ( -80 32 240 ) __TB_empty 0 0 0 1 1
-( -80 32 240 ) ( -80 32 160 ) ( -80 -48 240 ) __TB_empty 0 0 0 1 1
+( -96 -48 240 ) ( -96 -48 160 ) ( -96 32 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 -48 240 ) ( -80 -48 160 ) ( -96 -48 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 32 160 ) ( -96 -48 160 ) ( -80 32 160 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 32 176 ) ( -80 -48 176 ) ( -96 32 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 32 240 ) ( -96 32 160 ) ( -80 32 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 32 240 ) ( -80 32 160 ) ( -80 -48 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 10
 {
-( -96 96 240 ) ( -96 32 240 ) ( -96 96 16 ) __TB_empty 0 0 0 1 1
-( -80 32 16 ) ( -96 32 16 ) ( -80 32 240 ) __TB_empty 0 0 0 1 1
-( -96 96 16 ) ( -96 32 16 ) ( -80 96 16 ) __TB_empty 0 0 0 1 1
-( -80 96 176 ) ( -80 32 176 ) ( -96 96 176 ) __TB_empty 0 0 0 1 1
-( -96 96 16 ) ( -80 96 16 ) ( -96 96 240 ) __TB_empty 0 0 0 1 1
-( -80 96 16 ) ( -80 32 16 ) ( -80 96 240 ) __TB_empty 0 0 0 1 1
+( -96 96 240 ) ( -96 32 240 ) ( -96 96 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 32 16 ) ( -96 32 16 ) ( -80 32 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 96 16 ) ( -96 32 16 ) ( -80 96 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 96 176 ) ( -80 32 176 ) ( -96 96 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 96 16 ) ( -80 96 16 ) ( -96 96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 96 16 ) ( -80 32 16 ) ( -80 96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 // brush 11
 {
-( -96 -96 16 ) ( -96 -48 16 ) ( -96 -96 240 ) __TB_empty 0 0 0 1 1
-( -96 -112 240 ) ( -80 -112 240 ) ( -96 -112 16 ) __TB_empty 0 0 0 1 1
-( -80 -96 16 ) ( -80 -48 16 ) ( -96 -96 16 ) __TB_empty 0 0 0 1 1
-( -96 -96 176 ) ( -96 -48 176 ) ( -80 -96 176 ) __TB_empty 0 0 0 1 1
-( -96 -48 240 ) ( -96 -48 16 ) ( -80 -48 240 ) __TB_empty 0 0 0 1 1
-( -80 -96 240 ) ( -80 -48 240 ) ( -80 -96 16 ) __TB_empty 0 0 0 1 1
+( -96 -96 16 ) ( -96 -48 16 ) ( -96 -96 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -112 240 ) ( -80 -112 240 ) ( -96 -112 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 -96 16 ) ( -80 -48 16 ) ( -96 -96 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -96 176 ) ( -96 -48 176 ) ( -80 -96 176 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 -48 240 ) ( -96 -48 16 ) ( -80 -48 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -80 -96 240 ) ( -80 -48 240 ) ( -80 -96 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }

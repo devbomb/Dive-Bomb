@@ -84,17 +84,15 @@ ForbidExitLevel = true
 environment = ExtResource("2_eipfg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
+transform = Transform3D(-0.9965584, 0.030449376, -0.077098645, -0.038427416, 0.65441513, 0.75515836, 0.07344863, 0.75552213, -0.6509928, -16.4758, 8.46741, 21.1995)
+shadow_opacity = 0.55
+shadow_blur = 10.0
 sky_mode = 1
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalLight3D"]
-transform = Transform3D(0.996646, 0, -0.081834145, 0.081834145, -4.371139e-08, 0.996646, -3.5770842e-09, -1, -4.356478e-08, 0, 0, 0)
-light_energy = 0.523
-sky_mode = 1
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="DirectionalLight3D"]
-transform = Transform3D(0.99121547, 1.7459456e-09, 0.13225667, -0.13225667, -4.2598494e-08, 0.99121547, 7.364508e-09, -1, -4.1993374e-08, 0, 0, 0)
-light_energy = 0.523
+[node name="Backwards" type="DirectionalLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+light_energy = 0.4
+light_bake_mode = 1
 sky_mode = 1
 
 [node name="Intro" parent="." instance=ExtResource("2_vwhqw")]

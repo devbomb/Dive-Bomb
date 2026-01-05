@@ -12,4 +12,4 @@ dest_files=["res://.godot/imported/RollTut.map-7d154a379879581d3ae879a18777699c.
 
 [params]
 
-texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")
+texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Tutorial/Maps/TutorialMaterialMap.tres")

@@ -12,4 +12,4 @@ dest_files=["res://.godot/imported/FairyRoom.map-a882c2abef9e643396a774c4c759e91
 
 [params]
 
-texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")
+texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Tutorial/Maps/TutorialMaterialMap.tres")
