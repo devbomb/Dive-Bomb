@@ -342,3 +342,20 @@
 "origin" "432 -104 48"
 "GemColor" "2"
 }
+// entity 12
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "Ceilings"
+"_tb_id" "1"
+"_tb_layer_sort_index" "0"
+// brush 0
+{
+( -64 -160 288 ) ( -64 112 272 ) ( -64 112 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 464 -160 288 ) ( -64 -160 272 ) ( -64 -160 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 464 112 272 ) ( -64 -160 272 ) ( 464 -160 272 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 464 112 288 ) ( -64 -160 288 ) ( -64 112 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 464 112 288 ) ( -64 112 272 ) ( 464 112 272 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 464 112 288 ) ( 464 -160 272 ) ( 464 -160 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
+}
