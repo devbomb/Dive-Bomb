@@ -264,6 +264,7 @@ namespace FastDragon
 
                 if (Self.DisableInput)
                 {
+                    Self.ApplyAnglesAndDistance();
                     _prevPos = Self.GlobalPosition;
                     return;
                 }
@@ -400,13 +401,27 @@ namespace FastDragon
             {
                 _initialPos = Self.GlobalTransform;
                 _timer = 0;
+                UpdatePosition();
             }
 
             public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
+
                 if (_timer > Self._manhandledTransitionDuration)
                     _timer = Self._manhandledTransitionDuration;
+
+                UpdatePosition();
+            }
+
+            private void UpdatePosition()
+            {
+                // Avoid division by zero
+                if (Self._manhandledTransitionDuration <= 0)
+                {
+                    Self.GlobalTransform = Self.ManhandledPosition;
+                    return;
+                }
 
                 float t = _timer / Self._manhandledTransitionDuration;
 

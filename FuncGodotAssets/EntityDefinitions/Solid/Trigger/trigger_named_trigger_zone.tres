@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://dgrb4tji7nxll"]
+
+[ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_5wd62"]
+[ext_resource type="Script" uid="uid://bp1j1afgik4m" path="res://Entities/Trigger/NamedTriggerZone.cs" id="2_smgra"]
+
+[resource]
+script = ExtResource("1_5wd62")
+build_visuals = false
+use_in_baked_light = false
+render_layers = 0
+collision_layer = 0
+collision_mask = 8
+script_class = ExtResource("2_smgra")
+classname = "trigger_named_trigger_zone"
+description = "A trigger volume with a name.  Other entities can search for trigger volumes with this name and react when the player enters it."
+class_properties = {
+"TriggerName": ""
+}
+auto_apply_to_matching_node_properties = true
+node_class = "Area3D"
+name_property = "TriggerName"
+metadata/_custom_type_script = "uid://ctv13qfisgfqg"

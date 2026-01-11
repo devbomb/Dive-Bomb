@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_flfsu")
 script = ExtResource("1_wxgf2")
-NewGameLevel = "uid://muwxx8ltp1ss"
+NewGameLevel = "uid://btejrg27q3lyj"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

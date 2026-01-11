@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ftblvnocgv8p"]
+
+[ext_resource type="Material" uid="uid://mvm170lhls8a" path="res://Common/Materials/HologramStaticFuzz.tres" id="1_36u3u"]
+
+[resource]
+resource_name = "EyeWhites"
+next_pass = ExtResource("1_36u3u")
+shading_mode = 0
+albedo_color = Color(0.7619751, 1, 0.695671, 1)

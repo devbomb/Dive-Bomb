@@ -1,0 +1,15 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://cyxbyv7xju8b"
+path="res://.godot/imported/RollTut.map-7d154a379879581d3ae879a18777699c.tscn"
+
+[deps]
+
+source_file="res://Levels/Tutorial/Maps/RollTut.map"
+dest_files=["res://.godot/imported/RollTut.map-7d154a379879581d3ae879a18777699c.tscn"]
+
+[params]
+
+texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Tutorial/Maps/TutorialMaterialMap.tres")

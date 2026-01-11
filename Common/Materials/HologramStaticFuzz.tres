@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://mvm170lhls8a"]
+
+[sub_resource type="Shader" id="Shader_pht2m"]
+code = "shader_type spatial;
+#include \"res://Common/ShaderIncludes/FloatHashes.gdshaderinc\"
+
+void fragment()
+{
+	ALBEDO = vec3(0.0, 0.0, 0.0);
+	
+	vec2 rounded_uv = floor(UV * 200.0) / 200.0;
+	float rounded_time = floor(fract(TIME) * 20.0) / 20.0;
+	float noise = hash13(vec3(rounded_uv, rounded_time));
+	ALPHA = mix(0.0, 0.3, noise);
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_pht2m")

@@ -1,0 +1,361 @@
+[gd_scene load_steps=26 format=3 uid="uid://btejrg27q3lyj"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
+[ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Levels/BrokenGlassFactory/Skybox.tres" id="2_eipfg"]
+[ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
+[ext_resource type="PackedScene" uid="uid://btlc2kyid5u56" path="res://Levels/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
+[ext_resource type="PackedScene" uid="uid://fwwegib0064k" path="res://Levels/Tutorial/AgentDIntroCutscene/AgentDIntroCutscene.tscn" id="3_kb7u2"]
+[ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="4_uhvqi"]
+[ext_resource type="Script" uid="uid://d2ars665qqq5j" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="5_uhvqi"]
+[ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="6_p8bxm"]
+[ext_resource type="PackedScene" uid="uid://cyxbyv7xju8b" path="res://Levels/Tutorial/Maps/RollTut.map" id="8_i3mr3"]
+[ext_resource type="Script" uid="uid://bjrp7gxeg424r" path="res://UI/Widgets/TutorialPopup.cs" id="8_sob3p"]
+[ext_resource type="PackedScene" uid="uid://dbo5v5bk2jxh7" path="res://Levels/Tutorial/Maps/KickTut.map" id="8_yrnv4"]
+[ext_resource type="Script" uid="uid://brhva0ikdmdcl" path="res://Entities/Info/NamedMarker/NamedMarker3D.cs" id="10_ipotd"]
+[ext_resource type="PackedScene" uid="uid://dord22pbbqflm" path="res://Levels/Tutorial/Maps/FairyRoom.map" id="11_r652i"]
+[ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="12_myhx6"]
+[ext_resource type="PackedScene" uid="uid://c5lrjwtowen30" path="res://Levels/Tutorial/Maps/DrMonocleSpeech.map" id="13_myhx6"]
+[ext_resource type="Script" uid="uid://cdqcpmgk2hqiu" path="res://Common/Components/NamedTriggerZoneListener.cs" id="14_4f2gc"]
+[ext_resource type="PackedScene" uid="uid://c3u21ynxwsxm" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutsceneRig.tscn" id="15_ym3l3"]
+
+[sub_resource type="Texture2D" id="Texture2D_p8bxm"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "Jump"
+show_mode = 2
+force_type = 2
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_uhvqi"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "Jump"
+show_mode = 1
+force_type = 1
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="LabelSettings" id="LabelSettings_i3mr3"]
+font = ExtResource("6_p8bxm")
+
+[sub_resource type="Texture2D" id="Texture2D_i3mr3"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "RightStickLeft"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_sob3p"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "RecenterCamera"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_yrnv4"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "Kick"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_ipotd"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "Roll"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Curve3D" id="Curve3D_r652i"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.508234, -1.3115921, 0, 0, 0, 0, 0, 0, 0, -1.6243439, -0.16095734, 8.186096, 0, 0, 0, 0, 0, 0, -10.57838, 0.78362656, 8.339798, 0, 0, 0, 0, 0, 0, -21.399115, 5.4380817, 7.938423, 0, 0, 0, 0, 0, 0, -22.044418, 8.144985, 5.1710205, 0, 0, 0, 0, 0, 0, -21.748394, 10.5003395, 7.2759247, 0, 0, 0, 0, 0, 0, -20.05691, 10.8202095, 9.365295, 0, 0, 0, 0, 0, 0, -11.5257, 12.725849, 9.179459, 0, 0, 0, 0, 0, 0, -0.39034653, 11.44294, 9.220413, 0, 0, 0, 0, 0, 0, 0.30298996, 13.386158, 0.8794708, 0, 0, 0, 0, 0, 0, -0.91290474, 10.316654, -4.7459335, 0, 0, 0, 0, 0, 0, 0.15610313, 10.281395, -23.085152, 0, 0, 0, 0, 0, 0, -3.0328674, 11.018265, -29.024315),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 13
+
+[node name="Tutorial" type="Node3D"]
+script = ExtResource("1_vo1h1")
+LevelName = "Tutorial"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
+ForbidExitLevel = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_eipfg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.9965584, 0.030449376, -0.077098645, -0.038427416, 0.65441513, 0.75515836, 0.07344863, 0.75552213, -0.6509928, -16.4758, 8.46741, 21.1995)
+shadow_opacity = 0.55
+shadow_blur = 10.0
+sky_mode = 1
+
+[node name="Backwards" type="DirectionalLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+light_energy = 0.4
+light_bake_mode = 1
+sky_mode = 1
+
+[node name="Intro" parent="." instance=ExtResource("2_vwhqw")]
+
+[node name="AgentDIntroCutscene" parent="Intro" instance=ExtResource("3_kb7u2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -7.5, 2.3)
+
+[node name="JumpTutorialPopup" type="PanelContainer" parent="Intro"]
+visible = false
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+TriggerName = "JumpTutorialTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Intro/JumpTutorialPopup"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Icons" type="Control" parent="Intro/JumpTutorialPopup/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="ControllerIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_p8bxm")
+expand_mode = 1
+
+[node name="KeyboardIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 3.0
+offset_right = 25.0
+offset_bottom = 48.0
+size_flags_vertical = 4
+texture = SubResource("Texture2D_uhvqi")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Intro/JumpTutorialPopup/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Jump"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="CameraTut" parent="." instance=ExtResource("3_3rttw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 35)
+
+[node name="CameraTutorialPopup" type="PanelContainer" parent="CameraTut"]
+visible = false
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+TriggerName = "CameraTutorialTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CameraTut/CameraTutorialPopup"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_i3mr3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CameraTut/CameraTutorialPopup/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Move Camera"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="KickTut" parent="." instance=ExtResource("8_yrnv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 13, 37)
+
+[node name="RecenterCameraTutorialPopup" type="PanelContainer" parent="KickTut"]
+visible = false
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+TriggerName = "RecenterCameraTutorialTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/RecenterCameraTutorialPopup"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_sob3p")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Recenter Camera"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="KickTutorialPopup" type="PanelContainer" parent="KickTut"]
+visible = false
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+TriggerName = "KickTutorialPopupTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/KickTutorialPopup"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="KickTut/KickTutorialPopup/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_yrnv4")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="KickTut/KickTutorialPopup/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Kick"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="RollTut" parent="." instance=ExtResource("8_i3mr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 13, 27)
+
+[node name="RollTutorialPopup" type="PanelContainer" parent="RollTut"]
+visible = false
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+TriggerName = "RollTutorialPopupTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RollTut/RollTutorialPopup"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="RollTut/RollTutorialPopup/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_ipotd")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="RollTut/RollTutorialPopup/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Roll"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="FairyRoomWindowCameraSpot" type="Marker3D" parent="RollTut"]
+transform = Transform3D(-5.9604645e-08, 0.5, -0.8660254, 0, 0.8660254, 0.5, 1, 2.9802322e-08, -5.1619136e-08, 32, 15, -15)
+script = ExtResource("10_ipotd")
+MarkerId = "FairyRoomWindowCameraSpot"
+
+[node name="FairyRoom" parent="." instance=ExtResource("11_r652i")]
+transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 94, 11, 8.999999)
+
+[node name="FairyEscape1" type="Marker3D" parent="FairyRoom"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 23, 3.9999995)
+script = ExtResource("10_ipotd")
+MarkerId = "FairyEscape1"
+
+[node name="FairyEscape2" type="Marker3D" parent="FairyRoom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7, 21, -1)
+script = ExtResource("10_ipotd")
+MarkerId = "FairyEscape2"
+
+[node name="FairyGuidePath" type="Path3D" parent="FairyRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.109985, 11, -1.9642868)
+curve = SubResource("Curve3D_r652i")
+
+[node name="FairyGuide" parent="FairyRoom/FairyGuidePath" node_paths=PackedStringArray("Path") instance=ExtResource("12_myhx6")]
+transform = Transform3D(-0.99083304, 0, 0.13509221, 0, 1, 0, -0.13509223, 0, -0.9908329, -0.508234, -1.3115921, 0)
+FairyId = "TutorialFairy"
+Path = NodePath("..")
+VanishWhenFinished = true
+
+[node name="DrMonocleSpeech" parent="." instance=ExtResource("13_myhx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147, 30, 15)
+
+[node name="SpeechStartTriggerZoneListener" type="Node" parent="DrMonocleSpeech"]
+script = ExtResource("14_4f2gc")
+TriggerName = "DrMonocleIntroSpeechStart"
+metadata/_custom_type_script = "uid://cdqcpmgk2hqiu"
+
+[node name="SkipSpeechTriggerZoneListener" type="Node" parent="DrMonocleSpeech"]
+script = ExtResource("14_4f2gc")
+TriggerName = "DrMonocleIntroSkipSpeech"
+metadata/_custom_type_script = "uid://cdqcpmgk2hqiu"
+
+[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" instance=ExtResource("15_ym3l3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27.539627, 5.927231, 0.35410118)
+
+[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/SpeechStartTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="StartCutscene"]
+[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/SkipSpeechTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="SkipCutscene"]

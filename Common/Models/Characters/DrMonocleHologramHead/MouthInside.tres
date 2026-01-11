@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bf6sjudgr3gig"]
+
+[ext_resource type="Material" uid="uid://mvm170lhls8a" path="res://Common/Materials/HologramStaticFuzz.tres" id="1_hv06b"]
+
+[resource]
+resource_name = "MouthInside"
+next_pass = ExtResource("1_hv06b")
+cull_mode = 2
+albedo_color = Color(0, 0.43669674, 1.1339611e-05, 1)
+metallic = 1.0

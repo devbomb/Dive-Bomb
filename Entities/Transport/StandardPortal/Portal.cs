@@ -5,8 +5,8 @@ namespace FastDragon
 {
     public partial class Portal : Node3D
     {
-        [Export(PropertyHint.File)] public string SkyboxEnvironment;
-        [Export(PropertyHint.File)] public string TargetLevel;
+        [Export(PropertyHint.FilePath)] public string SkyboxEnvironment;
+        [Export(PropertyHint.FilePath)] public string TargetLevel;
         [Export] public string Text;
 
         [Export] public float ExitAnimationDuration = 2.5f;

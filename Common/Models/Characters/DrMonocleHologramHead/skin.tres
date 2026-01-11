@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b06ymi6wf0sex"]
+
+[ext_resource type="Material" uid="uid://mvm170lhls8a" path="res://Common/Materials/HologramStaticFuzz.tres" id="1_rfksa"]
+
+[resource]
+resource_name = "skin"
+next_pass = ExtResource("1_rfksa")
+albedo_color = Color(0.65098053, 0.9137229, 0.7032983, 1)
+roughness = 0.5

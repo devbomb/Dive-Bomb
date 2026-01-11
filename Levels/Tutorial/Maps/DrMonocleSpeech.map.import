@@ -1,0 +1,15 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://c5lrjwtowen30"
+path="res://.godot/imported/DrMonocleSpeech.map-d0e9b4e08d9dadd5318c6372ec2cb890.tscn"
+
+[deps]
+
+source_file="res://Levels/Tutorial/Maps/DrMonocleSpeech.map"
+dest_files=["res://.godot/imported/DrMonocleSpeech.map-d0e9b4e08d9dadd5318c6372ec2cb890.tscn"]
+
+[params]
+
+texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Tutorial/Maps/TutorialMaterialMap.tres")

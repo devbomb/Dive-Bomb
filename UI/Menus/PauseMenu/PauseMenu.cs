@@ -36,8 +36,8 @@ namespace FastDragon
         public override void _Ready()
         {
             Close();
-            _quitToTitleButton.Visible = this.GetLevel()?.IsHomeWorld ?? true;
-            _exitLevelButton.Visible = !_quitToTitleButton.Visible;
+            _exitLevelButton.Visible = this.GetLevel()?.CanExitLevel() ?? false;
+            _quitToTitleButton.Visible = !_exitLevelButton.Visible;
         }
 
         public void Open()

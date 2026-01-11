@@ -1,0 +1,15 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://dbo5v5bk2jxh7"
+path="res://.godot/imported/KickTut.map-96f42df75995fb00f7516056eb976069.tscn"
+
+[deps]
+
+source_file="res://Levels/Tutorial/Maps/KickTut.map"
+dest_files=["res://.godot/imported/KickTut.map-96f42df75995fb00f7516056eb976069.tscn"]
+
+[params]
+
+texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Tutorial/Maps/TutorialMaterialMap.tres")
