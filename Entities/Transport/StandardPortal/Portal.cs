@@ -48,6 +48,8 @@ namespace FastDragon
         [ExportGroup("Internal")]
         [Export] public PortalSurface PortalSurface;
         [Export] public TextureRect FullScreenPortalCamTexture;
+        [Export] public Area3D PlayerDetector;
+        [Export] public Node3D[] ThingsToHideWhenClosed = [];
 
         [ExportSubgroup("Labels")]
         [Export] public MeshInstance3D FrontLabel;
@@ -78,13 +80,26 @@ namespace FastDragon
             PortalSurface.SetSkybox(_skyboxEnvironment);
 
             SignalBus.Instance.LevelReset += Reset;
-            Reset();
+
+            // Defer resetting to make sure the other portals (and the player!)
+            // are ready
+            Callable.From(() =>
+            {
+                // HACK: Skip resetting if PlayExitAnimation() was called before
+                // this deferred block started.  Otherwise, Reset() will undo
+                // everything PlayExitAnimation() did.
+                if (_stateMachine.CurrentState is not Exiting)
+                    Reset();
+
+            }).CallDeferred();
         }
 
         private void Reset()
         {
-            GetTree().FindNode<Player>().SetVisibleInPortals(false);
-            _stateMachine.ChangeState<Idle>();
+            if (IsUnlocked())
+                _stateMachine.ChangeState<Open>();
+            else
+                _stateMachine.ChangeState<Closed>();
         }
 
         public bool IsUnlocked()
@@ -102,14 +117,6 @@ namespace FastDragon
                     .EnumerateDescendantsOfType<Portal>()
                     .Where(p => p.Type == type)
                     .All(p => SaveFileManager.Current.LevelExitReached(p.TargetLevel));
-            }
-        }
-
-        public void OnBodyEntered(Node3D body)
-        {
-            if (body is Player player && !(player.CurrentState is PlayerManhandledState) && IsUnlocked())
-            {
-                PlayEnterAnimation(player);
             }
         }
 
@@ -150,8 +157,46 @@ namespace FastDragon
             LabelAnimator.Play("Disappear");
         }
 
-        private class Idle : State<Portal>
+        private class Closed : State<Portal>
         {
+            public override void OnStateEntered()
+            {
+                foreach (var thing in Self.ThingsToHideWhenClosed)
+                    thing.Visible = false;
+            }
+
+            public override void OnStateExited()
+            {
+                foreach (var thing in Self.ThingsToHideWhenClosed)
+                    thing.Visible = true;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                if (Self.IsUnlocked())
+                    ChangeState<Open>();
+            }
+        }
+
+        private class Open : State<Portal>
+        {
+            public override void SubscribeToSignals()
+            {
+                Self.PlayerDetector.BodyEntered += OnBodyEntered;
+            }
+
+            public override void UnsubscribeFromSignals()
+            {
+                Self.PlayerDetector.BodyEntered -= OnBodyEntered;
+            }
+
+            private void OnBodyEntered(Node3D body)
+            {
+                if (body is Player player && !(player.CurrentState is PlayerManhandledState))
+                {
+                    Self.PlayEnterAnimation(player);
+                }
+            }
         }
 
         private class Entering : State<Portal>
@@ -328,7 +373,10 @@ namespace FastDragon
                     player.ResetPhysicsInterpolation3D();
                     player.ChangeState<PlayerStandState>();
 
-                    ChangeState<Idle>();
+                    if (Self.IsUnlocked())
+                        ChangeState<Open>();
+                    else
+                        ChangeState<Closed>();
                 }
             }
 

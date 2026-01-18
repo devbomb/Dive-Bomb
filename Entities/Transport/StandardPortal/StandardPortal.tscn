@@ -37,6 +37,7 @@ offsets = PackedFloat32Array(0, 0.22222222, 0.3935185, 0.6157407, 0.7962963, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6975779, 0, 0, 0, 0.8235294, 0, 0, 0, 0.8235294, 0, 0, 0, 0.6945429, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_smk44"]
+resource_name = "_albedo"
 gradient = SubResource("Gradient_lle10")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnpha"]
@@ -100,11 +101,13 @@ _data = {
 &"RESET": SubResource("Animation_lle10")
 }
 
-[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "FrontLabel", "BackLabel", "LabelAnimator", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
+[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "PlayerDetector", "ThingsToHideWhenClosed", "FrontLabel", "BackLabel", "LabelAnimator", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
 script = ExtResource("1_6lbsj")
 PlayerSpawn = NodePath("PlayerSpawnPoint")
 PortalSurface = NodePath("LevelEntrancePortal/PortalSurface")
 FullScreenPortalCamTexture = NodePath("FullScreenPortalCamTexture")
+PlayerDetector = NodePath("PlayerDetector")
+ThingsToHideWhenClosed = [NodePath("LevelEntrancePortal/PortalSurface"), NodePath("OmniLight3D")]
 FrontLabel = NodePath("Labels/FrontLabel")
 BackLabel = NodePath("Labels/BackLabel")
 LabelAnimator = NodePath("Labels/LabelAnimator")
@@ -225,6 +228,5 @@ autoplay = "Pulse"
 
 [connection signal="body_entered" from="LabelEnabler" to="." method="ShowLabels" unbinds=1]
 [connection signal="body_exited" from="LabelEnabler" to="." method="HideLabels" unbinds=1]
-[connection signal="body_entered" from="PlayerDetector" to="." method="OnBodyEntered"]
 
 [editable path="LevelEntrancePortal"]
