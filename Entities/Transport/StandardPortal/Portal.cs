@@ -9,6 +9,35 @@ namespace FastDragon
         [Export(PropertyHint.FilePath)] public string TargetLevel;
         [Export] public string Text;
 
+        [Export(PropertyHint.Enum, "Level,Boss,PostBoss,Bonus")]
+        public PortalType Type;
+        public enum PortalType
+        {
+            /// <summary>
+            /// The player is required to reach this level's exit for the
+            /// <see cref="PortalType.Boss"/> portal to unlock
+            /// </summary>
+            Level = 0,
+
+            /// <summary>
+            /// This portal cannot be used until the player has reached the exit
+            /// in all of this hub world's <see cref="PortalType.Level"/>s.
+            /// </summary>
+            Boss = 1,
+
+            /// <summary>
+            /// This portal cannot be used until the player has reached the exit
+            /// in this hub world's <see cref="PortalType.Boss"/>.
+            /// </summary>
+            PostBoss = 2,
+
+            /// <summary>
+            /// This portal does not lead to any required levels, and no other
+            /// levels are required to use it.
+            /// </summary>
+            Bonus = 3,
+        }
+
         [Export] public float ExitAnimationDuration = 2.5f;
         [Export] public float ExitAnimationStartHeight = 0;
         [Export] public float ExitAnimationParabolaHeight = 2;
