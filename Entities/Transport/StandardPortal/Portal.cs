@@ -368,6 +368,10 @@ namespace FastDragon
 
                 if (_timer > Self.ExitAnimationDuration)
                 {
+                    // Move the player to the end position and release them.
+                    // We are explicitly doing this HERE instead of
+                    // OnStateExited() to avoid overwriting the player's
+                    // position during a level reset.
                     var player = GetTree().FindNode<Player>();
                     player.GlobalPosition = Self.PlayerSpawn.GlobalPosition;
                     player.ResetPhysicsInterpolation3D();
