@@ -251,6 +251,7 @@
 "TargetLevel" "res://Levels/SeamonsterBossMap/SeamonsterBossMap.tscn"
 "SkyboxEnvironment" "res://Levels/SeamonsterBossMap/Skybox.tres"
 "Text" "Smackin' Da Kracken"
+"Type" "1"
 }
 // entity 23
 {
