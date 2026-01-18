@@ -105,16 +105,6 @@ namespace FastDragon
             LevelTransitionManager.Instance.ReloadCheckpoint();
         }
 
-        public void FullyResetLevel()
-        {
-            Close();
-
-            this.GetLevel()?.GetProgress().ResetProgress();
-            SaveFileManager.Current.CurrentLevelVisit = new();
-
-            LevelTransitionManager.Instance.ReloadCheckpoint();
-        }
-
         public void ExitLevel()
         {
             Close();
@@ -125,6 +115,23 @@ namespace FastDragon
         {
             Close();
             LevelTransitionManager.Instance.GoToTitleScreen();
+        }
+
+        // Debug options
+        public void FullyResetLevel()
+        {
+            Close();
+
+            this.GetLevel()?.GetProgress().ResetProgress();
+            SaveFileManager.Current.CurrentLevelVisit = new();
+
+            LevelTransitionManager.Instance.ReloadCheckpoint();
+        }
+
+        public void AccomplishMission()
+        {
+            Close();
+            GetTree().FindNode<LevelExitCanon>().OnCrystalShattered();
         }
 
         public void EnterTimeTrialMode()
