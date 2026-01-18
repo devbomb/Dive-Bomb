@@ -345,6 +345,7 @@
 "SkyboxEnvironment" "res://Levels/SnapjawSwamp/SnapjawSwampSkybox.tres"
 "TargetLevel" "res://Levels/SnapjawSwamp/SnapjawSwamp.tscn"
 "Text" "Snapjaw Swamp"
+"FairiesRequired" "4"
 }
 // entity 34
 {
