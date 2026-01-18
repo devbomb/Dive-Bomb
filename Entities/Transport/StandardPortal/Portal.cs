@@ -87,9 +87,27 @@ namespace FastDragon
             _stateMachine.ChangeState<Idle>();
         }
 
+        public bool IsUnlocked()
+        {
+            switch (Type)
+            {
+                case PortalType.Boss: return CompletedAllLevelsOfType(PortalType.Level);
+                case PortalType.PostBoss: return CompletedAllLevelsOfType(PortalType.Boss);
+                default: return true;
+            }
+
+            bool CompletedAllLevelsOfType(PortalType type)
+            {
+                return GetTree().Root
+                    .EnumerateDescendantsOfType<Portal>()
+                    .Where(p => p.Type == type)
+                    .All(p => SaveFileManager.Current.LevelExitReached(p.TargetLevel));
+            }
+        }
+
         public void OnBodyEntered(Node3D body)
         {
-            if (body is Player player && !(player.CurrentState is PlayerManhandledState))
+            if (body is Player player && !(player.CurrentState is PlayerManhandledState) && IsUnlocked())
             {
                 PlayEnterAnimation(player);
             }
