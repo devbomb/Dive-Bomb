@@ -38,6 +38,13 @@ namespace FastDragon
             Bonus = 3,
         }
 
+        /// <summary>
+        /// The number of fairies required for this portal to be used.
+        /// This is _in addition_ to the other requirements imposed by
+        /// <see cref="Portal.Type"/>.
+        /// </summary>
+        [Export] public int FairiesRequired;
+
         [Export] public float ExitAnimationDuration = 2.5f;
         [Export] public float ExitAnimationStartHeight = 0;
         [Export] public float ExitAnimationParabolaHeight = 2;
@@ -104,6 +111,9 @@ namespace FastDragon
 
         public bool IsUnlocked()
         {
+            if (SaveFileManager.Current.TotalFairyCount < FairiesRequired)
+                return false;
+
             switch (Type)
             {
                 case PortalType.Boss: return CompletedAllLevelsOfType(PortalType.Level);

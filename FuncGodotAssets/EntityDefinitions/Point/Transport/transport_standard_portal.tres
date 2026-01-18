@@ -9,6 +9,7 @@ target_map_editor = 1
 scene_file = ExtResource("1_wuwau")
 classname = "transport_standard_portal"
 class_properties = {
+"FairiesRequired": 0,
 "SkyboxEnvironment": "",
 "TargetLevel": "",
 "Text": "",
