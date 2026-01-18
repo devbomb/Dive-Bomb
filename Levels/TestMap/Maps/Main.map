@@ -509,5 +509,6 @@
 "TargetLevel" "res://Levels/Tutorial/Tutorial.tscn"
 "SkyboxEnvironment" "res://Levels/BrokenGlassFactory/Skybox.tres"
 "Text" "Tutorial"
+"Type" "3"
 "_tb_group" "1"
 }
