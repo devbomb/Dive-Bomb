@@ -128,6 +128,12 @@ namespace FastDragon
             }
         }
 
+        public void ForceUnlock()
+        {
+            if (_stateMachine.CurrentState is Closed)
+                _stateMachine.ChangeState<Open>();
+        }
+
         public void PlayEnterAnimation(Player player)
         {
             _stateMachine.ChangeState<Entering>();

@@ -134,6 +134,15 @@ namespace FastDragon
             GetTree().FindNode<LevelExitCanon>().OnCrystalShattered();
         }
 
+        public void UnlockPortals()
+        {
+            Close();
+
+            var portals = GetTree().Root.EnumerateDescendantsOfType<Portal>();
+            foreach (var portal in portals)
+                portal.ForceUnlock();
+        }
+
         public void EnterTimeTrialMode()
         {
             Close();

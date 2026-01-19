@@ -180,6 +180,12 @@ size_flags_horizontal = 4
 text = "Accomplish Mission"
 flat = true
 
+[node name="UnlockAllPortals" type="Button" parent="DebugMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Unlock all portals"
+flat = true
+
 [node name="Back" type="Button" parent="DebugMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -202,4 +208,5 @@ flat = true
 [connection signal="pressed" from="DebugMenu/VBoxContainer/FullResetLevel" to="." method="FullyResetLevel"]
 [connection signal="pressed" from="DebugMenu/VBoxContainer/TimeTrialEnter" to="." method="EnterTimeTrialMode"]
 [connection signal="pressed" from="DebugMenu/VBoxContainer/AccomplishMission" to="." method="AccomplishMission"]
+[connection signal="pressed" from="DebugMenu/VBoxContainer/UnlockAllPortals" to="." method="UnlockPortals"]
 [connection signal="pressed" from="DebugMenu/VBoxContainer/Back" to="DebugMenu" method="GoBack"]
