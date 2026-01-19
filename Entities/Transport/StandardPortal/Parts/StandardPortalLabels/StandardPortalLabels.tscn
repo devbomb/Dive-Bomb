@@ -37,10 +37,9 @@ albedo_texture = SubResource("GradientTexture1D_smk44")
 material = SubResource("StandardMaterial3D_lnpha")
 size = Vector2(8, 0.6)
 
-[node name="Labels" type="Node3D" node_paths=PackedStringArray("FrontLabel", "BackLabel", "LabelAnimator")]
+[node name="Labels" type="Node3D" node_paths=PackedStringArray("NameLabel", "LabelAnimator")]
 script = ExtResource("1_ltmmc")
-FrontLabel = NodePath("Holder/FrontLabel")
-BackLabel = NodePath("Holder/BackLabel")
+NameLabel = NodePath("Holder/NameLabel")
 LabelAnimator = NodePath("Holder/LabelAnimator")
 
 [node name="Holder" type="Node3D" parent="."]
@@ -54,22 +53,12 @@ libraries = {
 next/Appear = &"Hover"
 blend_times = [&"Appear", &"Hover", 1.0]
 
-[node name="FrontLabel" type="MeshInstance3D" parent="Holder"]
+[node name="NameLabel" type="MeshInstance3D" parent="Holder"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.312)
 material_override = SubResource("StandardMaterial3D_smk44")
 mesh = SubResource("TextMesh_lle10")
 skeleton = NodePath("../../Front")
 
-[node name="Backdrop" type="MeshInstance3D" parent="Holder/FrontLabel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
-mesh = SubResource("QuadMesh_je0xt")
-
-[node name="BackLabel" type="MeshInstance3D" parent="Holder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.312)
-material_override = SubResource("StandardMaterial3D_smk44")
-mesh = SubResource("TextMesh_lle10")
-skeleton = NodePath("../../Back")
-
-[node name="Backdrop" type="MeshInstance3D" parent="Holder/BackLabel"]
+[node name="Backdrop" type="MeshInstance3D" parent="Holder/NameLabel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_je0xt")
