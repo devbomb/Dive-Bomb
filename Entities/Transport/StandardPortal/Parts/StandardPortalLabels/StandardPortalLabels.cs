@@ -49,7 +49,7 @@ namespace FastDragon
                 _lastFairyCount = totalFairies;
 
                 var fairiesMesh = (TextMesh)FairiesLabel.Mesh;
-                fairiesMesh.Text = $"{totalFairies} / {Portal.FairiesRequired}";
+                fairiesMesh.Text = $"{totalFairies}/{Portal.FairiesRequired}";
             }
         }
 
@@ -88,7 +88,7 @@ namespace FastDragon
                 _lastFairyCount = totalFairies;
 
                 var textMesh = (TextMesh)FairiesLabel.Mesh;
-                textMesh.Text = $"{totalFairies} / {Portal.FairiesRequired}";
+                textMesh.Text = $"{totalFairies}/{Portal.FairiesRequired}";
             }
         }
     }
