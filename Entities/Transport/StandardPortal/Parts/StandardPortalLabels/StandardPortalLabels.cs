@@ -9,15 +9,19 @@ namespace FastDragon
 
         [ExportCategory("Internal")]
         [Export] public MeshInstance3D NameLabel;
+        [Export] public MeshInstance3D FairiesLabel;
         [Export] public AnimationPlayer LabelAnimator;
 
         private bool _generatedLabels = false;
+        private int _lastFairyCount;
 
         public override void _Process(double delta)
         {
             NameLabel.Visible = Portal.IsUnlocked();
 
             FlipTowardCamera();
+
+            UpdateFairiesLabel();
         }
 
         public void ShowLabels()
@@ -34,15 +38,19 @@ namespace FastDragon
             // the editor, hence why it looks like nothing calls this method).
             // That ensures at most one portal is generating text on frame 1 of
             // the level, keeping the hitch short.
-
             if (!_generatedLabels)
             {
                 _generatedLabels = true;
 
                 var nameMesh = (TextMesh)NameLabel.Mesh;
                 nameMesh.Text = Portal.Text;
-            }
 
+                int totalFairies = SaveFileManager.Current.TotalFairyCount;
+                _lastFairyCount = totalFairies;
+
+                var fairiesMesh = (TextMesh)FairiesLabel.Mesh;
+                fairiesMesh.Text = $"{totalFairies} / {Portal.FairiesRequired}";
+            }
         }
 
         public void HideLabels()
@@ -61,6 +69,27 @@ namespace FastDragon
 
             float sign = Mathf.Sign(component);
             Scale = new Vector3(-sign, 1, -sign);
+        }
+
+        private void UpdateFairiesLabel()
+        {
+            int totalFairies = SaveFileManager.Current.TotalFairyCount;
+
+            FairiesLabel.Visible =
+                !Portal.IsUnlocked() &&
+                Portal.FairiesRequired > 0 &&
+                totalFairies < Portal.FairiesRequired;
+
+            if (!_generatedLabels)
+                return;
+
+            if (_lastFairyCount != totalFairies)
+            {
+                _lastFairyCount = totalFairies;
+
+                var textMesh = (TextMesh)FairiesLabel.Mesh;
+                textMesh.Text = $"{totalFairies} / {Portal.FairiesRequired}";
+            }
         }
     }
 }

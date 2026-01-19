@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ced0ovfqwhj2h"]
+[gd_scene load_steps=12 format=3 uid="uid://ced0ovfqwhj2h"]
 
 [ext_resource type="Script" uid="uid://de2ywdtp3mpxw" path="res://Entities/Transport/StandardPortal/Parts/StandardPortalLabels/StandardPortalLabels.cs" id="1_ltmmc"]
 [ext_resource type="AnimationLibrary" uid="uid://b806gdpivx17x" path="res://Entities/Transport/StandardPortal/PortalLabelAnimations.tres" id="2_05a4k"]
@@ -37,9 +37,21 @@ albedo_texture = SubResource("GradientTexture1D_smk44")
 material = SubResource("StandardMaterial3D_lnpha")
 size = Vector2(8, 0.6)
 
-[node name="Labels" type="Node3D" node_paths=PackedStringArray("NameLabel", "LabelAnimator")]
+[sub_resource type="TextMesh" id="TextMesh_ltmmc"]
+resource_local_to_scene = true
+resource_name = "LabelTextMesh"
+text = "0/0"
+font = ExtResource("3_q60ts")
+font_size = 60
+
+[sub_resource type="QuadMesh" id="QuadMesh_ltmmc"]
+material = SubResource("StandardMaterial3D_lnpha")
+size = Vector2(3, 0.6)
+
+[node name="Labels" type="Node3D" node_paths=PackedStringArray("NameLabel", "FairiesLabel", "LabelAnimator")]
 script = ExtResource("1_ltmmc")
 NameLabel = NodePath("Holder/NameLabel")
+FairiesLabel = NodePath("Holder/FairiesLabel")
 LabelAnimator = NodePath("Holder/LabelAnimator")
 
 [node name="Holder" type="Node3D" parent="."]
@@ -55,6 +67,7 @@ blend_times = [&"Appear", &"Hover", 1.0]
 
 [node name="NameLabel" type="MeshInstance3D" parent="Holder"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.312)
+visible = false
 material_override = SubResource("StandardMaterial3D_smk44")
 mesh = SubResource("TextMesh_lle10")
 skeleton = NodePath("../../Front")
@@ -62,3 +75,13 @@ skeleton = NodePath("../../Front")
 [node name="Backdrop" type="MeshInstance3D" parent="Holder/NameLabel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_je0xt")
+
+[node name="FairiesLabel" type="MeshInstance3D" parent="Holder"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.312)
+material_override = SubResource("StandardMaterial3D_smk44")
+mesh = SubResource("TextMesh_ltmmc")
+skeleton = NodePath("../../Front")
+
+[node name="Backdrop" type="MeshInstance3D" parent="Holder/FairiesLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_ltmmc")
