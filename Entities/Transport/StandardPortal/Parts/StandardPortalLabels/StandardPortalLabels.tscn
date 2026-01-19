@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://ced0ovfqwhj2h"]
+
+[ext_resource type="Script" uid="uid://de2ywdtp3mpxw" path="res://Entities/Transport/StandardPortal/Parts/StandardPortalLabels/StandardPortalLabels.cs" id="1_ltmmc"]
+[ext_resource type="AnimationLibrary" uid="uid://b806gdpivx17x" path="res://Entities/Transport/StandardPortal/PortalLabelAnimations.tres" id="2_05a4k"]
+[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="3_q60ts"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smk44"]
+transparency = 1
+albedo_color = Color(0, 0.9329225, 0, 1)
+metallic = 0.57
+metallic_specular = 0.0
+roughness = 0.51
+rim_enabled = true
+
+[sub_resource type="TextMesh" id="TextMesh_lle10"]
+resource_local_to_scene = true
+resource_name = "LabelTextMesh"
+text = "Level Name"
+font = ExtResource("3_q60ts")
+font_size = 60
+
+[sub_resource type="Gradient" id="Gradient_lle10"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.22222222, 0.3935185, 0.6157407, 0.7962963, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6975779, 0, 0, 0, 0.8235294, 0, 0, 0, 0.8235294, 0, 0, 0, 0.6945429, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_smk44"]
+resource_name = "_albedo"
+gradient = SubResource("Gradient_lle10")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnpha"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_smk44")
+
+[sub_resource type="QuadMesh" id="QuadMesh_je0xt"]
+material = SubResource("StandardMaterial3D_lnpha")
+size = Vector2(8, 0.6)
+
+[node name="Labels" type="Node3D" node_paths=PackedStringArray("FrontLabel", "BackLabel", "LabelAnimator")]
+script = ExtResource("1_ltmmc")
+FrontLabel = NodePath("Holder/FrontLabel")
+BackLabel = NodePath("Holder/BackLabel")
+LabelAnimator = NodePath("Holder/LabelAnimator")
+
+[node name="Holder" type="Node3D" parent="."]
+visible = false
+
+[node name="LabelAnimator" type="AnimationPlayer" parent="Holder"]
+deterministic = true
+libraries = {
+&"": ExtResource("2_05a4k")
+}
+next/Appear = &"Hover"
+blend_times = [&"Appear", &"Hover", 1.0]
+
+[node name="FrontLabel" type="MeshInstance3D" parent="Holder"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.312)
+material_override = SubResource("StandardMaterial3D_smk44")
+mesh = SubResource("TextMesh_lle10")
+skeleton = NodePath("../../Front")
+
+[node name="Backdrop" type="MeshInstance3D" parent="Holder/FrontLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_je0xt")
+
+[node name="BackLabel" type="MeshInstance3D" parent="Holder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.312)
+material_override = SubResource("StandardMaterial3D_smk44")
+mesh = SubResource("TextMesh_lle10")
+skeleton = NodePath("../../Back")
+
+[node name="Backdrop" type="MeshInstance3D" parent="Holder/BackLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
+mesh = SubResource("QuadMesh_je0xt")
