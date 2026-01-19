@@ -57,6 +57,7 @@ namespace FastDragon
         [Export] public TextureRect FullScreenPortalCamTexture;
         [Export] public Area3D PlayerDetector;
         [Export] public Node3D[] ThingsToHideWhenClosed = [];
+        [Export] public CollisionShape3D CameraBlocker;
 
         [Export] public StandardPortalLabels Labels;
 
@@ -141,12 +142,16 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
+                Self.CameraBlocker.Disabled = true;
+
                 foreach (var thing in Self.ThingsToHideWhenClosed)
                     thing.Visible = false;
             }
 
             public override void OnStateExited()
             {
+                Self.CameraBlocker.Disabled = false;
+
                 foreach (var thing in Self.ThingsToHideWhenClosed)
                     thing.Visible = true;
             }

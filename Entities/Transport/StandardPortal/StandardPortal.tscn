@@ -67,13 +67,14 @@ _data = {
 &"RESET": SubResource("Animation_lle10")
 }
 
-[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "PlayerDetector", "ThingsToHideWhenClosed", "Labels", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
+[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "PlayerDetector", "ThingsToHideWhenClosed", "CameraBlocker", "Labels", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
 script = ExtResource("1_6lbsj")
 PlayerSpawn = NodePath("PlayerSpawnPoint")
 PortalSurface = NodePath("LevelEntrancePortal/PortalSurface")
 FullScreenPortalCamTexture = NodePath("FullScreenPortalCamTexture")
 PlayerDetector = NodePath("PlayerDetector")
 ThingsToHideWhenClosed = [NodePath("LevelEntrancePortal/PortalSurface"), NodePath("OmniLight3D"), NodePath("LevelEntrancePortal/LightRays")]
+CameraBlocker = NodePath("CameraBlocker/CollisionShape3D")
 Labels = NodePath("Labels")
 PlayerEnterFrontPoint = NodePath("Front/PlayerEnterFrontPoint")
 CameraEnterFrontPath = NodePath("Front/CameraEnterFrontPath/CameraEnterFrontPathFollower")
