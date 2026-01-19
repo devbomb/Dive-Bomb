@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://bl17o4o3beiat" path="res://Entities/Transport/StandardPortal/LevelEntrancePortal.blend" id="2_u61om"]
 [ext_resource type="Script" uid="uid://2c4cobid61l8" path="res://Entities/Transport/StandardPortal/PortalSurface.cs" id="3_smk44"]
-[ext_resource type="Shader" path="res://Entities/Transport/StandardPortal/PortalSurface.gdshader" id="4_lnpha"]
+[ext_resource type="Shader" uid="uid://w4lfqpwrni8i" path="res://Entities/Transport/StandardPortal/PortalSurface.gdshader" id="4_lnpha"]
 [ext_resource type="PackedScene" uid="uid://ced0ovfqwhj2h" path="res://Entities/Transport/StandardPortal/Parts/StandardPortalLabels/StandardPortalLabels.tscn" id="5_u61om"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lle10"]
