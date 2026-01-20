@@ -251,6 +251,7 @@
 "TargetLevel" "res://Levels/SeamonsterBossMap/SeamonsterBossMap.tscn"
 "SkyboxEnvironment" "res://Levels/SeamonsterBossMap/Skybox.tres"
 "Text" "Smackin' Da Kracken"
+"Type" "1"
 }
 // entity 23
 {
@@ -344,6 +345,7 @@
 "SkyboxEnvironment" "res://Levels/SnapjawSwamp/SnapjawSwampSkybox.tres"
 "TargetLevel" "res://Levels/SnapjawSwamp/SnapjawSwamp.tscn"
 "Text" "Snapjaw Swamp"
+"FairiesRequired" "7"
 }
 // entity 34
 {
@@ -508,5 +510,6 @@
 "TargetLevel" "res://Levels/Tutorial/Tutorial.tscn"
 "SkyboxEnvironment" "res://Levels/BrokenGlassFactory/Skybox.tres"
 "Text" "Tutorial"
+"Type" "3"
 "_tb_group" "1"
 }

@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dahuf8m47kslw"]
+[gd_scene load_steps=14 format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://bl17o4o3beiat" path="res://Entities/Transport/StandardPortal/LevelEntrancePortal.blend" id="2_u61om"]
 [ext_resource type="Script" uid="uid://2c4cobid61l8" path="res://Entities/Transport/StandardPortal/PortalSurface.cs" id="3_smk44"]
 [ext_resource type="Shader" uid="uid://w4lfqpwrni8i" path="res://Entities/Transport/StandardPortal/PortalSurface.gdshader" id="4_lnpha"]
-[ext_resource type="AnimationLibrary" uid="uid://b806gdpivx17x" path="res://Entities/Transport/StandardPortal/PortalLabelAnimations.tres" id="5_smk44"]
-[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="6_smk44"]
+[ext_resource type="PackedScene" uid="uid://ced0ovfqwhj2h" path="res://Entities/Transport/StandardPortal/Parts/StandardPortalLabels/StandardPortalLabels.tscn" id="5_u61om"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lle10"]
 size = Vector3(7, 5.5, 2)
@@ -15,38 +14,6 @@ radius = 15.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut6y6"]
 size = Vector3(5.227173, 2.7233887, 0.25)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smk44"]
-transparency = 1
-albedo_color = Color(0, 0.9329225, 0, 1)
-metallic = 0.57
-metallic_specular = 0.0
-roughness = 0.51
-rim_enabled = true
-
-[sub_resource type="TextMesh" id="TextMesh_lle10"]
-resource_local_to_scene = true
-resource_name = "LabelTextMesh"
-text = "Level Name"
-font = ExtResource("6_smk44")
-font_size = 60
-
-[sub_resource type="Gradient" id="Gradient_lle10"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.22222222, 0.3935185, 0.6157407, 0.7962963, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6975779, 0, 0, 0, 0.8235294, 0, 0, 0, 0.8235294, 0, 0, 0, 0.6945429, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_smk44"]
-gradient = SubResource("Gradient_lle10")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnpha"]
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("GradientTexture1D_smk44")
-
-[sub_resource type="QuadMesh" id="QuadMesh_je0xt"]
-material = SubResource("StandardMaterial3D_lnpha")
-size = Vector2(8, 0.6)
 
 [sub_resource type="Curve3D" id="Curve3D_smk44"]
 _data = {
@@ -100,14 +67,15 @@ _data = {
 &"RESET": SubResource("Animation_lle10")
 }
 
-[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "FrontLabel", "BackLabel", "LabelAnimator", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
+[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "PlayerDetector", "ThingsToHideWhenClosed", "CameraBlocker", "Labels", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
 script = ExtResource("1_6lbsj")
 PlayerSpawn = NodePath("PlayerSpawnPoint")
 PortalSurface = NodePath("LevelEntrancePortal/PortalSurface")
 FullScreenPortalCamTexture = NodePath("FullScreenPortalCamTexture")
-FrontLabel = NodePath("Labels/FrontLabel")
-BackLabel = NodePath("Labels/BackLabel")
-LabelAnimator = NodePath("Labels/LabelAnimator")
+PlayerDetector = NodePath("PlayerDetector")
+ThingsToHideWhenClosed = [NodePath("LevelEntrancePortal/PortalSurface"), NodePath("OmniLight3D"), NodePath("LevelEntrancePortal/LightRays")]
+CameraBlocker = NodePath("CameraBlocker/CollisionShape3D")
+Labels = NodePath("Labels")
 PlayerEnterFrontPoint = NodePath("Front/PlayerEnterFrontPoint")
 CameraEnterFrontPath = NodePath("Front/CameraEnterFrontPath/CameraEnterFrontPathFollower")
 PlayerEnterBackPoint = NodePath("Back/PlayerEnterBackPoint")
@@ -149,37 +117,9 @@ shape = SubResource("BoxShape3D_ut6y6")
 [node name="PlayerSpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 
-[node name="Labels" type="Node3D" parent="."]
+[node name="Labels" parent="." node_paths=PackedStringArray("Portal") instance=ExtResource("5_u61om")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19, 0)
-visible = false
-
-[node name="LabelAnimator" type="AnimationPlayer" parent="Labels"]
-deterministic = true
-libraries = {
-&"": ExtResource("5_smk44")
-}
-next/Appear = &"Hover"
-blend_times = [&"Appear", &"Hover", 1.0]
-
-[node name="FrontLabel" type="MeshInstance3D" parent="Labels"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.312)
-material_override = SubResource("StandardMaterial3D_smk44")
-mesh = SubResource("TextMesh_lle10")
-skeleton = NodePath("../../Front")
-
-[node name="Backdrop" type="MeshInstance3D" parent="Labels/FrontLabel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
-mesh = SubResource("QuadMesh_je0xt")
-
-[node name="BackLabel" type="MeshInstance3D" parent="Labels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.312)
-material_override = SubResource("StandardMaterial3D_smk44")
-mesh = SubResource("TextMesh_lle10")
-skeleton = NodePath("../../Back")
-
-[node name="Backdrop" type="MeshInstance3D" parent="Labels/BackLabel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
-mesh = SubResource("QuadMesh_je0xt")
+Portal = NodePath("..")
 
 [node name="Front" type="Node3D" parent="."]
 
@@ -223,8 +163,7 @@ libraries = {
 }
 autoplay = "Pulse"
 
-[connection signal="body_entered" from="LabelEnabler" to="." method="ShowLabels" unbinds=1]
-[connection signal="body_exited" from="LabelEnabler" to="." method="HideLabels" unbinds=1]
-[connection signal="body_entered" from="PlayerDetector" to="." method="OnBodyEntered"]
+[connection signal="body_entered" from="LabelEnabler" to="Labels" method="ShowLabels" unbinds=1]
+[connection signal="body_exited" from="LabelEnabler" to="Labels" method="HideLabels" unbinds=1]
 
 [editable path="LevelEntrancePortal"]

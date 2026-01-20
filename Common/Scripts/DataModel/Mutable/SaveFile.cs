@@ -104,6 +104,10 @@ namespace FastDragon
             return Levels[level];
         }
 
+        public bool LevelExitReached(string level) => GetLevelSaveData(level)
+            .Progress
+            .ExitReached;
+
         public double GetPercentComplete(string levelSceneFile)
         {
             var levelSummary = AtlasCache.Instance.GetEntry(levelSceneFile);

@@ -9,6 +9,42 @@ namespace FastDragon
         [Export(PropertyHint.FilePath)] public string TargetLevel;
         [Export] public string Text;
 
+        [Export(PropertyHint.Enum, "Level,Boss,PostBoss,Bonus")]
+        public PortalType Type;
+        public enum PortalType
+        {
+            /// <summary>
+            /// The player is required to reach this level's exit for the
+            /// <see cref="PortalType.Boss"/> portal to unlock
+            /// </summary>
+            Level = 0,
+
+            /// <summary>
+            /// This portal cannot be used until the player has reached the exit
+            /// in all of this hub world's <see cref="PortalType.Level"/>s.
+            /// </summary>
+            Boss = 1,
+
+            /// <summary>
+            /// This portal cannot be used until the player has reached the exit
+            /// in this hub world's <see cref="PortalType.Boss"/>.
+            /// </summary>
+            PostBoss = 2,
+
+            /// <summary>
+            /// This portal does not lead to any required levels, and no other
+            /// levels are required to use it.
+            /// </summary>
+            Bonus = 3,
+        }
+
+        /// <summary>
+        /// The number of fairies required for this portal to be used.
+        /// This is _in addition_ to the other requirements imposed by
+        /// <see cref="Portal.Type"/>.
+        /// </summary>
+        [Export] public int FairiesRequired;
+
         [Export] public float ExitAnimationDuration = 2.5f;
         [Export] public float ExitAnimationStartHeight = 0;
         [Export] public float ExitAnimationParabolaHeight = 2;
@@ -19,11 +55,11 @@ namespace FastDragon
         [ExportGroup("Internal")]
         [Export] public PortalSurface PortalSurface;
         [Export] public TextureRect FullScreenPortalCamTexture;
+        [Export] public Area3D PlayerDetector;
+        [Export] public Node3D[] ThingsToHideWhenClosed = [];
+        [Export] public CollisionShape3D CameraBlocker;
 
-        [ExportSubgroup("Labels")]
-        [Export] public MeshInstance3D FrontLabel;
-        [Export] public MeshInstance3D BackLabel;
-        [Export] public AnimationPlayer LabelAnimator;
+        [Export] public StandardPortalLabels Labels;
 
         [ExportSubgroup("Front")]
         [Export] public Node3D PlayerEnterFrontPoint;
@@ -49,21 +85,53 @@ namespace FastDragon
             PortalSurface.SetSkybox(_skyboxEnvironment);
 
             SignalBus.Instance.LevelReset += Reset;
-            Reset();
+
+            // Defer resetting to make sure the other portals (and the player!)
+            // are ready
+            Callable.From(() =>
+            {
+                // HACK: Skip resetting if PlayExitAnimation() was called before
+                // this deferred block started.  Otherwise, Reset() will undo
+                // everything PlayExitAnimation() did.
+                if (_stateMachine.CurrentState is not Exiting)
+                    Reset();
+
+            }).CallDeferred();
         }
 
         private void Reset()
         {
-            GetTree().FindNode<Player>().SetVisibleInPortals(false);
-            _stateMachine.ChangeState<Idle>();
+            if (IsUnlocked())
+                _stateMachine.ChangeState<Open>();
+            else
+                _stateMachine.ChangeState<Closed>();
         }
 
-        public void OnBodyEntered(Node3D body)
+        public bool IsUnlocked()
         {
-            if (body is Player player && !(player.CurrentState is PlayerManhandledState))
+            if (SaveFileManager.Current.TotalFairyCount < FairiesRequired)
+                return false;
+
+            switch (Type)
             {
-                PlayEnterAnimation(player);
+                case PortalType.Boss: return CompletedAllLevelsOfType(PortalType.Level);
+                case PortalType.PostBoss: return CompletedAllLevelsOfType(PortalType.Boss);
+                default: return true;
             }
+
+            bool CompletedAllLevelsOfType(PortalType type)
+            {
+                return GetTree().Root
+                    .EnumerateDescendantsOfType<Portal>()
+                    .Where(p => p.Type == type)
+                    .All(p => SaveFileManager.Current.LevelExitReached(p.TargetLevel));
+            }
+        }
+
+        public void ForceUnlock()
+        {
+            if (_stateMachine.CurrentState is Closed)
+                _stateMachine.ChangeState<Open>();
         }
 
         public void PlayEnterAnimation(Player player)
@@ -76,35 +144,50 @@ namespace FastDragon
             _stateMachine.ChangeState<Exiting>();
         }
 
-        public void ShowLabels()
+        private class Closed : State<Portal>
         {
-            // Generating TextMesh text is relatively CPU-intensive; if every
-            // portal were to generate its text all at once at the start of the
-            // level, it would cause a noticeable hitch, which would spoil the
-            // smooth transition illusion.
-            //
-            // Therefore, we defer generating the mesh until the player comes
-            // within some range of the portal(detected via an Area3D placed in
-            // the editor, hence why it looks like nothing calls this method).
-            // That ensures at most one portal is generating text on frame 1 of
-            // the level, keeping the hitch short.
-            LabelAnimator.Play("Appear");
+            public override void OnStateEntered()
+            {
+                Self.CameraBlocker.Disabled = true;
 
-            // FrontLabel and BackLabel have the same non-unique(but still
-            // scene-local) TextMesh assigned to them in the editor, so we only
-            // need to modify one of them to update both of them.
-            var textMesh = (TextMesh)FrontLabel.Mesh;
-            if (textMesh.Text != Text)
-                textMesh.Text = Text;
+                foreach (var thing in Self.ThingsToHideWhenClosed)
+                    thing.Visible = false;
+            }
+
+            public override void OnStateExited()
+            {
+                Self.CameraBlocker.Disabled = false;
+
+                foreach (var thing in Self.ThingsToHideWhenClosed)
+                    thing.Visible = true;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                if (Self.IsUnlocked())
+                    ChangeState<Open>();
+            }
         }
 
-        public void HideLabels()
+        private class Open : State<Portal>
         {
-            LabelAnimator.Play("Disappear");
-        }
+            public override void SubscribeToSignals()
+            {
+                Self.PlayerDetector.BodyEntered += OnBodyEntered;
+            }
 
-        private class Idle : State<Portal>
-        {
+            public override void UnsubscribeFromSignals()
+            {
+                Self.PlayerDetector.BodyEntered -= OnBodyEntered;
+            }
+
+            private void OnBodyEntered(Node3D body)
+            {
+                if (body is Player player && !(player.CurrentState is PlayerManhandledState))
+                {
+                    Self.PlayEnterAnimation(player);
+                }
+            }
         }
 
         private class Entering : State<Portal>
@@ -122,7 +205,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                Self.HideLabels();
+                Self.Labels.HideLabels();
 
                 _player = GetTree().FindNode<Player>();
                 _player.ChangeState<PlayerManhandledState>();
@@ -276,12 +359,19 @@ namespace FastDragon
 
                 if (_timer > Self.ExitAnimationDuration)
                 {
+                    // Move the player to the end position and release them.
+                    // We are explicitly doing this HERE instead of
+                    // OnStateExited() to avoid overwriting the player's
+                    // position during a level reset.
                     var player = GetTree().FindNode<Player>();
                     player.GlobalPosition = Self.PlayerSpawn.GlobalPosition;
                     player.ResetPhysicsInterpolation3D();
                     player.ChangeState<PlayerStandState>();
 
-                    ChangeState<Idle>();
+                    if (Self.IsUnlocked())
+                        ChangeState<Open>();
+                    else
+                        ChangeState<Closed>();
                 }
             }
 
