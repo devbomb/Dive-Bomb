@@ -13,6 +13,9 @@ namespace FastDragon
         [Export] public string VentId;
         [Export] public string TargetVentId;
 
+        [ExportCategory("Internal")]
+        [Export] public RayCast3D CameraObstructionDetector;
+
         private readonly StateMachine _stateMachine = new StateMachine();
 
         private Node3D _spawnPoint => GetNode<Node3D>("%SpawnPoint");
@@ -110,6 +113,12 @@ namespace FastDragon
                 _camTimer = 0;
                 _cameraStart = Player.Camera.GlobalTransform;
                 _cameraEnd = ClosestCameraPoint().GlobalTransform;
+
+                // Don't let the camera clip into a wall
+                var raycast = Self.CameraObstructionDetector;
+                raycast.TargetPosition = _cameraEnd.Origin - raycast.GlobalPosition;
+                raycast.ForceRaycastUpdate();
+                _cameraEnd = _cameraEnd.WithOrigin(raycast.GetCollisionPoint());
 
                 Self._cutsceneCam.GlobalTransform = _cameraStart;
                 Self._cutsceneCam.MakeCurrent();
