@@ -7,9 +7,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tm4a3"]
 
-[node name="Vent" type="Node3D" node_paths=PackedStringArray("CameraObstructionDetector")]
+[node name="Vent" type="Node3D" node_paths=PackedStringArray("RaycastStartPoint")]
 script = ExtResource("1_1m5e1")
-CameraObstructionDetector = NodePath("CameraObstructionDetector")
+RaycastStartPoint = NodePath("RaycastStartPoint")
 
 [node name="CrawlSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -53,9 +53,7 @@ transform = Transform3D(-0.364877, 0.478136, -0.798906, 0, 0.858065, 0.513541, 0
 [node name="CutsceneCam" type="Camera3D" parent="." groups=["PhysicsInterpolated"]]
 unique_name_in_owner = true
 
-[node name="CameraObstructionDetector" type="RayCast3D" parent="."]
+[node name="RaycastStartPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8719244, -0.8645516)
-collision_mask = 2
-hit_from_inside = true
 
 [connection signal="body_entered" from="Area3D" to="." method="OnAreaEntered"]

@@ -14,7 +14,7 @@ namespace FastDragon
         [Export] public string TargetVentId;
 
         [ExportCategory("Internal")]
-        [Export] public RayCast3D CameraObstructionDetector;
+        [Export] public Node3D RaycastStartPoint;
 
         private readonly StateMachine _stateMachine = new StateMachine();
 
@@ -137,13 +137,23 @@ namespace FastDragon
                 {
                     Node3D point = ClosestCameraPoint();
 
-                    var raycast = Self.CameraObstructionDetector;
-                    raycast.TargetPosition = point.GlobalPosition - raycast.GlobalPosition;
-                    raycast.ForceRaycastUpdate();
+                    var spaceState = Self.GetWorld3D().DirectSpaceState;
+                    var query = PhysicsRayQueryParameters3D.Create(
+                        Self.RaycastStartPoint.GlobalPosition,
+                        point.GlobalPosition,
+                        2
+                    );
+                    var raycastResult = spaceState.IntersectRay(query);
 
-                    return Transform3D.Identity
-                        .Rotated(point.Quaternion.GetAxis(), point.Quaternion.GetAngle())
-                        .Translated(raycast.GetCollisionPoint());
+                    if (!raycastResult.Any())
+                        return point.GlobalTransform;
+
+                    var position = raycastResult["position"].AsVector3();
+
+                    return point
+                        .GlobalTransform
+                        .Translated(point.GlobalPosition - position)
+                        .Orthonormalized();
                 }
             }
 
