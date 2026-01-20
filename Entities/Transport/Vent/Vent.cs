@@ -112,13 +112,7 @@ namespace FastDragon
 
                 _camTimer = 0;
                 _cameraStart = Player.Camera.GlobalTransform;
-                _cameraEnd = ClosestCameraPoint().GlobalTransform;
-
-                // Don't let the camera clip into a wall
-                var raycast = Self.CameraObstructionDetector;
-                raycast.TargetPosition = _cameraEnd.Origin - raycast.GlobalPosition;
-                raycast.ForceRaycastUpdate();
-                _cameraEnd = _cameraEnd.WithOrigin(raycast.GetCollisionPoint());
+                _cameraEnd = EndPoint();
 
                 Self._cutsceneCam.GlobalTransform = _cameraStart;
                 Self._cutsceneCam.MakeCurrent();
@@ -137,6 +131,19 @@ namespace FastDragon
                     return leftDist < rightDist
                         ? Self._cameraPointLeft
                         : Self._cameraPointRight;
+                }
+
+                Transform3D EndPoint()
+                {
+                    Node3D point = ClosestCameraPoint();
+
+                    var raycast = Self.CameraObstructionDetector;
+                    raycast.TargetPosition = point.GlobalPosition - raycast.GlobalPosition;
+                    raycast.ForceRaycastUpdate();
+
+                    return Transform3D.Identity
+                        .Rotated(point.Quaternion.GetAxis(), point.Quaternion.GetAngle())
+                        .Translated(raycast.GetCollisionPoint());
                 }
             }
 
