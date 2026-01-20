@@ -13,6 +13,9 @@ namespace FastDragon
         [Export] public string VentId;
         [Export] public string TargetVentId;
 
+        [ExportCategory("Internal")]
+        [Export] public Node3D RaycastStartPoint;
+
         private readonly StateMachine _stateMachine = new StateMachine();
 
         private Node3D _spawnPoint => GetNode<Node3D>("%SpawnPoint");

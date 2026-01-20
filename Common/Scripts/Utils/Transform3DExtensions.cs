@@ -12,5 +12,10 @@ namespace FastDragon
                 .Rotated(Vector3.Up, yRotRad)
                 .Translated(transform.Origin);
         }
+
+        public static Transform3D WithOrigin(this Transform3D transform, Vector3 origin)
+        {
+            return Transform3D.Identity.Translated(-transform.Origin + origin);
+        }
     }
 }
