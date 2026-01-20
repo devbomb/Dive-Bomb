@@ -1,4 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
 using Godot;
 
 namespace FastDragon
@@ -13,6 +12,9 @@ namespace FastDragon
         /// to physically move the player's starting point.
         /// </summary>
         [Export] public bool DebugSpawnHere;
+
+        [ExportCategory("Internal")]
+        [Export] public AnimationPlayer LabelAnimator;
 
         public bool IsCurrent => SaveFileManager.Current
             .CurrentLevelVisit
@@ -49,6 +51,9 @@ namespace FastDragon
 
         private void Activate(Player player)
         {
+            if (!IsCurrent && !this.IsTimeTrialMode())
+                LabelAnimator.Play("Activated");
+
             SaveFileManager.Current.CurrentLevelVisit.LastCheckpoint = CheckpointName;
             player.Health = Player.MaxHealth;
 
