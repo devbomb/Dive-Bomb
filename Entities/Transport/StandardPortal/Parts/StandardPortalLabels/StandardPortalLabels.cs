@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -10,6 +11,7 @@ namespace FastDragon
         [ExportCategory("Internal")]
         [Export] public MeshInstance3D NameLabel;
         [Export] public MeshInstance3D FairiesLabel;
+        [Export] public MeshInstance3D BossLevelCountLabel;
         [Export] public AnimationPlayer LabelAnimator;
 
         private bool _generatedLabels = false;
@@ -17,9 +19,13 @@ namespace FastDragon
 
         public override void _Process(double delta)
         {
+            FlipTowardCamera();
+
             NameLabel.Visible = Portal.IsUnlocked();
 
-            FlipTowardCamera();
+            BossLevelCountLabel.Visible =
+                !Portal.IsUnlocked() &&
+                Portal.Type == Portal.PortalType.Boss;
 
             UpdateFairiesLabel();
         }
@@ -42,14 +48,29 @@ namespace FastDragon
             {
                 _generatedLabels = true;
 
+                // Name label
                 var nameMesh = (TextMesh)NameLabel.Mesh;
                 nameMesh.Text = Portal.Text;
 
+                // Fairy count label
                 int totalFairies = SaveFileManager.Current.TotalFairyCount;
                 _lastFairyCount = totalFairies;
 
                 var fairiesMesh = (TextMesh)FairiesLabel.Mesh;
                 fairiesMesh.Text = $"{totalFairies}/{Portal.FairiesRequired}";
+
+                // Boss level count label
+                var levelPortals = GetTree()
+                    .Root
+                    .EnumerateDescendantsOfType<Portal>()
+                    .Where(p => p.Type == Portal.PortalType.Level)
+                    .ToArray();
+
+                int completedLevels = levelPortals
+                    .Count(p => SaveFileManager.Current.LevelExitReached(p.TargetLevel));
+
+                var levelCountMesh = (TextMesh)BossLevelCountLabel.Mesh;
+                levelCountMesh.Text = $"{completedLevels}/{levelPortals.Length}";
             }
         }
 

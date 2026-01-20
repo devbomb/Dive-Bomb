@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ced0ovfqwhj2h"]
+[gd_scene load_steps=20 format=3 uid="uid://ced0ovfqwhj2h"]
 
 [ext_resource type="Script" uid="uid://de2ywdtp3mpxw" path="res://Entities/Transport/StandardPortal/Parts/StandardPortalLabels/StandardPortalLabels.cs" id="1_ltmmc"]
 [ext_resource type="AnimationLibrary" uid="uid://b806gdpivx17x" path="res://Entities/Transport/StandardPortal/PortalLabelAnimations.tres" id="2_05a4k"]
@@ -65,10 +65,30 @@ _data = {
 &"RESET": ExtResource("4_o37ll")
 }
 
-[node name="Labels" type="Node3D" node_paths=PackedStringArray("NameLabel", "FairiesLabel", "LabelAnimator")]
+[sub_resource type="TextMesh" id="TextMesh_cfnpw"]
+resource_local_to_scene = true
+resource_name = "LabelTextMesh"
+text = "0/4"
+font = ExtResource("3_q60ts")
+font_size = 60
+
+[sub_resource type="TextMesh" id="TextMesh_o37ll"]
+resource_local_to_scene = true
+resource_name = "LabelTextMesh"
+text = "Beat all levels
+to unlock boss"
+font = ExtResource("3_q60ts")
+font_size = 60
+
+[sub_resource type="QuadMesh" id="QuadMesh_o37ll"]
+material = SubResource("StandardMaterial3D_lnpha")
+size = Vector2(7, 2.25)
+
+[node name="Labels" type="Node3D" node_paths=PackedStringArray("NameLabel", "FairiesLabel", "BossLevelCountLabel", "LabelAnimator")]
 script = ExtResource("1_ltmmc")
 NameLabel = NodePath("Holder/NameLabel")
 FairiesLabel = NodePath("Holder/FairiesLabel")
+BossLevelCountLabel = NodePath("Holder/BossLevelCountLabel")
 LabelAnimator = NodePath("Holder/LabelAnimator")
 
 [node name="Holder" type="Node3D" parent="."]
@@ -95,6 +115,7 @@ mesh = SubResource("QuadMesh_je0xt")
 
 [node name="FairiesLabel" type="MeshInstance3D" parent="Holder"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.312)
+visible = false
 material_override = SubResource("StandardMaterial3D_smk44")
 mesh = SubResource("TextMesh_ltmmc")
 skeleton = NodePath("../../Front")
@@ -116,3 +137,19 @@ autoplay = "Hovering"
 
 [node name="Fairy" parent="Holder/FairiesLabel/FairyModel" instance=ExtResource("4_05a4k")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+
+[node name="BossLevelCountLabel" type="MeshInstance3D" parent="Holder"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.708447, -1.312)
+material_override = SubResource("StandardMaterial3D_smk44")
+mesh = SubResource("TextMesh_cfnpw")
+skeleton = NodePath("../../Front")
+
+[node name="Instructions" type="MeshInstance3D" parent="Holder/BossLevelCountLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2208697, 0)
+material_override = SubResource("StandardMaterial3D_smk44")
+mesh = SubResource("TextMesh_o37ll")
+skeleton = NodePath("../../Front")
+
+[node name="Backdrop" type="MeshInstance3D" parent="Holder/BossLevelCountLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.805, -0.5)
+mesh = SubResource("QuadMesh_o37ll")
