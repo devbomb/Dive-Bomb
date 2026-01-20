@@ -320,6 +320,8 @@ transform = Transform3D(3, 0, 0, 0, -1.31134e-07, -3, 0, 3, -1.31134e-07, 0, 0.0
 texture = SubResource("GradientTexture2D_elpmb")
 
 [node name="Control" type="Control" parent="."]
+z_index = -1
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
