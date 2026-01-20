@@ -127,6 +127,25 @@
 ( 464 640 -64 ) ( 256 640 -80 ) ( 464 640 -80 ) Textures/PleasingStoneTiles 0 0 0 1 1
 ( 464 544 -64 ) ( 464 432 -80 ) ( 464 432 -64 ) Textures/PleasingStoneTiles 0 0 0 1 1
 }
+// brush 14
+{
+( -176 -528 -80 ) ( -192 -512 -80 ) ( -176 -528 -64 ) Textures/GridSquare 0 0 0 1 1
+( -176 -528 -64 ) ( -96 -528 -64 ) ( -176 -528 -80 ) Textures/GridSquare 0 0 0 1 1
+( -176 -528 -80 ) ( -96 -528 -80 ) ( -192 -512 -80 ) Textures/GridSquare 0 0 0 1 1
+( -192 -512 -64 ) ( -32 -512 -64 ) ( -176 -528 -64 ) Textures/GridSquare 0 0 0 1 1
+( -192 -512 -80 ) ( -32 -512 -80 ) ( -192 -512 -64 ) Textures/GridSquare 0 0 0 1 1
+( -96 -528 -80 ) ( -96 -528 -64 ) ( -32 -512 -80 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 15
+{
+( -64 -520 -64 ) ( -48 -528 -64 ) ( -64 -520 -80 ) Textures/GridSquare 0 0 0 1 1
+( -32 -512 -64 ) ( -64 -520 -64 ) ( -32 -512 -80 ) Textures/GridSquare 0 0 0 1 1
+( -32 -528 -80 ) ( -48 -528 -80 ) ( -32 -528 -64 ) Textures/GridSquare 0 0 0 1 1
+( -32 -512 -80 ) ( -64 -520 -80 ) ( -16 -512 -80 ) Textures/GridSquare 0 0 0 1 1
+( -32 -528 -64 ) ( -48 -528 -64 ) ( -16 -512 -64 ) Textures/GridSquare 0 0 0 1 1
+( -16 -512 -64 ) ( -32 -512 -64 ) ( -16 -512 -80 ) Textures/GridSquare 0 0 0 1 1
+( -16 -512 -64 ) ( -16 -512 -80 ) ( -32 -528 -64 ) Textures/GridSquare 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -235,12 +254,12 @@
 "classname" "hazard_death_barrier"
 // brush 0
 {
-( -1568 1088 -144 ) ( -1568 -1360 -144 ) ( -1568 -1360 -160 ) __TB_empty 0 0 0 1 1
-( -1568 -1360 -144 ) ( 1616 -1360 -144 ) ( 1616 -1360 -160 ) __TB_empty 0 0 0 1 1
-( 1616 -1360 -160 ) ( 1616 1088 -160 ) ( -1568 1088 -160 ) __TB_empty 0 0 0 1 1
-( -1568 1088 -144 ) ( 1616 1088 -144 ) ( 1616 -1360 -144 ) __TB_empty 0 0 0 1 1
-( 1616 1088 -160 ) ( 1616 1088 -144 ) ( -1568 1088 -144 ) __TB_empty 0 0 0 1 1
-( 1616 -1360 -144 ) ( 1616 1088 -144 ) ( 1616 1088 -160 ) __TB_empty 0 0 0 1 1
+( -1568 1088 -240 ) ( -1568 -1360 -240 ) ( -1568 -1360 -256 ) __TB_empty 0 0 0 1 1
+( -1568 -1360 -240 ) ( 1616 -1360 -240 ) ( 1616 -1360 -256 ) __TB_empty 0 0 0 1 1
+( 1616 -1360 -256 ) ( 1616 1088 -256 ) ( -1568 1088 -256 ) __TB_empty 0 0 0 1 1
+( -1568 1088 -240 ) ( 1616 1088 -240 ) ( 1616 -1360 -240 ) __TB_empty 0 0 0 1 1
+( 1616 1088 -256 ) ( 1616 1088 -240 ) ( -1568 1088 -240 ) __TB_empty 0 0 0 1 1
+( 1616 -1360 -240 ) ( 1616 1088 -240 ) ( 1616 1088 -256 ) __TB_empty 0 0 0 1 1
 }
 }
 // entity 22
@@ -348,15 +367,6 @@
 "FairiesRequired" "7"
 }
 // entity 34
-{
-"classname" "transport_standard_portal"
-"origin" "-136 -472 -64"
-"angles" "0 90 0"
-"TargetLevel" "res://Levels/PlagiarismCanyon/PlagiarismCanyon.tscn"
-"SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
-"Text" "Plagiarism Canyon"
-}
-// entity 35
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -502,7 +512,7 @@
 ( -288 16 0 ) ( -272 0 -8 ) ( -272 0 0 ) Textures/GridSquare -12.686279 0 0 1 1
 }
 }
-// entity 36
+// entity 35
 {
 "classname" "transport_standard_portal"
 "origin" "-308 -48 0"
@@ -512,4 +522,67 @@
 "Text" "Tutorial"
 "Type" "3"
 "_tb_group" "1"
+}
+// entity 36
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "PlagiarismCanyonHidingPlace"
+"_tb_id" "2"
+"_tb_linked_group_id" "{a3f17a67-a39b-4b1e-9708-60d5c05156b1}"
+"_tb_transformation" "1 0 0 -16 0 1 0 -32 0 0 1 -32 0 0 0 1"
+// brush 0
+{
+( -208 -512 -208 ) ( -208 -511 -208 ) ( -208 -512 -207 ) Textures/GridSquare 0 0 0 1 1
+( -208 -512 -208 ) ( -208 -512 -207 ) ( -207 -512 -208 ) Textures/GridSquare 0 0 0 1 1
+( -208 -512 -192 ) ( -207 -512 -192 ) ( -208 -511 -192 ) Textures/GridSquare 0 0 0 1 1
+( -192 -400 -80 ) ( -192 -399 -80 ) ( -191 -400 -80 ) Textures/GridSquare 0 0 0 1 1
+( -192 -240 -112 ) ( -191 -240 -112 ) ( -192 -240 -111 ) Textures/GridSquare 0 0 0 1 1
+( -192 -400 -112 ) ( -192 -400 -111 ) ( -192 -399 -112 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 1
+{
+( -192 -256 -192 ) ( -192 -255 -192 ) ( -192 -256 -191 ) Textures/GridSquare 0 0 0 1 1
+( -144 -256 -192 ) ( -144 -256 -191 ) ( -143 -256 -192 ) Textures/GridSquare 0 0 0 1 1
+( -144 -256 -192 ) ( -143 -256 -192 ) ( -144 -255 -192 ) Textures/GridSquare 0 0 0 1 1
+( -48 -240 -80 ) ( -48 -239 -80 ) ( -47 -240 -80 ) Textures/GridSquare 0 0 0 1 1
+( -48 -240 -112 ) ( -47 -240 -112 ) ( -48 -240 -111 ) Textures/GridSquare 0 0 0 1 1
+( -16 -240 -112 ) ( -16 -240 -111 ) ( -16 -239 -112 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 2
+{
+( -16 -512 -208 ) ( -16 -511 -208 ) ( -16 -512 -207 ) Textures/GridSquare 0 0 0 1 1
+( -16 -512 -208 ) ( -16 -512 -207 ) ( -15 -512 -208 ) Textures/GridSquare 0 0 0 1 1
+( -16 -512 -192 ) ( -15 -512 -192 ) ( -16 -511 -192 ) Textures/GridSquare 0 0 0 1 1
+( 0 -400 -80 ) ( 0 -399 -80 ) ( 1 -400 -80 ) Textures/GridSquare 0 0 0 1 1
+( 0 -240 -112 ) ( 1 -240 -112 ) ( 0 -240 -111 ) Textures/GridSquare 0 0 0 1 1
+( 0 -400 -112 ) ( 0 -400 -111 ) ( 0 -399 -112 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 3
+{
+( -208 -520 -192 ) ( -208 -424 -208 ) ( -208 -424 -192 ) Textures/GridSquare 0 0 0 1 1
+( -64 -512 -192 ) ( -160 -512 -208 ) ( -160 -512 -192 ) Textures/GridSquare 0 0 0 1 1
+( -64 -424 -208 ) ( -160 -520 -208 ) ( -64 -520 -208 ) Textures/GridSquare 0 0 0 1 1
+( -64 -424 -192 ) ( -160 -520 -192 ) ( -160 -424 -192 ) Textures/GridSquare 0 0 0 1 1
+( -64 -240 -192 ) ( -160 -240 -208 ) ( -64 -240 -208 ) Textures/GridSquare 0 0 0 1 1
+( 0 -424 -192 ) ( 0 -520 -208 ) ( 0 -520 -192 ) Textures/GridSquare 0 0 0 1 1
+}
+}
+// entity 37
+{
+"classname" "transport_standard_portal"
+"origin" "-104 -440 -192"
+"angles" "0 90 0"
+"TargetLevel" "res://Levels/PlagiarismCanyon/PlagiarismCanyon.tscn"
+"SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
+"Text" "Plagiarism Canyon"
+"_tb_group" "2"
+}
+// entity 38
+{
+"classname" "transport_vent"
+"origin" "-104 -264 -136"
+"angle" "270"
+"TargetVentId" "transport_ventA"
+"VentId" "PlagiarismCanyonEscape"
 }
