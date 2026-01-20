@@ -42,16 +42,26 @@ shape = SubResource("BoxShape3D_tm4a3")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.572862)
 
-[node name="CameraPointLeft" type="Marker3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(-0.364835, -0.478114, 0.798939, 0, 0.858084, 0.513509, -0.931072, 0.187346, -0.313059, 4.94085, 4.03543, -2.81124)
-
-[node name="CameraPointRight" type="Marker3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(-0.364877, 0.478136, -0.798906, 0, 0.858065, 0.513541, 0.931056, 0.187379, -0.313088, -4.941, 4.035, -2.811)
-
 [node name="CutsceneCam" type="Camera3D" parent="." groups=["PhysicsInterpolated"]]
 unique_name_in_owner = true
+
+[node name="RightSpringArm" type="SpringArm3D" parent="."]
+transform = Transform3D(-0.36716068, 0.4752814, -0.7995633, -0.0008658056, 0.85942435, 0.51126266, 0.93015635, 0.18840781, -0.31513578, 0, 0.8719244, -0.8645516)
+collision_mask = 2
+spring_length = 6.181
+
+[node name="CameraPointRight" type="Marker3D" parent="RightSpringArm"]
+unique_name_in_owner = true
+transform = Transform3D(0.99999774, -0.0020038635, 0.0016615093, 0.0019990057, 0.9999947, 0.00265624, -0.0016668141, -0.0026531965, 0.99999416, 0.0009011626, 0.0033333302, 6.181191)
+
+[node name="LeftSpringArm" type="SpringArm3D" parent="."]
+transform = Transform3D(0.25877854, 0.5403999, 0.8006253, 0.17609574, -0.84136295, 0.5109783, 0.9497497, 0.008756513, -0.3128886, 0, 0.8719244, -0.8645516)
+collision_mask = 2
+spring_length = 6.181
+
+[node name="CameraPointLeft" type="Marker3D" parent="LeftSpringArm"]
+unique_name_in_owner = true
+transform = Transform3D(-0.9786961, 0.205311, -0.00015297532, -0.2053096, -0.9786919, -0.0030424828, -0.00077456236, -0.0029464923, 0.99999624, -0.013200402, -0.008667052, 6.1813545)
 
 [node name="RaycastStartPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8719244, -0.8645516)

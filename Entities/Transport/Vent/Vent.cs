@@ -112,7 +112,7 @@ namespace FastDragon
 
                 _camTimer = 0;
                 _cameraStart = Player.Camera.GlobalTransform;
-                _cameraEnd = EndPoint();
+                _cameraEnd = ClosestCameraPoint().GlobalTransform;
 
                 Self._cutsceneCam.GlobalTransform = _cameraStart;
                 Self._cutsceneCam.MakeCurrent();
@@ -131,29 +131,6 @@ namespace FastDragon
                     return leftDist < rightDist
                         ? Self._cameraPointLeft
                         : Self._cameraPointRight;
-                }
-
-                Transform3D EndPoint()
-                {
-                    Node3D point = ClosestCameraPoint();
-
-                    var spaceState = Self.GetWorld3D().DirectSpaceState;
-                    var query = PhysicsRayQueryParameters3D.Create(
-                        Self.RaycastStartPoint.GlobalPosition,
-                        point.GlobalPosition,
-                        2
-                    );
-                    var raycastResult = spaceState.IntersectRay(query);
-
-                    if (!raycastResult.Any())
-                        return point.GlobalTransform;
-
-                    var position = raycastResult["position"].AsVector3();
-
-                    return point
-                        .GlobalTransform
-                        .Translated(point.GlobalPosition - position)
-                        .Orthonormalized();
                 }
             }
 
