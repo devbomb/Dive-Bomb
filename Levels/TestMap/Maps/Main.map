@@ -576,6 +576,8 @@
 "TargetLevel" "res://Levels/PlagiarismCanyon/PlagiarismCanyon.tscn"
 "SkyboxEnvironment" "res://Levels/PlagiarismCanyon/Skybox.tres"
 "Text" "Plagiarism Canyon"
+"FairiesRequired" "0"
+"Type" "3"
 "_tb_group" "2"
 }
 // entity 38
