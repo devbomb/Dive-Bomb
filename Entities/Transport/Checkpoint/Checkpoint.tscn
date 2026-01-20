@@ -211,8 +211,8 @@ tracks/1/path = NodePath("Label:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.6333333, 1.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 1.0666667, 1.4999999),
+"transitions": PackedFloat32Array(1, 1, 0.35355362, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
@@ -235,10 +235,10 @@ tracks/3/path = NodePath("Label:offset_right")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.6999999, 1.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [0.0, -1205.0]
+"values": []
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -247,10 +247,10 @@ tracks/4/path = NodePath("Label:scale")
 tracks/4/interp = 2
 tracks/4/loop_wrap = false
 tracks/4/keys = {
-"times": PackedFloat32Array(0.10000001, 0.16666667, 0.43333334, 0.53333336, 1.3666667, 1.4333333, 1.5333333, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.10000001, 0.16666667, 0.43333334, 0.53333336, 1.2333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(1.25, 1)]
+"values": [Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qafqu"]
