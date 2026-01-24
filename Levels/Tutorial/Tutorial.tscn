@@ -366,10 +366,9 @@ script = ExtResource("14_4f2gc")
 TriggerName = "DrMonocleIntroSkipSpeech"
 metadata/_custom_type_script = "uid://cdqcpmgk2hqiu"
 
-[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" node_paths=PackedStringArray("BackgroundMusicPlayer") instance=ExtResource("15_ym3l3")]
+[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" node_paths=PackedStringArray("BackgroundMusicPlayer", "StartSpeechTrigger", "SkipSpeechTrigger") instance=ExtResource("15_ym3l3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27.539627, 5.927231, 0.35410118)
 BackgroundMusicPlayer = NodePath("../../BackgroundMusicPlayer")
 EscapeMusic = ExtResource("20_lu0qh")
-
-[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/SpeechStartTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="StartCutscene"]
-[connection signal="NamedTriggerEntered" from="DrMonocleSpeech/SkipSpeechTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="SkipCutscene"]
+StartSpeechTrigger = NodePath("../SpeechStartTriggerZoneListener")
+SkipSpeechTrigger = NodePath("../SkipSpeechTriggerZoneListener")

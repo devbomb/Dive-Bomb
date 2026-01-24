@@ -9,6 +9,9 @@ namespace FastDragon.Levels.Tutorial
         [Export] public BackgroundMusicPlayer BackgroundMusicPlayer;
         [Export] public AudioStream EscapeMusic;
 
+        [Export] public NamedTriggerZoneListener StartSpeechTrigger;
+        [Export] public NamedTriggerZoneListener SkipSpeechTrigger;
+
         private const string StoryFlagId = "DrMonocleIntroSpeechCutsceneFinished";
 
         private StateMachine _stateMachine = new();
@@ -45,25 +48,6 @@ namespace FastDragon.Levels.Tutorial
                 _stateMachine.ChangeState<Idle>();
         }
 
-        public void StartCutscene()
-        {
-            if (_stateMachine.CurrentState is Idle)
-            {
-                if (IsStoryFlagSet() || this.IsTimeTrialMode())
-                    _stateMachine.ChangeState<Finished>();
-                else
-                    _stateMachine.ChangeState<Playing>();
-            }
-        }
-
-        public void SkipCutscene()
-        {
-            if (_stateMachine.CurrentState is Playing)
-            {
-                _stateMachine.ChangeState<Skipping>();
-            }
-        }
-
         private bool IsStoryFlagSet() => this.GetLevel()
             .GetProgress()
             .StoryFlags
@@ -90,6 +74,24 @@ namespace FastDragon.Levels.Tutorial
                 Self._entranceDoor.InstantOpen();
                 Self._exitDoor.InstantClose();
             }
+
+            public override void SubscribeToSignals()
+            {
+                Self.StartSpeechTrigger.NamedTriggerEntered += StartSpeech;
+            }
+
+            public override void UnsubscribeFromSignals()
+            {
+                Self.StartSpeechTrigger.NamedTriggerEntered -= StartSpeech;
+            }
+
+            private void StartSpeech()
+            {
+                if (Self.IsStoryFlagSet() || Self.IsTimeTrialMode())
+                    ChangeState<Finished>();
+                else
+                    ChangeState<Playing>();
+            }
         }
 
         private class Playing : State<DrMonocleIntroSpeechCutscene>
@@ -106,12 +108,27 @@ namespace FastDragon.Levels.Tutorial
                 Self._entranceDoor.StartClosing();
             }
 
+            public override void SubscribeToSignals()
+            {
+                Self.SkipSpeechTrigger.NamedTriggerEntered += SkipSpeech;
+            }
+
+            public override void UnsubscribeFromSignals()
+            {
+                Self.SkipSpeechTrigger.NamedTriggerEntered -= SkipSpeech;
+            }
+
             public override void _PhysicsProcess(double delta)
             {
                 _timer -= delta;
 
                 if (_timer <= 0)
                     ChangeState<Finished>();
+            }
+
+            private void SkipSpeech()
+            {
+                ChangeState<Skipping>();
             }
         }
 
