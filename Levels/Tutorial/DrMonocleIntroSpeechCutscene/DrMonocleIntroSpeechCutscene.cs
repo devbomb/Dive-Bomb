@@ -14,7 +14,8 @@ namespace FastDragon.Levels.Tutorial
 
         private static class StoryFlags
         {
-            public const string SpeechFinished = "DrMonocleIntroSpeechCutsceneFinished";
+            public const string SpeechSeen = "DrMonocleIntroSpeechSeen";
+            public const string SpeechCheckpointed = "DrMonocleIntroSpeechCheckpointed";
         }
 
         private StateMachine _stateMachine = new();
@@ -45,7 +46,7 @@ namespace FastDragon.Levels.Tutorial
 
         private void Reset()
         {
-            if (IsFlagSet(StoryFlags.SpeechFinished))
+            if (IsFlagSet(StoryFlags.SpeechCheckpointed))
                 _stateMachine.ChangeState<Finished>();
             else
                 _stateMachine.ChangeState<Idle>();
@@ -90,10 +91,15 @@ namespace FastDragon.Levels.Tutorial
 
             private void StartSpeech()
             {
-                if (Self.IsFlagSet(StoryFlags.SpeechFinished) || Self.IsTimeTrialMode())
+                // Skip straight to the end of the speech if the player
+                // has already seen it.
+                if (Self.IsFlagSet(StoryFlags.SpeechSeen) || Self.IsTimeTrialMode())
+                {
                     ChangeState<Finished>();
-                else
-                    ChangeState<Playing>();
+                    return;
+                }
+
+                ChangeState<Playing>();
             }
         }
 
@@ -142,13 +148,30 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech skipping");
-                Self.SetFlag(StoryFlags.SpeechFinished);
+                Self.SetFlag(StoryFlags.SpeechSeen);
+
                 Self.AnimationPlayer.Play("Skipping");
 
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
 
                 Self._entranceDoor.StartOpening();
                 Self._exitDoor.StartOpening();
+            }
+
+            public override void SubscribeToSignals()
+            {
+                SignalBus.Instance.CheckpointActivated += CheckpointActivated;
+            }
+
+            public override void UnsubscribeFromSignals()
+            {
+                SignalBus.Instance.CheckpointActivated -= CheckpointActivated;
+            }
+
+            private void CheckpointActivated()
+            {
+                GD.Print("Dr. Monocle speech checkpointed");
+                Self.SetFlag(StoryFlags.SpeechCheckpointed);
             }
 
             public override void _PhysicsProcess(double delta)
@@ -165,7 +188,8 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech finished");
-                Self.SetFlag(StoryFlags.SpeechFinished);
+                Self.SetFlag(StoryFlags.SpeechSeen);
+
                 Self.AnimationPlayer.Play("Hidden");
 
                 Self._entranceDoor.StartOpening();
@@ -173,6 +197,22 @@ namespace FastDragon.Levels.Tutorial
 
                 Self.BackgroundMusicPlayer.Stream = Self.EscapeMusic;
                 Self.BackgroundMusicPlayer.Play();
+            }
+
+            public override void SubscribeToSignals()
+            {
+                SignalBus.Instance.CheckpointActivated += CheckpointActivated;
+            }
+
+            public override void UnsubscribeFromSignals()
+            {
+                SignalBus.Instance.CheckpointActivated -= CheckpointActivated;
+            }
+
+            private void CheckpointActivated()
+            {
+                GD.Print("Dr. Monocle speech checkpointed");
+                Self.SetFlag(StoryFlags.SpeechCheckpointed);
             }
         }
     }
