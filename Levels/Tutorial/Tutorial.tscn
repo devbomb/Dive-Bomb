@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=28 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
+[ext_resource type="AudioStream" uid="uid://b1koi60nf7f5x" path="res://Common/Audio/Music/SneakyD.mp3" id="2_alo6x"]
 [ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Levels/BrokenGlassFactory/Skybox.tres" id="2_eipfg"]
 [ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Tutorial/Maps/Intro.map" id="2_vwhqw"]
 [ext_resource type="PackedScene" uid="uid://btlc2kyid5u56" path="res://Levels/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
@@ -17,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c5lrjwtowen30" path="res://Levels/Tutorial/Maps/DrMonocleSpeech.map" id="13_myhx6"]
 [ext_resource type="Script" uid="uid://cdqcpmgk2hqiu" path="res://Common/Components/NamedTriggerZoneListener.cs" id="14_4f2gc"]
 [ext_resource type="PackedScene" uid="uid://c3u21ynxwsxm" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutsceneRig.tscn" id="15_ym3l3"]
+[ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="18_83vbk"]
 
 [sub_resource type="Texture2D" id="Texture2D_p8bxm"]
 resource_local_to_scene = false
@@ -79,6 +81,14 @@ script = ExtResource("1_vo1h1")
 LevelName = "Tutorial"
 HomeWorldLevel = "uid://muwxx8ltp1ss"
 ForbidExitLevel = true
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_alo6x")
+volume_db = -4.706
+bus = &"Music"
+parameters/looping = true
+script = ExtResource("18_83vbk")
+metadata/_custom_type_script = "uid://du3spb4diyf40"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_eipfg")
