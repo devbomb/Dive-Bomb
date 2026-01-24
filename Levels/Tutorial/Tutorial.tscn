@@ -107,8 +107,9 @@ sky_mode = 1
 
 [node name="Intro" parent="." instance=ExtResource("2_vwhqw")]
 
-[node name="AgentDIntroCutscene" parent="Intro" instance=ExtResource("3_kb7u2")]
+[node name="AgentDIntroCutscene" parent="Intro" node_paths=PackedStringArray("BackgroundMusicPlayer") instance=ExtResource("3_kb7u2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -7.5, 2.3)
+BackgroundMusicPlayer = NodePath("../../BackgroundMusicPlayer")
 
 [node name="JumpTutorialPopup" type="PanelContainer" parent="Intro"]
 visible = false
