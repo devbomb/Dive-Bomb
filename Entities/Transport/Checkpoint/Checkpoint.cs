@@ -51,20 +51,28 @@ namespace FastDragon
 
         private void Activate(Player player)
         {
+            // Play particle effects to indicate that the checkpoint did
+            // something
+            _sparkleBurst.Emitting = true;
+            EmitSignal(SignalName.Activated);
+            GetTree().FindNode<Player>().Camera.Shake(1, 5, 0.2f);
+
+            // Show an announcement if this is a _new_ checkpoint
             if (!IsCurrent && !this.IsTimeTrialMode())
                 LabelAnimator.Play("Activated");
 
-            SaveFileManager.Current.CurrentLevelVisit.LastCheckpoint = CheckpointName;
+            // Heal the player and update their spawn
             player.Health = Player.MaxHealth;
+            SaveFileManager.Current.CurrentLevelVisit.LastCheckpoint = CheckpointName;
+
+            // Give other things a chance to react.  Usually by setting a
+            // "don't reset me anymore" story flag.
+            SignalBus.Instance.EmitCheckpointActivated();
 
             if (!this.IsTimeTrialMode())
             {
                 SaveFileManager.Instance.RequestAutosave();
             }
-
-            _sparkleBurst.Emitting = true;
-            EmitSignal(SignalName.Activated);
-            GetTree().FindNode<Player>().Camera.Shake(1, 5, 0.2f);
         }
     }
 }
