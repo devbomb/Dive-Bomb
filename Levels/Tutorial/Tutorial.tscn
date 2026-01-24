@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=29 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="AudioStream" uid="uid://b1koi60nf7f5x" path="res://Common/Audio/Music/SneakyD.mp3" id="2_alo6x"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://cdqcpmgk2hqiu" path="res://Common/Components/NamedTriggerZoneListener.cs" id="14_4f2gc"]
 [ext_resource type="PackedScene" uid="uid://c3u21ynxwsxm" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutsceneRig.tscn" id="15_ym3l3"]
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="18_83vbk"]
+[ext_resource type="AudioStream" uid="uid://cdngy66jdcxa8" path="res://Common/Audio/Music/HijinxEscape.mp3" id="20_lu0qh"]
 
 [sub_resource type="Texture2D" id="Texture2D_p8bxm"]
 resource_local_to_scene = false
@@ -365,8 +366,10 @@ script = ExtResource("14_4f2gc")
 TriggerName = "DrMonocleIntroSkipSpeech"
 metadata/_custom_type_script = "uid://cdqcpmgk2hqiu"
 
-[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" instance=ExtResource("15_ym3l3")]
+[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" node_paths=PackedStringArray("BackgroundMusicPlayer") instance=ExtResource("15_ym3l3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27.539627, 5.927231, 0.35410118)
+BackgroundMusicPlayer = NodePath("../../BackgroundMusicPlayer")
+EscapeMusic = ExtResource("20_lu0qh")
 
 [connection signal="NamedTriggerEntered" from="DrMonocleSpeech/SpeechStartTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="StartCutscene"]
 [connection signal="NamedTriggerEntered" from="DrMonocleSpeech/SkipSpeechTriggerZoneListener" to="DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig" method="SkipCutscene"]

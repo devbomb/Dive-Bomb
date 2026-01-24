@@ -6,6 +6,8 @@ namespace FastDragon.Levels.Tutorial
     {
         [ExportCategory("Internal")]
         [Export] public AnimationPlayer AnimationPlayer;
+        [Export] public BackgroundMusicPlayer BackgroundMusicPlayer;
+        [Export] public AudioStream EscapeMusic;
 
         private const string StoryFlagId = "DrMonocleIntroSpeechCutsceneFinished";
 
@@ -98,6 +100,7 @@ namespace FastDragon.Levels.Tutorial
                 GD.Print("Dr. Monocle speech started");
 
                 Self.AnimationPlayer.Play("Playing");
+                Self.BackgroundMusicPlayer.Stop();
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
 
                 Self._entranceDoor.StartClosing();
@@ -147,6 +150,9 @@ namespace FastDragon.Levels.Tutorial
 
                 Self._entranceDoor.StartOpening();
                 Self._exitDoor.StartOpening();
+
+                Self.BackgroundMusicPlayer.Stream = Self.EscapeMusic;
+                Self.BackgroundMusicPlayer.Play();
             }
         }
     }
