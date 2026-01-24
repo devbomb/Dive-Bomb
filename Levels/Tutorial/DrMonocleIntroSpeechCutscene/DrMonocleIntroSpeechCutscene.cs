@@ -12,7 +12,10 @@ namespace FastDragon.Levels.Tutorial
         [Export] public NamedTriggerZoneListener StartSpeechTrigger;
         [Export] public NamedTriggerZoneListener SkipSpeechTrigger;
 
-        private const string StoryFlagId = "DrMonocleIntroSpeechCutsceneFinished";
+        private static class StoryFlags
+        {
+            public const string SpeechFinished = "DrMonocleIntroSpeechCutsceneFinished";
+        }
 
         private StateMachine _stateMachine = new();
 
@@ -42,23 +45,23 @@ namespace FastDragon.Levels.Tutorial
 
         private void Reset()
         {
-            if (IsStoryFlagSet())
+            if (IsFlagSet(StoryFlags.SpeechFinished))
                 _stateMachine.ChangeState<Finished>();
             else
                 _stateMachine.ChangeState<Idle>();
         }
 
-        private bool IsStoryFlagSet() => this.GetLevel()
+        private bool IsFlagSet(string storyFlag) => this.GetLevel()
             .GetProgress()
             .StoryFlags
-            .Contains(StoryFlagId);
+            .Contains(storyFlag);
 
-        private void SetStoryFlag()
+        private void SetFlag(string storyFlag)
         {
             this.GetLevel()
                 .GetProgress()
                 .StoryFlags
-                .Add(StoryFlagId);
+                .Add(storyFlag);
 
             SaveFileManager.Instance.RequestAutosave();
         }
@@ -87,7 +90,7 @@ namespace FastDragon.Levels.Tutorial
 
             private void StartSpeech()
             {
-                if (Self.IsStoryFlagSet() || Self.IsTimeTrialMode())
+                if (Self.IsFlagSet(StoryFlags.SpeechFinished) || Self.IsTimeTrialMode())
                     ChangeState<Finished>();
                 else
                     ChangeState<Playing>();
@@ -139,7 +142,7 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech skipping");
-                Self.SetStoryFlag();
+                Self.SetFlag(StoryFlags.SpeechFinished);
                 Self.AnimationPlayer.Play("Skipping");
 
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
@@ -162,7 +165,7 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech finished");
-                Self.SetStoryFlag();
+                Self.SetFlag(StoryFlags.SpeechFinished);
                 Self.AnimationPlayer.Play("Hidden");
 
                 Self._entranceDoor.StartOpening();
