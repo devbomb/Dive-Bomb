@@ -4,10 +4,11 @@ namespace FastDragon.Levels.Tutorial
 {
     public partial class DrMonocleIntroSpeechCutscene : Node
     {
+        [Export] public AudioStreamPlayer MusicPlayer;
+        private AudioStreamPlaybackInteractive _musicPlayback => (AudioStreamPlaybackInteractive)MusicPlayer.GetStreamPlayback();
+
         [ExportCategory("Internal")]
         [Export] public AnimationPlayer AnimationPlayer;
-        [Export] public BackgroundMusicPlayer BackgroundMusicPlayer;
-        [Export] public AudioStream EscapeMusic;
 
         [Export] public NamedTriggerZoneListener StartSpeechTrigger;
         [Export] public NamedTriggerZoneListener SkipSpeechTrigger;
@@ -71,6 +72,8 @@ namespace FastDragon.Levels.Tutorial
         {
             public override void OnStateEntered()
             {
+                Self._musicPlayback.SwitchToClipByName("Normal");
+
                 Self.AnimationPlayer.Play("RESET");
                 Self.AnimationPlayer.Advance(0);
                 Self.AnimationPlayer.Play("Hidden");
@@ -109,9 +112,9 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech started");
+                Self.MusicPlayer.Stop();
 
                 Self.AnimationPlayer.Play("Playing");
-                Self.BackgroundMusicPlayer.Stop();
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
 
                 Self._entranceDoor.StartClosing();
@@ -189,14 +192,13 @@ namespace FastDragon.Levels.Tutorial
             {
                 GD.Print("Dr. Monocle speech finished");
                 Self.SetFlag(StoryFlags.SpeechSeen);
+                Self.MusicPlayer.Play();
+                Self._musicPlayback.SwitchToClipByName("Escape");
 
                 Self.AnimationPlayer.Play("Hidden");
 
                 Self._entranceDoor.StartOpening();
                 Self._exitDoor.StartOpening();
-
-                Self.BackgroundMusicPlayer.Stream = Self.EscapeMusic;
-                Self.BackgroundMusicPlayer.Play();
             }
 
             public override void SubscribeToSignals()
