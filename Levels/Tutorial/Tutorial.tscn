@@ -29,6 +29,14 @@ clip_0/auto_advance = 0
 clip_1/name = &"Escape"
 clip_1/stream = ExtResource("20_lu0qh")
 clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}
 
 [sub_resource type="Texture2D" id="Texture2D_p8bxm"]
 resource_local_to_scene = false
