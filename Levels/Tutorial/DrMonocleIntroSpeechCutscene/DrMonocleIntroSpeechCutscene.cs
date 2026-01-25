@@ -72,7 +72,16 @@ namespace FastDragon.Levels.Tutorial
         {
             public override void OnStateEntered()
             {
-                Self._musicPlayback.SwitchToClipByName("Normal");
+                // TODO: Find a more "correct" way of avoiding this issue.
+                // The issue is that this node and the Agent D. intro cutscene
+                // are both fighting over control of the background music
+                // player.  Agent D. wants to stop the music, while Dr. Monocle
+                // wants to play something.  I'm sure there's a metaphor in
+                // there somewhere.
+                if (Self.MusicPlayer.Playing)
+                {
+                    Self._musicPlayback?.SwitchToClipByName("Normal");
+                }
 
                 Self.AnimationPlayer.Play("RESET");
                 Self.AnimationPlayer.Advance(0);
