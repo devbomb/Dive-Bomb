@@ -12,10 +12,10 @@ namespace FastDragon.Levels.Tutorial
         private StateMachine _stateMachine = new();
 
         private const string ExitDoorId = "DrMonocleSpeech_ExitDoor";
-        private OpenableWall _exitDoor;
+        private IPowerable _exitDoor;
 
         private const string EntranceDoorId = "DrMonocleSpeech_EntranceDoor";
-        private OpenableWall _entranceDoor;
+        private IPowerable _entranceDoor;
 
         public DrMonocleIntroSpeechCutscene()
         {
@@ -27,8 +27,8 @@ namespace FastDragon.Levels.Tutorial
             SignalBus.Instance.LevelReset += Reset;
             Callable.From(() =>
             {
-                _entranceDoor = this.GetOpenableWall(EntranceDoorId);
-                _exitDoor = this.GetOpenableWall(ExitDoorId);
+                _entranceDoor = this.FindPowerable(EntranceDoorId);
+                _exitDoor = this.FindPowerable(ExitDoorId);
 
                 Reset();
             }).CallDeferred();
