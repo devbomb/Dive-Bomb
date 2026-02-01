@@ -15,7 +15,7 @@ namespace FastDragon
         }
     }
 
-    public partial class OpenableWall : AnimatableBody3D
+    public partial class OpenableWall : AnimatableBody3D, IPowerable
     {
         [Export] public string OpenableWallId;
         [Export] public string ClosedPosMarkerId;
@@ -51,6 +51,25 @@ namespace FastDragon
                 _initialized = true;
             }).CallDeferred();
         }
+
+        string IPowerable.Id => OpenableWallId;
+
+        void IPowerable.SetPowered(bool powered)
+        {
+            if (powered)
+                StartOpening();
+            else
+                StartClosing();
+        }
+
+        void IPowerable.ForceSetPowered(bool powered)
+        {
+            if (powered)
+                InstantOpen();
+            else
+                InstantClose();
+        }
+
 
         public void StartOpening()
         {
