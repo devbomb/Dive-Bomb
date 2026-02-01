@@ -4,20 +4,9 @@ using Godot;
 
 namespace FastDragon
 {
-    public static class OpenableWallNodeExtensions
+    public partial class OpenableWall : AnimatableBody3D, IPowerable
     {
-        public static OpenableWall GetOpenableWall(this Node node, string openableWallId)
-        {
-            return node.GetTree()
-                .Root
-                .EnumerateDescendantsOfType<OpenableWall>()
-                .FirstOrDefault(m => m.OpenableWallId == openableWallId);
-        }
-    }
-
-    public partial class OpenableWall : AnimatableBody3D
-    {
-        [Export] public string OpenableWallId;
+        [Export] public string Id { get; set; }
         [Export] public string ClosedPosMarkerId;
         [Export] public string OpenPosMarkerId;
 
@@ -52,31 +41,27 @@ namespace FastDragon
             }).CallDeferred();
         }
 
-        public void StartOpening()
+        void IPowerable.SetPowered(bool powered)
         {
-            _stateMachine.ChangeState<Opening>();
+            if (powered)
+                _stateMachine.ChangeState<Opening>();
+            else
+                _stateMachine.ChangeState<Closing>();
         }
 
-        public void StartClosing()
+        void IPowerable.ForceSetPowered(bool powered) => DeferIfUninitialized(() =>
         {
-            _stateMachine.ChangeState<Closing>();
-        }
-
-        public void InstantOpen() => DeferIfUninitialized(() =>
-        {
-            _stateMachine.ChangeState<Open>();
-        });
-
-        public void InstantClose() => DeferIfUninitialized(() =>
-        {
-            _stateMachine.ChangeState<Closed>();
+            if (powered)
+                _stateMachine.ChangeState<Open>();
+            else
+                _stateMachine.ChangeState<Closed>();
         });
 
         private void DeferIfUninitialized(System.Action action)
         {
             if (!_initialized)
             {
-                GD.PushWarning($"OpenableWall {OpenableWallId} isn't initialized yet.  Deferring call.");
+                GD.PushWarning($"OpenableWall {Id} isn't initialized yet.  Deferring call.");
                 Callable.From(action).CallDeferred();
             }
             else

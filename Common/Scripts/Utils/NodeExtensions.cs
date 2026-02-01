@@ -54,7 +54,6 @@ namespace FastDragon
         }
 
         public static IEnumerable<TNode> EnumerateDescendantsOfType<TNode>(this Node node)
-            where TNode : Node
         {
             foreach (var d in node.EnumerateDescendants())
             {

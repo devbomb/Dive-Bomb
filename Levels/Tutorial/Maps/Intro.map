@@ -182,8 +182,8 @@
 }
 // entity 7
 {
-"classname" "trigger_named_trigger_zone"
-"TriggerName" "JumpTutorialTrigger"
+"classname" "trigger_power_zone"
+"TargetId" "JumpTutorialTrigger"
 // brush 0
 {
 ( 80 -96 16 ) ( 80 -95 16 ) ( 80 -96 17 ) Textures/Grate 0 0 0 1 1

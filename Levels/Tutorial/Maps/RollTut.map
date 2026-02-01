@@ -340,8 +340,8 @@
 }
 // entity 2
 {
-"classname" "trigger_named_trigger_zone"
-"TriggerName" "RollTutorialPopupTrigger"
+"classname" "trigger_power_zone"
+"TargetId" "RollTutorialPopupTrigger"
 // brush 0
 {
 ( -80 -48 48 ) ( -80 80 16 ) ( -80 80 48 ) Textures/Grate 0 0 0 1 1
