@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://muwxx8ltp1ss"]
+[gd_scene load_steps=9 format=3 uid="uid://muwxx8ltp1ss"]
 
 [ext_resource type="Environment" uid="uid://cnsj2vqr0q41w" path="res://Levels/TestMap/Skybox.tres" id="1_0gxk4"]
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_678t0"]
 [ext_resource type="PackedScene" uid="uid://dfcd6v4b3peg1" path="res://Levels/TestMap/Maps/FairyDoorTest.map" id="2_1qi3b"]
 [ext_resource type="PackedScene" uid="uid://bdshm0cut77ja" path="res://Levels/TestMap/Maps/Main.map" id="2_678t0"]
+[ext_resource type="AudioStream" uid="uid://cugcjt8k8ksh" path="res://Common/Audio/Music/Rabun-da.mp3" id="2_fh6k1"]
+[ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="3_3iy4a"]
 [ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="5_bnah6"]
 
 [sub_resource type="Curve3D" id="Curve3D_vn0gs"]
@@ -17,6 +19,12 @@ point_count = 7
 script = ExtResource("1_678t0")
 LevelName = "Test Hub World"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fh6k1")
+bus = &"Music"
+script = ExtResource("3_3iy4a")
+metadata/_custom_type_script = "uid://du3spb4diyf40"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_0gxk4")
