@@ -11,11 +11,11 @@ classname = "wall_openable"
 class_properties = {
 "CloseDuration": 0.5,
 "ClosedPosMarkerId": "",
+"Id": "",
 "OpenDuration": 0.5,
-"OpenPosMarkerId": "",
-"OpenableWallId": ""
+"OpenPosMarkerId": ""
 }
 auto_apply_to_matching_node_properties = true
 node_class = "AnimatableBody3D"
-name_property = "OpenableWallId"
+name_property = "Id"
 metadata/_custom_type_script = "uid://ctv13qfisgfqg"
