@@ -37,5 +37,29 @@ namespace FastDragon
                 .EnumerateDescendantsOfType<IPowerable>()
                 .Single(p => p.Id == id);
         }
+
+        /// <summary>
+        ///     Synonym for "SetPowered(true)".
+        ///     Exists mainly to establish the convention that "powered == open"
+        /// </summary>
+        public static void StartOpening(this IPowerable p) => p.SetPowered(true);
+
+        /// <summary>
+        ///     Synonym for "SetPowered(false)".
+        ///     Exists mainly to establish the convention that "powered == open"
+        /// </summary>
+        public static void StartClosing(this IPowerable p) => p.SetPowered(false);
+
+        /// <summary>
+        ///     Synonym for "ForceSetPowered(true)".
+        ///     Exists mainly to establish the convention that "powered == open"
+        /// </summary>
+        public static void InstantOpen(this IPowerable p) => p.ForceSetPowered(true);
+
+        /// <summary>
+        ///     Synonym for "ForceSetPowered(false)".
+        ///     Exists mainly to establish the convention that "powered == open"
+        /// </summary>
+        public static void InstantClose(this IPowerable p) => p.ForceSetPowered(false);
     }
 }
