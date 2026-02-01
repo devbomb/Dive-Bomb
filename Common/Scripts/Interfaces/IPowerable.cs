@@ -30,21 +30,8 @@ namespace FastDragon
 
     public static class IPowerableNodeExtensions
     {
-        public const string GroupName = "Powerable";
-
         public static IPowerable FindPowerable(this Node node, string id)
         {
-            var result = node.GetTree()
-                .GetNodesInGroup(GroupName)
-                .Cast<IPowerable>()
-                .SingleOrDefault(p => p.Id == id);
-
-            if (result != null)
-                return result;
-
-            // It's possible the object we're looking for exists but hasn't
-            // been added to the group.
-            // TODO: Maybe I should just throw an error instead?
             return node.GetTree()
                 .Root
                 .EnumerateDescendantsOfType<IPowerable>()
