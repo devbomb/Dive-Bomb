@@ -7,7 +7,8 @@ namespace FastDragon.Levels.Tutorial
         public const string StoryFlag = "AgentDIntroFinished";
 
         [Export] public AnimationPlayer AnimationPlayer;
-        [Export] Camera3D CutsceneCamera;
+        [Export] public Camera3D CutsceneCamera;
+        [Export] public BackgroundMusicPlayer BackgroundMusicPlayer;
 
         private readonly StateMachine _stateMachine = new();
 
@@ -46,8 +47,9 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 Self.CutsceneCamera.MakeCurrent();
-
                 Self.AnimationPlayer.Play("Play");
+                Self.BackgroundMusicPlayer.Stop();
+
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
 
                 var player = GetTree().FindNode<Player>();
@@ -108,6 +110,8 @@ namespace FastDragon.Levels.Tutorial
                 _player.Camera.MakeCurrent();
                 _player.Camera.StartFollowing(0.1f);
                 _player.ChangeState<PlayerWalkState>();
+
+                Self.BackgroundMusicPlayer.Play();
             }
 
             public override void _PhysicsProcess(double delta)

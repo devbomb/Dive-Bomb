@@ -23,6 +23,18 @@ namespace FastDragon
             remove => DisconnectAction(value);
         }
 
+        /// <summary>
+        ///     Emitted when the player activates a checkpoint.
+        ///
+        ///     You can use this to allow certain story flags to only "stick"
+        ///     if the player reaches a checkpoint before their next death.
+        /// </summary>
+        public event Action CheckpointActivated
+        {
+            add => ConnectAction(value);
+            remove => DisconnectAction(value);
+        }
+
         public event Action ExitReached
         {
             add => ConnectAction(value);
@@ -38,6 +50,7 @@ namespace FastDragon
         public SignalBus()
         {
             AddUserSignal(nameof(LevelReset));
+            AddUserSignal(nameof(CheckpointActivated));
             AddUserSignal(nameof(ExitReached));
 
             AddUserSignal(nameof(CycleStarted),
@@ -56,6 +69,7 @@ namespace FastDragon
         }
 
         public void EmitLevelReset() => EmitSignal(nameof(LevelReset));
+        public void EmitCheckpointActivated() => EmitSignal(nameof(CheckpointActivated));
         public void EmitExitReached() => EmitSignal(nameof(ExitReached));
         public void EmitCycleStarted(string cycleId) => EmitSignal(nameof(CycleStarted), cycleId);
 
