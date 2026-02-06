@@ -35,6 +35,18 @@ namespace FastDragon
             _userSettings.SaveToJson();
         }
 
+        public void ToggleInvertCameraX(bool toggledOn)
+        {
+            _userSettings.InvertCameraX = toggledOn;
+            _userSettings.SaveToJson();
+        }
+
+        public void ToggleInvertCameraY(bool toggledOn)
+        {
+            _userSettings.InvertCameraY = toggledOn;
+            _userSettings.SaveToJson();
+        }
+
         public void OnVolumeSliderChanged(float newValue)
         {
             _userSettings.MasterVolumeLinear = (float)MasterVolumeSlider.Value;

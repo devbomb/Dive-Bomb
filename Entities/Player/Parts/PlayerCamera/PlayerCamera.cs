@@ -296,8 +296,15 @@ namespace FastDragon
             private void OrbitWithRightStick(float delta)
             {
                 float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
-                Self.OrbitYawRad += -InputService.RightStick.X * rotSpeed * delta;
-                Self.OrbitPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
+                float yawSpeedRad = -InputService.RightStick.X * rotSpeed;
+                float pitchSpeedRad = -InputService.RightStick.Y * rotSpeed;
+
+                if (UserSettings.Instance.InvertCameraX) yawSpeedRad *= -1;
+                if (UserSettings.Instance.InvertCameraY) pitchSpeedRad *= -1;
+
+                Self.OrbitYawRad += yawSpeedRad * delta;
+                Self.OrbitPitchRad += pitchSpeedRad * delta;
+
                 ClampOrbitAngles();
             }
 
