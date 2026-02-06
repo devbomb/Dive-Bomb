@@ -1,9 +1,57 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dfo7m2hjbbpml"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dfo7m2hjbbpml"]
 
 [ext_resource type="StyleBox" uid="uid://clk60wmckrjlc" path="res://Themes/StyleBoxes/HackerTerminalBackground.tres" id="2_41e44"]
 [ext_resource type="StyleBox" uid="uid://67ve41gmpcr" path="res://Themes/StyleBoxes/HackerTerminalButton.tres" id="2_bn8tx"]
 [ext_resource type="StyleBox" uid="uid://brjat4v76rwt4" path="res://Themes/StyleBoxes/HackerTerminalButtonFocus.tres" id="3_bn8tx"]
 [ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="4_bpdmg"]
+
+[sub_resource type="Gradient" id="Gradient_bn8tx"]
+interpolation_mode = 1
+colors = PackedColorArray(0, 0.3253312, 2.8878452e-07, 1, 0, 0.56381625, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bpdmg"]
+gradient = SubResource("Gradient_bn8tx")
+width = 8
+height = 16
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_bpdmg"]
+interpolation_mode = 1
+colors = PackedColorArray(0, 0.3254902, 0, 0.49803922, 0, 0.5647059, 0, 0.49803922)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_stv58"]
+gradient = SubResource("Gradient_bpdmg")
+width = 8
+height = 16
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_iyr1q"]
+interpolation_mode = 1
+colors = PackedColorArray(7.70092e-07, 0.4493385, 8.663535e-07, 1, 5.77569e-06, 0.818051, 3.85046e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6nb7i"]
+gradient = SubResource("Gradient_iyr1q")
+width = 8
+height = 16
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="DPITexture" id="DPITexture_6nb7i"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"4\" height=\"8\"><path fill=\"#fff\" fill-opacity=\".25\" d=\"M1 0h2v16H1z\"/></svg>
+"
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wonsj"]
+color = Color(0, 0.3019608, 0, 1)
+thickness = 4
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_10sep"]
+color = Color(0, 0.5411765, 0, 1)
+thickness = 4
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_408qk"]
+thickness = 4
 
 [resource]
 Button/colors/font_color = Color(0, 0.97857, 0, 1)
@@ -18,6 +66,16 @@ Button/styles/focus = ExtResource("3_bn8tx")
 Button/styles/hover = ExtResource("3_bn8tx")
 Button/styles/normal = ExtResource("2_bn8tx")
 Button/styles/pressed = ExtResource("2_bn8tx")
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/constants/tick_offset = 0
+HSlider/icons/grabber = SubResource("GradientTexture2D_bpdmg")
+HSlider/icons/grabber_disabled = SubResource("GradientTexture2D_stv58")
+HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_6nb7i")
+HSlider/icons/tick = SubResource("DPITexture_6nb7i")
+HSlider/styles/grabber_area = SubResource("StyleBoxLine_wonsj")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxLine_10sep")
+HSlider/styles/slider = SubResource("StyleBoxLine_408qk")
 Label/colors/font_color = Color(0, 0.980392, 0, 1)
 Label/fonts/font = ExtResource("4_bpdmg")
 Panel/styles/panel = ExtResource("2_41e44")
