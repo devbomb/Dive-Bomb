@@ -13,6 +13,27 @@ namespace FastDragon
         [JsonProperty] public bool ShowPerformanceStats = false;
         [JsonProperty] public bool UsePhysicsInterpolation = true;
 
+        [JsonProperty] public float MasterVolumeLinear
+        {
+            get => GetBusVolumeLinear("Master");
+            set => SetBusVolumeLinear("Master", value);
+        }
+        [JsonProperty] public float SfxVolumeLinear
+        {
+            get => GetBusVolumeLinear("Sfx");
+            set => SetBusVolumeLinear("Sfx", value);
+        }
+        [JsonProperty] public float MusicVolumeLinear
+        {
+            get => GetBusVolumeLinear("Music");
+            set => SetBusVolumeLinear("Music", value);
+        }
+        [JsonProperty] public float DialogVoiceVolumeLinear
+        {
+            get => GetBusVolumeLinear("DialogVoice");
+            set => SetBusVolumeLinear("DialogVoice", value);
+        }
+
         public void SaveToJson()
         {
             string json = JsonConvert.SerializeObject(
@@ -23,6 +44,18 @@ namespace FastDragon
             using var file = FileAccess.Open(FilePath, FileAccess.ModeFlags.Write);
             file.StoreLine(json);
             file.Close();
+        }
+
+        private void SetBusVolumeLinear(string bus, float volumeLinear)
+        {
+            int busIndex = AudioServer.GetBusIndex(bus);
+            AudioServer.SetBusVolumeLinear(busIndex, volumeLinear);
+        }
+
+        private float GetBusVolumeLinear(string bus)
+        {
+            int busIndex = AudioServer.GetBusIndex(bus);
+            return AudioServer.GetBusVolumeLinear(busIndex);
         }
 
         private static UserSettings LoadFromJson()
