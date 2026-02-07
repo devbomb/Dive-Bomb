@@ -31,7 +31,7 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_ncc13"]
 events = [SubResource("InputEventAction_r0qer")]
 
-[node name="UserSettingsMenu" type="Control" node_paths=PackedStringArray("MasterVolumeSlider", "SfxVolumeSlider", "MusicVolumeSlider", "VoiceVolumeSlider", "FocusedControl")]
+[node name="UserSettingsMenu" type="Control" node_paths=PackedStringArray("MasterVolumeSlider", "SfxVolumeSlider", "MusicVolumeSlider", "VoiceVolumeSlider", "CameraSensControllerSlider", "CameraSensMouseSlider", "FocusedControl")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -45,6 +45,8 @@ MasterVolumeSlider = NodePath("Panel/Buttons/Volumes/PanelContainer/VBoxContaine
 SfxVolumeSlider = NodePath("Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/SfxSlider")
 MusicVolumeSlider = NodePath("Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/MusicSlider")
 VoiceVolumeSlider = NodePath("Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/VoiceSlider")
+CameraSensControllerSlider = NodePath("Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity/Controller")
+CameraSensMouseSlider = NodePath("Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity/Mouse")
 FocusedControl = NodePath("Panel/Buttons/ShowPerformanceStats")
 
 [node name="Panel" type="PanelContainer" parent="."]
@@ -193,6 +195,37 @@ text = "Invert Camera Y"
 flat = true
 script = SubResource("GDScript_ym7r8")
 
+[node name="Sensitivity" type="GridContainer" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/v_separation = 9
+columns = 2
+
+[node name="Label" type="Label" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Speed (controller)"
+
+[node name="Controller" type="HSlider" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 10.0
+value = 5.0
+tick_count = 11
+
+[node name="Label2" type="Label" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Speed (mouse)"
+
+[node name="Mouse" type="HSlider" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 10.0
+value = 5.0
+tick_count = 11
+
 [node name="Back" type="Button" parent="Panel/Buttons"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_ncc13")
@@ -207,4 +240,6 @@ flat = true
 [connection signal="value_changed" from="Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/VoiceSlider" to="." method="OnVolumeSliderChanged"]
 [connection signal="toggled" from="Panel/Buttons/Camera/PanelContainer/VBoxContainer/InvertCameraX" to="." method="ToggleInvertCameraX"]
 [connection signal="toggled" from="Panel/Buttons/Camera/PanelContainer/VBoxContainer/InvertCameraY" to="." method="ToggleInvertCameraY"]
+[connection signal="value_changed" from="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity/Controller" to="." method="OnSliderChanged"]
+[connection signal="value_changed" from="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity/Mouse" to="." method="OnSliderChanged"]
 [connection signal="pressed" from="Panel/Buttons/Back" to="." method="GoBack"]

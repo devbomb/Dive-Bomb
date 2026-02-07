@@ -316,6 +316,8 @@ namespace FastDragon
             private void OrbitWithRightStick(float delta)
             {
                 float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
+                rotSpeed *= UserSettings.Instance.CameraSensController;
+
                 float yawSpeedRad = -InputService.RightStick.X * rotSpeed;
                 float pitchSpeedRad = -InputService.RightStick.Y * rotSpeed;
 
@@ -331,6 +333,7 @@ namespace FastDragon
             private void OrbitWithMouse(Vector2 mouseMotion)
             {
                 float radsPerPixel = 0.005f;
+                radsPerPixel *= UserSettings.Instance.CameraSensMouse;
 
                 if (UserSettings.Instance.InvertCameraX) mouseMotion.X *= -1;
                 if (UserSettings.Instance.InvertCameraY) mouseMotion.Y *= -1;

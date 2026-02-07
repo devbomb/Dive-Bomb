@@ -15,6 +15,8 @@ namespace FastDragon
 
         [JsonProperty] public bool InvertCameraX = false;
         [JsonProperty] public bool InvertCameraY = false;
+        [JsonProperty] public float CameraSensController = 1;
+        [JsonProperty] public float CameraSensMouse = 1;
 
         [JsonProperty] public float MasterVolumeLinear
         {
