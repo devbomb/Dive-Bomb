@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://nwvggnggdtmc"]
+[gd_scene load_steps=10 format=3 uid="uid://nwvggnggdtmc"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="1_ifn8o"]
 [ext_resource type="Script" uid="uid://dgu4y68tv3spi" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.cs" id="2_vmbxq"]
@@ -14,6 +14,16 @@ script/source = "extends CheckButton
 func _ready(): button_pressed = $'/root/UserSettings'.Instance().UsePhysicsInterpolation
 "
 
+[sub_resource type="GDScript" id="GDScript_e6io1"]
+script/source = "extends CheckButton
+func _ready(): button_pressed = $/root/UserSettings.Instance().InvertCameraX
+"
+
+[sub_resource type="GDScript" id="GDScript_ym7r8"]
+script/source = "extends CheckButton
+func _ready(): button_pressed = $/root/UserSettings.Instance().InvertCameraY
+"
+
 [sub_resource type="InputEventAction" id="InputEventAction_r0qer"]
 action = &"ui_cancel"
 pressed = true
@@ -21,7 +31,7 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_ncc13"]
 events = [SubResource("InputEventAction_r0qer")]
 
-[node name="UserSettingsMenu" type="Control" node_paths=PackedStringArray("MasterVolumeSlider", "SfxVolumeSlider", "MusicVolumeSlider", "VoiceVolumeSlider", "FocusedControl")]
+[node name="UserSettingsMenu" type="Control" node_paths=PackedStringArray("MasterVolumeSlider", "SfxVolumeSlider", "MusicVolumeSlider", "VoiceVolumeSlider", "CameraSensControllerSlider", "CameraSensMouseSlider", "FocusedControl")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -35,6 +45,8 @@ MasterVolumeSlider = NodePath("Panel/Buttons/Volumes/PanelContainer/VBoxContaine
 SfxVolumeSlider = NodePath("Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/SfxSlider")
 MusicVolumeSlider = NodePath("Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/MusicSlider")
 VoiceVolumeSlider = NodePath("Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/VoiceSlider")
+CameraSensControllerSlider = NodePath("Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity/Controller")
+CameraSensMouseSlider = NodePath("Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity/Mouse")
 FocusedControl = NodePath("Panel/Buttons/ShowPerformanceStats")
 
 [node name="Panel" type="PanelContainer" parent="."]
@@ -147,6 +159,73 @@ max_value = 2.0
 step = 0.1
 value = 1.0
 
+[node name="Camera" type="MarginContainer" parent="Panel/Buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/Buttons/Camera"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Buttons/Camera/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 0
+text = "Camera"
+
+[node name="Spacer" type="Control" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 9.16)
+layout_mode = 2
+
+[node name="InvertCameraX" type="CheckButton" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Invert Camera X"
+flat = true
+script = SubResource("GDScript_e6io1")
+
+[node name="InvertCameraY" type="CheckButton" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Invert Camera Y"
+flat = true
+script = SubResource("GDScript_ym7r8")
+
+[node name="Sensitivity" type="GridContainer" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/v_separation = 9
+columns = 2
+
+[node name="Label" type="Label" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Speed (controller)"
+
+[node name="Controller" type="HSlider" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 10.0
+value = 5.0
+tick_count = 11
+
+[node name="Label2" type="Label" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Speed (mouse)"
+
+[node name="Mouse" type="HSlider" parent="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 10.0
+value = 5.0
+tick_count = 11
+
 [node name="Back" type="Button" parent="Panel/Buttons"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_ncc13")
@@ -159,4 +238,8 @@ flat = true
 [connection signal="value_changed" from="Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/SfxSlider" to="." method="OnVolumeSliderChanged"]
 [connection signal="value_changed" from="Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/MusicSlider" to="." method="OnVolumeSliderChanged"]
 [connection signal="value_changed" from="Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/VoiceSlider" to="." method="OnVolumeSliderChanged"]
+[connection signal="toggled" from="Panel/Buttons/Camera/PanelContainer/VBoxContainer/InvertCameraX" to="." method="ToggleInvertCameraX"]
+[connection signal="toggled" from="Panel/Buttons/Camera/PanelContainer/VBoxContainer/InvertCameraY" to="." method="ToggleInvertCameraY"]
+[connection signal="value_changed" from="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity/Controller" to="." method="OnSliderChanged"]
+[connection signal="value_changed" from="Panel/Buttons/Camera/PanelContainer/VBoxContainer/Sensitivity/Mouse" to="." method="OnSliderChanged"]
 [connection signal="pressed" from="Panel/Buttons/Back" to="." method="GoBack"]
