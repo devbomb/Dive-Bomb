@@ -232,17 +232,25 @@ namespace FastDragon
             public const float MaxOrbitPitchDeg = 0;
 
             private Vector3 _prevPos;
+            private Vector2 _accumulatedMouseMotion;
 
             public override void OnStateEntered()
             {
                 Self.ApplyAnglesAndDistance();
                 _prevPos = Self.GlobalPosition;
+                _accumulatedMouseMotion = Vector2.Zero;
             }
 
             public override void _Input(InputEvent ev)
             {
                 if (Self.DisableInput)
                     return;
+
+                if (ev is InputEventMouseMotion m && !Self.DisableInput)
+                {
+                    if (m.ButtonMask.HasFlag(MouseButtonMask.Middle))
+                        _accumulatedMouseMotion += m.ScreenRelative;
+                }
 
                 if (InputService.RecenterCameraJustPressed(ev))
                 {
@@ -266,14 +274,26 @@ namespace FastDragon
                 {
                     Self.ApplyAnglesAndDistance();
                     _prevPos = Self.GlobalPosition;
+                    _accumulatedMouseMotion = Vector2.Zero;
                     return;
                 }
+
+                bool orbitted = false;
 
                 if (InputService.RightStick.Length() > 0.01f)
                 {
                     OrbitWithRightStick(delta);
+                    orbitted = true;
                 }
-                else if (Self.AllowAutoRotate)
+
+                if (_accumulatedMouseMotion.Length() > 0.0001f)
+                {
+                    OrbitWithMouse(_accumulatedMouseMotion);
+                    _accumulatedMouseMotion = Vector2.Zero;
+                    orbitted = true;
+                }
+
+                if (!orbitted && Self.AllowAutoRotate)
                 {
                     MaintainDistanceAndAutoRotate(delta);
                 }
@@ -305,6 +325,18 @@ namespace FastDragon
                 Self.OrbitYawRad += yawSpeedRad * delta;
                 Self.OrbitPitchRad += pitchSpeedRad * delta;
 
+                ClampOrbitAngles();
+            }
+
+            private void OrbitWithMouse(Vector2 mouseMotion)
+            {
+                float radsPerPixel = 0.005f;
+
+                if (UserSettings.Instance.InvertCameraX) mouseMotion.X *= -1;
+                if (UserSettings.Instance.InvertCameraY) mouseMotion.Y *= -1;
+
+                Self.OrbitYawRad -= radsPerPixel * mouseMotion.X;
+                Self.OrbitPitchRad -= radsPerPixel * mouseMotion.Y;
                 ClampOrbitAngles();
             }
 
