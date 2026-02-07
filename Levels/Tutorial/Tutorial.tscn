@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene load_steps=31 format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="AudioStream" uid="uid://b1koi60nf7f5x" path="res://Common/Audio/Music/SneakyD.mp3" id="2_alo6x"]
@@ -59,11 +59,22 @@ metadata/_custom_type_script = "uid://d2ars665qqq5j"
 [sub_resource type="LabelSettings" id="LabelSettings_i3mr3"]
 font = ExtResource("6_p8bxm")
 
-[sub_resource type="Texture2D" id="Texture2D_i3mr3"]
+[sub_resource type="Texture2D" id="Texture2D_lu0qh"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("5_uhvqi")
 path = "RightStickLeft"
+show_mode = 2
+force_type = 2
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_r6tbe"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "mouse/middle"
+show_mode = 1
+force_type = 1
 metadata/_custom_type_script = "uid://d2ars665qqq5j"
 
 [sub_resource type="Texture2D" id="Texture2D_sob3p"]
@@ -192,7 +203,6 @@ vertical_alignment = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 35)
 
 [node name="CameraTutorialPopup" type="PanelContainer" parent="CameraTut"]
-visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
 anchor_left = 0.5
@@ -213,11 +223,35 @@ TriggerName = "CameraTutorialTrigger"
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer"]
+[node name="Icons" type="Control" parent="CameraTut/CameraTutorialPopup/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+
+[node name="ControllerIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 4
-texture = SubResource("Texture2D_i3mr3")
+texture = SubResource("Texture2D_lu0qh")
+expand_mode = 1
+
+[node name="KeyboardIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 3.0
+offset_right = 25.0
+offset_bottom = 48.0
+size_flags_vertical = 4
+texture = SubResource("Texture2D_r6tbe")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="CameraTut/CameraTutorialPopup/HBoxContainer"]
