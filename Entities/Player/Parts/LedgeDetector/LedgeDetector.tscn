@@ -18,11 +18,12 @@ albedo_color = Color(0.22352941, 1, 1, 0.21960784)
 [sub_resource type="SphereMesh" id="SphereMesh_wc4sc"]
 material = SubResource("StandardMaterial3D_pwy4k")
 
-[node name="LedgeDetector" type="Node3D" node_paths=PackedStringArray("UpCapsule", "ForwardCapsule", "DownCast", "Visualizer")]
+[node name="LedgeDetector" type="Node3D" node_paths=PackedStringArray("UpCapsule", "ForwardCapsule", "DownCast", "AntiSuicideChecker", "Visualizer")]
 script = ExtResource("1_ykwis")
 UpCapsule = NodePath("UpCapsule")
 ForwardCapsule = NodePath("ForwardCapsule")
 DownCast = NodePath("DownCast")
+AntiSuicideChecker = NodePath("AntiSuicideChecker")
 Visualizer = NodePath("Visualizer")
 
 [node name="UpCapsule" type="Area3D" parent="."]
@@ -41,6 +42,10 @@ shape = SubResource("BoxShape3D_pwy4k")
 
 [node name="DownCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+target_position = Vector3(0, -2, 0)
+
+[node name="AntiSuicideChecker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
 target_position = Vector3(0, -2, 0)
 
 [node name="Visualizer" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]

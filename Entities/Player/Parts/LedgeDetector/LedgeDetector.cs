@@ -7,12 +7,16 @@ namespace FastDragon
     {
         public const float MaxSlopeAngleDeg = 5f;
 
+        public Vector3 LastLedgePoint { get; private set; }
+        public bool LastLedgePointRequiresSafeClimb { get; private set; }
+
         [Export] public CharacterBody3D Body;
 
         [ExportCategory("Internal")]
         [Export] public Area3D UpCapsule;
         [Export] public Area3D ForwardCapsule;
         [Export] public RayCast3D DownCast;
+        [Export] public RayCast3D AntiSuicideChecker;
 
         [Export] public Node3D Visualizer;
 
@@ -41,7 +45,11 @@ namespace FastDragon
             }
 
             if (LedgeDetected)
-                Visualizer.GlobalPosition = DownCast.GetCollisionPoint();
+            {
+                LastLedgePoint = DownCast.GetCollisionPoint();
+                LastLedgePointRequiresSafeClimb = !AntiSuicideChecker.IsColliding();
+                Visualizer.GlobalPosition = LastLedgePoint;
+            }
         }
     }
 }

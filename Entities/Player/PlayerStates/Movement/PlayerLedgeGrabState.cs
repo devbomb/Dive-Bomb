@@ -31,7 +31,11 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                Self.ChangeState<PlayerLedgeClimbState>();
+                if (Self.LedgeDetector.LastLedgePointRequiresSafeClimb)
+                    ChangeState<PlayerLedgeClimbSafeState>();
+                else
+                    ChangeState<PlayerLedgeClimbState>();
+
                 return;
             }
 

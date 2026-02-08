@@ -6,11 +6,11 @@
 "classname" "worldspawn"
 // brush 0
 {
-( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) __TB_empty 0 0 0 1 1
+( -256 -64 -16 ) ( -256 -63 -16 ) ( -256 -64 -15 ) __TB_empty 0 0 0 1 1
 ( -64 -640 -16 ) ( -64 -640 -15 ) ( -63 -640 -16 ) __TB_empty 0 0 0 1 1
 ( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) __TB_empty 0 0 0 1 1
 ( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) __TB_empty 0 0 0 1 1
-( 64 192 16 ) ( 65 192 16 ) ( 64 192 17 ) __TB_empty 0 0 0 1 1
+( 64 384 16 ) ( 65 384 16 ) ( 64 384 17 ) __TB_empty 0 0 0 1 1
 ( 624 64 16 ) ( 624 64 17 ) ( 624 65 16 ) __TB_empty 0 0 0 1 1
 }
 // brush 1
@@ -264,6 +264,42 @@
 ( 624 -128 56 ) ( 560 -192 56 ) ( 560 -128 56 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 624 -128 48 ) ( 560 -128 16 ) ( 624 -128 16 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 640 -128 48 ) ( 640 -192 16 ) ( 640 -192 48 ) Textures/BigMetalSquares 0 0 0 1 1
+}
+// brush 29
+{
+( -192 192 64 ) ( -192 256 16 ) ( -192 256 64 ) Textures/GridSquare 0 0 0 1 1
+( -128 192 64 ) ( -192 192 16 ) ( -192 192 64 ) Textures/GridSquare 0 0 0 1 1
+( -128 256 16 ) ( -192 192 16 ) ( -128 192 16 ) Textures/GridSquare 0 0 0 1 1
+( -128 256 64 ) ( -192 192 64 ) ( -192 256 64 ) Textures/GridSquare 0 0 0 1 1
+( -128 256 64 ) ( -192 256 16 ) ( -128 256 16 ) Textures/GridSquare 0 0 0 1 1
+( -128 256 64 ) ( -128 192 16 ) ( -128 192 64 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 30
+{
+( -64 192 64 ) ( -64 224 16 ) ( -64 224 64 ) Textures/GridSquare 0 0 0 1 1
+( 0 192 64 ) ( -64 192 16 ) ( -64 192 64 ) Textures/GridSquare 0 0 0 1 1
+( 0 224 16 ) ( -64 192 16 ) ( 0 192 16 ) Textures/GridSquare 0 0 0 1 1
+( 0 224 64 ) ( -64 192 64 ) ( -64 224 64 ) Textures/GridSquare 0 0 0 1 1
+( 0 240 64 ) ( -64 240 16 ) ( 0 240 16 ) Textures/GridSquare 0 0 0 1 1
+( 0 224 64 ) ( 0 192 16 ) ( 0 192 64 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 31
+{
+( 64 192 64 ) ( 64 224 16 ) ( 64 224 64 ) Textures/GridSquare 0 0 0 1 1
+( 128 192 64 ) ( 64 192 16 ) ( 64 192 64 ) Textures/GridSquare 0 0 0 1 1
+( 128 224 16 ) ( 64 192 16 ) ( 128 192 16 ) Textures/GridSquare 0 0 0 1 1
+( 128 224 64 ) ( 64 192 64 ) ( 64 224 64 ) Textures/GridSquare 0 0 0 1 1
+( 128 224 64 ) ( 64 224 16 ) ( 128 224 16 ) Textures/GridSquare 0 0 0 1 1
+( 128 224 64 ) ( 128 192 16 ) ( 128 192 64 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 32
+{
+( 192 192 64 ) ( 192 208 16 ) ( 192 208 64 ) Textures/GridSquare 0 0 0 1 1
+( 256 192 64 ) ( 192 192 16 ) ( 192 192 64 ) Textures/GridSquare 0 0 0 1 1
+( 256 208 16 ) ( 192 192 16 ) ( 256 192 16 ) Textures/GridSquare 0 0 0 1 1
+( 256 208 64 ) ( 192 192 64 ) ( 192 208 64 ) Textures/GridSquare 0 0 0 1 1
+( 256 208 64 ) ( 192 208 16 ) ( 256 208 16 ) Textures/GridSquare 0 0 0 1 1
+( 256 208 64 ) ( 256 192 16 ) ( 256 192 64 ) Textures/GridSquare 0 0 0 1 1
 }
 }
 // entity 1
