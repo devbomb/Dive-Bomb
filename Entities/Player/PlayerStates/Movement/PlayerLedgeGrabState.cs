@@ -16,7 +16,7 @@ namespace FastDragon
             // The height should be such that the ledge grab point is at exactly
             // the ledge height.
             var pos = Self.GlobalPosition;
-            pos.Y = Self.LedgeDetector.LedgeHeight;
+            pos.Y = Self.LedgeDetector.LedgeGlobalY;
             pos.Y -= Self.LedgeGrabPoint.Position.Y;
             Self.GlobalPosition = pos;
 
