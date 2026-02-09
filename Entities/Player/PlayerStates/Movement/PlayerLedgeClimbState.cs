@@ -27,6 +27,21 @@ namespace FastDragon
             Self.Animator.Advance(0);
         }
 
+        public override void _Input(InputEvent ev)
+        {
+            if (InputService.RollJustPressed(ev))
+            {
+                Self.ChangeState<PlayerDiveState>();
+                return;
+            }
+
+            if (InputService.KickJustPressed(ev))
+            {
+                Self.ChangeState<PlayerKickState>();
+                return;
+            }
+        }
+
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
