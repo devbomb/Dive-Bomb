@@ -156,6 +156,7 @@ script = SubResource("GDScript_hl213")
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_b8til")
+debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Hitboxes" type="Node3D" parent="."]
 
@@ -164,18 +165,24 @@ shape = SubResource("SphereShape3D_b8til")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/KickHitbox"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.26022e-08, 0.381694, -0.182095)
 shape = SubResource("CylinderShape3D_1rf0g")
+debug_color = Color(0.93333334, 0, 0, 0.41960785)
+debug_fill = false
 
 [node name="DiveExtraHitbox" type="Area3D" parent="Hitboxes"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/DiveExtraHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_uxvrm")
+debug_color = Color(0.99215686, 0, 0, 0.41960785)
+debug_fill = false
 
 [node name="RollExtraHitbox" type="Area3D" parent="Hitboxes"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/RollExtraHitbox"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_rtu1o")
+debug_color = Color(1, 0, 0, 0.41960785)
+debug_fill = false
 
 [node name="Model" parent="." instance=ExtResource("3_fw7ex")]
 
@@ -192,7 +199,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2
 visible = false
 
 [node name="BlobShadow" parent="." node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("9_vmh20")]
-ignore_bodies = [NodePath(".."), NodePath("../LedgeGrabHelpers/LedgeDetector")]
+ignore_bodies = [NodePath("..")]
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 deterministic = true
@@ -256,10 +263,10 @@ RestPos = NodePath("../CameraFocusRestPos")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="LedgeGrabHelpers" type="Node3D" parent="."]
-
-[node name="LedgeDetector" parent="LedgeGrabHelpers" instance=ExtResource("2_0esln")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45037, 0)
 visible = false
+
+[node name="LedgeDetector" parent="LedgeGrabHelpers" node_paths=PackedStringArray("Body") instance=ExtResource("2_0esln")]
+Body = NodePath("../..")
 
 [node name="LedgeGrabPoint" type="Marker3D" parent="LedgeGrabHelpers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.387, -0.492)

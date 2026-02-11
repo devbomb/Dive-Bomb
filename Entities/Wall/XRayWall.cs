@@ -10,6 +10,11 @@ namespace FastDragon
         private float _transparency = 0;
         private float _targetTransparency = 0;
 
+        public XRayWall()
+        {
+            _raycast.Visible = false;
+        }
+
         public override void _Ready()
         {
             AddChild(_raycast);

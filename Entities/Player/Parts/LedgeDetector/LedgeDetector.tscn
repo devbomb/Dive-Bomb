@@ -1,39 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfucpfnpqi5r3"]
+[gd_scene load_steps=7 format=3 uid="uid://bfucpfnpqi5r3"]
 
 [ext_resource type="Script" uid="uid://bhepqrluiokcn" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.cs" id="1_ykwis"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_difdr"]
-height = 0.05
-radius = 1.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pwy4k"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_pkyy7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pwy4k"]
+size = Vector3(1, 2, 0.924792)
 
-[node name="LedgeDetector" type="StaticBody3D"]
-collision_layer = 0
+[sub_resource type="SphereMesh" id="SphereMesh_pwy4k"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwy4k"]
+transparency = 1
+albedo_color = Color(0.22352941, 1, 1, 0.21960784)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wc4sc"]
+material = SubResource("StandardMaterial3D_pwy4k")
+
+[node name="LedgeDetector" type="Node3D" node_paths=PackedStringArray("UpCapsule", "ForwardCapsule", "DownCast", "AntiSuicideChecker", "Visualizer")]
 script = ExtResource("1_ykwis")
+UpCapsule = NodePath("UpCapsule")
+ForwardCapsule = NodePath("ForwardCapsule")
+DownCast = NodePath("DownCast")
+AntiSuicideChecker = NodePath("AntiSuicideChecker")
+Visualizer = NodePath("Visualizer")
 
-[node name="GapChecker" type="RayCast3D" parent="."]
-unique_name_in_owner = true
-hit_from_inside = true
-debug_shape_custom_color = Color(0, 1, 0, 1)
-debug_shape_thickness = 5
+[node name="UpCapsule" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
-shape = SubResource("CylinderShape3D_difdr")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpCapsule"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_pwy4k")
 
-[node name="OverlapArea" type="Area3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
-collision_layer = 0
-input_ray_pickable = false
+[node name="ForwardCapsule" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.5, -1.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OverlapArea"]
-shape = SubResource("CylinderShape3D_difdr")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ForwardCapsule"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5261041)
+shape = SubResource("BoxShape3D_pwy4k")
 
-[node name="LedgeCollisionVisualizer" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+[node name="DownCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+target_position = Vector3(0, -2, 0)
+
+[node name="AntiSuicideChecker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
+target_position = Vector3(0, -2, 0)
+
+[node name="Visualizer" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
 top_level = true
+mesh = SubResource("SphereMesh_pwy4k")
+
+[node name="ReferenceBefore" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 visible = false
-mesh = SubResource("SphereMesh_pkyy7")
+mesh = SubResource("SphereMesh_wc4sc")
+
+[node name="ReferenceAfter" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+visible = false
+mesh = SubResource("SphereMesh_wc4sc")

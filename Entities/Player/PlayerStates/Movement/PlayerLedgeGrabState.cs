@@ -16,9 +16,17 @@ namespace FastDragon
             // The height should be such that the ledge grab point is at exactly
             // the ledge height.
             var pos = Self.GlobalPosition;
-            pos.Y = Self.LedgeDetector.LedgeHeight;
+            pos.Y = Self.LedgeDetector.LedgeGlobalY;
             pos.Y -= Self.LedgeGrabPoint.Position.Y;
             Self.GlobalPosition = pos;
+
+            // Because the player is a sphere, changing their height probably
+            // made them clip into the wall a little bit.  Let's move them out.
+            //
+            // Don't believe me?  Imagine a billiard ball teetering on the edge
+            // of a cliff.  If you just move that ball straight down, it would
+            // clip into that cliff, wouldn't it?
+            Self.MoveAndCollide(Vector3.Zero);
 
             // Rotate to face the wall.
             // It would be weird otherwise.
@@ -31,7 +39,11 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                Self.ChangeState<PlayerLedgeClimbState>();
+                if (Self.LedgeDetector.LastLedgePointRequiresSafeClimb)
+                    ChangeState<PlayerLedgeClimbSafeState>();
+                else
+                    ChangeState<PlayerLedgeClimbState>();
+
                 return;
             }
 

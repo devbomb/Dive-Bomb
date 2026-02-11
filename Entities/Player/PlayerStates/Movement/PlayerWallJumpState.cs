@@ -76,9 +76,6 @@ namespace FastDragon
                 return;
             }
 
-            if (TryGrabLedge())
-                return;
-
             if (Self.IsOnWall() && Self.VSpeed < 0)
             {
                 Self.ChangeState<PlayerWallSlideState>();

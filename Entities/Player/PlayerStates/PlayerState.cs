@@ -310,32 +310,14 @@ namespace FastDragon
         /// <returns></returns>
         protected bool TryGrabLedge()
         {
-            if (!Self.IsOnWallOnly())
-                return false;
-
             if (!Self.LedgeDetector.LedgeDetected)
                 return false;
 
-            // HACK: Don't grab a ledge if the player is too close to a ceiling.
-            // This prevents them from grabbing an incorrectly-detected "ledge"
-            // that's actually flush with (or even inside of) the ceiling.
-            bool tooCloseToCeiling = Self.TestMove(
-                Self.GlobalTransform,
-                Vector3.Up * 1
-            );
-            if (tooCloseToCeiling)
+            if (Self.LedgeDetector.IsBlocked)
                 return false;
 
-            // Grab the ledge if it's not too high
-            float ledgeHeight = Self.LedgeDetector.LedgeHeight - Self.GlobalPosition.Y;
-            float minHeight = Self.MinLedgeGrabHeight.GlobalPosition.Y - Self.GlobalPosition.Y;
-            if (ledgeHeight > minHeight)
-            {
-                Self.ChangeState<PlayerLedgeGrabState>();
-                return true;
-            }
-
-            return false;
+            ChangeState<PlayerLedgeGrabState>();
+            return true;
         }
     }
 }

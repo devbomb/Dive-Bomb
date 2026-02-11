@@ -41,9 +41,6 @@ namespace FastDragon
                 return;
             }
 
-            if (TryGrabLedge())
-                return;
-
             // We intentionally do not allow wall sliding from this state, to
             // prevent the player from combining wall jumps with kicks to
             // climb infinitely high.
