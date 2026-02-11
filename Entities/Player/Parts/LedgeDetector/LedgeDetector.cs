@@ -24,7 +24,11 @@ namespace FastDragon
             UpCapsule.GetOverlappingBodiesResetSafe().Any(b => b is not Player) ||
             ForwardCapsule.GetOverlappingBodiesResetSafe().Any(b => b is not Player);
 
-        public bool LedgeDetected => Body.IsOnWallOnly() && DownCast.IsColliding();
+        public bool LedgeDetected =>
+            Body.IsOnWallOnly() &&
+            DownCast.IsColliding() &&
+            DownCast.GetCollider() is StaticBody3D &&
+            DownCast.GetCollisionNormal().AngleTo(Vector3.Up) <= Mathf.DegToRad(MaxSlopeAngleDeg);
 
         /// <summary>
         /// Returns the global y position of the ledge the player can grab onto.
