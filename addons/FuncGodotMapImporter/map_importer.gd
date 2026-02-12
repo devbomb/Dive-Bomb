@@ -63,9 +63,9 @@ func _import(
 	mapBuilder.local_map_file = source_file
 	mapBuilder.map_settings = preload("res://FuncGodotAssets/FuncGodotMapSettings.tres")
 	
-	print("Calling verify_and_build()")
-	mapBuilder.verify_and_build()
-	print("verify_and_build() done.")
+	print("Calling build()")
+	mapBuilder.build()
+	print("build() done.")
 
 	var mapRoot = Node3D.new()
 	mapRoot.name = get_root_node_name(source_file)
