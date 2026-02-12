@@ -59,7 +59,6 @@ func _import(
 	print("Importing (with func_godot) " + source_file)
 	
 	var mapBuilder = FuncGodotMap.new()
-	mapBuilder.block_until_complete = true
 	mapBuilder.local_map_file = source_file
 	mapBuilder.map_settings = preload("res://FuncGodotAssets/FuncGodotMapSettings.tres")
 	
