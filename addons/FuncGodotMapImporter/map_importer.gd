@@ -116,7 +116,10 @@ func fix_duplicate_node_names(node: Node):
 func move_children(src: Node, dst: Node):
 	for child in src.get_children():
 		src.remove_child(child)
+		var old_owner = child.owner
+		child.owner = null
 		dst.add_child(child)
+		child.owner = dst if (old_owner == src) else old_owner
 
 func get_root_node_name(source_file: String):
 	var parts = source_file.trim_prefix("res://").split("/")
