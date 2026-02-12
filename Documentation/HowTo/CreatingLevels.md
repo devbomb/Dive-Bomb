@@ -180,12 +180,6 @@ with a `.blend` file.
 This project uses a modified version of [this release](https://github.com/func-godot/func_godot_plugin/releases/tag/2025.1)
 of func_godot.  These were small modifications needed to work around some bugs.
 Namely:
-* It now uses `is_inside_tree()` to check if the current node is inside the
-    tree, rather than checking if `get_tree()` returned null.  This is because
-    calling `get_tree()` from outside the tree was causing a scary-looking (but
-    harmless) error to be spammed in the console.  `is_inside_tree()` is
-    probably better practice in general anyway.
-    > TODO: Submit a PR to func_godot's repo with this fix
 
 * When generating trenchbroom entity models, it now removes any `AnimationPlayer`
     nodes from the scene it's converting to gltf.  This is to work around a
