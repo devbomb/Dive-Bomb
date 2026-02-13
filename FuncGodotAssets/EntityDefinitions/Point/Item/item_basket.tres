@@ -1,31 +1,20 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://dir3omedhp16m"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=5 format=3 uid="uid://dir3omedhp16m"]
 
 [ext_resource type="PackedScene" uid="uid://dbxajif4g4buk" path="res://Entities/Item/Basket/Basket.tscn" id="1_a5qj5"]
 [ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="1_qa472"]
-[ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_6gccd"]
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="2_6gccd"]
+[ext_resource type="Script" uid="uid://ldfqjtq0br35" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_6gccd"]
 
 [resource]
 script = ExtResource("3_6gccd")
 target_map_editor = 1
-models_sub_folder = ""
-scale_expression = ""
-generate_size_property = false
-generate_gd_ignore_file = false
 scene_file = ExtResource("1_a5qj5")
-apply_rotation_on_map_build = true
-apply_scale_on_map_build = true
 classname = "item_basket"
-description = ""
-func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_qa472")])
-class_properties = {}
-class_property_descriptions = {}
 auto_apply_to_matching_node_properties = true
-meta_properties = {
+meta_properties = Dictionary[String, Variant]({
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"TrenchbroomEntityModels/item_basket.glb\"",
+"model": "{\"path\": \"TrenchbroomEntityModels/item_basket.glb\", \"scale\": 16.0 }",
 "size": AABB(-8, -8, 0, 8, 8, 16)
-}
-node_class = ""
-name_property = ""
+})
 metadata/_custom_type_script = "uid://bnr5edjnhrq6k"
