@@ -69,15 +69,11 @@ func _import(
 	var mapRoot = Node3D.new()
 	mapRoot.name = get_root_node_name(source_file)
 
-	move_children(mapBuilder, mapRoot)
+	move_children_and_replace_owners(mapBuilder, mapRoot)
 	fix_duplicate_node_names(mapRoot)
 
+	# Map textures to their materials based on the provided map
 	for node in all_nodes_directly_in_scene(mapRoot):
-		# Set the map root as the owner---otherwise, it won't be saved to the
-		# packed scene!
-		node.owner = mapRoot
-		
-		# Map textures to their materials based on the provided map
 		if node is MeshInstance3D && !is_root_of_another_scene(node):
 			replace_materials(node, options.texture_material_map)
 
@@ -113,13 +109,25 @@ func fix_duplicate_node_names(node: Node):
 
 		fix_duplicate_node_names(child)
 
-func move_children(src: Node, dst: Node):
-	for child in src.get_children():
-		src.remove_child(child)
+# Moves all the nodes from one scene to another, including updating their owners.
+func move_children_and_replace_owners(src_scene: Node, dst_scene: Node):
+	for child in src_scene.get_children():
+		# Avoid this warning: Adding '<node name>' as child to '<dst_scene name>' will make owner
+		# '' inconsistent. Consider unsetting the owner beforehand.
 		var old_owner = child.owner
-		child.owner = null
-		dst.add_child(child)
-		child.owner = dst if (old_owner == src) else old_owner
+		child.owner = null 
+
+		src_scene.remove_child(child)
+		dst_scene.add_child(child)
+
+		child.owner = dst_scene if (old_owner == src_scene) else old_owner
+	
+	# The for-loop updated the owners of the immediate children, but all of
+	# the grandchildren (and so-on) still have src_scene as their owner.
+	for descendant in all_descendant_nodes(dst_scene):
+		if descendant.owner == src_scene:
+			descendant.owner = dst_scene
+	
 
 func get_root_node_name(source_file: String):
 	var parts = source_file.trim_prefix("res://").split("/")
@@ -127,6 +135,17 @@ func get_root_node_name(source_file: String):
 
 func is_root_of_another_scene(node: Node) -> bool:
 	return node.scene_file_path != ""
+
+func all_descendant_nodes(node: Node) -> Array[Node]:
+	var array: Array[Node] = []
+	for child in node.get_children():
+		_all_descendant_nodes(child, array)
+	return array
+
+func _all_descendant_nodes(node: Node, array: Array[Node]):
+	array.append(node)
+	for child in node.get_children():
+		_all_descendant_nodes(child, array)
 
 # Returns all nodes that are directly inside the given scene
 # (IE: were not brought in by a child scene)
