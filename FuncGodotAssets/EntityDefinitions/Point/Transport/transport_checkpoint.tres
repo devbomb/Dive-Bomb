@@ -1,32 +1,21 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://ct1vkdjq3brne"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://ct1vkdjq3brne"]
 
-[ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_w141n"]
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_g8x31"]
+[ext_resource type="Script" uid="uid://ldfqjtq0br35" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_w141n"]
 [ext_resource type="PackedScene" uid="uid://bbfrncy1cgsc1" path="res://Entities/Transport/Checkpoint/Checkpoint.tscn" id="1_xn6wb"]
 
 [resource]
 script = ExtResource("1_w141n")
 target_map_editor = 1
-models_sub_folder = ""
-scale_expression = ""
-generate_size_property = false
-generate_gd_ignore_file = false
+rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("1_xn6wb")
-apply_rotation_on_map_build = true
-apply_scale_on_map_build = true
 classname = "transport_checkpoint"
-description = ""
-func_godot_internal = false
-base_classes = Array[Resource]([])
-class_properties = {
+class_properties = Dictionary[String, Variant]({
 "CheckpointName": ""
-}
-class_property_descriptions = {}
+})
 auto_apply_to_matching_node_properties = true
-meta_properties = {
+meta_properties = Dictionary[String, Variant]({
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"TrenchbroomEntityModels/transport_checkpoint.glb\"",
+"model": "{\"path\": \"TrenchbroomEntityModels/transport_checkpoint.glb\", \"scale\": 16.0 }",
 "size": AABB(-16, -16, 0, 16, 16, 16)
-}
-node_class = ""
-name_property = ""
-metadata/_custom_type_script = "uid://bnr5edjnhrq6k"
+})

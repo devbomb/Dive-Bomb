@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://cceb6rvbc2qf"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://cceb6rvbc2qf"]
 
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_5rkmw"]
 [ext_resource type="PackedScene" uid="uid://dahuf8m47kslw" path="res://Entities/Transport/StandardPortal/StandardPortal.tscn" id="1_wuwau"]
-[ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="2_5rkmw"]
+[ext_resource type="Script" uid="uid://ldfqjtq0br35" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="2_5rkmw"]
 
 [resource]
 script = ExtResource("2_5rkmw")
 target_map_editor = 1
+rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("1_wuwau")
 classname = "transport_standard_portal"
-class_properties = {
+class_properties = Dictionary[String, Variant]({
 "FairiesRequired": 0,
 "SkyboxEnvironment": "",
 "TargetLevel": "",
@@ -19,14 +21,13 @@ class_properties = {
 "Level": 0,
 "PostBoss": 2
 }
-}
-class_property_descriptions = {
+})
+class_property_descriptions = Dictionary[String, Variant]({
 "Type": ["Hello world", 0]
-}
+})
 auto_apply_to_matching_node_properties = true
-meta_properties = {
+meta_properties = Dictionary[String, Variant]({
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"TrenchbroomEntityModels/transport_standard_portal.glb\"",
+"model": "{\"path\": \"TrenchbroomEntityModels/transport_standard_portal.glb\", \"scale\": 16.0 }",
 "size": AABB(-8, -8, 0, 8, 8, 16)
-}
-metadata/_custom_type_script = "uid://bnr5edjnhrq6k"
+})

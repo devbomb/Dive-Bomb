@@ -35,18 +35,13 @@ A Dive Bomb level consists of:
     * Set "Fgd Output Folder" to `<trenchbroom install folder>/games/FastDragon`
     * Set "Trenchbroom Game Config Folder" to `<trenchbroom install folder>/games/FastDragon`
     * Set "Map Editor Game Path" to the root of this repo
-    * Set "Game Path Models Folder" to "TrenchbroomEntityModels"
-    * Check "Export Func Godot Settings"
-        * You will not actually see a checkmark appear, but that's OK.  This
-            property is more like a button than a checkbox.
+    * Click "Export Func Godot Settings"
     > **Don't worry:** the absolute file paths you entered into this resource
         will NOT be saved into the git repo!  The properties on this resource
         are "fake"; they get diverted into a JSON file located elsewhere on your
         computer instead of getting serialized here.
 1. In Godot, open the file `res://FuncGodotAssets/TrenchBroomConfig.tres` and
-    check "Export file".
-    * This is another one of those "button" properties, similar to 
-        "Export Func Godot Settings", so you won't see a checkmark appear.
+    click "Export file".
     * When you click it, you'll find that some
         files have been generated in `<trenchbroom install folder>/games/FastDragon`.
         These files give Trenchbroom metadata needed for displaying entities
@@ -180,12 +175,6 @@ with a `.blend` file.
 This project uses a modified version of [this release](https://github.com/func-godot/func_godot_plugin/releases/tag/2025.1)
 of func_godot.  These were small modifications needed to work around some bugs.
 Namely:
-* It now uses `is_inside_tree()` to check if the current node is inside the
-    tree, rather than checking if `get_tree()` returned null.  This is because
-    calling `get_tree()` from outside the tree was causing a scary-looking (but
-    harmless) error to be spammed in the console.  `is_inside_tree()` is
-    probably better practice in general anyway.
-    > TODO: Submit a PR to func_godot's repo with this fix
 
 * When generating trenchbroom entity models, it now removes any `AnimationPlayer`
     nodes from the scene it's converting to gltf.  This is to work around a

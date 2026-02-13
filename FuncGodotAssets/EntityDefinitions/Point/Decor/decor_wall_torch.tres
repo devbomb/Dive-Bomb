@@ -1,30 +1,18 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://bblbx4r2eswhn"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://bblbx4r2eswhn"]
 
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_8b4bi"]
 [ext_resource type="PackedScene" uid="uid://bnvl0dea6a42y" path="res://Entities/Detail/WallTorch/WallTorch.tscn" id="1_jjwek"]
-[ext_resource type="Script" uid="uid://bnr5edjnhrq6k" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_ogtll"]
+[ext_resource type="Script" uid="uid://ldfqjtq0br35" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_ogtll"]
 
 [resource]
 script = ExtResource("1_ogtll")
 target_map_editor = 1
-models_sub_folder = ""
-scale_expression = ""
-generate_size_property = false
-generate_gd_ignore_file = false
+rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("1_jjwek")
-apply_rotation_on_map_build = true
-apply_scale_on_map_build = true
 classname = "decor_wall_torch"
 description = "A torch that goes on the wall.  Acts like this game's \"yellow paint\", subtly(or un-subtly) marking the \"correct\" path.  The player is encouraged to ignore them and go the opposite way."
-func_godot_internal = false
-base_classes = Array[Resource]([])
-class_properties = {}
-class_property_descriptions = {}
-auto_apply_to_matching_node_properties = false
-meta_properties = {
+meta_properties = Dictionary[String, Variant]({
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"TrenchbroomEntityModels/decor_wall_torch.glb\"",
+"model": "{\"path\": \"TrenchbroomEntityModels/decor_wall_torch.glb\", \"scale\": 16.0 }",
 "size": AABB(-8, -8, -8, 8, 8, 8)
-}
-node_class = ""
-name_property = ""
-metadata/_custom_type_script = "uid://bnr5edjnhrq6k"
+})

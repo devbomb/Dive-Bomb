@@ -1,23 +1,23 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dtrewu5mef3im"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://dtrewu5mef3im"]
 
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_2sy0l"]
 [ext_resource type="PackedScene" uid="uid://b6d7vas8km3kd" path="res://Entities/Item/FairyJar/FairyJar.tscn" id="1_x8mxr"]
-[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_2sy0l"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_2sy0l"]
 
 [resource]
 script = ExtResource("2_2sy0l")
 scene_file = ExtResource("1_x8mxr")
 classname = "item_fairy"
-class_properties = {
+class_properties = Dictionary[String, Variant]({
 "FairyId": "",
 "GemCost": 0
-}
-class_property_descriptions = {
+})
+class_property_descriptions = Dictionary[String, Variant]({
 "FairyId": "Optional.  If specified(IE: not null or the empty string), other entities can use it to get a reference to this fairy, IE to check if it's been freed.",
 "GemCost": "How much this fairy costs to rescue"
-}
+})
 auto_apply_to_matching_node_properties = true
-meta_properties = {
+meta_properties = Dictionary[String, Variant]({
 "color": Color(0.433443, 0.796857, 0.899777, 1),
 "size": AABB(-8, -8, 0, 8, 8, 24)
-}
-metadata/_custom_type_script = "uid://cddjtiy8pj12o"
+})

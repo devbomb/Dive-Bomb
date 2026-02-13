@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://dbatici3tmxja"]
 
-[ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_k7l1k"]
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_k7l1k"]
 [ext_resource type="Script" uid="uid://cjqsla1ipbmji" path="res://Entities/Wall/OpenableWall.cs" id="2_wd4ab"]
 
 [resource]
@@ -8,14 +8,13 @@ script = ExtResource("1_k7l1k")
 collision_layer = 3
 script_class = ExtResource("2_wd4ab")
 classname = "wall_openable"
-class_properties = {
+class_properties = Dictionary[String, Variant]({
 "CloseDuration": 0.5,
 "ClosedPosMarkerId": "",
 "Id": "",
 "OpenDuration": 0.5,
 "OpenPosMarkerId": ""
-}
+})
 auto_apply_to_matching_node_properties = true
 node_class = "AnimatableBody3D"
 name_property = "Id"
-metadata/_custom_type_script = "uid://ctv13qfisgfqg"
