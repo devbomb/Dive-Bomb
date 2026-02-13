@@ -35,18 +35,13 @@ A Dive Bomb level consists of:
     * Set "Fgd Output Folder" to `<trenchbroom install folder>/games/FastDragon`
     * Set "Trenchbroom Game Config Folder" to `<trenchbroom install folder>/games/FastDragon`
     * Set "Map Editor Game Path" to the root of this repo
-    * Set "Game Path Models Folder" to "TrenchbroomEntityModels"
-    * Check "Export Func Godot Settings"
-        * You will not actually see a checkmark appear, but that's OK.  This
-            property is more like a button than a checkbox.
+    * Click "Export Func Godot Settings"
     > **Don't worry:** the absolute file paths you entered into this resource
         will NOT be saved into the git repo!  The properties on this resource
         are "fake"; they get diverted into a JSON file located elsewhere on your
         computer instead of getting serialized here.
 1. In Godot, open the file `res://FuncGodotAssets/TrenchBroomConfig.tres` and
-    check "Export file".
-    * This is another one of those "button" properties, similar to 
-        "Export Func Godot Settings", so you won't see a checkmark appear.
+    click "Export file".
     * When you click it, you'll find that some
         files have been generated in `<trenchbroom install folder>/games/FastDragon`.
         These files give Trenchbroom metadata needed for displaying entities

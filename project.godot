@@ -41,6 +41,12 @@ import/use_multiple_threads=false
 
 enabled=PackedStringArray("res://addons/FuncGodotMapImporter/plugin.cfg", "res://addons/MiscTools/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/func_godot/plugin.cfg")
 
+[func_godot]
+
+default_map_settings="uid://pgh6d0v7fyip"
+default_inverse_scale_factor=16.0
+model_point_class_save_path="TrenchbroomEntityModels"
+
 [global_group]
 
 PhysicsInterpolated=""
