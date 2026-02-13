@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_ogtll")
 target_map_editor = 1
+rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("1_jjwek")
 classname = "decor_wall_torch"
 description = "A torch that goes on the wall.  Acts like this game's \"yellow paint\", subtly(or un-subtly) marking the \"correct\" path.  The player is encouraged to ignore them and go the opposite way."
@@ -15,4 +16,3 @@ meta_properties = Dictionary[String, Variant]({
 "model": "{\"path\": \"TrenchbroomEntityModels/decor_wall_torch.glb\", \"scale\": 16.0 }",
 "size": AABB(-8, -8, -8, 8, 8, 8)
 })
-metadata/_custom_type_script = "uid://bnr5edjnhrq6k"

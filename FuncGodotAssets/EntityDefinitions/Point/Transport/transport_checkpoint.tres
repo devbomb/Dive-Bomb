@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_w141n")
 target_map_editor = 1
+rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("1_xn6wb")
 classname = "transport_checkpoint"
 class_properties = Dictionary[String, Variant]({
@@ -18,4 +19,3 @@ meta_properties = Dictionary[String, Variant]({
 "model": "{\"path\": \"TrenchbroomEntityModels/transport_checkpoint.glb\", \"scale\": 16.0 }",
 "size": AABB(-16, -16, 0, 16, 16, 16)
 })
-metadata/_custom_type_script = "uid://bnr5edjnhrq6k"

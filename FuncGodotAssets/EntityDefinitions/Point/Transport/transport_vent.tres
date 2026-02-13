@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("2_3o3qs")
 target_map_editor = 1
+rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("1_3o3qs")
 classname = "transport_vent"
 class_properties = Dictionary[String, Variant]({
@@ -19,4 +20,3 @@ meta_properties = Dictionary[String, Variant]({
 "model": "{\"path\": \"TrenchbroomEntityModels/transport_vent.glb\", \"scale\": 16.0 }",
 "size": AABB(-8, -8, -8, 8, 8, 8)
 })
-metadata/_custom_type_script = "uid://bnr5edjnhrq6k"

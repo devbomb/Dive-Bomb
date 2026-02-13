@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_bxkgs")
 target_map_editor = 1
+rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("1_x56qt")
 classname = "gate_fairy_door"
 description = "A door that opens if the specified fairy is free"
@@ -22,4 +23,3 @@ meta_properties = Dictionary[String, Variant]({
 "model": "{\"path\": \"TrenchbroomEntityModels/gate_fairy_door.glb\", \"scale\": 16.0 }",
 "size": AABB(-8, -8, -8, 8, 8, 8)
 })
-metadata/_custom_type_script = "uid://bnr5edjnhrq6k"

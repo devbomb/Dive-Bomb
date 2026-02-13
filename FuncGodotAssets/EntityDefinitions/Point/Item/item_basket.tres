@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("3_6gccd")
 target_map_editor = 1
+rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("1_a5qj5")
 classname = "item_basket"
 base_classes = Array[Resource]([ExtResource("1_qa472")])
@@ -17,4 +18,3 @@ meta_properties = Dictionary[String, Variant]({
 "model": "{\"path\": \"TrenchbroomEntityModels/item_basket.glb\", \"scale\": 16.0 }",
 "size": AABB(-8, -8, 0, 8, 8, 16)
 })
-metadata/_custom_type_script = "uid://bnr5edjnhrq6k"
