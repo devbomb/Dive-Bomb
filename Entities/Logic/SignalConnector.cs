@@ -5,10 +5,10 @@ namespace FastDragon
 {
     public partial class SignalConnector : Node3D
     {
-        [Export] public NodePath target;
+        [Export] public string target;
         [Export] public string Signal;
 
-        [Export] public NodePath killtarget;
+        [Export] public string killtarget;
         [Export] public string HandlerFunction;
 
         public NodePath From => target;

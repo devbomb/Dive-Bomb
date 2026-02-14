@@ -11,8 +11,8 @@ classname = "logic_signal_connector"
 class_properties = Dictionary[String, Variant]({
 "HandlerFunction": "",
 "Signal": "",
-"killtarget": NodePath(""),
-"target": NodePath("")
+"killtarget": "",
+"target": ""
 })
 class_property_descriptions = Dictionary[String, Variant]({
 "HandlerFunction": "The name of the method to be called on killtarget when the signal is emitted.  Make sure its function signature matches that of the signal!",
