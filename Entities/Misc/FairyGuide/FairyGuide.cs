@@ -32,14 +32,7 @@ namespace FastDragon
 
                 if (!string.IsNullOrEmpty(FairyId))
                 {
-                    _jar = GetTree().Root
-                        .EnumerateDescendantsOfType<FairyJar>()
-                        .FirstOrDefault(f => f.targetname == FairyId);
-
-                    if (_jar == null)
-                    {
-                        throw new Exception($"Couldn't find a fairy with id {FairyId}");
-                    }
+                    _jar = this.FindNodeByTargetName<FairyJar>(FairyId);
                 }
 
                 SignalBus.Instance.LevelReset += Reset;
