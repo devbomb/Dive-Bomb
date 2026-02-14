@@ -8,7 +8,7 @@ script = ExtResource("1_tgbyy")
 scene_file = ExtResource("1_jufp7")
 classname = "info_named_marker"
 class_properties = {
-"MarkerId": ""
+"targetname": ""
 }
 auto_apply_to_matching_node_properties = true
 metadata/_custom_type_script = "uid://cddjtiy8pj12o"

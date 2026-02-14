@@ -242,7 +242,7 @@ namespace FastDragon
 
             var checkpoint = GetTree().Root
                 .EnumerateDescendantsOfType<Checkpoint>()
-                .FirstOrDefault(c => c.IsCurrent || c.DebugSpawnHere);
+                .FirstOrDefault(c => c.IsCurrent);
 
             return checkpoint == null
                 ? _spawnPos

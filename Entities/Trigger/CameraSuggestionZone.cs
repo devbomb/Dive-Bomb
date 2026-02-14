@@ -9,7 +9,7 @@ namespace FastDragon
         [Export] public float SuggestedPitchDeg = 0;
         [Export] public float SuggestedDistance = 6;
 
-        [Export] public string DirectionMarkerId;
+        [Export] public string target;
 
         public override void _Ready()
         {
@@ -18,17 +18,10 @@ namespace FastDragon
 
             Callable.From(() =>
             {
-                if (string.IsNullOrEmpty(DirectionMarkerId))
+                if (string.IsNullOrEmpty(target))
                     return;
 
-                var marker = GetTree()
-                    .Root
-                    .EnumerateDescendantsOfType<NamedMarker3D>()
-                    .FirstOrDefault(m => m.MarkerId == DirectionMarkerId);
-
-                if (marker == null)
-                    throw new System.Exception($"Couldn't find marker with name {DirectionMarkerId}");
-
+                var marker = this.FindNodeByTargetName<NamedMarker3D>(target);
                 SuggestedYawDeg = marker.GlobalRotationDegrees.Y;
                 SuggestedPitchDeg = marker.GlobalRotationDegrees.X;
             }).CallDeferred();

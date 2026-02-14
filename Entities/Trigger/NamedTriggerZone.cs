@@ -4,6 +4,6 @@ namespace FastDragon
 {
     public partial class NamedTriggerZone : Area3D
     {
-        [Export] public string TriggerName;
+        [Export] public string targetname;
     }
 }

@@ -17,7 +17,7 @@ namespace FastDragon
         ///
         /// Not to be confused with <see cref="SaveKey"/>!
         /// </summary>
-        [Export] public string FairyId;
+        [Export] public string targetname;
 
         public bool VulnerableToKick => CanBreak();
         public bool VulnerableToRoll => CanBreak();
@@ -31,7 +31,7 @@ namespace FastDragon
 
         /// <summary>
         /// The Id used to identify this fairy in the save file.
-        /// Will be equal to <see cref="FairyId"/> if that value is provided.
+        /// Will be equal to <see cref="targetname"/> if that value is provided.
         /// Otherwise, it will default to a value derived from this node's path.
         /// </summary>
         public string SaveKey { get; private set; }
@@ -134,8 +134,8 @@ namespace FastDragon
 
         private string GenerateSaveKey()
         {
-            if (!string.IsNullOrEmpty(FairyId))
-                return FairyId;
+            if (!string.IsNullOrEmpty(targetname))
+                return targetname;
 
             var builder = new System.Text.StringBuilder();
             Visit(this);
@@ -159,7 +159,7 @@ namespace FastDragon
         {
             return GetTree().Root
                 .EnumerateDescendantsOfType<FairyGuide>()
-                .Any(f => f.FairyId == FairyId);
+                .Any(f => f.FairyId == targetname);
         }
 
         private class Idle : State<FairyJar>

@@ -8,7 +8,7 @@ namespace FastDragon
     public partial class ConveyorBelt : StaticBody3D
     {
         [Export] public float Speed = 10;
-        [Export] public string DirectionMarkerId;
+        [Export] public string target;
 
         private Vector3 _normal;
 
@@ -28,13 +28,7 @@ namespace FastDragon
 
         private void SetDirection()
         {
-            var marker = GetTree()
-                .Root
-                .EnumerateDescendantsOfType<NamedMarker3D>()
-                .FirstOrDefault(m => m.MarkerId == DirectionMarkerId);
-
-            if (marker == null)
-                throw new Exception($"Could not find conveyor belt direction marker with ID \"{DirectionMarkerId}\"");
+            var marker = this.FindNodeByTargetName<NamedMarker3D>(target);
 
             var direction = marker
                 .GlobalForward()

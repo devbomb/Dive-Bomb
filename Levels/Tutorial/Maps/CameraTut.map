@@ -325,7 +325,7 @@
 // entity 10
 {
 "classname" "trigger_power_zone"
-"TargetId" "CameraTutorialTrigger"
+"target" "CameraTutorialTrigger"
 // brush 0
 {
 ( 320 -128 72 ) ( 320 -127 72 ) ( 320 -128 73 ) Textures/Grate 0 0 0 1 1

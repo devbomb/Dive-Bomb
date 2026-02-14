@@ -97,5 +97,5 @@
 {
 "classname" "item_fairy"
 "origin" "-8 120 16"
-"FairyId" "FairyDoorTest"
+"targetname" "FairyDoorTest"
 }

@@ -10,10 +10,10 @@ script_class = ExtResource("2_wd4ab")
 classname = "wall_openable"
 class_properties = Dictionary[String, Variant]({
 "CloseDuration": 0.5,
-"ClosedPosMarkerId": "",
-"Id": "",
+"ClosedPosTargetname": "",
+"targetname": "",
 "OpenDuration": 0.5,
-"OpenPosMarkerId": ""
+"OpenPosTargetname": ""
 })
 auto_apply_to_matching_node_properties = true
 node_class = "AnimatableBody3D"

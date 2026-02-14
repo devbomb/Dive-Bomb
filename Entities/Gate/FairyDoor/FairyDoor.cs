@@ -31,13 +31,7 @@ namespace FastDragon
                 if (string.IsNullOrEmpty(FairyId))
                     throw new Exception("Fairy door doesn't have a FairyId");
 
-                _jar = GetTree().Root
-                    .EnumerateDescendantsOfType<FairyJar>()
-                    .Where(f => f.FairyId == FairyId)
-                    .FirstOrDefault();
-
-                if (_jar == null)
-                    throw new Exception($"Could not find a fairy jar with id {FairyId}");
+                _jar = this.FindNodeByTargetName<FairyJar>(FairyId);
 
                 _guide = GetTree().Root
                     .EnumerateDescendantsOfType<FairyGuide>()

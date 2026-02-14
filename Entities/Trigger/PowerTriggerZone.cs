@@ -6,10 +6,10 @@ namespace FastDragon
 {
     public partial class PowerTriggerZone : Area3D
     {
-        [Export] public string TargetId;
+        [Export] public string target;
         [Export] public bool Invert;
 
-        private IPowerable _target;
+        private IPowerable _targetPowerable;
         private bool _playerInside;
 
         public override void _Ready()
@@ -18,7 +18,7 @@ namespace FastDragon
 
             Callable.From(() =>
             {
-                _target = this.FindPowerable(TargetId);
+                _targetPowerable = this.FindNodeByTargetName<IPowerable>(target);
                 Reset();
             }).CallDeferred();
         }
@@ -26,7 +26,7 @@ namespace FastDragon
         private void Reset()
         {
             _playerInside = false;
-            _target.ForceSetPowered(PossiblyInvert(false));
+            _targetPowerable.ForceSetPowered(PossiblyInvert(false));
         }
 
         public override void _PhysicsProcess(double delta)
@@ -37,7 +37,7 @@ namespace FastDragon
                 .Any();
 
             if (_playerInside != playerWasInside)
-                _target.SetPowered(PossiblyInvert(_playerInside));
+                _targetPowerable.SetPowered(PossiblyInvert(_playerInside));
         }
 
         private bool PossiblyInvert(bool value)

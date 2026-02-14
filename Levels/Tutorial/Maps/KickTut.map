@@ -175,7 +175,7 @@
 // entity 2
 {
 "classname" "trigger_power_zone"
-"TargetId" "RecenterCameraTutorialTrigger"
+"target" "RecenterCameraTutorialTrigger"
 // brush 0
 {
 ( -64 -32 16 ) ( -64 -31 16 ) ( -64 -32 17 ) Textures/Grate 0 0 0 1 1
@@ -195,7 +195,7 @@
 // entity 4
 {
 "classname" "trigger_power_zone"
-"TargetId" "KickTutorialPopupTrigger"
+"target" "KickTutorialPopupTrigger"
 // brush 0
 {
 ( -48 224 128 ) ( -48 304 48 ) ( -48 304 128 ) Textures/Grate 0 0 0 1 1

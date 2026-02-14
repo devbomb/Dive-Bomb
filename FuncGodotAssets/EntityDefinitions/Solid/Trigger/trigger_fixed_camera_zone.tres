@@ -28,9 +28,11 @@ description = "Forces the camera into the specified position while the player is
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
-"TargetMarkerId": ""
+"target": ""
 }
-class_property_descriptions = {}
+class_property_descriptions = {
+"target": "The targetname of the marker the camera should be moved to"
+}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),

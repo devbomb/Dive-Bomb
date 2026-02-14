@@ -7,7 +7,7 @@ namespace FastDragon
 {
     public interface IPowerable
     {
-        string Id { get; }
+        string targetname { get; }
 
         /// <summary>
         ///     Tells the node that it is now being powered (or not).
@@ -30,14 +30,6 @@ namespace FastDragon
 
     public static class IPowerableNodeExtensions
     {
-        public static IPowerable FindPowerable(this Node node, string id)
-        {
-            return node.GetTree()
-                .Root
-                .EnumerateDescendantsOfType<IPowerable>()
-                .Single(p => p.Id == id);
-        }
-
         /// <summary>
         ///     Synonym for "SetPowered(true)".
         ///     Exists mainly to establish the convention that "powered == open"

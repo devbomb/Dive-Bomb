@@ -9,11 +9,11 @@ script = ExtResource("2_2sy0l")
 scene_file = ExtResource("1_x8mxr")
 classname = "item_fairy"
 class_properties = Dictionary[String, Variant]({
-"FairyId": "",
+"targetname": "",
 "GemCost": 0
 })
 class_property_descriptions = Dictionary[String, Variant]({
-"FairyId": "Optional.  If specified(IE: not null or the empty string), other entities can use it to get a reference to this fairy, IE to check if it's been freed.",
+"targetname": "Optional.  If specified(IE: not null or the empty string), other entities can use it to get a reference to this fairy, IE to check if it's been freed.",
 "GemCost": "How much this fairy costs to rescue"
 })
 auto_apply_to_matching_node_properties = true
