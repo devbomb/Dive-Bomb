@@ -6,7 +6,7 @@ namespace FastDragon
     [GlobalClass]
     public partial class TutorialPopup : Control, IPowerable
     {
-        [Export] public string TriggerName { get; set; }
+        [Export] public string targetname { get; set; }
         [Export] public double FadeInDuration = 0.25;
         [Export] public double FadeOutDuration = 0.5;
 
@@ -20,7 +20,7 @@ namespace FastDragon
             Visible = true;
         }
 
-        string IPowerable.Id => TriggerName;
+        string IPowerable.Id => targetname;
 
         public void SetPowered(bool powered)
         {
