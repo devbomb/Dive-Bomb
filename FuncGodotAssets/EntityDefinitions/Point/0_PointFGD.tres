@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=9 format=3 uid="uid://smurg5ociodd"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=10 format=3 uid="uid://smurg5ociodd"]
 
-[ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_23s77"]
+[ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_23s77"]
 [ext_resource type="Resource" uid="uid://bygbgojyubj38" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/0_ItemFGD.tres" id="1_urowu"]
 [ext_resource type="Resource" uid="uid://deiedh0yxw0fo" path="res://FuncGodotAssets/EntityDefinitions/Point/Transport/0_TransportFGD.tres" id="2_5xb5o"]
 [ext_resource type="Resource" uid="uid://s6vwc775nvnr" path="res://FuncGodotAssets/EntityDefinitions/Point/Enemy/0_EnemyFGD.tres" id="3_5xb5o"]
@@ -8,9 +8,9 @@
 [ext_resource type="Resource" uid="uid://c82wj8igkmkj" path="res://FuncGodotAssets/EntityDefinitions/Point/Info/0_InfoFGD.tres" id="5_smoyi"]
 [ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="5_vvjo8"]
 [ext_resource type="Resource" uid="uid://bepm4shvla6ln" path="res://FuncGodotAssets/EntityDefinitions/Point/Gate/0_GateFGD.tres" id="6_ypme1"]
+[ext_resource type="Resource" uid="uid://dyw6uw8kpbihl" path="res://FuncGodotAssets/EntityDefinitions/Point/Logic/0_LogicFGD.tres" id="7_33gk4"]
 
 [resource]
 script = ExtResource("1_23s77")
-base_fgd_files = Array[Resource]([ExtResource("1_urowu"), ExtResource("2_5xb5o"), ExtResource("3_5xb5o"), ExtResource("4_4ssqs"), ExtResource("5_smoyi"), ExtResource("6_ypme1")])
+base_fgd_files = Array[Resource]([ExtResource("1_urowu"), ExtResource("2_5xb5o"), ExtResource("3_5xb5o"), ExtResource("4_4ssqs"), ExtResource("5_smoyi"), ExtResource("6_ypme1"), ExtResource("7_33gk4")])
 entity_definitions = Array[Resource]([ExtResource("5_vvjo8")])
-metadata/_custom_type_script = "uid://vm1fvi5045um"
