@@ -34,7 +34,7 @@ namespace FastDragon
                 {
                     _jar = GetTree().Root
                         .EnumerateDescendantsOfType<FairyJar>()
-                        .FirstOrDefault(f => f.FairyId == FairyId);
+                        .FirstOrDefault(f => f.targetname == FairyId);
 
                     if (_jar == null)
                     {

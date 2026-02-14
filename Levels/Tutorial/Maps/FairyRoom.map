@@ -801,7 +801,7 @@
 {
 "classname" "item_fairy"
 "origin" "-120 152 112"
-"FairyId" "TutorialFairy"
+"targetname" "TutorialFairy"
 "_tb_group" "3"
 }
 // entity 9
