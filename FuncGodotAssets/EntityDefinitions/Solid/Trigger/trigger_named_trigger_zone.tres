@@ -14,9 +14,9 @@ script_class = ExtResource("2_smgra")
 classname = "trigger_named_trigger_zone"
 description = "A trigger volume with a name.  Other entities can search for trigger volumes with this name and react when the player enters it."
 class_properties = {
-"TriggerName": ""
+"targetname": ""
 }
 auto_apply_to_matching_node_properties = true
 node_class = "Area3D"
-name_property = "TriggerName"
+name_property = "targetname"
 metadata/_custom_type_script = "uid://ctv13qfisgfqg"

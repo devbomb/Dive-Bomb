@@ -22,7 +22,7 @@ namespace FastDragon
                 _trigger = GetTree()
                     .Root
                     .EnumerateDescendantsOfType<NamedTriggerZone>()
-                    .FirstOrDefault(t => t.TriggerName == TriggerName);
+                    .FirstOrDefault(t => t.targetname == TriggerName);
 
                 if (_trigger == null)
                     throw new System.Exception($"Can't find a trigger named {TriggerName}");

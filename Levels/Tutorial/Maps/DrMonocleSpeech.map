@@ -215,7 +215,7 @@
 // entity 1
 {
 "classname" "trigger_named_trigger_zone"
-"TriggerName" "DrMonocleIntroSpeechStart"
+"targetname" "DrMonocleIntroSpeechStart"
 // brush 0
 {
 ( -96 16 80 ) ( -96 48 16 ) ( -96 48 80 ) Textures/Grate 0 0 0 1 1
@@ -286,7 +286,7 @@
 // entity 8
 {
 "classname" "trigger_named_trigger_zone"
-"TriggerName" "DrMonocleIntroSkipSpeech"
+"targetname" "DrMonocleIntroSkipSpeech"
 // brush 0
 {
 ( -64 -112 144 ) ( -64 -64 16 ) ( -64 -64 144 ) Textures/Grate 0 0 0 1 1
