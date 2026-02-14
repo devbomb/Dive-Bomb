@@ -6,7 +6,7 @@ namespace FastDragon
 {
     public partial class FixedCameraZone : Area3D
     {
-        [Export] public string TargetMarkerId;
+        [Export] public string target;
 
         public override void _Ready()
         {
@@ -18,10 +18,7 @@ namespace FastDragon
         {
             if (body is Player player)
             {
-                var marker = GetTree().CurrentScene
-                    .EnumerateDescendantsOfType<NamedMarker3D>()
-                    .First(m => m.MarkerId == TargetMarkerId);
-
+                var marker = this.FindNodeByTargetName<NamedMarker3D>(target);
                 player.Camera.FixPosition(marker.GlobalTransform);
             }
         }

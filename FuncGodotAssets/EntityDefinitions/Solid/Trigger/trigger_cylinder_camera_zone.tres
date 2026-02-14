@@ -24,14 +24,16 @@ add_face_normal_metadata = false
 add_collision_shape_face_range_metadata = false
 script_class = ExtResource("2_u57t0")
 classname = "trigger_cylinder_camera_zone"
-description = "When the player is inside this zone, the camera will orbit around the specified marker at the specified distance, as if the player is \"side scrolling on a cylinder\"."
+description = "When the player is inside this zone, the camera will orbit around the marker with the given targetname at the specified distance, as if the player is \"side scrolling on a cylinder\"."
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
 "Distance": 20.0,
-"TargetMarkerId": ""
+"target": ""
 }
-class_property_descriptions = {}
+class_property_descriptions = {
+"target": "The targetname of the marker to orbit around"
+}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),

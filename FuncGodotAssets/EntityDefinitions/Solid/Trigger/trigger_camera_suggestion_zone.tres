@@ -10,16 +10,16 @@ script_class = ExtResource("2_bent3")
 classname = "trigger_camera_suggestion_zone"
 description = "\"Suggests\" a camera angle when the player enters it.  The camera will move to the suggested angle, but there is nothing stopping the player from readjusting it back to their preferred angle."
 class_properties = {
-"DirectionMarkerId": "",
+"target": "",
 "SuggestedDistance": 6.0,
 "SuggestedPitchDeg": 0.0,
 "SuggestedYawDeg": 0.0
 }
 class_property_descriptions = {
-"DirectionMarkerId": "If provided, it will use the rotation of a NamedMarker3D with this id, rather than SuggestedPitchDeg and SuggestedYawDeg.",
+"target": "If provided, it will use the rotation of a NamedMarker3D with the matching targetname, rather than SuggestedPitchDeg and SuggestedYawDeg.",
 "SuggestedDistance": "How far away the camera is from the focal point",
-"SuggestedPitchDeg": "The camera's pitch in degrees.  Not used if DirectionMarkerId is provided.",
-"SuggestedYawDeg": "The camera's yaw in degrees.  Not used if DirectionMarkerId is provided."
+"SuggestedPitchDeg": "The camera's pitch in degrees.  Not used if target is provided.",
+"SuggestedYawDeg": "The camera's yaw in degrees.  Not used if target is provided."
 }
 auto_apply_to_matching_node_properties = true
 node_class = "Area3D"

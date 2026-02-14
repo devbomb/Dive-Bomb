@@ -6,7 +6,7 @@ namespace FastDragon
 {
     public partial class CylinderCameraZone : Area3D
     {
-        [Export] public string TargetMarkerId;
+        [Export] public string target;
         [Export] public float Distance = 20;
 
         private Player _player;
@@ -38,7 +38,7 @@ namespace FastDragon
             {
                 _targetPos = GetTree().CurrentScene
                     .EnumerateDescendantsOfType<NamedMarker3D>()
-                    .First(m => m.MarkerId == TargetMarkerId)
+                    .First(m => m.targetname == target)
                     .GlobalPosition;
 
                 _player = player;

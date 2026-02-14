@@ -825,7 +825,7 @@
 // entity 11
 {
 "classname" "trigger_camera_suggestion_zone"
-"DirectionMarkerId" "FairyEscape1"
+"target" "FairyEscapeCameraAngle1"
 "SuggestedDistance" "8"
 "_tb_group" "3"
 // brush 0
@@ -841,7 +841,7 @@
 // entity 12
 {
 "classname" "trigger_camera_suggestion_zone"
-"DirectionMarkerId" "FairyEscape2"
+"target" "FairyEscapeCameraAngle2"
 "SuggestedDistance" "8"
 "_tb_group" "3"
 // brush 0

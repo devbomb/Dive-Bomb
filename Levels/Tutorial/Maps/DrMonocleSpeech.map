@@ -230,8 +230,8 @@
 {
 "classname" "wall_openable"
 "Id" "DrMonocleSpeech_ExitDoor"
-"ClosedPosMarkerId" "DrMonocleSpeech_ExitDoor_ClosedPoint"
-"OpenPosMarkerId" "DrMonocleSpeech_ExitDoor_OpenPoint"
+"ClosedPosTargetname" "DrMonocleSpeech_ExitDoor_ClosedPoint"
+"OpenPosTargetname" "DrMonocleSpeech_ExitDoor_OpenPoint"
 // brush 0
 {
 ( -128 592 112 ) ( -128 608 16 ) ( -128 608 112 ) Textures/BigMetalSquares 0 0 0 1 1
@@ -246,20 +246,20 @@
 {
 "classname" "info_named_marker"
 "origin" "-40 584 136"
-"MarkerId" "DrMonocleSpeech_ExitDoor_ClosedPoint"
+"targetname" "DrMonocleSpeech_ExitDoor_ClosedPoint"
 }
 // entity 4
 {
 "classname" "info_named_marker"
 "origin" "-40 584 24"
-"MarkerId" "DrMonocleSpeech_ExitDoor_OpenPoint"
+"targetname" "DrMonocleSpeech_ExitDoor_OpenPoint"
 }
 // entity 5
 {
 "classname" "wall_openable"
 "Id" "DrMonocleSpeech_EntranceDoor"
-"ClosedPosMarkerId" "DrMonocleSpeech_EntranceDoor_ClosedPoint"
-"OpenPosMarkerId" "DrMonocleSpeech_EntranceDoor_OpenPoint"
+"ClosedPosTargetname" "DrMonocleSpeech_EntranceDoor_ClosedPoint"
+"OpenPosTargetname" "DrMonocleSpeech_EntranceDoor_OpenPoint"
 "CloseDuration" "1.3"
 // brush 0
 {
@@ -275,13 +275,13 @@
 {
 "classname" "info_named_marker"
 "origin" "56 -40 152"
-"MarkerId" "DrMonocleSpeech_EntranceDoor_ClosedPoint"
+"targetname" "DrMonocleSpeech_EntranceDoor_ClosedPoint"
 }
 // entity 7
 {
 "classname" "info_named_marker"
 "origin" "56 -40 24"
-"MarkerId" "DrMonocleSpeech_EntranceDoor_OpenPoint"
+"targetname" "DrMonocleSpeech_EntranceDoor_OpenPoint"
 }
 // entity 8
 {

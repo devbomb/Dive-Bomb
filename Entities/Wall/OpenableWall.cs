@@ -7,8 +7,8 @@ namespace FastDragon
     public partial class OpenableWall : AnimatableBody3D, IPowerable
     {
         [Export] public string Id { get; set; }
-        [Export] public string ClosedPosMarkerId;
-        [Export] public string OpenPosMarkerId;
+        [Export] public string ClosedPosTargetname;
+        [Export] public string OpenPosTargetname;
 
         [Export] public double OpenDuration = 0.5;
         [Export] public double CloseDuration = 0.5;
@@ -30,8 +30,8 @@ namespace FastDragon
 
             Callable.From(() =>
             {
-                var closedMarker = this.GetNamedMarker3D(ClosedPosMarkerId);
-                var openMarker = this.GetNamedMarker3D(OpenPosMarkerId);
+                var closedMarker = this.FindNodeByTargetName<NamedMarker3D>(ClosedPosTargetname);
+                var openMarker = this.FindNodeByTargetName<NamedMarker3D>(OpenPosTargetname);
 
                 Vector3 diff = openMarker.GlobalPosition - closedMarker.GlobalPosition;
                 _closedPos = GlobalPosition;

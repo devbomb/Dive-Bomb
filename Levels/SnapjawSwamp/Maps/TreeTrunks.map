@@ -810,13 +810,13 @@
 {
 "classname" "info_named_marker"
 "origin" "144 640 584"
-"MarkerId" "CylinderCenter"
+"targetname" "CylinderCenter"
 "_tb_group" "7"
 }
 // entity 25
 {
 "classname" "trigger_cylinder_camera_zone"
-"TargetMarkerId" "CylinderCenter"
+"target" "CylinderCenter"
 "_tb_group" "7"
 // brush 0
 {

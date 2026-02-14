@@ -28,10 +28,12 @@ description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
-"DirectionMarkerId": "",
+"target": "",
 "Speed": 10.0
 }
-class_property_descriptions = {}
+class_property_descriptions = {
+"target": "The targetname of a NamedMarker3D whose rotation determines the direction this conveyor belt moves in"
+}
 auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),

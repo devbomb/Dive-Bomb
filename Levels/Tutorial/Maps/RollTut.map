@@ -499,7 +499,7 @@
 // entity 24
 {
 "classname" "trigger_camera_suggestion_zone"
-"DirectionMarkerId" "FairyRoomWindowCameraSpot"
+"target" "FairyRoomWindowCameraSpot"
 // brush 0
 {
 ( -304 552 256 ) ( -304 576 144 ) ( -304 576 256 ) Textures/Grate 0 0 0 1 1

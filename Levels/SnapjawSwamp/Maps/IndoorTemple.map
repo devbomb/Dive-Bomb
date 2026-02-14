@@ -1635,7 +1635,7 @@
 // entity 51
 {
 "classname" "trigger_camera_suggestion_zone"
-"DirectionMarkerId" "AfterDirtyTrickCameraDir"
+"target" "AfterDirtyTrickCameraDir"
 // brush 0
 {
 ( 256 -304 464 ) ( 256 -224 336 ) ( 256 -224 464 ) Textures/Grate 0 0 0 1 1
@@ -2004,7 +2004,7 @@
 // entity 91
 {
 "classname" "trigger_camera_suggestion_zone"
-"DirectionMarkerId" "SideWallSecretCameraDir"
+"target" "SideWallSecretCameraDir"
 "_tb_group" "9"
 // brush 0
 {
