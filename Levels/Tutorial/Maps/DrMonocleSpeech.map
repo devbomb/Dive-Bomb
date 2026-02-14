@@ -229,7 +229,7 @@
 // entity 2
 {
 "classname" "wall_openable"
-"Id" "DrMonocleSpeech_ExitDoor"
+"targetname" "DrMonocleSpeech_ExitDoor"
 "ClosedPosTargetname" "DrMonocleSpeech_ExitDoor_ClosedPoint"
 "OpenPosTargetname" "DrMonocleSpeech_ExitDoor_OpenPoint"
 // brush 0
@@ -257,7 +257,7 @@
 // entity 5
 {
 "classname" "wall_openable"
-"Id" "DrMonocleSpeech_EntranceDoor"
+"targetname" "DrMonocleSpeech_EntranceDoor"
 "ClosedPosTargetname" "DrMonocleSpeech_EntranceDoor_ClosedPoint"
 "OpenPosTargetname" "DrMonocleSpeech_EntranceDoor_OpenPoint"
 "CloseDuration" "1.3"

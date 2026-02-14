@@ -6,12 +6,14 @@ namespace FastDragon
 {
     public partial class OpenableWall : AnimatableBody3D, IPowerable
     {
-        [Export] public string Id { get; set; }
+        [Export] public string targetname { get; set; }
         [Export] public string ClosedPosTargetname;
         [Export] public string OpenPosTargetname;
 
         [Export] public double OpenDuration = 0.5;
         [Export] public double CloseDuration = 0.5;
+
+        string IPowerable.Id => targetname;
 
         private bool _initialized;
         private Vector3 _closedPos;
@@ -61,7 +63,7 @@ namespace FastDragon
         {
             if (!_initialized)
             {
-                GD.PushWarning($"OpenableWall {Id} isn't initialized yet.  Deferring call.");
+                GD.PushWarning($"OpenableWall {targetname} isn't initialized yet.  Deferring call.");
                 Callable.From(action).CallDeferred();
             }
             else

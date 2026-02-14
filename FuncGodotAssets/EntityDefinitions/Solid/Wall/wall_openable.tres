@@ -11,7 +11,7 @@ classname = "wall_openable"
 class_properties = Dictionary[String, Variant]({
 "CloseDuration": 0.5,
 "ClosedPosTargetname": "",
-"Id": "",
+"targetname": "",
 "OpenDuration": 0.5,
 "OpenPosTargetname": ""
 })
