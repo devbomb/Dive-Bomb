@@ -10,14 +10,17 @@
 script = ExtResource("3_hoqnw")
 inverse_scale_factor = 16.0
 entity_fgd = ExtResource("2_i8c3b")
+uv_unwrap_texel_size = 0.0
 entity_smoothing_property = ""
 entity_smoothing_angle_property = ""
 vertex_merge_distance_property = ""
 cull_interior_faces_property = ""
 base_texture_dir = "res://Textures"
+texture_file_extensions = Array[String]([])
 clip_texture = "special/clip"
 skip_texture = "special/skip"
 origin_texture = "special/origin"
+material_file_extension = ""
 default_material = SubResource("StandardMaterial3D_jf6ms")
 albedo_map_pattern = "%s_albedo.%s"
 normal_map_pattern = "%s_normal.%s"
