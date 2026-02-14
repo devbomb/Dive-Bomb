@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://7b1x4taaxo0m"]
 
-[ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_2n3s0"]
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_2n3s0"]
 [ext_resource type="Script" uid="uid://g1sj4robijs3" path="res://Entities/Trigger/CameraSuggestionZone.cs" id="2_bent3"]
 
 [resource]
@@ -9,18 +9,18 @@ build_visuals = false
 script_class = ExtResource("2_bent3")
 classname = "trigger_camera_suggestion_zone"
 description = "\"Suggests\" a camera angle when the player enters it.  The camera will move to the suggested angle, but there is nothing stopping the player from readjusting it back to their preferred angle."
-class_properties = {
-"target": "",
+class_properties = Dictionary[String, Variant]({
 "SuggestedDistance": 6.0,
 "SuggestedPitchDeg": 0.0,
-"SuggestedYawDeg": 0.0
-}
-class_property_descriptions = {
-"target": "If provided, it will use the rotation of a NamedMarker3D with the matching targetname, rather than SuggestedPitchDeg and SuggestedYawDeg.",
+"SuggestedYawDeg": 0.0,
+"target": ""
+})
+class_property_descriptions = Dictionary[String, Variant]({
 "SuggestedDistance": "How far away the camera is from the focal point",
 "SuggestedPitchDeg": "The camera's pitch in degrees.  Not used if target is provided.",
-"SuggestedYawDeg": "The camera's yaw in degrees.  Not used if target is provided."
-}
+"SuggestedYawDeg": "The camera's yaw in degrees.  Not used if target is provided.",
+"target": "If provided, it will use the rotation of a NamedMarker3D with the matching targetname, rather than SuggestedPitchDeg and SuggestedYawDeg."
+})
 auto_apply_to_matching_node_properties = true
 node_class = "Area3D"
 metadata/_custom_type_script = "uid://ctv13qfisgfqg"

@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cso21pf46g65m"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://cso21pf46g65m"]
 
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_eodfb"]
 [ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Entities/Info/NamedMarker/NamedMarker3D.tscn" id="1_jufp7"]
-[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_tgbyy"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_tgbyy"]
 
 [resource]
 script = ExtResource("1_tgbyy")
 scene_file = ExtResource("1_jufp7")
 classname = "info_named_marker"
-class_properties = {
+class_properties = Dictionary[String, Variant]({
 "targetname": ""
-}
+})
 auto_apply_to_matching_node_properties = true
 metadata/_custom_type_script = "uid://cddjtiy8pj12o"

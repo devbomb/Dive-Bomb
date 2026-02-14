@@ -1,43 +1,21 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://vtntahh4vrh7"]
 
-[ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_w0wua"]
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_w0wua"]
 [ext_resource type="Script" uid="uid://5hqy1j4ae2qa" path="res://Entities/Trigger/FixedCameraZone.cs" id="2_w0wua"]
 
 [resource]
 script = ExtResource("1_w0wua")
-spawn_type = 2
 origin_type = 4
 build_visuals = false
-use_in_baked_light = true
-shadow_casting_setting = 1
-build_occlusion = false
-render_layers = 1
-collision_shape_type = 1
-collision_layer = 1
-collision_mask = 1
-collision_priority = 1.0
-collision_shape_margin = 0.04
-add_textures_metadata = false
-add_vertex_metadata = false
-add_face_position_metadata = false
-add_face_normal_metadata = false
-add_collision_shape_face_range_metadata = false
 script_class = ExtResource("2_w0wua")
 classname = "trigger_fixed_camera_zone"
 description = "Forces the camera into the specified position while the player is inside this trigger.  The player cannot override it."
-func_godot_internal = false
-base_classes = Array[Resource]([])
-class_properties = {
+class_properties = Dictionary[String, Variant]({
 "target": ""
-}
-class_property_descriptions = {
+})
+class_property_descriptions = Dictionary[String, Variant]({
 "target": "The targetname of the marker the camera should be moved to"
-}
+})
 auto_apply_to_matching_node_properties = true
-meta_properties = {
-"color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
-}
 node_class = "Area3D"
-name_property = ""
 metadata/_custom_type_script = "uid://ctv13qfisgfqg"

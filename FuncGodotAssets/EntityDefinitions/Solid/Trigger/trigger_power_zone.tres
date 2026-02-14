@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://bdmw4bsj6vdvj"]
 
-[ext_resource type="Script" uid="uid://ctv13qfisgfqg" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_gyfx8"]
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_gyfx8"]
 [ext_resource type="Script" uid="uid://cui8fiet411wj" path="res://Entities/Trigger/PowerTriggerZone.cs" id="2_l1rtl"]
 
 [resource]
@@ -13,14 +13,14 @@ collision_mask = 8
 script_class = ExtResource("2_l1rtl")
 classname = "trigger_power_zone"
 description = "Powers the target when the player is inside it, and stops powering it when they leave it.  The target must be an IPowerable node."
-class_properties = {
+class_properties = Dictionary[String, Variant]({
 "Invert": false,
 "target": ""
-}
-class_property_descriptions = {
+})
+class_property_descriptions = Dictionary[String, Variant]({
 "Invert": "If this is true, the target will be powered when the player is _not_ inside the trigger, and unpowered when they _are_.",
 "target": "The targetname of the IPowerable node to power"
-}
+})
 auto_apply_to_matching_node_properties = true
 node_class = "Area3D"
 metadata/_custom_type_script = "uid://ctv13qfisgfqg"
