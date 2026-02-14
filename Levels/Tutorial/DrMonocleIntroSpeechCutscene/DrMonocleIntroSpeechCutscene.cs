@@ -37,8 +37,8 @@ namespace FastDragon.Levels.Tutorial
             SignalBus.Instance.LevelReset += Reset;
             Callable.From(() =>
             {
-                _entranceDoor = this.FindPowerable(EntranceDoorId);
-                _exitDoor = this.FindPowerable(ExitDoorId);
+                _entranceDoor = this.FindNodeByTargetName<IPowerable>(EntranceDoorId);
+                _exitDoor = this.FindNodeByTargetName<IPowerable>(ExitDoorId);
 
                 Reset();
             }).CallDeferred();

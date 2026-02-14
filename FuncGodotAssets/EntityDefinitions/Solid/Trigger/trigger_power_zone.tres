@@ -15,11 +15,11 @@ classname = "trigger_power_zone"
 description = "Powers the target when the player is inside it, and stops powering it when they leave it.  The target must be an IPowerable node."
 class_properties = {
 "Invert": false,
-"TargetId": ""
+"target": ""
 }
 class_property_descriptions = {
 "Invert": "If this is true, the target will be powered when the player is _not_ inside the trigger, and unpowered when they _are_.",
-"TargetId": "The id of the target IPowerable node"
+"target": "The targetname of the IPowerable node to power"
 }
 auto_apply_to_matching_node_properties = true
 node_class = "Area3D"

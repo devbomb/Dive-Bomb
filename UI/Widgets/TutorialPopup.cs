@@ -20,8 +20,6 @@ namespace FastDragon
             Visible = true;
         }
 
-        string IPowerable.Id => targetname;
-
         public void SetPowered(bool powered)
         {
             _showing = powered;
