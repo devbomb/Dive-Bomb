@@ -29,7 +29,18 @@ namespace FastDragon
             }
 
             var nodesByTargetName = scene.GetMeta(metadataKey).AsGodotDictionary<string, Node>();
-            return nodesByTargetName[targetname] as TNode;
+            if (!nodesByTargetName.ContainsKey(targetname))
+            {
+                throw new Exception($"Could not find a Node with a targetname of {targetname}");
+            }
+
+            Node node = nodesByTargetName[targetname];
+            if (node is not TNode)
+            {
+                throw new Exception($"Expected Node with targetname of {targetname} to be a {typeof(TNode)}, but it is actually a {node.GetType()}");
+            }
+
+            return node as TNode;
         }
     }
 }
