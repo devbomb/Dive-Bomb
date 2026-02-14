@@ -310,6 +310,24 @@
 }
 // entity 11
 {
+"classname" "logic_signal_connector"
+"origin" "40 -120 184"
+"target" "DrMonocleIntroSkipSpeech"
+"killtarget" "DrMonocleIntroSpeechCutscene"
+"HandlerFunction" "SkipSpeech"
+"Signal" "body_entered"
+}
+// entity 12
+{
+"classname" "logic_signal_connector"
+"origin" "-56 104 88"
+"target" "DrMonocleIntroSpeechStart"
+"Signal" "body_entered"
+"HandlerFunction" "StartSpeech"
+"killtarget" "DrMonocleIntroSpeechCutscene"
+}
+// entity 13
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Ceilings"
