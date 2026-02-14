@@ -1,17 +1,20 @@
+using System;
 using Godot;
 
 namespace FastDragon.Levels.Tutorial
 {
     public partial class DrMonocleIntroSpeechCutscene : Node
     {
+        [Export] public string targetname;
+
         [Export] public AudioStreamPlayer MusicPlayer;
         private AudioStreamPlaybackInteractive _musicPlayback => (AudioStreamPlaybackInteractive)MusicPlayer.GetStreamPlayback();
 
         [ExportCategory("Internal")]
         [Export] public AnimationPlayer AnimationPlayer;
 
-        [Export] public NamedTriggerZoneListener StartSpeechTrigger;
-        [Export] public NamedTriggerZoneListener SkipSpeechTrigger;
+        private event Action _startSpeechRequested;
+        private event Action _skipSpeechRequested;
 
         private static class StoryFlags
         {
@@ -43,6 +46,16 @@ namespace FastDragon.Levels.Tutorial
                 Reset();
             }).CallDeferred();
 
+        }
+
+        public void StartSpeech(Node3D body)
+        {
+            _startSpeechRequested?.Invoke();
+        }
+
+        public void SkipSpeech(Node3D body)
+        {
+            _skipSpeechRequested?.Invoke();
         }
 
         private void Reset()
@@ -93,12 +106,12 @@ namespace FastDragon.Levels.Tutorial
 
             public override void SubscribeToSignals()
             {
-                Self.StartSpeechTrigger.NamedTriggerEntered += StartSpeech;
+                Self._startSpeechRequested += StartSpeech;
             }
 
             public override void UnsubscribeFromSignals()
             {
-                Self.StartSpeechTrigger.NamedTriggerEntered -= StartSpeech;
+                Self._startSpeechRequested -= StartSpeech;
             }
 
             private void StartSpeech()
@@ -131,12 +144,12 @@ namespace FastDragon.Levels.Tutorial
 
             public override void SubscribeToSignals()
             {
-                Self.SkipSpeechTrigger.NamedTriggerEntered += SkipSpeech;
+                Self._skipSpeechRequested += SkipSpeech;
             }
 
             public override void UnsubscribeFromSignals()
             {
-                Self.SkipSpeechTrigger.NamedTriggerEntered -= SkipSpeech;
+                Self._skipSpeechRequested -= SkipSpeech;
             }
 
             public override void _PhysicsProcess(double delta)

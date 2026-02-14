@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://chyxv4vsh7qng"]
+
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_132y2"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_trc4o"]
+[ext_resource type="Script" uid="uid://efalmr110ain" path="res://Entities/Logic/SignalConnector.cs" id="3_trc4o"]
+
+[resource]
+script = ExtResource("2_trc4o")
+script_class = ExtResource("3_trc4o")
+classname = "logic_signal_connector"
+class_properties = Dictionary[String, Variant]({
+"HandlerFunction": "",
+"Signal": "",
+"killtarget": "",
+"target": ""
+})
+class_property_descriptions = Dictionary[String, Variant]({
+"HandlerFunction": "The name of the method to be called on killtarget when the signal is emitted.  Make sure its function signature matches that of the signal!",
+"Signal": "The name of the signal being connected",
+"killtarget": "The targetname of the entity handling the signal",
+"target": "The targetname of the entity emitting the signal"
+})
+auto_apply_to_matching_node_properties = true
+node_class = "Node3D"
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

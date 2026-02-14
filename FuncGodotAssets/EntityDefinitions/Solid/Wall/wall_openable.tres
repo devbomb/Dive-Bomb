@@ -11,9 +11,9 @@ classname = "wall_openable"
 class_properties = Dictionary[String, Variant]({
 "CloseDuration": 0.5,
 "ClosedPosTargetname": "",
-"targetname": "",
 "OpenDuration": 0.5,
-"OpenPosTargetname": ""
+"OpenPosTargetname": "",
+"targetname": ""
 })
 auto_apply_to_matching_node_properties = true
 node_class = "AnimatableBody3D"
