@@ -100,6 +100,7 @@ namespace FastDragon
                     SaveFileManager.Current.CurrentLevelVisit.AddToGemsFound(Value);
             }
 
+            SignalBus.Instance.EmitItemCollected();
             _collectSound.Play();
             ChangeState<Hidden>();
 
