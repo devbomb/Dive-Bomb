@@ -172,7 +172,7 @@ This means you can drag and drop a `.map` file into a scene, just like you can
 with a `.blend` file.
 
 ## Tweaks were made to func_godot to make this work
-This project uses a modified version of [this release](https://github.com/func-godot/func_godot_plugin/releases/tag/2025.1)
+This project uses a modified version of [this release](https://github.com/func-godot/func_godot_plugin/releases/tag/2025.12)
 of func_godot.  These were small modifications needed to work around some bugs.
 Namely:
 
@@ -182,3 +182,7 @@ Namely:
     the editor if you pass a node into it that contains an `AnimationPlayer`.
     > TODO: Submit a GitHub issue to the Godot repo after creating a minimal
         reproduction project.
+
+* When building maps in the Quake format, flip UVs on the y-axis.  This
+    fixes a bug in this version of func_godot that causes UVs to be facing the
+    wrong way.  See https://github.com/func-godot/func_godot_plugin/issues/161
