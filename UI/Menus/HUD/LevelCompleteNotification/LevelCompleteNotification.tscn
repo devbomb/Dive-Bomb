@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqdacc2w3l4hs"]
+[gd_scene load_steps=8 format=3 uid="uid://dqdacc2w3l4hs"]
 
+[ext_resource type="Script" uid="uid://utpygnbswkt6" path="res://UI/Menus/HUD/LevelCompleteNotification/LevelCompleteNotification.cs" id="1_714p3"]
 [ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="1_kwmep"]
 
 [sub_resource type="Animation" id="Animation_kwmep"]
@@ -130,7 +131,7 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_714p3"]
 font_size = 61
 
-[node name="LevelCompleteNotification" type="Control"]
+[node name="LevelCompleteNotification" type="Control" node_paths=PackedStringArray("Animator")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,6 +139,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_714p3")
+Animator = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
