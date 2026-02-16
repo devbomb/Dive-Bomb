@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqdacc2w3l4hs"]
+[gd_scene load_steps=9 format=3 uid="uid://dqdacc2w3l4hs"]
 
 [ext_resource type="Script" uid="uid://utpygnbswkt6" path="res://UI/Menus/HUD/LevelCompleteNotification/LevelCompleteNotification.cs" id="1_714p3"]
 [ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="1_kwmep"]
+[ext_resource type="AudioStream" uid="uid://d3d3ewp2ua3qv" path="res://Common/Audio/SFX/Checkpoint.wav" id="2_705sr"]
 
 [sub_resource type="Animation" id="Animation_kwmep"]
 resource_name = "Hidden"
@@ -120,6 +121,21 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer/AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_705sr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_705sr"]
 _data = {
@@ -147,6 +163,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_705sr")
 }
 autoplay = "Hidden"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationPlayer"]
+bus = &"Sfx"
 
 [node name="Labels" type="PanelContainer" parent="."]
 layout_mode = 1
