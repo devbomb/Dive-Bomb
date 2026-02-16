@@ -406,8 +406,9 @@ func _parse_quake_map(map_data: PackedStringArray, map_settings: FuncGodotMapSet
 				face.uv.origin = Vector2(coords[0], coords[1])
 				
 				var r: float = deg_to_rad(coords[2])
-				face.uv.x = Vector2(cos(r), -sin(r)) * coords[3] * map_settings.scale_factor
-				face.uv.y = Vector2(sin(r), cos(r)) * coords[4] * map_settings.scale_factor
+				# ALEX HACK: Fix https://github.com/func-godot/func_godot_plugin/issues/161
+				face.uv.x = Vector2(cos(r), sin(r)) * coords[3] * map_settings.scale_factor #face.uv.x = Vector2(cos(r), -sin(r)) * coords[3] * map_settings.scale_factor
+				face.uv.y = Vector2(-sin(r), cos(r)) * coords[4] * map_settings.scale_factor #face.uv.y = Vector2(sin(r), cos(r)) * coords[4] * map_settings.scale_factor
 			
 			brush.faces.append(face)
 			continue

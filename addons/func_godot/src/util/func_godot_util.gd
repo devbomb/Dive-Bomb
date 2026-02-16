@@ -306,7 +306,8 @@ static func get_quake_uv(vertex: Vector3, normal: Vector3, uv_in := Transform2D.
 	elif nx >= ny and nx >= nz:
 		uv_out = Vector2(vertex.y, -vertex.z)
 	else:
-		uv_out = Vector2(vertex.x, vertex.y)
+		# ALEX HACK: Fix https://github.com/func-godot/func_godot_plugin/issues/161
+		uv_out = Vector2(vertex.x, -vertex.y) #uv_out = Vector2(vertex.x, vertex.y)
 	
 	uv_out = uv_out.rotated(uv_in.get_rotation())
 	uv_out /= uv_in.get_scale()
