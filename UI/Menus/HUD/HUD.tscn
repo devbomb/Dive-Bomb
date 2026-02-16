@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://byhmelsic6fu5"]
+[gd_scene load_steps=16 format=3 uid="uid://byhmelsic6fu5"]
 
 [ext_resource type="PackedScene" uid="uid://cys7esjw83l4i" path="res://UI/Menus/HUD/HealthDisplay/HealthDisplay.tscn" id="1_54kkr"]
 [ext_resource type="Script" uid="uid://b0d0o6cg22h0r" path="res://UI/Menus/HUD/HUD.cs" id="1_k3tfm"]
+[ext_resource type="PackedScene" uid="uid://dqdacc2w3l4hs" path="res://UI/Menus/HUD/LevelCompleteNotification/LevelCompleteNotification.tscn" id="2_k3tfm"]
 [ext_resource type="Script" uid="uid://cromiohdg3esv" path="res://UI/Widgets/ContextuallyHiddenControl.cs" id="3_8mrjo"]
 [ext_resource type="StyleBox" uid="uid://clk60wmckrjlc" path="res://Themes/StyleBoxes/HackerTerminalBackground.tres" id="4_8mrjo"]
 [ext_resource type="PackedScene" uid="uid://dpa1avddef2b" path="res://UI/Widgets/CountingLabel/CountingLabel.tscn" id="4_khe3g"]
@@ -73,6 +74,10 @@ mouse_filter = 2
 script = ExtResource("1_k3tfm")
 GemCountLabel = NodePath("GemCountHider/GemCountLabel")
 GemCountHider = NodePath("GemCountHider")
+
+[node name="LevelCompleteNotification" parent="." instance=ExtResource("2_k3tfm")]
+z_index = -1
+layout_mode = 1
 
 [node name="HealthDisplay" parent="." instance=ExtResource("1_54kkr")]
 layout_mode = 1

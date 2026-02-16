@@ -103,6 +103,8 @@ namespace FastDragon
                 level.GetProgress().SpentGems += GemCost;
             }
 
+            SignalBus.Instance.EmitItemCollected();
+
             if (this.IsTimeTrialMode())
             {
                 _stateMachine.ChangeState<QuickRescue>();

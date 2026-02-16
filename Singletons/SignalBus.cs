@@ -47,6 +47,12 @@ namespace FastDragon
             remove => DisconnectAction(value);
         }
 
+        public event Action ItemCollected
+        {
+            add => ConnectAction(value);
+            remove => DisconnectAction(value);
+        }
+
         public SignalBus()
         {
             AddUserSignal(nameof(LevelReset));
@@ -61,6 +67,8 @@ namespace FastDragon
                     {"type", (int)Variant.Type.String}
                 }
             ]);
+
+            AddUserSignal(nameof(ItemCollected));
         }
 
         public override void _Ready()
@@ -72,6 +80,7 @@ namespace FastDragon
         public void EmitCheckpointActivated() => EmitSignal(nameof(CheckpointActivated));
         public void EmitExitReached() => EmitSignal(nameof(ExitReached));
         public void EmitCycleStarted(string cycleId) => EmitSignal(nameof(CycleStarted), cycleId);
+        public void EmitItemCollected() => EmitSignal(nameof(ItemCollected));
 
         private void ConnectAction(
             Action action,
