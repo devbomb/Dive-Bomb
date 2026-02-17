@@ -16,6 +16,8 @@ namespace FastDragon
         [Export] public bool Kickable { get; set; } = true;
         [Export] public bool Disabled { get; set; } = false;
 
+        [Export] public bool CausesBonk { get; set; } = false;
+
         public bool VulnerableToRoll => Rollable && !Disabled;
         public bool VulnerableToKick => Kickable && !Disabled;
 

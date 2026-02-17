@@ -14,11 +14,10 @@ namespace FastDragon.Levels.Tutorial
         [Export] public AnimationPlayer AnimationPlayer;
 
         private event Action _startSpeechRequested;
-        private event Action _skipSpeechRequested;
+        private event Action _selfDestructButtonPressed;
 
         private static class StoryFlags
         {
-            public const string SpeechSeen = "DrMonocleIntroSpeechSeen";
             public const string SpeechCheckpointed = "DrMonocleIntroSpeechCheckpointed";
         }
 
@@ -53,9 +52,9 @@ namespace FastDragon.Levels.Tutorial
             _startSpeechRequested?.Invoke();
         }
 
-        public void SkipSpeech(Node3D body)
+        public void OnSelfDestructButtonPressed()
         {
-            _skipSpeechRequested?.Invoke();
+            _selfDestructButtonPressed?.Invoke();
         }
 
         private void Reset()
@@ -116,14 +115,6 @@ namespace FastDragon.Levels.Tutorial
 
             private void StartSpeech()
             {
-                // Skip straight to the end of the speech if the player
-                // has already seen it.
-                if (Self.IsFlagSet(StoryFlags.SpeechSeen) || Self.IsTimeTrialMode())
-                {
-                    ChangeState<Finished>();
-                    return;
-                }
-
                 ChangeState<Playing>();
             }
         }
@@ -144,12 +135,12 @@ namespace FastDragon.Levels.Tutorial
 
             public override void SubscribeToSignals()
             {
-                Self._skipSpeechRequested += SkipSpeech;
+                Self._selfDestructButtonPressed += SkipSpeech;
             }
 
             public override void UnsubscribeFromSignals()
             {
-                Self._skipSpeechRequested -= SkipSpeech;
+                Self._selfDestructButtonPressed -= SkipSpeech;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -157,7 +148,7 @@ namespace FastDragon.Levels.Tutorial
                 _timer -= delta;
 
                 if (_timer <= 0)
-                    ChangeState<Finished>();
+                    ChangeState<WaitingForSelfDestructButton>();
             }
 
             private void SkipSpeech()
@@ -173,30 +164,45 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech skipping");
-                Self.SetFlag(StoryFlags.SpeechSeen);
-
                 Self.AnimationPlayer.Play("Skipping");
-
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
-
-                Self._entranceDoor.StartOpening();
-                Self._exitDoor.StartOpening();
             }
 
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer -= delta;
+
+                if (_timer <= 0)
+                    ChangeState<Finished>();
+            }
+        }
+
+        private class WaitingForSelfDestructButton : State<DrMonocleIntroSpeechCutscene>
+        {
             public override void SubscribeToSignals()
             {
-                SignalBus.Instance.CheckpointActivated += CheckpointActivated;
+                Self._selfDestructButtonPressed += FinishCutscene;
             }
 
             public override void UnsubscribeFromSignals()
             {
-                SignalBus.Instance.CheckpointActivated -= CheckpointActivated;
+                Self._selfDestructButtonPressed -= FinishCutscene;
             }
 
-            private void CheckpointActivated()
+            private void FinishCutscene()
             {
-                GD.Print("Dr. Monocle speech checkpointed");
-                Self.SetFlag(StoryFlags.SpeechCheckpointed);
+                ChangeState<CheckingBackIn>();
+            }
+        }
+
+        private class CheckingBackIn : State<DrMonocleIntroSpeechCutscene>
+        {
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                Self.AnimationPlayer.Play("CheckingBackIn");
+                _timer = Self.AnimationPlayer.CurrentAnimationLength;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -213,7 +219,6 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech finished");
-                Self.SetFlag(StoryFlags.SpeechSeen);
                 Self.MusicPlayer.Play();
                 Self._musicPlayback.SwitchToClipByName("Escape");
 

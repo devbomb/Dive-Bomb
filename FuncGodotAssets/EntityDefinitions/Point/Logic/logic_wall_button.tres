@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://but7b6qqap75u"]
+
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_dkuae"]
+[ext_resource type="Script" uid="uid://ldfqjtq0br35" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="2_0ihlq"]
+[ext_resource type="PackedScene" uid="uid://dkrgq5fq30hh1" path="res://Entities/Logic/WallButton/WallButton.tscn" id="2_1nbn4"]
+
+[resource]
+script = ExtResource("2_0ihlq")
+target_map_editor = 1
+rotation_offset = Vector3(0, 180, 0)
+scene_file = ExtResource("2_1nbn4")
+classname = "logic_wall_button"
+class_properties = Dictionary[String, Variant]({
+"targetname": ""
+})
+auto_apply_to_matching_node_properties = true
+meta_properties = Dictionary[String, Variant]({
+"color": Color(0.8, 0.8, 0.8, 1),
+"model": "{\"path\": \"TrenchbroomEntityModels/logic_wall_button.glb\", \"scale\": 16.0 }",
+"size": AABB(-8, -8, -8, 8, 8, 8)
+})
+metadata/_custom_type_script = "uid://ldfqjtq0br35"

@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://i0f8chm0dou6"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://i0f8chm0dou6"]
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
 resource_name = "Delay"
@@ -8,6 +8,17 @@ tap2_active = false
 tap2_delay_ms = 214.0
 feedback_active = true
 feedback_delay_ms = 132.0
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
+resource_name = "HighPassFilter"
+cutoff_hz = 810.0
+resonance = 1.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+room_size = 0.42
+hipass = 0.47
+wet = 0.15
 
 [resource]
 bus/1/name = &"Sfx"
@@ -36,3 +47,13 @@ bus/4/mute = false
 bus/4/bypass_fx = false
 bus/4/volume_db = 0.0
 bus/4/send = &"Master"
+bus/5/name = &"IntercomDialog"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 3.440256
+bus/5/send = &"DialogVoice"
+bus/5/effect/0/effect = SubResource("AudioEffectHighPassFilter_j3pel")
+bus/5/effect/0/enabled = true
+bus/5/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/5/effect/1/enabled = true
