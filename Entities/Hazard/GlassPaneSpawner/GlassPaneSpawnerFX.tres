@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ct57t1yea65nb"]
+
+[ext_resource type="Shader" uid="uid://d2kpi6fvf1bbg" path="res://Entities/Hazard/GlassPaneSpawner/Shaders/MoltenGlassFill.gdshader" id="1_ip8ei"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ip8ei")
