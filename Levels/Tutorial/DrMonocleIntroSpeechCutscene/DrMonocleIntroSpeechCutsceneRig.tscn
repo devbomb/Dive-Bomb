@@ -1,19 +1,108 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3u21ynxwsxm"]
+[gd_scene load_steps=10 format=3 uid="uid://c3u21ynxwsxm"]
 
 [ext_resource type="Script" uid="uid://8j77t8goh12i" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutscene.cs" id="1_n2kjk"]
 [ext_resource type="PackedScene" uid="uid://bddx121qjk3j6" path="res://Common/Models/Characters/DrMonocleHologramHead/DrMonocleHeadHologram.blend" id="1_wxy7p"]
 [ext_resource type="AnimationLibrary" uid="uid://gvjk68l2wgnj" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechAnimations.tres" id="2_egf2y"]
+[ext_resource type="AudioStream" uid="uid://gxwn45chkk2o" path="res://Common/Audio/SFX/SelfDestructAlarm.wav" id="2_vk4a5"]
+
+[sub_resource type="Gradient" id="Gradient_egf2y"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5194085, 0.6728281, 1)
+colors = PackedColorArray(1, 0, 0, 0.06666667, 1, 0, 0, 0.26817057, 1, 0, 0, 0.46362758, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vk4a5"]
+gradient = SubResource("Gradient_egf2y")
+width = 8
+height = 8
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Animation" id="Animation_vk4a5"]
+resource_name = "Flash"
+length = 1.91
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.4, 1.0333333, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.18431373), Color(1, 1, 1, 0.18431373), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AlarmAnimator/AlarmAudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_vk4a5")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_egf2y"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vk4a5"]
+_data = {
+&"Flash": SubResource("Animation_vk4a5"),
+&"RESET": SubResource("Animation_egf2y")
+}
 
 [node name="DrMonocleIntroSpeechCutsceneRig" type="Node3D" node_paths=PackedStringArray("AnimationPlayer")]
 script = ExtResource("1_n2kjk")
 AnimationPlayer = NodePath("AnimationPlayer")
 
+[node name="AlarmOverlay" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_vk4a5")
+
+[node name="AlarmAnimator" type="AnimationPlayer" parent="AlarmOverlay"]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_vk4a5")
+}
+
+[node name="AlarmAudioPlayer" type="AudioStreamPlayer" parent="AlarmOverlay/AlarmAnimator"]
+bus = &"Sfx"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
 libraries = {
 &"": ExtResource("2_egf2y")
 }
 
-[node name="DialogAudioPlayer" type="AudioStreamPlayer" parent="."]
+[node name="IntercomDialogPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"IntercomDialog"
+
+[node name="PlayerDialogPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"DialogVoice"
 
 [node name="SfxAudioPlayer" type="AudioStreamPlayer" parent="."]
