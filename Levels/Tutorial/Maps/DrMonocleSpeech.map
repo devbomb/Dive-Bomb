@@ -220,6 +220,24 @@
 ( 160 384 96 ) ( 161 384 96 ) ( 160 384 97 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 160 384 96 ) ( 160 384 97 ) ( 160 385 96 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
+// brush 24
+{
+( 48 560 112 ) ( 48 592 96 ) ( 48 592 112 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 560 112 ) ( 48 560 96 ) ( 48 560 112 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 592 16 ) ( 48 560 16 ) ( 112 560 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 592 112 ) ( 48 560 112 ) ( 48 592 112 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 592 112 ) ( 48 592 96 ) ( 112 592 96 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 592 112 ) ( 112 560 96 ) ( 112 560 112 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
+// brush 25
+{
+( -160 528 144 ) ( -160 592 128 ) ( -160 592 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -128 464 144 ) ( -160 464 128 ) ( -160 464 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -128 592 128 ) ( -160 528 128 ) ( -128 528 128 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -128 592 144 ) ( -160 528 144 ) ( -160 592 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -128 592 144 ) ( -160 592 128 ) ( -128 592 128 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -128 592 144 ) ( -128 528 128 ) ( -128 528 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -329,6 +347,57 @@
 "targetname" "SelfDestructButton"
 }
 // entity 13
+{
+"classname" "item_basket"
+"origin" "80 576 112"
+}
+// entity 14
+{
+"classname" "item_vase"
+"origin" "120 360 96"
+}
+// entity 15
+{
+"classname" "item_basket"
+"origin" "-144 480 144"
+}
+// entity 16
+{
+"classname" "trigger_camera_suggestion_zone"
+"target" "FocusOnEscapeDoor"
+// brush 0
+{
+( -160 464 224 ) ( -160 592 144 ) ( -160 592 224 ) Textures/Grate 0 0 0 1 1
+( 160 384 224 ) ( -160 384 144 ) ( -160 384 224 ) Textures/Grate 0 0 0 1 1
+( 160 592 120 ) ( -160 464 120 ) ( 160 464 120 ) Textures/Grate 0 0 0 1 1
+( 160 592 224 ) ( -160 464 224 ) ( -160 592 224 ) Textures/Grate 0 0 0 1 1
+( 160 592 224 ) ( -160 592 144 ) ( 160 592 144 ) Textures/Grate 0 0 0 1 1
+( 160 592 224 ) ( 160 464 144 ) ( 160 464 224 ) Textures/Grate 0 0 0 1 1
+}
+}
+// entity 17
+{
+"classname" "info_named_marker"
+"origin" "24 456 248"
+"angle" "90"
+"targetname" "FocusOnEscapeDoor"
+}
+// entity 18
+{
+"classname" "item_gem_red"
+"origin" "100 356 96"
+}
+// entity 19
+{
+"classname" "item_gem_green"
+"origin" "-140 564 144"
+}
+// entity 20
+{
+"classname" "item_gem_red"
+"origin" "-148 524 144"
+}
+// entity 21
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
