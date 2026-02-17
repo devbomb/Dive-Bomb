@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=4 uid="uid://chh744dkwp47i"]
+
+[ext_resource type="Script" uid="uid://blkkbrijdnnps" path="res://Entities/Hazard/GlassPaneSpawner/GlassPaneSpawnerFX.cs" id="1_tqs1k"]
+[ext_resource type="Texture2D" uid="uid://chn1mf3rkq4ea" path="res://Textures/Textures/DivableGlassPlaceholder.png" id="2_6ui7u"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="3_3cbbd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eme5d"]
+albedo_texture = ExtResource("2_6ui7u")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_eoqyl"]
+_surfaces = [{
+"aabb": AABB(-0.5, -4, -2.5, 1, 8, 5),
+"attribute_data": PackedByteArray("AAAAwQAAkMEAABDBAACQwQAAEMEAACDBAAAAwQAAIMEAADDBAAAgwQAAgMEAACDBAACAwQAAkMEAADDBAACQwQAAMMEAABBBAAAwwQAAAEEAAIDBAAAAQQAAgMEAABBBAAAwwQAAEEEAAIDBAAAQQQAAgMEAAABBAAAwwQAAAEEAADDBAACQwQAAgMEAAJDBAACAwQAAIMEAADDBAAAgwQAAAMEAACDBAAAQwQAAIMEAABDBAACQwQAAAMEAAJDB"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": SubResource("StandardMaterial3D_eme5d"),
+"name": "Textures/DivableGlassPlaceholder",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAPwAAgEAAACDAAAAAvwAAgEAAACDAAAAAvwAAgMAAACDAAAAAPwAAgMAAACDAAAAAvwAAgMAAACBAAAAAvwAAgMAAACDAAAAAvwAAgEAAACDAAAAAvwAAgEAAACBAAAAAvwAAgMAAACBAAAAAPwAAgMAAACBAAAAAPwAAgMAAACDAAAAAvwAAgMAAACDAAAAAvwAAgEAAACBAAAAAvwAAgEAAACDAAAAAPwAAgEAAACDAAAAAPwAAgEAAACBAAAAAPwAAgEAAACBAAAAAPwAAgEAAACDAAAAAPwAAgMAAACDAAAAAPwAAgMAAACBAAAAAPwAAgMAAACBAAAAAvwAAgMAAACBAAAAAvwAAgEAAACBAAAAAPwAAgEAAACBA/////////z//////////P/////////8//////////z8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//P////3//f/8/////f/9//z////9//3//P/9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[node name="GlassPaneSpawnerFX" type="Node3D"]
+script = ExtResource("1_tqs1k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_eoqyl")
+surface_material_override/0 = ExtResource("3_3cbbd")
