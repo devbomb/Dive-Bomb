@@ -18,7 +18,6 @@ namespace FastDragon.Levels.Tutorial
 
         private static class StoryFlags
         {
-            public const string SpeechSeen = "DrMonocleIntroSpeechSeen";
             public const string SpeechCheckpointed = "DrMonocleIntroSpeechCheckpointed";
         }
 
@@ -116,14 +115,6 @@ namespace FastDragon.Levels.Tutorial
 
             private void StartSpeech()
             {
-                // Skip straight to the end of the speech if the player
-                // has already seen it.
-                if (Self.IsFlagSet(StoryFlags.SpeechSeen) || Self.IsTimeTrialMode())
-                {
-                    ChangeState<Finished>();
-                    return;
-                }
-
                 ChangeState<Playing>();
             }
         }
@@ -173,10 +164,7 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech skipping");
-                Self.SetFlag(StoryFlags.SpeechSeen);
-
                 Self.AnimationPlayer.Play("Skipping");
-
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
             }
 
@@ -213,10 +201,7 @@ namespace FastDragon.Levels.Tutorial
 
             public override void OnStateEntered()
             {
-                Self.SetFlag(StoryFlags.SpeechSeen);
-
                 Self.AnimationPlayer.Play("CheckingBackIn");
-
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
             }
 
@@ -234,7 +219,6 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech finished");
-                Self.SetFlag(StoryFlags.SpeechSeen);
                 Self.MusicPlayer.Play();
                 Self._musicPlayback.SwitchToClipByName("Escape");
 
