@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://chh744dkwp47i"]
+[gd_scene load_steps=8 format=4 uid="uid://chh744dkwp47i"]
 
 [ext_resource type="Script" uid="uid://blkkbrijdnnps" path="res://Entities/Hazard/GlassPaneSpawner/GlassPaneSpawnerFX.cs" id="1_tqs1k"]
-[ext_resource type="Material" uid="uid://ct57t1yea65nb" path="res://Entities/Hazard/GlassPaneSpawner/GlassPaneSpawnerFX.tres" id="2_3cbbd"]
+[ext_resource type="Material" uid="uid://c25s1vv2je422" path="res://Entities/Hazard/GlassPaneSpawner/Materials/MoltenGlassFillMaterial.tres" id="2_3cbbd"]
 [ext_resource type="Texture2D" uid="uid://chn1mf3rkq4ea" path="res://Textures/Textures/DivableGlassPlaceholder.png" id="2_6ui7u"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="3_3cbbd"]
+[ext_resource type="Material" uid="uid://dp1p0evpof2a2" path="res://Entities/Hazard/GlassPaneSpawner/Materials/GlowFadeCurtain.tres" id="3_eoqyl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eme5d"]
 albedo_texture = ExtResource("2_6ui7u")
@@ -26,7 +27,13 @@ _surfaces = [{
 [node name="GlassPaneSpawnerFX" type="Node3D"]
 script = ExtResource("1_tqs1k")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="LiquidMesh" type="MeshInstance3D" parent="."]
 material_override = ExtResource("2_3cbbd")
+material_overlay = ExtResource("3_eoqyl")
+cast_shadow = 0
+instance_shader_parameters/alpha = 0.0
+instance_shader_parameters/height_percent = 0.0
+instance_shader_parameters/max_height = 4.0
+instance_shader_parameters/min_height = -4.0
 mesh = SubResource("ArrayMesh_eoqyl")
 surface_material_override/0 = ExtResource("3_3cbbd")

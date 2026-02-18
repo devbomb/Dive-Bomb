@@ -6,7 +6,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_8q5pt")
-shader_parameter/wave_height = 1.63
+shader_parameter/wave_height = 2.0
 shader_parameter/surface_noise = ExtResource("2_knxrw")
 shader_parameter/base_color = Color(1, 0.5019608, 0, 1)
 shader_parameter/bright_color = Color(1, 0.3, 0, 1)
