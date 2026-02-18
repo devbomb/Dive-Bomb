@@ -1,12 +1,15 @@
 shader_type spatial;
-render_mode cull_disabled, shadows_disabled;
+render_mode cull_disabled, unshaded;
 #include "res://Common/ShaderIncludes/Noise.gdshaderinc"
 
 uniform float min_height = -4;
 uniform float max_height = 4;
 uniform float height_percent = 0.0;
-uniform float wave_height = 2.0;
+uniform float wave_height = 0.1;
 uniform sampler3D surface_noise;
+
+uniform vec3 base_color : source_color;
+uniform vec3 bright_color : source_color;
 
 float wave(vec3 world_vertex)
 {
@@ -22,10 +25,12 @@ float wave(vec3 world_vertex)
 void fragment()
 {
 	vec3 world_vertex = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	float waviness = 1.0 - pow(2.0 * height_percent - 1.0, 4.0);
+	float waviness = mix(1.0, 0.0, height_percent * height_percent);
 	float height = mix(min_height, max_height, height_percent);
-	height += wave(world_vertex) * wave_height * waviness;
+	height -= wave(world_vertex) * wave_height * waviness;
 
 	if (world_vertex.y > height)
 		discard;
+	
+	ALBEDO = mix(base_color, bright_color, (sin(TIME * 2.0) + 1.0) / 2.0);
 }
