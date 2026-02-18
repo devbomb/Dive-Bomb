@@ -2,9 +2,9 @@ shader_type spatial;
 render_mode cull_disabled, unshaded;
 #include "res://Common/ShaderIncludes/Noise.gdshaderinc"
 
-uniform float min_height = -4;
-uniform float max_height = 4;
-uniform float height_percent = 0.0;
+instance uniform float min_height = -4;
+instance uniform float max_height = 4;
+instance uniform float height_percent = 0.0;
 uniform float wave_height = 0.1;
 uniform sampler3D surface_noise;
 
