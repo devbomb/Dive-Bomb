@@ -20,6 +20,8 @@ namespace FastDragon
             var aabb = mesh.GetAabb();
             LiquidMesh.SetInstanceShaderParameter("min_height", GlobalPosition.Y - (aabb.Size.Y / 2));
             LiquidMesh.SetInstanceShaderParameter("max_height", GlobalPosition.Y + (aabb.Size.Y / 2));
+
+            Animator.Play("Fill");
         }
     }
 }
