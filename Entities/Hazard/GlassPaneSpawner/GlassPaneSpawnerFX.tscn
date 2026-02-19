@@ -191,6 +191,7 @@ mesh = SubResource("ArrayMesh_eoqyl")
 surface_material_override/0 = ExtResource("3_3cbbd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
 libraries = {
 &"": SubResource("AnimationLibrary_q34iv")
 }
