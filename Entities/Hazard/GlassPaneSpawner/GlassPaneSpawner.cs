@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 namespace FastDragon
 {
@@ -22,6 +23,16 @@ namespace FastDragon
 
             _objectPool.ProcessMode = ProcessModeEnum.Disabled;
             _objectPool.Visible = false;
+        }
+
+        public override void _Ready()
+        {
+            var meshInstance = this.EnumerateChildren()
+                .OfType<MeshInstance3D>()
+                .First();
+
+            _fx.Initialize(meshInstance.Mesh);
+            meshInstance.Visible = false;
         }
     }
 }
