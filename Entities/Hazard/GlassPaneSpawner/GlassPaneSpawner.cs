@@ -9,30 +9,101 @@ namespace FastDragon
         private static readonly PackedScene FxScene =
             ResourceLoader.Load<PackedScene>("res://Entities/Hazard/GlassPaneSpawner/GlassPaneSpawnerFX.tscn");
 
-        [Export] public double SpawnIntervalSeconds;
+        private static readonly PackedScene PaneScene =
+            ResourceLoader.Load<PackedScene>("res://Entities/Hazard/GlassPaneSpawner/SpawnedGlassPane/SpawnedGlassPane.tscn");
 
-        private readonly Node3D _objectPool = new();
+        [Export] public double SpawnIntervalSeconds = 1;
+        [Export] public double SpawnDurationSeconds = 2;
+        [Export] public double PaneLifespanSeconds = 5;
+
+        private readonly StateMachine _stateMachine = new();
         private readonly Node3D _activePanes = new();
         private readonly GlassPaneSpawnerFX _fx = FxScene.Instantiate<GlassPaneSpawnerFX>();
 
+        private MeshInstance3D _meshInstance;
+        private CollisionShape3D _collisionShape;
+        private double _timer;
+
         public GlassPaneSpawner()
         {
-            AddChild(_objectPool);
+            AddChild(_stateMachine);
             AddChild(_activePanes);
             AddChild(_fx);
-
-            _objectPool.ProcessMode = ProcessModeEnum.Disabled;
-            _objectPool.Visible = false;
         }
 
         public override void _Ready()
         {
-            var meshInstance = this.EnumerateChildren()
+            _meshInstance = this.EnumerateChildren()
                 .OfType<MeshInstance3D>()
                 .First();
+            _meshInstance.Visible = false;
 
-            _fx.Initialize(meshInstance.Mesh);
-            meshInstance.Visible = false;
+            _collisionShape = this.EnumerateChildren()
+                .OfType<CollisionShape3D>()
+                .First();
+            _collisionShape.Disabled = true;
+
+            SignalBus.Instance.LevelReset += Reset;
+            Reset();
+        }
+
+        private void Reset()
+        {
+            _stateMachine.ChangeState<Waiting>();
+        }
+
+        private void SpawnPane()
+        {
+            var pane = PaneScene.Instantiate<SpawnedGlassPane>();
+            pane.LifespanSeconds = PaneLifespanSeconds;
+            pane.Initialize(_meshInstance, _collisionShape.Shape);
+
+            _activePanes.AddChild(pane);
+            pane.GlobalTransform = GlobalTransform;
+            pane.ResetPhysicsInterpolation3D();
+        }
+
+        private class Waiting : State<GlassPaneSpawner>
+        {
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                _timer = Self.SpawnIntervalSeconds;
+                Self._fx.Visible = false;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer -= delta;
+
+                if (_timer <= 0)
+                    ChangeState<Spawning>();
+            }
+        }
+
+        private class Spawning : State<GlassPaneSpawner>
+        {
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                _timer = Self.SpawnDurationSeconds;
+
+                Self._fx.Visible = true;
+                Self._fx.Initialize(Self._meshInstance.Mesh, (float)Self.SpawnDurationSeconds);
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer -= delta;
+                if (_timer <= 0)
+                {
+                    Self._fx.Visible = false;
+                    Self.SpawnPane();
+                    ChangeState<Waiting>();
+                }
+            }
         }
     }
 }
