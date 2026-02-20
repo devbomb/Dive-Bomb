@@ -6,10 +6,10 @@
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="2_e6war"]
 [ext_resource type="PackedScene" uid="uid://druigfweg47oa" path="res://Entities/Transport/LevelExit/Canon/Walls.blend" id="2_y7wo7"]
 [ext_resource type="PackedScene" uid="uid://cmjvt2vglg6ae" path="res://Entities/Transport/LevelExit/Canon/CanonHole.blend" id="3_3jouq"]
-[ext_resource type="PackedScene" uid="uid://iuj2nywxldyj" path="res://Common/Components/ShatterableWall/ShatterableWall.tscn" id="3_agwsh"]
 [ext_resource type="PackedScene" uid="uid://ldv8mrqdyja2" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanonCrystal.blend" id="4_iluh0"]
 [ext_resource type="PackedScene" uid="uid://djnbli61q61ld" path="res://Entities/Transport/LevelExit/Canon/Components/RequirementsDisplay/LevelExitCanonRequirementsDisplay.tscn" id="5_iluh0"]
 [ext_resource type="Script" uid="uid://b44v5ywbov0io" path="res://Common/Components/MeshReferencingCollisionShape3D.gd" id="5_okmgd"]
+[ext_resource type="Script" uid="uid://bhykxwp3vafhp" path="res://Common/Components/ShatterableWall.cs" id="8_y7wo7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_agwsh"]
 font_size = 56
@@ -167,20 +167,21 @@ bus = &"Sfx"
 [node name="LevelExitCanonRequirementsDisplay" parent="." instance=ExtResource("5_iluh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
-[node name="Crystal" parent="." node_paths=PackedStringArray("ShatterPartciles") instance=ExtResource("3_agwsh")]
+[node name="Crystal" type="StaticBody3D" parent="." node_paths=PackedStringArray("ShatterPartciles")]
 unique_name_in_owner = true
+script = ExtResource("8_y7wo7")
 ShatterPartciles = NodePath("../ShatterParticles")
 ShatterDuration = 0.1
 HitStopDuration = 0.75
 Rollable = false
 Kickable = false
 
-[node name="Crystal" parent="Crystal/MeshGrowPoint/MeshHolder" index="0" instance=ExtResource("4_iluh0")]
+[node name="Crystal" parent="Crystal" instance=ExtResource("4_iluh0")]
 
 [node name="CrystalCollisionShape" type="CollisionShape3D" parent="Crystal"]
 unique_name_in_owner = true
 script = ExtResource("5_okmgd")
-mesh_path = NodePath("../MeshGrowPoint/MeshHolder/Crystal/Crystal")
+mesh_path = NodePath("../Crystal/Crystal")
 metadata/_custom_type_script = "uid://b44v5ywbov0io"
 
 [node name="PlayerLandPoint" type="Marker3D" parent="."]
@@ -189,5 +190,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [connection signal="Broken" from="Crystal" to="." method="OnCrystalShattered"]
 [connection signal="Broken" from="Crystal" to="ShatterSound" method="play"]
-
-[editable path="Crystal"]
