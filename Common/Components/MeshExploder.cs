@@ -46,6 +46,13 @@ namespace FastDragon
             _meshInstance.Mesh = originalMesh.Mesh;
             _meshInstance.GlobalTransform = originalMesh.GlobalTransform;
             _meshInstance.Transparency = originalMesh.Transparency;
+
+            for (int i = 0; i < originalMesh.GetSurfaceOverrideMaterialCount(); i++)
+            {
+                var material = originalMesh.GetSurfaceOverrideMaterial(i);
+                _meshInstance.SetSurfaceOverrideMaterial(i, material);
+            }
+
             _startTransparency = originalMesh.Transparency;
 
             _endScale = endScale;
