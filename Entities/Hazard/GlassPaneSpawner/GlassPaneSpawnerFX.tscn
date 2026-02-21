@@ -33,14 +33,14 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LiquidMesh:instance_shader_parameters/height_percent")
-tracks/0/interp = 2
+tracks/0/path = NodePath("LiquidMesh:instance_shader_parameters/fill_percent")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8, 1.2333333, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.0666667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.08888889, 0.6, 0.9, 1.0]
+"values": [0.0, 0.8, 1.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -61,10 +61,10 @@ tracks/2/path = NodePath("LiquidMesh:instance_shader_parameters/wave_height")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.46666667, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.8666667, 1.3666667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 2.0, 1.0]
+"values": [0.031, 0.031, 0.018, 0.018, 0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -96,7 +96,7 @@ resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LiquidMesh:instance_shader_parameters/height_percent")
+tracks/0/path = NodePath("LiquidMesh:instance_shader_parameters/fill_percent")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -176,9 +176,8 @@ surface_material_override/0 = ExtResource("3_3cbbd")
 [node name="LiquidMesh" type="MeshInstance3D" parent="."]
 material_override = ExtResource("2_3cbbd")
 cast_shadow = 0
-instance_shader_parameters/height_percent = 0.0
-instance_shader_parameters/max_height = 4.0
-instance_shader_parameters/min_height = -4.0
+instance_shader_parameters/fill_percent = 0.0
+instance_shader_parameters/radius = 3.0
 instance_shader_parameters/wave_height = 2.0
 mesh = SubResource("ArrayMesh_eoqyl")
 surface_material_override/0 = ExtResource("3_3cbbd")

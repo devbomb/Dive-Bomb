@@ -18,8 +18,8 @@ namespace FastDragon
             FadeCurtainMesh.Mesh = mesh;
 
             var aabb = mesh.GetAabb();
-            LiquidMesh.SetInstanceShaderParameter("min_height", GlobalPosition.Y - (aabb.Size.Y / 2));
-            LiquidMesh.SetInstanceShaderParameter("max_height", GlobalPosition.Y + (aabb.Size.Y / 2));
+            LiquidMesh.SetInstanceShaderParameter("container_height", aabb.Size.Y);
+            LiquidMesh.SetInstanceShaderParameter("radius", Mathf.Max(aabb.Size.X, aabb.Size.Z));
 
             var animation = Animator.GetAnimation("Fill");
             Animator.Play("Fill", customSpeed: animation.Length / animDuration);

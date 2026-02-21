@@ -1,12 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c25s1vv2je422"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c25s1vv2je422"]
 
 [ext_resource type="Shader" uid="uid://d2kpi6fvf1bbg" path="res://Entities/Hazard/GlassPaneSpawner/Shaders/MoltenGlassFill.gdshader" id="1_4uxm6"]
-[ext_resource type="NoiseTexture3D" uid="uid://k4qesvxh0nd7" path="res://Entities/Hazard/GlassPaneSpawner/SurfaceWavesNoiseTexture.tres" id="2_e8gou"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_4uxm6")
-shader_parameter/wave_height = 1.0
-shader_parameter/surface_noise = ExtResource("2_e8gou")
 shader_parameter/base_color = Color(1, 0.5019608, 0, 1)
 shader_parameter/bright_color = Color(1, 0.3, 0, 1)
