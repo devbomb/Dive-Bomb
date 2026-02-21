@@ -152,3 +152,16 @@
 ( 152 488 128 ) ( 152 480 48 ) ( 152 480 128 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 }
 }
+// entity 14
+{
+"classname" "hazard_glass_pane_spawner"
+// brush 0
+{
+( 0 0 32 ) ( 0 1 32 ) ( 0 0 33 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 0 0 32 ) ( 0 0 33 ) ( 1 0 32 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 0 0 32 ) ( 1 0 32 ) ( 0 1 32 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 16 32 48 ) ( 16 33 48 ) ( 17 32 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 16 32 48 ) ( 17 32 48 ) ( 16 32 49 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 16 32 48 ) ( 16 32 49 ) ( 16 33 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
