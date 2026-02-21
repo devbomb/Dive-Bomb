@@ -1,7 +1,7 @@
 [gd_resource type="NoiseTexture3D" load_steps=3 format=3 uid="uid://k4qesvxh0nd7"]
 
 [sub_resource type="Gradient" id="Gradient_clami"]
-offsets = PackedFloat32Array(0, 0.43715847)
+offsets = PackedFloat32Array(0, 0.64845175)
 colors = PackedColorArray(0.7937501, 0.7937501, 0.7937501, 1, 0, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3cbbd"]
