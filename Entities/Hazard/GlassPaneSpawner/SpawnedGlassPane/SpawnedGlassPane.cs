@@ -3,7 +3,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class SpawnedGlassPane : CharacterBody3D, IBreakable
+    public partial class SpawnedGlassPane : AnimatableBody3D, IBreakable
     {
         public bool VulnerableToKick => false;
         public float CameraShakeMagnitude => 0.5f;
@@ -16,6 +16,7 @@ namespace FastDragon
         [Export] public AudioStreamPlayer ShatterSound;
         [Export] public MeshInstance3D MeshInstance;
         [Export] public CollisionShape3D CollisionShape;
+        [Export] public RayCast3D FloorDetector;
 
         private readonly StateMachine _stateMachine = new();
         private readonly MeshExploder _meshExploder = new();
@@ -52,6 +53,7 @@ namespace FastDragon
         private class Idle : State<SpawnedGlassPane>
         {
             private double _timer;
+            private Vector3 _velocity;
 
             public override void OnStateEntered()
             {
@@ -60,13 +62,28 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double delta)
             {
-                Self.Velocity += Vector3.Down * Self.Gravity * (float)delta;
-                Self.MoveAndSlide();
-
                 _timer += delta;
 
                 if (_timer >= Self.LifespanSeconds)
+                {
                     Self.QueueFree();
+                    return;
+                }
+
+                Self.FloorDetector.Position = Vector3.Down * Self.MeshInstance.GetAabb().Size.Y / 2;
+                Self.FloorDetector.ForceUpdateTransform();
+                Self.FloorDetector.ForceRaycastUpdate();
+
+                if (Self.FloorDetector.IsColliding() && Self.FloorDetector.GetCollider() is StaticBody3D floor)
+                {
+                    _velocity = floor.ConstantLinearVelocity;
+                }
+                else
+                {
+                    _velocity += Vector3.Down * Self.Gravity * (float)delta;
+                }
+
+                Self.GlobalPosition += _velocity * (float)delta;
             }
         }
 

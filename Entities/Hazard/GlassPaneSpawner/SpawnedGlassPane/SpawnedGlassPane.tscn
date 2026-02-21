@@ -26,12 +26,16 @@ scale_curve = SubResource("CurveTexture_ioojh")
 material = ExtResource("2_a7lmv")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="SpawnedGlassPane" type="CharacterBody3D" node_paths=PackedStringArray("ShatterParticles", "ShatterSound", "MeshInstance", "CollisionShape") groups=["PhysicsInterpolated", "UnsafeGround"]]
+[node name="SpawnedGlassPane" type="AnimatableBody3D" node_paths=PackedStringArray("ShatterParticles", "ShatterSound", "MeshInstance", "CollisionShape", "FloorDetector") groups=["PhysicsInterpolated", "UnsafeGround"]]
 script = ExtResource("1_vb7yu")
 ShatterParticles = NodePath("ShatterParticles")
 ShatterSound = NodePath("ShatterSound")
 MeshInstance = NodePath("MeshInstance3D")
 CollisionShape = NodePath("CollisionShape3D")
+FloorDetector = NodePath("FloorDetector")
+
+[node name="FloorDetector" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
