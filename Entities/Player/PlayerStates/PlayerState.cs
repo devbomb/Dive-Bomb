@@ -220,7 +220,22 @@ namespace FastDragon
             float bonkAngleRad = Mathf.DegToRad(Player.Bonk.AngleDeg);
 
             if (wallAngleRad < bonkAngleRad)
+            {
+                // HACK: Don't bonk if the contact point is too low.
+                // TODO: Explain why.
+                float highestContactPoint = float.MinValue;
+                for (int i = 0; i < numCollisions; i++)
+                {
+                    float height = Self.GetSlideCollision(i).GetPosition().Y;
+                    if (height > highestContactPoint)
+                        highestContactPoint = height;
+                }
+
+                if (highestContactPoint - Self.GlobalPosition.Y < 0.5f)
+                    return false;
+
                 return Bonk();
+            }
 
             return false;
 
