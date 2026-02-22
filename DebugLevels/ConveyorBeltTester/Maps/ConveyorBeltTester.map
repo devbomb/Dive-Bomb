@@ -165,3 +165,18 @@
 ( 16 32 48 ) ( 16 32 49 ) ( 16 33 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 }
 }
+// entity 15
+{
+"classname" "hazard_glass_pane_spawner"
+"PaneLifespanSeconds" "0.1"
+"SpawnDurationSeconds" "5"
+// brush 0
+{
+( 336 -16 32 ) ( 336 -15 32 ) ( 336 -16 33 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 336 -16 32 ) ( 336 -16 33 ) ( 337 -16 32 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 336 -16 32 ) ( 337 -16 32 ) ( 336 -15 32 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 352 80 112 ) ( 352 81 112 ) ( 353 80 112 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 352 80 48 ) ( 353 80 48 ) ( 352 80 49 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 352 80 48 ) ( 352 80 49 ) ( 352 81 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
