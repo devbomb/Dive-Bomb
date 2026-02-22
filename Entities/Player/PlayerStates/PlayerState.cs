@@ -232,7 +232,8 @@ namespace FastDragon
                 }
 
                 float heightAbovePlayer = highestContactPoint - Self.GlobalPosition.Y;
-                if (heightAbovePlayer < 0.5f)
+                const float forgivableHeight = 0.4f;
+                if (heightAbovePlayer < forgivableHeight)
                 {
                     GD.Print($"Attempting bonk forgiveness (contact height: {heightAbovePlayer})");
                     Vector3 posBeforeForgivenessAttempt = Self.GlobalPosition;
