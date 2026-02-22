@@ -231,8 +231,28 @@ namespace FastDragon
                         highestContactPoint = height;
                 }
 
-                if (highestContactPoint - Self.GlobalPosition.Y < 0.5f)
+                float heightAbovePlayer = highestContactPoint - Self.GlobalPosition.Y;
+                if (heightAbovePlayer < 0.5f)
+                {
+                    GD.Print($"Attempting bonk forgiveness (contact height: {heightAbovePlayer})");
+                    Vector3 posBeforeForgivenessAttempt = Self.GlobalPosition;
+                    Vector3 velBeforeForgivenessAttempt = Self.Velocity;
+
+                    Self.GlobalPosition = prevPos + (Vector3.Up * 0.5f);
+                    Self.Velocity = prevVel;
+                    bool forgivenessFailed = Self.MoveAndSlide();
+
+                    if (forgivenessFailed)
+                    {
+                        GD.Print("Bonk forgiveness failed.  Should've repented!");
+                        Self.GlobalPosition = posBeforeForgivenessAttempt;
+                        Self.Velocity = velBeforeForgivenessAttempt;
+                        return Bonk();
+                    }
+
+                    GD.Print("Bonk forgiven.");
                     return false;
+                }
 
                 return Bonk();
             }
