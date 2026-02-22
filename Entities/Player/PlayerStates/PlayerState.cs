@@ -238,7 +238,7 @@ namespace FastDragon
                     Vector3 posBeforeForgivenessAttempt = Self.GlobalPosition;
                     Vector3 velBeforeForgivenessAttempt = Self.Velocity;
 
-                    Self.GlobalPosition = prevPos + (Vector3.Up * 0.5f);
+                    Self.GlobalPosition = prevPos + (Vector3.Up * heightAbovePlayer);
                     Self.Velocity = prevVel;
                     bool forgivenessFailed = Self.MoveAndSlide();
 
