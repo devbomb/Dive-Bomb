@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://1lfojpns681p"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_g6uol"]
+[ext_resource type="PackedScene" uid="uid://coafda5ubxb0b" path="res://DebugLevels/BonkForgivenessTester/Maps/BonkForgivenessTester.map" id="2_f3kpa"]
+
+[sub_resource type="Environment" id="Environment_scss7"]
+
+[node name="BonkForgivenessTester" type="Node3D"]
+script = ExtResource("1_g6uol")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_scss7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
+
+[node name="BonkForgivenessTester" parent="." instance=ExtResource("2_f3kpa")]
