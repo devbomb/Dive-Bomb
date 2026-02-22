@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace FastDragon
 {
-    public partial class GlassPaneSpawner : StaticBody3D
+    public partial class GlassPaneSpawner : Area3D
     {
         private static readonly PackedScene FxScene =
             ResourceLoader.Load<PackedScene>("res://Entities/Hazard/GlassPaneSpawner/GlassPaneSpawnerFX.tscn");
@@ -41,7 +41,6 @@ namespace FastDragon
             _collisionShape = this.EnumerateChildren()
                 .OfType<CollisionShape3D>()
                 .First();
-            _collisionShape.Disabled = true;
 
             SignalBus.Instance.LevelReset += Reset;
             Reset();
@@ -88,21 +87,71 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _timer = Self.SpawnDurationSeconds;
+                _timer = 0;
 
                 Self._fx.Visible = true;
                 Self._fx.Initialize(Self._meshInstance.Mesh, (float)Self.SpawnDurationSeconds);
+
+                // Get the player if they were already standing in the hitbox
+                // when it turned on.  (IE: They missed the BodyEntered event)
+                if (Self.GetOverlappingBodiesResetSafe().OfType<Player>().Any())
+                    TryBurnPlayer();
+            }
+
+            public override void SubscribeToSignals()
+            {
+                Self.BodyEntered += OnBodyEntered;
+            }
+
+            public override void UnsubscribeFromSignals()
+            {
+                Self.BodyEntered -= OnBodyEntered;
             }
 
             public override void _PhysicsProcess(double delta)
             {
-                _timer -= delta;
-                if (_timer <= 0)
+                _timer += delta;
+
+                if (_timer >= Self.SpawnDurationSeconds)
                 {
                     Self._fx.Visible = false;
                     Self.SpawnPane();
                     ChangeState<Waiting>();
                 }
+            }
+
+            private void OnBodyEntered(Node3D body)
+            {
+                if (body is Player)
+                    TryBurnPlayer();
+            }
+
+            private void TryBurnPlayer()
+            {
+                if (HasCooled())
+                    return;
+
+                var player = Self.GetTree().FindNode<Player>();
+
+                if (player.GlobalPosition.Y < GetFillHeight())
+                    player.TryDamage<PlayerBurnVoidOutState>();
+            }
+
+            private bool HasCooled()
+            {
+                var fillAnimation = Self._fx.Animator.GetAnimation("Fill");
+                double markerTime = fillAnimation.GetMarkerTime("Cooling");
+
+                return (_timer / Self.SpawnDurationSeconds) > (markerTime / fillAnimation.Length);
+            }
+
+            private float GetFillHeight()
+            {
+                var aabb = Self._meshInstance.GetAabb();
+                float min = Self.GlobalPosition.Y - (aabb.Size.Y / 2);
+                float max = Self.GlobalPosition.Y + (aabb.Size.Y / 2);
+
+                return Mathf.Lerp(min, max, (float)(_timer / Self.SpawnDurationSeconds));
             }
         }
     }

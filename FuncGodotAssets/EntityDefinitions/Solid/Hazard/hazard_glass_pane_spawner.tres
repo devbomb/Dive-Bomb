@@ -14,6 +14,6 @@ class_properties = Dictionary[String, Variant]({
 "SpawnIntervalSeconds": 1.0
 })
 auto_apply_to_matching_node_properties = true
-node_class = "StaticBody3D"
+node_class = "Area3D"
 node_groups = Array[String](["UnsafeGround"])
 metadata/_custom_type_script = "uid://5cow84q03m6a"

@@ -30,6 +30,11 @@ shading_mode = 0
 [sub_resource type="Animation" id="Animation_rigc4"]
 resource_name = "Fill"
 length = 2.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"Cooling",
+"time": 1.4
+}]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
