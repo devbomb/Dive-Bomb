@@ -236,18 +236,22 @@ namespace FastDragon
                 if (heightAbovePlayer < forgivableHeight)
                 {
                     GD.Print($"Attempting bonk forgiveness (contact height: {heightAbovePlayer})");
-                    Vector3 posBeforeForgivenessAttempt = Self.GlobalPosition;
-                    Vector3 velBeforeForgivenessAttempt = Self.Velocity;
-
                     Self.GlobalPosition = prevPos + (Vector3.Up * (heightAbovePlayer + 0.1f));
                     Self.Velocity = prevVel;
                     bool forgivenessFailed = Self.MoveAndSlide();
 
                     if (forgivenessFailed)
                     {
-                        GD.Print("Bonk forgiveness failed.  Should've repented!");
-                        Self.GlobalPosition = posBeforeForgivenessAttempt;
-                        Self.Velocity = velBeforeForgivenessAttempt;
+                        GD.Print("Bonk forgiveness failed.");
+
+                        // HACK: Replay the trajectory that originally caused us
+                        // to bonk.  We can't just teleport the player back to
+                        // the bonk position because Bonk() expects GetSlideCollision()
+                        // to have info from _that_ MoveAndSlide() call, not the
+                        // forgiving one.
+                        Self.GlobalPosition = prevPos;
+                        Self.Velocity = prevVel;
+                        Self.MoveAndSlide();
                         return Bonk();
                     }
 
