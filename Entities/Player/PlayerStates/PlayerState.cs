@@ -221,41 +221,19 @@ namespace FastDragon
 
             if (wallAngleRad < bonkAngleRad)
             {
-                // HACK: Don't bonk if the contact point is too low.
-                // TODO: Explain why.
-                float highestContactPoint = float.MinValue;
-                for (int i = 0; i < numCollisions; i++)
+                // HACK: If a ledge is detected, move the player up to it instead
+                // of bonking.  This is to reduce the amount of "WTF?  I bonked
+                // on air?!" moments caused by the spherical collider not matching
+                // up with the player model.
+                const float forgivableHeight = 0.51f;
+                float ledgeHeight = Self.LedgeDetector.LastLedgePoint.Y - Self.GlobalPosition.Y;
+                if (Self.LedgeDetector.LedgeDetected && !Self.LedgeDetector.IsBlocked && ledgeHeight < forgivableHeight)
                 {
-                    float height = Self.GetSlideCollision(i).GetPosition().Y;
-                    if (height > highestContactPoint)
-                        highestContactPoint = height;
-                }
-
-                float heightAbovePlayer = highestContactPoint - Self.GlobalPosition.Y;
-                const float forgivableHeight = 0.5f;
-                if (heightAbovePlayer < forgivableHeight)
-                {
-                    GD.Print($"Attempting bonk forgiveness (contact height: {heightAbovePlayer})");
-                    Self.GlobalPosition = prevPos + (Vector3.Up * (heightAbovePlayer + 0.1f));
+                    var pos = Self.GlobalPosition;
+                    pos.Y = Self.LedgeDetector.LastLedgePoint.Y;
+                    Self.GlobalPosition = pos;
                     Self.Velocity = prevVel;
-                    bool forgivenessFailed = Self.MoveAndSlide();
-
-                    if (forgivenessFailed)
-                    {
-                        GD.Print("Bonk forgiveness failed.");
-
-                        // HACK: Replay the trajectory that originally caused us
-                        // to bonk.  We can't just teleport the player back to
-                        // the bonk position because Bonk() expects GetSlideCollision()
-                        // to have info from _that_ MoveAndSlide() call, not the
-                        // forgiving one.
-                        Self.GlobalPosition = prevPos;
-                        Self.Velocity = prevVel;
-                        Self.MoveAndSlide();
-                        return Bonk();
-                    }
-
-                    GD.Print("Bonk forgiven.");
+                    GD.Print("Ledge detected; bonk forgiven");
                     return false;
                 }
 
