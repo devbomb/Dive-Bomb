@@ -6,79 +6,39 @@
 "classname" "worldspawn"
 // brush 0
 {
-( -384 -64 -16 ) ( -384 -63 -16 ) ( -384 -64 -15 ) __TB_empty 0 0 0 1 1
-( -64 -64 -16 ) ( -64 -64 -15 ) ( -63 -64 -16 ) __TB_empty 0 0 0 1 1
-( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) __TB_empty 0 0 0 1 1
-( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) __TB_empty 0 0 0 1 1
-( 64 64 16 ) ( 65 64 16 ) ( 64 64 17 ) __TB_empty 0 0 0 1 1
-( 64 64 16 ) ( 64 64 17 ) ( 64 65 16 ) __TB_empty 0 0 0 1 1
+( -80 -64 -48 ) ( -80 -63 -48 ) ( -80 -64 -47 ) __TB_empty 0 0 0 1 1
+( -64 -64 -48 ) ( -64 -64 -47 ) ( -63 -64 -48 ) __TB_empty 0 0 0 1 1
+( -64 -64 -48 ) ( -63 -64 -48 ) ( -64 -63 -48 ) __TB_empty 0 0 0 1 1
+( 64 64 -32 ) ( 64 65 -32 ) ( 65 64 -32 ) __TB_empty 0 0 0 1 1
+( 64 64 -16 ) ( 65 64 -16 ) ( 64 64 -15 ) __TB_empty 0 0 0 1 1
+( 64 64 -16 ) ( 64 64 -15 ) ( 64 65 -16 ) __TB_empty 0 0 0 1 1
 }
 // brush 1
 {
-( -64 -240 16 ) ( -64 -64 -16 ) ( -64 -64 16 ) Textures/ThroneRoomRug 0 0 0 1 1
-( 64 -240 16 ) ( -64 -240 -16 ) ( -64 -240 16 ) Textures/ThroneRoomRug 0 0 0 1 1
-( 64 -64 -16 ) ( -64 -240 -16 ) ( 64 -240 -16 ) Textures/ThroneRoomRug 0 0 0 1 1
-( 64 -64 48 ) ( -64 -240 48 ) ( -64 -64 48 ) Textures/ThroneRoomRug 0 0 0 1 1
-( 64 -112 16 ) ( -64 -112 -16 ) ( 64 -112 -16 ) Textures/ThroneRoomRug 0 0 0 1 1
-( 64 -64 16 ) ( 64 -240 -16 ) ( 64 -240 16 ) Textures/ThroneRoomRug 0 0 0 1 1
-}
-// brush 2
-{
-( -320 -240 48 ) ( -320 -112 -16 ) ( -320 -112 48 ) Textures/Grass 0 0 0 1 1
-( -208 -240 48 ) ( -320 -240 -16 ) ( -320 -240 48 ) Textures/Grass 16 0 0 1 1
-( -208 -112 -16 ) ( -320 -240 -16 ) ( -208 -240 -16 ) Textures/Grass 16 0 0 1 1
-( -208 -112 32 ) ( -320 -240 32 ) ( -320 -112 32 ) Textures/Grass 16 0 0 1 1
-( -208 -112 48 ) ( -320 -112 -16 ) ( -208 -112 -16 ) Textures/Grass 16 0 0 1 1
-( -208 -112 48 ) ( -208 -240 -16 ) ( -208 -240 48 ) Textures/Grass 0 0 0 1 1
-}
-// brush 3
-{
-( -208 -240 48 ) ( -208 -112 -16 ) ( -208 -112 48 ) Textures/Grass 0 0 0 1 1
-( -64 -240 48 ) ( -176 -240 -16 ) ( -176 -240 48 ) Textures/Grass 0 0 0 1 1
-( -64 -112 -16 ) ( -176 -240 -16 ) ( -64 -240 -16 ) Textures/Grass 0 0 0 1 1
-( -64 -112 40 ) ( -176 -240 40 ) ( -176 -112 40 ) Textures/Grass 0 0 0 1 1
-( -64 -112 48 ) ( -176 -112 -16 ) ( -64 -112 -16 ) Textures/Grass 0 0 0 1 1
-( -64 -112 48 ) ( -64 -240 -16 ) ( -64 -240 48 ) Textures/Grass 0 0 0 1 1
+( 16 -64 48 ) ( 16 64 -32 ) ( 16 64 48 ) Textures/GridSquare 0 0 0 1 1
+( 64 -64 48 ) ( 16 -64 -32 ) ( 16 -64 48 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 -32 ) ( 16 -64 -32 ) ( 64 -64 -32 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 0 ) ( 16 -64 0 ) ( 16 64 0 ) Textures/GridSquare 0 0 0 1 1
+( 64 16 48 ) ( 16 16 -32 ) ( 64 16 -32 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 48 ) ( 64 -64 -32 ) ( 64 -64 48 ) Textures/GridSquare 0 0 0 1 1
 }
 }
 // entity 1
 {
 "classname" "transport_player_spawn"
-"origin" "4 -12 16"
-"angle" "270"
+"origin" "4 -12 0"
+"angle" "0"
 }
 // entity 2
 {
-"classname" "hazard_death_barrier"
-// brush 0
-{
-( -528 -240 -256 ) ( -528 -239 -256 ) ( -528 -240 -255 ) Textures/Grate 0 -76 0 1 1
-( 160 -2064 -256 ) ( 160 -2064 -255 ) ( 161 -2064 -256 ) Textures/Grate 0 -76 0 1 1
-( 160 -240 -256 ) ( 161 -240 -256 ) ( 160 -239 -256 ) Textures/Grate 0 0 0 1 1
-( 432 0 -240 ) ( 432 1 -240 ) ( 433 0 -240 ) Textures/Grate 0 0 0 1 1
-( 432 736 -240 ) ( 433 736 -240 ) ( 432 736 -239 ) Textures/Grate 0 -76 0 1 1
-( 832 0 -240 ) ( 832 0 -239 ) ( 832 1 -240 ) Textures/Grate 0 -76 0 1 1
-}
+"classname" "info_named_marker"
+"origin" "8 88 8"
+"angle" "270"
+"targetname" "CameraPos"
 }
 // entity 3
 {
-"classname" "trigger_camera_suggestion_zone"
-"target" "CameraDirection"
-"targetname" "CameraDirection"
-// brush 0
-{
-( -384 -64 128 ) ( -384 64 16 ) ( -384 64 128 ) Textures/Grate 0 0 0 1 1
-( 64 -256 128 ) ( -384 -256 16 ) ( -384 -256 128 ) Textures/Grate 0 0 0 1 1
-( 64 64 16 ) ( -384 -64 16 ) ( 64 -64 16 ) Textures/Grate 0 0 0 1 1
-( 64 64 128 ) ( -384 -64 128 ) ( -384 64 128 ) Textures/Grate 0 0 0 1 1
-( 64 64 128 ) ( -384 64 16 ) ( 64 64 16 ) Textures/Grate 0 0 0 1 1
-( 64 64 128 ) ( 64 -64 16 ) ( 64 -64 128 ) Textures/Grate 0 0 0 1 1
-}
-}
-// entity 4
-{
 "classname" "info_named_marker"
-"origin" "-136 -24 136"
-"angle" "270"
-"targetname" "CameraDirection"
+"origin" "-24 -8 8"
+"targetname" "TestPosition"
 }
