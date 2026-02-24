@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://chh744dkwp47i"]
+[gd_scene load_steps=13 format=4 uid="uid://chh744dkwp47i"]
 
 [ext_resource type="Script" uid="uid://blkkbrijdnnps" path="res://Entities/Hazard/GlassPaneSpawner/GlassPaneSpawnerFX.cs" id="1_tqs1k"]
 [ext_resource type="Material" uid="uid://c25s1vv2je422" path="res://Entities/Hazard/GlassPaneSpawner/Materials/MoltenGlassFillMaterial.tres" id="2_3cbbd"]
 [ext_resource type="Texture2D" uid="uid://chn1mf3rkq4ea" path="res://Textures/Textures/DivableGlassPlaceholder.png" id="2_6ui7u"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="3_3cbbd"]
 [ext_resource type="AudioStream" uid="uid://bxgbafdygr40o" path="res://Entities/Hazard/GlassPaneSpawner/LongPour.wav" id="5_eoqyl"]
+[ext_resource type="AudioStream" uid="uid://ekkasq8qo2mr" path="res://Entities/Hazard/GlassPaneSpawner/SolidifyDing.wav" id="5_rigc4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eme5d"]
 albedo_texture = ExtResource("2_6ui7u")
@@ -103,7 +104,7 @@ tracks/5/path = NodePath("AudioStreamPlayer3D")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 1.4),
+"times": PackedFloat32Array(0, 1.8),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [0.0],
@@ -124,6 +125,20 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(3.2490087, 1),
 "update": 0,
 "values": [1.0, 3.0]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SolidifyDingSound")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_eoqyl"]
@@ -244,5 +259,14 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_eoqyl")
+volume_db = -10.0
+max_db = 0.0
+max_distance = 30.0
+bus = &"Sfx"
+
+[node name="SolidifyDingSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_rigc4")
+volume_db = -20.0
+max_db = 0.0
 max_distance = 30.0
 bus = &"Sfx"
