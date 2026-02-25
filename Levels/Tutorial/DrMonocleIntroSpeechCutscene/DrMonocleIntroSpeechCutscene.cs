@@ -59,27 +59,10 @@ namespace FastDragon.Levels.Tutorial
 
         private void Reset()
         {
-            if (IsFlagSet(StoryFlags.SpeechCheckpointed))
+            if (this.GetLevel().TempStoryFlags.Contains(StoryFlags.SpeechCheckpointed))
                 _stateMachine.ChangeState<Finished>();
             else
                 _stateMachine.ChangeState<Idle>();
-        }
-
-        private bool IsFlagSet(string storyFlag) => SaveFileManager
-            .Current
-            .CurrentLevelVisit
-            .StoryFlags
-            .Contains(storyFlag);
-
-        private void SetFlag(string storyFlag)
-        {
-            SaveFileManager
-                .Current
-                .CurrentLevelVisit
-                .StoryFlags
-                .Add(storyFlag);
-
-            SaveFileManager.Instance.RequestAutosave();
         }
 
         private class Idle : State<DrMonocleIntroSpeechCutscene>
@@ -243,7 +226,7 @@ namespace FastDragon.Levels.Tutorial
             private void CheckpointActivated()
             {
                 GD.Print("Dr. Monocle speech checkpointed");
-                Self.SetFlag(StoryFlags.SpeechCheckpointed);
+                Self.GetLevel().TempStoryFlags.Add(StoryFlags.SpeechCheckpointed);
             }
         }
     }
