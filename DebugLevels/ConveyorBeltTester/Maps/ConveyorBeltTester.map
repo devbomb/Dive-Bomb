@@ -13,6 +13,15 @@
 ( 64 248 16 ) ( 65 248 16 ) ( 64 248 17 ) __TB_empty 0 0 0 1 1
 ( 544 64 16 ) ( 544 64 17 ) ( 544 65 16 ) __TB_empty 0 0 0 1 1
 }
+// brush 1
+{
+( 48 320 32 ) ( 48 336 16 ) ( 48 336 32 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 320 32 ) ( 48 320 16 ) ( 48 320 32 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 336 16 ) ( 48 320 16 ) ( 144 320 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 336 32 ) ( 48 320 32 ) ( 48 336 32 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 336 32 ) ( 48 336 16 ) ( 144 336 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 336 32 ) ( 144 320 16 ) ( 144 320 32 ) Textures/BigMetalSquares 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -107,4 +116,67 @@
 "classname" "info_named_marker"
 "origin" "48 -32 24"
 "targetname" "ConveyorBelt0Direction"
+}
+// entity 11
+{
+"classname" "hazard_conveyor_belt"
+"target" "GlassPaneSpawnerConveyorBeltDirection"
+"Speed" "7.8"
+// brush 0
+{
+( 32 408 32 ) ( 32 520 24 ) ( 32 520 32 ) Textures/ConveyorBelt 0 0 180 1 1
+( 176 408 32 ) ( 32 408 24 ) ( 32 408 32 ) Textures/ConveyorBelt 0 0 180 1 1
+( 176 520 24 ) ( 32 408 24 ) ( 176 408 24 ) Textures/ConveyorBelt 0 0 180 1 1
+( 176 520 32 ) ( 32 408 32 ) ( 32 520 32 ) Textures/ConveyorBelt 0 0 180 1 1
+( 176 520 32 ) ( 32 520 24 ) ( 176 520 24 ) Textures/ConveyorBelt 0 0 180 1 1
+( 176 520 32 ) ( 176 408 24 ) ( 176 408 32 ) Textures/ConveyorBelt 0 0 180 1 1
+}
+}
+// entity 12
+{
+"classname" "info_named_marker"
+"origin" "136 432 24"
+"targetname" "GlassPaneSpawnerConveyorBeltDirection"
+"angle" "270"
+}
+// entity 13
+{
+"classname" "hazard_glass_pane_spawner"
+// brush 0
+{
+( 56 480 128 ) ( 56 488 48 ) ( 56 488 128 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 152 480 128 ) ( 56 480 48 ) ( 56 480 128 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 152 488 48 ) ( 56 480 48 ) ( 152 480 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 152 488 176 ) ( 56 480 176 ) ( 56 488 176 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 152 488 128 ) ( 56 488 48 ) ( 152 488 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 152 488 128 ) ( 152 480 48 ) ( 152 480 128 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 14
+{
+"classname" "hazard_glass_pane_spawner"
+// brush 0
+{
+( 0 0 32 ) ( 0 1 32 ) ( 0 0 33 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 0 0 32 ) ( 0 0 33 ) ( 1 0 32 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 0 0 32 ) ( 1 0 32 ) ( 0 1 32 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 16 32 48 ) ( 16 33 48 ) ( 17 32 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 16 32 48 ) ( 17 32 48 ) ( 16 32 49 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 16 32 48 ) ( 16 32 49 ) ( 16 33 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 15
+{
+"classname" "hazard_glass_pane_spawner"
+"PaneLifespanSeconds" "0.1"
+"SpawnDurationSeconds" "5"
+// brush 0
+{
+( 336 -16 32 ) ( 336 -15 32 ) ( 336 -16 33 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 336 -16 32 ) ( 336 -16 33 ) ( 337 -16 32 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 336 -16 32 ) ( 337 -16 32 ) ( 336 -15 32 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 352 80 112 ) ( 352 81 112 ) ( 353 80 112 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 352 80 48 ) ( 353 80 48 ) ( 352 80 49 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 352 80 48 ) ( 352 80 49 ) ( 352 81 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
 }

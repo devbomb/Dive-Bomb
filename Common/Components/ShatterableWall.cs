@@ -4,34 +4,23 @@ using Godot;
 namespace FastDragon
 {
     // TODO: Refactor DivableWall to use this, instead of duplicating it.
+    [GlobalClass]
     public partial class ShatterableWall : BreakableStaticBody3D
     {
         [Export] public GpuParticles3D ShatterPartciles;
         [Export] public float ShatterDuration = 4f / 60;
         [Export] public double HitStopDuration = 0.2;
 
-        private Node3D _meshHolder => GetNode<Node3D>("%MeshHolder");
-        private Node3D _meshGrowPoint => GetNode<Node3D>("%MeshGrowPoint");
+        private readonly MeshExploder _meshExploder = new();
+        private readonly StateMachine _stateMachine = new();
 
-        private readonly StateMachine _stateMachine = new StateMachine();
+        private MeshInstance3D _meshInstance;
 
         public override void _Ready()
         {
+            _meshInstance = this.FindNode<MeshInstance3D>();
             AddChild(_stateMachine);
-
-            var meshes = this
-                .EnumerateDescendantsOfType<MeshInstance3D>()
-                .ToArray();
-
-            foreach (var mesh in meshes)
-            {
-                var globalPos = mesh.GlobalTransform;
-
-                mesh.GetParent().RemoveChild(mesh);
-                _meshHolder.AddChild(mesh);
-
-                mesh.GlobalTransform = globalPos;
-            }
+            AddChild(_meshExploder);
 
             Broken += StartShattering;
 
@@ -56,19 +45,12 @@ namespace FastDragon
                 shape.Disabled = !enabled;
         }
 
-        private void SetTransparency(float transparency)
-        {
-            foreach (var mesh in _meshHolder.EnumerateDescendantsOfType<MeshInstance3D>())
-                mesh.Transparency = transparency;
-        }
-
         private class Solid : State<ShatterableWall>
         {
             public override void OnStateEntered()
             {
                 Self.SetCollisionEnabled(true);
-                Self._meshHolder.Visible = true;
-                Self.SetTransparency(0);
+                Self._meshInstance.Visible = true;
             }
         }
 
@@ -77,17 +59,21 @@ namespace FastDragon
             private const float EndScale = 4f;
 
             private float _timer;
-            private float _modelTimer;
 
             public override void OnStateEntered()
             {
                 HitStopManager.Instance.StopFor(Self.HitStopDuration);
 
                 Self.SetCollisionEnabled(false);
+                Self._meshInstance.Visible = false;
                 _timer = 0;
-                _modelTimer = 0;
 
-                SetPivotPointToPlayer();
+                Self._meshExploder.Explode(
+                    Self._meshInstance,
+                    GetTree().FindNode<Player>().GlobalPosition,
+                    EndScale,
+                    Self.ShatterDuration
+                );
 
                 if (Self.ShatterPartciles != null)
                     SpawnParticles();
@@ -95,21 +81,8 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
-                Self._meshGrowPoint.Scale = Vector3.One;
-                Self._meshGrowPoint.Position = Vector3.Zero;
-                Self._meshHolder.Position = Vector3.Zero;
-
                 if (Self.ShatterPartciles != null)
                     Self.ShatterPartciles.Emitting = false;
-            }
-
-            public override void _Process(double deltaD)
-            {
-                _modelTimer += (float)deltaD;
-
-                float t = _modelTimer / Self.ShatterDuration;
-                Self._meshGrowPoint.Scale = Vector3.One.Lerp(Vector3.One * EndScale, t * t);
-                Self.SetTransparency(Mathf.Min(t * 2, 1));
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -120,15 +93,6 @@ namespace FastDragon
                 {
                     ChangeState<BrokenState>();
                 }
-            }
-
-            private void SetPivotPointToPlayer()
-            {
-                var holderPos = Self._meshHolder.GlobalTransform;
-
-                var player = GetTree().FindNode<Player>();
-                Self._meshGrowPoint.GlobalPosition = player.GlobalPosition;
-                Self._meshHolder.GlobalTransform = holderPos;
             }
 
             private void SpawnParticles()
@@ -151,7 +115,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 Self.SetCollisionEnabled(false);
-                Self._meshHolder.Visible = false;
+                Self._meshInstance.Visible = false;
             }
         }
     }

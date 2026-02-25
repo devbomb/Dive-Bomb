@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dp1p0evpof2a2"]
+
+[sub_resource type="Shader" id="Shader_3cbbd"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+instance uniform float alpha : instance_index(1) = 0.0;
+
+void fragment() 
+{
+	ALPHA = alpha;
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_3cbbd")

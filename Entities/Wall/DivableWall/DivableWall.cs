@@ -11,34 +11,24 @@ namespace FastDragon
         public bool VulnerableToKick => false;
         public float CameraShakeMagnitude => 0.5f;
 
-        private readonly Node3D _meshGrowPoint = new();
-        private readonly Node3D _meshHolder = new();
         private readonly DivableWallFX _fx = FxScene.Instantiate<DivableWallFX>();
+        private readonly MeshExploder _meshExploder = new();
+        private readonly StateMachine _stateMachine = new();
 
-        private readonly StateMachine _stateMachine = new StateMachine();
+        private MeshInstance3D _meshInstance;
 
+        public DivableWall()
+        {
+            AddChild(_stateMachine);
+            AddChild(_meshExploder);
+            AddChild(_fx);
+        }
 
         public override void _Ready()
         {
-            AddChild(_stateMachine);
-            AddChild(_fx);
-
-            AddChild(_meshGrowPoint);
-            _meshGrowPoint.AddChild(_meshHolder);
-
-            var meshes = this
-                .EnumerateDescendantsOfType<MeshInstance3D>()
-                .ToArray();
-
-            foreach (var mesh in meshes)
-            {
-                var globalPos = mesh.GlobalTransform;
-
-                mesh.GetParent().RemoveChild(mesh);
-                _meshHolder.AddChild(mesh);
-
-                mesh.GlobalTransform = globalPos;
-            }
+            _meshInstance = this.EnumerateChildren()
+                .OfType<MeshInstance3D>()
+                .First();
 
             SignalBus.Instance.LevelReset += Reset;
             Reset();
@@ -61,19 +51,12 @@ namespace FastDragon
                 shape.Disabled = !enabled;
         }
 
-        private void SetTransparency(float transparency)
-        {
-            foreach (var mesh in _meshHolder.EnumerateDescendantsOfType<MeshInstance3D>())
-                mesh.Transparency = transparency;
-        }
-
         private class Solid : State<DivableWall>
         {
             public override void OnStateEntered()
             {
                 Self.SetCollisionEnabled(true);
-                Self._meshHolder.Visible = true;
-                Self.SetTransparency(0);
+                Self._meshInstance.Visible = true;
             }
         }
 
@@ -84,35 +67,28 @@ namespace FastDragon
             private const float HitStopDuration = 0.2f;
 
             private float _timer;
-            private float _modelTimer;
 
             public override void OnStateEntered()
             {
                 HitStopManager.Instance.StopFor(HitStopDuration);
 
                 Self.SetCollisionEnabled(false);
+                Self._meshInstance.Visible = false;
                 _timer = 0;
-                _modelTimer = 0;
 
-                SetPivotPointToPlayer();
+                Self._meshExploder.Explode(
+                    Self._meshInstance,
+                    GetTree().FindNode<Player>().GlobalPosition,
+                    EndScale,
+                    Duration
+                );
+
                 Self._fx.Play();
             }
 
             public override void OnStateExited()
             {
                 Self._fx.Stop();
-                Self._meshGrowPoint.Scale = Vector3.One;
-                Self._meshGrowPoint.Position = Vector3.Zero;
-                Self._meshHolder.Position = Vector3.Zero;
-            }
-
-            public override void _Process(double deltaD)
-            {
-                _modelTimer += (float)deltaD;
-
-                float t = _modelTimer / Duration;
-                Self._meshGrowPoint.Scale = Vector3.One.Lerp(Vector3.One * EndScale, t * t);
-                Self.SetTransparency(Mathf.Min(t * 2, 1));
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -124,15 +100,6 @@ namespace FastDragon
                     ChangeState<Broken>();
                 }
             }
-
-            private void SetPivotPointToPlayer()
-            {
-                var holderPos = Self._meshHolder.GlobalTransform;
-
-                var player = GetTree().FindNode<Player>();
-                Self._meshGrowPoint.GlobalPosition = player.GlobalPosition;
-                Self._meshHolder.GlobalTransform = holderPos;
-            }
         }
 
         private class Broken : State<DivableWall>
@@ -140,7 +107,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 Self.SetCollisionEnabled(false);
-                Self._meshHolder.Visible = false;
+                Self._meshInstance.Visible = false;
             }
         }
     }

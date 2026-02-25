@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c25s1vv2je422"]
+
+[ext_resource type="Shader" uid="uid://d2kpi6fvf1bbg" path="res://Entities/Hazard/GlassPaneSpawner/Shaders/MoltenGlassFill.gdshader" id="1_4uxm6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4uxm6")
+shader_parameter/base_color = Color(1, 0.5019608, 0, 1)
+shader_parameter/bright_color = Color(1, 0.3, 0, 1)

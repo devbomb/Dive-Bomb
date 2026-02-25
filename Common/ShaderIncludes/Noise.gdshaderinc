@@ -19,7 +19,7 @@ float perlin12(vec2 uv)
 		dot(hash22(uv_index + right), uv_fract - right),
 		blur.x
 	);
-	
+
 	float b = mix
 	(
 		dot(hash22(uv_index + up), uv_fract - up),
@@ -42,7 +42,21 @@ vec2 perlin22(vec2 uv)
 	vec2 zero = vec2(0.0, 0.0);
 	vec2 one = vec2(1.0, 1.0);
 
-	return mix(hash22(uv_index), hash22(uv_index + one), blur);
+	vec2 a = mix
+	(
+		hash22(uv_index + zero),
+		hash22(uv_index + right),
+		blur.x
+	);
+
+	vec2 b = mix
+	(
+		hash22(uv_index + up),
+		hash22(uv_index + one),
+		blur.x
+	);
+
+	return mix(a, b, blur.y) + 0.5;
 }
 
 vec3 perlin33(vec3 point)

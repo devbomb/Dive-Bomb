@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=28 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" load_steps=29 format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="Animation" uid="uid://bxaw0bkeo61gl" path="res://Entities/Player/Animations/Bonk.tres" id="1_ilvl4"]
 [ext_resource type="Animation" uid="uid://cda4sefp4m18v" path="res://Entities/Player/Animations/BonkLand.tres" id="2_h8rfd"]
@@ -27,6 +27,7 @@
 [ext_resource type="Animation" uid="uid://bg1hu80c8vyn7" path="res://Entities/Player/Animations/VentEnter.tres" id="24_cee0p"]
 [ext_resource type="Animation" uid="uid://h6vvj4wrut3j" path="res://Entities/Player/Animations/Walk.tres" id="25_enkx2"]
 [ext_resource type="Animation" uid="uid://dnka0go2gxm1f" path="res://Entities/Player/Animations/WallSlide.tres" id="26_ne6qo"]
+[ext_resource type="Animation" uid="uid://brrkfaorgrrd7" path="res://Entities/Player/Animations/BurnVoidOut.tres" id="28_wrmn4"]
 
 [resource]
 _data = {
@@ -34,6 +35,7 @@ _data = {
 &"BonkLand": ExtResource("2_h8rfd"),
 &"BonkRecover": ExtResource("3_7caua"),
 &"BoundJump": ExtResource("4_7caua"),
+&"BurnVoidOut": ExtResource("28_wrmn4"),
 &"DamageFlip": ExtResource("5_08qed"),
 &"DamageFlip_Land": ExtResource("6_08qed"),
 &"Dive": ExtResource("7_08qed"),
