@@ -14,7 +14,7 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            GetTree().CurrentScene.Ready += () =>
+            Callable.From(() =>
             {
                 var nodesByTargetName = GetTree().Root
                     .EnumerateDescendants()
@@ -25,7 +25,7 @@ namespace FastDragon
                 Node to = nodesByTargetName[killtarget];
 
                 from.Connect(Signal, new Callable(to, HandlerFunction));
-            };
+            }).CallDeferred();
         }
     }
 }

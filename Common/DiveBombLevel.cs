@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace FastDragon
@@ -42,6 +43,26 @@ namespace FastDragon
         public int TotalGems => TimeTrial.IsTimeTrialMode
             ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
             : SaveFileManager.Current.TotalGemCount;
+
+        /// <summary>
+        /// Story flags that should persist even between level visits.
+        /// If you want something that will reset when you re-visit the level,
+        /// use <see cref="TempStoryFlags"/> instead.
+        ///
+        /// Shorthand for GetProgress().StoryFlags.
+        /// </summary>
+        public HashSet<string> PermanentStoryFlags => GetProgress().StoryFlags;
+
+        /// <summary>
+        /// Story flags that need to be persisted if the player saves/reloads
+        /// mid-level, but that should still reset on revists.
+        ///
+        /// Shorthand for SaveFileManager.Current.CurrentLevelVisit.StoryFlags.
+        /// </summary>
+        public HashSet<string> TempStoryFlags => SaveFileManager
+            .Current
+            .CurrentLevelVisit
+            .StoryFlags;
 
         public DiveBombLevel()
         {
