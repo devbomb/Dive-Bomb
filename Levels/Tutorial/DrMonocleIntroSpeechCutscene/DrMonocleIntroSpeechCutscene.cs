@@ -65,15 +65,17 @@ namespace FastDragon.Levels.Tutorial
                 _stateMachine.ChangeState<Idle>();
         }
 
-        private bool IsFlagSet(string storyFlag) => this.GetLevel()
-            .GetProgress()
+        private bool IsFlagSet(string storyFlag) => SaveFileManager
+            .Current
+            .CurrentLevelVisit
             .StoryFlags
             .Contains(storyFlag);
 
         private void SetFlag(string storyFlag)
         {
-            this.GetLevel()
-                .GetProgress()
+            SaveFileManager
+                .Current
+                .CurrentLevelVisit
                 .StoryFlags
                 .Add(storyFlag);
 
