@@ -350,6 +350,9 @@ namespace FastDragon
             if (!Self.LedgeDetector.LedgeDetected)
                 return false;
 
+            if (!Self.IsOnWallOnly())
+                return false;
+
             if (Self.LedgeDetector.IsBlocked)
                 return false;
 
