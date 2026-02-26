@@ -220,7 +220,35 @@ namespace FastDragon
             float bonkAngleRad = Mathf.DegToRad(Player.Bonk.AngleDeg);
 
             if (wallAngleRad < bonkAngleRad)
+            {
+                // HACK: If a ledge is detected, move the player up to it instead
+                // of bonking.  This is to reduce the amount of "WTF?  I bonked
+                // on air?!" moments caused by the spherical collider not matching
+                // up with the player model.
+                //
+                // TODO: The "Self.CurrentState is PlayerDiveState" condition
+                // is proof that this code is too tightly-coupled.
+                if (Self.LedgeDetector.LedgeDetected && !Self.LedgeDetector.IsBlocked && Self.CurrentState is PlayerDiveState)
+                {
+                    const float forgivableHeight = 0.6f;
+                    float ledgeHeight = Self.LedgeDetector.LastLedgePoint.Y - Self.GlobalPosition.Y;
+                    if (ledgeHeight < forgivableHeight && ledgeHeight >= 0)
+                    {
+                        var pos = Self.GlobalPosition;
+                        pos.Y = Self.LedgeDetector.LastLedgePoint.Y;
+                        Self.GlobalPosition = pos;
+                        Self.Velocity = prevVel;
+                        GD.Print($"Ledge detected; bonk forgiven (height: {ledgeHeight})");
+                        return false;
+                    }
+                    else
+                    {
+                        GD.Print($"Ledge detected, but bonk not forgiven (height: {ledgeHeight})");
+                    }
+                }
+
                 return Bonk();
+            }
 
             return false;
 
@@ -321,6 +349,9 @@ namespace FastDragon
         protected bool TryGrabLedge()
         {
             if (!Self.LedgeDetector.LedgeDetected)
+                return false;
+
+            if (!Self.IsOnWallOnly())
                 return false;
 
             if (Self.LedgeDetector.IsBlocked)

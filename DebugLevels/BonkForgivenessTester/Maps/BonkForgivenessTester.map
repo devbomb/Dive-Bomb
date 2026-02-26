@@ -1,0 +1,44 @@
+// Game: FastDragon
+// Format: Standard
+// entity 0
+{
+"wad" ""
+"classname" "worldspawn"
+// brush 0
+{
+( -80 -64 -48 ) ( -80 -63 -48 ) ( -80 -64 -47 ) __TB_empty 0 0 0 1 1
+( -64 -64 -48 ) ( -64 -64 -47 ) ( -63 -64 -48 ) __TB_empty 0 0 0 1 1
+( -64 -64 -48 ) ( -63 -64 -48 ) ( -64 -63 -48 ) __TB_empty 0 0 0 1 1
+( 64 64 -32 ) ( 64 65 -32 ) ( 65 64 -32 ) __TB_empty 0 0 0 1 1
+( 64 64 -16 ) ( 65 64 -16 ) ( 64 64 -15 ) __TB_empty 0 0 0 1 1
+( 64 64 -16 ) ( 64 64 -15 ) ( 64 65 -16 ) __TB_empty 0 0 0 1 1
+}
+// brush 1
+{
+( 16 -64 48 ) ( 16 64 -32 ) ( 16 64 48 ) Textures/GridSquare 0 0 0 1 1
+( 64 -64 48 ) ( 16 -64 -32 ) ( 16 -64 48 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 -32 ) ( 16 -64 -32 ) ( 64 -64 -32 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 0 ) ( 16 -64 0 ) ( 16 64 0 ) Textures/GridSquare 0 0 0 1 1
+( 64 16 48 ) ( 16 16 -32 ) ( 64 16 -32 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 48 ) ( 64 -64 -32 ) ( 64 -64 48 ) Textures/GridSquare 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "transport_player_spawn"
+"origin" "4 -12 0"
+"angle" "0"
+}
+// entity 2
+{
+"classname" "info_named_marker"
+"origin" "8 88 8"
+"angle" "270"
+"targetname" "CameraPos"
+}
+// entity 3
+{
+"classname" "info_named_marker"
+"origin" "-24 -8 8"
+"targetname" "TestPosition"
+}

@@ -265,8 +265,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="LedgeGrabHelpers" type="Node3D" parent="."]
 visible = false
 
-[node name="LedgeDetector" parent="LedgeGrabHelpers" node_paths=PackedStringArray("Body") instance=ExtResource("2_0esln")]
-Body = NodePath("../..")
+[node name="LedgeDetector" parent="LedgeGrabHelpers" instance=ExtResource("2_0esln")]
 
 [node name="LedgeGrabPoint" type="Marker3D" parent="LedgeGrabHelpers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.387, -0.492)

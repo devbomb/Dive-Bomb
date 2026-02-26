@@ -10,7 +10,6 @@ namespace FastDragon
         public Vector3 LastLedgePoint { get; private set; }
         public bool LastLedgePointRequiresSafeClimb { get; private set; }
 
-        [Export] public CharacterBody3D Body;
 
         [ExportCategory("Internal")]
         [Export] public Area3D UpCapsule;
@@ -25,7 +24,6 @@ namespace FastDragon
             ForwardCapsule.GetOverlappingBodiesResetSafe().Any(b => b is not Player);
 
         public bool LedgeDetected =>
-            Body.IsOnWallOnly() &&
             DownCast.IsColliding() &&
             DownCast.GetCollider() is StaticBody3D &&
             DownCast.GetCollisionNormal().AngleTo(Vector3.Up) <= Mathf.DegToRad(MaxSlopeAngleDeg);
