@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6h2dtt75ixkq"]
+[gd_scene load_steps=19 format=3 uid="uid://b6h2dtt75ixkq"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_ffros"]
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="2_hcq28"]
@@ -66,6 +66,34 @@ gradient = SubResource("Gradient_ng4ld")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_ta0sd"]
+resource_name = "Move"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 3, 0, 2, 1, 0, 13, 0, 3, 1, 0, 13, 0, 5, 1, 0, 3, 0, 6, 1, 0, 3, 0)
+
+[sub_resource type="Animation" id="Animation_ng4ld"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 3, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f74t5"]
+_data = {
+&"Move": SubResource("Animation_ta0sd"),
+&"RESET": SubResource("Animation_ng4ld")
+}
+
 [node name="MovingPlatformTester" type="Node3D"]
 script = ExtResource("1_ffros")
 
@@ -110,6 +138,33 @@ mesh = SubResource("BoxMesh_ng4ld")
 [node name="BlobShadow" type="Decal" parent="LinearHorizontal/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 0)
 size = Vector3(4, 5.5, 4)
+texture_albedo = SubResource("GradientTexture2D_f74t5")
+upper_fade = 8.413403e-05
+lower_fade = 1.0352646e-05
+cull_mask = 8
+
+[node name="LinearVertical" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LinearVertical"]
+libraries = {
+&"": SubResource("AnimationLibrary_f74t5")
+}
+autoplay = "Move"
+
+[node name="Platform" type="AnimatableBody3D" parent="LinearVertical" groups=["PhysicsInterpolated"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LinearVertical/Platform"]
+shape = SubResource("BoxShape3D_suxoq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LinearVertical/Platform"]
+layers = 9
+mesh = SubResource("BoxMesh_ng4ld")
+
+[node name="BlobShadow" type="Decal" parent="LinearVertical/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.286621, 0)
+size = Vector3(4, 25.5, 4)
 texture_albedo = SubResource("GradientTexture2D_f74t5")
 upper_fade = 8.413403e-05
 lower_fade = 1.0352646e-05
