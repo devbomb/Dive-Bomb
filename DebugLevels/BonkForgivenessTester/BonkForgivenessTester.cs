@@ -10,16 +10,16 @@ namespace FastDragon
         [Export] public float ForgivenBonkHeight;
         [Export] public float NoBonkHeight;
 
-        public void FullBonkTest() => RollAtHeight(FullBonkHeight);
-        public void ForgivenBonkTest() => RollAtHeight(ForgivenBonkHeight);
-        public void NoBonkTest() => RollAtHeight(NoBonkHeight);
+        public void FullBonkTest() => DiveAtHeight(FullBonkHeight);
+        public void ForgivenBonkTest() => DiveAtHeight(ForgivenBonkHeight);
+        public void NoBonkTest() => DiveAtHeight(NoBonkHeight);
 
         public void SetTimeScale(float timeScale)
         {
             Engine.TimeScale = timeScale;
         }
 
-        private void RollAtHeight(float height)
+        private void DiveAtHeight(float height)
         {
             SignalBus.Instance.EmitLevelReset();
 
@@ -36,8 +36,9 @@ namespace FastDragon
             player.ResetPhysicsInterpolation3D();
             player.ForceUpdateTransform();
 
-            // Start rolling (regardless of if there's ground beneath our feet)
-            player.ChangeState<PlayerRollState>();
+            // Start diving
+            player.ChangeState<PlayerDiveState>();
+            player.VSpeed = 0;
 
             // Force the camera to look in a side view
             var cameraPos = this.FindNodeByTargetName<NamedMarker3D>("CameraPos").GlobalTransform;
