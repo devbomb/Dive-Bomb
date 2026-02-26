@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=3 uid="uid://b6h2dtt75ixkq"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_ffros"]
+[ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="2_hcq28"]
+[ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="2_suxoq"]
+
+[sub_resource type="Environment" id="Environment_qpi65"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ng4ld"]
+albedo_texture = ExtResource("2_suxoq")
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_1o5nc"]
+material = SubResource("StandardMaterial3D_ng4ld")
+size = Vector3(100, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hcq28"]
+size = Vector3(100, 1, 50)
+
+[sub_resource type="Animation" id="Animation_hcq28"]
+resource_name = "Move"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 3, 0, 2, 1, -10, 3, 0, 3, 1, -10, 3, 0, 5, 1, -10, 3, -10, 6, 1, -10, 3, -10, 8, 1, 0, 3, -10, 9.033334, 1, 0, 3, -10, 11, 1, 0, 3, 0, 12.033334, 1, 0, 3, 0)
+
+[sub_resource type="Animation" id="Animation_suxoq"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 3, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ta0sd"]
+_data = {
+&"Move": SubResource("Animation_hcq28"),
+&"RESET": SubResource("Animation_suxoq")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_suxoq"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ta0sd"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ng4ld"]
+material = SubResource("StandardMaterial3D_ta0sd")
+size = Vector3(4, 4, 4)
+
+[sub_resource type="Gradient" id="Gradient_ng4ld"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.92816633, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f74t5"]
+gradient = SubResource("Gradient_ng4ld")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="MovingPlatformTester" type="Node3D"]
+script = ExtResource("1_ffros")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qpi65")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
+
+[node name="StationaryFloor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StationaryFloor"]
+layers = 9
+mesh = SubResource("BoxMesh_1o5nc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StationaryFloor"]
+shape = SubResource("BoxShape3D_hcq28")
+
+[node name="Player" parent="StationaryFloor" instance=ExtResource("2_hcq28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9793224, 2.249999, 3.7003145)
+
+[node name="LinearHorizontal" type="Node3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LinearHorizontal"]
+deterministic = true
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_ta0sd")
+}
+autoplay = "Move"
+
+[node name="Platform" type="AnimatableBody3D" parent="LinearHorizontal" groups=["PhysicsInterpolated"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LinearHorizontal/Platform"]
+shape = SubResource("BoxShape3D_suxoq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LinearHorizontal/Platform"]
+layers = 9
+mesh = SubResource("BoxMesh_ng4ld")
+
+[node name="BlobShadow" type="Decal" parent="LinearHorizontal/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 0)
+size = Vector3(4, 5.5, 4)
+texture_albedo = SubResource("GradientTexture2D_f74t5")
+upper_fade = 8.413403e-05
+lower_fade = 1.0352646e-05
+cull_mask = 8
