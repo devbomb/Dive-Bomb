@@ -4,6 +4,9 @@ namespace FastDragon
 {
     public partial class PlayerLedgeGrabState : PlayerState
     {
+        private Vector3 _lastLedgePos;
+        private StaticBody3D _lastLedge;
+
         public override void OnStateEntered()
         {
             Self.Animator.Play("GrabLedge");
@@ -11,6 +14,8 @@ namespace FastDragon
 
             // TODO: Set LastPlatformVelocity to the ledge's velocity.
             // And make the player travel with the ledge as it moves.
+            _lastLedge = Self.LedgeDetector.LastLedge;
+            _lastLedgePos = _lastLedge.GlobalPosition;
 
             // Snap to the correct height.
             // The height should be such that the ledge grab point is at exactly
@@ -52,6 +57,18 @@ namespace FastDragon
                 Self.ChangeState<PlayerKickState>();
                 return;
             }
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            Self.LastPlatformVelocity = (_lastLedge.GlobalPosition - _lastLedgePos) / (float)delta;
+            Self.LocalVelocity = Vector3.Zero;
+            Self.MoveAndSlide();
+
+            _lastLedgePos = _lastLedge.GlobalPosition;
+
+            // TODO: Let go of the ledge if we're no longer meeting the ledge
+            // grab conditions.
         }
     }
 }
