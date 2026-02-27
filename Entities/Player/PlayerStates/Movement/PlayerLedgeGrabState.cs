@@ -12,8 +12,6 @@ namespace FastDragon
             Self.Animator.Play("GrabLedge");
             Self.LocalVelocity = Vector3.Zero;
 
-            // TODO: Set LastPlatformVelocity to the ledge's velocity.
-            // And make the player travel with the ledge as it moves.
             _currentLedge = Self.LedgeDetector.LastLedge;
             _lastLedgePos = _currentLedge.GlobalPosition;
 
