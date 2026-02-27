@@ -54,11 +54,17 @@ namespace FastDragon
             float t = (float)(_timer / Duration);
             t = Mathf.Min(t, 1);
 
-            Self.GlobalPosition = _startPos.LerpParabola(_targetPos, 1, t);
+            // Add an offset to the start and end to account for moving
+            // platforms
+            Vector3 offset = Self.LastPlatformVelocity * (float)_timer;
+            Vector3 start = _startPos + offset;
+            Vector3 end = _targetPos + offset;
+
+            Self.GlobalPosition = start.LerpParabola(end, 1, t);
 
             if (_timer >= Duration)
             {
-                Self.GlobalPosition = _targetPos;
+                Self.GlobalPosition = end;
                 ChangeState<PlayerWalkState>();
 
                 // Start the player off with the speed they _appeared_ to have
