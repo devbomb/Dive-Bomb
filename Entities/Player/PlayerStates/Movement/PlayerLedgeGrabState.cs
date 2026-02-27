@@ -5,7 +5,7 @@ namespace FastDragon
     public partial class PlayerLedgeGrabState : PlayerState
     {
         private Vector3 _lastLedgePos;
-        private StaticBody3D _lastLedge;
+        private StaticBody3D _currentLedge;
 
         public override void OnStateEntered()
         {
@@ -14,8 +14,8 @@ namespace FastDragon
 
             // TODO: Set LastPlatformVelocity to the ledge's velocity.
             // And make the player travel with the ledge as it moves.
-            _lastLedge = Self.LedgeDetector.LastLedge;
-            _lastLedgePos = _lastLedge.GlobalPosition;
+            _currentLedge = Self.LedgeDetector.LastLedge;
+            _lastLedgePos = _currentLedge.GlobalPosition;
 
             // Snap to the correct height.
             // The height should be such that the ledge grab point is at exactly
@@ -61,14 +61,27 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double delta)
         {
-            Self.LastPlatformVelocity = (_lastLedge.GlobalPosition - _lastLedgePos) / (float)delta;
+            // Let go of the ledge if the ledge we're grabbing is no longer
+            // present
+            if (!Node.IsInstanceValid(_currentLedge) || !_currentLedge.IsInsideTree() || _currentLedge != Self.LedgeDetector.LastLedge)
+            {
+                ChangeState<PlayerFlopState>();
+                return;
+            }
+
+            // Let go of the ledge if we no longer meet the ledge grab criteria
+            if (!Self.LedgeDetector.LedgeDetected || Self.LedgeDetector.IsBlocked)
+            {
+                ChangeState<PlayerFlopState>();
+                return;
+            }
+
+            // Move with the ledge
+            Self.LastPlatformVelocity = (_currentLedge.GlobalPosition - _lastLedgePos) / (float)delta;
             Self.LocalVelocity = Vector3.Zero;
             Self.MoveAndSlide();
 
-            _lastLedgePos = _lastLedge.GlobalPosition;
-
-            // TODO: Let go of the ledge if we're no longer meeting the ledge
-            // grab conditions.
+            _lastLedgePos = _currentLedge.GlobalPosition;
         }
     }
 }
