@@ -59,17 +59,10 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double delta)
         {
-            // Let go of the ledge if the ledge we're grabbing is no longer
-            // present
-            if (!Node.IsInstanceValid(_currentLedge) || !_currentLedge.IsInsideTree() || _currentLedge != Self.LedgeDetector.LastLedge)
+            // Let go if the ledge no longer exists (or just isn't in the tree)
+            if (!Node.IsInstanceValid(_currentLedge) || !_currentLedge.IsInsideTree())
             {
-                ChangeState<PlayerFlopState>();
-                return;
-            }
-
-            // Let go of the ledge if we no longer meet the ledge grab criteria
-            if (!Self.LedgeDetector.LedgeDetected || Self.LedgeDetector.IsBlocked)
-            {
+                GD.Print("Letting go of ledge because it no longer exists or is no longer in the tree");
                 ChangeState<PlayerFlopState>();
                 return;
             }
@@ -78,8 +71,25 @@ namespace FastDragon
             Self.LastPlatformVelocity = (_currentLedge.GlobalPosition - _lastLedgePos) / (float)delta;
             Self.LocalVelocity = Vector3.Zero;
             Self.MoveAndSlide();
-
             _lastLedgePos = _currentLedge.GlobalPosition;
+
+            // Let go if we no longer meet the ledge grab criteria
+            Self.LedgeDetector.ForceUpdate();
+            if (!Self.LedgeDetector.LedgeDetected || Self.LedgeDetector.IsBlocked)
+            {
+                GD.Print("Letting go of ledge because it isn't detected anymore or is blocked");
+                ChangeState<PlayerFlopState>();
+                return;
+            }
+
+            // If a different ledge has been detected, switch to tracking it
+            // instead.
+            if (Self.LedgeDetector.LastLedge != _currentLedge)
+            {
+                GD.Print("Switching to a different ledge");
+                _currentLedge = Self.LedgeDetector.LastLedge;
+                _lastLedgePos = _currentLedge.GlobalPosition;
+            }
         }
     }
 }

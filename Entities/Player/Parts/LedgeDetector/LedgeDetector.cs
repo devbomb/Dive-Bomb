@@ -55,5 +55,11 @@ namespace FastDragon
                 Visualizer.GlobalPosition = LastLedgePoint;
             }
         }
+
+        public void ForceUpdate()
+        {
+            ForceUpdateTransform();
+            DownCast.ForceRaycastUpdate();
+        }
     }
 }
