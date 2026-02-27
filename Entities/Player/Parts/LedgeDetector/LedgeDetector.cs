@@ -9,6 +9,7 @@ namespace FastDragon
 
         public Vector3 LastLedgePoint { get; private set; }
         public bool LastLedgePointRequiresSafeClimb { get; private set; }
+        public StaticBody3D LastLedge { get; private set; }
 
 
         [ExportCategory("Internal")]
@@ -48,6 +49,7 @@ namespace FastDragon
 
             if (LedgeDetected)
             {
+                LastLedge = (StaticBody3D)DownCast.GetCollider();
                 LastLedgePoint = DownCast.GetCollisionPoint();
                 LastLedgePointRequiresSafeClimb = !AntiSuicideChecker.IsColliding();
                 Visualizer.GlobalPosition = LastLedgePoint;
