@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6h2dtt75ixkq"]
+[gd_scene load_steps=21 format=3 uid="uid://b6h2dtt75ixkq"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_ffros"]
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="2_hcq28"]
@@ -65,6 +65,13 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 gradient = SubResource("Gradient_ng4ld")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ta0sd"]
+size = Vector3(4, 4, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f74t5"]
+material = SubResource("StandardMaterial3D_ta0sd")
+size = Vector3(4, 4, 0.5)
 
 [sub_resource type="Animation" id="Animation_ta0sd"]
 resource_name = "Move"
@@ -138,6 +145,35 @@ mesh = SubResource("BoxMesh_ng4ld")
 [node name="BlobShadow" type="Decal" parent="LinearHorizontal/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 0)
 size = Vector3(4, 5.5, 4)
+texture_albedo = SubResource("GradientTexture2D_f74t5")
+upper_fade = 8.413403e-05
+lower_fade = 1.0352646e-05
+cull_mask = 8
+
+[node name="LinearHorizontalThin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LinearHorizontalThin"]
+deterministic = true
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_ta0sd")
+}
+autoplay = "Move"
+
+[node name="Platform" type="AnimatableBody3D" parent="LinearHorizontalThin" groups=["PhysicsInterpolated"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LinearHorizontalThin/Platform"]
+shape = SubResource("BoxShape3D_ta0sd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LinearHorizontalThin/Platform"]
+layers = 9
+mesh = SubResource("BoxMesh_f74t5")
+
+[node name="BlobShadow" type="Decal" parent="LinearHorizontalThin/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 0)
+size = Vector3(4, 5.5, 0.5)
 texture_albedo = SubResource("GradientTexture2D_f74t5")
 upper_fade = 8.413403e-05
 lower_fade = 1.0352646e-05
