@@ -69,6 +69,7 @@ namespace FastDragon
 
             // Move with the ledge
             Self.LastPlatformVelocity = (_currentLedge.GlobalPosition - _lastLedgePos) / (float)delta;
+            Self.LastPlatformVelocity += _currentLedge.ConstantLinearVelocity;
             Self.LocalVelocity = Vector3.Zero;
             Self.MoveAndSlide();
             _lastLedgePos = _currentLedge.GlobalPosition;
