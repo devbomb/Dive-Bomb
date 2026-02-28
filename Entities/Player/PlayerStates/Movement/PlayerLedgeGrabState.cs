@@ -4,13 +4,16 @@ namespace FastDragon
 {
     public partial class PlayerLedgeGrabState : PlayerState
     {
+        private Vector3 _lastLedgePos;
+        private StaticBody3D _currentLedge;
+
         public override void OnStateEntered()
         {
             Self.Animator.Play("GrabLedge");
             Self.LocalVelocity = Vector3.Zero;
 
-            // TODO: Set LastPlatformVelocity to the ledge's velocity.
-            // And make the player travel with the ledge as it moves.
+            _currentLedge = Self.LedgeDetector.LastLedge;
+            _lastLedgePos = _currentLedge.GlobalPosition;
 
             // Snap to the correct height.
             // The height should be such that the ledge grab point is at exactly
@@ -51,6 +54,42 @@ namespace FastDragon
             {
                 Self.ChangeState<PlayerKickState>();
                 return;
+            }
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            // Let go if the ledge no longer exists (or just isn't in the tree)
+            if (!Node.IsInstanceValid(_currentLedge) || !_currentLedge.IsInsideTree())
+            {
+                GD.Print("Letting go of ledge because it no longer exists or is no longer in the tree");
+                ChangeState<PlayerFlopState>();
+                return;
+            }
+
+            // Move with the ledge
+            Self.LastPlatformVelocity = (_currentLedge.GlobalPosition - _lastLedgePos) / (float)delta;
+            Self.LastPlatformVelocity += _currentLedge.ConstantLinearVelocity;
+            Self.LocalVelocity = Vector3.Zero;
+            Self.MoveAndSlide();
+            _lastLedgePos = _currentLedge.GlobalPosition;
+
+            // Let go if we no longer meet the ledge grab criteria
+            Self.LedgeDetector.ForceUpdate();
+            if (!Self.LedgeDetector.LedgeDetected || Self.LedgeDetector.IsBlocked)
+            {
+                GD.Print("Letting go of ledge because it isn't detected anymore or is blocked");
+                ChangeState<PlayerFlopState>();
+                return;
+            }
+
+            // If a different ledge has been detected, switch to tracking it
+            // instead.
+            if (Self.LedgeDetector.LastLedge != _currentLedge)
+            {
+                GD.Print("Switching to a different ledge");
+                _currentLedge = Self.LedgeDetector.LastLedge;
+                _lastLedgePos = _currentLedge.GlobalPosition;
             }
         }
     }

@@ -114,7 +114,7 @@
 // entity 10
 {
 "classname" "info_named_marker"
-"origin" "48 -32 24"
+"origin" "48 -32 152"
 "targetname" "ConveyorBelt0Direction"
 }
 // entity 11
@@ -178,5 +178,35 @@
 ( 352 80 112 ) ( 352 81 112 ) ( 353 80 112 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 ( 352 80 48 ) ( 353 80 48 ) ( 352 80 49 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 ( 352 80 48 ) ( 352 80 49 ) ( 352 81 48 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
+}
+// entity 16
+{
+"classname" "hazard_conveyor_belt"
+"target" "ConveyorBelt0Direction"
+"Speed" "5"
+// brush 0
+{
+( 112 -208 64 ) ( 112 -207 64 ) ( 112 -208 65 ) Textures/ConveyorBelt 0 0 270 1 1
+( 112 -256 64 ) ( 112 -256 65 ) ( 113 -256 64 ) Textures/ConveyorBelt 0 0 270 1 1
+( 112 -208 16 ) ( 113 -208 16 ) ( 112 -207 16 ) Textures/ConveyorBelt 0 0 270 1 1
+( 256 -192 72 ) ( 256 -191 72 ) ( 257 -192 72 ) Textures/ConveyorBelt 0 0 270 1 1
+( 256 -192 80 ) ( 257 -192 80 ) ( 256 -192 81 ) Textures/ConveyorBelt 0 0 270 1 1
+( 304 -192 80 ) ( 304 -192 81 ) ( 304 -191 80 ) Textures/ConveyorBelt 0 0 270 1 1
+}
+}
+// entity 17
+{
+"classname" "hazard_conveyor_belt"
+"target" "ConveyorBelt0Direction"
+"Speed" "5"
+// brush 0
+{
+( -16 -208 64 ) ( -16 -207 64 ) ( -16 -208 65 ) Textures/ConveyorBelt 0 0 270 1 1
+( -80 -200 64 ) ( -80 -200 65 ) ( -79 -200 64 ) Textures/ConveyorBelt 0 0 270 1 1
+( -80 -208 16 ) ( -79 -208 16 ) ( -80 -207 16 ) Textures/ConveyorBelt 0 0 270 1 1
+( 64 -192 72 ) ( 64 -191 72 ) ( 65 -192 72 ) Textures/ConveyorBelt 0 0 270 1 1
+( 64 -192 80 ) ( 65 -192 80 ) ( 64 -192 81 ) Textures/ConveyorBelt 0 0 270 1 1
+( 112 -192 80 ) ( 112 -192 81 ) ( 112 -191 80 ) Textures/ConveyorBelt 0 0 270 1 1
 }
 }
