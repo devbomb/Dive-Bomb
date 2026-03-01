@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -16,7 +17,8 @@ namespace FastDragon
         [Export] public AudioStreamPlayer ShatterSound;
         [Export] public MeshInstance3D MeshInstance;
         [Export] public CollisionShape3D CollisionShape;
-        [Export] public RayCast3D FloorDetector;
+        [Export] public Area3D FloorDetector;
+        [Export] public CollisionShape3D FloorDetectorShape;
 
         private readonly StateMachine _stateMachine = new();
         private readonly MeshExploder _meshExploder = new();
@@ -43,6 +45,7 @@ namespace FastDragon
             }
 
             CollisionShape.Shape = shape;
+            FloorDetectorShape.Shape = shape;
         }
 
         public void OnBroken()
@@ -70,20 +73,53 @@ namespace FastDragon
                     return;
                 }
 
-                Self.FloorDetector.Position = Vector3.Down * Self.MeshInstance.GetAabb().Size.Y / 2;
-                Self.FloorDetector.ForceUpdateTransform();
-                Self.FloorDetector.ForceRaycastUpdate();
+                // Ride on top of any conveyor belts we're sitting on top of.
+                // Otherwise, fall.
+                //
+                // If moving from one conveyor belt to another, don't change
+                // direction until we have fully exited the previous one.
+                Vector3? floorVelocity = FindPlatformVelocity();
 
-                if (Self.FloorDetector.IsColliding() && Self.FloorDetector.GetCollider() is StaticBody3D floor)
-                {
-                    _velocity = floor.ConstantLinearVelocity;
-                }
+                if (floorVelocity.HasValue)
+                    _velocity = floorVelocity.Value;
                 else
-                {
                     _velocity += Vector3.Down * Self.Gravity * (float)delta;
-                }
 
                 Self.GlobalPosition += _velocity * (float)delta;
+            }
+
+            private Vector3? FindPlatformVelocity()
+            {
+                var floorsDetected = Self.FloorDetector
+                    .GetOverlappingBodies()
+                    .OfType<StaticBody3D>();
+
+                if (!floorsDetected.Any())
+                    return null;
+
+                bool foundFloorWithCurrentVelocity = false;
+                bool foundFloorWithDifferentVelocity = false;
+                Vector3 differentVelocity = default;
+                foreach (var floor in floorsDetected)
+                {
+                    if (floor.ConstantLinearVelocity.IsEqualApprox(_velocity))
+                    {
+                        foundFloorWithCurrentVelocity = true;
+                        continue;
+                    }
+
+                    // Don't change velocity if there's two or more conveyor belts
+                    // competing with each other
+                    if (foundFloorWithDifferentVelocity && !differentVelocity.IsEqualApprox(floor.ConstantLinearVelocity))
+                        return _velocity;
+
+                    foundFloorWithDifferentVelocity = true;
+                    differentVelocity = floor.ConstantLinearVelocity;
+                }
+
+                return (foundFloorWithDifferentVelocity && !foundFloorWithCurrentVelocity)
+                    ? differentVelocity
+                    : _velocity;
             }
         }
 
