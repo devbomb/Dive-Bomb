@@ -145,8 +145,17 @@
 ( 816 -128 208 ) ( 736 -128 112 ) ( 736 -128 208 ) __TB_empty -16 0 0 1 1
 ( 816 768 112 ) ( 736 -128 112 ) ( 816 -128 112 ) __TB_empty -16 0 0 1 1
 ( 816 768 336 ) ( 736 -128 336 ) ( 736 768 336 ) __TB_empty -16 0 0 1 1
-( 816 608 208 ) ( 736 608 112 ) ( 816 608 112 ) __TB_empty -16 0 0 1 1
+( 816 576 208 ) ( 736 576 112 ) ( 816 576 112 ) __TB_empty -16 0 0 1 1
 ( 816 768 208 ) ( 816 -128 112 ) ( 816 -128 208 ) __TB_empty 0 0 0 1 1
+}
+// brush 5
+{
+( 736 576 336 ) ( 736 592 176 ) ( 736 592 336 ) Textures/BlackVoid 0 0 0 1 1
+( 752 576 336 ) ( 736 576 176 ) ( 736 576 336 ) Textures/BlackVoid 0 0 0 1 1
+( 752 592 176 ) ( 736 576 176 ) ( 752 576 176 ) Textures/BlackVoid 0 0 0 1 1
+( 752 592 336 ) ( 736 576 336 ) ( 736 592 336 ) Textures/BlackVoid 0 0 0 1 1
+( 752 592 336 ) ( 736 592 176 ) ( 752 592 176 ) Textures/BlackVoid 0 0 0 1 1
+( 752 592 336 ) ( 752 576 176 ) ( 752 576 336 ) Textures/BlackVoid 0 0 0 1 1
 }
 }
 // entity 4
@@ -172,4 +181,41 @@
 "angle" "270"
 "targetname" "EscapeSequence_ConveyorBelt_0"
 "_tb_group" "1"
+}
+// entity 6
+{
+"classname" "hazard_conveyor_belt"
+"target" "EscapeSequence_GlassPane_0_Direction"
+"_tb_group" "1"
+// brush 0
+{
+( 736 576 160 ) ( 736 577 160 ) ( 736 576 161 ) Textures/ConveyorBelt 0 0 90 1 1
+( 736 576 160 ) ( 736 576 161 ) ( 737 576 160 ) Textures/ConveyorBelt 0 0 90 1 1
+( 736 576 160 ) ( 737 576 160 ) ( 736 577 160 ) Textures/ConveyorBelt 0 0 90 1 1
+( 816 592 176 ) ( 816 593 176 ) ( 817 592 176 ) Textures/ConveyorBelt 0 0 90 1 1
+( 816 592 176 ) ( 817 592 176 ) ( 816 592 177 ) Textures/ConveyorBelt 0 0 90 1 1
+( 816 592 176 ) ( 816 592 177 ) ( 816 593 176 ) Textures/ConveyorBelt 0 0 90 1 1
+}
+}
+// entity 7
+{
+"classname" "info_named_marker"
+"origin" "808 584 184"
+"angle" "180"
+"targetname" "EscapeSequence_GlassPane_0_Direction"
+"_tb_group" "1"
+}
+// entity 8
+{
+"classname" "hazard_glass_pane_spawner"
+"_tb_group" "1"
+// brush 0
+{
+( 752 576 336 ) ( 752 592 192 ) ( 752 592 336 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 816 576 336 ) ( 752 576 192 ) ( 752 576 336 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 816 592 192 ) ( 752 576 192 ) ( 816 576 192 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 816 592 272 ) ( 752 576 272 ) ( 752 592 272 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 816 592 336 ) ( 752 592 192 ) ( 816 592 192 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+( 816 592 336 ) ( 816 576 192 ) ( 816 576 336 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
+}
 }
