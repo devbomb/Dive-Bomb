@@ -135,7 +135,7 @@
 ( 608 -128 208 ) ( 608 768 112 ) ( 608 768 208 ) __TB_empty 0 0 0 1 1
 ( 736 -128 208 ) ( 608 -128 112 ) ( 608 -128 208 ) __TB_empty -16 0 0 1 1
 ( 736 768 112 ) ( 608 -128 112 ) ( 736 -128 112 ) __TB_empty -16 0 0 1 1
-( 736 768 192 ) ( 608 -128 192 ) ( 608 768 192 ) __TB_empty -16 0 0 1 1
+( 736 768 160 ) ( 608 -128 160 ) ( 608 768 160 ) __TB_empty -16 0 0 1 1
 ( 736 608 208 ) ( 608 608 112 ) ( 736 608 112 ) __TB_empty -16 0 0 1 1
 ( 736 768 208 ) ( 736 -128 112 ) ( 736 -128 208 ) __TB_empty 0 0 0 1 1
 }
@@ -148,4 +148,28 @@
 ( 816 608 208 ) ( 736 608 112 ) ( 816 608 112 ) __TB_empty -16 0 0 1 1
 ( 816 768 208 ) ( 816 -128 112 ) ( 816 -128 208 ) __TB_empty 0 0 0 1 1
 }
+}
+// entity 4
+{
+"classname" "hazard_conveyor_belt"
+"target" "EscapeSequence_ConveyorBelt_0"
+"Speed" "5"
+"_tb_group" "1"
+// brush 0
+{
+( 608 -128 176 ) ( 608 608 160 ) ( 608 608 176 ) Textures/ConveyorBelt 0 0 90 1 1
+( 736 -128 176 ) ( 608 -128 160 ) ( 608 -128 176 ) Textures/ConveyorBelt 0 0 180 1 1
+( 736 608 160 ) ( 608 -128 160 ) ( 736 -128 160 ) Textures/ConveyorBelt 0 0 180 1 1
+( 736 608 176 ) ( 608 -128 176 ) ( 608 608 176 ) Textures/ConveyorBelt 0 0 180 1 1
+( 736 608 176 ) ( 608 608 160 ) ( 736 608 160 ) Textures/ConveyorBelt 0 0 180 1 1
+( 736 608 176 ) ( 736 -128 160 ) ( 736 -128 176 ) Textures/ConveyorBelt 0 0 180 1 1
+}
+}
+// entity 5
+{
+"classname" "info_named_marker"
+"origin" "648 440 200"
+"angle" "270"
+"targetname" "EscapeSequence_ConveyorBelt_0"
+"_tb_group" "1"
 }
