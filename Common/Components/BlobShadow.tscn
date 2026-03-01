@@ -120,13 +120,12 @@ func _get_length() -> float:
 	return longest_length
 "
 
-[sub_resource type="Gradient" id="Gradient_txljt"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.489712, 0.757202)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.780392, 0, 0, 0, 0)
+[sub_resource type="Gradient" id="Gradient_soshd"]
+offsets = PackedFloat32Array(0.18424103, 0.25714287, 0.35428572, 0.41946697, 0.44495943, 0.489712, 0.49015063, 0.5112408, 0.5327696, 0.5542984, 0.5758272, 0.59735596, 0.6188848, 0.6404136, 0.66194236, 0.6834712, 0.705)
+colors = PackedColorArray(0, 0, 0, 0.9805715, 0, 0, 0, 0.9697922, 0, 0, 0, 0.9460461, 0, 0, 0, 0.89952683, 0, 0, 0, 0.8680832, 0, 0, 0, 0.780392, 0, 0, 0, 0.780392, 0, 0, 0, 0.72155285, 0, 0, 0, 0.64771736, 0, 0, 0, 0.5629096, 0, 0, 0, 0.47115287, 0, 0, 0, 0.37647063, 0, 0, 0, 0.28288615, 0, 0, 0, 0.19442354, 0, 0, 0, 0.11510602, 0, 0, 0, 0.04895681, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2c7an"]
-gradient = SubResource("Gradient_txljt")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f2nb2"]
+gradient = SubResource("Gradient_soshd")
 width = 100
 height = 100
 fill = 1
@@ -147,7 +146,8 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 [node name="Decal" type="Decal" parent="."]
 unique_name_in_owner = true
 size = Vector3(1, 0.1, 1)
-texture_albedo = SubResource("GradientTexture2D_2c7an")
+texture_albedo = SubResource("GradientTexture2D_f2nb2")
+modulate = Color(1, 1, 1, 0.89411765)
 upper_fade = 0.000585938
 lower_fade = 0.000565979
 cull_mask = 8
