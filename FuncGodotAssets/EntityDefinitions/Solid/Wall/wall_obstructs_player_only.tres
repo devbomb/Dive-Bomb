@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=2 format=3 uid="uid://dn1q7f22uqptk"]
+
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_npseo"]
+
+[resource]
+script = ExtResource("1_npseo")
+render_layers = 9
+collision_layer = 8388608
+collision_mask = 0
+classname = "wall_obstructs_player_only"
+node_class = "StaticBody3D"
+metadata/_custom_type_script = "uid://5cow84q03m6a"

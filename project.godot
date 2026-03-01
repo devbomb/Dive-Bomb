@@ -210,6 +210,7 @@ Interact={
 3d_physics/layer_2="ObstructsCamera"
 3d_physics/layer_3="Gems"
 3d_physics/layer_4="Player"
+3d_physics/layer_24="ObstructsPlayerOnly"
 
 [physics]
 
