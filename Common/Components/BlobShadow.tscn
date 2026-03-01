@@ -147,6 +147,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 unique_name_in_owner = true
 size = Vector3(1, 0.1, 1)
 texture_albedo = SubResource("GradientTexture2D_f2nb2")
+modulate = Color(1, 1, 1, 0.89411765)
 upper_fade = 0.000585938
 lower_fade = 0.000565979
 cull_mask = 8
