@@ -1,0 +1,81 @@
+// Game: FastDragon
+// Format: Standard
+// entity 0
+{
+"wad" ""
+"classname" "worldspawn"
+// brush 0
+{
+( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) Textures/GridSquare 0 0 0 1 1
+( -64 -64 -16 ) ( -64 -64 -15 ) ( -63 -64 -16 ) Textures/GridSquare 0 0 0 1 1
+( -64 -64 0 ) ( -63 -64 0 ) ( -64 -63 0 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) Textures/GridSquare 0 0 0 1 1
+( 64 32 16 ) ( 65 32 16 ) ( 64 32 17 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 16 ) ( 64 64 17 ) ( 64 65 16 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 1
+{
+( -112 -64 16 ) ( -112 -63 16 ) ( -112 -64 17 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -112 -64 16 ) ( -112 -64 17 ) ( -111 -64 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -112 -64 16 ) ( -111 -64 16 ) ( -112 -63 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 64 144 ) ( -96 65 144 ) ( -95 64 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 144 32 ) ( -95 144 32 ) ( -96 144 33 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -96 64 32 ) ( -96 64 33 ) ( -96 65 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
+// brush 2
+{
+( 48 -64 16 ) ( 48 -63 16 ) ( 48 -64 17 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 48 -64 16 ) ( 48 -64 17 ) ( 49 -64 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 48 -64 16 ) ( 49 -64 16 ) ( 48 -63 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 64 64 144 ) ( 64 65 144 ) ( 65 64 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 64 64 32 ) ( 65 64 32 ) ( 64 64 33 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 64 64 32 ) ( 64 64 33 ) ( 64 65 32 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
+// brush 3
+{
+( -48 304 96 ) ( -48 32 16 ) ( -48 32 0 ) Textures/GridSquare 0 0 0 1 1
+( -48 32 16 ) ( 48 32 16 ) ( 48 32 0 ) Textures/GridSquare 0 0 0 1 1
+( 48 32 16 ) ( -48 32 16 ) ( -48 304 96 ) Textures/GridSquare 0 0 0 1 1
+( 48 32 0 ) ( 48 304 80 ) ( -48 304 80 ) Textures/GridSquare 0 0 0 1 1
+( 48 304 80 ) ( 48 304 96 ) ( -48 304 96 ) Textures/GridSquare 0 0 0 1 1
+( 48 32 16 ) ( 48 304 96 ) ( 48 304 80 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 4
+{
+( -48 304 96 ) ( -48 384 80 ) ( -48 384 96 ) Textures/GridSquare 0 0 0 1 1
+( 48 304 96 ) ( -48 304 80 ) ( -48 304 96 ) Textures/GridSquare 0 0 0 1 1
+( 48 384 80 ) ( -48 304 80 ) ( 48 304 80 ) Textures/GridSquare 0 0 0 1 1
+( 48 384 96 ) ( -48 304 96 ) ( -48 384 96 ) Textures/GridSquare 0 0 0 1 1
+( 48 384 96 ) ( -48 384 80 ) ( 48 384 80 ) Textures/GridSquare 0 0 0 1 1
+( 48 384 96 ) ( 48 304 80 ) ( 48 304 96 ) Textures/GridSquare 0 0 0 1 1
+}
+// brush 5
+{
+( 48 304 80 ) ( 48 305 80 ) ( 48 304 81 ) Textures/GridSquare 0 0 0 1 1
+( 48 304 80 ) ( 48 304 81 ) ( 49 304 80 ) Textures/GridSquare 0 0 0 1 1
+( 48 304 80 ) ( 49 304 80 ) ( 48 305 80 ) Textures/GridSquare 0 0 0 1 1
+( 64 384 96 ) ( 64 385 96 ) ( 65 384 96 ) Textures/GridSquare 0 0 0 1 1
+( 64 384 96 ) ( 65 384 96 ) ( 64 384 97 ) Textures/GridSquare 0 0 0 1 1
+( 144 384 96 ) ( 144 384 97 ) ( 144 385 96 ) Textures/GridSquare 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "trigger_camera_suggestion_zone"
+"target" "EscapeSequenceIntroVistaCameraAngle"
+// brush 0
+{
+( -112 64 144 ) ( -112 192 16 ) ( -112 192 144 ) Textures/Grate 0 0 0 1 1
+( 64 208 144 ) ( 48 208 16 ) ( 48 208 144 ) Textures/Grate 0 0 0 1 1
+( 64 192 80 ) ( 48 64 80 ) ( 64 64 80 ) Textures/Grate 0 0 0 1 1
+( 64 192 208 ) ( 48 64 208 ) ( 48 192 208 ) Textures/Grate 0 0 0 1 1
+( 64 400 144 ) ( 48 400 16 ) ( 64 400 16 ) Textures/Grate 0 0 0 1 1
+( 64 192 144 ) ( 64 64 16 ) ( 64 64 144 ) Textures/Grate 0 0 0 1 1
+}
+}
+// entity 2
+{
+"classname" "info_named_marker"
+"origin" "40 296 216"
+"targetname" "EscapeSequenceIntroVistaCameraAngle"
+}
