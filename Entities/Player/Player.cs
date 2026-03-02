@@ -206,10 +206,11 @@ namespace FastDragon
             GlobalTransform = GetRespawnPoint();
             this.ResetPhysicsInterpolation3D();
 
+            // The respawn point will never be on a moving platform, so it's OK
+            // to assume this should be zero.
+            LastPlatformVelocity = Vector3.Zero;
             Velocity = Vector3.Zero;
-            LastPlatformVelocity = Vector3.Zero;    // The respawn point will
-                                                    // never be on a moving
-                                                    // platform, so this is OK.
+            ForceResetMoveAndSlideData();
             _wasOnFloorLastPhysicsFrame = true;
 
             CameraFocus.Reset();
@@ -222,6 +223,33 @@ namespace FastDragon
 
             EarlyJumpBufferTimer = 0;
             _damageCooldownTimer = 0;
+        }
+
+        private void ForceResetMoveAndSlideData()
+        {
+            // Force IsOnFloor(), GetPlatformVelocity(), etc. to update.
+            MoveAndSlide();
+
+            // HACK: If we were standing on a conveyor belt when the level was
+            // reset, then MoveAndSlide() will have just messed up our position
+            // and velocity values.
+            //
+            // Why?  Because from MoveAndSlide()'s perspective, we were still
+            // standing on that conveyor belt when we called it.
+            //
+            // When we teleported the player back to spawn, we didn't update
+            // MoveAndSlide()'s internal data structures.  Specifically, the
+            // "what platform am I currently standing on?" data.
+            // Those data structures _were_ updated by the MoveAndSlide() call
+            // we just did, but it did so _after_ updating our position and
+            // velocity based on the _old_ data.
+            //
+            // The end result is that IsOnFloor(), GetPlatformVelocity(), etc.
+            // have all been updated to a sensible value, but our position and
+            // velocity have now been messed up.  We know exactly what they're
+            // supposed to be, though, so let's just fix them right here.
+            Velocity = Vector3.Zero;
+            GlobalTransform = GetRespawnPoint();
         }
 
         private void LoadDebugSpawnPoint()
