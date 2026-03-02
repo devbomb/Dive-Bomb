@@ -218,7 +218,7 @@ namespace FastDragon
 
             Animator.Play("RESET", 0);
             Animator.Advance(0);
-            ChangeState<PlayerWalkState>();
+            ChangeState<PlayerStandState>();
 
             EarlyJumpBufferTimer = 0;
             _damageCooldownTimer = 0;
