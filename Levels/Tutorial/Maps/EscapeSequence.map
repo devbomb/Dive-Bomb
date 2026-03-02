@@ -227,6 +227,7 @@
 // entity 8
 {
 "classname" "hazard_glass_pane_spawner"
+"PaneLifespanSeconds" "20"
 "_tb_group" "1"
 // brush 0
 {
