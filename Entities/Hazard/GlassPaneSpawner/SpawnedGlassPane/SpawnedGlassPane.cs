@@ -78,6 +78,13 @@ namespace FastDragon
                     return;
                 }
 
+                // Destroy early if touching a sink
+                if (Self.FloorDetector.GetOverlappingAreas().Any(a => a.IsInGroup("GlassPaneSink")))
+                {
+                    Self.QueueFree();
+                    return;
+                }
+
                 // Ride on top of any conveyor belts we're sitting on top of.
                 // Otherwise, fall.
                 //
