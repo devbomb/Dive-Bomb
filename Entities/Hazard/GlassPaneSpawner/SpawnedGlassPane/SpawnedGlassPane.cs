@@ -4,7 +4,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class SpawnedGlassPane : AnimatableBody3D, IBreakable
+    public partial class SpawnedGlassPane : CharacterBody3D, IBreakable
     {
         public bool VulnerableToKick => false;
         public float CameraShakeMagnitude => 0.5f;
@@ -56,7 +56,6 @@ namespace FastDragon
         private class Idle : State<SpawnedGlassPane>
         {
             private double _timer;
-            private Vector3 _velocity;
 
             public override void OnStateEntered()
             {
@@ -81,11 +80,11 @@ namespace FastDragon
                 Vector3? floorVelocity = FindPlatformVelocity();
 
                 if (floorVelocity.HasValue)
-                    _velocity = floorVelocity.Value;
+                    Self.Velocity = floorVelocity.Value;
                 else
-                    _velocity += Vector3.Down * Self.Gravity * (float)delta;
+                    Self.Velocity += Vector3.Down * Self.Gravity * (float)delta;
 
-                Self.GlobalPosition += _velocity * (float)delta;
+                Self.MoveAndSlide();
             }
 
             private Vector3? FindPlatformVelocity()
@@ -102,7 +101,7 @@ namespace FastDragon
                 Vector3 differentVelocity = default;
                 foreach (var floor in floorsDetected)
                 {
-                    if (floor.ConstantLinearVelocity.IsEqualApprox(_velocity))
+                    if (floor.ConstantLinearVelocity.IsEqualApprox(Self.Velocity))
                     {
                         foundFloorWithCurrentVelocity = true;
                         continue;
@@ -111,7 +110,7 @@ namespace FastDragon
                     // Don't change velocity if there's two or more conveyor belts
                     // competing with each other
                     if (foundFloorWithDifferentVelocity && !differentVelocity.IsEqualApprox(floor.ConstantLinearVelocity))
-                        return _velocity;
+                        return Self.Velocity;
 
                     foundFloorWithDifferentVelocity = true;
                     differentVelocity = floor.ConstantLinearVelocity;
@@ -119,7 +118,7 @@ namespace FastDragon
 
                 return (foundFloorWithDifferentVelocity && !foundFloorWithCurrentVelocity)
                     ? differentVelocity
-                    : _velocity;
+                    : Self.Velocity;
             }
         }
 

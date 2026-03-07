@@ -26,8 +26,9 @@ scale_curve = SubResource("CurveTexture_ioojh")
 material = ExtResource("2_a7lmv")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="SpawnedGlassPane" type="AnimatableBody3D" unique_id=1113965451 node_paths=PackedStringArray("ShatterParticles", "ShatterSound", "MeshInstance", "CollisionShape", "FloorDetector", "FloorDetectorShape") groups=["PhysicsInterpolated", "UnsafeGround"]]
+[node name="SpawnedGlassPane" type="CharacterBody3D" unique_id=1113965451 node_paths=PackedStringArray("ShatterParticles", "ShatterSound", "MeshInstance", "CollisionShape", "FloorDetector", "FloorDetectorShape") groups=["PhysicsInterpolated", "UnsafeGround"]]
 collision_layer = 8388608
+platform_floor_layers = 4294967287
 script = ExtResource("1_vb7yu")
 ShatterParticles = NodePath("ShatterParticles")
 ShatterSound = NodePath("ShatterSound")
