@@ -7,6 +7,7 @@ namespace FastDragon
     public partial class SpawnedGlassPane : CharacterBody3D, IBreakable
     {
         public bool VulnerableToKick => false;
+        public bool VulnerableToRoll { get; set; } = true;
         public float CameraShakeMagnitude => 0.5f;
 
         [Export] public double LifespanSeconds;
@@ -35,7 +36,11 @@ namespace FastDragon
             _stateMachine.ChangeState<Idle>();
         }
 
-        public void Initialize(MeshInstance3D originalMesh, Shape3D shape)
+        public void Initialize(
+            MeshInstance3D originalMesh,
+            Shape3D shape,
+            bool isBreakable
+        )
         {
             MeshInstance.Mesh = originalMesh.Mesh;
             for (int i = 0; i < originalMesh.GetSurfaceOverrideMaterialCount(); i++)
@@ -46,6 +51,7 @@ namespace FastDragon
 
             CollisionShape.Shape = shape;
             FloorDetectorShape.Shape = shape;
+            VulnerableToRoll = isBreakable;
         }
 
         public void OnBroken()

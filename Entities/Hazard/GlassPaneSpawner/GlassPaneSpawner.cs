@@ -15,6 +15,7 @@ namespace FastDragon
         [Export] public double SpawnIntervalSeconds = 1;
         [Export] public double SpawnDurationSeconds = 2;
         [Export] public double PaneLifespanSeconds = 5;
+        [Export] public bool IsPaneBreakable = true;
 
         private readonly StateMachine _stateMachine = new();
         private readonly Node3D _activePanes = new();
@@ -55,7 +56,7 @@ namespace FastDragon
         {
             var pane = PaneScene.Instantiate<SpawnedGlassPane>();
             pane.LifespanSeconds = PaneLifespanSeconds;
-            pane.Initialize(_meshInstance, _collisionShape.Shape);
+            pane.Initialize(_meshInstance, _collisionShape.Shape, IsPaneBreakable);
 
             _activePanes.AddChild(pane);
             pane.GlobalTransform = GlobalTransform;
