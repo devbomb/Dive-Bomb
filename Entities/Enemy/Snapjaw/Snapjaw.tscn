@@ -51,12 +51,12 @@ animation = &"DeathFall"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_siaue"]
 graph_offset = Vector2(-314, -37)
+nodes/output/position = Vector2(280, 120)
 nodes/DeathFall/node = SubResource("AnimationNodeAnimation_4utbh")
 nodes/DeathFall/position = Vector2(0, 120)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_xq8qg")
 nodes/TimeScale/position = Vector2(140, 120)
-nodes/output/position = Vector2(280, 120)
-node_connections = [&"TimeScale", 0, &"DeathFall", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"DeathFall"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xaiic"]
 animation = &"DeathFlip"
@@ -1019,6 +1019,8 @@ unique_name_in_owner = true
 shape = SubResource("CylinderShape3D_6tpik")
 
 [node name="BreakableArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_58fhs")
 Disabled = true
 
@@ -1028,6 +1030,8 @@ visible = false
 shape = SubResource("CylinderShape3D_sroyn")
 
 [node name="JawDamageArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("2_sroyn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JawDamageArea"]

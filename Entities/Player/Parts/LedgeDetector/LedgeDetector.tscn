@@ -28,6 +28,8 @@ Visualizer = NodePath("Visualizer")
 
 [node name="UpCapsule" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+collision_layer = 0
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UpCapsule"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -35,6 +37,8 @@ shape = SubResource("CapsuleShape3D_pwy4k")
 
 [node name="ForwardCapsule" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.5, -1.5)
+collision_layer = 0
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ForwardCapsule"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5261041)
@@ -43,10 +47,12 @@ shape = SubResource("BoxShape3D_pwy4k")
 [node name="DownCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
 target_position = Vector3(0, -2, 0)
+collision_mask = 3
 
 [node name="AntiSuicideChecker" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
 target_position = Vector3(0, -2, 0)
+collision_mask = 3
 
 [node name="Visualizer" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
 top_level = true

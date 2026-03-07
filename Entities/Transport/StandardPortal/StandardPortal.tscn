@@ -82,8 +82,8 @@ PlayerEnterBackPoint = NodePath("Back/PlayerEnterBackPoint")
 CameraEnterBackPath = NodePath("Back/CameraEnterBackPath/CameraEnterBackPathFollower")
 
 [node name="CameraBlocker" type="StaticBody3D" parent="."]
-collision_layer = 2
-collision_mask = 0
+collision_layer = 0
+collision_mask = 4194304
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraBlocker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -109,6 +109,8 @@ collision_mask = 8
 shape = SubResource("SphereShape3D_smk44")
 
 [node name="PlayerDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020812988, 2.6514893, 0)

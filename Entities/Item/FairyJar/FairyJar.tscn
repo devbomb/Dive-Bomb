@@ -156,6 +156,8 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.623377, 0, 0, 0, 1, 0, 0, 0, 1,
 gradient = SubResource("Gradient_ovo6q")
 
 [node name="Fairy" type="StaticBody3D" groups=["UnsafeGround"]]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_qaaot")
 
 [node name="ShatterSound" type="AudioStreamPlayer" parent="."]

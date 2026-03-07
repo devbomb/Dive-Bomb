@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=8 format=3 uid="uid://cscoq8fu2oy7p"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=9 format=3 uid="uid://cscoq8fu2oy7p"]
 
-[ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_ii2mx"]
+[ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_ii2mx"]
 [ext_resource type="Resource" uid="uid://142ks7mlvo2t" path="res://FuncGodotAssets/EntityDefinitions/Solid/Wall/wall_divable.tres" id="1_r0r3u"]
 [ext_resource type="Resource" uid="uid://nux0u7d6wf0e" path="res://FuncGodotAssets/EntityDefinitions/Solid/Wall/wall_transparent.tres" id="2_g33bi"]
 [ext_resource type="Resource" uid="uid://dw742g11bk5qa" path="res://FuncGodotAssets/EntityDefinitions/Solid/Wall/wall_non_camera_obstructing.tres" id="3_85xdw"]
 [ext_resource type="Resource" uid="uid://bin8ot3xpkrna" path="res://FuncGodotAssets/EntityDefinitions/Solid/Wall/wall_x_ray.tres" id="4_bo24n"]
 [ext_resource type="Resource" uid="uid://bpcvj1u14pepm" path="res://FuncGodotAssets/EntityDefinitions/Solid/Wall/wall_no_collision.tres" id="5_81ix6"]
 [ext_resource type="Resource" uid="uid://dbatici3tmxja" path="res://FuncGodotAssets/EntityDefinitions/Solid/Wall/wall_openable.tres" id="6_b3hlo"]
+[ext_resource type="Resource" uid="uid://dn1q7f22uqptk" path="res://FuncGodotAssets/EntityDefinitions/Solid/Wall/wall_obstructs_player_only.tres" id="7_trfyy"]
 
 [resource]
 script = ExtResource("1_ii2mx")
 fgd_name = "Wall"
-entity_definitions = Array[Resource]([ExtResource("1_r0r3u"), ExtResource("2_g33bi"), ExtResource("3_85xdw"), ExtResource("4_bo24n"), ExtResource("5_81ix6"), ExtResource("6_b3hlo")])
-metadata/_custom_type_script = "uid://vm1fvi5045um"
+entity_definitions = Array[Resource]([ExtResource("1_r0r3u"), ExtResource("2_g33bi"), ExtResource("3_85xdw"), ExtResource("4_bo24n"), ExtResource("5_81ix6"), ExtResource("6_b3hlo"), ExtResource("7_trfyy")])
