@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_k7l1k")
-collision_layer = 3
+collision_layer = 4194305
 script_class = ExtResource("2_wd4ab")
 classname = "wall_openable"
 class_properties = Dictionary[String, Variant]({

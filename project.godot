@@ -207,9 +207,9 @@ Interact={
 3d_render/layer_3="WorldPortal"
 3d_render/layer_4="ReceiveDecals"
 3d_physics/layer_1="Terrain"
-3d_physics/layer_2="ObstructsCamera"
 3d_physics/layer_3="Gems"
 3d_physics/layer_4="Player"
+3d_physics/layer_23="ObstructsCamera"
 3d_physics/layer_24="ObstructsPlayerOnly"
 
 [physics]
