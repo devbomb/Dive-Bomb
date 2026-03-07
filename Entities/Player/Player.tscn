@@ -100,7 +100,7 @@ func _physics_process(_delta):
 "
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Model", "Animator", "RollSoundPlayer", "BonkSoundPlayer", "FlipDamageSound", "DrownStartSplashSound", "RollDust", "RollThuum", "DiveThuum", "Camera", "CameraFocus", "BodyCollisionShape", "KickHitbox", "DiveExtraHitbox", "RollExtraHitbox", "LedgeDetector", "LedgeGrabPoint", "MinLedgeGrabHeight", "FairyKissPoint", "FairyKissCamRightPoint", "FairyKissCamLeftPoint") groups=["PhysicsInterpolated"]]
-collision_layer = 9
+collision_layer = 8
 collision_mask = 8388609
 script = ExtResource("1_a4opu")
 Model = NodePath("Model")

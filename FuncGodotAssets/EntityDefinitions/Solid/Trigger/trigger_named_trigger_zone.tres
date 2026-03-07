@@ -19,4 +19,3 @@ class_properties = Dictionary[String, Variant]({
 auto_apply_to_matching_node_properties = true
 node_class = "Area3D"
 name_property = "targetname"
-metadata/_custom_type_script = "uid://ctv13qfisgfqg"

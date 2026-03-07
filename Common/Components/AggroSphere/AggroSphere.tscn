@@ -6,11 +6,13 @@
 radius = 1.0
 
 [node name="AggroSphere" type="RayCast3D"]
+collision_mask = 9
 script = ExtResource("1_lx276")
 
 [node name="Area3D" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_t27k1")
