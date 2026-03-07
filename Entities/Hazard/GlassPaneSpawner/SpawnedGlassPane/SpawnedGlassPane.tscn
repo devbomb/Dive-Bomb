@@ -27,7 +27,8 @@ material = ExtResource("2_a7lmv")
 size = Vector3(0.25, 0.25, 0.25)
 
 [node name="SpawnedGlassPane" type="CharacterBody3D" unique_id=1113965451 node_paths=PackedStringArray("ShatterParticles", "ShatterSound", "MeshInstance", "CollisionShape", "FloorDetector", "FloorDetectorShape") groups=["PhysicsInterpolated", "UnsafeGround"]]
-collision_layer = 8388608
+collision_layer = 2
+motion_mode = 1
 platform_floor_layers = 4294967287
 script = ExtResource("1_vb7yu")
 ShatterParticles = NodePath("ShatterParticles")
