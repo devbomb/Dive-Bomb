@@ -44,6 +44,8 @@ metallic = 1.0
 roughness = 0.37
 
 [node name="PowerOrb" type="StaticBody3D" groups=["UnsafeGround"]]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_33fc2")
 CameraShakeMagnitude = 0.5
 CameraShakeDuration = 0.25

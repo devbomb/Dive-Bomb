@@ -83,6 +83,7 @@ func _recreate_perimeter_points():
 	for i in range(0, perimeter_points):
 		var ray_cast: RayCast3D = RayCast3D.new()
 		ray_cast.enabled = false	# We'll be manually updating it, for performance reasons
+		ray_cast.collision_mask = %CentralRayCast.collision_mask
 		%PerimeterRayCasts.add_child(ray_cast)
 	
 	_all_ray_casts.clear()
@@ -141,6 +142,7 @@ unique_name_in_owner = true
 [node name="CentralRayCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 enabled = false
+collision_mask = 3
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="Decal" type="Decal" parent="."]

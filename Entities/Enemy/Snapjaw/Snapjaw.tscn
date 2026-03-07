@@ -1019,6 +1019,8 @@ unique_name_in_owner = true
 shape = SubResource("CylinderShape3D_6tpik")
 
 [node name="BreakableArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_58fhs")
 Disabled = true
 
