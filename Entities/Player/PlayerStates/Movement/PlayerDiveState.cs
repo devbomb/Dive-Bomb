@@ -216,22 +216,20 @@ namespace FastDragon
             if (hitObject is not IBreakable b)
                 return MoveAndSlideExResponse.Slide;
 
-            if (b.VulnerableToRoll)
-            {
-                _brokenObjects.Add(b);
-
-                if (b.CausesBonk)
-                {
-                    return MoveAndSlideExResponse.Stop;
-                }
-
-                return MoveAndSlideExResponse.Ignore;
-            }
-            else
+            if (!b.VulnerableToRoll)
             {
                 _unbrokenObjects.Add(b);
                 return MoveAndSlideExResponse.Slide;
             }
+
+            _brokenObjects.Add(b);
+
+            if (b.CausesBonk)
+            {
+                return MoveAndSlideExResponse.Stop;
+            }
+
+            return MoveAndSlideExResponse.Ignore;
         }
 
         private void Break(IBreakable b)
