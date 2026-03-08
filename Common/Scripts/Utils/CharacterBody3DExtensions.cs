@@ -4,8 +4,21 @@ namespace FastDragon
 {
     public enum MoveAndSlideExResponse
     {
+        /// <summary>
+        /// Indicates that the body should stop after hitting this object,
+        /// rather than sliding.  Use this when "bonking".
+        /// </summary>
         Stop,
+
+        /// <summary>
+        /// Indicates that the body should plow right through this object in a
+        /// straight line, as if it had been destroyed.
+        /// </summary>
         Ignore,
+
+        /// <summary>
+        /// Indicates that the body should slide against the object
+        /// </summary>
         Slide
     }
 
@@ -51,9 +64,10 @@ namespace FastDragon
 
                     case MoveAndSlideExResponse.Stop:
                     {
-                        // Stop processing further slide collisions.
-                        // onCollision() should have moved us to wherever it
-                        // thinks we should be.
+                        // TODO: Actually prevent the body from sliding.
+                        // Right now, it just prevents the collision handler
+                        // from being called on the remaining slide collisions.
+                        // Nobody's really going to notice, though, right?
                         return true;
 
                         // BUG: IsOnFloor(), IsOnWall(), GetPlatformVelocity(),
