@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FastDragon
 {
@@ -146,7 +147,6 @@ namespace FastDragon
             Vector3 prevPos = Self.GlobalPosition;
             Vector3 prevVel = Self.Velocity;
 
-            bool bonkedFromCollisionHandler = false;
             Self.MoveAndSlideEx(collision =>
             {
                 var hitObject = collision.GetCollider();
@@ -160,7 +160,6 @@ namespace FastDragon
 
                     if (b.CausesBonk)
                     {
-                        bonkedFromCollisionHandler = true;
                         return MoveAndSlideExResponse.Stop;
                     }
 
@@ -174,7 +173,7 @@ namespace FastDragon
             });
 
             int numCollisions = Self.GetSlideCollisionCount();
-            if (bonkedFromCollisionHandler)
+            if (_brokenObjects.Any(b => b.CausesBonk))
             {
                 return Bonk();
             }
