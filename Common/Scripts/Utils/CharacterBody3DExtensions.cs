@@ -17,8 +17,7 @@ namespace FastDragon
 
         public static bool MoveAndSlideEx(
             this CharacterBody3D body,
-            MoveAndSlideExCollisionHandler onCollision,
-            double delta
+            MoveAndSlideExCollisionHandler onCollision
         )
         {
             Vector3 prevPos = body.GlobalPosition;
@@ -44,7 +43,7 @@ namespace FastDragon
                         body.Velocity = prevVel;
 
                         body.AddCollisionExceptionWith((Node)collision.GetCollider());
-                        bool result = body.MoveAndSlideEx(onCollision, delta);
+                        bool result = body.MoveAndSlideEx(onCollision);
                         body.RemoveCollisionExceptionWith((Node)collision.GetCollider());
 
                         return result;
@@ -53,17 +52,9 @@ namespace FastDragon
                     case MoveAndSlideExResponse.Stop:
                     {
                         // Stop processing further slide collisions.
-                        // Rewind back to the start and move to the point of
-                        // contact.
-                        body.GlobalPosition = prevPos;
-                        body.MoveAndCollide(prevVel * (float)delta);
+                        // onCollision() should have moved us to wherever it
+                        // thinks we should be.
                         return true;
-
-                        // BUG: This always moves you to the FIRST slide's
-                        // collision point, not the CURRENT one.
-
-                        // BUG: If the onCollision handler moved the body, then
-                        // we just undid that move.
 
                         // BUG: IsOnFloor(), IsOnWall(), GetPlatformVelocity(),
                         // etc. _should_ be based off _this_ collision, but

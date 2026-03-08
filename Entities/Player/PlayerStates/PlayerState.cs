@@ -181,7 +181,7 @@ namespace FastDragon
                     unbrokenObjects.Add(b);
                     return MoveAndSlideExResponse.Slide;
                 }
-            }, delta);
+            });
 
             int numCollisions = Self.GetSlideCollisionCount();
             if (bonkedFromCollisionHandler)
