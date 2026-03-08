@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FastDragon
 {
@@ -109,12 +110,7 @@ namespace FastDragon
             _unbrokenObjects.Clear();
             _detectedObjects.Clear();
 
-            MoveAndSlideBreakingObjects(
-                isVulnerable: b => b.VulnerableToRoll,
-                brokenObjects: _brokenObjects,
-                unbrokenObjects: _unbrokenObjects,
-                delta
-            );
+            MoveAndSlideBreakingObjects_Dive(delta);
 
             foreach (var b in _brokenObjects)
             {
@@ -148,6 +144,91 @@ namespace FastDragon
             {
                 Self.ChangeState<PlayerRollState>();
                 return;
+            }
+        }
+
+        private bool MoveAndSlideBreakingObjects_Dive(float delta)
+        {
+            Vector3 prevPos = Self.GlobalPosition;
+            Vector3 prevVel = Self.Velocity;
+
+            Self.MoveAndSlideEx(collision =>
+            {
+                var hitObject = collision.GetCollider();
+
+                if (hitObject is not IBreakable b)
+                    return MoveAndSlideExResponse.Slide;
+
+                if (b.VulnerableToRoll)
+                {
+                    _brokenObjects.Add(b);
+
+                    if (b.CausesBonk)
+                    {
+                        return MoveAndSlideExResponse.Stop;
+                    }
+
+                    return MoveAndSlideExResponse.Ignore;
+                }
+                else
+                {
+                    _unbrokenObjects.Add(b);
+                    return MoveAndSlideExResponse.Slide;
+                }
+            });
+
+            int numCollisions = Self.GetSlideCollisionCount();
+            if (_brokenObjects.Any(b => b.CausesBonk))
+            {
+                return Bonk();
+            }
+
+            if (DeceleratedEnoughToBonk(prevVel, Self.Velocity))
+            {
+                // HACK: If a ledge is detected, move the player up to it instead
+                // of bonking.  This is to reduce the amount of "WTF?  I bonked
+                // on air?!" moments caused by the spherical collider not matching
+                // up with the player model.
+                if (Self.LedgeDetector.LedgeDetected && !Self.LedgeDetector.IsBlocked)
+                {
+                    const float forgivableHeight = 0.6f;
+                    float ledgeHeight = Self.LedgeDetector.LastLedgePoint.Y - Self.GlobalPosition.Y;
+                    if (ledgeHeight < forgivableHeight && ledgeHeight >= 0)
+                    {
+                        var pos = Self.GlobalPosition;
+                        pos.Y = Self.LedgeDetector.LastLedgePoint.Y;
+                        Self.GlobalPosition = pos;
+                        Self.Velocity = prevVel;
+                        GD.Print($"Ledge detected; bonk forgiven (height: {ledgeHeight})");
+                        return false;
+                    }
+                    else
+                    {
+                        GD.Print($"Ledge detected, but bonk not forgiven (height: {ledgeHeight})");
+                    }
+                }
+
+                return Bonk();
+            }
+
+            return false;
+
+            bool Bonk()
+            {
+                Self.GlobalPosition = prevPos;
+                Self.MoveAndCollide(prevVel * delta);
+                Self.ChangeState<PlayerBonkState>();
+
+                for (int i = 0; i < numCollisions; i++)
+                {
+                    var collision = Self.GetSlideCollision(i);
+                    if (collision.GetCollider() is IBonkable b)
+                    {
+                        b.OnBonked();
+                    }
+                }
+
+                return true;
             }
         }
 
