@@ -163,16 +163,6 @@ namespace FastDragon
             bool Bonk()
             {
                 Self.ChangeState<PlayerBonkState>();
-
-                for (int i = 0; i < numCollisions; i++)
-                {
-                    var collision = Self.GetSlideCollision(i);
-                    if (collision.GetCollider() is IBonkable b)
-                    {
-                        b.OnBonked();
-                    }
-                }
-
                 return true;
             }
         }
