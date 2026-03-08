@@ -156,42 +156,37 @@ namespace FastDragon
             Vector3 prevPos = Self.GlobalPosition;
             Vector3 prevVel = Self.Velocity;
 
-            Self.MoveAndSlide();
-
-            int numCollisions = Self.GetSlideCollisionCount();
-            for (int i = 0; i < numCollisions; i++)
+            bool bonkedFromCollisionHandler = false;
+            Self.MoveAndSlideEx(collision =>
             {
-                var collision = Self.GetSlideCollision(i);
                 var hitObject = collision.GetCollider();
 
                 if (hitObject is not IBreakable b)
-                    continue;
+                    return MoveAndSlideExResponse.Slide;
 
                 if (isVulnerable(b))
                 {
                     brokenObjects.Add(b);
 
                     if (b.CausesBonk)
-                        return Bonk();
+                    {
+                        bonkedFromCollisionHandler = true;
+                        return MoveAndSlideExResponse.Stop;
+                    }
 
-                    // Rewind and try again, but this time ignore this object
-                    Self.GlobalPosition = prevPos;
-                    Self.Velocity = prevVel;
-
-                    Self.AddCollisionExceptionWith((Node)hitObject);
-                    bool bonked = MoveAndSlideBreakingObjects(
-                        isVulnerable,
-                        brokenObjects,
-                        unbrokenObjects,
-                        delta);
-                    Self.RemoveCollisionExceptionWith((Node)hitObject);
-
-                    return bonked;
+                    return MoveAndSlideExResponse.Ignore;
                 }
                 else
                 {
                     unbrokenObjects.Add(b);
+                    return MoveAndSlideExResponse.Slide;
                 }
+            }, delta);
+
+            int numCollisions = Self.GetSlideCollisionCount();
+            if (bonkedFromCollisionHandler)
+            {
+                return Bonk();
             }
 
             // Bonk if moving into a wall at the bonk angle.
