@@ -189,32 +189,7 @@ namespace FastDragon
                 return Bonk();
             }
 
-            // Bonk if moving into a wall at the bonk angle.
-            // We detect this by measuring the player's change in speed, rather
-            // than by calling IsOnWall() or reading the wall normal.
-            // Why?  Well:
-            // 1. IsOnWall() sometimes gives us a false positive, potentially
-            //      causing a bonk against things that shouldn't be bonkable
-            //      (EG: baskets).
-            //
-            // 2. Reading the wall normal doesn't work if they player is touching
-            //      two walls at once(IE: rolling into a corner).  Even if those
-            //      two walls "add up" to being a head-on collision, Godot will
-            //      only use ONE of those walls' normals, which would result in
-            //      the player not bonking when they logically should.
-            //
-            // 3. Let's face it: why do people feel pain when they slam into a
-            //      wall IRL?  It's not the collision itself, but rather the
-            //      _deceleration_ caused by the collision.  Therefore, it makes
-            //      sense for a bonk to be triggered by a sudden stop.
-            Vector3 prevVelFlat = prevVel.Flattened();
-            Vector3 newVelFlat = Self.Velocity.Flattened();
-
-            float speedPercent = newVelFlat.Length() / prevVelFlat.Length();
-            float wallAngleRad = Mathf.DegToRad(90) - Mathf.Acos(speedPercent);
-            float bonkAngleRad = Mathf.DegToRad(Player.Bonk.AngleDeg);
-
-            if (wallAngleRad < bonkAngleRad)
+            if (DeceleratedEnoughToBonk(prevVel, Self.Velocity))
             {
                 // HACK: If a ledge is detected, move the player up to it instead
                 // of bonking.  This is to reduce the amount of "WTF?  I bonked
@@ -264,6 +239,36 @@ namespace FastDragon
 
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Why check for deceleration instead of reading the wall normal?
+        /// Well:
+        /// 1. IsOnWall() sometimes gives us a false positive, potentially
+        ///      causing a bonk against things that shouldn't be bonkable
+        ///      (EG: baskets).
+        //
+        /// 2. Reading the wall normal doesn't work if they player is touching
+        ///      two walls at once(IE: rolling into a corner).  Even if those
+        ///      two walls "add up" to being a head-on collision, Godot will
+        ///      only use ONE of those walls' normals, which would result in
+        ///      the player not bonking when they logically should.
+        ///
+        /// 3. Let's face it: why do people feel pain when they slam into a
+        ///      wall IRL?  It's not the collision itself, but rather the
+        ///      _deceleration_ caused by the collision.  Therefore, it makes
+        ///      sense for a bonk to be triggered by a sudden stop.
+        /// </summary>
+        protected bool DeceleratedEnoughToBonk(Vector3 prevVel, Vector3 newVel)
+        {
+            Vector3 prevVelFlat = prevVel.Flattened();
+            Vector3 newVelFlat = Self.Velocity.Flattened();
+
+            float speedPercent = newVelFlat.Length() / prevVelFlat.Length();
+            float wallAngleRad = Mathf.DegToRad(90) - Mathf.Acos(speedPercent);
+            float bonkAngleRad = Mathf.DegToRad(Player.Bonk.AngleDeg);
+
+            return wallAngleRad < bonkAngleRad;
         }
 
         /// <summary>
