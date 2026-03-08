@@ -94,12 +94,7 @@ namespace FastDragon
             _unbrokenObjects.Clear();
             _detectedObjects.Clear();
 
-            MoveAndSlideBreakingObjects_Roll(
-                isVulnerable: b => b.VulnerableToRoll,
-                brokenObjects: _brokenObjects,
-                unbrokenObjects: _unbrokenObjects,
-                delta
-            );
+            MoveAndSlideBreakingObjects_Roll(delta);
 
             foreach (var b in _brokenObjects)
             {
@@ -146,12 +141,7 @@ namespace FastDragon
             }
         }
 
-        private bool MoveAndSlideBreakingObjects_Roll(
-            Func<IBreakable, bool> isVulnerable,
-            List<IBreakable> brokenObjects,
-            List<IBreakable> unbrokenObjects,
-            float delta
-        )
+        private bool MoveAndSlideBreakingObjects_Roll(float delta)
         {
             Vector3 prevPos = Self.GlobalPosition;
             Vector3 prevVel = Self.Velocity;
@@ -164,9 +154,9 @@ namespace FastDragon
                 if (hitObject is not IBreakable b)
                     return MoveAndSlideExResponse.Slide;
 
-                if (isVulnerable(b))
+                if (b.VulnerableToRoll)
                 {
-                    brokenObjects.Add(b);
+                    _brokenObjects.Add(b);
 
                     if (b.CausesBonk)
                     {
@@ -178,7 +168,7 @@ namespace FastDragon
                 }
                 else
                 {
-                    unbrokenObjects.Add(b);
+                    _unbrokenObjects.Add(b);
                     return MoveAndSlideExResponse.Slide;
                 }
             });
