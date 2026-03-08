@@ -144,9 +144,7 @@ namespace FastDragon
 
         private bool MoveAndSlideBreakingObjects_Roll(float delta)
         {
-            Vector3 prevPos = Self.GlobalPosition;
             Vector3 prevVel = Self.Velocity;
-
             Self.MoveAndSlideEx(OnCollision);
 
             int numCollisions = Self.GetSlideCollisionCount();
@@ -164,8 +162,6 @@ namespace FastDragon
 
             bool Bonk()
             {
-                Self.GlobalPosition = prevPos;
-                Self.MoveAndCollide(prevVel * delta);
                 Self.ChangeState<PlayerBonkState>();
 
                 for (int i = 0; i < numCollisions; i++)
