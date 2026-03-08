@@ -152,30 +152,7 @@ namespace FastDragon
             Vector3 prevPos = Self.GlobalPosition;
             Vector3 prevVel = Self.Velocity;
 
-            Self.MoveAndSlideEx(collision =>
-            {
-                var hitObject = collision.GetCollider();
-
-                if (hitObject is not IBreakable b)
-                    return MoveAndSlideExResponse.Slide;
-
-                if (b.VulnerableToRoll)
-                {
-                    _brokenObjects.Add(b);
-
-                    if (b.CausesBonk)
-                    {
-                        return MoveAndSlideExResponse.Stop;
-                    }
-
-                    return MoveAndSlideExResponse.Ignore;
-                }
-                else
-                {
-                    _unbrokenObjects.Add(b);
-                    return MoveAndSlideExResponse.Slide;
-                }
-            });
+            Self.MoveAndSlideEx(OnCollision);
 
             int numCollisions = Self.GetSlideCollisionCount();
             if (_brokenObjects.Any(b => b.CausesBonk))
@@ -229,6 +206,31 @@ namespace FastDragon
                 }
 
                 return true;
+            }
+        }
+
+        private MoveAndSlideExResponse OnCollision(KinematicCollision3D collision)
+        {
+            var hitObject = collision.GetCollider();
+
+            if (hitObject is not IBreakable b)
+                return MoveAndSlideExResponse.Slide;
+
+            if (b.VulnerableToRoll)
+            {
+                _brokenObjects.Add(b);
+
+                if (b.CausesBonk)
+                {
+                    return MoveAndSlideExResponse.Stop;
+                }
+
+                return MoveAndSlideExResponse.Ignore;
+            }
+            else
+            {
+                _unbrokenObjects.Add(b);
+                return MoveAndSlideExResponse.Slide;
             }
         }
 
