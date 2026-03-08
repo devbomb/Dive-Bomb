@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FastDragon
 {
@@ -94,12 +95,7 @@ namespace FastDragon
             _unbrokenObjects.Clear();
             _detectedObjects.Clear();
 
-            MoveAndSlideBreakingObjects(
-                isVulnerable: b => b.VulnerableToRoll,
-                brokenObjects: _brokenObjects,
-                unbrokenObjects: _unbrokenObjects,
-                delta
-            );
+            MoveAndSlideBreakingObjects();
 
             foreach (var b in _brokenObjects)
             {
@@ -144,6 +140,46 @@ namespace FastDragon
 
                 return;
             }
+        }
+
+        private void MoveAndSlideBreakingObjects()
+        {
+            Vector3 prevVel = Self.Velocity;
+            Self.MoveAndSlideEx(OnCollision);
+
+            int numCollisions = Self.GetSlideCollisionCount();
+            if (_brokenObjects.Any(b => b.CausesBonk))
+            {
+                Self.ChangeState<PlayerBonkState>();
+                return;
+            }
+
+            if (DeceleratedEnoughToBonk(prevVel, Self.Velocity))
+            {
+                Self.ChangeState<PlayerBonkState>();
+                return;
+            }
+        }
+
+        private MoveAndSlideExResponse OnCollision(KinematicCollision3D collision)
+        {
+            var hitObject = collision.GetCollider();
+
+            if (hitObject is not IBreakable b)
+                return MoveAndSlideExResponse.Slide;
+
+            if (!b.VulnerableToRoll)
+            {
+                _unbrokenObjects.Add(b);
+                return MoveAndSlideExResponse.Slide;
+            }
+
+            _brokenObjects.Add(b);
+
+            if (b.CausesBonk)
+                return MoveAndSlideExResponse.Stop;
+
+            return MoveAndSlideExResponse.Ignore;
         }
 
         private void Break(IBreakable b)

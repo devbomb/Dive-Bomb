@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 using Godot;
 
 namespace FastDragon
@@ -131,87 +133,25 @@ namespace FastDragon
         }
 
         /// <summary>
-        /// Just like MoveAndSlide, except:
-        /// * It passes through all objects that meet the isVulnerable() criteria
-        /// * It puts all passed-through objects into the brokenObjects list
-        /// * It puts objects that failed the isVulnerable() criteria into the
-        ///     unbrokenObjects list
-        /// * It bonks the player if they touch an object that meets both the
-        ///     isVulnerable() and causesBonkWhenBroken() criteria
-        /// * It bonks the player if they hit a wall at too direct of an angle
-        /// * It returns true if the player bonked
+        /// Why check for deceleration instead of reading the wall normal?
+        /// Well:
+        /// 1. IsOnWall() sometimes gives us a false positive, potentially
+        ///      causing a bonk against things that shouldn't be bonkable
+        ///      (EG: baskets).
+        //
+        /// 2. Reading the wall normal doesn't work if they player is touching
+        ///      two walls at once(IE: rolling into a corner).  Even if those
+        ///      two walls "add up" to being a head-on collision, Godot will
+        ///      only use ONE of those walls' normals, which would result in
+        ///      the player not bonking when they logically should.
         ///
-        /// It puts the broken/unbroken objects in the provided list instead of
-        //  returning them in an array to avoid allocating on the heap every
-        /// frame.  Remember to clear those lists you pass in before calling!
+        /// 3. Let's face it: why do people feel pain when they slam into a
+        ///      wall IRL?  It's not the collision itself, but rather the
+        ///      _deceleration_ caused by the collision.  Therefore, it makes
+        ///      sense for a bonk to be triggered by a sudden stop.
         /// </summary>
-        /// <param name="delta"></param>
-        protected bool MoveAndSlideBreakingObjects(
-            Func<IBreakable, bool> isVulnerable,
-            List<IBreakable> brokenObjects,
-            List<IBreakable> unbrokenObjects,
-            float delta
-        )
+        protected bool DeceleratedEnoughToBonk(Vector3 prevVel, Vector3 newVel)
         {
-            Vector3 prevPos = Self.GlobalPosition;
-            Vector3 prevVel = Self.Velocity;
-
-            Self.MoveAndSlide();
-
-            int numCollisions = Self.GetSlideCollisionCount();
-            for (int i = 0; i < numCollisions; i++)
-            {
-                var collision = Self.GetSlideCollision(i);
-                var hitObject = collision.GetCollider();
-
-                if (hitObject is not IBreakable b)
-                    continue;
-
-                if (isVulnerable(b))
-                {
-                    brokenObjects.Add(b);
-
-                    if (b.CausesBonk)
-                        return Bonk();
-
-                    // Rewind and try again, but this time ignore this object
-                    Self.GlobalPosition = prevPos;
-                    Self.Velocity = prevVel;
-
-                    Self.AddCollisionExceptionWith((Node)hitObject);
-                    bool bonked = MoveAndSlideBreakingObjects(
-                        isVulnerable,
-                        brokenObjects,
-                        unbrokenObjects,
-                        delta);
-                    Self.RemoveCollisionExceptionWith((Node)hitObject);
-
-                    return bonked;
-                }
-                else
-                {
-                    unbrokenObjects.Add(b);
-                }
-            }
-
-            // Bonk if moving into a wall at the bonk angle.
-            // We detect this by measuring the player's change in speed, rather
-            // than by calling IsOnWall() or reading the wall normal.
-            // Why?  Well:
-            // 1. IsOnWall() sometimes gives us a false positive, potentially
-            //      causing a bonk against things that shouldn't be bonkable
-            //      (EG: baskets).
-            //
-            // 2. Reading the wall normal doesn't work if they player is touching
-            //      two walls at once(IE: rolling into a corner).  Even if those
-            //      two walls "add up" to being a head-on collision, Godot will
-            //      only use ONE of those walls' normals, which would result in
-            //      the player not bonking when they logically should.
-            //
-            // 3. Let's face it: why do people feel pain when they slam into a
-            //      wall IRL?  It's not the collision itself, but rather the
-            //      _deceleration_ caused by the collision.  Therefore, it makes
-            //      sense for a bonk to be triggered by a sudden stop.
             Vector3 prevVelFlat = prevVel.Flattened();
             Vector3 newVelFlat = Self.Velocity.Flattened();
 
@@ -219,56 +159,7 @@ namespace FastDragon
             float wallAngleRad = Mathf.DegToRad(90) - Mathf.Acos(speedPercent);
             float bonkAngleRad = Mathf.DegToRad(Player.Bonk.AngleDeg);
 
-            if (wallAngleRad < bonkAngleRad)
-            {
-                // HACK: If a ledge is detected, move the player up to it instead
-                // of bonking.  This is to reduce the amount of "WTF?  I bonked
-                // on air?!" moments caused by the spherical collider not matching
-                // up with the player model.
-                //
-                // TODO: The "Self.CurrentState is PlayerDiveState" condition
-                // is proof that this code is too tightly-coupled.
-                if (Self.LedgeDetector.LedgeDetected && !Self.LedgeDetector.IsBlocked && Self.CurrentState is PlayerDiveState)
-                {
-                    const float forgivableHeight = 0.6f;
-                    float ledgeHeight = Self.LedgeDetector.LastLedgePoint.Y - Self.GlobalPosition.Y;
-                    if (ledgeHeight < forgivableHeight && ledgeHeight >= 0)
-                    {
-                        var pos = Self.GlobalPosition;
-                        pos.Y = Self.LedgeDetector.LastLedgePoint.Y;
-                        Self.GlobalPosition = pos;
-                        Self.Velocity = prevVel;
-                        GD.Print($"Ledge detected; bonk forgiven (height: {ledgeHeight})");
-                        return false;
-                    }
-                    else
-                    {
-                        GD.Print($"Ledge detected, but bonk not forgiven (height: {ledgeHeight})");
-                    }
-                }
-
-                return Bonk();
-            }
-
-            return false;
-
-            bool Bonk()
-            {
-                Self.GlobalPosition = prevPos;
-                Self.MoveAndCollide(prevVel * delta);
-                Self.ChangeState<PlayerBonkState>();
-
-                for (int i = 0; i < numCollisions; i++)
-                {
-                    var collision = Self.GetSlideCollision(i);
-                    if (collision.GetCollider() is IBonkable b)
-                    {
-                        b.OnBonked();
-                    }
-                }
-
-                return true;
-            }
+            return wallAngleRad < bonkAngleRad;
         }
 
         /// <summary>
