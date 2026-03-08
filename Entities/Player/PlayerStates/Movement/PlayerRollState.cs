@@ -95,7 +95,7 @@ namespace FastDragon
             _unbrokenObjects.Clear();
             _detectedObjects.Clear();
 
-            MoveAndSlideBreakingObjects_Roll(delta);
+            MoveAndSlideBreakingObjects();
 
             foreach (var b in _brokenObjects)
             {
@@ -142,7 +142,7 @@ namespace FastDragon
             }
         }
 
-        private bool MoveAndSlideBreakingObjects_Roll(float delta)
+        private void MoveAndSlideBreakingObjects()
         {
             Vector3 prevVel = Self.Velocity;
             Self.MoveAndSlideEx(OnCollision);
@@ -150,20 +150,14 @@ namespace FastDragon
             int numCollisions = Self.GetSlideCollisionCount();
             if (_brokenObjects.Any(b => b.CausesBonk))
             {
-                return Bonk();
+                Self.ChangeState<PlayerBonkState>();
+                return;
             }
 
             if (DeceleratedEnoughToBonk(prevVel, Self.Velocity))
             {
-                return Bonk();
-            }
-
-            return false;
-
-            bool Bonk()
-            {
                 Self.ChangeState<PlayerBonkState>();
-                return true;
+                return;
             }
         }
 

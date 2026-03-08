@@ -110,7 +110,7 @@ namespace FastDragon
             _unbrokenObjects.Clear();
             _detectedObjects.Clear();
 
-            MoveAndSlideBreakingObjects_Dive(delta);
+            MoveAndSlideBreakingObjects();
 
             foreach (var b in _brokenObjects)
             {
@@ -147,7 +147,7 @@ namespace FastDragon
             }
         }
 
-        private bool MoveAndSlideBreakingObjects_Dive(float delta)
+        private void MoveAndSlideBreakingObjects()
         {
             Vector3 prevPos = Self.GlobalPosition;
             Vector3 prevVel = Self.Velocity;
@@ -156,7 +156,8 @@ namespace FastDragon
             int numCollisions = Self.GetSlideCollisionCount();
             if (_brokenObjects.Any(b => b.CausesBonk))
             {
-                return Bonk();
+                Self.ChangeState<PlayerBonkState>();
+                return;
             }
 
             if (DeceleratedEnoughToBonk(prevVel, Self.Velocity))
@@ -176,7 +177,7 @@ namespace FastDragon
                         Self.GlobalPosition = pos;
                         Self.Velocity = prevVel;
                         GD.Print($"Ledge detected; bonk forgiven (height: {ledgeHeight})");
-                        return false;
+                        return;
                     }
                     else
                     {
@@ -184,15 +185,8 @@ namespace FastDragon
                     }
                 }
 
-                return Bonk();
-            }
-
-            return false;
-
-            bool Bonk()
-            {
                 Self.ChangeState<PlayerBonkState>();
-                return true;
+                return;
             }
         }
 
