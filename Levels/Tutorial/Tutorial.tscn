@@ -20,7 +20,8 @@
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="18_83vbk"]
 [ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="19_alo6x"]
 [ext_resource type="AudioStream" uid="uid://cdngy66jdcxa8" path="res://Common/Audio/Music/HijinxEscape.mp3" id="20_lu0qh"]
-[ext_resource type="PackedScene" uid="uid://h2cltd04y4m6" path="res://Levels/Tutorial/Maps/EscapeSequence.map" id="21_r6tbe"]
+[ext_resource type="PackedScene" uid="uid://8olwn3dceknl" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro.map" id="21_25uee"]
+[ext_resource type="PackedScene" uid="uid://ca8eufje1x6kj" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map" id="22_35ubr"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lu0qh"]
 clip_count = 2
@@ -441,5 +442,8 @@ mesh = SubResource("TextMesh_25uee")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.985016, 1.7752533, 7.5155544)
 mesh = SubResource("TextMesh_35ubr")
 
-[node name="EscapeSequence" parent="." instance=ExtResource("21_r6tbe")]
+[node name="Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro" parent="." instance=ExtResource("21_25uee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 9.5)
+
+[node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." instance=ExtResource("22_35ubr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 9.5)
