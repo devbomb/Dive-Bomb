@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://0wllpr4r6l0e"]
+
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_w8o5c"]
+[ext_resource type="Script" uid="uid://dhhkv77ohwytu" path="res://Entities/Transport/WarpTrigger.cs" id="2_23nla"]
+
+[resource]
+script = ExtResource("1_w8o5c")
+collision_layer = 0
+collision_mask = 8
+add_textures_metadata = true
+add_face_normal_metadata = true
+script_class = ExtResource("2_23nla")
+classname = "transport_warp_trigger"
+class_properties = Dictionary[String, Variant]({
+"target": "",
+"targetname": ""
+})
+node_class = "Area3D"
+metadata/_custom_type_script = "uid://5cow84q03m6a"
