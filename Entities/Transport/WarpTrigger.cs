@@ -13,20 +13,25 @@ namespace FastDragon
         [Export] public string target;
 
         private Node3D _entranceOrigin;
+        private Node3D _exitOrigin;
 
         public override void _Ready()
         {
             BodyEntered += OnBodyEntered;
-            SetUpEntranceOrigin();
+            SetUpEntranceAndExit();
         }
 
-        private void SetUpEntranceOrigin()
+        private void SetUpEntranceAndExit()
         {
             _entranceOrigin = new Node3D();
             AddChild(_entranceOrigin);
-
             _entranceOrigin.GlobalPosition = GetEntrancePoint();
             _entranceOrigin.GlobalRotation = GetEntranceNormal().ForwardToEulerAnglesRad();
+
+            _exitOrigin = new Node3D();
+            AddChild(_exitOrigin);
+            _exitOrigin.GlobalPosition = GetEntrancePoint();
+            _exitOrigin.GlobalRotation = (-GetEntranceNormal()).ForwardToEulerAnglesRad();
         }
 
         private void OnBodyEntered(Node3D body)
@@ -36,11 +41,10 @@ namespace FastDragon
 
             var destWarp = this.FindNodeByTargetName<WarpTrigger>(target);
             Transform3D playerPosRelativeToSrc = _entranceOrigin.GlobalTransform.Inverse() * player.GlobalTransform;
-            player.GlobalTransform = destWarp._entranceOrigin.GlobalTransform * playerPosRelativeToSrc;
+            player.GlobalTransform = destWarp._exitOrigin.GlobalTransform * playerPosRelativeToSrc;
             player.GlobalPosition += destWarp.GetEntranceNormal();
             player.ResetPhysicsInterpolation3D();
 
-            // TODO: Rotate the player
             // TODO: Rotate the player's _velocity_ too
             // TODO: Teleport and rotate the camera, too.
         }
