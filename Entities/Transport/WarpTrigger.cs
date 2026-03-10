@@ -41,6 +41,7 @@ namespace FastDragon
 
             Transform3D playerPosRelativeToSrc = _entranceOrigin.GlobalTransform.Inverse() * player.GlobalTransform;
             Transform3D cameraPosRelativeToPlayer = player.GlobalTransform.Inverse() * player.Camera.GlobalTransform;
+            float prevFSpeed = player.FSpeed;
 
             // Teleport the player
             var destWarp = this.FindNodeByTargetName<WarpTrigger>(target);
@@ -53,7 +54,11 @@ namespace FastDragon
             player.Camera.StartFollowing(0.1f);
             player.Camera.ResetPhysicsInterpolation3D();
 
-            // TODO: Rotate the player's _velocity_ too
+            // Rotate the player's velocity
+            // BUG: Technically, this doesn't preserve the player's side-to-side
+            // velocity, only their forward velocity.  Oh well, nobody will
+            // notice.  Most of your velocity is usually in FSpeed anyway.
+            player.FSpeed = prevFSpeed;
         }
 
         private Vector3 GetEntranceNormal()
