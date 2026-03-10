@@ -35,8 +35,8 @@ namespace FastDragon
                 return;
 
             var destWarp = this.FindNodeByTargetName<WarpTrigger>(target);
-            Vector3 playerPosRelativeToSrc = _entranceOrigin.ToLocal(player.GlobalPosition);
-            player.GlobalPosition = destWarp._entranceOrigin.ToGlobal(playerPosRelativeToSrc);
+            Transform3D playerPosRelativeToSrc = _entranceOrigin.GlobalTransform.Inverse() * player.GlobalTransform;
+            player.GlobalTransform = destWarp._entranceOrigin.GlobalTransform * playerPosRelativeToSrc;
             player.GlobalPosition += destWarp.GetEntranceNormal();
             player.ResetPhysicsInterpolation3D();
 
