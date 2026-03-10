@@ -39,14 +39,21 @@ namespace FastDragon
             if (body is not Player player)
                 return;
 
-            var destWarp = this.FindNodeByTargetName<WarpTrigger>(target);
             Transform3D playerPosRelativeToSrc = _entranceOrigin.GlobalTransform.Inverse() * player.GlobalTransform;
+            Transform3D cameraPosRelativeToPlayer = player.GlobalTransform.Inverse() * player.Camera.GlobalTransform;
+
+            // Teleport the player
+            var destWarp = this.FindNodeByTargetName<WarpTrigger>(target);
             player.GlobalTransform = destWarp._exitOrigin.GlobalTransform * playerPosRelativeToSrc;
             player.GlobalPosition += destWarp.GetEntranceNormal();
             player.ResetPhysicsInterpolation3D();
 
+            // Teleport the camera
+            player.Camera.StartManhandling(player.GlobalTransform * cameraPosRelativeToPlayer);
+            player.Camera.StartFollowing(0.1f);
+            player.Camera.ResetPhysicsInterpolation3D();
+
             // TODO: Rotate the player's _velocity_ too
-            // TODO: Teleport and rotate the camera, too.
         }
 
         private Vector3 GetEntranceNormal()
