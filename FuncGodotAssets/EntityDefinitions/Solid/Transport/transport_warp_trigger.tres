@@ -12,9 +12,16 @@ add_face_position_metadata = true
 add_face_normal_metadata = true
 script_class = ExtResource("2_23nla")
 classname = "transport_warp_trigger"
+description = "Teleports the player to another warp trigger when they touch it.  Use this as a temporary way to stitch together parts of the level while prototyping.  Be sure to remove and replace them with real, physical connections once you have the layout figured out!
+
+Also, you need to assign the \"Textures/WarpEntrance\" texture to one of the faces, so the warp will know which way the imaginary \"portal\" is facing. "
 class_properties = Dictionary[String, Variant]({
 "target": "",
 "targetname": ""
+})
+class_property_descriptions = Dictionary[String, Variant]({
+"target": "The targetname of the warp this one will take you to",
+"targetname": "The name used to refer to this warp"
 })
 auto_apply_to_matching_node_properties = true
 node_class = "Area3D"
