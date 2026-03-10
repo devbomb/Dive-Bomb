@@ -12,9 +12,21 @@ namespace FastDragon
         [Export] public string targetname;
         [Export] public string target;
 
+        private Node3D _entranceOrigin;
+
         public override void _Ready()
         {
             BodyEntered += OnBodyEntered;
+            SetUpEntranceOrigin();
+        }
+
+        private void SetUpEntranceOrigin()
+        {
+            _entranceOrigin = new Node3D();
+            AddChild(_entranceOrigin);
+
+            _entranceOrigin.GlobalPosition = GetEntrancePoint();
+            _entranceOrigin.GlobalRotation = GetEntranceNormal().ForwardToEulerAnglesRad();
         }
 
         private void OnBodyEntered(Node3D body)
@@ -23,17 +35,17 @@ namespace FastDragon
                 return;
 
             var destWarp = this.FindNodeByTargetName<WarpTrigger>(target);
-            player.GlobalPosition = destWarp.GetEntrancePoint() + destWarp.GetEntranceNormal();
+            Vector3 playerPosRelativeToSrc = _entranceOrigin.ToLocal(player.GlobalPosition);
+            player.GlobalPosition = destWarp._entranceOrigin.ToGlobal(playerPosRelativeToSrc);
+            player.GlobalPosition += destWarp.GetEntranceNormal();
             player.ResetPhysicsInterpolation3D();
-            player.Velocity = Vector3.Zero;
 
             // TODO: Rotate the player
             // TODO: Rotate the player's _velocity_ too
-            // TODO: Maintain the player's relative position to the trigger
             // TODO: Teleport and rotate the camera, too.
         }
 
-        public Vector3 GetEntranceNormal()
+        private Vector3 GetEntranceNormal()
         {
             var entranceFace = GetFaceMetadata()
                 .FirstOrDefault(f => f.TextureName == EntranceTextureName);
@@ -44,7 +56,7 @@ namespace FastDragon
             return entranceFace.Normal;
         }
 
-        public Vector3 GetEntrancePoint()
+        private Vector3 GetEntrancePoint()
         {
             // Even if the entrance face _looks_ like a quad, it's actually
             // secretly two triangles.  Thankfully, the average of those two
@@ -63,7 +75,7 @@ namespace FastDragon
 
             var average = sum / entranceFaces.Length;
 
-            return GlobalPosition + average;
+            return ToGlobal(average);
         }
 
         private IEnumerable<FaceMetadata> GetFaceMetadata()
