@@ -221,6 +221,26 @@ namespace FastDragon
             }
         }
 
+        /// <summary>
+        /// The inverse of <see cref="ApplyAnglesAndDistance"/>: changes
+        /// OrbitYawRad, OrbitPitchRad, and OrbitDistance to match what they
+        /// would need to be for <see cref="ApplyAnglesAndDistance"/> to
+        /// move the camera to its current position (ignoring obstructions).
+        ///
+        /// Useful when you want to teleport the camera.
+        /// </summary>
+        public void DetectAnglesAndDistance()
+        {
+            OrbitDistance = FollowTarget.GlobalPosition.DistanceTo(GlobalPosition);
+
+            var angles = GlobalPosition
+                .DirectionTo(FollowTarget.GlobalPosition)
+                .ForwardToEulerAnglesRad();
+
+            OrbitPitchRad = angles.X;
+            OrbitYawRad = angles.Y;
+        }
+
         private class Following : State<PlayerCamera>
         {
             public const float FollowDistance = 6;
