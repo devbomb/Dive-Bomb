@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://cdngy66jdcxa8" path="res://Common/Audio/Music/HijinxEscape.mp3" id="20_lu0qh"]
 [ext_resource type="PackedScene" uid="uid://8olwn3dceknl" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro.map" id="21_25uee"]
 [ext_resource type="PackedScene" uid="uid://ca8eufje1x6kj" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map" id="22_35ubr"]
+[ext_resource type="PackedScene" uid="uid://xbfqw7b50i7q" path="res://Levels/Tutorial/Maps/Tutorial_LevelExitCannon.map" id="23_35ubr"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lu0qh"]
 clip_count = 2
@@ -447,3 +448,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 9.5)
 
 [node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." instance=ExtResource("22_35ubr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 111.5)
+
+[node name="Tutorial_LevelExitCannon" parent="." instance=ExtResource("23_35ubr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 41, 265)
