@@ -457,10 +457,38 @@
 }
 // entity 18
 {
+"classname" "decor_wall_torch"
+"origin" "1240 -56 360"
+"angle" "90"
+"_tb_group" "8"
+}
+// entity 19
+{
+"classname" "decor_wall_torch"
+"origin" "1224 -216 360"
+"angle" "90"
+"_tb_group" "8"
+}
+// entity 20
+{
+"classname" "decor_wall_torch"
+"origin" "1176 104 328"
+"angle" "180"
+"_tb_group" "8"
+}
+// entity 21
+{
+"classname" "decor_wall_torch"
+"origin" "1016 88 296"
+"angle" "180"
+"_tb_group" "8"
+}
+// entity 22
+{
 "classname" "transport_level_exit"
 "origin" "1192 -952 368"
 }
-// entity 19
+// entity 23
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -504,7 +532,7 @@
 ( 832 0 336 ) ( 832 -128 176 ) ( 832 -128 336 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 20
+// entity 24
 {
 "classname" "transport_warp_trigger"
 "targetname" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Entrance"
