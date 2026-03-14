@@ -913,6 +913,16 @@
 }
 // entity 33
 {
-"classname" "transport_level_exit"
-"origin" "1192 -952 368"
+"classname" "transport_warp_trigger"
+"targetname" "Warp_EscapeSequence_GlassPanesOnConveyorBeltIntro_Exit"
+"target" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Entrance"
+// brush 0
+{
+( 656 -224 320 ) ( 656 -128 176 ) ( 656 -128 320 ) Textures/WarpEntrance 0 0 0 -1 1
+( 672 -224 320 ) ( 656 -224 176 ) ( 656 -224 320 ) special/clip 0 0 0 1 1
+( 672 -128 176 ) ( 656 -224 176 ) ( 672 -224 176 ) special/clip 0 0 0 1 1
+( 672 -128 320 ) ( 656 -224 320 ) ( 656 -128 320 ) special/clip 0 0 0 1 1
+( 672 -128 320 ) ( 656 -128 176 ) ( 672 -128 176 ) special/clip 0 0 0 1 1
+( 672 -128 320 ) ( 672 -224 176 ) ( 672 -224 320 ) special/clip 0 0 0 1 1
+}
 }

@@ -446,4 +446,4 @@ mesh = SubResource("TextMesh_35ubr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 9.5)
 
 [node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." instance=ExtResource("22_35ubr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 9.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 111.5)
