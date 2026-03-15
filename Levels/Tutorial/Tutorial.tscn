@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://8olwn3dceknl" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro.map" id="21_25uee"]
 [ext_resource type="PackedScene" uid="uid://ca8eufje1x6kj" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map" id="22_35ubr"]
 [ext_resource type="PackedScene" uid="uid://xbfqw7b50i7q" path="res://Levels/Tutorial/Maps/Tutorial_LevelExitCannon.map" id="23_35ubr"]
+[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier.cs" id="24_oop8w"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lu0qh"]
 clip_count = 2
@@ -128,6 +129,8 @@ text = "DO NOT PRESS"
 font = SubResource("FontVariation_lu0qh")
 font_size = 44
 curve_step = 10.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3lrk0"]
 
 [node name="Tutorial" type="Node3D" unique_id=1133266737]
 script = ExtResource("1_vo1h1")
@@ -451,3 +454,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 111.5)
 
 [node name="Tutorial_LevelExitCannon" parent="." instance=ExtResource("23_35ubr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 41, 265)
+
+[node name="DeathBarrier" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("24_oop8w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151, -33.42801, 154.5)
+shape = SubResource("WorldBoundaryShape3D_3lrk0")
