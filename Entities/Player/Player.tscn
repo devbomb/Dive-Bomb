@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=30 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.tscn" id="2_0esln"]
@@ -18,18 +18,20 @@
 [ext_resource type="Script" uid="uid://ccrtsrl3md7i8" path="res://Entities/Player/Parts/PlayerCameraFocusPoint.cs" id="12_hl213"]
 [ext_resource type="PackedScene" uid="uid://db05gfycomjg2" path="res://Entities/Player/Parts/DiageticPauseMenu/DiageticPauseMenu.tscn" id="14_samso"]
 
-[sub_resource type="GDScript" id="GDScript_samso"]
-script/source = "extends Label
+[sub_resource type="GDScript" id="GDScript_h6pxy"]
+script/source = "extends GridContainer
 
-func _process(_delta):
-	text = \"Velocity: \" + str(owner.velocity)
-"
-
-[sub_resource type="GDScript" id="GDScript_hl213"]
-script/source = "extends Label
-
-func _process(delta: float) -> void:
-	text = \"Last platform velocity: \" + str(owner.LastPlatformVelocity)
+func _physics_process(_delta: float) -> void:
+	if !visible:
+		return
+	
+	var player: CharacterBody3D = owner
+	$Velocity.text = str(player.velocity)
+	$LocalVelocity.text = str(player.LocalVelocity)
+	$LastPlatformVelocity.text = str(player.LastPlatformVelocity)
+	$CurrentPlatformVelocity.text = str(player.get_platform_velocity())
+	$OnWall.text = str(player.is_on_wall())
+	$OnFloor.text = str(player.is_on_floor())
 "
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
@@ -131,7 +133,7 @@ FairyKissCamLeftPoint = NodePath("CutscenePoints/FairyKissCamLeftPoint")
 
 [node name="HUD" parent="." instance=ExtResource("9_m2xb1")]
 
-[node name="VelocityStats" type="VBoxContainer" parent="HUD"]
+[node name="VelocityStats" type="GridContainer" parent="HUD"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -139,20 +141,60 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -137.0
+offset_top = -131.0
 grow_horizontal = 0
 grow_vertical = 0
+columns = 2
+script = SubResource("GDScript_h6pxy")
+
+[node name="Label" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "Velocity:"
 
 [node name="Velocity" type="Label" parent="HUD/VelocityStats"]
 layout_mode = 2
-text = "Velocity:"
-script = SubResource("GDScript_samso")
+text = "(0, 0, 0)"
 
-[node name="PlatformVelocity" type="Label" parent="HUD/VelocityStats"]
+[node name="Label2" type="Label" parent="HUD/VelocityStats"]
 layout_mode = 2
-text = "Platform Velocity:"
-script = SubResource("GDScript_hl213")
+text = "Local Velocity:"
+
+[node name="LocalVelocity" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "(0, 0, 0)"
+
+[node name="Label3" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "Last Platform Velocity:"
+
+[node name="LastPlatformVelocity" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "(0, 0, 0)"
+
+[node name="Label4" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "Current Platform Velocity:"
+
+[node name="CurrentPlatformVelocity" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "(0, 0, 0)"
+
+[node name="Label5" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "On Wall:"
+
+[node name="OnWall" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "false"
+
+[node name="Label6" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "On Floor:"
+
+[node name="OnFloor" type="Label" parent="HUD/VelocityStats"]
+layout_mode = 2
+text = "false"
 
 [node name="BodyShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
