@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://mdchoptoqq8n"]
+
+[ext_resource type="AudioStream" uid="uid://dapk1ttwwytgj" path="res://Levels/Tutorial/TwoFactorAuthCutscene/Audio/Voice/AgentD_BlownUpByNow.wav" id="1_t5bog"]
+[ext_resource type="AudioStream" uid="uid://bpbqykgn5f3if" path="res://Levels/Tutorial/TwoFactorAuthCutscene/Audio/Voice/DrMonocle_2FA.wav" id="2_lm2gd"]
+[ext_resource type="AudioStream" uid="uid://c213fbw7t7l43" path="res://Levels/Tutorial/TwoFactorAuthCutscene/Audio/Voice/Robot_Authenticated.wav" id="3_lm2gd"]
+[ext_resource type="AudioStream" uid="uid://ctrjuhwoox7nn" path="res://Levels/Tutorial/TwoFactorAuthCutscene/Audio/Voice/DrMonocle_Doomed.wav" id="4_kp5rl"]
+
+[sub_resource type="Animation" id="Animation_kp5rl"]
+resource_name = "CalmDown"
+length = 10.2
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerVoice")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_t5bog")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DrMonocleVoice")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_lm2gd")
+}],
+"times": PackedFloat32Array(2.6333334)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_7tofe"]
+resource_name = "Doomed"
+length = 4.4
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RobotVoice")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_lm2gd")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DrMonocleVoice")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_kp5rl")
+}],
+"times": PackedFloat32Array(1.2)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7tofe"]
+_data = {
+&"CalmDown": SubResource("Animation_kp5rl"),
+&"Doomed": SubResource("Animation_7tofe")
+}
+
+[node name="TwoFactorAuthCutsceneRig" type="Node3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_7tofe")
+}
+
+[node name="PlayerVoice" type="AudioStreamPlayer" parent="."]
+bus = &"DialogVoice"
+
+[node name="RobotVoice" type="AudioStreamPlayer" parent="."]
+bus = &"IntercomDialog"
+
+[node name="DrMonocleVoice" type="AudioStreamPlayer" parent="."]
+bus = &"IntercomDialog"
