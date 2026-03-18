@@ -28,6 +28,7 @@ namespace FastDragon
 
         [Export] public AudioStreamPlayer ShatterSound;
         [Export] public AudioStreamPlayer JingleSound;
+        [Export] public AudioStreamPlayer MusicDuckTrigger;
 
         [Export] public Node3D Model;
         [Export] public Node3D Glass;
@@ -136,6 +137,7 @@ namespace FastDragon
 
             Player.ProcessMode = ProcessMode;
             GetTree().FindNode<BackgroundMusicPlayer>().ProcessMode = ProcessMode;
+            MusicDuckTrigger.Playing = paused;
         }
 
         private string GenerateSaveKey()
