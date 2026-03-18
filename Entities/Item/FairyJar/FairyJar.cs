@@ -132,6 +132,7 @@ namespace FastDragon
                 : ProcessModeEnum.Inherit;
 
             Player.ProcessMode = ProcessMode;
+            GetTree().FindNode<BackgroundMusicPlayer>().ProcessMode = ProcessMode;
         }
 
         private string GenerateSaveKey()
