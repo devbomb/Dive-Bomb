@@ -23,6 +23,18 @@ namespace FastDragon
         public bool VulnerableToRoll => CanBreak();
         public bool CausesBonk => !CanBreak();
 
+        [ExportGroup("Internal")]
+        [Export] public AnimationPlayer Animator;
+
+        [Export] public AudioStreamPlayer ShatterSound;
+        [Export] public AudioStreamPlayer JingleSound;
+
+        [Export] public Node3D Model;
+        [Export] public Node3D Glass;
+
+        [Export] public GpuParticles3D GlassParticles;
+        [Export] public CollisionShape3D CollisionShape;
+
         public bool CanBreak() => EnoughGems() || this.IsTimeTrialMode();
         public bool EnoughGems() => (this.GetLevel()?.TotalGems ?? 0) >= GemCost;
         public bool ShowPriceTag() => GemCost > 0 && !this.IsTimeTrialMode();
@@ -40,15 +52,6 @@ namespace FastDragon
         private Transform3D _initialModelPos;
         private float _initialCameraYawRad;
         private Node3D _camTarget;
-
-        private AnimationPlayer Animator => GetNode<AnimationPlayer>("%AnimationPlayer");
-        private AudioStreamPlayer ShatterSound => GetNode<AudioStreamPlayer>("%ShatterSound");
-        private AudioStreamPlayer JingleSound => GetNode<AudioStreamPlayer>("%JingleSound");
-
-        public Node3D Model => GetNode<Node3D>("%Model");
-        private Node3D Glass => GetNode<Node3D>("%Glass");
-        private GpuParticles3D GlassParticles => GetNode<GpuParticles3D>("%GlassParticles");
-        private CollisionShape3D CollisionShape => GetNode<CollisionShape3D>("%CollisionShape");
 
         private Player Player;
 

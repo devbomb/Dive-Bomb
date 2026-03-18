@@ -155,18 +155,23 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.623377, 0, 0, 0, 1, 0, 0, 0, 1,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p435h"]
 gradient = SubResource("Gradient_ovo6q")
 
-[node name="Fairy" type="StaticBody3D" groups=["UnsafeGround"]]
+[node name="Fairy" type="StaticBody3D" node_paths=PackedStringArray("ShatterSound", "JingleSound", "Animator", "Model", "Glass", "GlassParticles", "CollisionShape") groups=["UnsafeGround"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_qaaot")
+ShatterSound = NodePath("ShatterSound")
+JingleSound = NodePath("JingleSound")
+Animator = NodePath("Model/MainAnimationPlayer")
+Model = NodePath("Model")
+Glass = NodePath("Glass")
+GlassParticles = NodePath("GlassParticles")
+CollisionShape = NodePath("CollisionShape")
 
 [node name="ShatterSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
 stream = ExtResource("2_wcnnd")
 bus = &"Sfx"
 
 [node name="JingleSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
 stream = ExtResource("3_p435h")
 bus = &"Sfx"
 
@@ -174,13 +179,11 @@ bus = &"Sfx"
 bus = &"Sfx"
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CylinderShape3D_ohivc")
 disabled = true
 
 [node name="Glass" parent="." instance=ExtResource("4_ovlfu")]
-unique_name_in_owner = true
 
 [node name="PriceTag" type="Node3D" parent="Glass"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76713, 0)
@@ -219,7 +222,6 @@ distance_fade_enabled = true
 omni_range = 0.27735668
 
 [node name="GlassParticles" type="GPUParticles3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.839535, 0)
 emitting = false
 amount = 32
@@ -229,10 +231,8 @@ process_material = SubResource("ParticleProcessMaterial_015oc")
 draw_pass_1 = SubResource("PrismMesh_lu2bc")
 
 [node name="Model" type="Node3D" parent="." groups=["PhysicsInterpolated"]]
-unique_name_in_owner = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Model"]
-unique_name_in_owner = true
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Model"]
 deterministic = true
 root_node = NodePath("../Fairy")
 libraries = {
