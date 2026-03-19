@@ -29,4 +29,4 @@ its volume is consistent.
 This works because the `Music` bus has a `Compressor` effect, which is
 side-chained to `MusicDuckingTrigger`.  The reason you don't actually hear the
 white noise is because `MusicDuckingTrigger` outputs to the `NullSink` bus,
-which has its volume permanently set to zero.
+which is permanently muted.
