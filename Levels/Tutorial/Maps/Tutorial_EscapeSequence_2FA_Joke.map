@@ -101,22 +101,22 @@
 "_tb_name" "WallButton"
 "_tb_id" "2"
 "_tb_linked_group_id" "{019b4408-0efc-45fa-bdf3-11f770a04b77}"
-"_tb_transformation" "-1.7608940092517613e-15 1 0 512.0000000000005 -1 -1.7608940092517613e-15 0 -208.00000000000023 0 0 1 0 0 0 0 1"
+"_tb_transformation" "-0.9999999999999999 -1.4901162694349472e-08 0 495.9999985694883 1.4901162694349472e-08 -0.9999999999999999 0 -512.0000033378604 0 0 1 0 0 0 0 1"
 // brush 0
 {
-( 368 -448 112 ) ( 368 -432 16 ) ( 368 -432 112 ) __TB_empty 0 0 0 1 1
-( 464 -448 112 ) ( 352 -448 16 ) ( 352 -448 112 ) __TB_empty 0 0 0 1 1
-( 464 -448 16 ) ( 352 -432 16 ) ( 352 -448 16 ) __TB_empty 0 0 0 1 1
-( 464 -448 112 ) ( 352 -432 112 ) ( 464 -432 112 ) __TB_empty 0 0 0 1 1
-( 352 -432 112 ) ( 464 -432 16 ) ( 464 -432 112 ) __TB_empty 0 0 0 1 1
-( 448 -448 112 ) ( 448 -432 16 ) ( 448 -448 16 ) __TB_empty 0 0 0 1 1
+( 256 -464 112 ) ( 256 -352 16 ) ( 256 -352 112 ) __TB_empty 0 0 0 1 1
+( 256 -448 112 ) ( 272 -448 16 ) ( 256 -448 16 ) __TB_empty 0 0 0 1 1
+( 256 -464 16 ) ( 272 -352 16 ) ( 256 -352 16 ) __TB_empty 0 0 0 1 1
+( 256 -464 112 ) ( 272 -352 112 ) ( 272 -464 112 ) __TB_empty 0 0 0 1 1
+( 256 -368 112 ) ( 272 -368 16 ) ( 272 -368 112 ) __TB_empty 0 0 0 1 1
+( 272 -352 112 ) ( 272 -464 16 ) ( 272 -464 112 ) __TB_empty 0 0 0 1 1
 }
 }
 // entity 4
 {
 "classname" "logic_wall_button"
-"origin" "408 -424 72"
-"angle" "90"
+"origin" "280 -408 72"
+"angle" "0"
 "targetname" "Button_EscapeSequence_2FA_Joke_Authenticate"
 "killtarget" ""
 "_tb_group" "2"
@@ -124,12 +124,12 @@
 // entity 5
 {
 "classname" "logic_signal_connector"
-"origin" "376 -424 72"
+"origin" "280 -376 72"
 "killtarget" "Cutscene_EscapeSequence_2FA_Joke"
 "target" "Button_EscapeSequence_2FA_Joke_Authenticate"
 "Signal" "Pressed"
 "HandlerFunction" "OnAuthenticateButtonPressed"
-"angle" "270"
+"angle" "180"
 "_tb_group" "2"
 }
 // entity 6
