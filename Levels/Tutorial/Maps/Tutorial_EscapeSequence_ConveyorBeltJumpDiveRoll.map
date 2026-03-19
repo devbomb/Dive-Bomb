@@ -633,7 +633,7 @@
 {
 "classname" "transport_warp_trigger"
 "targetname" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Exit"
-"target" "Warp_LevelExitCannon"
+"target" "Warp_EscapeSequence_2FA_Joke_Entrance"
 "_tb_group" "8"
 // brush 0
 {

@@ -23,7 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://8olwn3dceknl" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro.map" id="21_25uee"]
 [ext_resource type="PackedScene" uid="uid://ca8eufje1x6kj" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map" id="22_35ubr"]
 [ext_resource type="PackedScene" uid="uid://xbfqw7b50i7q" path="res://Levels/Tutorial/Maps/Tutorial_LevelExitCannon.map" id="23_35ubr"]
+[ext_resource type="PackedScene" uid="uid://be0os0an84mx4" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_2FA_Joke.map" id="24_3lrk0"]
 [ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier.cs" id="24_oop8w"]
+[ext_resource type="PackedScene" uid="uid://mdchoptoqq8n" path="res://Levels/Tutorial/TwoFactorAuthCutscene/TwoFactorAuthCutsceneRig.tscn" id="25_smxar"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lu0qh"]
 clip_count = 2
@@ -454,6 +456,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 111.5)
 
 [node name="Tutorial_LevelExitCannon" parent="." instance=ExtResource("23_35ubr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 41, 265)
+
+[node name="Tutorial_EscapeSequence_2FA_Joke" parent="." instance=ExtResource("24_3lrk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 38, 229)
+
+[node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_2FA_Joke" instance=ExtResource("25_smxar")]
 
 [node name="DeathBarrier" type="Area3D" parent="."]
 collision_layer = 0

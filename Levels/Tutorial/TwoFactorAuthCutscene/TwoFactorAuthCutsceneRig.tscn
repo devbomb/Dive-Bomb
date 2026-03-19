@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://mdchoptoqq8n"]
+[gd_scene load_steps=10 format=3 uid="uid://mdchoptoqq8n"]
 
+[ext_resource type="Script" uid="uid://dyepf6uv6uggn" path="res://Levels/Tutorial/TwoFactorAuthCutscene/TwoFactorAuthCutsceneRig.cs" id="1_id4qm"]
 [ext_resource type="AudioStream" uid="uid://dapk1ttwwytgj" path="res://Levels/Tutorial/TwoFactorAuthCutscene/Audio/Voice/AgentD_BlownUpByNow.wav" id="1_t5bog"]
 [ext_resource type="AudioStream" uid="uid://bpbqykgn5f3if" path="res://Levels/Tutorial/TwoFactorAuthCutscene/Audio/Voice/DrMonocle_2FA.wav" id="2_lm2gd"]
 [ext_resource type="AudioStream" uid="uid://c6e3re2b2kf2o" path="res://Common/Audio/SFX/WhiteNoise.mp3" id="3_7tofe"]
@@ -110,7 +111,10 @@ _data = {
 &"Doomed": SubResource("Animation_7tofe")
 }
 
-[node name="TwoFactorAuthCutsceneRig" type="Node3D"]
+[node name="TwoFactorAuthCutsceneRig" type="Node" node_paths=PackedStringArray("Animator")]
+script = ExtResource("1_id4qm")
+targetname = "Cutscene_EscapeSequence_2FA_Joke"
+Animator = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 deterministic = true

@@ -1,0 +1,169 @@
+// Game: FastDragon
+// Format: Standard
+// entity 0
+{
+"wad" ""
+"classname" "worldspawn"
+"target" "Warp_LevelExitCannon"
+"targetname" "Warp_EscapeSequence_2FA_Joke_Exit"
+// brush 0
+{
+( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) __TB_empty 0 0 0 1 1
+( -64 -176 -16 ) ( -64 -176 -15 ) ( -63 -176 -16 ) __TB_empty 0 0 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) __TB_empty 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) __TB_empty 0 0 0 1 1
+( 64 176 16 ) ( 65 176 16 ) ( 64 176 17 ) __TB_empty 0 0 0 1 1
+( 336 64 16 ) ( 336 64 17 ) ( 336 65 16 ) __TB_empty 0 0 0 1 1
+}
+// brush 1
+{
+( -64 64 160 ) ( -64 32 160 ) ( -64 64 16 ) __TB_empty 0 0 0 1 1
+( -48 32 16 ) ( -64 32 16 ) ( -48 32 160 ) __TB_empty 0 0 0 1 1
+( -64 64 16 ) ( -64 32 16 ) ( -48 64 16 ) __TB_empty 0 0 0 1 1
+( -48 64 112 ) ( -48 32 112 ) ( -64 64 112 ) __TB_empty 0 0 0 1 1
+( -64 64 16 ) ( -48 64 16 ) ( -64 64 160 ) __TB_empty 0 0 0 1 1
+( -48 64 16 ) ( -48 32 16 ) ( -48 64 160 ) __TB_empty 0 0 0 1 1
+}
+// brush 2
+{
+( -64 -64 16 ) ( -64 -32 16 ) ( -64 -64 160 ) __TB_empty 0 0 0 1 1
+( -64 -64 160 ) ( -48 -64 160 ) ( -64 -64 16 ) __TB_empty 0 0 0 1 1
+( -48 -64 16 ) ( -48 -32 16 ) ( -64 -64 16 ) __TB_empty 0 0 0 1 1
+( -64 -64 112 ) ( -64 -32 112 ) ( -48 -64 112 ) __TB_empty 0 0 0 1 1
+( -64 -32 160 ) ( -64 -32 16 ) ( -48 -32 160 ) __TB_empty 0 0 0 1 1
+( -48 -64 160 ) ( -48 -32 160 ) ( -48 -64 16 ) __TB_empty 0 0 0 1 1
+}
+// brush 3
+{
+( -64 -32 160 ) ( -64 -32 112 ) ( -64 32 160 ) __TB_empty 0 0 0 1 1
+( -48 -64 160 ) ( -48 -64 112 ) ( -64 -64 160 ) __TB_empty 0 0 0 1 1
+( -64 32 112 ) ( -64 -32 112 ) ( -48 32 112 ) __TB_empty 0 0 0 1 1
+( -48 32 144 ) ( -48 -32 144 ) ( -64 32 144 ) __TB_empty 0 0 0 1 1
+( -64 64 160 ) ( -64 64 112 ) ( -48 64 160 ) __TB_empty 0 0 0 1 1
+( -48 32 160 ) ( -48 32 112 ) ( -48 -32 160 ) __TB_empty 0 0 0 1 1
+}
+// brush 4
+{
+( 320 176 192 ) ( 320 112 192 ) ( 320 176 16 ) __TB_empty 0 0 0 1 1
+( 336 112 16 ) ( 320 112 16 ) ( 336 112 192 ) __TB_empty 0 0 0 1 1
+( 320 176 16 ) ( 320 112 16 ) ( 336 176 16 ) __TB_empty 0 0 0 1 1
+( 336 176 192 ) ( 336 112 192 ) ( 320 176 192 ) __TB_empty 0 0 0 1 1
+( 320 176 16 ) ( 336 176 16 ) ( 320 176 192 ) __TB_empty 0 0 0 1 1
+( 336 176 16 ) ( 336 112 16 ) ( 336 176 192 ) __TB_empty 0 0 0 1 1
+}
+// brush 5
+{
+( 320 -176 16 ) ( 320 48 16 ) ( 320 -176 192 ) __TB_empty 0 0 0 1 1
+( 320 -176 192 ) ( 336 -176 192 ) ( 320 -176 16 ) __TB_empty 0 0 0 1 1
+( 336 -176 16 ) ( 336 48 16 ) ( 320 -176 16 ) __TB_empty 0 0 0 1 1
+( 320 -176 192 ) ( 320 48 192 ) ( 336 -176 192 ) __TB_empty 0 0 0 1 1
+( 320 48 192 ) ( 320 48 16 ) ( 336 48 192 ) __TB_empty 0 0 0 1 1
+( 336 -176 192 ) ( 336 48 192 ) ( 336 -176 16 ) __TB_empty 0 0 0 1 1
+}
+// brush 6
+{
+( 320 48 192 ) ( 320 48 96 ) ( 320 112 192 ) __TB_empty 0 0 0 1 1
+( 336 48 192 ) ( 336 48 96 ) ( 320 48 192 ) __TB_empty 0 0 0 1 1
+( 320 112 96 ) ( 320 48 96 ) ( 336 112 96 ) __TB_empty 0 0 0 1 1
+( 336 112 192 ) ( 336 48 192 ) ( 320 112 192 ) __TB_empty 0 0 0 1 1
+( 320 112 192 ) ( 320 112 96 ) ( 336 112 192 ) __TB_empty 0 0 0 1 1
+( 336 112 192 ) ( 336 112 96 ) ( 336 48 192 ) __TB_empty 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "transport_warp_trigger"
+"target" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Exit"
+"targetname" "Warp_EscapeSequence_2FA_Joke_Entrance"
+// brush 0
+{
+( -64 -32 16 ) ( -64 -31 16 ) ( -64 -32 17 ) special/clip 0 0 0 1 1
+( -64 -32 16 ) ( -64 -32 17 ) ( -63 -32 16 ) special/clip 0 0 0 1 1
+( -64 -32 16 ) ( -63 -32 16 ) ( -64 -31 16 ) special/clip 0 0 0 1 1
+( -48 32 112 ) ( -48 33 112 ) ( -47 32 112 ) special/clip 0 0 0 1 1
+( -48 32 32 ) ( -47 32 32 ) ( -48 32 33 ) special/clip 0 0 0 1 1
+( -48 32 32 ) ( -48 32 33 ) ( -48 33 32 ) Textures/WarpEntrance -49 16 0 1 1
+}
+}
+// entity 2
+{
+"classname" "logic_signal_connector"
+"origin" "-24 -72 88"
+"target" "Trigger_EscapeSequence_2FA_Joke"
+"Signal" "body_entered"
+"killtarget" "Cutscene_EscapeSequence_2FA_Joke"
+"HandlerFunction" "OnBodyEntered"
+}
+// entity 3
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "WallButton"
+"_tb_id" "2"
+"_tb_linked_group_id" "{019b4408-0efc-45fa-bdf3-11f770a04b77}"
+// brush 0
+{
+( 224 -160 112 ) ( 224 -48 16 ) ( 224 -48 112 ) __TB_empty 0 0 0 1 1
+( 240 -144 112 ) ( 224 -144 16 ) ( 224 -144 112 ) __TB_empty 0 0 0 1 1
+( 240 -48 16 ) ( 224 -160 16 ) ( 240 -160 16 ) __TB_empty 0 0 0 1 1
+( 240 -48 112 ) ( 224 -160 112 ) ( 224 -48 112 ) __TB_empty 0 0 0 1 1
+( 240 -64 112 ) ( 224 -64 16 ) ( 240 -64 16 ) __TB_empty 0 0 0 1 1
+( 240 -48 112 ) ( 240 -160 16 ) ( 240 -160 112 ) __TB_empty 0 0 0 1 1
+}
+}
+// entity 4
+{
+"classname" "logic_wall_button"
+"origin" "216 -104 72"
+"angle" "180"
+"targetname" "Button_EscapeSequence_2FA_Joke_Authenticate"
+"killtarget" ""
+"_tb_group" "2"
+}
+// entity 5
+{
+"classname" "logic_signal_connector"
+"origin" "216 -136 72"
+"killtarget" "Cutscene_EscapeSequence_2FA_Joke"
+"target" "Button_EscapeSequence_2FA_Joke_Authenticate"
+"Signal" "Pressed"
+"HandlerFunction" "OnAuthenticateButtonPressed"
+"_tb_group" "2"
+}
+// entity 6
+{
+"classname" "transport_warp_trigger"
+// brush 0
+{
+( 320 48 96 ) ( 320 112 16 ) ( 320 112 96 ) Textures/WarpEntrance 28 5 0 -1 1
+( 336 48 96 ) ( 320 48 16 ) ( 320 48 96 ) special/clip 0 0 0 1 1
+( 336 112 16 ) ( 320 48 16 ) ( 336 48 16 ) special/clip 0 0 0 1 1
+( 336 112 96 ) ( 320 48 96 ) ( 320 112 96 ) special/clip 0 0 0 1 1
+( 336 112 96 ) ( 320 112 16 ) ( 336 112 16 ) special/clip 0 0 0 1 1
+( 336 112 96 ) ( 336 48 16 ) ( 336 48 96 ) special/clip 0 0 0 1 1
+}
+}
+// entity 7
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "WideAreaTriggers"
+"_tb_id" "1"
+"_tb_layer_sort_index" "0"
+"_tb_layer_locked" "1"
+}
+// entity 8
+{
+"classname" "trigger_named_trigger_zone"
+"targetname" "Trigger_EscapeSequence_2FA_Joke"
+"_tb_layer" "1"
+// brush 0
+{
+( -64 -176 256 ) ( -64 176 16 ) ( -64 176 256 ) Textures/Grate 0 0 0 1 1
+( 96 -176 256 ) ( -64 -176 16 ) ( -64 -176 256 ) Textures/Grate 0 0 0 1 1
+( 96 176 16 ) ( -64 -176 16 ) ( 96 -176 16 ) Textures/Grate 0 0 0 1 1
+( 96 176 256 ) ( -64 -176 256 ) ( -64 176 256 ) Textures/Grate 0 0 0 1 1
+( 96 176 256 ) ( -64 176 16 ) ( 96 176 16 ) Textures/Grate 0 0 0 1 1
+( 288 176 256 ) ( 288 -176 16 ) ( 288 -176 256 ) Textures/Grate 0 0 0 1 1
+}
+}
