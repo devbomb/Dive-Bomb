@@ -55,6 +55,7 @@ namespace FastDragon
                 LedgeBody = (StaticBody3D)DownCast.GetCollider(),
                 LedgePoint = DownCast.GetCollisionPoint(),
                 HangingPosition = hangingPos,
+                LedgePlatformVelocity = GetLedgeVelocity(),
 
                 RequiresSafeClimb = !AntiSuicideChecker.IsColliding(),
 
@@ -92,6 +93,13 @@ namespace FastDragon
                 _player.GlobalPosition = originalPos;
 
                 return pos;
+            }
+
+            Vector3 GetLedgeVelocity()
+            {
+                var body = (StaticBody3D)DownCast.GetCollider();
+                var bs = PhysicsServer3D.BodyGetDirectState(body.GetRid());
+                return bs.GetVelocityAtLocalPosition(body.ToLocal(hangingPos));
             }
 
             bool IsClimbingPathBlockedUpwards()
@@ -137,6 +145,12 @@ namespace FastDragon
             /// The body of the ledge that was detected
             /// </summary>
             public StaticBody3D LedgeBody;
+
+            /// <summary>
+            /// The ledge's velocity at the point the player is hanging from.
+            /// Used when hanging from moving platforms
+            /// </summary>
+            public Vector3 LedgePlatformVelocity;
 
             /// <summary>
             /// True if the climbing path is not blocked, but the player would

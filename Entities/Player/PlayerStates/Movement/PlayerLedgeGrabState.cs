@@ -5,7 +5,6 @@ namespace FastDragon
     public partial class PlayerLedgeGrabState : PlayerState
     {
         private LedgeDetector.DetectedLedge _currentLedge;
-        private Vector3 _lastLedgePos;
 
         public override void OnStateEntered()
         {
@@ -13,7 +12,6 @@ namespace FastDragon
             Self.LocalVelocity = Vector3.Zero;
 
             _currentLedge = Self.LedgeDetector.DetectLedge().Value;
-            _lastLedgePos = _currentLedge.LedgeBody.GlobalPosition;
 
             // Snap into position.
             Self.GlobalPosition = _currentLedge.HangingPosition;
@@ -62,8 +60,7 @@ namespace FastDragon
             }
 
             // Move with the ledge
-            Self.LastPlatformVelocity = (_currentLedge.LedgeBody.GlobalPosition - _lastLedgePos) / (float)delta;
-            Self.LastPlatformVelocity += _currentLedge.LedgeBody.ConstantLinearVelocity;
+            Self.LastPlatformVelocity = _currentLedge.LedgePlatformVelocity;
             Self.LocalVelocity = Vector3.Zero;
             Self.MoveAndSlide();
 
@@ -78,7 +75,6 @@ namespace FastDragon
             }
 
             _currentLedge = updatedLedge.Value;
-            _lastLedgePos = _currentLedge.LedgeBody.GlobalPosition;
 
             // Let go if the path to climb up the ledge is now blocked
             if (_currentLedge.IsClimbingPathBlocked)
