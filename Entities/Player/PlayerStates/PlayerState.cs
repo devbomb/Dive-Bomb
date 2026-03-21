@@ -234,7 +234,8 @@ namespace FastDragon
 
         /// <summary>
         /// Changes to the ledge-grabbing state and returns true, if there is
-        /// a valid ledge to grab
+        /// a valid ledge to grab and the position we'd be hanging from is
+        /// unblocked.
         /// </summary>
         /// <returns></returns>
         protected bool TryGrabLedge()
@@ -248,8 +249,20 @@ namespace FastDragon
             if (Self.LedgeDetector.IsClimbingPathBlocked)
                 return false;
 
+            if (IsHangingPosBlocked())
+                return false;
+
             ChangeState<PlayerLedgeGrabState>();
             return true;
+
+            bool IsHangingPosBlocked()
+            {
+                var hangingPos = Self.LedgeDetector.GetLedgeHangingPosition(Self).Value;
+                return Self.TestMove(
+                    Self.GlobalTransform,
+                    hangingPos - Self.GlobalPosition
+                );
+            }
         }
     }
 }
