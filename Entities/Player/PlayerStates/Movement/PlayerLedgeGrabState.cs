@@ -60,9 +60,16 @@ namespace FastDragon
         public override void _PhysicsProcess(double delta)
         {
             // Let go if the ledge no longer exists (or just isn't in the tree)
-            if (!Node.IsInstanceValid(_currentLedge) || !_currentLedge.IsInsideTree())
+            if (!Node.IsInstanceValid(_currentLedge))
             {
-                GD.Print("Letting go of ledge because it no longer exists or is no longer in the tree");
+                GD.Print("Letting go of ledge because it no longer exists");
+                ChangeState<PlayerFlopState>();
+                return;
+            }
+
+            if (!_currentLedge.IsInsideTree())
+            {
+                GD.Print("Letting go of ledge because it is no longer in the tree");
                 ChangeState<PlayerFlopState>();
                 return;
             }
@@ -76,9 +83,16 @@ namespace FastDragon
 
             // Let go if we no longer meet the ledge grab criteria
             Self.LedgeDetector.ForceUpdate();
-            if (!Self.LedgeDetector.LedgeDetected || Self.LedgeDetector.IsBlocked)
+            if (!Self.LedgeDetector.LedgeDetected)
             {
-                GD.Print("Letting go of ledge because it isn't detected anymore or is blocked");
+                GD.Print("Letting go of ledge because it isn't detected anymore");
+                ChangeState<PlayerFlopState>();
+                return;
+            }
+
+            if (Self.LedgeDetector.IsBlocked)
+            {
+                GD.Print("Letting go of ledge because it is blocked");
                 ChangeState<PlayerFlopState>();
                 return;
             }
