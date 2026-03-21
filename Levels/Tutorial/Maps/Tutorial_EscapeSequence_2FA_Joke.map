@@ -90,44 +90,6 @@
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
-"_tb_name" "WallButton"
-"_tb_id" "2"
-"_tb_linked_group_id" "{019b4408-0efc-45fa-bdf3-11f770a04b77}"
-"_tb_transformation" "-1.4901163000511172e-08 0.9999999999999999 0 256.00000333786056 -0.9999999999999999 -1.4901163000511172e-08 0 -704.0000014305119 0 0 1 0 0 0 0 1"
-// brush 0
-{
-( 112 -944 112 ) ( 112 -928 16 ) ( 112 -928 112 ) __TB_empty 0 0 0 1 1
-( 208 -944 112 ) ( 96 -944 16 ) ( 96 -944 112 ) __TB_empty 0 0 0 1 1
-( 208 -944 16 ) ( 96 -928 16 ) ( 96 -944 16 ) __TB_empty 0 0 0 1 1
-( 208 -944 112 ) ( 96 -928 112 ) ( 208 -928 112 ) __TB_empty 0 0 0 1 1
-( 96 -928 112 ) ( 208 -928 16 ) ( 208 -928 112 ) __TB_empty 0 0 0 1 1
-( 192 -944 112 ) ( 192 -928 16 ) ( 192 -944 16 ) __TB_empty 0 0 0 1 1
-}
-}
-// entity 2
-{
-"classname" "logic_wall_button"
-"origin" "152 -920 72"
-"angle" "90"
-"targetname" "Button_EscapeSequence_2FA_Joke_Authenticate"
-"killtarget" ""
-"_tb_group" "2"
-}
-// entity 3
-{
-"classname" "logic_signal_connector"
-"origin" "120 -920 72"
-"killtarget" "Cutscene_EscapeSequence_2FA_Joke"
-"target" "Button_EscapeSequence_2FA_Joke_Authenticate"
-"Signal" "Pressed"
-"HandlerFunction" "OnAuthenticateButtonPressed"
-"angle" "270"
-"_tb_group" "2"
-}
-// entity 4
-{
-"classname" "func_group"
-"_tb_type" "_tb_group"
 "_tb_name" "ExitWall"
 "_tb_id" "3"
 "_tb_linked_group_id" "{d0cc8453-3b11-4413-8e7c-a6c9ddbc0aa4}"
@@ -160,7 +122,7 @@
 ( 304 -944 192 ) ( 304 -944 16 ) ( 304 -960 192 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 5
+// entity 2
 {
 "classname" "transport_warp_trigger"
 "target" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Entrance"
@@ -176,7 +138,7 @@
 ( 368 -960 96 ) ( 368 -944 16 ) ( 368 -960 16 ) special/clip 0 0 0 1 1
 }
 }
-// entity 6
+// entity 3
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -221,7 +183,7 @@
 ( 240 -128 208 ) ( 240 -144 128 ) ( 240 -144 208 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 7
+// entity 4
 {
 "classname" "wall_divable"
 "_tb_group" "4"
@@ -235,7 +197,7 @@
 ( 304 -128 208 ) ( 304 -144 128 ) ( 304 -144 208 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 }
 }
-// entity 8
+// entity 5
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -271,7 +233,7 @@
 ( -48 80 16 ) ( -48 48 16 ) ( -48 80 160 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 9
+// entity 6
 {
 "classname" "transport_warp_trigger"
 "target" "Warp_EscapeSequence_GlassPanesOnConveyorBeltIntro_Exit"
@@ -287,7 +249,7 @@
 ( -48 48 32 ) ( -48 48 33 ) ( -48 49 32 ) Textures/WarpEntrance -49 16 0 1 1
 }
 }
-// entity 10
+// entity 7
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -350,7 +312,7 @@
 ( 304 -624 256 ) ( 304 -624 208 ) ( 304 -640 256 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 11
+// entity 8
 {
 "classname" "wall_divable"
 "_tb_group" "6"
