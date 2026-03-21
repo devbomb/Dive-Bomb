@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://2icptjxdi67m"]
+[gd_scene load_steps=5 format=3 uid="uid://2icptjxdi67m"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_fmlk6"]
 [ext_resource type="PackedScene" uid="uid://5igrd7jakapi" path="res://DebugLevels/LedgeGrabTester/Maps/LedgeGrabTester_Main.map" id="2_k6k7w"]
+[ext_resource type="PackedScene" uid="uid://dvox8tojbmggv" path="res://DebugLevels/LedgeGrabTester/Maps/LedgeGrabTester_RampEdgeCase.map" id="3_a38fb"]
 
 [sub_resource type="Environment" id="Environment_4u0mf"]
 
@@ -10,6 +11,9 @@ script = ExtResource("1_fmlk6")
 LevelName = "Ledge Grab Tester"
 
 [node name="Main" parent="." instance=ExtResource("2_k6k7w")]
+
+[node name="LedgeGrabTester_RampEdgeCase" parent="." instance=ExtResource("3_a38fb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4u0mf")
