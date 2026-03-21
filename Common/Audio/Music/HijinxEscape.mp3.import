@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/HijinxEscape.mp3-c34ca4675bcfcb0783d38e31e6e0
 [params]
 
 loop=true
-loop_offset=22.956
-bpm=0.0
+loop_offset=29.217
+bpm=115.0
 beat_count=0
 bar_beats=4
