@@ -5,19 +5,120 @@ namespace FastDragon.Levels.Tutorial
 {
     public partial class TwoFactorAuthCutsceneRig : Node
     {
+        private const string StoryFlag = "EscapeSequence_2FA_Joke_Finished";
+
         [Export] public string targetname;
 
         [ExportGroup("Internal")]
         [Export] public AnimationPlayer Animator;
 
-        public void OnBodyEntered(Node3D body)
+        private event Action _triggerEntered;
+        private event Action _authenticateButtonPressed;
+
+        private readonly StateMachine _stateMachine = new();
+
+        public override void _Ready()
         {
-            Animator.Play("CalmDown");
+            AddChild(_stateMachine);
+            SignalBus.Instance.LevelReset += Reset;
+
+            Callable.From(() =>
+            {
+                // TODO: Get a reference to the door
+                Reset();
+            }).CallDeferred();
         }
 
-        public void OnAuthenticateButtonPressed()
+        private void Reset()
         {
-            Animator.Play("Doomed");
+            bool jokeFinished = this
+                .GetLevel()
+                .TempStoryFlags
+                .Contains(StoryFlag);
+
+            if (jokeFinished)
+                _stateMachine.ChangeState<AllDone>();
+            else
+                _stateMachine.ChangeState<Idle>();
+        }
+
+        public void OnBodyEntered(Node3D body) => _triggerEntered?.Invoke();
+        public void OnAuthenticateButtonPressed() => _authenticateButtonPressed?.Invoke();
+
+        private class Idle : State<TwoFactorAuthCutsceneRig>
+        {
+            public override void OnStateEntered()
+            {
+                Self.Animator.Play("RESET");
+                // TODO: Force close the door
+            }
+
+            public override void SubscribeToSignals()
+            {
+                Self._triggerEntered += OnTriggerEntered;
+                Self._authenticateButtonPressed += OnAuthenticateButtonPressed;
+            }
+
+            public override void UnsubscribeFromSignals()
+            {
+                Self._triggerEntered -= OnTriggerEntered;
+                Self._authenticateButtonPressed -= OnAuthenticateButtonPressed;
+            }
+
+            private void OnTriggerEntered() => ChangeState<CalmDownSpeech>();
+            private void OnAuthenticateButtonPressed() => ChangeState<DoomedSpeech>();
+        }
+
+        private class CalmDownSpeech : State<TwoFactorAuthCutsceneRig>
+        {
+            public override void OnStateEntered()
+            {
+                Self.Animator.Play("CalmDown");
+            }
+
+            public override void SubscribeToSignals()
+            {
+                Self._authenticateButtonPressed += OnAuthenticateButtonPressed;
+            }
+
+            public override void UnsubscribeFromSignals()
+            {
+                Self._authenticateButtonPressed -= OnAuthenticateButtonPressed;
+            }
+
+            private void OnAuthenticateButtonPressed() => ChangeState<DoomedSpeech>();
+        }
+
+        private class DoomedSpeech : State<TwoFactorAuthCutsceneRig>
+        {
+            public override void OnStateEntered()
+            {
+                Self.Animator.Play("Doomed");
+                // TODO: Open the door
+            }
+
+            public override void SubscribeToSignals()
+            {
+                SignalBus.Instance.CheckpointActivated += OnCheckpointReached;
+            }
+
+            public override void UnsubscribeFromSignals()
+            {
+                SignalBus.Instance.CheckpointActivated -= OnCheckpointReached;
+            }
+
+            private void OnCheckpointReached()
+            {
+                Self.GetLevel().TempStoryFlags.Add(StoryFlag);
+            }
+        }
+
+        private class AllDone : State<TwoFactorAuthCutsceneRig>
+        {
+            public override void OnStateEntered()
+            {
+                // TODO: Force open the door
+            }
         }
     }
 }

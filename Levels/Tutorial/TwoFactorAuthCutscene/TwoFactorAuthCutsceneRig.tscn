@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://mdchoptoqq8n"]
+[gd_scene load_steps=11 format=3 uid="uid://mdchoptoqq8n"]
 
 [ext_resource type="Script" uid="uid://dyepf6uv6uggn" path="res://Levels/Tutorial/TwoFactorAuthCutscene/TwoFactorAuthCutsceneRig.cs" id="1_id4qm"]
 [ext_resource type="AudioStream" uid="uid://dapk1ttwwytgj" path="res://Levels/Tutorial/TwoFactorAuthCutscene/Audio/Voice/AgentD_BlownUpByNow.wav" id="1_t5bog"]
@@ -105,10 +105,14 @@ tracks/2/keys = {
 }
 tracks/2/use_blend = true
 
+[sub_resource type="Animation" id="Animation_id4qm"]
+resource_name = "RESET"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7tofe"]
 _data = {
 &"CalmDown": SubResource("Animation_kp5rl"),
-&"Doomed": SubResource("Animation_7tofe")
+&"Doomed": SubResource("Animation_7tofe"),
+&"RESET": SubResource("Animation_id4qm")
 }
 
 [node name="TwoFactorAuthCutsceneRig" type="Node" node_paths=PackedStringArray("Animator")]
