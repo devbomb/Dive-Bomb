@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nwvggnggdtmc"]
+[gd_scene load_steps=11 format=3 uid="uid://nwvggnggdtmc"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="1_ifn8o"]
 [ext_resource type="Script" uid="uid://dgu4y68tv3spi" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.cs" id="2_vmbxq"]
@@ -12,6 +12,11 @@ func _ready(): button_pressed = $/root/UserSettings.Instance().ShowPerformanceSt
 [sub_resource type="GDScript" id="GDScript_yo1g3"]
 script/source = "extends CheckButton
 func _ready(): button_pressed = $'/root/UserSettings'.Instance().UsePhysicsInterpolation
+"
+
+[sub_resource type="GDScript" id="GDScript_40s0m"]
+script/source = "extends CheckButton
+func _ready(): button_pressed = $'/root/UserSettings'.Instance().ShowPlayerVelocityStats
 "
 
 [sub_resource type="GDScript" id="GDScript_e6io1"]
@@ -79,6 +84,12 @@ layout_mode = 2
 text = "Frame Interpolation"
 flat = true
 script = SubResource("GDScript_yo1g3")
+
+[node name="ShowPlayerVelocity" type="CheckButton" parent="Panel/Buttons"]
+layout_mode = 2
+text = "Show player velocity"
+flat = true
+script = SubResource("GDScript_40s0m")
 
 [node name="Volumes" type="MarginContainer" parent="Panel/Buttons"]
 layout_mode = 2
@@ -234,6 +245,7 @@ flat = true
 
 [connection signal="toggled" from="Panel/Buttons/ShowPerformanceStats" to="." method="ToggleShowPerformanceStatus"]
 [connection signal="toggled" from="Panel/Buttons/UsePhysicsInterpolation" to="." method="ToggleUsePhysicsInterpolation"]
+[connection signal="toggled" from="Panel/Buttons/ShowPlayerVelocity" to="." method="ToggleShowPlayerVelocityStats"]
 [connection signal="value_changed" from="Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/MasterSlider" to="." method="OnSliderChanged"]
 [connection signal="value_changed" from="Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/SfxSlider" to="." method="OnSliderChanged"]
 [connection signal="value_changed" from="Panel/Buttons/Volumes/PanelContainer/VBoxContainer/Grid/MusicSlider" to="." method="OnSliderChanged"]

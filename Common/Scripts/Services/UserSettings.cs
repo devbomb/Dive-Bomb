@@ -11,6 +11,7 @@ namespace FastDragon
         public static UserSettings Instance { get; } = LoadFromJson();
 
         [JsonProperty] public bool ShowPerformanceStats = false;
+        [JsonProperty] public bool ShowPlayerVelocityStats = false;
         [JsonProperty] public bool UsePhysicsInterpolation = true;
 
         [JsonProperty] public bool InvertCameraX = false;

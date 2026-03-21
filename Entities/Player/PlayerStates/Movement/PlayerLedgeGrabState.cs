@@ -4,32 +4,19 @@ namespace FastDragon
 {
     public partial class PlayerLedgeGrabState : PlayerState
     {
-        private Vector3 _lastLedgePos;
-        private StaticBody3D _currentLedge;
+        private LedgeDetector.DetectedLedge _currentLedge;
 
         public override void OnStateEntered()
         {
             Self.Animator.Play("GrabLedge");
+
+            // Snap into position.
+            _currentLedge = Self.LedgeDetector.DetectLedge().Value;
+            Self.GlobalPosition = _currentLedge.HangingPosition;
+
+            // Start moving with the ledge
+            Self.LastPlatformVelocity = _currentLedge.LedgePlatformVelocity;
             Self.LocalVelocity = Vector3.Zero;
-
-            _currentLedge = Self.LedgeDetector.LastLedge;
-            _lastLedgePos = _currentLedge.GlobalPosition;
-
-            // Snap to the correct height.
-            // The height should be such that the ledge grab point is at exactly
-            // the ledge height.
-            var pos = Self.GlobalPosition;
-            pos.Y = Self.LedgeDetector.LedgeGlobalY;
-            pos.Y -= Self.LedgeGrabPoint.Position.Y;
-            Self.GlobalPosition = pos;
-
-            // Because the player is a sphere, changing their height probably
-            // made them clip into the wall a little bit.  Let's move them out.
-            //
-            // Don't believe me?  Imagine a billiard ball teetering on the edge
-            // of a cliff.  If you just move that ball straight down, it would
-            // clip into that cliff, wouldn't it?
-            Self.MoveAndCollide(Vector3.Zero);
 
             // Rotate to face the wall.
             // It would be weird otherwise.
@@ -42,7 +29,7 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                if (Self.LedgeDetector.LastLedgePointRequiresSafeClimb)
+                if (_currentLedge.RequiresSafeClimb)
                     ChangeState<PlayerLedgeClimbSafeState>();
                 else
                     ChangeState<PlayerLedgeClimbState>();
@@ -60,36 +47,43 @@ namespace FastDragon
         public override void _PhysicsProcess(double delta)
         {
             // Let go if the ledge no longer exists (or just isn't in the tree)
-            if (!Node.IsInstanceValid(_currentLedge) || !_currentLedge.IsInsideTree())
+            if (!Node.IsInstanceValid(_currentLedge.LedgeBody))
             {
-                GD.Print("Letting go of ledge because it no longer exists or is no longer in the tree");
+                GD.Print("Letting go of ledge because it no longer exists");
+                ChangeState<PlayerFlopState>();
+                return;
+            }
+
+            if (!_currentLedge.LedgeBody.IsInsideTree())
+            {
+                GD.Print("Letting go of ledge because it is no longer in the tree");
                 ChangeState<PlayerFlopState>();
                 return;
             }
 
             // Move with the ledge
-            Self.LastPlatformVelocity = (_currentLedge.GlobalPosition - _lastLedgePos) / (float)delta;
-            Self.LastPlatformVelocity += _currentLedge.ConstantLinearVelocity;
+            Self.LastPlatformVelocity = _currentLedge.LedgePlatformVelocity;
             Self.LocalVelocity = Vector3.Zero;
             Self.MoveAndSlide();
-            _lastLedgePos = _currentLedge.GlobalPosition;
 
-            // Let go if we no longer meet the ledge grab criteria
-            Self.LedgeDetector.ForceUpdate();
-            if (!Self.LedgeDetector.LedgeDetected || Self.LedgeDetector.IsBlocked)
+            // Re-check the ledge status.
+            // Let go if no ledge is detected anymore.
+            var updatedLedge = Self.LedgeDetector.DetectLedge();
+            if (!updatedLedge.HasValue)
             {
-                GD.Print("Letting go of ledge because it isn't detected anymore or is blocked");
+                GD.Print("Letting go of ledge because it isn't detected anymore");
                 ChangeState<PlayerFlopState>();
                 return;
             }
 
-            // If a different ledge has been detected, switch to tracking it
-            // instead.
-            if (Self.LedgeDetector.LastLedge != _currentLedge)
+            _currentLedge = updatedLedge.Value;
+
+            // Let go if the path to climb up the ledge is now blocked
+            if (_currentLedge.IsClimbingPathBlocked)
             {
-                GD.Print("Switching to a different ledge");
-                _currentLedge = Self.LedgeDetector.LastLedge;
-                _lastLedgePos = _currentLedge.GlobalPosition;
+                GD.Print("Letting go of ledge because the path to climb up it is blocked");
+                ChangeState<PlayerFlopState>();
+                return;
             }
         }
     }
