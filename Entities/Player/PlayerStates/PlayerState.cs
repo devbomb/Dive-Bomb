@@ -240,29 +240,28 @@ namespace FastDragon
         /// <returns></returns>
         protected bool TryGrabLedge()
         {
-            if (!Self.LedgeDetector.LedgeDetected)
+            var ledge = Self.LedgeDetector.DetectLedge();
+
+            if (!ledge.HasValue)
                 return false;
 
             if (!Self.IsOnWallOnly())
                 return false;
 
-            if (Self.LedgeDetector.IsClimbingPathBlocked)
+            if (ledge.Value.IsClimbingPathBlocked)
+            {
+                GD.Print("Ledge detected and on a wall, but the climbing path is blocked");
                 return false;
+            }
 
-            if (IsHangingPosBlocked())
+            if (ledge.Value.IsHangingPosBlocked)
+            {
+                GD.Print("Ledge detected and on a wall, but hanging pos is blocked");
                 return false;
+            }
 
             ChangeState<PlayerLedgeGrabState>();
             return true;
-
-            bool IsHangingPosBlocked()
-            {
-                var hangingPos = Self.LedgeDetector.GetLedgeHangingPosition(Self).Value;
-                return Self.TestMove(
-                    Self.GlobalTransform,
-                    hangingPos - Self.GlobalPosition
-                );
-            }
         }
     }
 }

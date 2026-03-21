@@ -1,11 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfucpfnpqi5r3"]
+[gd_scene load_steps=5 format=3 uid="uid://bfucpfnpqi5r3"]
 
 [ext_resource type="Script" uid="uid://bhepqrluiokcn" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.cs" id="1_ykwis"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pwy4k"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pwy4k"]
-size = Vector3(1, 2, 0.924792)
 
 [sub_resource type="SphereMesh" id="SphereMesh_pwy4k"]
 radius = 0.05
@@ -18,31 +13,11 @@ albedo_color = Color(0.22352941, 1, 1, 0.21960784)
 [sub_resource type="SphereMesh" id="SphereMesh_wc4sc"]
 material = SubResource("StandardMaterial3D_pwy4k")
 
-[node name="LedgeDetector" type="Node3D" node_paths=PackedStringArray("UpCapsule", "ForwardCapsule", "DownCast", "AntiSuicideChecker", "Visualizer")]
+[node name="LedgeDetector" type="Node3D" node_paths=PackedStringArray("DownCast", "AntiSuicideChecker", "Visualizer")]
 script = ExtResource("1_ykwis")
-UpCapsule = NodePath("UpCapsule")
-ForwardCapsule = NodePath("ForwardCapsule")
 DownCast = NodePath("DownCast")
 AntiSuicideChecker = NodePath("AntiSuicideChecker")
 Visualizer = NodePath("Visualizer")
-
-[node name="UpCapsule" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
-collision_layer = 0
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="UpCapsule"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_pwy4k")
-
-[node name="ForwardCapsule" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.5, -1.5)
-collision_layer = 0
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ForwardCapsule"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5261041)
-shape = SubResource("BoxShape3D_pwy4k")
 
 [node name="DownCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
@@ -56,6 +31,7 @@ collision_mask = 3
 
 [node name="Visualizer" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
 top_level = true
+visible = false
 mesh = SubResource("SphereMesh_pwy4k")
 
 [node name="ReferenceBefore" type="MeshInstance3D" parent="."]

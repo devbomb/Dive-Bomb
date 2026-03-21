@@ -23,7 +23,7 @@ namespace FastDragon
 
             _timer = 0;
             _startPos = Self.GlobalPosition;
-            _targetPos = Self.LedgeDetector.LastLedgePoint;
+            _targetPos = Self.LedgeDetector.DetectLedge().Value.LedgePoint;
         }
 
         public override void OnStateExited()

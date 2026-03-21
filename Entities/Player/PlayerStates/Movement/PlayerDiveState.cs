@@ -166,14 +166,15 @@ namespace FastDragon
                 // of bonking.  This is to reduce the amount of "WTF?  I bonked
                 // on air?!" moments caused by the spherical collider not matching
                 // up with the player model.
-                if (Self.LedgeDetector.LedgeDetected && !Self.LedgeDetector.IsClimbingPathBlocked)
+                var ledge = Self.LedgeDetector.DetectLedge();
+                if (ledge.HasValue && !ledge.Value.IsClimbingPathBlocked)
                 {
                     const float forgivableHeight = 0.6f;
-                    float ledgeHeight = Self.LedgeDetector.LastLedgePoint.Y - Self.GlobalPosition.Y;
+                    float ledgeHeight = ledge.Value.LedgePoint.Y - Self.GlobalPosition.Y;
                     if (ledgeHeight < forgivableHeight && ledgeHeight >= 0)
                     {
                         var pos = Self.GlobalPosition;
-                        pos.Y = Self.LedgeDetector.LastLedgePoint.Y;
+                        pos.Y = ledge.Value.LedgePoint.Y;
                         Self.GlobalPosition = pos;
                         Self.Velocity = prevVel;
                         GD.Print($"Ledge detected; bonk forgiven (height: {ledgeHeight})");

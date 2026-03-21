@@ -4,19 +4,19 @@ namespace FastDragon
 {
     public partial class PlayerLedgeGrabState : PlayerState
     {
+        private LedgeDetector.DetectedLedge _currentLedge;
         private Vector3 _lastLedgePos;
-        private StaticBody3D _currentLedge;
 
         public override void OnStateEntered()
         {
             Self.Animator.Play("GrabLedge");
             Self.LocalVelocity = Vector3.Zero;
 
-            _currentLedge = Self.LedgeDetector.LastLedge;
-            _lastLedgePos = _currentLedge.GlobalPosition;
+            _currentLedge = Self.LedgeDetector.DetectLedge().Value;
+            _lastLedgePos = _currentLedge.LedgeBody.GlobalPosition;
 
             // Snap into position.
-            Self.GlobalPosition = Self.LedgeDetector.GetLedgeHangingPosition(Self).Value;
+            Self.GlobalPosition = _currentLedge.HangingPosition;
 
             // Rotate to face the wall.
             // It would be weird otherwise.
@@ -29,7 +29,7 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                if (Self.LedgeDetector.LastLedgePointRequiresSafeClimb)
+                if (_currentLedge.RequiresSafeClimb)
                     ChangeState<PlayerLedgeClimbSafeState>();
                 else
                     ChangeState<PlayerLedgeClimbState>();
@@ -47,14 +47,14 @@ namespace FastDragon
         public override void _PhysicsProcess(double delta)
         {
             // Let go if the ledge no longer exists (or just isn't in the tree)
-            if (!Node.IsInstanceValid(_currentLedge))
+            if (!Node.IsInstanceValid(_currentLedge.LedgeBody))
             {
                 GD.Print("Letting go of ledge because it no longer exists");
                 ChangeState<PlayerFlopState>();
                 return;
             }
 
-            if (!_currentLedge.IsInsideTree())
+            if (!_currentLedge.LedgeBody.IsInsideTree())
             {
                 GD.Print("Letting go of ledge because it is no longer in the tree");
                 ChangeState<PlayerFlopState>();
@@ -62,35 +62,30 @@ namespace FastDragon
             }
 
             // Move with the ledge
-            Self.LastPlatformVelocity = (_currentLedge.GlobalPosition - _lastLedgePos) / (float)delta;
-            Self.LastPlatformVelocity += _currentLedge.ConstantLinearVelocity;
+            Self.LastPlatformVelocity = (_currentLedge.LedgeBody.GlobalPosition - _lastLedgePos) / (float)delta;
+            Self.LastPlatformVelocity += _currentLedge.LedgeBody.ConstantLinearVelocity;
             Self.LocalVelocity = Vector3.Zero;
             Self.MoveAndSlide();
-            _lastLedgePos = _currentLedge.GlobalPosition;
 
-            // Let go if we no longer meet the ledge grab criteria
-            Self.LedgeDetector.ForceUpdate();
-            if (!Self.LedgeDetector.LedgeDetected)
+            // Re-check the ledge status.
+            // Let go if no ledge is detected anymore.
+            var updatedLedge = Self.LedgeDetector.DetectLedge();
+            if (!updatedLedge.HasValue)
             {
                 GD.Print("Letting go of ledge because it isn't detected anymore");
                 ChangeState<PlayerFlopState>();
                 return;
             }
 
-            if (Self.LedgeDetector.IsClimbingPathBlocked)
+            _currentLedge = updatedLedge.Value;
+            _lastLedgePos = _currentLedge.LedgeBody.GlobalPosition;
+
+            // Let go if the path to climb up the ledge is now blocked
+            if (_currentLedge.IsClimbingPathBlocked)
             {
                 GD.Print("Letting go of ledge because the path to climb up it is blocked");
                 ChangeState<PlayerFlopState>();
                 return;
-            }
-
-            // If a different ledge has been detected, switch to tracking it
-            // instead.
-            if (Self.LedgeDetector.LastLedge != _currentLedge)
-            {
-                GD.Print("Switching to a different ledge");
-                _currentLedge = Self.LedgeDetector.LastLedge;
-                _lastLedgePos = _currentLedge.GlobalPosition;
             }
         }
     }
