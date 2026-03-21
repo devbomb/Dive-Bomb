@@ -57,6 +57,12 @@ namespace FastDragon
             _userSettings.SaveToJson();
         }
 
+        public void ToggleShowPlayerVelocityStats(bool toggledOn)
+        {
+            _userSettings.ShowPlayerVelocityStats = toggledOn;
+            _userSettings.SaveToJson();
+        }
+
         public void ToggleInvertCameraX(bool toggledOn)
         {
             _userSettings.InvertCameraX = toggledOn;

@@ -22,6 +22,8 @@
 script/source = "extends GridContainer
 
 func _physics_process(_delta: float) -> void:
+	visible = $'/root/UserSettings'.Instance().ShowPlayerVelocityStats
+	
 	if !visible:
 		return
 	
