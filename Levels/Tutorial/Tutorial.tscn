@@ -455,6 +455,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 9.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 111.5)
 
 [node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" instance=ExtResource("25_smxar")]
+DoorTargetname = "Door_EscapeSequence_2FA_Joke"
 
 [node name="Tutorial_LevelExitCannon" parent="." instance=ExtResource("23_35ubr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 41, 265)

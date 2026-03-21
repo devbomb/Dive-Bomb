@@ -8,6 +8,7 @@ namespace FastDragon.Levels.Tutorial
         private const string StoryFlag = "EscapeSequence_2FA_Joke_Finished";
 
         [Export] public string targetname;
+        [Export] public string DoorTargetname;
 
         [ExportGroup("Internal")]
         [Export] public AnimationPlayer Animator;
@@ -16,6 +17,7 @@ namespace FastDragon.Levels.Tutorial
         private event Action _authenticateButtonPressed;
 
         private readonly StateMachine _stateMachine = new();
+        private IPowerable _door;
 
         public override void _Ready()
         {
@@ -24,7 +26,7 @@ namespace FastDragon.Levels.Tutorial
 
             Callable.From(() =>
             {
-                // TODO: Get a reference to the door
+                _door = this.FindNodeByTargetName<IPowerable>(DoorTargetname);
                 Reset();
             }).CallDeferred();
         }
@@ -50,7 +52,7 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 Self.Animator.Play("RESET");
-                // TODO: Force close the door
+                Self._door.ForceSetPowered(false);
             }
 
             public override void SubscribeToSignals()
@@ -94,7 +96,7 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 Self.Animator.Play("Doomed");
-                // TODO: Open the door
+                Self._door.SetPowered(true);
             }
 
             public override void SubscribeToSignals()
@@ -117,7 +119,7 @@ namespace FastDragon.Levels.Tutorial
         {
             public override void OnStateEntered()
             {
-                // TODO: Force open the door
+                Self._door.ForceSetPowered(true);
             }
         }
     }
