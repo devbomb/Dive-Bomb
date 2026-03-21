@@ -20,7 +20,7 @@ namespace FastDragon
 
         [Export] public Node3D Visualizer;
 
-        public bool IsBlocked =>
+        public bool IsClimbingPathBlocked =>
             UpCapsule.GetOverlappingBodiesResetSafe().Any(b => b is not Player) ||
             ForwardCapsule.GetOverlappingBodiesResetSafe().Any(b => b is not Player);
 

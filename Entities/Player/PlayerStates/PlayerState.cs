@@ -245,7 +245,7 @@ namespace FastDragon
             if (!Self.IsOnWallOnly())
                 return false;
 
-            if (Self.LedgeDetector.IsBlocked)
+            if (Self.LedgeDetector.IsClimbingPathBlocked)
                 return false;
 
             ChangeState<PlayerLedgeGrabState>();

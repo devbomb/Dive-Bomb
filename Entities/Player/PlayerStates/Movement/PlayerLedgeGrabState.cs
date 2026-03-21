@@ -90,9 +90,9 @@ namespace FastDragon
                 return;
             }
 
-            if (Self.LedgeDetector.IsBlocked)
+            if (Self.LedgeDetector.IsClimbingPathBlocked)
             {
-                GD.Print("Letting go of ledge because it is blocked");
+                GD.Print("Letting go of ledge because the path to climb up it is blocked");
                 ChangeState<PlayerFlopState>();
                 return;
             }
