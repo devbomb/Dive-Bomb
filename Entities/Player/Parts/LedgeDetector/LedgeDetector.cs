@@ -125,7 +125,7 @@ namespace FastDragon
 
                 return _player.TestMove(
                     Transform3D.Identity.WithOrigin(start),
-                    end - start
+                    start.DirectionTo(end) * 0.6f
                 );
             }
         }
