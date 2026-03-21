@@ -915,7 +915,7 @@
 {
 "classname" "transport_warp_trigger"
 "targetname" "Warp_EscapeSequence_GlassPanesOnConveyorBeltIntro_Exit"
-"target" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Entrance"
+"target" "Warp_EscapeSequence_2FA_Joke_Entrance"
 // brush 0
 {
 ( 656 -224 320 ) ( 656 -128 176 ) ( 656 -128 320 ) Textures/WarpEntrance 0 0 0 -1 1

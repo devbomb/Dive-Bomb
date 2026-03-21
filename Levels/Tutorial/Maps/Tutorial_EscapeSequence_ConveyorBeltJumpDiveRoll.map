@@ -633,7 +633,7 @@
 {
 "classname" "transport_warp_trigger"
 "targetname" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Exit"
-"target" "Warp_EscapeSequence_2FA_Joke_Entrance"
+"target" "Warp_LevelExitCannon"
 "_tb_group" "8"
 // brush 0
 {
@@ -693,7 +693,7 @@
 {
 "classname" "transport_warp_trigger"
 "targetname" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Entrance"
-"target" "Warp_EscapeSequence_GlassPanesOnConveyorBeltIntro_Exit"
+"target" "Warp_EscapeSequence_2FA_Joke_Exit"
 // brush 0
 {
 ( 656 -224 320 ) ( 656 -128 176 ) ( 656 -128 320 ) special/clip 0 0 0 1 1
@@ -702,5 +702,28 @@
 ( 672 -128 320 ) ( 656 -224 320 ) ( 656 -128 320 ) special/clip 0 0 0 1 1
 ( 672 -128 320 ) ( 656 -128 176 ) ( 672 -128 176 ) special/clip 0 0 0 1 1
 ( 672 -128 320 ) ( 672 -224 176 ) ( 672 -224 320 ) Textures/WarpEntrance 0 0 0 1 1
+}
+}
+// entity 24
+{
+"classname" "logic_signal_connector"
+"origin" "856 -200 248"
+"target" "Trigger_EscapeSequence_2FA_Joke"
+"Signal" "body_entered"
+"killtarget" "Cutscene_EscapeSequence_2FA_Joke"
+"HandlerFunction" "OnBodyEntered"
+}
+// entity 25
+{
+"classname" "trigger_named_trigger_zone"
+"targetname" "Trigger_EscapeSequence_2FA_Joke"
+// brush 0
+{
+( 832 -432 448 ) ( 832 -80 208 ) ( 832 -80 448 ) Textures/Grate 0 0 0 1 1
+( 992 -304 448 ) ( 832 -304 208 ) ( 832 -304 448 ) Textures/Grate 0 0 0 1 1
+( 992 -80 208 ) ( 832 -432 208 ) ( 992 -432 208 ) Textures/Grate 0 0 0 1 1
+( 992 -80 368 ) ( 832 -432 368 ) ( 832 -80 368 ) Textures/Grate 0 0 0 1 1
+( 992 -80 448 ) ( 832 -80 208 ) ( 992 -80 208 ) Textures/Grate 0 0 0 1 1
+( 1024 -80 448 ) ( 1024 -432 208 ) ( 1024 -432 448 ) Textures/Grate 0 0 0 1 1
 }
 }

@@ -4,8 +4,6 @@
 {
 "wad" ""
 "classname" "worldspawn"
-"target" "Warp_LevelExitCannon"
-"targetname" "Warp_EscapeSequence_2FA_Joke_Exit"
 // brush 0
 {
 ( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) __TB_empty 0 0 0 1 1
@@ -90,15 +88,6 @@
 }
 // entity 1
 {
-"classname" "logic_signal_connector"
-"origin" "-24 -72 88"
-"target" "Trigger_EscapeSequence_2FA_Joke"
-"Signal" "body_entered"
-"killtarget" "Cutscene_EscapeSequence_2FA_Joke"
-"HandlerFunction" "OnBodyEntered"
-}
-// entity 2
-{
 "classname" "func_group"
 "_tb_type" "_tb_group"
 "_tb_name" "WallButton"
@@ -115,7 +104,7 @@
 ( 192 -944 112 ) ( 192 -928 16 ) ( 192 -944 16 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 3
+// entity 2
 {
 "classname" "logic_wall_button"
 "origin" "152 -920 72"
@@ -124,7 +113,7 @@
 "killtarget" ""
 "_tb_group" "2"
 }
-// entity 4
+// entity 3
 {
 "classname" "logic_signal_connector"
 "origin" "120 -920 72"
@@ -135,7 +124,7 @@
 "angle" "270"
 "_tb_group" "2"
 }
-// entity 5
+// entity 4
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -171,10 +160,10 @@
 ( 304 -944 192 ) ( 304 -944 16 ) ( 304 -960 192 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 6
+// entity 5
 {
 "classname" "transport_warp_trigger"
-"target" "Warp_LevelExitCannon"
+"target" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Entrance"
 "targetname" "Warp_EscapeSequence_2FA_Joke_Exit"
 "_tb_group" "3"
 // brush 0
@@ -187,7 +176,7 @@
 ( 368 -960 96 ) ( 368 -944 16 ) ( 368 -960 16 ) special/clip 0 0 0 1 1
 }
 }
-// entity 7
+// entity 6
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -232,7 +221,7 @@
 ( 240 -128 208 ) ( 240 -144 128 ) ( 240 -144 208 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 8
+// entity 7
 {
 "classname" "wall_divable"
 "_tb_group" "4"
@@ -246,7 +235,7 @@
 ( 304 -128 208 ) ( 304 -144 128 ) ( 304 -144 208 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 }
 }
-// entity 9
+// entity 8
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -282,10 +271,10 @@
 ( -48 80 16 ) ( -48 48 16 ) ( -48 80 160 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 10
+// entity 9
 {
 "classname" "transport_warp_trigger"
-"target" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Exit"
+"target" "Warp_EscapeSequence_GlassPanesOnConveyorBeltIntro_Exit"
 "targetname" "Warp_EscapeSequence_2FA_Joke_Entrance"
 "_tb_group" "5"
 // brush 0
@@ -298,7 +287,7 @@
 ( -48 48 32 ) ( -48 48 33 ) ( -48 49 32 ) Textures/WarpEntrance -49 16 0 1 1
 }
 }
-// entity 11
+// entity 10
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -361,7 +350,7 @@
 ( 304 -624 256 ) ( 304 -624 208 ) ( 304 -640 256 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 12
+// entity 11
 {
 "classname" "wall_divable"
 "_tb_group" "6"
@@ -373,29 +362,5 @@
 ( 304 -624 208 ) ( 208 -640 208 ) ( 208 -624 208 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 ( 304 -624 208 ) ( 208 -624 96 ) ( 304 -624 96 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 ( 304 -624 208 ) ( 304 -640 96 ) ( 304 -640 208 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
-}
-}
-// entity 13
-{
-"classname" "func_group"
-"_tb_type" "_tb_layer"
-"_tb_name" "WideAreaTriggers"
-"_tb_id" "1"
-"_tb_layer_sort_index" "0"
-"_tb_layer_locked" "1"
-}
-// entity 14
-{
-"classname" "trigger_named_trigger_zone"
-"targetname" "Trigger_EscapeSequence_2FA_Joke"
-"_tb_layer" "1"
-// brush 0
-{
-( -64 -176 256 ) ( -64 176 16 ) ( -64 176 256 ) Textures/Grate 0 0 0 1 1
-( 96 -176 256 ) ( -64 -176 16 ) ( -64 -176 256 ) Textures/Grate 0 0 0 1 1
-( 96 176 16 ) ( -64 -176 16 ) ( 96 -176 16 ) Textures/Grate 0 0 0 1 1
-( 96 176 256 ) ( -64 -176 256 ) ( -64 176 256 ) Textures/Grate 0 0 0 1 1
-( 96 176 256 ) ( -64 176 16 ) ( 96 176 16 ) Textures/Grate 0 0 0 1 1
-( 288 176 256 ) ( 288 -176 16 ) ( 288 -176 256 ) Textures/Grate 0 0 0 1 1
 }
 }

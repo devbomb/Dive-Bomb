@@ -187,7 +187,7 @@
 {
 "classname" "transport_warp_trigger"
 "targetname" "Warp_LevelExitCannon"
-"target" "Warp_EscapeSequence_2FA_Joke_Exit"
+"target" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Exit"
 // brush 0
 {
 ( -64 -64 160 ) ( -64 -48 16 ) ( -64 -48 160 ) special/clip 0 0 0 1 1
