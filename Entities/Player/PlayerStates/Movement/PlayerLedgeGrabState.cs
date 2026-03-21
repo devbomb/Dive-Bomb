@@ -9,12 +9,14 @@ namespace FastDragon
         public override void OnStateEntered()
         {
             Self.Animator.Play("GrabLedge");
-            Self.LocalVelocity = Vector3.Zero;
-
-            _currentLedge = Self.LedgeDetector.DetectLedge().Value;
 
             // Snap into position.
+            _currentLedge = Self.LedgeDetector.DetectLedge().Value;
             Self.GlobalPosition = _currentLedge.HangingPosition;
+
+            // Start moving with the ledge
+            Self.LastPlatformVelocity = _currentLedge.LedgePlatformVelocity;
+            Self.LocalVelocity = Vector3.Zero;
 
             // Rotate to face the wall.
             // It would be weird otherwise.
