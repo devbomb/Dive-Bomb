@@ -107,6 +107,7 @@ namespace FastDragon
                 Vector3 start = hangingPos;
                 Vector3 end = hangingPos;
                 end.Y = DownCast.GetCollisionPoint().Y;
+                end.Y += _player.SafeMargin;
 
                 return _player.TestMove(
                     Transform3D.Identity.WithOrigin(start),
@@ -117,6 +118,8 @@ namespace FastDragon
             bool IsClimbingPathBlockedForwards()
             {
                 Vector3 end = DownCast.GetCollisionPoint();
+                end.Y += _player.SafeMargin;
+
                 Vector3 start = hangingPos;
                 start.Y = end.Y;
 
