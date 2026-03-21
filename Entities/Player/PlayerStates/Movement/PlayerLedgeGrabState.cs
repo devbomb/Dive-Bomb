@@ -15,21 +15,8 @@ namespace FastDragon
             _currentLedge = Self.LedgeDetector.LastLedge;
             _lastLedgePos = _currentLedge.GlobalPosition;
 
-            // Snap to the correct height.
-            // The height should be such that the ledge grab point is at exactly
-            // the ledge height.
-            var pos = Self.GlobalPosition;
-            pos.Y = Self.LedgeDetector.LedgeGlobalY;
-            pos.Y -= Self.LedgeGrabPoint.Position.Y;
-            Self.GlobalPosition = pos;
-
-            // Because the player is a sphere, changing their height probably
-            // made them clip into the wall a little bit.  Let's move them out.
-            //
-            // Don't believe me?  Imagine a billiard ball teetering on the edge
-            // of a cliff.  If you just move that ball straight down, it would
-            // clip into that cliff, wouldn't it?
-            Self.MoveAndCollide(Vector3.Zero);
+            // Snap into position.
+            Self.GlobalPosition = Self.LedgeDetector.GetLedgeHangingPosition(Self).Value;
 
             // Rotate to face the wall.
             // It would be weird otherwise.

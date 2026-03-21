@@ -61,5 +61,38 @@ namespace FastDragon
             ForceUpdateTransform();
             DownCast.ForceRaycastUpdate();
         }
+
+        /// <summary>
+        /// Returns the position the player should be moved to if they were to
+        /// hang from the currently-detected ledge.
+        ///
+        /// Returns null if no ledge is detected.
+        /// </summary>
+        public Vector3? GetLedgeHangingPosition(Player player)
+        {
+            if (!LedgeDetected)
+                return null;
+
+            // The height should be such that the ledge grab point is at exactly
+            // the ledge height.
+            var pos = player.GlobalPosition;
+            pos.Y = LedgeGlobalY;
+            pos.Y -= player.LedgeGrabPoint.Position.Y;
+
+            // Because the player is a sphere, changing their height would
+            // probably make them clip into the wall a little bit.
+            // Let's move it out.
+            //
+            // Don't believe me?  Imagine a billiard ball teetering on the edge
+            // of a cliff.  If you just move that ball straight down, it would
+            // clip into that cliff, wouldn't it?
+            var originalPos = player.GlobalPosition;
+            player.GlobalPosition = pos;
+            player.MoveAndCollide(Vector3.Zero);
+            pos = player.GlobalPosition;
+            player.GlobalPosition = originalPos;
+
+            return pos;
+        }
     }
 }
