@@ -36,6 +36,7 @@ namespace FastDragon
         private void Reset()
         {
             _stateMachine.ChangeState<Idle>();
+            _gemQueue.Clear();
         }
 
         public override void _PhysicsProcess(double deltaD)
