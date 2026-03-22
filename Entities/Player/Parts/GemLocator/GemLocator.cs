@@ -31,6 +31,10 @@ namespace FastDragon
             GrowPoint.Scale = shouldShow
                 ? GrowPoint.Scale.MoveToward(Vector3.One, (float)delta / GrowTime)
                 : GrowPoint.Scale.MoveToward(Vector3.Zero, (float)delta / ShrinkTime);
+
+            // GrowPoint is top-level to prevent it from turning with the player.
+            // That means we need to translate it into place.
+            GrowPoint.GlobalPosition = GlobalPosition;
         }
 
         private Transform3D TargetSwivelTransformLocal(Gem nearestGem)
@@ -38,9 +42,12 @@ namespace FastDragon
             if (nearestGem == null)
                 return Transform3D.Identity;
 
+            if (GrowPoint.Scale.IsZeroApprox())
+                return Transform3D.Identity;
+
             return Transform3D
                 .Identity
-                .LookingAt(ToLocal(nearestGem.GlobalPosition));
+                .LookingAt(GrowPoint.ToLocal(nearestGem.GlobalPosition));
         }
     }
 }

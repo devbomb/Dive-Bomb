@@ -9,6 +9,7 @@ GrowPoint = NodePath("GrowPoint")
 Swivel = NodePath("GrowPoint/Swivel")
 
 [node name="GrowPoint" type="Node3D" parent="."]
+top_level = true
 
 [node name="Swivel" type="Node3D" parent="GrowPoint"]
 
