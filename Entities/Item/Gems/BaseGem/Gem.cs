@@ -14,6 +14,8 @@ namespace FastDragon
             ?.GetProgress()
             ?.IsGemCollected(Value, SaveKey) ?? false;
 
+        public bool IsHomingIn => _stateMachine.CurrentState is Homing;
+
         [Export] public GemColor Value;
 
         public bool StartHidden = false;

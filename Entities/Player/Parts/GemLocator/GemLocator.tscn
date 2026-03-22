@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://3ers24cluv0c"]
+
+[ext_resource type="Script" uid="uid://bshl1xgiqk458" path="res://Entities/Player/Parts/GemLocator/GemLocator.cs" id="1_rctdy"]
+[ext_resource type="PackedScene" uid="uid://uru8l68vqn48" path="res://Entities/Player/Parts/GemLocator/Arrow.blend" id="1_uanvb"]
+
+[node name="GemLocator" type="Node3D" node_paths=PackedStringArray("GrowPoint", "Swivel") groups=["PhysicsInterpolated"]]
+script = ExtResource("1_rctdy")
+GrowPoint = NodePath("GrowPoint")
+Swivel = NodePath("GrowPoint/Swivel")
+
+[node name="GrowPoint" type="Node3D" parent="."]
+top_level = true
+
+[node name="Swivel" type="Node3D" parent="GrowPoint"]
+
+[node name="Arrow" parent="GrowPoint/Swivel" instance=ExtResource("1_uanvb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

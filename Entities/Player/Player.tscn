@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c26712jp7rfwp"]
+[gd_scene load_steps=31 format=3 uid="uid://c26712jp7rfwp"]
 
 [ext_resource type="Script" uid="uid://dxnvs480y3nit" path="res://Entities/Player/Player.cs" id="1_a4opu"]
 [ext_resource type="PackedScene" uid="uid://bfucpfnpqi5r3" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.tscn" id="2_0esln"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dghyx6ev3y6q6" path="res://Entities/Player/SFX/Bonk.wav" id="6_wmg1a"]
 [ext_resource type="AudioStream" uid="uid://bg3t5q648uwq" path="res://Entities/Player/SFX/FlipDamage.wav" id="7_anupw"]
 [ext_resource type="AudioStream" uid="uid://b8p3vq40pffrv" path="res://Entities/Player/SFX/DrownWaterEnterSplash.wav" id="8_pxges"]
+[ext_resource type="PackedScene" uid="uid://3ers24cluv0c" path="res://Entities/Player/Parts/GemLocator/GemLocator.tscn" id="9_5m37j"]
 [ext_resource type="PackedScene" uid="uid://byhmelsic6fu5" path="res://UI/Menus/HUD/HUD.tscn" id="9_m2xb1"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="9_vmh20"]
 [ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Entities/Player/Parts/GemGravityGloves/GemGravityGloves.tscn" id="10_dedpk"]
@@ -333,6 +334,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25565, 0)
 [node name="GemGravityGloves" parent="." node_paths=PackedStringArray("LeftHandPoint", "RightHandPoint") instance=ExtResource("10_dedpk")]
 LeftHandPoint = NodePath("../Model/LeftHandBone/LeftHandPoint")
 RightHandPoint = NodePath("../Model/RightHandBone/RightHandPoint")
+
+[node name="GemLocator" parent="." instance=ExtResource("9_5m37j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7094951, 0)
 
 [node name="LastSafeGroundVisualizer" type="Node3D" parent="."]
 top_level = true

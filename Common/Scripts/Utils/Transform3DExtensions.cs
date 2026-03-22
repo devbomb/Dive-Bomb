@@ -17,5 +17,16 @@ namespace FastDragon
         {
             return Transform3D.Identity.Translated(-transform.Origin + origin);
         }
+
+        public static Transform3D DecayToward(
+            this Transform3D from,
+            Transform3D to,
+            float decayRate,
+            float delta
+        )
+        {
+            float t = MathUtils.DecayToward(1, 0, decayRate, delta);
+            return from.InterpolateWith(to, t);
+        }
     }
 }
