@@ -37,6 +37,8 @@ namespace FastDragon
 
         public static bool JumpHeld => Input.IsActionPressed("Jump");
 
+        public static bool LocateGemsHeld => Input.IsActionPressed("LocateGems");
+
         public static bool JumpJustPressed(InputEvent ev)
             => ev.IsActionPressed("Jump");
 
