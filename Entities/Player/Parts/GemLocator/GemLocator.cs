@@ -9,6 +9,8 @@ namespace FastDragon
         private const float GrowTime = 0.1f;
         private const float ShrinkTime = 0.1f;
 
+        private const float InvisibleScale = 0.1f;
+
         [ExportGroup("Internal")]
         [Export] public Node3D GrowPoint;
         [Export] public Node3D Swivel;
@@ -30,7 +32,9 @@ namespace FastDragon
             bool shouldShow = nearestGem != null && InputService.LocateGemsHeld;
             GrowPoint.Scale = shouldShow
                 ? GrowPoint.Scale.MoveToward(Vector3.One, (float)delta / GrowTime)
-                : GrowPoint.Scale.MoveToward(Vector3.Zero, (float)delta / ShrinkTime);
+                : GrowPoint.Scale.MoveToward(Vector3.One * InvisibleScale / 2, (float)delta / ShrinkTime);
+
+            GrowPoint.Visible = GrowPoint.Scale.X > InvisibleScale;
 
             // GrowPoint is top-level to prevent it from turning with the player.
             // That means we need to translate it into place.
@@ -40,9 +44,6 @@ namespace FastDragon
         private Transform3D TargetSwivelTransformLocal(Gem nearestGem)
         {
             if (nearestGem == null)
-                return Transform3D.Identity;
-
-            if (GrowPoint.Scale.IsZeroApprox())
                 return Transform3D.Identity;
 
             return Transform3D
