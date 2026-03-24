@@ -8,10 +8,10 @@ script = ExtResource("1_rctdy")
 GrowPoint = NodePath("GrowPoint")
 Swivel = NodePath("GrowPoint/Swivel")
 
-[node name="GrowPoint" type="Node3D" parent="."]
+[node name="GrowPoint" type="Node3D" parent="." groups=["PhysicsInterpolated"]]
 top_level = true
 
-[node name="Swivel" type="Node3D" parent="GrowPoint"]
+[node name="Swivel" type="Node3D" parent="GrowPoint" groups=["PhysicsInterpolated"]]
 
 [node name="Arrow" parent="GrowPoint/Swivel" instance=ExtResource("1_uanvb")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
