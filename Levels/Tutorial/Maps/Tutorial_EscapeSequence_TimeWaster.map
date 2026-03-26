@@ -126,7 +126,7 @@
 {
 "classname" "transport_warp_trigger"
 "target" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Entrance"
-"targetname" "Warp_EscapeSequence_2FA_Joke_Exit"
+"targetname" "Warp_EscapeSequence_TimeWaster_Exit"
 "_tb_group" "3"
 // brush 0
 {
@@ -237,7 +237,7 @@
 {
 "classname" "transport_warp_trigger"
 "target" "Warp_EscapeSequence_GlassPanesOnConveyorBeltIntro_Exit"
-"targetname" "Warp_EscapeSequence_2FA_Joke_Entrance"
+"targetname" "Warp_EscapeSequence_TimeWaster_Entrance"
 "_tb_group" "5"
 // brush 0
 {

@@ -3,12 +3,12 @@
 importer="func_godot_map_importer"
 type="PackedScene"
 uid="uid://be0os0an84mx4"
-path="res://.godot/imported/Tutorial_EscapeSequence_2FA_Joke.map-863fabf13ced0a7509322de70a0cc838.tscn"
+path="res://.godot/imported/Tutorial_EscapeSequence_TimeWaster.map-8ed6f4f096062ca732dde031a8405ae0.tscn"
 
 [deps]
 
-source_file="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_2FA_Joke.map"
-dest_files=["res://.godot/imported/Tutorial_EscapeSequence_2FA_Joke.map-863fabf13ced0a7509322de70a0cc838.tscn"]
+source_file="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_TimeWaster.map"
+dest_files=["res://.godot/imported/Tutorial_EscapeSequence_TimeWaster.map-8ed6f4f096062ca732dde031a8405ae0.tscn"]
 
 [params]
 
