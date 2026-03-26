@@ -127,7 +127,7 @@ fill_from = Vector2(0.5, 0.5)
 radius = 0.25
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5toey"]
-radius = 1.0
+radius = 2.0
 
 [node name="Gem" type="CharacterBody3D" groups=["Gems", "PhysicsInterpolated"]]
 collision_layer = 4
