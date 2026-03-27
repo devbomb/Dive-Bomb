@@ -548,6 +548,15 @@
 ( 512 -640 134.4000000000001 ) ( 432 -640 96 ) ( 512 -640 96 ) __TB_empty 0 0 0 1 1
 ( 512 -640 134.4000000000001 ) ( 512 -640 96 ) ( 512 -704 96 ) __TB_empty 0 0 0 1 1
 }
+// brush 61
+{
+( 16 -624 192 ) ( 16 -224 184 ) ( 16 -224 192 ) Textures/BigMetalSquares 0 0 0 1 1
+( 24 -624 192 ) ( 16 -624 184 ) ( 16 -624 192 ) Textures/BigMetalSquares 0 0 0 1 1
+( 24 -224 188 ) ( 16 -624 188 ) ( 24 -624 188 ) Textures/BigMetalSquares 0 0 0 1 1
+( 24 -224 196 ) ( 16 -624 196 ) ( 16 -224 196 ) Textures/BigMetalSquares 0 0 0 1 1
+( 24 -176 192 ) ( 16 -176 184 ) ( 24 -176 184 ) Textures/BigMetalSquares 0 0 0 1 1
+( 24 -224 192 ) ( 24 -624 184 ) ( 24 -624 192 ) Textures/BigMetalSquares 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -670,4 +679,10 @@
 "angle" "90"
 "VentId" "Vent_EscapeSequence_TimeWaster_Launch_Belt_Src"
 "TargetVentId" "Vent_EscapeSequence_TimeWaster_Launch_Belt_Dst"
+}
+// entity 11
+{
+"classname" "enemy_hand_cannoner"
+"origin" "-16 -392 192"
+"angle" "90"
 }
