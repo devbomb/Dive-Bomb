@@ -609,8 +609,8 @@
 }
 // brush 11
 {
-( 80 -64 176 ) ( 80 0 160 ) ( 80 0 176 ) Textures/BigMetalSquares 0 0 0 1 1
-( 144 -64 176 ) ( 80 -64 160 ) ( 80 -64 176 ) Textures/BigMetalSquares 0 0 0 1 1
+( 64 -64 176 ) ( 64 0 160 ) ( 64 0 176 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 -144 176 ) ( 80 -144 160 ) ( 80 -144 176 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 144 0 80 ) ( 80 -64 80 ) ( 144 -64 80 ) Textures/GridSquare 0 0 0 1 1
 ( 144 0 176 ) ( 80 -64 176 ) ( 80 0 176 ) Textures/GridSquare 0 0 0 1 1
 ( 144 0 176 ) ( 80 0 160 ) ( 144 0 160 ) Textures/BigMetalSquares 0 0 0 1 1
@@ -619,7 +619,7 @@
 // brush 12
 {
 ( 64 112 80 ) ( 64 113 80 ) ( 64 112 81 ) Textures/BigMetalSquares 0 0 0 1 1
-( 80 96 80 ) ( 80 96 81 ) ( 81 96 80 ) Textures/BigMetalSquares 0 0 0 1 1
+( 80 0 80 ) ( 80 0 81 ) ( 81 0 80 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 80 112 80 ) ( 81 112 80 ) ( 80 113 80 ) Textures/GridSquare 0 0 0 1 1
 ( 144 176 128 ) ( 144 177 128 ) ( 145 176 128 ) Textures/GridSquare 0 0 0 1 1
 ( 144 176 112 ) ( 145 176 112 ) ( 144 176 113 ) Textures/GridSquare 0 0 0 1 1
@@ -636,12 +636,12 @@
 }
 // brush 14
 {
-( 96 0 352 ) ( 96 -64 352 ) ( 96 0 336 ) Textures/BigMetalSquares 0 0 0 1 1
-( 144 -64 336 ) ( 96 -64 336 ) ( 144 -64 352 ) Textures/BigMetalSquares 0 0 0 1 1
-( 96 0 336 ) ( 96 -64 336 ) ( 144 0 336 ) Textures/BigMetalSquares 0 0 0 1 1
-( 144 0 352 ) ( 144 -64 352 ) ( 96 0 352 ) Textures/GridSquare 0 0 0 1 1
-( 96 0 336 ) ( 144 0 336 ) ( 96 0 352 ) Textures/BigMetalSquares 0 0 0 1 1
-( 144 0 336 ) ( 144 -64 336 ) ( 144 0 352 ) Textures/BigMetalSquares 0 0 0 1 1
+( 96 32 384 ) ( 96 -32 384 ) ( 96 32 368 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 -32 368 ) ( 96 -32 368 ) ( 144 -32 384 ) Textures/BigMetalSquares 0 0 0 1 1
+( 96 32 368 ) ( 96 -32 368 ) ( 144 32 368 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 32 384 ) ( 144 -32 384 ) ( 96 32 384 ) Textures/GridSquare 0 0 0 1 1
+( 96 32 368 ) ( 144 32 368 ) ( 96 32 384 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 32 368 ) ( 144 -32 368 ) ( 144 32 384 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 // brush 15
 {
@@ -654,61 +654,23 @@
 }
 // brush 16
 {
-( -80 176 320 ) ( -80 128 320 ) ( -80 128 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( -80 176 320 ) ( -32 176 352 ) ( -32 128 352 ) Textures/GridSquare 0 0 0 1 1
-( -80 128 320 ) ( -32 128 352 ) ( -32 128 336 ) Textures/BigMetalSquares 0 0 0 1 1
-( -32 176 336 ) ( -32 176 352 ) ( -80 176 320 ) Textures/BigMetalSquares 0 0 0 1 1
-( -32 128 336 ) ( -32 176 336 ) ( -80 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( -32 128 352 ) ( -32 176 352 ) ( -32 176 336 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 176 336 ) ( 0 112 336 ) ( 0 112 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 80 112 304 ) ( 80 176 304 ) ( 0 176 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 112 336 ) ( 80 112 320 ) ( 80 112 304 ) Textures/BigMetalSquares 64 0 0 1 1
+( 80 176 304 ) ( 80 176 320 ) ( 0 176 336 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 176 336 ) ( 80 176 320 ) ( 80 112 320 ) Textures/GridSquare 0 0 0 1 1
+( 80 112 320 ) ( 80 176 320 ) ( 80 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 // brush 17
 {
-( -144 176 304 ) ( -144 128 304 ) ( -144 128 288 ) Textures/BigMetalSquares 0 0 0 1 1
-( -144 176 304 ) ( -80 176 320 ) ( -80 128 320 ) Textures/GridSquare 0 0 0 1 1
-( -144 128 304 ) ( -80 128 320 ) ( -80 128 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( -80 176 304 ) ( -80 176 320 ) ( -144 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( -80 128 304 ) ( -80 176 304 ) ( -144 176 288 ) Textures/BigMetalSquares 0 0 0 1 1
-( -80 128 320 ) ( -80 176 320 ) ( -80 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
-}
-// brush 18
-{
-( 80 176 320 ) ( 80 96 320 ) ( 80 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( 96 96 320 ) ( 80 128 320 ) ( 80 128 448 ) Textures/BigMetalSquares 0 0 0 1 1
-( 144 96 304 ) ( 80 96 304 ) ( 144 96 320 ) Textures/BigMetalSquares 0 0 0 1 1
-( 144 176 304 ) ( 80 176 304 ) ( 144 96 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( 144 96 320 ) ( 80 96 320 ) ( 144 176 320 ) Textures/GridSquare 0 0 0 1 1
-( 144 176 320 ) ( 80 176 320 ) ( 144 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( 144 96 320 ) ( 144 176 320 ) ( 144 96 304 ) Textures/BigMetalSquares 0 0 0 1 1
-}
-// brush 19
-{
-( 64 176 320 ) ( 64 160 320 ) ( 64 160 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( 64 160 320 ) ( 80 144 320 ) ( 80 144 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( 80 144 304 ) ( 80 176 304 ) ( 64 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( 64 176 320 ) ( 80 176 320 ) ( 80 144 320 ) Textures/GridSquare 0 0 0 1 1
-( 80 176 304 ) ( 80 176 320 ) ( 64 176 320 ) Textures/BigMetalSquares 0 0 0 1 1
-( 80 144 320 ) ( 80 176 320 ) ( 80 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
-}
-// brush 20
-{
-( -32 96 352 ) ( -32 176 336 ) ( -32 176 352 ) Textures/BigMetalSquares 0 0 0 1 1
-( 0 128 352 ) ( -32 128 336 ) ( -32 128 352 ) Textures/BigMetalSquares 0 0 0 1 1
-( 0 176 336 ) ( -32 96 336 ) ( 0 96 336 ) Textures/BigMetalSquares 0 0 0 1 1
-( 0 176 352 ) ( -32 96 352 ) ( -32 176 352 ) Textures/GridSquare 0 0 0 1 1
-( 0 176 352 ) ( -32 176 336 ) ( 0 176 336 ) Textures/BigMetalSquares 0 0 0 1 1
-( 0 144 352 ) ( -16 128 352 ) ( -16 128 480 ) Textures/BigMetalSquares 0 0 0 1 1
-( 0 176 352 ) ( 0 96 336 ) ( 0 96 352 ) Textures/BigMetalSquares 0 0 0 1 1
-}
-// brush 21
-{
 ( -384 128 288 ) ( -384 176 272 ) ( -384 176 288 ) Textures/BigMetalSquares 0 0 0 1 1
-( -224 128 288 ) ( -384 128 272 ) ( -384 128 288 ) Textures/BigMetalSquares 0 0 0 1 1
+( -224 112 288 ) ( -384 112 272 ) ( -384 112 288 ) Textures/BigMetalSquares 0 0 0 1 1
 ( -224 176 240 ) ( -384 128 240 ) ( -224 128 240 ) Textures/BigMetalSquares 0 0 0 1 1
 ( -224 176 288 ) ( -384 128 288 ) ( -384 176 288 ) Textures/GridSquare 0 0 0 1 1
 ( -224 176 288 ) ( -384 176 272 ) ( -224 176 272 ) Textures/BigMetalSquares 0 0 0 1 1
-( -224 176 288 ) ( -224 128 272 ) ( -224 128 288 ) Textures/BigMetalSquares 0 0 0 1 1
+( -240 176 288 ) ( -240 128 272 ) ( -240 128 288 ) Textures/BigMetalSquares 0 0 0 1 1
 }
-// brush 22
+// brush 18
 {
 ( -384 -272 416 ) ( -384 -128 80 ) ( -384 -128 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -272 -272 416 ) ( -384 -272 80 ) ( -384 -272 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -717,7 +679,7 @@
 ( -272 -128 416 ) ( -384 -128 80 ) ( -272 -128 80 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -272 -128 416 ) ( -272 -272 80 ) ( -272 -272 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
-// brush 23
+// brush 19
 {
 ( -496 -128 80 ) ( -496 192 64 ) ( -496 192 80 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -384 -128 80 ) ( -400 -128 64 ) ( -400 -128 80 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -726,7 +688,7 @@
 ( -384 176 80 ) ( -400 176 64 ) ( -384 176 64 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -384 192 80 ) ( -384 -128 64 ) ( -384 -128 80 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
-// brush 24
+// brush 20
 {
 ( -512 -144 400 ) ( -512 -128 288 ) ( -512 -128 400 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -384 -144 400 ) ( -512 -144 288 ) ( -512 -144 400 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -735,7 +697,7 @@
 ( -384 -128 400 ) ( -512 -128 288 ) ( -384 -128 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -384 -128 400 ) ( -384 -144 288 ) ( -384 -144 400 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
-// brush 25
+// brush 21
 {
 ( -512 192 416 ) ( -512 144 416 ) ( -512 192 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 160 288 ) ( -512 160 288 ) ( -496 160 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -744,7 +706,7 @@
 ( -512 192 288 ) ( -496 192 288 ) ( -512 192 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 192 288 ) ( -496 144 288 ) ( -496 192 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
-// brush 26
+// brush 22
 {
 ( -512 -128 288 ) ( -512 48 288 ) ( -512 -128 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -512 -128 416 ) ( -496 -128 416 ) ( -512 -128 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -753,7 +715,7 @@
 ( -512 32 416 ) ( -512 32 288 ) ( -496 32 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 -128 416 ) ( -496 48 416 ) ( -496 -128 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
-// brush 27
+// brush 23
 {
 ( -512 144 288 ) ( -512 144 320 ) ( -512 48 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -512 32 288 ) ( -512 32 320 ) ( -496 32 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -762,7 +724,7 @@
 ( -496 160 288 ) ( -496 160 320 ) ( -512 160 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 48 288 ) ( -496 48 320 ) ( -496 144 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
-// brush 28
+// brush 24
 {
 ( -512 120 416 ) ( -512 144 320 ) ( -512 144 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 120 416 ) ( -512 120 320 ) ( -512 120 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -771,7 +733,7 @@
 ( -496 160 416 ) ( -512 160 320 ) ( -496 160 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 144 416 ) ( -496 120 320 ) ( -496 120 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
-// brush 29
+// brush 25
 {
 ( -512 48 416 ) ( -512 64 320 ) ( -512 64 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 32 416 ) ( -512 32 320 ) ( -512 32 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -780,7 +742,7 @@
 ( -496 72 416 ) ( -512 72 320 ) ( -496 72 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 64 416 ) ( -496 48 320 ) ( -496 48 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
-// brush 30
+// brush 26
 {
 ( -512 72 416 ) ( -512 120 384 ) ( -512 120 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 32 416 ) ( -512 32 384 ) ( -512 32 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
@@ -789,12 +751,87 @@
 ( -496 160 416 ) ( -512 160 384 ) ( -496 160 384 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -496 120 416 ) ( -496 72 384 ) ( -496 72 416 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
+// brush 27
+{
+( 96 -32 384 ) ( 96 -128 320 ) ( 96 -128 304 ) Textures/BigMetalSquares 0 0 0 1 1
+( 96 -128 320 ) ( 144 -128 320 ) ( 144 -128 304 ) __TB_empty 0 0 0 1 1
+( 96 -32 384 ) ( 144 -32 384 ) ( 144 -128 320 ) Textures/GridSquare 0 0 0 1 1
+( 144 -128 304 ) ( 144 -32 368 ) ( 96 -32 368 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 -32 368 ) ( 144 -32 384 ) ( 96 -32 384 ) __TB_empty 0 0 0 1 1
+( 144 -128 320 ) ( 144 -32 384 ) ( 144 -32 368 ) __TB_empty 0 0 0 1 1
+}
+// brush 28
+{
+( 80 176 320 ) ( 80 112 320 ) ( 80 112 304 ) Textures/BigMetalSquares 0 0 0 1 1
+( 80 112 320 ) ( 96 96 320 ) ( 96 96 304 ) Textures/BigMetalSquares 0 0 0 1 1
+( 96 80 320 ) ( 144 80 320 ) ( 144 80 304 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 96 304 ) ( 144 176 304 ) ( 80 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
+( 80 176 320 ) ( 144 176 320 ) ( 144 96 320 ) Textures/GridSquare 0 0 0 1 1
+( 144 176 304 ) ( 144 176 320 ) ( 80 176 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 96 320 ) ( 144 176 320 ) ( 144 176 304 ) Textures/BigMetalSquares 0 0 0 1 1
+}
+// brush 29
+{
+( -240 144 256 ) ( -240 176 240 ) ( -240 176 256 ) Textures/BigMetalSquares 0 0 0 1 1
+( -208 112 256 ) ( -224 112 240 ) ( -224 112 256 ) Textures/BigMetalSquares 0 0 0 1 1
+( -208 176 240 ) ( -224 144 240 ) ( -208 144 240 ) Textures/BigMetalSquares 0 0 0 1 1
+( -208 176 256 ) ( -224 144 256 ) ( -224 176 256 ) Textures/BigMetalSquares 0 0 0 1 1
+( -208 176 256 ) ( -224 176 240 ) ( -208 176 240 ) Textures/BigMetalSquares 0 0 0 1 1
+( -208 176 256 ) ( -208 144 240 ) ( -208 144 256 ) Textures/BigMetalSquares 0 0 0 1 1
+}
+// brush 30
+{
+( -384 112 288 ) ( -384 -16 288 ) ( -384 -16 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -384 -16 240 ) ( -240 112 240 ) ( -384 112 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -384 112 288 ) ( -240 112 288 ) ( -384 -16 288 ) Textures/GridSquare 0 0 0 1 1
+( -240 112 240 ) ( -240 112 288 ) ( -384 112 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( -384 -16 288 ) ( -240 112 288 ) ( -240 112 240 ) Textures/BigMetalSquares 0 0 0 1 1
+}
+// brush 31
+{
+( -144 112 336 ) ( -144 176 320 ) ( -144 176 336 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 112 336 ) ( -144 112 320 ) ( -144 112 336 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 176 320 ) ( -144 112 320 ) ( 0 112 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 176 336 ) ( -144 112 336 ) ( -144 176 336 ) Textures/GridSquare 0 0 0 1 1
+( 0 176 336 ) ( -144 176 320 ) ( 0 176 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 176 336 ) ( 0 112 320 ) ( 0 112 336 ) Textures/BigMetalSquares 0 0 0 1 1
+}
+// brush 32
+{
+( -144 104 336 ) ( -144 112 320 ) ( -144 112 336 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 104 336 ) ( -144 104 320 ) ( -144 104 336 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 112 320 ) ( -144 104 320 ) ( 0 104 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 112 344 ) ( -144 104 344 ) ( -144 112 344 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 112 336 ) ( -144 112 320 ) ( 0 112 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 112 336 ) ( 0 104 320 ) ( 0 104 336 ) Textures/BigMetalSquares 0 0 0 1 1
+}
+// brush 33
+{
+( -384 -16 304 ) ( -384 112 288 ) ( -384 112 304 ) Textures/BigMetalSquares 0 0 0 1 1
+( -255.11111111111066 120.88888888888837 296 ) ( -391.11111111111063 0 288 ) ( -255.11111111111066 120.88888888888837 288 ) Textures/BigMetalSquares 0 0 0 1 1
+( -242.68508928936063 106.90961433941965 288 ) ( -384 -8 288 ) ( -378.68508928936063 -13.979274549469253 288 ) Textures/BigMetalSquares 0 0 0 1 1
+( -242.68508928936063 106.90961433941965 296 ) ( -384 -8 296 ) ( -248 112.88888888888893 296 ) Textures/BigMetalSquares 0 0 0 1 1
+( -240 112 304 ) ( -384 112 288 ) ( -240 112 288 ) Textures/BigMetalSquares 0 0 0 1 1
+( -240 112 304 ) ( -384 -16 288 ) ( -384 -16 304 ) Textures/BigMetalSquares 0 0 0 1 1
+}
+// brush 34
+{
+( 0 112 344 ) ( 0 104 344 ) ( 0 104 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 104 320 ) ( 80 112 304 ) ( 0 112 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 56 104 312 ) ( 80 112 304 ) ( 0 104 320 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 104 344 ) ( 56 104 336 ) ( 56 104 312 ) Textures/BigMetalSquares 0 0 0 1 1
+( 80 112 304 ) ( 80 112 328 ) ( 0 112 344 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 112 344 ) ( 56 104 336 ) ( 0 104 344 ) Textures/BigMetalSquares 0 0 0 1 1
+( 0 112 344 ) ( 80 112 328 ) ( 56 104 336 ) Textures/BigMetalSquares 0 0 0 1 1
+( 56 104 336 ) ( 80 112 328 ) ( 80 112 304 ) Textures/BigMetalSquares 32 0 0 1 1
+}
 }
 // entity 7
 {
 "classname" "transport_checkpoint"
-"origin" "-208 0 80"
+"origin" "-448 96 288"
 "CheckpointName" "FairyRoom"
+"angle" "180"
 "_tb_group" "3"
 }
 // entity 8
@@ -833,7 +870,7 @@
 ( 80 -256 400 ) ( 80 176 288 ) ( 80 176 400 ) Textures/Grate 0 0 0 1 1
 ( 144 -256 400 ) ( -192 -256 288 ) ( -192 -256 400 ) Textures/Grate 0 0 0 1 1
 ( 144 176 336 ) ( -192 -256 336 ) ( 144 -256 336 ) Textures/Grate 0 0 0 1 1
-( 144 176 432 ) ( -192 -256 432 ) ( -192 176 432 ) Textures/Grate 0 0 0 1 1
+( 144 176 496 ) ( -192 -256 496 ) ( -192 176 496 ) Textures/Grate 0 0 0 1 1
 ( 144 32 400 ) ( -192 32 288 ) ( 144 32 288 ) Textures/Grate 0 0 0 1 1
 ( 144 176 400 ) ( 144 -256 288 ) ( 144 -256 400 ) Textures/Grate 0 0 0 1 1
 }
@@ -848,10 +885,10 @@
 {
 ( -256 176 528 ) ( -256 208 432 ) ( -256 208 528 ) Textures/Grate 0 0 0 1 1
 ( 32 80 528 ) ( -384 80 432 ) ( -384 80 528 ) Textures/Grate 0 0 0 1 1
-( 32 208 432 ) ( -384 176 432 ) ( 32 176 432 ) Textures/Grate 0 0 0 1 1
+( 32 208 288 ) ( -384 176 288 ) ( 32 176 288 ) Textures/Grate 0 0 0 1 1
 ( 32 208 528 ) ( -384 176 528 ) ( -384 208 528 ) Textures/Grate 0 0 0 1 1
 ( 32 208 528 ) ( -384 208 432 ) ( 32 208 432 ) Textures/Grate 0 0 0 1 1
-( -64 208 528 ) ( -64 176 432 ) ( -64 176 528 ) Textures/Grate 0 0 0 1 1
+( 144 208 528 ) ( 144 176 432 ) ( 144 176 528 ) Textures/Grate 0 0 0 1 1
 }
 }
 // entity 13
