@@ -12,5 +12,4 @@ dest_files=["res://.godot/imported/Tutorial_EscapeSequence_TimeWaster.map-8ed6f4
 
 [params]
 
-texture_material_map=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("uid://cb8n0ec7vcom", "res://addons/FuncGodotMapImporter/MaterialMap.gd"),"inherited_material_maps":Array[Resource("uid://cb8n0ec7vcom", "res://addons/FuncGodotMapImporter/MaterialMap.gd")]([]),"texture_to_material":Dictionary[Texture2D, Material]({}))
-
+texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Tutorial/Maps/TutorialMaterialMap.tres")
