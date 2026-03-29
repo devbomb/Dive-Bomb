@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dykig0tcxggvr"]
 
 [ext_resource type="PackedScene" uid="uid://df4m2ng2nc375" path="res://Entities/Player/Parts/PlayerModel/Parachute.blend" id="1_d1yau"]
-[ext_resource type="PackedScene" uid="uid://bytmfm6g78uxa" path="res://Entities/Player/Parts/PlayerModel/KennifiedPlayerModel.blend" id="1_gwhpy"]
+[ext_resource type="PackedScene" uid="uid://blq28kabesqpx" path="res://Common/Models/Characters/SpecialAgentD.gltf" id="1_fpwl0"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Common/Components/SimpleParticles.cs" id="1_x2wfw"]
 [ext_resource type="PackedScene" uid="uid://bdmpiimo8xv4a" path="res://Common/Components/AnchoredLine3D.tscn" id="2_6kq2t"]
 
@@ -83,7 +83,7 @@ end_point = NodePath("../RightStringHandle")
 [node name="RightStringHandle" type="Marker3D" parent="Parachute"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, 0)
 
-[node name="KennifiedPlayerModel" parent="." instance=ExtResource("1_gwhpy")]
+[node name="KennifiedPlayerModel" parent="." instance=ExtResource("1_fpwl0")]
 
 [node name="KickTrailParticles" type="Node3D" parent="."]
 transform = Transform3D(0.604831, 0.674805, 0.623553, -0.798374, 0.755471, -0.043164, -0.45473, -0.428837, 0.905162, 0.0590594, 0.405857, 0.901034)
@@ -100,9 +100,9 @@ FixedFps = 60
 ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
 
 [node name="LeftHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.0741329, -0.991472, -0.107182, 0.0655875, -0.102398, 0.992579, -0.995089, -0.0806125, 0.0574371, -0.315088, 0.925497, -0.0166783)
+transform = Transform3D(0.058325954, -0.9729878, -0.22336686, -0.012965944, -0.2244671, 0.97439504, -0.99821275, -0.05393632, -0.025707886, -0.55403566, 0.89792967, -0.036500677)
 bone_name = "Hand_L"
-bone_idx = 10
+bone_idx = 24
 use_external_skeleton = true
 external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
 
@@ -110,9 +110,9 @@ external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.282762, -1.11759e-09)
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.0741329, 0.991472, 0.107182, -0.0655875, -0.102398, 0.992579, 0.995089, -0.0806125, 0.0574371, 0.315088, 0.925497, -0.0166783)
+transform = Transform3D(0.058325954, 0.9729878, 0.22336686, 0.012965944, -0.2244671, 0.97439504, 0.99821275, -0.05393632, -0.025707886, 0.55403566, 0.89792967, -0.036500677)
 bone_name = "Hand_R"
-bone_idx = 19
+bone_idx = 33
 use_external_skeleton = true
 external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
 
