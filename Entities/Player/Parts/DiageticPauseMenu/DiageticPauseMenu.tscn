@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://db05gfycomjg2"]
 
 [ext_resource type="AnimationLibrary" uid="uid://bajs4t3m415k5" path="res://Entities/Player/Parts/DiageticPauseMenu/PauseMenuAnimations.tres" id="1_8b5jp"]
-[ext_resource type="PackedScene" uid="uid://bytmfm6g78uxa" path="res://Entities/Player/Parts/PlayerModel/KennifiedPlayerModel.blend" id="1_a78w3"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://UI/Menus/PauseMenu/PauseMenu.tscn" id="2_8b5jp"]
+[ext_resource type="PackedScene" uid="uid://blq28kabesqpx" path="res://Common/Models/Characters/SpecialAgentD.gltf" id="2_rxxnv"]
 
 [sub_resource type="GDScript" id="GDScript_rxxnv"]
 script/source = "extends Control
@@ -52,7 +52,7 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="PlayerModel" parent="Wrist/SubViewport" instance=ExtResource("1_a78w3")]
+[node name="PlayerModel" parent="Wrist/SubViewport" instance=ExtResource("2_rxxnv")]
 
 [node name="Camera3D" type="Camera3D" parent="Wrist/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14113, -0.114416)
