@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://de2ywdtp3mpxw" path="res://Entities/Transport/StandardPortal/Parts/StandardPortalLabels/StandardPortalLabels.cs" id="1_ltmmc"]
 [ext_resource type="AnimationLibrary" uid="uid://b806gdpivx17x" path="res://Entities/Transport/StandardPortal/PortalLabelAnimations.tres" id="2_05a4k"]
 [ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="3_q60ts"]
-[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy/Fairy.blend" id="4_05a4k"]
+[ext_resource type="PackedScene" uid="uid://dc5k2yy5vsbyi" path="res://Common/Models/Characters/Fairy/Fairy.glb" id="4_05a4k"]
 [ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Common/Models/Characters/Fairy/Animations/RESET.tres" id="4_o37ll"]
 [ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Common/Models/Characters/Fairy/Animations/Hovering.tres" id="5_cfnpw"]
 
