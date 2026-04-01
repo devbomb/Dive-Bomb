@@ -93,6 +93,15 @@
 ( 656 -176 176 ) ( 560 -176 96 ) ( 656 -176 96 ) __TB_empty 0 0 0 1 1
 ( 656 -176 176 ) ( 656 -224 96 ) ( 656 -224 176 ) __TB_empty 0 0 0 1 1
 }
+// brush 10
+{
+( 624 24 288 ) ( 624 160 272 ) ( 624 160 288 ) Textures/BigMetalSquares 0 0 0 1 1
+( 640 -56 288 ) ( 624 -56 272 ) ( 624 -56 288 ) Textures/BigMetalSquares 0 0 0 1 1
+( 640 160 272 ) ( 624 24 272 ) ( 640 24 272 ) Textures/BigMetalSquares 0 0 0 1 1
+( 640 160 288 ) ( 624 24 288 ) ( 624 160 288 ) Textures/BigMetalSquares 0 0 0 1 1
+( 640 80 288 ) ( 624 80 272 ) ( 640 80 272 ) Textures/BigMetalSquares 0 0 0 1 1
+( 640 160 288 ) ( 640 24 272 ) ( 640 24 288 ) Textures/BigMetalSquares 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -925,4 +934,24 @@
 ( 672 -128 320 ) ( 656 -128 176 ) ( 672 -128 176 ) special/clip 0 0 0 1 1
 ( 672 -128 320 ) ( 672 -224 176 ) ( 672 -224 320 ) special/clip 0 0 0 1 1
 }
+}
+// entity 34
+{
+"classname" "item_vase"
+"origin" "608 176 272"
+}
+// entity 35
+{
+"classname" "item_vase"
+"origin" "608 136 272"
+}
+// entity 36
+{
+"classname" "item_basket"
+"origin" "632 40 288"
+}
+// entity 37
+{
+"classname" "item_basket"
+"origin" "632 -24 288"
 }
