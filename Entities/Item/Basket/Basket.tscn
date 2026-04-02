@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgu3p1wuws01b" path="res://Common/Scripts/GenericGemContainer.cs" id="1_py8r0"]
 [ext_resource type="Script" uid="uid://c425xaupg1x74" path="res://Common/Components/BreakableStaticBody3D.cs" id="2_a2kp2"]
-[ext_resource type="PackedScene" uid="uid://cs4ajngj450ms" path="res://Entities/Item/Basket/Basket.blend" id="2_py8r0"]
+[ext_resource type="PackedScene" uid="uid://cxt0344e5m1kx" path="res://Entities/Item/Basket/Basket.glb" id="2_py8r0"]
 [ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Common/Components/GemSpawner.cs" id="3_ni05m"]
 [ext_resource type="AudioStream" uid="uid://cykliris0hyip" path="res://Entities/Item/Basket/Wickerbasket.wav" id="3_py8r0"]
 
