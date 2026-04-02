@@ -5,7 +5,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://0j7jt301c3br" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanonAnimations.tres" id="2_agwsh"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="2_e6war"]
 [ext_resource type="PackedScene" uid="uid://druigfweg47oa" path="res://Entities/Transport/LevelExit/Canon/Walls.blend" id="2_y7wo7"]
-[ext_resource type="PackedScene" uid="uid://cmjvt2vglg6ae" path="res://Entities/Transport/LevelExit/Canon/CanonHole.blend" id="3_3jouq"]
+[ext_resource type="PackedScene" uid="uid://p8oqnsj2hqmg" path="res://Entities/Transport/LevelExit/Canon/CanonHole.glb" id="3_3jouq"]
 [ext_resource type="PackedScene" uid="uid://coha7b8jhwird" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanonCrystal.glb" id="4_iluh0"]
 [ext_resource type="PackedScene" uid="uid://djnbli61q61ld" path="res://Entities/Transport/LevelExit/Canon/Components/RequirementsDisplay/LevelExitCanonRequirementsDisplay.tscn" id="5_iluh0"]
 [ext_resource type="Script" uid="uid://b44v5ywbov0io" path="res://Common/Components/MeshReferencingCollisionShape3D.gd" id="5_okmgd"]
