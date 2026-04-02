@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://eqg1m3m28yi3" path="res://Entities/Item/FairyJar/SFX/FairyJingle.wav" id="3_p435h"]
 [ext_resource type="AudioStream" uid="uid://c6e3re2b2kf2o" path="res://Common/Audio/SFX/WhiteNoise.mp3" id="4_g7wuv"]
 [ext_resource type="Script" uid="uid://ilt6j85e4n8e" path="res://Common/Components/DecoratorNodes/BillboardToCameraDecorator.gd" id="4_g18ww"]
-[ext_resource type="PackedScene" uid="uid://dphti8hl7njh4" path="res://Entities/Item/FairyJar/Jar.blend" id="4_ovlfu"]
+[ext_resource type="PackedScene" uid="uid://c38j252xlt6ao" path="res://Entities/Item/FairyJar/FairyJar.glb" id="4_ovlfu"]
 [ext_resource type="FontVariation" uid="uid://bmr44as3fvbhe" path="res://Fonts/FontVariations/TekturBolder.tres" id="4_w4eob"]
 [ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="5_bs0wh"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="5_pebs6"]
