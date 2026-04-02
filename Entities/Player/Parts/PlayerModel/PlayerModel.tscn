@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dykig0tcxggvr"]
 
-[ext_resource type="PackedScene" uid="uid://df4m2ng2nc375" path="res://Entities/Player/Parts/PlayerModel/Parachute.blend" id="1_d1yau"]
+[ext_resource type="PackedScene" uid="uid://b45yvootyxy4h" path="res://Entities/Player/Parts/PlayerModel/Parachute.glb" id="1_d1yau"]
 [ext_resource type="PackedScene" uid="uid://blq28kabesqpx" path="res://Common/Models/Characters/SpecialAgentD.gltf" id="1_fpwl0"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Common/Components/SimpleParticles.cs" id="1_x2wfw"]
 [ext_resource type="PackedScene" uid="uid://bdmpiimo8xv4a" path="res://Common/Components/AnchoredLine3D.tscn" id="2_6kq2t"]
