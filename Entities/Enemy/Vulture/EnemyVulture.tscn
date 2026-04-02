@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://l0gjh3jkqteb" path="res://Entities/Enemy/Vulture/EnemyVulture.cs" id="1_is5gw"]
 [ext_resource type="AnimationLibrary" uid="uid://phpkdehj2kfx" path="res://Entities/Enemy/Vulture/VultureAnimations.tres" id="2_4b7rt"]
 [ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Common/Components/GemSpawner.cs" id="2_alb8d"]
-[ext_resource type="PackedScene" uid="uid://bksx43c001y1k" path="res://Entities/Enemy/Vulture/EnemyVulture.blend" id="2_ni8ar"]
+[ext_resource type="PackedScene" uid="uid://b6ia338a4pp02" path="res://Entities/Enemy/Vulture/EnemyVulture.glb" id="2_ni8ar"]
 [ext_resource type="PackedScene" uid="uid://bbmm36axet2jq" path="res://Common/Components/AggroSphere/AggroSphere.tscn" id="4_l56o7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uo6qh"]
