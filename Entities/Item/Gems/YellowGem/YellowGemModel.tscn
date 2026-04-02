@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://byj33t3fmjjmx"]
 
-[ext_resource type="PackedScene" uid="uid://cke3knfgvssx" path="res://Entities/Item/Gems/YellowGem/YellowGem.blend" id="1_n7w8w"]
+[ext_resource type="PackedScene" uid="uid://d0j2koof3mftm" path="res://Common/Models/Gem.glb" id="1_pypeu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h548"]
 albedo_color = Color(1, 1, 0, 1)
@@ -10,10 +10,9 @@ rim_enabled = true
 
 [node name="YellowGemModel" type="Node3D"]
 
-[node name="YellowGem" parent="." instance=ExtResource("1_n7w8w")]
+[node name="Gem" parent="." instance=ExtResource("1_pypeu")]
 
-[node name="Circle" parent="YellowGem" index="0"]
-transform = Transform3D(0.25, 0.000451785, -2.73256e-05, -0.000451775, 0.25, 9.52129e-05, 2.74994e-05, -9.51629e-05, 0.25, 0, 0, 0)
+[node name="Circle" parent="Gem" index="0"]
 material_override = SubResource("StandardMaterial3D_6h548")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
@@ -22,4 +21,4 @@ light_energy = 0.285
 distance_fade_enabled = true
 spot_range = 1.0235
 
-[editable path="YellowGem"]
+[editable path="Gem"]
