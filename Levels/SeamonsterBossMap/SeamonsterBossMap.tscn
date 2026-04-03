@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_fdoft"]
 [ext_resource type="AudioStream" uid="uid://buhcg4rjjdwrr" path="res://Levels/SeamonsterBossMap/SmackinDaKrackenMusic.mp3" id="2_75h56"]
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="3_2okea"]
-[ext_resource type="PackedScene" uid="uid://dtoyyu1x2olbc" path="res://Levels/SeamonsterBossMap/KrackenPlatform.blend" id="4_78ou1"]
+[ext_resource type="PackedScene" uid="uid://owogqmxu21du" path="res://Levels/SeamonsterBossMap/KrackenPlatform.glb" id="4_78ou1"]
 [ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Entities/Info/NamedMarker/NamedMarker3D.tscn" id="4_elxet"]
 [ext_resource type="PackedScene" uid="uid://btcofpq2vamxe" path="res://Entities/Item/PowerOrb/PowerOrb.tscn" id="5_6lj42"]
 [ext_resource type="Script" uid="uid://c4dmx1el10jag" path="res://Entities/Hazard/DrowningWater.cs" id="5_ps4q3"]
