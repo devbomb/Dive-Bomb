@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dkrgq5fq30hh1"]
 
 [ext_resource type="Script" uid="uid://dwtawaacht34u" path="res://Entities/Logic/WallButton/WallButton.cs" id="1_5gt3j"]
-[ext_resource type="PackedScene" uid="uid://7milfrb8boyu" path="res://Entities/Logic/WallButton/WallButton.blend" id="1_28gm6"]
+[ext_resource type="PackedScene" uid="uid://y5hjqc7d6xwi" path="res://Entities/Logic/WallButton/WallButton.glb" id="1_28gm6"]
 [ext_resource type="Script" uid="uid://cnsbgmq0tmt1p" path="res://Common/Components/BonkableStaticBody3D.cs" id="3_5gt3j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gt3j"]
