@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cfompnq7cbshh"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cfompnq7cbshh"]
 
 [ext_resource type="Shader" uid="uid://b54w5o8wflvth" path="res://Entities/Hazard/MoltenGlassCube/MoltenGlass.gdshader" id="1_200c1"]
 

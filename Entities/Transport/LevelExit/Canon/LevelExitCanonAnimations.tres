@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=6 format=3 uid="uid://0j7jt301c3br"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://0j7jt301c3br"]
 
 [ext_resource type="AudioStream" uid="uid://csp6xfepqtqhh" path="res://Common/Audio/SFX/Explosions/StarFoxInspiredExplosion.wav" id="1_fy702"]
 [ext_resource type="AudioStream" uid="uid://dagvj3prtvinx" path="res://Entities/Transport/LevelExit/Canon/Audio/MissionClear.mp3" id="1_s4h3o"]

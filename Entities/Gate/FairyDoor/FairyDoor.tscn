@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dntvrraqou3fd"]
+[gd_scene format=3 uid="uid://dntvrraqou3fd"]
 
 [ext_resource type="Script" uid="uid://dxeadvtxht04s" path="res://Entities/Gate/FairyDoor/FairyDoor.cs" id="1_o030q"]
 [ext_resource type="PackedScene" uid="uid://dpwg6pwo8jebn" path="res://Entities/Gate/FairyDoor/Lock.blend" id="2_js2ne"]
@@ -62,7 +62,7 @@ _data = {
 &"Unlock": SubResource("Animation_js2ne")
 }
 
-[node name="FairyDoor" type="StaticBody3D" node_paths=PackedStringArray("DoorModel", "LockModel", "LockAnimator", "CollisionShape", "SoftlockFailsafeTrigger") groups=["PhysicsInterpolated"]]
+[node name="FairyDoor" type="StaticBody3D" unique_id=2072380280 node_paths=PackedStringArray("DoorModel", "LockModel", "LockAnimator", "CollisionShape", "SoftlockFailsafeTrigger") groups=["PhysicsInterpolated"]]
 script = ExtResource("1_o030q")
 DoorModel = NodePath("DoorModel")
 LockModel = NodePath("Lock")
@@ -70,32 +70,30 @@ LockAnimator = NodePath("Lock/AnimationPlayer")
 CollisionShape = NodePath("CollisionShape3D")
 SoftlockFailsafeTrigger = NodePath("SoftlockFailsafeTrigger")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2042890267]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("BoxShape3D_c24c4")
 
-[node name="DoorModel" type="MeshInstance3D" parent="."]
+[node name="DoorModel" type="MeshInstance3D" parent="." unique_id=2144212003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 mesh = SubResource("BoxMesh_c24c4")
 
-[node name="SoftlockFailsafeTrigger" type="Area3D" parent="."]
+[node name="SoftlockFailsafeTrigger" type="Area3D" parent="." unique_id=225090147]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftlockFailsafeTrigger"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftlockFailsafeTrigger" unique_id=1148209944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
 shape = SubResource("BoxShape3D_o030q")
 
-[node name="Lock" parent="." instance=ExtResource("2_js2ne")]
+[node name="Lock" parent="." unique_id=350155177 instance=ExtResource("2_js2ne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.353, -0.18294396)
 
 [node name="Circle" parent="Lock" index="0"]
 cast_shadow = 0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Lock"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lock" unique_id=1494940480]
 deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_hbbej")
-}
+libraries/ = SubResource("AnimationLibrary_hbbej")
 
 [editable path="Lock"]

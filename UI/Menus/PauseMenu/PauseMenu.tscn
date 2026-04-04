@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0vpyujcojrlr"]
+[gd_scene format=3 uid="uid://d0vpyujcojrlr"]
 
 [ext_resource type="Script" uid="uid://brneuhryr7gx3" path="res://UI/Menus/PauseMenu/PauseMenu.cs" id="1_6unmj"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="1_wwjmo"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.tscn" id="4_cbwi1"]
 [ext_resource type="Script" uid="uid://b80wieohofh0d" path="res://UI/VerticalLoopingMenu.gd" id="4_kb3w6"]
 
-[node name="PauseMenu" type="Control" node_paths=PackedStringArray("OpenSound", "CloseSound")]
+[node name="PauseMenu" type="Control" unique_id=1790931998 node_paths=PackedStringArray("OpenSound", "CloseSound")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -22,15 +22,15 @@ script = ExtResource("1_6unmj")
 OpenSound = NodePath("OpenSound")
 CloseSound = NodePath("CloseSound")
 
-[node name="OpenSound" type="AudioStreamPlayer" parent="."]
+[node name="OpenSound" type="AudioStreamPlayer" parent="." unique_id=173745086]
 stream = ExtResource("3_sv0rs")
 bus = &"Sfx"
 
-[node name="CloseSound" type="AudioStreamPlayer" parent="."]
+[node name="CloseSound" type="AudioStreamPlayer" parent="." unique_id=443723248]
 stream = ExtResource("4_bjpjc")
 bus = &"Sfx"
 
-[node name="MainPage" type="PanelContainer" parent="."]
+[node name="MainPage" type="PanelContainer" parent="." unique_id=159019951]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -46,49 +46,49 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_2prw7")
 
-[node name="Buttons" type="VBoxContainer" parent="MainPage"]
+[node name="Buttons" type="VBoxContainer" parent="MainPage" unique_id=1133505273]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("4_kb3w6")
 
-[node name="Continue" type="Button" parent="MainPage/Buttons"]
+[node name="Continue" type="Button" parent="MainPage/Buttons" unique_id=329536226]
 layout_mode = 2
 text = "Continue"
 flat = true
 
-[node name="Atlas" type="Button" parent="MainPage/Buttons"]
+[node name="Atlas" type="Button" parent="MainPage/Buttons" unique_id=973144723]
 layout_mode = 2
 text = "Atlas"
 flat = true
 
-[node name="Options" type="Button" parent="MainPage/Buttons"]
+[node name="Options" type="Button" parent="MainPage/Buttons" unique_id=1382408522]
 layout_mode = 2
 text = "Options"
 flat = true
 
-[node name="DebugMenu" type="Button" parent="MainPage/Buttons"]
+[node name="DebugMenu" type="Button" parent="MainPage/Buttons" unique_id=1923225555]
 layout_mode = 2
 text = "Debug Menu"
 flat = true
 
-[node name="ReturnToCheckpoint" type="Button" parent="MainPage/Buttons"]
+[node name="ReturnToCheckpoint" type="Button" parent="MainPage/Buttons" unique_id=1022984306]
 layout_mode = 2
 text = "Reload Checkpoint"
 flat = true
 
-[node name="ExitLevel" type="Button" parent="MainPage/Buttons"]
+[node name="ExitLevel" type="Button" parent="MainPage/Buttons" unique_id=1387963673]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit Level"
 flat = true
 
-[node name="QuitToTitle" type="Button" parent="MainPage/Buttons"]
+[node name="QuitToTitle" type="Button" parent="MainPage/Buttons" unique_id=1070945016]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to title"
 flat = true
 
-[node name="TimeTrialMainPage" type="PanelContainer" parent="."]
+[node name="TimeTrialMainPage" type="PanelContainer" parent="." unique_id=1165186354]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -105,27 +105,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_2prw7")
 
-[node name="TimeTrialButtons" type="VBoxContainer" parent="TimeTrialMainPage"]
+[node name="TimeTrialButtons" type="VBoxContainer" parent="TimeTrialMainPage" unique_id=1469193913]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("4_kb3w6")
 
-[node name="Continue" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
+[node name="Continue" type="Button" parent="TimeTrialMainPage/TimeTrialButtons" unique_id=1563222205]
 layout_mode = 2
 text = "Continue"
 flat = true
 
-[node name="ResetLevel" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
+[node name="ResetLevel" type="Button" parent="TimeTrialMainPage/TimeTrialButtons" unique_id=687761385]
 layout_mode = 2
 text = "Reset"
 flat = true
 
-[node name="Options" type="Button" parent="TimeTrialMainPage/TimeTrialButtons"]
+[node name="Options" type="Button" parent="TimeTrialMainPage/TimeTrialButtons" unique_id=1668827371]
 layout_mode = 2
 text = "Options"
 flat = true
 
-[node name="AtlasMenu" parent="." instance=ExtResource("3_0fbh4")]
+[node name="AtlasMenu" parent="." unique_id=2043315342 instance=ExtResource("3_0fbh4")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -136,13 +136,13 @@ offset_right = -200.0
 offset_bottom = -100.0
 theme = null
 
-[node name="UserSettingsMenu" parent="." instance=ExtResource("4_cbwi1")]
+[node name="UserSettingsMenu" parent="." unique_id=1707132514 instance=ExtResource("4_cbwi1")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 theme = null
 
-[node name="DebugMenu" type="PanelContainer" parent="." node_paths=PackedStringArray("FocusedControl")]
+[node name="DebugMenu" type="PanelContainer" parent="." unique_id=766975791 node_paths=PackedStringArray("FocusedControl")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -160,33 +160,33 @@ grow_vertical = 2
 script = ExtResource("3_2prw7")
 FocusedControl = NodePath("VBoxContainer/Back")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugMenu" unique_id=1736756706]
 layout_mode = 2
 
-[node name="FullResetLevel" type="Button" parent="DebugMenu/VBoxContainer"]
+[node name="FullResetLevel" type="Button" parent="DebugMenu/VBoxContainer" unique_id=1672412228]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Reset Level Progress"
 flat = true
 
-[node name="TimeTrialEnter" type="Button" parent="DebugMenu/VBoxContainer"]
+[node name="TimeTrialEnter" type="Button" parent="DebugMenu/VBoxContainer" unique_id=1635165740]
 layout_mode = 2
 text = "Enter Time Trial Mode"
 flat = true
 
-[node name="AccomplishMission" type="Button" parent="DebugMenu/VBoxContainer"]
+[node name="AccomplishMission" type="Button" parent="DebugMenu/VBoxContainer" unique_id=1589432799]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Accomplish Mission"
 flat = true
 
-[node name="UnlockAllPortals" type="Button" parent="DebugMenu/VBoxContainer"]
+[node name="UnlockAllPortals" type="Button" parent="DebugMenu/VBoxContainer" unique_id=1277899525]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Unlock all portals"
 flat = true
 
-[node name="Back" type="Button" parent="DebugMenu/VBoxContainer"]
+[node name="Back" type="Button" parent="DebugMenu/VBoxContainer" unique_id=893183177]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"

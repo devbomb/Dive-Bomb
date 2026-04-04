@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotMapSettings" load_steps=5 format=3 uid="uid://pgh6d0v7fyip"]
+[gd_resource type="Resource" script_class="FuncGodotMapSettings" format=3 uid="uid://pgh6d0v7fyip"]
 
 [ext_resource type="Resource" uid="uid://6khm227w3xab" path="res://FuncGodotAssets/FuncGodotFGDFile.tres" id="2_i8c3b"]
 [ext_resource type="Script" uid="uid://38q6k0ctahjn" path="res://addons/func_godot/src/map/func_godot_map_settings.gd" id="3_hoqnw"]

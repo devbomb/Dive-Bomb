@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://jbl1i07t5wl2"]
+[gd_scene format=3 uid="uid://jbl1i07t5wl2"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="1_flfsu"]
 [ext_resource type="Script" uid="uid://bfymvfpen7yyf" path="res://UI/Menus/SaveSlotManagementMenu/SaveSlotManagementMenu.cs" id="1_wxgf2"]
@@ -10,7 +10,7 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_flfsu"]
 events = [SubResource("InputEventAction_wxgf2")]
 
-[node name="SaveSlotManagementMenu" type="PanelContainer"]
+[node name="SaveSlotManagementMenu" type="PanelContainer" unique_id=2085829019]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,37 +20,37 @@ theme = ExtResource("1_flfsu")
 script = ExtResource("1_wxgf2")
 NewGameLevel = "uid://btejrg27q3lyj"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1197372647]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1073690037]
 layout_mode = 2
 text = "Choose a save file
 "
 horizontal_alignment = 1
 
-[node name="Slots" type="VBoxContainer" parent="VBoxContainer"]
+[node name="Slots" type="VBoxContainer" parent="VBoxContainer" unique_id=1426757966]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Back" type="Button" parent="VBoxContainer"]
+[node name="Back" type="Button" parent="VBoxContainer" unique_id=1299283614]
 layout_mode = 2
 shortcut = SubResource("Shortcut_flfsu")
 text = "Back"
 flat = true
 
-[node name="ConfirmDeletePrompt" type="Popup" parent="."]
+[node name="ConfirmDeletePrompt" type="Popup" parent="." unique_id=1607176800]
 unique_name_in_owner = true
 size = Vector2i(416, 135)
 
-[node name="Panel" type="Panel" parent="ConfirmDeletePrompt"]
+[node name="Panel" type="Panel" parent="ConfirmDeletePrompt" unique_id=2070535476]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="ConfirmDeletePrompt"]
+[node name="Label" type="Label" parent="ConfirmDeletePrompt" unique_id=287645935]
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 24.0
@@ -60,7 +60,7 @@ text = "Delete this save file?
 You sure about that?"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="ConfirmDeletePrompt"]
+[node name="Control" type="Control" parent="ConfirmDeletePrompt" unique_id=725346580]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -74,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
 
-[node name="Cancel" type="Button" parent="ConfirmDeletePrompt/Control"]
+[node name="Cancel" type="Button" parent="ConfirmDeletePrompt/Control" unique_id=950684104]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -87,7 +87,7 @@ focus_next = NodePath("../Confirm")
 focus_previous = NodePath("../Confirm")
 text = "Cancel"
 
-[node name="Confirm" type="Button" parent="ConfirmDeletePrompt/Control"]
+[node name="Confirm" type="Button" parent="ConfirmDeletePrompt/Control" unique_id=1011167091]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

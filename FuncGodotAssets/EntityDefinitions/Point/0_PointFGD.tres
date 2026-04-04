@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=10 format=3 uid="uid://smurg5ociodd"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" format=3 uid="uid://smurg5ociodd"]
 
 [ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_23s77"]
 [ext_resource type="Resource" uid="uid://bygbgojyubj38" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/0_ItemFGD.tres" id="1_urowu"]

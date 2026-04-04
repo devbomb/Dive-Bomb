@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c25s1vv2je422"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c25s1vv2je422"]
 
 [ext_resource type="Shader" uid="uid://d2kpi6fvf1bbg" path="res://Entities/Hazard/GlassPaneSpawner/Shaders/MoltenGlassFill.gdshader" id="1_4uxm6"]
 

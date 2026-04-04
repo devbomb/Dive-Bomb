@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://3t5uuk0vlnxe"]
+[gd_scene format=3 uid="uid://3t5uuk0vlnxe"]
 
 [sub_resource type="GDScript" id="GDScript_dojn7"]
 script/source = "extends Control
@@ -7,16 +7,16 @@ func _process(_delta):
     $'%FPSLabel'.text = str(Engine.get_frames_per_second())
 "
 
-[node name="FPSCounter" type="HBoxContainer"]
+[node name="FPSCounter" type="HBoxContainer" unique_id=1847606078]
 offset_right = 62.0
 offset_bottom = 23.0
 script = SubResource("GDScript_dojn7")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1393446014]
 layout_mode = 2
 text = "FPS: "
 
-[node name="FPSLabel" type="Label" parent="."]
+[node name="FPSLabel" type="Label" parent="." unique_id=724118795]
 unique_name_in_owner = true
 layout_mode = 2
 text = "???"

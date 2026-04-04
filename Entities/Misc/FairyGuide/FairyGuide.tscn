@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b2btapp23vgst"]
+[gd_scene format=3 uid="uid://b2btapp23vgst"]
 
 [ext_resource type="PackedScene" uid="uid://dc5k2yy5vsbyi" path="res://Common/Models/Characters/Fairy/Fairy.glb" id="1_hagoy"]
 [ext_resource type="Script" uid="uid://c4nnr0daaay5s" path="res://Entities/Misc/FairyGuide/FairyGuide.cs" id="1_p1a3n"]
@@ -64,22 +64,20 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_cb284")
 size = Vector2(0.5, 0.5)
 
-[node name="FairyGuide" type="Node3D" groups=["PhysicsInterpolated"]]
+[node name="FairyGuide" type="Node3D" unique_id=456104785 groups=["PhysicsInterpolated"]]
 script = ExtResource("1_p1a3n")
 
-[node name="Fairy" parent="." instance=ExtResource("1_hagoy")]
+[node name="Fairy" parent="." unique_id=1137421231 instance=ExtResource("1_hagoy")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Fairy"]
-libraries = {
-&"": SubResource("AnimationLibrary_oecc0")
-}
-autoplay = "Hovering"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fairy" unique_id=1572299128]
+libraries/ = SubResource("AnimationLibrary_oecc0")
+autoplay = &"Hovering"
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Fairy"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Fairy" unique_id=905087087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30459255, 0.29601824)
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_tmm2a")
 draw_pass_1 = SubResource("QuadMesh_tfe2o")
 
-[node name="BlobShadow" parent="." instance=ExtResource("5_86vpo")]
+[node name="BlobShadow" parent="." unique_id=596436200 instance=ExtResource("5_86vpo")]
 radius = 0.25

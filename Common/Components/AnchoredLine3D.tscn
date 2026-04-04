@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdmpiimo8xv4a"]
+[gd_scene format=3 uid="uid://bdmpiimo8xv4a"]
 
 [sub_resource type="GDScript" id="GDScript_p5f5n"]
 script/source = "@tool
@@ -49,16 +49,16 @@ height = 1.0
 radial_segments = 8
 rings = 1
 
-[node name="AnchoredLine3D" type="Marker3D" node_paths=PackedStringArray("start_point")]
+[node name="AnchoredLine3D" type="Marker3D" unique_id=283768935 node_paths=PackedStringArray("start_point")]
 process_priority = 2147483647
 script = SubResource("GDScript_p5f5n")
 start_point = NodePath(".")
 
-[node name="CylinderOffset" type="Node3D" parent="."]
+[node name="CylinderOffset" type="Node3D" parent="." unique_id=603235805]
 unique_name_in_owner = true
 top_level = true
 
-[node name="Cylinder" type="MeshInstance3D" parent="CylinderOffset"]
+[node name="Cylinder" type="MeshInstance3D" parent="CylinderOffset" unique_id=1698401771]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
 visible = false

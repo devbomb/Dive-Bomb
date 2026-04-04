@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cimgukuoywob1"]
+[gd_scene format=3 uid="uid://cimgukuoywob1"]
 
 [ext_resource type="Script" uid="uid://casqflr2c8ms3" path="res://Common/Components/CopycatCamera.cs" id="1_ru3ge"]
 [ext_resource type="Script" uid="uid://cs5mkwt1qtl8v" path="res://Singletons/LevelTransitionManager/NonPlayerFadeCurtain/NonPlayerFadeCurtain.cs" id="1_y01ha"]
@@ -12,7 +12,7 @@ material = SubResource("StandardMaterial3D_gf552")
 flip_faces = true
 size = Vector3(100, 100, 100)
 
-[node name="NonPlayerFadeCurtain" type="Control"]
+[node name="NonPlayerFadeCurtain" type="Control" unique_id=1394046105]
 editor_description = "A fade curtain that makes the entire scene fade to black, _except the player_.  This is used for the transition to the \"exit level\" loading screen."
 visible = false
 layout_mode = 3
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y01ha")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=460122277]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -33,17 +33,17 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=62646034]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 0
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=2117555153]
 cull_mask = 2
 script = ExtResource("1_ru3ge")
 
-[node name="BlackBackground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+[node name="BlackBackground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D" unique_id=1078249849]
 unique_name_in_owner = true
 layers = 2
 mesh = SubResource("BoxMesh_5lc4g")

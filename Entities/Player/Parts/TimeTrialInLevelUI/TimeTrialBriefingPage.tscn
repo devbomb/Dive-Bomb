@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqh4hyr3v2be8"]
+[gd_scene format=3 uid="uid://dqh4hyr3v2be8"]
 
 [ext_resource type="Script" uid="uid://bk4u4lef56yoa" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialBriefingMenu.cs" id="1_g7ix7"]
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="2_4p3tb"]
@@ -20,7 +20,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.623377, 0, 0, 0, 1, 0, 0, 0, 1,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1kff0"]
 gradient = SubResource("Gradient_ovo6q")
 
-[node name="TimeTrialBriefingPage" type="Control" node_paths=PackedStringArray("FocusedControl")]
+[node name="TimeTrialBriefingPage" type="Control" unique_id=490379507 node_paths=PackedStringArray("FocusedControl")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +30,7 @@ grow_vertical = 2
 script = ExtResource("1_g7ix7")
 FocusedControl = NodePath("PanelContainer/VBoxContainer/StartButton")
 
-[node name="Instructions" type="Label" parent="."]
+[node name="Instructions" type="Label" parent="." unique_id=613884505]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -44,7 +44,7 @@ label_settings = SubResource("LabelSettings_2i6y4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Instructions"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Instructions" unique_id=1050780270]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,19 +52,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Instructions/VBoxContainer"]
+[node name="Label" type="Label" parent="Instructions/VBoxContainer" unique_id=1130269272]
 layout_mode = 2
 text = "Time Trial Mode"
 label_settings = SubResource("LabelSettings_6vof2")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Instructions/VBoxContainer"]
+[node name="Label2" type="Label" parent="Instructions/VBoxContainer" unique_id=679075271]
 layout_mode = 2
 text = "Choose \"Start\" when ready"
 label_settings = SubResource("LabelSettings_7hfed")
 horizontal_alignment = 1
 
-[node name="TextLegibilityShadow" type="TextureRect" parent="Instructions"]
+[node name="TextLegibilityShadow" type="TextureRect" parent="Instructions" unique_id=2101268023]
 modulate = Color(1, 1, 1, 0.486275)
 z_index = -1
 layout_mode = 1
@@ -77,7 +77,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_1kff0")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1413926786]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.375
@@ -88,15 +88,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_4p3tb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=687868061]
 layout_mode = 2
 script = ExtResource("3_vcnhx")
 
-[node name="StartButton" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=806700640]
 layout_mode = 2
 text = "Start"
 
-[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1685457240]
 layout_mode = 2
 text = "Exit Time Trial Mode"
 

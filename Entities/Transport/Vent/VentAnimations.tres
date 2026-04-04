@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=7 format=3 uid="uid://mph1dfth0pie"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://mph1dfth0pie"]
 
 [ext_resource type="AudioStream" uid="uid://b3ygwxc228jgo" path="res://Entities/Transport/Vent/SFX/VentEmerge.wav" id="1_b0s3a"]
 [ext_resource type="AudioStream" uid="uid://dfh41rudw4sh2" path="res://Entities/Transport/Vent/SFX/VentClose.wav" id="1_di45n"]

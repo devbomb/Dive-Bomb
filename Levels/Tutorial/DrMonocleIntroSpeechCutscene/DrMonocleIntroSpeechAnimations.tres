@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=12 format=3 uid="uid://gvjk68l2wgnj"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://gvjk68l2wgnj"]
 
 [ext_resource type="AudioStream" uid="uid://bluj8ggujlg5d" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocle_IntroSpeech.wav" id="1_a74it"]
 [ext_resource type="AudioStream" uid="uid://6qbhwmehub1l" path="res://UI/Menus/PauseMenu/PauseOpen.wav" id="2_mkl1q"]

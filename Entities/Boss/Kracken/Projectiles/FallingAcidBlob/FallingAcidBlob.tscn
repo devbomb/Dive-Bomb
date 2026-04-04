@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgshrb63523oq"]
+[gd_scene format=3 uid="uid://cgshrb63523oq"]
 
 [ext_resource type="Script" uid="uid://cktr85700gpf0" path="res://Entities/Boss/Kracken/Projectiles/FallingAcidBlob/FallingAcidBlob.cs" id="1_7tjkq"]
 [ext_resource type="AudioStream" uid="uid://blmvtlrrqpdbh" path="res://Entities/Boss/Kracken/SFX/AcidBlobFall.wav" id="2_dr3lt"]
@@ -69,36 +69,36 @@ scale_curve = SubResource("CurveTexture_okuql")
 color = Color(0, 0.376471, 0, 1)
 alpha_curve = SubResource("CurveTexture_si5ek")
 
-[node name="FallingAcidBlob" type="Node3D"]
+[node name="FallingAcidBlob" type="Node3D" unique_id=500697499]
 script = ExtResource("1_7tjkq")
 
-[node name="WhistleSound" type="AudioStreamPlayer" parent="."]
+[node name="WhistleSound" type="AudioStreamPlayer" parent="." unique_id=2074599196]
 stream = ExtResource("2_dr3lt")
 volume_db = -10.331
 autoplay = true
 bus = &"Sfx"
 
-[node name="SplashSound" type="AudioStreamPlayer" parent="."]
+[node name="SplashSound" type="AudioStreamPlayer" parent="." unique_id=226487989]
 stream = ExtResource("3_up6se")
 bus = &"ReverbSfx"
 
-[node name="BlobModel" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="BlobModel" type="MeshInstance3D" parent="." unique_id=893075172 groups=["PhysicsInterpolated"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19423, 0)
 material_override = SubResource("StandardMaterial3D_2wc42")
 mesh = SubResource("SphereMesh_ct1ba")
 
-[node name="PuddleArea" type="Area3D" parent="."]
+[node name="PuddleArea" type="Area3D" parent="." unique_id=1029902980]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 8
 
-[node name="PuddleShape" type="CollisionShape3D" parent="PuddleArea"]
+[node name="PuddleShape" type="CollisionShape3D" parent="PuddleArea" unique_id=1449925574]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_veg6n")
 
-[node name="Shadow" type="Decal" parent="."]
+[node name="Shadow" type="Decal" parent="." unique_id=2057510279]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0353006, 0)
 size = Vector3(2, 1, 2)
@@ -107,12 +107,12 @@ upper_fade = 0.000585938
 lower_fade = 0.000565979
 cull_mask = 8
 
-[node name="PuddleModel" type="MeshInstance3D" parent="."]
+[node name="PuddleModel" type="MeshInstance3D" parent="." unique_id=1268473901]
 unique_name_in_owner = true
 visible = false
 mesh = SubResource("CylinderMesh_ngaiq")
 
-[node name="PermanentParticles" type="Node3D" parent="."]
+[node name="PermanentParticles" type="Node3D" parent="." unique_id=1430926513]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550711, 0)
 script = ExtResource("2_kv134")

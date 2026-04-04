@@ -1,4 +1,4 @@
-[gd_resource type="Animation" load_steps=2 format=3 uid="uid://d2rtb7qo5nfpw"]
+[gd_resource type="Animation" format=3 uid="uid://d2rtb7qo5nfpw"]
 
 [ext_resource type="AudioStream" uid="uid://bolkngv47k5qp" path="res://Entities/Player/SFX/SideFlip.wav" id="1_1pakg"]
 

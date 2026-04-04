@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkrgq5fq30hh1"]
+[gd_scene format=3 uid="uid://dkrgq5fq30hh1"]
 
 [ext_resource type="Script" uid="uid://dwtawaacht34u" path="res://Entities/Logic/WallButton/WallButton.cs" id="1_5gt3j"]
 [ext_resource type="PackedScene" uid="uid://y5hjqc7d6xwi" path="res://Entities/Logic/WallButton/WallButton.glb" id="1_28gm6"]
@@ -71,10 +71,10 @@ _data = {
 &"RESET": SubResource("Animation_5gt3j")
 }
 
-[node name="WallButton" type="Node3D"]
+[node name="WallButton" type="Node3D" unique_id=88053340]
 script = ExtResource("1_5gt3j")
 
-[node name="Model" parent="." instance=ExtResource("1_28gm6")]
+[node name="Model" parent="." unique_id=346711244 instance=ExtResource("1_28gm6")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0.5)
 
 [node name="ButtonCollision" parent="Model" index="2"]
@@ -82,13 +82,11 @@ collision_layer = 2
 collision_mask = 0
 script = ExtResource("3_5gt3j")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=193668061]
 deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_vmsc8")
-}
+libraries/ = SubResource("AnimationLibrary_vmsc8")
 
-[node name="PressedMaterialHolder" type="MeshInstance3D" parent="AnimationPlayer"]
+[node name="PressedMaterialHolder" type="MeshInstance3D" parent="AnimationPlayer" unique_id=2088930414]
 material_override = SubResource("StandardMaterial3D_5gt3j")
 
 [connection signal="Pressed" from="." to="AnimationPlayer" method="play" binds= ["Press"]]

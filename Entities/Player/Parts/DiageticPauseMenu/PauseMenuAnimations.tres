@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=4 format=3 uid="uid://bajs4t3m415k5"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://bajs4t3m415k5"]
 
 [sub_resource type="Animation" id="Animation_rxxnv"]
 resource_name = "Close"

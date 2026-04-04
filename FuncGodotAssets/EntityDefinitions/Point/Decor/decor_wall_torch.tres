@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://bblbx4r2eswhn"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" format=3 uid="uid://bblbx4r2eswhn"]
 
 [ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_8b4bi"]
 [ext_resource type="PackedScene" uid="uid://bnvl0dea6a42y" path="res://Entities/Detail/WallTorch/WallTorch.tscn" id="1_jjwek"]

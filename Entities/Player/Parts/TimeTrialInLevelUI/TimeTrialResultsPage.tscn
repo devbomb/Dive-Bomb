@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://drf8cyvxudjxn"]
+[gd_scene format=3 uid="uid://drf8cyvxudjxn"]
 
 [ext_resource type="Script" uid="uid://bguu511rb2uj2" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialResultsMenu.cs" id="1_nnmc3"]
 [ext_resource type="PackedScene" uid="uid://cyqo0c0lksca7" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialCategoryHighScoresTable/TimeTrialCategoryHighScoresTable.tscn" id="2_dc1xc"]
@@ -222,7 +222,7 @@ font_size = 60
 [sub_resource type="LabelSettings" id="LabelSettings_3t4o0"]
 font_size = 30
 
-[node name="TimeTrialResultsPage" type="Control" node_paths=PackedStringArray("FocusedControl")]
+[node name="TimeTrialResultsPage" type="Control" unique_id=1046107098 node_paths=PackedStringArray("FocusedControl")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -232,14 +232,12 @@ grow_vertical = 2
 script = ExtResource("1_nnmc3")
 FocusedControl = NodePath("Buttons/VBoxContainer/ContinueButton")
 
-[node name="Animator" type="AnimationPlayer" parent="."]
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=398509953]
 unique_name_in_owner = true
 deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_sufs0")
-}
+libraries/ = SubResource("AnimationLibrary_sufs0")
 
-[node name="NewRecordLabel" type="Label" parent="."]
+[node name="NewRecordLabel" type="Label" parent="." unique_id=1772592279]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -256,7 +254,7 @@ label_settings = SubResource("LabelSettings_a8dhq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="PanelContainer" parent="."]
+[node name="Buttons" type="PanelContainer" parent="." unique_id=139787820]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -268,16 +266,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_ivodr")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons" unique_id=959164231]
 layout_mode = 2
 script = ExtResource("3_xj5vp")
 
-[node name="ContinueButton" type="Button" parent="Buttons/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="Buttons/VBoxContainer" unique_id=2141117324]
 layout_mode = 2
 text = "Continue"
 flat = true
 
-[node name="YourTime" type="VBoxContainer" parent="."]
+[node name="YourTime" type="VBoxContainer" parent="." unique_id=1160239406]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -288,12 +286,12 @@ offset_right = -50.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="YourTime"]
+[node name="Label" type="Label" parent="YourTime" unique_id=1432838264]
 layout_mode = 2
 text = "Your time"
 horizontal_alignment = 1
 
-[node name="YourTimeLabel" type="Label" parent="YourTime"]
+[node name="YourTimeLabel" type="Label" parent="YourTime" unique_id=1316664422]
 unique_name_in_owner = true
 layout_mode = 2
 text = "00:00.00"
@@ -301,7 +299,7 @@ label_settings = SubResource("LabelSettings_3t4o0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BestTime" type="VBoxContainer" parent="."]
+[node name="BestTime" type="VBoxContainer" parent="." unique_id=2044620823]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -311,12 +309,12 @@ anchor_bottom = 0.5
 offset_left = 50.0
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="BestTime"]
+[node name="Label" type="Label" parent="BestTime" unique_id=488093641]
 layout_mode = 2
 text = "Best time"
 horizontal_alignment = 1
 
-[node name="BestTimeLabel" type="Label" parent="BestTime"]
+[node name="BestTimeLabel" type="Label" parent="BestTime" unique_id=872873537]
 unique_name_in_owner = true
 layout_mode = 2
 text = "00:00.00"
@@ -324,7 +322,7 @@ label_settings = SubResource("LabelSettings_3t4o0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CategoryLabel" type="HBoxContainer" parent="."]
+[node name="CategoryLabel" type="HBoxContainer" parent="." unique_id=17018185]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -335,16 +333,16 @@ offset_top = 130.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CategoryLabel"]
+[node name="Label" type="Label" parent="CategoryLabel" unique_id=1680191814]
 layout_mode = 2
 text = "Category: "
 
-[node name="Category" type="Label" parent="CategoryLabel"]
+[node name="Category" type="Label" parent="CategoryLabel" unique_id=1437228445]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Flooble Percent"
 
-[node name="CategoriesTable" parent="." instance=ExtResource("2_dc1xc")]
+[node name="CategoriesTable" parent="." unique_id=804907445 instance=ExtResource("2_dc1xc")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8

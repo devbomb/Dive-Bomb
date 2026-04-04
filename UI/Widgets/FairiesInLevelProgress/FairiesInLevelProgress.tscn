@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://2yvv5qgiulnp"]
+[gd_scene format=3 uid="uid://2yvv5qgiulnp"]
 
 [ext_resource type="Script" uid="uid://cx2bahro6fr1n" path="res://UI/Widgets/FairiesInLevelProgress/FairiesInLevelProgress.cs" id="1_5js4f"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="1_etdow"]
@@ -31,10 +31,10 @@ _data = {
 &"RESET": ExtResource("6_pou1x")
 }
 
-[node name="FairiesInLevelProgress" type="Node3D"]
+[node name="FairiesInLevelProgress" type="Node3D" unique_id=12749315]
 script = ExtResource("1_5js4f")
 
-[node name="Label" type="Node3D" parent="."]
+[node name="Label" type="Node3D" parent="." unique_id=867990625]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_etdow")
@@ -43,29 +43,27 @@ Material = ExtResource("3_wh3v3")
 Font = ExtResource("4_wh3v3")
 FontSize = 24
 
-[node name="Backdrop" type="MeshInstance3D" parent="Label"]
+[node name="Backdrop" type="MeshInstance3D" parent="Label" unique_id=30235905]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_w6oip")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Label"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Label" unique_id=1995403769]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109183446, 0, 0.15387371)
 distance_fade_enabled = true
 omni_range = 0.27338353
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="Label"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Label" unique_id=1817684414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12381823, 0, 0.15387374)
 distance_fade_enabled = true
 omni_range = 0.27338353
 
-[node name="FairyModel" type="Node3D" parent="."]
+[node name="FairyModel" type="Node3D" parent="." unique_id=452931464]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.431, -0.35, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FairyModel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FairyModel" unique_id=1111535208]
 deterministic = true
 root_node = NodePath("../Fairy")
-libraries = {
-&"": SubResource("AnimationLibrary_nda6u")
-}
-autoplay = "Hovering"
+libraries/ = SubResource("AnimationLibrary_nda6u")
+autoplay = &"Hovering"
 
-[node name="Fairy" parent="FairyModel" instance=ExtResource("3_tmx4v")]
+[node name="Fairy" parent="FairyModel" unique_id=228426948 instance=ExtResource("3_tmx4v")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6h2dtt75ixkq"]
+[gd_scene format=3 uid="uid://b6h2dtt75ixkq"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_ffros"]
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="2_hcq28"]
@@ -101,48 +101,46 @@ _data = {
 &"RESET": SubResource("Animation_ng4ld")
 }
 
-[node name="MovingPlatformTester" type="Node3D"]
+[node name="MovingPlatformTester" type="Node3D" unique_id=12792779]
 script = ExtResource("1_ffros")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=114542022]
 environment = SubResource("Environment_qpi65")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1683088972]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
 
-[node name="StationaryFloor" type="StaticBody3D" parent="."]
+[node name="StationaryFloor" type="StaticBody3D" parent="." unique_id=1336960768]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StationaryFloor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StationaryFloor" unique_id=49806365]
 layers = 9
 mesh = SubResource("BoxMesh_1o5nc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StationaryFloor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StationaryFloor" unique_id=439144760]
 shape = SubResource("BoxShape3D_hcq28")
 
-[node name="Player" parent="StationaryFloor" instance=ExtResource("2_hcq28")]
+[node name="Player" parent="StationaryFloor" unique_id=863290744 instance=ExtResource("2_hcq28")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9793224, 2.249999, 3.7003145)
 
-[node name="LinearHorizontal" type="Node3D" parent="."]
+[node name="LinearHorizontal" type="Node3D" parent="." unique_id=685671434]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LinearHorizontal"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LinearHorizontal" unique_id=125985455]
 deterministic = true
 callback_mode_process = 0
-libraries = {
-&"": SubResource("AnimationLibrary_ta0sd")
-}
-autoplay = "Move"
+libraries/ = SubResource("AnimationLibrary_ta0sd")
+autoplay = &"Move"
 
-[node name="Platform" type="AnimatableBody3D" parent="LinearHorizontal" groups=["PhysicsInterpolated"]]
+[node name="Platform" type="AnimatableBody3D" parent="LinearHorizontal" unique_id=1870364681 groups=["PhysicsInterpolated"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LinearHorizontal/Platform"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LinearHorizontal/Platform" unique_id=2111472434]
 shape = SubResource("BoxShape3D_suxoq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LinearHorizontal/Platform"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LinearHorizontal/Platform" unique_id=573595753]
 layers = 9
 mesh = SubResource("BoxMesh_ng4ld")
 
-[node name="BlobShadow" type="Decal" parent="LinearHorizontal/Platform"]
+[node name="BlobShadow" type="Decal" parent="LinearHorizontal/Platform" unique_id=949645921]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 0)
 size = Vector3(4, 5.5, 4)
 texture_albedo = SubResource("GradientTexture2D_f74t5")
@@ -150,28 +148,26 @@ upper_fade = 8.413403e-05
 lower_fade = 1.0352646e-05
 cull_mask = 8
 
-[node name="LinearHorizontalThin" type="Node3D" parent="."]
+[node name="LinearHorizontalThin" type="Node3D" parent="." unique_id=1549856444]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -9)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LinearHorizontalThin"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LinearHorizontalThin" unique_id=1017839700]
 deterministic = true
 callback_mode_process = 0
-libraries = {
-&"": SubResource("AnimationLibrary_ta0sd")
-}
-autoplay = "Move"
+libraries/ = SubResource("AnimationLibrary_ta0sd")
+autoplay = &"Move"
 
-[node name="Platform" type="AnimatableBody3D" parent="LinearHorizontalThin" groups=["PhysicsInterpolated"]]
+[node name="Platform" type="AnimatableBody3D" parent="LinearHorizontalThin" unique_id=1625703936 groups=["PhysicsInterpolated"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LinearHorizontalThin/Platform"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LinearHorizontalThin/Platform" unique_id=324702963]
 shape = SubResource("BoxShape3D_ta0sd")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LinearHorizontalThin/Platform"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LinearHorizontalThin/Platform" unique_id=396374465]
 layers = 9
 mesh = SubResource("BoxMesh_f74t5")
 
-[node name="BlobShadow" type="Decal" parent="LinearHorizontalThin/Platform"]
+[node name="BlobShadow" type="Decal" parent="LinearHorizontalThin/Platform" unique_id=137366109]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 0)
 size = Vector3(4, 5.5, 0.5)
 texture_albedo = SubResource("GradientTexture2D_f74t5")
@@ -179,26 +175,24 @@ upper_fade = 8.413403e-05
 lower_fade = 1.0352646e-05
 cull_mask = 8
 
-[node name="LinearVertical" type="Node3D" parent="."]
+[node name="LinearVertical" type="Node3D" parent="." unique_id=94545235]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LinearVertical"]
-libraries = {
-&"": SubResource("AnimationLibrary_f74t5")
-}
-autoplay = "Move"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LinearVertical" unique_id=23507612]
+libraries/ = SubResource("AnimationLibrary_f74t5")
+autoplay = &"Move"
 
-[node name="Platform" type="AnimatableBody3D" parent="LinearVertical" groups=["PhysicsInterpolated"]]
+[node name="Platform" type="AnimatableBody3D" parent="LinearVertical" unique_id=1970014150 groups=["PhysicsInterpolated"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LinearVertical/Platform"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LinearVertical/Platform" unique_id=1123047390]
 shape = SubResource("BoxShape3D_suxoq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LinearVertical/Platform"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LinearVertical/Platform" unique_id=1579355270]
 layers = 9
 mesh = SubResource("BoxMesh_ng4ld")
 
-[node name="BlobShadow" type="Decal" parent="LinearVertical/Platform"]
+[node name="BlobShadow" type="Decal" parent="LinearVertical/Platform" unique_id=1590879851]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.286621, 0)
 size = Vector3(4, 25.5, 4)
 texture_albedo = SubResource("GradientTexture2D_f74t5")

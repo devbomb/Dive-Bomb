@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=5 format=3 uid="uid://dir3omedhp16m"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" format=3 uid="uid://dir3omedhp16m"]
 
 [ext_resource type="PackedScene" uid="uid://dbxajif4g4buk" path="res://Entities/Item/Basket/Basket.tscn" id="1_a5qj5"]
 [ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/Point/base_gem_container.tres" id="1_qa472"]

@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0tu88k5onnjj"]
+[gd_scene format=3 uid="uid://d0tu88k5onnjj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_r8uk7"]
 [ext_resource type="PackedScene" uid="uid://y0603qy376jk" path="res://DebugLevels/ConveyorBeltTester/Maps/ConveyorBeltTester.map" id="2_kk84g"]
 
-[node name="ConveyorBeltTester" type="Node3D"]
+[node name="ConveyorBeltTester" type="Node3D" unique_id=1881073014]
 script = ExtResource("1_r8uk7")
 LevelName = "Conveyor Belt Tester"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
-[node name="ConveyorBeltTester" parent="." instance=ExtResource("2_kk84g")]
+[node name="ConveyorBeltTester" parent="." unique_id=1817467359 instance=ExtResource("2_kk84g")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=172507978]
 transform = Transform3D(1, 0, 0, 0, -0.958467, 0.285203, 0, -0.285203, -0.958467, 0, 6, 0)

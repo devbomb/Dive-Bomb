@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://btejrg27q3lyj"]
+[gd_scene format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="AudioStream" uid="uid://b1koi60nf7f5x" path="res://Common/Audio/Music/SneakyD.mp3" id="2_alo6x"]
@@ -126,41 +126,41 @@ font = SubResource("FontVariation_lu0qh")
 font_size = 44
 curve_step = 10.0
 
-[node name="Tutorial" type="Node3D"]
+[node name="Tutorial" type="Node3D" unique_id=1133266737]
 script = ExtResource("1_vo1h1")
 LevelName = "Tutorial"
 HomeWorldLevel = "uid://muwxx8ltp1ss"
 ForbidExitLevel = true
 
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=866248481]
 stream = SubResource("AudioStreamInteractive_lu0qh")
 volume_db = -4.706
 bus = &"Music"
 script = ExtResource("18_83vbk")
 metadata/_custom_type_script = "uid://du3spb4diyf40"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=785414872]
 environment = ExtResource("2_eipfg")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1551812567]
 transform = Transform3D(-0.9965584, 0.030449376, -0.077098645, -0.038427416, 0.65441513, 0.75515836, 0.07344863, 0.75552213, -0.6509928, -16.4758, 8.46741, 21.1995)
 shadow_opacity = 0.55
 shadow_blur = 10.0
 sky_mode = 1
 
-[node name="Backwards" type="DirectionalLight3D" parent="DirectionalLight3D"]
+[node name="Backwards" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=585396047]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 light_energy = 0.4
 light_bake_mode = 1
 sky_mode = 1
 
-[node name="Intro" parent="." instance=ExtResource("2_vwhqw")]
+[node name="Intro" parent="." unique_id=985666460 instance=ExtResource("2_vwhqw")]
 
-[node name="AgentDIntroCutscene" parent="Intro" node_paths=PackedStringArray("BackgroundMusicPlayer") instance=ExtResource("3_kb7u2")]
+[node name="AgentDIntroCutscene" parent="Intro" unique_id=303769610 node_paths=PackedStringArray("BackgroundMusicPlayer") instance=ExtResource("3_kb7u2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -7.5, 2.3)
 BackgroundMusicPlayer = NodePath("../../BackgroundMusicPlayer")
 
-[node name="JumpTutorialPopup" type="PanelContainer" parent="Intro"]
+[node name="JumpTutorialPopup" type="PanelContainer" parent="Intro" unique_id=1020884806]
 visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
@@ -178,15 +178,15 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "JumpTutorialTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Intro/JumpTutorialPopup"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Intro/JumpTutorialPopup" unique_id=31726207]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Icons" type="Control" parent="Intro/JumpTutorialPopup/HBoxContainer"]
+[node name="Icons" type="Control" parent="Intro/JumpTutorialPopup/HBoxContainer" unique_id=594744529]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 
-[node name="ControllerIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons"]
+[node name="ControllerIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons" unique_id=1907303650]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -203,7 +203,7 @@ size_flags_vertical = 4
 texture = SubResource("Texture2D_p8bxm")
 expand_mode = 1
 
-[node name="KeyboardIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons"]
+[node name="KeyboardIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons" unique_id=1824947049]
 layout_mode = 0
 offset_left = -20.0
 offset_top = 3.0
@@ -213,17 +213,17 @@ size_flags_vertical = 4
 texture = SubResource("Texture2D_uhvqi")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Intro/JumpTutorialPopup/HBoxContainer"]
+[node name="Label" type="Label" parent="Intro/JumpTutorialPopup/HBoxContainer" unique_id=2051868149]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Jump"
 label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
 
-[node name="CameraTut" parent="." instance=ExtResource("3_3rttw")]
+[node name="CameraTut" parent="." unique_id=344728991 instance=ExtResource("3_3rttw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 35)
 
-[node name="CameraTutorialPopup" type="PanelContainer" parent="CameraTut"]
+[node name="CameraTutorialPopup" type="PanelContainer" parent="CameraTut" unique_id=1890178206]
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
 anchor_left = 0.5
@@ -240,15 +240,15 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "CameraTutorialTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CameraTut/CameraTutorialPopup"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CameraTut/CameraTutorialPopup" unique_id=141089509]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Icons" type="Control" parent="CameraTut/CameraTutorialPopup/HBoxContainer"]
+[node name="Icons" type="Control" parent="CameraTut/CameraTutorialPopup/HBoxContainer" unique_id=299107657]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 
-[node name="ControllerIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons"]
+[node name="ControllerIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons" unique_id=323358392]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -265,7 +265,7 @@ size_flags_vertical = 4
 texture = SubResource("Texture2D_lu0qh")
 expand_mode = 1
 
-[node name="KeyboardIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons"]
+[node name="KeyboardIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons" unique_id=729697371]
 layout_mode = 0
 offset_left = -20.0
 offset_top = 3.0
@@ -275,17 +275,17 @@ size_flags_vertical = 4
 texture = SubResource("Texture2D_r6tbe")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="CameraTut/CameraTutorialPopup/HBoxContainer"]
+[node name="Label" type="Label" parent="CameraTut/CameraTutorialPopup/HBoxContainer" unique_id=287635632]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Move Camera"
 label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
 
-[node name="KickTut" parent="." instance=ExtResource("8_yrnv4")]
+[node name="KickTut" parent="." unique_id=843913111 instance=ExtResource("8_yrnv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 13, 37)
 
-[node name="RecenterCameraTutorialPopup" type="PanelContainer" parent="KickTut"]
+[node name="RecenterCameraTutorialPopup" type="PanelContainer" parent="KickTut" unique_id=326366864]
 visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
@@ -303,25 +303,25 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "RecenterCameraTutorialTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/RecenterCameraTutorialPopup"]
+[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/RecenterCameraTutorialPopup" unique_id=1356391317]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer" unique_id=67715824]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("Texture2D_sob3p")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer"]
+[node name="Label" type="Label" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer" unique_id=2107237578]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Recenter Camera"
 label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
 
-[node name="KickTutorialPopup" type="PanelContainer" parent="KickTut"]
+[node name="KickTutorialPopup" type="PanelContainer" parent="KickTut" unique_id=35792725]
 visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
@@ -339,28 +339,28 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "KickTutorialPopupTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/KickTutorialPopup"]
+[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/KickTutorialPopup" unique_id=138775688]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="KickTut/KickTutorialPopup/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="KickTut/KickTutorialPopup/HBoxContainer" unique_id=805427505]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("Texture2D_yrnv4")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="KickTut/KickTutorialPopup/HBoxContainer"]
+[node name="Label" type="Label" parent="KickTut/KickTutorialPopup/HBoxContainer" unique_id=1274254823]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Kick"
 label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
 
-[node name="RollTut" parent="." instance=ExtResource("8_i3mr3")]
+[node name="RollTut" parent="." unique_id=449101991 instance=ExtResource("8_i3mr3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 13, 27)
 
-[node name="RollTutorialPopup" type="PanelContainer" parent="RollTut"]
+[node name="RollTutorialPopup" type="PanelContainer" parent="RollTut" unique_id=1382017440]
 visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
@@ -378,64 +378,64 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "RollTutorialPopupTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RollTut/RollTutorialPopup"]
+[node name="HBoxContainer" type="HBoxContainer" parent="RollTut/RollTutorialPopup" unique_id=1643180887]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="RollTut/RollTutorialPopup/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="RollTut/RollTutorialPopup/HBoxContainer" unique_id=900111991]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("Texture2D_ipotd")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="RollTut/RollTutorialPopup/HBoxContainer"]
+[node name="Label" type="Label" parent="RollTut/RollTutorialPopup/HBoxContainer" unique_id=1010017696]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Roll"
 label_settings = SubResource("LabelSettings_i3mr3")
 vertical_alignment = 1
 
-[node name="FairyRoomWindowCameraSpot" type="Marker3D" parent="RollTut"]
+[node name="FairyRoomWindowCameraSpot" type="Marker3D" parent="RollTut" unique_id=523505177]
 transform = Transform3D(-5.9604645e-08, 0.5, -0.8660254, 0, 0.8660254, 0.5, 1, 2.9802322e-08, -5.1619136e-08, 32, 15, -15)
 script = ExtResource("10_ipotd")
 targetname = "FairyRoomWindowCameraSpot"
 
-[node name="FairyRoom" parent="." instance=ExtResource("11_r652i")]
+[node name="FairyRoom" parent="." unique_id=980630942 instance=ExtResource("11_r652i")]
 transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 94, 11, 8.999999)
 
-[node name="FairyEscapeCameraAngle1" type="Marker3D" parent="FairyRoom"]
+[node name="FairyEscapeCameraAngle1" type="Marker3D" parent="FairyRoom" unique_id=226337159]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 23, 3.9999995)
 script = ExtResource("10_ipotd")
 targetname = "FairyEscapeCameraAngle1"
 
-[node name="FairyEscapeCameraAngle2" type="Marker3D" parent="FairyRoom"]
+[node name="FairyEscapeCameraAngle2" type="Marker3D" parent="FairyRoom" unique_id=30543330]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7, 21, -1)
 script = ExtResource("10_ipotd")
 targetname = "FairyEscapeCameraAngle2"
 
-[node name="FairyGuidePath" type="Path3D" parent="FairyRoom"]
+[node name="FairyGuidePath" type="Path3D" parent="FairyRoom" unique_id=1544981381]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.109985, 11, -1.9642868)
 curve = SubResource("Curve3D_r652i")
 
-[node name="FairyGuide" parent="FairyRoom/FairyGuidePath" node_paths=PackedStringArray("Path") instance=ExtResource("12_myhx6")]
+[node name="FairyGuide" parent="FairyRoom/FairyGuidePath" unique_id=854508253 node_paths=PackedStringArray("Path") instance=ExtResource("12_myhx6")]
 transform = Transform3D(-0.99083304, 0, 0.13509221, 0, 1, 0, -0.13509223, 0, -0.9908329, -0.508234, -1.3115921, 0)
 FairyId = "TutorialFairy"
 Path = NodePath("..")
 VanishWhenFinished = true
 
-[node name="DrMonocleSpeech" parent="." instance=ExtResource("13_myhx6")]
+[node name="DrMonocleSpeech" parent="." unique_id=1080985656 instance=ExtResource("13_myhx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146, 30, 15)
 
-[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" node_paths=PackedStringArray("MusicPlayer") instance=ExtResource("15_ym3l3")]
+[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" unique_id=201296875 node_paths=PackedStringArray("MusicPlayer") instance=ExtResource("15_ym3l3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27.539627, 5.927231, 0.35410118)
 targetname = "DrMonocleIntroSpeechCutscene"
 MusicPlayer = NodePath("../../BackgroundMusicPlayer")
 
-[node name="SelfDestructLabel" type="MeshInstance3D" parent="DrMonocleSpeech"]
+[node name="SelfDestructLabel" type="MeshInstance3D" parent="DrMonocleSpeech" unique_id=404275454]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.985016, 5.013607, 7.5155544)
 mesh = SubResource("TextMesh_25uee")
 
-[node name="SelfDestructLabel2" type="MeshInstance3D" parent="DrMonocleSpeech"]
+[node name="SelfDestructLabel2" type="MeshInstance3D" parent="DrMonocleSpeech" unique_id=229053240]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.985016, 1.7752533, 7.5155544)
 mesh = SubResource("TextMesh_35ubr")

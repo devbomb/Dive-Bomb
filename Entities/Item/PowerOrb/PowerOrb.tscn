@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://btcofpq2vamxe"]
+[gd_scene format=3 uid="uid://btcofpq2vamxe"]
 
 [ext_resource type="Script" uid="uid://djngs7hwn3v5q" path="res://Entities/Item/PowerOrb/PowerOrb.cs" id="1_33fc2"]
 [ext_resource type="AudioStream" uid="uid://ccronnj46nywl" path="res://Entities/Item/PowerOrb/PowerOrbBreak.wav" id="2_k6hmf"]
@@ -43,27 +43,27 @@ albedo_color = Color(0.989, 0.34, 1, 0.376471)
 metallic = 1.0
 roughness = 0.37
 
-[node name="PowerOrb" type="StaticBody3D" groups=["UnsafeGround"]]
+[node name="PowerOrb" type="StaticBody3D" unique_id=1412205756 groups=["UnsafeGround"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_33fc2")
 CameraShakeMagnitude = 0.5
 CameraShakeDuration = 0.25
 
-[node name="ShatterSound" type="AudioStreamPlayer" parent="."]
+[node name="ShatterSound" type="AudioStreamPlayer" parent="." unique_id=188259130]
 stream = ExtResource("2_k6hmf")
 volume_db = -8.265
 
-[node name="BodyShape" type="CollisionShape3D" parent="."]
+[node name="BodyShape" type="CollisionShape3D" parent="." unique_id=879889852]
 unique_name_in_owner = true
 shape = SubResource("SphereShape3D_dnv66")
 
-[node name="BlobShadow" parent="." node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("2_mqwyj")]
+[node name="BlobShadow" parent="." unique_id=792488946 node_paths=PackedStringArray("ignore_bodies") instance=ExtResource("2_mqwyj")]
 unique_name_in_owner = true
 ignore_bodies = [NodePath("..")]
 radius = 0.3
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=1653057016]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
 emitting = false
@@ -74,20 +74,20 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_n0bsp")
 draw_pass_1 = SubResource("PrismMesh_r5emb")
 
-[node name="Model" type="Node3D" parent="."]
+[node name="Model" type="Node3D" parent="." unique_id=2002773415]
 unique_name_in_owner = true
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Model"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Model" unique_id=860594630]
 omni_range = 0.448221
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Model"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Model" unique_id=980296896]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.574, 0)
 visible = false
 light_energy = 0.285
 distance_fade_enabled = true
 spot_range = 1.0235
 
-[node name="Model" parent="Model" instance=ExtResource("2_wnb6r")]
+[node name="Model" parent="Model" unique_id=498759582 instance=ExtResource("2_wnb6r")]
 
 [node name="Icosphere" parent="Model/Model" index="0"]
 material_override = SubResource("StandardMaterial3D_wotai")

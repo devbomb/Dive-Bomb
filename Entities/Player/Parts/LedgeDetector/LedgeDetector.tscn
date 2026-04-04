@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfucpfnpqi5r3"]
+[gd_scene format=3 uid="uid://bfucpfnpqi5r3"]
 
 [ext_resource type="Script" uid="uid://bhepqrluiokcn" path="res://Entities/Player/Parts/LedgeDetector/LedgeDetector.cs" id="1_ykwis"]
 
@@ -13,33 +13,33 @@ albedo_color = Color(0.22352941, 1, 1, 0.21960784)
 [sub_resource type="SphereMesh" id="SphereMesh_wc4sc"]
 material = SubResource("StandardMaterial3D_pwy4k")
 
-[node name="LedgeDetector" type="Node3D" node_paths=PackedStringArray("DownCast", "AntiSuicideChecker", "Visualizer")]
+[node name="LedgeDetector" type="Node3D" unique_id=2063038814 node_paths=PackedStringArray("DownCast", "AntiSuicideChecker", "Visualizer")]
 script = ExtResource("1_ykwis")
 DownCast = NodePath("DownCast")
 AntiSuicideChecker = NodePath("AntiSuicideChecker")
 Visualizer = NodePath("Visualizer")
 
-[node name="DownCast" type="RayCast3D" parent="."]
+[node name="DownCast" type="RayCast3D" parent="." unique_id=1937340920]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
 target_position = Vector3(0, -2, 0)
 collision_mask = 3
 
-[node name="AntiSuicideChecker" type="RayCast3D" parent="."]
+[node name="AntiSuicideChecker" type="RayCast3D" parent="." unique_id=1196976904]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
 target_position = Vector3(0, -2, 0)
 collision_mask = 3
 
-[node name="Visualizer" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="Visualizer" type="MeshInstance3D" parent="." unique_id=918470778 groups=["PhysicsInterpolated"]]
 top_level = true
 visible = false
 mesh = SubResource("SphereMesh_pwy4k")
 
-[node name="ReferenceBefore" type="MeshInstance3D" parent="."]
+[node name="ReferenceBefore" type="MeshInstance3D" parent="." unique_id=2092678974]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 visible = false
 mesh = SubResource("SphereMesh_wc4sc")
 
-[node name="ReferenceAfter" type="MeshInstance3D" parent="."]
+[node name="ReferenceAfter" type="MeshInstance3D" parent="." unique_id=1514199916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
 visible = false
 mesh = SubResource("SphereMesh_wc4sc")

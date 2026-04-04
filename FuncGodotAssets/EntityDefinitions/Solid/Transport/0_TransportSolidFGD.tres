@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=3 format=3 uid="uid://jx1kowwwplxc"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" format=3 uid="uid://jx1kowwwplxc"]
 
 [ext_resource type="Resource" uid="uid://0wllpr4r6l0e" path="res://FuncGodotAssets/EntityDefinitions/Solid/Transport/transport_warp_trigger.tres" id="1_l8dl3"]
 [ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_spgpu"]

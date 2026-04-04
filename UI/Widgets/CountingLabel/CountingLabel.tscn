@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpa1avddef2b"]
+[gd_scene format=3 uid="uid://dpa1avddef2b"]
 
 [ext_resource type="Script" uid="uid://bn1okvxdu26gw" path="res://UI/Widgets/CountingLabel/CountingLabel.cs" id="1_tt4pu"]
 [ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="2_3rxh2"]
@@ -19,7 +19,7 @@ fog_density = 0.984
 [sub_resource type="World3D" id="World3D_nlynk"]
 environment = SubResource("Environment_3rxh2")
 
-[node name="CountingLabel" type="Control"]
+[node name="CountingLabel" type="Control" unique_id=630510857]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_tt4pu")
 
-[node name="TextSizeLabel" type="Label" parent="."]
+[node name="TextSizeLabel" type="Label" parent="." unique_id=151843245]
 unique_name_in_owner = true
 layout_mode = 1
 offset_right = 75.0
@@ -37,7 +37,7 @@ offset_bottom = 29.0
 text = "000"
 label_settings = SubResource("LabelSettings_wsjjg")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="TextSizeLabel"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="TextSizeLabel" unique_id=1289317352]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,29 +46,29 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="TextSizeLabel/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="TextSizeLabel/SubViewportContainer" unique_id=723652983]
 own_world_3d = true
 world_3d = SubResource("World3D_nlynk")
 handle_input_locally = false
 size = Vector2i(75, 29)
 render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="TextSizeLabel/SubViewportContainer/SubViewport"]
+[node name="Node3D" type="Node3D" parent="TextSizeLabel/SubViewportContainer/SubViewport" unique_id=1330681750]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TextSizeLabel/SubViewportContainer/SubViewport/Node3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TextSizeLabel/SubViewportContainer/SubViewport/Node3D" unique_id=907930859]
 transform = Transform3D(0.881016, 0.389507, -0.268505, -0.234903, 0.852823, 0.466384, 0.410647, -0.347819, 0.842847, 0, 0, 0)
 
-[node name="SpinningCounter" parent="TextSizeLabel/SubViewportContainer/SubViewport/Node3D" instance=ExtResource("2_5rvke")]
+[node name="SpinningCounter" parent="TextSizeLabel/SubViewportContainer/SubViewport/Node3D" unique_id=276932266 instance=ExtResource("2_5rvke")]
 unique_name_in_owner = true
 DigitSeparation = 0.11
 
-[node name="BackDigits" parent="TextSizeLabel/SubViewportContainer/SubViewport/Node3D" instance=ExtResource("2_5rvke")]
+[node name="BackDigits" parent="TextSizeLabel/SubViewportContainer/SubViewport/Node3D" unique_id=606491631 instance=ExtResource("2_5rvke")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -95)
 DigitSeparation = 0.11
 Value = 888
 
-[node name="Camera3D" type="Camera3D" parent="TextSizeLabel/SubViewportContainer/SubViewport/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="TextSizeLabel/SubViewportContainer/SubViewport/Node3D" unique_id=1135315646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0, 0.102)
 projection = 1
 size = 0.141945

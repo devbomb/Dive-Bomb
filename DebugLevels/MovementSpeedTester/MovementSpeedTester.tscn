@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bdhifktrq7xd7"]
+[gd_scene format=3 uid="uid://bdhifktrq7xd7"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_5rtvj"]
 [ext_resource type="Script" uid="uid://hnixn8wg1n8f" path="res://DebugLevels/MovementSpeedTester/MovementSpeedTester.cs" id="2_2m3uo"]
@@ -91,31 +91,31 @@ func _process(_delta: float) -> void:
 	text = str(get_parent().value)
 "
 
-[node name="MovementSpeedTester" type="Node3D"]
+[node name="MovementSpeedTester" type="Node3D" unique_id=1012630683]
 script = ExtResource("1_5rtvj")
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1567927024]
 environment = SubResource("Environment_0wyy0")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=548041197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2727222, 0)
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="." unique_id=905941731]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1361696074]
 shape = SubResource("WorldBoundaryShape3D_5rtvj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=73139599]
 layers = 9
 material_override = SubResource("ShaderMaterial_2m3uo")
 extra_cull_margin = 1000.0
 mesh = SubResource("PlaneMesh_yarhr")
 script = SubResource("GDScript_yarhr")
 
-[node name="Player" parent="." instance=ExtResource("2_yarhr")]
+[node name="Player" parent="." unique_id=1545905077 instance=ExtResource("2_yarhr")]
 
-[node name="Tester" type="Control" parent="." node_paths=PackedStringArray("Player", "TimerLabel", "DistanceLabel", "ProgressBar", "JumpDelayFramesSlider", "DiveDelayFramesSlider")]
+[node name="Tester" type="Control" parent="." unique_id=641532909 node_paths=PackedStringArray("Player", "TimerLabel", "DistanceLabel", "ProgressBar", "JumpDelayFramesSlider", "DiveDelayFramesSlider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,7 +130,7 @@ ProgressBar = NodePath("ProgressBar")
 JumpDelayFramesSlider = NodePath("Sliders/JumpDelaySlider")
 DiveDelayFramesSlider = NodePath("Sliders/DiveDelaySlider")
 
-[node name="TimerLabel" type="Label" parent="Tester"]
+[node name="TimerLabel" type="Label" parent="Tester" unique_id=1626083621]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -143,7 +143,7 @@ grow_vertical = 0
 text = "0:00:00"
 label_settings = SubResource("LabelSettings_2m3uo")
 
-[node name="Buttons" type="VBoxContainer" parent="Tester"]
+[node name="Buttons" type="VBoxContainer" parent="Tester" unique_id=826786885]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -154,23 +154,23 @@ offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
 
-[node name="WalkButton" type="Button" parent="Tester/Buttons"]
+[node name="WalkButton" type="Button" parent="Tester/Buttons" unique_id=2067164131]
 layout_mode = 2
 text = "Start walk test"
 
-[node name="RollButton" type="Button" parent="Tester/Buttons"]
+[node name="RollButton" type="Button" parent="Tester/Buttons" unique_id=1895809019]
 layout_mode = 2
 text = "Start perfect roll test"
 
-[node name="DiveOnlyButton" type="Button" parent="Tester/Buttons"]
+[node name="DiveOnlyButton" type="Button" parent="Tester/Buttons" unique_id=818674166]
 layout_mode = 2
 text = "Start dive-only test"
 
-[node name="JumpDiveRollButton" type="Button" parent="Tester/Buttons"]
+[node name="JumpDiveRollButton" type="Button" parent="Tester/Buttons" unique_id=191398276]
 layout_mode = 2
 text = "Start jump-dive-roll test"
 
-[node name="Sliders" type="VBoxContainer" parent="Tester"]
+[node name="Sliders" type="VBoxContainer" parent="Tester" unique_id=2098736277]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 5
@@ -181,18 +181,18 @@ offset_right = 4.0
 offset_bottom = 16.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="Tester/Sliders"]
+[node name="Label" type="Label" parent="Tester/Sliders" unique_id=18728190]
 layout_mode = 2
 text = "Dive delay (ticks)"
 
-[node name="DiveDelaySlider" type="HSlider" parent="Tester/Sliders"]
+[node name="DiveDelaySlider" type="HSlider" parent="Tester/Sliders" unique_id=1544599608]
 layout_mode = 2
 max_value = 60.0
 scrollable = false
 tick_count = 60
 ticks_on_borders = true
 
-[node name="Label" type="Label" parent="Tester/Sliders/DiveDelaySlider"]
+[node name="Label" type="Label" parent="Tester/Sliders/DiveDelaySlider" unique_id=2079316755]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -207,18 +207,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_2m3uo")
 
-[node name="Label2" type="Label" parent="Tester/Sliders"]
+[node name="Label2" type="Label" parent="Tester/Sliders" unique_id=783296211]
 layout_mode = 2
 text = "Jump delay (ticks)"
 
-[node name="JumpDelaySlider" type="HSlider" parent="Tester/Sliders"]
+[node name="JumpDelaySlider" type="HSlider" parent="Tester/Sliders" unique_id=1431570501]
 layout_mode = 2
 max_value = 60.0
 scrollable = false
 tick_count = 60
 ticks_on_borders = true
 
-[node name="Label" type="Label" parent="Tester/Sliders/JumpDelaySlider"]
+[node name="Label" type="Label" parent="Tester/Sliders/JumpDelaySlider" unique_id=248390892]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -233,7 +233,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_2m3uo")
 
-[node name="ProgressBar" type="ProgressBar" parent="Tester"]
+[node name="ProgressBar" type="ProgressBar" parent="Tester" unique_id=938719774]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -248,7 +248,7 @@ grow_horizontal = 0
 grow_vertical = 2
 fill_mode = 3
 
-[node name="DistanceLabel" type="Label" parent="Tester/ProgressBar"]
+[node name="DistanceLabel" type="Label" parent="Tester/ProgressBar" unique_id=1254913719]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5

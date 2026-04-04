@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://t1vahhcvv1hb"]
+[gd_scene format=3 uid="uid://t1vahhcvv1hb"]
 
 [sub_resource type="Curve" id="Curve_o10cw"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -56,9 +56,9 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_fptb0"]
 material = SubResource("StandardMaterial3D_c45cr")
 
-[node name="Fireplace" type="Node3D"]
+[node name="Fireplace" type="Node3D" unique_id=1358411884]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=281159809]
 amount = 123
 process_material = SubResource("ParticleProcessMaterial_cne2h")
 draw_pass_1 = SubResource("QuadMesh_fptb0")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dympqtsl60os7"]
+[gd_scene format=3 uid="uid://dympqtsl60os7"]
 
 [ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="1_ds1y7"]
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_qp38o"]
@@ -21,35 +21,35 @@ size = Vector3(20, 1, 20)
 [sub_resource type="BoxMesh" id="BoxMesh_e14f1"]
 size = Vector3(20, 1, 20)
 
-[node name="LevelExitCanonTester" type="Node3D"]
+[node name="LevelExitCanonTester" type="Node3D" unique_id=1066898037]
 script = ExtResource("1_qp38o")
 HomeWorldLevel = "uid://muwxx8ltp1ss"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=510097443]
 environment = SubResource("Environment_6nf20")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=976934097]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=915566260]
 shape = SubResource("BoxShape3D_x75wr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=208686295]
 layers = 9
 mesh = SubResource("BoxMesh_e14f1")
 
-[node name="Player" parent="." instance=ExtResource("1_ds1y7")]
+[node name="Player" parent="." unique_id=622319708 instance=ExtResource("1_ds1y7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.776, 0.5, 8.667)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1617326752]
 transform = Transform3D(1, 0, 0, 0, 0.889025, 0.457858, 0, -0.457858, 0.889025, 0, 0, 0)
 
-[node name="LevelExitCanon" parent="." instance=ExtResource("2_ds1y7")]
+[node name="LevelExitCanon" parent="." unique_id=1523760538 instance=ExtResource("2_ds1y7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.77835, 0.530197, 2.20609)
 HiddenHeight = -5.5
 RevealDuration = 3.0
 
-[node name="RevealExitButton" type="Button" parent="."]
+[node name="RevealExitButton" type="Button" parent="." unique_id=650810673]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -58,21 +58,21 @@ offset_right = 8.0
 grow_vertical = 0
 text = "Reveal Exit"
 
-[node name="Gems" type="Node3D" parent="."]
+[node name="Gems" type="Node3D" parent="." unique_id=13383636]
 
-[node name="MagentaGem" parent="Gems" instance=ExtResource("5_16wl4")]
+[node name="MagentaGem" parent="Gems" unique_id=698565600 instance=ExtResource("5_16wl4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.00598, 0.774493, 6.42928)
 
-[node name="MagentaGem2" parent="Gems" instance=ExtResource("5_16wl4")]
+[node name="MagentaGem2" parent="Gems" unique_id=414158604 instance=ExtResource("5_16wl4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.68291, 0.774493, 4.20741)
 
-[node name="MagentaGem3" parent="Gems" instance=ExtResource("5_16wl4")]
+[node name="MagentaGem3" parent="Gems" unique_id=171317325 instance=ExtResource("5_16wl4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79376, 0.774493, 3.06944)
 
-[node name="MagentaGem4" parent="Gems" instance=ExtResource("5_16wl4")]
+[node name="MagentaGem4" parent="Gems" unique_id=766949755 instance=ExtResource("5_16wl4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.97993, 0.774493, 1.40661)
 
-[node name="Fairy" parent="." instance=ExtResource("5_ibrm5")]
+[node name="Fairy" parent="." unique_id=1310755859 instance=ExtResource("5_ibrm5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95484, 0.55, 3.99068)
 
 [connection signal="pressed" from="RevealExitButton" to="LevelExitCanon" method="Reveal"]

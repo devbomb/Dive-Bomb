@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://1lfojpns681p"]
+[gd_scene format=3 uid="uid://1lfojpns681p"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_g6uol"]
 [ext_resource type="PackedScene" uid="uid://coafda5ubxb0b" path="res://DebugLevels/BonkForgivenessTester/Maps/BonkForgivenessTester.map" id="2_f3kpa"]
@@ -6,23 +6,23 @@
 
 [sub_resource type="Environment" id="Environment_scss7"]
 
-[node name="BonkForgivenessTester" type="Node3D"]
+[node name="BonkForgivenessTester" type="Node3D" unique_id=1245796511]
 script = ExtResource("1_g6uol")
 
-[node name="Tester" type="Node" parent="."]
+[node name="Tester" type="Node" parent="." unique_id=1382819883]
 script = ExtResource("2_m3eqq")
 FullBonkHeight = -0.75
 ForgivenBonkHeight = -0.5
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1981906325]
 environment = SubResource("Environment_scss7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=49607997]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
 
-[node name="BonkForgivenessTester" parent="." instance=ExtResource("2_f3kpa")]
+[node name="BonkForgivenessTester" parent="." unique_id=1377585308 instance=ExtResource("2_f3kpa")]
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=485469674]
 layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
@@ -32,31 +32,31 @@ offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1695088835]
 layout_mode = 0
 offset_right = 237.0
 offset_bottom = 128.0
 
-[node name="FullBonk" type="Button" parent="Control/VBoxContainer"]
+[node name="FullBonk" type="Button" parent="Control/VBoxContainer" unique_id=1537867105]
 layout_mode = 2
 text = "Full Bonk"
 
-[node name="ForgivenBonk" type="Button" parent="Control/VBoxContainer"]
+[node name="ForgivenBonk" type="Button" parent="Control/VBoxContainer" unique_id=1570395173]
 layout_mode = 2
 text = "Forgiven Bonk"
 
-[node name="NoBonk" type="Button" parent="Control/VBoxContainer"]
+[node name="NoBonk" type="Button" parent="Control/VBoxContainer" unique_id=247280649]
 layout_mode = 2
 text = "No bonk"
 
-[node name="GridContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="GridContainer" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=302695463]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/GridContainer"]
+[node name="Label" type="Label" parent="Control/VBoxContainer/GridContainer" unique_id=1696073453]
 layout_mode = 2
 text = "Time Scale:"
 
-[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/GridContainer"]
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/GridContainer" unique_id=790800405]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4

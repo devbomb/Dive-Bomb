@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=30 format=3 uid="uid://bgcglvens6c8e"]
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://bgcglvens6c8e"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yxah2"]
 animation = &"Damaged"

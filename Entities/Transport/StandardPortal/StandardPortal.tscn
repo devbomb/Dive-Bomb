@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dahuf8m47kslw"]
+[gd_scene format=3 uid="uid://dahuf8m47kslw"]
 
 [ext_resource type="Script" uid="uid://c2g2ebuen2u1d" path="res://Entities/Transport/StandardPortal/Portal.cs" id="1_6lbsj"]
 [ext_resource type="PackedScene" uid="uid://bunx6u8a2joua" path="res://Entities/Transport/StandardPortal/LevelEntrancePortal.glb" id="2_u61om"]
@@ -67,7 +67,7 @@ _data = {
 &"RESET": SubResource("Animation_lle10")
 }
 
-[node name="StandardPortal" type="Node3D" node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "PlayerDetector", "ThingsToHideWhenClosed", "CameraBlocker", "Labels", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
+[node name="StandardPortal" type="Node3D" unique_id=393771954 node_paths=PackedStringArray("PlayerSpawn", "PortalSurface", "FullScreenPortalCamTexture", "PlayerDetector", "ThingsToHideWhenClosed", "CameraBlocker", "Labels", "PlayerEnterFrontPoint", "CameraEnterFrontPath", "PlayerEnterBackPoint", "CameraEnterBackPath")]
 script = ExtResource("1_6lbsj")
 PlayerSpawn = NodePath("PlayerSpawnPoint")
 PortalSurface = NodePath("LevelEntrancePortal/PortalSurface")
@@ -81,15 +81,15 @@ CameraEnterFrontPath = NodePath("Front/CameraEnterFrontPath/CameraEnterFrontPath
 PlayerEnterBackPoint = NodePath("Back/PlayerEnterBackPoint")
 CameraEnterBackPath = NodePath("Back/CameraEnterBackPath/CameraEnterBackPathFollower")
 
-[node name="CameraBlocker" type="StaticBody3D" parent="."]
+[node name="CameraBlocker" type="StaticBody3D" parent="." unique_id=1333214150]
 collision_layer = 0
 collision_mask = 4194304
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraBlocker"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraBlocker" unique_id=2007674638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 shape = SubResource("BoxShape3D_lle10")
 
-[node name="LevelEntrancePortal" parent="." instance=ExtResource("2_u61om")]
+[node name="LevelEntrancePortal" parent="." unique_id=1258073575 instance=ExtResource("2_u61om")]
 
 [node name="PortalSurface" parent="LevelEntrancePortal" index="2"]
 script = ExtResource("3_smk44")
@@ -98,56 +98,56 @@ PortalSurfaceShader = ExtResource("4_lnpha")
 [node name="Frame" parent="LevelEntrancePortal" index="3"]
 collision_layer = 3
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=2131897593]
 aabb = AABB(-3.5, 0, -1, 7, 6, 2)
 
-[node name="LabelEnabler" type="Area3D" parent="."]
+[node name="LabelEnabler" type="Area3D" parent="." unique_id=355914528]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LabelEnabler"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LabelEnabler" unique_id=1414186719]
 shape = SubResource("SphereShape3D_smk44")
 
-[node name="PlayerDetector" type="Area3D" parent="."]
+[node name="PlayerDetector" type="Area3D" parent="." unique_id=2044321248]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector" unique_id=1145417351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020812988, 2.6514893, 0)
 shape = SubResource("BoxShape3D_ut6y6")
 
-[node name="PlayerSpawnPoint" type="Marker3D" parent="."]
+[node name="PlayerSpawnPoint" type="Marker3D" parent="." unique_id=1597398559]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 
-[node name="Labels" parent="." node_paths=PackedStringArray("Portal") instance=ExtResource("5_u61om")]
+[node name="Labels" parent="." unique_id=1260111262 node_paths=PackedStringArray("Portal") instance=ExtResource("5_u61om")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19, 0)
 Portal = NodePath("..")
 
-[node name="Front" type="Node3D" parent="."]
+[node name="Front" type="Node3D" parent="." unique_id=881380485]
 
-[node name="PlayerEnterFrontPoint" type="Marker3D" parent="Front"]
+[node name="PlayerEnterFrontPoint" type="Marker3D" parent="Front" unique_id=836695437]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.103, 4)
 
-[node name="CameraEnterFrontPath" type="Path3D" parent="Front"]
+[node name="CameraEnterFrontPath" type="Path3D" parent="Front" unique_id=598576643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.633176, -0.8445691)
 curve = SubResource("Curve3D_smk44")
 
-[node name="CameraEnterFrontPathFollower" type="PathFollow3D" parent="Front/CameraEnterFrontPath"]
+[node name="CameraEnterFrontPathFollower" type="PathFollow3D" parent="Front/CameraEnterFrontPath" unique_id=1347917636]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -2)
 
-[node name="Back" type="Node3D" parent="."]
+[node name="Back" type="Node3D" parent="." unique_id=1281242323]
 
-[node name="PlayerEnterBackPoint" type="Marker3D" parent="Back"]
+[node name="PlayerEnterBackPoint" type="Marker3D" parent="Back" unique_id=1676276295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.103, -4)
 
-[node name="CameraEnterBackPath" type="Path3D" parent="Back"]
+[node name="CameraEnterBackPath" type="Path3D" parent="Back" unique_id=1932547591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.633, 0.845)
 curve = SubResource("Curve3D_lnpha")
 
-[node name="CameraEnterBackPathFollower" type="PathFollow3D" parent="Back/CameraEnterBackPath"]
+[node name="CameraEnterBackPathFollower" type="PathFollow3D" parent="Back/CameraEnterBackPath" unique_id=1389488864]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="FullScreenPortalCamTexture" type="TextureRect" parent="."]
+[node name="FullScreenPortalCamTexture" type="TextureRect" parent="." unique_id=1499405158]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,14 +156,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1699367876]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5497394, -2.5675054)
 
-[node name="LightPulseAnimator" type="AnimationPlayer" parent="OmniLight3D"]
-libraries = {
-&"": SubResource("AnimationLibrary_smk44")
-}
-autoplay = "Pulse"
+[node name="LightPulseAnimator" type="AnimationPlayer" parent="OmniLight3D" unique_id=316688392]
+libraries/ = SubResource("AnimationLibrary_smk44")
+autoplay = &"Pulse"
 
 [connection signal="body_entered" from="LabelEnabler" to="Labels" method="ShowLabels" unbinds=1]
 [connection signal="body_exited" from="LabelEnabler" to="Labels" method="HideLabels" unbinds=1]

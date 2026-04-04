@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://5oie51hsk73p"]
+[gd_scene format=3 uid="uid://5oie51hsk73p"]
 
 [sub_resource type="GDScript" id="GDScript_ag0do"]
 script/source = "@tool
@@ -132,20 +132,20 @@ height = 100
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="BlobShadow" type="Node3D"]
+[node name="BlobShadow" type="Node3D" unique_id=92795423]
 script = SubResource("GDScript_ag0do")
 height_margin = 0.25
 
-[node name="PerimeterRayCasts" type="Node3D" parent="."]
+[node name="PerimeterRayCasts" type="Node3D" parent="." unique_id=285300716]
 unique_name_in_owner = true
 
-[node name="CentralRayCast" type="RayCast3D" parent="."]
+[node name="CentralRayCast" type="RayCast3D" parent="." unique_id=603024284]
 unique_name_in_owner = true
 enabled = false
 collision_mask = 3
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
-[node name="Decal" type="Decal" parent="."]
+[node name="Decal" type="Decal" parent="." unique_id=197728657]
 unique_name_in_owner = true
 size = Vector3(1, 0.1, 1)
 texture_albedo = SubResource("GradientTexture2D_f2nb2")

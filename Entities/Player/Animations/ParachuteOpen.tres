@@ -1,4 +1,4 @@
-[gd_resource type="Animation" load_steps=2 format=3 uid="uid://cn6v7jyhujfoa"]
+[gd_resource type="Animation" format=3 uid="uid://cn6v7jyhujfoa"]
 
 [ext_resource type="AudioStream" uid="uid://cj0cbpek5hnn7" path="res://Entities/Player/SFX/ParachuteDeploy.wav" id="1_ymdju"]
 

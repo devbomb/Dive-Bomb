@@ -1,4 +1,4 @@
-[gd_resource type="Animation" load_steps=2 format=3 uid="uid://dokv55ogkoit"]
+[gd_resource type="Animation" format=3 uid="uid://dokv55ogkoit"]
 
 [ext_resource type="AudioStream" uid="uid://cbugnr8emhdrm" path="res://Entities/Player/SFX/ParachuteLand.wav" id="1_vudks"]
 

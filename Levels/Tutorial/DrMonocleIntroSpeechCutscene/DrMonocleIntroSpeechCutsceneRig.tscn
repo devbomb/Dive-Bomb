@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3u21ynxwsxm"]
+[gd_scene format=3 uid="uid://c3u21ynxwsxm"]
 
 [ext_resource type="Script" uid="uid://8j77t8goh12i" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutscene.cs" id="1_n2kjk"]
 [ext_resource type="PackedScene" uid="uid://dccv10qi1mp42" path="res://Common/Models/Characters/DrMonocleHologramHead/DrMonocleHeadHologram.glb" id="1_wxy7p"]
@@ -70,11 +70,11 @@ _data = {
 &"RESET": SubResource("Animation_egf2y")
 }
 
-[node name="DrMonocleIntroSpeechCutsceneRig" type="Node3D" node_paths=PackedStringArray("AnimationPlayer")]
+[node name="DrMonocleIntroSpeechCutsceneRig" type="Node3D" unique_id=806779003 node_paths=PackedStringArray("AnimationPlayer")]
 script = ExtResource("1_n2kjk")
 AnimationPlayer = NodePath("AnimationPlayer")
 
-[node name="AlarmOverlay" type="TextureRect" parent="."]
+[node name="AlarmOverlay" type="TextureRect" parent="." unique_id=1883641016]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,31 +84,27 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_vk4a5")
 
-[node name="AlarmAnimator" type="AnimationPlayer" parent="AlarmOverlay"]
+[node name="AlarmAnimator" type="AnimationPlayer" parent="AlarmOverlay" unique_id=1503719988]
 deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_vk4a5")
-}
+libraries/ = SubResource("AnimationLibrary_vk4a5")
 
-[node name="AlarmAudioPlayer" type="AudioStreamPlayer" parent="AlarmOverlay/AlarmAnimator"]
+[node name="AlarmAudioPlayer" type="AudioStreamPlayer" parent="AlarmOverlay/AlarmAnimator" unique_id=1654809079]
 bus = &"Sfx"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=298396439]
 deterministic = true
-libraries = {
-&"": ExtResource("2_egf2y")
-}
+libraries/ = ExtResource("2_egf2y")
 
-[node name="IntercomDialogPlayer" type="AudioStreamPlayer" parent="."]
+[node name="IntercomDialogPlayer" type="AudioStreamPlayer" parent="." unique_id=1899063920]
 bus = &"IntercomDialog"
 
-[node name="PlayerDialogPlayer" type="AudioStreamPlayer" parent="."]
+[node name="PlayerDialogPlayer" type="AudioStreamPlayer" parent="." unique_id=341233959]
 bus = &"DialogVoice"
 
-[node name="SfxAudioPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SfxAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=2030423224]
 bus = &"Sfx"
 
-[node name="HeadHolder" type="Node3D" parent="."]
+[node name="HeadHolder" type="Node3D" parent="." unique_id=494140622]
 
-[node name="DrMonocleHeadHologram" parent="HeadHolder" instance=ExtResource("1_wxy7p")]
+[node name="DrMonocleHeadHologram" parent="HeadHolder" unique_id=1937065787 instance=ExtResource("1_wxy7p")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)

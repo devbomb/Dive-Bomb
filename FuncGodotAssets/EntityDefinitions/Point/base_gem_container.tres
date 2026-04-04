@@ -1,30 +1,21 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDBaseClass" load_steps=2 format=3 uid="uid://x63sbqq5m5da"]
+[gd_resource type="Resource" script_class="FuncGodotFGDBaseClass" format=3 uid="uid://x63sbqq5m5da"]
 
-[ext_resource type="Script" uid="uid://bqsp0hkjcv214" path="res://addons/func_godot/src/fgd/func_godot_fgd_base_class.gd" id="1_mdsum"]
+[ext_resource type="Script" uid="uid://ck575aqs1sbrb" path="res://addons/func_godot/src/fgd/func_godot_fgd_base_class.gd" id="1_mdsum"]
 
 [resource]
 script = ExtResource("1_mdsum")
 classname = "base_gem_container"
-description = ""
-func_godot_internal = false
-base_classes = Array[Resource]([])
-class_properties = {
-&"GemColor": {
+class_properties = Dictionary[String, Variant]({
+"GemColor": {
 "Green": 2,
 "Magenta": 25,
 "Purple": 5,
 "Red": 1,
 "Yellow": 10
 }
-}
-class_property_descriptions = {
+})
+class_property_descriptions = Dictionary[String, Variant]({
 "GemColor": ["The color/value of the gem this thing should drop", 1]
-}
+})
 auto_apply_to_matching_node_properties = true
-meta_properties = {
-"color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
-}
-node_class = ""
-name_property = ""
 metadata/_custom_type_script = "uid://bqsp0hkjcv214"

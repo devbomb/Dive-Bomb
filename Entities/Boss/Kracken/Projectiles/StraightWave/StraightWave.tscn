@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://s0qtchrtav7v"]
+[gd_scene format=3 uid="uid://s0qtchrtav7v"]
 
 [ext_resource type="Script" uid="uid://dypst6uibd52w" path="res://Entities/Boss/Kracken/Projectiles/StraightWave/StraightWave.cs" id="1_w0vdt"]
 
@@ -43,21 +43,21 @@ rings = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y3ml2"]
 
-[node name="StraightWave" type="Node3D"]
+[node name="StraightWave" type="Node3D" unique_id=1974028477]
 script = ExtResource("1_w0vdt")
 
-[node name="Model" type="MeshInstance3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="Model" type="MeshInstance3D" parent="." unique_id=1692991012 groups=["PhysicsInterpolated"]]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_isuap")
 skeleton = NodePath("")
 
-[node name="HitBox" type="Area3D" parent="."]
+[node name="HitBox" type="Area3D" parent="." unique_id=93118930]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape" type="CollisionShape3D" parent="HitBox"]
+[node name="CollisionShape" type="CollisionShape3D" parent="HitBox" unique_id=1874639655]
 unique_name_in_owner = true
 shape = SubResource("CapsuleShape3D_y3ml2")

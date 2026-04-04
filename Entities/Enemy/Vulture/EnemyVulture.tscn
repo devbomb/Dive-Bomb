@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyd2uyjl8rvk5"]
+[gd_scene format=3 uid="uid://cyd2uyjl8rvk5"]
 
 [ext_resource type="Script" uid="uid://l0gjh3jkqteb" path="res://Entities/Enemy/Vulture/EnemyVulture.cs" id="1_is5gw"]
 [ext_resource type="AnimationLibrary" uid="uid://phpkdehj2kfx" path="res://Entities/Enemy/Vulture/VultureAnimations.tres" id="2_4b7rt"]
@@ -8,51 +8,49 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uo6qh"]
 
-[node name="EnemyVulture" type="CharacterBody3D" groups=["PhysicsInterpolated", "UnsafeGround"]]
+[node name="EnemyVulture" type="CharacterBody3D" unique_id=159658312 groups=["PhysicsInterpolated", "UnsafeGround"]]
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_is5gw")
 
-[node name="GemSpawner" type="Node3D" parent="."]
+[node name="GemSpawner" type="Node3D" parent="." unique_id=2056591579]
 script = ExtResource("2_alb8d")
 metadata/_custom_type_script = "uid://dhjvxdov8gnkp"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=735026848]
 unique_name_in_owner = true
 deterministic = true
 root_node = NodePath("../Model")
-libraries = {
-&"": ExtResource("2_4b7rt")
-}
+libraries/ = ExtResource("2_4b7rt")
 
-[node name="Model" parent="." instance=ExtResource("2_ni8ar")]
+[node name="Model" parent="." unique_id=1481782446 instance=ExtResource("2_ni8ar")]
 unique_name_in_owner = true
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
 bones/0/rotation = Quaternion(-2.98023e-08, 0, 0, 1)
-bones/1/rotation = Quaternion(0.114947, 0, 0, 0.993372)
-bones/2/rotation = Quaternion(-0.103653, 0, 0, 0.994614)
-bones/3/rotation = Quaternion(0.290456, 0.676611, 0.676611, 0.00555025)
-bones/4/rotation = Quaternion(0.138391, 0.109034, 0.527724, 0.830943)
+bones/1/rotation = Quaternion(0.11494696, 0, 0, 0.9933716)
+bones/2/rotation = Quaternion(-0.10365295, 0, 0, 0.9946135)
+bones/3/rotation = Quaternion(0.29045597, 0.6766109, 0.6766109, 0.0055502523)
+bones/4/rotation = Quaternion(0.13839106, 0.10903405, 0.5277242, 0.8309433)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(0.0291598, 0.0295196, 0.00113742, 0.999138)
+bones/5/rotation = Quaternion(0.029159807, 0.029519608, 0.0011374202, 0.99913824)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.0057158, -0.00578449, -0.00620147, 0.999948)
+bones/6/rotation = Quaternion(-0.005715799, -0.005784489, -0.006201468, 0.9999478)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.290455, 0.676611, 0.676611, -0.00554886)
-bones/8/rotation = Quaternion(0.13839, -0.109033, -0.527724, 0.830944)
-bones/9/rotation = Quaternion(0.0291598, -0.0295197, -0.0011374, 0.999138)
+bones/7/rotation = Quaternion(-0.29045504, 0.6766111, 0.67661107, -0.005548861)
+bones/8/rotation = Quaternion(0.13838997, -0.10903297, -0.5277239, 0.8309438)
+bones/9/rotation = Quaternion(0.029159807, -0.029519707, -0.0011374004, 0.99913824)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(-0.0057158, 0.00578448, 0.00620147, 0.999948)
+bones/10/rotation = Quaternion(-0.005715799, 0.005784479, 0.006201468, 0.9999478)
 bones/10/scale = Vector3(1, 1, 1)
 
-[node name="BodyShape" type="CollisionShape3D" parent="."]
+[node name="BodyShape" type="CollisionShape3D" parent="." unique_id=23560698]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_uo6qh")
 
-[node name="AggroSphere" parent="." instance=ExtResource("4_l56o7")]
+[node name="AggroSphere" parent="." unique_id=1542047840 instance=ExtResource("4_l56o7")]
 unique_name_in_owner = true
 
 [connection signal="Killed" from="." to="GemSpawner" method="Reveal"]

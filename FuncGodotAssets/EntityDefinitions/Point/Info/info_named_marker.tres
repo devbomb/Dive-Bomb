@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://cso21pf46g65m"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" format=3 uid="uid://cso21pf46g65m"]
 
 [ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_eodfb"]
 [ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Entities/Info/NamedMarker/NamedMarker3D.tscn" id="1_jufp7"]

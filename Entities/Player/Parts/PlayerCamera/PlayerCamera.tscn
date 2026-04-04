@@ -1,29 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://di4tqrhb11cow"]
+[gd_scene format=3 uid="uid://di4tqrhb11cow"]
 
 [ext_resource type="Script" uid="uid://c5gmnqvkwgmlt" path="res://Entities/Player/Parts/PlayerCamera/PlayerCamera.cs" id="1_uc4gx"]
 [ext_resource type="PackedScene" uid="uid://dc5k2yy5vsbyi" path="res://Common/Models/Characters/Fairy/Fairy.glb" id="2_chmc7"]
 
-[node name="PlayerCamera" type="Node3D" groups=["PhysicsInterpolated"]]
+[node name="PlayerCamera" type="Node3D" unique_id=2027110943 groups=["PhysicsInterpolated"]]
 transform = Transform3D(1, 0, 0, 0, 0.96752, 0.252796, 0, -0.252796, 0.96752, 0, 3, 6)
 top_level = true
 script = ExtResource("1_uc4gx")
 AllowAutoRotate = true
 
-[node name="RayCast" type="RayCast3D" parent="."]
+[node name="RayCast" type="RayCast3D" parent="." unique_id=1583205911]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0, 0)
 visible = false
 collision_mask = 4194304
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="." unique_id=2009812033]
 unique_name_in_owner = true
 current = true
 
-[node name="TimeTrialFairyRescuePos" type="Marker3D" parent="Camera"]
+[node name="TimeTrialFairyRescuePos" type="Marker3D" parent="Camera" unique_id=1477364195]
 unique_name_in_owner = true
 transform = Transform3D(-0.5, 5.08241e-09, -4.34149e-08, -8.88178e-16, 0.496609, 0.058136, 4.37114e-08, 0.058136, -0.496609, 0, 0.155314, -1.5499)
 
-[node name="Fairy" parent="Camera/TimeTrialFairyRescuePos" instance=ExtResource("2_chmc7")]
+[node name="Fairy" parent="Camera/TimeTrialFairyRescuePos" unique_id=766057967 instance=ExtResource("2_chmc7")]
 transform = Transform3D(1, -1.77636e-15, -7.10543e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false

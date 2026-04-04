@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpr113kmu5g5o"]
+[gd_scene format=3 uid="uid://bpr113kmu5g5o"]
 
 [ext_resource type="Script" uid="uid://dgvar2aymf5oe" path="res://Entities/Player/Parts/GemGravityGloves/GemGravityGloves.cs" id="1_vb6sn"]
 [ext_resource type="AudioStream" uid="uid://coy6xc4bqcqsc" path="res://Entities/Player/Parts/GemGravityGloves/GravityGloves.wav" id="2_ioof1"]
@@ -64,49 +64,49 @@ color = Color(0, 0.63, 0.21, 1)
 shading_mode = 0
 albedo_color = Color(0, 0.78, 0, 1)
 
-[node name="GemGravityGloves" type="Node3D"]
+[node name="GemGravityGloves" type="Node3D" unique_id=57170307]
 script = ExtResource("1_vb6sn")
 
-[node name="ReachOutSound" type="AudioStreamPlayer3D" parent="."]
+[node name="ReachOutSound" type="AudioStreamPlayer3D" parent="." unique_id=1676783702]
 unique_name_in_owner = true
 stream = ExtResource("2_ioof1")
 bus = &"Sfx"
 
-[node name="CollectionRange" type="Area3D" parent="."]
+[node name="CollectionRange" type="Area3D" parent="." unique_id=1537048591]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionRange"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionRange" unique_id=206018169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 shape = SubResource("CylinderShape3D_i8xg1")
 debug_color = Color(0, 0.6, 0, 0.41960785)
 debug_fill = false
 
-[node name="DecalEnabler" type="Area3D" parent="CollectionRange"]
+[node name="DecalEnabler" type="Area3D" parent="CollectionRange" unique_id=133058972]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionRange/DecalEnabler"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionRange/DecalEnabler" unique_id=478890916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 shape = SubResource("CylinderShape3D_gajxm")
 debug_color = Color(0, 0.6, 0, 0.41960785)
 debug_fill = false
 
-[node name="Decal" type="Decal" parent="CollectionRange"]
+[node name="Decal" type="Decal" parent="CollectionRange" unique_id=253129665]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003, -0.75, 0.005)
 size = Vector3(3, 3, 3)
 texture_albedo = SubResource("GradientTexture2D_rlph5")
 
-[node name="Grabber" type="Node3D" parent="."]
+[node name="Grabber" type="Node3D" parent="." unique_id=1971370890]
 unique_name_in_owner = true
 top_level = true
 
-[node name="TrailParticles" type="Node3D" parent="Grabber"]
+[node name="TrailParticles" type="Node3D" parent="Grabber" unique_id=1579725882]
 unique_name_in_owner = true
 script = ExtResource("2_u8ahm")
 Amount = 100
@@ -116,10 +116,10 @@ SpeedScale = 1.0
 FixedFps = 30
 ProcessMaterial = SubResource("ParticleProcessMaterial_gxed6")
 
-[node name="Model" type="Node3D" parent="Grabber"]
+[node name="Model" type="Node3D" parent="Grabber" unique_id=4797130]
 unique_name_in_owner = true
 
-[node name="SimpleParticles" type="Node3D" parent="Grabber/Model"]
+[node name="SimpleParticles" type="Node3D" parent="Grabber/Model" unique_id=256963476]
 script = ExtResource("2_u8ahm")
 LocalCoords = true
 Amount = 100
@@ -130,7 +130,7 @@ SpeedScale = 1.0
 FixedFps = 30
 ProcessMaterial = SubResource("ParticleProcessMaterial_m3cj6")
 
-[node name="Trail" type="Node3D" parent="Grabber"]
+[node name="Trail" type="Node3D" parent="Grabber" unique_id=728969093]
 unique_name_in_owner = true
 script = ExtResource("3_cw6y1")
 Material = SubResource("StandardMaterial3D_fjs1b")

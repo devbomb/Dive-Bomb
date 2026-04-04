@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cpn1spfliqp15"]
+[gd_scene format=3 uid="uid://cpn1spfliqp15"]
 
 [ext_resource type="Script" uid="uid://bo6unbh4sy1dw" path="res://Entities/Item/Gems/BaseGem/Gem.cs" id="1_ajgr5"]
 [ext_resource type="AudioStream" uid="uid://bojobea40tjay" path="res://Entities/Item/Gems/BaseGem/Gem.wav" id="2_m4rpn"]
@@ -129,75 +129,71 @@ radius = 0.25
 [sub_resource type="SphereShape3D" id="SphereShape3D_5toey"]
 radius = 2.0
 
-[node name="Gem" type="CharacterBody3D" groups=["Gems", "PhysicsInterpolated"]]
+[node name="Gem" type="CharacterBody3D" unique_id=935544874 groups=["Gems", "PhysicsInterpolated"]]
 collision_layer = 4
 script = ExtResource("1_ajgr5")
 
-[node name="VisibleEnabler" type="VisibleOnScreenEnabler3D" parent="."]
+[node name="VisibleEnabler" type="VisibleOnScreenEnabler3D" parent="." unique_id=275398132]
 unique_name_in_owner = true
 aabb = AABB(-0.25, 0, -0.25, 0.5, 0.5, 0.5)
 
-[node name="SpinAnimator" type="AnimationPlayer" parent="."]
+[node name="SpinAnimator" type="AnimationPlayer" parent="." unique_id=1996005255]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_kddi0")
-}
-autoplay = "Rotate"
+libraries/ = SubResource("AnimationLibrary_kddi0")
+autoplay = &"Rotate"
 
-[node name="SparkleAnimator" type="AnimationPlayer" parent="."]
+[node name="SparkleAnimator" type="AnimationPlayer" parent="." unique_id=1067499751]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_b461w")
-}
+libraries/ = SubResource("AnimationLibrary_b461w")
 
-[node name="CollectSound" type="AudioStreamPlayer" parent="."]
+[node name="CollectSound" type="AudioStreamPlayer" parent="." unique_id=1973146977]
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("2_m4rpn")
 bus = &"Sfx"
 
-[node name="HomeInSound" type="AudioStreamPlayer" parent="."]
+[node name="HomeInSound" type="AudioStreamPlayer" parent="." unique_id=1090141896]
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("3_025us")
 bus = &"Sfx"
 
-[node name="Billboard" type="Node3D" parent="."]
+[node name="Billboard" type="Node3D" parent="." unique_id=2125906878]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338976, 0)
 script = SubResource("GDScript_0ga4t")
 
-[node name="SparkleTexture" type="Sprite3D" parent="Billboard"]
+[node name="SparkleTexture" type="Sprite3D" parent="Billboard" unique_id=860246482]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 no_depth_test = true
 texture = SubResource("GradientTexture2D_mb6km")
 
-[node name="PhysicsShape" type="CollisionShape3D" parent="."]
+[node name="PhysicsShape" type="CollisionShape3D" parent="." unique_id=604992733]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("SphereShape3D_amq82")
 disabled = true
 
-[node name="FlameChargeArea" type="Area3D" parent="PhysicsShape"]
+[node name="FlameChargeArea" type="Area3D" parent="PhysicsShape" unique_id=2086847914]
 unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsShape/FlameChargeArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsShape/FlameChargeArea" unique_id=824036807]
 shape = SubResource("SphereShape3D_5toey")
 
-[node name="CollectionArea" type="Area3D" parent="."]
+[node name="CollectionArea" type="Area3D" parent="." unique_id=552150192]
 unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionArea" unique_id=2130976677]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("SphereShape3D_amq82")
 
-[node name="ModelPoint" type="Node3D" parent="."]
+[node name="ModelPoint" type="Node3D" parent="." unique_id=1990415404]
 unique_name_in_owner = true
 
-[node name="BlobShadow" parent="." instance=ExtResource("3_4j54j")]
+[node name="BlobShadow" parent="." unique_id=1795154328 instance=ExtResource("3_4j54j")]
 radius = 0.25
 
 [connection signal="body_entered" from="CollectionArea" to="." method="OnCollectionAreaBodyEntered"]

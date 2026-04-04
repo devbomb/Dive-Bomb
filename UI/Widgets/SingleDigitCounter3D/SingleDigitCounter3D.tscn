@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnlbwr8pjop0o"]
+[gd_scene format=3 uid="uid://bnlbwr8pjop0o"]
 
 [ext_resource type="Script" uid="uid://dkvd8i2y8mo22" path="res://UI/Widgets/SingleDigitCounter3D/SingleDigitCounter3D.cs" id="1_tkvxm"]
 [ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="2_fwwem"]
@@ -12,9 +12,9 @@ font = ExtResource("2_fwwem")
 curve_step = 10.0
 depth = 0.025
 
-[node name="SingleDigitCounter3D" type="Node3D"]
+[node name="SingleDigitCounter3D" type="Node3D" unique_id=888130493]
 script = ExtResource("1_tkvxm")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=698746916]
 unique_name_in_owner = true
 mesh = SubResource("TextMesh_5lnjq")
