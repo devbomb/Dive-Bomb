@@ -6,6 +6,7 @@ func _enter_tree() -> void:
 	_add_tool(PlaySceneFromHereTool.new())
 	_add_3d_editor_button(PlaySceneFromHereTool.new())
 	_add_tool(DeleteUnnecessaryPlayerAnimationsTool.new())
+	_add_tool(ResaveAllResourcesTool.new())
 
 func _add_tool(tool: MiscTool) -> void:
 	add_tool_menu_item("Dive Bomb:  " + tool.get_text(), tool.execute)
@@ -63,3 +64,34 @@ static func prompt_string(prompt_text: String) -> String:
 	window.queue_free()
 	
 	return result
+
+# Returns a list of all file paths in "res://" (including addons) that end with the given file
+# extension.
+static func all_files_of_type(file_extension_including_dot: String) -> Array[String]:
+	var file_system: EditorFileSystem = EditorInterface.get_resource_filesystem()
+	var files: Array[String] = []
+	
+	_find_all_files_of_type_recursive(
+		file_system.get_filesystem_path("res://"),
+		file_extension_including_dot,
+		files
+	)
+	
+	return files
+
+static func _find_all_files_of_type_recursive(
+	directory: EditorFileSystemDirectory,
+	file_extension_including_dot: String,
+	out_files: Array[String]
+) -> void:
+	for i in range(0, directory.get_file_count()):
+		var path: String = directory.get_file_path(i)
+		if path.ends_with(file_extension_including_dot):
+			out_files.append(path)
+	
+	for i in range(0, directory.get_subdir_count()):
+		_find_all_files_of_type_recursive(
+			directory.get_subdir(i),
+			file_extension_including_dot,
+			out_files
+		)
