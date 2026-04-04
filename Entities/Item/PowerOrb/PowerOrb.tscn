@@ -89,10 +89,10 @@ spot_range = 1.0235
 
 [node name="Model" parent="Model" unique_id=498759582 instance=ExtResource("2_wnb6r")]
 
-[node name="Icosphere" parent="Model/Model" index="0"]
+[node name="Icosphere" parent="Model/Model" index="0" unique_id=1144010671]
 material_override = SubResource("StandardMaterial3D_wotai")
 
-[node name="Outline" parent="Model/Model" index="1"]
+[node name="Outline" parent="Model/Model" index="1" unique_id=1717348823]
 material_override = SubResource("StandardMaterial3D_ktcyv")
 
 [connection signal="Broken" from="." to="ShatterSound" method="play"]
