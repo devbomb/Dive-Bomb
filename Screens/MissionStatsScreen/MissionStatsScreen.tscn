@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dy7b124lbdiio"]
+[gd_scene format=3 uid="uid://dy7b124lbdiio"]
 
 [ext_resource type="Script" uid="uid://bjpuwynctw616" path="res://Screens/MissionStatsScreen/MissionStatsScreen.cs" id="1_6jabo"]
 [ext_resource type="PackedScene" uid="uid://dykig0tcxggvr" path="res://Entities/Player/Parts/PlayerModel/PlayerModel.tscn" id="1_r07vy"]
@@ -173,7 +173,7 @@ _data = {
 }
 point_count = 3
 
-[node name="MissionStatsScreen" type="Node3D" node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "FairyPath", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalFairiesLabel", "FairiesLabelHolder", "FairiesLabelNumber", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber", "TimeStatsHolder", "LevelTime", "TotalPlaytime")]
+[node name="MissionStatsScreen" type="Node3D" unique_id=198838872 node_paths=PackedStringArray("Backdrop", "PlayerModel", "ChalkboardModel", "Camera", "PlayerAnimator", "ChalkboardAnimator", "ContinueFlashAnimator", "ContinueButtonPrompt", "FairyPath", "GemSpawner", "MusicPlayer", "GemCountSound", "GemSpentSound", "DeathCountIncreaseSound", "ContinuePressedSound", "TotalFairiesLabel", "FairiesLabelHolder", "FairiesLabelNumber", "TotalGemsLabel", "GemsFoundLabel", "GemsSpentLabel", "DeathsLabelHolder", "DeathsLabelNumber", "TimeStatsHolder", "LevelTime", "TotalPlaytime")]
 script = ExtResource("1_6jabo")
 PreviousLevelScenePath = "res://Levels/BrokenGlassFactory/BrokenGlassFactory.tscn"
 HomeWorldScenePath = "res://Levels/TestMap/TestMap.tscn"
@@ -212,74 +212,70 @@ TimeStatsHolder = NodePath("Chalkboard/SubViewport/Control/Content/TimeStats")
 LevelTime = NodePath("Chalkboard/SubViewport/Control/Content/TimeStats/Level/VBoxContainer/LevelTime")
 TotalPlaytime = NodePath("Chalkboard/SubViewport/Control/Content/TimeStats/Total/VBoxContainer/TotalTime")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1604855856]
 stream = ExtResource("2_5fhbi")
 bus = &"Music"
 parameters/looping = true
 
-[node name="GemCountSound" type="AudioStreamPlayer" parent="."]
+[node name="GemCountSound" type="AudioStreamPlayer" parent="." unique_id=1316514088]
 stream = ExtResource("3_xl4t0")
 volume_db = -12.536
 max_polyphony = 10
 bus = &"Sfx"
 
-[node name="GemSpentSound" type="AudioStreamPlayer" parent="."]
+[node name="GemSpentSound" type="AudioStreamPlayer" parent="." unique_id=421081411]
 stream = ExtResource("3_xl4t0")
 volume_db = -10.543
 pitch_scale = 1.73
 max_polyphony = 10
 bus = &"Sfx"
 
-[node name="DeathCountIncreaseSound" type="AudioStreamPlayer" parent="."]
+[node name="DeathCountIncreaseSound" type="AudioStreamPlayer" parent="." unique_id=879854956]
 stream = ExtResource("4_dw18r")
 volume_db = -23.364
 pitch_scale = 1.2
 bus = &"Sfx"
 
-[node name="ContinuePressedSound" type="AudioStreamPlayer" parent="."]
+[node name="ContinuePressedSound" type="AudioStreamPlayer" parent="." unique_id=468255130]
 stream = ExtResource("5_dw18r")
 volume_db = -12.252
 bus = &"Sfx"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=331544928]
 environment = SubResource("Environment_h4j4i")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1804998107]
 transform = Transform3D(1, 0, 0, 0, -0.9723455, -0.23354727, 0, 0.23354727, -0.9723455, 0, 0, 0)
 sky_mode = 1
 
-[node name="Backdrop" type="MeshInstance3D" parent="."]
+[node name="Backdrop" type="MeshInstance3D" parent="." unique_id=146443248]
 cast_shadow = 0
 mesh = SubResource("SphereMesh_y0kov")
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="." unique_id=515392943]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.8687254, 0.9774054, -1.4740758)
 current = true
 
-[node name="PlayerModel" parent="." instance=ExtResource("1_r07vy")]
+[node name="PlayerModel" parent="." unique_id=158957193 instance=ExtResource("1_r07vy")]
 
-[node name="PlayerAnimator" type="AnimationPlayer" parent="PlayerModel"]
+[node name="PlayerAnimator" type="AnimationPlayer" parent="PlayerModel" unique_id=2115665948]
 deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_h4j4i")
-}
+libraries/ = SubResource("AnimationLibrary_h4j4i")
 
-[node name="Chalkboard" type="MeshInstance3D" parent="."]
+[node name="Chalkboard" type="MeshInstance3D" parent="." unique_id=353957732]
 transform = Transform3D(0.97273946, 0, 0.2319007, 0, 1, 0, -0.2319007, 0, 0.97273946, 1.5772897, 1.1098372, 0.10207217)
 mesh = SubResource("PlaneMesh_nodp0")
 
-[node name="ChalkboardAnimator" type="AnimationPlayer" parent="Chalkboard"]
+[node name="ChalkboardAnimator" type="AnimationPlayer" parent="Chalkboard" unique_id=516762645]
 root_node = NodePath("../..")
-libraries = {
-&"": ExtResource("9_nodp0")
-}
+libraries/ = ExtResource("9_nodp0")
 
-[node name="SubViewport" type="SubViewport" parent="Chalkboard"]
+[node name="SubViewport" type="SubViewport" parent="Chalkboard" unique_id=1996009487]
 disable_3d = true
 snap_2d_transforms_to_pixel = true
 size = Vector2i(512, 448)
 
-[node name="Control" type="Control" parent="Chalkboard/SubViewport"]
+[node name="Control" type="Control" parent="Chalkboard/SubViewport" unique_id=2032639190]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -292,7 +288,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_txvya")
 
-[node name="ChalkBackground" type="TextureRect" parent="Chalkboard/SubViewport/Control"]
+[node name="ChalkBackground" type="TextureRect" parent="Chalkboard/SubViewport/Control" unique_id=1832641184]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -301,7 +297,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ly71n")
 
-[node name="Title" type="Label" parent="Chalkboard/SubViewport/Control"]
+[node name="Title" type="Label" parent="Chalkboard/SubViewport/Control" unique_id=964343401]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -314,7 +310,7 @@ text = "Mission Results"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="Content" type="VBoxContainer" parent="Chalkboard/SubViewport/Control"]
+[node name="Content" type="VBoxContainer" parent="Chalkboard/SubViewport/Control" unique_id=1351170678]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -323,12 +319,12 @@ offset_top = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NonTimeStats" type="Control" parent="Chalkboard/SubViewport/Control/Content"]
+[node name="NonTimeStats" type="Control" parent="Chalkboard/SubViewport/Control/Content" unique_id=391527033]
 layout_mode = 2
 script = ExtResource("12_ly71n")
 metadata/_custom_type_script = "uid://ugacr7gb8aji"
 
-[node name="ThisLevel" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats"]
+[node name="ThisLevel" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats" unique_id=1699098206]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -338,25 +334,25 @@ offset_right = 162.0
 offset_bottom = 52.0
 grow_vertical = 2
 
-[node name="FairiesHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel"]
+[node name="FairiesHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel" unique_id=2076093621]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 
-[node name="FairiesLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder"]
+[node name="FairiesLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder" unique_id=2144478335]
 layout_mode = 0
 offset_right = 115.0
 offset_bottom = 23.0
 
-[node name="FairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder"]
+[node name="FairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder" unique_id=1405686467]
 layout_mode = 2
 text = "Fairies: "
 label_settings = SubResource("LabelSettings_dkfbr")
 
-[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder"]
+[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder" unique_id=1006655912]
 layout_mode = 2
 script = ExtResource("12_ly71n")
 
-[node name="FairiesNumber" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild"]
+[node name="FairiesNumber" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/FairiesHolder/FairiesLabelHolder/MinimumSizeMatchesChild" unique_id=428039413]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -373,48 +369,48 @@ text = "0"
 label_settings = SubResource("LabelSettings_dw18r")
 vertical_alignment = 1
 
-[node name="GemsFoundHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel"]
+[node name="GemsFoundHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel" unique_id=669611200]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 
-[node name="GemsFound" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/GemsFoundHolder"]
+[node name="GemsFound" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/GemsFoundHolder" unique_id=1862921964]
 layout_mode = 0
 offset_right = 156.0
 offset_bottom = 23.0
 text = "Gems Found: 0"
 label_settings = SubResource("LabelSettings_dkfbr")
 
-[node name="GemsSpentHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel"]
+[node name="GemsSpentHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel" unique_id=1761230426]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 
-[node name="GemsSpent" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/GemsSpentHolder"]
+[node name="GemsSpent" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/GemsSpentHolder" unique_id=1972689660]
 layout_mode = 0
 offset_right = 150.0
 offset_bottom = 23.0
 text = "Gems Spent: 0"
 label_settings = SubResource("LabelSettings_dkfbr")
 
-[node name="DeathsHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel"]
+[node name="DeathsHolder" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel" unique_id=1266459012]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
 
-[node name="DeathsLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder"]
+[node name="DeathsLabelHolder" type="HBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder" unique_id=848194109]
 layout_mode = 0
 offset_right = 115.0
 offset_bottom = 23.0
 
-[node name="DeathsTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder"]
+[node name="DeathsTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder" unique_id=1156329302]
 layout_mode = 2
 text = "Deaths: "
 label_settings = SubResource("LabelSettings_dkfbr")
 
-[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder"]
+[node name="MinimumSizeMatchesChild" type="Control" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder" unique_id=205374523]
 layout_mode = 2
 script = ExtResource("12_ly71n")
 metadata/_custom_type_script = "uid://ugacr7gb8aji"
 
-[node name="DeathsNumber" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild"]
+[node name="DeathsNumber" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/ThisLevel/DeathsHolder/DeathsLabelHolder/MinimumSizeMatchesChild" unique_id=87726331]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -431,7 +427,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_dw18r")
 vertical_alignment = 1
 
-[node name="Totals" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats"]
+[node name="Totals" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats" unique_id=1172027318]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -442,51 +438,51 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="TotalFairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
+[node name="TotalFairiesTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals" unique_id=806019136]
 layout_mode = 2
 text = "Total Fairies"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="TotalFairies" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
+[node name="TotalFairies" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals" unique_id=96575066]
 layout_mode = 2
 text = "XXX"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="Spacer" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
+[node name="Spacer" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals" unique_id=1198459652]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 label_settings = SubResource("LabelSettings_ojbqg")
 horizontal_alignment = 1
 
-[node name="TotalGemsTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
+[node name="TotalGemsTitle" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals" unique_id=48113788]
 layout_mode = 2
 text = "Total Gems"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="TotalGems" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals"]
+[node name="TotalGems" type="Label" parent="Chalkboard/SubViewport/Control/Content/NonTimeStats/Totals" unique_id=1377759842]
 layout_mode = 2
 text = "XXXXX"
 label_settings = SubResource("LabelSettings_nodp0")
 horizontal_alignment = 1
 
-[node name="Spacer" type="Label" parent="Chalkboard/SubViewport/Control/Content"]
+[node name="Spacer" type="Label" parent="Chalkboard/SubViewport/Control/Content" unique_id=765823853]
 layout_mode = 2
 
-[node name="TimeStats" type="Control" parent="Chalkboard/SubViewport/Control/Content"]
+[node name="TimeStats" type="Control" parent="Chalkboard/SubViewport/Control/Content" unique_id=1132738813]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Level" type="Control" parent="Chalkboard/SubViewport/Control/Content/TimeStats"]
+[node name="Level" type="Control" parent="Chalkboard/SubViewport/Control/Content/TimeStats" unique_id=1122808930]
 layout_mode = 1
 anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Level"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Level" unique_id=1620724825]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -501,17 +497,17 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Level/VBoxContainer"]
+[node name="Title" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Level/VBoxContainer" unique_id=1340268612]
 layout_mode = 2
 text = "Time"
 horizontal_alignment = 1
 
-[node name="LevelTime" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Level/VBoxContainer"]
+[node name="LevelTime" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Level/VBoxContainer" unique_id=247604939]
 layout_mode = 2
 text = "XX:XX.XX"
 horizontal_alignment = 1
 
-[node name="Total" type="Control" parent="Chalkboard/SubViewport/Control/Content/TimeStats"]
+[node name="Total" type="Control" parent="Chalkboard/SubViewport/Control/Content/TimeStats" unique_id=1005598816]
 layout_mode = 1
 anchor_left = 0.5
 anchor_right = 1.0
@@ -519,7 +515,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Total"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Total" unique_id=201852426]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -534,17 +530,17 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Total/VBoxContainer"]
+[node name="Title" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Total/VBoxContainer" unique_id=1511305440]
 layout_mode = 2
 text = "Total Playtime"
 horizontal_alignment = 1
 
-[node name="TotalTime" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Total/VBoxContainer"]
+[node name="TotalTime" type="Label" parent="Chalkboard/SubViewport/Control/Content/TimeStats/Total/VBoxContainer" unique_id=730205952]
 layout_mode = 2
 text = "XX:XX:XX.XX"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1973605013]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -553,7 +549,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ContinueFlash" type="ColorRect" parent="Control"]
+[node name="ContinueFlash" type="ColorRect" parent="Control" unique_id=766470401]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -563,13 +559,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ContinueFlashAnimator" type="AnimationPlayer" parent="Control/ContinueFlash"]
+[node name="ContinueFlashAnimator" type="AnimationPlayer" parent="Control/ContinueFlash" unique_id=54935616]
 deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_rdsha")
-}
+libraries/ = SubResource("AnimationLibrary_rdsha")
 
-[node name="PressToContinuePrompt" type="HBoxContainer" parent="Control"]
+[node name="PressToContinuePrompt" type="HBoxContainer" parent="Control" unique_id=1501656410]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -584,23 +578,23 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MinimumSizeMatchesChild" type="Control" parent="Control/PressToContinuePrompt"]
+[node name="MinimumSizeMatchesChild" type="Control" parent="Control/PressToContinuePrompt" unique_id=1367271703]
 layout_mode = 2
 script = ExtResource("12_ly71n")
 metadata/_custom_type_script = "uid://ugacr7gb8aji"
 
-[node name="TextureRect" type="TextureRect" parent="Control/PressToContinuePrompt/MinimumSizeMatchesChild"]
+[node name="TextureRect" type="TextureRect" parent="Control/PressToContinuePrompt/MinimumSizeMatchesChild" unique_id=1690325959]
 layout_mode = 0
 offset_right = 50.0
 offset_bottom = 50.0
 texture = SubResource("Texture2D_ly71n")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Control/PressToContinuePrompt"]
+[node name="Label" type="Label" parent="Control/PressToContinuePrompt" unique_id=1069569760]
 layout_mode = 2
 text = "Continue"
 
-[node name="GemSpawner" type="GPUParticles3D" parent="."]
+[node name="GemSpawner" type="GPUParticles3D" parent="." unique_id=530056009]
 transform = Transform3D(0.98504627, 0, 0.17229015, 0, 1, 0, -0.17229015, 0, 0.98504627, 0.13122201, 2.2328708, -0.19630821)
 emitting = false
 amount = 1000
@@ -609,5 +603,5 @@ draw_order = 3
 process_material = SubResource("ShaderMaterial_ojbqg")
 draw_pass_1 = ExtResource("16_rdsha")
 
-[node name="FairyParadePath" type="Path3D" parent="."]
+[node name="FairyParadePath" type="Path3D" parent="." unique_id=366193067]
 curve = SubResource("Curve3D_xw706")

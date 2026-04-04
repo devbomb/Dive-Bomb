@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://cixu1tgmo6shy"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://cixu1tgmo6shy"]
 
 [ext_resource type="Animation" uid="uid://dsxmagcv5o3po" path="res://Entities/Item/FairyJar/Animations/FlyAway.tres" id="1_xx4uf"]
 [ext_resource type="Animation" uid="uid://k7kf8ocstec" path="res://Entities/Item/FairyJar/Animations/FlyAwayHigh.tres" id="2_4tudr"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b6d7vas8km3kd"]
+[gd_scene format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" uid="uid://5c2hnyrbuo5m" path="res://Entities/Item/FairyJar/FairyJar.cs" id="1_qaaot"]
 [ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://Entities/Item/FairyJar/FairyJarAnimations.tres" id="2_l0xag"]
@@ -156,7 +156,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.623377, 0, 0, 0, 1, 0, 0, 0, 1,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p435h"]
 gradient = SubResource("Gradient_ovo6q")
 
-[node name="Fairy" type="StaticBody3D" node_paths=PackedStringArray("Animator", "ShatterSound", "JingleSound", "MusicDuckTrigger", "Model", "Glass", "GlassParticles", "CollisionShape") groups=["UnsafeGround"]]
+[node name="Fairy" type="StaticBody3D" unique_id=753454189 node_paths=PackedStringArray("Animator", "ShatterSound", "JingleSound", "MusicDuckTrigger", "Model", "Glass", "GlassParticles", "CollisionShape") groups=["UnsafeGround"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_qaaot")
@@ -169,65 +169,65 @@ Glass = NodePath("Glass")
 GlassParticles = NodePath("GlassParticles")
 CollisionShape = NodePath("CollisionShape")
 
-[node name="ShatterSound" type="AudioStreamPlayer" parent="."]
+[node name="ShatterSound" type="AudioStreamPlayer" parent="." unique_id=1317504873]
 stream = ExtResource("2_wcnnd")
 bus = &"Sfx"
 
-[node name="JingleSound" type="AudioStreamPlayer" parent="."]
+[node name="JingleSound" type="AudioStreamPlayer" parent="." unique_id=1341638390]
 stream = ExtResource("3_p435h")
 bus = &"Sfx"
 
-[node name="MusicDuckTrigger" type="AudioStreamPlayer" parent="."]
+[node name="MusicDuckTrigger" type="AudioStreamPlayer" parent="." unique_id=1473058503]
 stream = ExtResource("4_g7wuv")
 bus = &"MusicDuckingTrigger"
 
-[node name="AnimationSoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AnimationSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=84248250]
 bus = &"Sfx"
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=496986739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CylinderShape3D_ohivc")
 disabled = true
 
-[node name="Glass" parent="." instance=ExtResource("4_ovlfu")]
+[node name="Glass" parent="." unique_id=662523799 instance=ExtResource("4_ovlfu")]
 
-[node name="PriceTag" type="Node3D" parent="Glass"]
+[node name="PriceTag" type="Node3D" parent="Glass" unique_id=1403296855]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76713, 0)
 script = SubResource("GDScript_vio7c")
 label_mesh = SubResource("TextMesh_aq6wb")
 
-[node name="BillboardToCameraDecorator" type="Node" parent="Glass/PriceTag"]
+[node name="BillboardToCameraDecorator" type="Node" parent="Glass/PriceTag" unique_id=2000446143]
 script = ExtResource("4_g18ww")
 metadata/_custom_type_script = "uid://ilt6j85e4n8e"
 
-[node name="RedGemModel" parent="Glass/PriceTag" instance=ExtResource("5_vio7c")]
+[node name="RedGemModel" parent="Glass/PriceTag" unique_id=1927745124 instance=ExtResource("5_vio7c")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.354317, -0.0213813, 0)
 
-[node name="SpinDecorator" type="Node" parent="Glass/PriceTag/RedGemModel"]
+[node name="SpinDecorator" type="Node" parent="Glass/PriceTag/RedGemModel" unique_id=851056260]
 script = ExtResource("6_vio7c")
 speed_degrees = Vector3(0, 90, 0)
 metadata/_custom_type_script = "uid://vpf40mbrhlr"
 
-[node name="Label" type="MeshInstance3D" parent="Glass/PriceTag"]
+[node name="Label" type="MeshInstance3D" parent="Glass/PriceTag" unique_id=1008773541]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -0.16494, 0.0733068, 6.14166e-09)
 mesh = SubResource("TextMesh_aq6wb")
 
-[node name="Backdrop" type="MeshInstance3D" parent="Glass/PriceTag/Label"]
+[node name="Backdrop" type="MeshInstance3D" parent="Glass/PriceTag/Label" unique_id=1472997531]
 transform = Transform3D(0.5, 0, -1.10134124e-13, 0, 0.5, 0, 1.10134124e-13, 0, 0.5, -0.019762814, -0.0024496317, -0.0425)
 mesh = SubResource("QuadMesh_bs0wh")
 skeleton = NodePath("../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Glass/PriceTag/Label"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Glass/PriceTag/Label" unique_id=1581928472]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.097564705, 0, 0.056633588)
 distance_fade_enabled = true
 omni_range = 0.27735668
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="Glass/PriceTag/Label"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Glass/PriceTag/Label" unique_id=271082228]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.07017431, 0, 0.056633588)
 distance_fade_enabled = true
 omni_range = 0.27735668
 
-[node name="GlassParticles" type="GPUParticles3D" parent="."]
+[node name="GlassParticles" type="GPUParticles3D" parent="." unique_id=667102047]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.839535, 0)
 emitting = false
 amount = 32
@@ -236,22 +236,20 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_015oc")
 draw_pass_1 = SubResource("PrismMesh_lu2bc")
 
-[node name="Model" type="Node3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="Model" type="Node3D" parent="." unique_id=1455248383 groups=["PhysicsInterpolated"]]
 
-[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Model"]
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Model" unique_id=534850471]
 deterministic = true
 root_node = NodePath("../Fairy")
-libraries = {
-&"": ExtResource("2_l0xag")
-}
-autoplay = "RESET"
+libraries/ = ExtResource("2_l0xag")
+autoplay = &"RESET"
 
-[node name="Fairy" parent="Model" instance=ExtResource("12_g7wuv")]
+[node name="Fairy" parent="Model" unique_id=1300988708 instance=ExtResource("12_g7wuv")]
 
-[node name="BlobShadow" parent="Model/Fairy" instance=ExtResource("5_pebs6")]
+[node name="BlobShadow" parent="Model/Fairy" unique_id=160702207 instance=ExtResource("5_pebs6")]
 radius = 0.25
 
-[node name="HUD" type="Control" parent="."]
+[node name="HUD" type="Control" parent="." unique_id=2102159801]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -262,7 +260,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="TooPoor" type="Label" parent="HUD"]
+[node name="TooPoor" type="Label" parent="HUD" unique_id=1087687547]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -277,14 +275,12 @@ text = "You're too poor to free this fairy!"
 label_settings = SubResource("LabelSettings_p435h")
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/TooPoor"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/TooPoor" unique_id=213633973]
 deterministic = true
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_7rhii")
-}
+libraries/ = SubResource("AnimationLibrary_7rhii")
 
-[node name="TextLegibilityShadow" type="TextureRect" parent="HUD/TooPoor"]
+[node name="TextLegibilityShadow" type="TextureRect" parent="HUD/TooPoor" unique_id=1143414049]
 modulate = Color(1, 1, 1, 0.486275)
 z_index = -1
 layout_mode = 1

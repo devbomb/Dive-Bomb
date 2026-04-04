@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://cuj40e5pt37i3"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://cuj40e5pt37i3"]
 
 [ext_resource type="AudioStream" uid="uid://dkxe2unonxp44" path="res://Levels/Tutorial/AgentDIntroCutscene/AgentDIntroMusic.mp3" id="1_fyqwl"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="2_5yqul"]

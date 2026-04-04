@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://byj33t3fmjjmx"]
+[gd_scene format=3 uid="uid://byj33t3fmjjmx"]
 
 [ext_resource type="PackedScene" uid="uid://d0j2koof3mftm" path="res://Common/Models/Gem.glb" id="1_pypeu"]
 
@@ -8,14 +8,14 @@ metallic = 0.75
 roughness = 0.5
 rim_enabled = true
 
-[node name="YellowGemModel" type="Node3D"]
+[node name="YellowGemModel" type="Node3D" unique_id=333512474]
 
-[node name="Gem" parent="." instance=ExtResource("1_pypeu")]
+[node name="Gem" parent="." unique_id=1007508518 instance=ExtResource("1_pypeu")]
 
 [node name="Circle" parent="Gem" index="0"]
 material_override = SubResource("StandardMaterial3D_6h548")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=628889929]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.274493, -1.19985e-08)
 light_energy = 0.285
 distance_fade_enabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://muwxx8ltp1ss"]
+[gd_scene format=3 uid="uid://muwxx8ltp1ss"]
 
 [ext_resource type="Environment" uid="uid://cnsj2vqr0q41w" path="res://Levels/TestMap/Skybox.tres" id="1_0gxk4"]
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_678t0"]
@@ -15,36 +15,36 @@ _data = {
 }
 point_count = 7
 
-[node name="TestMap" type="Node3D"]
+[node name="TestMap" type="Node3D" unique_id=1548378417]
 script = ExtResource("1_678t0")
 LevelName = "Test Hub World"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1195481406]
 stream = ExtResource("2_fh6k1")
 bus = &"Music"
 script = ExtResource("3_3iy4a")
 metadata/_custom_type_script = "uid://du3spb4diyf40"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1258273463]
 environment = ExtResource("1_0gxk4")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1187994799]
 transform = Transform3D(0.958038, 0.253313, -0.13415, -0.134871, 0.811326, 0.568824, 0.25293, -0.526862, 0.811445, 0, 5.02909, 0)
 layers = 3
 sky_mode = 1
 
-[node name="Main" parent="." instance=ExtResource("2_678t0")]
+[node name="Main" parent="." unique_id=451722158 instance=ExtResource("2_678t0")]
 
-[node name="FairyDoorTest" parent="." instance=ExtResource("2_1qi3b")]
+[node name="FairyDoorTest" parent="." unique_id=1503675986 instance=ExtResource("2_1qi3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -5, -7)
 
-[node name="FairyGuide" parent="FairyDoorTest" node_paths=PackedStringArray("Path") instance=ExtResource("5_bnah6")]
+[node name="FairyGuide" parent="FairyDoorTest" unique_id=1573697381 node_paths=PackedStringArray("Path") instance=ExtResource("5_bnah6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 6)
 FairyId = "FairyDoorTest"
 Path = NodePath("../FairyGuidePath")
 VanishWhenFinished = true
 
-[node name="FairyGuidePath" type="Path3D" parent="FairyDoorTest"]
+[node name="FairyGuidePath" type="Path3D" parent="FairyDoorTest" unique_id=650202776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 6)
 curve = SubResource("Curve3D_vn0gs")

@@ -1,24 +1,15 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://johh8ns2ub0m"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" format=3 uid="uid://johh8ns2ub0m"]
 
 [ext_resource type="PackedScene" uid="uid://c7f2hh0jtakwr" path="res://Entities/Item/Gems/PurpleGem/PurpleGem.tscn" id="1_5uopv"]
-[ext_resource type="Script" uid="uid://cddjtiy8pj12o" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_fcfd6"]
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_fcfd6"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_fcfd6"]
 
 [resource]
 script = ExtResource("2_fcfd6")
 scene_file = ExtResource("1_5uopv")
-apply_rotation_on_map_build = true
-apply_scale_on_map_build = true
 classname = "item_gem_purple"
-description = ""
-func_godot_internal = false
-base_classes = Array[Resource]([])
-class_properties = {}
-class_property_descriptions = {}
-auto_apply_to_matching_node_properties = false
-meta_properties = {
+meta_properties = Dictionary[String, Variant]({
 "color": Color(0.45098, 0.0862745, 0.823529, 1),
 "size": AABB(-4, -4, 0, 4, 4, 8)
-}
-node_class = ""
-name_property = ""
+})
 metadata/_custom_type_script = "uid://cddjtiy8pj12o"

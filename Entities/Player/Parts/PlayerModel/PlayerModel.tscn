@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dykig0tcxggvr"]
+[gd_scene format=3 uid="uid://dykig0tcxggvr"]
 
 [ext_resource type="PackedScene" uid="uid://b45yvootyxy4h" path="res://Entities/Player/Parts/PlayerModel/Parachute.glb" id="1_d1yau"]
 [ext_resource type="PackedScene" uid="uid://blq28kabesqpx" path="res://Common/Models/Characters/SpecialAgentD.gltf" id="1_fpwl0"]
@@ -64,28 +64,28 @@ scale_curve = SubResource("CurveTexture_juou6")
 color = Color(1, 1, 1, 0.160784)
 alpha_curve = SubResource("CurveTexture_ces48")
 
-[node name="PlayerModel" type="Node3D"]
+[node name="PlayerModel" type="Node3D" unique_id=387529875]
 
-[node name="Parachute" parent="." instance=ExtResource("1_d1yau")]
+[node name="Parachute" parent="." unique_id=1285841306 instance=ExtResource("1_d1yau")]
 visible = false
 
-[node name="LeftString" parent="Parachute" node_paths=PackedStringArray("end_point") instance=ExtResource("2_6kq2t")]
+[node name="LeftString" parent="Parachute" unique_id=1303019107 node_paths=PackedStringArray("end_point") instance=ExtResource("2_6kq2t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.854, 0)
 end_point = NodePath("../LeftStringHandle")
 
-[node name="LeftStringHandle" type="Marker3D" parent="Parachute"]
+[node name="LeftStringHandle" type="Marker3D" parent="Parachute" unique_id=2116123247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, 0)
 
-[node name="RightString" parent="Parachute" node_paths=PackedStringArray("end_point") instance=ExtResource("2_6kq2t")]
+[node name="RightString" parent="Parachute" unique_id=241038413 node_paths=PackedStringArray("end_point") instance=ExtResource("2_6kq2t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.854, 0)
 end_point = NodePath("../RightStringHandle")
 
-[node name="RightStringHandle" type="Marker3D" parent="Parachute"]
+[node name="RightStringHandle" type="Marker3D" parent="Parachute" unique_id=284478262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, 0)
 
-[node name="KennifiedPlayerModel" parent="." instance=ExtResource("1_fpwl0")]
+[node name="KennifiedPlayerModel" parent="." unique_id=1274135117 instance=ExtResource("1_fpwl0")]
 
-[node name="KickTrailParticles" type="Node3D" parent="."]
+[node name="KickTrailParticles" type="Node3D" parent="." unique_id=1785988651]
 transform = Transform3D(0.604831, 0.674805, 0.623553, -0.798374, 0.755471, -0.043164, -0.45473, -0.428837, 0.905162, 0.0590594, 0.405857, 0.901034)
 script = ExtResource("1_x2wfw")
 Texture = SubResource("GradientTexture2D_7mdw1")
@@ -99,22 +99,22 @@ SpeedScale = 1.2
 FixedFps = 60
 ProcessMaterial = SubResource("ParticleProcessMaterial_2e14a")
 
-[node name="LeftHandBone" type="BoneAttachment3D" parent="."]
+[node name="LeftHandBone" type="BoneAttachment3D" parent="." unique_id=1146847860]
 transform = Transform3D(0.058325954, -0.9729878, -0.22336686, -0.012965944, -0.2244671, 0.97439504, -0.99821275, -0.05393632, -0.025707886, -0.55403566, 0.89792967, -0.036500677)
 bone_name = "Hand_L"
 bone_idx = 24
 use_external_skeleton = true
 external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
 
-[node name="LeftHandPoint" type="Marker3D" parent="LeftHandBone"]
+[node name="LeftHandPoint" type="Marker3D" parent="LeftHandBone" unique_id=100263743]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.282762, -1.11759e-09)
 
-[node name="RightHandBone" type="BoneAttachment3D" parent="."]
+[node name="RightHandBone" type="BoneAttachment3D" parent="." unique_id=302861940]
 transform = Transform3D(0.058325954, 0.9729878, 0.22336686, 0.012965944, -0.2244671, 0.97439504, 0.99821275, -0.05393632, -0.025707886, 0.55403566, 0.89792967, -0.036500677)
 bone_name = "Hand_R"
 bone_idx = 33
 use_external_skeleton = true
 external_skeleton = NodePath("../KennifiedPlayerModel/Armature/Skeleton3D")
 
-[node name="RightHandPoint" type="Marker3D" parent="RightHandBone"]
+[node name="RightHandPoint" type="Marker3D" parent="RightHandBone" unique_id=1707809181]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.283, 0)

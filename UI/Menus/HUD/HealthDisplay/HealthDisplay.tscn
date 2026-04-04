@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cys7esjw83l4i"]
+[gd_scene format=3 uid="uid://cys7esjw83l4i"]
 
 [ext_resource type="Script" uid="uid://c3lfwblqmkfgi" path="res://UI/Menus/HUD/HealthDisplay/HealthDisplay.cs" id="1_bhyls"]
 
@@ -22,7 +22,7 @@ gradient = SubResource("Gradient_ywhaq")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="HealthDisplay" type="Control" node_paths=PackedStringArray("ProgressBar", "RestPoint", "CenterPoint")]
+[node name="HealthDisplay" type="Control" unique_id=421307048 node_paths=PackedStringArray("ProgressBar", "RestPoint", "CenterPoint")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +35,7 @@ ProgressBar = NodePath("ProgressBar")
 RestPoint = NodePath("RestPoint")
 CenterPoint = NodePath("CenterPoint")
 
-[node name="RestPoint" type="Control" parent="."]
+[node name="RestPoint" type="Control" parent="." unique_id=1865344750]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -46,7 +46,7 @@ offset_right = -16.0
 offset_bottom = 80.0
 grow_horizontal = 0
 
-[node name="CenterPoint" type="Control" parent="."]
+[node name="CenterPoint" type="Control" parent="." unique_id=368854033]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -56,7 +56,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProgressBar" type="TextureProgressBar" parent="."]
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=2012807047]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 1

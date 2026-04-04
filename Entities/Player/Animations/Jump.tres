@@ -1,4 +1,4 @@
-[gd_resource type="Animation" load_steps=2 format=3 uid="uid://d1fgq1kroeweq"]
+[gd_resource type="Animation" format=3 uid="uid://d1fgq1kroeweq"]
 
 [ext_resource type="AudioStream" uid="uid://ctipp7patffgc" path="res://Entities/Player/SFX/StandardJump.wav" id="1_ccllq"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fwwegib0064k"]
+[gd_scene format=3 uid="uid://fwwegib0064k"]
 
 [ext_resource type="AnimationLibrary" uid="uid://cuj40e5pt37i3" path="res://Levels/Tutorial/AgentDIntroCutscene/AgentDIntroAnimations.tres" id="1_ijg1o"]
 [ext_resource type="Script" uid="uid://bkdg65eeyksm1" path="res://Levels/Tutorial/AgentDIntroCutscene/AgentDIntroCutscene.cs" id="1_xt62u"]
@@ -44,53 +44,51 @@ scale_curve = SubResource("CurveTexture_i20vl")
 material = ExtResource("3_15wmt")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="AgentDIntroCutscene" type="Node3D" node_paths=PackedStringArray("AnimationPlayer", "CutsceneCamera")]
+[node name="AgentDIntroCutscene" type="Node3D" unique_id=1236452901 node_paths=PackedStringArray("AnimationPlayer", "CutsceneCamera")]
 script = ExtResource("1_xt62u")
 AnimationPlayer = NodePath("AgentDIntroAnimationPlayer")
 CutsceneCamera = NodePath("ZoomOutCamera")
 
-[node name="AgentDIntroAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AgentDIntroAnimationPlayer" type="AnimationPlayer" parent="." unique_id=405873659]
 deterministic = true
-libraries = {
-&"": ExtResource("1_ijg1o")
-}
+libraries/ = ExtResource("1_ijg1o")
 
-[node name="IntroCutsceneMusicPlayer" type="AudioStreamPlayer" parent="AgentDIntroAnimationPlayer"]
+[node name="IntroCutsceneMusicPlayer" type="AudioStreamPlayer" parent="AgentDIntroAnimationPlayer" unique_id=1611993117]
 bus = &"Music"
 
-[node name="IntroCutsceneSfxPlayer" type="AudioStreamPlayer" parent="AgentDIntroAnimationPlayer"]
+[node name="IntroCutsceneSfxPlayer" type="AudioStreamPlayer" parent="AgentDIntroAnimationPlayer" unique_id=2101875923]
 bus = &"Sfx"
 
-[node name="IntroCutsceneVoicePlayer" type="AudioStreamPlayer" parent="AgentDIntroAnimationPlayer"]
+[node name="IntroCutsceneVoicePlayer" type="AudioStreamPlayer" parent="AgentDIntroAnimationPlayer" unique_id=1331709835]
 bus = &"DialogVoice"
 
-[node name="IntroCutscenePlayerFake" parent="." instance=ExtResource("3_3asif")]
+[node name="IntroCutscenePlayerFake" parent="." unique_id=728110242 instance=ExtResource("3_3asif")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
 visible = false
 
-[node name="FingerGun_L" type="MeshInstance3D" parent="IntroCutscenePlayerFake"]
+[node name="FingerGun_L" type="MeshInstance3D" parent="IntroCutscenePlayerFake" unique_id=588749246]
 transform = Transform3D(0.99636763, -0.085156076, 0, 0.016353574, 0.19134477, -0.9813866, 0.08357104, 0.9778218, 0.19204237, 0.015217288, 0.9841855, -0.3220492)
 visible = false
 mesh = SubResource("CapsuleMesh_3asif")
 
-[node name="FingerGun_R" type="MeshInstance3D" parent="IntroCutscenePlayerFake"]
+[node name="FingerGun_R" type="MeshInstance3D" parent="IntroCutscenePlayerFake" unique_id=732691635]
 transform = Transform3D(0.99866295, 0.04743837, 0.020543432, 0.022845417, -0.048504926, -0.9985617, -0.04637368, 0.9976957, -0.0495238, 0.16464181, 0.59188616, -0.3533038)
 visible = false
 mesh = SubResource("CapsuleMesh_3asif")
 
-[node name="IntroCutsceneFakeGlassWall" type="MeshInstance3D" parent="."]
+[node name="IntroCutsceneFakeGlassWall" type="MeshInstance3D" parent="." unique_id=1881348572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 15, -8)
 visible = false
 material_override = ExtResource("3_15wmt")
 mesh = SubResource("BoxMesh_r6tbe")
 
-[node name="WallReference" type="MeshInstance3D" parent="."]
+[node name="WallReference" type="MeshInstance3D" parent="." unique_id=1209857437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 10, -7.5)
 visible = false
 mesh = SubResource("BoxMesh_r6tbe")
 skeleton = NodePath("../IntroCutsceneFakeGlassWall")
 
-[node name="FadeCurtain" type="TextureRect" parent="."]
+[node name="FadeCurtain" type="TextureRect" parent="." unique_id=1430422116]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,16 +99,16 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_alo6x")
 metadata/_edit_use_anchors_ = true
 
-[node name="ZoomOutCamera" type="Camera3D" parent="."]
+[node name="ZoomOutCamera" type="Camera3D" parent="." unique_id=1399981660]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999964, -1, 15, -7)
 
-[node name="BowtieCamera" type="Camera3D" parent="."]
+[node name="BowtieCamera" type="Camera3D" parent="." unique_id=1594212152]
 transform = Transform3D(0.67208254, -0.74047637, 0, -0.15060212, -0.13669184, -0.97909886, 0.7249994, 0.6580352, -0.20338547, -0.9974547, 13.728514, -6.1146607)
 
-[node name="WristwatchCamera" type="Camera3D" parent="."]
+[node name="WristwatchCamera" type="Camera3D" parent="." unique_id=111067268]
 transform = Transform3D(0.53051203, -0.42678657, 0.7324003, 0.6268214, 0.77916294, 0, -0.57065916, 0.45908418, 0.68087435, -0.7760437, 13.824284, -5.611712)
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=1977030615]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 15, -8)
 emitting = false

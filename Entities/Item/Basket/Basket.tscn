@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dbxajif4g4buk"]
+[gd_scene format=3 uid="uid://dbxajif4g4buk"]
 
 [ext_resource type="Script" uid="uid://dgu3p1wuws01b" path="res://Common/Scripts/GenericGemContainer.cs" id="1_py8r0"]
 [ext_resource type="Script" uid="uid://c425xaupg1x74" path="res://Common/Components/BreakableStaticBody3D.cs" id="2_a2kp2"]
@@ -36,7 +36,7 @@ disable_receive_shadows = true
 material = SubResource("StandardMaterial3D_pgrjj")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="Basket" type="Node3D" node_paths=PackedStringArray("Model", "GemSpawner", "CollisionShape", "Particles", "ShatterSound")]
+[node name="Basket" type="Node3D" unique_id=178017270 node_paths=PackedStringArray("Model", "GemSpawner", "CollisionShape", "Particles", "ShatterSound")]
 script = ExtResource("1_py8r0")
 Model = NodePath("Model")
 GemSpawner = NodePath("GemSpawner")
@@ -44,22 +44,22 @@ CollisionShape = NodePath("Body/CollisionShape")
 Particles = NodePath("Particles")
 ShatterSound = NodePath("ShatterSound")
 
-[node name="Body" type="StaticBody3D" parent="." groups=["UnsafeGround"]]
+[node name="Body" type="StaticBody3D" parent="." unique_id=1737001293 groups=["UnsafeGround"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("2_a2kp2")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="Body"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Body" unique_id=1479921612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_xouiu")
 
-[node name="GemSpawner" type="Node3D" parent="."]
+[node name="GemSpawner" type="Node3D" parent="." unique_id=214591051]
 script = ExtResource("3_ni05m")
 metadata/_custom_type_script = "uid://dhjvxdov8gnkp"
 
-[node name="Model" parent="." instance=ExtResource("2_py8r0")]
+[node name="Model" parent="." unique_id=241239685 instance=ExtResource("2_py8r0")]
 
-[node name="Particles" type="GPUParticles3D" parent="."]
+[node name="Particles" type="GPUParticles3D" parent="." unique_id=1737873626]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.839535, 0)
 emitting = false
 amount = 16
@@ -68,7 +68,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_pbogh")
 draw_pass_1 = SubResource("PrismMesh_s5gyo")
 
-[node name="ShatterSound" type="AudioStreamPlayer3D" parent="."]
+[node name="ShatterSound" type="AudioStreamPlayer3D" parent="." unique_id=1404699978]
 stream = ExtResource("3_py8r0")
 bus = &"Sfx"
 

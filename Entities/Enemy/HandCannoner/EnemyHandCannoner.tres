@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=33 format=3 uid="uid://dpi267kv74gnc"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://dpi267kv74gnc"]
 
 [ext_resource type="AudioStream" uid="uid://cl6pd72tshp26" path="res://Entities/Enemy/HandCannoner/SFX/Aim0.wav" id="1_8gvmy"]
 [ext_resource type="AudioStream" uid="uid://cwqlapqmck7ss" path="res://Entities/Enemy/HandCannoner/SFX/Snooze.wav" id="1_hnm5h"]

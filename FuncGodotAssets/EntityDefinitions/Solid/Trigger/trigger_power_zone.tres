@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://bdmw4bsj6vdvj"]
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" format=3 uid="uid://bdmw4bsj6vdvj"]
 
 [ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_gyfx8"]
 [ext_resource type="Script" uid="uid://cui8fiet411wj" path="res://Entities/Trigger/PowerTriggerZone.cs" id="2_l1rtl"]

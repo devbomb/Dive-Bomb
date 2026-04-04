@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ri50s5tjym3n"]
+[gd_scene format=3 uid="uid://ri50s5tjym3n"]
 
 [ext_resource type="Script" uid="uid://b5064ks5nmy4u" path="res://Entities/Enemy/Snapjaw/Snapjaw.cs" id="1_1q2op"]
 [ext_resource type="PackedScene" uid="uid://dt1e0vrkc6j7" path="res://Entities/Enemy/Snapjaw/Snapjaw.glb" id="1_6h8uk"]
@@ -979,90 +979,88 @@ albedo_color = Color(0.815686, 0.619608, 0.27451, 1)
 material = SubResource("StandardMaterial3D_6h8uk")
 size = Vector2(10, 10)
 
-[node name="Snapjaw" type="Node3D" groups=["PhysicsInterpolated"]]
+[node name="Snapjaw" type="Node3D" unique_id=219708037 groups=["PhysicsInterpolated"]]
 script = ExtResource("1_1q2op")
 
-[node name="GemSpawner" type="Node3D" parent="."]
+[node name="GemSpawner" type="Node3D" parent="." unique_id=1429499579]
 script = ExtResource("2_8sopg")
 AlwaysHomeIn = true
 metadata/_custom_type_script = "uid://dhjvxdov8gnkp"
 
-[node name="KillSound" type="AudioStreamPlayer" parent="."]
+[node name="KillSound" type="AudioStreamPlayer" parent="." unique_id=1192880780]
 stream = ExtResource("3_a38kv")
 bus = &"Sfx"
 
-[node name="SacreBleu" type="AudioStreamPlayer3D" parent="."]
+[node name="SacreBleu" type="AudioStreamPlayer3D" parent="." unique_id=745004724]
 stream = SubResource("AudioStreamRandomizer_xq8qg")
 bus = &"Sfx"
 
-[node name="Voice" type="AudioStreamPlayer3D" parent="."]
+[node name="Voice" type="AudioStreamPlayer3D" parent="." unique_id=1318562943]
 bus = &"Sfx"
 
-[node name="Bonjour" type="AudioStreamPlayer3D" parent="."]
+[node name="Bonjour" type="AudioStreamPlayer3D" parent="." unique_id=1323257633]
 stream = SubResource("AudioStreamRandomizer_ae6b4")
 max_distance = 20.0
 bus = &"Sfx"
 
-[node name="FloorDetector" type="RayCast3D" parent="."]
+[node name="FloorDetector" type="RayCast3D" parent="." unique_id=1431705560]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, -100, 0)
 
-[node name="FallbackAggroTrigger" type="Area3D" parent="."]
+[node name="FallbackAggroTrigger" type="Area3D" parent="." unique_id=95340739]
 unique_name_in_owner = true
 editor_description = "If the player somehow skips this enemy's cycle starter, the enemy will still begin attacking if the player enters this zone."
 collision_layer = 0
 collision_mask = 8
 
-[node name="AggroTriggerShape" type="CollisionShape3D" parent="FallbackAggroTrigger"]
+[node name="AggroTriggerShape" type="CollisionShape3D" parent="FallbackAggroTrigger" unique_id=1094783632]
 unique_name_in_owner = true
 shape = SubResource("CylinderShape3D_6tpik")
 
-[node name="BreakableArea" type="Area3D" parent="."]
+[node name="BreakableArea" type="Area3D" parent="." unique_id=973543848]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_58fhs")
 Disabled = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BreakableArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BreakableArea" unique_id=513418382]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0651472, 0)
 visible = false
 shape = SubResource("CylinderShape3D_sroyn")
 
-[node name="JawDamageArea" type="Area3D" parent="."]
+[node name="JawDamageArea" type="Area3D" parent="." unique_id=497696443]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("2_sroyn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="JawDamageArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JawDamageArea" unique_id=1291756001]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.855975, 0)
 shape = SubResource("BoxShape3D_58fhs")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=2020889378]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeStateMachine_6h8uk")
 anim_player = NodePath("AnimationPlayer")
 parameters/DeathFall/TimeScale/scale = 1.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree" unique_id=1644472919]
 deterministic = true
 root_node = NodePath("../..")
 callback_mode_process = 0
-libraries = {
-&"": SubResource("AnimationLibrary_58fhs")
-}
+libraries/ = SubResource("AnimationLibrary_58fhs")
 
-[node name="Model" parent="." instance=ExtResource("1_6h8uk")]
+[node name="Model" parent="." unique_id=1211798191 instance=ExtResource("1_6h8uk")]
 unique_name_in_owner = true
 
-[node name="Reference" type="Node3D" parent="."]
+[node name="Reference" type="Node3D" parent="." unique_id=547398476]
 visible = false
 
-[node name="WaterReference" type="MeshInstance3D" parent="Reference"]
+[node name="WaterReference" type="MeshInstance3D" parent="Reference" unique_id=792797733]
 mesh = SubResource("PlaneMesh_1q2op")
 
-[node name="FloorReference" type="MeshInstance3D" parent="Reference"]
+[node name="FloorReference" type="MeshInstance3D" parent="Reference" unique_id=1005498099]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("PlaneMesh_58fhs")
 

@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=14 format=3 uid="uid://dsmqjue10knjl"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dsmqjue10knjl"]
 
 [ext_resource type="Texture2D" uid="uid://bre6mlkh5757p" path="res://Textures/Textures/MayanTempleBricks.png" id="1_cep7e"]
 

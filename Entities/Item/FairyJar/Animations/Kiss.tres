@@ -1,4 +1,4 @@
-[gd_resource type="Animation" load_steps=2 format=3 uid="uid://hf6dgodlvx2a"]
+[gd_resource type="Animation" format=3 uid="uid://hf6dgodlvx2a"]
 
 [ext_resource type="AudioStream" uid="uid://bilyd7s4ryh37" path="res://Entities/Item/FairyJar/SFX/Smooch.wav" id="1_y42u6"]
 

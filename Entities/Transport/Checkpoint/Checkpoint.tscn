@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bbfrncy1cgsc1"]
+[gd_scene format=3 uid="uid://bbfrncy1cgsc1"]
 
 [ext_resource type="PackedScene" uid="uid://cemvvteimpac1" path="res://Entities/Transport/Checkpoint/FairyRing.glb" id="1_lpb68"]
 [ext_resource type="Script" uid="uid://cfqry8cyhwe4l" path="res://Entities/Transport/Checkpoint/Checkpoint.cs" id="1_tl6tw"]
@@ -235,23 +235,23 @@ _data = {
 &"RESET": SubResource("Animation_ml7ka")
 }
 
-[node name="Checkpoint" type="Area3D" node_paths=PackedStringArray("LabelAnimator")]
+[node name="Checkpoint" type="Area3D" unique_id=566140581 node_paths=PackedStringArray("LabelAnimator")]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_tl6tw")
 LabelAnimator = NodePath("Control/AnimationPlayer")
 
-[node name="CheckpointSound" type="AudioStreamPlayer" parent="."]
+[node name="CheckpointSound" type="AudioStreamPlayer" parent="." unique_id=305409596]
 stream = ExtResource("2_xw0qj")
 bus = &"Sfx"
 
-[node name="FairyRing" parent="." instance=ExtResource("1_lpb68")]
+[node name="FairyRing" parent="." unique_id=1564518348 instance=ExtResource("1_lpb68")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1374321252]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_67wg3")
 
-[node name="Spores" type="Node3D" parent="."]
+[node name="Spores" type="Node3D" parent="." unique_id=1663324006]
 script = ExtResource("3_sjo5e")
 Texture = SubResource("GradientTexture2D_3va3e")
 BlendMode = 1
@@ -264,7 +264,7 @@ Randomness = 1.0
 FixedFps = 30
 ProcessMaterial = SubResource("ParticleProcessMaterial_b8q6b")
 
-[node name="SparkleRing" type="Node3D" parent="."]
+[node name="SparkleRing" type="Node3D" parent="." unique_id=749123530]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 script = ExtResource("3_sjo5e")
@@ -278,7 +278,7 @@ SpeedScale = 1.0
 FixedFps = 30
 ProcessMaterial = SubResource("ParticleProcessMaterial_5m174")
 
-[node name="SparkleBurst" type="Node3D" parent="."]
+[node name="SparkleBurst" type="Node3D" parent="." unique_id=59733945]
 unique_name_in_owner = true
 script = ExtResource("3_sjo5e")
 Texture = SubResource("GradientTexture2D_cf7p1")
@@ -293,11 +293,11 @@ Randomness = 0.5
 FixedFps = 30
 ProcessMaterial = SubResource("ParticleProcessMaterial_klcf1")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1800787992]
 transform = Transform3D(3, 0, 0, 0, -1.31134e-07, -3, 0, 3, -1.31134e-07, 0, 0.0201436, 8.80506e-10)
 texture = SubResource("GradientTexture2D_elpmb")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=131487276]
 z_index = -1
 z_as_relative = false
 layout_mode = 3
@@ -308,7 +308,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="Control" unique_id=68384303]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -322,10 +322,8 @@ theme_override_styles/normal = ExtResource("5_rkmpr")
 text = "CHECKPOINT"
 label_settings = SubResource("LabelSettings_rkmpr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=350982865]
 process_mode = 3
-libraries = {
-&"": SubResource("AnimationLibrary_qafqu")
-}
+libraries/ = SubResource("AnimationLibrary_qafqu")
 
 [connection signal="Activated" from="." to="CheckpointSound" method="play"]

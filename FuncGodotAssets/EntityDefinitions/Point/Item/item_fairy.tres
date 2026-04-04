@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://dtrewu5mef3im"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" format=3 uid="uid://dtrewu5mef3im"]
 
 [ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_2sy0l"]
 [ext_resource type="PackedScene" uid="uid://b6d7vas8km3kd" path="res://Entities/Item/FairyJar/FairyJar.tscn" id="1_x8mxr"]

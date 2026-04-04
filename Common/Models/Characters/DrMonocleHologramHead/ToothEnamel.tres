@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://doeiqpfys82k6"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://doeiqpfys82k6"]
 
 [ext_resource type="Material" uid="uid://mvm170lhls8a" path="res://Common/Materials/HologramStaticFuzz.tres" id="1_bjhpo"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cj6n6qr7joyt0"]
+[gd_scene format=3 uid="uid://cj6n6qr7joyt0"]
 
 [ext_resource type="Script" uid="uid://ckky3ke41rvqu" path="res://Entities/Wall/DivableWall/DivableWallFX.cs" id="1_g5x4v"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="1_wjxuy"]
@@ -26,21 +26,21 @@ scale_curve = SubResource("CurveTexture_i20vl")
 material = ExtResource("2_g5x4v")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="DivableWallFX" type="Node3D"]
+[node name="DivableWallFX" type="Node3D" unique_id=1938366240]
 script = ExtResource("1_g5x4v")
 
-[node name="ShatterSound" type="AudioStreamPlayer" parent="."]
+[node name="ShatterSound" type="AudioStreamPlayer" parent="." unique_id=924235661]
 unique_name_in_owner = true
 stream = ExtResource("1_wjxuy")
 bus = &"Sfx"
 
-[node name="MeshGrowPoint" type="Node3D" parent="."]
+[node name="MeshGrowPoint" type="Node3D" parent="." unique_id=390542452]
 unique_name_in_owner = true
 
-[node name="MeshHolder" type="Node3D" parent="MeshGrowPoint"]
+[node name="MeshHolder" type="Node3D" parent="MeshGrowPoint" unique_id=46562779]
 unique_name_in_owner = true
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=1436308658]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
 emitting = false

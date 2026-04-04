@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MaterialMap" load_steps=8 format=3 uid="uid://dgvjaxeitfghe"]
+[gd_resource type="Resource" script_class="MaterialMap" format=3 uid="uid://dgvjaxeitfghe"]
 
 [ext_resource type="Script" uid="uid://cb8n0ec7vcom" path="res://addons/FuncGodotMapImporter/MaterialMap.gd" id="1_4o1u0"]
 [ext_resource type="Texture2D" uid="uid://cfhc0yp1js0ng" path="res://Textures/Textures/BulletproofGlass.png" id="4_4qu2l"]

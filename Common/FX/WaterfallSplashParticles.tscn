@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm7e342twslu5"]
+[gd_scene format=3 uid="uid://bm7e342twslu5"]
 
 [sub_resource type="Gradient" id="Gradient_ribmb"]
 offsets = PackedFloat32Array(0, 0.70935)
@@ -32,7 +32,7 @@ billboard_keep_scale = true
 [sub_resource type="QuadMesh" id="QuadMesh_oy4oy"]
 material = SubResource("StandardMaterial3D_rsapv")
 
-[node name="WaterfallSplashParticles" type="GPUParticles3D"]
+[node name="WaterfallSplashParticles" type="GPUParticles3D" unique_id=678577960]
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_37qkj")
 draw_pass_1 = SubResource("QuadMesh_oy4oy")

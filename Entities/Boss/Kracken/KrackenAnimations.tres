@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=28 format=3 uid="uid://bn1ba67n5ehrt"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://bn1ba67n5ehrt"]
 
 [ext_resource type="AudioStream" uid="uid://7iuw75niosxj" path="res://Entities/Boss/Kracken/SFX/EmergeRoarAngry.wav" id="1_5qk1u"]
 [ext_resource type="AudioStream" uid="uid://dc66vxvhib0hr" path="res://Entities/Boss/Kracken/SFX/Growl0.wav" id="1_7sa1r"]

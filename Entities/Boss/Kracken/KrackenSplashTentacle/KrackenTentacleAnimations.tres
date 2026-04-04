@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://b1qmtyyaaywuq"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://b1qmtyyaaywuq"]
 
 [sub_resource type="Animation" id="Animation_mubhi"]
 resource_name = "Idle"

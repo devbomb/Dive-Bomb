@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=4 format=3 uid="uid://dyw6uw8kpbihl"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" format=3 uid="uid://dyw6uw8kpbihl"]
 
 [ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_lm8i8"]
 [ext_resource type="Resource" uid="uid://chyxv4vsh7qng" path="res://FuncGodotAssets/EntityDefinitions/Point/Logic/logic_signal_connector.tres" id="1_yup0n"]

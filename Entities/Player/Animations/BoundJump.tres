@@ -1,4 +1,4 @@
-[gd_resource type="Animation" load_steps=2 format=3 uid="uid://c1pd8f68escfu"]
+[gd_resource type="Animation" format=3 uid="uid://c1pd8f68escfu"]
 
 [ext_resource type="AudioStream" uid="uid://2ug5y323q7qg" path="res://Entities/Player/SFX/BounceJump.wav" id="1_mdwwl"]
 

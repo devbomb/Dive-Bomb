@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dut557gn85axh"]
+[gd_scene format=3 uid="uid://dut557gn85axh"]
 
 [ext_resource type="Script" uid="uid://c6y1g6tg6p58f" path="res://Entities/Hazard/GlassPaneSpawner/SpawnedGlassPane/SpawnedGlassPane.cs" id="1_vb7yu"]
 [ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="2_a7lmv"]
@@ -26,7 +26,7 @@ scale_curve = SubResource("CurveTexture_ioojh")
 material = ExtResource("2_a7lmv")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="SpawnedGlassPane" type="AnimatableBody3D" node_paths=PackedStringArray("ShatterParticles", "ShatterSound", "MeshInstance", "CollisionShape", "FloorDetector") groups=["PhysicsInterpolated", "UnsafeGround"]]
+[node name="SpawnedGlassPane" type="AnimatableBody3D" unique_id=1113965451 node_paths=PackedStringArray("ShatterParticles", "ShatterSound", "MeshInstance", "CollisionShape", "FloorDetector") groups=["PhysicsInterpolated", "UnsafeGround"]]
 script = ExtResource("1_vb7yu")
 ShatterParticles = NodePath("ShatterParticles")
 ShatterSound = NodePath("ShatterSound")
@@ -34,14 +34,14 @@ MeshInstance = NodePath("MeshInstance3D")
 CollisionShape = NodePath("CollisionShape3D")
 FloorDetector = NodePath("FloorDetector")
 
-[node name="FloorDetector" type="RayCast3D" parent="."]
+[node name="FloorDetector" type="RayCast3D" parent="." unique_id=5958626]
 target_position = Vector3(0, -0.1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=788475329]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1382206798]
 
-[node name="ShatterParticles" type="GPUParticles3D" parent="."]
+[node name="ShatterParticles" type="GPUParticles3D" parent="." unique_id=1545204974]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
 emitting = false
 amount = 32
@@ -50,6 +50,6 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_kvycf")
 draw_pass_1 = SubResource("PrismMesh_aw5vx")
 
-[node name="ShatterSound" type="AudioStreamPlayer" parent="."]
+[node name="ShatterSound" type="AudioStreamPlayer" parent="." unique_id=2045993798]
 stream = ExtResource("3_t5f5m")
 bus = &"Sfx"

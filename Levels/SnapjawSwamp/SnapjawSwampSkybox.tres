@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=7 format=3 uid="uid://btae5lbyfvcts"]
+[gd_resource type="Environment" format=3 uid="uid://btae5lbyfvcts"]
 
 [ext_resource type="Shader" uid="uid://dmyuuvawg8dd" path="res://Levels/SnapjawSwamp/SnapjawSwampSkyboxShader.gdshader" id="1_id4o0"]
 [ext_resource type="Texture2D" uid="uid://dtuxp4y3awt8t" path="res://Levels/SnapjawSwamp/Textures/SkyboxLeaves.png" id="2_eq4h2"]

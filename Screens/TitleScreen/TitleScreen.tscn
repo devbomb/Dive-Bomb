@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs28xrm5onq8k"]
+[gd_scene format=3 uid="uid://bs28xrm5onq8k"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="1_1b2l8"]
 [ext_resource type="Script" uid="uid://cvqi1xaairncb" path="res://Screens/TitleScreen/TitleScreen.cs" id="1_q3h6t"]
@@ -14,7 +14,7 @@ font_size = 100
 [sub_resource type="LabelSettings" id="LabelSettings_3giqp"]
 font_size = 27
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" unique_id=561651260]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q3h6t")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1138917847]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TitleContainer" type="Control" parent="."]
+[node name="TitleContainer" type="Control" parent="." unique_id=1244118095]
 layout_mode = 1
 anchor_top = 0.192
 anchor_right = 1.0
@@ -40,7 +40,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleContainer" unique_id=677808975]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,20 +54,20 @@ offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="TitleContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="TitleContainer/VBoxContainer" unique_id=235154073]
 layout_mode = 2
 text = "Dive Bomb"
 label_settings = SubResource("LabelSettings_w4jl7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="TitleContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="TitleContainer/VBoxContainer" unique_id=635454217]
 layout_mode = 2
 text = "Demo Version"
 label_settings = SubResource("LabelSettings_3giqp")
 horizontal_alignment = 1
 
-[node name="PageNavigator" type="Control" parent="."]
+[node name="PageNavigator" type="Control" parent="." unique_id=1128132075]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 0.5
@@ -78,7 +78,7 @@ grow_vertical = 2
 theme = ExtResource("1_1b2l8")
 script = ExtResource("3_l50tw")
 
-[node name="MainPage" type="Control" parent="PageNavigator" node_paths=PackedStringArray("FocusedControl")]
+[node name="MainPage" type="Control" parent="PageNavigator" unique_id=234467247 node_paths=PackedStringArray("FocusedControl")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -89,7 +89,7 @@ grow_vertical = 2
 script = ExtResource("3_ml6io")
 FocusedControl = NodePath("PanelContainer/Buttons/Start")
 
-[node name="PanelContainer" type="PanelContainer" parent="PageNavigator/MainPage"]
+[node name="PanelContainer" type="PanelContainer" parent="PageNavigator/MainPage" unique_id=361500110]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,32 +103,32 @@ offset_bottom = 31.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Buttons" type="VBoxContainer" parent="PageNavigator/MainPage/PanelContainer"]
+[node name="Buttons" type="VBoxContainer" parent="PageNavigator/MainPage/PanelContainer" unique_id=115301218]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("5_v4stu")
 
-[node name="Start" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons"]
+[node name="Start" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons" unique_id=409321789]
 layout_mode = 2
 text = "Start"
 flat = true
 
-[node name="Options" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons"]
+[node name="Options" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons" unique_id=883195654]
 layout_mode = 2
 text = "Options"
 flat = true
 
-[node name="Quit" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons"]
+[node name="Quit" type="Button" parent="PageNavigator/MainPage/PanelContainer/Buttons" unique_id=1738889611]
 layout_mode = 2
 text = "Quit"
 flat = true
 
-[node name="UserSettingsMenu" parent="PageNavigator" instance=ExtResource("5_xa3gf")]
+[node name="UserSettingsMenu" parent="PageNavigator" unique_id=1313665646 instance=ExtResource("5_xa3gf")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="SaveSlotManagementMenu" parent="PageNavigator" instance=ExtResource("7_bkufi")]
+[node name="SaveSlotManagementMenu" parent="PageNavigator" unique_id=343719837 instance=ExtResource("7_bkufi")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

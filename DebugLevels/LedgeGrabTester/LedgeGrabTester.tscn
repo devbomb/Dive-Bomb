@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://2icptjxdi67m"]
+[gd_scene format=3 uid="uid://2icptjxdi67m"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_fmlk6"]
 [ext_resource type="PackedScene" uid="uid://5igrd7jakapi" path="res://DebugLevels/LedgeGrabTester/Maps/LedgeGrabTester_Main.map" id="2_k6k7w"]
@@ -6,17 +6,17 @@
 
 [sub_resource type="Environment" id="Environment_4u0mf"]
 
-[node name="LedgeGrabTester" type="Node3D"]
+[node name="LedgeGrabTester" type="Node3D" unique_id=1364675936]
 script = ExtResource("1_fmlk6")
 LevelName = "Ledge Grab Tester"
 
-[node name="Main" parent="." instance=ExtResource("2_k6k7w")]
+[node name="Main" parent="." unique_id=198095249 instance=ExtResource("2_k6k7w")]
 
-[node name="LedgeGrabTester_RampEdgeCase" parent="." instance=ExtResource("3_a38fb")]
+[node name="LedgeGrabTester_RampEdgeCase" parent="." unique_id=1875077279 instance=ExtResource("3_a38fb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=43116201]
 environment = SubResource("Environment_4u0mf")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=837312008]
 transform = Transform3D(0.9942766, -3.7252903e-09, 0.10683675, -0.08612043, -0.59178805, 0.80148, 0.06322472, -0.80609363, -0.588401, 0, 7, 0)

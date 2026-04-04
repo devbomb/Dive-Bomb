@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyqo0c0lksca7"]
+[gd_scene format=3 uid="uid://cyqo0c0lksca7"]
 
 [ext_resource type="Script" uid="uid://dy10c548qmm24" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialCategoryHighScoresTable/TimeTrialCategoryHighScoresTable.cs" id="1_bnk2f"]
 
-[node name="TimeTrialCategoryHighScoresTable" type="Tree"]
+[node name="TimeTrialCategoryHighScoresTable" type="Tree" unique_id=720534891]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,7 +13,7 @@ column_titles_visible = true
 allow_search = false
 hide_folding = true
 hide_root = true
+auto_tooltip = false
 scroll_horizontal_enabled = false
 scroll_vertical_enabled = false
-auto_tooltip = false
 script = ExtResource("1_bnk2f")

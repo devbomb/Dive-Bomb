@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ced0ovfqwhj2h"]
+[gd_scene format=3 uid="uid://ced0ovfqwhj2h"]
 
 [ext_resource type="Script" uid="uid://de2ywdtp3mpxw" path="res://Entities/Transport/StandardPortal/Parts/StandardPortalLabels/StandardPortalLabels.cs" id="1_ltmmc"]
 [ext_resource type="AnimationLibrary" uid="uid://b806gdpivx17x" path="res://Entities/Transport/StandardPortal/PortalLabelAnimations.tres" id="2_05a4k"]
@@ -84,72 +84,68 @@ font_size = 60
 material = SubResource("StandardMaterial3D_lnpha")
 size = Vector2(7, 2.25)
 
-[node name="Labels" type="Node3D" node_paths=PackedStringArray("NameLabel", "FairiesLabel", "BossLevelCountLabel", "LabelAnimator")]
+[node name="Labels" type="Node3D" unique_id=1410919147 node_paths=PackedStringArray("NameLabel", "FairiesLabel", "BossLevelCountLabel", "LabelAnimator")]
 script = ExtResource("1_ltmmc")
 NameLabel = NodePath("Holder/NameLabel")
 FairiesLabel = NodePath("Holder/FairiesLabel")
 BossLevelCountLabel = NodePath("Holder/BossLevelCountLabel")
 LabelAnimator = NodePath("Holder/LabelAnimator")
 
-[node name="Holder" type="Node3D" parent="."]
+[node name="Holder" type="Node3D" parent="." unique_id=624188933]
 visible = false
 
-[node name="LabelAnimator" type="AnimationPlayer" parent="Holder"]
+[node name="LabelAnimator" type="AnimationPlayer" parent="Holder" unique_id=1041629719]
 deterministic = true
-libraries = {
-&"": ExtResource("2_05a4k")
-}
+libraries/ = ExtResource("2_05a4k")
 next/Appear = &"Hover"
 blend_times = [&"Appear", &"Hover", 1.0]
 
-[node name="NameLabel" type="MeshInstance3D" parent="Holder"]
+[node name="NameLabel" type="MeshInstance3D" parent="Holder" unique_id=31588601]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.312)
 visible = false
 material_override = SubResource("StandardMaterial3D_smk44")
 mesh = SubResource("TextMesh_lle10")
 skeleton = NodePath("../../Front")
 
-[node name="Backdrop" type="MeshInstance3D" parent="Holder/NameLabel"]
+[node name="Backdrop" type="MeshInstance3D" parent="Holder/NameLabel" unique_id=312047682]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_je0xt")
 
-[node name="FairiesLabel" type="MeshInstance3D" parent="Holder"]
+[node name="FairiesLabel" type="MeshInstance3D" parent="Holder" unique_id=1745976499]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.312)
 visible = false
 material_override = SubResource("StandardMaterial3D_smk44")
 mesh = SubResource("TextMesh_ltmmc")
 skeleton = NodePath("../../Front")
 
-[node name="Backdrop" type="MeshInstance3D" parent="Holder/FairiesLabel"]
+[node name="Backdrop" type="MeshInstance3D" parent="Holder/FairiesLabel" unique_id=674129919]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_ltmmc")
 
-[node name="FairyModel" type="Node3D" parent="Holder/FairiesLabel"]
+[node name="FairyModel" type="Node3D" parent="Holder/FairiesLabel" unique_id=1870496732]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5481827, -0.68482184, 0)
 script = SubResource("GDScript_o37ll")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Holder/FairiesLabel/FairyModel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Holder/FairiesLabel/FairyModel" unique_id=530070028]
 root_node = NodePath("../Fairy")
-libraries = {
-&"": SubResource("AnimationLibrary_2byxh")
-}
-autoplay = "Hovering"
+libraries/ = SubResource("AnimationLibrary_2byxh")
+autoplay = &"Hovering"
 
-[node name="Fairy" parent="Holder/FairiesLabel/FairyModel" instance=ExtResource("4_05a4k")]
+[node name="Fairy" parent="Holder/FairiesLabel/FairyModel" unique_id=1335110391 instance=ExtResource("4_05a4k")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 
-[node name="BossLevelCountLabel" type="MeshInstance3D" parent="Holder"]
+[node name="BossLevelCountLabel" type="MeshInstance3D" parent="Holder" unique_id=592689103]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.708447, -1.312)
 material_override = SubResource("StandardMaterial3D_smk44")
 mesh = SubResource("TextMesh_cfnpw")
 skeleton = NodePath("../../Front")
 
-[node name="Instructions" type="MeshInstance3D" parent="Holder/BossLevelCountLabel"]
+[node name="Instructions" type="MeshInstance3D" parent="Holder/BossLevelCountLabel" unique_id=1318995853]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2208697, 0)
 material_override = SubResource("StandardMaterial3D_smk44")
 mesh = SubResource("TextMesh_o37ll")
 skeleton = NodePath("../../Front")
 
-[node name="Backdrop" type="MeshInstance3D" parent="Holder/BossLevelCountLabel"]
+[node name="Backdrop" type="MeshInstance3D" parent="Holder/BossLevelCountLabel" unique_id=1871628134]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.805, -0.5)
 mesh = SubResource("QuadMesh_o37ll")

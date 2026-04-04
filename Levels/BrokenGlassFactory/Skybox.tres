@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=5 format=3 uid="uid://ddi5qgg5b3fmy"]
+[gd_resource type="Environment" format=3 uid="uid://ddi5qgg5b3fmy"]
 
 [ext_resource type="Texture2D" uid="uid://cnas38j11xxs3" path="res://Levels/BrokenGlassFactory/BrokenGlassFactorySky.png" id="1_oee7l"]
 

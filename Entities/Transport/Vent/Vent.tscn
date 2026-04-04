@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://y0qa1rqbd1x7"]
+[gd_scene format=3 uid="uid://y0qa1rqbd1x7"]
 
 [ext_resource type="Script" uid="uid://rjut1c2k5y2r" path="res://Entities/Transport/Vent/Vent.cs" id="1_1m5e1"]
 [ext_resource type="PackedScene" uid="uid://pyqcb4tyksj7" path="res://Entities/Transport/Vent/Vent.glb" id="1_fioef"]
@@ -7,65 +7,63 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tm4a3"]
 
-[node name="Vent" type="Node3D" node_paths=PackedStringArray("RaycastStartPoint")]
+[node name="Vent" type="Node3D" unique_id=885527757 node_paths=PackedStringArray("RaycastStartPoint")]
 script = ExtResource("1_1m5e1")
 RaycastStartPoint = NodePath("RaycastStartPoint")
 
-[node name="CrawlSound" type="AudioStreamPlayer" parent="."]
+[node name="CrawlSound" type="AudioStreamPlayer" parent="." unique_id=716705993]
 unique_name_in_owner = true
 stream = ExtResource("2_7d7wy")
 bus = &"Sfx"
 
-[node name="AnimationSoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AnimationSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1545556745]
 max_polyphony = 2
 bus = &"Sfx"
 
-[node name="AnimationSoundPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AnimationSoundPlayer2" type="AudioStreamPlayer" parent="." unique_id=457568035]
 max_polyphony = 2
 bus = &"Sfx"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1058195074]
 unique_name_in_owner = true
 deterministic = true
-libraries = {
-&"": ExtResource("2_b40rd")
-}
+libraries/ = ExtResource("2_b40rd")
 
-[node name="Model" parent="." instance=ExtResource("1_fioef")]
+[node name="Model" parent="." unique_id=965892194 instance=ExtResource("1_fioef")]
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1888282263]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=795551658]
 shape = SubResource("BoxShape3D_tm4a3")
 
-[node name="SpawnPoint" type="Marker3D" parent="."]
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=629399202]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.572862)
 
-[node name="CutsceneCam" type="Camera3D" parent="." groups=["PhysicsInterpolated"]]
+[node name="CutsceneCam" type="Camera3D" parent="." unique_id=2068987233 groups=["PhysicsInterpolated"]]
 unique_name_in_owner = true
 
-[node name="RightSpringArm" type="SpringArm3D" parent="."]
+[node name="RightSpringArm" type="SpringArm3D" parent="." unique_id=2066224736]
 transform = Transform3D(-0.36716068, 0.4752814, -0.7995633, -0.0008658056, 0.85942435, 0.51126266, 0.93015635, 0.18840781, -0.31513578, 0, 0.8719244, -0.8645516)
 collision_mask = 2
 spring_length = 6.181
 
-[node name="CameraPointRight" type="Marker3D" parent="RightSpringArm"]
+[node name="CameraPointRight" type="Marker3D" parent="RightSpringArm" unique_id=561933638]
 unique_name_in_owner = true
 transform = Transform3D(0.99999774, -0.0020038635, 0.0016615093, 0.0019990057, 0.9999947, 0.00265624, -0.0016668141, -0.0026531965, 0.99999416, 0.0009011626, 0.0033333302, 6.181191)
 
-[node name="LeftSpringArm" type="SpringArm3D" parent="."]
+[node name="LeftSpringArm" type="SpringArm3D" parent="." unique_id=1852528662]
 transform = Transform3D(0.25877854, 0.5403999, 0.8006253, 0.17609574, -0.84136295, 0.5109783, 0.9497497, 0.008756513, -0.3128886, 0, 0.8719244, -0.8645516)
 collision_mask = 2
 spring_length = 6.181
 
-[node name="CameraPointLeft" type="Marker3D" parent="LeftSpringArm"]
+[node name="CameraPointLeft" type="Marker3D" parent="LeftSpringArm" unique_id=861950464]
 unique_name_in_owner = true
 transform = Transform3D(-0.9786961, 0.205311, -0.00015297532, -0.2053096, -0.9786919, -0.0030424828, -0.00077456236, -0.0029464923, 0.99999624, -0.013200402, -0.008667052, 6.1813545)
 
-[node name="RaycastStartPoint" type="Marker3D" parent="."]
+[node name="RaycastStartPoint" type="Marker3D" parent="." unique_id=897315485]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8719244, -0.8645516)
 
 [connection signal="body_entered" from="Area3D" to="." method="OnAreaEntered"]

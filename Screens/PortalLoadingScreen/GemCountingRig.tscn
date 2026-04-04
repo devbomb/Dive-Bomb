@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://desy5vwopnilu"]
+[gd_scene format=3 uid="uid://desy5vwopnilu"]
 
 [ext_resource type="Script" uid="uid://w3vuer5jnq04" path="res://Screens/PortalLoadingScreen/GemCountingRig.cs" id="1_d3gao"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="2_3qivj"]
@@ -214,7 +214,7 @@ albedo_texture = SubResource("GradientTexture1D_uycbv")
 material = SubResource("StandardMaterial3D_lnpha")
 size = Vector2(6, 0.3)
 
-[node name="GemCountingRig" type="Node3D"]
+[node name="GemCountingRig" type="Node3D" unique_id=222446122]
 script = ExtResource("1_d3gao")
 RedGemPrefab = ExtResource("2_3qivj")
 GreenGemPrefab = ExtResource("3_rp877")
@@ -222,33 +222,31 @@ PurpleGemPrefab = ExtResource("4_o7chy")
 YellowGemPrefab = ExtResource("5_k00r0")
 MagentaGemPrefab = ExtResource("6_5kyev")
 
-[node name="GemSpawnSound" type="AudioStreamPlayer" parent="."]
+[node name="GemSpawnSound" type="AudioStreamPlayer" parent="." unique_id=1915347661]
 unique_name_in_owner = true
 stream = ExtResource("7_3qivj")
 pitch_scale = 1.15
 max_polyphony = 10
 bus = &"Sfx"
 
-[node name="GemCountSound" type="AudioStreamPlayer" parent="."]
+[node name="GemCountSound" type="AudioStreamPlayer" parent="." unique_id=2145313926]
 unique_name_in_owner = true
 stream = ExtResource("7_3qivj")
 max_polyphony = 10
 bus = &"Sfx"
 
-[node name="GemSpentSound" type="AudioStreamPlayer" parent="."]
+[node name="GemSpentSound" type="AudioStreamPlayer" parent="." unique_id=314317848]
 unique_name_in_owner = true
 stream = ExtResource("7_3qivj")
 pitch_scale = 1.73
 max_polyphony = 10
 bus = &"Sfx"
 
-[node name="LabelSlider" type="AnimationPlayer" parent="."]
+[node name="LabelSlider" type="AnimationPlayer" parent="." unique_id=1606288183]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_n3vqn")
-}
+libraries/ = SubResource("AnimationLibrary_n3vqn")
 
-[node name="UntalliedGemsLabel" type="Node3D" parent="."]
+[node name="UntalliedGemsLabel" type="Node3D" parent="." unique_id=1742599990]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.1, -0.203, 4, 0)
 script = ExtResource("7_1t3ap")
@@ -257,11 +255,11 @@ Material = ExtResource("9_o2lq2")
 Font = ExtResource("10_kh25b")
 FontSize = 32
 
-[node name="Backdrop" type="MeshInstance3D" parent="UntalliedGemsLabel"]
+[node name="Backdrop" type="MeshInstance3D" parent="UntalliedGemsLabel" unique_id=1480676012]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_kh25b")
 
-[node name="TalliedGemsLabel" type="Node3D" parent="."]
+[node name="TalliedGemsLabel" type="Node3D" parent="." unique_id=1401438349]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.1, -0.203, 3.143, 0)
 script = ExtResource("7_1t3ap")
@@ -270,11 +268,11 @@ Material = ExtResource("9_o2lq2")
 Font = ExtResource("10_kh25b")
 FontSize = 32
 
-[node name="Backdrop" type="MeshInstance3D" parent="TalliedGemsLabel"]
+[node name="Backdrop" type="MeshInstance3D" parent="TalliedGemsLabel" unique_id=1383380642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_kh25b")
 
-[node name="SpentGemsLabel" type="Node3D" parent="."]
+[node name="SpentGemsLabel" type="Node3D" parent="." unique_id=1965930276]
 unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, -8.82991, 2.79569, 0)
 script = ExtResource("7_1t3ap")
@@ -283,29 +281,29 @@ Material = ExtResource("9_o2lq2")
 Font = ExtResource("10_kh25b")
 FontSize = 32
 
-[node name="Backdrop" type="MeshInstance3D" parent="SpentGemsLabel"]
+[node name="Backdrop" type="MeshInstance3D" parent="SpentGemsLabel" unique_id=589396912]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_kh25b")
 
-[node name="GemPoints" type="Node3D" parent="."]
+[node name="GemPoints" type="Node3D" parent="." unique_id=1809740381]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1159222, 0, -2.394)
 
-[node name="GemSpawn" type="Marker3D" parent="GemPoints"]
+[node name="GemSpawn" type="Marker3D" parent="GemPoints" unique_id=1464858787]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.35243, 0)
 
-[node name="VisibleOnlyInEditorDecorator" type="Node" parent="GemPoints/GemSpawn"]
+[node name="VisibleOnlyInEditorDecorator" type="Node" parent="GemPoints/GemSpawn" unique_id=1317536103]
 script = ExtResource("10_u1aj1")
 
-[node name="RedGemModel" parent="GemPoints/GemSpawn" instance=ExtResource("2_3qivj")]
+[node name="RedGemModel" parent="GemPoints/GemSpawn" unique_id=1967646644 instance=ExtResource("2_3qivj")]
 metadata/_edit_lock_ = true
 
-[node name="GemDest" type="Marker3D" parent="GemPoints"]
+[node name="GemDest" type="Marker3D" parent="GemPoints" unique_id=1620736345]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.50482, 0)
 
-[node name="VisibleOnlyInEditorDecorator" type="Node" parent="GemPoints/GemDest"]
+[node name="VisibleOnlyInEditorDecorator" type="Node" parent="GemPoints/GemDest" unique_id=1651433255]
 script = ExtResource("10_u1aj1")
 
-[node name="RedGemModel" parent="GemPoints/GemDest" instance=ExtResource("2_3qivj")]
+[node name="RedGemModel" parent="GemPoints/GemDest" unique_id=1537882416 instance=ExtResource("2_3qivj")]
 metadata/_edit_lock_ = true

@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://4uwtrknctulw"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://4uwtrknctulw"]
 
 [ext_resource type="Texture2D" uid="uid://px3g1sk1iywm" path="res://Textures/Textures/BigMetalSquares.png" id="1_poqrj"]
 

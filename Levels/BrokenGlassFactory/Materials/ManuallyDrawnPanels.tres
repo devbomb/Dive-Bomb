@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=8 format=3 uid="uid://dp8hf7rertopp"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dp8hf7rertopp"]
 
 [ext_resource type="Texture2D" uid="uid://bqvdqwued36vr" path="res://Textures/Textures/ManuallyDrawnPanels.png" id="1_f2xsa"]
 [ext_resource type="Texture2D" uid="uid://by616n1su1xp7" path="res://Levels/BrokenGlassFactory/Materials/ManuallyDrawnPanelsNormalMap.png" id="2_bwcxp"]

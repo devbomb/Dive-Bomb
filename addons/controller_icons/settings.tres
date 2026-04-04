@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dolsrvh5w47et"]
+[gd_resource type="Resource" format=3 uid="uid://dolsrvh5w47et"]
 
 [ext_resource type="Script" uid="uid://dm8krgt4ba68v" path="res://addons/controller_icons/ControllerSettings.cs" id="1"]
 

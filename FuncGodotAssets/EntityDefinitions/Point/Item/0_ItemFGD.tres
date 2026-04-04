@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=10 format=3 uid="uid://bygbgojyubj38"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" format=3 uid="uid://bygbgojyubj38"]
 
 [ext_resource type="Resource" uid="uid://lp6a1kpk06k4" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_vase.tres" id="1_23d1b"]
-[ext_resource type="Script" uid="uid://vm1fvi5045um" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_84xb5"]
+[ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_84xb5"]
 [ext_resource type="Resource" uid="uid://bb3shackwns1j" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_gem_red.tres" id="2_kjhvy"]
 [ext_resource type="Resource" uid="uid://c1p5hhdmv4im3" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_gem_green.tres" id="3_mycoc"]
 [ext_resource type="Resource" uid="uid://johh8ns2ub0m" path="res://FuncGodotAssets/EntityDefinitions/Point/Item/item_gem_purple.tres" id="4_ntsl2"]
@@ -12,9 +12,5 @@
 
 [resource]
 script = ExtResource("1_84xb5")
-export_file = false
-target_map_editor = 1
-fgd_name = "FuncGodot"
-base_fgd_files = Array[Resource]([])
 entity_definitions = Array[Resource]([ExtResource("2_kjhvy"), ExtResource("3_mycoc"), ExtResource("4_ntsl2"), ExtResource("5_nhdd4"), ExtResource("6_6atw4"), ExtResource("1_23d1b"), ExtResource("7_nhdd4"), ExtResource("7_ntsl2")])
 metadata/_custom_type_script = "uid://vm1fvi5045um"

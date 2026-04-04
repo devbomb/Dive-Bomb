@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cka17uxpf4jsi"]
+[gd_scene format=3 uid="uid://cka17uxpf4jsi"]
 
 [ext_resource type="Script" uid="uid://c112j55qhfdop" path="res://Entities/Enemy/HandCannoner/CanonBall/HandCannonBall.cs" id="1_lvbtc"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="2_7mk11"]
@@ -104,7 +104,7 @@ size = Vector2(0.5, 0.5)
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1jka"]
 radius = 0.25
 
-[node name="HandCannonBall" type="StaticBody3D" node_paths=PackedStringArray("Model", "CollisionShape", "TrailParticles", "ExplosionParticles") groups=["UnsafeGround"]]
+[node name="HandCannonBall" type="StaticBody3D" unique_id=1995260566 node_paths=PackedStringArray("Model", "CollisionShape", "TrailParticles", "ExplosionParticles") groups=["UnsafeGround"]]
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_lvbtc")
@@ -113,12 +113,12 @@ CollisionShape = NodePath("CollisionShape3D")
 TrailParticles = NodePath("TrailParticles")
 ExplosionParticles = NodePath("ExplosionParticles")
 
-[node name="Model" type="MeshInstance3D" parent="."]
+[node name="Model" type="MeshInstance3D" parent="." unique_id=551015829]
 mesh = SubResource("SphereMesh_21e0u")
 
-[node name="BlobShadow" parent="Model" instance=ExtResource("2_7mk11")]
+[node name="BlobShadow" parent="Model" unique_id=941777844 instance=ExtResource("2_7mk11")]
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=1871332334]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
 emitting = false
 amount = 16
@@ -127,7 +127,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_qarqo")
 draw_pass_1 = SubResource("PrismMesh_jeg1m")
 
-[node name="TrailParticles" type="GPUParticles3D" parent="."]
+[node name="TrailParticles" type="GPUParticles3D" parent="." unique_id=1730143571]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.138586)
 amount = 16
 lifetime = 2.0
@@ -137,5 +137,5 @@ draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_0a0af")
 draw_pass_1 = SubResource("QuadMesh_u0ubv")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1134885805]
 shape = SubResource("SphereShape3D_j1jka")

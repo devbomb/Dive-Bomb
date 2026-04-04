@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bky12xra6eerv"]
+[gd_scene format=3 uid="uid://bky12xra6eerv"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_aji3g"]
 [ext_resource type="PackedScene" uid="uid://bfdh0mbhw1gc2" path="res://DebugLevels/WarpTriggerTester/Maps/WarpTriggerTester_Main.map" id="2_6ofki"]
 
 [sub_resource type="Environment" id="Environment_56eb4"]
 
-[node name="WarpTriggerTester" type="Node3D"]
+[node name="WarpTriggerTester" type="Node3D" unique_id=187638485]
 script = ExtResource("1_aji3g")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=855244405]
 environment = SubResource("Environment_56eb4")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=5022486]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 7, 0)
 
-[node name="WarpTriggerTester_Main" parent="." instance=ExtResource("2_6ofki")]
+[node name="WarpTriggerTester_Main" parent="." unique_id=358332314 instance=ExtResource("2_6ofki")]

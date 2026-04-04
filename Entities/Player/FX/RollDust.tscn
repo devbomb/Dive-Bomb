@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://wv54wlebftcd"]
+[gd_scene format=3 uid="uid://wv54wlebftcd"]
 
 [sub_resource type="Curve" id="Curve_42a3p"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.397683, 0), 0.0, 0.0, 0, 0]
@@ -51,7 +51,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_45f5g")
 size = Vector2(0.5, 0.5)
 
-[node name="RollDust" type="GPUParticles3D"]
+[node name="RollDust" type="GPUParticles3D" unique_id=1109442731]
 amount = 16
 draw_order = 1
 process_material = SubResource("ParticleProcessMaterial_3a478")

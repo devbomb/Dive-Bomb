@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7kxpukikuc0h"]
+[gd_scene format=3 uid="uid://c7kxpukikuc0h"]
 
 [ext_resource type="Script" uid="uid://dy8m08f2ftrs" path="res://Entities/Player/Parts/TimeTrialInLevelUI/TimeTrialInLevelUI.cs" id="1_ndsy6"]
 [ext_resource type="Script" uid="uid://chudgtyjw2v1a" path="res://UI/Widgets/PageNavigator.cs" id="1_uxt8t"]
@@ -156,7 +156,7 @@ func _on_level_reset():
 	advance(0)
 "
 
-[node name="TimeTrialInLevelUI" type="Control"]
+[node name="TimeTrialInLevelUI" type="Control" unique_id=2080131312]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,7 +165,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ndsy6")
 
-[node name="PageNavigator" type="Control" parent="."]
+[node name="PageNavigator" type="Control" parent="." unique_id=1061578259]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -175,17 +175,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uxt8t")
 
-[node name="TimeTrialBriefingPage" parent="PageNavigator" instance=ExtResource("2_vrhgy")]
+[node name="TimeTrialBriefingPage" parent="PageNavigator" unique_id=1714436018 instance=ExtResource("2_vrhgy")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="TimeTrialResultsPage" parent="PageNavigator" instance=ExtResource("3_5esov")]
+[node name="TimeTrialResultsPage" parent="PageNavigator" unique_id=1937152271 instance=ExtResource("3_5esov")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="TimerLabel" type="Label" parent="."]
+[node name="TimerLabel" type="Label" parent="." unique_id=1806319497]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -200,7 +200,7 @@ grow_vertical = 0
 text = "00:00.00"
 label_settings = SubResource("LabelSettings_bn2qp")
 
-[node name="TimeAnnouncement" type="Label" parent="."]
+[node name="TimeAnnouncement" type="Label" parent="." unique_id=980553780]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -218,11 +218,9 @@ label_settings = SubResource("LabelSettings_omsfd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimeAnnouncementAnimator" type="AnimationPlayer" parent="TimeAnnouncement"]
+[node name="TimeAnnouncementAnimator" type="AnimationPlayer" parent="TimeAnnouncement" unique_id=547874151]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_vk4ub")
-}
+libraries/ = SubResource("AnimationLibrary_vk4ub")
 script = SubResource("GDScript_7511j")
 
 [connection signal="ExitPressed" from="PageNavigator/TimeTrialBriefingPage" to="." method="ExitTimeTrialMode"]

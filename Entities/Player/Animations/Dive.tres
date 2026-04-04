@@ -1,4 +1,4 @@
-[gd_resource type="Animation" load_steps=2 format=3 uid="uid://b1ctneg0vglqy"]
+[gd_resource type="Animation" format=3 uid="uid://b1ctneg0vglqy"]
 
 [ext_resource type="AudioStream" uid="uid://brriimi0t6vls" path="res://Entities/Player/SFX/Dive.wav" id="1_vcds4"]
 

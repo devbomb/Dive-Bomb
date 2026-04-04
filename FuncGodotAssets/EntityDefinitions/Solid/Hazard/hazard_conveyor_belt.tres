@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://c7gwdtvlyw11"]
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" format=3 uid="uid://c7gwdtvlyw11"]
 
 [ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_0yrdj"]
 [ext_resource type="Script" uid="uid://6uf5j0ipyg0i" path="res://Entities/Hazard/ConveyorBelt/ConveyorBelt.cs" id="2_fbtok"]

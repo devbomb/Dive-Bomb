@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnvl0dea6a42y"]
+[gd_scene format=3 uid="uid://bnvl0dea6a42y"]
 
 [ext_resource type="PackedScene" uid="uid://c37iv1yfvbjpj" path="res://Entities/Detail/WallTorch/WallTorch.glb" id="1_4kpki"]
 
@@ -68,18 +68,18 @@ _data = {
 &"RESET": SubResource("Animation_2gxe4")
 }
 
-[node name="WallTorch" type="Node3D"]
+[node name="WallTorch" type="Node3D" unique_id=1911330443]
 script = SubResource("GDScript_seutu")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=474199296]
 unique_name_in_owner = true
 enabled = false
 target_position = Vector3(3, 0, 0)
 
-[node name="Model" parent="." instance=ExtResource("1_4kpki")]
+[node name="Model" parent="." unique_id=1977364440 instance=ExtResource("1_4kpki")]
 unique_name_in_owner = true
 
-[node name="FireLight" type="OmniLight3D" parent="."]
+[node name="FireLight" type="OmniLight3D" parent="." unique_id=289630650]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23467, 0.790777, 0)
 light_energy = 0.5
 light_size = 0.295
@@ -90,7 +90,7 @@ shadow_bias = 0.0
 shadow_reverse_cull_face = true
 omni_range = 0.270998
 
-[node name="WorldLight" type="OmniLight3D" parent="."]
+[node name="WorldLight" type="OmniLight3D" parent="." unique_id=1128002785]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161154, 0.749756, 0)
 light_color = Color(1, 0.752941, 0, 1)
@@ -100,9 +100,7 @@ shadow_enabled = true
 shadow_bias = 0.01
 shadow_normal_bias = 1.048
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=652589621]
 deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_uihpi")
-}
-autoplay = "Flicker"
+libraries/ = SubResource("AnimationLibrary_uihpi")
+autoplay = &"Flicker"

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=29 format=3 uid="uid://dodb8qndnr6cw"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://dodb8qndnr6cw"]
 
 [ext_resource type="Animation" uid="uid://bxaw0bkeo61gl" path="res://Entities/Player/Animations/Bonk.tres" id="1_ilvl4"]
 [ext_resource type="Animation" uid="uid://cda4sefp4m18v" path="res://Entities/Player/Animations/BonkLand.tres" id="2_h8rfd"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://db05gfycomjg2"]
+[gd_scene format=3 uid="uid://db05gfycomjg2"]
 
 [ext_resource type="AnimationLibrary" uid="uid://bajs4t3m415k5" path="res://Entities/Player/Parts/DiageticPauseMenu/PauseMenuAnimations.tres" id="1_8b5jp"]
 [ext_resource type="PackedScene" uid="uid://d0vpyujcojrlr" path="res://UI/Menus/PauseMenu/PauseMenu.tscn" id="2_8b5jp"]
@@ -14,7 +14,7 @@ func _process(delta: float):
 		%Animator.advance(-delta)
 "
 
-[node name="DiageticPauseMenu" type="Control"]
+[node name="DiageticPauseMenu" type="Control" unique_id=361603264]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -25,17 +25,15 @@ grow_vertical = 2
 mouse_filter = 2
 script = SubResource("GDScript_rxxnv")
 
-[node name="Animator" type="AnimationPlayer" parent="."]
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=712612966]
 unique_name_in_owner = true
 deterministic = true
 callback_mode_process = 2
-libraries = {
-&"": ExtResource("1_8b5jp")
-}
-autoplay = "Open"
+libraries/ = ExtResource("1_8b5jp")
+autoplay = &"Open"
 playback_auto_capture = false
 
-[node name="Wrist" type="SubViewportContainer" parent="."]
+[node name="Wrist" type="SubViewportContainer" parent="." unique_id=1802343750]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,22 +43,22 @@ grow_vertical = 2
 mouse_filter = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Wrist"]
+[node name="SubViewport" type="SubViewport" parent="Wrist" unique_id=946884989]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="PlayerModel" parent="Wrist/SubViewport" instance=ExtResource("2_rxxnv")]
+[node name="PlayerModel" parent="Wrist/SubViewport" unique_id=72810633 instance=ExtResource("2_rxxnv")]
 
-[node name="Camera3D" type="Camera3D" parent="Wrist/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Wrist/SubViewport" unique_id=1616510326]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14113, -0.114416)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Wrist/SubViewport"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Wrist/SubViewport" unique_id=1203313175]
 transform = Transform3D(0.778123, -0.444042, 0.444243, 0, 0.707267, 0.706946, -0.628112, -0.550091, 0.550341, 0, 0, 0)
 
-[node name="PauseMenu" parent="." instance=ExtResource("2_8b5jp")]
+[node name="PauseMenu" parent="." unique_id=1910462135 instance=ExtResource("2_8b5jp")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8

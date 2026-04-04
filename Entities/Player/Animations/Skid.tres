@@ -1,4 +1,4 @@
-[gd_resource type="Animation" load_steps=2 format=3 uid="uid://bjxe4f8xarq01"]
+[gd_resource type="Animation" format=3 uid="uid://bjxe4f8xarq01"]
 
 [ext_resource type="AudioStream" uid="uid://ctxkawuv3irk7" path="res://Entities/Player/SFX/Skid.wav" id="1_8flc2"]
 

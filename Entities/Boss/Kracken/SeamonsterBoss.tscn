@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://u1dg26oq81vl"]
+[gd_scene format=3 uid="uid://u1dg26oq81vl"]
 
 [ext_resource type="Script" uid="uid://ppobneqjd1nn" path="res://Entities/Boss/Kracken/SeamonsterBoss.cs" id="1_r8tvq"]
 [ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Entities/Boss/Kracken/Projectiles/StraightWave/StraightWave.tscn" id="2_4jp8p"]
@@ -144,7 +144,7 @@ scale_curve = SubResource("CurveTexture_nck0h")
 color_ramp = SubResource("GradientTexture1D_prhnu")
 alpha_curve = SubResource("CurveTexture_15bfe")
 
-[node name="SeamonsterBoss" type="CharacterBody3D" groups=["PhysicsInterpolated"]]
+[node name="SeamonsterBoss" type="CharacterBody3D" unique_id=594366751 groups=["PhysicsInterpolated"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_r8tvq")
@@ -152,40 +152,40 @@ PhaseMaxHealths = PackedInt32Array(3, 3)
 FallingAcidBlobPrefab = ExtResource("3_mh7lc")
 StraightWavePrefab = ExtResource("2_4jp8p")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=700742484]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9841, 1.07279)
 shape = SubResource("CylinderShape3D_0nu8g")
 
-[node name="EmergeSplashSound" type="AudioStreamPlayer" parent="."]
+[node name="EmergeSplashSound" type="AudioStreamPlayer" parent="." unique_id=1723657995]
 unique_name_in_owner = true
 stream = ExtResource("4_sp6e7")
 volume_db = -16.015
 bus = &"Sfx"
 
-[node name="SubmergeSplashSound" type="AudioStreamPlayer" parent="."]
+[node name="SubmergeSplashSound" type="AudioStreamPlayer" parent="." unique_id=917075957]
 unique_name_in_owner = true
 stream = ExtResource("5_itbdy")
 volume_db = -9.404
 bus = &"Sfx"
 
-[node name="ExplodeSound" type="AudioStreamPlayer" parent="."]
+[node name="ExplodeSound" type="AudioStreamPlayer" parent="." unique_id=492328279]
 volume_db = -4.316
 bus = &"ReverbSfx"
 
-[node name="VoicePlayer" type="AudioStreamPlayer" parent="."]
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="." unique_id=296267528]
 volume_db = -8.609
 bus = &"ReverbSfx"
 
-[node name="GenericKillSound" type="AudioStreamPlayer" parent="."]
+[node name="GenericKillSound" type="AudioStreamPlayer" parent="." unique_id=799840925]
 stream = ExtResource("6_hydh4")
 bus = &"ReverbSfx"
 
-[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="." unique_id=1579214782]
 stream = ExtResource("7_1d4w6")
 bus = &"Music"
 script = SubResource("GDScript_hydh4")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1937449342]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
 tree_root = ExtResource("4_intgd")
@@ -193,36 +193,34 @@ anim_player = NodePath("Animations")
 parameters/Idle/Add2/add_amount = 1.0
 "parameters/Idle/Add2 2/add_amount" = 1.0
 
-[node name="Animations" type="AnimationPlayer" parent="AnimationTree"]
+[node name="Animations" type="AnimationPlayer" parent="AnimationTree" unique_id=66102020]
 unique_name_in_owner = true
 deterministic = true
 root_node = NodePath("../..")
-libraries = {
-&"": ExtResource("4_l26sy")
-}
+libraries/ = ExtResource("4_l26sy")
 
-[node name="Model" parent="." instance=ExtResource("4_veo1p")]
+[node name="Model" parent="." unique_id=997729657 instance=ExtResource("4_veo1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="LeftSplashTentacle" parent="." node_paths=PackedStringArray("WaveSpawn") instance=ExtResource("11_jhv2y")]
+[node name="LeftSplashTentacle" parent="." unique_id=88430488 node_paths=PackedStringArray("WaveSpawn") instance=ExtResource("11_jhv2y")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0.683, 1.70356)
 WaveSpawn = NodePath("../LeftWaveSpawn")
 
-[node name="LeftWaveSpawn" type="Marker3D" parent="."]
+[node name="LeftWaveSpawn" type="Marker3D" parent="." unique_id=2059669726]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0.683, -9.5)
 
-[node name="RightSplashTentacle" parent="." node_paths=PackedStringArray("WaveSpawn") instance=ExtResource("11_jhv2y")]
+[node name="RightSplashTentacle" parent="." unique_id=1685547411 node_paths=PackedStringArray("WaveSpawn") instance=ExtResource("11_jhv2y")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 0.683, 1.70356)
 WaveSpawn = NodePath("../RightWaveSpawn")
 
-[node name="RightWaveSpawn" type="Marker3D" parent="."]
+[node name="RightWaveSpawn" type="Marker3D" parent="." unique_id=559626344]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0.683, -9.5)
 
-[node name="WeakPoint" type="Area3D" parent="."]
+[node name="WeakPoint" type="Area3D" parent="." unique_id=1612799592]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71258, -0.733963)
 visible = false
@@ -232,15 +230,15 @@ CameraShakeMagnitude = 0.6
 Kickable = false
 Disabled = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakPoint"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakPoint" unique_id=1676540032]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_t30qc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WeakPoint"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WeakPoint" unique_id=383558345]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CylinderMesh_c5flp")
 
-[node name="MeshLabel3D" type="Node3D" parent="WeakPoint"]
+[node name="MeshLabel3D" type="Node3D" parent="WeakPoint" unique_id=489874525]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.31316, -0.265935)
 script = ExtResource("3_phdjg")
 Text = "ROLL OR DIVE, NO KICK"
@@ -248,43 +246,43 @@ Material = ExtResource("14_86hx1")
 Font = ExtResource("15_a4kpy")
 FontSize = 48
 
-[node name="Backdrop" type="MeshInstance3D" parent="WeakPoint/MeshLabel3D"]
+[node name="Backdrop" type="MeshInstance3D" parent="WeakPoint/MeshLabel3D" unique_id=1758890657]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085427046)
 mesh = SubResource("QuadMesh_pqbwh")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="WeakPoint/MeshLabel3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="WeakPoint/MeshLabel3D" unique_id=1394865268]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5103974, 0, 0.48132867)
 omni_range = 0.801
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="WeakPoint/MeshLabel3D"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="WeakPoint/MeshLabel3D" unique_id=8416345]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.692733, 0, 0.4813288)
 omni_range = 0.801
 
-[node name="OmniLight3D8" type="OmniLight3D" parent="WeakPoint/MeshLabel3D"]
+[node name="OmniLight3D8" type="OmniLight3D" parent="WeakPoint/MeshLabel3D" unique_id=767535772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.000391, 0, 0.4813288)
 omni_range = 0.801
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="WeakPoint/MeshLabel3D"]
+[node name="OmniLight3D3" type="OmniLight3D" parent="WeakPoint/MeshLabel3D" unique_id=1598964785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2405755, 0, 0.4813289)
 omni_range = 0.801
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="WeakPoint/MeshLabel3D"]
+[node name="OmniLight3D5" type="OmniLight3D" parent="WeakPoint/MeshLabel3D" unique_id=2004879038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37954196, 0, 0.4813289)
 omni_range = 0.801
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="WeakPoint/MeshLabel3D"]
+[node name="OmniLight3D4" type="OmniLight3D" parent="WeakPoint/MeshLabel3D" unique_id=464644091]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2732503, 0, 0.48132902)
 omni_range = 0.801
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="WeakPoint/MeshLabel3D"]
+[node name="OmniLight3D6" type="OmniLight3D" parent="WeakPoint/MeshLabel3D" unique_id=1216190326]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9829301, 0, 0.48132902)
 omni_range = 0.801
 
-[node name="OmniLight3D7" type="OmniLight3D" parent="WeakPoint/MeshLabel3D"]
+[node name="OmniLight3D7" type="OmniLight3D" parent="WeakPoint/MeshLabel3D" unique_id=1605424930]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5034351, 0, 0.48132914)
 omni_range = 0.801
 
-[node name="BossHUD" type="Control" parent="."]
+[node name="BossHUD" type="Control" parent="." unique_id=1360706347]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -294,7 +292,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HealthBar" type="ProgressBar" parent="BossHUD" node_paths=PackedStringArray("boss")]
+[node name="HealthBar" type="ProgressBar" parent="BossHUD" unique_id=698164654 node_paths=PackedStringArray("boss")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -309,7 +307,7 @@ show_percentage = false
 script = SubResource("GDScript_mt0g2")
 boss = NodePath("../..")
 
-[node name="ExplosionFadeCurtain" type="ColorRect" parent="BossHUD"]
+[node name="ExplosionFadeCurtain" type="ColorRect" parent="BossHUD" unique_id=16933582]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -320,7 +318,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0.560784, 0, 1)
 
-[node name="HeadExplosionParticles" type="Marker3D" parent="."]
+[node name="HeadExplosionParticles" type="Marker3D" parent="." unique_id=952679090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.22239, 3.25011)
 script = ExtResource("12_0irsb")
 Texture = SubResource("NoiseTexture2D_h2v2y")
@@ -333,7 +331,7 @@ Explosiveness = 1.0
 FixedFps = 30
 ProcessMaterial = SubResource("ParticleProcessMaterial_mk2to")
 
-[node name="DeathAnimationCameraPos" type="Marker3D" parent="."]
+[node name="DeathAnimationCameraPos" type="Marker3D" parent="." unique_id=197366279]
 unique_name_in_owner = true
 transform = Transform3D(-0.539475, -0.438664, 0.718708, 0, 0.85357, 0.520978, -0.842002, 0.281055, -0.46048, 9.27381, 12.6741, -6.44525)
 

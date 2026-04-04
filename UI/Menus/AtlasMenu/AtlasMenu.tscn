@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk14uy27kbnyn"]
+[gd_scene format=3 uid="uid://dk14uy27kbnyn"]
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="1_mdws6"]
 [ext_resource type="Script" uid="uid://7bp8d3dtgh28" path="res://UI/Menus/AtlasMenu/AtlasMenu.cs" id="2_axmb2"]
@@ -10,7 +10,7 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_djqqw"]
 events = [SubResource("InputEventAction_u6pej")]
 
-[node name="AtlasMenu" type="Control"]
+[node name="AtlasMenu" type="Control" unique_id=1901995520]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_vertical = 2
 theme = ExtResource("1_mdws6")
 script = ExtResource("2_axmb2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2146251898]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -34,48 +34,48 @@ offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=2140334682]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Table" type="GridContainer" parent="VBoxContainer/PanelContainer"]
+[node name="Table" type="GridContainer" parent="VBoxContainer/PanelContainer" unique_id=600967819]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 7
 
-[node name="LevelNameHeader" type="Label" parent="VBoxContainer/PanelContainer/Table" groups=["HeaderItem"]]
+[node name="LevelNameHeader" type="Label" parent="VBoxContainer/PanelContainer/Table" unique_id=1932891520 groups=["HeaderItem"]]
 layout_mode = 2
 text = "Level name"
 
-[node name="Spacer" type="Control" parent="VBoxContainer/PanelContainer/Table" groups=["HeaderItem"]]
+[node name="Spacer" type="Control" parent="VBoxContainer/PanelContainer/Table" unique_id=372229630 groups=["HeaderItem"]]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="GemsHeader" type="Label" parent="VBoxContainer/PanelContainer/Table" groups=["HeaderItem"]]
+[node name="GemsHeader" type="Label" parent="VBoxContainer/PanelContainer/Table" unique_id=1933261607 groups=["HeaderItem"]]
 layout_mode = 2
 text = "Gems"
 
-[node name="Spacer2" type="Control" parent="VBoxContainer/PanelContainer/Table" groups=["HeaderItem"]]
+[node name="Spacer2" type="Control" parent="VBoxContainer/PanelContainer/Table" unique_id=777096744 groups=["HeaderItem"]]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="FairiesHeader" type="Label" parent="VBoxContainer/PanelContainer/Table" groups=["HeaderItem"]]
+[node name="FairiesHeader" type="Label" parent="VBoxContainer/PanelContainer/Table" unique_id=899129059 groups=["HeaderItem"]]
 layout_mode = 2
 text = "Fairies"
 
-[node name="Spacer3" type="Control" parent="VBoxContainer/PanelContainer/Table" groups=["HeaderItem"]]
+[node name="Spacer3" type="Control" parent="VBoxContainer/PanelContainer/Table" unique_id=1946311601 groups=["HeaderItem"]]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="PercentHeader" type="Label" parent="VBoxContainer/PanelContainer/Table" groups=["HeaderItem"]]
+[node name="PercentHeader" type="Label" parent="VBoxContainer/PanelContainer/Table" unique_id=1387665601 groups=["HeaderItem"]]
 layout_mode = 2
 text = "% Complete"
 
-[node name="Spacer" type="Label" parent="VBoxContainer"]
+[node name="Spacer" type="Label" parent="VBoxContainer" unique_id=1794373966]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="VBoxContainer"]
+[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=1134994694]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3

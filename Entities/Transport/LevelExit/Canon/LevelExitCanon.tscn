@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cyfwcwip8ncw0"]
+[gd_scene format=3 uid="uid://cyfwcwip8ncw0"]
 
 [ext_resource type="Script" uid="uid://cgmt2nue2tixk" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.cs" id="1_2i6pq"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="2_2i6pq"]
@@ -39,29 +39,27 @@ scale_curve = SubResource("CurveTexture_ioojh")
 material = ExtResource("2_e6war")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="LevelExitCanon" type="Node3D" groups=["PhysicsInterpolated"]]
+[node name="LevelExitCanon" type="Node3D" unique_id=1613789947 groups=["PhysicsInterpolated"]]
 script = ExtResource("1_2i6pq")
 
-[node name="Walls" parent="." instance=ExtResource("2_y7wo7")]
+[node name="Walls" parent="." unique_id=881850852 instance=ExtResource("2_y7wo7")]
 
-[node name="CanonHole" parent="." instance=ExtResource("3_3jouq")]
+[node name="CanonHole" parent="." unique_id=57496800 instance=ExtResource("3_3jouq")]
 
-[node name="Animator" type="AnimationPlayer" parent="."]
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=1772970097]
 unique_name_in_owner = true
 deterministic = true
-libraries = {
-&"": ExtResource("2_agwsh")
-}
+libraries/ = ExtResource("2_agwsh")
 
-[node name="VictoryMusic" type="AudioStreamPlayer" parent="Animator"]
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="Animator" unique_id=1226166615]
 volume_db = -3.034
 bus = &"Music"
 
-[node name="Explosion" type="AudioStreamPlayer" parent="Animator"]
+[node name="Explosion" type="AudioStreamPlayer" parent="Animator" unique_id=1467232111]
 volume_db = -2.483
 bus = &"Sfx"
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=986571118]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,7 +68,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MissionHolder" type="Control" parent="Control"]
+[node name="MissionHolder" type="Control" parent="Control" unique_id=915028257]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,7 +77,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Mis" type="Label" parent="Control/MissionHolder"]
+[node name="Mis" type="Label" parent="Control/MissionHolder" unique_id=1520946781]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -96,7 +94,7 @@ label_settings = SubResource("LabelSettings_agwsh")
 horizontal_alignment = 2
 visible_characters_behavior = 1
 
-[node name="Sion" type="Label" parent="Control/MissionHolder"]
+[node name="Sion" type="Label" parent="Control/MissionHolder" unique_id=1533701192]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -113,7 +111,7 @@ text = "ION"
 label_settings = SubResource("LabelSettings_agwsh")
 visible_characters_behavior = 1
 
-[node name="ClearHolder" type="Control" parent="Control"]
+[node name="ClearHolder" type="Control" parent="Control" unique_id=1833041157]
 visible = false
 layout_mode = 1
 anchor_left = 0.5
@@ -124,7 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Clear" type="Label" parent="Control/ClearHolder"]
+[node name="Clear" type="Label" parent="Control/ClearHolder" unique_id=1180061686]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -140,7 +138,7 @@ text = "ACCOMPLISHED"
 label_settings = SubResource("LabelSettings_iluh0")
 horizontal_alignment = 1
 
-[node name="FadeCurtain" type="ColorRect" parent="Control"]
+[node name="FadeCurtain" type="ColorRect" parent="Control" unique_id=13129038]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -151,7 +149,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0.47451, 0, 1)
 
-[node name="ShatterParticles" type="GPUParticles3D" parent="."]
+[node name="ShatterParticles" type="GPUParticles3D" parent="." unique_id=833047174]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
 emitting = false
 amount = 32
@@ -160,14 +158,14 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_3jouq")
 draw_pass_1 = SubResource("PrismMesh_c51n4")
 
-[node name="ShatterSound" type="AudioStreamPlayer" parent="."]
+[node name="ShatterSound" type="AudioStreamPlayer" parent="." unique_id=209263598]
 stream = ExtResource("2_2i6pq")
 bus = &"Sfx"
 
-[node name="LevelExitCanonRequirementsDisplay" parent="." instance=ExtResource("5_iluh0")]
+[node name="LevelExitCanonRequirementsDisplay" parent="." unique_id=1136640056 instance=ExtResource("5_iluh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
-[node name="Crystal" type="StaticBody3D" parent="." node_paths=PackedStringArray("ShatterPartciles")]
+[node name="Crystal" type="StaticBody3D" parent="." unique_id=546639093 node_paths=PackedStringArray("ShatterPartciles")]
 unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
@@ -178,15 +176,15 @@ HitStopDuration = 0.75
 Rollable = false
 Kickable = false
 
-[node name="Crystal" parent="Crystal" instance=ExtResource("4_iluh0")]
+[node name="Crystal" parent="Crystal" unique_id=1693430712 instance=ExtResource("4_iluh0")]
 
-[node name="CrystalCollisionShape" type="CollisionShape3D" parent="Crystal"]
+[node name="CrystalCollisionShape" type="CollisionShape3D" parent="Crystal" unique_id=1473872328]
 unique_name_in_owner = true
 script = ExtResource("5_okmgd")
 mesh_path = NodePath("../Crystal/Crystal")
 metadata/_custom_type_script = "uid://b44v5ywbov0io"
 
-[node name="PlayerLandPoint" type="Marker3D" parent="."]
+[node name="PlayerLandPoint" type="Marker3D" parent="." unique_id=1514410783]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 

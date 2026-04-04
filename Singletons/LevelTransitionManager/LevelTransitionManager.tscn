@@ -1,21 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cb32y0ekuw0op"]
+[gd_scene format=3 uid="uid://cb32y0ekuw0op"]
 
 [ext_resource type="Script" uid="uid://c8wwlnkv67vs2" path="res://Singletons/LevelTransitionManager/LevelTransitionManager.cs" id="1_onbea"]
 [ext_resource type="PackedScene" uid="uid://bckjgvq8udjn3" path="res://Screens/PortalLoadingScreen/PortalLoadingScreen.tscn" id="2_lrjqs"]
 [ext_resource type="PackedScene" uid="uid://dy7b124lbdiio" path="res://Screens/MissionStatsScreen/MissionStatsScreen.tscn" id="2_x3xsc"]
 [ext_resource type="PackedScene" uid="uid://cimgukuoywob1" path="res://Singletons/LevelTransitionManager/NonPlayerFadeCurtain/NonPlayerFadeCurtain.tscn" id="4_elvu7"]
 
-[node name="LevelTransitionManager" type="Node"]
+[node name="LevelTransitionManager" type="Node" unique_id=926596099]
 script = ExtResource("1_onbea")
 TitleScreenScene = "uid://bs28xrm5onq8k"
 MissionStatsScreenPrefab = ExtResource("2_x3xsc")
 PortalLoadingScreenPrefab = ExtResource("2_lrjqs")
 
-[node name="NonPlayerFadeCurtain" parent="." instance=ExtResource("4_elvu7")]
+[node name="NonPlayerFadeCurtain" parent="." unique_id=344935711 instance=ExtResource("4_elvu7")]
 unique_name_in_owner = true
 z_index = 1000
 
-[node name="FadeCurtain" type="ColorRect" parent="."]
+[node name="FadeCurtain" type="ColorRect" parent="." unique_id=1513619777]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 z_index = 1000
