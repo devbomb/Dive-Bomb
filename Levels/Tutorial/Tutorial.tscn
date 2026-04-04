@@ -448,26 +448,26 @@ mesh = SubResource("TextMesh_25uee")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.985016, 1.7752533, 7.5155544)
 mesh = SubResource("TextMesh_35ubr")
 
-[node name="Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro" parent="." instance=ExtResource("21_25uee")]
+[node name="Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro" parent="." unique_id=560406799 instance=ExtResource("21_25uee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 9.5)
 
-[node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." instance=ExtResource("22_35ubr")]
+[node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." unique_id=1292396864 instance=ExtResource("22_35ubr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 111.5)
 
-[node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" instance=ExtResource("25_smxar")]
+[node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" unique_id=1947806612 instance=ExtResource("25_smxar")]
 DoorTargetname = "Door_EscapeSequence_2FA_Joke"
 
-[node name="Tutorial_LevelExitCannon" parent="." instance=ExtResource("23_35ubr")]
+[node name="Tutorial_LevelExitCannon" parent="." unique_id=54204904 instance=ExtResource("23_35ubr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 41, 265)
 
-[node name="Tutorial_EscapeSequence_TimeWaster" parent="." instance=ExtResource("24_3lrk0")]
+[node name="Tutorial_EscapeSequence_TimeWaster" parent="." unique_id=578281209 instance=ExtResource("24_3lrk0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 38, 229)
 
-[node name="DeathBarrier" type="Area3D" parent="."]
+[node name="DeathBarrier" type="Area3D" parent="." unique_id=1480197564]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("24_oop8w")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier" unique_id=1107535782]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151, -33.42801, 154.5)
 shape = SubResource("WorldBoundaryShape3D_3lrk0")

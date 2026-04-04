@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://mdchoptoqq8n"]
+[gd_scene format=3 uid="uid://mdchoptoqq8n"]
 
 [ext_resource type="Script" uid="uid://dyepf6uv6uggn" path="res://Levels/Tutorial/TwoFactorAuthCutscene/TwoFactorAuthCutsceneRig.cs" id="1_id4qm"]
 [ext_resource type="AudioStream" uid="uid://dapk1ttwwytgj" path="res://Levels/Tutorial/TwoFactorAuthCutscene/Audio/Voice/AgentD_BlownUpByNow.wav" id="1_t5bog"]
@@ -115,25 +115,23 @@ _data = {
 &"RESET": SubResource("Animation_id4qm")
 }
 
-[node name="TwoFactorAuthCutsceneRig" type="Node" node_paths=PackedStringArray("Animator")]
+[node name="TwoFactorAuthCutsceneRig" type="Node" unique_id=1347118821 node_paths=PackedStringArray("Animator")]
 script = ExtResource("1_id4qm")
 targetname = "Cutscene_EscapeSequence_2FA_Joke"
 Animator = NodePath("AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=669434421]
 deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_7tofe")
-}
+libraries/ = SubResource("AnimationLibrary_7tofe")
 
-[node name="PlayerVoice" type="AudioStreamPlayer" parent="."]
+[node name="PlayerVoice" type="AudioStreamPlayer" parent="." unique_id=1139307864]
 bus = &"DialogVoice"
 
-[node name="RobotVoice" type="AudioStreamPlayer" parent="."]
+[node name="RobotVoice" type="AudioStreamPlayer" parent="." unique_id=1376653646]
 bus = &"IntercomDialog"
 
-[node name="DrMonocleVoice" type="AudioStreamPlayer" parent="."]
+[node name="DrMonocleVoice" type="AudioStreamPlayer" parent="." unique_id=439354140]
 bus = &"IntercomDialog"
 
-[node name="MusicDuckTrigger" type="AudioStreamPlayer" parent="."]
+[node name="MusicDuckTrigger" type="AudioStreamPlayer" parent="." unique_id=525604110]
 bus = &"MusicDuckingTrigger"
