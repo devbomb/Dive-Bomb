@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://di4tqrhb11cow"]
 
 [ext_resource type="Script" uid="uid://c5gmnqvkwgmlt" path="res://Entities/Player/Parts/PlayerCamera/PlayerCamera.cs" id="1_uc4gx"]
-[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy/Fairy.blend" id="2_chmc7"]
+[ext_resource type="PackedScene" uid="uid://dc5k2yy5vsbyi" path="res://Common/Models/Characters/Fairy/Fairy.glb" id="2_chmc7"]
 
 [node name="PlayerCamera" type="Node3D" groups=["PhysicsInterpolated"]]
 transform = Transform3D(1, 0, 0, 0, 0.96752, 0.252796, 0, -0.252796, 0.96752, 0, 3, 6)

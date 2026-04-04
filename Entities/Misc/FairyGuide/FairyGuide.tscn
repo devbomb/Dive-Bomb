@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://b2btapp23vgst"]
 
-[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy/Fairy.blend" id="1_hagoy"]
+[ext_resource type="PackedScene" uid="uid://dc5k2yy5vsbyi" path="res://Common/Models/Characters/Fairy/Fairy.glb" id="1_hagoy"]
 [ext_resource type="Script" uid="uid://c4nnr0daaay5s" path="res://Entities/Misc/FairyGuide/FairyGuide.cs" id="1_p1a3n"]
 [ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Common/Models/Characters/Fairy/Animations/RESET.tres" id="2_p1a3n"]
 [ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Common/Models/Characters/Fairy/Animations/Hovering.tres" id="3_kua22"]

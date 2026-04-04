@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmpnfs8rauqo"]
 
-[ext_resource type="PackedScene" uid="uid://c7u1ewvsbant7" path="res://Entities/Item/Gems/MagentaGem/MagentaGem.blend" id="1_h7hn6"]
+[ext_resource type="PackedScene" uid="uid://d0j2koof3mftm" path="res://Common/Models/Gem.glb" id="1_850jb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f586s"]
 albedo_color = Color(1, 0, 0.968627, 1)
@@ -10,9 +10,9 @@ rim_enabled = true
 
 [node name="MagentaGemModel" type="Node3D"]
 
-[node name="MagentaGem" parent="." instance=ExtResource("1_h7hn6")]
+[node name="Gem" parent="." instance=ExtResource("1_850jb")]
 
-[node name="Circle" parent="MagentaGem" index="0"]
+[node name="Circle" parent="Gem" index="0"]
 material_override = SubResource("StandardMaterial3D_f586s")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
@@ -21,4 +21,4 @@ light_energy = 0.285
 distance_fade_enabled = true
 spot_range = 1.0235
 
-[editable path="MagentaGem"]
+[editable path="Gem"]

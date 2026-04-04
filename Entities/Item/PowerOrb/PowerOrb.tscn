@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://djngs7hwn3v5q" path="res://Entities/Item/PowerOrb/PowerOrb.cs" id="1_33fc2"]
 [ext_resource type="AudioStream" uid="uid://ccronnj46nywl" path="res://Entities/Item/PowerOrb/PowerOrbBreak.wav" id="2_k6hmf"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="2_mqwyj"]
-[ext_resource type="PackedScene" uid="uid://lufx1acikyaw" path="res://Entities/Item/PowerOrb/PowerOrb.blend" id="2_wnb6r"]
+[ext_resource type="PackedScene" uid="uid://bd7cirxmcgawg" path="res://Entities/Item/PowerOrb/PowerOrb.glb" id="2_wnb6r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dnv66"]
 radius = 0.3

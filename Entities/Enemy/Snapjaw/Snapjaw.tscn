@@ -1,7 +1,7 @@
 [gd_scene load_steps=58 format=3 uid="uid://ri50s5tjym3n"]
 
 [ext_resource type="Script" uid="uid://b5064ks5nmy4u" path="res://Entities/Enemy/Snapjaw/Snapjaw.cs" id="1_1q2op"]
-[ext_resource type="PackedScene" uid="uid://bj6kfebqy4yxg" path="res://Entities/Enemy/Snapjaw/Snapjaw.blend" id="1_6h8uk"]
+[ext_resource type="PackedScene" uid="uid://dt1e0vrkc6j7" path="res://Entities/Enemy/Snapjaw/Snapjaw.glb" id="1_6h8uk"]
 [ext_resource type="Script" uid="uid://blpfmbcbfae1y" path="res://Common/Components/BreakableArea3D.cs" id="1_58fhs"]
 [ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Common/Components/GemSpawner.cs" id="2_8sopg"]
 [ext_resource type="Script" uid="uid://4lt3umf3fct" path="res://Common/Components/DamagePlayerArea.cs" id="2_sroyn"]

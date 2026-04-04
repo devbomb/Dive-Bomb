@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://bbfrncy1cgsc1"]
 
-[ext_resource type="PackedScene" uid="uid://1bbms5s4bt3d" path="res://Entities/Transport/Checkpoint/FairyRing.blend" id="1_lpb68"]
+[ext_resource type="PackedScene" uid="uid://cemvvteimpac1" path="res://Entities/Transport/Checkpoint/FairyRing.glb" id="1_lpb68"]
 [ext_resource type="Script" uid="uid://cfqry8cyhwe4l" path="res://Entities/Transport/Checkpoint/Checkpoint.cs" id="1_tl6tw"]
 [ext_resource type="AudioStream" uid="uid://d3d3ewp2ua3qv" path="res://Common/Audio/SFX/Checkpoint.wav" id="2_xw0qj"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Common/Components/SimpleParticles.cs" id="3_sjo5e"]

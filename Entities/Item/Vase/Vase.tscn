@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dlh8rir7h1xac"]
 
-[ext_resource type="PackedScene" uid="uid://b4vxdysdoipqr" path="res://Entities/Item/Vase/Vase.blend" id="1_gnefo"]
+[ext_resource type="PackedScene" uid="uid://d264yl64gtdg7" path="res://Entities/Item/Vase/Vase.glb" id="1_gnefo"]
 [ext_resource type="Script" uid="uid://dgu3p1wuws01b" path="res://Common/Scripts/GenericGemContainer.cs" id="1_wm3wg"]
 [ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Common/Components/GemSpawner.cs" id="2_dlqfk"]
 [ext_resource type="Script" uid="uid://c425xaupg1x74" path="res://Common/Components/BreakableStaticBody3D.cs" id="2_rv7eg"]

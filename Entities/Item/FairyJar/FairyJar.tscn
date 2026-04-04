@@ -1,18 +1,18 @@
 [gd_scene load_steps=32 format=3 uid="uid://b6d7vas8km3kd"]
 
 [ext_resource type="Script" uid="uid://5c2hnyrbuo5m" path="res://Entities/Item/FairyJar/FairyJar.cs" id="1_qaaot"]
-[ext_resource type="PackedScene" uid="uid://2va7mwb73ytk" path="res://Common/Models/Characters/Fairy/Fairy.blend" id="2_01sg4"]
 [ext_resource type="AnimationLibrary" uid="uid://cixu1tgmo6shy" path="res://Entities/Item/FairyJar/FairyJarAnimations.tres" id="2_l0xag"]
 [ext_resource type="AudioStream" uid="uid://b1kkywgiv08uj" path="res://Entities/Item/FairyJar/SFX/MagicalGlassShatter.wav" id="2_wcnnd"]
 [ext_resource type="AudioStream" uid="uid://eqg1m3m28yi3" path="res://Entities/Item/FairyJar/SFX/FairyJingle.wav" id="3_p435h"]
 [ext_resource type="AudioStream" uid="uid://c6e3re2b2kf2o" path="res://Common/Audio/SFX/WhiteNoise.mp3" id="4_g7wuv"]
 [ext_resource type="Script" uid="uid://ilt6j85e4n8e" path="res://Common/Components/DecoratorNodes/BillboardToCameraDecorator.gd" id="4_g18ww"]
-[ext_resource type="PackedScene" uid="uid://dphti8hl7njh4" path="res://Entities/Item/FairyJar/Jar.blend" id="4_ovlfu"]
+[ext_resource type="PackedScene" uid="uid://c38j252xlt6ao" path="res://Entities/Item/FairyJar/FairyJar.glb" id="4_ovlfu"]
 [ext_resource type="FontVariation" uid="uid://bmr44as3fvbhe" path="res://Fonts/FontVariations/TekturBolder.tres" id="4_w4eob"]
 [ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="5_bs0wh"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="5_pebs6"]
 [ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="5_vio7c"]
 [ext_resource type="Script" uid="uid://vpf40mbrhlr" path="res://Common/Components/DecoratorNodes/SpinDecorator.gd" id="6_vio7c"]
+[ext_resource type="PackedScene" uid="uid://dc5k2yy5vsbyi" path="res://Common/Models/Characters/Fairy/Fairy.glb" id="12_g7wuv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ohivc"]
 height = 1.5
@@ -246,7 +246,7 @@ libraries = {
 }
 autoplay = "RESET"
 
-[node name="Fairy" parent="Model" instance=ExtResource("2_01sg4")]
+[node name="Fairy" parent="Model" instance=ExtResource("12_g7wuv")]
 
 [node name="BlobShadow" parent="Model/Fairy" instance=ExtResource("5_pebs6")]
 radius = 0.25
