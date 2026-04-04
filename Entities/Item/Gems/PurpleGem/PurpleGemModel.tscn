@@ -12,7 +12,7 @@ rim_enabled = true
 
 [node name="Gem" parent="." unique_id=659239844 instance=ExtResource("1_rs2m6")]
 
-[node name="Circle" parent="Gem" index="0"]
+[node name="Circle" parent="Gem" index="0" unique_id=824627675]
 material_override = SubResource("StandardMaterial3D_otaoo")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1524435613]

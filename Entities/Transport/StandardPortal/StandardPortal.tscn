@@ -91,11 +91,11 @@ shape = SubResource("BoxShape3D_lle10")
 
 [node name="LevelEntrancePortal" parent="." unique_id=1258073575 instance=ExtResource("2_u61om")]
 
-[node name="PortalSurface" parent="LevelEntrancePortal" index="2"]
+[node name="PortalSurface" parent="LevelEntrancePortal" index="2" unique_id=150609043]
 script = ExtResource("3_smk44")
 PortalSurfaceShader = ExtResource("4_lnpha")
 
-[node name="Frame" parent="LevelEntrancePortal" index="3"]
+[node name="Frame" parent="LevelEntrancePortal" index="3" unique_id=1540868308]
 collision_layer = 3
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=2131897593]
