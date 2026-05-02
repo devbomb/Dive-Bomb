@@ -12,6 +12,9 @@ namespace FastDragon.Levels.Tutorial
 
         [ExportCategory("Internal")]
         [Export] public AnimationPlayer AnimationPlayer;
+        [Export] public Node3D HeadHolder;
+        [Export(PropertyHint.Range, "0,1")]
+        public float LookAtPlayerPitchInfluence = 1;
 
         private event Action _startSpeechRequested;
         private event Action _selfDestructButtonPressed;
@@ -21,13 +24,15 @@ namespace FastDragon.Levels.Tutorial
             public const string SpeechCheckpointed = "DrMonocleIntroSpeechCheckpointed";
         }
 
-        private StateMachine _stateMachine = new();
+        private readonly StateMachine _stateMachine = new();
 
         private const string ExitDoorId = "DrMonocleSpeech_ExitDoor";
         private IPowerable _exitDoor;
 
         private const string EntranceDoorId = "DrMonocleSpeech_EntranceDoor";
         private IPowerable _entranceDoor;
+
+        private Player _player;
 
         public DrMonocleIntroSpeechCutscene()
         {
@@ -41,10 +46,42 @@ namespace FastDragon.Levels.Tutorial
             {
                 _entranceDoor = this.FindNodeByTargetName<IPowerable>(EntranceDoorId);
                 _exitDoor = this.FindNodeByTargetName<IPowerable>(ExitDoorId);
+                _player = GetTree().FindNode<Player>();
 
                 Reset();
             }).CallDeferred();
 
+        }
+
+        public override void _Process(double delta)
+        {
+            LookAtPlayer();
+        }
+
+        private void LookAtPlayer()
+        {
+            // HACK: Avoid errors due to the quaternion not being normalized
+            // when the animation has set the scale to 0
+            if (HeadHolder.Scale.IsZeroApprox())
+                return;
+
+            // Get a transform where he's looking directly at the player
+            HeadHolder.LookAt(_player.GlobalPosition);
+            var lookingStraightAtPlayer = HeadHolder.GlobalTransform;
+
+            // Get a transform where he's looking at the player, but his head
+            // is parallel to the floor
+            var rot = HeadHolder.GlobalRotation;
+            rot.X = 0;
+            rot.Z = 0;
+            HeadHolder.GlobalRotation = rot;
+            var parallelToFloor = HeadHolder.GlobalTransform;
+
+            // Interpolate between the two according to the pitch influence
+            HeadHolder.GlobalTransform = parallelToFloor.InterpolateWith(
+                lookingStraightAtPlayer,
+                LookAtPlayerPitchInfluence
+            );
         }
 
         public void StartSpeech(Node3D body)
@@ -149,7 +186,7 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech skipping");
-                Self.AnimationPlayer.Play("Skipping");
+                Self.AnimationPlayer.Play("Skipping", 0.25);
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
             }
 
