@@ -186,7 +186,7 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech skipping");
-                Self.AnimationPlayer.Play("Skipping", 0.25);
+                Self.AnimationPlayer.Play("Skipping");
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
             }
 
