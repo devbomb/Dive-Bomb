@@ -1225,3 +1225,33 @@
 ( 56 120 144 ) ( 56 144 160 ) ( 56 144 136 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
+// entity 28
+{
+"classname" "item_gem_red"
+"origin" "236 -404 48"
+}
+// entity 29
+{
+"classname" "item_gem_green"
+"origin" "284 -492 80"
+}
+// entity 30
+{
+"classname" "item_gem_red"
+"origin" "156 -836 32"
+}
+// entity 31
+{
+"classname" "item_basket"
+"origin" "56 -856 16"
+}
+// entity 32
+{
+"classname" "item_gem_green"
+"origin" "60 -964 64"
+}
+// entity 33
+{
+"classname" "item_gem_red"
+"origin" "268 -76 256"
+}
