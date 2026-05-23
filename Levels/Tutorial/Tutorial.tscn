@@ -452,7 +452,7 @@ mesh = SubResource("TextMesh_35ubr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 10)
 
 [node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." unique_id=1292396864 instance=ExtResource("22_35ubr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 111.5)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 154, 41, 84)
 
 [node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" unique_id=1947806612 instance=ExtResource("25_smxar")]
 DoorTargetname = "Door_EscapeSequence_2FA_Joke"
