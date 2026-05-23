@@ -210,12 +210,18 @@
 }
 // brush 2
 {
-( -64 272 32 ) ( -64 352 0 ) ( -64 352 32 ) Textures/BigMetalSquares 16 -16 0 1 1
-( 64 272 32 ) ( -64 272 0 ) ( -64 272 32 ) Textures/BigMetalSquares 0 -16 0 1 1
-( 64 352 -16 ) ( -64 272 -16 ) ( 64 272 -16 ) Textures/BigMetalSquares 0 -16 0 1 1
-( 64 352 32 ) ( -64 272 32 ) ( -64 352 32 ) Textures/BigMetalSquares 0 -16 0 1 1
-( 64 384 32 ) ( -64 384 0 ) ( 64 384 0 ) Textures/BigMetalSquares 0 -16 0 1 1
-( 64 352 32 ) ( 64 272 0 ) ( 64 272 32 ) Textures/BigMetalSquares 16 -16 0 1 1
+( -64 304 32 ) ( -80 296 -16 ) ( -80 360 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -64 304 32 ) ( -32 272 32 ) ( -80 296 -16 ) Textures/BigMetalSquares -18.666656 0 0 1 1
+( -80 360 -16 ) ( -32 408 -16 ) ( -32 384 32 ) Textures/BigMetalSquares -43.42856 0 0 1 1
+( -80 296 -16 ) ( -32 272 32 ) ( -32 256 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -32 272 32 ) ( 32 272 32 ) ( 32 256 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 80 296 -16 ) ( 80 360 -16 ) ( 32 408 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 32 384 32 ) ( 64 352 32 ) ( 64 304 32 ) Textures/BigMetalSquares 0 0 0 1 1
+( -32 408 -16 ) ( 32 408 -16 ) ( 32 384 32 ) Textures/BigMetalSquares 0 0 0 1 1
+( 32 272 32 ) ( 80 296 -16 ) ( 32 256 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 64 304 32 ) ( 80 296 -16 ) ( 32 272 32 ) Textures/BigMetalSquares -72.78049 0 0 1 1
+( 32 408 -16 ) ( 80 360 -16 ) ( 64 352 32 ) Textures/BigMetalSquares -43.42856 0 0 1 1
+( 64 352 32 ) ( 80 360 -16 ) ( 80 296 -16 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 }
 // entity 2
