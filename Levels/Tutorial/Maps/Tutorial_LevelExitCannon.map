@@ -185,21 +185,6 @@
 }
 // entity 1
 {
-"classname" "transport_warp_trigger"
-"targetname" "Warp_LevelExitCannon"
-"target" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Exit"
-// brush 0
-{
-( -64 -64 160 ) ( -64 -48 16 ) ( -64 -48 160 ) special/clip 0 0 0 1 1
-( 64 -64 160 ) ( -64 -64 16 ) ( -64 -64 160 ) special/clip 0 0 0 1 1
-( 64 -48 16 ) ( -64 -64 16 ) ( 64 -64 16 ) special/clip 0 0 0 1 1
-( 64 -48 160 ) ( -64 -64 160 ) ( -64 -48 160 ) special/clip 0 0 0 1 1
-( 64 -48 160 ) ( -64 -48 16 ) ( 64 -48 16 ) Textures/WarpEntrance 0 0 0 1 1
-( 64 -48 160 ) ( 64 -64 16 ) ( 64 -64 160 ) special/clip 0 0 0 1 1
-}
-}
-// entity 2
-{
 "classname" "func_group"
 "_tb_type" "_tb_group"
 "_tb_name" "CanonPlatform"
@@ -233,7 +218,7 @@
 ( 64 112 -16 ) ( 144 192 -16 ) ( 144 192 -48 ) __TB_empty -16 0 0 1 1
 }
 }
-// entity 3
+// entity 2
 {
 "classname" "transport_level_exit"
 "origin" "0 328 32"

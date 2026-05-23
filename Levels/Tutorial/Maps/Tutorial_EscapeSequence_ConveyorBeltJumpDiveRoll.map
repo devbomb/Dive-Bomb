@@ -658,22 +658,6 @@
 }
 // entity 21
 {
-"classname" "transport_warp_trigger"
-"targetname" "Warp_EscapeSequence_JumpDiveRollConveyorBelt_Exit"
-"target" "Warp_LevelExitCannon"
-"_tb_group" "8"
-// brush 0
-{
-( 1136 -976 432 ) ( 1136 -960 304 ) ( 1136 -960 432 ) special/clip 16 0 0 1 1
-( 1248 -976 432 ) ( 1136 -976 304 ) ( 1136 -976 432 ) special/clip 0 0 0 1 1
-( 1248 -960 304 ) ( 1136 -976 304 ) ( 1248 -976 304 ) special/clip 0 -16 0 1 1
-( 1248 -960 448 ) ( 1136 -976 448 ) ( 1136 -960 448 ) special/clip 0 -16 0 1 1
-( 1248 -960 432 ) ( 1136 -960 304 ) ( 1248 -960 304 ) Textures/WarpEntrance 0 0 180 1 -1
-( 1248 -960 432 ) ( 1248 -976 304 ) ( 1248 -976 432 ) special/clip 16 0 0 1 1
-}
-}
-// entity 22
-{
 "classname" "func_group"
 "_tb_type" "_tb_group"
 "_tb_name" "WallButton"
@@ -691,7 +675,7 @@
 ( 1136 -912 400 ) ( 1136 -896 304 ) ( 1136 -912 304 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 23
+// entity 22
 {
 "classname" "logic_wall_button"
 "origin" "1096 -888 360"
@@ -700,7 +684,7 @@
 "killtarget" ""
 "_tb_group" "2"
 }
-// entity 24
+// entity 23
 {
 "classname" "logic_signal_connector"
 "origin" "1064 -888 360"
@@ -711,7 +695,7 @@
 "angle" "270"
 "_tb_group" "2"
 }
-// entity 25
+// entity 24
 {
 "classname" "wall_openable"
 "targetname" "Door_EscapeSequence_2FA_Joke"
@@ -729,21 +713,21 @@
 ( 1248 -912 448 ) ( 1248 -928 304 ) ( 1248 -928 448 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 }
-// entity 26
+// entity 25
 {
 "classname" "info_named_marker"
 "origin" "1256 -904 472"
 "targetname" "Marker_EscapeSequence_ConveyorBeltJumpDiveRoll_Door_Closed"
 "_tb_group" "8"
 }
-// entity 27
+// entity 26
 {
 "classname" "info_named_marker"
 "origin" "1256 -904 312"
 "targetname" "Marker_EscapeSequence_ConveyorBeltJumpDiveRoll_Door_Open"
 "_tb_group" "8"
 }
-// entity 28
+// entity 27
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -787,7 +771,7 @@
 ( 832 0 336 ) ( 832 -128 176 ) ( 832 -128 336 ) __TB_empty 0 0 0 1 1
 }
 }
-// entity 29
+// entity 28
 {
 "classname" "logic_signal_connector"
 "origin" "856 -200 248"
@@ -796,7 +780,7 @@
 "killtarget" "Cutscene_EscapeSequence_2FA_Joke"
 "HandlerFunction" "OnBodyEntered"
 }
-// entity 30
+// entity 29
 {
 "classname" "trigger_named_trigger_zone"
 "targetname" "Trigger_EscapeSequence_2FA_Joke"

@@ -451,14 +451,14 @@ mesh = SubResource("TextMesh_35ubr")
 [node name="Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro" parent="." unique_id=560406799 instance=ExtResource("21_25uee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 10)
 
-[node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." unique_id=1292396864 instance=ExtResource("22_35ubr")]
+[node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." unique_id=627960215 instance=ExtResource("22_35ubr")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 154, 41, 84)
 
 [node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" unique_id=1947806612 instance=ExtResource("25_smxar")]
 DoorTargetname = "Door_EscapeSequence_2FA_Joke"
 
-[node name="Tutorial_LevelExitCannon" parent="." unique_id=54204904 instance=ExtResource("23_35ubr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 41, 265)
+[node name="Tutorial_LevelExitCannon" parent="." unique_id=571264060 instance=ExtResource("23_35ubr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 79.5, 59, 19)
 
 [node name="Tutorial_EscapeSequence_TimeWaster" parent="." unique_id=578281209 instance=ExtResource("24_3lrk0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176, 40, 66)
