@@ -449,7 +449,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.9
 mesh = SubResource("TextMesh_35ubr")
 
 [node name="Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro" parent="." unique_id=560406799 instance=ExtResource("21_25uee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 9.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 10)
 
 [node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." unique_id=1292396864 instance=ExtResource("22_35ubr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 111.5)
@@ -461,7 +461,7 @@ DoorTargetname = "Door_EscapeSequence_2FA_Joke"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 41, 265)
 
 [node name="Tutorial_EscapeSequence_TimeWaster" parent="." unique_id=578281209 instance=ExtResource("24_3lrk0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 38, 229)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176, 40, 66)
 
 [node name="DeathBarrier" type="Area3D" parent="." unique_id=1480197564]
 collision_layer = 0

@@ -1029,35 +1029,20 @@
 }
 // entity 39
 {
-"classname" "transport_warp_trigger"
-"targetname" "Warp_EscapeSequence_GlassPanesOnConveyorBeltIntro_Exit"
-"target" "Warp_EscapeSequence_TimeWaster_Entrance"
-// brush 0
-{
-( 656 -224 320 ) ( 656 -128 176 ) ( 656 -128 320 ) Textures/WarpEntrance 0 0 0 -1 1
-( 672 -224 320 ) ( 656 -224 176 ) ( 656 -224 320 ) special/clip 0 0 0 1 1
-( 672 -128 176 ) ( 656 -224 176 ) ( 672 -224 176 ) special/clip 0 0 0 1 1
-( 672 -128 320 ) ( 656 -224 320 ) ( 656 -128 320 ) special/clip 0 0 0 1 1
-( 672 -128 320 ) ( 656 -128 176 ) ( 672 -128 176 ) special/clip 0 0 0 1 1
-( 672 -128 320 ) ( 672 -224 176 ) ( 672 -224 320 ) special/clip 0 0 0 1 1
-}
+"classname" "item_vase"
+"origin" "608 176 272"
 }
 // entity 40
 {
 "classname" "item_vase"
-"origin" "608 176 272"
-}
-// entity 41
-{
-"classname" "item_vase"
 "origin" "608 136 272"
 }
-// entity 42
+// entity 41
 {
 "classname" "item_basket"
 "origin" "632 40 288"
 }
-// entity 43
+// entity 42
 {
 "classname" "item_basket"
 "origin" "632 -24 288"
