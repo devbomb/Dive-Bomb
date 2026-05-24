@@ -345,7 +345,7 @@
 ( -176 -64 320 ) ( -176 -63 320 ) ( -176 -64 321 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -176 -64 320 ) ( -176 -64 321 ) ( -175 -64 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( -176 -64 320 ) ( -175 -64 320 ) ( -176 -63 320 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 176 608 336 ) ( 176 609 336 ) ( 177 608 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 176 608 672 ) ( 176 609 672 ) ( 177 608 672 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 176 608 336 ) ( 177 608 336 ) ( 176 608 337 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 176 608 336 ) ( 176 608 337 ) ( 176 609 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
