@@ -6,7 +6,8 @@
 [ext_resource type="Resource" uid="uid://bt7p631ybqxdo" path="res://FuncGodotAssets/EntityDefinitions/Solid/Hazard/hazard_molten_glass_cube.tres" id="3_8lg0m"]
 [ext_resource type="Resource" uid="uid://c7gwdtvlyw11" path="res://FuncGodotAssets/EntityDefinitions/Solid/Hazard/hazard_conveyor_belt.tres" id="4_j72fn"]
 [ext_resource type="Resource" uid="uid://dthhomhx5yr5g" path="res://FuncGodotAssets/EntityDefinitions/Solid/Hazard/hazard_glass_pane_spawner.tres" id="5_8dqfn"]
+[ext_resource type="Resource" uid="uid://dbjr0b6xwd5ua" path="res://FuncGodotAssets/EntityDefinitions/Solid/Hazard/hazard_glass_pane_sink.tres" id="6_sdbmh"]
 
 [resource]
 script = ExtResource("1_tedmp")
-entity_definitions = Array[Resource]([ExtResource("1_iflkq"), ExtResource("2_eiyqy"), ExtResource("3_8lg0m"), ExtResource("4_j72fn"), ExtResource("5_8dqfn")])
+entity_definitions = Array[Resource]([ExtResource("1_iflkq"), ExtResource("2_eiyqy"), ExtResource("3_8lg0m"), ExtResource("4_j72fn"), ExtResource("5_8dqfn"), ExtResource("6_sdbmh")])

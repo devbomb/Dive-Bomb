@@ -9,6 +9,7 @@ render_layers = 9
 script_class = ExtResource("2_x3l1x")
 classname = "hazard_glass_pane_spawner"
 class_properties = Dictionary[String, Variant]({
+"IsPaneBreakable": true,
 "PaneLifespanSeconds": 5.0,
 "SpawnDurationSeconds": 2.0,
 "SpawnIntervalSeconds": 1.0

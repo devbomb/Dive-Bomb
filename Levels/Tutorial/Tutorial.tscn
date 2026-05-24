@@ -20,6 +20,12 @@
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="18_83vbk"]
 [ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="19_alo6x"]
 [ext_resource type="AudioStream" uid="uid://cdngy66jdcxa8" path="res://Common/Audio/Music/HijinxEscape.mp3" id="20_lu0qh"]
+[ext_resource type="PackedScene" uid="uid://8olwn3dceknl" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro.map" id="21_25uee"]
+[ext_resource type="PackedScene" uid="uid://ca8eufje1x6kj" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map" id="22_35ubr"]
+[ext_resource type="PackedScene" uid="uid://xbfqw7b50i7q" path="res://Levels/Tutorial/Maps/Tutorial_LevelExitCannon.map" id="23_35ubr"]
+[ext_resource type="PackedScene" uid="uid://be0os0an84mx4" path="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_TimeWaster.map" id="24_3lrk0"]
+[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier.cs" id="24_oop8w"]
+[ext_resource type="PackedScene" uid="uid://mdchoptoqq8n" path="res://Levels/Tutorial/TwoFactorAuthCutscene/TwoFactorAuthCutsceneRig.tscn" id="25_smxar"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lu0qh"]
 clip_count = 2
@@ -125,6 +131,8 @@ text = "DO NOT PRESS"
 font = SubResource("FontVariation_lu0qh")
 font_size = 44
 curve_step = 10.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3lrk0"]
 
 [node name="Tutorial" type="Node3D" unique_id=1133266737]
 script = ExtResource("1_vo1h1")
@@ -439,3 +447,27 @@ mesh = SubResource("TextMesh_25uee")
 [node name="SelfDestructLabel2" type="MeshInstance3D" parent="DrMonocleSpeech" unique_id=229053240]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.985016, 1.7752533, 7.5155544)
 mesh = SubResource("TextMesh_35ubr")
+
+[node name="Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro" parent="." unique_id=560406799 instance=ExtResource("21_25uee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 10)
+
+[node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." unique_id=651646982 instance=ExtResource("22_35ubr")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 154, 41, 84)
+
+[node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" unique_id=1947806612 instance=ExtResource("25_smxar")]
+DoorTargetname = "Door_EscapeSequence_2FA_Joke"
+
+[node name="Tutorial_LevelExitCannon" parent="." unique_id=1717697475 instance=ExtResource("23_35ubr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 79.5, 59, 19)
+
+[node name="Tutorial_EscapeSequence_TimeWaster" parent="." unique_id=578281209 instance=ExtResource("24_3lrk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176, 40, 66)
+
+[node name="DeathBarrier" type="Area3D" parent="." unique_id=1480197564]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("24_oop8w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier" unique_id=1107535782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151, -33.42801, 154.5)
+shape = SubResource("WorldBoundaryShape3D_3lrk0")

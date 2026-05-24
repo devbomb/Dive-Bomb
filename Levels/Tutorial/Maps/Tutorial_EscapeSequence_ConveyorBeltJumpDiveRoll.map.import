@@ -1,0 +1,15 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://ca8eufje1x6kj"
+path="res://.godot/imported/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map-4c2588328a43172c77b40bacbd1f496b.tscn"
+
+[deps]
+
+source_file="res://Levels/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map"
+dest_files=["res://.godot/imported/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map-4c2588328a43172c77b40bacbd1f496b.tscn"]
+
+[params]
+
+texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Tutorial/Maps/TutorialMaterialMap.tres")

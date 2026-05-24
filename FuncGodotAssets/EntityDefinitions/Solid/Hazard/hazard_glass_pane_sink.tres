@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" format=3 uid="uid://dbjr0b6xwd5ua"]
+
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_gd4wc"]
+
+[resource]
+script = ExtResource("1_gd4wc")
+build_visuals = false
+render_layers = 0
+collision_mask = 0
+classname = "hazard_glass_pane_sink"
+description = "Destroys glass panes that come into contact with it"
+node_class = "Area3D"
+node_groups = Array[String](["GlassPaneSink"])
+metadata/_custom_type_script = "uid://5cow84q03m6a"

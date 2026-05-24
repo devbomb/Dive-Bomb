@@ -10,7 +10,7 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            Self.LocalVelocity = Vector3.Zero;
+            Self.LocalVelocity = Vector3.Down;
 
             _timer = Self.Animator.GetAnimation(RecoverAnim).Length;
             Self.Animator.Play(RecoverAnim, customBlend: 0);
@@ -19,8 +19,9 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
-            _timer -= (float)deltaD;
+            Self.MoveAndSlide();
 
+            _timer -= (float)deltaD;
             if (_timer <= 0)
                 Self.ChangeState<PlayerStandState>();
         }

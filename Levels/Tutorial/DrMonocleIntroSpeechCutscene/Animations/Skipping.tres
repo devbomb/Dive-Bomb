@@ -1,0 +1,316 @@
+[gd_resource type="Animation" format=3 uid="uid://de7ppgeiv4wgf"]
+
+[ext_resource type="AudioStream" uid="uid://b0yrps71qwhjg" path="res://Levels/Tutorial/DrMonocleIntroSpeechCutscene/SelfDestruct_Interrupted.wav" id="1_5boek"]
+[ext_resource type="AudioStream" uid="uid://chv8uuwcwx68d" path="res://UI/Menus/PauseMenu/PauseClose.wav" id="2_0umrk"]
+
+[resource]
+resource_name = "Skipping"
+length = 7.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"wait",
+"time": 0.13333334
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"what?!_end",
+"time": 0.7
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"oh",
+"time": 3.2
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"per",
+"time": 3.8333333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"fff",
+"time": 4.133333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"ehh",
+"time": 4.266667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"c",
+"time": 4.4333334
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"t",
+"time": 4.5
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"wait_end",
+"time": 0.36666667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"what?!",
+"time": 0.46666667
+}]
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadHolder")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 4.6666665, 1, 1, 1, 1, 4.766665, 1, 1, 1, 1, 4.9666657, 1, 1.1, 1.1, 1.1, 5.066664, 1, 0.25, 1, 0.25, 5.1666665, 1, 0, 0, 0)
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IntercomDialogPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_5boek")
+}],
+"times": PackedFloat32Array(0.033333335)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SfxAudioPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_0umrk")
+}],
+"times": PackedFloat32Array(4.633333)
+}
+tracks/2/use_blend = true
+tracks/3/type = "animation"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AlarmOverlay/AlarmAnimator")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": PackedStringArray("Flash", "RESET"),
+"times": PackedFloat32Array(0, 7)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/JawOpen")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.13333334, 0.16666667, 0.2, 0.26666668, 0.3, 0.33333334, 0.43333334, 0.5, 0.53333336, 0.5666667, 0.6333334, 0.70000005, 1.9000001, 2.1000001, 3.0666666, 3.2333336, 3.3333335, 3.4000003, 3.766667, 4.2, 4.333334, 4.4333334, 4.6000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.014700000000000046, -0.21399, -0.21399, -0.21399, 0.41149000000000013, 0.0, 0.05761, 0.107, 0.107, -0.20576, -0.20576, 0.52675, 0.0, -0.13168497, -0.13168497, 0.0, 0.0, 0.24198999999999993, 0.7218, 0.0, 0.0, 0.0, -0.34164000000000005, 0.01422999999999996, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/OhJawLower")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.13333334, 0.16638319, 0.19999999, 0.43333334, 0.5, 0.53333336, 0.5666667, 1.9000001, 2.1000001, 2.6000001, 2.7, 3.0666666, 3.2333336, 3.4000003, 3.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.5160100000000001, 0.5160100000000001, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/eh")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.13333334, 0.16638319, 0.2, 0.23333335, 0.26666668, 1.9000001, 2.1000001, 3.0666666, 3.2333333, 3.4, 4.0666666, 4.2, 4.4333334, 4.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/E")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.13333334, 0.2, 0.23333335, 0.26666668, 1.9000001, 2.1000001, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/S")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.13333334, 0.2, 0.26666668, 0.3, 0.5666667, 0.6333333, 1.9000001, 2.1000001, 3.0666668, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 0.0, 0.0, 0.83128, 0.83128, 0.0, 0.0, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/Oh")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.13333334, 0.2, 0.26666668, 0.43333334, 0.5, 0.70000005, 1.9000001, 2.1000001, 2.9, 3.0666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.25514, 0.46091, 0.46091, 0.0, 0.46914, 0.46914, 0.0, 0.0, 0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/Ah")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.5, 1.9, 2.1000001, 3.2000003),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/Uh")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.5666667, 0.6333334, 0.70000005, 1.1333332, 1.9000001, 2.1000001, 2.6000001, 2.7, 3.0666668, 3.2000003, 3.7666667, 3.9, 4.0666666, 4.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.60082, 0.0, 0.0, 0.0, 0.0, 0.6690399999999999, 0.6690399999999999, 0.0, 0.0, 0.0, 0.0, 1.0, -0.23488, 0.0]
+}
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Pupil_R")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0.1, 1, -0.7124607, 0.0011498899, -0.15196235, 0.685059, 0.16666667, 1, -0.56297654, -0.028913163, -0.14919084, 0.81238145, 0.26666668, 1, -0.56297654, -0.028913163, -0.14919084, 0.81238145, 0.33333337, 1, -0.83663666, 0.013050233, -0.16038555, 0.5235889, 0.43333334, 1, -0.83663666, 0.013050233, -0.16038555, 0.5235889, 0.5, 1, -0.56297654, -0.028913163, -0.14919084, 0.81238145, 0.6, 1, -0.76493883, 0.1591158, -0.08037424, 0.6189433, 0.6666667, 1, -0.8313206, 0.09506464, -0.108245715, 0.53679764, 0.8000001, 1, -0.8313206, 0.09506464, -0.108245715, 0.53679764, 0.86666673, 1, -0.76493883, 0.1591158, -0.08037424, 0.6189433, 0.90000004, 1, -0.5761737, 0.11433215, -0.06867894, 0.8063716, 1.0333333, 1, -0.5761737, 0.11433215, -0.06867894, 0.8063716, 1.1333334, 1, -0.7124607, 0.0011498899, -0.15196235, 0.685059, 1.3666668, 1, -0.7124607, 0.0011498899, -0.15196235, 0.685059, 3.2000003, 1, -0.7124607, 0.0011498899, -0.15196235, 0.685059, 3.5666668, 1, -0.7124607, 0.0011498899, -0.15196235, 0.685059, 3.766667, 1, -0.8091518, -0.17763636, -0.092243254, 0.552458, 3.966667, 1, 0.8663598, -0.22001788, 0.2625357, -0.36343893, 4.066667, 1, -0.7758163, 0.14449094, -0.07261287, 0.6098842, 4.166667, 1, -0.6177596, -0.061240364, 0.011115328, 0.7839, 4.2333336, 1, -0.6372234, -0.05279138, -0.06337753, 0.7662524, 4.3333335, 1, -0.7124607, 0.0011498899, -0.15196235, 0.685059)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Pupil_L")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0.1, 1, -0.7124607, -0.0011498899, 0.15196237, 0.685059, 0.16666667, 1, -0.8226229, 0.03398771, 0.19019993, 0.53475255, 0.26666668, 1, -0.8226229, 0.03398771, 0.19019993, 0.53475255, 0.33333337, 1, -0.5746452, 0.055814024, 0.0999527, 0.8103562, 0.43333334, 1, -0.5746452, 0.055814024, 0.0999527, 0.8103562, 0.5, 1, -0.8226229, 0.03398771, 0.19019993, 0.53475255, 0.6, 1, -0.69376165, -0.13743223, 0.07342924, 0.70314676, 0.6666667, 1, -0.5773464, -0.0018882825, 0.018475454, 0.8162881, 0.8000001, 1, -0.5773464, -0.0018882825, 0.018475454, 0.8162881, 0.86666673, 1, -0.69376165, -0.13743223, 0.07342924, 0.70314676, 0.9, 1, -0.7848072, -0.11674004, 0.077675544, 0.60366875, 1.0333333, 1, -0.7848072, -0.11674004, 0.077675544, 0.60366875, 1.1333334, 1, -0.7124607, -0.0011498899, 0.15196237, 0.685059, 1.3666668, 1, -0.7124607, -0.0011498899, 0.15196237, 0.685059, 3.2000003, 1, -0.7124607, -0.0011498899, 0.15196237, 0.685059, 3.5666668, 1, -0.7124607, -0.0011498899, 0.15196237, 0.685059, 3.766667, 1, -0.5686043, -0.008205302, 0.25727114, 0.7813024, 3.966667, 1, -0.509191, -0.16399935, 0.03213362, 0.8442726, 4.166667, 1, -0.8247921, -0.03265578, 0.052125208, 0.5620806, 4.3333335, 1, -0.7124607, -0.0011498899, 0.15196237, 0.685059)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Root")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0.1, 1, -2.9802326e-08, 2.3841855e-07, -4.2351647e-22, 1, 0.13333334, 1, -0.0028617028, -0.09229124, 0.030859686, 0.9952496, 0.20000002, 1, 0.005663546, -0.27379972, -0.019890048, 0.96156436, 0.26666668, 1, -2.8662987e-08, -0.2738583, 8.161621e-09, 0.96177006, 0.33333334, 1, -2.8662987e-08, -0.2738583, 8.161621e-09, 0.96177006, 0.46666667, 1, -2.8662987e-08, -0.2738583, 8.161621e-09, 0.96177006, 0.5, 1, -2.8662987e-08, -0.2738583, 8.161621e-09, 0.96177006, 0.5333333, 1, 0.0031870627, -0.13810477, -0.022850007, 0.9901489, 0.59999996, 1, 0.003218949, 0.18133193, 0.01745471, 0.98326176, 0.6666667, 1, -2.930811e-08, 0.18136048, -5.404957e-09, 0.9834167, 0.70000005, 1, -2.930811e-08, 0.18136048, -5.404957e-09, 0.9834167, 1, 1, -2.930811e-08, 0.18136048, -5.404957e-09, 0.9834167, 1.0333333, 1, -2.930811e-08, 0.18136048, -5.404957e-09, 0.9834167, 1.1999999, 1, -2.9802326e-08, 2.3841855e-07, -4.2351647e-22, 1, 1.2333333, 1, -2.9802326e-08, 2.3841855e-07, -4.2351647e-22, 1, 1.8333334, 1, -2.9802326e-08, 2.3841855e-07, -4.2351647e-22, 1, 1.9000001, 1, -2.9802326e-08, 2.3841855e-07, -4.2351647e-22, 1, 2.1000001, 1, -6.7193953e-09, 2.4018e-07, 0.096236646, 0.99535847, 2.2000005, 1, -6.7193953e-09, 2.4018e-07, 0.096236646, 0.99535847, 2.9000003, 1, -6.7193953e-09, 2.4018e-07, 0.096236646, 0.99535847, 3.0000002, 1, -6.7193953e-09, 2.4018e-07, 0.096236646, 0.99535847, 3.1666667, 1, -2.9802326e-08, 2.3841855e-07, -4.2351647e-22, 1, 3.2000003, 1, -2.9802326e-08, 2.3841855e-07, -4.2351647e-22, 1, 3.5000002, 1, -0.133623, 2.3628047e-07, 3.1858196e-08, 0.99103224, 3.6333337, 1, -0.133623, 2.3628047e-07, 3.1858196e-08, 0.99103224, 3.7666671, 1, -0.017901974, 0.0016294456, 0.09061799, 0.9957235, 4.166667, 1, -0.017964127, -0.00065235473, -0.036297664, 0.9991793, 4.333334, 1, -0.0749699, 0.00080825295, -0.03403448, 0.9966045, 4.533334, 1, -0.10934398, -4.6308985e-23, 4.2097712e-22, 0.99400395, 4.6000004, 1, -0.10934398, -4.6308985e-23, 4.2097712e-22, 0.99400395, 5.166667, 1, -0.10934398, -4.6308985e-23, 4.2097712e-22, 0.99400395)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D:Jaw")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0.1, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 0.13333334, 1, -0.8186533, 0.07925915, -0.016838158, 0.5685432, 0.16666667, 1, -0.80628276, 0.13026267, -0.043347947, 0.5753787, 0.23333335, 1, -0.8175302, -0.030250013, -0.0060994574, 0.5750583, 0.3, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 0.5, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 0.5666667, 1, -0.8233614, -0.0961666, 0.044022616, 0.55757517, 0.6333334, 1, -0.8385274, 0.04785702, 0.039357223, 0.54132485, 0.70000005, 1, -0.837822, -0.036912918, 0.029918622, 0.5438719, 0.7666667, 1, -0.838316, -0.022801206, 0.008188889, 0.54464597, 1.0333333, 1, -0.838316, -0.022801206, 0.008188889, 0.54464597, 1.1999999, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 1.2333333, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 2.1, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057, 2.5000002, 1, -0.82323164, 0, -1.9627366e-07, 0.5677057)
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath(".:LookAtPlayerPitchInfluence")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/P")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(3.2000003, 3.4000003, 3.7666671, 3.9000003),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 0.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/HeadMesh:blend_shapes/Blink")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0.06666667, 0.16666669, 0.26666668, 0.5, 0.5666667, 0.6333334, 1.4000001, 1.4666667, 1.5333333, 1.9, 2, 2.1000001, 2.2000003, 2.2666667, 2.3333335, 2.6000001, 2.7, 2.766667, 3.1666667, 3.3333335, 3.5666668, 3.766667, 4, 4.2333336, 4.4000006, 4.533334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.04938, 0.04938, 0.10675999999999997, 0.22775999999999996, 0.22775999999999996, 1.0, 0.4199299999999999, 0.4199299999999999, -0.47758, -0.19999999999999996, -0.19999999999999996, 1.0, 1.0, -0.34875, -0.1535296, 1.0, 1.0, 0.0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/Eyebrows:blend_shapes/Skeptical")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(1.8999999, 2.1, 3, 3.1666663, 3.2000003, 3.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7153, 0.7153, 0.0, 0.0, 0.0]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/Eyebrows:blend_shapes/Distressed")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(2.8333333, 3.0666668, 3.5666666, 3.7666667, 3.9, 4.1666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.30604999999999993, 0.30604999999999993, 0.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/Eyebrows:blend_shapes/Angry")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(1.9000001, 2.1, 3, 3.233333, 3.4333334, 3.7666667, 4.1666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5053399999999999, 0.5053399999999999, 0.4555199999999999, 0.0, 0.0, 0.3523100000000001]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/Eyebrows:blend_shapes/Down")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(1.9000001, 2.1, 2.6, 2.6999998, 2.7666664, 3, 3.233333, 3.5666668, 3.7666667, 3.9, 4.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.6903900000000001, -0.6903900000000001, -1.0, -0.8363, -0.8363, 0.6548, 0.6548, -0.47687, -0.47687, 0.6548]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("HeadHolder/DrMonocleHeadHologram/HeadRig/Skeleton3D/Eyebrows:blend_shapes/Out")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(1.9000001, 2.1, 3, 3.2333333, 3.5666666, 3.7666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, -0.10675999999999997, -0.24911000000000005, 0.0]
+}

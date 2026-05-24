@@ -26,16 +26,23 @@ scale_curve = SubResource("CurveTexture_ioojh")
 material = ExtResource("2_a7lmv")
 size = Vector3(0.25, 0.25, 0.25)
 
-[node name="SpawnedGlassPane" type="AnimatableBody3D" unique_id=1113965451 node_paths=PackedStringArray("ShatterParticles", "ShatterSound", "MeshInstance", "CollisionShape", "FloorDetector") groups=["PhysicsInterpolated", "UnsafeGround"]]
+[node name="SpawnedGlassPane" type="CharacterBody3D" unique_id=1113965451 node_paths=PackedStringArray("ShatterParticles", "ShatterSound", "MeshInstance", "CollisionShape", "FloorDetector", "FloorDetectorShape") groups=["PhysicsInterpolated", "UnsafeGround"]]
+collision_layer = 2
+motion_mode = 1
+platform_floor_layers = 4294967287
 script = ExtResource("1_vb7yu")
 ShatterParticles = NodePath("ShatterParticles")
 ShatterSound = NodePath("ShatterSound")
 MeshInstance = NodePath("MeshInstance3D")
 CollisionShape = NodePath("CollisionShape3D")
 FloorDetector = NodePath("FloorDetector")
+FloorDetectorShape = NodePath("FloorDetector/CollisionShape3D")
 
-[node name="FloorDetector" type="RayCast3D" parent="." unique_id=5958626]
-target_position = Vector3(0, -0.1, 0)
+[node name="FloorDetector" type="Area3D" parent="." unique_id=5958626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorDetector" unique_id=1577960052]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=788475329]
 
