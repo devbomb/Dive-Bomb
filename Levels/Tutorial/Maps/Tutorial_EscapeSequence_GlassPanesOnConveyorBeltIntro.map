@@ -1093,3 +1093,10 @@
 "classname" "item_basket"
 "origin" "632 -24 288"
 }
+// entity 43
+{
+"classname" "transport_checkpoint"
+"origin" "0 0 16"
+"CheckpointName" "EscapeSequence"
+"angle" "90"
+}

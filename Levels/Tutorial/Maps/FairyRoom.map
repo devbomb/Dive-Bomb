@@ -828,20 +828,12 @@
 }
 // entity 7
 {
-"classname" "transport_checkpoint"
-"origin" "-448 96 288"
-"CheckpointName" "FairyRoom"
-"angle" "180"
-"_tb_group" "3"
-}
-// entity 8
-{
 "classname" "item_fairy"
 "origin" "-120 152 112"
 "targetname" "TutorialFairy"
 "_tb_group" "3"
 }
-// entity 9
+// entity 8
 {
 "classname" "transport_vent"
 "origin" "104 -248 264"
@@ -850,7 +842,7 @@
 "TargetVentId" "FairyRoomWallJumpSkipExit"
 "_tb_group" "3"
 }
-// entity 10
+// entity 9
 {
 "classname" "transport_vent"
 "origin" "120 -248 344"
@@ -859,7 +851,7 @@
 "VentId" "FairyRoomWallJumpSkipExit"
 "_tb_group" "3"
 }
-// entity 11
+// entity 10
 {
 "classname" "trigger_camera_suggestion_zone"
 "target" "FairyEscapeCameraAngle1"
@@ -875,7 +867,7 @@
 ( 144 176 400 ) ( 144 -256 288 ) ( 144 -256 400 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 12
+// entity 11
 {
 "classname" "trigger_camera_suggestion_zone"
 "target" "FairyEscapeCameraAngle2"
@@ -891,14 +883,14 @@
 ( 144 208 528 ) ( 144 176 432 ) ( 144 176 528 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 13
+// entity 12
 {
 "classname" "gate_fairy_door"
 "origin" "-504 96 320"
 "FairyId" "TutorialFairy"
 "_tb_group" "3"
 }
-// entity 14
+// entity 13
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
