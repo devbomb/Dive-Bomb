@@ -205,6 +205,7 @@ namespace FastDragon
                 if (_raycast.IsColliding())
                 {
                     desiredPosition.Origin = _raycast.GetCollisionPoint();
+                    desiredPosition.Origin -= dir * 0.1f;
                 }
             }
 
