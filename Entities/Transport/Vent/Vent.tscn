@@ -47,7 +47,6 @@ unique_name_in_owner = true
 
 [node name="RightSpringArm" type="SpringArm3D" parent="." unique_id=2066224736]
 transform = Transform3D(-0.36716068, 0.4752814, -0.7995633, -0.0008658056, 0.85942435, 0.51126266, 0.93015635, 0.18840781, -0.31513578, 0, 0.8719244, -0.8645516)
-collision_mask = 2
 spring_length = 6.181
 
 [node name="CameraPointRight" type="Marker3D" parent="RightSpringArm" unique_id=561933638]
@@ -56,7 +55,6 @@ transform = Transform3D(0.99999774, -0.0020038635, 0.0016615093, 0.0019990057, 0
 
 [node name="LeftSpringArm" type="SpringArm3D" parent="." unique_id=1852528662]
 transform = Transform3D(0.25877854, 0.5403999, 0.8006253, 0.17609574, -0.84136295, 0.5109783, 0.9497497, 0.008756513, -0.3128886, 0, 0.8719244, -0.8645516)
-collision_mask = 2
 spring_length = 6.181
 
 [node name="CameraPointLeft" type="Marker3D" parent="LeftSpringArm" unique_id=861950464]
