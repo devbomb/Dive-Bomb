@@ -1209,20 +1209,20 @@
 }
 // brush 15
 {
-( 64 -560 256 ) ( 64 -560 264 ) ( 64 -576 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 64 -592 256 ) ( 64 -592 264 ) ( 112 -592 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 64 -576 240 ) ( 112 -576 240 ) ( 64 -560 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 64 -560 288 ) ( 112 -560 288 ) ( 64 -576 288 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 112 -560 256 ) ( 112 -560 264 ) ( 64 -560 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-( 112 -576 256 ) ( 112 -576 264 ) ( 112 -560 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
-}
-// brush 16
-{
 ( 80 -576 240 ) ( 80 -560 192 ) ( 80 -560 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 144 -576 240 ) ( 80 -576 192 ) ( 80 -576 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 144 -560 240 ) ( 80 -576 240 ) ( 80 -560 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 144 -560 240 ) ( 80 -560 240 ) ( 80 -560 192 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 ( 80 -576 192 ) ( 144 -560 240 ) ( 80 -560 192 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+}
+// brush 16
+{
+( 64 -560 256 ) ( 64 -560 264 ) ( 64 -576 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 64 -592 256 ) ( 64 -592 264 ) ( 112 -592 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 64 -576 240 ) ( 112 -576 240 ) ( 64 -560 240 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 64 -560 304 ) ( 112 -560 304 ) ( 64 -576 304 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 -560 256 ) ( 112 -560 264 ) ( 64 -560 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
+( 112 -576 256 ) ( 112 -576 264 ) ( 112 -560 256 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
 // entity 10
@@ -1242,7 +1242,7 @@
 // entity 11
 {
 "classname" "item_basket"
-"origin" "88 -576 288"
+"origin" "32 -480 192"
 "GemColor" "10"
 "_tb_group" "2"
 }
