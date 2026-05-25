@@ -19,6 +19,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 [node name="Camera" type="Camera3D" parent="." unique_id=2009812033]
 unique_name_in_owner = true
 current = true
+near = 0.005
 
 [node name="TimeTrialFairyRescuePos" type="Marker3D" parent="Camera" unique_id=1477364195]
 unique_name_in_owner = true
