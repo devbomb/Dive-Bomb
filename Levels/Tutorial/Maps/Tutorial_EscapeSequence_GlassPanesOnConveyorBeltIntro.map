@@ -687,7 +687,7 @@
 }
 // entity 18
 {
-"classname" "item_gem_red"
+"classname" "item_gem_green"
 "origin" "664 180 192"
 "_tb_group" "1"
 }
@@ -705,7 +705,7 @@
 }
 // entity 21
 {
-"classname" "item_gem_red"
+"classname" "item_gem_green"
 "origin" "664 348 192"
 "_tb_group" "1"
 }
@@ -713,12 +713,14 @@
 {
 "classname" "item_basket"
 "origin" "680 360 336"
+"GemColor" "5"
 "_tb_group" "1"
 }
 // entity 23
 {
 "classname" "item_basket"
 "origin" "680 408 336"
+"GemColor" "5"
 "_tb_group" "1"
 }
 // entity 24
@@ -808,11 +810,13 @@
 {
 "classname" "item_basket"
 "origin" "232 232 112"
+"GemColor" "2"
 }
 // entity 28
 {
 "classname" "item_basket"
 "origin" "264 232 112"
+"GemColor" "2"
 }
 // entity 29
 {
@@ -932,12 +936,6 @@
 }
 // entity 30
 {
-"classname" "item_basket"
-"origin" "864 528 272"
-"_tb_group" "4"
-}
-// entity 31
-{
 "classname" "trigger_camera_suggestion_zone"
 "target" "EscapeSequence_SideSecret_CameraAngle"
 "_tb_group" "4"
@@ -951,7 +949,7 @@
 ( 864 768 352 ) ( 864 656 224 ) ( 864 656 352 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 32
+// entity 31
 {
 "classname" "info_named_marker"
 "origin" "760 744 264"
@@ -959,13 +957,13 @@
 "targetname" "EscapeSequence_SideSecret_CameraAngle"
 "_tb_group" "4"
 }
-// entity 33
+// entity 32
 {
 "classname" "item_gem_green"
 "origin" "692 700 208"
 "_tb_group" "4"
 }
-// entity 34
+// entity 33
 {
 "classname" "wall_x_ray"
 "_tb_group" "4"
@@ -980,7 +978,20 @@
 ( 704 656 336 ) ( 704 608 176 ) ( 704 608 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
+// entity 34
+{
+"classname" "item_basket"
+"origin" "864 528 272"
+"GemColor" "2"
+"_tb_group" "4"
+}
 // entity 35
+{
+"classname" "item_gem_yellow"
+"origin" "812 460 304"
+"_tb_group" "4"
+}
+// entity 36
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1153,7 +1164,7 @@
 ( 576 304 272 ) ( 576 -64 256 ) ( 576 -64 272 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
-// entity 36
+// entity 37
 {
 "classname" "wall_divable"
 "_tb_group" "5"
@@ -1167,7 +1178,7 @@
 ( 640 304 368 ) ( 640 288 304 ) ( 640 288 368 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 }
 }
-// entity 37
+// entity 38
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1220,7 +1231,7 @@
 ( 1088 32 112 ) ( 1088 16 0 ) ( 1088 16 112 ) Textures/ManuallyDrawnPanels -48 0 0 1 1
 }
 }
-// entity 38
+// entity 39
 {
 "classname" "trigger_camera_suggestion_zone"
 "target" "EscapeSequence_ConveyorBeltVista_End_CameraDirection"
@@ -1235,41 +1246,45 @@
 ( 656 -128 336 ) ( 656 -224 176 ) ( 656 -224 336 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 39
+// entity 40
 {
 "classname" "info_named_marker"
 "origin" "600 -184 328"
 "targetname" "EscapeSequence_ConveyorBeltVista_End_CameraDirection"
 "_tb_group" "7"
 }
-// entity 40
-{
-"classname" "item_vase"
-"origin" "608 176 272"
-}
 // entity 41
 {
 "classname" "item_vase"
-"origin" "608 136 272"
+"origin" "608 176 272"
+"GemColor" "5"
 }
 // entity 42
 {
-"classname" "item_basket"
-"origin" "632 40 288"
+"classname" "item_vase"
+"origin" "608 136 272"
+"GemColor" "5"
 }
 // entity 43
 {
 "classname" "item_basket"
-"origin" "632 -24 288"
+"origin" "632 40 288"
+"GemColor" "2"
 }
 // entity 44
+{
+"classname" "item_basket"
+"origin" "632 -24 288"
+"GemColor" "2"
+}
+// entity 45
 {
 "classname" "transport_checkpoint"
 "origin" "0 0 16"
 "CheckpointName" "EscapeSequence"
 "angle" "90"
 }
-// entity 45
+// entity 46
 {
 "classname" "hazard_drowning_water"
 // brush 0
@@ -1282,7 +1297,7 @@
 ( 656 32 0 ) ( 656 -48 -16 ) ( 656 -48 0 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
-// entity 46
+// entity 47
 {
 "classname" "hazard_drowning_water"
 // brush 0
@@ -1295,7 +1310,7 @@
 ( 656 -48 0 ) ( 656 -352 -16 ) ( 656 -352 0 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
-// entity 47
+// entity 48
 {
 "classname" "hazard_drowning_water"
 // brush 0
@@ -1308,7 +1323,7 @@
 ( 1088 752 0 ) ( 1088 752 1 ) ( 1088 753 0 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
-// entity 48
+// entity 49
 {
 "classname" "hazard_drowning_water"
 // brush 0

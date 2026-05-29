@@ -1273,31 +1273,37 @@
 {
 "classname" "item_vase"
 "origin" "152 -136 112"
+"GemColor" "5"
 }
 // entity 16
 {
 "classname" "item_vase"
 "origin" "104 -136 112"
+"GemColor" "5"
 }
 // entity 17
 {
 "classname" "item_vase"
 "origin" "56 -136 112"
+"GemColor" "5"
 }
 // entity 18
 {
 "classname" "item_basket"
 "origin" "344 80 144"
+"GemColor" "2"
 }
 // entity 19
 {
 "classname" "item_basket"
 "origin" "344 40 144"
+"GemColor" "2"
 }
 // entity 20
 {
 "classname" "item_basket"
 "origin" "344 0 144"
+"GemColor" "2"
 }
 // entity 21
 {
