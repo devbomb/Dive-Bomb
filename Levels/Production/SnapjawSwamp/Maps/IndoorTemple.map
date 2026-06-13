@@ -1506,10 +1506,10 @@
 "_tb_group" "7"
 // brush 0
 {
-( 288 128 496 ) ( 320 128 496 ) ( 304 128 512 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( 304 128 512 ) ( 304 80 512 ) ( 304 80 496 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( 304 80 512 ) ( 320 80 496 ) ( 288 80 496 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( 320 80 496 ) ( 320 128 496 ) ( 288 128 496 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 288 128 496 ) ( 320 128 496 ) ( 304 128 512 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( 304 128 512 ) ( 320 128 496 ) ( 320 80 496 ) Textures/SwampGooWaterfall 0 8 0 1 1
 }
 }
@@ -1848,11 +1848,13 @@
 {
 "classname" "item_basket"
 "origin" "280 -12 496"
+"GemColor" "2"
 }
 // entity 71
 {
 "classname" "item_basket"
 "origin" "280 44 496"
+"GemColor" "2"
 }
 // entity 72
 {
@@ -1881,70 +1883,65 @@
 }
 // entity 77
 {
-"classname" "item_gem_green"
-"origin" "252 244 464"
-}
-// entity 78
-{
 "classname" "item_gem_yellow"
 "origin" "276 108 528"
 }
-// entity 79
+// entity 78
 {
 "classname" "item_gem_purple"
 "origin" "260 -92 560"
 }
-// entity 80
+// entity 79
 {
 "classname" "item_gem_purple"
 "origin" "260 -132 560"
 }
-// entity 81
+// entity 80
 {
 "classname" "item_gem_red"
 "origin" "276 -100 528"
 }
-// entity 82
+// entity 81
 {
 "classname" "item_gem_green"
 "origin" "172 -164 528"
 }
-// entity 83
+// entity 82
 {
 "classname" "item_gem_green"
 "origin" "108 -164 528"
 }
-// entity 84
+// entity 83
 {
 "classname" "item_gem_green"
 "origin" "36 -164 528"
 }
-// entity 85
+// entity 84
 {
 "classname" "item_gem_purple"
 "origin" "-28 -164 496"
 }
-// entity 86
+// entity 85
 {
 "classname" "item_gem_yellow"
 "origin" "-68 -164 496"
 }
-// entity 87
+// entity 86
 {
 "classname" "item_gem_purple"
 "origin" "-108 -164 496"
 }
-// entity 88
+// entity 87
 {
 "classname" "item_gem_red"
 "origin" "-292 -172 496"
 }
-// entity 89
+// entity 88
 {
 "classname" "item_gem_red"
 "origin" "-108 212 720"
 }
-// entity 90
+// entity 89
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2012,13 +2009,13 @@
 ( 288 432 352 ) ( 288 416 336 ) ( 288 416 352 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
 }
-// entity 91
+// entity 90
 {
 "classname" "item_fairy"
 "origin" "8 488 576"
 "_tb_group" "9"
 }
-// entity 92
+// entity 91
 {
 "classname" "transport_vent"
 "origin" "-88 424 616"
@@ -2027,7 +2024,7 @@
 "TargetVentId" "SideWallSrc"
 "_tb_group" "9"
 }
-// entity 93
+// entity 92
 {
 "classname" "trigger_camera_suggestion_zone"
 "target" "SideWallSecretCameraDir"
@@ -2042,25 +2039,25 @@
 ( 32 512 656 ) ( 32 416 576 ) ( 32 416 656 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 94
+// entity 93
 {
 "classname" "item_gem_green"
 "origin" "268 428 352"
 "_tb_group" "9"
 }
-// entity 95
+// entity 94
 {
 "classname" "item_gem_purple"
 "origin" "124 428 288"
 "_tb_group" "9"
 }
-// entity 96
+// entity 95
 {
 "classname" "item_gem_red"
 "origin" "156 460 272"
 "_tb_group" "9"
 }
-// entity 97
+// entity 96
 {
 "classname" "item_gem_yellow"
 "origin" "60 444 272"
