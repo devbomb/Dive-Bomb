@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace FastDragon
 {
-    public partial class Gem : CharacterBody3D
+    public partial class Gem : Node3D
     {
         public const float HomingDuration = 0.5f;
         public const float FlameChargeWindowDuration = 0.1f;
@@ -26,6 +26,8 @@ namespace FastDragon
 
         public Area3D CollectionArea => GetNode<Area3D>("%CollectionArea");
 
+        private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast3D");
+
         private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
 
@@ -41,6 +43,8 @@ namespace FastDragon
 
         private Transform3D _initialPos;
         private StateMachine _stateMachine = new StateMachine();
+
+        private Vector3 Velocity;
 
         public override void _Ready()
         {
@@ -134,6 +138,18 @@ namespace FastDragon
             }
         }
 
+        private GodotObject MoveAndCollide(Vector3 motion)
+        {
+            _raycast.TargetPosition = motion;
+            _raycast.ForceRaycastUpdate();
+
+            GlobalPosition = _raycast.IsColliding()
+                ? _raycast.GetCollisionPoint()
+                : GlobalPosition + motion;
+
+            return _raycast.GetCollider();
+        }
+
         private void ChangeState<TState>() where TState : State<Gem>, new()
         {
             _stateMachine.ChangeState<TState>();
@@ -182,7 +198,6 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                SetCollision(true);
                 Self.TouchedGroundOnce = false;
 
                 if (Self.StartHidden)
@@ -190,11 +205,6 @@ namespace FastDragon
                     Self.Velocity = Vector3.Up * RevealJumpVelocity;
                     _flameChargeWindowTimer = FlameChargeWindowDuration;
                 }
-            }
-
-            public override void OnStateExited()
-            {
-                SetCollision(false);
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -205,16 +215,13 @@ namespace FastDragon
                 {
                     Self.Velocity += Vector3.Down * Gravity * delta;
 
-                    var collision = Self.MoveAndCollide(Self.Velocity * delta);
-                    if (collision != null)
+                    var collider = Self.MoveAndCollide(Self.Velocity * delta);
+                    if (collider != null)
                     {
                         Self.Velocity = Vector3.Zero;
 
-                        if (collision.GetCollider() is StaticBody3D)
-                        {
+                        if (collider is StaticBody3D)
                             Self.TouchedGroundOnce = true;
-                            SetCollision(false);
-                        }
                     }
                 }
 
@@ -233,12 +240,6 @@ namespace FastDragon
 
                 if (shouldHomeIn)
                     Self.StartHomingIn();
-            }
-
-            private void SetCollision(bool enabled)
-            {
-                Self.GetNode<CollisionShape3D>("%PhysicsShape")
-                    .SetDeferred("disabled", !enabled);
             }
         }
         private class Homing : State<Gem>

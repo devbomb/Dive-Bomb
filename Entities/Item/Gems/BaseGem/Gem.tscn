@@ -123,14 +123,13 @@ gradient = SubResource("Gradient_oxoe0")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_amq82"]
-radius = 0.25
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_5toey"]
 radius = 2.0
 
-[node name="Gem" type="CharacterBody3D" unique_id=935544874 groups=["Gems", "PhysicsInterpolated"]]
-collision_layer = 4
+[sub_resource type="SphereShape3D" id="SphereShape3D_amq82"]
+radius = 0.25
+
+[node name="Gem" type="Node3D" unique_id=1803750221 groups=["Gems", "PhysicsInterpolated"]]
 script = ExtResource("1_ajgr5")
 
 [node name="VisibleEnabler" type="VisibleOnScreenEnabler3D" parent="." unique_id=275398132]
@@ -167,18 +166,13 @@ transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 no_depth_test = true
 texture = SubResource("GradientTexture2D_mb6km")
 
-[node name="PhysicsShape" type="CollisionShape3D" parent="." unique_id=604992733]
+[node name="FlameChargeArea" type="Area3D" parent="." unique_id=2086847914]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-shape = SubResource("SphereShape3D_amq82")
-disabled = true
-
-[node name="FlameChargeArea" type="Area3D" parent="PhysicsShape" unique_id=2086847914]
-unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsShape/FlameChargeArea" unique_id=824036807]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FlameChargeArea" unique_id=824036807]
 shape = SubResource("SphereShape3D_5toey")
 
 [node name="CollectionArea" type="Area3D" parent="." unique_id=552150192]
@@ -195,5 +189,10 @@ unique_name_in_owner = true
 
 [node name="BlobShadow" parent="." unique_id=1795154328 instance=ExtResource("3_4j54j")]
 radius = 0.25
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=901970328]
+unique_name_in_owner = true
+enabled = false
+hit_from_inside = true
 
 [connection signal="body_entered" from="CollectionArea" to="." method="OnCollectionAreaBodyEntered"]
