@@ -1,0 +1,15 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://y0603qy376jk"
+path="res://.godot/imported/ConveyorBeltTester.map-e08abbbe25ed2a67c33ef9347d5c2b82.tscn"
+
+[deps]
+
+source_file="res://Levels/Debug/ConveyorBeltTester/Maps/ConveyorBeltTester.map"
+dest_files=["res://.godot/imported/ConveyorBeltTester.map-e08abbbe25ed2a67c33ef9347d5c2b82.tscn"]
+
+[params]
+
+texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")

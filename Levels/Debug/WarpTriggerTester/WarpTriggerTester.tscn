@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bky12xra6eerv"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_aji3g"]
-[ext_resource type="PackedScene" uid="uid://bfdh0mbhw1gc2" path="res://DebugLevels/WarpTriggerTester/Maps/WarpTriggerTester_Main.map" id="2_6ofki"]
+[ext_resource type="PackedScene" uid="uid://bfdh0mbhw1gc2" path="res://Levels/Debug/WarpTriggerTester/Maps/WarpTriggerTester_Main.map" id="2_6ofki"]
 
 [sub_resource type="Environment" id="Environment_56eb4"]
 

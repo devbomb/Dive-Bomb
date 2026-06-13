@@ -3,12 +3,12 @@
 importer="func_godot_map_importer"
 type="PackedScene"
 uid="uid://dvox8tojbmggv"
-path="res://.godot/imported/LedgeGrabTester_RampEdgeCase.map-222c332e6a618d2dc13282f5f6ad03b5.tscn"
+path="res://.godot/imported/LedgeGrabTester_RampEdgeCase.map-479ab9614b36bc1dbc975aaf77b6028c.tscn"
 
 [deps]
 
-source_file="res://DebugLevels/LedgeGrabTester/Maps/LedgeGrabTester_RampEdgeCase.map"
-dest_files=["res://.godot/imported/LedgeGrabTester_RampEdgeCase.map-222c332e6a618d2dc13282f5f6ad03b5.tscn"]
+source_file="res://Levels/Debug/LedgeGrabTester/Maps/LedgeGrabTester_RampEdgeCase.map"
+dest_files=["res://.godot/imported/LedgeGrabTester_RampEdgeCase.map-479ab9614b36bc1dbc975aaf77b6028c.tscn"]
 
 [params]
 
