@@ -175,6 +175,21 @@ namespace FastDragon
                 .Any(f => f.FairyId == targetname);
         }
 
+        private Node3D KissPointClosestToCurrentCamPos()
+        {
+            var cam = Player.Camera;
+
+            var rightPoint = Player.FairyKissCamRightPoint;
+            var leftPoint = Player.FairyKissCamLeftPoint;
+
+            Vector3 playerPosCameraSpace = cam.ToLocal(Player.GlobalPosition);
+            Vector3 jarPosCameraSpace = cam.ToLocal(Player.GlobalPosition);
+
+            return playerPosCameraSpace.X > jarPosCameraSpace.X
+                ? leftPoint
+                : rightPoint;
+        }
+
         private class Idle : State<FairyJar>
         {
             public override void OnStateEntered()
@@ -204,9 +219,10 @@ namespace FastDragon
 
         private class Shattering : State<FairyJar>
         {
-            private const float Duration = 2f;
+            private const float MinDuration = 2f;
+            private const float MaxDuration = 2.5f;
             private const float CameraMoveDelay = 1f;
-            private const float CameraMoveDuration = Duration - CameraMoveDelay;
+            private const float CameraMoveDuration = MinDuration - CameraMoveDelay;
             private const float TimeScale = 0.5f;
 
             private static float PlayerJumpSpeed => Player.Jump.InitVSpeed;
@@ -215,12 +231,19 @@ namespace FastDragon
             private Player _player => Self.Player;
 
             private bool _playerLanded;
-            private bool _cameraManhandled;
             private float _timer;
+
+            private CameraState _cameraState;
+            private enum CameraState
+            {
+                FollowingPlayer,
+                Frozen,
+                MovingToTarget,
+            }
 
             public override void OnStateEntered()
             {
-                _cameraManhandled = false;
+                _cameraState = CameraState.FollowingPlayer;
                 _timer = 0;
 
                 // Pause the game (except the player and fairy) during the
@@ -259,58 +282,128 @@ namespace FastDragon
 
                 _timer += delta / (float)Engine.TimeScale;
 
-                ApplyGravityToPlayer(delta);
-                MoveCamera();
-
-                if (_playerLanded && !_player.Animator.IsPlaying() && _timer >= Duration)
-                    ChangeState<FlyingToPlayer>();
-            }
-
-            private void ApplyGravityToPlayer(float delta)
-            {
                 _player.Velocity += Vector3.Down * PlayerGravity * delta;
                 _player.MoveAndSlide();
+                MoveCamera();
 
-                if (_player.IsOnFloor() && !_playerLanded)
+                if (!_playerLanded)
                 {
-                    _playerLanded = true;
-                    _player.Velocity = Vector3.Zero;
-                    Engine.TimeScale = 1;
-                    _player.Animator.PlaySection("ParachuteLand", endTime: 0.75f);
+                    if (_player.IsOnFloor())
+                    {
+                        LandPlayer();
+                    }
+
+                    // Failsafe: if the player is falling for too long, have
+                    // the fairy go rescue them and drop them back off at the
+                    // jar's center point.
+                    if (_timer >= MaxDuration)
+                    {
+                        ChangeState<PanicFlyingToPlayer>();
+                    }
+                }
+                else
+                {
+                    // Move to the next state after the player's landing
+                    // animation has finished
+                    if (!_player.Animator.IsPlaying() && _timer >= MinDuration)
+                    {
+                        ChangeState<FlyingToPlayer>();
+                    }
                 }
             }
 
             private void MoveCamera()
             {
-                if (_timer < CameraMoveDelay)
-                    return;
-
-                if (!_cameraManhandled)
+                switch (_cameraState)
                 {
-                    Self._initialCameraYawRad = _player.Camera.GlobalRotation.Y;
-                    Self._camTarget = KissPointClosestToCurrentCamPos();
+                    case CameraState.FollowingPlayer:
+                    {
+                        if (_timer >= CameraMoveDelay)
+                        {
+                            StartFreezingCamera();
+                        }
+                        break;
+                    }
 
-                    _player.Camera.StartManhandling(CamTargetPos(), CameraMoveDuration);
-                    _cameraManhandled = true;
+                    case CameraState.Frozen:
+                    {
+                        if (_playerLanded)
+                        {
+                            StartMovingCameraToTarget();
+                        }
+                        break;
+                    }
+
+                    case CameraState.MovingToTarget:
+                    {
+                        _player.Camera.ManhandledPosition = CamTargetPos();
+                        break;
+                    }
                 }
-
-                _player.Camera.ManhandledPosition = CamTargetPos();
             }
 
-            private Node3D KissPointClosestToCurrentCamPos()
+            private void LandPlayer()
             {
-                var player = Self.Player;
-                var cam = player.Camera;
+                _playerLanded = true;
+                _player.Velocity = Vector3.Zero;
+                Engine.TimeScale = 1;
+                _player.Animator.PlaySection("ParachuteLand", endTime: 0.75f);
+            }
 
-                var rightPoint = player.FairyKissCamRightPoint;
-                var leftPoint = player.FairyKissCamLeftPoint;
+            private void StartFreezingCamera()
+            {
+                _cameraState = CameraState.Frozen;
+                _player.Camera.StartManhandling(_player.Camera.GlobalTransform);
+            }
 
-                Vector3 playerPosCameraSpace = cam.ToLocal(player.GlobalPosition);
-                Vector3 jarPosCameraSpace = cam.ToLocal(Self.GlobalPosition);
+            private void StartMovingCameraToTarget()
+            {
+                Self._initialCameraYawRad = _player.Camera.GlobalRotation.Y;
+                Self._camTarget = Self.KissPointClosestToCurrentCamPos();
 
-                return playerPosCameraSpace.X > jarPosCameraSpace.X
-                    ? leftPoint
-                    : rightPoint;
+                _player.Camera.StartManhandling(CamTargetPos(), CameraMoveDuration);
+                _cameraState = CameraState.MovingToTarget;
+            }
+
+            private Transform3D CamTargetPos()
+            {
+                var virtuallyRotatedPlayerPos = Transform3D.Identity
+                    .Rotated(Vector3.Up, Self._initialCameraYawRad - Self._camTarget.Rotation.Y)
+                    .Translated(_player.GlobalPosition);
+
+                return virtuallyRotatedPlayerPos * Self._camTarget.Transform;
+            }
+        }
+
+        private class PanicFlyingToPlayer : State<FairyJar>
+        {
+            private Player _player => Self.Player;
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                Self.Animator.Play("PanicFlyAfterPlayer");
+                _timer = Self.Animator.GetAnimation("PanicFlyAfterPlayer").Length;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer -= delta;
+                if (_timer <= 0)
+                {
+                    // Teleport the player back to the jar's position, since we
+                    // know that place is safe.
+                    _player.GlobalPosition = Self.GlobalPosition;
+                    _player.ResetPhysicsInterpolation3D();
+                    _player.Velocity = Vector3.Zero;
+                    _player.Animator.PlaySection("ParachuteLand", endTime: 0.75f);
+
+                    // Resume the kissing cutscene as if nothing weird happened.
+                    Self._initialCameraYawRad = _player.Camera.GlobalRotation.Y;
+                    Self._camTarget = Self.KissPointClosestToCurrentCamPos();
+                    _player.Camera.StartManhandling(CamTargetPos(), 1);
+                    ChangeState<FlyingToPlayer>();
+                }
             }
 
             private Transform3D CamTargetPos()

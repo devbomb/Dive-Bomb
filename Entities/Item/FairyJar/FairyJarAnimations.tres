@@ -4,6 +4,7 @@
 [ext_resource type="Animation" uid="uid://k7kf8ocstec" path="res://Entities/Item/FairyJar/Animations/FlyAwayHigh.tres" id="2_4tudr"]
 [ext_resource type="Animation" uid="uid://bkkdywk7w1lts" path="res://Common/Models/Characters/Fairy/Animations/Hovering.tres" id="3_jkguw"]
 [ext_resource type="Animation" uid="uid://hf6dgodlvx2a" path="res://Entities/Item/FairyJar/Animations/Kiss.tres" id="4_0wnis"]
+[ext_resource type="Animation" uid="uid://crdkvd0frlya3" path="res://Entities/Item/FairyJar/Animations/PanicFlyAfterPlayer.tres" id="5_dsow4"]
 [ext_resource type="Animation" uid="uid://bqoxt8ffx73y2" path="res://Entities/Item/FairyJar/Animations/PoundingOnGlass.tres" id="5_p6rea"]
 [ext_resource type="Animation" uid="uid://dsndbon1o2e2u" path="res://Common/Models/Characters/Fairy/Animations/RESET.tres" id="6_wrev3"]
 [ext_resource type="Animation" uid="uid://cl2jxxp2nidld" path="res://Entities/Item/FairyJar/Animations/Shatter.tres" id="7_wrev3"]
@@ -14,6 +15,7 @@ _data = {
 &"FlyAwayHigh": ExtResource("2_4tudr"),
 &"Hovering": ExtResource("3_jkguw"),
 &"Kiss": ExtResource("4_0wnis"),
+&"PanicFlyAfterPlayer": ExtResource("5_dsow4"),
 &"PoundingOnGlass": ExtResource("5_p6rea"),
 &"RESET": ExtResource("6_wrev3"),
 &"Shatter": ExtResource("7_wrev3")
