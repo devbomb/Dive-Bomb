@@ -69,7 +69,6 @@ metadata/_custom_type_script = "uid://qt3xvtm481hw"
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1090815222]
 stream = ExtResource("2_75h56")
 volume_db = -2.0
-autoplay = true
 bus = &"Music"
 script = ExtResource("3_2okea")
 metadata/_custom_type_script = "uid://du3spb4diyf40"

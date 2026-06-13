@@ -43,13 +43,24 @@ namespace FastDragon.Levels.Tutorial
         private class Playing : State<AgentDIntroCutscene>
         {
             private double _timer;
+            private float _originalMusicVolume;
 
             public override void OnStateEntered()
             {
+                // HACK: Setting the background music volume to 0 instead of
+                // calling Stop() to avoid a conflict with BackgroundMusicPlayer's
+                // delayed-start logic.
+                //
+                // If we were to call Stop() instead, then BackgroundMusicPlayer
+                // would just turn itself back on again after the start delay.
+                //
+                // TODO: Find a better way to orchestrate this.
+                // (Yes, that was a pun.)
+                _originalMusicVolume = Self.BackgroundMusicPlayer.VolumeLinear;
+                Self.BackgroundMusicPlayer.VolumeLinear = 0;
+
                 Self.CutsceneCamera.MakeCurrent();
                 Self.AnimationPlayer.Play("Play");
-                Self.BackgroundMusicPlayer.Stop();
-
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
 
                 var player = GetTree().FindNode<Player>();
@@ -59,6 +70,7 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateExited()
             {
                 Self.AnimationPlayer.Play("RESET");
+                Self.BackgroundMusicPlayer.VolumeLinear = _originalMusicVolume;
 
                 var player = GetTree().FindNode<Player>();
                 player.ChangeState<PlayerWalkState>();
@@ -91,8 +103,13 @@ namespace FastDragon.Levels.Tutorial
             private Player _player;
             private Transform3D _targetPos;
 
+            private float _originalMusicVolume;
+
             public override void OnStateEntered()
             {
+                _originalMusicVolume = Self.BackgroundMusicPlayer.VolumeLinear;
+                Self.BackgroundMusicPlayer.VolumeLinear = 0;
+
                 _player = GetTree().FindNode<Player>();
                 _targetPos = _player.Camera.GlobalTransform;
                 _timer = 0;
@@ -111,6 +128,8 @@ namespace FastDragon.Levels.Tutorial
                 _player.Camera.StartFollowing(0.1f);
                 _player.ChangeState<PlayerWalkState>();
 
+                Self.BackgroundMusicPlayer.VolumeLinear = _originalMusicVolume;
+                Self.BackgroundMusicPlayer.Stop();
                 Self.BackgroundMusicPlayer.Play();
             }
 
