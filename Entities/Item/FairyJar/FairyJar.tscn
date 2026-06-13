@@ -249,6 +249,16 @@ autoplay = &"RESET"
 [node name="BlobShadow" parent="Model/Fairy" unique_id=160702207 instance=ExtResource("5_pebs6")]
 radius = 0.25
 
+[node name="FadeCurtain" type="ColorRect" parent="Model/Fairy" unique_id=278568000]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="HUD" type="Control" parent="." unique_id=2102159801]
 layout_mode = 3
 anchors_preset = 15
