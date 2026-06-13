@@ -44,8 +44,6 @@ namespace FastDragon
         private Transform3D _initialPos;
         private StateMachine _stateMachine = new StateMachine();
 
-        private Vector3 Velocity;
-
         public override void _Ready()
         {
             SaveKey = GenerateSaveKey();
@@ -66,7 +64,6 @@ namespace FastDragon
         public void Reset()
         {
             GlobalTransform = _initialPos;
-            Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
             if (StartHidden || IsCollected)
@@ -184,13 +181,15 @@ namespace FastDragon
             private float _flameChargeWindowTimer = 0;
             private Area3D _flameChargeArea => Self.GetNode<Area3D>("%FlameChargeArea");
 
+            private Vector3 _velocity;
+
             public override void OnStateEntered()
             {
                 Self.TouchedGroundOnce = false;
 
                 if (Self.StartHidden)
                 {
-                    Self.Velocity = Vector3.Up * RevealJumpVelocity;
+                    _velocity = Vector3.Up * RevealJumpVelocity;
                     _flameChargeWindowTimer = FlameChargeWindowDuration;
                 }
             }
@@ -201,12 +200,12 @@ namespace FastDragon
 
                 if (!Self.TouchedGroundOnce)
                 {
-                    Self.Velocity += Vector3.Down * Gravity * delta;
+                    _velocity += Vector3.Down * Gravity * delta;
 
-                    var collider = MoveAndCollide(Self.Velocity * delta);
+                    var collider = MoveAndCollide(_velocity * delta);
                     if (collider != null)
                     {
-                        Self.Velocity = Vector3.Zero;
+                        _velocity = Vector3.Zero;
 
                         if (collider is StaticBody3D)
                             Self.TouchedGroundOnce = true;
