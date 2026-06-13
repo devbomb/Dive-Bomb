@@ -216,12 +216,19 @@ namespace FastDragon
             private Player _player => Self.Player;
 
             private bool _playerLanded;
-            private bool _cameraManhandled;
             private float _timer;
+
+            private CameraState _cameraState;
+            private enum CameraState
+            {
+                FollowingPlayer,
+                Frozen,
+                MovingToTarget,
+            }
 
             public override void OnStateEntered()
             {
-                _cameraManhandled = false;
+                _cameraState = CameraState.FollowingPlayer;
                 _timer = 0;
 
                 // Pause the game (except the player and fairy) during the
@@ -260,47 +267,68 @@ namespace FastDragon
 
                 _timer += delta / (float)Engine.TimeScale;
 
-                ApplyGravityToPlayer(delta);
-                MoveCamera();
-
-                if (!_playerLanded && _timer >= MaxDuration)
-                {
-                    _player.GlobalPosition = Self.GlobalPosition;
-                    _player.ResetPhysicsInterpolation3D();
-                    LandPlayer();
-                }
-
-                if (_playerLanded && !_player.Animator.IsPlaying() && _timer >= MinDuration)
-                {
-                    ChangeState<FlyingToPlayer>();
-                    return;
-                }
-            }
-
-            private void ApplyGravityToPlayer(float delta)
-            {
                 _player.Velocity += Vector3.Down * PlayerGravity * delta;
                 _player.MoveAndSlide();
+                MoveCamera();
 
-                if (_player.IsOnFloor() && !_playerLanded)
-                    LandPlayer();
+                if (!_playerLanded)
+                {
+                    if (_player.IsOnFloor())
+                    {
+                        LandPlayer();
+                    }
+
+                    // Failsafe: if the player is falling for too long, have
+                    // the fairy go rescue them and drop them back off at the
+                    // jar's center point.
+                    //
+                    // TODO: Actually show the rescuing cutscene
+                    if (_timer >= MaxDuration)
+                    {
+                        _player.GlobalPosition = Self.GlobalPosition;
+                        _player.ResetPhysicsInterpolation3D();
+                        LandPlayer();
+                    }
+                }
+                else
+                {
+                    // Move to the next state after the player's landing
+                    // animation has finished
+                    if (!_player.Animator.IsPlaying() && _timer >= MinDuration)
+                    {
+                        ChangeState<FlyingToPlayer>();
+                    }
+                }
             }
 
             private void MoveCamera()
             {
-                if (_timer < CameraMoveDelay)
-                    return;
-
-                if (!_cameraManhandled)
+                switch (_cameraState)
                 {
-                    Self._initialCameraYawRad = _player.Camera.GlobalRotation.Y;
-                    Self._camTarget = KissPointClosestToCurrentCamPos();
+                    case CameraState.FollowingPlayer:
+                    {
+                        if (_timer >= CameraMoveDelay)
+                        {
+                            StartFreezingCamera();
+                        }
+                        break;
+                    }
 
-                    _player.Camera.StartManhandling(CamTargetPos(), CameraMoveDuration);
-                    _cameraManhandled = true;
+                    case CameraState.Frozen:
+                    {
+                        if (_playerLanded)
+                        {
+                            StartMovingCameraToTarget();
+                        }
+                        break;
+                    }
+
+                    case CameraState.MovingToTarget:
+                    {
+                        _player.Camera.ManhandledPosition = CamTargetPos();
+                        break;
+                    }
                 }
-
-                _player.Camera.ManhandledPosition = CamTargetPos();
             }
 
             private void LandPlayer()
@@ -309,6 +337,21 @@ namespace FastDragon
                 _player.Velocity = Vector3.Zero;
                 Engine.TimeScale = 1;
                 _player.Animator.PlaySection("ParachuteLand", endTime: 0.75f);
+            }
+
+            private void StartFreezingCamera()
+            {
+                _cameraState = CameraState.Frozen;
+                _player.Camera.StartManhandling(_player.Camera.GlobalTransform);
+            }
+
+            private void StartMovingCameraToTarget()
+            {
+                Self._initialCameraYawRad = _player.Camera.GlobalRotation.Y;
+                Self._camTarget = KissPointClosestToCurrentCamPos();
+
+                _player.Camera.StartManhandling(CamTargetPos(), CameraMoveDuration);
+                _cameraState = CameraState.MovingToTarget;
             }
 
             private Node3D KissPointClosestToCurrentCamPos()
