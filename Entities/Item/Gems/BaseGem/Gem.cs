@@ -138,18 +138,6 @@ namespace FastDragon
             }
         }
 
-        private GodotObject MoveAndCollide(Vector3 motion)
-        {
-            _raycast.TargetPosition = motion;
-            _raycast.ForceRaycastUpdate();
-
-            GlobalPosition = _raycast.IsColliding()
-                ? _raycast.GetCollisionPoint()
-                : GlobalPosition + motion;
-
-            return _raycast.GetCollider();
-        }
-
         private void ChangeState<TState>() where TState : State<Gem>, new()
         {
             _stateMachine.ChangeState<TState>();
@@ -215,7 +203,7 @@ namespace FastDragon
                 {
                     Self.Velocity += Vector3.Down * Gravity * delta;
 
-                    var collider = Self.MoveAndCollide(Self.Velocity * delta);
+                    var collider = MoveAndCollide(Self.Velocity * delta);
                     if (collider != null)
                     {
                         Self.Velocity = Vector3.Zero;
@@ -230,6 +218,18 @@ namespace FastDragon
                     _flameChargeWindowTimer -= delta;
                     HomeInIfPlayerChargingNearby();
                 }
+            }
+
+            private GodotObject MoveAndCollide(Vector3 motion)
+            {
+                Self._raycast.TargetPosition = motion;
+                Self._raycast.ForceRaycastUpdate();
+
+                Self.GlobalPosition = Self._raycast.IsColliding()
+                    ? Self._raycast.GetCollisionPoint()
+                    : Self.GlobalPosition + motion;
+
+                return Self._raycast.GetCollider();
             }
 
             private void HomeInIfPlayerChargingNearby()
