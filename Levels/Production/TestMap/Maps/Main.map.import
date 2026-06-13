@@ -1,0 +1,15 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://bdshm0cut77ja"
+path="res://.godot/imported/Main.map-f22dca9126f458dbda3d944fd5007479.tscn"
+
+[deps]
+
+source_file="res://Levels/Production/TestMap/Maps/Main.map"
+dest_files=["res://.godot/imported/Main.map-f22dca9126f458dbda3d944fd5007479.tscn"]
+
+[params]
+
+texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")

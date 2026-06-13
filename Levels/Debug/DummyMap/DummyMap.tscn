@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://jfal51r4dflw"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_210mw"]
+[ext_resource type="PackedScene" uid="uid://cf2tkkwvrpta4" path="res://Levels/Debug/DummyMap/Maps/DummyMap.map" id="2_a3wjm"]
+[ext_resource type="Environment" uid="uid://bhamu4vflo38l" path="res://Levels/Debug/DummyMap/Skybox.tres" id="2_nb5xh"]
+
+[node name="DummyMap" type="Node3D" unique_id=386259113]
+script = ExtResource("1_210mw")
+LevelName = "Dummy Map"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
+metadata/_custom_type_script = "uid://qt3xvtm481hw"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1802753886]
+environment = ExtResource("2_nb5xh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=298598374]
+transform = Transform3D(0.481595, -0.220924, 0.848091, -0.230959, 0.901504, 0.365989, -0.845413, -0.372133, 0.383136, 0, 5.02909, 0)
+light_color = Color(0.772549, 0.772549, 0.823529, 1)
+
+[node name="DummyMap" parent="." unique_id=1913042064 instance=ExtResource("2_a3wjm")]

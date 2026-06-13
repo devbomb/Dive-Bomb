@@ -1,0 +1,473 @@
+[gd_scene format=3 uid="uid://btejrg27q3lyj"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
+[ext_resource type="AudioStream" uid="uid://b1koi60nf7f5x" path="res://Common/Audio/Music/SneakyD.mp3" id="2_alo6x"]
+[ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Levels/Production/BrokenGlassFactory/Skybox.tres" id="2_eipfg"]
+[ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Production/Tutorial/Maps/Intro.map" id="2_vwhqw"]
+[ext_resource type="PackedScene" uid="uid://btlc2kyid5u56" path="res://Levels/Production/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
+[ext_resource type="PackedScene" uid="uid://fwwegib0064k" path="res://Levels/Production/Tutorial/AgentDIntroCutscene/AgentDIntroCutscene.tscn" id="3_kb7u2"]
+[ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="4_uhvqi"]
+[ext_resource type="Script" uid="uid://d2ars665qqq5j" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="5_uhvqi"]
+[ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="6_p8bxm"]
+[ext_resource type="PackedScene" uid="uid://cyxbyv7xju8b" path="res://Levels/Production/Tutorial/Maps/RollTut.map" id="8_i3mr3"]
+[ext_resource type="Script" uid="uid://bjrp7gxeg424r" path="res://UI/Widgets/TutorialPopup.cs" id="8_sob3p"]
+[ext_resource type="PackedScene" uid="uid://dbo5v5bk2jxh7" path="res://Levels/Production/Tutorial/Maps/KickTut.map" id="8_yrnv4"]
+[ext_resource type="Script" uid="uid://brhva0ikdmdcl" path="res://Entities/Info/NamedMarker/NamedMarker3D.cs" id="10_ipotd"]
+[ext_resource type="PackedScene" uid="uid://dord22pbbqflm" path="res://Levels/Production/Tutorial/Maps/FairyRoom.map" id="11_r652i"]
+[ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="12_myhx6"]
+[ext_resource type="PackedScene" uid="uid://c5lrjwtowen30" path="res://Levels/Production/Tutorial/Maps/DrMonocleSpeech.map" id="13_myhx6"]
+[ext_resource type="PackedScene" uid="uid://c3u21ynxwsxm" path="res://Levels/Production/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutsceneRig.tscn" id="15_ym3l3"]
+[ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="18_83vbk"]
+[ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="19_alo6x"]
+[ext_resource type="AudioStream" uid="uid://cdngy66jdcxa8" path="res://Common/Audio/Music/HijinxEscape.mp3" id="20_lu0qh"]
+[ext_resource type="PackedScene" uid="uid://8olwn3dceknl" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro.map" id="21_25uee"]
+[ext_resource type="PackedScene" uid="uid://ca8eufje1x6kj" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map" id="22_35ubr"]
+[ext_resource type="PackedScene" uid="uid://xbfqw7b50i7q" path="res://Levels/Production/Tutorial/Maps/Tutorial_LevelExitCannon.map" id="23_35ubr"]
+[ext_resource type="PackedScene" uid="uid://be0os0an84mx4" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_TimeWaster.map" id="24_3lrk0"]
+[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier.cs" id="24_oop8w"]
+[ext_resource type="PackedScene" uid="uid://mdchoptoqq8n" path="res://Levels/Production/Tutorial/TwoFactorAuthCutscene/TwoFactorAuthCutsceneRig.tscn" id="25_smxar"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lu0qh"]
+clip_count = 2
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("2_alo6x")
+clip_0/auto_advance = 0
+clip_1/name = &"Escape"
+clip_1/stream = ExtResource("20_lu0qh")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}
+
+[sub_resource type="Texture2D" id="Texture2D_p8bxm"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "Jump"
+show_mode = 2
+force_type = 2
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_uhvqi"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "Jump"
+show_mode = 1
+force_type = 1
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="LabelSettings" id="LabelSettings_i3mr3"]
+font = ExtResource("6_p8bxm")
+
+[sub_resource type="Texture2D" id="Texture2D_lu0qh"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "RightStickLeft"
+show_mode = 2
+force_type = 2
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_r6tbe"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "mouse/middle"
+show_mode = 1
+force_type = 1
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_sob3p"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "RecenterCamera"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_yrnv4"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "Kick"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Texture2D" id="Texture2D_ipotd"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("5_uhvqi")
+path = "Roll"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"
+
+[sub_resource type="Curve3D" id="Curve3D_r652i"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.508234, -1.3115921, 0, 0, 0, 0, 0, 0, 0, -1.6243439, -0.16095734, 8.186096, 0, 0, 0, 0, 0, 0, -10.57838, 0.78362656, 8.339798, 0, 0, 0, 0, 0, 0, -21.399115, 5.4380817, 7.938423, 0, 0, 0, 0, 0, 0, -22.044418, 8.144985, 5.1710205, 0, 0, 0, 0, 0, 0, -21.748394, 10.5003395, 7.2759247, 0, 0, 0, 0, 0, 0, -20.05691, 10.8202095, 9.365295, 0, 0, 0, 0, 0, 0, -11.5257, 12.725849, 9.179459, 0, 0, 0, 0, 0, 0, -0.39034653, 11.44294, 9.220413, 0, 0, 0, 0, 0, 0, 0.30298996, 13.386158, 0.8794708, 0, 0, 0, 0, 0, 0, -0.91290474, 10.316654, -4.7459335, 0, 0, 0, 0, 0, 0, 0.15610313, 10.281395, -23.085152, 0, 0, 0, 0, 0, 0, -3.0328674, 11.018265, -29.024315),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 13
+
+[sub_resource type="FontVariation" id="FontVariation_lu0qh"]
+base_font = ExtResource("19_alo6x")
+variation_embolden = 1.09
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6tbe"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_25uee"]
+material = SubResource("StandardMaterial3D_r6tbe")
+text = "SELF DESTRUCT"
+font = SubResource("FontVariation_lu0qh")
+font_size = 44
+curve_step = 10.0
+
+[sub_resource type="TextMesh" id="TextMesh_35ubr"]
+material = SubResource("StandardMaterial3D_r6tbe")
+text = "DO NOT PRESS"
+font = SubResource("FontVariation_lu0qh")
+font_size = 44
+curve_step = 10.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3lrk0"]
+
+[node name="Tutorial" type="Node3D" unique_id=1133266737]
+script = ExtResource("1_vo1h1")
+LevelName = "Tutorial"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
+ForbidExitLevel = true
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=866248481]
+stream = SubResource("AudioStreamInteractive_lu0qh")
+volume_db = -4.706
+bus = &"Music"
+script = ExtResource("18_83vbk")
+metadata/_custom_type_script = "uid://du3spb4diyf40"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=785414872]
+environment = ExtResource("2_eipfg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1551812567]
+transform = Transform3D(-0.9965584, 0.030449376, -0.077098645, -0.038427416, 0.65441513, 0.75515836, 0.07344863, 0.75552213, -0.6509928, -16.4758, 8.46741, 21.1995)
+shadow_opacity = 0.55
+shadow_blur = 10.0
+sky_mode = 1
+
+[node name="Backwards" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=585396047]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+light_energy = 0.4
+light_bake_mode = 1
+sky_mode = 1
+
+[node name="Intro" parent="." unique_id=985666460 instance=ExtResource("2_vwhqw")]
+
+[node name="AgentDIntroCutscene" parent="Intro" unique_id=303769610 node_paths=PackedStringArray("BackgroundMusicPlayer") instance=ExtResource("3_kb7u2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -7.5, 2.3)
+BackgroundMusicPlayer = NodePath("../../BackgroundMusicPlayer")
+
+[node name="JumpTutorialPopup" type="PanelContainer" parent="Intro" unique_id=1020884806]
+visible = false
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+targetname = "JumpTutorialTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Intro/JumpTutorialPopup" unique_id=31726207]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Icons" type="Control" parent="Intro/JumpTutorialPopup/HBoxContainer" unique_id=594744529]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="ControllerIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons" unique_id=1907303650]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_p8bxm")
+expand_mode = 1
+
+[node name="KeyboardIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons" unique_id=1824947049]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 3.0
+offset_right = 25.0
+offset_bottom = 48.0
+size_flags_vertical = 4
+texture = SubResource("Texture2D_uhvqi")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Intro/JumpTutorialPopup/HBoxContainer" unique_id=2051868149]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Jump"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="CameraTut" parent="." unique_id=344728991 instance=ExtResource("3_3rttw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 35)
+
+[node name="CameraTutorialPopup" type="PanelContainer" parent="CameraTut" unique_id=1890178206]
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+targetname = "CameraTutorialTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CameraTut/CameraTutorialPopup" unique_id=141089509]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Icons" type="Control" parent="CameraTut/CameraTutorialPopup/HBoxContainer" unique_id=299107657]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="ControllerIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons" unique_id=323358392]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_lu0qh")
+expand_mode = 1
+
+[node name="KeyboardIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons" unique_id=729697371]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 3.0
+offset_right = 25.0
+offset_bottom = 48.0
+size_flags_vertical = 4
+texture = SubResource("Texture2D_r6tbe")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CameraTut/CameraTutorialPopup/HBoxContainer" unique_id=287635632]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Move Camera"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="KickTut" parent="." unique_id=843913111 instance=ExtResource("8_yrnv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 13, 37)
+
+[node name="RecenterCameraTutorialPopup" type="PanelContainer" parent="KickTut" unique_id=326366864]
+visible = false
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+targetname = "RecenterCameraTutorialTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/RecenterCameraTutorialPopup" unique_id=1356391317]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer" unique_id=67715824]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_sob3p")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer" unique_id=2107237578]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Recenter Camera"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="KickTutorialPopup" type="PanelContainer" parent="KickTut" unique_id=35792725]
+visible = false
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+targetname = "KickTutorialPopupTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/KickTutorialPopup" unique_id=138775688]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="KickTut/KickTutorialPopup/HBoxContainer" unique_id=805427505]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_yrnv4")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="KickTut/KickTutorialPopup/HBoxContainer" unique_id=1274254823]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Kick"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="RollTut" parent="." unique_id=449101991 instance=ExtResource("8_i3mr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 13, 27)
+
+[node name="RollTutorialPopup" type="PanelContainer" parent="RollTut" unique_id=1382017440]
+visible = false
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_uhvqi")
+script = ExtResource("8_sob3p")
+targetname = "RollTutorialPopupTrigger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RollTut/RollTutorialPopup" unique_id=1643180887]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="RollTut/RollTutorialPopup/HBoxContainer" unique_id=900111991]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("Texture2D_ipotd")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="RollTut/RollTutorialPopup/HBoxContainer" unique_id=1010017696]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Roll"
+label_settings = SubResource("LabelSettings_i3mr3")
+vertical_alignment = 1
+
+[node name="FairyRoomWindowCameraSpot" type="Marker3D" parent="RollTut" unique_id=523505177]
+transform = Transform3D(-5.9604645e-08, 0.5, -0.8660254, 0, 0.8660254, 0.5, 1, 2.9802322e-08, -5.1619136e-08, 32, 15, -15)
+script = ExtResource("10_ipotd")
+targetname = "FairyRoomWindowCameraSpot"
+
+[node name="FairyRoom" parent="." unique_id=980630942 instance=ExtResource("11_r652i")]
+transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 94, 11, 8.999999)
+
+[node name="FairyEscapeCameraAngle1" type="Marker3D" parent="FairyRoom" unique_id=226337159]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 23, 3.9999995)
+script = ExtResource("10_ipotd")
+targetname = "FairyEscapeCameraAngle1"
+
+[node name="FairyEscapeCameraAngle2" type="Marker3D" parent="FairyRoom" unique_id=30543330]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7, 21, -1)
+script = ExtResource("10_ipotd")
+targetname = "FairyEscapeCameraAngle2"
+
+[node name="FairyGuidePath" type="Path3D" parent="FairyRoom" unique_id=1544981381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.109985, 11, -1.9642868)
+curve = SubResource("Curve3D_r652i")
+
+[node name="FairyGuide" parent="FairyRoom/FairyGuidePath" unique_id=854508253 node_paths=PackedStringArray("Path") instance=ExtResource("12_myhx6")]
+transform = Transform3D(-0.99083304, 0, 0.13509221, 0, 1, 0, -0.13509223, 0, -0.9908329, -0.508234, -1.3115921, 0)
+FairyId = "TutorialFairy"
+Path = NodePath("..")
+VanishWhenFinished = true
+
+[node name="DrMonocleSpeech" parent="." unique_id=1080985656 instance=ExtResource("13_myhx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146, 30, 15)
+
+[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" unique_id=201296875 node_paths=PackedStringArray("MusicPlayer") instance=ExtResource("15_ym3l3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27.539627, 5.927231, 0.35410118)
+targetname = "DrMonocleIntroSpeechCutscene"
+MusicPlayer = NodePath("../../BackgroundMusicPlayer")
+
+[node name="SelfDestructLabel" type="MeshInstance3D" parent="DrMonocleSpeech" unique_id=404275454]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.985016, 5.013607, 7.5155544)
+mesh = SubResource("TextMesh_25uee")
+
+[node name="SelfDestructLabel2" type="MeshInstance3D" parent="DrMonocleSpeech" unique_id=229053240]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.985016, 1.7752533, 7.5155544)
+mesh = SubResource("TextMesh_35ubr")
+
+[node name="Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro" parent="." unique_id=560406799 instance=ExtResource("21_25uee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 30, 10)
+
+[node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." unique_id=651646982 instance=ExtResource("22_35ubr")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 154, 41, 84)
+
+[node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" unique_id=1947806612 instance=ExtResource("25_smxar")]
+DoorTargetname = "Door_EscapeSequence_2FA_Joke"
+
+[node name="Tutorial_LevelExitCannon" parent="." unique_id=1717697475 instance=ExtResource("23_35ubr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 79.5, 59, 19)
+
+[node name="Tutorial_EscapeSequence_TimeWaster" parent="." unique_id=578281209 instance=ExtResource("24_3lrk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176, 40, 66)
+
+[node name="DeathBarrier" type="Area3D" parent="." unique_id=1480197564]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("24_oop8w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier" unique_id=1107535782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151, -33.42801, 154.5)
+shape = SubResource("WorldBoundaryShape3D_3lrk0")

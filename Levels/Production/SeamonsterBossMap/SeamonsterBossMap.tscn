@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://ch833aopuetgq"]
+
+[ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="1_0rosg"]
+[ext_resource type="Environment" uid="uid://dlxgq3rap7tto" path="res://Levels/Production/SeamonsterBossMap/Skybox.tres" id="1_8ndpr"]
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_fdoft"]
+[ext_resource type="AudioStream" uid="uid://buhcg4rjjdwrr" path="res://Levels/Production/SeamonsterBossMap/SmackinDaKrackenMusic.mp3" id="2_75h56"]
+[ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="3_2okea"]
+[ext_resource type="PackedScene" uid="uid://owogqmxu21du" path="res://Levels/Production/SeamonsterBossMap/KrackenPlatform.glb" id="4_78ou1"]
+[ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Entities/Info/NamedMarker/NamedMarker3D.tscn" id="4_elxet"]
+[ext_resource type="PackedScene" uid="uid://btcofpq2vamxe" path="res://Entities/Item/PowerOrb/PowerOrb.tscn" id="5_6lj42"]
+[ext_resource type="Script" uid="uid://c4dmx1el10jag" path="res://Entities/Hazard/DrowningWater.cs" id="5_ps4q3"]
+[ext_resource type="PackedScene" uid="uid://u1dg26oq81vl" path="res://Entities/Boss/Kracken/SeamonsterBoss.tscn" id="5_pv6rf"]
+[ext_resource type="PackedScene" uid="uid://cyfwcwip8ncw0" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.tscn" id="8_xrhf0"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1mwof"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6g4jw"]
+noise_type = 0
+domain_warp_frequency = -0.09
+domain_warp_fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hf4iv"]
+resource_local_to_scene = true
+width = 1000
+height = 1000
+noise = SubResource("FastNoiseLite_6g4jw")
+seamless = true
+as_normal_map = true
+bump_strength = 18.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7bj12"]
+transparency = 1
+blend_mode = 3
+normal_enabled = true
+normal_scale = -0.64
+normal_texture = SubResource("NoiseTexture2D_hf4iv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vttnq"]
+resource_local_to_scene = true
+next_pass = SubResource("StandardMaterial3D_7bj12")
+albedo_color = Color(0.130906, 0.460047, 0.430048, 1)
+roughness = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_hf4iv")
+rim_enabled = true
+anisotropy = 0.28
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.7
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gcvk4"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="GDScript" id="GDScript_awg70"]
+script/source = "extends MeshInstance3D
+
+@export var scroll_speed: float = 0.005
+
+func _process(delta):
+	material_override.uv1_offset.y += scroll_speed * delta
+	material_override.next_pass.uv1_offset.x -= scroll_speed * delta
+"
+
+[node name="SeamonsterBossMap" type="Node3D" unique_id=219549244]
+script = ExtResource("1_fdoft")
+LevelName = "Smackin' Da Kracken"
+HomeWorldLevel = "uid://muwxx8ltp1ss"
+metadata/_custom_type_script = "uid://qt3xvtm481hw"
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1090815222]
+stream = ExtResource("2_75h56")
+volume_db = -2.0
+autoplay = true
+bus = &"Music"
+script = ExtResource("3_2okea")
+metadata/_custom_type_script = "uid://du3spb4diyf40"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1396556757]
+environment = ExtResource("1_8ndpr")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1480412042]
+transform = Transform3D(1, 0, 0, 0, 0.799884, 0.600155, 0, -0.600155, 0.799884, 0, 15.6251, 0)
+
+[node name="Player" parent="." unique_id=66031686 instance=ExtResource("1_0rosg")]
+
+[node name="KrackenPlatform" parent="." unique_id=1803315975 instance=ExtResource("4_78ou1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="WaterTrigger" type="Area3D" parent="." unique_id=658331543]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("5_ps4q3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterTrigger" unique_id=1093026286]
+shape = SubResource("WorldBoundaryShape3D_1mwof")
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=402994323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_override = SubResource("StandardMaterial3D_vttnq")
+mesh = SubResource("PlaneMesh_gcvk4")
+script = SubResource("GDScript_awg70")
+
+[node name="SeamonsterBoss" parent="." unique_id=1769401907 node_paths=PackedStringArray("AcidSplashesCameraPoint", "InitialSpawnPoint", "CameraFixPoint", "SpawnPoints", "PowerOrbs") instance=ExtResource("5_pv6rf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -8.5)
+AcidSplashesCameraPoint = NodePath("../AcidSplashesCameraPos")
+InitialSpawnPoint = NodePath("../BossNorthSpawn")
+CameraFixPoint = NodePath("../FixedCameraPos")
+SpawnPoints = [NodePath("../BossNorthSpawn"), NodePath("../BossWestSpawn"), NodePath("../BossEastSpawn")]
+PowerOrbs = [NodePath("../PowerOrbs/North"), NodePath("../PowerOrbs/South"), NodePath("../PowerOrbs/East"), NodePath("../PowerOrbs/West"), NodePath("../PowerOrbs/Center")]
+SubmergeDepth = -15.0
+
+[node name="BossNorthSpawn" type="Marker3D" parent="." unique_id=87998958]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1, -8.5)
+
+[node name="BossWestSpawn" type="Marker3D" parent="." unique_id=1146636821]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.5, -1, 0)
+
+[node name="BossEastSpawn" type="Marker3D" parent="." unique_id=212035632]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.5, -1, 0)
+
+[node name="FixedCameraPos" parent="." unique_id=1192646860 instance=ExtResource("4_elxet")]
+transform = Transform3D(1, 0, 0, 0, 0.910294, 0.413963, 0, -0.413963, 0.910294, 0, 7.46817, 12.7544)
+targetname = "FixedCameraPos"
+
+[node name="PowerOrbs" type="Node3D" parent="." unique_id=1973700938]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="North" parent="PowerOrbs" unique_id=72360317 instance=ExtResource("5_6lj42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
+
+[node name="South" parent="PowerOrbs" unique_id=1932811307 instance=ExtResource("5_6lj42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6)
+
+[node name="East" parent="PowerOrbs" unique_id=234848124 instance=ExtResource("5_6lj42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0)
+
+[node name="West" parent="PowerOrbs" unique_id=1431287016 instance=ExtResource("5_6lj42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
+
+[node name="Center" parent="PowerOrbs" unique_id=1478129602 instance=ExtResource("5_6lj42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="BlobShadow" parent="PowerOrbs/Center" index="2" unique_id=792488946 node_paths=PackedStringArray("ignore_bodies")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+ignore_bodies = [NodePath(".."), NodePath("../../../Player")]
+
+[node name="AcidSplashesCameraPos" type="Marker3D" parent="." unique_id=588301228]
+transform = Transform3D(1, 0, 0, 0, 0.463296, 0.886204, 0, -0.886204, 0.463296, 0, 16.596, 7.367)
+
+[node name="LevelExitCanon" parent="." unique_id=503154519 instance=ExtResource("8_xrhf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.435)
+StartHidden = true
+
+[connection signal="Defeated" from="SeamonsterBoss" to="LevelExitCanon" method="Reveal"]
+[connection signal="LastHitDealt" from="SeamonsterBoss" to="BackgroundMusicPlayer" method="stop"]
+
+[editable path="PowerOrbs/Center"]
+[editable path="PowerOrbs/Center/Model/Model"]
