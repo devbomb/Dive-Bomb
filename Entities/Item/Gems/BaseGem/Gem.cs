@@ -5,6 +5,7 @@ namespace FastDragon
 {
     public partial class Gem : Node3D
     {
+        public const float HomeInOnRevealRadius = 2f;
         public const float HomingDuration = 0.5f;
         public const float FlameChargeWindowDuration = 0.1f;
         public const float RevealJumpVelocity = 10;
@@ -83,8 +84,18 @@ namespace FastDragon
         /// </summary>
         public void Reveal()
         {
-            if (!IsCollected)
-                ChangeState<Revealed>();
+            if (IsCollected)
+                return;
+
+            // If the player is close enough, automatically home in on them.
+            var player = GetTree().FindNode<Player>();
+            if (player.GlobalPosition.DistanceTo(GlobalPosition) < HomeInOnRevealRadius)
+            {
+                StartHomingIn();
+                return;
+            }
+
+            ChangeState<Revealed>();
         }
 
         public void StartHomingIn()
@@ -178,9 +189,6 @@ namespace FastDragon
         }
         private class Revealed : State<Gem>
         {
-            private float _flameChargeWindowTimer = 0;
-            private Area3D _flameChargeArea => Self.GetNode<Area3D>("%FlameChargeArea");
-
             private Vector3 _velocity;
 
             public override void OnStateEntered()
@@ -190,7 +198,6 @@ namespace FastDragon
                 if (Self.StartHidden)
                 {
                     _velocity = Vector3.Up * RevealJumpVelocity;
-                    _flameChargeWindowTimer = FlameChargeWindowDuration;
                 }
             }
 
@@ -211,12 +218,6 @@ namespace FastDragon
                             Self.TouchedGroundOnce = true;
                     }
                 }
-
-                if (_flameChargeWindowTimer > 0)
-                {
-                    _flameChargeWindowTimer -= delta;
-                    HomeInIfPlayerChargingNearby();
-                }
             }
 
             private GodotObject MoveAndCollide(Vector3 motion)
@@ -229,16 +230,6 @@ namespace FastDragon
                     : Self.GlobalPosition + motion;
 
                 return Self._raycast.GetCollider();
-            }
-
-            private void HomeInIfPlayerChargingNearby()
-            {
-                bool shouldHomeIn = _flameChargeArea
-                    .GetOverlappingBodies()
-                    .Any(n => n is Player);
-
-                if (shouldHomeIn)
-                    Self.StartHomingIn();
             }
         }
         private class Homing : State<Gem>
