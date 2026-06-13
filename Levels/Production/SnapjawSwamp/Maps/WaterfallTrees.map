@@ -1037,6 +1037,7 @@
 ( -96 -184 -656 ) ( -128 -264 -656 ) ( -96 -264 -656 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( -96 -184 224 ) ( -128 -264 224 ) ( -128 -184 224 ) Textures/SwampGooWaterfall 120.00008 376.0001 90.00001 1 1
 ( -96 -200 224 ) ( -128 -200 32 ) ( -96 -200 32 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( -96 -248 208 ) ( -112 -248 224 ) ( -112 -120 224 ) Textures/SwampGooWaterfall 120.00008 376.0001 0 1 1
 ( -96 -184 224 ) ( -96 -264 32 ) ( -96 -264 224 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
@@ -1500,7 +1501,7 @@
 ( -24 -624 64 ) ( -24 -616 48 ) ( -24 -616 64 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( 8 -624 64 ) ( -24 -624 48 ) ( -24 -624 64 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( 8 -616 -672 ) ( -24 -624 -672 ) ( 8 -624 -672 ) Textures/SwampGooWaterfall 0 0 0 1 1
-( 8 -616 56 ) ( -24 -624 56 ) ( -24 -616 56 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 8 -624 56 ) ( 8 -616 48 ) ( 136 -616 48 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( 8 -616 64 ) ( -24 -616 48 ) ( 8 -616 48 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( 8 -616 64 ) ( 8 -624 48 ) ( 8 -624 64 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
