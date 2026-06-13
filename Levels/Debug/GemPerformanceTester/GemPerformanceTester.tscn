@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://kxxxlfdjm7fo"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_ogvih"]
+[ext_resource type="PackedScene" uid="uid://cdoj1dcmhvncg" path="res://Levels/Debug/GemPerformanceTester/Maps/GemPerformanceTester.map" id="2_a2joa"]
+
+[sub_resource type="Environment" id="Environment_a2joa"]
+
+[node name="GemPerformanceTester" type="Node3D" unique_id=740124905]
+script = ExtResource("1_ogvih")
+
+[node name="GemPerformanceTester" parent="." unique_id=1685191605 instance=ExtResource("2_a2joa")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=582974856]
+environment = SubResource("Environment_a2joa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=21997925]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
