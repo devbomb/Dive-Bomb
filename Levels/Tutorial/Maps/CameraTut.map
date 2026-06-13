@@ -338,9 +338,8 @@
 }
 // entity 11
 {
-"classname" "item_basket"
+"classname" "item_gem_green"
 "origin" "432 -104 48"
-"GemColor" "2"
 }
 // entity 12
 {
