@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bblaudntyqelm" path="res://Entities/Boss/Kracken/Kracken.glb" id="4_veo1p"]
 [ext_resource type="AudioStream" uid="uid://d2kc2km8ub83h" path="res://Entities/Boss/Kracken/SFX/SubmergeSplash.wav" id="5_itbdy"]
 [ext_resource type="AudioStream" uid="uid://dte4h5guyotpq" path="res://Common/Audio/SFX/GenericKill.wav" id="6_hydh4"]
-[ext_resource type="AudioStream" uid="uid://2xfnefr7fx6n" path="res://Levels/SeamonsterBossMap/KrackenVictory.mp3" id="7_1d4w6"]
+[ext_resource type="AudioStream" uid="uid://2xfnefr7fx6n" path="res://Levels/Production/SeamonsterBossMap/KrackenVictory.mp3" id="7_1d4w6"]
 [ext_resource type="PackedScene" uid="uid://bu8mmnh1cn5nb" path="res://Entities/Boss/Kracken/KrackenSplashTentacle/KrackenSplashTentacle.tscn" id="11_jhv2y"]
 [ext_resource type="Script" uid="uid://bxofpirbehc57" path="res://Common/Components/SimpleParticles.cs" id="12_0irsb"]
 [ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="14_86hx1"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://c4he06nhgpthi"
+path="res://.godot/imported/WaterfallTrees.map-455724c28c9658ff192f6b43ea54cfcd.tscn"
+
+[deps]
+
+source_file="res://Levels/Production/SnapjawSwamp/Maps/WaterfallTrees.map"
+dest_files=["res://.godot/imported/WaterfallTrees.map-455724c28c9658ff192f6b43ea54cfcd.tscn"]
+
+[params]
+
+texture_material_map=Resource("uid://b14jplhtk3wpt", "res://Levels/Production/SnapjawSwamp/SnapjawSwampMaterialMap.tres")

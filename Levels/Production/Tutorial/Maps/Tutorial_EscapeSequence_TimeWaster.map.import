@@ -1,0 +1,15 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://be0os0an84mx4"
+path="res://.godot/imported/Tutorial_EscapeSequence_TimeWaster.map-03df7c19becf3563017c1df2d43555c0.tscn"
+
+[deps]
+
+source_file="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_TimeWaster.map"
+dest_files=["res://.godot/imported/Tutorial_EscapeSequence_TimeWaster.map-03df7c19becf3563017c1df2d43555c0.tscn"]
+
+[params]
+
+texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Production/Tutorial/Maps/TutorialMaterialMap.tres")

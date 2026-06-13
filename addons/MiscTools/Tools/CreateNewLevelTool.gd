@@ -4,11 +4,17 @@ class_name CreateNewLevelTool extends MiscTool
 func get_text() -> String: return "Create new level"
 
 func execute() -> void:
-	var level_id: String = await MiscTools.prompt_string("Enter a level id(no spaces)")
+	var prompt_result: Dictionary = await _prompt_level_id()
+	var level_id: String = prompt_result["level_id"]
+	var debug: bool = prompt_result["debug"]
+	
 	if (level_id.is_empty()):
 		return
 	
-	_create_new_level(level_id, "res://Levels")
+	var folder = \
+		"res://Levels/Debug" if debug else \
+		"res://Levels/Production"
+	_create_new_level(level_id, folder)
 	
 func _create_new_level(level_id: String, parent_folder: String) -> void:
 	var level_folder: String = parent_folder.path_join(level_id)
@@ -58,3 +64,57 @@ func _create_new_level(level_id: String, parent_folder: String) -> void:
 	# Refresh the editor so the new folder can be seen
 	EditorInterface.get_resource_filesystem().scan()
 	
+static func _prompt_level_id() -> Dictionary:
+	var stack_panel = VBoxContainer.new()
+	stack_panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+	stack_panel.offset_top = 10
+	stack_panel.offset_left = 10
+	stack_panel.offset_bottom = -10
+	stack_panel.offset_right = -10
+	stack_panel.alignment = BoxContainer.ALIGNMENT_CENTER
+	
+	var textbox = LineEdit.new()
+	stack_panel.add_spacer(false)
+	stack_panel.add_child(textbox)
+	
+	var debug_checkbox = CheckBox.new()
+	#stack_panel.add_spacer(false)
+	stack_panel.add_child(debug_checkbox)
+	debug_checkbox.text = "Debug"
+	
+	var buttons_panel = HBoxContainer.new()
+	stack_panel.add_spacer(false)
+	stack_panel.add_child(buttons_panel)
+	buttons_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	
+	var ok_button = Button.new()
+	buttons_panel.add_child(ok_button)
+	ok_button.text = "OK"
+	ok_button.custom_minimum_size.x = 50
+	ok_button.pressed.connect(func (): 
+		textbox.text_submitted.emit(textbox.text)
+	)
+	
+	var cancel_button = Button.new()
+	buttons_panel.add_child(cancel_button)
+	cancel_button.text = "Cancel"
+	cancel_button.custom_minimum_size.x = 50
+	cancel_button.pressed.connect(func (): 
+		textbox.text_submitted.emit("")
+	)
+	
+	var window = Window.new()
+	window.title = "Enter a level id(no spaces)"
+	window.add_child(stack_panel)
+	window.close_requested.connect(func ():
+		textbox.text_submitted.emit("")
+	)
+
+	EditorInterface.popup_dialog_centered(window, Vector2i(500, 150))
+	var result: String = await textbox.text_submitted
+	window.queue_free()
+	
+	return {
+		"level_id" = result,
+		"debug" = debug_checkbox.button_pressed
+	}

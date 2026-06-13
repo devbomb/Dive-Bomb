@@ -52,10 +52,14 @@ A Dive Bomb level consists of:
     of this repo.
 
 # Creating the level folder
-Create a folder at `res://Levels/<level-id>`.  This is where the
+Create a folder at `res://Levels/Production/<level-id>`.  This is where the
 [.tscn file](#creating-the-tscn-file) will live.  It's also where you should put
 art assets that are specific to this level, such as the skybox, custom materials,
 or background music.
+
+> TIP: The `Levels/Production` folder is for "real" levels that are actually
+meant to be playable.  "Test" levels should go in the `Levels/Debug` folder
+instead.
 
 # Creating the .map file
 First, ensure the following files exist:

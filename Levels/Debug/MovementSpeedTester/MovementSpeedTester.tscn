@@ -1,0 +1,270 @@
+[gd_scene format=3 uid="uid://bdhifktrq7xd7"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_5rtvj"]
+[ext_resource type="Script" uid="uid://hnixn8wg1n8f" path="res://Levels/Debug/MovementSpeedTester/MovementSpeedTester.cs" id="2_2m3uo"]
+[ext_resource type="PackedScene" uid="uid://c26712jp7rfwp" path="res://Entities/Player/Player.tscn" id="2_yarhr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yarhr"]
+
+[sub_resource type="Sky" id="Sky_2m3uo"]
+sky_material = SubResource("ProceduralSkyMaterial_yarhr")
+
+[sub_resource type="Environment" id="Environment_0wyy0"]
+background_mode = 2
+sky = SubResource("Sky_2m3uo")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5rtvj"]
+
+[sub_resource type="Shader" id="Shader_yarhr"]
+code = "shader_type spatial;
+render_mode
+	world_vertex_coords,
+	cull_disabled;
+
+uniform sampler2D albedo_texture : filter_nearest;
+uniform sampler2D alpha_texture : filter_linear;
+
+const float depth_offset = -1.0;
+const float falloff_distance = 30.0;
+const float power = 2.0;
+
+void fragment()
+{
+	vec2 uv_world = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xz;
+	ALBEDO = texture(albedo_texture, uv_world / 100.0).rgb;
+	
+	vec3 vertex_flat = VERTEX;
+	vertex_flat.y = 0.0;
+	float depth = length(vertex_flat) + depth_offset;
+	
+	float t = clamp(depth / falloff_distance, 0.0, 1.0);
+	float alpha = 1.0 - pow(t, power);
+	
+	if (alpha < texture(alpha_texture, uv_world * 0.01).r)
+		discard;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yarhr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2m3uo"]
+noise = SubResource("FastNoiseLite_yarhr")
+
+[sub_resource type="Gradient" id="Gradient_yarhr"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5613208, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.78775924, 0.78775924, 0.78775924, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2m3uo"]
+seed = 3
+frequency = 0.0261
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0wyy0"]
+noise = SubResource("FastNoiseLite_2m3uo")
+color_ramp = SubResource("Gradient_yarhr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2m3uo"]
+render_priority = 0
+shader = SubResource("Shader_yarhr")
+shader_parameter/albedo_texture = SubResource("NoiseTexture2D_2m3uo")
+shader_parameter/alpha_texture = SubResource("NoiseTexture2D_0wyy0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yarhr"]
+size = Vector2(100, 100)
+
+[sub_resource type="GDScript" id="GDScript_yarhr"]
+script/source = "extends MeshInstance3D
+
+func _process(_delta) -> void:
+	var camera = get_tree().root.get_camera_3d()
+	global_position.x = camera.global_position.x
+	global_position.z = camera.global_position.z
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_2m3uo"]
+font_size = 36
+
+[sub_resource type="GDScript" id="GDScript_2m3uo"]
+script/source = "extends Label
+
+func _process(_delta: float) -> void:
+	text = str(get_parent().value)
+"
+
+[node name="MovementSpeedTester" type="Node3D" unique_id=1012630683]
+script = ExtResource("1_5rtvj")
+metadata/_custom_type_script = "uid://qt3xvtm481hw"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1567927024]
+environment = SubResource("Environment_0wyy0")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=548041197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2727222, 0)
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=905941731]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1361696074]
+shape = SubResource("WorldBoundaryShape3D_5rtvj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=73139599]
+layers = 9
+material_override = SubResource("ShaderMaterial_2m3uo")
+extra_cull_margin = 1000.0
+mesh = SubResource("PlaneMesh_yarhr")
+script = SubResource("GDScript_yarhr")
+
+[node name="Player" parent="." unique_id=1545905077 instance=ExtResource("2_yarhr")]
+
+[node name="Tester" type="Control" parent="." unique_id=641532909 node_paths=PackedStringArray("Player", "TimerLabel", "DistanceLabel", "ProgressBar", "JumpDelayFramesSlider", "DiveDelayFramesSlider")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_2m3uo")
+Player = NodePath("../Player")
+TimerLabel = NodePath("TimerLabel")
+DistanceLabel = NodePath("ProgressBar/DistanceLabel")
+ProgressBar = NodePath("ProgressBar")
+JumpDelayFramesSlider = NodePath("Sliders/JumpDelaySlider")
+DiveDelayFramesSlider = NodePath("Sliders/DiveDelaySlider")
+
+[node name="TimerLabel" type="Label" parent="Tester" unique_id=1626083621]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -23.0
+offset_right = 40.0
+offset_bottom = -20.0
+grow_vertical = 0
+text = "0:00:00"
+label_settings = SubResource("LabelSettings_2m3uo")
+
+[node name="Buttons" type="VBoxContainer" parent="Tester" unique_id=826786885]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="WalkButton" type="Button" parent="Tester/Buttons" unique_id=2067164131]
+layout_mode = 2
+text = "Start walk test"
+
+[node name="RollButton" type="Button" parent="Tester/Buttons" unique_id=1895809019]
+layout_mode = 2
+text = "Start perfect roll test"
+
+[node name="DiveOnlyButton" type="Button" parent="Tester/Buttons" unique_id=818674166]
+layout_mode = 2
+text = "Start dive-only test"
+
+[node name="JumpDiveRollButton" type="Button" parent="Tester/Buttons" unique_id=191398276]
+layout_mode = 2
+text = "Start jump-dive-roll test"
+
+[node name="Sliders" type="VBoxContainer" parent="Tester" unique_id=2098736277]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 16.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Tester/Sliders" unique_id=18728190]
+layout_mode = 2
+text = "Dive delay (ticks)"
+
+[node name="DiveDelaySlider" type="HSlider" parent="Tester/Sliders" unique_id=1544599608]
+layout_mode = 2
+max_value = 60.0
+scrollable = false
+tick_count = 60
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Tester/Sliders/DiveDelaySlider" unique_id=2079316755]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_2m3uo")
+
+[node name="Label2" type="Label" parent="Tester/Sliders" unique_id=783296211]
+layout_mode = 2
+text = "Jump delay (ticks)"
+
+[node name="JumpDelaySlider" type="HSlider" parent="Tester/Sliders" unique_id=1431570501]
+layout_mode = 2
+max_value = 60.0
+scrollable = false
+tick_count = 60
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Tester/Sliders/JumpDelaySlider" unique_id=248390892]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_2m3uo")
+
+[node name="ProgressBar" type="ProgressBar" parent="Tester" unique_id=938719774]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -186.0
+offset_right = -37.0
+offset_bottom = 190.0
+grow_horizontal = 0
+grow_vertical = 2
+fill_mode = 3
+
+[node name="DistanceLabel" type="Label" parent="Tester/ProgressBar" unique_id=1254913719]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 1.0
+offset_right = 20.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "sss"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Tester/Buttons/WalkButton" to="Tester" method="StartWalkTest"]
+[connection signal="pressed" from="Tester/Buttons/RollButton" to="Tester" method="StartRollTest"]
+[connection signal="pressed" from="Tester/Buttons/DiveOnlyButton" to="Tester" method="StartDiveOnlyTest"]
+[connection signal="pressed" from="Tester/Buttons/JumpDiveRollButton" to="Tester" method="StartJumpDiveRollTest"]
