@@ -204,9 +204,10 @@ namespace FastDragon
 
         private class Shattering : State<FairyJar>
         {
-            private const float Duration = 2f;
+            private const float MinDuration = 2f;
+            private const float MaxDuration = 2.5f;
             private const float CameraMoveDelay = 1f;
-            private const float CameraMoveDuration = Duration - CameraMoveDelay;
+            private const float CameraMoveDuration = MinDuration - CameraMoveDelay;
             private const float TimeScale = 0.5f;
 
             private static float PlayerJumpSpeed => Player.Jump.InitVSpeed;
@@ -262,8 +263,18 @@ namespace FastDragon
                 ApplyGravityToPlayer(delta);
                 MoveCamera();
 
-                if (_playerLanded && !_player.Animator.IsPlaying() && _timer >= Duration)
+                if (!_playerLanded && _timer >= MaxDuration)
+                {
+                    _player.GlobalPosition = Self.GlobalPosition;
+                    _player.ResetPhysicsInterpolation3D();
+                    LandPlayer();
+                }
+
+                if (_playerLanded && !_player.Animator.IsPlaying() && _timer >= MinDuration)
+                {
                     ChangeState<FlyingToPlayer>();
+                    return;
+                }
             }
 
             private void ApplyGravityToPlayer(float delta)
@@ -272,12 +283,7 @@ namespace FastDragon
                 _player.MoveAndSlide();
 
                 if (_player.IsOnFloor() && !_playerLanded)
-                {
-                    _playerLanded = true;
-                    _player.Velocity = Vector3.Zero;
-                    Engine.TimeScale = 1;
-                    _player.Animator.PlaySection("ParachuteLand", endTime: 0.75f);
-                }
+                    LandPlayer();
             }
 
             private void MoveCamera()
@@ -295,6 +301,14 @@ namespace FastDragon
                 }
 
                 _player.Camera.ManhandledPosition = CamTargetPos();
+            }
+
+            private void LandPlayer()
+            {
+                _playerLanded = true;
+                _player.Velocity = Vector3.Zero;
+                Engine.TimeScale = 1;
+                _player.Animator.PlaySection("ParachuteLand", endTime: 0.75f);
             }
 
             private Node3D KissPointClosestToCurrentCamPos()
