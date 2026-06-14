@@ -3,12 +3,12 @@ render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_sc
 global uniform float UNPAUSED_TIME;
 
 uniform vec4 albedo : source_color;
-uniform float roughness : hint_range(0.0, 1.0);
-uniform float specular : hint_range(0.0, 1.0, 0.01);
-uniform float metallic : hint_range(0.0, 1.0, 0.01);
+uniform float roughness : hint_range(0.0, 1.0) = 0.5;
+uniform float specular : hint_range(0.0, 1.0, 0.01) = 0.5;
+uniform float metallic : hint_range(0.0, 1.0, 0.01) = 0.75;
 
-uniform float rim : hint_range(0.0, 1.0, 0.01);
-uniform float rim_tint : hint_range(0.0, 1.0, 0.01);
+uniform float rim : hint_range(0.0, 1.0, 0.01) = 1.0;
+uniform float rim_tint : hint_range(0.0, 1.0, 0.01) = 0.5;
 
 mat3 rotate_x(float theta)
 {
