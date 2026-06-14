@@ -94,7 +94,7 @@ size = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="Animation" id="Animation_g7wuv"]
 resource_name = "FadeToBlack"
-length = 0.8
+length = 2.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -102,10 +102,10 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.33333337, 0.8000001),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1.0666667, 1.4000001, 1.8666668, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ucrva"]
@@ -199,11 +199,12 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.623377, 0, 0, 0, 1, 0, 0, 0, 1,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p435h"]
 gradient = SubResource("Gradient_ovo6q")
 
-[node name="Fairy" type="StaticBody3D" unique_id=753454189 node_paths=PackedStringArray("Animator", "ShatterSound", "JingleSound", "MusicDuckTrigger", "Model", "Glass", "GlassParticles", "CollisionShape") groups=["UnsafeGround"]]
+[node name="Fairy" type="StaticBody3D" unique_id=753454189 node_paths=PackedStringArray("Animator", "FadeCurtainAnimator", "ShatterSound", "JingleSound", "MusicDuckTrigger", "Model", "Glass", "GlassParticles", "CollisionShape") groups=["UnsafeGround"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_qaaot")
 Animator = NodePath("Model/MainAnimationPlayer")
+FadeCurtainAnimator = NodePath("Model/Fairy/FadeCurtain/FadeCurtainAnimator")
 ShatterSound = NodePath("ShatterSound")
 JingleSound = NodePath("JingleSound")
 MusicDuckTrigger = NodePath("MusicDuckTrigger")
