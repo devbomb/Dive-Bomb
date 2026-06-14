@@ -3,8 +3,9 @@ using System.Linq;
 
 namespace FastDragon
 {
-    public partial class Gem : CharacterBody3D
+    public partial class Gem : Node3D
     {
+        public const float HomeInOnRevealRadius = 2f;
         public const float HomingDuration = 0.5f;
         public const float FlameChargeWindowDuration = 0.1f;
         public const float RevealJumpVelocity = 10;
@@ -26,11 +27,14 @@ namespace FastDragon
 
         public Area3D CollectionArea => GetNode<Area3D>("%CollectionArea");
 
-        private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
+        private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast3D");
+
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
 
         private AudioStreamPlayer _homeInSound => GetNode<AudioStreamPlayer>("%HomeInSound");
         private AudioStreamPlayer _collectSound => GetNode<AudioStreamPlayer>("%CollectSound");
+
+        private Node3D _modelPoint => GetNode<Node3D>("%ModelPoint");
 
         // Need to actually store this node instead of using a getter, since
         // we temporarily remove it from the scene tree.  If the getter were
@@ -47,6 +51,14 @@ namespace FastDragon
             SaveKey = GenerateSaveKey();
             base._Ready();
 
+            // Add a random offset to the spinning animation.
+            // The animation is implemented in a shader for performance, since
+            // there are tons of gems in every level.
+            foreach (var meshInstance in _modelPoint.EnumerateDescendantsOfType<MeshInstance3D>())
+            {
+                meshInstance.SetInstanceShaderParameter("time_offset", GD.Randf() * 3f);
+            }
+
             _visibleEnabler = GetNode<VisibleOnScreenEnabler3D>("%VisibleEnabler");
             _visibleEnablerParent = _visibleEnabler.GetParent();
 
@@ -55,14 +67,11 @@ namespace FastDragon
             Reset();
 
             SignalBus.Instance.LevelReset += Reset;
-
-            _spinAnim.Seek(GD.Randf() * _spinAnim.CurrentAnimationLength);
         }
 
         public void Reset()
         {
             GlobalTransform = _initialPos;
-            Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
             if (StartHidden || IsCollected)
@@ -82,8 +91,18 @@ namespace FastDragon
         /// </summary>
         public void Reveal()
         {
-            if (!IsCollected)
-                ChangeState<Revealed>();
+            if (IsCollected)
+                return;
+
+            // If the player is close enough, automatically home in on them.
+            var player = GetTree().FindNode<Player>();
+            if (player.GlobalPosition.DistanceTo(GlobalPosition) < HomeInOnRevealRadius)
+            {
+                StartHomingIn();
+                return;
+            }
+
+            ChangeState<Revealed>();
         }
 
         public void StartHomingIn()
@@ -177,24 +196,16 @@ namespace FastDragon
         }
         private class Revealed : State<Gem>
         {
-            private float _flameChargeWindowTimer = 0;
-            private Area3D _flameChargeArea => Self.GetNode<Area3D>("%FlameChargeArea");
+            private Vector3 _velocity;
 
             public override void OnStateEntered()
             {
-                SetCollision(true);
                 Self.TouchedGroundOnce = false;
 
                 if (Self.StartHidden)
                 {
-                    Self.Velocity = Vector3.Up * RevealJumpVelocity;
-                    _flameChargeWindowTimer = FlameChargeWindowDuration;
+                    _velocity = Vector3.Up * RevealJumpVelocity;
                 }
-            }
-
-            public override void OnStateExited()
-            {
-                SetCollision(false);
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -203,42 +214,29 @@ namespace FastDragon
 
                 if (!Self.TouchedGroundOnce)
                 {
-                    Self.Velocity += Vector3.Down * Gravity * delta;
+                    _velocity += Vector3.Down * Gravity * delta;
 
-                    var collision = Self.MoveAndCollide(Self.Velocity * delta);
-                    if (collision != null)
+                    var collider = MoveAndCollide(_velocity * delta);
+                    if (collider != null)
                     {
-                        Self.Velocity = Vector3.Zero;
+                        _velocity = Vector3.Zero;
 
-                        if (collision.GetCollider() is StaticBody3D)
-                        {
+                        if (collider is StaticBody3D)
                             Self.TouchedGroundOnce = true;
-                            SetCollision(false);
-                        }
                     }
                 }
-
-                if (_flameChargeWindowTimer > 0)
-                {
-                    _flameChargeWindowTimer -= delta;
-                    HomeInIfPlayerChargingNearby();
-                }
             }
 
-            private void HomeInIfPlayerChargingNearby()
+            private GodotObject MoveAndCollide(Vector3 motion)
             {
-                bool shouldHomeIn = _flameChargeArea
-                    .GetOverlappingBodies()
-                    .Any(n => n is Player);
+                Self._raycast.TargetPosition = motion;
+                Self._raycast.ForceRaycastUpdate();
 
-                if (shouldHomeIn)
-                    Self.StartHomingIn();
-            }
+                Self.GlobalPosition = Self._raycast.IsColliding()
+                    ? Self._raycast.GetCollisionPoint()
+                    : Self.GlobalPosition + motion;
 
-            private void SetCollision(bool enabled)
-            {
-                Self.GetNode<CollisionShape3D>("%PhysicsShape")
-                    .SetDeferred("disabled", !enabled);
+                return Self._raycast.GetCollider();
             }
         }
         private class Homing : State<Gem>
