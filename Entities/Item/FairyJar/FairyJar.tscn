@@ -92,6 +92,43 @@ disable_receive_shadows = true
 material = SubResource("StandardMaterial3D_hs1pw")
 size = Vector3(0.25, 0.25, 0.25)
 
+[sub_resource type="Animation" id="Animation_g7wuv"]
+resource_name = "FadeToBlack"
+length = 2.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.0666667, 1.4000001, 1.8666668, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ucrva"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7y1hm"]
+_data = {
+&"FadeToBlack": SubResource("Animation_g7wuv"),
+&"RESET": SubResource("Animation_ucrva")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_p435h"]
 
 [sub_resource type="Animation" id="Animation_ioiy7"]
@@ -162,11 +199,12 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.623377, 0, 0, 0, 1, 0, 0, 0, 1,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p435h"]
 gradient = SubResource("Gradient_ovo6q")
 
-[node name="Fairy" type="StaticBody3D" unique_id=753454189 node_paths=PackedStringArray("Animator", "ShatterSound", "JingleSound", "MusicDuckTrigger", "Model", "Glass", "GlassParticles", "CollisionShape") groups=["UnsafeGround"]]
+[node name="Fairy" type="StaticBody3D" unique_id=753454189 node_paths=PackedStringArray("Animator", "FadeCurtainAnimator", "ShatterSound", "JingleSound", "MusicDuckTrigger", "Model", "Glass", "GlassParticles", "CollisionShape") groups=["UnsafeGround"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_qaaot")
 Animator = NodePath("Model/MainAnimationPlayer")
+FadeCurtainAnimator = NodePath("Model/Fairy/FadeCurtain/FadeCurtainAnimator")
 ShatterSound = NodePath("ShatterSound")
 JingleSound = NodePath("JingleSound")
 MusicDuckTrigger = NodePath("MusicDuckTrigger")
@@ -273,6 +311,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="FadeCurtainAnimator" type="AnimationPlayer" parent="Model/Fairy/FadeCurtain" unique_id=527494017]
+deterministic = true
+libraries/ = SubResource("AnimationLibrary_7y1hm")
 
 [node name="HUD" type="Control" parent="." unique_id=2102159801]
 layout_mode = 3

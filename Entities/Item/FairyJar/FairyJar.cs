@@ -25,6 +25,7 @@ namespace FastDragon
 
         [ExportGroup("Internal")]
         [Export] public AnimationPlayer Animator;
+        [Export] public AnimationPlayer FadeCurtainAnimator;
 
         [Export] public AudioStreamPlayer ShatterSound;
         [Export] public AudioStreamPlayer JingleSound;
@@ -273,6 +274,7 @@ namespace FastDragon
             public override void OnStateExited()
             {
                 Self.SetPausedForCutscene(false);
+                Self.FadeCurtainAnimator.Play("RESET");
                 Engine.TimeScale = 1;
             }
 
@@ -383,7 +385,16 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 Self.Animator.Play("PanicFlyAfterPlayer");
+                Self.FadeCurtainAnimator.Play("FadeToBlack");
                 _timer = Self.Animator.GetAnimation("PanicFlyAfterPlayer").Length;
+            }
+
+            public override void OnStateExited(IState nextState)
+            {
+                if (nextState is not FlyingToPlayer)
+                {
+                    Self.FadeCurtainAnimator.Play("RESET");
+                }
             }
 
             public override void _PhysicsProcess(double delta)
@@ -446,6 +457,7 @@ namespace FastDragon
             public override void OnStateExited()
             {
                 Self.SetPausedForCutscene(false);
+                Self.FadeCurtainAnimator.Play("RESET");
             }
 
             public override void _PhysicsProcess(double deltaD)

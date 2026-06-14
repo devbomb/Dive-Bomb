@@ -11,6 +11,8 @@ namespace FastDragon
         void SetStateMachine(StateMachine stateMachine);
 
         void OnStateEntered(IState prevState) {}
+        void OnStateExited(IState nextState) {}
+
         void OnStateEntered() {}
         void OnStateExited() {}
 
@@ -58,6 +60,8 @@ namespace FastDragon
         protected Viewport GetViewport() => _stateMachine.GetViewport();
 
         public virtual void OnStateEntered(IState prevState) {}
+        public virtual void OnStateExited(IState nextState) {}
+
         public virtual void OnStateEntered() {}
         public virtual void OnStateExited() {}
 
