@@ -571,12 +571,12 @@ button_group = SubResource("ButtonGroup_haylq")
 icon = SubResource("Texture2D_onmvf")
 expand_icon = true
 
-[connection signal="pressed" from="VBoxContainer/Control/LStick" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/LStick" to="." method="_on_l_stick_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/LStick" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/LStickClick" to="." method="_on_l_stick_click_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/LStickClick" to="." method="OnButtonPressed"]
-[connection signal="pressed" from="VBoxContainer/Control/RStick" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/RStick" to="." method="_on_r_stick_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/RStick" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/RStickClick" to="." method="_on_r_stick_click_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/RStickClick" to="." method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Control/LB" to="." method="_on_lb_pressed"]

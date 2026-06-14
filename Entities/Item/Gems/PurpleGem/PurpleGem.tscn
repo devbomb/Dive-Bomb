@@ -6,11 +6,11 @@
 [node name="PurpleGem" unique_id=791702832 instance=ExtResource("1_adv7y")]
 Value = 5
 
+[node name="PurpleGemModel" parent="ModelPoint" parent_id_path=PackedInt32Array(1990415404) index="0" unique_id=1080316438 instance=ExtResource("2_qcnmx")]
+
 [node name="SpotLight3D" type="SpotLight3D" parent="." index="7" unique_id=1446743944]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.67577, 0)
 light_energy = 0.26
 distance_fade_enabled = true
 spot_range = 0.618049
 spot_angle = 54.2615
-
-[node name="PurpleGemModel" parent="ModelPoint" parent_id_path=PackedInt32Array(1990415404) index="0" unique_id=1080316438 instance=ExtResource("2_qcnmx")]
