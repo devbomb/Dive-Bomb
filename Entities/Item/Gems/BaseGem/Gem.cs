@@ -7,7 +7,6 @@ namespace FastDragon
     {
         public const float HomeInOnRevealRadius = 2f;
         public const float HomingDuration = 0.5f;
-        public const float FlameChargeWindowDuration = 0.1f;
         public const float RevealJumpVelocity = 10;
         public const float Gravity = 30;
 

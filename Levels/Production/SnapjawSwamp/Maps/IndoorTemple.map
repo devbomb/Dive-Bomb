@@ -102,15 +102,6 @@
 }
 // brush 2
 {
-( 48 -176 528 ) ( 48 -160 496 ) ( 48 -160 528 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 -176 528 ) ( 48 -176 496 ) ( 48 -176 528 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 -160 496 ) ( 48 -176 496 ) ( 160 -176 496 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 -160 528 ) ( 48 -176 528 ) ( 48 -160 528 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 -160 528 ) ( 48 -160 496 ) ( 160 -160 496 ) Textures/MayanTempleBricks 0 0 0 1 1
-( 160 -160 528 ) ( 160 -176 496 ) ( 160 -176 528 ) Textures/MayanTempleBricks 0 0 0 1 1
-}
-// brush 3
-{
 ( 32 -208 528 ) ( 32 -160 496 ) ( 32 -160 528 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 48 -208 528 ) ( 32 -208 496 ) ( 32 -208 528 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 48 -160 496 ) ( 32 -208 496 ) ( 48 -208 496 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -118,7 +109,7 @@
 ( 48 -160 528 ) ( 32 -160 496 ) ( 48 -160 496 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 48 -160 528 ) ( 48 -208 496 ) ( 48 -208 528 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 4
+// brush 3
 {
 ( 160 -208 528 ) ( 160 -160 496 ) ( 160 -160 528 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 176 -208 528 ) ( 160 -208 496 ) ( 160 -208 528 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -127,7 +118,7 @@
 ( 176 -160 528 ) ( 160 -160 496 ) ( 176 -160 496 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 176 -160 528 ) ( 176 -208 496 ) ( 176 -208 528 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 5
+// brush 4
 {
 ( -384 -288 368 ) ( -384 -208 48 ) ( -384 -208 368 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -112 -336 368 ) ( -240 -336 48 ) ( -240 -336 368 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -136,7 +127,7 @@
 ( -112 -208 368 ) ( -240 -208 48 ) ( -112 -208 48 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -160 -208 368 ) ( -160 -288 48 ) ( -160 -288 368 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 6
+// brush 5
 {
 ( -160 -336 368 ) ( -160 -208 336 ) ( -160 -208 368 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -80 -336 336 ) ( -160 -336 336 ) ( -160 -336 368 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -144,7 +135,7 @@
 ( -80 -208 336 ) ( -160 -208 368 ) ( -160 -208 336 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -80 -208 336 ) ( -160 -336 368 ) ( -160 -208 368 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 7
+// brush 6
 {
 ( 288 -336 464 ) ( 256 -336 336 ) ( 256 -320 336 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 295.8490566037094 -336 464 ) ( 358.6415094339245 -336 336 ) ( 256 -336 336 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -153,7 +144,7 @@
 ( 256 -320 336 ) ( 358.6415094339659 -320 336 ) ( 295.84905660374716 -320 464 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 295.84905660374716 -320 464 ) ( 358.6415094339659 -320 336 ) ( 358.6415094339245 -336 336 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 8
+// brush 7
 {
 ( 268 -320 384 ) ( 192 -336 336 ) ( 192 -320 336 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 268 -336 384 ) ( 256 -336 336 ) ( 192 -336 336 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -161,7 +152,7 @@
 ( 268 -320 384 ) ( 192 -320 336 ) ( 256 -320 336 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( 268 -320 384 ) ( 256 -336 336 ) ( 268 -336 384 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 9
+// brush 8
 {
 ( -336 -160 496 ) ( -336 -192 496 ) ( -336 -208 488 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -336 -208 488 ) ( -112 -208 488 ) ( -112 -208 48 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -171,7 +162,7 @@
 ( -112 -160 48 ) ( -112 -160 496 ) ( -336 -160 496 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -112 -192 496 ) ( -112 -160 496 ) ( -112 -160 48 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
-// brush 10
+// brush 9
 {
 ( -112 -160 496 ) ( -112 -192 496 ) ( -112 -208 488 ) Textures/MayanTempleBricks 0 0 0 1 1
 ( -112 -192 496 ) ( -96 -208 496 ) ( -112 -208 488 ) Textures/MayanTempleBricks 0 0 0 1 1
@@ -220,15 +211,6 @@
 ( 160 -208 520 ) ( 48 -208 496 ) ( 160 -208 496 ) Textures/SwampGooWaterfall 0 0 0 1 1
 ( 160 -208 520 ) ( 160 -208 496 ) ( 160 -232 496 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
-// brush 2
-{
-( 48 -208 528 ) ( 48 -176 496 ) ( 48 -176 528 ) Textures/SwampGooWaterfall 0 0 0 1 1
-( 160 -208 528 ) ( 48 -208 496 ) ( 48 -208 528 ) Textures/SwampGooWaterfall 0 0 0 1 1
-( 160 -176 496 ) ( 48 -208 496 ) ( 160 -208 496 ) Textures/SwampGooWaterfall 0 0 0 1 1
-( 160 -176 520 ) ( 48 -208 520 ) ( 48 -176 520 ) Textures/SwampGooWaterfall 0 0 0 1 1
-( 160 -176 528 ) ( 48 -176 496 ) ( 160 -176 496 ) Textures/SwampGooWaterfall 0 0 0 1 1
-( 160 -176 528 ) ( 160 -208 496 ) ( 160 -208 528 ) Textures/SwampGooWaterfall 0 0 0 1 1
-}
 }
 // entity 5
 {
@@ -246,6 +228,20 @@
 }
 }
 // entity 6
+{
+"classname" "hazard_drowning_water"
+"_tb_group" "5"
+// brush 0
+{
+( 48 -208 528 ) ( 48 -160 496 ) ( 48 -160 528 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 160 -208 528 ) ( 48 -208 496 ) ( 48 -208 528 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 160 -160 496 ) ( 48 -208 496 ) ( 160 -208 496 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 160 -160 520 ) ( 48 -208 520 ) ( 48 -160 520 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 160 -160 528 ) ( 48 -160 496 ) ( 160 -160 496 ) Textures/SwampGooWaterfall 0 0 0 1 1
+( 160 -160 528 ) ( 160 -208 496 ) ( 160 -208 528 ) Textures/SwampGooWaterfall 0 0 0 1 1
+}
+}
+// entity 7
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1032,7 +1028,7 @@
 ( 176 288 672 ) ( 176 280 616 ) ( 176 280 672 ) Textures/BulletproofGlass 0 0 0 1 1
 }
 }
-// entity 7
+// entity 8
 {
 "classname" "hazard_drowning_water"
 "HoverDuration" "0.25"
@@ -1051,7 +1047,7 @@
 ( 264 302.6274169979697 384 ) ( 264 289.3725830020303 376 ) ( 264 289.3725830020303 384 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 8
+// entity 9
 {
 "classname" "hazard_drowning_water"
 "HoverDuration" "0.25"
@@ -1070,7 +1066,7 @@
 ( 264 398.62741699796925 384 ) ( 264 385.3725830020303 376 ) ( 264 385.3725830020303 384 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 9
+// entity 10
 {
 "classname" "decor_wall_torch"
 "origin" "232 304 456"
@@ -1078,7 +1074,7 @@
 "HoverDuration" "0.25"
 "_tb_group" "6"
 }
-// entity 10
+// entity 11
 {
 "classname" "decor_wall_torch"
 "origin" "232 384 456"
@@ -1086,7 +1082,7 @@
 "HoverDuration" "0.25"
 "_tb_group" "6"
 }
-// entity 11
+// entity 12
 {
 "classname" "enemy_snapjaw"
 "origin" "88 344 472"
@@ -1097,7 +1093,7 @@
 "GemColor" "2"
 "_tb_group" "6"
 }
-// entity 12
+// entity 13
 {
 "classname" "hazard_drowning_water"
 "HoverDuration" "0.25"
@@ -1112,7 +1108,7 @@
 ( 208 416 432 ) ( 208 416 433 ) ( 208 417 432 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 13
+// entity 14
 {
 "classname" "enemy_snapjaw"
 "origin" "-104 376 472"
@@ -1123,7 +1119,7 @@
 "GemColor" "2"
 "_tb_group" "6"
 }
-// entity 14
+// entity 15
 {
 "classname" "trigger_cycle_starter"
 "CycleId" "IndoorSection"
@@ -1139,7 +1135,7 @@
 ( 240 384 512 ) ( 240 320 432 ) ( 240 320 512 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 15
+// entity 16
 {
 "classname" "wall_no_collision"
 "HoverDuration" "0.25"
@@ -1154,7 +1150,7 @@
 ( 32 408 592 ) ( 32 392 416 ) ( 32 392 592 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
-// entity 16
+// entity 17
 {
 "classname" "enemy_snapjaw"
 "origin" "-24 344 472"
@@ -1167,7 +1163,7 @@
 "GemColor" "2"
 "_tb_group" "6"
 }
-// entity 17
+// entity 18
 {
 "classname" "hazard_drowning_water"
 "_tb_group" "6"
@@ -1181,7 +1177,7 @@
 ( -208 304 424 ) ( -208 224 400 ) ( -208 224 424 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 18
+// entity 19
 {
 "classname" "enemy_snapjaw"
 "origin" "-168 264 488"
@@ -1192,7 +1188,7 @@
 "HoverDuration" "0.2"
 "_tb_group" "6"
 }
-// entity 19
+// entity 20
 {
 "classname" "wall_no_collision"
 "_tb_group" "6"
@@ -1206,46 +1202,46 @@
 ( -216 304 592 ) ( -216 224 424 ) ( -216 224 592 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
-// entity 20
+// entity 21
 {
 "classname" "item_basket"
 "origin" "-216 344 448"
 "_tb_group" "6"
 }
-// entity 21
+// entity 22
 {
 "classname" "item_basket"
 "origin" "-216 376 448"
 "_tb_group" "6"
 }
-// entity 22
+// entity 23
 {
 "classname" "item_fairy"
 "origin" "144 192 616"
 "_tb_group" "6"
 }
-// entity 23
+// entity 24
 {
 "classname" "item_vase"
 "origin" "224 24 560"
 "GemColor" "2"
 "_tb_group" "6"
 }
-// entity 24
+// entity 25
 {
 "classname" "item_vase"
 "origin" "224 -24 560"
 "GemColor" "2"
 "_tb_group" "6"
 }
-// entity 25
+// entity 26
 {
 "classname" "decor_wall_torch"
 "origin" "232 0 580"
 "angle" "90"
 "_tb_group" "6"
 }
-// entity 26
+// entity 27
 {
 "classname" "transport_checkpoint"
 "origin" "360 344 384"
@@ -1253,70 +1249,70 @@
 "CheckpointName" "IndoorSection"
 "_tb_group" "6"
 }
-// entity 27
+// entity 28
 {
 "classname" "item_vase"
 "origin" "104 232 752"
 "GemColor" "5"
 "_tb_group" "6"
 }
-// entity 28
+// entity 29
 {
 "classname" "item_gem_purple"
 "origin" "140 68 768"
 "_tb_group" "6"
 }
-// entity 29
+// entity 30
 {
 "classname" "item_vase"
 "origin" "104 168 752"
 "GemColor" "5"
 "_tb_group" "6"
 }
-// entity 30
+// entity 31
 {
 "classname" "item_vase"
 "origin" "104 104 752"
 "GemColor" "5"
 "_tb_group" "6"
 }
-// entity 31
+// entity 32
 {
 "classname" "item_gem_green"
 "origin" "140 132 768"
 "_tb_group" "6"
 }
-// entity 32
+// entity 33
 {
 "classname" "item_gem_purple"
 "origin" "140 260 768"
 "_tb_group" "6"
 }
-// entity 33
+// entity 34
 {
 "classname" "item_gem_green"
 "origin" "140 196 768"
 "_tb_group" "6"
 }
-// entity 34
+// entity 35
 {
 "classname" "item_gem_red"
 "origin" "-124 140 720"
 "_tb_group" "6"
 }
-// entity 35
+// entity 36
 {
 "classname" "item_fairy"
 "origin" "104 296 752"
 "_tb_group" "6"
 }
-// entity 36
+// entity 37
 {
 "classname" "item_gem_green"
 "origin" "36 288 736"
 "_tb_group" "6"
 }
-// entity 37
+// entity 38
 {
 "classname" "hazard_drowning_water"
 "_tb_group" "6"
@@ -1330,34 +1326,34 @@
 ( 80 16 688 ) ( 80 16 704 ) ( 80 336 688 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 38
+// entity 39
 {
 "classname" "item_basket"
 "origin" "160 120 616"
 "GemColor" "25"
 "_tb_group" "6"
 }
-// entity 39
+// entity 40
 {
 "classname" "item_basket"
 "origin" "160 152 616"
 "GemColor" "2"
 "_tb_group" "6"
 }
-// entity 40
+// entity 41
 {
 "classname" "item_basket"
 "origin" "40 88 496"
 "GemColor" "5"
 "_tb_group" "6"
 }
-// entity 41
+// entity 42
 {
 "classname" "item_gem_green"
 "origin" "20 64 720"
 "_tb_group" "6"
 }
-// entity 42
+// entity 43
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1500,7 +1496,7 @@
 ( 304 -208 496 ) ( 304 224 496 ) ( 304 224 48 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
 }
-// entity 43
+// entity 44
 {
 "classname" "wall_no_collision"
 "_tb_group" "7"
@@ -1513,7 +1509,7 @@
 ( 304 128 512 ) ( 320 128 496 ) ( 320 80 496 ) Textures/SwampGooWaterfall 0 8 0 1 1
 }
 }
-// entity 44
+// entity 45
 {
 "classname" "wall_no_collision"
 "_tb_group" "7"
@@ -1536,7 +1532,7 @@
 ( 320 -96 48 ) ( 320 -96 224 ) ( 320 -48 48 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
-// entity 45
+// entity 46
 {
 "classname" "wall_no_collision"
 "_tb_group" "7"
@@ -1568,7 +1564,7 @@
 ( 312 80 48 ) ( 312 80 224 ) ( 312 128 48 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
-// entity 46
+// entity 47
 {
 "classname" "trigger_cycle_starter"
 "CycleId" "NicerSidewaysSnapjaw"
@@ -1583,7 +1579,7 @@
 ( 384 80 352 ) ( 384 80 353 ) ( 384 81 352 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 47
+// entity 48
 {
 "classname" "hazard_drowning_water"
 "_tb_group" "7"
@@ -1597,7 +1593,7 @@
 ( 400 176 240 ) ( 400 -144 224 ) ( 400 -144 240 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 48
+// entity 49
 {
 "classname" "wall_no_collision"
 "_tb_group" "7"
@@ -1610,7 +1606,7 @@
 ( 304 -48 512 ) ( 320 -48 496 ) ( 320 -96 496 ) Textures/SwampGooWaterfall 0 0 -1.7763568e-15 1 1
 }
 }
-// entity 49
+// entity 50
 {
 "classname" "enemy_snapjaw"
 "origin" "336 104 400"
@@ -1620,7 +1616,7 @@
 "GemColor" "2"
 "_tb_group" "7"
 }
-// entity 50
+// entity 51
 {
 "classname" "enemy_snapjaw"
 "origin" "344 -72 384"
@@ -1630,7 +1626,7 @@
 "GemColor" "2"
 "_tb_group" "7"
 }
-// entity 51
+// entity 52
 {
 "classname" "hazard_drowning_water"
 "_tb_group" "7"
@@ -1644,7 +1640,7 @@
 ( 304 -48 512 ) ( 304 -96 496 ) ( 304 -96 512 ) Textures/SwampGooWaterfall 0 0 90 1 1
 }
 }
-// entity 52
+// entity 53
 {
 "classname" "hazard_drowning_water"
 "_tb_group" "7"
@@ -1658,7 +1654,7 @@
 ( 304 128 512 ) ( 304 80 496 ) ( 304 80 512 ) Textures/SwampGooWaterfall 0 0 0 1 1
 }
 }
-// entity 53
+// entity 54
 {
 "classname" "trigger_camera_suggestion_zone"
 "target" "AfterDirtyTrickCameraDir"
@@ -1672,7 +1668,7 @@
 ( 384 -224 464 ) ( 384 -304 336 ) ( 384 -304 464 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 54
+// entity 55
 {
 "classname" "trigger_cycle_starter"
 "CycleId" "IndoorSection"
@@ -1686,7 +1682,7 @@
 ( 240 48 560 ) ( 240 -80 528 ) ( 240 -80 560 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 55
+// entity 56
 {
 "classname" "reference_placeholder"
 // brush 0
@@ -1699,7 +1695,7 @@
 ( 656 -48 64 ) ( 656 -176 32 ) ( 656 -176 64 ) Textures/SwampGoo 0 0 0 1 1
 }
 }
-// entity 56
+// entity 57
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1770,178 +1766,178 @@
 ( 232 -144 584 ) ( 232 -112 584 ) ( 232 -112 560 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
 }
-// entity 57
+// entity 58
 {
 "classname" "item_gem_red"
 "origin" "-212 -116 560"
 "_tb_group" "8"
 }
-// entity 58
+// entity 59
 {
 "classname" "item_gem_red"
 "origin" "-180 -84 560"
 "_tb_group" "8"
 }
-// entity 59
+// entity 60
 {
 "classname" "item_gem_red"
 "origin" "-332 -308 368"
 }
-// entity 60
+// entity 61
 {
 "classname" "item_gem_red"
 "origin" "-268 -244 368"
 }
-// entity 61
+// entity 62
 {
 "classname" "item_gem_red"
 "origin" "-196 -300 368"
 }
-// entity 62
+// entity 63
 {
 "classname" "item_vase"
 "origin" "312 -328 384"
 "GemColor" "2"
 }
-// entity 63
+// entity 64
 {
 "classname" "item_vase"
 "origin" "280 -328 384"
 "GemColor" "2"
 }
-// entity 64
+// entity 65
 {
 "classname" "item_basket"
 "origin" "-8 -232 336"
 "GemColor" "2"
 }
-// entity 65
+// entity 66
 {
 "classname" "item_basket"
 "origin" "368 -208 336"
 "GemColor" "2"
 }
-// entity 66
+// entity 67
 {
 "classname" "item_basket"
 "origin" "368 -240 336"
 "GemColor" "2"
 }
-// entity 67
+// entity 68
 {
 "classname" "item_vase"
 "origin" "344 12 360"
 "GemColor" "5"
 }
-// entity 68
+// entity 69
 {
 "classname" "item_vase"
 "origin" "344 168 384"
 "GemColor" "5"
 }
-// entity 69
+// entity 70
 {
 "classname" "item_gem_red"
 "origin" "228 -284 336"
 }
-// entity 70
+// entity 71
 {
 "classname" "item_basket"
 "origin" "280 -12 496"
 "GemColor" "2"
 }
-// entity 71
+// entity 72
 {
 "classname" "item_basket"
 "origin" "280 44 496"
 "GemColor" "2"
 }
-// entity 72
+// entity 73
 {
 "classname" "item_gem_red"
 "origin" "280 16 496"
 }
-// entity 73
+// entity 74
 {
 "classname" "item_gem_green"
 "origin" "300 60 496"
 }
-// entity 74
+// entity 75
 {
 "classname" "item_gem_red"
 "origin" "276 140 528"
 }
-// entity 75
+// entity 76
 {
 "classname" "item_gem_green"
 "origin" "236 180 480"
 }
-// entity 76
+// entity 77
 {
 "classname" "item_gem_purple"
 "origin" "276 196 480"
 }
-// entity 77
+// entity 78
 {
 "classname" "item_gem_yellow"
 "origin" "276 108 528"
 }
-// entity 78
+// entity 79
 {
 "classname" "item_gem_purple"
 "origin" "260 -92 560"
 }
-// entity 79
+// entity 80
 {
 "classname" "item_gem_purple"
 "origin" "260 -132 560"
 }
-// entity 80
+// entity 81
 {
 "classname" "item_gem_red"
 "origin" "276 -100 528"
 }
-// entity 81
+// entity 82
 {
 "classname" "item_gem_green"
 "origin" "172 -164 528"
 }
-// entity 82
+// entity 83
 {
 "classname" "item_gem_green"
 "origin" "108 -164 528"
 }
-// entity 83
+// entity 84
 {
 "classname" "item_gem_green"
 "origin" "36 -164 528"
 }
-// entity 84
+// entity 85
 {
 "classname" "item_gem_purple"
 "origin" "-28 -164 496"
 }
-// entity 85
+// entity 86
 {
 "classname" "item_gem_yellow"
 "origin" "-68 -164 496"
 }
-// entity 86
+// entity 87
 {
 "classname" "item_gem_purple"
 "origin" "-108 -164 496"
 }
-// entity 87
+// entity 88
 {
 "classname" "item_gem_red"
 "origin" "-292 -172 496"
 }
-// entity 88
+// entity 89
 {
 "classname" "item_gem_red"
 "origin" "-108 212 720"
 }
-// entity 89
+// entity 90
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2009,13 +2005,13 @@
 ( 288 432 352 ) ( 288 416 336 ) ( 288 416 352 ) Textures/MayanTempleBricks 0 0 0 1 1
 }
 }
-// entity 90
+// entity 91
 {
 "classname" "item_fairy"
 "origin" "8 488 576"
 "_tb_group" "9"
 }
-// entity 91
+// entity 92
 {
 "classname" "transport_vent"
 "origin" "-88 424 616"
@@ -2024,7 +2020,7 @@
 "TargetVentId" "SideWallSrc"
 "_tb_group" "9"
 }
-// entity 92
+// entity 93
 {
 "classname" "trigger_camera_suggestion_zone"
 "target" "SideWallSecretCameraDir"
@@ -2039,25 +2035,25 @@
 ( 32 512 656 ) ( 32 416 576 ) ( 32 416 656 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 93
+// entity 94
 {
 "classname" "item_gem_green"
 "origin" "268 428 352"
 "_tb_group" "9"
 }
-// entity 94
+// entity 95
 {
 "classname" "item_gem_purple"
 "origin" "124 428 288"
 "_tb_group" "9"
 }
-// entity 95
+// entity 96
 {
 "classname" "item_gem_red"
 "origin" "156 460 272"
 "_tb_group" "9"
 }
-// entity 96
+// entity 97
 {
 "classname" "item_gem_yellow"
 "origin" "60 444 272"

@@ -10,8 +10,8 @@
 [ext_resource type="FontVariation" uid="uid://bmr44as3fvbhe" path="res://Fonts/FontVariations/TekturBolder.tres" id="4_w4eob"]
 [ext_resource type="Material" uid="uid://05gqju8dcxqj" path="res://Common/Materials/LevelRequirementsText.tres" id="5_bs0wh"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="5_pebs6"]
-[ext_resource type="PackedScene" uid="uid://ct17oh87ur0xu" path="res://Entities/Item/Gems/RedGem/RedGemModel.tscn" id="5_vio7c"]
 [ext_resource type="Script" uid="uid://vpf40mbrhlr" path="res://Common/Components/DecoratorNodes/SpinDecorator.gd" id="6_vio7c"]
+[ext_resource type="PackedScene" uid="uid://d0j2koof3mftm" path="res://Common/Models/Gem.glb" id="11_ucrva"]
 [ext_resource type="PackedScene" uid="uid://dc5k2yy5vsbyi" path="res://Common/Models/Characters/Fairy/Fairy.glb" id="12_g7wuv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ohivc"]
@@ -40,6 +40,12 @@ resource_local_to_scene = true
 material = ExtResource("5_bs0wh")
 text = "999"
 font = ExtResource("4_w4eob")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7wuv"]
+albedo_color = Color(1, 0, 0, 1)
+metallic = 0.75
+roughness = 0.5
+rim_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_lle10"]
 interpolation_mode = 2
@@ -200,13 +206,22 @@ label_mesh = SubResource("TextMesh_aq6wb")
 script = ExtResource("4_g18ww")
 metadata/_custom_type_script = "uid://ilt6j85e4n8e"
 
-[node name="RedGemModel" parent="Glass/PriceTag" unique_id=1927745124 instance=ExtResource("5_vio7c")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.354317, -0.0213813, 0)
+[node name="Gem" parent="Glass/PriceTag" unique_id=612664627 instance=ExtResource("11_ucrva")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.354, -0.021, 0)
 
-[node name="SpinDecorator" type="Node" parent="Glass/PriceTag/RedGemModel" unique_id=851056260]
+[node name="Circle" parent="Glass/PriceTag/Gem" index="0" unique_id=66662369]
+material_override = SubResource("StandardMaterial3D_g7wuv")
+
+[node name="SpinDecorator" type="Node" parent="Glass/PriceTag/Gem" unique_id=851056260]
 script = ExtResource("6_vio7c")
 speed_degrees = Vector3(0, 90, 0)
 metadata/_custom_type_script = "uid://vpf40mbrhlr"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Glass/PriceTag/Gem" unique_id=399388183]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.274493, -1.19985e-08)
+light_energy = 0.285
+distance_fade_enabled = true
+spot_range = 1.0235
 
 [node name="Label" type="MeshInstance3D" parent="Glass/PriceTag" unique_id=1008773541]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -0.16494, 0.0733068, 6.14166e-09)
@@ -304,3 +319,5 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_p435h")
 
 [connection signal="BreakRejected" from="." to="HUD/TooPoor/AnimationPlayer" method="play" binds= ["PoorShaming"]]
+
+[editable path="Glass/PriceTag/Gem"]
