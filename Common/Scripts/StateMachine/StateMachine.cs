@@ -76,6 +76,7 @@ namespace FastDragon
             StateChanging?.Invoke(CurrentState, incomingState);
 
             // Let the previous state know that it's exiting
+            CurrentState?.OnStateExited(incomingState);
             CurrentState?.OnStateExited();
             CurrentState?.UnsubscribeFromSignals();
 
