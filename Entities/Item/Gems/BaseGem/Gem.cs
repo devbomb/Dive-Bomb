@@ -34,6 +34,8 @@ namespace FastDragon
         private AudioStreamPlayer _homeInSound => GetNode<AudioStreamPlayer>("%HomeInSound");
         private AudioStreamPlayer _collectSound => GetNode<AudioStreamPlayer>("%CollectSound");
 
+        private Node3D _modelPoint => GetNode<Node3D>("%ModelPoint");
+
         // Need to actually store this node instead of using a getter, since
         // we temporarily remove it from the scene tree.  If the getter were
         // called during a temporary removal, it would result in a
@@ -48,6 +50,14 @@ namespace FastDragon
         {
             SaveKey = GenerateSaveKey();
             base._Ready();
+
+            // Add a random offset to the spinning animation.
+            // The animation is implemented in a shader for performance, since
+            // there are tons of gems in every level.
+            foreach (var meshInstance in _modelPoint.EnumerateDescendantsOfType<MeshInstance3D>())
+            {
+                meshInstance.SetInstanceShaderParameter("time_offset", GD.Randf() * 3f);
+            }
 
             _visibleEnabler = GetNode<VisibleOnScreenEnabler3D>("%VisibleEnabler");
             _visibleEnablerParent = _visibleEnabler.GetParent();

@@ -2,6 +2,8 @@ shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
 global uniform float UNPAUSED_TIME;
 
+instance uniform float time_offset;
+
 uniform vec4 albedo : source_color;
 uniform float roughness : hint_range(0.0, 1.0) = 0.5;
 uniform float specular : hint_range(0.0, 1.0, 0.01) = 0.5;
@@ -36,7 +38,7 @@ mat3 rotate_y(float theta)
 
 void vertex() 
 {
-	mat3 rotation_matrix = rotate_y(UNPAUSED_TIME * radians(120)) * rotate_x(radians(45));
+	mat3 rotation_matrix = rotate_y((UNPAUSED_TIME + time_offset) * radians(120)) * rotate_x(radians(45));
 	VERTEX = rotation_matrix * VERTEX;
 	NORMAL = rotation_matrix * NORMAL;
 }
