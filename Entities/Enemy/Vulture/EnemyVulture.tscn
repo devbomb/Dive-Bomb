@@ -27,7 +27,7 @@ libraries/ = ExtResource("2_4b7rt")
 unique_name_in_owner = true
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Model/Armature" parent_id_path=PackedInt32Array(1481782446, 1329875570) index="0" unique_id=387348353]
+[node name="Skeleton3D" parent="Model/Armature" parent_id_path=PackedInt32Array(1481782446, 1446787884) index="0" unique_id=938209488]
 bones/0/rotation = Quaternion(-2.98023e-08, 0, 0, 1)
 bones/1/rotation = Quaternion(0.11494696, 0, 0, 0.9933716)
 bones/2/rotation = Quaternion(-0.10365295, 0, 0, 0.9946135)
@@ -44,6 +44,21 @@ bones/9/rotation = Quaternion(0.029159807, -0.029519707, -0.0011374004, 0.999138
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(-0.005715799, 0.005784479, 0.006201468, 0.9999478)
 bones/10/scale = Vector3(1, 1, 1)
+
+[node name="Beak" parent="Model/Armature/Skeleton3D" index="0" unique_id=719872621]
+skeleton = NodePath("..")
+
+[node name="Body" parent="Model/Armature/Skeleton3D" index="1" unique_id=1559452787]
+skeleton = NodePath("..")
+
+[node name="Feet" parent="Model/Armature/Skeleton3D" index="2" unique_id=811533005]
+skeleton = NodePath("..")
+
+[node name="TailFeathers" parent="Model/Armature/Skeleton3D" index="3" unique_id=505091794]
+skeleton = NodePath("..")
+
+[node name="Wings" parent="Model/Armature/Skeleton3D" index="4" unique_id=389961232]
+skeleton = NodePath("..")
 
 [node name="BodyShape" type="CollisionShape3D" parent="." unique_id=23560698]
 unique_name_in_owner = true

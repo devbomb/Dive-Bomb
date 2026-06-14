@@ -50,7 +50,6 @@ script = ExtResource("1_w0vdt")
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_isuap")
-skeleton = NodePath("")
 
 [node name="HitBox" type="Area3D" parent="." unique_id=93118930]
 unique_name_in_owner = true

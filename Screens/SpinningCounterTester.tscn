@@ -6,8 +6,8 @@
 script/source = "extends Node3D
 
 func _input(ev: InputEvent):
-    if (ev.is_action_pressed('ui_up')):
-        $'SpinningCounter3D'.Value += 1
+	if (ev.is_action_pressed('ui_up')):
+		$'SpinningCounter3D'.Value += 1
 "
 
 [node name="SpinningCounterTester" type="Node3D" unique_id=1595404385]
