@@ -29,7 +29,6 @@ namespace FastDragon
 
         private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast3D");
 
-        private AnimationPlayer _spinAnim => GetNode<AnimationPlayer>("%SpinAnimator");
         private AnimationPlayer _sparkleAnim => GetNode<AnimationPlayer>("%SparkleAnimator");
 
         private AudioStreamPlayer _homeInSound => GetNode<AudioStreamPlayer>("%HomeInSound");
@@ -58,8 +57,6 @@ namespace FastDragon
             Reset();
 
             SignalBus.Instance.LevelReset += Reset;
-
-            _spinAnim.Seek(GD.Randf() * _spinAnim.CurrentAnimationLength);
         }
 
         public void Reset()

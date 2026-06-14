@@ -5,44 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="3_4j54j"]
 [ext_resource type="AudioStream" uid="uid://g15icso2xyaa" path="res://Entities/Item/Gems/BaseGem/GemHomeIn.wav" id="3_025us"]
 
-[sub_resource type="Animation" id="Animation_jfllq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ModelPoint:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ngwd6"]
-resource_name = "Rotate"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ModelPoint:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.785398, 0, 0), Vector3(0.785398, 6.28319, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kddi0"]
-_data = {
-&"RESET": SubResource("Animation_jfllq"),
-&"Rotate": SubResource("Animation_ngwd6")
-}
-
 [sub_resource type="Animation" id="Animation_exjpb"]
 length = 0.001
 tracks/0/type = "value"
@@ -132,11 +94,6 @@ script = ExtResource("1_ajgr5")
 [node name="VisibleEnabler" type="VisibleOnScreenEnabler3D" parent="." unique_id=275398132]
 unique_name_in_owner = true
 aabb = AABB(-0.25, 0, -0.25, 0.5, 0.5, 0.5)
-
-[node name="SpinAnimator" type="AnimationPlayer" parent="." unique_id=1996005255]
-unique_name_in_owner = true
-libraries/ = SubResource("AnimationLibrary_kddi0")
-autoplay = &"Rotate"
 
 [node name="SparkleAnimator" type="AnimationPlayer" parent="." unique_id=1067499751]
 unique_name_in_owner = true
