@@ -63,7 +63,7 @@ bus = &"Sfx"
 bus = &"DialogVoice"
 
 [node name="IntroCutscenePlayerFake" parent="." unique_id=728110242 instance=ExtResource("3_3asif")]
-transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
 [node name="FingerGun_L" type="MeshInstance3D" parent="IntroCutscenePlayerFake" unique_id=588749246]
