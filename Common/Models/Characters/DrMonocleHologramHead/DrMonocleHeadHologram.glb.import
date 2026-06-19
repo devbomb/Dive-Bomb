@@ -39,7 +39,60 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://Common/Models/Characters/DrMonocleHologramHead"
-_subresources={}
+_subresources={
+"materials": {
+"Brass": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/Brass.tres",
+"use_external/path": "uid://cs6ukbiujs74c"
+},
+"EyeWhites": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/EyeWhites.tres",
+"use_external/path": "uid://ftblvnocgv8p"
+},
+"Hair": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/Hair.tres",
+"use_external/path": "uid://cflw2ai4ymrsb"
+},
+"MouthInside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/MouthInside.tres",
+"use_external/path": "uid://bf6sjudgr3gig"
+},
+"Pupils": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/Pupils.tres",
+"use_external/path": "uid://chypcbv4k7xiy"
+},
+"SkinHighlight": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/SkinHighlight.tres",
+"use_external/path": "uid://dkp708tg38553"
+},
+"SkinShadow": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/SkinShadow.tres",
+"use_external/path": "uid://bpjwa5a5oxf6u"
+},
+"SkinShadowDark": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/SkinShadowDark.tres",
+"use_external/path": "uid://cr1owy32gb1co"
+},
+"ToothEnamel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/ToothEnamel.tres",
+"use_external/path": "uid://doeiqpfys82k6"
+},
+"skin": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/skin.tres",
+"use_external/path": "uid://b06ymi6wf0sex"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=0
