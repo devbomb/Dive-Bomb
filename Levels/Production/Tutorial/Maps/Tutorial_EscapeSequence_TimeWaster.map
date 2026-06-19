@@ -1551,3 +1551,17 @@
 ( 16 -736 192 ) ( 16 -752 176 ) ( 16 -752 192 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 }
+// entity 40
+{
+"classname" "info_map_edge"
+"origin" "-72 24 24"
+"angle" "180"
+"id" "PanesOnBelt_To_TimeWaster"
+}
+// entity 41
+{
+"classname" "info_map_edge"
+"origin" "120 -1016 200"
+"angle" "270"
+"id" "TimeWaster_To_2FA"
+}

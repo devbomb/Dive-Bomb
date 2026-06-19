@@ -307,3 +307,10 @@
 "classname" "item_gem_yellow"
 "origin" "4 244 24"
 }
+// entity 5
+{
+"classname" "info_map_edge"
+"origin" "0 -72 24"
+"angle" "270"
+"id" "2FA_To_Exit"
+}
