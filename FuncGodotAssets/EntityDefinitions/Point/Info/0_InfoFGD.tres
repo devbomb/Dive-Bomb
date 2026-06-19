@@ -2,9 +2,9 @@
 
 [ext_resource type="Resource" uid="uid://cso21pf46g65m" path="res://FuncGodotAssets/EntityDefinitions/Point/Info/info_named_marker.tres" id="1_gbp5k"]
 [ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_oyuwa"]
+[ext_resource type="Resource" uid="uid://chvpp5y8gnjw1" path="res://FuncGodotAssets/EntityDefinitions/Point/Info/info_map_edge.tres" id="2_oncor"]
 
 [resource]
 script = ExtResource("1_oyuwa")
 fgd_name = "Info"
-entity_definitions = Array[Resource]([ExtResource("1_gbp5k")])
-metadata/_custom_type_script = "uid://vm1fvi5045um"
+entity_definitions = Array[Resource]([ExtResource("1_gbp5k"), ExtResource("2_oncor")])
