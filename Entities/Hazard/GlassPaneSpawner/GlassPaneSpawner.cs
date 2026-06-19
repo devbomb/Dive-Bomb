@@ -91,7 +91,7 @@ namespace FastDragon
                 _timer = 0;
 
                 Self._fx.Visible = true;
-                Self._fx.Initialize(Self._meshInstance.Mesh, (float)Self.SpawnDurationSeconds);
+                Self._fx.Initialize(Self._meshInstance.Mesh, Self.SpawnDurationSeconds);
 
                 // Get the player if they were already standing in the hitbox
                 // when it turned on.  (IE: They missed the BodyEntered event)

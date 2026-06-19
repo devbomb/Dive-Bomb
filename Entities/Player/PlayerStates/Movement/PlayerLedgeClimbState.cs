@@ -8,11 +8,11 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            float climbAnimLen = Self.Animator.GetAnimation("Roll").Length;
+            double climbAnimLen = Self.Animator.GetAnimation("Roll").Length;
             Self.Animator.Play(
                 "Roll",
                 customBlend: 0.125f,
-                customSpeed: climbAnimLen / 0.5f
+                customSpeed: (float)(climbAnimLen / 0.5)
             );
 
             Self.VSpeed = Player.LedgeClimb.InitVSpeed;

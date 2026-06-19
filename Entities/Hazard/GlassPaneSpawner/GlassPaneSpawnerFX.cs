@@ -11,7 +11,7 @@ namespace FastDragon
         [Export] public MeshInstance3D LiquidMesh;
         [Export] public MeshInstance3D FadeCurtainMesh;
 
-        public void Initialize(Mesh mesh, float animDuration)
+        public void Initialize(Mesh mesh, double animDuration)
         {
             SolidMesh.Mesh = mesh;
             LiquidMesh.Mesh = mesh;
@@ -22,7 +22,7 @@ namespace FastDragon
             LiquidMesh.SetInstanceShaderParameter("radius", Mathf.Max(aabb.Size.X, aabb.Size.Z));
 
             var animation = Animator.GetAnimation("Fill");
-            Animator.Play("Fill", customSpeed: animation.Length / animDuration);
+            Animator.Play("Fill", customSpeed: (float)(animation.Length / animDuration));
         }
     }
 }

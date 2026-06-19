@@ -14,11 +14,11 @@ namespace FastDragon
 
         public override void OnStateEntered()
         {
-            float rollAnimLen = Self.Animator.GetAnimation("Roll").Length;
+            double rollAnimLen = Self.Animator.GetAnimation("Roll").Length;
             Self.Animator.Play(
                 "Roll",
                 customBlend: 0.125f,
-                customSpeed: rollAnimLen / (float)Duration
+                customSpeed: (float)(rollAnimLen / Duration)
             );
 
             _timer = 0;
