@@ -1,11 +1,18 @@
 @tool
 class_name AlignMapsTool extends MiscTool
 
+var _undo_redo: EditorUndoRedoManager
+
+func _init(undo_redo: EditorUndoRedoManager):
+	_undo_redo = undo_redo
+
 func get_text() -> String: return "Align map edges"
 
 func execute() -> void:
+	_undo_redo.create_action("Align map edges")
 	var scene_root: Node = EditorInterface.get_edited_scene_root()
 	assemble(scene_root)
+	_undo_redo.commit_action(false)
 
 func assemble(scene_root: Node) -> void:
 	# This is actually a Dictionary[Node, Dictionary[String, MapEdge]], but
@@ -54,7 +61,9 @@ func _visit(
 		.map(func(edge: MapEdge): return _global_transform_if_linked_to_edge(map, edge, edges_by_map))
 	)
 	
+	_undo_redo.add_undo_property(map, "global_transform", map.global_transform)
 	map.global_transform = _average(transforms)
+	_undo_redo.add_do_property(map, "global_transform", map.global_transform)
 	
 	# Fix all the remaining edges of this map in place
 	var edges_to_fix: Array[MapEdge]

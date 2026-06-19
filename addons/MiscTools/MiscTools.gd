@@ -7,8 +7,8 @@ func _enter_tree() -> void:
 	_add_tool(PlaySceneFromHereTool.new())
 	_add_3d_editor_button(PlaySceneFromHereTool.new())
 	
-	_add_tool(AlignMapsTool.new())
-	_add_3d_editor_button(AlignMapsTool.new())
+	_add_tool(AlignMapsTool.new(get_undo_redo()))
+	_add_3d_editor_button(AlignMapsTool.new(get_undo_redo()))
 	
 	_add_tool(DeleteUnnecessaryPlayerAnimationsTool.new())
 	_add_tool(ResaveAllResourcesTool.new())
