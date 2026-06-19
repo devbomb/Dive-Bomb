@@ -284,6 +284,13 @@
 }
 // entity 16
 {
+"classname" "info_map_edge"
+"origin" "-168 520 24"
+"angle" "180"
+"id" "KickTut_To_RollTut"
+}
+// entity 17
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Ceilings"
