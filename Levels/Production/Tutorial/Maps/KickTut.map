@@ -291,6 +291,13 @@
 }
 // entity 17
 {
+"classname" "info_map_edge"
+"origin" "-8 -72 168"
+"angle" "270"
+"id" "CamTut_To_KickTut"
+}
+// entity 18
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Ceilings"

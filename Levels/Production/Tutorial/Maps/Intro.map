@@ -313,6 +313,12 @@
 }
 // entity 9
 {
+"classname" "info_map_edge"
+"origin" "488 -72 120"
+"id" "Intro_To_CamTut"
+}
+// entity 10
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Ceilings"
