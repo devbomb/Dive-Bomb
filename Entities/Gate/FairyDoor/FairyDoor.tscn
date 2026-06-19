@@ -89,7 +89,7 @@ shape = SubResource("BoxShape3D_o030q")
 [node name="Lock" parent="." unique_id=350155177 instance=ExtResource("2_js2ne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.353, -0.18294396)
 
-[node name="Circle" parent="Lock" index="0" unique_id=1164354057]
+[node name="Circle" parent="Lock" index="0" unique_id=917154650]
 cast_shadow = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lock" unique_id=1494940480]

@@ -16,6 +16,8 @@ dest_files=["res://.godot/imported/LevelEntrancePortal.glb-f27749c8600e88ecbfdc8
 nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -37,6 +39,50 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://Entities/Transport/StandardPortal/Materials"
-_subresources={}
+_subresources={
+"materials": {
+"@MATERIAL:2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Entities/Transport/StandardPortal/Materials/@MATERIAL_2.tres",
+"use_external/path": "res://Entities/Transport/StandardPortal/Materials/@MATERIAL_2.tres"
+},
+"Feet": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Entities/Transport/StandardPortal/Materials/Feet.tres",
+"use_external/path": "uid://deysw1iny31lb"
+},
+"Frame": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Entities/Transport/StandardPortal/Materials/Frame.tres",
+"use_external/path": "uid://cq6bmlqdi5kkx"
+},
+"HoseBlack": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Entities/Transport/StandardPortal/Materials/HoseBlack.tres",
+"use_external/path": "uid://dewbsecj6bvvu"
+},
+"LEDBlue": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Entities/Transport/StandardPortal/Materials/LEDBlue.tres",
+"use_external/path": "uid://doibkj1bnwm84"
+},
+"LEDGreen": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Entities/Transport/StandardPortal/Materials/LEDGreen.tres",
+"use_external/path": "uid://ba3rotpcyhrtk"
+},
+"PortalLightRays": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Entities/Transport/StandardPortal/Materials/PortalLightRays.tres",
+"use_external/path": "uid://byhavk6dt3tp3"
+},
+"RedLED": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Entities/Transport/StandardPortal/Materials/RedLED.tres",
+"use_external/path": "uid://bm8o1f2kf22ac"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
+gltf/texture_map_mode=0

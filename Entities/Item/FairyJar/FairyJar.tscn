@@ -247,7 +247,7 @@ metadata/_custom_type_script = "uid://ilt6j85e4n8e"
 [node name="Gem" parent="Glass/PriceTag" unique_id=612664627 instance=ExtResource("11_ucrva")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.354, -0.021, 0)
 
-[node name="Circle" parent="Glass/PriceTag/Gem" index="0" unique_id=658206140]
+[node name="Circle" parent="Glass/PriceTag/Gem" index="0" unique_id=807125454]
 material_override = SubResource("StandardMaterial3D_g7wuv")
 
 [node name="SpinDecorator" type="Node" parent="Glass/PriceTag/Gem" unique_id=851056260]
