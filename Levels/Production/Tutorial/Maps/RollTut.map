@@ -527,7 +527,7 @@
 // entity 27
 {
 "classname" "info_map_edge"
-"origin" "8 8 24"
+"origin" "-8 8 24"
 "angle" "0"
 "id" "KickTut_To_RollTut"
 }
