@@ -711,18 +711,32 @@
 // entity 31
 {
 "classname" "trigger_tutorial_popup_zone"
-"Text" "Press [img height=40]res://Common/Icons/DiveButton.tres[/img] in mid-air to dive"
+"Text" "[img height=40]res://Common/Icons/DiveButton.tres[/img] Dive"
 // brush 0
 {
 ( -432 288 80 ) ( -432 289 80 ) ( -432 288 81 ) Textures/Grate 0 0 0 1 1
-( -432 288 80 ) ( -432 288 81 ) ( -431 288 80 ) Textures/Grate 0 0 0 1 1
-( -432 288 80 ) ( -431 288 80 ) ( -432 289 80 ) Textures/Grate 0 0 0 1 1
+( -432 368 80 ) ( -432 368 81 ) ( -431 368 80 ) Textures/Grate 0 0 0 1 1
+( -432 288 160 ) ( -431 288 160 ) ( -432 289 160 ) Textures/Grate 0 0 0 1 1
 ( -304 416 272 ) ( -304 417 272 ) ( -303 416 272 ) Textures/Grate 0 0 0 1 1
 ( -304 416 96 ) ( -303 416 96 ) ( -304 416 97 ) Textures/Grate 0 0 0 1 1
 ( -304 416 96 ) ( -304 416 97 ) ( -304 417 96 ) Textures/Grate 0 0 0 1 1
 }
 }
 // entity 32
+{
+"classname" "trigger_tutorial_popup_zone"
+"Text" "[img height=40]res://Common/Icons/JumpButton.tres[/img] Jump"
+// brush 0
+{
+( -400 368 120 ) ( -400 369 120 ) ( -400 368 121 ) Textures/Grate 0 0 0 1 1
+( -400 368 120 ) ( -400 368 121 ) ( -399 368 120 ) Textures/Grate 0 0 0 1 1
+( -400 368 120 ) ( -399 368 120 ) ( -400 369 120 ) Textures/Grate 0 0 0 1 1
+( -336 416 128 ) ( -336 417 128 ) ( -335 416 128 ) Textures/Grate 0 0 0 1 1
+( -336 416 128 ) ( -335 416 128 ) ( -336 416 129 ) Textures/Grate 0 0 0 1 1
+( -336 416 128 ) ( -336 416 129 ) ( -336 417 128 ) Textures/Grate 0 0 0 1 1
+}
+}
+// entity 33
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
