@@ -340,20 +340,6 @@
 }
 // entity 2
 {
-"classname" "trigger_power_zone"
-"target" "RollTutorialPopupTrigger"
-// brush 0
-{
-( -80 -48 48 ) ( -80 80 16 ) ( -80 80 48 ) Textures/Grate 0 0 0 1 1
-( -16 -16 48 ) ( -80 -16 16 ) ( -80 -16 48 ) Textures/Grate 0 0 0 1 1
-( -16 80 16 ) ( -80 -48 16 ) ( -16 -48 16 ) Textures/Grate 0 0 0 1 1
-( -16 80 48 ) ( -80 -48 48 ) ( -80 80 48 ) Textures/Grate 0 0 0 1 1
-( -16 48 48 ) ( -80 48 16 ) ( -16 48 16 ) Textures/Grate 0 0 0 1 1
-( -16 80 48 ) ( -16 -48 16 ) ( -16 -48 48 ) Textures/Grate 0 0 0 1 1
-}
-}
-// entity 3
-{
 "classname" "func_group"
 "_tb_type" "_tb_group"
 "_tb_name" "RollFunnel"
@@ -383,7 +369,7 @@
 ( -48 96 144 ) ( -48 64 16 ) ( -48 64 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
-// entity 4
+// entity 3
 {
 "classname" "wall_x_ray"
 "_tb_group" "1"
@@ -397,106 +383,106 @@
 ( -80 32 40 ) ( -80 8 36 ) ( -80 8 40 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
-// entity 5
+// entity 4
 {
 "classname" "item_vase"
 "origin" "-304 -16 48"
 "GemColor" "2"
 }
-// entity 6
+// entity 5
 {
 "classname" "item_vase"
 "origin" "-344 -16 48"
 "GemColor" "5"
 }
-// entity 7
+// entity 6
 {
 "classname" "item_vase"
 "origin" "-384 -16 48"
 "GemColor" "2"
 }
-// entity 8
+// entity 7
 {
 "classname" "item_gem_red"
 "origin" "-424 32 60"
 }
-// entity 9
+// entity 8
 {
 "classname" "item_gem_green"
 "origin" "-412 68 76"
 }
-// entity 10
+// entity 9
 {
 "classname" "item_basket"
 "origin" "-264 72 32"
 }
-// entity 11
+// entity 10
 {
 "classname" "item_vase"
 "origin" "-416 128 80"
 }
-// entity 12
+// entity 11
 {
 "classname" "item_basket"
 "origin" "-416 168 80"
 }
-// entity 13
+// entity 12
 {
 "classname" "item_vase"
 "origin" "-384 424 144"
 }
-// entity 14
+// entity 13
 {
 "classname" "item_vase"
 "origin" "-368 424 144"
 }
-// entity 15
+// entity 14
 {
 "classname" "item_vase"
 "origin" "-208 304 176"
 "GemColor" "10"
 }
-// entity 16
+// entity 15
 {
 "classname" "item_basket"
 "origin" "-200 520 144"
 }
-// entity 17
+// entity 16
 {
 "classname" "item_vase"
 "origin" "-200 488 144"
 }
-// entity 18
+// entity 17
 {
 "classname" "item_basket"
 "origin" "-264 176 120"
 }
-// entity 19
+// entity 18
 {
 "classname" "item_basket"
 "origin" "-200 176 120"
 }
-// entity 20
+// entity 19
 {
 "classname" "item_basket"
 "origin" "-232 176 120"
 }
-// entity 21
+// entity 20
 {
 "classname" "item_gem_purple"
 "origin" "-268 532 144"
 }
-// entity 22
+// entity 21
 {
 "classname" "item_gem_red"
 "origin" "-228 292 80"
 }
-// entity 23
+// entity 22
 {
 "classname" "item_gem_red"
 "origin" "-220 348 80"
 }
-// entity 24
+// entity 23
 {
 "classname" "trigger_camera_suggestion_zone"
 "target" "FairyRoomWindowCameraSpot"
@@ -510,7 +496,7 @@
 ( -176 576 256 ) ( -176 552 144 ) ( -176 552 256 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 25
+// entity 24
 {
 "classname" "transport_vent"
 "origin" "-376 552 184"
@@ -518,25 +504,39 @@
 "TargetVentId" "FairyRoomEntranceDest"
 "VentId" "FairyRoomEntranceSrc"
 }
-// entity 26
+// entity 25
 {
 "classname" "decor_wall_torch"
 "origin" "-376 552 216"
 "angle" "180"
 }
-// entity 27
+// entity 26
 {
 "classname" "info_map_edge"
 "origin" "-8 8 24"
 "angle" "0"
 "id" "KickTut_To_RollTut"
 }
-// entity 28
+// entity 27
 {
 "classname" "info_map_edge"
 "origin" "-200 600 168"
 "angle" "90"
 "id" "RollTut_To_FairyRoom_Glass"
+}
+// entity 28
+{
+"classname" "trigger_tutorial_popup_zone"
+"Text" "[img height=40]res://Common/Icons/DiveButton.tres[/img] Roll"
+// brush 0
+{
+( -80 -48 48 ) ( -80 80 16 ) ( -80 80 48 ) Textures/Grate 0 0 0 1 1
+( -16 -16 48 ) ( -80 -16 16 ) ( -80 -16 48 ) Textures/Grate 0 0 0 1 1
+( -16 80 16 ) ( -80 -48 16 ) ( -16 -48 16 ) Textures/Grate 0 0 0 1 1
+( -16 80 48 ) ( -80 -48 48 ) ( -80 80 48 ) Textures/Grate 0 0 0 1 1
+( -16 48 48 ) ( -80 48 16 ) ( -16 48 16 ) Textures/Grate 0 0 0 1 1
+( -16 80 48 ) ( -16 -48 16 ) ( -16 -48 48 ) Textures/Grate 0 0 0 1 1
+}
 }
 // entity 29
 {

@@ -1,0 +1,10 @@
+[gd_resource type="Texture2D" script_class="ControllerIconTexture" format=3 uid="uid://y7obhj44a4hk"]
+
+[ext_resource type="Script" uid="uid://d2ars665qqq5j" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="1_f016d"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_f016d")
+path = "FakeCameraControlAction"
+metadata/_custom_type_script = "uid://d2ars665qqq5j"

@@ -182,20 +182,6 @@
 }
 // entity 7
 {
-"classname" "trigger_power_zone"
-"target" "JumpTutorialTrigger"
-// brush 0
-{
-( 80 -96 16 ) ( 80 -95 16 ) ( 80 -96 17 ) Textures/Grate 0 0 0 1 1
-( 112 -96 16 ) ( 112 -96 17 ) ( 113 -96 16 ) Textures/Grate 0 0 0 1 1
-( 112 -96 16 ) ( 113 -96 16 ) ( 112 -95 16 ) Textures/Grate 0 0 0 1 1
-( 184 48 64 ) ( 184 49 64 ) ( 185 48 64 ) Textures/Grate 0 0 0 1 1
-( 184 48 64 ) ( 185 48 64 ) ( 184 48 65 ) Textures/Grate 0 0 0 1 1
-( 184 48 64 ) ( 184 48 65 ) ( 184 49 64 ) Textures/Grate 0 0 0 1 1
-}
-}
-// entity 8
-{
 "classname" "func_group"
 "_tb_type" "_tb_group"
 "_tb_name" "IntroPocket"
@@ -311,11 +297,25 @@
 ( -80 -96 240 ) ( -80 -48 240 ) ( -80 -96 16 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
-// entity 9
+// entity 8
 {
 "classname" "info_map_edge"
 "origin" "488 -72 120"
 "id" "Intro_To_CamTut"
+}
+// entity 9
+{
+"classname" "trigger_tutorial_popup_zone"
+"Text" "[img height=40]res://Common/Icons/JumpButton.tres[/img] Jump"
+// brush 0
+{
+( 80 -96 16 ) ( 80 -95 16 ) ( 80 -96 17 ) Textures/Grate 0 0 0 1 1
+( 112 -96 16 ) ( 112 -96 17 ) ( 113 -96 16 ) Textures/Grate 0 0 0 1 1
+( 112 -96 16 ) ( 113 -96 16 ) ( 112 -95 16 ) Textures/Grate 0 0 0 1 1
+( 184 48 64 ) ( 184 49 64 ) ( 185 48 64 ) Textures/Grate 0 0 0 1 1
+( 184 48 64 ) ( 185 48 64 ) ( 184 48 65 ) Textures/Grate 0 0 0 1 1
+( 184 48 64 ) ( 184 48 65 ) ( 184 49 64 ) Textures/Grate 0 0 0 1 1
+}
 }
 // entity 10
 {

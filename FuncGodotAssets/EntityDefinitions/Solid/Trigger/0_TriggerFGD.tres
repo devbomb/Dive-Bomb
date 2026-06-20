@@ -7,9 +7,9 @@
 [ext_resource type="Resource" uid="uid://b34s7vc3a53rb" path="res://FuncGodotAssets/EntityDefinitions/Solid/Trigger/trigger_cylinder_camera_zone.tres" id="4_n2n0n"]
 [ext_resource type="Resource" uid="uid://dgrb4tji7nxll" path="res://FuncGodotAssets/EntityDefinitions/Solid/Trigger/trigger_named_trigger_zone.tres" id="5_5qx4y"]
 [ext_resource type="Resource" uid="uid://bdmw4bsj6vdvj" path="res://FuncGodotAssets/EntityDefinitions/Solid/Trigger/trigger_power_zone.tres" id="6_f6qoq"]
+[ext_resource type="Resource" uid="uid://2um10bm10oue" path="res://FuncGodotAssets/EntityDefinitions/Solid/Trigger/trigger_tutorial_popup_zone.tres" id="7_8a723"]
 
 [resource]
 script = ExtResource("1_14g6l")
 fgd_name = "Trigger"
-entity_definitions = Array[Resource]([ExtResource("1_ad4h3"), ExtResource("2_gttou"), ExtResource("3_hgfud"), ExtResource("4_n2n0n"), ExtResource("5_5qx4y"), ExtResource("6_f6qoq")])
-metadata/_custom_type_script = "uid://vm1fvi5045um"
+entity_definitions = Array[Resource]([ExtResource("1_ad4h3"), ExtResource("2_gttou"), ExtResource("3_hgfud"), ExtResource("4_n2n0n"), ExtResource("5_5qx4y"), ExtResource("6_f6qoq"), ExtResource("7_8a723")])
