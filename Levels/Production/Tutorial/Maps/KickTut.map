@@ -174,89 +174,61 @@
 }
 // entity 2
 {
-"classname" "trigger_power_zone"
-"target" "RecenterCameraTutorialTrigger"
-// brush 0
-{
-( -64 -32 16 ) ( -64 -31 16 ) ( -64 -32 17 ) Textures/Grate 0 0 0 1 1
-( -64 -48 16 ) ( -64 -48 17 ) ( -63 -48 16 ) Textures/Grate 0 0 0 1 1
-( -64 -32 16 ) ( -63 -32 16 ) ( -64 -31 16 ) Textures/Grate 0 0 0 1 1
-( 64 32 56 ) ( 64 33 56 ) ( 65 32 56 ) Textures/Grate 0 0 0 1 1
-( 64 72 24 ) ( 65 72 24 ) ( 64 72 25 ) Textures/Grate 0 0 0 1 1
-( 64 32 24 ) ( 64 32 25 ) ( 64 33 24 ) Textures/Grate 0 0 0 1 1
-}
-}
-// entity 3
-{
 "classname" "item_basket"
 "origin" "0 344 48"
 "GemColor" "2"
 }
-// entity 4
-{
-"classname" "trigger_power_zone"
-"target" "KickTutorialPopupTrigger"
-// brush 0
-{
-( -48 224 128 ) ( -48 304 48 ) ( -48 304 128 ) Textures/Grate 0 0 0 1 1
-( 48 272 128 ) ( -48 272 48 ) ( -48 272 128 ) Textures/Grate 0 0 0 1 1
-( 48 304 48 ) ( -48 224 48 ) ( 48 224 48 ) Textures/Grate 0 0 0 1 1
-( 48 304 128 ) ( -48 224 128 ) ( -48 304 128 ) Textures/Grate 0 0 0 1 1
-( 48 416 128 ) ( -48 416 48 ) ( 48 416 48 ) Textures/Grate 0 0 0 1 1
-( 48 304 128 ) ( 48 224 48 ) ( 48 224 128 ) Textures/Grate 0 0 0 1 1
-}
-}
-// entity 5
+// entity 3
 {
 "classname" "item_gem_red"
 "origin" "20 116 16"
 }
-// entity 6
+// entity 4
 {
 "classname" "item_gem_green"
 "origin" "-4 180 48"
 }
-// entity 7
+// entity 5
 {
 "classname" "item_basket"
 "origin" "0 592 48"
 }
-// entity 8
+// entity 6
 {
 "classname" "item_basket"
 "origin" "32 520 48"
 }
-// entity 9
+// entity 7
 {
 "classname" "item_basket"
 "origin" "32 464 48"
 }
-// entity 10
+// entity 8
 {
 "classname" "item_basket"
 "origin" "-32 592 48"
 }
-// entity 11
+// entity 9
 {
 "classname" "item_gem_red"
 "origin" "-92 532 16"
 }
-// entity 12
+// entity 10
 {
 "classname" "item_gem_green"
 "origin" "-124 508 16"
 }
-// entity 13
+// entity 11
 {
 "classname" "item_gem_purple"
 "origin" "-92 492 16"
 }
-// entity 14
+// entity 12
 {
 "classname" "item_gem_green"
 "origin" "-20 436 48"
 }
-// entity 15
+// entity 13
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -282,19 +254,47 @@
 ( 48 384 144 ) ( 48 304 48 ) ( 48 304 144 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
-// entity 16
+// entity 14
 {
 "classname" "info_map_edge"
 "origin" "-168 520 24"
 "angle" "180"
 "id" "KickTut_To_RollTut"
 }
-// entity 17
+// entity 15
 {
 "classname" "info_map_edge"
 "origin" "8 -72 104"
 "angle" "270"
 "id" "CamTut_To_KickTut"
+}
+// entity 16
+{
+"classname" "trigger_tutorial_popup_zone"
+"Text" "[img height=40]res://Common/Icons/RecenterCameraButton.tres[/img] Recenter Camera"
+// brush 0
+{
+( -64 -32 16 ) ( -64 -31 16 ) ( -64 -32 17 ) Textures/Grate 0 0 0 1 1
+( -64 -48 16 ) ( -64 -48 17 ) ( -63 -48 16 ) Textures/Grate 0 0 0 1 1
+( -64 -32 16 ) ( -63 -32 16 ) ( -64 -31 16 ) Textures/Grate 0 0 0 1 1
+( 64 32 56 ) ( 64 33 56 ) ( 65 32 56 ) Textures/Grate 0 0 0 1 1
+( 64 72 24 ) ( 65 72 24 ) ( 64 72 25 ) Textures/Grate 0 0 0 1 1
+( 64 32 24 ) ( 64 32 25 ) ( 64 33 24 ) Textures/Grate 0 0 0 1 1
+}
+}
+// entity 17
+{
+"classname" "trigger_tutorial_popup_zone"
+"Text" "[img height=40]res://Common/Icons/KickButton.tres[/img] Kick"
+// brush 0
+{
+( -48 224 128 ) ( -48 304 48 ) ( -48 304 128 ) Textures/Grate 0 0 0 1 1
+( 48 272 128 ) ( -48 272 48 ) ( -48 272 128 ) Textures/Grate 0 0 0 1 1
+( 48 304 48 ) ( -48 224 48 ) ( 48 224 48 ) Textures/Grate 0 0 0 1 1
+( 48 304 128 ) ( -48 224 128 ) ( -48 304 128 ) Textures/Grate 0 0 0 1 1
+( 48 416 128 ) ( -48 416 48 ) ( 48 416 48 ) Textures/Grate 0 0 0 1 1
+( 48 304 128 ) ( 48 224 48 ) ( 48 224 128 ) Textures/Grate 0 0 0 1 1
+}
 }
 // entity 18
 {

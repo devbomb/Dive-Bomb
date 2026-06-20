@@ -324,8 +324,27 @@
 }
 // entity 10
 {
-"classname" "trigger_power_zone"
-"target" "CameraTutorialTrigger"
+"classname" "item_gem_green"
+"origin" "432 -104 48"
+}
+// entity 11
+{
+"classname" "info_map_edge"
+"origin" "-72 -40 24"
+"angle" "180"
+"id" "Intro_To_CamTut"
+}
+// entity 12
+{
+"classname" "info_map_edge"
+"origin" "40 200 216"
+"angle" "90"
+"id" "CamTut_To_KickTut"
+}
+// entity 13
+{
+"classname" "trigger_tutorial_popup_zone"
+"Text" "[img height=40]res://Common/Icons/CameraControlIcon.tres[/img] Move Camera"
 // brush 0
 {
 ( 320 -128 72 ) ( 320 -127 72 ) ( 320 -128 73 ) Textures/Grate 0 0 0 1 1
@@ -335,25 +354,6 @@
 ( 416 112 160 ) ( 417 112 160 ) ( 416 112 161 ) Textures/Grate 0 0 0 1 1
 ( 416 112 160 ) ( 416 112 161 ) ( 416 113 160 ) Textures/Grate 0 0 0 1 1
 }
-}
-// entity 11
-{
-"classname" "item_gem_green"
-"origin" "432 -104 48"
-}
-// entity 12
-{
-"classname" "info_map_edge"
-"origin" "-72 -40 24"
-"angle" "180"
-"id" "Intro_To_CamTut"
-}
-// entity 13
-{
-"classname" "info_map_edge"
-"origin" "40 200 216"
-"angle" "90"
-"id" "CamTut_To_KickTut"
 }
 // entity 14
 {
