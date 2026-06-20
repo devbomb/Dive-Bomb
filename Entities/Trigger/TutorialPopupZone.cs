@@ -10,6 +10,24 @@ namespace FastDragon
         private readonly RichTextLabel _label = new()
         {
             Theme = ResourceLoader.Load<Theme>("res://Themes/Themes/TutorialPopup.tres"),
+            FitContent = true,
+            AutowrapMode = TextServer.AutowrapMode.Off,
+            BbcodeEnabled = true,
+
+            AnchorBottom = 1,
+            OffsetBottom = -20,
+
+            AnchorTop = 1,
+            OffsetTop = 0,
+
+            AnchorLeft = 0.5f,
+            OffsetLeft = 0,
+
+            AnchorRight = 0.5f,
+            OffsetRight = 0,
+
+            GrowVertical = Control.GrowDirection.Begin,
+            GrowHorizontal = Control.GrowDirection.Both,
         };
 
         public TutorialPopupZone()
