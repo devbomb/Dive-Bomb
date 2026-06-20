@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Production/Tutorial/Maps/Intro.map" id="2_vwhqw"]
 [ext_resource type="PackedScene" uid="uid://btlc2kyid5u56" path="res://Levels/Production/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
 [ext_resource type="PackedScene" uid="uid://fwwegib0064k" path="res://Levels/Production/Tutorial/AgentDIntroCutscene/AgentDIntroCutscene.tscn" id="3_kb7u2"]
-[ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="4_uhvqi"]
 [ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="6_p8bxm"]
 [ext_resource type="PackedScene" uid="uid://cyxbyv7xju8b" path="res://Levels/Production/Tutorial/Maps/RollTut.map" id="8_i3mr3"]
 [ext_resource type="Script" uid="uid://bjrp7gxeg424r" path="res://UI/Widgets/TutorialPopup.cs" id="8_sob3p"]
@@ -15,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dord22pbbqflm" path="res://Levels/Production/Tutorial/Maps/FairyRoom.map" id="11_r652i"]
 [ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="12_myhx6"]
 [ext_resource type="PackedScene" uid="uid://c5lrjwtowen30" path="res://Levels/Production/Tutorial/Maps/DrMonocleSpeech.map" id="13_myhx6"]
+[ext_resource type="Theme" uid="uid://bgt4xjrmjkwcr" path="res://Themes/Themes/TutorialPopup.tres" id="14_l3lwd"]
 [ext_resource type="PackedScene" uid="uid://c3u21ynxwsxm" path="res://Levels/Production/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutsceneRig.tscn" id="15_ym3l3"]
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="18_83vbk"]
 [ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="19_alo6x"]
@@ -42,6 +42,12 @@ Vector2i(-1, -1): {
 "to_time": 1
 }
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3lwd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dr8ch"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pht2m"]
 
 [sub_resource type="Curve3D" id="Curve3D_r652i"]
 _data = {
@@ -121,13 +127,13 @@ offset_right = 150.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = ExtResource("4_uhvqi")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l3lwd")
 script = ExtResource("8_sob3p")
 targetname = "JumpTutorialTrigger"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Intro/JumpTutorialPopup" unique_id=1124011000]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("6_p8bxm")
+theme = ExtResource("14_l3lwd")
 bbcode_enabled = true
 text = "[img height=40]res://Common/Icons/JumpButton.tres[/img] Jump"
 horizontal_alignment = 1
@@ -150,13 +156,13 @@ offset_right = 150.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = ExtResource("4_uhvqi")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l3lwd")
 script = ExtResource("8_sob3p")
 targetname = "CameraTutorialTrigger"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CameraTut/CameraTutorialPopup" unique_id=1891843883]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("6_p8bxm")
+theme = ExtResource("14_l3lwd")
 bbcode_enabled = true
 text = "[img height=40]res://Common/Icons/CameraControlIcon.tres[/img] Move Camera"
 horizontal_alignment = 1
@@ -180,13 +186,13 @@ offset_right = 150.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = ExtResource("4_uhvqi")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l3lwd")
 script = ExtResource("8_sob3p")
 targetname = "RecenterCameraTutorialTrigger"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="KickTut/RecenterCameraTutorialPopup" unique_id=913849027]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("6_p8bxm")
+theme = ExtResource("14_l3lwd")
 bbcode_enabled = true
 text = "[img height=40]res://Common/Icons/RecenterCameraButton.tres[/img] Recenter Camera"
 horizontal_alignment = 1
@@ -206,13 +212,13 @@ offset_right = 150.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = ExtResource("4_uhvqi")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dr8ch")
 script = ExtResource("8_sob3p")
 targetname = "KickTutorialPopupTrigger"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="KickTut/KickTutorialPopup" unique_id=734984224]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("6_p8bxm")
+theme = ExtResource("14_l3lwd")
 bbcode_enabled = true
 text = "[img height=40]res://Common/Icons/KickButton.tres[/img] Kick"
 horizontal_alignment = 1
@@ -235,12 +241,13 @@ offset_right = 150.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = ExtResource("4_uhvqi")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pht2m")
 script = ExtResource("8_sob3p")
 targetname = "RollTutorialPopupTrigger"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="RollTut/RollTutorialPopup" unique_id=859332851]
 layout_mode = 2
+theme = ExtResource("14_l3lwd")
 theme_override_fonts/normal_font = ExtResource("6_p8bxm")
 bbcode_enabled = true
 text = "[img height=40]res://Common/Icons/DiveButton.tres[/img] Roll"
