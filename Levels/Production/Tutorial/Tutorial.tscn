@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://btlc2kyid5u56" path="res://Levels/Production/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
 [ext_resource type="PackedScene" uid="uid://fwwegib0064k" path="res://Levels/Production/Tutorial/AgentDIntroCutscene/AgentDIntroCutscene.tscn" id="3_kb7u2"]
 [ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="4_uhvqi"]
-[ext_resource type="Script" uid="uid://d2ars665qqq5j" path="res://addons/controller_icons/objects/ControllerIconTexture.cs" id="5_uhvqi"]
 [ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="6_p8bxm"]
 [ext_resource type="PackedScene" uid="uid://cyxbyv7xju8b" path="res://Levels/Production/Tutorial/Maps/RollTut.map" id="8_i3mr3"]
 [ext_resource type="Script" uid="uid://bjrp7gxeg424r" path="res://UI/Widgets/TutorialPopup.cs" id="8_sob3p"]
@@ -43,66 +42,6 @@ Vector2i(-1, -1): {
 "to_time": 1
 }
 }
-
-[sub_resource type="Texture2D" id="Texture2D_p8bxm"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("5_uhvqi")
-path = "Jump"
-show_mode = 2
-force_type = 2
-metadata/_custom_type_script = "uid://d2ars665qqq5j"
-
-[sub_resource type="Texture2D" id="Texture2D_uhvqi"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("5_uhvqi")
-path = "Jump"
-show_mode = 1
-force_type = 1
-metadata/_custom_type_script = "uid://d2ars665qqq5j"
-
-[sub_resource type="LabelSettings" id="LabelSettings_i3mr3"]
-font = ExtResource("6_p8bxm")
-
-[sub_resource type="Texture2D" id="Texture2D_lu0qh"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("5_uhvqi")
-path = "RightStickLeft"
-show_mode = 2
-force_type = 2
-metadata/_custom_type_script = "uid://d2ars665qqq5j"
-
-[sub_resource type="Texture2D" id="Texture2D_r6tbe"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("5_uhvqi")
-path = "mouse/middle"
-show_mode = 1
-force_type = 1
-metadata/_custom_type_script = "uid://d2ars665qqq5j"
-
-[sub_resource type="Texture2D" id="Texture2D_sob3p"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("5_uhvqi")
-path = "RecenterCamera"
-metadata/_custom_type_script = "uid://d2ars665qqq5j"
-
-[sub_resource type="Texture2D" id="Texture2D_yrnv4"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("5_uhvqi")
-path = "Kick"
-metadata/_custom_type_script = "uid://d2ars665qqq5j"
-
-[sub_resource type="Texture2D" id="Texture2D_ipotd"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("5_uhvqi")
-path = "Roll"
-metadata/_custom_type_script = "uid://d2ars665qqq5j"
 
 [sub_resource type="Curve3D" id="Curve3D_r652i"]
 _data = {
@@ -186,52 +125,19 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "JumpTutorialTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Intro/JumpTutorialPopup" unique_id=31726207]
+[node name="RichTextLabel" type="RichTextLabel" parent="Intro/JumpTutorialPopup" unique_id=1124011000]
 layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Icons" type="Control" parent="Intro/JumpTutorialPopup/HBoxContainer" unique_id=594744529]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-
-[node name="ControllerIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons" unique_id=1907303650]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
-texture = SubResource("Texture2D_p8bxm")
-expand_mode = 1
-
-[node name="KeyboardIcon" type="TextureRect" parent="Intro/JumpTutorialPopup/HBoxContainer/Icons" unique_id=1824947049]
-layout_mode = 0
-offset_left = -20.0
-offset_top = 3.0
-offset_right = 25.0
-offset_bottom = 48.0
-size_flags_vertical = 4
-texture = SubResource("Texture2D_uhvqi")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Intro/JumpTutorialPopup/HBoxContainer" unique_id=2051868149]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Jump"
-label_settings = SubResource("LabelSettings_i3mr3")
+theme_override_fonts/normal_font = ExtResource("6_p8bxm")
+bbcode_enabled = true
+text = "[img height=40]res://ControllerIconTextures/JumpButton.tres[/img] Jump"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CameraTut" parent="." unique_id=344728991 instance=ExtResource("3_3rttw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 35)
 
 [node name="CameraTutorialPopup" type="PanelContainer" parent="CameraTut" unique_id=1890178206]
+visible = false
 custom_minimum_size = Vector2(300, 50)
 anchors_preset = 7
 anchor_left = 0.5
@@ -248,50 +154,17 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "CameraTutorialTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CameraTut/CameraTutorialPopup" unique_id=141089509]
+[node name="RichTextLabel" type="RichTextLabel" parent="CameraTut/CameraTutorialPopup" unique_id=1891843883]
 layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Icons" type="Control" parent="CameraTut/CameraTutorialPopup/HBoxContainer" unique_id=299107657]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-
-[node name="ControllerIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons" unique_id=323358392]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
-texture = SubResource("Texture2D_lu0qh")
-expand_mode = 1
-
-[node name="KeyboardIcon" type="TextureRect" parent="CameraTut/CameraTutorialPopup/HBoxContainer/Icons" unique_id=729697371]
-layout_mode = 0
-offset_left = -20.0
-offset_top = 3.0
-offset_right = 25.0
-offset_bottom = 48.0
-size_flags_vertical = 4
-texture = SubResource("Texture2D_r6tbe")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="CameraTut/CameraTutorialPopup/HBoxContainer" unique_id=287635632]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Move Camera"
-label_settings = SubResource("LabelSettings_i3mr3")
+theme_override_fonts/normal_font = ExtResource("6_p8bxm")
+bbcode_enabled = true
+text = "[img height=40]res://ControllerIconTextures/CameraControlIcon.tres[/img] Move Camera"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="KickTut" parent="." unique_id=843913111 instance=ExtResource("8_yrnv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 13, 37)
+visible = false
 
 [node name="RecenterCameraTutorialPopup" type="PanelContainer" parent="KickTut" unique_id=326366864]
 visible = false
@@ -311,22 +184,12 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "RecenterCameraTutorialTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/RecenterCameraTutorialPopup" unique_id=1356391317]
+[node name="RichTextLabel" type="RichTextLabel" parent="KickTut/RecenterCameraTutorialPopup" unique_id=913849027]
 layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="TextureRect" type="TextureRect" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer" unique_id=67715824]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_vertical = 4
-texture = SubResource("Texture2D_sob3p")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="KickTut/RecenterCameraTutorialPopup/HBoxContainer" unique_id=2107237578]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Recenter Camera"
-label_settings = SubResource("LabelSettings_i3mr3")
+theme_override_fonts/normal_font = ExtResource("6_p8bxm")
+bbcode_enabled = true
+text = "[img height=40]res://ControllerIconTextures/RecenterCameraButton.tres[/img] Recenter Camera"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="KickTutorialPopup" type="PanelContainer" parent="KickTut" unique_id=35792725]
@@ -347,22 +210,12 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "KickTutorialPopupTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="KickTut/KickTutorialPopup" unique_id=138775688]
+[node name="RichTextLabel" type="RichTextLabel" parent="KickTut/KickTutorialPopup" unique_id=734984224]
 layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="TextureRect" type="TextureRect" parent="KickTut/KickTutorialPopup/HBoxContainer" unique_id=805427505]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_vertical = 4
-texture = SubResource("Texture2D_yrnv4")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="KickTut/KickTutorialPopup/HBoxContainer" unique_id=1274254823]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Kick"
-label_settings = SubResource("LabelSettings_i3mr3")
+theme_override_fonts/normal_font = ExtResource("6_p8bxm")
+bbcode_enabled = true
+text = "[img height=40]res://ControllerIconTextures/KickButton.tres[/img] Kick"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RollTut" parent="." unique_id=449101991 instance=ExtResource("8_i3mr3")]
@@ -386,22 +239,12 @@ theme_override_styles/panel = ExtResource("4_uhvqi")
 script = ExtResource("8_sob3p")
 targetname = "RollTutorialPopupTrigger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RollTut/RollTutorialPopup" unique_id=1643180887]
+[node name="RichTextLabel" type="RichTextLabel" parent="RollTut/RollTutorialPopup" unique_id=859332851]
 layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="TextureRect" type="TextureRect" parent="RollTut/RollTutorialPopup/HBoxContainer" unique_id=900111991]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_vertical = 4
-texture = SubResource("Texture2D_ipotd")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="RollTut/RollTutorialPopup/HBoxContainer" unique_id=1010017696]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Roll"
-label_settings = SubResource("LabelSettings_i3mr3")
+theme_override_fonts/normal_font = ExtResource("6_p8bxm")
+bbcode_enabled = true
+text = "[img height=40]res://ControllerIconTextures/DiveButton.tres[/img] Roll"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FairyRoomWindowCameraSpot" type="Marker3D" parent="RollTut" unique_id=523505177]
