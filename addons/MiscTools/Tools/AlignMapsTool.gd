@@ -63,6 +63,9 @@ func _visit(
 	
 	_undo_redo.add_undo_property(map, "global_transform", map.global_transform)
 	map.global_transform = _average(transforms)
+	map.position = _round_vec3_for_version_control(map.position, 0.0001)
+	map.rotation_degrees = _round_vec3_for_version_control(map.rotation_degrees, 0.0001)
+	map.scale = _round_vec3_for_version_control(map.scale, 0.0001)
 	_undo_redo.add_do_property(map, "global_transform", map.global_transform)
 	
 	# Fix all the remaining edges of this map in place
@@ -149,3 +152,9 @@ func _average(transforms: Array[Transform3D]) -> Transform3D:
 		count += 1
 	
 	return average
+
+func _round_vec3_for_version_control(vector: Vector3, precision: float) -> Vector3:
+	vector.x = snappedf(vector.x, precision)
+	vector.y = snappedf(vector.y, precision)
+	vector.z = snappedf(vector.z, precision)
+	return vector
