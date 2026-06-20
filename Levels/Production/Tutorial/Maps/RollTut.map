@@ -437,17 +437,17 @@
 }
 // entity 14
 {
-"classname" "item_basket"
+"classname" "item_vase"
 "origin" "-264 176 120"
 }
 // entity 15
 {
-"classname" "item_basket"
+"classname" "item_vase"
 "origin" "-200 176 120"
 }
 // entity 16
 {
-"classname" "item_basket"
+"classname" "item_vase"
 "origin" "-232 176 120"
 }
 // entity 17
