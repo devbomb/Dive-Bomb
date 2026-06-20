@@ -14,6 +14,8 @@ script_class = ExtResource("2_ap3r1")
 classname = "trigger_tutorial_popup_zone"
 description = "Shows a tutorial popup on the screen while the player is standing inside it.  The text can have BBCode in it."
 class_properties = Dictionary[String, Variant]({
+"FadeInDuration": 0.25,
+"FadeOutDuration": 0.5,
 "Text": ""
 })
 auto_apply_to_matching_node_properties = true
