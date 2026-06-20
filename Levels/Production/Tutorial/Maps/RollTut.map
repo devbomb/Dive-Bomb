@@ -711,7 +711,7 @@
 // entity 31
 {
 "classname" "trigger_tutorial_popup_zone"
-"Text" "[img height=40]res://Common/Icons/DiveButton.tres[/img] Dive"
+"Text" "[img height=40]res://Common/Icons/DiveButton.tres[/img] [wave amp=20 freq=20 color=#ffffff70]Dive[/wave]"
 "FadeInDuration" "0"
 "FadeOutDuration" "0.500000"
 // brush 0
