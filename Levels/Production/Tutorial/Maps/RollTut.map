@@ -534,7 +534,7 @@
 // entity 28
 {
 "classname" "info_map_edge"
-"origin" "-200 584 168"
+"origin" "-200 600 168"
 "angle" "90"
 "id" "RollTut_To_FairyRoom_Glass"
 }
