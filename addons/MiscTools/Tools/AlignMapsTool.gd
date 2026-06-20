@@ -133,7 +133,7 @@ func _global_transform_if_linked_to_edge(
 	return _local_to_global(map_in_temp_origin_space, temp_origin_global)
 
 func _global_to_local(child_global: Transform3D, parent_global: Transform3D) -> Transform3D:
-	return child_global * parent_global.inverse()
+	return parent_global.inverse() * child_global
 
 func _local_to_global(child_local: Transform3D, parent_global: Transform3D) -> Transform3D:
 	return parent_global * child_local
