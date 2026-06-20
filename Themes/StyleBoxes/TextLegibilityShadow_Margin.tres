@@ -1,0 +1,18 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cog6pux4cc1cw"]
+
+[sub_resource type="Gradient" id="Gradient_awoy1"]
+offsets = PackedFloat32Array(0, 0.25, 0.349854, 0.5, 0.65, 0.75, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.0901961, 0, 0, 0, 0.740056, 0, 0, 0, 1, 0, 0, 0, 0.741176, 0, 0, 0, 0.0901961, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ewj6y"]
+gradient = SubResource("Gradient_awoy1")
+
+[resource]
+content_margin_left = 48.0
+content_margin_top = 16.0
+content_margin_right = 48.0
+content_margin_bottom = 16.0
+texture = SubResource("GradientTexture2D_ewj6y")
+texture_margin_left = 16.0
+texture_margin_right = 16.0
+modulate_color = Color(1, 1, 1, 0.392157)

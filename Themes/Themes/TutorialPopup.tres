@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://bgt4xjrmjkwcr"]
 
 [ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="1_8nrii"]
-[ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="2_dr8ch"]
+[ext_resource type="StyleBox" uid="uid://cog6pux4cc1cw" path="res://Themes/StyleBoxes/TextLegibilityShadow_Margin.tres" id="2_dr8ch"]
 
 [sub_resource type="FontVariation" id="FontVariation_8nrii"]
 base_font = ExtResource("1_8nrii")
