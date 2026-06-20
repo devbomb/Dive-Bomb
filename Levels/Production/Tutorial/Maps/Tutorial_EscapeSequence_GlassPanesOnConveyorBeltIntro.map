@@ -1336,3 +1336,16 @@
 ( 1088 832 0 ) ( 1088 752 -16 ) ( 1088 752 0 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
+// entity 50
+{
+"classname" "info_map_edge"
+"origin" "-8 -72 24"
+"angle" "270"
+"id" "DrMonocle_To_PanesOnBelt"
+}
+// entity 51
+{
+"classname" "info_map_edge"
+"origin" "824 -168 184"
+"id" "PanesOnBelt_To_TimeWaster"
+}

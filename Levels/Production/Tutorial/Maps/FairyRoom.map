@@ -892,6 +892,19 @@
 }
 // entity 13
 {
+"classname" "info_map_edge"
+"origin" "152 88 200"
+"id" "RollTut_To_FairyRoom_Glass"
+}
+// entity 14
+{
+"classname" "info_map_edge"
+"origin" "-520 104 328"
+"angle" "180"
+"id" "FairyRoom_To_DrMonocle"
+}
+// entity 15
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Ceilings"

@@ -890,3 +890,17 @@
 "classname" "item_gem_red"
 "origin" "1108 -28 240"
 }
+// entity 41
+{
+"classname" "info_map_edge"
+"origin" "664 -168 184"
+"angle" "180"
+"id" "TimeWaster_To_2FA"
+}
+// entity 42
+{
+"classname" "info_map_edge"
+"origin" "1192 -968 312"
+"angle" "270"
+"id" "2FA_To_Exit"
+}
