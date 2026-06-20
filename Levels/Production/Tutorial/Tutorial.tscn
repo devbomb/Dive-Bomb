@@ -129,7 +129,7 @@ targetname = "JumpTutorialTrigger"
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("6_p8bxm")
 bbcode_enabled = true
-text = "[img height=40]res://ControllerIconTextures/JumpButton.tres[/img] Jump"
+text = "[img height=40]res://Common/Icons/JumpButton.tres[/img] Jump"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -158,7 +158,7 @@ targetname = "CameraTutorialTrigger"
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("6_p8bxm")
 bbcode_enabled = true
-text = "[img height=40]res://ControllerIconTextures/CameraControlIcon.tres[/img] Move Camera"
+text = "[img height=40]res://Common/Icons/CameraControlIcon.tres[/img] Move Camera"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -188,7 +188,7 @@ targetname = "RecenterCameraTutorialTrigger"
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("6_p8bxm")
 bbcode_enabled = true
-text = "[img height=40]res://ControllerIconTextures/RecenterCameraButton.tres[/img] Recenter Camera"
+text = "[img height=40]res://Common/Icons/RecenterCameraButton.tres[/img] Recenter Camera"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -214,7 +214,7 @@ targetname = "KickTutorialPopupTrigger"
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("6_p8bxm")
 bbcode_enabled = true
-text = "[img height=40]res://ControllerIconTextures/KickButton.tres[/img] Kick"
+text = "[img height=40]res://Common/Icons/KickButton.tres[/img] Kick"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -243,7 +243,7 @@ targetname = "RollTutorialPopupTrigger"
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("6_p8bxm")
 bbcode_enabled = true
-text = "[img height=40]res://ControllerIconTextures/DiveButton.tres[/img] Roll"
+text = "[img height=40]res://Common/Icons/DiveButton.tres[/img] Roll"
 horizontal_alignment = 1
 vertical_alignment = 1
 
