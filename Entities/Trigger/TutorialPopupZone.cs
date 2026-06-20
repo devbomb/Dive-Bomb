@@ -10,9 +10,12 @@ namespace FastDragon
         private readonly RichTextLabel _label = new()
         {
             Theme = ResourceLoader.Load<Theme>("res://Themes/Themes/TutorialPopup.tres"),
+
+            BbcodeEnabled = true,
             FitContent = true,
             AutowrapMode = TextServer.AutowrapMode.Off,
-            BbcodeEnabled = true,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
 
             AnchorBottom = 1,
             OffsetBottom = -20,
