@@ -1,0 +1,28 @@
+[gd_resource type="Theme" format=3 uid="uid://bgt4xjrmjkwcr"]
+
+[ext_resource type="FontFile" uid="uid://gbnm2qwjnpvo" path="res://Fonts/Kode/KodeMono-VariableFont_wght.ttf" id="1_8nrii"]
+[ext_resource type="StyleBox" uid="uid://drsnja4becmdf" path="res://Themes/StyleBoxes/TextLegibilityShadow.tres" id="2_dr8ch"]
+
+[sub_resource type="FontVariation" id="FontVariation_8nrii"]
+base_font = ExtResource("1_8nrii")
+variation_embolden = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_dr8ch"]
+base_font = ExtResource("1_8nrii")
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0.4, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_ynb7a"]
+base_font = ExtResource("1_8nrii")
+variation_transform = Transform2D(1, 0.4, 0, 1, 0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2q5jj"]
+
+[resource]
+RichTextLabel/fonts/bold_font = SubResource("FontVariation_8nrii")
+RichTextLabel/fonts/bold_italics_font = SubResource("FontVariation_dr8ch")
+RichTextLabel/fonts/italics_font = SubResource("FontVariation_ynb7a")
+RichTextLabel/fonts/mono_font = ExtResource("1_8nrii")
+RichTextLabel/fonts/normal_font = ExtResource("1_8nrii")
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_2q5jj")
+RichTextLabel/styles/normal = ExtResource("2_dr8ch")
