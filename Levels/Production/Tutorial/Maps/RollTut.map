@@ -712,11 +712,13 @@
 {
 "classname" "trigger_tutorial_popup_zone"
 "Text" "[img height=40]res://Common/Icons/DiveButton.tres[/img] Dive"
+"FadeInDuration" "0"
+"FadeOutDuration" "0.500000"
 // brush 0
 {
 ( -432 288 80 ) ( -432 289 80 ) ( -432 288 81 ) Textures/Grate 0 0 0 1 1
 ( -432 368 80 ) ( -432 368 81 ) ( -431 368 80 ) Textures/Grate 0 0 0 1 1
-( -432 288 160 ) ( -431 288 160 ) ( -432 289 160 ) Textures/Grate 0 0 0 1 1
+( -432 288 152 ) ( -431 288 152 ) ( -432 289 152 ) Textures/Grate 0 0 0 1 1
 ( -304 416 272 ) ( -304 417 272 ) ( -303 416 272 ) Textures/Grate 0 0 0 1 1
 ( -304 416 96 ) ( -303 416 96 ) ( -304 416 97 ) Textures/Grate 0 0 0 1 1
 ( -304 416 96 ) ( -304 416 97 ) ( -304 417 96 ) Textures/Grate 0 0 0 1 1
@@ -726,6 +728,7 @@
 {
 "classname" "trigger_tutorial_popup_zone"
 "Text" "[img height=40]res://Common/Icons/JumpButton.tres[/img] Jump"
+"FadeOutDuration" "0"
 // brush 0
 {
 ( -400 368 120 ) ( -400 369 120 ) ( -400 368 121 ) Textures/Grate 0 0 0 1 1
