@@ -292,7 +292,7 @@
 // entity 17
 {
 "classname" "info_map_edge"
-"origin" "-8 -72 168"
+"origin" "8 -72 104"
 "angle" "270"
 "id" "CamTut_To_KickTut"
 }
