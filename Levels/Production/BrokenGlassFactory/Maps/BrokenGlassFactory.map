@@ -4,7 +4,6 @@
 {
 "classname" "worldspawn"
 "_tb_textures" "Textures/Textures"
-"HomeWorldLevel" "res://Levels/TestMap/TestMap.tscn"
 "FlyInDuration" "6"
 "FlyInHeight" "90"
 "FlyInDistance" "1"
@@ -3564,9 +3563,7 @@
 {
 "classname" "transport_player_spawn"
 "origin" "-152 -264 144"
-"LevelName" "Broken Glass Factory"
 "angles" "0 90 0"
-"HomeWorldLevel" "res://Levels/TestMap/TestMap.tscn"
 "FlyInDuration" "6"
 "FlyInHeight" "90"
 "FlyInDistance" "1"
@@ -3575,7 +3572,6 @@
 // entity 128
 {
 "classname" "wall_divable"
-"HomeWorldLevel" "res://Levels/TestMap/TestMap.tscn"
 "FlyInDuration" "6"
 "FlyInHeight" "90"
 "FlyInDistance" "1"

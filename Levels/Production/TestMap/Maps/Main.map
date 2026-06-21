@@ -151,7 +151,6 @@
 {
 "classname" "transport_player_spawn"
 "origin" "0 24 16"
-"LevelName" "Test Homeworld"
 }
 // entity 2
 {

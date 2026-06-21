@@ -95,8 +95,6 @@
 "classname" "transport_player_spawn"
 "origin" "8 -136 48"
 "angles" "0 90 0"
-"LevelName" "Night Dummy Map"
-"HomeWorldLevel" "res://Levels/TestMap/TestMap.tscn"
 }
 // entity 12
 {
