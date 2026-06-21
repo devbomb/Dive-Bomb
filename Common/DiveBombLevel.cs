@@ -14,15 +14,6 @@ namespace FastDragon
         [Export] public string LevelName;
 
         /// <summary>
-        /// The level we should return to when "exit level" is selected in the
-        /// pause menu, or when a vortex is used.
-        ///
-        /// Set to null to indicate that this level is a home world.
-        /// </summary>
-        /// <returns></returns>
-        [Export(PropertyHint.File)] public string HomeWorldLevel;
-
-        /// <summary>
         /// Set this to true to prevent the player from exiting the level
         /// through the pause menu, even if this level isn't a home world.
         ///

@@ -131,7 +131,7 @@ namespace FastDragon
                 skyBoxEnvironment = ResourceLoader.Load<Environment>("res://Environments/DaySky.tres");
             }
 
-            string levelSceneFile = GetHomeWorldLevel();
+            string levelSceneFile = LastHubWorld();
             string previousLevelSceneFile = oldScene.SceneFilePath;
             GoToPortalLoadingScreen(levelSceneFile, previousLevelSceneFile, skyBoxEnvironment);
             SaveFileManager.Current.CurrentLevelVisit = new();
@@ -147,7 +147,7 @@ namespace FastDragon
                 SkyBoxEnvironment = prevLevel.FindNode<WorldEnvironment>().Environment,
 
                 PreviousLevelScenePath = prevLevel.SceneFilePath,
-                HomeWorldScenePath = prevLevel.HomeWorldLevel,
+                HomeWorldScenePath = LastHubWorld(),
 
                 PlayerAnimationTime = player.Animator.CurrentAnimationPosition,
                 PlayerStartPos = player.GlobalTransform,
@@ -235,9 +235,9 @@ namespace FastDragon
             loadingScreen.Initialize(parameters);
         }
 
-        private string GetHomeWorldLevel()
+        private string LastHubWorld()
         {
-            return GetTree().FindNode<DiveBombLevel>()?.HomeWorldLevel;
+            return SaveFileManager.Current.LastHubWorld;
         }
 
         private void LogStartedGoToLevelWithFade(string nextScene)

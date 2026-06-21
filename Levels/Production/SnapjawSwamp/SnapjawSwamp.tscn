@@ -15,7 +15,6 @@
 [node name="SnapjawSwamp" type="Node3D" unique_id=2127025086]
 script = ExtResource("1_f80cs")
 LevelName = "Snapjaw Swamp"
-HomeWorldLevel = "uid://muwxx8ltp1ss"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=191718947]
