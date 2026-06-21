@@ -7,7 +7,6 @@
 [node name="GrayboxBullshit" type="Node3D" unique_id=1183344201]
 script = ExtResource("1_iw83h")
 LevelName = "Broken Glass Factory"
-HomeWorldLevel = "uid://muwxx8ltp1ss"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1415372007]

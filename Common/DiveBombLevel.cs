@@ -14,15 +14,6 @@ namespace FastDragon
         [Export] public string LevelName;
 
         /// <summary>
-        /// The level we should return to when "exit level" is selected in the
-        /// pause menu, or when a vortex is used.
-        ///
-        /// Set to null to indicate that this level is a home world.
-        /// </summary>
-        /// <returns></returns>
-        [Export(PropertyHint.File)] public string HomeWorldLevel;
-
-        /// <summary>
         /// Set this to true to prevent the player from exiting the level
         /// through the pause menu, even if this level isn't a home world.
         ///
@@ -34,7 +25,7 @@ namespace FastDragon
         /// </summary>
         [Export] public bool ForbidExitLevel;
 
-        public bool IsHomeWorld => HomeWorldLevel == null;
+        [Export] public bool IsHubWorld;
 
         public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
 
@@ -73,6 +64,9 @@ namespace FastDragon
         {
             AtlasCache.Instance.UpdateCache(SceneFilePath, this);
 
+            if (IsHubWorld)
+                SaveFileManager.Current.LastHubWorld = SceneFilePath;
+
             // Start a new level visit
             // ...unless the game is currently being loaded from a save file,
             // in which case we don't want to overwrite the existing level visit.
@@ -96,7 +90,7 @@ namespace FastDragon
 
         public bool CanExitLevel()
         {
-            if (IsHomeWorld)
+            if (IsHubWorld)
                 return false;
 
             if (ForbidExitLevel && !GetProgress().ExitReached)

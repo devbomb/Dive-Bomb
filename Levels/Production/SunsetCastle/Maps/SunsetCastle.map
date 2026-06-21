@@ -1169,8 +1169,6 @@
 "origin" "0 112 0"
 "angles" "0 90 0"
 "FlyInHeight" "80"
-"LevelName" "Sunset Castle"
-"HomeWorldLevel" "res://Levels/TestMap/TestMap.tscn"
 }
 // entity 2
 {

@@ -12,6 +12,12 @@ namespace FastDragon
         [JsonProperty] public string CurrentLevel;
 
         /// <summary>
+        /// The level we should return to when "exit level" is selected in the
+        /// pause menu, or when a level exit cannon is used.
+        /// </summary>
+        [JsonProperty] public string LastHubWorld = "res://Levels/Production/TestMap/TestMap.tscn";
+
+        /// <summary>
         /// The number of times the player has died outside of time trial mode.
         /// You don't get punished for this; it's just a fun little counter.
         /// </summary>

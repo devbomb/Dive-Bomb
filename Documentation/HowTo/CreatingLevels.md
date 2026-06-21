@@ -76,12 +76,7 @@ gitignored and gdignored.
 This is where you'll create the level geometry and place entities.  The most
 common entities you'll use are:
 * `transport_player_spawn`: the player's spawn point.  Every level needs exactly
-    one.  There are a few required parameters:
-    * `LevelName`: the name of this level.  This is what the level will be
-        called in the inventory screen and in Time Trial mode.
-    * `HomeWorldLevel`: The path to the .tscn file of the level the player should
-        return to when the exit is reached(or "exit level" is chosen in the
-        pause menu).  Must start with "res://"
+    one.
 
 * `transport_level_exit`: the level exit.  Levels without one of these
     cannot be played in Time Trial mode.

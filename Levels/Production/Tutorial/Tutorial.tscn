@@ -73,7 +73,6 @@ curve_step = 10.0
 [node name="Tutorial" type="Node3D" unique_id=1133266737]
 script = ExtResource("1_vo1h1")
 LevelName = "Tutorial"
-HomeWorldLevel = "uid://muwxx8ltp1ss"
 ForbidExitLevel = true
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=866248481]
