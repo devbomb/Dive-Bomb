@@ -73,6 +73,9 @@ namespace FastDragon
         {
             AtlasCache.Instance.UpdateCache(SceneFilePath, this);
 
+            if (IsHubWorld)
+                SaveFileManager.Current.LastHubWorld = SceneFilePath;
+
             // Start a new level visit
             // ...unless the game is currently being loaded from a save file,
             // in which case we don't want to overwrite the existing level visit.
