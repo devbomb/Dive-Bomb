@@ -18,6 +18,7 @@ point_count = 7
 [node name="TestMap" type="Node3D" unique_id=1548378417]
 script = ExtResource("1_678t0")
 LevelName = "Test Hub World"
+IsHubWorld = true
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1195481406]

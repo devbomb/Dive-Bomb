@@ -34,7 +34,7 @@ namespace FastDragon
         /// </summary>
         [Export] public bool ForbidExitLevel;
 
-        public bool IsHubWorld => HomeWorldLevel == null;
+        [Export] public bool IsHubWorld;
 
         public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
 
