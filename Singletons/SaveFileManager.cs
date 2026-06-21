@@ -27,10 +27,17 @@ namespace FastDragon
             Instance = this;
         }
 
-        public void StartNewGame(int slotNumber, string levelScenePath)
+        public void StartNewGame(
+            int slotNumber,
+            string levelScenePath,
+            string hubScenePath
+        )
         {
             ActiveSlot = slotNumber;
-            CurrentFile = new();
+            CurrentFile = new()
+            {
+                LastHubWorld = hubScenePath,
+            };
             LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(levelScenePath);
         }
 
