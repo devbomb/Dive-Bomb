@@ -1,0 +1,214 @@
+// Game: FastDragon
+// Format: Standard
+// entity 0
+{
+"wad" ""
+"classname" "worldspawn"
+// brush 0
+{
+( -208 -64 -16 ) ( -208 -63 -16 ) ( -208 -64 -15 ) Textures/BigMetalSquares 0 0 0 1 1
+( -64 -224 -16 ) ( -64 -224 -15 ) ( -63 -224 -16 ) Textures/BigMetalSquares 0 0 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) Textures/GridSquare 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) Textures/GridSquare 0 0 0 1 1
+( 64 224 16 ) ( 65 224 16 ) ( 64 224 17 ) Textures/BigMetalSquares 0 0 0 1 1
+( 400 64 16 ) ( 400 64 17 ) ( 400 65 16 ) Textures/BigMetalSquares 0 0 0 1 1
+}
+// brush 1
+{
+( 64 160 16 ) ( 64 161 16 ) ( 64 160 17 ) Textures/BigMetalSquares -16 0 0 1 1
+( 48 160 16 ) ( 48 160 17 ) ( 49 160 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 48 160 16 ) ( 49 160 16 ) ( 48 161 16 ) Textures/GridSquare 0 16 0 1 1
+( 176 208 32 ) ( 176 209 32 ) ( 177 208 32 ) Textures/GridSquare 0 16 0 1 1
+( 176 224 32 ) ( 177 224 32 ) ( 176 224 33 ) Textures/BigMetalSquares 0 0 0 1 1
+( 160 208 32 ) ( 160 208 33 ) ( 160 209 32 ) Textures/BigMetalSquares -16 0 0 1 1
+}
+// brush 2
+{
+( 80 160 32 ) ( 80 112 16 ) ( 80 160 16 ) Textures/BigMetalSquares 0 0 0 1 1
+( 144 160 32 ) ( 80 112 16 ) ( 80 160 32 ) Textures/GridSquare 0 0 0 1 1
+( 144 160 16 ) ( 80 112 16 ) ( 144 112 16 ) Textures/GridSquare 0 0 0 1 1
+( 144 160 32 ) ( 80 160 16 ) ( 144 160 16 ) Textures/GridSquare 0 0 0 1 1
+( 144 160 32 ) ( 144 160 16 ) ( 144 112 16 ) Textures/GridSquare 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "transport_player_spawn"
+"origin" "112 192 32"
+"angle" "270"
+}
+// entity 2
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "TutorialPortalPlatform"
+"_tb_id" "1"
+"_tb_linked_group_id" "{33d84625-444a-4167-98ce-a4b74821ec8d}"
+"_tb_transformation" "1 0 0 232 0 1 0 44 0 0 1 48 0 0 0 1"
+// brush 0
+{
+( -152 76 51.19999999999999 ) ( -152 76 16 ) ( -152 140 51.19999999999709 ) Textures/GridSquare 20 16 0 1 1
+( -152 76 51.19999999999999 ) ( -93.33333333333336 76 16 ) ( -152 76 16 ) Textures/GridSquare -8 16 0 1 1
+( -93.33333333333563 140 16 ) ( -152 140 16 ) ( -93.33333333333336 76 16 ) Textures/GridSquare -8.000008 -20 0 1 1
+( -152 140 51.19999999999709 ) ( -152 140 16 ) ( -93.33333333333563 140 16 ) Textures/GridSquare -8 16 0 1 1
+( -152 140 51.19999999999709 ) ( -93.33333333333563 140 16 ) ( -152 76 51.19999999999999 ) Textures/GridSquare -8.000008 -20 0 1 1
+}
+// brush 1
+{
+( -200 28 80 ) ( -200 28 16 ) ( -200 76 51.2 ) Textures/GridSquare 20 16 0 1 1
+( -152 28 80 ) ( -152 28 16 ) ( -200 28 80 ) Textures/GridSquare -8 16 0 1 1
+( -152 76 16 ) ( -200 76 16 ) ( -152 28 16 ) Textures/GridSquare -8 -20 0 1 1
+( -200 76 51.2 ) ( -152 76 51.2 ) ( -200 28 80 ) Textures/GridSquare -8 -20 0 1 1
+( -200 76 51.2 ) ( -200 76 16 ) ( -152 76 51.2 ) Textures/GridSquare -8 16 0 1 1
+( -152 76 51.2 ) ( -152 76 16 ) ( -152 28 80 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 2
+{
+( -200 -68 80 ) ( -200 -68 16 ) ( -200 28 80 ) Textures/GridSquare 20 16 0 1 1
+( -152 -68 80 ) ( -152 -68 16 ) ( -200 -68 80 ) Textures/GridSquare -8 16 0 1 1
+( -152 28 16 ) ( -200 28 16 ) ( -152 -68 16 ) Textures/GridSquare -8 -20 0 1 1
+( -200 28 80 ) ( -152 28 80 ) ( -200 -68 80 ) Textures/GridSquare -8 -20 0 1 1
+( -200 28 80 ) ( -200 28 16 ) ( -152 28 80 ) Textures/GridSquare -8 16 0 1 1
+( -152 28 80 ) ( -152 28 16 ) ( -152 -68 80 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 3
+{
+( -200 76 51.20000000000002 ) ( -200 76 16 ) ( -200 140 51.20000000000002 ) Textures/GridSquare 20 16 0 1 1
+( -152 76 51.20000000000002 ) ( -152 76 16 ) ( -200 76 51.20000000000002 ) Textures/GridSquare -8 16 0 1 1
+( -152 140 16 ) ( -200 140 16 ) ( -152 76 16 ) Textures/GridSquare -8 -20 0 1 1
+( -200 140 51.20000000000002 ) ( -152 140 51.20000000000002 ) ( -200 76 51.20000000000002 ) Textures/GridSquare -8 -20 0 1 1
+( -200 140 51.20000000000002 ) ( -200 140 16 ) ( -152 140 51.20000000000002 ) Textures/GridSquare -8 16 0 1 1
+( -152 140 51.20000000000002 ) ( -152 140 16 ) ( -152 76 51.20000000000002 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 4
+{
+( -152 -68 80 ) ( -152 -68 16 ) ( -152 60 80 ) Textures/GridSquare 19.999996 16 0 1 1
+( -60 -68 80 ) ( -60 -68 16 ) ( -152 -68 80 ) Textures/GridSquare -8 16 0 1 1
+( -60 76 16 ) ( -152 76 16 ) ( -60 -68 16 ) Textures/GridSquare -8 -20 0 1 1
+( -152 60 80 ) ( -60 60 80 ) ( -152 -68 80 ) Textures/GridSquare -8 -20 0 1 1
+( -152 76 64 ) ( -60 76 64 ) ( -152 60 80 ) Textures/GridSquare -8 -20 0 1 1
+( -152 76 64 ) ( -152 76 16 ) ( -60 76 64 ) Textures/GridSquare -8 16 0 1 1
+( -56 76 64 ) ( -56 76 16 ) ( -56 60 80 ) Textures/GridSquare 19.999996 16 0 1 1
+}
+// brush 5
+{
+( -208 76 64 ) ( -208 140 16 ) ( -208 140 64 ) Textures/GridSquare 20 16 0 1 1
+( -200 76 64 ) ( -208 76 16 ) ( -208 76 64 ) Textures/GridSquare -8 16 0 1 1
+( -200 140 16 ) ( -208 76 16 ) ( -200 76 16 ) Textures/GridSquare -8 -20 0 1 1
+( -200 140 64 ) ( -208 76 64 ) ( -208 140 64 ) Textures/GridSquare -8 -20 0 1 1
+( -200 140 64 ) ( -208 140 16 ) ( -200 140 16 ) Textures/GridSquare -8 16 0 1 1
+( -200 140 64 ) ( -200 76 16 ) ( -200 76 64 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 6
+{
+( -152 140 51.19999999999709 ) ( -152 148 16 ) ( -152 148 51.19999999999709 ) Textures/GridSquare 20 16 0 1 1
+( -93.33333333333563 140 16 ) ( -152 140 16 ) ( -152 140 51.19999999999709 ) Textures/GridSquare -7.9999924 16 0 1 1
+( -93.33333333333563 148 16 ) ( -152 140 16 ) ( -93.33333333333563 140 16 ) Textures/GridSquare -8 -20 0 1 1
+( -93.33333333333563 148 16 ) ( -152 148 51.19999999999709 ) ( -152 148 16 ) Textures/GridSquare -7.9999924 16 0 1 1
+( -87.68627450980459 148 25.41176470588546 ) ( -146.35294117646896 140 60.61176470588255 ) ( -146.35294117646896 148 60.61176470588255 ) Textures/GridSquare -8 -20 0 1 1
+}
+// brush 7
+{
+( -208 140 56 ) ( -208 148 16 ) ( -208 148 56 ) Textures/GridSquare 20 16 0 1 1
+( -152 140 56 ) ( -208 140 16 ) ( -208 140 56 ) Textures/GridSquare -8 16 0 1 1
+( -152 148 16 ) ( -208 140 16 ) ( -152 140 16 ) Textures/GridSquare -8 -20 0 1 1
+( -152 148 64 ) ( -208 140 64 ) ( -208 148 64 ) Textures/GridSquare -8 -20 0 1 1
+( -152 148 56 ) ( -208 148 16 ) ( -152 148 16 ) Textures/GridSquare -8 16 0 1 1
+( -152 148 56 ) ( -152 140 16 ) ( -152 140 56 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 8
+{
+( -208 -68 80 ) ( -208 28 16 ) ( -208 28 80 ) Textures/GridSquare 20 16 0 1 1
+( -200 -68 80 ) ( -208 -68 16 ) ( -208 -68 80 ) Textures/GridSquare -8 16 0 1 1
+( -200 28 16 ) ( -208 -68 16 ) ( -200 -68 16 ) Textures/GridSquare -8 -20 0 1 1
+( -200 28 96 ) ( -208 -68 96 ) ( -208 28 96 ) Textures/GridSquare -8 -20 0 1 1
+( -200 28 80 ) ( -208 28 16 ) ( -200 28 16 ) Textures/GridSquare -8 16 0 1 1
+( -200 28 80 ) ( -200 -68 16 ) ( -200 -68 80 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 9
+{
+( -208 28 96 ) ( -208 76 16 ) ( -208 76 64 ) Textures/GridSquare 20 16 0 1 1
+( -200 28 96 ) ( -208 28 16 ) ( -208 28 96 ) Textures/GridSquare -8 16 0 1 1
+( -200 76 16 ) ( -208 28 16 ) ( -200 28 16 ) Textures/GridSquare -8 -20 0 1 1
+( -200 76 64 ) ( -208 28 96 ) ( -208 76 64 ) Textures/GridSquare -8 -20 0 1 1
+( -200 76 64 ) ( -208 76 16 ) ( -200 76 16 ) Textures/GridSquare -8 16 0 1 1
+( -200 76 64 ) ( -200 28 16 ) ( -200 28 96 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 10
+{
+( -208 -68 96 ) ( -208 -76 96 ) ( -208 -76 16 ) Textures/GridSquare 20 16 0 1 1
+( -120 -76 92 ) ( -40 -76 80 ) ( -40 -76 16 ) Textures/GridSquare -8 16 0 1 1
+( -40 -76 16 ) ( -40 -68 16 ) ( -208 -68 16 ) Textures/GridSquare -8 -20 0 1 1
+( -40 -68 16 ) ( -40 -68 80 ) ( -120 -68 92 ) Textures/GridSquare -8 16 0 1 1
+( -208 -68 96 ) ( -120 -68 92 ) ( -120 -76 92 ) Textures/GridSquare -8 -20 0 1 1
+( -120 -68 92 ) ( -40 -68 80 ) ( -40 -76 80 ) Textures/GridSquare -8 -20 0 1 1
+( -56 -76 80 ) ( -56 -68 80 ) ( -56 -68 16 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 11
+{
+( -56 -52 80 ) ( -56 -28 64 ) ( -56 -28 80 ) Textures/GridSquare 20 16 0 1 1
+( -40 -52 80 ) ( -56 -52 64 ) ( -56 -52 80 ) Textures/GridSquare -8 16 0 1 1
+( -40 -28 64 ) ( -56 -52 64 ) ( -40 -52 64 ) Textures/GridSquare -8 -20 0 1 1
+( -40 -28 80 ) ( -56 -52 80 ) ( -56 -28 80 ) Textures/GridSquare -8 -20 0 1 1
+( -40 -28 80 ) ( -56 -28 64 ) ( -40 -28 64 ) Textures/GridSquare -8 16 0 1 1
+( -48 -28 64 ) ( -40 -28 72 ) ( -40 100 72 ) Textures/GridSquare -8 -20 0 1 1
+( -40 -28 80 ) ( -40 -52 64 ) ( -40 -52 80 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 12
+{
+( -56 20 80 ) ( -56 44 64 ) ( -56 44 80 ) Textures/GridSquare 20 16 0 1 1
+( -40 20 80 ) ( -56 20 64 ) ( -56 20 80 ) Textures/GridSquare -8 16 0 1 1
+( -40 44 64 ) ( -56 20 64 ) ( -40 20 64 ) Textures/GridSquare -8 -20 0 1 1
+( -40 44 80 ) ( -56 20 80 ) ( -56 44 80 ) Textures/GridSquare -8 -20 0 1 1
+( -40 44 80 ) ( -56 44 64 ) ( -40 44 64 ) Textures/GridSquare -8 16 0 1 1
+( -48 20 64 ) ( -40 20 72 ) ( -40 148 72 ) Textures/GridSquare -8 -20 0 1 1
+( -40 44 80 ) ( -40 20 64 ) ( -40 20 80 ) Textures/GridSquare 20 16 0 1 1
+}
+// brush 13
+{
+( -56 -68 80 ) ( -56 -52 64 ) ( -56 -52 80 ) Textures/GridSquare 20 16 0 1 1
+( -48 -52 64 ) ( -56 -52 64 ) ( -56 -60 64 ) Textures/GridSquare -8 -20 0 1 1
+( -40 -52 80 ) ( -56 -68 80 ) ( -56 -52 80 ) Textures/GridSquare -8 -20 0 1 1
+( -40 -52 80 ) ( -48 -52 64 ) ( -40 -52 72 ) Textures/GridSquare -15.111084 16 0 1 1
+( -40 -52 72 ) ( -56 -60 64 ) ( -56 -68 72 ) Textures/GridSquare -8 -20 0 1 1
+( -40 -52 80 ) ( -56 -68 72 ) ( -56 -68 80 ) Textures/GridSquare 7.3137207 16 0 1 1
+}
+// brush 14
+{
+( -56 60 80 ) ( -56 52 64 ) ( -56 60 72 ) Textures/GridSquare 12.888901 16 0 1 1
+( -40 44 80 ) ( -56 44 64 ) ( -56 44 80 ) Textures/GridSquare -8 16 0 1 1
+( -56 52 64 ) ( -56 44 64 ) ( -48 44 64 ) Textures/GridSquare -8 -20.000004 0 1 1
+( -56 60 80 ) ( -40 44 80 ) ( -56 44 80 ) Textures/GridSquare -8 -19.999996 0 1 1
+( -56 60 72 ) ( -48 44 64 ) ( -40 44 72 ) Textures/GridSquare -8 -20 0 1 1
+( -56 60 80 ) ( -40 44 72 ) ( -40 44 80 ) Textures/GridSquare 7.3137207 16 0 1 1
+}
+}
+// entity 3
+{
+"classname" "transport_standard_portal"
+"origin" "-76 -4 80"
+"angles" "0 0 0"
+"TargetLevel" "res://Levels/Production/Tutorial/Tutorial.tscn"
+"SkyboxEnvironment" "res://Levels/Production/BrokenGlassFactory/Skybox.tres"
+"Text" "Tutorial"
+"Type" "3"
+"_tb_group" "1"
+}
+// entity 4
+{
+"classname" "transport_standard_portal"
+"origin" "344 120 16"
+"angle" "180"
+"TargetLevel" "res://Levels/Production/SeamonsterBossMap/SeamonsterBossMap.tscn"
+"Text" "Smackin' Da Cracken"
+"SkyboxEnvironment" "res://Levels/Production/SeamonsterBossMap/Skybox.tres"
+}
+// entity 5
+{
+"classname" "transport_standard_portal"
+"origin" "360 -120 16"
+"angle" "180"
+"TargetLevel" "res://Levels/Production/SnapjawSwamp/SnapjawSwamp.tscn"
+"Text" "Snapjaw Swamp"
+"SkyboxEnvironment" "res://Levels/Production/SnapjawSwamp/SnapjawSwampSkybox.tres"
+}

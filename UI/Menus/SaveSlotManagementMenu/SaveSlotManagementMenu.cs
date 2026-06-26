@@ -7,6 +7,7 @@ namespace FastDragon
     public partial class SaveSlotManagementMenu : Page
     {
         [Export(PropertyHint.File, hintString: "*.tscn")] public string NewGameLevel;
+        [Export(PropertyHint.File, hintString: "*.tscn")] public string NewGameHubWorld;
 
         private int? _slotTargettedForDeletion;
 
@@ -68,7 +69,11 @@ namespace FastDragon
             }
             else
             {
-                SaveFileManager.Instance.StartNewGame(slotNumber, NewGameLevel);
+                SaveFileManager.Instance.StartNewGame(
+                    slotNumber,
+                    NewGameLevel,
+                    NewGameHubWorld
+                );
             }
         }
 

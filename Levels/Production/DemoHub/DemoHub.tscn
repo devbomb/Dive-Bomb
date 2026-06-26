@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cc5lvn7b36ec5"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_jc8yh"]
+[ext_resource type="PackedScene" uid="uid://core2opmxn1t2" path="res://Levels/Production/DemoHub/Maps/DemoHub_Main.map" id="2_cmnk4"]
+[ext_resource type="AudioStream" uid="uid://cugcjt8k8ksh" path="res://Common/Audio/Music/Rabun-da.mp3" id="2_pl16t"]
+[ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="3_xjom2"]
+[ext_resource type="Environment" uid="uid://bhamu4vflo38l" path="res://Levels/Debug/DummyMap/Skybox.tres" id="4_xjom2"]
+
+[node name="DemoHub" type="Node3D" unique_id=876535271]
+script = ExtResource("1_jc8yh")
+LevelName = "Demo Hub"
+IsHubWorld = true
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1827858619]
+stream = ExtResource("2_pl16t")
+bus = &"Music"
+script = ExtResource("3_xjom2")
+metadata/_custom_type_script = "uid://du3spb4diyf40"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=840827694]
+environment = ExtResource("4_xjom2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1740048941]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
+
+[node name="DemoHub_Main" parent="." unique_id=582204445 instance=ExtResource("2_cmnk4")]
