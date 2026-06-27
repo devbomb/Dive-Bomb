@@ -67,8 +67,36 @@ You can walk in this game.
 ## Put it all together!
 [!](https://github.com/user-attachments/assets/0dab4da2-3b32-4f04-9138-23197274d53f)
 
-Alone, these moves are simple.  But when combined, you can make true works of art
+Alone, these moves are simple.  But when combined, you can make true works of art!
 
 > I guess they're paying me in "exposure", then.
 >
 > --- Special Agent D.
+
+# 100% human-made
+No generative "AI" was used in any stage of this project, and it never will be[^1].
+Not for the code, not for the music, not for the art, not for the documentation,
+not even for placeholder assets.
+
+It's all 100% pure human creativity.
+
+> Sure, it's human-made, but can you _really_ call it "creative?"  I mean, look
+> at those baskets, vases, and gems!  Where did those come from?
+>
+> --- Special Agent D.
+
+[^1]: Unless you're playing someone's fork.  I can't control what other people put in
+their own forks!
+
+# Free and open source, for better or worse
+Everything in this repo is free and open source, released under the MIT license.
+Except for the fonts, which use a different (but still open-source) license.
+
+What does this mean, exactly?  Well, for one, it means it's a pretty sweet
+bargain.  For another, it means you can see the source code and learn how it
+works on the inside.
+
+But more importantly, it means I can't and won't try to control what you do with
+it.  You can fork it and make your own version.  You can grab parts of it and
+use it in your own project.  You can even modify it to cheat at time trials!
+Not that you _would_...right?
