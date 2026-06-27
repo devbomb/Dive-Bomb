@@ -63,3 +63,12 @@ You can walk in this game.
 > Do you really need a gif for this one?
 >
 > --- Special Agent D.
+
+## Put it all together!
+[!](https://github.com/user-attachments/assets/0dab4da2-3b32-4f04-9138-23197274d53f)
+
+Alone, these moves are simple.  But when combined, you can make true works of art
+
+> I guess they're paying me in "exposure", then.
+>
+> --- Special Agent D.
