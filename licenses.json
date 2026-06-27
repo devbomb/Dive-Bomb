@@ -54,6 +54,72 @@
             ],
             "version": "2025.12",
             "web": ""
+        },
+        {
+            "category": "Font",
+            "contact": "",
+            "copyright": [
+                "Copyright (c) 2011, Sideshow (a DBA of Font Diner, Inc) (www.fontdiner.com),with Reserved Font Name \"Frijole\"."
+            ],
+            "description": "",
+            "id": "FrijoleFont",
+            "licenses": [
+                {
+                    "file": "res://Fonts/Frijole/OFL.txt",
+                    "identifier": "",
+                    "name": "License",
+                    "text": "",
+                    "web": ""
+                }
+            ],
+            "name": "Frijole Font",
+            "paths": [],
+            "version": "",
+            "web": ""
+        },
+        {
+            "category": "Font",
+            "contact": "",
+            "copyright": [
+                "Copyright 2023 The Kode Mono Project Authors (https://github.com/isaozler/kode-mono)"
+            ],
+            "description": "",
+            "id": "KodeFont",
+            "licenses": [
+                {
+                    "file": "res://Fonts/Kode/OFL.txt",
+                    "identifier": "",
+                    "name": "License",
+                    "text": "",
+                    "web": ""
+                }
+            ],
+            "name": "Kode Font",
+            "paths": [],
+            "version": "",
+            "web": ""
+        },
+        {
+            "category": "Font",
+            "contact": "",
+            "copyright": [
+                "Copyright 2023 The Tektur Project Authors (https://www.github.com/hyvyys/Tektur)"
+            ],
+            "description": "",
+            "id": "TekturFont",
+            "licenses": [
+                {
+                    "file": "res://Fonts/Tektur/OFL.txt",
+                    "identifier": "",
+                    "name": "License",
+                    "text": "",
+                    "web": ""
+                }
+            ],
+            "name": "Tektur Font",
+            "paths": [],
+            "version": "",
+            "web": ""
         }
     ]
 }
