@@ -216,7 +216,8 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="PageNavigator/LicenseInfo/VBoxContainer" unique_id=2003311882]
 layout_mode = 2
-text = "We are legally required to show you these licenses"
+text = "Dive Bomb uses some stuff other people made.
+Here's the license for each of them."
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="PageNavigator/LicenseInfo/VBoxContainer" unique_id=1902990987]
