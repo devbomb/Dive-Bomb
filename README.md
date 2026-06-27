@@ -14,7 +14,7 @@ Check out our discord server: https://discord.gg/HYrGzKgpmB
 # The movement mechanics
 
 ## Dive!
-[!](https://github.com/user-attachments/assets/6bee687c-00f3-41ce-9aa3-7638046ea964)
+[!](https://github.com/user-attachments/assets/94492bf3-e035-47b9-9bc0-7f835c73c951)
 
 Press the "dive" button in mid-air to propel yourself forward (and slightly up)!
 A dive is simultaneously an attack, a double-jump(the Crash Bandicoot kind, not
