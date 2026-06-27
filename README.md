@@ -9,6 +9,8 @@ jars.  That's just a facade, though; the _actual_ point of the game is mastering
 its [movement mechanics](#the-movement-mechanics)!  The collectables are just
 there to give you an excuse to do so.
 
+Check out our discord server: https://discord.gg/HYrGzKgpmB
+
 # The movement mechanics
 
 ## Dive!
@@ -41,10 +43,8 @@ but it isn't quite as fast.
 >
 > --- Special Agent D.
 
-<span style="font-size: 10px">
 Secret tip: you can press the "jump" button to cancel your roll at any time.
 Useful if you want to avoid bonking!
-</span>
 
 ## Bonk!
 [!](https://github.com/user-attachments/assets/35ba8aeb-907b-4310-a2f6-b7dea2231956)
