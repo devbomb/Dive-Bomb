@@ -30,6 +30,16 @@ expand_margin_bottom = 8.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6aji"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_u6aji"]
+font_size = 10
+
+[sub_resource type="GDScript" id="GDScript_ei83e"]
+script/source = "extends Label
+
+func _ready():
+	text = \"Version \" + ProjectSettings.get(\"application/config/version\")
+"
+
 [node name="TitleScreen" type="Control" unique_id=561651260]
 layout_mode = 3
 anchors_preset = 15
@@ -207,6 +217,19 @@ custom_minimum_size = Vector2(500, 250)
 custom_maximum_size = Vector2(500, 250)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_u6aji")
+
+[node name="Version" type="Label" parent="." unique_id=130232965]
+modulate = Color(1, 1, 1, 0.5176471)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_bottom = -10.0
+grow_vertical = 0
+text = "Version blah.blah.blah"
+label_settings = SubResource("LabelSettings_u6aji")
+script = SubResource("GDScript_ei83e")
 
 [connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Start" to="." method="OpenSaveFilesMenu"]
 [connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Options" to="." method="OpenUserSettingsMenu"]
