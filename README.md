@@ -47,18 +47,19 @@ Useful if you want to avoid bonking!
 </span>
 
 ## Bonk!
+[!](https://github.com/user-attachments/assets/35ba8aeb-907b-4310-a2f6-b7dea2231956)
 
 Crashing into a wall while rolling or diving will result in a bonk.
 This doesn't damage you, but it _does_ slow you down...and it's just plain
 embarassing.
 
-> Hey, that's not a mechanic!
+> Hey, don't show them that!!!
 >
 > --- Special Agent D.
 
 ## Walk!
 You can walk in this game.
 
-> Technically, this one is optional.
+> Do you really need a gif for this one?
 >
 > --- Special Agent D.
