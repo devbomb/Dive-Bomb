@@ -14,7 +14,7 @@ Check out our discord server: https://discord.gg/HYrGzKgpmB
 # The movement mechanics
 
 ## Dive!
-[!](https://github.com/user-attachments/assets/6bee687c-00f3-41ce-9aa3-7638046ea964)
+[!](https://github.com/user-attachments/assets/94492bf3-e035-47b9-9bc0-7f835c73c951)
 
 Press the "dive" button in mid-air to propel yourself forward (and slightly up)!
 A dive is simultaneously an attack, a double-jump(the Crash Bandicoot kind, not
@@ -30,7 +30,7 @@ If you manage to safely land on the ground during a dive, you'll automatically
 > --- Special Agent D.
 
 ## Roll!
-[!](https://github.com/user-attachments/assets/6dda9f03-0a1a-4a2f-830d-e4bb7817db12)
+[!](https://github.com/user-attachments/assets/a97d4c4c-f7b6-4d25-9e88-daf789e1f5e6)
 
 If you're standing on the ground, the "dive" button will instead make you
 perform a roll attack.  Rolling can break all the same things that diving can,
@@ -47,7 +47,7 @@ Secret tip: you can press the "jump" button to cancel your roll at any time.
 Useful if you want to avoid bonking!
 
 ## Bonk!
-[!](https://github.com/user-attachments/assets/35ba8aeb-907b-4310-a2f6-b7dea2231956)
+[!](https://github.com/user-attachments/assets/9be24f1f-5f21-45ef-b8d3-10026c03ce17)
 
 Crashing into a wall while rolling or diving will result in a bonk.
 This doesn't damage you, but it _does_ slow you down...and it's just plain
@@ -65,7 +65,7 @@ You can walk in this game.
 > --- Special Agent D.
 
 ## Put it all together!
-[!](https://github.com/user-attachments/assets/0dab4da2-3b32-4f04-9138-23197274d53f)
+[!](https://github.com/user-attachments/assets/91c7af6e-546f-4995-abd1-c6c3b1dedb20)
 
 Alone, these moves are simple.  But when combined, you can make true works of art!
 
