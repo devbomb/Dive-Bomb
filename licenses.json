@@ -1,0 +1,59 @@
+{
+    "components": [
+        {
+            "category": "",
+            "contact": "",
+            "copyright": [
+                "Original: rsubtil - C# port: jembawls"
+            ],
+            "description": "Provides icons for all major controllers and keyboard, with automatic icon remapping.",
+            "id": "",
+            "licenses": [
+                {
+                    "file": "res://addons/controller_icons/LICENSE",
+                    "identifier": "",
+                    "name": "License",
+                    "text": "",
+                    "web": ""
+                },
+                {
+                    "file": "res://addons/controller_icons/ORIGINAL_LICENSE",
+                    "identifier": "",
+                    "name": "Original License (for the GDScript version)",
+                    "text": "",
+                    "web": ""
+                }
+            ],
+            "name": "Controller Icons (C#)",
+            "paths": [
+                "res://addons/controller_icons"
+            ],
+            "version": "3.1.6",
+            "web": ""
+        },
+        {
+            "category": "",
+            "contact": "",
+            "copyright": [
+                "Josh Palmer, Hannah Crawford, Emberlynn Bland, Tim Maccabe, Vera Lux, func_godot Community"
+            ],
+            "description": "Quake .map and Half-Life .vmf file support for Godot.",
+            "id": "",
+            "licenses": [
+                {
+                    "file": "res://addons/func_godot/LICENSE",
+                    "identifier": "",
+                    "name": "License",
+                    "text": "",
+                    "web": ""
+                }
+            ],
+            "name": "FuncGodot",
+            "paths": [
+                "res://addons/func_godot"
+            ],
+            "version": "2025.12",
+            "web": ""
+        }
+    ]
+}
