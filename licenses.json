@@ -56,6 +56,30 @@
             "web": ""
         },
         {
+            "category": "",
+            "contact": "",
+            "copyright": [
+                "Iceflower S"
+            ],
+            "description": "Manage license and copyright for third party graphics, software or libraries.",
+            "id": "",
+            "licenses": [
+                {
+                    "file": "res://addons/licenses/LICENSE.md",
+                    "identifier": "",
+                    "name": "MIT",
+                    "text": "",
+                    "web": ""
+                }
+            ],
+            "name": "License Manager",
+            "paths": [
+                "res://addons/licenses"
+            ],
+            "version": "1.11.1",
+            "web": ""
+        },
+        {
             "category": "Font",
             "contact": "",
             "copyright": [
