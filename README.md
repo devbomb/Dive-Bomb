@@ -6,43 +6,97 @@ Dive Bomb.
 Dive Bomb is a 3D collectathon platformer with an emphasis on skillful movement.
 On the surface, the goal is to free all of the fairies that have been trapped in
 jars.  That's just a facade, though; the _actual_ point of the game is mastering
-its movement mechanics!  The collectables are just there to give you an excuse
-to do so.
+its [movement mechanics](#the-movement-mechanics)!  The collectables are just
+there to give you an excuse to do so.
 
-# Core gameplay loop
-At its core, Dive Bomb is centered around 3 main mechanics:
-* Diving
-* Rolling
-* Bonking
+# The movement mechanics
 
-Rolling is your primary attack.  Besides damaging enemies, it also gives you
-a short burst of speed!  It comes at the cost of being hard to control.
+## Dive!
+[!](https://github.com/user-attachments/assets/6bee687c-00f3-41ce-9aa3-7638046ea964)
 
-Diving propels you through the air, simultaneously acting like a double-jump
-and an attack.  When you land on the ground from a dive, you will automatically
-roll, whether you want to or not!
+Press the "dive" button in mid-air to propel yourself forward (and slightly up)!
+A dive is simultaneously an attack, a double-jump(the Crash Bandicoot kind, not
+the Mario kind), _and_ the fastest movement option in the game!
 
-If you touch a wall during either of these actions, you will bonk.  Bonking will
-cause your character to recoil off of the wall, and then lie on the ground in
-pain for a short while.  It doesn't do any damage, but it _does_ slow you
-down...which might actually be _worse_ than damage, if you're a speed runner!
+Just...be mindful of your spacing, or you'll [bonk](#bonk) on a wall.
 
-Together, these three mechanics form Dive Bomb's
-["push and pull"](https://www.youtube.com/watch?v=FXqEykD5Ub4), as Sakurai say.
+If you manage to safely land on the ground during a dive, you'll automatically
+[roll](#roll)...so make sure you have plenty of room where you're aiming!
 
-The fastest, most efficient way to move is to chain these actions
-together:
+> Did you seriously name the entire game after this _one_ mechanic?
+>
+> --- Special Agent D.
 
-roll -> jump -> dive -> roll -> jump -> dive...etc
+## Roll!
+[!](https://github.com/user-attachments/assets/6dda9f03-0a1a-4a2f-830d-e4bb7817db12)
 
-Doing so will reward you with incredible speed, but it comes with the risk of
-bonking, negating the time you would have saved.  Skilled players must pay
-careful attention to the level geometry, constantly asking themselves:
-* Do I have enough room for another full dive -> roll combo?
-* If not, could I get away with doing just a single roll?
-* Should I just walk for a few steps, to set up for a better dive -> roll combo?
+If you're standing on the ground, the "dive" button will instead make you
+perform a roll attack.  Rolling can break all the same things that diving can,
+but it isn't quite as fast.
 
-The risk-and-reward ratio is amplified by strategic placement of collectables.
-Goodies are frequently hidden inside breakable vases and baskets, which are
-usually placed near a wall or a cliff.  If players want the stuff inside, they'll
-need to risk bonking to get them.
+> Just so we're clear: rolling is an _attack_, not a dodge!
+>
+> This game isn't a Souls-like!
+>
+>
+> --- Special Agent D.
+
+<span style="font-size: 10px">
+Secret tip: you can press the "jump" button to cancel your roll at any time.
+Useful if you want to avoid bonking!
+</span>
+
+## Bonk!
+[!](https://github.com/user-attachments/assets/35ba8aeb-907b-4310-a2f6-b7dea2231956)
+
+Crashing into a wall while rolling or diving will result in a bonk.
+This doesn't damage you, but it _does_ slow you down...and it's just plain
+embarassing.
+
+> Hey, don't show them that!!!
+>
+> --- Special Agent D.
+
+## Walk!
+You can walk in this game.
+
+> Do you really need a gif for this one?
+>
+> --- Special Agent D.
+
+## Put it all together!
+[!](https://github.com/user-attachments/assets/0dab4da2-3b32-4f04-9138-23197274d53f)
+
+Alone, these moves are simple.  But when combined, you can make true works of art!
+
+> I guess they're paying me in "exposure", then.
+>
+> --- Special Agent D.
+
+# 100% human-made
+No generative "AI" was used in any stage of this project, and it never will be[^1].
+Not for the code, not for the music, not for the art, not for the documentation,
+not even for placeholder assets.
+
+It's all 100% pure human creativity.
+
+> Sure, it's human-made, but can you _really_ call it "creative?"  I mean, look
+> at those baskets, vases, and gems!  Where did those come from?
+>
+> --- Special Agent D.
+
+[^1]: Unless you're playing someone's fork.  I can't control what other people put in
+their own forks!
+
+# Free and open source, for better or worse
+Everything in this repo is free and open source, released under the MIT license.
+Except for the fonts, which use a different (but still open-source) license.
+
+What does this mean, exactly?  Well, for one, it means it's a pretty sweet
+bargain.  For another, it means you can see the source code and learn how it
+works on the inside.
+
+But more importantly, it means I can't and won't try to control what you do with
+it.  You can fork it and make your own version.  You can grab parts of it and
+use it in your own project.  You can even modify it to cheat at time trials!
+Not that you _would_...right?
