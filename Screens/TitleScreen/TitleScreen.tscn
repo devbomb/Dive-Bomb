@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://nwvggnggdtmc" path="res://UI/Menus/UserSettingsMenu/UserSettingsMenu.tscn" id="5_xa3gf"]
 [ext_resource type="PackedScene" uid="uid://jbl1i07t5wl2" path="res://UI/Menus/SaveSlotManagementMenu/SaveSlotManagementMenu.tscn" id="7_bkufi"]
 
+[sub_resource type="GDScript" id="GDScript_bkufi"]
+script/source = "extends LinkButton
+func open_link(): OS.shell_open(uri)
+"
+
 [sub_resource type="LabelSettings" id="LabelSettings_w4jl7"]
 font_size = 100
 
@@ -31,6 +36,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="GodotCompliance" type="HBoxContainer" parent="." unique_id=345769305]
+modulate = Color(1, 1, 1, 0.5058824)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -40.0
+offset_right = 326.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="GodotCompliance" unique_id=1699730788]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Godot engine license:"
+
+[node name="LinkButton" type="LinkButton" parent="GodotCompliance" unique_id=791104660]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 10
+text = "godotengine.org/license"
+uri = "https://godotengine.org/license"
+script = SubResource("GDScript_bkufi")
 
 [node name="TitleContainer" type="Control" parent="." unique_id=1244118095]
 layout_mode = 1
@@ -142,6 +171,7 @@ offset_top = -90.36
 offset_right = 256.0
 offset_bottom = 39.64
 
+[connection signal="pressed" from="GodotCompliance/LinkButton" to="GodotCompliance/LinkButton" method="open_link"]
 [connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Start" to="." method="OpenSaveFilesMenu"]
 [connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Options" to="." method="OpenUserSettingsMenu"]
 [connection signal="pressed" from="PageNavigator/MainPage/PanelContainer/Buttons/Quit" to="." method="QuitToDesktop"]
