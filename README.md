@@ -43,10 +43,8 @@ but it isn't quite as fast.
 >
 > --- Special Agent D.
 
-<span style="font-size: 10px">
 Secret tip: you can press the "jump" button to cancel your roll at any time.
 Useful if you want to avoid bonking!
-</span>
 
 ## Bonk!
 [!](https://github.com/user-attachments/assets/35ba8aeb-907b-4310-a2f6-b7dea2231956)
