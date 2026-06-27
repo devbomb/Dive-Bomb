@@ -1,3 +1,4 @@
+
 # Dive Bomb
 Imagine someone put Spyro the Dragon and Super Mario 64 in a blender, and then
 drank the resulting smoothie.  The fever dream they'd have that night would be
@@ -12,6 +13,7 @@ there to give you an excuse to do so.
 # The movement mechanics
 
 ## Dive!
+[!](https://github.com/user-attachments/assets/6bee687c-00f3-41ce-9aa3-7638046ea964)
 
 Press the "dive" button in mid-air to propel yourself forward (and slightly up)!
 A dive is simultaneously an attack, a double-jump(the Crash Bandicoot kind, not
