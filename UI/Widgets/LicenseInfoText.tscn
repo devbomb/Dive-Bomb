@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bqekxd33wtuy6"]
+
+[sub_resource type="GDScript" id="GDScript_u6aji"]
+script/source = "extends RichTextLabel
+
+const Licenses := preload(\"res://addons/licenses/licenses.gd\")
+@export var heading_font_size: int = 12
+@export var fine_print_font_size: int = 10
+
+func _ready():
+	var load_result: Licenses.LoadResult = Licenses.load(\"res://licenses.json\")
+	var components: Array[Licenses.Component] = load_result.components
+	components.append_array(Licenses.get_required_engine_components())
+	
+	for component in components:
+		push_bold()
+		push_font_size(heading_font_size)
+		append_text(component.name + \"\\n\")
+		pop()
+		pop()
+		
+		push_indent(1)
+		push_font_size(fine_print_font_size)
+		
+		for author in component.copyright:
+			append_text(author + \"\\n\")
+		
+		for license in component.licenses:
+			append_text(\"\\n\")
+			push_bold()
+			append_text(license.name + \"\\n\")
+			pop()
+			append_text(license.get_license_text())
+			append_text(\"\\n\")
+		
+		append_text(\"\\n\")
+		pop()
+		pop()
+"
+
+[node name="LicenseInfoText" type="RichTextLabel" unique_id=497993983]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+script = SubResource("GDScript_u6aji")

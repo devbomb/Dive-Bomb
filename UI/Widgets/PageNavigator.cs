@@ -29,5 +29,11 @@ namespace FastDragon
             targetPage?.OnPageEntered();
             targetPage?.FocusedControl?.GrabFocus();
         }
+
+        public void ChangePagePath(NodePath targetPagePath)
+        {
+            var page = GetNode<Page>(targetPagePath);
+            ChangePage(page);
+        }
     }
 }
