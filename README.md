@@ -9,6 +9,8 @@ jars.  That's just a facade, though; the _actual_ point of the game is mastering
 its [movement mechanics](#the-movement-mechanics)!  The collectables are just
 there to give you an excuse to do so.
 
+Check out our discord server: https://discord.gg/HYrGzKgpmB
+
 # The movement mechanics
 
 ## Dive!
