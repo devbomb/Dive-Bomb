@@ -1,4 +1,3 @@
-
 # Dive Bomb
 Imagine someone put Spyro the Dragon and Super Mario 64 in a blender, and then
 drank the resulting smoothie.  The fever dream they'd have that night would be
@@ -29,6 +28,7 @@ If you manage to safely land on the ground during a dive, you'll automatically
 > --- Special Agent D.
 
 ## Roll!
+[!](https://github.com/user-attachments/assets/6dda9f03-0a1a-4a2f-830d-e4bb7817db12)
 
 If you're standing on the ground, the "dive" button will instead make you
 perform a roll attack.  Rolling can break all the same things that diving can,
@@ -48,7 +48,7 @@ Useful if you want to avoid bonking!
 
 ## Bonk!
 
-Crashing into a wall while roling or diving will result in a bonk.
+Crashing into a wall while rolling or diving will result in a bonk.
 This doesn't damage you, but it _does_ slow you down...and it's just plain
 embarassing.
 
