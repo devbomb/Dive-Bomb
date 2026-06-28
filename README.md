@@ -1,4 +1,6 @@
 # Dive Bomb
+[Play on Itch.io](https://devbomb.itch.io/dive-bomb)
+
 Imagine someone put Spyro the Dragon and Super Mario 64 in a blender, and then
 drank the resulting smoothie.  The fever dream they'd have that night would be
 Dive Bomb.
