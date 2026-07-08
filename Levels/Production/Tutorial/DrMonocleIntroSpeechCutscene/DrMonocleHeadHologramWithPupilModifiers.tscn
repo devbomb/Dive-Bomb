@@ -4,7 +4,7 @@
 
 [node name="DrMonocleHeadHologram" unique_id=1561669371 instance=ExtResource("1_y6gdv")]
 
-[node name="LookAtPlayer_Pupil_L" type="LookAtModifier3D" parent="HeadRig/Skeleton3D" parent_id_path=PackedInt32Array(540231111) index="4" unique_id=899469954]
+[node name="LookAtPlayer_Pupil_L" type="LookAtModifier3D" parent="HeadRig/Skeleton3D" parent_id_path=PackedInt32Array(2135160314) index="4" unique_id=899469954]
 influence = 0.0
 bone_name = "Pupil_L"
 bone = 4
@@ -17,7 +17,7 @@ primary_damp_threshold = 1.0
 secondary_limit_angle = 0.5235988
 secondary_damp_threshold = 1.0
 
-[node name="LookAtPlayer_Pupil_R" type="LookAtModifier3D" parent="HeadRig/Skeleton3D" parent_id_path=PackedInt32Array(540231111) index="5" unique_id=403740136]
+[node name="LookAtPlayer_Pupil_R" type="LookAtModifier3D" parent="HeadRig/Skeleton3D" parent_id_path=PackedInt32Array(2135160314) index="5" unique_id=403740136]
 influence = 0.0
 bone_name = "Pupil_R"
 bone = 13
@@ -30,14 +30,14 @@ primary_damp_threshold = 1.0
 secondary_limit_angle = 0.5235988
 secondary_damp_threshold = 1.0
 
-[node name="LookAtCustom_Pupil_L" type="LookAtModifier3D" parent="HeadRig/Skeleton3D" parent_id_path=PackedInt32Array(540231111) index="6" unique_id=1101673920]
+[node name="LookAtCustom_Pupil_L" type="LookAtModifier3D" parent="HeadRig/Skeleton3D" parent_id_path=PackedInt32Array(2135160314) index="6" unique_id=1101673920]
 influence = 0.0
 bone_name = "Pupil_L"
 bone = 4
 forward_axis = 2
 primary_rotation_axis = 0
 
-[node name="LookAtCustom_Pupil_R" type="LookAtModifier3D" parent="HeadRig/Skeleton3D" parent_id_path=PackedInt32Array(540231111) index="7" unique_id=29058962]
+[node name="LookAtCustom_Pupil_R" type="LookAtModifier3D" parent="HeadRig/Skeleton3D" parent_id_path=PackedInt32Array(2135160314) index="7" unique_id=29058962]
 influence = 0.0
 bone_name = "Pupil_R"
 bone = 13

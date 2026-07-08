@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_844c3"]
 [ext_resource type="Environment" uid="uid://c0q1voerd055g" path="res://Levels/Production/PlagiarismCanyon/Skybox.tres" id="2_7dedk"]
-[ext_resource type="PackedScene" uid="uid://dmq02rkuu7422" path="res://Levels/Production/PlagiarismCanyon/Maps/PlagiarismCanyon.map" id="2_wahdv"]
+[ext_resource type="PackedScene" uid="uid://cliyy1eixeon7" path="res://Levels/Production/PlagiarismCanyon/Maps/PlagiarismCanyon.map" id="2_wahdv"]
 
 [node name="DryCanyon" type="Node3D" unique_id=1346120212]
 script = ExtResource("1_844c3")

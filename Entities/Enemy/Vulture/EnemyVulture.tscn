@@ -27,7 +27,7 @@ libraries/ = ExtResource("2_4b7rt")
 unique_name_in_owner = true
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Model/Armature" parent_id_path=PackedInt32Array(1481782446, 1861217959) index="0" unique_id=1695653450]
+[node name="Skeleton3D" parent="Model/Armature" parent_id_path=PackedInt32Array(1481782446, 1872170130) index="0" unique_id=115144570]
 bones/0/rotation = Quaternion(-2.98023e-08, 0, 0, 1)
 bones/1/rotation = Quaternion(0.11494696, 0, 0, 0.9933716)
 bones/2/rotation = Quaternion(-0.10365295, 0, 0, 0.9946135)
