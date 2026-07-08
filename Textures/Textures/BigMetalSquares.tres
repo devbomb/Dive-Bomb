@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://4uwtrknctulw"]
 
-[ext_resource type="Texture2D" uid="uid://px3g1sk1iywm" path="res://Textures/Textures/BigMetalSquares.png" id="1_poqrj"]
+[ext_resource type="Texture2D" uid="uid://px3g1sk1iywm" path="res://Textures/Textures/BigMetalSquares.png" id="1_f8q03"]
 
 [sub_resource type="Gradient" id="Gradient_c4rir"]
 interpolation_mode = 2
@@ -19,7 +19,7 @@ in_3d_space = true
 as_normal_map = true
 
 [resource]
-albedo_texture = ExtResource("1_poqrj")
+albedo_texture = ExtResource("1_f8q03")
 metallic = 0.77
 roughness = 0.58
 normal_texture = SubResource("NoiseTexture2D_gu3ey")
