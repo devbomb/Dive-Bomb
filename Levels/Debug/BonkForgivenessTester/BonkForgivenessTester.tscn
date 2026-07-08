@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://1lfojpns681p"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_g6uol"]
-[ext_resource type="PackedScene" uid="uid://coafda5ubxb0b" path="res://Levels/Debug/BonkForgivenessTester/Maps/BonkForgivenessTester.map" id="2_f3kpa"]
+[ext_resource type="PackedScene" uid="uid://b6wqhchkjtiip" path="res://Levels/Debug/BonkForgivenessTester/Maps/BonkForgivenessTester.map" id="2_f3kpa"]
 [ext_resource type="Script" uid="uid://36bo8f03pxgc" path="res://Levels/Debug/BonkForgivenessTester/BonkForgivenessTester.cs" id="2_m3eqq"]
 
 [sub_resource type="Environment" id="Environment_scss7"]

@@ -29,6 +29,7 @@ map_formats = Array[Dictionary]([{
 "initialmap": "initial_standard.map"
 }])
 textures_root_folder = "Textures"
+palette_path = ""
 fgd_file = ExtResource("4_ifj5o")
 entity_scale = "16"
 brush_tags = Array[Resource]([SubResource("Resource_37qbo")])

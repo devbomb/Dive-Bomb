@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://2icptjxdi67m"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_fmlk6"]
-[ext_resource type="PackedScene" uid="uid://5igrd7jakapi" path="res://Levels/Debug/LedgeGrabTester/Maps/LedgeGrabTester_Main.map" id="2_k6k7w"]
-[ext_resource type="PackedScene" uid="uid://dvox8tojbmggv" path="res://Levels/Debug/LedgeGrabTester/Maps/LedgeGrabTester_RampEdgeCase.map" id="3_a38fb"]
+[ext_resource type="PackedScene" uid="uid://drhj63tm18212" path="res://Levels/Debug/LedgeGrabTester/Maps/LedgeGrabTester_Main.map" id="2_k6k7w"]
+[ext_resource type="PackedScene" uid="uid://dqt27haig1125" path="res://Levels/Debug/LedgeGrabTester/Maps/LedgeGrabTester_RampEdgeCase.map" id="3_a38fb"]
 
 [sub_resource type="Environment" id="Environment_4u0mf"]
 

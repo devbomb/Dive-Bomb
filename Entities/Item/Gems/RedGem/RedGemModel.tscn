@@ -17,7 +17,7 @@ shader_parameter/rim_tint = 0.499999988824
 
 [node name="Gem" parent="." unique_id=886980393 instance=ExtResource("1_4hntl")]
 
-[node name="Circle" parent="Gem" index="0" unique_id=807125454]
+[node name="Circle" parent="Gem" index="0" unique_id=573723434]
 material_override = SubResource("ShaderMaterial_cwiiy")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1121530175]

@@ -2,7 +2,7 @@
 
 importer="func_godot_map_importer"
 type="PackedScene"
-uid="uid://8olwn3dceknl"
+uid="uid://bs0hw53kbkkoq"
 path="res://.godot/imported/Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro.map-23adfd7c3033ae6c5d5232f2e216901e.tscn"
 
 [deps]
@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/Tutorial_EscapeSequence_GlassPanesOnConveyorB
 
 [params]
 
-texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Production/Tutorial/Maps/TutorialMaterialMap.tres")

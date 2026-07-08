@@ -44,52 +44,52 @@ _subresources={
 "Brass": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/Brass.tres",
-"use_external/path": "uid://cs6ukbiujs74c"
+"use_external/path": "uid://mcy8yot87pjb"
 },
 "EyeWhites": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/EyeWhites.tres",
-"use_external/path": "uid://ftblvnocgv8p"
+"use_external/path": "uid://byuatxhc5b6xt"
 },
 "Hair": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/Hair.tres",
-"use_external/path": "uid://cflw2ai4ymrsb"
+"use_external/path": "uid://dkaa4rrr3selb"
 },
 "MouthInside": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/MouthInside.tres",
-"use_external/path": "uid://bf6sjudgr3gig"
+"use_external/path": "uid://3jw0kvvpws13"
 },
 "Pupils": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/Pupils.tres",
-"use_external/path": "uid://chypcbv4k7xiy"
+"use_external/path": "uid://dst742vkwc2gu"
 },
 "SkinHighlight": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/SkinHighlight.tres",
-"use_external/path": "uid://dkp708tg38553"
+"use_external/path": "uid://b2jkswpkug60m"
 },
 "SkinShadow": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/SkinShadow.tres",
-"use_external/path": "uid://bpjwa5a5oxf6u"
+"use_external/path": "uid://budjhl7lbaki"
 },
 "SkinShadowDark": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/SkinShadowDark.tres",
-"use_external/path": "uid://cr1owy32gb1co"
+"use_external/path": "uid://bqwvocp4i2360"
 },
 "ToothEnamel": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/ToothEnamel.tres",
-"use_external/path": "uid://doeiqpfys82k6"
+"use_external/path": "uid://dq3ie6bdwqqt0"
 },
 "skin": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Common/Models/Characters/DrMonocleHologramHead/skin.tres",
-"use_external/path": "uid://b06ymi6wf0sex"
+"use_external/path": "uid://blm8xgqx7go3t"
 }
 }
 }

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_iw83h"]
 [ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Levels/Production/BrokenGlassFactory/Skybox.tres" id="1_lft26"]
-[ext_resource type="PackedScene" uid="uid://dhffo6l667c16" path="res://Levels/Production/BrokenGlassFactory/Maps/BrokenGlassFactory.map" id="2_twb18"]
+[ext_resource type="PackedScene" uid="uid://c4kvywafccfva" path="res://Levels/Production/BrokenGlassFactory/Maps/BrokenGlassFactory.map" id="2_twb18"]
 
 [node name="GrayboxBullshit" type="Node3D" unique_id=1183344201]
 script = ExtResource("1_iw83h")

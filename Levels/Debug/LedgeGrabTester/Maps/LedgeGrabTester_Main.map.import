@@ -2,7 +2,7 @@
 
 importer="func_godot_map_importer"
 type="PackedScene"
-uid="uid://5igrd7jakapi"
+uid="uid://drhj63tm18212"
 path="res://.godot/imported/LedgeGrabTester_Main.map-a1e0904ca97a6415a95ace8f42ca8efc.tscn"
 
 [deps]
@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/LedgeGrabTester_Main.map-a1e0904ca97a6415a95a
 
 [params]
 
-texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")

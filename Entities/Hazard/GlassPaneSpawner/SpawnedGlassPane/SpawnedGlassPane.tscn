@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dut557gn85axh"]
 
 [ext_resource type="Script" uid="uid://c6y1g6tg6p58f" path="res://Entities/Hazard/GlassPaneSpawner/SpawnedGlassPane/SpawnedGlassPane.cs" id="1_vb7yu"]
-[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="2_a7lmv"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Textures/Textures/DivableGlassPlaceholder.tres" id="2_a7lmv"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="3_t5f5m"]
 
 [sub_resource type="Curve" id="Curve_ry384"]

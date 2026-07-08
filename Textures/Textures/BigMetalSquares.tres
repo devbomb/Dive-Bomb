@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://4uwtrknctulw"]
+
+[ext_resource type="Texture2D" uid="uid://px3g1sk1iywm" path="res://Textures/Textures/BigMetalSquares.png" id="1_f8q03"]
+[ext_resource type="Texture2D" uid="uid://cl12en3jq6cup" path="res://Textures/Textures/BigMetalSquaresNormalMap.png" id="2_w25ev"]
+
+[resource]
+albedo_texture = ExtResource("1_f8q03")
+metallic = 0.77
+roughness = 0.58
+normal_enabled = true
+normal_texture = ExtResource("2_w25ev")
+rim_tint = 0.0

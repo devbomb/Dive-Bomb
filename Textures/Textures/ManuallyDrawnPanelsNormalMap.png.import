@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://by616n1su1xp7"
-path="res://.godot/imported/ManuallyDrawnPanelsNormalMap.png-2d3365ffc111362d5fb4155ffba6780b.ctex"
+path="res://.godot/imported/ManuallyDrawnPanelsNormalMap.png-474a416bfe3bc98043ccf343ae17d808.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/Production/BrokenGlassFactory/Materials/ManuallyDrawnPanelsNormalMap.png"
-dest_files=["res://.godot/imported/ManuallyDrawnPanelsNormalMap.png-2d3365ffc111362d5fb4155ffba6780b.ctex"]
+source_file="res://Textures/Textures/ManuallyDrawnPanelsNormalMap.png"
+dest_files=["res://.godot/imported/ManuallyDrawnPanelsNormalMap.png-474a416bfe3bc98043ccf343ae17d808.ctex"]
 
 [params]
 

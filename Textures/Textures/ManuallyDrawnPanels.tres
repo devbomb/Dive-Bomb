@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://dp8hf7rertopp"]
 
-[ext_resource type="Texture2D" uid="uid://bqvdqwued36vr" path="res://Textures/Textures/ManuallyDrawnPanels.png" id="1_f2xsa"]
-[ext_resource type="Texture2D" uid="uid://by616n1su1xp7" path="res://Levels/Production/BrokenGlassFactory/Materials/ManuallyDrawnPanelsNormalMap.png" id="2_bwcxp"]
+[ext_resource type="Texture2D" uid="uid://bqvdqwued36vr" path="res://Textures/Textures/ManuallyDrawnPanels.png" id="1_yvdqh"]
+[ext_resource type="Texture2D" uid="uid://by616n1su1xp7" path="res://Textures/Textures/ManuallyDrawnPanelsNormalMap.png" id="2_a44mh"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f2xsa"]
 
@@ -32,12 +32,12 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 
 [resource]
 next_pass = SubResource("StandardMaterial3D_o45gw")
-albedo_texture = ExtResource("1_f2xsa")
+albedo_texture = ExtResource("1_yvdqh")
 metallic = 0.86
 roughness = 0.71
 normal_enabled = true
 normal_scale = -1.0
-normal_texture = ExtResource("2_bwcxp")
+normal_texture = ExtResource("2_a44mh")
 clearcoat_roughness = 1.0
 anisotropy = 0.5
 ao_light_affect = 0.32

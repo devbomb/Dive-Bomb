@@ -2,7 +2,7 @@
 
 importer="func_godot_map_importer"
 type="PackedScene"
-uid="uid://4e3uihqv6e50"
+uid="uid://buitb1uq7i80k"
 path="res://.godot/imported/Intro.map-09ea53369e11ee51fd987b828ac2dbe5.tscn"
 
 [deps]
@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/Intro.map-09ea53369e11ee51fd987b828ac2dbe5.ts
 
 [params]
 
-texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Production/Tutorial/Maps/TutorialMaterialMap.tres")

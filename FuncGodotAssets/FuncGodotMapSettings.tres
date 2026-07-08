@@ -21,7 +21,6 @@ texture_file_extensions = Array[String](["png"])
 clip_texture = "special/clip"
 skip_texture = "special/skip"
 origin_texture = "special/origin"
-material_file_extension = ""
 default_material = SubResource("StandardMaterial3D_jf6ms")
 albedo_map_pattern = "%s_albedo.%s"
 normal_map_pattern = "%s_normal.%s"

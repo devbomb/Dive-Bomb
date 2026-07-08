@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0tu88k5onnjj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_r8uk7"]
-[ext_resource type="PackedScene" uid="uid://y0603qy376jk" path="res://Levels/Debug/ConveyorBeltTester/Maps/ConveyorBeltTester.map" id="2_kk84g"]
+[ext_resource type="PackedScene" uid="uid://cjrq4wvokpa7i" path="res://Levels/Debug/ConveyorBeltTester/Maps/ConveyorBeltTester.map" id="2_kk84g"]
 
 [node name="ConveyorBeltTester" type="Node3D" unique_id=1881073014]
 script = ExtResource("1_r8uk7")
