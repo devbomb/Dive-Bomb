@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/DummyMap.map-d9c0ab1a88979d345d0d0bee6d4ac1d7
 
 [params]
 
-texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")

@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/KickTut.map-e852f60cdf9024a796de0e1cf3dbf384.
 
 [params]
 
-texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Production/Tutorial/Maps/TutorialMaterialMap.tres")

@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/WaterfallTrees.map-455724c28c9658ff192f6b43ea
 
 [params]
 
-texture_material_map=Resource("uid://b14jplhtk3wpt", "res://Levels/Production/SnapjawSwamp/SnapjawSwampMaterialMap.tres")

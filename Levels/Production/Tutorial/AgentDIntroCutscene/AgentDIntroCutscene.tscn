@@ -3,7 +3,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://cuj40e5pt37i3" path="res://Levels/Production/Tutorial/AgentDIntroCutscene/AgentDIntroAnimations.tres" id="1_ijg1o"]
 [ext_resource type="Script" uid="uid://bkdg65eeyksm1" path="res://Levels/Production/Tutorial/AgentDIntroCutscene/AgentDIntroCutscene.cs" id="1_xt62u"]
 [ext_resource type="PackedScene" uid="uid://blq28kabesqpx" path="res://Common/Models/Characters/SpecialAgentD.gltf" id="3_3asif"]
-[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="3_15wmt"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Textures/Textures/DivableGlassPlaceholder.tres" id="3_15wmt"]
 [ext_resource type="Material" uid="uid://h8lrciif2ipi" path="res://Entities/Player/Parts/PlayerModel/Materials/skin.tres" id="4_15wmt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3asif"]

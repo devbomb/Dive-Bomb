@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/LedgeGrabTester_Main.map-a1e0904ca97a6415a95a
 
 [params]
 
-texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")

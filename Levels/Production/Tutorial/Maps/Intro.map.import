@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/Intro.map-09ea53369e11ee51fd987b828ac2dbe5.ts
 
 [params]
 
-texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Production/Tutorial/Maps/TutorialMaterialMap.tres")

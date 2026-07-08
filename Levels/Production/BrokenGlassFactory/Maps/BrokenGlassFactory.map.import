@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/BrokenGlassFactory.map-fe1c4c76dc0b79181b6d3b
 
 [params]
 
-texture_material_map=Resource("uid://cqrj4w1hxykkt", "res://Levels/Production/BrokenGlassFactory/BrokenGlassFactoryMaterialMap.tres")

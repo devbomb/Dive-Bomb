@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/SunsetCastle.map-ceac7a9bed9ebaae3f849ca6ac36
 
 [params]
 
-texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")

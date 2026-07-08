@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/Tutorial_EscapeSequence_TimeWaster.map-03df7c
 
 [params]
 
-texture_material_map=Resource("uid://ddjwne7gqs4j4", "res://Levels/Production/Tutorial/Maps/TutorialMaterialMap.tres")

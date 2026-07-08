@@ -12,4 +12,3 @@ dest_files=["res://.godot/imported/ConveyorBeltTester.map-e08abbbe25ed2a67c33ef9
 
 [params]
 
-texture_material_map=Resource("uid://dgvjaxeitfghe", "res://TextureMaterialMap.tres")
