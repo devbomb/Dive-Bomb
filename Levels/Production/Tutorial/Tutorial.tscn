@@ -100,6 +100,7 @@ sky_mode = 1
 
 [node name="TutorialStoryManager" type="Node" parent="." unique_id=1395208339 node_paths=PackedStringArray("MusicPlayer", "AgentDIntro", "DrMonocleIntro")]
 script = ExtResource("6_wk3rw")
+targetname = "TutorialStoryManager"
 MusicPlayer = NodePath("../BackgroundMusicPlayer")
 AgentDIntro = NodePath("../Intro/AgentDIntroCutscene")
 DrMonocleIntro = NodePath("../DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig")
@@ -149,10 +150,9 @@ VanishWhenFinished = true
 [node name="DrMonocleSpeech" parent="." unique_id=1080985656 instance=ExtResource("13_myhx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145, 30, 7)
 
-[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" unique_id=201296875 node_paths=PackedStringArray("MusicPlayer", "EntranceDoor", "ExitDoor") instance=ExtResource("15_ym3l3")]
+[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" unique_id=201296875 node_paths=PackedStringArray("EntranceDoor", "ExitDoor") instance=ExtResource("15_ym3l3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27.539627, 5.927231, 0.35410118)
 targetname = "DrMonocleIntroSpeechCutscene"
-MusicPlayer = NodePath("../../BackgroundMusicPlayer")
 EntranceDoor = NodePath("../entity_DrMonocleSpeech_EntranceDoor")
 ExitDoor = NodePath("../entity_DrMonocleSpeech_ExitDoor")
 
