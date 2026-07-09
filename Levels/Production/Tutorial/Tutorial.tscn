@@ -164,8 +164,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 187, 30, 2)
 [node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." unique_id=651646982 instance=ExtResource("22_35ubr")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 153, 41, 76)
 
-[node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" unique_id=1947806612 instance=ExtResource("25_smxar")]
-DoorTargetname = "Door_EscapeSequence_2FA_Joke"
+[node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" unique_id=1947806612 node_paths=PackedStringArray("Door") instance=ExtResource("25_smxar")]
+Door = NodePath("../group_8_EnemyTut/entity_Door_EscapeSequence_2FA_Joke")
 
 [node name="Tutorial_LevelExitCannon" parent="." unique_id=1717697475 instance=ExtResource("23_35ubr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 78.5, 59, 11)
