@@ -10,6 +10,9 @@ namespace FastDragon.Levels.Tutorial
         [Export] public AudioStreamPlayer MusicPlayer;
         private AudioStreamPlaybackInteractive _musicPlayback => (AudioStreamPlaybackInteractive)MusicPlayer.GetStreamPlayback();
 
+        [Export] public OpenableWall EntranceDoor;
+        [Export] public OpenableWall ExitDoor;
+
         [ExportCategory("Internal")]
         [Export] public AnimationPlayer AnimationPlayer;
         [Export] public Node3D HeadHolder;
@@ -26,11 +29,6 @@ namespace FastDragon.Levels.Tutorial
 
         private readonly StateMachine _stateMachine = new();
 
-        private const string ExitDoorId = "DrMonocleSpeech_ExitDoor";
-        private IPowerable _exitDoor;
-
-        private const string EntranceDoorId = "DrMonocleSpeech_EntranceDoor";
-        private IPowerable _entranceDoor;
 
         private Player _player;
 
@@ -42,15 +40,8 @@ namespace FastDragon.Levels.Tutorial
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += Reset;
-            Callable.From(() =>
-            {
-                _entranceDoor = this.FindNodeByTargetName<IPowerable>(EntranceDoorId);
-                _exitDoor = this.FindNodeByTargetName<IPowerable>(ExitDoorId);
-                _player = GetTree().FindNode<Player>();
-
-                Reset();
-            }).CallDeferred();
-
+            _player = GetTree().FindNode<Player>();
+            Reset();
         }
 
         public override void _Process(double delta)
@@ -121,8 +112,8 @@ namespace FastDragon.Levels.Tutorial
                 Self.AnimationPlayer.Advance(0);
                 Self.AnimationPlayer.Play("Hidden");
 
-                Self._entranceDoor.InstantOpen();
-                Self._exitDoor.InstantClose();
+                Self.EntranceDoor.InstantOpen();
+                Self.ExitDoor.InstantClose();
             }
 
             public override void SubscribeToSignals()
@@ -152,7 +143,7 @@ namespace FastDragon.Levels.Tutorial
                 Self.AnimationPlayer.Play("Playing");
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
 
-                Self._entranceDoor.StartClosing();
+                Self.EntranceDoor.StartClosing();
             }
 
             public override void SubscribeToSignals()
@@ -246,8 +237,8 @@ namespace FastDragon.Levels.Tutorial
 
                 Self.AnimationPlayer.Play("Hidden");
 
-                Self._entranceDoor.StartOpening();
-                Self._exitDoor.StartOpening();
+                Self.EntranceDoor.StartOpening();
+                Self.ExitDoor.StartOpening();
             }
 
             public override void SubscribeToSignals()
