@@ -9,6 +9,9 @@
 * **Fixed:** Fixed a texture in the tutorial level that was missing its normal
     map.  It should now look shinier and less flat.
 
+* **Fixed:** Fixed the wrong background music playing if you die or reload a
+    checkpoint during the tutorial level's escape sequence.
+
 # [0.0.1] - Open Source release
 This was the first verison of the game that was made public.
 As such, there is no "previous" version to compare to.

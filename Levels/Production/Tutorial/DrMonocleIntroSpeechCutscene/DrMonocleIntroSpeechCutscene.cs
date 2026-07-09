@@ -7,8 +7,8 @@ namespace FastDragon.Levels.Tutorial
     {
         [Export] public string targetname;
 
-        [Export] public AudioStreamPlayer MusicPlayer;
-        private AudioStreamPlaybackInteractive _musicPlayback => (AudioStreamPlaybackInteractive)MusicPlayer.GetStreamPlayback();
+        [Export] public OpenableWall EntranceDoor;
+        [Export] public OpenableWall ExitDoor;
 
         [ExportCategory("Internal")]
         [Export] public AnimationPlayer AnimationPlayer;
@@ -16,21 +16,12 @@ namespace FastDragon.Levels.Tutorial
         [Export(PropertyHint.Range, "0,1")]
         public float LookAtPlayerPitchInfluence = 1;
 
-        private event Action _startSpeechRequested;
-        private event Action _selfDestructButtonPressed;
+        public bool IsPlaying => _stateMachine.CurrentState is not (Idle or Finished);
 
-        private static class StoryFlags
-        {
-            public const string SpeechCheckpointed = "DrMonocleIntroSpeechCheckpointed";
-        }
+        private event Action _selfDestructButtonPressed;
 
         private readonly StateMachine _stateMachine = new();
 
-        private const string ExitDoorId = "DrMonocleSpeech_ExitDoor";
-        private IPowerable _exitDoor;
-
-        private const string EntranceDoorId = "DrMonocleSpeech_EntranceDoor";
-        private IPowerable _entranceDoor;
 
         private Player _player;
 
@@ -41,16 +32,10 @@ namespace FastDragon.Levels.Tutorial
 
         public override void _Ready()
         {
-            SignalBus.Instance.LevelReset += Reset;
-            Callable.From(() =>
-            {
-                _entranceDoor = this.FindNodeByTargetName<IPowerable>(EntranceDoorId);
-                _exitDoor = this.FindNodeByTargetName<IPowerable>(ExitDoorId);
-                _player = GetTree().FindNode<Player>();
-
-                Reset();
-            }).CallDeferred();
-
+            _player = GetTree().FindNode<Player>();
+            // You'll notice we're not subscribing to LevelReset here.
+            // That's intentional.  This guy's reset behavior is controlled by
+            // TutorialStoryManager.
         }
 
         public override void _Process(double delta)
@@ -84,9 +69,19 @@ namespace FastDragon.Levels.Tutorial
             );
         }
 
-        public void StartSpeech(Node3D body)
+        public void GoToIdle()
         {
-            _startSpeechRequested?.Invoke();
+            _stateMachine.ChangeState<Idle>();
+        }
+
+        public void StartPlaying()
+        {
+            _stateMachine.ChangeState<Playing>();
+        }
+
+        public void GoToFinished()
+        {
+            _stateMachine.ChangeState<Finished>();
         }
 
         public void OnSelfDestructButtonPressed()
@@ -94,50 +89,16 @@ namespace FastDragon.Levels.Tutorial
             _selfDestructButtonPressed?.Invoke();
         }
 
-        private void Reset()
-        {
-            if (this.GetLevel().TempStoryFlags.Contains(StoryFlags.SpeechCheckpointed))
-                _stateMachine.ChangeState<Finished>();
-            else
-                _stateMachine.ChangeState<Idle>();
-        }
-
         private class Idle : State<DrMonocleIntroSpeechCutscene>
         {
             public override void OnStateEntered()
             {
-                // TODO: Find a more "correct" way of avoiding this issue.
-                // The issue is that this node and the Agent D. intro cutscene
-                // are both fighting over control of the background music
-                // player.  Agent D. wants to stop the music, while Dr. Monocle
-                // wants to play something.  I'm sure there's a metaphor in
-                // there somewhere.
-                if (Self.MusicPlayer.Playing)
-                {
-                    Self._musicPlayback?.SwitchToClipByName("Normal");
-                }
-
                 Self.AnimationPlayer.Play("RESET");
                 Self.AnimationPlayer.Advance(0);
                 Self.AnimationPlayer.Play("Hidden");
 
-                Self._entranceDoor.InstantOpen();
-                Self._exitDoor.InstantClose();
-            }
-
-            public override void SubscribeToSignals()
-            {
-                Self._startSpeechRequested += StartSpeech;
-            }
-
-            public override void UnsubscribeFromSignals()
-            {
-                Self._startSpeechRequested -= StartSpeech;
-            }
-
-            private void StartSpeech()
-            {
-                ChangeState<Playing>();
+                Self.EntranceDoor.InstantOpen();
+                Self.ExitDoor.InstantClose();
             }
         }
 
@@ -147,12 +108,10 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech started");
-                Self.MusicPlayer.Stop();
-
                 Self.AnimationPlayer.Play("Playing");
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
 
-                Self._entranceDoor.StartClosing();
+                Self.EntranceDoor.StartClosing();
             }
 
             public override void SubscribeToSignals()
@@ -241,29 +200,10 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Dr. Monocle speech finished");
-                Self.MusicPlayer.Play();
-                Self._musicPlayback.SwitchToClipByName("Escape");
-
                 Self.AnimationPlayer.Play("Hidden");
 
-                Self._entranceDoor.StartOpening();
-                Self._exitDoor.StartOpening();
-            }
-
-            public override void SubscribeToSignals()
-            {
-                SignalBus.Instance.CheckpointActivated += CheckpointActivated;
-            }
-
-            public override void UnsubscribeFromSignals()
-            {
-                SignalBus.Instance.CheckpointActivated -= CheckpointActivated;
-            }
-
-            private void CheckpointActivated()
-            {
-                GD.Print("Dr. Monocle speech checkpointed");
-                Self.GetLevel().TempStoryFlags.Add(StoryFlags.SpeechCheckpointed);
+                Self.EntranceDoor.StartOpening();
+                Self.ExitDoor.StartOpening();
             }
         }
     }

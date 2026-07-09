@@ -4,11 +4,10 @@ namespace FastDragon.Levels.Tutorial
 {
     public partial class AgentDIntroCutscene : Node
     {
-        public const string StoryFlag = "AgentDIntroFinished";
-
         [Export] public AnimationPlayer AnimationPlayer;
         [Export] public Camera3D CutsceneCamera;
-        [Export] public BackgroundMusicPlayer BackgroundMusicPlayer;
+
+        public bool IsPlaying => _stateMachine.CurrentState is not Finished;
 
         private readonly StateMachine _stateMachine = new();
 
@@ -27,15 +26,17 @@ namespace FastDragon.Levels.Tutorial
 
         private void Reset()
         {
-            bool watchedBefore = this.GetLevel()
-                .GetProgress()
-                .StoryFlags
-                .Contains(StoryFlag);
+            _stateMachine.ChangeState<Finished>();
+        }
 
-            if (watchedBefore || this.IsTimeTrialMode() || this.PlaySceneFromHereWasUsed())
-                _stateMachine.ChangeState<Finished>();
-            else
-                _stateMachine.ChangeState<Playing>();
+        public void Play()
+        {
+            _stateMachine.ChangeState<Playing>();
+        }
+
+        public void Skip()
+        {
+            _stateMachine.ChangeState<Finished>();
         }
 
         private class Finished : State<AgentDIntroCutscene> {}
@@ -43,22 +44,9 @@ namespace FastDragon.Levels.Tutorial
         private class Playing : State<AgentDIntroCutscene>
         {
             private double _timer;
-            private float _originalMusicVolume;
 
             public override void OnStateEntered()
             {
-                // HACK: Setting the background music volume to 0 instead of
-                // calling Stop() to avoid a conflict with BackgroundMusicPlayer's
-                // delayed-start logic.
-                //
-                // If we were to call Stop() instead, then BackgroundMusicPlayer
-                // would just turn itself back on again after the start delay.
-                //
-                // TODO: Find a better way to orchestrate this.
-                // (Yes, that was a pun.)
-                _originalMusicVolume = Self.BackgroundMusicPlayer.VolumeLinear;
-                Self.BackgroundMusicPlayer.VolumeLinear = 0;
-
                 Self.CutsceneCamera.MakeCurrent();
                 Self.AnimationPlayer.Play("Play");
                 _timer = Self.AnimationPlayer.CurrentAnimationLength;
@@ -70,13 +58,10 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateExited()
             {
                 Self.AnimationPlayer.Play("RESET");
-                Self.BackgroundMusicPlayer.VolumeLinear = _originalMusicVolume;
 
                 var player = GetTree().FindNode<Player>();
                 player.ChangeState<PlayerWalkState>();
                 player.Camera.MakeCurrent();
-
-                Self.GetLevel().GetProgress().StoryFlags.Add(StoryFlag);
             }
 
             public override void _PhysicsProcess(double delta)
@@ -103,13 +88,8 @@ namespace FastDragon.Levels.Tutorial
             private Player _player;
             private Transform3D _targetPos;
 
-            private float _originalMusicVolume;
-
             public override void OnStateEntered()
             {
-                _originalMusicVolume = Self.BackgroundMusicPlayer.VolumeLinear;
-                Self.BackgroundMusicPlayer.VolumeLinear = 0;
-
                 _player = GetTree().FindNode<Player>();
                 _targetPos = _player.Camera.GlobalTransform;
                 _timer = 0;
@@ -127,10 +107,6 @@ namespace FastDragon.Levels.Tutorial
                 _player.Camera.MakeCurrent();
                 _player.Camera.StartFollowing(0.1f);
                 _player.ChangeState<PlayerWalkState>();
-
-                Self.BackgroundMusicPlayer.VolumeLinear = _originalMusicVolume;
-                Self.BackgroundMusicPlayer.Stop();
-                Self.BackgroundMusicPlayer.Play();
             }
 
             public override void _PhysicsProcess(double delta)

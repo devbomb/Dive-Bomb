@@ -272,8 +272,8 @@
 "origin" "64 72 88"
 "target" "DrMonocleIntroSpeechStart"
 "Signal" "body_entered"
-"HandlerFunction" "StartSpeech"
-"killtarget" "DrMonocleIntroSpeechCutscene"
+"HandlerFunction" "RequestStartDrMonocleSpeech"
+"killtarget" "TutorialStoryManager"
 }
 // entity 10
 {

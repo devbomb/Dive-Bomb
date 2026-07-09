@@ -15,10 +15,7 @@ namespace FastDragon
             SignalBus.Instance.LevelReset += Reset;
 
             Reset();
-        }
 
-        private void Reset()
-        {
             // HACK: Delay starting the music to avoid a bug where the music
             // briefly starts during the fly-in animation when it's not supposed
             // to.
@@ -27,6 +24,14 @@ namespace FastDragon
             Stop();
             _delayingStart = true;
             _startDelayTimer = StartDelaySeconds;
+        }
+
+        private void Reset()
+        {
+            // No need to delay if we're already in the level.
+            // Delaying in that case could clobber other scripts that try to
+            // change the music depending on a story flag (EG: TutorialStoryManager)
+            _delayingStart = false;
         }
 
         public override void _PhysicsProcess(double delta)
