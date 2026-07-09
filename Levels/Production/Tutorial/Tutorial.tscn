@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://buitb1uq7i80k" path="res://Levels/Production/Tutorial/Maps/Intro.map" id="2_vwhqw"]
 [ext_resource type="PackedScene" uid="uid://ccs8ll6uytgb7" path="res://Levels/Production/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
 [ext_resource type="PackedScene" uid="uid://fwwegib0064k" path="res://Levels/Production/Tutorial/AgentDIntroCutscene/AgentDIntroCutscene.tscn" id="3_kb7u2"]
+[ext_resource type="Script" uid="uid://dfbwmqfmqjfx8" path="res://Levels/Production/Tutorial/TutorialStoryManager.cs" id="6_wk3rw"]
 [ext_resource type="PackedScene" uid="uid://e737l7kg7vyo" path="res://Levels/Production/Tutorial/Maps/RollTut.map" id="8_i3mr3"]
 [ext_resource type="PackedScene" uid="uid://c4u4wyksjvy3w" path="res://Levels/Production/Tutorial/Maps/KickTut.map" id="8_yrnv4"]
 [ext_resource type="Script" uid="uid://brhva0ikdmdcl" path="res://Entities/Info/NamedMarker/NamedMarker3D.cs" id="10_ipotd"]
@@ -97,11 +98,16 @@ light_energy = 0.4
 light_bake_mode = 1
 sky_mode = 1
 
+[node name="TutorialStoryManager" type="Node" parent="." unique_id=1395208339 node_paths=PackedStringArray("MusicPlayer", "AgentDIntro", "DrMonocleIntro")]
+script = ExtResource("6_wk3rw")
+MusicPlayer = NodePath("../BackgroundMusicPlayer")
+AgentDIntro = NodePath("../Intro/AgentDIntroCutscene")
+DrMonocleIntro = NodePath("../DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig")
+
 [node name="Intro" parent="." unique_id=985666460 instance=ExtResource("2_vwhqw")]
 
-[node name="AgentDIntroCutscene" parent="Intro" unique_id=303769610 node_paths=PackedStringArray("BackgroundMusicPlayer") instance=ExtResource("3_kb7u2")]
+[node name="AgentDIntroCutscene" parent="Intro" unique_id=303769610 instance=ExtResource("3_kb7u2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -7.5, 2.3)
-BackgroundMusicPlayer = NodePath("../../BackgroundMusicPlayer")
 
 [node name="CameraTut" parent="." unique_id=344728991 instance=ExtResource("3_3rttw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 35)
