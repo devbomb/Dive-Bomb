@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b2t0naripxos0" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map" id="22_35ubr"]
 [ext_resource type="PackedScene" uid="uid://hnfh1xxq2hro" path="res://Levels/Production/Tutorial/Maps/Tutorial_LevelExitCannon.map" id="23_35ubr"]
 [ext_resource type="PackedScene" uid="uid://dcg0jpxnwx81f" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_TimeWaster.map" id="24_3lrk0"]
-[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier.cs" id="24_oop8w"]
+[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier/DeathBarrier.cs" id="24_oop8w"]
 [ext_resource type="PackedScene" uid="uid://mdchoptoqq8n" path="res://Levels/Production/Tutorial/TwoFactorAuthCutscene/TwoFactorAuthCutsceneRig.tscn" id="25_smxar"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lu0qh"]

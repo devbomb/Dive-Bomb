@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://owogqmxu21du" path="res://Levels/Production/SeamonsterBossMap/KrackenPlatform.glb" id="4_78ou1"]
 [ext_resource type="PackedScene" uid="uid://nw1ilraxdsdw" path="res://Entities/Info/NamedMarker/NamedMarker3D.tscn" id="4_elxet"]
 [ext_resource type="PackedScene" uid="uid://btcofpq2vamxe" path="res://Entities/Item/PowerOrb/PowerOrb.tscn" id="5_6lj42"]
-[ext_resource type="Script" uid="uid://c4dmx1el10jag" path="res://Entities/Hazard/DrowningWater.cs" id="5_ps4q3"]
+[ext_resource type="Script" uid="uid://c4dmx1el10jag" path="res://Entities/Hazard/DrowningWater/DrowningWater.cs" id="5_ps4q3"]
 [ext_resource type="PackedScene" uid="uid://u1dg26oq81vl" path="res://Entities/Boss/Kracken/SeamonsterBoss.tscn" id="5_pv6rf"]
 [ext_resource type="PackedScene" uid="uid://cyfwcwip8ncw0" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.tscn" id="8_xrhf0"]
 
