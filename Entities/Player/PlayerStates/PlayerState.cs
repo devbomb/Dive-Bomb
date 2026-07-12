@@ -263,5 +263,19 @@ namespace FastDragon
             ChangeState<PlayerLedgeGrabState>();
             return true;
         }
+
+        /// <summary>
+        /// Changes to <see cref="PlayerWalkState"/> or <see cref="PlayerStandState"/>,
+        /// depending on if the player is below the min walking speed or not.
+        ///
+        /// This is primarily for landing from one of the various jumping states
+        /// </summary>
+        protected void StartWalkingOrStanding()
+        {
+            if (Self.LocalVelocity.Length() < Player.Walk.MinSpeed)
+                Self.ChangeState<PlayerStandState>();
+            else
+                Self.ChangeState<PlayerWalkState>();
+        }
     }
 }
