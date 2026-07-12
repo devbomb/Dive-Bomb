@@ -38,6 +38,10 @@ namespace FastDragon
             // The player can use this to delay setting their last safe position,
             // effectively using it as a "remote teleport" by jumping into the
             // water.
+            //
+            // TODO: Find some way to de-duplicate all of the bound jump logic
+            // between this class and PlayerStandState.  And probably other
+            // redundant code, too.
             if (Self.EarlyJumpBufferTimer > 0)
             {
                 Jump();

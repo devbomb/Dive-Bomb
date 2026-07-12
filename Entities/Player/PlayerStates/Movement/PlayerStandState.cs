@@ -5,9 +5,33 @@ namespace FastDragon
 {
     public partial class PlayerStandState : PlayerState
     {
-        public override void OnStateEntered()
+        private float _boundJumpWindowTimer;
+
+        public override void OnStateEntered(IState oldState)
         {
             Self.Animator.Play("Idle");
+
+            bool canBound = (oldState as PlayerState)?.CanBoundAfterLanding ?? false;
+            _boundJumpWindowTimer = canBound
+                ? Player.BoundJump.TimeWindow
+                : 0;
+
+            // Let the player jump if they pressed the button a little bit too
+            // early.
+            //
+            // Note that this does NOT update the last safe grounded position.
+            // That's intentional!
+            // The player can use this to delay setting their last safe position,
+            // effectively using it as a "remote teleport" by jumping into the
+            // water.
+            //
+            // TODO: Find some way to de-duplicate all of the bound jump logic
+            // between this class and PlayerWalkState.  And probably other
+            // redundant code, too.
+            if (Self.EarlyJumpBufferTimer > 0)
+            {
+                Jump();
+            }
         }
 
         public override void OnStateExited()
@@ -19,7 +43,7 @@ namespace FastDragon
         {
             if (InputService.JumpJustPressed(ev))
             {
-                Self.ChangeState<PlayerWalkJumpState>();
+                Jump();
                 return;
             }
 
@@ -39,6 +63,9 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
+
+            _boundJumpWindowTimer -= delta;
+
             Self.LocalVelocity = Self.LocalVelocity.MoveToward(Vector3.Zero, Player.Walk.Decel * delta);
             Self.MoveAndSlide();
             Self.SafeGround.UpdateLastSafeGroundPos();
@@ -59,6 +86,14 @@ namespace FastDragon
                 Self.ChangeState<PlayerWalkState>();
                 return;
             }
+        }
+
+        private void Jump()
+        {
+            if (_boundJumpWindowTimer > 0)
+                Self.ChangeState<PlayerBoundJumpState>();
+            else
+                Self.ChangeState<PlayerWalkJumpState>();
         }
     }
 }
