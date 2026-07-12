@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SmartFuncGodotFGDFile" format=3 uid="uid://6khm227w3xab"]
+
+[ext_resource type="Resource" uid="uid://ct6k1deoj2b6y" path="res://FuncGodotAssets/EntityDefinitions/worldspawn.tres" id="1_7isa2"]
+[ext_resource type="Script" uid="uid://drfjh2pueyv30" path="res://FuncGodotAssets/smart_func_godot_fgd_file.gd" id="2_ipysc"]
+
+[resource]
+script = ExtResource("2_ipysc")
+fgd_name = "DiveBomb"
+entity_definitions = Array[Resource]([ExtResource("1_7isa2")])

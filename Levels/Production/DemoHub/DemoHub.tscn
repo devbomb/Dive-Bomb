@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cugcjt8k8ksh" path="res://Common/Audio/Music/Rabun-da.mp3" id="2_pl16t"]
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="3_xjom2"]
 [ext_resource type="Environment" uid="uid://bhamu4vflo38l" path="res://Levels/Debug/DummyMap/Skybox.tres" id="4_xjom2"]
-[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier.cs" id="6_urvtk"]
+[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier/DeathBarrier.cs" id="6_urvtk"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_u6aji"]
 

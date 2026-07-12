@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b66qdknwqpfup" path="res://addons/func_godot/src/trenchbroom/trenchbroom_tag.gd" id="1_kwlnp"]
 [ext_resource type="Resource" uid="uid://ca7377sfgj074" path="res://addons/func_godot/game_config/trenchbroom/tb_face_tag_skip.tres" id="2_kwlnp"]
 [ext_resource type="Resource" uid="uid://bkjxc54mmdhbo" path="res://addons/func_godot/game_config/trenchbroom/tb_face_tag_origin.tres" id="3_37qbo"]
-[ext_resource type="Resource" uid="uid://6khm227w3xab" path="res://FuncGodotAssets/FuncGodotFGDFile.tres" id="4_ifj5o"]
+[ext_resource type="Resource" uid="uid://6khm227w3xab" path="res://FuncGodotAssets/SmartFuncGodotFGDFile.tres" id="4_ifj5o"]
 [ext_resource type="Texture2D" uid="uid://decwujsyhj0qy" path="res://addons/func_godot/icon32.png" id="5_1pa35"]
 [ext_resource type="Script" uid="uid://cx44c4vnq8bt5" path="res://addons/func_godot/src/trenchbroom/trenchbroom_game_config.gd" id="6_7g2id"]
 

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" format=3 uid="uid://bepm4shvla6ln"]
-
-[ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_h0dbj"]
-[ext_resource type="Resource" uid="uid://cn6t23as41j11" path="res://FuncGodotAssets/EntityDefinitions/Point/Gate/gate_fairy_door.tres" id="1_tskrt"]
-
-[resource]
-script = ExtResource("1_h0dbj")
-entity_definitions = Array[Resource]([ExtResource("1_tskrt")])
-metadata/_custom_type_script = "uid://vm1fvi5045um"

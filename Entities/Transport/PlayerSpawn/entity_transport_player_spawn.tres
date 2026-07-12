@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" format=3 uid="uid://cold377yyeosy"]
 
-[ext_resource type="PackedScene" uid="uid://ba2ixu535q7o3" path="res://Entities/Transport/PlayerSpawn.tscn" id="1_rj034"]
+[ext_resource type="PackedScene" uid="uid://ba2ixu535q7o3" path="res://Entities/Transport/PlayerSpawn/PlayerSpawn.tscn" id="1_rj034"]
 [ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_tcka0"]
 [ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_rj034"]
 
