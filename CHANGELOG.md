@@ -14,6 +14,23 @@
 * **Fixed:** Fixed the player incorrectly gaining small amounts of horizontal
     speed when jumping and landing, even if you weren't touching the stick.
 
+* **Fixed:** Fixed the player being able to gain infinite height by wall jumping
+    off of a wall after jumping off of a conveyor belt moving towards that wall.
+    * This was happening because the player still kept the momentum from the
+    conveyor belt even after jumping off of the wall, meaning your jump didn't
+    take you as far away from the wall as it was supposed to.  This meant you
+    could get back to the wall to jump again much quicker, allowing you to gain
+    more height than you lost.
+
+    * **Personal note**: I debated a lot about whether I should fix this or not.
+        This is a game about speedrunning, and speedrunners _love_ this kind of
+        bug!  What kind of signal would I be sending by fixing it?
+
+        Ultimately, though, I decided that it was too easy to pull off for how
+        potentially powerful it can be.  I'll try to think of ways I can
+        reintroduce a nerfed version of this trick as an intended feature, but
+        in the meantime, it had to go.
+
 * **Fixed:** Fixed a texture in the tutorial level that was missing its normal
     map.  It should now look shinier and less flat.
 
