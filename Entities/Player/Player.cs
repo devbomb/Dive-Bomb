@@ -397,26 +397,53 @@ namespace FastDragon
             _wasOnFloorLastPhysicsFrame = onFloor;
 
             if (onFloor)
+            {
                 LastPlatformVelocity = GetPlatformVelocity();
 
-            // Adjust velocity to be relative to the platform velocity, so the
-            // player doesn't "skip forward" when landing on a moving platform
-            // at the same horizontal speed as it.
-            if (onFloor && !wasOnFloor)
-            {
-                Velocity -= GetPlatformVelocity();
+                // Adjust velocity to be relative to the platform velocity, so the
+                // player doesn't "skip forward" when landing on a moving platform
+                // at the same horizontal speed as it.
+                if (!wasOnFloor)
+                {
+                    Velocity -= GetPlatformVelocity();
 
-                // HACK: IsOnFloor() only works reliably if Velocity.Y is at
-                // least a little bit negative.  It being exactly zero results
-                // in it flickering between returning true and false.
-                //
-                // Furthermore, a velocity of exactly zero results in the
-                // following error:
-                // "instance_set_transform: Condition "!v.is_finite()" is true."
-                //
-                // Adding a little bit of downward velocity when landing fixes
-                // both problems.
-                Velocity += Vector3.Down;
+                    // HACK: IsOnFloor() only works reliably if Velocity.Y is at
+                    // least a little bit negative.  It being exactly zero results
+                    // in it flickering between returning true and false.
+                    //
+                    // Furthermore, a velocity of exactly zero results in the
+                    // following error:
+                    // "instance_set_transform: Condition "!v.is_finite()" is true."
+                    //
+                    // Adding a little bit of downward velocity when landing fixes
+                    // both problems.
+                    Velocity += Vector3.Down;
+                }
+
+                return;
+            }
+
+            // HACK: If the player is sliding against a wall, let them keep
+            // their platform velocity EXCEPT for the component perpendicular
+            // to the wall.
+            //
+            // If the player is wall jumping off of a wall that's moving "into"
+            // them, then we want the player to inherit that velocity to give
+            // their wall jump a little boost.
+            //
+            // However, we DON'T want the player to lose any "sliding" momentum
+            // if they launch themselves off of a conveyor belt and brush
+            // against the wall, hence why we only inherit the perpendicular
+            // velocity.
+            if (IsOnWallOnly())
+            {
+                var wallNormal = GetWallNormal();
+                var wallVelocity = GetPlatformVelocity();
+
+                var currentPerpendicularVel = wallVelocity - wallVelocity.ProjectOnPlane(wallNormal);
+                var lastParellelVel = LastPlatformVelocity.ProjectOnPlane(wallNormal);
+
+                LastPlatformVelocity = lastParellelVel + currentPerpendicularVel;
             }
         }
     }
