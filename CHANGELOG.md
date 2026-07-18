@@ -11,6 +11,12 @@
     needed to have a tiny amount of horizontal speed for it to trigger, which
     made some tricks unnecessarily difficult to set up.
 
+* **Fixed:** Fixed the player bonking against breakable objects(such as vases)
+    in very rare circumstances.  Hopefully.
+
+* **Fixed:** Rolling off of a conveyor belt and onto stationary ground no longer
+    causes you to bonk against the air.
+
 * **Fixed:** Fixed the player incorrectly gaining small amounts of horizontal
     speed when jumping and landing, even if you weren't touching the stick.
 
