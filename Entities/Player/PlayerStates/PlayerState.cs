@@ -133,33 +133,21 @@ namespace FastDragon
         }
 
         /// <summary>
-        /// Why check for deceleration instead of reading the wall normal?
-        /// Well:
-        /// 1. IsOnWall() sometimes gives us a false positive, potentially
-        ///      causing a bonk against things that shouldn't be bonkable
-        ///      (EG: baskets).
-        //
-        /// 2. Reading the wall normal doesn't work if they player is touching
-        ///      two walls at once(IE: rolling into a corner).  Even if those
-        ///      two walls "add up" to being a head-on collision, Godot will
-        ///      only use ONE of those walls' normals, which would result in
-        ///      the player not bonking when they logically should.
-        ///
-        /// 3. Let's face it: why do people feel pain when they slam into a
-        ///      wall IRL?  It's not the collision itself, but rather the
-        ///      _deceleration_ caused by the collision.  Therefore, it makes
-        ///      sense for a bonk to be triggered by a sudden stop.
+        ///     Returns true if the given collision happened at an angle that
+        ///     would cause the player to bonk.
         /// </summary>
-        protected bool DeceleratedEnoughToBonk(Vector3 prevVel, Vector3 newVel)
+        protected bool IsBonkAngle(KinematicCollision3D collision)
         {
-            Vector3 prevVelFlat = prevVel.Flattened();
-            Vector3 newVelFlat = Self.Velocity.Flattened();
+            // Floor collisions can never cause a bonk.
+            if (collision.GetAngle() <= Self.FloorMaxAngle)
+                return false;
 
-            float speedPercent = newVelFlat.Length() / prevVelFlat.Length();
-            float wallAngleRad = Mathf.DegToRad(90) - Mathf.Acos(speedPercent);
-            float bonkAngleRad = Mathf.DegToRad(Player.Bonk.AngleDeg);
+            float angleToNormalRad = collision
+                    .GetNormal()
+                    .AngleTo(Self.GlobalForward());
 
-            return wallAngleRad < bonkAngleRad;
+            float angleToWallRad = Mathf.DegToRad(180) - angleToNormalRad;
+            return angleToWallRad < Player.Bonk.AngleRad;
         }
 
         /// <summary>
