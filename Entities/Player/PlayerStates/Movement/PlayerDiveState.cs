@@ -17,6 +17,7 @@ namespace FastDragon
         private List<IBreakable> _brokenObjects = new();
         private List<IBreakable> _unbrokenObjects = new();
         private List<IBreakable> _detectedObjects = new();
+        private bool _bonked;
 
         public override void OnStateEntered()
         {
@@ -149,18 +150,12 @@ namespace FastDragon
 
         private void MoveAndSlideBreakingObjects()
         {
-            Vector3 prevPos = Self.GlobalPosition;
+            _bonked = false;
+
             Vector3 prevVel = Self.Velocity;
             Self.MoveAndSlideEx(OnCollision);
 
-            int numCollisions = Self.GetSlideCollisionCount();
-            if (_brokenObjects.Any(b => b.CausesBonk))
-            {
-                Self.ChangeState<PlayerBonkState>();
-                return;
-            }
-
-            if (DeceleratedEnoughToBonk(prevVel, Self.Velocity))
+            if (_bonked)
             {
                 // HACK: If a ledge is detected, move the player up to it instead
                 // of bonking.  This is to reduce the amount of "WTF?  I bonked
@@ -196,22 +191,36 @@ namespace FastDragon
             var hitObject = collision.GetCollider();
 
             if (hitObject is not IBreakable b)
-                return MoveAndSlideExResponse.Slide;
+                return SlideOrBonk();
 
             if (!b.VulnerableToRoll)
             {
                 _unbrokenObjects.Add(b);
-                return MoveAndSlideExResponse.Slide;
+                return SlideOrBonk();
             }
 
             _brokenObjects.Add(b);
+            return IgnoreOrBonk();
 
-            if (b.CausesBonk)
+            MoveAndSlideExResponse IgnoreOrBonk()
             {
-                return MoveAndSlideExResponse.Stop;
+                return b.CausesBonk
+                    ? Bonk()
+                    : MoveAndSlideExResponse.Ignore;
             }
 
-            return MoveAndSlideExResponse.Ignore;
+            MoveAndSlideExResponse SlideOrBonk()
+            {
+                return IsBonkAngle(collision)
+                    ? Bonk()
+                    : MoveAndSlideExResponse.Slide;
+            }
+
+            MoveAndSlideExResponse Bonk()
+            {
+                _bonked = true;
+                return MoveAndSlideExResponse.Stop;
+            }
         }
 
         private void Break(IBreakable b)
