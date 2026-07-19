@@ -182,8 +182,7 @@ namespace FastDragon
                     }
                 }
 
-                Self.BonkDecal.Play(_bonkCollision);
-                Self.ChangeState<PlayerBonkState>();
+                Self.BonkAgainst(_bonkCollision);
                 return;
             }
         }

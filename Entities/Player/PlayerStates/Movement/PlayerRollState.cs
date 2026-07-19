@@ -150,10 +150,7 @@ namespace FastDragon
             Self.MoveAndSlideEx(OnCollision);
 
             if (_bonkCollision != null)
-            {
-                Self.BonkDecal.Play(_bonkCollision);
-                Self.ChangeState<PlayerBonkState>();
-            }
+                Self.BonkAgainst(_bonkCollision);
         }
 
         private MoveAndSlideExResponse OnCollision(KinematicCollision3D collision)

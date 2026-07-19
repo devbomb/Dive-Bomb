@@ -343,6 +343,20 @@ namespace FastDragon
         }
 
         /// <summary>
+        /// Puts the player in the bonk state and places a decal on the wall
+        /// they bonked on.
+        ///
+        /// Does not call any methods on the thing that was bonked into; the
+        /// caller is responsible for that.
+        /// </summary>
+        /// <param name="collision"></param>
+        public void BonkAgainst(KinematicCollision3D collision)
+        {
+            BonkDecal.Play(collision);
+            ChangeState<PlayerBonkState>();
+        }
+
+        /// <summary>
         /// Increments the death counter and reloads the last checkpoint,
         /// without playing a death animation.
         /// </summary>
