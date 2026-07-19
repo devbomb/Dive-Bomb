@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dm46wyspjqcns"]
 
-[ext_resource type="Script" uid="uid://6fk8j6a6u3rx" path="res://Entities/Player/Parts/BonkDecal/BonkDecal.cs" id="1_2tr8a"]
-[ext_resource type="Texture2D" uid="uid://wkiwgego7o" path="res://Entities/Player/Parts/BonkDecal/AgentDFaceSplat.png" id="1_gtd42"]
-[ext_resource type="Texture2D" uid="uid://beixf81fjmowb" path="res://Entities/Player/Parts/BonkDecal/BonkStarParticle.png" id="3_66q4a"]
+[ext_resource type="Script" uid="uid://6fk8j6a6u3rx" path="res://Entities/Player/FX/BonkDecal/BonkDecal.cs" id="1_2tr8a"]
+[ext_resource type="Texture2D" uid="uid://wkiwgego7o" path="res://Entities/Player/FX/BonkDecal/AgentDFaceSplat.png" id="1_gtd42"]
+[ext_resource type="Texture2D" uid="uid://beixf81fjmowb" path="res://Entities/Player/FX/BonkDecal/BonkStarParticle.png" id="3_66q4a"]
 
 [sub_resource type="Curve" id="Curve_50jqs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
