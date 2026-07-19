@@ -29,6 +29,7 @@ namespace FastDragon
         [Export] public GpuParticles3D RollDust;
         [Export] public MeshInstance3D RollThuum;
         [Export] public MeshInstance3D DiveThuum;
+        [Export] public BonkDecal BonkDecal;
 
         [ExportGroup("Camera")]
         [Export] public PlayerCamera Camera;

@@ -17,7 +17,7 @@ namespace FastDragon
         private List<IBreakable> _brokenObjects = new();
         private List<IBreakable> _unbrokenObjects = new();
         private List<IBreakable> _detectedObjects = new();
-        private bool _bonked;
+        private KinematicCollision3D _bonkCollision = null;
 
         public override void OnStateEntered()
         {
@@ -150,12 +150,12 @@ namespace FastDragon
 
         private void MoveAndSlideBreakingObjects()
         {
-            _bonked = false;
+            _bonkCollision = null;
 
             Vector3 prevVel = Self.Velocity;
             Self.MoveAndSlideEx(OnCollision);
 
-            if (_bonked)
+            if (_bonkCollision != null)
             {
                 // HACK: If a ledge is detected, move the player up to it instead
                 // of bonking.  This is to reduce the amount of "WTF?  I bonked
@@ -181,6 +181,7 @@ namespace FastDragon
                     }
                 }
 
+                Self.BonkDecal.Play(_bonkCollision);
                 Self.ChangeState<PlayerBonkState>();
                 return;
             }
@@ -218,7 +219,7 @@ namespace FastDragon
 
             MoveAndSlideExResponse Bonk()
             {
-                _bonked = true;
+                _bonkCollision = collision;
                 return MoveAndSlideExResponse.Stop;
             }
         }

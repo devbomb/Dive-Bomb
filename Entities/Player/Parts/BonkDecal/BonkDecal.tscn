@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dm46wyspjqcns"]
+
+[ext_resource type="Script" uid="uid://6fk8j6a6u3rx" path="res://Entities/Player/Parts/BonkDecal/BonkDecal.cs" id="1_2tr8a"]
+[ext_resource type="Texture2D" uid="uid://wkiwgego7o" path="res://Entities/Player/Parts/BonkDecal/AgentDFaceSplat.png" id="1_gtd42"]
+
+[node name="BonkDecal" type="Node3D" unique_id=1982155955]
+top_level = true
+script = ExtResource("1_2tr8a")
+
+[node name="Decal" type="Decal" parent="." unique_id=416850733]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, 0)
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("1_gtd42")
+cull_mask = 8
