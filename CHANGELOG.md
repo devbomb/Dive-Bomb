@@ -1,4 +1,4 @@
-# [Unreleased]
+# [0.0.2]
 * **Added:** A change log.  Wow!
 
 * **Added:** Bonking now leaves behind an imprint of Special Agent D's face at
