@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 
 namespace FastDragon
@@ -352,7 +353,18 @@ namespace FastDragon
         /// <param name="collision"></param>
         public void BonkAgainst(KinematicCollision3D collision)
         {
-            BonkDecal.Play(collision);
+            BonkDecal.Play(collision.GetPosition(), collision.GetNormal());
+            ChangeState<PlayerBonkState>();
+        }
+
+        public void ForceBonkAgainstAir()
+        {
+            float collisionRadius = (BodyCollisionShape.Shape as SphereShape3D).Radius;
+
+            var forward = GlobalRotation.EulerAnglesRadToForward();
+            var collisionPoint = GlobalPosition + (forward * collisionRadius);
+
+            BonkDecal.Play(collisionPoint, forward);
             ChangeState<PlayerBonkState>();
         }
 

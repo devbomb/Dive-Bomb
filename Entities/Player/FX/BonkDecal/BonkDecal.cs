@@ -22,13 +22,13 @@ namespace FastDragon
             Visible = false;
         }
 
-        public void Play(KinematicCollision3D collision)
+        public void Play(Vector3 collisionPoint, Vector3 wallNormal)
         {
             Visible = true;
             Decal.AlbedoMix = 1;
 
-            GlobalRotation = collision.GetNormal().ForwardToEulerAnglesRad();
-            GlobalPosition = collision.GetPosition() + (collision.GetNormal() * 0.1f);
+            GlobalRotation = wallNormal.ForwardToEulerAnglesRad();
+            GlobalPosition = collisionPoint + (wallNormal * 0.1f);
 
             StarParticles.Restart();
             StarParticles.Emitting = true;
