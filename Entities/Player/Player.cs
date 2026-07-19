@@ -30,7 +30,7 @@ namespace FastDragon
         [Export] public GpuParticles3D RollDust;
         [Export] public MeshInstance3D RollThuum;
         [Export] public MeshInstance3D DiveThuum;
-        [Export] public BonkDecal BonkDecal;
+        [Export] public BonkFX BonkFX;
 
         [ExportGroup("Camera")]
         [Export] public PlayerCamera Camera;
@@ -353,7 +353,7 @@ namespace FastDragon
         /// <param name="collision"></param>
         public void BonkAgainst(KinematicCollision3D collision)
         {
-            BonkDecal.Play(collision.GetPosition(), collision.GetNormal());
+            BonkFX.Play(collision.GetPosition(), collision.GetNormal());
             ChangeState<PlayerBonkState>();
         }
 
@@ -364,7 +364,7 @@ namespace FastDragon
             var forward = GlobalRotation.EulerAnglesRadToForward();
             var collisionPoint = GlobalPosition + (forward * collisionRadius);
 
-            BonkDecal.Play(collisionPoint, forward);
+            BonkFX.Play(collisionPoint, forward);
             ChangeState<PlayerBonkState>();
         }
 

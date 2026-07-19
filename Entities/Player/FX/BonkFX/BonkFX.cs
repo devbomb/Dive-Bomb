@@ -3,7 +3,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class BonkDecal : Node3D
+    public partial class BonkFX : Node3D
     {
         public const float FadeSpeed = 0.75f;
 

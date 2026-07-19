@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bpr113kmu5g5o" path="res://Entities/Player/Parts/GemGravityGloves/GemGravityGloves.tscn" id="10_dedpk"]
 [ext_resource type="Script" uid="uid://ccrtsrl3md7i8" path="res://Entities/Player/Parts/PlayerCameraFocusPoint.cs" id="12_hl213"]
 [ext_resource type="PackedScene" uid="uid://db05gfycomjg2" path="res://Entities/Player/Parts/DiageticPauseMenu/DiageticPauseMenu.tscn" id="14_samso"]
-[ext_resource type="PackedScene" uid="uid://dm46wyspjqcns" path="res://Entities/Player/FX/BonkDecal/BonkDecal.tscn" id="19_e34i1"]
+[ext_resource type="PackedScene" uid="uid://dm46wyspjqcns" path="res://Entities/Player/FX/BonkFX/BonkFX.tscn" id="19_e34i1"]
 
 [sub_resource type="GDScript" id="GDScript_h6pxy"]
 script/source = "extends GridContainer
@@ -105,7 +105,7 @@ func _physics_process(_delta):
         
 "
 
-[node name="Player" type="CharacterBody3D" unique_id=985873172 node_paths=PackedStringArray("Model", "Animator", "RollSoundPlayer", "BonkSoundPlayer", "FlipDamageSound", "DrownStartSplashSound", "RollDust", "RollThuum", "DiveThuum", "BonkDecal", "Camera", "CameraFocus", "BodyCollisionShape", "KickHitbox", "DiveExtraHitbox", "RollExtraHitbox", "LedgeDetector", "LedgeGrabPoint", "MinLedgeGrabHeight", "FairyKissPoint", "FairyKissCamRightPoint", "FairyKissCamLeftPoint") groups=["PhysicsInterpolated"]]
+[node name="Player" type="CharacterBody3D" unique_id=985873172 node_paths=PackedStringArray("Model", "Animator", "RollSoundPlayer", "BonkSoundPlayer", "FlipDamageSound", "DrownStartSplashSound", "RollDust", "RollThuum", "DiveThuum", "BonkFX", "Camera", "CameraFocus", "BodyCollisionShape", "KickHitbox", "DiveExtraHitbox", "RollExtraHitbox", "LedgeDetector", "LedgeGrabPoint", "MinLedgeGrabHeight", "FairyKissPoint", "FairyKissCamRightPoint", "FairyKissCamLeftPoint") groups=["PhysicsInterpolated"]]
 collision_layer = 8
 collision_mask = 8388611
 script = ExtResource("1_a4opu")
@@ -118,7 +118,7 @@ DrownStartSplashSound = NodePath("SoundPlayers/DrownStartSplashSound")
 RollDust = NodePath("Model/RollDust")
 RollThuum = NodePath("Model/RollThuum")
 DiveThuum = NodePath("Model/DiveThuum")
-BonkDecal = NodePath("BonkDecal")
+BonkFX = NodePath("BonkFX")
 Camera = NodePath("Camera/PlayerCamera")
 CameraFocus = NodePath("Camera/CameraFocus")
 BodyCollisionShape = NodePath("BodyShape")
@@ -351,7 +351,7 @@ mesh = SubResource("PrismMesh_2j7te")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.038, 0)
 mesh = SubResource("CylinderMesh_sioah")
 
-[node name="BonkDecal" parent="." unique_id=1982155955 instance=ExtResource("19_e34i1")]
+[node name="BonkFX" parent="." unique_id=1982155955 instance=ExtResource("19_e34i1")]
 
 [node name="MaxJumpHeightPrinter" type="Node" parent="." unique_id=98493499]
 script = SubResource("GDScript_cpnxc")
