@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_r8uk7"]
 [ext_resource type="PackedScene" uid="uid://cjrq4wvokpa7i" path="res://Levels/Debug/ConveyorBeltTester/Maps/ConveyorBeltTester.map" id="2_kk84g"]
+[ext_resource type="PackedScene" uid="uid://dm46wyspjqcns" path="res://Entities/Player/FX/BonkFX/BonkFX.tscn" id="3_jwo76"]
 
 [node name="ConveyorBeltTester" type="Node3D" unique_id=1881073014]
 script = ExtResource("1_r8uk7")
@@ -12,3 +13,6 @@ metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=172507978]
 transform = Transform3D(1, 0, 0, 0, -0.958467, 0.285203, 0, -0.285203, -0.958467, 0, 6, 0)
+
+[node name="BonkFX" parent="." unique_id=1982155955 instance=ExtResource("3_jwo76")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.025075, 2.2704659, 0.8897061)

@@ -18,7 +18,7 @@ namespace FastDragon
         private List<IBreakable> _brokenObjects = new();
         private List<IBreakable> _unbrokenObjects = new();
         private List<IBreakable> _detectedObjects = new();
-        private bool _bonked;
+        private KinematicCollision3D _bonkCollision = null;
 
         public override void OnStateEntered(IState oldState)
         {
@@ -146,11 +146,11 @@ namespace FastDragon
 
         private void MoveAndSlideBreakingObjects()
         {
-            _bonked = false;
+            _bonkCollision = null;
             Self.MoveAndSlideEx(OnCollision);
 
-            if (_bonked)
-                Self.ChangeState<PlayerBonkState>();
+            if (_bonkCollision != null)
+                Self.BonkAgainst(_bonkCollision);
         }
 
         private MoveAndSlideExResponse OnCollision(KinematicCollision3D collision)
@@ -185,7 +185,7 @@ namespace FastDragon
 
             MoveAndSlideExResponse Bonk()
             {
-                _bonked = true;
+                _bonkCollision = collision;
                 return MoveAndSlideExResponse.Stop;
             }
         }

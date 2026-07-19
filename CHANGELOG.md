@@ -1,6 +1,10 @@
 # [Unreleased]
 * **Added:** A change log.  Wow!
 
+* **Added:** Bonking now leaves behind an imprint of Special Agent D's face at
+    the exact point of the collision.  Now you'll know exactly how close you
+    were to making it up that ledge.
+
 * **Changed:** Under-the-hood changes for how textures and materials are applied
     to level geometry when importing level files.  We now use FuncGodot's
     built-in functionality for replacing textures with materials, instead of our

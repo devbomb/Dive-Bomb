@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 
 namespace FastDragon
@@ -29,6 +30,7 @@ namespace FastDragon
         [Export] public GpuParticles3D RollDust;
         [Export] public MeshInstance3D RollThuum;
         [Export] public MeshInstance3D DiveThuum;
+        [Export] public BonkFX BonkFX;
 
         [ExportGroup("Camera")]
         [Export] public PlayerCamera Camera;
@@ -339,6 +341,31 @@ namespace FastDragon
                 ChangeState<TState>();
 
             return result;
+        }
+
+        /// <summary>
+        /// Puts the player in the bonk state and places a decal on the wall
+        /// they bonked on.
+        ///
+        /// Does not call any methods on the thing that was bonked into; the
+        /// caller is responsible for that.
+        /// </summary>
+        /// <param name="collision"></param>
+        public void BonkAgainst(KinematicCollision3D collision)
+        {
+            BonkFX.Play(collision.GetPosition(), collision.GetNormal());
+            ChangeState<PlayerBonkState>();
+        }
+
+        public void ForceBonkAgainstAir()
+        {
+            float collisionRadius = (BodyCollisionShape.Shape as SphereShape3D).Radius;
+
+            var forward = GlobalRotation.EulerAnglesRadToForward();
+            var collisionPoint = GlobalPosition + (forward * collisionRadius);
+
+            BonkFX.Play(collisionPoint, forward);
+            ChangeState<PlayerBonkState>();
         }
 
         /// <summary>

@@ -160,9 +160,12 @@ namespace FastDragon
             private void OnDamagedByPlayer()
             {
                 Self._health.Damage();
-
-                GetTree().FindNode<Player>().ChangeState<PlayerBonkState>();
                 ChangeState<Damaged>();
+
+                // HACK: Bonk the player, even though the weak point isn't
+                // a solid object.
+                var player = GetTree().FindNode<Player>();
+                player.ForceBonkAgainstAir();
             }
         }
 
