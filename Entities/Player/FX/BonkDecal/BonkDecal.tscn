@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://dm46wyspjqcns"]
 
-[ext_resource type="Script" uid="uid://6fk8j6a6u3rx" path="res://Entities/Player/FX/BonkDecal/BonkDecal.cs" id="1_2tr8a"]
-[ext_resource type="Texture2D" uid="uid://wkiwgego7o" path="res://Entities/Player/FX/BonkDecal/AgentDFaceSplat.png" id="1_gtd42"]
-[ext_resource type="Texture2D" uid="uid://beixf81fjmowb" path="res://Entities/Player/FX/BonkDecal/BonkStarParticle.png" id="3_66q4a"]
+[ext_resource type="Script" uid="uid://6fk8j6a6u3rx" path="res://Entities/Player/FX/BonkDecal/BonkDecal.cs" id="1_mmcuv"]
+[ext_resource type="Texture2D" uid="uid://wkiwgego7o" path="res://Entities/Player/FX/BonkDecal/AgentDFaceSplat.png" id="2_d04f1"]
+[ext_resource type="Texture2D" uid="uid://beixf81fjmowb" path="res://Entities/Player/FX/BonkDecal/BonkStarParticle.png" id="3_mwf51"]
+
+[sub_resource type="Gradient" id="Gradient_tpekl"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(1, 0.84705883, 0, 1, 0.92530215, 0.46403575, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_66q4a"]
+gradient = SubResource("Gradient_tpekl")
 
 [sub_resource type="Curve" id="Curve_50jqs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -24,7 +32,7 @@ damping_max = 35.268
 scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_hwecq")
-color = Color(1, 0.84705883, 0, 1)
+color_initial_ramp = SubResource("GradientTexture1D_66q4a")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_055gh"]
 transparency = 2
@@ -32,7 +40,7 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_66q4a")
+albedo_texture = ExtResource("3_mwf51")
 disable_receive_shadows = true
 billboard_mode = 3
 billboard_keep_scale = true
@@ -45,20 +53,20 @@ material = SubResource("StandardMaterial3D_055gh")
 
 [node name="BonkDecal" type="Node3D" unique_id=1982155955 node_paths=PackedStringArray("Decal", "StarParticles")]
 top_level = true
-script = ExtResource("1_2tr8a")
+script = ExtResource("1_mmcuv")
 Decal = NodePath("Decal")
 StarParticles = NodePath("StarParticles")
 
 [node name="Decal" type="Decal" parent="." unique_id=416850733]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, 0)
 size = Vector3(0.5, 0.5, 0.5)
-texture_albedo = ExtResource("1_gtd42")
+texture_albedo = ExtResource("2_d04f1")
 cull_mask = 8
 
 [node name="StarParticles" type="GPUParticles3D" parent="." unique_id=1548723272]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 emitting = false
-amount = 5
+amount = 6
 lifetime = 0.75
 one_shot = true
 explosiveness = 0.86
