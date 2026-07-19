@@ -163,9 +163,8 @@ This is accomplished by combining
 [func_godot](https://func-godot.github.io/func_godot_docs/FuncGodot%20Manual/FuncGodot%20Manual.html) 
 with a custom-made [import plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/import_plugins.html) 
 called "FuncGodotMapImporter".  FuncGodotMapImporter invokes func_godot to 
-convert the map file to a tree of Godot nodes, does some post-processing to 
-inject custom materials and work around some bugs, and then saves the result 
-in the `.godot` folder.
+convert the map file to a tree of Godot nodes, does some post-processing to work
+around some bugs, and then saves the result in the `.godot` folder.
 
 This means you can drag and drop a `.map` file into a scene, just like you can
 with a `.blend` file.

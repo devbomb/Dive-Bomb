@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bb2ckyhrk5jdg"]
 
-[ext_resource type="PackedScene" uid="uid://dad4aqqyc8v3i" path="res://Levels/Production/SunsetCastle/Maps/SunsetCastle.map" id="1_4ems5"]
+[ext_resource type="PackedScene" uid="uid://6o8q5t4vm66p" path="res://Levels/Production/SunsetCastle/Maps/SunsetCastle.map" id="1_4ems5"]
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_7a71f"]
 [ext_resource type="Environment" uid="uid://dp38ywrpiuhjq" path="res://Levels/Production/SunsetCastle/Skybox.tres" id="1_7bxwh"]
 [ext_resource type="PackedScene" uid="uid://t1vahhcvv1hb" path="res://Entities/Detail/Fireplace.tscn" id="3_ss8in"]

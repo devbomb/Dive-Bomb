@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://blkkbrijdnnps" path="res://Entities/Hazard/GlassPaneSpawner/GlassPaneSpawnerFX.cs" id="1_tqs1k"]
 [ext_resource type="Material" uid="uid://c25s1vv2je422" path="res://Entities/Hazard/GlassPaneSpawner/Materials/MoltenGlassFillMaterial.tres" id="2_3cbbd"]
 [ext_resource type="Texture2D" uid="uid://chn1mf3rkq4ea" path="res://Textures/Textures/DivableGlassPlaceholder.png" id="2_6ui7u"]
-[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="3_3cbbd"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Textures/Textures/DivableGlassPlaceholder.tres" id="3_3cbbd"]
 [ext_resource type="AudioStream" uid="uid://bxgbafdygr40o" path="res://Entities/Hazard/GlassPaneSpawner/LongPour.wav" id="5_eoqyl"]
 [ext_resource type="AudioStream" uid="uid://ekkasq8qo2mr" path="res://Entities/Hazard/GlassPaneSpawner/SolidifyDing.wav" id="5_rigc4"]
 

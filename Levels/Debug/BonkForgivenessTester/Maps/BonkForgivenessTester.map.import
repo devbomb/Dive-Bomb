@@ -2,7 +2,7 @@
 
 importer="func_godot_map_importer"
 type="PackedScene"
-uid="uid://coafda5ubxb0b"
+uid="uid://b6wqhchkjtiip"
 path="res://.godot/imported/BonkForgivenessTester.map-0ab960c16ccd95f67ba378f08e63cdd1.tscn"
 
 [deps]
@@ -11,6 +11,4 @@ source_file="res://Levels/Debug/BonkForgivenessTester/Maps/BonkForgivenessTester
 dest_files=["res://.godot/imported/BonkForgivenessTester.map-0ab960c16ccd95f67ba378f08e63cdd1.tscn"]
 
 [params]
-
-texture_material_map=Object(Resource,"resource_local_to_scene":false,"resource_name":"","script":Resource("uid://cb8n0ec7vcom", "res://addons/FuncGodotMapImporter/MaterialMap.gd"),"inherited_material_maps":Array[Resource("uid://cb8n0ec7vcom", "res://addons/FuncGodotMapImporter/MaterialMap.gd")]([]),"texture_to_material":Dictionary[Texture2D, Material]({}))
 

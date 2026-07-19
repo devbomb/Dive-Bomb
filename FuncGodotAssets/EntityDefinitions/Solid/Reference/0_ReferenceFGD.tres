@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" format=3 uid="uid://dxghsjw0cvqws"]
-
-[ext_resource type="Resource" uid="uid://cjiutl7gjxkak" path="res://FuncGodotAssets/EntityDefinitions/Solid/Reference/Placeholder.tres" id="1_c8jgd"]
-[ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_rwpk8"]
-
-[resource]
-script = ExtResource("1_rwpk8")
-entity_definitions = Array[Resource]([ExtResource("1_c8jgd")])
-metadata/_custom_type_script = "uid://vm1fvi5045um"

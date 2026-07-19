@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 
 namespace FastDragon
@@ -29,6 +30,7 @@ namespace FastDragon
         [Export] public GpuParticles3D RollDust;
         [Export] public MeshInstance3D RollThuum;
         [Export] public MeshInstance3D DiveThuum;
+        [Export] public BonkFX BonkFX;
 
         [ExportGroup("Camera")]
         [Export] public PlayerCamera Camera;
@@ -342,6 +344,31 @@ namespace FastDragon
         }
 
         /// <summary>
+        /// Puts the player in the bonk state and places a decal on the wall
+        /// they bonked on.
+        ///
+        /// Does not call any methods on the thing that was bonked into; the
+        /// caller is responsible for that.
+        /// </summary>
+        /// <param name="collision"></param>
+        public void BonkAgainst(KinematicCollision3D collision)
+        {
+            BonkFX.Play(collision.GetPosition(), collision.GetNormal());
+            ChangeState<PlayerBonkState>();
+        }
+
+        public void ForceBonkAgainstAir()
+        {
+            float collisionRadius = (BodyCollisionShape.Shape as SphereShape3D).Radius;
+
+            var forward = GlobalRotation.EulerAnglesRadToForward();
+            var collisionPoint = GlobalPosition + (forward * collisionRadius);
+
+            BonkFX.Play(collisionPoint, forward);
+            ChangeState<PlayerBonkState>();
+        }
+
+        /// <summary>
         /// Increments the death counter and reloads the last checkpoint,
         /// without playing a death animation.
         /// </summary>
@@ -397,26 +424,53 @@ namespace FastDragon
             _wasOnFloorLastPhysicsFrame = onFloor;
 
             if (onFloor)
+            {
                 LastPlatformVelocity = GetPlatformVelocity();
 
-            // Adjust velocity to be relative to the platform velocity, so the
-            // player doesn't "skip forward" when landing on a moving platform
-            // at the same horizontal speed as it.
-            if (onFloor && !wasOnFloor)
-            {
-                Velocity -= GetPlatformVelocity();
+                // Adjust velocity to be relative to the platform velocity, so the
+                // player doesn't "skip forward" when landing on a moving platform
+                // at the same horizontal speed as it.
+                if (!wasOnFloor)
+                {
+                    Velocity -= GetPlatformVelocity();
 
-                // HACK: IsOnFloor() only works reliably if Velocity.Y is at
-                // least a little bit negative.  It being exactly zero results
-                // in it flickering between returning true and false.
-                //
-                // Furthermore, a velocity of exactly zero results in the
-                // following error:
-                // "instance_set_transform: Condition "!v.is_finite()" is true."
-                //
-                // Adding a little bit of downward velocity when landing fixes
-                // both problems.
-                Velocity += Vector3.Down;
+                    // HACK: IsOnFloor() only works reliably if Velocity.Y is at
+                    // least a little bit negative.  It being exactly zero results
+                    // in it flickering between returning true and false.
+                    //
+                    // Furthermore, a velocity of exactly zero results in the
+                    // following error:
+                    // "instance_set_transform: Condition "!v.is_finite()" is true."
+                    //
+                    // Adding a little bit of downward velocity when landing fixes
+                    // both problems.
+                    Velocity += Vector3.Down;
+                }
+
+                return;
+            }
+
+            // HACK: If the player is sliding against a wall, let them keep
+            // their platform velocity EXCEPT for the component perpendicular
+            // to the wall.
+            //
+            // If the player is wall jumping off of a wall that's moving "into"
+            // them, then we want the player to inherit that velocity to give
+            // their wall jump a little boost.
+            //
+            // However, we DON'T want the player to lose any "sliding" momentum
+            // if they launch themselves off of a conveyor belt and brush
+            // against the wall, hence why we only inherit the perpendicular
+            // velocity.
+            if (IsOnWallOnly())
+            {
+                var wallNormal = GetWallNormal();
+                var wallVelocity = GetPlatformVelocity();
+
+                var currentPerpendicularVel = wallVelocity - wallVelocity.ProjectOnPlane(wallNormal);
+                var lastParellelVel = LastPlatformVelocity.ProjectOnPlane(wallNormal);
+
+                LastPlatformVelocity = lastParellelVel + currentPerpendicularVel;
             }
         }
     }

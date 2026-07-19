@@ -28,6 +28,15 @@ namespace FastDragon
             KinematicCollision3D collision
         );
 
+        /// <summary>
+        ///     Like <see cref="CharacterBody3D.MoveAndSlide"/>, except it calls
+        ///     a callback on every slide collision to determine how it should
+        ///     react to that collision.
+        ///
+        ///     Returns true if there were any non-ignored collisions.
+        ///     Returns false if there were no collisions, or they were all
+        ///     ignored.
+        /// </summary>
         public static bool MoveAndSlideEx(
             this CharacterBody3D body,
             MoveAndSlideExCollisionHandler onCollision

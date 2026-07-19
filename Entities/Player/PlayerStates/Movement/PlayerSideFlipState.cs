@@ -62,7 +62,7 @@ namespace FastDragon
 
             if (Self.IsOnFloor())
             {
-                Self.ChangeState<PlayerWalkState>();
+                StartWalkingOrStanding();
                 return;
             }
 

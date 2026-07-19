@@ -34,12 +34,7 @@ func _get_preset_name(preset_index) -> String:
 func _get_import_options(path, preset_index) -> Array[Dictionary]:
 	match preset_index:
 		Presets.DEFAULT:
-			return [
-				{
-					"name": "texture_material_map",
-					"default_value": MaterialMap.new()
-				}
-			]
+			return []
 		_:
 			return []
 
@@ -71,12 +66,7 @@ func _import(
 
 	move_children_and_replace_owners(mapBuilder, mapRoot)
 	fix_duplicate_node_names(mapRoot)
-
-	# Map textures to their materials based on the provided map
-	for node in all_nodes_directly_in_scene(mapRoot):
-		if node is MeshInstance3D && !is_root_of_another_scene(node):
-			replace_materials(node, options.texture_material_map)
-
+	
 	# Save the map as a packed scene
 	var filePath = "%s.%s" % [save_path, _get_save_extension()]
 	var scene = PackedScene.new()
@@ -164,22 +154,6 @@ func _all_nodes_directly_in_scene(node: Node, sceneRoot: Node, array: Array[Node
 
 	for child in node.get_children():
 		_all_nodes_directly_in_scene(child, sceneRoot, array)
-
-func replace_materials(meshInstance: MeshInstance3D, textureToMaterial: MaterialMap):
-	for surfaceIndex in meshInstance.mesh.get_surface_count():
-		var surfaceMaterial: Material = meshInstance.mesh.surface_get_material(surfaceIndex)
-		if !(surfaceMaterial is StandardMaterial3D):
-			continue
-
-		var texture: Texture2D = surfaceMaterial.albedo_texture
-		if texture == null:
-			continue
-		
-		if !textureToMaterial.has_material_for(texture):
-			continue
-
-		var replacementMaterial: Material = textureToMaterial.get_material_for(texture)
-		meshInstance.set_surface_override_material(surfaceIndex, replacementMaterial)
 
 func _strip_duplicate_signal_connections(filePath: String) -> Error:
 	var originalText: String = FileAccess.get_file_as_string(filePath)

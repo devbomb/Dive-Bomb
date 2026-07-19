@@ -2,8 +2,8 @@
 
 [ext_resource type="Environment" uid="uid://cnsj2vqr0q41w" path="res://Levels/Production/TestMap/Skybox.tres" id="1_0gxk4"]
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_678t0"]
-[ext_resource type="PackedScene" uid="uid://dfcd6v4b3peg1" path="res://Levels/Production/TestMap/Maps/FairyDoorTest.map" id="2_1qi3b"]
-[ext_resource type="PackedScene" uid="uid://bdshm0cut77ja" path="res://Levels/Production/TestMap/Maps/Main.map" id="2_678t0"]
+[ext_resource type="PackedScene" uid="uid://fr2p454tvnu0" path="res://Levels/Production/TestMap/Maps/FairyDoorTest.map" id="2_1qi3b"]
+[ext_resource type="PackedScene" uid="uid://bfesugn6ri2nq" path="res://Levels/Production/TestMap/Maps/Main.map" id="2_678t0"]
 [ext_resource type="AudioStream" uid="uid://cugcjt8k8ksh" path="res://Common/Audio/Music/Rabun-da.mp3" id="2_fh6k1"]
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="3_3iy4a"]
 [ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="5_bnah6"]

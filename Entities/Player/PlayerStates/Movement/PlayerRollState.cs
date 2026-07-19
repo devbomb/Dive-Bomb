@@ -18,6 +18,7 @@ namespace FastDragon
         private List<IBreakable> _brokenObjects = new();
         private List<IBreakable> _unbrokenObjects = new();
         private List<IBreakable> _detectedObjects = new();
+        private KinematicCollision3D _bonkCollision = null;
 
         public override void OnStateEntered(IState oldState)
         {
@@ -25,6 +26,7 @@ namespace FastDragon
             Self.RollThuum.Visible = true;
 
             _timer = 0;
+
             _isGroundRoll = !(oldState is PlayerDiveState);
             Self.LocalVelocity = Self.GlobalForward() * Player.Roll.InitialSpeed;
             Self.Camera.Lag(CameraLagDuration);
@@ -131,7 +133,7 @@ namespace FastDragon
             {
                 if (Self.IsOnFloor())
                 {
-                    Self.ChangeState<PlayerWalkState>();
+                    StartWalkingOrStanding();
                 }
                 else
                 {
@@ -144,21 +146,11 @@ namespace FastDragon
 
         private void MoveAndSlideBreakingObjects()
         {
-            Vector3 prevVel = Self.Velocity;
+            _bonkCollision = null;
             Self.MoveAndSlideEx(OnCollision);
 
-            int numCollisions = Self.GetSlideCollisionCount();
-            if (_brokenObjects.Any(b => b.CausesBonk))
-            {
-                Self.ChangeState<PlayerBonkState>();
-                return;
-            }
-
-            if (DeceleratedEnoughToBonk(prevVel, Self.Velocity))
-            {
-                Self.ChangeState<PlayerBonkState>();
-                return;
-            }
+            if (_bonkCollision != null)
+                Self.BonkAgainst(_bonkCollision);
         }
 
         private MoveAndSlideExResponse OnCollision(KinematicCollision3D collision)
@@ -166,20 +158,36 @@ namespace FastDragon
             var hitObject = collision.GetCollider();
 
             if (hitObject is not IBreakable b)
-                return MoveAndSlideExResponse.Slide;
+                return SlideOrBonk();
 
             if (!b.VulnerableToRoll)
             {
                 _unbrokenObjects.Add(b);
-                return MoveAndSlideExResponse.Slide;
+                return SlideOrBonk();
             }
 
             _brokenObjects.Add(b);
+            return IgnoreOrBonk();
 
-            if (b.CausesBonk)
+            MoveAndSlideExResponse IgnoreOrBonk()
+            {
+                return b.CausesBonk
+                    ? Bonk()
+                    : MoveAndSlideExResponse.Ignore;
+            }
+
+            MoveAndSlideExResponse SlideOrBonk()
+            {
+                return IsBonkAngle(collision)
+                    ? Bonk()
+                    : MoveAndSlideExResponse.Slide;
+            }
+
+            MoveAndSlideExResponse Bonk()
+            {
+                _bonkCollision = collision;
                 return MoveAndSlideExResponse.Stop;
-
-            return MoveAndSlideExResponse.Ignore;
+            }
         }
 
         private void Break(IBreakable b)

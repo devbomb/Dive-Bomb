@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cgmt2nue2tixk" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanon.cs" id="1_2i6pq"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="2_2i6pq"]
 [ext_resource type="AnimationLibrary" uid="uid://0j7jt301c3br" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanonAnimations.tres" id="2_agwsh"]
-[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="2_e6war"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Textures/Textures/DivableGlassPlaceholder.tres" id="2_e6war"]
 [ext_resource type="PackedScene" uid="uid://c0bn0r5uvqojc" path="res://Entities/Transport/LevelExit/Canon/Walls.glb" id="2_y7wo7"]
 [ext_resource type="PackedScene" uid="uid://p8oqnsj2hqmg" path="res://Entities/Transport/LevelExit/Canon/CanonHole.glb" id="3_3jouq"]
 [ext_resource type="PackedScene" uid="uid://coha7b8jhwird" path="res://Entities/Transport/LevelExit/Canon/LevelExitCanonCrystal.glb" id="4_iluh0"]

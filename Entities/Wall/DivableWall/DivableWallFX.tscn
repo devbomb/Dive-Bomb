@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ckky3ke41rvqu" path="res://Entities/Wall/DivableWall/DivableWallFX.cs" id="1_g5x4v"]
 [ext_resource type="AudioStream" uid="uid://coptrs1y2xuq1" path="res://Entities/Wall/DivableWall/GlassWallShatter.wav" id="1_wjxuy"]
-[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Common/Materials/DivableCrystal.tres" id="2_g5x4v"]
+[ext_resource type="Material" uid="uid://5h0khi8qcdsc" path="res://Textures/Textures/DivableGlassPlaceholder.tres" id="2_g5x4v"]
 
 [sub_resource type="Curve" id="Curve_cv1di"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

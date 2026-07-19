@@ -3,24 +3,25 @@
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="AudioStream" uid="uid://b1koi60nf7f5x" path="res://Common/Audio/Music/SneakyD.mp3" id="2_alo6x"]
 [ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Levels/Production/BrokenGlassFactory/Skybox.tres" id="2_eipfg"]
-[ext_resource type="PackedScene" uid="uid://4e3uihqv6e50" path="res://Levels/Production/Tutorial/Maps/Intro.map" id="2_vwhqw"]
-[ext_resource type="PackedScene" uid="uid://btlc2kyid5u56" path="res://Levels/Production/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
+[ext_resource type="PackedScene" uid="uid://buitb1uq7i80k" path="res://Levels/Production/Tutorial/Maps/Intro.map" id="2_vwhqw"]
+[ext_resource type="PackedScene" uid="uid://ccs8ll6uytgb7" path="res://Levels/Production/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
 [ext_resource type="PackedScene" uid="uid://fwwegib0064k" path="res://Levels/Production/Tutorial/AgentDIntroCutscene/AgentDIntroCutscene.tscn" id="3_kb7u2"]
-[ext_resource type="PackedScene" uid="uid://cyxbyv7xju8b" path="res://Levels/Production/Tutorial/Maps/RollTut.map" id="8_i3mr3"]
-[ext_resource type="PackedScene" uid="uid://dbo5v5bk2jxh7" path="res://Levels/Production/Tutorial/Maps/KickTut.map" id="8_yrnv4"]
+[ext_resource type="Script" uid="uid://dfbwmqfmqjfx8" path="res://Levels/Production/Tutorial/TutorialStoryManager.cs" id="6_wk3rw"]
+[ext_resource type="PackedScene" uid="uid://e737l7kg7vyo" path="res://Levels/Production/Tutorial/Maps/RollTut.map" id="8_i3mr3"]
+[ext_resource type="PackedScene" uid="uid://c4u4wyksjvy3w" path="res://Levels/Production/Tutorial/Maps/KickTut.map" id="8_yrnv4"]
 [ext_resource type="Script" uid="uid://brhva0ikdmdcl" path="res://Entities/Info/NamedMarker/NamedMarker3D.cs" id="10_ipotd"]
-[ext_resource type="PackedScene" uid="uid://dord22pbbqflm" path="res://Levels/Production/Tutorial/Maps/FairyRoom.map" id="11_r652i"]
+[ext_resource type="PackedScene" uid="uid://bmi02tp3a2tqq" path="res://Levels/Production/Tutorial/Maps/FairyRoom.map" id="11_r652i"]
 [ext_resource type="PackedScene" uid="uid://b2btapp23vgst" path="res://Entities/Misc/FairyGuide/FairyGuide.tscn" id="12_myhx6"]
-[ext_resource type="PackedScene" uid="uid://c5lrjwtowen30" path="res://Levels/Production/Tutorial/Maps/DrMonocleSpeech.map" id="13_myhx6"]
+[ext_resource type="PackedScene" uid="uid://buv8ftvi1ups8" path="res://Levels/Production/Tutorial/Maps/DrMonocleSpeech.map" id="13_myhx6"]
 [ext_resource type="PackedScene" uid="uid://c3u21ynxwsxm" path="res://Levels/Production/Tutorial/DrMonocleIntroSpeechCutscene/DrMonocleIntroSpeechCutsceneRig.tscn" id="15_ym3l3"]
 [ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="18_83vbk"]
 [ext_resource type="FontFile" uid="uid://cg20ogwlup8n1" path="res://Fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="19_alo6x"]
 [ext_resource type="AudioStream" uid="uid://cdngy66jdcxa8" path="res://Common/Audio/Music/HijinxEscape.mp3" id="20_lu0qh"]
-[ext_resource type="PackedScene" uid="uid://8olwn3dceknl" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro.map" id="21_25uee"]
-[ext_resource type="PackedScene" uid="uid://ca8eufje1x6kj" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map" id="22_35ubr"]
-[ext_resource type="PackedScene" uid="uid://xbfqw7b50i7q" path="res://Levels/Production/Tutorial/Maps/Tutorial_LevelExitCannon.map" id="23_35ubr"]
-[ext_resource type="PackedScene" uid="uid://be0os0an84mx4" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_TimeWaster.map" id="24_3lrk0"]
-[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier.cs" id="24_oop8w"]
+[ext_resource type="PackedScene" uid="uid://bs0hw53kbkkoq" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_GlassPanesOnConveyorBeltIntro.map" id="21_25uee"]
+[ext_resource type="PackedScene" uid="uid://b2t0naripxos0" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll.map" id="22_35ubr"]
+[ext_resource type="PackedScene" uid="uid://hnfh1xxq2hro" path="res://Levels/Production/Tutorial/Maps/Tutorial_LevelExitCannon.map" id="23_35ubr"]
+[ext_resource type="PackedScene" uid="uid://dcg0jpxnwx81f" path="res://Levels/Production/Tutorial/Maps/Tutorial_EscapeSequence_TimeWaster.map" id="24_3lrk0"]
+[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier/DeathBarrier.cs" id="24_oop8w"]
 [ext_resource type="PackedScene" uid="uid://mdchoptoqq8n" path="res://Levels/Production/Tutorial/TwoFactorAuthCutscene/TwoFactorAuthCutsceneRig.tscn" id="25_smxar"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lu0qh"]
@@ -97,11 +98,17 @@ light_energy = 0.4
 light_bake_mode = 1
 sky_mode = 1
 
+[node name="TutorialStoryManager" type="Node" parent="." unique_id=1395208339 node_paths=PackedStringArray("MusicPlayer", "AgentDIntro", "DrMonocleIntro")]
+script = ExtResource("6_wk3rw")
+targetname = "TutorialStoryManager"
+MusicPlayer = NodePath("../BackgroundMusicPlayer")
+AgentDIntro = NodePath("../Intro/AgentDIntroCutscene")
+DrMonocleIntro = NodePath("../DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig")
+
 [node name="Intro" parent="." unique_id=985666460 instance=ExtResource("2_vwhqw")]
 
-[node name="AgentDIntroCutscene" parent="Intro" unique_id=303769610 node_paths=PackedStringArray("BackgroundMusicPlayer") instance=ExtResource("3_kb7u2")]
+[node name="AgentDIntroCutscene" parent="Intro" unique_id=303769610 instance=ExtResource("3_kb7u2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -7.5, 2.3)
-BackgroundMusicPlayer = NodePath("../../BackgroundMusicPlayer")
 
 [node name="CameraTut" parent="." unique_id=344728991 instance=ExtResource("3_3rttw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 35)
@@ -143,10 +150,11 @@ VanishWhenFinished = true
 [node name="DrMonocleSpeech" parent="." unique_id=1080985656 instance=ExtResource("13_myhx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145, 30, 7)
 
-[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" unique_id=201296875 node_paths=PackedStringArray("MusicPlayer") instance=ExtResource("15_ym3l3")]
+[node name="DrMonocleIntroSpeechCutsceneRig" parent="DrMonocleSpeech" unique_id=201296875 node_paths=PackedStringArray("EntranceDoor", "ExitDoor") instance=ExtResource("15_ym3l3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 27.539627, 5.927231, 0.35410118)
 targetname = "DrMonocleIntroSpeechCutscene"
-MusicPlayer = NodePath("../../BackgroundMusicPlayer")
+EntranceDoor = NodePath("../entity_DrMonocleSpeech_EntranceDoor")
+ExitDoor = NodePath("../entity_DrMonocleSpeech_ExitDoor")
 
 [node name="SelfDestructLabel" type="MeshInstance3D" parent="DrMonocleSpeech" unique_id=404275454]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.985016, 5.013607, 7.5155544)
@@ -162,8 +170,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 187, 30, 2)
 [node name="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" parent="." unique_id=651646982 instance=ExtResource("22_35ubr")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 153, 41, 76)
 
-[node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" unique_id=1947806612 instance=ExtResource("25_smxar")]
-DoorTargetname = "Door_EscapeSequence_2FA_Joke"
+[node name="TwoFactorAuthCutsceneRig" parent="Tutorial_EscapeSequence_ConveyorBeltJumpDiveRoll" unique_id=1947806612 node_paths=PackedStringArray("Door") instance=ExtResource("25_smxar")]
+Door = NodePath("../group_8_EnemyTut/entity_Door_EscapeSequence_2FA_Joke")
 
 [node name="Tutorial_LevelExitCannon" parent="." unique_id=1717697475 instance=ExtResource("23_35ubr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 78.5, 59, 11)
