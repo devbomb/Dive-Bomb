@@ -173,6 +173,7 @@ namespace FastDragon
                         Self.GlobalPosition = pos;
                         Self.Velocity = prevVel;
                         GD.Print($"Ledge detected; bonk forgiven (height: {ledgeHeight})");
+                        Self.ChangeState<PlayerRollState>();
                         return;
                     }
                     else
