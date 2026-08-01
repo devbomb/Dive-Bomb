@@ -9,20 +9,33 @@ uniform sampler3D blue_noise : filter_linear, source_color, hint_default_black;
 
 float get_brightness(sampler3D noise, vec2 sky_coords)
 {
-	const float time_scale = 0.1;
+	const float time_scale = 0.01;
 	vec4 color = texture(noise, vec3(sky_coords.x, sky_coords.y, TIME * time_scale));
 	return length(color.rgb);
 }
 
+vec3 hsv2rgb(float h_degrees, float s, float v)
+{
+	h_degrees = mod(h_degrees, 360.0);
+	float c = v * s;
+	float x = c * (1.0 - abs(mod(h_degrees / 60.0, 2.0)) - 1.0);
+	float m = v - c;
+	
+	vec3 rgb;
+	if (h_degrees >= 0.0 && h_degrees < 60.0) rgb = vec3(c, x, 0.0);
+	else if (h_degrees >= 60.0 && h_degrees < 120.0) rgb = vec3(x, c, 0.0);
+	else if (h_degrees >= 120.0 && h_degrees < 180.0) rgb = vec3(0.0, c, x);
+	else if (h_degrees >= 180.0 && h_degrees < 240.0) rgb = vec3(0.0, x, c);
+	else if (h_degrees >= 240.0 && h_degrees < 300.0) rgb = vec3(x, 0.0, c);
+	else rgb = vec3(c, x, 0);
+	
+	return rgb + m;
+}
+
 void sky() 
 {
-	vec3 unnormalized = vec3(
-		get_brightness(red_noise, SKY_COORDS),
-		get_brightness(green_noise, SKY_COORDS),
-		get_brightness(blue_noise, SKY_COORDS)
-	);
-	
-	COLOR = 0.5 * normalize(unnormalized);
+	float hue_degrees = get_brightness(red_noise, SKY_COORDS) * 360.0;
+	COLOR = hsv2rgb(hue_degrees, 0.5, 0.5);
 }
 "
 
