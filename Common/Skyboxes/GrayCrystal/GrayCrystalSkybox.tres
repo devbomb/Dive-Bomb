@@ -1,6 +1,6 @@
 [gd_resource type="Environment" format=3 uid="uid://ddi5qgg5b3fmy"]
 
-[ext_resource type="Texture2D" uid="uid://cnas38j11xxs3" path="res://Common/Skyboxes/GrayCrystal/GrayCrystalSkybox.png" id="1_oee7l"]
+[ext_resource type="Texture2D" uid="uid://cnas38j11xxs3" path="res://Common/Skyboxes/GrayCrystal/GrayCrystalSkybox.png" id="1_k7cka"]
 
 [sub_resource type="Shader" id="Shader_oee7l"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.4.stable.mono's ProceduralSkyMaterial.
@@ -49,7 +49,7 @@ shader_parameter/sky_top_color = Color(0.352929, 0.404537, 0.450482, 1)
 shader_parameter/sky_horizon_color = Color(0.203922, 0.239216, 0.270588, 1)
 shader_parameter/sky_curve = 1.0
 shader_parameter/sky_energy = 1.0
-shader_parameter/sky_cover = ExtResource("1_oee7l")
+shader_parameter/sky_cover = ExtResource("1_k7cka")
 shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
 shader_parameter/ground_bottom_color = Color(0, 0, 0, 1)
 shader_parameter/ground_horizon_color = Color(0.203922, 0.239216, 0.270588, 1)
