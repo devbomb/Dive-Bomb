@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_rtlnn"]
 [ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_aeovu"]
-[ext_resource type="Script" uid="uid://w5qqad8b0pu1" path="res://Entities/Info/MapEdge.gd" id="3_aeovu"]
+[ext_resource type="Script" uid="uid://w5qqad8b0pu1" path="res://Entities/Info/MapEdge/MapEdge.gd" id="3_aeovu"]
 
 [resource]
 script = ExtResource("2_aeovu")
