@@ -18,16 +18,17 @@ vec3 hsv2rgb(float h_degrees, float s, float v)
 {
 	h_degrees = mod(h_degrees, 360.0);
 	float c = v * s;
-	float x = c * (1.0 - abs(mod(h_degrees / 60.0, 2.0)) - 1.0);
+	float x = c * (1.0 - abs(mod(h_degrees / 60.0, 2.0) - 1.0));
 	float m = v - c;
 	
 	vec3 rgb;
+	
 	if (h_degrees < 60.0) rgb = vec3(c, x, 0.0);
 	else if (h_degrees < 120.0) rgb = vec3(x, c, 0.0);
 	else if (h_degrees < 180.0) rgb = vec3(0.0, c, x);
 	else if (h_degrees < 240.0) rgb = vec3(0.0, x, c);
-	else if (h_degrees < 300.0) rgb = vec3(c, 0.0, x);
-	else rgb = vec3(c, x, 0);
+	else if (h_degrees < 300.0) rgb = vec3(x, 0.0, c);
+	else rgb = vec3(c, 0.0, x);
 	
 	return rgb + m;
 }
@@ -35,7 +36,7 @@ vec3 hsv2rgb(float h_degrees, float s, float v)
 void sky() 
 {
 	float hue_degrees = get_brightness(red_noise, SKY_COORDS) * 360.0;
-	COLOR = hsv2rgb(hue_degrees, 0.5, 1.0);
+	COLOR = hsv2rgb(hue_degrees, 1.0, 1.0);
 }
 "
 
