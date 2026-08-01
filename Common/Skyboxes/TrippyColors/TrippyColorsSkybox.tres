@@ -3,9 +3,7 @@
 [sub_resource type="Shader" id="Shader_1j2jw"]
 code = "shader_type sky;
 
-uniform sampler3D red_noise : filter_linear, source_color, hint_default_black;
-uniform sampler3D green_noise : filter_linear, source_color, hint_default_black;
-uniform sampler3D blue_noise : filter_linear, source_color, hint_default_black;
+uniform sampler3D hue_noise : filter_linear, source_color, hint_default_black;
 
 float get_brightness(sampler3D noise, vec2 sky_coords)
 {
@@ -35,31 +33,16 @@ vec3 hsv2rgb(float h_degrees, float s, float v)
 
 void sky() 
 {
-	float hue_degrees = get_brightness(red_noise, SKY_COORDS) * 360.0;
+	float hue_degrees = get_brightness(hue_noise, SKY_COORDS) * 360.0;
 	COLOR = hsv2rgb(hue_degrees, 1.0, 1.0);
 }
 "
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_mkb3s"]
-seed = 2
-frequency = 0.0551
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_n0vaf"]
-noise = SubResource("FastNoiseLite_mkb3s")
-seamless = true
-seamless_blend_skirt = 0.493
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_1j2jw"]
-seed = 1
-frequency = 0.0551
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_vv06q"]
-noise = SubResource("FastNoiseLite_1j2jw")
-seamless = true
-seamless_blend_skirt = 0.493
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_n0vaf"]
-frequency = 0.0551
+noise_type = 3
+seed = 2
+frequency = 0.1968
+fractal_octaves = 2
 
 [sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mkb3s"]
 noise = SubResource("FastNoiseLite_n0vaf")
@@ -68,9 +51,7 @@ seamless_blend_skirt = 0.493
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0vaf"]
 shader = SubResource("Shader_1j2jw")
-shader_parameter/red_noise = SubResource("NoiseTexture3D_mkb3s")
-shader_parameter/green_noise = SubResource("NoiseTexture3D_vv06q")
-shader_parameter/blue_noise = SubResource("NoiseTexture3D_n0vaf")
+shader_parameter/hue_noise = SubResource("NoiseTexture3D_mkb3s")
 
 [sub_resource type="Sky" id="Sky_mkb3s"]
 sky_material = SubResource("ShaderMaterial_n0vaf")
