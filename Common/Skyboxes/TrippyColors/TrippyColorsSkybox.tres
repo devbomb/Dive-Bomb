@@ -1,0 +1,66 @@
+[gd_resource type="Environment" format=3 uid="uid://dk0eyoi3afr5p"]
+
+[sub_resource type="Shader" id="Shader_1j2jw"]
+code = "shader_type sky;
+
+uniform sampler3D red_noise : filter_linear, source_color, hint_default_black;
+uniform sampler3D green_noise : filter_linear, source_color, hint_default_black;
+uniform sampler3D blue_noise : filter_linear, source_color, hint_default_black;
+
+float get_brightness(sampler3D noise, vec2 sky_coords)
+{
+	const float time_scale = 0.1;
+	vec4 color = texture(noise, vec3(sky_coords.x, sky_coords.y, TIME * time_scale));
+	return length(color.rgb);
+}
+
+void sky() 
+{
+	vec3 unnormalized = vec3(
+		get_brightness(red_noise, SKY_COORDS),
+		get_brightness(green_noise, SKY_COORDS),
+		get_brightness(blue_noise, SKY_COORDS)
+	);
+	
+	COLOR = 0.5 * normalize(unnormalized);
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mkb3s"]
+seed = 2
+frequency = 0.0551
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_n0vaf"]
+noise = SubResource("FastNoiseLite_mkb3s")
+seamless = true
+seamless_blend_skirt = 0.493
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1j2jw"]
+seed = 1
+frequency = 0.0551
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_vv06q"]
+noise = SubResource("FastNoiseLite_1j2jw")
+seamless = true
+seamless_blend_skirt = 0.493
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n0vaf"]
+frequency = 0.0551
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mkb3s"]
+noise = SubResource("FastNoiseLite_n0vaf")
+seamless = true
+seamless_blend_skirt = 0.493
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0vaf"]
+shader = SubResource("Shader_1j2jw")
+shader_parameter/red_noise = SubResource("NoiseTexture3D_mkb3s")
+shader_parameter/green_noise = SubResource("NoiseTexture3D_vv06q")
+shader_parameter/blue_noise = SubResource("NoiseTexture3D_n0vaf")
+
+[sub_resource type="Sky" id="Sky_mkb3s"]
+sky_material = SubResource("ShaderMaterial_n0vaf")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_mkb3s")
