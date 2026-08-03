@@ -48,20 +48,24 @@ void sky()
 	float hue_max_degrees = hue_center_degrees + (hue_spread_degrees / 2.0);
 	float hue_percent = get_brightness(hue_noise, SKY_COORDS);
 	float hue_degrees = mix(hue_min_degrees, hue_max_degrees, hue_percent);
-	COLOR = hsv2rgb(hue_degrees, 1.0, 1.0);
+	COLOR = get_noise_color(hue_noise, SKY_COORDS);
 }
 "
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_n0vaf"]
-noise_type = 3
-seed = 2
-frequency = 0.1968
-fractal_octaves = 2
+noise_type = 2
+seed = 1
+frequency = 0.0713
+fractal_octaves = 1
+cellular_distance_function = 2
+cellular_return_type = 2
 
 [sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mkb3s"]
+width = 128
+height = 128
 noise = SubResource("FastNoiseLite_n0vaf")
 seamless = true
-seamless_blend_skirt = 0.493
+seamless_blend_skirt = 0.24
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0vaf"]
 shader = SubResource("Shader_1j2jw")
@@ -70,7 +74,7 @@ shader_parameter/hue_center_degrees = 0.0
 shader_parameter/hue_spread_degrees = 360.0
 shader_parameter/value_min = 0.2
 shader_parameter/value_max = 0.6
-shader_parameter/time_scale = 0.01
+shader_parameter/time_scale = 0.05
 
 [sub_resource type="Sky" id="Sky_mkb3s"]
 sky_material = SubResource("ShaderMaterial_n0vaf")
