@@ -10,11 +10,17 @@ uniform float hue_spread_degrees = 0.0;
 uniform float value_min = 0.2;
 uniform float value_max = 0.6;
 
+uniform float time_scale = 0.01;
+
+vec3 get_noise_color(sampler3D noise, vec2 sky_coords)
+{
+	vec4 color = texture(noise, vec3(sky_coords.x, sky_coords.y, TIME * time_scale));
+	return color.rgb;
+}
+
 float get_brightness(sampler3D noise, vec2 sky_coords)
 {
-	const float time_scale = 0.01;
-	vec4 color = texture(noise, vec3(sky_coords.x, sky_coords.y, TIME * time_scale));
-	return length(color.rgb);
+	return length(get_noise_color(noise, sky_coords));
 }
 
 vec3 hsv2rgb(float h_degrees, float s, float v)
@@ -42,15 +48,29 @@ void sky()
 	float hue_max_degrees = hue_center_degrees + (hue_spread_degrees / 2.0);
 	float hue_percent = get_brightness(hue_noise, SKY_COORDS);
 	float hue_degrees = mix(hue_min_degrees, hue_max_degrees, hue_percent);
-	
-	float value_min = 
-	
-	COLOR = hsv2rgb(hue_degrees, 1.0, hue_percent / 2.0 - 0.3);
+	COLOR = hsv2rgb(hue_degrees, 1.0, 1.0);
 }
 "
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n0vaf"]
+noise_type = 3
+seed = 2
+frequency = 0.1968
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mkb3s"]
+noise = SubResource("FastNoiseLite_n0vaf")
+seamless = true
+seamless_blend_skirt = 0.493
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0vaf"]
 shader = SubResource("Shader_1j2jw")
+shader_parameter/hue_noise = SubResource("NoiseTexture3D_mkb3s")
+shader_parameter/hue_center_degrees = 0.0
+shader_parameter/hue_spread_degrees = 360.0
+shader_parameter/value_min = 0.2
+shader_parameter/value_max = 0.6
+shader_parameter/time_scale = 0.01
 
 [sub_resource type="Sky" id="Sky_mkb3s"]
 sky_material = SubResource("ShaderMaterial_n0vaf")
