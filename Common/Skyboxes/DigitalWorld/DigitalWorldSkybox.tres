@@ -4,6 +4,8 @@
 code = "shader_type sky;
 
 uniform sampler3D noise_texture : filter_linear, source_color, hint_default_black;
+uniform vec3 void_color : source_color;
+uniform float void_radius = 0.0;
 uniform float time_scale = 0.01;
 
 vec3 get_noise_color(sampler3D noise, vec2 sky_coords)
@@ -15,6 +17,10 @@ vec3 get_noise_color(sampler3D noise, vec2 sky_coords)
 void sky() 
 {
 	COLOR = get_noise_color(noise_texture, SKY_COORDS);
+	float t = 2.0 * abs(SKY_COORDS.y - 0.5);
+	t += void_radius;
+	t = min(t, 1.0);
+	COLOR = mix(COLOR, void_color, t);
 }
 "
 
@@ -42,6 +48,8 @@ seamless_blend_skirt = 0.24
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0vaf"]
 shader = SubResource("Shader_1j2jw")
 shader_parameter/noise_texture = SubResource("NoiseTexture3D_mkb3s")
+shader_parameter/void_color = Color(0, 0.017045984, 0, 1)
+shader_parameter/void_radius = 0.23
 shader_parameter/time_scale = 0.05
 
 [sub_resource type="Sky" id="Sky_mkb3s"]
