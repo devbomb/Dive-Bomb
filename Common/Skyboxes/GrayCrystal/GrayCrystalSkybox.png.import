@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnas38j11xxs3"
-path.s3tc="res://.godot/imported/BrokenGlassFactorySky.png-f0a0988cf6ac038c307ba1d05127e222.s3tc.ctex"
+path.s3tc="res://.godot/imported/GrayCrystalSkybox.png-64f36a2dbd0ffd95bc9b295940469267.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Levels/Production/BrokenGlassFactory/BrokenGlassFactorySky.png"
-dest_files=["res://.godot/imported/BrokenGlassFactorySky.png-f0a0988cf6ac038c307ba1d05127e222.s3tc.ctex"]
+source_file="res://Common/Skyboxes/GrayCrystal/GrayCrystalSkybox.png"
+dest_files=["res://.godot/imported/GrayCrystalSkybox.png-64f36a2dbd0ffd95bc9b295940469267.s3tc.ctex"]
 
 [params]
 

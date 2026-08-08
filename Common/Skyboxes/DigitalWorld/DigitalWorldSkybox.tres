@@ -1,0 +1,82 @@
+[gd_resource type="Environment" format=3 uid="uid://dk0eyoi3afr5p"]
+
+[sub_resource type="Shader" id="Shader_1j2jw"]
+code = "shader_type sky;
+
+uniform sampler3D noise_texture : filter_linear, source_color, hint_default_black;
+uniform float time_scale = 0.01;
+
+uniform vec3 grid_color : source_color;
+
+uniform vec3 void_color : source_color;
+uniform float void_radius = 0.0;
+
+vec3 get_noise_color(sampler3D noise, vec2 sky_coords)
+{
+	vec4 color = texture(noise, vec3(sky_coords.x, sky_coords.y, TIME * time_scale));
+	return color.rgb;
+}
+
+vec3 apply_grid(vec3 color, vec2 sky_coords)
+{
+	const float thickness = 0.001;
+	float line_y = mod(TIME * 0.25, 1.0);
+
+	if (abs(sky_coords.y - line_y) < thickness)
+		color = grid_color;
+	return color;
+}
+
+vec3 apply_void(vec3 color, vec2 sky_coords)
+{
+	float t = 2.0 * abs(sky_coords.y - 0.5);
+	t += void_radius;
+	t = min(t, 1.0);
+	return mix(color, void_color, t);
+}
+
+void sky()
+{
+	COLOR = get_noise_color(noise_texture, SKY_COORDS);
+	COLOR = apply_grid(COLOR, SKY_COORDS);
+	COLOR = apply_void(COLOR, SKY_COORDS);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_mkb3s"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.09006929, 0.26096997, 0.36489606, 0.4157044, 0.43879908, 0.6789838)
+colors = PackedColorArray(6.3054847e-07, 0.23189983, 2.5218466e-07, 1, 0, 0.13489926, 0, 1, 0, 0.13936868, 3.6098065e-08, 1, 0, 0.1570405, 0, 1, 0, 0.30794686, 0, 1, 0, 0.17447427, 9.62615e-08, 1, 3.6098065e-08, 0.1526492, 8.4228816e-08, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n0vaf"]
+noise_type = 2
+seed = 4
+frequency = 0.0713
+fractal_octaves = 1
+cellular_distance_function = 2
+cellular_return_type = 2
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mkb3s"]
+width = 500
+height = 500
+noise = SubResource("FastNoiseLite_n0vaf")
+color_ramp = SubResource("Gradient_mkb3s")
+seamless = true
+seamless_blend_skirt = 0.24
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0vaf"]
+shader = SubResource("Shader_1j2jw")
+shader_parameter/noise_texture = SubResource("NoiseTexture3D_mkb3s")
+shader_parameter/time_scale = 0.05
+shader_parameter/grid_color = Color(0, 0.4674126, 0, 1)
+shader_parameter/void_color = Color(0, 0.017045984, 0, 1)
+shader_parameter/void_radius = 0.23
+
+[sub_resource type="Sky" id="Sky_mkb3s"]
+sky_material = SubResource("ShaderMaterial_n0vaf")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_mkb3s")
+ambient_light_source = 2
+ambient_light_color = Color(0.57700837, 0.5770084, 0.57700825, 1)
