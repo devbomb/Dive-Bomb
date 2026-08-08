@@ -3,13 +3,7 @@
 [sub_resource type="Shader" id="Shader_1j2jw"]
 code = "shader_type sky;
 
-uniform sampler3D hue_noise : filter_linear, source_color, hint_default_black;
-uniform float hue_center_degrees = 0.0;
-uniform float hue_spread_degrees = 0.0;
-
-uniform float value_min = 0.2;
-uniform float value_max = 0.6;
-
+uniform sampler3D noise_texture : filter_linear, source_color, hint_default_black;
 uniform float time_scale = 0.01;
 
 vec3 get_noise_color(sampler3D noise, vec2 sky_coords)
@@ -18,37 +12,9 @@ vec3 get_noise_color(sampler3D noise, vec2 sky_coords)
 	return color.rgb;
 }
 
-float get_brightness(sampler3D noise, vec2 sky_coords)
-{
-	return length(get_noise_color(noise, sky_coords));
-}
-
-vec3 hsv2rgb(float h_degrees, float s, float v)
-{
-	h_degrees = mod(h_degrees, 360.0);
-	float c = v * s;
-	float x = c * (1.0 - abs(mod(h_degrees / 60.0, 2.0) - 1.0));
-	float m = v - c;
-	
-	vec3 rgb;
-	
-	if (h_degrees < 60.0) rgb = vec3(c, x, 0.0);
-	else if (h_degrees < 120.0) rgb = vec3(x, c, 0.0);
-	else if (h_degrees < 180.0) rgb = vec3(0.0, c, x);
-	else if (h_degrees < 240.0) rgb = vec3(0.0, x, c);
-	else if (h_degrees < 300.0) rgb = vec3(x, 0.0, c);
-	else rgb = vec3(c, 0.0, x);
-	
-	return rgb + m;
-}
-
 void sky() 
 {
-	float hue_min_degrees = hue_center_degrees - (hue_spread_degrees / 2.0);
-	float hue_max_degrees = hue_center_degrees + (hue_spread_degrees / 2.0);
-	float hue_percent = get_brightness(hue_noise, SKY_COORDS);
-	float hue_degrees = mix(hue_min_degrees, hue_max_degrees, hue_percent);
-	COLOR = get_noise_color(hue_noise, SKY_COORDS);
+	COLOR = get_noise_color(noise_texture, SKY_COORDS);
 }
 "
 
@@ -75,11 +41,7 @@ seamless_blend_skirt = 0.24
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0vaf"]
 shader = SubResource("Shader_1j2jw")
-shader_parameter/hue_noise = SubResource("NoiseTexture3D_mkb3s")
-shader_parameter/hue_center_degrees = 0.0
-shader_parameter/hue_spread_degrees = 360.0
-shader_parameter/value_min = 0.2
-shader_parameter/value_max = 0.6
+shader_parameter/noise_texture = SubResource("NoiseTexture3D_mkb3s")
 shader_parameter/time_scale = 0.05
 
 [sub_resource type="Sky" id="Sky_mkb3s"]
