@@ -14,13 +14,18 @@ vec3 get_noise_color(sampler3D noise, vec2 sky_coords)
 	return color.rgb;
 }
 
+vec3 apply_void(vec3 color, vec2 sky_coords)
+{
+	float t = 2.0 * abs(sky_coords.y - 0.5);
+	t += void_radius;
+	t = min(t, 1.0);
+	return mix(color, void_color, t);
+}
+
 void sky() 
 {
 	COLOR = get_noise_color(noise_texture, SKY_COORDS);
-	float t = 2.0 * abs(SKY_COORDS.y - 0.5);
-	t += void_radius;
-	t = min(t, 1.0);
-	COLOR = mix(COLOR, void_color, t);
+	COLOR = apply_void(COLOR, SKY_COORDS);
 }
 "
 
