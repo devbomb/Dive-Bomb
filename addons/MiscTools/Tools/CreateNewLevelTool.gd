@@ -14,9 +14,9 @@ func execute() -> void:
 	var folder = \
 		"res://Levels/Debug" if debug else \
 		"res://Levels/Production"
-	_create_new_level(level_id, folder)
+	_create_new_level(level_id, folder, debug)
 	
-func _create_new_level(level_id: String, parent_folder: String) -> void:
+func _create_new_level(level_id: String, parent_folder: String, debug: bool) -> void:
 	var level_folder: String = parent_folder.path_join(level_id)
 	DirAccess.make_dir_absolute(level_folder)
 	
@@ -37,6 +37,7 @@ func _create_new_level(level_id: String, parent_folder: String) -> void:
 	
 	# Create a manifest for the level
 	var manifest = LevelManifest.new()
+	manifest.Debug = debug
 	manifest.HumanReadableName = level_id
 	manifest.SkyBoxEnvironmentFilePath = level_folder.path_join(level_id + "Skybox.tres")
 	manifest.SceneFilePath = level_folder.path_join(level_id + ".tscn")
