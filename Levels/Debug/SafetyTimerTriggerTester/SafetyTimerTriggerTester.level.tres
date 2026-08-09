@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://c8v4jeacsul0w"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_s0v5o"]
+
+[resource]
+script = ExtResource("1_s0v5o")
+Debug = true
+SceneFilePath = "res://Levels/Debug/SafetyTimerTriggerTester/SafetyTimerTriggerTester.tscn"
+metadata/_custom_type_script = "uid://fteyboqsx0a"
