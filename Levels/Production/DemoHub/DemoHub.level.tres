@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://bnmahsr00t7rg"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_s2b4s"]
+
+[resource]
+script = ExtResource("1_s2b4s")
+HumanReadableName = "Demo Hub"
+SkyBoxEnvironmentFilePath = "res://Levels/Debug/DummyMap/Skybox.tres"
+SceneFilePath = "res://Levels/Production/DemoHub/DemoHub.tscn"
+metadata/_custom_type_script = "uid://fteyboqsx0a"
