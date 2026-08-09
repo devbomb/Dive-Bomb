@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://dir7hmuj1spw7"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_di4k2"]
+
+[resource]
+script = ExtResource("1_di4k2")
+Debug = true
+SkyBoxEnvironmentFilePath = "res://Levels/Debug/BonkForgivenessTester/BonkForgivenessTesterSkybox.tres"
+SceneFilePath = "res://Levels/Debug/BonkForgivenessTester/BonkForgivenessTester.tscn"
+metadata/_custom_type_script = "uid://fteyboqsx0a"
