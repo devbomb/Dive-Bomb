@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cc5lvn7b36ec5"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_jc8yh"]
+[ext_resource type="Resource" uid="uid://bnmahsr00t7rg" path="res://Levels/Production/DemoHub/DemoHub.level.tres" id="2_4yo5x"]
 [ext_resource type="PackedScene" uid="uid://dyra1s4eachrs" path="res://Levels/Production/DemoHub/Maps/DemoHub_Main.map" id="2_cmnk4"]
 [ext_resource type="PackedScene" uid="uid://luvuhqvfwsek" path="res://Common/Components/BackgroundMusicPlayer/BackgroundMusicPlayer.tscn" id="2_xjom2"]
 [ext_resource type="Environment" uid="uid://bhamu4vflo38l" path="res://Levels/Debug/DummyMap/Skybox.tres" id="4_xjom2"]
@@ -10,6 +11,7 @@
 
 [node name="DemoHub" type="Node3D" unique_id=876535271]
 script = ExtResource("1_jc8yh")
+Manifest = ExtResource("2_4yo5x")
 IsHubWorld = true
 
 [node name="BackgroundMusicPlayer" parent="." unique_id=506697457 instance=ExtResource("2_xjom2")]

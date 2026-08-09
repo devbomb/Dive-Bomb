@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://df5koyik65tb5"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_cey6s"]
+[ext_resource type="Resource" uid="uid://lbb2qv7268lf" path="res://Levels/Debug/FairyFallbackTester/FairyFallbackTester.level.tres" id="2_33vj0"]
 [ext_resource type="PackedScene" uid="uid://c64ij7epgdnwy" path="res://Levels/Debug/FairyFallbackTester/Maps/FairyFallbackTester.map" id="2_dvgty"]
 
 [sub_resource type="Environment" id="Environment_dvgty"]
 
 [node name="FairyFallbackTester" type="Node3D" unique_id=490991132]
 script = ExtResource("1_cey6s")
+Manifest = ExtResource("2_33vj0")
 
 [node name="FairyFallbackTester" parent="." unique_id=342195968 instance=ExtResource("2_dvgty")]
 

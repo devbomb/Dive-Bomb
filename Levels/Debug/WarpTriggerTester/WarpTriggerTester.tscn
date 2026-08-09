@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_aji3g"]
 [ext_resource type="PackedScene" uid="uid://gujkfm20bufw" path="res://Levels/Debug/WarpTriggerTester/Maps/WarpTriggerTester_Main.map" id="2_6ofki"]
+[ext_resource type="Resource" uid="uid://bvqpbtay0k7mr" path="res://Levels/Debug/WarpTriggerTester/WarpTriggerTester.level.tres" id="2_sk1r1"]
 
 [sub_resource type="Environment" id="Environment_56eb4"]
 
 [node name="WarpTriggerTester" type="Node3D" unique_id=187638485]
 script = ExtResource("1_aji3g")
+Manifest = ExtResource("2_sk1r1")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=855244405]
 environment = SubResource("Environment_56eb4")
