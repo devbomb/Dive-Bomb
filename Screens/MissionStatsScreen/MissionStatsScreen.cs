@@ -682,7 +682,7 @@ namespace FastDragon
             {
                 var matchingPortal = _loadedHomeWorldRoot
                     .EnumerateDescendantsOfType<Portal>()
-                    .FirstOrDefault(p => p.TargetLevel == Self.PreviousLevelScenePath);
+                    .FirstOrDefault(p => p.TargetSceneFilePath == Self.PreviousLevelScenePath);
 
                 if (matchingPortal != null)
                     return matchingPortal;
