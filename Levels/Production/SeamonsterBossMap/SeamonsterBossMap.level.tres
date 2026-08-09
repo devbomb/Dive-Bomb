@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://m3k54h87sxhe"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_b4ygp"]
+
+[resource]
+script = ExtResource("1_b4ygp")
+HumanReadableName = "Smackin' Da Kracken"
+SkyBoxEnvironmentFilePath = "res://Levels/Production/SeamonsterBossMap/Skybox.tres"
+SceneFilePath = "res://Levels/Production/SeamonsterBossMap/SeamonsterBossMap.tscn"
+metadata/_custom_type_script = "uid://fteyboqsx0a"
