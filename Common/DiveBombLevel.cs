@@ -27,8 +27,6 @@ namespace FastDragon
 
         [Export] public bool IsHubWorld;
 
-        public static DiveBombLevel GetLevel(Node node) => node.GetLevel();
-
         public readonly TimeTrialManager TimeTrial = new TimeTrialManager();
 
         public int TotalGems => TimeTrial.IsTimeTrialMode
