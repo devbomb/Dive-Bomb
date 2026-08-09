@@ -8,13 +8,6 @@ namespace FastDragon
     {
         [Export] public LevelManifest Manifest;
 
-        /// <summary>
-        /// The current level's human-friendly name, as defined by
-        /// <see cref="DiveBombLevel.Manifest"/>.
-        ///
-        /// Defaults to the node name if no manifest is specified(as is the case
-        /// for debug levels).
-        /// </summary>
         public string LevelName => Manifest.HumanReadableName;
 
         /// <summary>
