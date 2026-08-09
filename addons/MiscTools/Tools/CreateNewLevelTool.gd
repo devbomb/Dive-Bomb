@@ -35,13 +35,21 @@ func _create_new_level(level_id: String, parent_folder: String) -> void:
 	var gdignore_file: FileAccess = FileAccess.open(autosaves_folder.path_join(".gdignore"), FileAccess.WRITE)
 	gdignore_file.close()
 	
+	# Create a manifest for the level
+	var manifest = LevelManifest.new()
+	manifest.HumanReadableName = level_id
+	manifest.SkyBoxEnvironmentFilePath = level_folder.path_join(level_id + "Skybox.tres")
+	manifest.SceneFilePath = level_folder.path_join(level_id + ".tscn")
+	ResourceSaver.save(manifest, level_folder.path_join(level_id + ".level.tres"))
+	
 	# Create a placeholder skybox
 	var environment_resource = Environment.new()
-	ResourceSaver.save(environment_resource, level_folder.path_join(level_id + "Skybox.tres"))
+	ResourceSaver.save(environment_resource, manifest.SkyBoxEnvironmentFilePath)
 	
 	# Create the "official" scene
 	var level_root = DiveBombLevel.new()
 	level_root.name = level_id
+	level_root.Manifest = manifest
 	
 	var environment_node = WorldEnvironment.new()
 	level_root.add_child(environment_node)
@@ -59,7 +67,7 @@ func _create_new_level(level_id: String, parent_folder: String) -> void:
 	# Save the scene
 	var scene = PackedScene.new()
 	scene.pack(level_root)
-	ResourceSaver.save(scene, level_folder.path_join(level_id + ".tscn"))
+	ResourceSaver.save(scene, manifest.SceneFilePath)
 	
 	# Refresh the editor so the new folder can be seen
 	EditorInterface.get_resource_filesystem().scan()
