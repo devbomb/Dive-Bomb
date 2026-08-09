@@ -128,7 +128,8 @@ namespace FastDragon
                 return GetTree().Root
                     .EnumerateDescendantsOfType<Portal>()
                     .Where(p => p.Type == type)
-                    .All(p => SaveFileManager.Current.LevelExitReached(p.TargetSceneFilePath));
+                    .Select(p => ResourceLoader.Load<LevelManifest>(p.TargetLevel))
+                    .All(level => SaveFileManager.Current.LevelExitReached(level));
             }
         }
 

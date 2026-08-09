@@ -102,22 +102,22 @@ namespace FastDragon
             );
         }
 
-        public LevelSaveData GetLevelSaveData(string level)
+        public LevelSaveData GetLevelSaveData(LevelManifest level)
         {
-            if (!Levels.ContainsKey(level))
-                Levels.Add(level, new LevelSaveData());
+            if (!Levels.ContainsKey(level.ResourcePath))
+                Levels.Add(level.ResourcePath, new LevelSaveData());
 
-            return Levels[level];
+            return Levels[level.ResourcePath];
         }
 
-        public bool LevelExitReached(string level) => GetLevelSaveData(level)
+        public bool LevelExitReached(LevelManifest level) => GetLevelSaveData(level)
             .Progress
             .ExitReached;
 
-        public double GetPercentComplete(string levelSceneFile)
+        public double GetPercentComplete(LevelManifest level)
         {
-            var levelSummary = AtlasCache.Instance.GetEntry(levelSceneFile);
-            var progress = GetLevelSaveData(levelSceneFile).Progress;
+            var levelSummary = AtlasCache.Instance.GetEntry(level.ResourcePath);
+            var progress = GetLevelSaveData(level).Progress;
             int categories = 0;
             double totalPercent = 0;
 

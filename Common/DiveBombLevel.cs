@@ -98,7 +98,7 @@ namespace FastDragon
         {
             return TimeTrial.IsTimeTrialMode
                 ? TimeTrial.DummyProgress
-                : SaveFileManager.Current.GetLevelSaveData(SceneFilePath).Progress;
+                : SaveFileManager.Current.GetLevelSaveData(Manifest).Progress;
         }
 
         public LevelCollectableSummary GetCollectableSummary()
