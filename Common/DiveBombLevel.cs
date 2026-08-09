@@ -6,12 +6,16 @@ namespace FastDragon
     [GlobalClass]
     public partial class DiveBombLevel : Node3D
     {
+        [Export] public LevelManifest Manifest;
+
         /// <summary>
-        /// The current level's human-friendly name.
-        /// Will be stored in the Atlas cache.
+        /// The current level's human-friendly name, as defined by
+        /// <see cref="DiveBombLevel.Manifest"/>.
+        ///
+        /// Defaults to the node name if no manifest is specified(as is the case
+        /// for debug levels).
         /// </summary>
-        /// <returns></returns>
-        [Export] public string LevelName;
+        public string LevelName => Manifest.HumanReadableName;
 
         /// <summary>
         /// Set this to true to prevent the player from exiting the level
