@@ -57,7 +57,7 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            AtlasCache.Instance.UpdateCache(SceneFilePath, this);
+            AtlasCache.Instance.UpdateCache(this);
 
             if (IsHubWorld)
                 SaveFileManager.Current.LastHubWorld = SceneFilePath;
@@ -106,7 +106,7 @@ namespace FastDragon
             if (!IsNodeReady())
                 throw new System.Exception("Don't call GetSummary() before the level is ready!");
 
-            return AtlasCache.Instance.GetEntry(SceneFilePath);
+            return AtlasCache.Instance.GetEntry(Manifest);
         }
     }
 

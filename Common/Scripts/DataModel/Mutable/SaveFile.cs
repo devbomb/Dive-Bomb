@@ -116,7 +116,7 @@ namespace FastDragon
 
         public double GetPercentComplete(LevelManifest level)
         {
-            var levelSummary = AtlasCache.Instance.GetEntry(level.ResourcePath);
+            var levelSummary = AtlasCache.Instance.GetEntry(level);
             var progress = GetLevelSaveData(level).Progress;
             int categories = 0;
             double totalPercent = 0;

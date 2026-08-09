@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Resources;
 using Godot;
 
 namespace FastDragon
@@ -30,27 +31,28 @@ namespace FastDragon
                 child.QueueFree();
             }
 
-            foreach (string levelScenePath in SaveFileManager.Current.Levels.Keys.OrderBy(k => k))
+            foreach (string levelManifestPath in SaveFileManager.Current.Levels.Keys.OrderBy(k => k))
             {
-                AddRow(levelScenePath);
+                var level = ResourceLoader.Load<LevelManifest>(levelManifestPath);
+                AddRow(level);
             }
         }
 
-        private void AddRow(string levelScenePath)
+        private void AddRow(LevelManifest level)
         {
-            var progress = SaveFileManager.Current.Levels[levelScenePath].Progress;
-            var summary = AtlasCache.Instance.GetEntry(levelScenePath);
+            var progress = SaveFileManager.Current.GetLevelSaveData(level).Progress;
+            var collectables = AtlasCache.Instance.GetEntry(level);
 
-            AddLabel(summary.HumanReadableName);
+            AddLabel(collectables.HumanReadableName);
             AddSpacer();
 
-            AddLabel($"{progress.TotalGemsCollected} / {summary.TotalGemsInLevel}");
+            AddLabel($"{progress.TotalGemsCollected} / {collectables.TotalGemsInLevel}");
             AddSpacer();
 
-            AddLabel($"{progress.CollectedFairies.Count} / {summary.TotalFairiesInLevel}");
+            AddLabel($"{progress.CollectedFairies.Count} / {collectables.TotalFairiesInLevel}");
             AddSpacer();
 
-            string percentComplete = (SaveFileManager.Current.GetPercentComplete(levelScenePath) * 100)
+            string percentComplete = (SaveFileManager.Current.GetPercentComplete(level) * 100)
                 .ToString("0");
 
             AddLabel($"{percentComplete}%");
