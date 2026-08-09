@@ -107,7 +107,7 @@ namespace FastDragon
                 : SaveFileManager.Current.GetLevelSaveData(SceneFilePath).Progress;
         }
 
-        public LevelSummary GetSummary()
+        public LevelCollectableSummary GetCollectableSummary()
         {
             if (!IsNodeReady())
                 throw new System.Exception("Don't call GetSummary() before the level is ready!");

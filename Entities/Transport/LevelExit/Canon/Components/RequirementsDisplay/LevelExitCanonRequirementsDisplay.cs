@@ -17,9 +17,9 @@ namespace FastDragon
 
             Callable.From(() =>
             {
-                var summary = this.GetLevel()?.GetSummary();
-                _fairies.Visible = (summary?.TotalFairiesInLevel ?? 0) > 0;
-                _gems.Visible = (summary?.TotalGemsInLevel ?? 0) > 0;
+                var collectables = this.GetLevel()?.GetCollectableSummary();
+                _fairies.Visible = (collectables?.TotalFairiesInLevel ?? 0) > 0;
+                _gems.Visible = (collectables?.TotalGemsInLevel ?? 0) > 0;
             }).CallDeferred();
         }
 

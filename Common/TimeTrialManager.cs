@@ -52,14 +52,14 @@ namespace FastDragon
         public bool RequirementsMet(TimeTrialCategory category)
         {
             var level = this.GetLevel();
-            var levelSummary = level.GetSummary();
+            var collectables = level.GetCollectableSummary();
             var progress = level.GetProgress();
 
             switch (category)
             {
                 case TimeTrialCategory.FairyPercent:
                 {
-                    int fairiesInLevel = levelSummary.TotalFairiesInLevel;
+                    int fairiesInLevel = collectables.TotalFairiesInLevel;
                     int fairiesFound = progress.CollectedFairies.Count;
 
                     return fairiesInLevel > 0 && fairiesFound >= fairiesInLevel;
@@ -67,11 +67,11 @@ namespace FastDragon
 
                 case TimeTrialCategory.HundredPercent:
                 {
-                    int fairiesInLevel = levelSummary.TotalFairiesInLevel;
+                    int fairiesInLevel = collectables.TotalFairiesInLevel;
                     int fairiesFound = progress.CollectedFairies.Count;
                     bool allFairies = fairiesFound >= fairiesInLevel;
 
-                    int gemsInLevel = levelSummary.TotalGemsInLevel;
+                    int gemsInLevel = collectables.TotalGemsInLevel;
                     int gemsFound = progress.TotalGemsCollected;
                     bool allGems = gemsFound >= gemsInLevel;
 
@@ -90,7 +90,7 @@ namespace FastDragon
         public bool IsRelevant(TimeTrialCategory category)
         {
             var level = this.GetLevel();
-            var levelSummary = level.GetSummary();
+            var levelSummary = level.GetCollectableSummary();
 
             switch (category)
             {
