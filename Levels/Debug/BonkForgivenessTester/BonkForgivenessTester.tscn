@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_g6uol"]
 [ext_resource type="PackedScene" uid="uid://b6wqhchkjtiip" path="res://Levels/Debug/BonkForgivenessTester/Maps/BonkForgivenessTester.map" id="2_f3kpa"]
+[ext_resource type="Resource" uid="uid://dir7hmuj1spw7" path="res://Levels/Debug/BonkForgivenessTester/BonkForgivenessTester.level.tres" id="2_gt68v"]
 [ext_resource type="Script" uid="uid://36bo8f03pxgc" path="res://Levels/Debug/BonkForgivenessTester/BonkForgivenessTester.cs" id="2_m3eqq"]
 
 [sub_resource type="Environment" id="Environment_scss7"]
 
 [node name="BonkForgivenessTester" type="Node3D" unique_id=1245796511]
 script = ExtResource("1_g6uol")
+Manifest = ExtResource("2_gt68v")
 
 [node name="Tester" type="Node" parent="." unique_id=1382819883]
 script = ExtResource("2_m3eqq")

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_f80cs"]
 [ext_resource type="PackedScene" uid="uid://gyny2q21c4dm" path="res://Levels/Production/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://jx3c8iprojog" path="res://Levels/Production/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
+[ext_resource type="Resource" uid="uid://xv4c36jhf2g8" path="res://Levels/Production/SnapjawSwamp/SnapjawSwamp.level.tres" id="2_ojqnf"]
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/Production/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
 [ext_resource type="PackedScene" uid="uid://ve3cgo7evr8v" path="res://Levels/Production/SnapjawSwamp/Maps/WaterfallTrees.map" id="7_e7jdb"]
@@ -14,7 +15,7 @@
 
 [node name="SnapjawSwamp" type="Node3D" unique_id=2127025086]
 script = ExtResource("1_f80cs")
-LevelName = "Snapjaw Swamp"
+Manifest = ExtResource("2_ojqnf")
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=191718947]

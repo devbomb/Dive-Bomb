@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://btejrg27q3lyj"]
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
+[ext_resource type="Resource" uid="uid://s5yhblbj7gja" path="res://Levels/Production/Tutorial/Tutorial.level.tres" id="2_6sld8"]
 [ext_resource type="AudioStream" uid="uid://b1koi60nf7f5x" path="res://Common/Audio/Music/SneakyD.mp3" id="2_alo6x"]
 [ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Common/Skyboxes/GrayCrystal/GrayCrystalSkybox.tres" id="2_eipfg"]
 [ext_resource type="PackedScene" uid="uid://buitb1uq7i80k" path="res://Levels/Production/Tutorial/Maps/Intro.map" id="2_vwhqw"]
@@ -73,7 +74,7 @@ curve_step = 10.0
 
 [node name="Tutorial" type="Node3D" unique_id=1133266737]
 script = ExtResource("1_vo1h1")
-LevelName = "Tutorial"
+Manifest = ExtResource("2_6sld8")
 ForbidExitLevel = true
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=866248481]

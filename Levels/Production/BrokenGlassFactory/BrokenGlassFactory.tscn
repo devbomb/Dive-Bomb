@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_iw83h"]
 [ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Common/Skyboxes/GrayCrystal/GrayCrystalSkybox.tres" id="1_lft26"]
+[ext_resource type="Resource" uid="uid://787jeqci6bd0" path="res://Levels/Production/BrokenGlassFactory/BrokenGlassFactory.level.tres" id="2_r55wx"]
 [ext_resource type="PackedScene" uid="uid://c4kvywafccfva" path="res://Levels/Production/BrokenGlassFactory/Maps/BrokenGlassFactory.map" id="2_twb18"]
 
 [node name="GrayboxBullshit" type="Node3D" unique_id=1183344201]
 script = ExtResource("1_iw83h")
-LevelName = "Broken Glass Factory"
+Manifest = ExtResource("2_r55wx")
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1415372007]
