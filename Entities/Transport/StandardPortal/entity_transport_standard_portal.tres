@@ -12,9 +12,7 @@ scene_file = ExtResource("1_wuwau")
 classname = "transport_standard_portal"
 class_properties = Dictionary[String, Variant]({
 "FairiesRequired": 0,
-"SkyboxEnvironment": "",
 "TargetLevel": "",
-"Text": "",
 "Type": {
 "Bonus": 3,
 "Boss": 1,

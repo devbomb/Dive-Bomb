@@ -5,9 +5,7 @@ namespace FastDragon
 {
     public partial class Portal : Node3D
     {
-        [Export(PropertyHint.FilePath)] public string SkyboxEnvironment;
         [Export(PropertyHint.FilePath)] public string TargetLevel;
-        [Export] public string Text;
 
         [Export(PropertyHint.Enum, "Level,Boss,PostBoss,Bonus")]
         public PortalType Type;
@@ -71,8 +69,13 @@ namespace FastDragon
 
         private readonly StateMachine _stateMachine = new();
 
+        private LevelManifest _levelManifest;
         private Environment _skyboxEnvironment;
         private Vector3 _playerTargetRotRad;
+
+        public string Text => _levelManifest.HumanReadableName;
+        public string TargetSceneFilePath => _levelManifest.SceneFilePath;
+        public string SkyboxEnvironment => _levelManifest.SkyBoxEnvironmentFilePath;
 
         public Portal()
         {
@@ -81,6 +84,7 @@ namespace FastDragon
 
         public override void _Ready()
         {
+            _levelManifest = ResourceLoader.Load<LevelManifest>(TargetLevel);
             _skyboxEnvironment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
             PortalSurface.SetSkybox(_skyboxEnvironment);
 
@@ -124,7 +128,7 @@ namespace FastDragon
                 return GetTree().Root
                     .EnumerateDescendantsOfType<Portal>()
                     .Where(p => p.Type == type)
-                    .All(p => SaveFileManager.Current.LevelExitReached(p.TargetLevel));
+                    .All(p => SaveFileManager.Current.LevelExitReached(p.TargetSceneFilePath));
             }
         }
 
@@ -283,7 +287,7 @@ namespace FastDragon
                     _player.Camera.ResetPhysicsInterpolation3D();
 
                     LevelTransitionManager.Instance.EnterLevel(
-                        Self.TargetLevel,
+                        Self.TargetSceneFilePath,
                         Self._skyboxEnvironment
                     );
                 }

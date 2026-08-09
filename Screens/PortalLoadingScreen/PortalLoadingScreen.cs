@@ -194,7 +194,7 @@ namespace FastDragon
         {
             var matchingPortal = sceneRoot
                 .EnumerateDescendantsOfType<Portal>()
-                .FirstOrDefault(p => p.TargetLevel == _parameters.PreviousLevelScenePath);
+                .FirstOrDefault(p => p.TargetSceneFilePath == _parameters.PreviousLevelScenePath);
 
             if (matchingPortal != null)
                 return matchingPortal;

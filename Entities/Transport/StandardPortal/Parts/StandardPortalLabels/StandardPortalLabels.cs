@@ -67,7 +67,7 @@ namespace FastDragon
                     .ToArray();
 
                 int completedLevels = levelPortals
-                    .Count(p => SaveFileManager.Current.LevelExitReached(p.TargetLevel));
+                    .Count(p => SaveFileManager.Current.LevelExitReached(p.TargetSceneFilePath));
 
                 var levelCountMesh = (TextMesh)BossLevelCountLabel.Mesh;
                 levelCountMesh.Text = $"{completedLevels}/{levelPortals.Length}";
