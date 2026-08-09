@@ -39,24 +39,20 @@ func _create_new_level(level_id: String, parent_folder: String, debug: bool) -> 
 	var manifest = LevelManifest.new()
 	manifest.Debug = debug
 	manifest.HumanReadableName = level_id
-	manifest.SkyBoxEnvironmentFilePath = level_folder.path_join(level_id + "Skybox.tres")
 	manifest.SceneFilePath = level_folder.path_join(level_id + ".tscn")
 	ResourceSaver.save(manifest, level_folder.path_join(level_id + ".level.tres"))
-	
-	# Create a placeholder skybox
-	var environment_resource = Environment.new()
-	ResourceSaver.save(environment_resource, manifest.SkyBoxEnvironmentFilePath)
 	
 	# Create the "official" scene
 	var level_root = DiveBombLevel.new()
 	level_root.name = level_id
 	level_root.Manifest = manifest
 	
+	# Use the default skybox
 	var environment_node = WorldEnvironment.new()
 	level_root.add_child(environment_node)
 	environment_node.owner = level_root
 	environment_node.name = "WorldEnvironment"
-	environment_node.environment = environment_resource
+	environment_node.environment = load(manifest.SkyBoxEnvironmentFilePath)
 	
 	var sun = DirectionalLight3D.new()
 	level_root.add_child(sun)
