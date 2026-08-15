@@ -43,9 +43,6 @@ namespace FastDragon
 
             Levels[levelRoot.Manifest.ResourcePath] = new LevelCollectableSummary
             {
-                HumanReadableName = levelRoot.LevelName
-                    ?? "No level name specified, or scene does not have a Player",
-
                 TotalGemsInLevel = levelRoot
                     .EnumerateDescendantsOfType<Gem>()
                     .Sum(g => (int)g.Value),

@@ -151,12 +151,7 @@ namespace FastDragon
 
                 // Peek at the save file to learn which level it was saved in
                 var saveFile = SaveFileManager.Instance.PeekSlot(slotNumber);
-                string levelName = AtlasCache
-                    .Instance
-                    .GetEntry(saveFile.CurrentLevel)
-                    .HumanReadableName;
-
-                return levelName;
+                return saveFile.CurrentLevel.HumanReadableName;
             }
         }
     }

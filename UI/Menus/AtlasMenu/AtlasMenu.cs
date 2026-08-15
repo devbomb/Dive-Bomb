@@ -43,7 +43,7 @@ namespace FastDragon
             var progress = SaveFileManager.Current.GetLevelSaveData(level).Progress;
             var collectables = AtlasCache.Instance.GetEntry(level);
 
-            AddLabel(collectables.HumanReadableName);
+            AddLabel(level.HumanReadableName);
             AddSpacer();
 
             AddLabel($"{progress.TotalGemsCollected} / {collectables.TotalGemsInLevel}");
