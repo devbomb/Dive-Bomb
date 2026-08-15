@@ -215,7 +215,7 @@ namespace FastDragon
         {
             return SaveFileManager
                 .Current
-                .GetLevelSaveData(this.GetLevel().SceneFilePath);
+                .GetLevelSaveData(this.GetLevel().Manifest);
         }
 
         private Dictionary<TimeTrialCategory, PhysicsTicks> CopyBestTimes()

@@ -29,16 +29,16 @@ namespace FastDragon
 
         public void StartNewGame(
             int slotNumber,
-            string levelScenePath,
-            string hubScenePath
+            LevelManifest level,
+            LevelManifest hub
         )
         {
             ActiveSlot = slotNumber;
             CurrentFile = new()
             {
-                LastHubWorld = hubScenePath,
+                LastHubWorld = hub,
             };
-            LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(levelScenePath);
+            LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(level);
         }
 
         public bool SlotHasData(int slotNumber)

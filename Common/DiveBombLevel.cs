@@ -57,20 +57,20 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            AtlasCache.Instance.UpdateCache(SceneFilePath, this);
+            AtlasCache.Instance.UpdateCache(this);
 
             if (IsHubWorld)
-                SaveFileManager.Current.LastHubWorld = SceneFilePath;
+                SaveFileManager.Current.LastHubWorld = Manifest;
 
             // Start a new level visit
             // ...unless the game is currently being loaded from a save file,
             // in which case we don't want to overwrite the existing level visit.
-            bool isLoadingSaveFile = SaveFileManager.Current.CurrentLevel == SceneFilePath;
+            bool isLoadingSaveFile = SaveFileManager.Current.CurrentLevel == Manifest;
             if (!isLoadingSaveFile)
             {
-                SaveFileManager.Current.CurrentLevel = SceneFilePath;
+                SaveFileManager.Current.CurrentLevel = Manifest;
                 SaveFileManager.Current.CurrentLevelVisit = new();
-                SaveFileManager.Current.GetLevelSaveData(SceneFilePath).VisitedOnce = true;
+                SaveFileManager.Current.GetLevelSaveData(Manifest).VisitedOnce = true;
                 SaveFileManager.Instance.RequestAutosave();
             }
         }
@@ -99,7 +99,7 @@ namespace FastDragon
         {
             return TimeTrial.IsTimeTrialMode
                 ? TimeTrial.DummyProgress
-                : SaveFileManager.Current.GetLevelSaveData(SceneFilePath).Progress;
+                : SaveFileManager.Current.GetLevelSaveData(Manifest).Progress;
         }
 
         public LevelCollectableSummary GetCollectableSummary()
@@ -107,7 +107,7 @@ namespace FastDragon
             if (!IsNodeReady())
                 throw new System.Exception("Don't call GetSummary() before the level is ready!");
 
-            return AtlasCache.Instance.GetEntry(SceneFilePath);
+            return AtlasCache.Instance.GetEntry(Manifest);
         }
     }
 
