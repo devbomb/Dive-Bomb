@@ -1,6 +1,6 @@
 <Project Sdk="Godot.NET.Sdk/4.7.1">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>FastDragon</RootNamespace>
   </PropertyGroup>
@@ -10,4 +10,14 @@
     <PackageReference Include="Serilog.Formatting.Compact" Version="3.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
   </ItemGroup>
+    <!-- added by the 2dog tool: properties 2dog hosts need that were not already set -->
+    <PropertyGroup>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DefineConstants>$(DefineConstants);LIBGODOT_ENABLED</DefineConstants>
+        <DefaultItemExcludes>$(DefaultItemExcludes);DiveBomb.web/**</DefaultItemExcludes>
+    </PropertyGroup>
+    <!-- added by the 2dog tool: compiles the web bootstrap (in the web host folder) into this game assembly -->
+    <ItemGroup>
+        <Compile Include="DiveBomb.web/TwoDogWebBoot.cs" Condition="Exists('$(MSBuildThisFileDirectory)DiveBomb.web/TwoDogWebBoot.cs')" />
+    </ItemGroup>
 </Project>

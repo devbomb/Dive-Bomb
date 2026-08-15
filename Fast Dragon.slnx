@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="ExportDebug" />
+    <BuildType Name="ExportRelease" />
+  </Configurations>
+  <Project Path="DiveBomb.web/DiveBomb.web.csproj">
+    <BuildType Project="Debug" />
+  </Project>
+  <Project Path="Fast Dragon.csproj" />
+</Solution>
