@@ -9,13 +9,30 @@ namespace FastDragon
     [JsonObject(MemberSerialization.OptIn)]
     public partial class SaveFile : RefCounted
     {
-        [JsonProperty] public string CurrentLevel;
+        public LevelManifest CurrentLevel;
+
+        [JsonProperty("CurrentLevel")] private string _currentLevelFilePath
+        {
+            get => CurrentLevel?.ResourcePath;
+            set => CurrentLevel = value == null
+                ? null
+                : ResourceLoader.Load<LevelManifest>(value);
+        }
 
         /// <summary>
         /// The level we should return to when "exit level" is selected in the
         /// pause menu, or when a level exit cannon is used.
         /// </summary>
-        [JsonProperty] public string LastHubWorld = "res://Levels/Production/TestMap/TestMap.tscn";
+        public LevelManifest LastHubWorld
+            = ResourceLoader.Load<LevelManifest>("res://Levels/Production/TestMap/TestMap.level.tres");
+
+        [JsonProperty("LastHubWorld")] private string _lastHubWorldFilePath
+        {
+            get => LastHubWorld?.ResourcePath;
+            set => LastHubWorld = value == null
+                ? null
+                : ResourceLoader.Load<LevelManifest>(value);
+        }
 
         /// <summary>
         /// The number of times the player has died outside of time trial mode.
@@ -102,22 +119,22 @@ namespace FastDragon
             );
         }
 
-        public LevelSaveData GetLevelSaveData(string level)
+        public LevelSaveData GetLevelSaveData(LevelManifest level)
         {
-            if (!Levels.ContainsKey(level))
-                Levels.Add(level, new LevelSaveData());
+            if (!Levels.ContainsKey(level.ResourcePath))
+                Levels.Add(level.ResourcePath, new LevelSaveData());
 
-            return Levels[level];
+            return Levels[level.ResourcePath];
         }
 
-        public bool LevelExitReached(string level) => GetLevelSaveData(level)
+        public bool LevelExitReached(LevelManifest level) => GetLevelSaveData(level)
             .Progress
             .ExitReached;
 
-        public double GetPercentComplete(string levelSceneFile)
+        public double GetPercentComplete(LevelManifest level)
         {
-            var levelSummary = AtlasCache.Instance.GetEntry(levelSceneFile);
-            var progress = GetLevelSaveData(levelSceneFile).Progress;
+            var levelSummary = AtlasCache.Instance.GetEntry(level);
+            var progress = GetLevelSaveData(level).Progress;
             int categories = 0;
             double totalPercent = 0;
 

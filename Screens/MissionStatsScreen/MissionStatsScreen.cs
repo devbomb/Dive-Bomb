@@ -6,8 +6,8 @@ namespace FastDragon
 {
     public partial class MissionStatsScreen : Node3D
     {
-        [Export(PropertyHint.FilePath)] public string PreviousLevelScenePath;
-        [Export(PropertyHint.FilePath)] public string HomeWorldScenePath;
+        [Export] public LevelManifest PreviousLevel;
+        [Export] public LevelManifest HomeWorld;
 
         [Export] public MeshInstance3D Backdrop;
         [Export] public Node3D PlayerModel;
@@ -61,8 +61,8 @@ namespace FastDragon
         {
             public Environment SkyBoxEnvironment;
 
-            public string PreviousLevelScenePath;
-            public string HomeWorldScenePath;
+            public LevelManifest PreviousLevel;
+            public LevelManifest HomeWorld;
 
             public double PlayerAnimationTime;
             public Transform3D PlayerStartPos;
@@ -112,8 +112,8 @@ namespace FastDragon
 
             // Don't overwrite the default values that were assigned
             // in the inspector.
-            PreviousLevelScenePath = PreviousLevelScenePath,
-            HomeWorldScenePath = HomeWorldScenePath,
+            PreviousLevel = PreviousLevel,
+            HomeWorld = HomeWorld,
         };
 
         private SaveFile.LevelVisit GetTestStats() => new()
@@ -138,8 +138,8 @@ namespace FastDragon
             Camera.Environment = _parameters.SkyBoxEnvironment;
             // TODO: Adjust the sun
 
-            PreviousLevelScenePath = parameters.PreviousLevelScenePath;
-            HomeWorldScenePath = parameters.HomeWorldScenePath;
+            PreviousLevel = parameters.PreviousLevel;
+            HomeWorld = parameters.HomeWorld;
 
             StartLoadingHomeWorldInBackground();
             _stateMachine.ChangeState<Entering>();
@@ -152,7 +152,7 @@ namespace FastDragon
             // See https://github.com/godotengine/godot/issues/107548
             new System.Threading.Thread(() =>
             {
-                var loadedScene = ResourceLoader.Load<PackedScene>(HomeWorldScenePath);
+                var loadedScene = ResourceLoader.Load<PackedScene>(HomeWorld.SceneFilePath);
                 SetDeferred(nameof(_loadedHomeWorld), loadedScene);
             }).Start();
         }
@@ -682,7 +682,7 @@ namespace FastDragon
             {
                 var matchingPortal = _loadedHomeWorldRoot
                     .EnumerateDescendantsOfType<Portal>()
-                    .FirstOrDefault(p => p.TargetSceneFilePath == Self.PreviousLevelScenePath);
+                    .FirstOrDefault(p => p.TargetLevel == Self.PreviousLevel.ResourcePath);
 
                 if (matchingPortal != null)
                     return matchingPortal;

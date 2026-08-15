@@ -46,27 +46,27 @@ namespace FastDragon
             });
         }
 
-        public void GoToLevel(string levelSceneFile)
+        public void GoToLevel(LevelManifest level)
         {
-            GetTree().ChangeSceneToFile(levelSceneFile);
+            GetTree().ChangeSceneToFile(level.SceneFilePath);
         }
 
-        public void GoToLevelWithFadeToBlack(string levelSceneFile)
+        public void GoToLevelWithFadeToBlack(LevelManifest level)
         {
             DoThingWithFadeToBlack(() =>
             {
-                LogStartedGoToLevelWithFade(levelSceneFile);
-                GoToLevel(levelSceneFile);
+                LogStartedGoToLevelWithFade(level.SceneFilePath);
+                GoToLevel(level);
                 LogFinishedGoToLevelWithFade();
             });
         }
 
         public void EnterLevel(
-            string levelSceneFile,
+            LevelManifest level,
             Environment skyBoxEnvironment
         )
         {
-            GoToPortalLoadingScreen(levelSceneFile, null, skyBoxEnvironment);
+            GoToPortalLoadingScreen(level, null, skyBoxEnvironment);
             SaveFileManager.Current.CurrentLevelVisit = new();
         }
 
@@ -131,9 +131,9 @@ namespace FastDragon
                 skyBoxEnvironment = ResourceLoader.Load<Environment>("res://Environments/DaySky.tres");
             }
 
-            string levelSceneFile = LastHubWorld();
-            string previousLevelSceneFile = oldScene.SceneFilePath;
-            GoToPortalLoadingScreen(levelSceneFile, previousLevelSceneFile, skyBoxEnvironment);
+            var level = LastHubWorld();
+            var previousLevel = oldScene.GetLevel().Manifest;
+            GoToPortalLoadingScreen(level, previousLevel, skyBoxEnvironment);
             SaveFileManager.Current.CurrentLevelVisit = new();
         }
 
@@ -146,8 +146,8 @@ namespace FastDragon
             {
                 SkyBoxEnvironment = prevLevel.FindNode<WorldEnvironment>().Environment,
 
-                PreviousLevelScenePath = prevLevel.SceneFilePath,
-                HomeWorldScenePath = LastHubWorld(),
+                PreviousLevel = prevLevel.Manifest,
+                HomeWorld = LastHubWorld(),
 
                 PlayerAnimationTime = player.Animator.CurrentAnimationPosition,
                 PlayerStartPos = player.GlobalTransform,
@@ -218,14 +218,14 @@ namespace FastDragon
         }
 
         private void GoToPortalLoadingScreen(
-            string levelSceneFile,
-            string previousLevelSceneFile,
+            LevelManifest level,
+            LevelManifest previousLevel,
             Environment skyBoxEnvironment
         )
         {
             var parameters = LoadingScreenParameters.FromCurrentLevel(
-                levelSceneFile,
-                previousLevelSceneFile,
+                level,
+                previousLevel,
                 skyBoxEnvironment,
                 GetTree()
             );
@@ -235,7 +235,7 @@ namespace FastDragon
             loadingScreen.Initialize(parameters);
         }
 
-        private string LastHubWorld()
+        private LevelManifest LastHubWorld()
         {
             return SaveFileManager.Current.LastHubWorld;
         }

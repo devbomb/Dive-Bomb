@@ -69,7 +69,7 @@ namespace FastDragon
 
         private readonly StateMachine _stateMachine = new();
 
-        private LevelManifest _levelManifest;
+        private LevelManifest _levelManifest => ResourceLoader.Load<LevelManifest>(TargetLevel);
         private Environment _skyboxEnvironment;
         private Vector3 _playerTargetRotRad;
 
@@ -84,7 +84,6 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            _levelManifest = ResourceLoader.Load<LevelManifest>(TargetLevel);
             _skyboxEnvironment = ResourceLoader.Load<Environment>(SkyboxEnvironment);
             PortalSurface.SetSkybox(_skyboxEnvironment);
 
@@ -128,7 +127,8 @@ namespace FastDragon
                 return GetTree().Root
                     .EnumerateDescendantsOfType<Portal>()
                     .Where(p => p.Type == type)
-                    .All(p => SaveFileManager.Current.LevelExitReached(p.TargetSceneFilePath));
+                    .Select(p => ResourceLoader.Load<LevelManifest>(p.TargetLevel))
+                    .All(level => SaveFileManager.Current.LevelExitReached(level));
             }
         }
 
@@ -287,7 +287,7 @@ namespace FastDragon
                     _player.Camera.ResetPhysicsInterpolation3D();
 
                     LevelTransitionManager.Instance.EnterLevel(
-                        Self.TargetSceneFilePath,
+                        Self._levelManifest,
                         Self._skyboxEnvironment
                     );
                 }

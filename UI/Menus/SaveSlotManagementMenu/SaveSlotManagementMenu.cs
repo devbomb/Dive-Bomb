@@ -6,8 +6,8 @@ namespace FastDragon
 {
     public partial class SaveSlotManagementMenu : Page
     {
-        [Export(PropertyHint.File, hintString: "*.tscn")] public string NewGameLevel;
-        [Export(PropertyHint.File, hintString: "*.tscn")] public string NewGameHubWorld;
+        [Export] public LevelManifest NewGameLevel;
+        [Export] public LevelManifest NewGameHubWorld;
 
         private int? _slotTargettedForDeletion;
 
@@ -151,9 +151,10 @@ namespace FastDragon
 
                 // Peek at the save file to learn which level it was saved in
                 var saveFile = SaveFileManager.Instance.PeekSlot(slotNumber);
-
-                string levelScenePath = saveFile.CurrentLevel;
-                string levelName = AtlasCache.Instance.GetEntry(levelScenePath).HumanReadableName;
+                string levelName = AtlasCache
+                    .Instance
+                    .GetEntry(saveFile.CurrentLevel)
+                    .HumanReadableName;
 
                 return levelName;
             }
