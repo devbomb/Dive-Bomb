@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BackgroundSong" format=3 uid="uid://or7lhpp3vsqr"]
+
+[ext_resource type="AudioStream" uid="uid://cugcjt8k8ksh" path="res://Common/Audio/Music/Rabun-da.mp3" id="1_5rhc3"]
+[ext_resource type="Script" uid="uid://scn0xkyf0sin" path="res://Common/Scripts/DataModel/Static/BackgroundSong.cs" id="1_46xc1"]
+
+[resource]
+script = ExtResource("1_46xc1")
+Title = "Rabun-da"
+Music = ExtResource("1_5rhc3")
+Artist = "Alex Shelley"
+metadata/_custom_type_script = "uid://scn0xkyf0sin"

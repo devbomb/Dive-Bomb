@@ -1,3 +1,12 @@
+# Unreleased
+* **Fixed:** Fixed music not playing in time trial mode
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/1)
+
+* **Fixed:** Fixed the wrong music playing when loading a save file during
+    the tutorial's escape sequence
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/2)
+
+
 # [0.0.2]
 * **Added:** A change log.  Wow!
 

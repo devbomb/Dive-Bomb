@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://gyny2q21c4dm" path="res://Levels/Production/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://jx3c8iprojog" path="res://Levels/Production/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/Production/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
+[ext_resource type="PackedScene" uid="uid://luvuhqvfwsek" path="res://Common/Components/BackgroundMusicPlayer/BackgroundMusicPlayer.tscn" id="2_w8cgh"]
+[ext_resource type="Resource" uid="uid://d5q7tducvpoq" path="res://Levels/Production/SnapjawSwamp/SnapjawSwamp.music.tres" id="3_6djbt"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
 [ext_resource type="PackedScene" uid="uid://ve3cgo7evr8v" path="res://Levels/Production/SnapjawSwamp/Maps/WaterfallTrees.map" id="7_e7jdb"]
-[ext_resource type="AudioStream" uid="uid://gjlcrblpc5hw" path="res://Levels/Production/SnapjawSwamp/SnapjawSwamp.mp3" id="7_e42vu"]
-[ext_resource type="Script" uid="uid://du3spb4diyf40" path="res://Common/Components/BackgroundMusicPlayer.cs" id="9_bdp2e"]
 [ext_resource type="Script" uid="uid://brhva0ikdmdcl" path="res://Entities/Info/NamedMarker/NamedMarker3D.cs" id="10_duwd4"]
 
 [node name="SnapjawSwamp" type="Node3D" unique_id=2127025086]
@@ -17,10 +17,8 @@ script = ExtResource("1_f80cs")
 LevelName = "Snapjaw Swamp"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=191718947]
-stream = ExtResource("7_e42vu")
-bus = &"Music"
-script = ExtResource("9_bdp2e")
+[node name="BackgroundMusicPlayer" parent="." unique_id=506697457 instance=ExtResource("2_w8cgh")]
+DefaultSong = ExtResource("3_6djbt")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=578251509]
 environment = ExtResource("1_e42vu")

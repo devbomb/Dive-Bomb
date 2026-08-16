@@ -5,11 +5,11 @@ One way to achieve this would be to find the `AudioStreamPlayer` node that's
 playing the music and adjust its volume property, but that has several problems:
 
 * There is no one single node responsible for playing background music.  It's
-    _usually_ a node named `BackgroundMusicPlayer`, but that's not necessarily
-    always going to be the case.  Its name could be different, or there could
-    even be more than one.
+    _usually_ a node named `BackgroundSoundPlayer`, which has an
+    `AudioStreamPlayer` child, but that's not necessarily always going to be the
+    case.  Its name could be different, or there could even be more than one.
 
-* Even if the correct node could be located, its volume property will likely
+* Even if the correct node could be located, its volume property will possibly
     have already been tweaked in the scene editor(since that's easier than
     changing the volume in the mp3 file itself).  You'd need to store the
     pre-ducked volume value and then restore it when ducking is no longer

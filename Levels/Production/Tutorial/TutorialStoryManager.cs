@@ -6,11 +6,11 @@ namespace FastDragon.Levels.Tutorial
     {
         [Export] public string targetname;
 
+        [Export] public BackgroundSong EscapeMusic;
+
         [Export] public BackgroundMusicPlayer MusicPlayer;
         [Export] public AgentDIntroCutscene AgentDIntro;
         [Export] public DrMonocleIntroSpeechCutscene DrMonocleIntro;
-
-        private AudioStreamPlaybackInteractive _musicPlayback => (AudioStreamPlaybackInteractive)MusicPlayer.GetStreamPlayback();
 
         private static class StoryFlags
         {
@@ -77,32 +77,16 @@ namespace FastDragon.Levels.Tutorial
 
         private partial class PlayingAgentDIntro : State<TutorialStoryManager>
         {
-            private float _originalMusicVolume;
-
             public override void OnStateEntered()
             {
                 Self.AgentDIntro.Play();
-
-                // HACK: Setting the background music volume to 0 instead of
-                // calling Stop() to avoid a conflict with BackgroundMusicPlayer's
-                // delayed-start logic.
-                //
-                // If we were to call Stop() instead, then BackgroundMusicPlayer
-                // would just turn itself back on again after the start delay.
-                //
-                // TODO: Find a better way to orchestrate this.
-                // (Yes, that was a pun.)
-                _originalMusicVolume = Self.MusicPlayer.VolumeLinear;
-                Self.MusicPlayer.VolumeLinear = 0;
+                Self.MusicPlayer.Stop();
             }
 
             public override void OnStateExited()
             {
                 Self.GetLevel().PermanentStoryFlags.Add(StoryFlags.AgentDIntroFinished);
-
-                Self.MusicPlayer.VolumeLinear = _originalMusicVolume;
-                Self.MusicPlayer.Stop();
-                Self.MusicPlayer.Play();
+                Self.MusicPlayer.RestartSong();
             }
 
             public override void _PhysicsProcess(double delta)
@@ -116,11 +100,6 @@ namespace FastDragon.Levels.Tutorial
         {
             public override void OnStateEntered()
             {
-                if (Self.MusicPlayer.Playing)
-                {
-                    Self._musicPlayback?.SwitchToClipByName("Normal");
-                }
-
                 Self.DrMonocleIntro.GoToIdle();
             }
 
@@ -148,6 +127,11 @@ namespace FastDragon.Levels.Tutorial
                 Self.DrMonocleIntro.StartPlaying();
             }
 
+            public override void OnStateExited()
+            {
+                Self.MusicPlayer.RestartSong();
+            }
+
             public override void _PhysicsProcess(double delta)
             {
                 if (!Self.DrMonocleIntro.IsPlaying)
@@ -160,8 +144,12 @@ namespace FastDragon.Levels.Tutorial
             public override void OnStateEntered()
             {
                 GD.Print("Starting escape sequence");
-                Self.MusicPlayer.Play();
-                Self._musicPlayback.SwitchToClipByName("Escape");
+                Self.MusicPlayer.OverrideSong(Self.EscapeMusic);
+            }
+
+            public override void OnStateExited()
+            {
+                Self.MusicPlayer.RemoveSongOverride();
             }
 
             public override void SubscribeToSignals()
