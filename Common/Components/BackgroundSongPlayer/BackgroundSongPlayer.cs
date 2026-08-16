@@ -1,3 +1,4 @@
+#nullable enable
 using Godot;
 
 namespace FastDragon
@@ -9,7 +10,7 @@ namespace FastDragon
         ///     For most levels, this is the _only_ music that will play in the
         ///     level.
         /// </summary>
-        [Export] public BackgroundSong DefaultSong;
+        [Export] public required BackgroundSong DefaultSong;
 
         /// <summary>
         ///     How long to wait before starting the song after a level reset.
@@ -17,9 +18,10 @@ namespace FastDragon
         [Export] public double StartDelaySeconds = 0.25;
 
         [ExportCategory("Internal")]
-        [Export] public AudioStreamPlayer AudioPlayer;
+        [Export] public required AudioStreamPlayer AudioPlayer;
 
-        public BackgroundSong CurrentSong => DefaultSong;
+        public BackgroundSong CurrentSong => _songOverride ?? DefaultSong;
+        private BackgroundSong? _songOverride = null;
 
         private readonly StateMachine _stateMachine = new();
 
@@ -37,12 +39,33 @@ namespace FastDragon
 
         private void Reset()
         {
+            RestartSong();
+        }
+
+        public void RestartSong()
+        {
             _stateMachine.ChangeState<DelayingStart>();
         }
 
         public void Stop()
         {
             _stateMachine.ChangeState<Stopped>();
+        }
+
+        public void OverrideSong(BackgroundSong song)
+        {
+            _songOverride = song;
+
+            if (_stateMachine.CurrentState is Playing)
+                RestartSong();
+        }
+
+        public void RemoveSongOverride()
+        {
+            _songOverride = null;
+
+            if (_stateMachine.CurrentState is Playing)
+                RestartSong();
         }
 
         private class DelayingStart : State<BackgroundSongPlayer>
