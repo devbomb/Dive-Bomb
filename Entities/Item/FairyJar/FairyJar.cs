@@ -138,12 +138,16 @@ namespace FastDragon
 
             Player.ProcessMode = ProcessMode;
 
+            // Keep the music playing, but make it quieter
+            MusicDuckTrigger.Playing = paused;
+
             var musicPlayer = GetTree().FindNode<BackgroundMusicPlayer>();
             if (musicPlayer != null)
-            {
                 musicPlayer.ProcessMode = ProcessMode;
-                MusicDuckTrigger.Playing = paused;
-            }
+
+            var songPlayer = GetTree().FindNode<BackgroundSongPlayer>();
+            if (songPlayer != null)
+                songPlayer.ProcessMode = ProcessMode;
         }
 
         private string GenerateSaveKey()
