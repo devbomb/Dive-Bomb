@@ -13,6 +13,8 @@ namespace FastDragon
         [Export] public double OpenDuration = 0.5;
         [Export] public double CloseDuration = 0.5;
 
+        public bool IsMoving => _stateMachine.CurrentState is Closing or Opening;
+
         private bool _initialized;
         private Vector3 _closedPos;
         private Vector3 _openPos;
