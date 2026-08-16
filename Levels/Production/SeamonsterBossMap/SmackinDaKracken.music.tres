@@ -7,5 +7,6 @@
 script = ExtResource("1_mb8q2")
 Title = "Smackin' Da Kracken"
 Music = ExtResource("1_miphx")
+VolumeMultiplierLinear = 0.8
 Artist = "Alex Shelley"
 metadata/_custom_type_script = "uid://scn0xkyf0sin"
