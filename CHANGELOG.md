@@ -6,6 +6,10 @@
     the tutorial's escape sequence
     [(issue)](https://github.com/devbomb/Dive-Bomb/issues/2)
 
+* **Fixed:** Fixed the door being incorrectly locked behind you when loading a
+    save file during the tutorial's escape sequence
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/3)
+
 
 # [0.0.2]
 * **Added:** A change log.  Wow!
