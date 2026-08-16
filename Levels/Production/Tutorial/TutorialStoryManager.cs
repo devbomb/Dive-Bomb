@@ -145,6 +145,7 @@ namespace FastDragon.Levels.Tutorial
             {
                 GD.Print("Starting escape sequence");
                 Self.MusicPlayer.OverrideSong(Self.EscapeMusic);
+                Self.DrMonocleIntro.GoToFinished();
             }
 
             public override void OnStateExited()
