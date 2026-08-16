@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://luvuhqvfwsek"]
 
-[ext_resource type="Script" uid="uid://ds5d7vv4rhuc" path="res://Common/Components/BackgroundSongPlayer/BackgroundSongPlayer.cs" id="1_xe777"]
+[ext_resource type="Script" uid="uid://ds5d7vv4rhuc" path="res://Common/Components/BackgroundMusicPlayer/BackgroundMusicPlayer.cs" id="1_xe777"]
 [ext_resource type="Resource" uid="uid://or7lhpp3vsqr" path="res://Common/Audio/Music/Rabun-da.music.tres" id="2_xe777"]
 
-[node name="BackgroundSongPlayer" type="Node" unique_id=506697457 node_paths=PackedStringArray("AudioPlayer")]
+[node name="BackgroundMusicPlayer" type="Node" unique_id=506697457 node_paths=PackedStringArray("AudioPlayer")]
 script = ExtResource("1_xe777")
 DefaultSong = ExtResource("2_xe777")
 AudioPlayer = NodePath("AudioStreamPlayer")

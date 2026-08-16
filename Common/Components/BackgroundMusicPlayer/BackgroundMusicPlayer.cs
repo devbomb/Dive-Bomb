@@ -3,7 +3,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class BackgroundSongPlayer : Node
+    public partial class BackgroundMusicPlayer : Node
     {
         /// <summary>
         ///     The song that plays when you first enter the level.
@@ -25,7 +25,7 @@ namespace FastDragon
 
         private readonly StateMachine _stateMachine = new();
 
-        public BackgroundSongPlayer()
+        public BackgroundMusicPlayer()
         {
             AddChild(_stateMachine);
         }
@@ -68,7 +68,7 @@ namespace FastDragon
                 RestartSong();
         }
 
-        private class DelayingStart : State<BackgroundSongPlayer>
+        private class DelayingStart : State<BackgroundMusicPlayer>
         {
             private double _timer;
 
@@ -87,7 +87,7 @@ namespace FastDragon
             }
         }
 
-        private class Playing : State<BackgroundSongPlayer>
+        private class Playing : State<BackgroundMusicPlayer>
         {
             public override void OnStateEntered()
             {
@@ -97,7 +97,7 @@ namespace FastDragon
             }
         }
 
-        private class Stopped : State<BackgroundSongPlayer>
+        private class Stopped : State<BackgroundMusicPlayer>
         {
             public override void OnStateEntered()
             {

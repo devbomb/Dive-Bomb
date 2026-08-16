@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://gyny2q21c4dm" path="res://Levels/Production/SnapjawSwamp/Maps/TreeTrunks.map" id="1_oad5x"]
 [ext_resource type="PackedScene" uid="uid://jx3c8iprojog" path="res://Levels/Production/SnapjawSwamp/Maps/Intro.map" id="2_oad5x"]
 [ext_resource type="Texture2D" uid="uid://daan2sbuxhu8l" path="res://Levels/Production/SnapjawSwamp/Decals/SnapjawGlyph.png" id="2_uop5j"]
-[ext_resource type="PackedScene" uid="uid://luvuhqvfwsek" path="res://Common/Components/BackgroundSongPlayer/BackgroundSongPlayer.tscn" id="2_w8cgh"]
+[ext_resource type="PackedScene" uid="uid://luvuhqvfwsek" path="res://Common/Components/BackgroundMusicPlayer/BackgroundMusicPlayer.tscn" id="2_w8cgh"]
 [ext_resource type="Resource" uid="uid://d5q7tducvpoq" path="res://Levels/Production/SnapjawSwamp/SnapjawSwamp.music.tres" id="3_6djbt"]
 [ext_resource type="PackedScene" uid="uid://bm7e342twslu5" path="res://Common/FX/WaterfallSplashParticles.tscn" id="3_uop5j"]
 [ext_resource type="PackedScene" uid="uid://ve3cgo7evr8v" path="res://Levels/Production/SnapjawSwamp/Maps/WaterfallTrees.map" id="7_e7jdb"]
@@ -17,7 +17,7 @@ script = ExtResource("1_f80cs")
 LevelName = "Snapjaw Swamp"
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
-[node name="BackgroundSongPlayer" parent="." unique_id=506697457 instance=ExtResource("2_w8cgh")]
+[node name="BackgroundMusicPlayer" parent="." unique_id=506697457 instance=ExtResource("2_w8cgh")]
 DefaultSong = ExtResource("3_6djbt")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=578251509]

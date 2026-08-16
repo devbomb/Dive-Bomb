@@ -8,7 +8,7 @@ namespace FastDragon.Levels.Tutorial
 
         [Export] public BackgroundSong EscapeMusic;
 
-        [Export] public BackgroundSongPlayer MusicPlayer;
+        [Export] public BackgroundMusicPlayer MusicPlayer;
         [Export] public AgentDIntroCutscene AgentDIntro;
         [Export] public DrMonocleIntroSpeechCutscene DrMonocleIntro;
 

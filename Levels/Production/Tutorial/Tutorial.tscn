@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_vo1h1"]
 [ext_resource type="Environment" uid="uid://ddi5qgg5b3fmy" path="res://Common/Skyboxes/GrayCrystal/GrayCrystalSkybox.tres" id="2_eipfg"]
-[ext_resource type="PackedScene" uid="uid://luvuhqvfwsek" path="res://Common/Components/BackgroundSongPlayer/BackgroundSongPlayer.tscn" id="2_l3lwd"]
+[ext_resource type="PackedScene" uid="uid://luvuhqvfwsek" path="res://Common/Components/BackgroundMusicPlayer/BackgroundMusicPlayer.tscn" id="2_l3lwd"]
 [ext_resource type="PackedScene" uid="uid://buitb1uq7i80k" path="res://Levels/Production/Tutorial/Maps/Intro.map" id="2_vwhqw"]
 [ext_resource type="PackedScene" uid="uid://ccs8ll6uytgb7" path="res://Levels/Production/Tutorial/Maps/CameraTut.map" id="3_3rttw"]
 [ext_resource type="Resource" uid="uid://d0isbbcu4lnoq" path="res://Common/Audio/Music/SneakyD.music.tres" id="3_6fp4i"]
@@ -59,7 +59,7 @@ script = ExtResource("1_vo1h1")
 LevelName = "Tutorial"
 ForbidExitLevel = true
 
-[node name="BackgroundSongPlayer" parent="." unique_id=506697457 instance=ExtResource("2_l3lwd")]
+[node name="BackgroundMusicPlayer" parent="." unique_id=506697457 instance=ExtResource("2_l3lwd")]
 DefaultSong = ExtResource("3_6fp4i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=785414872]
@@ -81,7 +81,7 @@ sky_mode = 1
 script = ExtResource("6_wk3rw")
 targetname = "TutorialStoryManager"
 EscapeMusic = ExtResource("9_n1nsi")
-MusicPlayer = NodePath("../BackgroundSongPlayer")
+MusicPlayer = NodePath("../BackgroundMusicPlayer")
 AgentDIntro = NodePath("../Intro/AgentDIntroCutscene")
 DrMonocleIntro = NodePath("../DrMonocleSpeech/DrMonocleIntroSpeechCutsceneRig")
 
