@@ -7,5 +7,6 @@
 script = ExtResource("1_hedak")
 Title = "Sneaky D."
 Music = ExtResource("1_jwd6p")
+VolumeMultiplierLinear = 0.58
 Artist = "Alex Shelley"
 metadata/_custom_type_script = "uid://scn0xkyf0sin"

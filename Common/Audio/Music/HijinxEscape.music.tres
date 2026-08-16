@@ -7,5 +7,6 @@
 script = ExtResource("1_bpmxk")
 Title = "Hijinx Escape"
 Music = ExtResource("1_0gjoc")
+VolumeMultiplierLinear = 0.58
 Artist = "Alex Shelley"
 metadata/_custom_type_script = "uid://scn0xkyf0sin"
