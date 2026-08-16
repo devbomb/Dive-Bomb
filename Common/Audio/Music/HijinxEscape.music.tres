@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BackgroundSong" format=3 uid="uid://duwgbv5vn5foc"]
+
+[ext_resource type="AudioStream" uid="uid://cdngy66jdcxa8" path="res://Common/Audio/Music/HijinxEscape.mp3" id="1_0gjoc"]
+[ext_resource type="Script" uid="uid://scn0xkyf0sin" path="res://Common/Scripts/DataModel/Static/BackgroundSong.cs" id="1_bpmxk"]
+
+[resource]
+script = ExtResource("1_bpmxk")
+Title = "Hijinx Escape"
+Music = ExtResource("1_0gjoc")
+Artist = "Alex Shelley"
+metadata/_custom_type_script = "uid://scn0xkyf0sin"

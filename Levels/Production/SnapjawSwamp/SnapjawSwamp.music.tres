@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BackgroundSong" format=3 uid="uid://d5q7tducvpoq"]
+
+[ext_resource type="Script" uid="uid://scn0xkyf0sin" path="res://Common/Scripts/DataModel/Static/BackgroundSong.cs" id="1_1vmun"]
+[ext_resource type="AudioStream" uid="uid://gjlcrblpc5hw" path="res://Levels/Production/SnapjawSwamp/SnapjawSwamp.mp3" id="1_8rgqn"]
+
+[resource]
+script = ExtResource("1_1vmun")
+Title = "Snapjaw Swamp"
+Music = ExtResource("1_8rgqn")
+Artist = "Alex Shelley"
+metadata/_custom_type_script = "uid://scn0xkyf0sin"
