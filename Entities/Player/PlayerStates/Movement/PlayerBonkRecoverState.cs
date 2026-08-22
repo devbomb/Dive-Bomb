@@ -19,6 +19,7 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
+            Self.LocalVelocity = Vector3.Down;
             Self.MoveAndSlide();
 
             _timer -= (float)deltaD;
