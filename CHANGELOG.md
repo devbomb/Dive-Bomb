@@ -1,4 +1,4 @@
-# Unreleased
+# [0.0.3]
 * **Fixed:** Fixed music not playing in time trial mode
     [(issue)](https://github.com/devbomb/Dive-Bomb/issues/1)
 
