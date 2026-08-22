@@ -10,6 +10,10 @@
     save file during the tutorial's escape sequence
     [(issue)](https://github.com/devbomb/Dive-Bomb/issues/3)
 
+* **Fixed:** Fixed the player not moving with conveyor belts while they recover
+    from a bonk
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/4)
+
 
 # [0.0.2]
 * **Added:** A change log.  Wow!
