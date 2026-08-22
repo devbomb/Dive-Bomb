@@ -14,6 +14,10 @@
     from a bonk
     [(issue)](https://github.com/devbomb/Dive-Bomb/issues/4)
 
+* **Fixed:** Fixed the Atlas showing levels you haven't visited yet, if you open
+    it from a hub world
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/5)
+
 
 # [0.0.2]
 * **Added:** A change log.  Wow!
