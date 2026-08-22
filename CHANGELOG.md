@@ -1,3 +1,24 @@
+# [0.0.3]
+* **Fixed:** Fixed music not playing in time trial mode
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/1)
+
+* **Fixed:** Fixed the wrong music playing when loading a save file during
+    the tutorial's escape sequence
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/2)
+
+* **Fixed:** Fixed the door being incorrectly locked behind you when loading a
+    save file during the tutorial's escape sequence
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/3)
+
+* **Fixed:** Fixed the player not moving with conveyor belts while they recover
+    from a bonk
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/4)
+
+* **Fixed:** Fixed the Atlas showing levels you haven't visited yet, if you open
+    it from a hub world
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/5)
+
+
 # [0.0.2]
 * **Added:** A change log.  Wow!
 

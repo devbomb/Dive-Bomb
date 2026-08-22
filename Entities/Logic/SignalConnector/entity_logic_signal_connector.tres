@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_132y2"]
 [ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_trc4o"]
-[ext_resource type="Script" uid="uid://efalmr110ain" path="res://Entities/Logic/SignalConnector.cs" id="3_trc4o"]
+[ext_resource type="Script" uid="uid://efalmr110ain" path="res://Entities/Logic/SignalConnector/SignalConnector.cs" id="3_trc4o"]
 
 [resource]
 script = ExtResource("2_trc4o")

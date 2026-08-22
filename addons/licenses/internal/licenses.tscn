@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://b6skqw0mtlntn" path="res://addons/licenses/internal/toolbar.gd" id="2_a8iu8"]
 [ext_resource type="Script" uid="uid://ceq2ssr80exo2" path="res://addons/licenses/internal/licenses.gd" id="3"]
 
+[sub_resource type="DPITexture" id="DPITexture_i22c5"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5cx7n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pof4k"]
@@ -40,16 +44,21 @@ layout_mode = 2
 [node name="file_button" type="Button" parent="VBoxContainer/license_file_config" unique_id=1853022451]
 layout_mode = 2
 tooltip_text = "Select a license file to load."
+icon = SubResource("DPITexture_i22c5")
 
 [node name="edit" type="LineEdit" parent="VBoxContainer/license_file_config" unique_id=855786223]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 localize_numeral_system = false
+text = "res://licenses.json"
 placeholder_text = "res://licenses.json"
 
 [node name="set_license_filepath_button" type="Button" parent="VBoxContainer/license_file_config" unique_id=1059481210]
 layout_mode = 2
+tooltip_text = "Selected file is set as the project license file."
+disabled = true
+icon = SubResource("DPITexture_i22c5")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer" unique_id=533559855]
 layout_mode = 2
@@ -73,6 +82,7 @@ _add_button = NodePath("add")
 
 [node name="menu" type="Button" parent="VBoxContainer/HSplitContainer/PanelContainer/VBoxContainer/toolbar" unique_id=1955762640]
 layout_mode = 2
+icon = SubResource("DPITexture_i22c5")
 flat = true
 
 [node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/PanelContainer/VBoxContainer/toolbar" unique_id=464270628]
@@ -84,6 +94,7 @@ vertical_alignment = 1
 
 [node name="add" type="Button" parent="VBoxContainer/HSplitContainer/PanelContainer/VBoxContainer/toolbar" unique_id=1930353259]
 layout_mode = 2
+icon = SubResource("DPITexture_i22c5")
 flat = true
 
 [node name="components" type="Tree" parent="VBoxContainer/HSplitContainer/PanelContainer/VBoxContainer" unique_id=957255201]

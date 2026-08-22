@@ -202,8 +202,20 @@ namespace FastDragon.Levels.Tutorial
                 GD.Print("Dr. Monocle speech finished");
                 Self.AnimationPlayer.Play("Hidden");
 
-                Self.EntranceDoor.StartOpening();
-                Self.ExitDoor.StartOpening();
+                bool isReloading = Self.GetLevel()
+                    .TempStoryFlags
+                    .Contains(TutorialStoryManager.StoryFlags.DrMonocleSpeechCheckpointed);
+
+                if (isReloading)
+                {
+                    Self.EntranceDoor.InstantOpen();
+                    Self.ExitDoor.InstantOpen();
+                }
+                else
+                {
+                    Self.EntranceDoor.StartOpening();
+                    Self.ExitDoor.StartOpening();
+                }
             }
         }
     }
