@@ -12,7 +12,7 @@ namespace FastDragon.Levels.Tutorial
         [Export] public AgentDIntroCutscene AgentDIntro;
         [Export] public DrMonocleIntroSpeechCutscene DrMonocleIntro;
 
-        private static class StoryFlags
+        public static class StoryFlags
         {
             public const string AgentDIntroFinished = "AgentDIntroFinished";
             public const string DrMonocleSpeechCheckpointed = "DrMonocleIntroSpeechCheckpointed";

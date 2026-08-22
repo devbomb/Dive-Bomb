@@ -16,7 +16,7 @@ namespace FastDragon.Levels.Tutorial
         [Export(PropertyHint.Range, "0,1")]
         public float LookAtPlayerPitchInfluence = 1;
 
-        public bool IsPlaying => _stateMachine.CurrentState is not (Idle or Finishing or Finished);
+        public bool IsPlaying => _stateMachine.CurrentState is not (Idle or Finished);
 
         private event Action _selfDestructButtonPressed;
 
@@ -154,7 +154,7 @@ namespace FastDragon.Levels.Tutorial
                 _timer -= delta;
 
                 if (_timer <= 0)
-                    ChangeState<Finishing>();
+                    ChangeState<Finished>();
             }
         }
 
@@ -191,24 +191,6 @@ namespace FastDragon.Levels.Tutorial
                 _timer -= delta;
 
                 if (_timer <= 0)
-                    ChangeState<Finishing>();
-            }
-        }
-
-        private class Finishing : State<DrMonocleIntroSpeechCutscene>
-        {
-            public override void OnStateEntered()
-            {
-                GD.Print("Dr. Monocle speech finishing");
-                Self.AnimationPlayer.Play("Hidden");
-
-                Self.EntranceDoor.StartOpening();
-                Self.ExitDoor.StartOpening();
-            }
-
-            public override void _PhysicsProcess(double delta)
-            {
-                if (!Self.EntranceDoor.IsMoving && !Self.ExitDoor.IsMoving)
                     ChangeState<Finished>();
             }
         }
@@ -220,8 +202,20 @@ namespace FastDragon.Levels.Tutorial
                 GD.Print("Dr. Monocle speech finished");
                 Self.AnimationPlayer.Play("Hidden");
 
-                Self.EntranceDoor.InstantOpen();
-                Self.ExitDoor.InstantOpen();
+                bool isReloading = Self.GetLevel()
+                    .TempStoryFlags
+                    .Contains(TutorialStoryManager.StoryFlags.DrMonocleSpeechCheckpointed);
+
+                if (isReloading)
+                {
+                    Self.EntranceDoor.InstantOpen();
+                    Self.ExitDoor.InstantOpen();
+                }
+                else
+                {
+                    Self.EntranceDoor.StartOpening();
+                    Self.ExitDoor.StartOpening();
+                }
             }
         }
     }
