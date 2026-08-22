@@ -75,6 +75,7 @@ namespace FastDragon
             {
                 SaveFileManager.Current.CurrentLevel = SceneFilePath;
                 SaveFileManager.Current.CurrentLevelVisit = new();
+                SaveFileManager.Current.GetLevelSaveData(SceneFilePath).VisitedOnce = true;
                 SaveFileManager.Instance.RequestAutosave();
             }
         }
