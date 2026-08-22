@@ -44,6 +44,10 @@ namespace FastDragon
 
         [JsonProperty] public Dictionary<string, LevelSaveData> Levels = new();
 
+        public IEnumerable<string> VisitedLevels => Levels
+            .Where(kvp => kvp.Value.VisitedOnce)
+            .Select(kvp => kvp.Key);
+
         public int TotalGemsSpent => Levels.Values.Sum(l => l.Progress.SpentGems);
         public int TotalGemCount => Levels.Values.Sum(l => l.Progress.TotalGemsCollected) - TotalGemsSpent;
         public int TotalFairyCount => Levels.Values.Sum(l => l.Progress.CollectedFairies.Count);

@@ -30,7 +30,7 @@ namespace FastDragon
                 child.QueueFree();
             }
 
-            foreach (string levelScenePath in SaveFileManager.Current.Levels.Keys.OrderBy(k => k))
+            foreach (string levelScenePath in SaveFileManager.Current.VisitedLevels)
             {
                 AddRow(levelScenePath);
             }
