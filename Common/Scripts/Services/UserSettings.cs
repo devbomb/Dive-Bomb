@@ -42,10 +42,7 @@ namespace FastDragon
 
         public void SaveToJson()
         {
-            string json = JsonConvert.SerializeObject(
-                this,
-                new JsonSerializerSettings { Formatting = Formatting.Indented }
-            );
+            string json = JsonUtils.ToJson(this);
 
             using var file = FileAccess.Open(FilePath, FileAccess.ModeFlags.Write);
             file.StoreLine(json);
@@ -75,7 +72,7 @@ namespace FastDragon
                 string json = file.GetAsText();
                 file.Close();
 
-                return JsonConvert.DeserializeObject<UserSettings>(json);
+                return JsonUtils.FromJson<UserSettings>(json);
             }
             catch (JsonException err)
             {
