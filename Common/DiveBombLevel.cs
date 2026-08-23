@@ -20,8 +20,6 @@ namespace FastDragon
         /// </summary>
         [Export] public bool ForbidExitLevel;
 
-        [Export] public bool IsHubWorld;
-
         public readonly TimeTrialManager TimeTrial = new TimeTrialManager();
 
         public int TotalGems => TimeTrial.IsTimeTrialMode
@@ -57,7 +55,7 @@ namespace FastDragon
         {
             AtlasCache.Instance.UpdateCache(this);
 
-            if (IsHubWorld)
+            if (Manifest.IsHubWorld)
                 SaveFileManager.Current.LastHubWorld = Manifest;
 
             // Start a new level visit
@@ -84,7 +82,7 @@ namespace FastDragon
 
         public bool CanExitLevel()
         {
-            if (IsHubWorld)
+            if (Manifest.IsHubWorld)
                 return false;
 
             if (ForbidExitLevel && !GetProgress().ExitReached)

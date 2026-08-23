@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_ess73")
+IsHubWorld = true
 HumanReadableName = "Test Map"
 SceneFilePath = "res://Levels/Production/TestMap/TestMap.tscn"
 metadata/_custom_type_script = "uid://fteyboqsx0a"

@@ -12,7 +12,6 @@
 [node name="DemoHub" type="Node3D" unique_id=876535271]
 script = ExtResource("1_jc8yh")
 Manifest = ExtResource("2_4yo5x")
-IsHubWorld = true
 
 [node name="BackgroundMusicPlayer" parent="." unique_id=506697457 instance=ExtResource("2_xjom2")]
 
