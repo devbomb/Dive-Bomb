@@ -81,10 +81,7 @@ namespace FastDragon
 
         private void SaveToJson()
         {
-            string json = JsonConvert.SerializeObject(
-                this,
-                new JsonSerializerSettings { Formatting = Formatting.Indented }
-            );
+            string json = JsonUtils.ToJson(this);
 
             using var file = FileAccess.Open(FilePath, FileAccess.ModeFlags.Write);
             file.StoreLine(json);
@@ -102,7 +99,7 @@ namespace FastDragon
                 string json = file.GetAsText();
                 file.Close();
 
-                return JsonConvert.DeserializeObject<AtlasCache>(json);
+                return JsonUtils.FromJson<AtlasCache>(json);
             }
             catch (JsonException err)
             {
