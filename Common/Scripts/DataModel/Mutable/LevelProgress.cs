@@ -1,25 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace FastDragon
 {
-    [JsonObject(MemberSerialization.OptIn)]
-    public class LevelProgress
+        public class LevelProgress
     {
-        [JsonProperty] public HashSet<string> CollectedFairies = new();
-        [JsonProperty] public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
-        [JsonProperty] public int SpentGems = 0;
+        public HashSet<string> CollectedFairies = new();
+        public Dictionary<GemColor, HashSet<string>> CollectedGems = new();
+        public int SpentGems = 0;
 
-        [JsonProperty] public bool ExitReached;
+        public bool ExitReached;
 
         /// <summary>
         /// Story flags that should persist even between level visits.
         /// If you want something that will reset when you re-visit the level,
         /// use <see cref="SaveFile.LevelVisit.StoryFlags"/> instead.
         /// </summary>
-        [JsonProperty] public HashSet<string> StoryFlags = new();
+        public HashSet<string> StoryFlags = new();
 
         public int FairiesCollected => CollectedFairies.Count;
         public int TotalGemsCollected => CollectedGems.Sum(kvp => ((int)kvp.Key) * kvp.Value.Count);

@@ -1,40 +1,39 @@
-using Newtonsoft.Json;
+using System;
 using Godot;
 
 namespace FastDragon
 {
-    [JsonObject(MemberSerialization.OptIn)]
-    public partial class UserSettings : RefCounted
+        public partial class UserSettings : RefCounted
     {
         private const string FilePath = "user://UserSettings.json";
 
         public static UserSettings Instance { get; } = LoadFromJson();
 
-        [JsonProperty] public bool ShowPerformanceStats = false;
-        [JsonProperty] public bool ShowPlayerVelocityStats = false;
-        [JsonProperty] public bool UsePhysicsInterpolation = true;
+        public bool ShowPerformanceStats = false;
+        public bool ShowPlayerVelocityStats = false;
+        public bool UsePhysicsInterpolation = true;
 
-        [JsonProperty] public bool InvertCameraX = false;
-        [JsonProperty] public bool InvertCameraY = false;
-        [JsonProperty] public float CameraSensController = 1;
-        [JsonProperty] public float CameraSensMouse = 1;
+        public bool InvertCameraX = false;
+        public bool InvertCameraY = false;
+        public float CameraSensController = 1;
+        public float CameraSensMouse = 1;
 
-        [JsonProperty] public float MasterVolumeLinear
+        public float MasterVolumeLinear
         {
             get => GetBusVolumeLinear("Master");
             set => SetBusVolumeLinear("Master", value);
         }
-        [JsonProperty] public float SfxVolumeLinear
+        public float SfxVolumeLinear
         {
             get => GetBusVolumeLinear("Sfx");
             set => SetBusVolumeLinear("Sfx", value);
         }
-        [JsonProperty] public float MusicVolumeLinear
+        public float MusicVolumeLinear
         {
             get => GetBusVolumeLinear("Music");
             set => SetBusVolumeLinear("Music", value);
         }
-        [JsonProperty] public float DialogVoiceVolumeLinear
+        public float DialogVoiceVolumeLinear
         {
             get => GetBusVolumeLinear("DialogVoice");
             set => SetBusVolumeLinear("DialogVoice", value);
@@ -74,7 +73,7 @@ namespace FastDragon
 
                 return JsonUtils.FromJson<UserSettings>(json);
             }
-            catch (JsonException err)
+            catch (Exception err)
             {
                 GD.PushWarning($"Error parsing UserSettings.json.  Using default settings.\n{err}");
                 return new UserSettings();

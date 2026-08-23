@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using Godot;
 
 namespace FastDragon
@@ -34,8 +35,7 @@ namespace FastDragon
 
         public static AtlasCache Instance { get; } = LoadFromJson();
 
-        [JsonProperty]
-        private Dictionary<string, LevelCollectableSummary> Levels = new Dictionary<string, LevelCollectableSummary>();
+        [JsonInclude] private Dictionary<string, LevelCollectableSummary> Levels = new Dictionary<string, LevelCollectableSummary>();
 
         public void UpdateCache(DiveBombLevel levelRoot)
         {
@@ -101,9 +101,9 @@ namespace FastDragon
 
                 return JsonUtils.FromJson<AtlasCache>(json);
             }
-            catch (JsonException err)
+            catch (Exception err)
             {
-                GD.PushWarning($"Error parsing Atlas cache.  It will be regenerated.\n{err}");
+                GD.PushWarning($"Error loading Atlas cache.  It will be regenerated.\n{err}");
                 return new AtlasCache();
             }
         }

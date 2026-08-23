@@ -1,29 +1,36 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 namespace FastDragon
 {
     public static class JsonUtils
     {
-        private static JsonSerializerSettings _newtonsoftSettings => new()
+        private static System.Text.Json.JsonSerializerOptions _jsonSettings => new()
         {
-            Formatting = Formatting.Indented,
+            WriteIndented = true,
+            IncludeFields = true,
+            IgnoreReadOnlyProperties = true,
+            IgnoreReadOnlyFields = true,
         };
 
         public static T FromJson<T>(string json)
         {
-            return JsonConvert.DeserializeObject<T>(json);
+            return System.Text.Json.JsonSerializer.Deserialize<T>(json, _jsonSettings);
         }
 
         public static string ToJson<T>(T obj)
         {
-            return JsonConvert.SerializeObject(obj, _newtonsoftSettings);
+            return System.Text.Json.JsonSerializer.Serialize(obj, _jsonSettings);
         }
 
         public static int? PeekInt(string json, string propertyName)
         {
-            var jobj = JObject.Parse(json);
-            return jobj.GetValue(nameof(SaveFile.SaveFormatVersion))?.ToObject<int>();
+            var doc = System.Text.Json.JsonDocument.Parse(json);
+
+            if (!doc.RootElement.TryGetProperty(propertyName, out var property))
+                return null;
+
+            if (!property.TryGetInt32(out int result))
+                return null;
+
+            return result;
         }
     }
 }

@@ -1,6 +1,6 @@
 using System;
+using System.Text.Json.Serialization;
 using Godot;
-using Newtonsoft.Json;
 
 namespace FastDragon
 {
@@ -35,23 +35,22 @@ namespace FastDragon
 
     public class PhysicsTicksJsonConverter : JsonConverter<PhysicsTicks>
     {
-        public override bool CanRead => true;
-        public override bool CanWrite => true;
-
-        public override PhysicsTicks ReadJson(
-            JsonReader reader,
-            Type objectType,
-            PhysicsTicks existingValue,
-            bool hasExistingValue,
-            JsonSerializer serializer
+        public override PhysicsTicks Read(
+            ref System.Text.Json.Utf8JsonReader reader,
+            Type typeToConvert,
+            System.Text.Json.JsonSerializerOptions options
         )
         {
-            return new PhysicsTicks((uint)Convert.ToInt32(reader.Value));
+            return reader.GetUInt32();
         }
 
-        public override void WriteJson(JsonWriter writer, PhysicsTicks value, JsonSerializer serializer)
+        public override void Write(
+            System.Text.Json.Utf8JsonWriter writer,
+            PhysicsTicks value,
+            System.Text.Json.JsonSerializerOptions options
+        )
         {
-            writer.WriteValue(value.Ticks);
+            writer.WriteNumberValue(value);
         }
     }
 }
