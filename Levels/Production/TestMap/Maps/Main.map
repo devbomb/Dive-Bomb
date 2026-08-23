@@ -267,8 +267,6 @@
 "origin" "88 220 -64"
 "angles" "0 -90 0"
 "TargetLevel" "res://Levels/Production/SeamonsterBossMap/SeamonsterBossMap.level.tres"
-"SkyboxEnvironment" "res://Levels/Production/SeamonsterBossMap/Skybox.tres"
-"Text" "Smackin' Da Kracken"
 "Type" "1"
 }
 // entity 23
@@ -277,8 +275,6 @@
 "origin" "588 -88 -64"
 "angles" "0 180 0"
 "TargetLevel" "res://Levels/Production/BrokenGlassFactory/BrokenGlassFactory.level.tres"
-"SkyboxEnvironment" "res://Common/Skyboxes/GrayCrystal/GrayCrystalSkybox.tres"
-"Text" "Broken Glass Factory"
 }
 // entity 24
 {
@@ -307,8 +303,6 @@
 "origin" "120 -468 -64"
 "angles" "0 90 0"
 "TargetLevel" "res://Levels/Production/SunsetCastle/SunsetCastle.level.tres"
-"SkyboxEnvironment" "res://Levels/Production/SunsetCastle/Skybox.tres"
-"Text" "Sunset Castle"
 }
 // entity 28
 {
@@ -360,9 +354,7 @@
 "classname" "transport_standard_portal"
 "origin" "360 584 -64"
 "angle" "270"
-"SkyboxEnvironment" "res://Levels/Production/SnapjawSwamp/SnapjawSwampSkybox.tres"
 "TargetLevel" "res://Levels/Production/SnapjawSwamp/SnapjawSwamp.level.tres"
-"Text" "Snapjaw Swamp"
 "FairiesRequired" "7"
 }
 // entity 34
@@ -517,8 +509,6 @@
 "origin" "-308 -48 0"
 "angles" "0 0 0"
 "TargetLevel" "res://Levels/Production/Tutorial/Tutorial.level.tres"
-"SkyboxEnvironment" "res://Common/Skyboxes/GrayCrystal/GrayCrystalSkybox.tres"
-"Text" "Tutorial"
 "Type" "3"
 "_tb_group" "1"
 }
@@ -573,9 +563,6 @@
 "origin" "-104 -440 -192"
 "angles" "0 90 0"
 "TargetLevel" "res://Levels/Production/PlagiarismCanyon/PlagiarismCanyon.level.tres"
-"SkyboxEnvironment" "res://Levels/Production/PlagiarismCanyon/Skybox.tres"
-"Text" "Plagiarism Canyon"
-"FairiesRequired" "0"
 "Type" "3"
 "_tb_group" "2"
 }
