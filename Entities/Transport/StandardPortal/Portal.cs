@@ -48,9 +48,8 @@ namespace FastDragon
         [Export] public float ExitAnimationParabolaHeight = 2;
         [Export] public float ExitAnimationCameraRotateDuration = 1f;
 
-        [Export] public Node3D PlayerSpawn;
-
         [ExportGroup("Internal")]
+        [Export] public Node3D PlayerSpawn;
         [Export] public PortalSurface PortalSurface;
         [Export] public TextureRect FullScreenPortalCamTexture;
         [Export] public Area3D PlayerDetector;
