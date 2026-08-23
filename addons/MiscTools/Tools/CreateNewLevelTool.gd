@@ -14,9 +14,9 @@ func execute() -> void:
 	var folder = \
 		"res://Levels/Debug" if debug else \
 		"res://Levels/Production"
-	_create_new_level(level_id, folder)
+	_create_new_level(level_id, folder, debug)
 	
-func _create_new_level(level_id: String, parent_folder: String) -> void:
+func _create_new_level(level_id: String, parent_folder: String, debug: bool) -> void:
 	var level_folder: String = parent_folder.path_join(level_id)
 	DirAccess.make_dir_absolute(level_folder)
 	
@@ -35,19 +35,24 @@ func _create_new_level(level_id: String, parent_folder: String) -> void:
 	var gdignore_file: FileAccess = FileAccess.open(autosaves_folder.path_join(".gdignore"), FileAccess.WRITE)
 	gdignore_file.close()
 	
-	# Create a placeholder skybox
-	var environment_resource = Environment.new()
-	ResourceSaver.save(environment_resource, level_folder.path_join(level_id + "Skybox.tres"))
+	# Create a manifest for the level
+	var manifest = LevelManifest.new()
+	manifest.Debug = debug
+	manifest.HumanReadableName = level_id
+	manifest.SceneFilePath = level_folder.path_join(level_id + ".tscn")
+	ResourceSaver.save(manifest, level_folder.path_join(level_id + ".level.tres"))
 	
 	# Create the "official" scene
 	var level_root = DiveBombLevel.new()
 	level_root.name = level_id
+	level_root.Manifest = manifest
 	
+	# Use the default skybox
 	var environment_node = WorldEnvironment.new()
 	level_root.add_child(environment_node)
 	environment_node.owner = level_root
 	environment_node.name = "WorldEnvironment"
-	environment_node.environment = environment_resource
+	environment_node.environment = load(manifest.SkyBoxEnvironmentFilePath)
 	
 	var sun = DirectionalLight3D.new()
 	level_root.add_child(sun)
@@ -59,7 +64,7 @@ func _create_new_level(level_id: String, parent_folder: String) -> void:
 	# Save the scene
 	var scene = PackedScene.new()
 	scene.pack(level_root)
-	ResourceSaver.save(scene, level_folder.path_join(level_id + ".tscn"))
+	ResourceSaver.save(scene, manifest.SceneFilePath)
 	
 	# Refresh the editor so the new folder can be seen
 	EditorInterface.get_resource_filesystem().scan()

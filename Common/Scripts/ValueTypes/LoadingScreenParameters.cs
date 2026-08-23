@@ -4,8 +4,8 @@ namespace FastDragon
 {
     public class LoadingScreenParameters
     {
-        public string TargetLevelScenePath;
-        public string PreviousLevelScenePath;
+        public LevelManifest TargetLevel;
+        public LevelManifest PreviousLevel;
         public Environment SkyBoxEnvironment;
 
         /// <summary>
@@ -24,8 +24,8 @@ namespace FastDragon
         public float CameraPitchRad;
 
         public static LoadingScreenParameters FromCurrentLevel(
-            string targetLevelScenePath,
-            string previousLevelScenePath,
+            LevelManifest targetLevel,
+            LevelManifest previousLevel,
             Environment skyBoxEnvironment,
             SceneTree sceneTree
         )
@@ -35,8 +35,8 @@ namespace FastDragon
 
             return new LoadingScreenParameters
             {
-                TargetLevelScenePath = targetLevelScenePath,
-                PreviousLevelScenePath = previousLevelScenePath,
+                TargetLevel = targetLevel,
+                PreviousLevel = previousLevel,
                 SkyBoxEnvironment = skyBoxEnvironment,
 
                 OldSun = (DirectionalLight3D)oldScene.FindNode<DirectionalLight3D>().Duplicate(),

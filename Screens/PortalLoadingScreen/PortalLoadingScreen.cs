@@ -52,7 +52,7 @@ namespace FastDragon
         private Control _timeTrialToggleHolder => GetNode<Control>("%TimeTrialToggleHolder");
         private CheckButton _timeTrialToggle => GetNode<CheckButton>("%TimeTrialToggle");
 
-        private bool _isReturningHome => _parameters.PreviousLevelScenePath != null;
+        private bool _isReturningHome => _parameters.PreviousLevel != null;
         private DiveBombLevel _loadedSceneNode;
 
         private readonly StateMachine _stateMachine = new StateMachine();
@@ -81,8 +81,8 @@ namespace FastDragon
                 + " {GemsSpent}";
             Log.Information(
                 logTemplate,
-                parameters.PreviousLevelScenePath,
-                parameters.TargetLevelScenePath,
+                parameters.PreviousLevel.SceneFilePath,
+                parameters.TargetLevel.SceneFilePath,
                 _isReturningHome,
                 SaveFileManager.Current.TotalGemCount + SaveFileManager.Current.TotalGemsSpent,
                 SaveFileManager.Current.TotalGemsSpent
@@ -103,7 +103,7 @@ namespace FastDragon
             // See https://github.com/godotengine/godot/issues/107548
             new System.Threading.Thread(() =>
             {
-                var loadedScene = ResourceLoader.Load<PackedScene>(parameters.TargetLevelScenePath);
+                var loadedScene = ResourceLoader.Load<PackedScene>(parameters.TargetLevel.SceneFilePath);
                 SetDeferred(nameof(LoadedScene), loadedScene);
             }).Start();
 
@@ -194,7 +194,7 @@ namespace FastDragon
         {
             var matchingPortal = sceneRoot
                 .EnumerateDescendantsOfType<Portal>()
-                .FirstOrDefault(p => p.TargetLevel == _parameters.PreviousLevelScenePath);
+                .FirstOrDefault(p => p.TargetLevel == _parameters.PreviousLevel.ResourcePath);
 
             if (matchingPortal != null)
                 return matchingPortal;

@@ -35,15 +35,14 @@ namespace FastDragon
         public static AtlasCache Instance { get; } = LoadFromJson();
 
         [JsonProperty]
-        private Dictionary<string, LevelSummary> Levels = new Dictionary<string, LevelSummary>();
+        private Dictionary<string, LevelCollectableSummary> Levels = new Dictionary<string, LevelCollectableSummary>();
 
-        public void UpdateCache(string levelSceneFile, DiveBombLevel levelRoot)
+        public void UpdateCache(DiveBombLevel levelRoot)
         {
-            Levels[levelSceneFile] = new LevelSummary
-            {
-                HumanReadableName = levelRoot.LevelName
-                    ?? "No level name specified, or scene does not have a Player",
+            string key = levelRoot.Manifest.ResourcePath;
 
+            Levels[levelRoot.Manifest.ResourcePath] = new LevelCollectableSummary
+            {
                 TotalGemsInLevel = levelRoot
                     .EnumerateDescendantsOfType<Gem>()
                     .Sum(g => (int)g.Value),
@@ -56,26 +55,28 @@ namespace FastDragon
             SaveToJson();
         }
 
-        public LevelSummary GetEntry(string levelSceneFile)
+        public LevelCollectableSummary GetEntry(LevelManifest level)
         {
+            string key = level.ResourcePath;
+
             // If the player moves their save file to a different computer, then
             // they may have levels in their save file that aren't in the new
             // computer's cache.  If that happens, sneakily load the level and
             // update the cache.  This will be slow, but is expected to be rare.
-            if (!Levels.ContainsKey(levelSceneFile))
+            if (!Levels.ContainsKey(key))
             {
-                GD.PushWarning($"Atlas cache miss: {levelSceneFile}");
+                GD.PushWarning($"Atlas cache miss: {key}");
 
                 var levelRoot = ResourceLoader
-                    .Load<PackedScene>(levelSceneFile)
+                    .Load<PackedScene>(level.SceneFilePath)
                     .Instantiate<DiveBombLevel>();
 
-                UpdateCache(levelSceneFile, levelRoot);
+                UpdateCache(levelRoot);
 
                 levelRoot.Free();
             }
 
-            return Levels[levelSceneFile];
+            return Levels[key];
         }
 
         private void SaveToJson()

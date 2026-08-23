@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://bvm78fvist222"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_u6lad"]
+
+[resource]
+script = ExtResource("1_u6lad")
+HumanReadableName = "Sunset Castle"
+SkyBoxEnvironmentFilePath = "res://Levels/Production/SunsetCastle/Skybox.tres"
+SceneFilePath = "res://Levels/Production/SunsetCastle/SunsetCastle.tscn"
+metadata/_custom_type_script = "uid://fteyboqsx0a"

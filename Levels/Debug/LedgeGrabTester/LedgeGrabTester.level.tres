@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://brdoh0cypaiyk"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_gmvg4"]
+
+[resource]
+script = ExtResource("1_gmvg4")
+Debug = true
+SceneFilePath = "res://Levels/Debug/LedgeGrabTester/LedgeGrabTester.tscn"
+metadata/_custom_type_script = "uid://fteyboqsx0a"

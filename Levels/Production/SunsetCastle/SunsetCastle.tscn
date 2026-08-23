@@ -3,11 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://6o8q5t4vm66p" path="res://Levels/Production/SunsetCastle/Maps/SunsetCastle.map" id="1_4ems5"]
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_7a71f"]
 [ext_resource type="Environment" uid="uid://dp38ywrpiuhjq" path="res://Levels/Production/SunsetCastle/Skybox.tres" id="1_7bxwh"]
+[ext_resource type="Resource" uid="uid://bvm78fvist222" path="res://Levels/Production/SunsetCastle/SunsetCastle.level.tres" id="2_cx6rl"]
 [ext_resource type="PackedScene" uid="uid://t1vahhcvv1hb" path="res://Entities/Detail/Fireplace.tscn" id="3_ss8in"]
 
 [node name="Castle" type="Node3D" unique_id=1062335190]
 script = ExtResource("1_7a71f")
-LevelName = "Sunset Castle"
+Manifest = ExtResource("2_cx6rl")
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=999220693]

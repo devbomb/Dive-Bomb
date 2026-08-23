@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://cf2n4gpvk7l5d"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_t1ukw"]
+
+[resource]
+script = ExtResource("1_t1ukw")
+HumanReadableName = "Plagiarism Canyon"
+SkyBoxEnvironmentFilePath = "res://Levels/Production/PlagiarismCanyon/Skybox.tres"
+SceneFilePath = "res://Levels/Production/PlagiarismCanyon/PlagiarismCanyon.tscn"
+metadata/_custom_type_script = "uid://fteyboqsx0a"

@@ -23,9 +23,9 @@ namespace FastDragon
             int fairies = progress.CollectedFairies.Count;
             int gems = progress.TotalGemsCollected;
 
-            var summary = level.GetSummary();
-            int totalFairies = summary.TotalFairiesInLevel;
-            int totalGems = summary.TotalGemsInLevel;
+            var collectables = level.GetCollectableSummary();
+            int totalFairies = collectables.TotalFairiesInLevel;
+            int totalGems = collectables.TotalGemsInLevel;
 
             if (fairies >= totalFairies && gems >= totalGems)
                 Animator.Play("Showing");

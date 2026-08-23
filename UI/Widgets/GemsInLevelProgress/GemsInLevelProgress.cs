@@ -14,13 +14,13 @@ namespace FastDragon
             DiveBombLevel level = this.GetLevel();
             if (level != null)
             {
-                var levelSummary = AtlasCache.Instance.GetEntry(level.SceneFilePath);
+                var collectables = AtlasCache.Instance.GetEntry(level.Manifest);
 
                 int prevCollected = _gemsCollected;
                 int prevInLevel = _gemsInLevel;
 
                 _gemsCollected = level.GetProgress().TotalGemsCollected;
-                _gemsInLevel = levelSummary.TotalGemsInLevel;
+                _gemsInLevel = collectables.TotalGemsInLevel;
                 if (prevCollected != _gemsCollected || prevInLevel != _gemsInLevel)
                 {
                     _label.Text = $"{_gemsCollected}/{_gemsInLevel}";

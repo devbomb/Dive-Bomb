@@ -2,6 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://dfo7m2hjbbpml" path="res://Themes/Themes/HackerTerminal.tres" id="1_flfsu"]
 [ext_resource type="Script" uid="uid://bfymvfpen7yyf" path="res://UI/Menus/SaveSlotManagementMenu/SaveSlotManagementMenu.cs" id="1_wxgf2"]
+[ext_resource type="Resource" uid="uid://s5yhblbj7gja" path="res://Levels/Production/Tutorial/Tutorial.level.tres" id="3_mw20n"]
+[ext_resource type="Resource" uid="uid://bnmahsr00t7rg" path="res://Levels/Production/DemoHub/DemoHub.level.tres" id="4_mvjcj"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_wxgf2"]
 action = &"ui_cancel"
@@ -18,8 +20,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_flfsu")
 script = ExtResource("1_wxgf2")
-NewGameLevel = "uid://btejrg27q3lyj"
-NewGameHubWorld = "uid://cc5lvn7b36ec5"
+NewGameLevel = ExtResource("3_mw20n")
+NewGameHubWorld = ExtResource("4_mvjcj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1197372647]
 layout_mode = 2

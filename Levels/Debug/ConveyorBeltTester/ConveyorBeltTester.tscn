@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_r8uk7"]
 [ext_resource type="PackedScene" uid="uid://cjrq4wvokpa7i" path="res://Levels/Debug/ConveyorBeltTester/Maps/ConveyorBeltTester.map" id="2_kk84g"]
+[ext_resource type="Resource" uid="uid://bjpefs8kmtpxb" path="res://Levels/Debug/ConveyorBeltTester/ConveyorBeltTester.level.tres" id="2_lfqk1"]
 [ext_resource type="PackedScene" uid="uid://dm46wyspjqcns" path="res://Entities/Player/FX/BonkFX/BonkFX.tscn" id="3_jwo76"]
 
 [node name="ConveyorBeltTester" type="Node3D" unique_id=1881073014]
 script = ExtResource("1_r8uk7")
-LevelName = "Conveyor Belt Tester"
+Manifest = ExtResource("2_lfqk1")
 metadata/_custom_type_script = "uid://qt3xvtm481hw"
 
 [node name="ConveyorBeltTester" parent="." unique_id=1817467359 instance=ExtResource("2_kk84g")]

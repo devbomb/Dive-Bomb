@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://787jeqci6bd0"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_e5ihb"]
+
+[resource]
+script = ExtResource("1_e5ihb")
+HumanReadableName = "Broken Glass Factory"
+SkyBoxEnvironmentFilePath = "res://Common/Skyboxes/GrayCrystal/GrayCrystalSkybox.tres"
+SceneFilePath = "res://Levels/Production/BrokenGlassFactory/BrokenGlassFactory.tscn"
+metadata/_custom_type_script = "uid://fteyboqsx0a"
