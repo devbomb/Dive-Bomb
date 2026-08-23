@@ -1,3 +1,24 @@
+# Unreleased
+* **Breaking:** Changed the way levels are identified in save files.  This means
+    all save files from previous versions of the game are now incompatible and
+    cannot be loaded.
+    * **Personal note:** The game is still in alpha, so you can expect further
+        compatibility-breaking updates in the future.  This isn't much of a loss
+        right now, since the game is so short that losing your save isn't a big
+        deal.  When the game starts getting longer (and starts reaching more
+        people), I'll start looking into ways to automatically update/migrate
+        save files from old versions.  For now, though, don't get too attached
+        to your 20 minutes of progress ;D
+
+* **Changed:** Save files now have a "format version" number embedded in them,
+    so the game can tell if a save file is compatible with the current version
+    of the game.
+
+* **Fixed:** If an incompatible or corrupted save file exists, it will no longer
+    completely destroy the save management menu.  It will instead label that
+    save as either "incompatible" or "toast", and give you the opportunity to
+    delete it.
+
 # [0.0.3]
 * **Fixed:** Fixed music not playing in time trial mode
     [(issue)](https://github.com/devbomb/Dive-Bomb/issues/1)
