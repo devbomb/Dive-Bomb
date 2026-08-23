@@ -8,8 +8,6 @@ namespace FastDragon
     {
         [Export] public LevelManifest Manifest;
 
-        public string LevelName => Manifest.HumanReadableName;
-
         /// <summary>
         /// Set this to true to prevent the player from exiting the level
         /// through the pause menu, even if this level isn't a home world.
