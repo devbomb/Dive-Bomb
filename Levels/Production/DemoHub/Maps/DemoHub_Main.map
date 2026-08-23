@@ -200,8 +200,6 @@
 "origin" "344 120 16"
 "angle" "180"
 "TargetLevel" "res://Levels/Production/SeamonsterBossMap/SeamonsterBossMap.level.tres"
-"Text" "Smackin' Da Cracken"
-"SkyboxEnvironment" "res://Levels/Production/SeamonsterBossMap/Skybox.tres"
 }
 // entity 5
 {
@@ -209,6 +207,4 @@
 "origin" "360 -120 16"
 "angle" "180"
 "TargetLevel" "res://Levels/Production/SnapjawSwamp/SnapjawSwamp.level.tres"
-"Text" "Snapjaw Swamp"
-"SkyboxEnvironment" "res://Levels/Production/SnapjawSwamp/SnapjawSwampSkybox.tres"
 }

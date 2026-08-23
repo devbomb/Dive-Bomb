@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_s2b4s")
+IsHubWorld = true
 HumanReadableName = "Demo Hub"
 SkyBoxEnvironmentFilePath = "res://Levels/Debug/DummyMap/Skybox.tres"
 SceneFilePath = "res://Levels/Production/DemoHub/DemoHub.tscn"

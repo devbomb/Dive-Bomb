@@ -8,8 +8,6 @@ namespace FastDragon
     {
         [Export] public LevelManifest Manifest;
 
-        public string LevelName => Manifest.HumanReadableName;
-
         /// <summary>
         /// Set this to true to prevent the player from exiting the level
         /// through the pause menu, even if this level isn't a home world.
@@ -21,8 +19,6 @@ namespace FastDragon
         /// level exit canon at least once.
         /// </summary>
         [Export] public bool ForbidExitLevel;
-
-        [Export] public bool IsHubWorld;
 
         public readonly TimeTrialManager TimeTrial = new TimeTrialManager();
 
@@ -59,7 +55,7 @@ namespace FastDragon
         {
             AtlasCache.Instance.UpdateCache(this);
 
-            if (IsHubWorld)
+            if (Manifest.IsHubWorld)
                 SaveFileManager.Current.LastHubWorld = Manifest;
 
             // Start a new level visit
@@ -86,7 +82,7 @@ namespace FastDragon
 
         public bool CanExitLevel()
         {
-            if (IsHubWorld)
+            if (Manifest.IsHubWorld)
                 return false;
 
             if (ForbidExitLevel && !GetProgress().ExitReached)

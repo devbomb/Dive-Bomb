@@ -14,6 +14,7 @@ namespace FastDragon
         ///     list all level in the game.
         /// </summary>
         [Export] public bool Debug { get; set; }
+        [Export] public bool IsHubWorld { get; set; }
 
         [Export] public string HumanReadableName { get; set; }
         [Export(PropertyHint.FilePath)] public string SkyBoxEnvironmentFilePath { get; set; }
