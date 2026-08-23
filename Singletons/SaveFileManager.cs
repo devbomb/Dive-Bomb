@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Godot;
+
 
 namespace FastDragon
 {
@@ -50,27 +51,82 @@ namespace FastDragon
         /// Returns the save data located in the given slot without technically
         /// "loading" it as the current file.  Useful if you want to display a
         /// summary of this save file in a menu.
-        ///
-        /// Returns null if there is no save file in this slot.
         /// </summary>
-        public SaveFile PeekSlot(int slotNumber)
+        public PeekResult PeekSlot(int slotNumber, out SaveFile result)
         {
+            result = null;
+
             if (!SlotHasData(slotNumber))
-                return null;
+                return PeekResult.Empty;
 
-            string filePath = SlotFilePath(slotNumber);
-            using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
-            string json = file.GetAsText();
-            file.Close();
+            try
+            {
+                string filePath = SlotFilePath(slotNumber);
+                using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
+                string json = file.GetAsText();
+                file.Close();
 
-            return SaveFile.FromJson(json);
+                // Check the version number to see if it's compatible
+                var jobj = JObject.Parse(json);
+                int? version = jobj.GetValue(nameof(SaveFile.SaveFormatVersion))?.ToObject<int>();
+
+                if (version == null || version.Value < SaveFile.MinSaveFormatVersion)
+                    return PeekResult.TooOld;
+
+                if (version > SaveFile.CurrentSaveFormatVersion)
+                    return PeekResult.TooNew;
+
+                result = SaveFile.FromJson(json);
+                return PeekResult.Valid;
+            }
+            catch (Exception e)
+            {
+                GD.PushError(e);
+                return PeekResult.Broken;
+            }
+        }
+
+        public enum PeekResult
+        {
+            /// <summary>
+            ///     There is no data in this save slot
+            /// </summary>
+            Empty,
+
+            /// <summary>
+            ///     This save is safe to load
+            /// </summary>
+            Valid,
+
+            /// <summary>
+            ///     This save contains invalid json, or otherwise causes
+            ///     an exception when trying to parse it
+            /// </summary>
+            Broken,
+
+            /// <summary>
+            ///     This save is incompatible with the current version of the
+            ///     game because the version that wrote it is too old.
+            /// </summary>
+            TooOld,
+
+            /// <summary>
+            ///     This save was made by a newer version of the game than the
+            ///     version being played.
+            /// </summary>
+            TooNew,
         }
 
         public void LoadFromSlot(int slotNumber)
         {
-            ActiveSlot = slotNumber;
-            CurrentFile = PeekSlot(slotNumber);
+            if (PeekSlot(slotNumber, out var saveFile) != PeekResult.Valid)
+            {
+                GD.PushError($"Refusing to invalid save in slot {slotNumber}");
+                return;
+            }
 
+            ActiveSlot = slotNumber;
+            CurrentFile = saveFile;
             LevelTransitionManager.Instance.GoToLevelWithFadeToBlack(CurrentFile.CurrentLevel);
         }
 

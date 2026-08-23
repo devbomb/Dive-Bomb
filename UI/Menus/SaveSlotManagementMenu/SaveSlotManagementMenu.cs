@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 using System.Linq;
 
 namespace FastDragon
@@ -146,12 +147,15 @@ namespace FastDragon
 
             private static string SlotText(int slotNumber)
             {
-                if (!SaveFileManager.Instance.SlotHasData(slotNumber))
-                    return "New Game";
-
-                // Peek at the save file to learn which level it was saved in
-                var saveFile = SaveFileManager.Instance.PeekSlot(slotNumber);
-                return saveFile.CurrentLevel.HumanReadableName;
+                switch (SaveFileManager.Instance.PeekSlot(slotNumber, out var saveFile))
+                {
+                    case SaveFileManager.PeekResult.Empty: return "New Game";
+                    case SaveFileManager.PeekResult.Valid: return saveFile.CurrentLevel.HumanReadableName;
+                    case SaveFileManager.PeekResult.Broken: return "ERROR: This save file is toast.";
+                    case SaveFileManager.PeekResult.TooOld: return "ERROR: Incompatible (too old)";
+                    case SaveFileManager.PeekResult.TooNew: return "ERROR: Incompatible (too new)";
+                    default: throw new UnreachableException();
+                }
             }
         }
     }
