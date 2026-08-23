@@ -150,7 +150,7 @@ namespace FastDragon
                 switch (SaveFileManager.Instance.PeekSlot(slotNumber, out var saveFile))
                 {
                     case SaveFileManager.PeekResult.Empty: return "New Game";
-                    case SaveFileManager.PeekResult.Valid: return saveFile.CurrentLevel.HumanReadableName;
+                    case SaveFileManager.PeekResult.Valid: return saveFile.CurrentLevel.Manifest.HumanReadableName;
                     case SaveFileManager.PeekResult.Broken: return "ERROR: This save file is toast.";
                     case SaveFileManager.PeekResult.TooOld: return "ERROR: Incompatible (too old)";
                     case SaveFileManager.PeekResult.TooNew: return "ERROR: Incompatible (too new)";

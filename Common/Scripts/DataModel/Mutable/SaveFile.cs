@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using Godot;
 
 namespace FastDragon
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public partial class SaveFile : RefCounted
     {
         /// <summary>
@@ -26,36 +25,21 @@ namespace FastDragon
         /// </summary>
         public const int MinSaveFormatVersion = 1;
 
-        [JsonProperty] public int? SaveFormatVersion = CurrentSaveFormatVersion;
+        public int? SaveFormatVersion = CurrentSaveFormatVersion;
 
-        public LevelManifest CurrentLevel;
-        [JsonProperty("CurrentLevel")] private string _currentLevelFilePath
-        {
-            get => CurrentLevel?.ResourcePath;
-            set => CurrentLevel = value == null
-                ? null
-                : ResourceLoader.Load<LevelManifest>(value);
-        }
+        public LevelManifestPath CurrentLevel;
 
         /// <summary>
         /// The level we should return to when "exit level" is selected in the
         /// pause menu, or when a level exit cannon is used.
         /// </summary>
-        public LevelManifest LastHubWorld
-            = ResourceLoader.Load<LevelManifest>("res://Levels/Production/TestMap/TestMap.level.tres");
-        [JsonProperty("LastHubWorld")] private string _lastHubWorldFilePath
-        {
-            get => LastHubWorld?.ResourcePath;
-            set => LastHubWorld = value == null
-                ? null
-                : ResourceLoader.Load<LevelManifest>(value);
-        }
+        public LevelManifestPath LastHubWorld = new("res://Levels/Production/TestMap/TestMap.level.tres");
 
         /// <summary>
         /// The number of times the player has died outside of time trial mode.
         /// You don't get punished for this; it's just a fun little counter.
         /// </summary>
-        [JsonProperty] public int TotalDeaths;
+        public int TotalDeaths;
 
         /// <summary>
         /// The total amount of time the player has spent in a level or home
@@ -74,11 +58,11 @@ namespace FastDragon
         /// DOES increase while non-game-pausing cutscenes are playing (such as
         /// the vent animation)
         /// </summary>
-        [JsonProperty] public PhysicsTicks TotalPlaytime;
+        public PhysicsTicks TotalPlaytime;
 
-        [JsonProperty] public Dictionary<string, LevelSaveData> Levels = new();
+        public Dictionary<string, LevelSaveData> Levels = new();
 
-        public IEnumerable<string> VisitedLevels => Levels
+        [JsonIgnore] public IEnumerable<string> VisitedLevels => Levels
             .Where(kvp => kvp.Value.VisitedOnce)
             .Select(kvp => kvp.Key);
 
@@ -95,23 +79,22 @@ namespace FastDragon
         ///
         /// EG: The stats that we show after you reach the exit
         /// </summary>
-        [JsonProperty] public LevelVisit CurrentLevelVisit = new();
-        [JsonObject(MemberSerialization.OptIn)]
+        public LevelVisit CurrentLevelVisit = new();
         public class LevelVisit
         {
-            [JsonProperty] public string LastCheckpoint = null;
+            public string LastCheckpoint = null;
 
             /// <summary>
             /// Story flags that need to be persisted if the player saves/reloads
             /// mid-level, but that should still reset on revists.
             /// </summary>
-            [JsonProperty] public HashSet<string> StoryFlags = new();
+            public HashSet<string> StoryFlags = new();
 
-            [JsonProperty] public PhysicsTicks Playtime;
-            [JsonProperty] public int Deaths;
-            [JsonProperty] public int FairiesFound;
-            [JsonProperty] public int GemsSpent;
-            [JsonProperty] public Dictionary<GemColor, int> GemsFound = new();
+            public PhysicsTicks Playtime;
+            public int Deaths;
+            public int FairiesFound;
+            public int GemsSpent;
+            public Dictionary<GemColor, int> GemsFound = new();
 
             public int TotalGemsFound => GemsFound.Sum(x => (int)x.Key * x.Value);
 
@@ -122,22 +105,6 @@ namespace FastDragon
 
                 GemsFound[color]++;
             }
-        }
-
-        public static SaveFile FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<SaveFile>(json);
-        }
-
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(
-                this,
-                new JsonSerializerSettings
-                {
-                    Formatting = Formatting.Indented,
-                }
-            );
         }
 
         public LevelSaveData GetLevelSaveData(LevelManifest level)

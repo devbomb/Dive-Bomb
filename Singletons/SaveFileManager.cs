@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
 using Godot;
-
 
 namespace FastDragon
 {
@@ -67,8 +65,7 @@ namespace FastDragon
                 file.Close();
 
                 // Check the version number to see if it's compatible
-                var jobj = JObject.Parse(json);
-                int? version = jobj.GetValue(nameof(SaveFile.SaveFormatVersion))?.ToObject<int>();
+                int? version = JsonUtils.PeekInt(json, nameof(SaveFile.SaveFormatVersion));
 
                 if (version == null || version.Value < SaveFile.MinSaveFormatVersion)
                     return PeekResult.TooOld;
@@ -76,7 +73,7 @@ namespace FastDragon
                 if (version > SaveFile.CurrentSaveFormatVersion)
                     return PeekResult.TooNew;
 
-                result = SaveFile.FromJson(json);
+                result = JsonUtils.FromJson<SaveFile>(json);
                 return PeekResult.Valid;
             }
             catch (Exception e)
@@ -141,7 +138,7 @@ namespace FastDragon
 
             string filePath = SlotFilePath(slotNumber);
             using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write);
-            file.StoreLine(CurrentFile.ToJson());
+            file.StoreLine(JsonUtils.ToJson(CurrentFile));
             file.Close();
 
             ActiveSlot = slotNumber;
