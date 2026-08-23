@@ -8,20 +8,28 @@ plugin to create all of the required files for a blank level.
 
 A Dive Bomb level consists of:
 * A [folder](#creating-the-level-folder) containing the following files:
-    * A [.map file](#creating-the-map-file) created in Trenchbroom, which contains
-        the bulk of the level's contents, including level geometry, gem/enemy
-        placements, the player's spawn point, checkpoints, etc.
+    * A `LevelManifest` resource, which simultaneously acts like an identifier
+        for the level _and_ contains metadata about it, such as:
+        * Its name
+        * The the path to its [.tscn file](#creating-the-tscn-file)
+        * The [skybox](#creating-the-skybox) that should be used in this level's
+            [portal](#creating-a-portal)
+        * Whether or not it's intended to be played in the "production" game
+            (as opposed to just being for testing)
 
-    * A [.tscn file](#creating-the-tscn-file), which acts as the "official" scene
-        for the level.  It contains an
-        [instance](#how-it-works-funcgodotmapimporter) of the map file, along
+    * One or more [.map files](#creating-the-map-file) created in Trenchbroom,
+        which contain the bulk of the level's contents, including level geometry,
+        gem/enemy placements, the player's spawn point, checkpoints, etc.
+
+    * A [.tscn file](#creating-the-tscn-file) containing an
+        [instance](#how-it-works-funcgodotmapimporter) of each map file, along
         with a few Godot-specific nodes that are inconvenient to create in
         Trenchbroom.
 
     * A [skybox](#creating-the-skybox), which is used both in the level itself and
         as a crucial part of the seamless loading screen effect.
 
-    * Any other level-specific art assets that are only used here
+    * Any other level-specific art assets or scripts that are only used here
 
 * A [portal](#creating-a-portal) leading to the level from one of the
     home worlds.
@@ -121,7 +129,9 @@ Trenchbroom is great for creating level geometry and placing entities, but there
 are some things that are easier to do in the Godot editor.  For that reason the
 "official" scene for each level is a plain old .tscn file.  The .tscn file
 contains these key nodes:
-* An [instance](#how-it-works-funcgodotmapimporter) of the map you created
+* A `DiveBombLevel` as the root, which contains a reference to this level's
+    `LevelManifest` resource
+* An [instance](#how-it-works-funcgodotmapimporter) of the map(s) you created
     in Trenchbroom
 * A `DirectionalLight3D` that acts as this level's "sun"
 * A `WorldEnvironment` that sets the level's [skybox](#creating-the-skybox)
@@ -144,13 +154,8 @@ parameter in the `.tscn` file's `WorldEnvironment` node.
 # Creating a portal
 In the home world's .map file, place a `Transport_/StandardPortal` entity
 with the following parameters:
-* `SkyboxEnvironment`: the path to the `.tres` file of the `Environment` asset
-    you created in the last step.  Must start with "res://"
-* `TargetLevel`: the path to the `.tscn` file for this level.  Must start with
-    "res://"
-* `Text`: the text that floats in front of the portal.  Should be the same as
-    the level's name(as defined in the PlayerSpawn's parameters), but this is
-    not enforced.
+* `TargetLevel`: the path to this level's `LevelManifest` resource.
+    Must start with "res://" and end with ".level.tres".
 
 # How it works: FuncGodotMapImporter
 
