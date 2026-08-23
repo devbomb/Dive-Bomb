@@ -76,7 +76,7 @@ namespace FastDragon
                 if (version > SaveFile.CurrentSaveFormatVersion)
                     return PeekResult.TooNew;
 
-                result = SaveFile.FromJson(json);
+                result = JsonUtils.FromJson<SaveFile>(json);
                 return PeekResult.Valid;
             }
             catch (Exception e)
@@ -141,7 +141,7 @@ namespace FastDragon
 
             string filePath = SlotFilePath(slotNumber);
             using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Write);
-            file.StoreLine(CurrentFile.ToJson());
+            file.StoreLine(JsonUtils.ToJson(CurrentFile));
             file.Close();
 
             ActiveSlot = slotNumber;

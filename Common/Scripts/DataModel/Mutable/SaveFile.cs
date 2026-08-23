@@ -124,22 +124,6 @@ namespace FastDragon
             }
         }
 
-        public static SaveFile FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<SaveFile>(json);
-        }
-
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(
-                this,
-                new JsonSerializerSettings
-                {
-                    Formatting = Formatting.Indented,
-                }
-            );
-        }
-
         public LevelSaveData GetLevelSaveData(LevelManifest level)
         {
             if (!Levels.ContainsKey(level.ResourcePath))
