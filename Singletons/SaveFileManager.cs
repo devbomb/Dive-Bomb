@@ -67,8 +67,7 @@ namespace FastDragon
                 file.Close();
 
                 // Check the version number to see if it's compatible
-                var jobj = JObject.Parse(json);
-                int? version = jobj.GetValue(nameof(SaveFile.SaveFormatVersion))?.ToObject<int>();
+                int? version = JsonUtils.PeekInt(json, nameof(SaveFile.SaveFormatVersion));
 
                 if (version == null || version.Value < SaveFile.MinSaveFormatVersion)
                     return PeekResult.TooOld;
