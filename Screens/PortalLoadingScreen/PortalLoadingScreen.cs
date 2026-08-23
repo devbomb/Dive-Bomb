@@ -81,8 +81,8 @@ namespace FastDragon
                 + " {GemsSpent}";
             Log.Information(
                 logTemplate,
-                parameters.PreviousLevel,
-                parameters.TargetLevel,
+                parameters.PreviousLevel.SceneFilePath,
+                parameters.TargetLevel.SceneFilePath,
                 _isReturningHome,
                 SaveFileManager.Current.TotalGemCount + SaveFileManager.Current.TotalGemsSpent,
                 SaveFileManager.Current.TotalGemsSpent
