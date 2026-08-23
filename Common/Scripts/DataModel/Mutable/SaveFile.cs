@@ -9,8 +9,26 @@ namespace FastDragon
     [JsonObject(MemberSerialization.OptIn)]
     public partial class SaveFile : RefCounted
     {
-        public LevelManifest CurrentLevel;
+        /// <summary>
+        ///     The format version used by save files written by this version of
+        ///     the game.
+        ///
+        ///     Bump this whenever new stuff is added the save file that cannot
+        ///     be read by older version of the game.
+        /// </summary>
+        public const int CurrentSaveFormatVersion = 1;
 
+        /// <summary>
+        ///     The oldest format version that can be parsed without data loss.
+        ///
+        ///     Bump this to <see cref="CurrentSaveFormatVersion"/> if the save
+        ///     format has changed so much that old files cannot be parsed.
+        /// </summary>
+        public const int MinSaveFormatVersion = 1;
+
+        [JsonProperty] public int? SaveFormatVersion = CurrentSaveFormatVersion;
+
+        public LevelManifest CurrentLevel;
         [JsonProperty("CurrentLevel")] private string _currentLevelFilePath
         {
             get => CurrentLevel?.ResourcePath;
@@ -25,7 +43,6 @@ namespace FastDragon
         /// </summary>
         public LevelManifest LastHubWorld
             = ResourceLoader.Load<LevelManifest>("res://Levels/Production/TestMap/TestMap.level.tres");
-
         [JsonProperty("LastHubWorld")] private string _lastHubWorldFilePath
         {
             get => LastHubWorld?.ResourcePath;

@@ -76,6 +76,11 @@ namespace FastDragon
 
         public void SaveToSlot(int slotNumber)
         {
+            // HACK: Update the save format right before saving it.
+            // I consider this a hack because you wouldn't expect saving
+            // something to also modify it in memory.
+            CurrentFile.SaveFormatVersion = SaveFile.CurrentSaveFormatVersion;
+
             DirAccess.MakeDirRecursiveAbsolute(SavesFolder);
 
             string filePath = SlotFilePath(slotNumber);
