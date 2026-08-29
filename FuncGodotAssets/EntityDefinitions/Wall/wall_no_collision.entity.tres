@@ -10,3 +10,9 @@ collision_shape_type = 0
 collision_layer = 0
 collision_mask = 0
 classname = "wall_no_collision"
+class_properties = Dictionary[String, Variant]({
+"_phong": false
+})
+class_property_descriptions = Dictionary[String, Variant]({
+"_phong": "HACK: This property shouldn't need to be specified; it should just be automatically included.  But for whatever reason, FuncGodot tries to parse this as a string instead of a boolean, leading to a type error.  Specifying it here forces it to be parsed as a boolean."
+})
