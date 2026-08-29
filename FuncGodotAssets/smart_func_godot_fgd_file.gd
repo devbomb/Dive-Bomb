@@ -2,9 +2,9 @@
 @icon("res://addons/func_godot/icons/icon_godot_ranger.svg")
 class_name SmartFuncGodotFGDFile extends FuncGodotFGDFile
 
-## If an entity definition resource's file name starts with this, it will
+## If an entity definition resource's file name ends with this, it will
 ## automatically be included in this fgd file.
-@export var entity_definiton_prefix: String = "entity_"
+@export var entity_definiton_file_extension: String = ".entity.tres"
 
 ## Overridden from the base class.
 ## Instead of reading from the entity definitions property, it searches the file
@@ -26,7 +26,7 @@ func _get_matching_file_paths(path: String) -> Array[String]:
 		var file_path = path + "/" + file_name
 		if dir.current_is_dir():
 			file_paths += _get_matching_file_paths(file_path)
-		elif file_name.begins_with(entity_definiton_prefix) && file_name.ends_with(".tres"):
+		elif file_name.ends_with(entity_definiton_file_extension):
 			file_paths.append(file_path)
 		file_name = dir.get_next()
 	return file_paths

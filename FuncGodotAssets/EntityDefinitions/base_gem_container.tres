@@ -18,4 +18,3 @@ class_property_descriptions = Dictionary[String, Variant]({
 "GemColor": ["The color/value of the gem this thing should drop", 1]
 })
 auto_apply_to_matching_node_properties = true
-metadata/_custom_type_script = "uid://bqsp0hkjcv214"

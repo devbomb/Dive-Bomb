@@ -1,6 +1,8 @@
 @tool
 extends EditorImportPlugin
 
+var map_settings: FuncGodotMapSettings = load("res://FuncGodotAssets/FuncGodotMapSettings.tres")
+
 enum Presets { DEFAULT }
 
 func _get_importer_name() -> String:
@@ -55,7 +57,7 @@ func _import(
 	
 	var mapBuilder = FuncGodotMap.new()
 	mapBuilder.local_map_file = source_file
-	mapBuilder.map_settings = preload("res://FuncGodotAssets/FuncGodotMapSettings.tres")
+	mapBuilder.map_settings = map_settings
 	
 	print("Calling build()")
 	mapBuilder.build()
