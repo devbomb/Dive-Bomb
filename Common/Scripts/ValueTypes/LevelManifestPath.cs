@@ -18,6 +18,8 @@ namespace FastDragon
         {
             return new(level.ResourcePath);
         }
+
+        public override string ToString() => Path;
     }
 
     public class LevelManifestPathJsonConverter : JsonConverter<LevelManifestPath>

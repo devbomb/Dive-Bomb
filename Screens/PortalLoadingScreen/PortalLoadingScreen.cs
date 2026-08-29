@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace FastDragon
         [Signal] public delegate void DoneSkippingEventHandler();
         [Signal] public delegate void DoneMovingToRestEventHandler();
 
-        [Export] public PackedScene LoadedScene = null;
+        [Export] public PackedScene? LoadedScene = null;
 
         private float _cameraYawRad => _isReturningHome
             ? ReturnHomeCameraYawRad
@@ -35,8 +36,8 @@ namespace FastDragon
         private const float SkipDuration = 0.25f;
         private const float MinLoadingWaitTime = 1;
 
-        private DirectionalLight3D _oldSun;
-        private LoadingScreenParameters _parameters;
+        private DirectionalLight3D? _oldSun;
+        private LoadingScreenParameters? _parameters;
 
         private Node3D _playerModel => GetNode<Node3D>("%PlayerModel");
         private AnimationPlayer _playerAnimator => GetNode<AnimationPlayer>("%PlayerAnimator");
@@ -52,8 +53,8 @@ namespace FastDragon
         private Control _timeTrialToggleHolder => GetNode<Control>("%TimeTrialToggleHolder");
         private CheckButton _timeTrialToggle => GetNode<CheckButton>("%TimeTrialToggle");
 
-        private bool _isReturningHome => _parameters.PreviousLevel != null;
-        private DiveBombLevel _loadedSceneNode;
+        private bool _isReturningHome => _parameters?.PreviousLevel != null;
+        private DiveBombLevel? _loadedSceneNode;
 
         private readonly StateMachine _stateMachine = new StateMachine();
 
@@ -81,7 +82,7 @@ namespace FastDragon
                 + " {GemsSpent}";
             Log.Information(
                 logTemplate,
-                parameters.PreviousLevel.SceneFilePath,
+                parameters.PreviousLevel?.SceneFilePath,
                 parameters.TargetLevel.SceneFilePath,
                 _isReturningHome,
                 SaveFileManager.Current.TotalGemCount + SaveFileManager.Current.TotalGemsSpent,
@@ -161,6 +162,8 @@ namespace FastDragon
 
         private void GoToTargetLevel()
         {
+            ArgumentNullException.ThrowIfNull(_loadedSceneNode);
+
             double animationPos = _playerAnimator.CurrentAnimationPosition;
             LevelTransitionManager.Instance.ChangeSceneToNode(_loadedSceneNode);
 
@@ -192,6 +195,8 @@ namespace FastDragon
 
         private Portal GetTargetPortal(Node sceneRoot)
         {
+            ArgumentNullException.ThrowIfNull(_parameters?.PreviousLevel);
+
             var matchingPortal = sceneRoot
                 .EnumerateDescendantsOfType<Portal>()
                 .FirstOrDefault(p => p.TargetLevel == _parameters.PreviousLevel.ResourcePath);
@@ -245,7 +250,7 @@ namespace FastDragon
         {
             public override bool Skippable => true;
 
-            private Tween _tween;
+            private Tween? _tween;
 
             public override void OnStateEntered()
             {
@@ -266,7 +271,7 @@ namespace FastDragon
 
             public override void OnStateExited()
             {
-                _tween.Stop();
+                _tween!.Stop();
             }
         }
 
@@ -347,6 +352,8 @@ namespace FastDragon
 
             void TweenPlayerToPortal(Tween tween)
             {
+                ArgumentNullException.ThrowIfNull(Self._loadedSceneNode);
+
                 float duration = CorrectionAnimationDuration;
 
                 var portal = Self.GetTargetPortal(Self._loadedSceneNode);
