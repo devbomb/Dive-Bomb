@@ -200,7 +200,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.623377, 0, 0, 0, 1, 0, 0, 0, 1,
 gradient = SubResource("Gradient_ovo6q")
 
 [node name="Fairy" type="StaticBody3D" unique_id=753454189 node_paths=PackedStringArray("Animator", "FadeCurtainAnimator", "ShatterSound", "JingleSound", "MusicDuckTrigger", "Model", "Glass", "GlassParticles", "CollisionShape") groups=["UnsafeGround"]]
-collision_layer = 2
+collision_layer = 536870915
 collision_mask = 0
 script = ExtResource("1_qaaot")
 Animator = NodePath("Model/MainAnimationPlayer")
@@ -247,7 +247,7 @@ metadata/_custom_type_script = "uid://ilt6j85e4n8e"
 [node name="Gem" parent="Glass/PriceTag" unique_id=612664627 instance=ExtResource("11_ucrva")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.354, -0.021, 0)
 
-[node name="Circle" parent="Glass/PriceTag/Gem" index="0" unique_id=597619784]
+[node name="Circle" parent="Glass/PriceTag/Gem" index="0" unique_id=8359809]
 material_override = SubResource("StandardMaterial3D_g7wuv")
 
 [node name="SpinDecorator" type="Node" parent="Glass/PriceTag/Gem" unique_id=851056260]

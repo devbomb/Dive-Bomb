@@ -106,8 +106,9 @@ func _physics_process(_delta):
 "
 
 [node name="Player" type="CharacterBody3D" unique_id=985873172 node_paths=PackedStringArray("Model", "Animator", "RollSoundPlayer", "BonkSoundPlayer", "FlipDamageSound", "DrownStartSplashSound", "RollDust", "RollThuum", "DiveThuum", "BonkFX", "Camera", "CameraFocus", "BodyCollisionShape", "KickHitbox", "DiveExtraHitbox", "RollExtraHitbox", "LedgeDetector", "LedgeGrabPoint", "MinLedgeGrabHeight", "FairyKissPoint", "FairyKissCamRightPoint", "FairyKissCamLeftPoint") groups=["PhysicsInterpolated"]]
-collision_layer = 8
-collision_mask = 8388611
+editor_description = "Collision mask includes the \"IsHurtbox\" layer because rolling/diving detect things to break while moving/sliding."
+collision_layer = 2147483648
+collision_mask = 536870913
 script = ExtResource("1_a4opu")
 Model = NodePath("Model")
 Animator = NodePath("Animator")
@@ -210,7 +211,7 @@ debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="KickHitbox" type="Area3D" parent="Hitboxes" unique_id=339056762]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 536870912
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/KickHitbox" unique_id=1555741834]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.26022e-08, 0.381694, -0.182095)
@@ -220,7 +221,7 @@ debug_fill = false
 
 [node name="DiveExtraHitbox" type="Area3D" parent="Hitboxes" unique_id=557192373]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 536870912
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/DiveExtraHitbox" unique_id=1727878700]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -230,7 +231,7 @@ debug_fill = false
 
 [node name="RollExtraHitbox" type="Area3D" parent="Hitboxes" unique_id=441040167]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 536870912
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/RollExtraHitbox" unique_id=2130381764]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)

@@ -63,6 +63,8 @@ _data = {
 }
 
 [node name="FairyDoor" type="StaticBody3D" unique_id=2072380280 node_paths=PackedStringArray("DoorModel", "LockModel", "LockAnimator", "CollisionShape", "SoftlockFailsafeTrigger") groups=["PhysicsInterpolated"]]
+collision_layer = 3
+collision_mask = 0
 script = ExtResource("1_o030q")
 DoorModel = NodePath("DoorModel")
 LockModel = NodePath("Lock")
@@ -80,7 +82,7 @@ mesh = SubResource("BoxMesh_c24c4")
 
 [node name="SoftlockFailsafeTrigger" type="Area3D" parent="." unique_id=225090147]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 2147483648
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SoftlockFailsafeTrigger" unique_id=1148209944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
