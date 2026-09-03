@@ -267,7 +267,7 @@ namespace FastDragon
                 if (Self.DisableInput)
                     return;
 
-                if (ev is InputEventMouseMotion m && !Self.DisableInput)
+                if (ev is InputEventMouseMotion m)
                 {
                     if (m.ButtonMask.HasFlag(MouseButtonMask.Middle))
                         _accumulatedMouseMotion += m.ScreenRelative;
