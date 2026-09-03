@@ -1,4 +1,5 @@
 # Unreleased
+## Save files
 * **Breaking:** Changed the way levels are identified in save files.  This means
     all save files from previous versions of the game are now incompatible and
     cannot be loaded.
@@ -19,6 +20,30 @@
     save as either "incompatible" or "toast", and give you the opportunity to
     delete it.
 
+## Camera
+* **Changed:** You no longer need to hold down the middle mouse button to use
+    mouselook.  It's just always on now, like you'd expect from any other PC
+    game.
+
+* **Changed:** The game now captures and hides your mouse cursor while the game
+    is unpaused, to support the aforementioned always-on mouselook.
+
+* **Changed:** The camera will no longer rotate on its own as you walk if you
+    moved it using the mouse recently.
+    * More specifically: moving the mouse now puts the camera into "mouse mode",
+        during which all auto-rotation is disabled.  Mouse mode lasts until the
+        next time you touch the right analog stick or press the "recenter"
+        button.
+
+* **Changed:** Drastically reduced the base mouse sensitivity.
+
+* **Fixed:** Fixed the camera behaving strangely if you rotate it while rolling.
+
+* **Fixed:** Fixed the player being unable to use the mouse to override
+    "suggested" camera angles.
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/6)
+
+## Misc
 * **Changed:** Completely refactored the collision layers for various objects.
     This should make it easier for me to decide which collision layer any
     particular object should go in.
@@ -28,9 +53,6 @@
         any bugs you find on the itch.io page, the discord server, or the github
         issues page.
 
-* **Fixed:** Fixed the player being unable to use the mouse to override
-    "suggested" camera angles.
-    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/6)
 
 # [0.0.3]
 * **Fixed:** Fixed music not playing in time trial mode
