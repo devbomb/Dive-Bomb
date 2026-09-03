@@ -104,6 +104,7 @@ environment = SubResource("Environment_0wyy0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2727222, 0)
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=905941731]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1361696074]
 shape = SubResource("WorldBoundaryShape3D_5rtvj")

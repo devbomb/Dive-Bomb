@@ -19,6 +19,15 @@
     save as either "incompatible" or "toast", and give you the opportunity to
     delete it.
 
+* **Changed:** Completely refactored the collision layers for various objects.
+    This should make it easier for me to decide which collision layer any
+    particular object should go in.
+    * Note: This _shouldn't_ have had any noticable effect on the game from a
+        player's perspective, but there's a nonzero chance that I've messed
+        something up in the process.  If something seems broken, you can report
+        any bugs you find on the itch.io page, the discord server, or the github
+        issues page.
+
 # [0.0.3]
 * **Fixed:** Fixed music not playing in time trial mode
     [(issue)](https://github.com/devbomb/Dive-Bomb/issues/1)

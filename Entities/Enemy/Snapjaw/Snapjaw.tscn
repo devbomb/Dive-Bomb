@@ -1012,14 +1012,14 @@ target_position = Vector3(0, -100, 0)
 unique_name_in_owner = true
 editor_description = "If the player somehow skips this enemy's cycle starter, the enemy will still begin attacking if the player enters this zone."
 collision_layer = 0
-collision_mask = 8
+collision_mask = 2147483648
 
 [node name="AggroTriggerShape" type="CollisionShape3D" parent="FallbackAggroTrigger" unique_id=1094783632]
 unique_name_in_owner = true
 shape = SubResource("CylinderShape3D_6tpik")
 
 [node name="BreakableArea" type="Area3D" parent="." unique_id=973543848]
-collision_layer = 2
+collision_layer = 536870912
 collision_mask = 0
 script = ExtResource("1_58fhs")
 Disabled = true
@@ -1031,7 +1031,7 @@ shape = SubResource("CylinderShape3D_sroyn")
 
 [node name="JawDamageArea" type="Area3D" parent="." unique_id=497696443]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 2147483648
 script = ExtResource("2_sroyn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JawDamageArea" unique_id=1291756001]

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_w8o5c")
 collision_layer = 0
-collision_mask = 8
+collision_mask = 2147483648
 add_textures_metadata = true
 add_face_position_metadata = true
 add_face_normal_metadata = true

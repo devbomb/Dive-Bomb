@@ -223,12 +223,12 @@ FakeCameraControlAction={
 3d_render/layer_2="VisibleInPortals"
 3d_render/layer_3="WorldPortal"
 3d_render/layer_4="ReceiveDecals"
-3d_physics/layer_1="Terrain"
-3d_physics/layer_2="Entities"
-3d_physics/layer_3="Gems"
-3d_physics/layer_4="Player"
-3d_physics/layer_23="ObstructsCamera"
-3d_physics/layer_24="ObstructsPlayerOnly"
+3d_physics/layer_1="BlocksPlayer"
+3d_physics/layer_2="BlocksProjectiles"
+3d_physics/layer_3="BlocksCamera"
+3d_physics/layer_30="DetectedAsHurtbox"
+3d_physics/layer_31="DetectedAsGem"
+3d_physics/layer_32="DetectedAsPlayer"
 
 [physics]
 

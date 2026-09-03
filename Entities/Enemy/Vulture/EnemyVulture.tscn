@@ -9,8 +9,8 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_uo6qh"]
 
 [node name="EnemyVulture" type="CharacterBody3D" unique_id=159658312 groups=["PhysicsInterpolated", "UnsafeGround"]]
-collision_layer = 2
-collision_mask = 11
+collision_layer = 536870915
+collision_mask = 2147483650
 script = ExtResource("1_is5gw")
 
 [node name="GemSpawner" type="Node3D" parent="." unique_id=2056591579]

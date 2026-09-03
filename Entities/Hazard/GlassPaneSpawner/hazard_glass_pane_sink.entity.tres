@@ -6,6 +6,7 @@
 script = ExtResource("1_gd4wc")
 build_visuals = false
 render_layers = 0
+collision_layer = 3
 collision_mask = 0
 classname = "hazard_glass_pane_sink"
 description = "Destroys glass panes that come into contact with it"

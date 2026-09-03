@@ -5,7 +5,6 @@
 [resource]
 script = ExtResource("1_npseo")
 render_layers = 9
-collision_layer = 8388608
 collision_mask = 0
 classname = "wall_obstructs_player_only"
 node_class = "StaticBody3D"
