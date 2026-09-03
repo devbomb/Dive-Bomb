@@ -9,6 +9,7 @@ namespace FastDragon
     {
         public const float RightStickOrbitDeadzone = 0.01f;
         public const float MinMouseMotionThreshold = 0.0001f;
+        public const float RightStickRotSpeedDeg = 180;
 
         [Export] public Node3D FollowTarget;
         [Export] public Player Player;
@@ -58,6 +59,8 @@ namespace FastDragon
         private float _lagDuration;
         private Transform3D _lagPosition;
 
+        private Vector2 _accumulatedMouseMotion;
+
         public override void _Ready()
         {
             AddChild(_stateMachine);
@@ -74,10 +77,24 @@ namespace FastDragon
             _shakeTimer = 0;
             _shakeDuration = 0;
 
+            _accumulatedMouseMotion = Vector2.Zero;
+
             OrbitDistance = Following.FollowDistance;
             ForceRecenter();
 
             _stateMachine.ChangeState<Following>();
+        }
+
+        public override void _Input(InputEvent ev)
+        {
+            if (DisableInput)
+                return;
+
+            if (ev is InputEventMouseMotion m)
+            {
+                if (m.ButtonMask.HasFlag(MouseButtonMask.Middle))
+                    _accumulatedMouseMotion += m.ScreenRelative;
+            }
         }
 
         public override void _Process(double deltaD)
@@ -101,9 +118,48 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
-            _lagTimer += (float)deltaD;
+            float delta = (float)deltaD;
 
+            _lagTimer += delta;
             ApplyAnglesAndDistance();
+
+            // If the player is trying to move the camera, let the current state
+            // know.
+            float deltaYawRad = 0;
+            float deltaPitchRad = 0;
+            bool orbitRequested = false;
+
+            if (InputService.RightStick.Length() > RightStickOrbitDeadzone)
+            {
+                float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
+                rotSpeed *= UserSettings.Instance.CameraSensController;
+
+                deltaYawRad += -InputService.RightStick.X * rotSpeed * delta;
+                deltaPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
+                orbitRequested = true;
+            }
+
+            if (_accumulatedMouseMotion.Length() > MinMouseMotionThreshold)
+            {
+                var mouseMotion = _accumulatedMouseMotion;
+                _accumulatedMouseMotion = Vector2.Zero;
+                orbitRequested = true;
+
+                float radsPerPixel = 0.005f;
+                radsPerPixel *= UserSettings.Instance.CameraSensMouse;
+
+                if (UserSettings.Instance.InvertCameraX) mouseMotion.X *= -1;
+                if (UserSettings.Instance.InvertCameraY) mouseMotion.Y *= -1;
+
+                deltaYawRad -= radsPerPixel * mouseMotion.X;
+                deltaPitchRad -= radsPerPixel * mouseMotion.Y;
+            }
+
+            if (orbitRequested)
+            {
+                var state = (CameraState)_stateMachine.CurrentState;
+                state.OnOrbitRequested(deltaYawRad, deltaPitchRad);
+            }
         }
 
         public void MakeCurrent() => _camera.MakeCurrent();
@@ -245,36 +301,32 @@ namespace FastDragon
             OrbitYawRad = angles.Y;
         }
 
-        private class Following : State<PlayerCamera>
+        private abstract class CameraState : State<PlayerCamera>
+        {
+            public virtual void OnOrbitRequested(float yawRad, float pitchRad) {}
+        }
+
+        private class Following : CameraState
         {
             public const float FollowDistance = 6;
             public const float ZoomSpeed = 4;
-
-            public const float RightStickRotSpeedDeg = 180;
 
             public const float MinOrbitPitchDeg = -89;
             public const float MaxOrbitPitchDeg = 0;
 
             private Vector3 _prevPos;
-            private Vector2 _accumulatedMouseMotion;
+            private bool _orbitRequestedThisTick;
 
             public override void OnStateEntered()
             {
                 Self.ApplyAnglesAndDistance();
                 _prevPos = Self.GlobalPosition;
-                _accumulatedMouseMotion = Vector2.Zero;
             }
 
             public override void _Input(InputEvent ev)
             {
                 if (Self.DisableInput)
                     return;
-
-                if (ev is InputEventMouseMotion m)
-                {
-                    if (m.ButtonMask.HasFlag(MouseButtonMask.Middle))
-                        _accumulatedMouseMotion += m.ScreenRelative;
-                }
 
                 if (InputService.RecenterCameraJustPressed(ev))
                 {
@@ -298,26 +350,12 @@ namespace FastDragon
                 {
                     Self.ApplyAnglesAndDistance();
                     _prevPos = Self.GlobalPosition;
-                    _accumulatedMouseMotion = Vector2.Zero;
                     return;
                 }
 
-                bool orbitted = false;
-
-                if (InputService.RightStick.Length() > RightStickOrbitDeadzone)
-                {
-                    OrbitWithRightStick(delta);
-                    orbitted = true;
-                }
-
-                if (_accumulatedMouseMotion.Length() > MinMouseMotionThreshold)
-                {
-                    OrbitWithMouse(_accumulatedMouseMotion);
-                    _accumulatedMouseMotion = Vector2.Zero;
-                    orbitted = true;
-                }
-
-                if (!orbitted && Self.AllowAutoRotate)
+                bool orbitRequested = _orbitRequestedThisTick;
+                _orbitRequestedThisTick = false;
+                if (!orbitRequested && Self.AllowAutoRotate)
                 {
                     MaintainDistanceAndAutoRotate(delta);
                 }
@@ -325,6 +363,15 @@ namespace FastDragon
                 ZoomToFollowDistance(delta);
 
                 _prevPos = Self.GlobalPosition;
+            }
+
+            public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)
+            {
+                Self.OrbitYawRad += deltaYawRad;
+                Self.OrbitPitchRad += deltaPitchRad;
+                _orbitRequestedThisTick = true;
+
+                ClampOrbitAngles();
             }
 
             private void ClampOrbitAngles()
@@ -335,36 +382,6 @@ namespace FastDragon
                     Mathf.DegToRad(MinOrbitPitchDeg),
                     Mathf.DegToRad(MaxOrbitPitchDeg)
                 );
-            }
-
-            private void OrbitWithRightStick(float delta)
-            {
-                float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
-                rotSpeed *= UserSettings.Instance.CameraSensController;
-
-                float yawSpeedRad = -InputService.RightStick.X * rotSpeed;
-                float pitchSpeedRad = -InputService.RightStick.Y * rotSpeed;
-
-                if (UserSettings.Instance.InvertCameraX) yawSpeedRad *= -1;
-                if (UserSettings.Instance.InvertCameraY) pitchSpeedRad *= -1;
-
-                Self.OrbitYawRad += yawSpeedRad * delta;
-                Self.OrbitPitchRad += pitchSpeedRad * delta;
-
-                ClampOrbitAngles();
-            }
-
-            private void OrbitWithMouse(Vector2 mouseMotion)
-            {
-                float radsPerPixel = 0.005f;
-                radsPerPixel *= UserSettings.Instance.CameraSensMouse;
-
-                if (UserSettings.Instance.InvertCameraX) mouseMotion.X *= -1;
-                if (UserSettings.Instance.InvertCameraY) mouseMotion.Y *= -1;
-
-                Self.OrbitYawRad -= radsPerPixel * mouseMotion.X;
-                Self.OrbitPitchRad -= radsPerPixel * mouseMotion.Y;
-                ClampOrbitAngles();
             }
 
             private void MaintainDistanceAndAutoRotate(float delta)
@@ -408,7 +425,7 @@ namespace FastDragon
             }
         }
 
-        private class SuggestingAngle : State<PlayerCamera>
+        private class SuggestingAngle : CameraState
         {
             private const float Duration = 0.5f;
 
@@ -423,23 +440,6 @@ namespace FastDragon
                 _initialPitchRad = Self.OrbitPitchRad;
                 _initialYawRad = Self.OrbitYawRad;
                 _initialDistance = Self.OrbitDistance;
-            }
-
-            public override void _Input(InputEvent ev)
-            {
-                if (Self.DisableInput)
-                    return;
-
-                // Let the player override the suggested angle by moving the
-                // camera
-                if (ev is InputEventMouseMotion m)
-                {
-                    if (m.ButtonMask.HasFlag(MouseButtonMask.Middle))
-                    {
-                        ChangeState<Following>();
-                        return;
-                    }
-                }
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -468,14 +468,15 @@ namespace FastDragon
                     Self._suggestedDistance,
                     t
                 );
+            }
 
-                // ...unless the player has their OWN idea for a camera angle.
-                if (InputService.RightStick.Length() > RightStickOrbitDeadzone)
-                    ChangeState<Following>();
+            public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)
+            {
+                ChangeState<Following>();
             }
         }
 
-        private class Manhandled : State<PlayerCamera>
+        private class Manhandled : CameraState
         {
             private Transform3D _initialPos;
             private float _timer;
@@ -515,7 +516,7 @@ namespace FastDragon
             }
         }
 
-        private class Recentering : State<PlayerCamera>
+        private class Recentering : CameraState
         {
             private const float Duration = 0.1f;
 
