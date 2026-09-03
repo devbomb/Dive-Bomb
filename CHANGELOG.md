@@ -28,6 +28,10 @@
         any bugs you find on the itch.io page, the discord server, or the github
         issues page.
 
+* **Fixed:** Fixed the player being unable to use the mouse to override
+    "suggested" camera angles.
+    [(issue)](https://github.com/devbomb/Dive-Bomb/issues/6)
+
 # [0.0.3]
 * **Fixed:** Fixed music not playing in time trial mode
     [(issue)](https://github.com/devbomb/Dive-Bomb/issues/1)

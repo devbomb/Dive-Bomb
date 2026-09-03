@@ -425,6 +425,23 @@ namespace FastDragon
                 _initialDistance = Self.OrbitDistance;
             }
 
+            public override void _Input(InputEvent ev)
+            {
+                if (Self.DisableInput)
+                    return;
+
+                // Let the player override the suggested angle by moving the
+                // camera
+                if (ev is InputEventMouseMotion m)
+                {
+                    if (m.ButtonMask.HasFlag(MouseButtonMask.Middle))
+                    {
+                        ChangeState<Following>();
+                        return;
+                    }
+                }
+            }
+
             public override void _PhysicsProcess(double deltaD)
             {
                 // Move the camera to the suggested angle
