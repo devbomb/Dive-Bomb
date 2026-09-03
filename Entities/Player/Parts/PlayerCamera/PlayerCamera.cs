@@ -7,6 +7,9 @@ namespace FastDragon
 {
     public partial class PlayerCamera : Node3D
     {
+        public const float RightStickOrbitDeadzone = 0.01f;
+        public const float MinMouseMotionThreshold = 0.0001f;
+
         [Export] public Node3D FollowTarget;
         [Export] public Player Player;
 
@@ -267,7 +270,7 @@ namespace FastDragon
                 if (Self.DisableInput)
                     return;
 
-                if (ev is InputEventMouseMotion m && !Self.DisableInput)
+                if (ev is InputEventMouseMotion m)
                 {
                     if (m.ButtonMask.HasFlag(MouseButtonMask.Middle))
                         _accumulatedMouseMotion += m.ScreenRelative;
@@ -301,13 +304,13 @@ namespace FastDragon
 
                 bool orbitted = false;
 
-                if (InputService.RightStick.Length() > 0.01f)
+                if (InputService.RightStick.Length() > RightStickOrbitDeadzone)
                 {
                     OrbitWithRightStick(delta);
                     orbitted = true;
                 }
 
-                if (_accumulatedMouseMotion.Length() > 0.0001f)
+                if (_accumulatedMouseMotion.Length() > MinMouseMotionThreshold)
                 {
                     OrbitWithMouse(_accumulatedMouseMotion);
                     _accumulatedMouseMotion = Vector2.Zero;
@@ -422,6 +425,23 @@ namespace FastDragon
                 _initialDistance = Self.OrbitDistance;
             }
 
+            public override void _Input(InputEvent ev)
+            {
+                if (Self.DisableInput)
+                    return;
+
+                // Let the player override the suggested angle by moving the
+                // camera
+                if (ev is InputEventMouseMotion m)
+                {
+                    if (m.ButtonMask.HasFlag(MouseButtonMask.Middle))
+                    {
+                        ChangeState<Following>();
+                        return;
+                    }
+                }
+            }
+
             public override void _PhysicsProcess(double deltaD)
             {
                 // Move the camera to the suggested angle
@@ -450,7 +470,7 @@ namespace FastDragon
                 );
 
                 // ...unless the player has their OWN idea for a camera angle.
-                if (InputService.RightStick.Length() > 0.01f)
+                if (InputService.RightStick.Length() > RightStickOrbitDeadzone)
                     ChangeState<Following>();
             }
         }
