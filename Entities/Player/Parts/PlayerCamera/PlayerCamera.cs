@@ -14,12 +14,13 @@ namespace FastDragon
         [Export] public Node3D FollowTarget;
         [Export] public Player Player;
 
-        [Export] public bool AllowAutoRotate { get; set; }
         public bool DisableInput { get; set; }
         public bool IgnoreObstructions { get; set; }
 
         public bool IsBeingManhandled => _stateMachine.CurrentState is Manhandled;
         public bool IsSuggestingAngle => _stateMachine.CurrentState is SuggestingAngle;
+
+        public bool IsUsingMouselook { get; private set; }
 
         public Node3D TimeTrialFairyRescuePos => GetNode<Node3D>("%TimeTrialFairyRescuePos");
 
@@ -130,19 +131,23 @@ namespace FastDragon
 
             if (InputService.RightStick.Length() > RightStickOrbitDeadzone)
             {
+                IsUsingMouselook = false;
+                orbitRequested = true;
+
                 float rotSpeed = Mathf.DegToRad(RightStickRotSpeedDeg);
                 rotSpeed *= UserSettings.Instance.CameraSensController;
 
                 deltaYawRad += -InputService.RightStick.X * rotSpeed * delta;
                 deltaPitchRad += -InputService.RightStick.Y * rotSpeed * delta;
-                orbitRequested = true;
             }
 
             if (_accumulatedMouseMotion.Length() > MinMouseMotionThreshold)
             {
+                IsUsingMouselook = true;
+                orbitRequested = true;
+
                 var mouseMotion = _accumulatedMouseMotion;
                 _accumulatedMouseMotion = Vector2.Zero;
-                orbitRequested = true;
 
                 float radsPerPixel = 0.005f;
                 radsPerPixel *= UserSettings.Instance.CameraSensMouse;
@@ -354,7 +359,7 @@ namespace FastDragon
 
                 bool orbitRequested = _orbitRequestedThisTick;
                 _orbitRequestedThisTick = false;
-                if (!orbitRequested && Self.AllowAutoRotate)
+                if (!orbitRequested && !Self.IsUsingMouselook)
                 {
                     MaintainDistanceAndAutoRotate(delta);
                 }
@@ -528,6 +533,8 @@ namespace FastDragon
                 _timer = 0;
                 _initialPitchRad = Self.OrbitPitchRad;
                 _initialYawRad = Self.OrbitYawRad;
+
+                Self.IsUsingMouselook = false;
             }
 
             public override void _Process(double deltaD)
