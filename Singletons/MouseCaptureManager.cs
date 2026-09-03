@@ -31,5 +31,13 @@ namespace FastDragon
         {
             node.RemoveFromGroup(MouseCaptureManager.GroupName);
         }
+
+        public static void SetMouseUncaptured(this Node node, bool uncapture)
+        {
+            if (uncapture)
+                node.UncaptureMouse();
+            else
+                node.RestoreMouseCapture();
+        }
     }
 }
