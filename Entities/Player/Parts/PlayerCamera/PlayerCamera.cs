@@ -92,8 +92,7 @@ namespace FastDragon
 
             if (ev is InputEventMouseMotion m)
             {
-                if (m.ButtonMask.HasFlag(MouseButtonMask.Middle))
-                    _accumulatedMouseMotion += m.ScreenRelative;
+                _accumulatedMouseMotion += m.ScreenRelative;
             }
         }
 
