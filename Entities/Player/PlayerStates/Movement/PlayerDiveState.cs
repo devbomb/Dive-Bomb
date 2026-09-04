@@ -8,7 +8,7 @@ namespace FastDragon
     {
         private const float ThuumFadeTime = 0.5f;
 
-        public override bool DisableCameraInput => _redirectTimer <= 0;
+        public override bool DisableCameraInput => _redirectTimer <= 0 && !Self.Camera.IsUsingMouselook;
 
         private float _redirectTimer;
         private float _targetCameraYawRad;
@@ -52,7 +52,7 @@ namespace FastDragon
 
             AngleModelPitchWithVelocity();
 
-            if (_redirectTimer <= 0 && !Self.Camera.IsSuggestingAngle)
+            if (_redirectTimer <= 0 && !Self.Camera.IsSuggestingAngle && !Self.Camera.IsUsingMouselook)
             {
                 var camera = Self.Camera;
 

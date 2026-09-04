@@ -27,6 +27,12 @@ namespace FastDragon
             _pageNav.ChangePage(null);
         }
 
+        public override void _Process(double delta)
+        {
+            // Allow the mouse to be used whenever one of these menus is open
+            this.SetMouseUncaptured(_pageNav.CurrentPage != null);
+        }
+
         private void ShowBriefing()
         {
             _pageNav.ChangePage(_briefingPage);

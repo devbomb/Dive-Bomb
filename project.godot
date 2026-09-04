@@ -32,6 +32,7 @@ UserSettings="*res://Common/Scripts/Services/UserSettingsGDScriptAdaptor.cs"
 PhysicsInterpolatorSingleton="*res://Common/Scripts/PhysicsInterpolation/PhysicsInterpolatorSingleton.cs"
 HitStopManager="*res://Singletons/HitStopManager.cs"
 ShaderUnpausedTimer="res://Singletons/ShaderUnpausedTimer.gd"
+MouseCaptureManager="*res://Singletons/MouseCaptureManager.cs"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.cs"
 
 [dotnet]

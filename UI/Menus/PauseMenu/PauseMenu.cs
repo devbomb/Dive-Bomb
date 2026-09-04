@@ -40,6 +40,11 @@ namespace FastDragon
             _quitToTitleButton.Visible = !_exitLevelButton.Visible;
         }
 
+        public override void _Process(double delta)
+        {
+            this.SetMouseUncaptured(_open);
+        }
+
         public void Open()
         {
             // Do not allow the pause menu to be opened while the game is

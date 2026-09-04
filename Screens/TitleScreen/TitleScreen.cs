@@ -14,6 +14,7 @@ namespace FastDragon
         public override void _Ready()
         {
             OpenMainPage();
+            this.UncaptureMouse();
         }
 
         public void OpenMainPage()
