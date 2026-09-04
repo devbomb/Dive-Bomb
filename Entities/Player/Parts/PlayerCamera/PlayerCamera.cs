@@ -10,6 +10,7 @@ namespace FastDragon
         public const float RightStickOrbitDeadzone = 0.01f;
         public const float MinMouseMotionThreshold = 0.0001f;
         public const float RightStickRotSpeedDeg = 180;
+        public const float BaseMouseSensRadiansPerPixel = 0.00125f;
 
         [Export] public Node3D FollowTarget;
         [Export] public Player Player;
@@ -149,7 +150,7 @@ namespace FastDragon
                 var mouseMotion = _accumulatedMouseMotion;
                 _accumulatedMouseMotion = Vector2.Zero;
 
-                float radsPerPixel = 0.005f;
+                float radsPerPixel = BaseMouseSensRadiansPerPixel;
                 radsPerPixel *= UserSettings.Instance.CameraSensMouse;
 
                 if (UserSettings.Instance.InvertCameraX) mouseMotion.X *= -1;
