@@ -51,6 +51,7 @@ namespace FastDragon
         {
             if (body is Player player)
             {
+                player.Camera.DetectAnglesAndDistance(); // Mouselook breaks without this, for some reason.
                 player.Camera.StartFollowing(1);
             }
         }
