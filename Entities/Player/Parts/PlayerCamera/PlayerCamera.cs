@@ -57,9 +57,13 @@ namespace FastDragon
         private FastNoiseLite _shakeNoiseY = new FastNoiseLite();
         private Random _shakeRNG = new Random(1337);
 
+        private float _followTransitionTimer;
+        private float _followTransitionDuration;
+        private Transform3D _followTransitionStart;
+
         private float _lagTimer;
         private float _lagDuration;
-        private Transform3D _lagPosition;
+        private Transform3D _lagFollowTargetStart;
 
         private Vector2 _accumulatedMouseMotion;
 
@@ -73,6 +77,9 @@ namespace FastDragon
 
         public void Reset()
         {
+            _followTransitionTimer = 0;
+            _followTransitionDuration = 0;
+
             _lagTimer = 0;
             _lagDuration = 0;
 
@@ -119,10 +126,14 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
-            _lagTimer += (float)deltaD;
+            float delta = (float)deltaD;
+
+            _followTransitionTimer += delta;
+            _lagTimer += delta;
+
             ApplyAnglesAndDistance();
 
-            OrbitControls((float)deltaD);
+            OrbitControls(delta);
         }
 
         private void OrbitControls(float delta)
@@ -203,13 +214,13 @@ namespace FastDragon
         {
             _lagTimer = 0;
             _lagDuration = duration;
-            _lagPosition = GlobalTransform;
+            _lagFollowTargetStart = FollowTarget.GlobalTransform;
         }
 
         public void ForceRecenter()
         {
             OrbitPitchRad = 0;
-            OrbitYawRad = FollowTarget.GlobalRotation.Y;
+            OrbitYawRad = FollowTargetTransform().Basis.GetEuler().Y;
             ApplyAnglesAndDistance();
             this.ResetPhysicsInterpolation3D();
         }
@@ -224,8 +235,9 @@ namespace FastDragon
 
         public void StartFollowing(float transitionDuration = 0)
         {
-            // HACK: Reuse the lag code to make it smoothly return to normal
-            Lag(transitionDuration);
+            _followTransitionTimer = 0;
+            _followTransitionDuration = transitionDuration;
+            _followTransitionStart = GlobalTransform;
             _stateMachine.ChangeState<Following>();
         }
 
@@ -248,20 +260,22 @@ namespace FastDragon
 
         public void ApplyAnglesAndDistance()
         {
+            var followTargetPos = FollowTargetTransform();
+
             Vector3 dir = Vector3.Back
                 .Rotated(Vector3.Right, OrbitPitchRad)
                 .Rotated(Vector3.Up, OrbitYawRad);
 
             Vector3 offset = dir * OrbitDistance;
             var desiredPosition = Transform3D.Identity
-                .Translated(FollowTarget.GlobalPosition + offset)
-                .LookingAt(FollowTarget.GlobalPosition);
+                .Translated(followTargetPos.Origin + offset)
+                .LookingAt(followTargetPos.Origin);
 
             // Zoom in if our view of the player is obstructed.
             // ...unless we've been told not to, of course.
             if (!IgnoreObstructions)
             {
-                _raycast.GlobalPosition = FollowTarget.GlobalPosition;
+                _raycast.GlobalPosition = followTargetPos.Origin;
                 _raycast.TargetPosition = desiredPosition.Origin - _raycast.GlobalPosition;
                 _raycast.GlobalRotation = Vector3.Zero;
                 _raycast.ForceUpdateTransform();
@@ -274,12 +288,12 @@ namespace FastDragon
                 }
             }
 
-            // If the lag effect is active, tween between our desired position
-            // and the lag position.
-            if (_lagTimer < _lagDuration)
+            // If a transition is active, tween between our desired position and
+            // the transition start.
+            if (_followTransitionTimer < _followTransitionDuration)
             {
-                float t = Mathf.Min(1, _lagTimer / _lagDuration);
-                GlobalTransform = _lagPosition.InterpolateWith(desiredPosition, t);
+                float t = Mathf.Min(1, _followTransitionTimer / _followTransitionDuration);
+                GlobalTransform = _followTransitionStart.InterpolateWith(desiredPosition, t);
             }
             else
             {
@@ -297,14 +311,26 @@ namespace FastDragon
         /// </summary>
         public void DetectAnglesAndDistance()
         {
-            OrbitDistance = FollowTarget.GlobalPosition.DistanceTo(GlobalPosition);
+            var followTargetPos = FollowTargetTransform().Origin;
+            OrbitDistance = followTargetPos.DistanceTo(GlobalPosition);
 
             var angles = GlobalPosition
-                .DirectionTo(FollowTarget.GlobalPosition)
+                .DirectionTo(followTargetPos)
                 .ForwardToEulerAnglesRad();
 
             OrbitPitchRad = angles.X;
             OrbitYawRad = angles.Y;
+        }
+
+        private Transform3D FollowTargetTransform()
+        {
+            if (_lagTimer < _lagDuration)
+            {
+                float t = Mathf.Min(1, _lagTimer / _lagDuration);
+                return _lagFollowTargetStart.InterpolateWith(FollowTarget.GlobalTransform, t);
+            }
+
+            return FollowTarget.GlobalTransform;
         }
 
         private abstract class CameraState : State<PlayerCamera>
@@ -392,7 +418,7 @@ namespace FastDragon
 
             private void MaintainDistanceAndAutoRotate(float delta)
             {
-                var targetPos = Self.FollowTarget.GlobalPosition;
+                var targetPos = Self.FollowTargetTransform().Origin;
                 var dir = targetPos.DirectionTo(_prevPos);
 
                 var transform = Self.GlobalTransform;
@@ -548,7 +574,7 @@ namespace FastDragon
                 Self.OrbitPitchRad = Mathf.LerpAngle(_initialPitchRad, 0, t);
                 Self.OrbitYawRad = Mathf.LerpAngle(
                     _initialYawRad,
-                    Self.FollowTarget.GlobalRotation.Y,
+                    Self.FollowTargetTransform().Basis.GetEuler().Y,
                     t
                 );
 
