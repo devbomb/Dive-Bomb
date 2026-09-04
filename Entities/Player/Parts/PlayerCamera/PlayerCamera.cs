@@ -119,13 +119,14 @@ namespace FastDragon
 
         public override void _PhysicsProcess(double deltaD)
         {
-            float delta = (float)deltaD;
-
-            _lagTimer += delta;
+            _lagTimer += (float)deltaD;
             ApplyAnglesAndDistance();
 
-            // If the player is trying to move the camera, let the current state
-            // know.
+            OrbitControls((float)deltaD);
+        }
+
+        private void OrbitControls(float delta)
+        {
             float deltaYawRad = 0;
             float deltaPitchRad = 0;
             bool orbitRequested = false;
