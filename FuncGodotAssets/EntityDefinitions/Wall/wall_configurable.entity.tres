@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" format=3 uid="uid://dx8dfftow7ddw"]
+
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_cjf2w"]
+[ext_resource type="Script" uid="uid://ckwco47yk408e" path="res://FuncGodotAssets/EntityDefinitions/Wall/wall_configurable.gd" id="2_u8svm"]
+
+[resource]
+script = ExtResource("1_cjf2w")
+collision_layer = 0
+collision_mask = 0
+script_class = ExtResource("2_u8svm")
+classname = "wall_configurable"
+class_properties = Dictionary[String, Variant]({
+"BlocksCamera": true,
+"BlocksPlayer": true,
+"BlocksProjectiles": true
+})
+node_class = "StaticBody3D"
+metadata/_custom_type_script = "uid://5cow84q03m6a"
