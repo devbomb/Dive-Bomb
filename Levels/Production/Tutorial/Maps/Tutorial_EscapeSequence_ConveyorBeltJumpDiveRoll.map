@@ -1,5 +1,6 @@
 // Game: FastDragon
 // Format: Standard
+// Generator: TrenchBroom 2026.2 (Build v2026.2 Release Win64)
 // entity 0
 {
 "wad" ""
@@ -530,6 +531,22 @@
 }
 // entity 8
 {
+"classname" "wall_configurable"
+"BlocksCamera" "0"
+"BlocksPlayer" "0"
+"_tb_group" "9"
+// brush 0
+{
+( 1136 16 304 ) ( 1136 17 304 ) ( 1136 16 305 ) special/clip 0 0 0 1 1
+( 1136 16 304 ) ( 1136 16 305 ) ( 1137 16 304 ) special/clip 0 0 0 1 1
+( 1136 16 304 ) ( 1137 16 304 ) ( 1136 17 304 ) special/clip 0 0 0 1 1
+( 1248 32 320 ) ( 1248 33 320 ) ( 1249 32 320 ) special/clip 0 0 0 1 1
+( 1248 32 320 ) ( 1249 32 320 ) ( 1248 32 321 ) special/clip 0 0 0 1 1
+( 1248 32 320 ) ( 1248 32 321 ) ( 1248 33 320 ) special/clip 0 0 0 1 1
+}
+}
+// entity 9
+{
 "classname" "func_group"
 "_tb_type" "_tb_group"
 "_tb_name" "DiveSpeedTutPaneSpawner"
@@ -538,7 +555,7 @@
 "_tb_transformation" "1 0 0 -8 0 1 0 -352 0 0 1 136 0 0 0 1"
 "_tb_group" "8"
 }
-// entity 9
+// entity 10
 {
 "classname" "hazard_glass_pane_spawner"
 "PaneLifespanSeconds" "10"
@@ -555,7 +572,7 @@
 ( 1240 -680 472 ) ( 1240 -688 456 ) ( 1240 -688 472 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 }
-// entity 10
+// entity 11
 {
 "classname" "hazard_glass_pane_spawner"
 "PaneLifespanSeconds" "10"
@@ -571,7 +588,7 @@
 ( 1240 -688 560 ) ( 1240 -696 472 ) ( 1240 -696 560 ) Textures/DivableGlassPlaceholder 0 0 0 1 1
 }
 }
-// entity 11
+// entity 12
 {
 "classname" "wall_obstructs_player_only"
 "_tb_group" "10"
@@ -585,7 +602,7 @@
 ( 1144 -664 472 ) ( 1144 -688 456 ) ( 1144 -688 472 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 }
-// entity 12
+// entity 13
 {
 "classname" "wall_obstructs_player_only"
 "_tb_group" "10"
@@ -599,7 +616,7 @@
 ( 1248 -664 560 ) ( 1248 -688 456 ) ( 1248 -688 560 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 }
-// entity 13
+// entity 14
 {
 "classname" "wall_obstructs_player_only"
 "_tb_group" "10"
@@ -613,7 +630,7 @@
 ( 1248 -696 560 ) ( 1248 -704 472 ) ( 1248 -704 560 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 }
-// entity 14
+// entity 15
 {
 "classname" "wall_obstructs_player_only"
 "_tb_group" "10"
@@ -627,7 +644,7 @@
 ( 1240 -664 472 ) ( 1240 -680 456 ) ( 1240 -680 472 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 }
-// entity 15
+// entity 16
 {
 "classname" "wall_obstructs_player_only"
 "_tb_group" "10"
@@ -641,7 +658,7 @@
 ( 1240 -664 560 ) ( 1240 -680 472 ) ( 1240 -680 560 ) Textures/BulletproofGlass 0 0 0 1 1
 }
 }
-// entity 16
+// entity 17
 {
 "classname" "wall_non_camera_obstructing"
 "_tb_group" "8"
@@ -655,35 +672,35 @@
 ( 1136 -304 416 ) ( 1136 -896 336 ) ( 1136 -896 416 ) Textures/BulletproofGlass 0 0 0 1 1
 }
 }
-// entity 17
+// entity 18
 {
 "classname" "decor_wall_torch"
 "origin" "1240 -56 360"
 "angle" "90"
 "_tb_group" "8"
 }
-// entity 18
+// entity 19
 {
 "classname" "decor_wall_torch"
 "origin" "1240 -216 360"
 "angle" "90"
 "_tb_group" "8"
 }
-// entity 19
+// entity 20
 {
 "classname" "decor_wall_torch"
 "origin" "1176 104 328"
 "angle" "180"
 "_tb_group" "8"
 }
-// entity 20
+// entity 21
 {
 "classname" "decor_wall_torch"
 "origin" "1016 88 296"
 "angle" "180"
 "_tb_group" "8"
 }
-// entity 21
+// entity 22
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -702,7 +719,7 @@
 ( 1120 -912 400 ) ( 1120 -896 304 ) ( 1120 -912 304 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
-// entity 22
+// entity 23
 {
 "classname" "logic_wall_button"
 "origin" "1088 -888 360"
@@ -711,7 +728,7 @@
 "killtarget" ""
 "_tb_group" "2"
 }
-// entity 23
+// entity 24
 {
 "classname" "logic_signal_connector"
 "origin" "1064 -888 360"
@@ -722,7 +739,7 @@
 "angle" "270"
 "_tb_group" "2"
 }
-// entity 24
+// entity 25
 {
 "classname" "wall_openable"
 "targetname" "Door_EscapeSequence_2FA_Joke"
@@ -740,85 +757,85 @@
 ( 1256 -912 448 ) ( 1256 -928 304 ) ( 1256 -928 448 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 }
-// entity 25
+// entity 26
 {
 "classname" "info_named_marker"
 "origin" "1256 -904 472"
 "targetname" "Marker_EscapeSequence_ConveyorBeltJumpDiveRoll_Door_Closed"
 "_tb_group" "8"
 }
-// entity 26
+// entity 27
 {
 "classname" "info_named_marker"
 "origin" "1256 -904 312"
 "targetname" "Marker_EscapeSequence_ConveyorBeltJumpDiveRoll_Door_Open"
 "_tb_group" "8"
 }
-// entity 27
+// entity 28
 {
 "classname" "decor_wall_torch"
 "origin" "1240 -376 360"
 "angle" "90"
 "_tb_group" "8"
 }
-// entity 28
+// entity 29
 {
 "classname" "decor_wall_torch"
 "origin" "1240 -536 360"
 "angle" "90"
 "_tb_group" "8"
 }
-// entity 29
+// entity 30
 {
 "classname" "item_gem_green"
 "origin" "1156 68 256"
 "_tb_group" "8"
 }
-// entity 30
+// entity 31
 {
 "classname" "item_gem_green"
 "origin" "1116 -820 304"
 "_tb_group" "8"
 }
-// entity 31
+// entity 32
 {
 "classname" "item_basket"
 "origin" "1016 -328 272"
 "GemColor" "2"
 "_tb_group" "8"
 }
-// entity 32
+// entity 33
 {
 "classname" "item_gem_green"
 "origin" "980 -372 272"
 "_tb_group" "8"
 }
-// entity 33
+// entity 34
 {
 "classname" "item_gem_red"
 "origin" "948 -356 272"
 "_tb_group" "8"
 }
-// entity 34
+// entity 35
 {
 "classname" "item_gem_green"
 "origin" "756 -176 176"
 "_tb_group" "8"
 }
-// entity 35
+// entity 36
 {
 "classname" "item_gem_red"
 "origin" "708 -176 176"
 "_tb_group" "8"
 }
-// entity 36
+// entity 37
 {
 "classname" "item_vase"
 "origin" "1112 -744 304"
 "GemColor" "5"
 "_tb_group" "8"
 }
-// entity 37
+// entity 38
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -862,7 +879,7 @@
 ( 832 0 336 ) ( 832 -128 176 ) ( 832 -128 336 ) Textures/ManuallyDrawnPanels 0 0 0 1 1
 }
 }
-// entity 38
+// entity 39
 {
 "classname" "logic_signal_connector"
 "origin" "856 -200 248"
@@ -871,7 +888,7 @@
 "killtarget" "Cutscene_EscapeSequence_2FA_Joke"
 "HandlerFunction" "OnBodyEntered"
 }
-// entity 39
+// entity 40
 {
 "classname" "trigger_named_trigger_zone"
 "targetname" "Trigger_EscapeSequence_2FA_Joke"
@@ -885,19 +902,19 @@
 ( 1024 -80 448 ) ( 1024 -432 208 ) ( 1024 -432 448 ) Textures/Grate 0 0 0 1 1
 }
 }
-// entity 40
+// entity 41
 {
 "classname" "item_gem_red"
 "origin" "1108 -28 240"
 }
-// entity 41
+// entity 42
 {
 "classname" "info_map_edge"
 "origin" "664 -168 184"
 "angle" "180"
 "id" "TimeWaster_To_2FA"
 }
-// entity 42
+// entity 43
 {
 "classname" "info_map_edge"
 "origin" "1192 -968 312"
