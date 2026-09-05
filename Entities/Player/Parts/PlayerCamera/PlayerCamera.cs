@@ -31,6 +31,23 @@ namespace FastDragon
 
         public float OrbitPitchRad { get; set; }
 
+        public SphereCoords OrbitCoordinates
+        {
+            get => new()
+            {
+                Distance = OrbitDistance,
+                YawRad = OrbitYawRad,
+                PitchRad = OrbitPitchRad,
+            };
+
+            set
+            {
+                OrbitDistance = value.Distance;
+                OrbitYawRad = value.YawRad;
+                OrbitPitchRad = value.PitchRad;
+            }
+        }
+
         /// <summary>
         /// The global position that the camera will assume while it's being
         /// manhandled (see <see cref="StartManhandling"/>).
@@ -44,9 +61,7 @@ namespace FastDragon
         private Camera3D _camera => GetNode<Camera3D>("%Camera");
         private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast");
 
-        private float _suggestedYawRad;
-        private float _suggestedPitchRad;
-        private float _suggestedDistance;
+        private SphereCoords _suggestedOrbitCoordinates;
 
         private readonly StateMachine _stateMachine = new StateMachine();
 
@@ -227,9 +242,7 @@ namespace FastDragon
 
         public void SuggestAngle(float yawRad, float pitchRad, float distance)
         {
-            _suggestedYawRad = yawRad;
-            _suggestedPitchRad = pitchRad;
-            _suggestedDistance = distance;
+            _suggestedOrbitCoordinates = new(yawRad, pitchRad, distance);
             _stateMachine.ChangeState<SuggestingAngle>();
         }
 
@@ -261,12 +274,8 @@ namespace FastDragon
         public void ApplyAnglesAndDistance()
         {
             var followTargetPos = FollowTargetTransform();
+            Vector3 offset = OrbitCoordinates.ToCartesian();
 
-            Vector3 dir = Vector3.Back
-                .Rotated(Vector3.Right, OrbitPitchRad)
-                .Rotated(Vector3.Up, OrbitYawRad);
-
-            Vector3 offset = dir * OrbitDistance;
             var desiredPosition = Transform3D.Identity
                 .Translated(followTargetPos.Origin + offset)
                 .LookingAt(followTargetPos.Origin);
@@ -283,6 +292,7 @@ namespace FastDragon
 
                 if (_raycast.IsColliding())
                 {
+                    var dir = offset.Normalized();
                     desiredPosition.Origin = _raycast.GetCollisionPoint();
                     desiredPosition.Origin -= dir * 0.1f;
                 }
@@ -462,16 +472,12 @@ namespace FastDragon
             private const float Duration = 0.5f;
 
             private float _timer;
-            private float _initialPitchRad;
-            private float _initialYawRad;
-            private float _initialDistance;
+            private SphereCoords _initialOrbitCoords;
 
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _initialPitchRad = Self.OrbitPitchRad;
-                _initialYawRad = Self.OrbitYawRad;
-                _initialDistance = Self.OrbitDistance;
+                _initialOrbitCoords = Self.OrbitCoordinates;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -483,23 +489,7 @@ namespace FastDragon
                 t = Mathf.Min(1, t);
                 t = MathUtils.LerpSinusoidal(0, 1, t);
 
-                Self.OrbitPitchRad = Mathf.LerpAngle(
-                    _initialPitchRad,
-                    Self._suggestedPitchRad,
-                    t
-                );
-
-                Self.OrbitYawRad = Mathf.LerpAngle(
-                    _initialYawRad,
-                    Self._suggestedYawRad,
-                    t
-                );
-
-                Self.OrbitDistance = Mathf.Lerp(
-                    _initialDistance,
-                    Self._suggestedDistance,
-                    t
-                );
+                Self.OrbitCoordinates = _initialOrbitCoords.Lerp(Self._suggestedOrbitCoordinates, t);
             }
 
             public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)
@@ -553,14 +543,12 @@ namespace FastDragon
             private const float Duration = 0.1f;
 
             private float _timer;
-            private float _initialPitchRad;
-            private float _initialYawRad;
+            private SphereCoords _initialOrbitCoords;
 
             public override void OnStateEntered()
             {
                 _timer = 0;
-                _initialPitchRad = Self.OrbitPitchRad;
-                _initialYawRad = Self.OrbitYawRad;
+                _initialOrbitCoords = Self.OrbitCoordinates;
 
                 Self.IsUsingMouselook = false;
             }
@@ -568,15 +556,16 @@ namespace FastDragon
             public override void _Process(double deltaD)
             {
                 _timer += (float)deltaD;
-
                 float t = _timer / Duration;
 
-                Self.OrbitPitchRad = Mathf.LerpAngle(_initialPitchRad, 0, t);
-                Self.OrbitYawRad = Mathf.LerpAngle(
-                    _initialYawRad,
-                    Self.FollowTargetTransform().Basis.GetEuler().Y,
-                    t
-                );
+                var targetCoords = new SphereCoords
+                {
+                    PitchRad = 0,
+                    YawRad = Self.FollowTargetTransform().Basis.GetEuler().Y,
+                    Distance = _initialOrbitCoords.Distance,
+                };
+
+                Self.OrbitCoordinates = _initialOrbitCoords.Lerp(targetCoords, t);
 
                 if (_timer > Duration)
                 {
