@@ -59,19 +59,9 @@ namespace FastDragon
             CurrentState?.SubscribeToSignals();
         }
 
-        public void ChangeState<TState>() where TState : IState, new()
+        public void ChangeState(IState incomingState)
         {
-            var stateType = typeof(TState);
-
-            // Get the incoming state's node.
-            // If it doesn't exist yet, create it.
-            IState incomingState = _stateCache.FirstOrDefault(s => s.GetType() == stateType);
-            if (incomingState == null)
-            {
-                incomingState = new TState();
-                incomingState.SetStateMachine(this);
-                _stateCache.Add(incomingState);
-            }
+            incomingState.SetStateMachine(this);
 
             StateChanging?.Invoke(CurrentState, incomingState);
 
@@ -86,6 +76,22 @@ namespace FastDragon
             CurrentState.SubscribeToSignals();
             CurrentState.OnStateEntered(prevState);
             CurrentState.OnStateEntered();
+        }
+
+        public void ChangeState<TState>() where TState : IState, new()
+        {
+            var stateType = typeof(TState);
+
+            // Get the incoming state's node.
+            // If it doesn't exist yet, create it.
+            IState incomingState = _stateCache.FirstOrDefault(s => s.GetType() == stateType);
+            if (incomingState == null)
+            {
+                incomingState = new TState();
+                _stateCache.Add(incomingState);
+            }
+
+            ChangeState(incomingState);
         }
     }
 }
