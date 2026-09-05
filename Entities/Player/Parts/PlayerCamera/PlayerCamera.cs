@@ -18,6 +18,8 @@ namespace FastDragon
         public bool DisableInput { get; set; }
         public bool IgnoreObstructions { get; set; }
 
+        public CameraState CurrentState => (CameraState)_stateMachine.CurrentState;
+
         public bool IsBeingManhandled => _stateMachine.CurrentState is Manhandled;
         public bool IsSuggestingAngle => _stateMachine.CurrentState is SuggestingAngle;
 
@@ -196,6 +198,11 @@ namespace FastDragon
 
         public void MakeCurrent() => _camera.MakeCurrent();
 
+        public void ChangeState<TState>() where TState : CameraState, new()
+        {
+            _stateMachine.ChangeState<TState>();
+        }
+
         public void Shake(float magnitude, float frequency, float duration)
         {
             Shake(
@@ -343,7 +350,7 @@ namespace FastDragon
             return FollowTarget.GlobalTransform;
         }
 
-        private abstract class CameraState : State<PlayerCamera>
+        public abstract class CameraState : State<PlayerCamera>
         {
             public virtual void OnOrbitRequested(float yawRad, float pitchRad) {}
         }
