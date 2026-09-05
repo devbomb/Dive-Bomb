@@ -22,12 +22,10 @@ Visualizer = NodePath("Visualizer")
 [node name="DownCast" type="RayCast3D" parent="." unique_id=1937340920]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
 target_position = Vector3(0, -2, 0)
-collision_mask = 3
 
 [node name="AntiSuicideChecker" type="RayCast3D" parent="." unique_id=1196976904]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
 target_position = Vector3(0, -2, 0)
-collision_mask = 3
 
 [node name="Visualizer" type="MeshInstance3D" parent="." unique_id=918470778 groups=["PhysicsInterpolated"]]
 top_level = true
