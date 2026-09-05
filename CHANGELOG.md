@@ -43,6 +43,11 @@
     "suggested" camera angles.
     [(issue)](https://github.com/devbomb/Dive-Bomb/issues/6)
 
+## Snapjaw Swamp
+* **Changed:** Added a tiny little "safety wall" in front of a pit on one of the
+    tree branches.  This was necessary because the default camera angle makes
+    that pit nearly impossible to see.
+
 ## Misc
 * **Changed:** Completely refactored the collision layers for various objects.
     This should make it easier for me to decide which collision layer any
