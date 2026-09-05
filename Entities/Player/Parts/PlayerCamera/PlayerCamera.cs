@@ -198,9 +198,9 @@ namespace FastDragon
 
         public void MakeCurrent() => _camera.MakeCurrent();
 
-        public void ChangeState<TState>() where TState : CameraState, new()
+        public void ChangeState(CustomState state)
         {
-            _stateMachine.ChangeState<TState>();
+            _stateMachine.ChangeState(state);
         }
 
         public void Shake(float magnitude, float frequency, float duration)
@@ -353,6 +353,49 @@ namespace FastDragon
         public abstract class CameraState : State<PlayerCamera>
         {
             public virtual void OnOrbitRequested(float yawRad, float pitchRad) {}
+        }
+
+        public abstract class CustomState : CameraState
+        {
+            protected virtual Transform3D CustomPosition { get; set; }
+            protected virtual float TransitionDuration { get; } = 1;
+
+            private Transform3D _transitionStartPos;
+            private float _transitionTimer;
+
+            public override void OnStateEntered()
+            {
+                _transitionStartPos = Self.GlobalTransform;
+                _transitionTimer = 0;
+                UpdatePosition();
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _transitionTimer += (float)deltaD;
+
+                if (_transitionTimer > TransitionDuration)
+                    _transitionTimer = TransitionDuration;
+
+                UpdatePosition();
+            }
+
+            private void UpdatePosition()
+            {
+                // Avoid division by zero
+                if (TransitionDuration <= 0)
+                {
+                    Self.GlobalTransform = CustomPosition;
+                    return;
+                }
+
+                float t = _transitionTimer / TransitionDuration;
+
+                Self.GlobalTransform = _transitionStartPos.InterpolateWith(
+                    CustomPosition,
+                    MathUtils.LerpSinusoidal(0, 1, t)
+                );
+            }
         }
 
         private class Following : CameraState
