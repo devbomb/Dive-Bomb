@@ -194,7 +194,7 @@ namespace FastDragon
 
         public void MakeCurrent() => _camera.MakeCurrent();
 
-        public void ChangeState(CustomState state)
+        public void ChangeState(CameraState state)
         {
             _stateMachine.ChangeState(state);
         }
@@ -268,10 +268,10 @@ namespace FastDragon
             _stateMachine.ChangeState<Recentering>();
         }
 
-        public void ApplyAnglesAndDistance()
+        public Transform3D PositionFromOrbitCoords(SphereCoords orbitCoords)
         {
             var followTargetPos = FollowTargetTransform();
-            Vector3 offset = OrbitCoordinates.ToCartesian();
+            Vector3 offset = orbitCoords.ToCartesian();
 
             var desiredPosition = Transform3D.Identity
                 .Translated(followTargetPos.Origin + offset)
@@ -294,6 +294,34 @@ namespace FastDragon
                     desiredPosition.Origin -= dir * 0.1f;
                 }
             }
+
+            return desiredPosition;
+        }
+
+        /// <summary>
+        /// The inverse of <see cref="PositionFromOrbitCoords"/>.
+        /// Returns the <see cref="SphereCoords"/> that would be cause
+        /// <see cref="PositionFromOrbitCoords"/> to return a transform with
+        /// <paramref name="pos"/> as the origin (ignoring obstructions).
+        /// </summary>
+        public SphereCoords OrbitCoordsFromPosition(Vector3 pos)
+        {
+            var followTargetPos = FollowTargetTransform().Origin;
+            float dist = followTargetPos.DistanceTo(pos);
+
+            var angles = pos
+                .DirectionTo(followTargetPos)
+                .ForwardToEulerAnglesRad();
+
+            float pitchRad = angles.X;
+            float yawRad = angles.Y;
+
+            return new(yawRad, pitchRad, dist);
+        }
+
+        public void ApplyAnglesAndDistance()
+        {
+            var desiredPosition = PositionFromOrbitCoords(OrbitCoordinates);
 
             // If a transition is active, tween between our desired position and
             // the transition start.
@@ -318,15 +346,7 @@ namespace FastDragon
         /// </summary>
         public void DetectAnglesAndDistance()
         {
-            var followTargetPos = FollowTargetTransform().Origin;
-            OrbitDistance = followTargetPos.DistanceTo(GlobalPosition);
-
-            var angles = GlobalPosition
-                .DirectionTo(followTargetPos)
-                .ForwardToEulerAnglesRad();
-
-            OrbitPitchRad = angles.X;
-            OrbitYawRad = angles.Y;
+            OrbitCoordinates = OrbitCoordsFromPosition(GlobalPosition);
         }
 
         private Transform3D FollowTargetTransform()
@@ -342,20 +362,22 @@ namespace FastDragon
 
         public abstract class CameraState : State<PlayerCamera>
         {
+            public PlayerCamera Camera => Self;
+            public Player Player => Self.Player;
+
             public virtual void OnOrbitRequested(float yawRad, float pitchRad) {}
         }
 
         public abstract class CustomState : CameraState
         {
-            protected virtual Transform3D CustomPosition { get; set; }
             protected virtual float TransitionDuration { get; } = 1;
 
-            private Transform3D _transitionStartPos;
+            private Transform3D _transitionStart;
             private float _transitionTimer;
 
             public override void OnStateEntered()
             {
-                _transitionStartPos = Self.GlobalTransform;
+                _transitionStart = Self.GlobalTransform;
                 _transitionTimer = 0;
                 UpdatePosition();
             }
@@ -372,19 +394,19 @@ namespace FastDragon
 
             private void UpdatePosition()
             {
-                // Avoid division by zero
-                if (TransitionDuration <= 0)
-                {
-                    Self.GlobalTransform = CustomPosition;
-                    return;
-                }
+                float t = TransitionDuration > 0
+                    ? _transitionTimer / TransitionDuration
+                    : 1;
 
-                float t = _transitionTimer / TransitionDuration;
+                Self.GlobalTransform = Transition(_transitionStart, GetCustomPosition(), t);
+            }
 
-                Self.GlobalTransform = _transitionStartPos.InterpolateWith(
-                    CustomPosition,
-                    MathUtils.LerpSinusoidal(0, 1, t)
-                );
+            protected abstract Transform3D GetCustomPosition();
+
+            protected virtual Transform3D Transition(Transform3D startPos, Transform3D currentPos, float t)
+            {
+                t = MathUtils.LerpSinusoidal(0, 1, t);
+                return startPos.InterpolateWith(currentPos, t);
             }
         }
 
