@@ -35,6 +35,9 @@
         next time you touch the right analog stick or press the "recenter"
         button.
 
+* **Changed:** "Camera suggestion zones" will no longer activate if the camera
+    is in "mouse mode".
+
 * **Changed:** Drastically reduced the base mouse sensitivity.
 
 * **Fixed:** Fixed the camera behaving strangely if you rotate it while rolling.
@@ -47,6 +50,11 @@
 * **Changed:** Added a tiny little "safety wall" in front of a pit on one of the
     tree branches.  This was necessary because the default camera angle makes
     that pit nearly impossible to see.
+
+* **Changed:** The "cylinder" camera zone around one of the trees (the one that
+    puts your camera into a pseudo-sidescrolling perspective) is now considered
+    a "suggested" camera angle, rather than a forced one.  This means you can
+    override it by using the mouse or right analog stick.
 
 ## Misc
 * **Changed:** Completely refactored the collision layers for various objects.

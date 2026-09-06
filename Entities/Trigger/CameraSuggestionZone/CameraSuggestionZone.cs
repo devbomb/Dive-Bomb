@@ -41,6 +41,7 @@ namespace FastDragon
                 );
 
                 Self.OrbitCoordinates = _initialOrbitCoords.Lerp(suggestedCoords, t);
+                Self.ApplyAnglesAndDistance();
             }
 
             public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)
@@ -72,7 +73,7 @@ namespace FastDragon
 
         public void OnBodyEntered(Node3D body)
         {
-            if (body is Player player)
+            if (body is Player player && !player.Camera.IsUsingMouselook)
             {
                 player.Camera.ChangeState(_cameraState);
             }

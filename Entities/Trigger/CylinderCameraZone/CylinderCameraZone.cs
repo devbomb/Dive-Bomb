@@ -12,29 +12,42 @@ namespace FastDragon
         private Player _player;
         private Vector3 _targetPos;
 
+        private readonly SuggestingCylinder _cameraState;
+        private class SuggestingCylinder(CylinderCameraZone Owner) : PlayerCamera.CustomState
+        {
+            public override void OnStateEntered()
+            {
+                CustomPosition = Owner.CalculateCameraPos();
+                base.OnStateEntered();
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                CustomPosition = Owner.CalculateCameraPos();
+                base._PhysicsProcess(delta);
+            }
+
+            public override void OnOrbitRequested(float yawRad, float pitchRad)
+            {
+                Self.DetectAnglesAndDistance(); // Mouselook breaks without this, for some reason.
+                Self.StartFollowing(0.1f);
+            }
+        }
+
+        public CylinderCameraZone()
+        {
+            _cameraState = new(this);
+        }
+
         public override void _Ready()
         {
             BodyEntered += OnBodyEntered;
             BodyExited += OnBodyExited;
-            SignalBus.Instance.LevelReset += Reset;
-        }
-
-        public void Reset()
-        {
-            _player = null;
-        }
-
-        public override void _PhysicsProcess(double delta)
-        {
-            if (_player != null)
-            {
-                _player.Camera.ManhandledPosition = CalculateCameraPos();
-            }
         }
 
         public void OnBodyEntered(Node3D body)
         {
-            if (body is Player player)
+            if (body is Player player && !player.Camera.IsUsingMouselook)
             {
                 _targetPos = GetTree().CurrentScene
                     .EnumerateDescendantsOfType<NamedMarker3D>()
@@ -43,13 +56,13 @@ namespace FastDragon
 
                 _player = player;
 
-                player.Camera.StartManhandling(CalculateCameraPos(), 1);
+                player.Camera.ChangeState(_cameraState);
             }
         }
 
         public void OnBodyExited(Node3D body)
         {
-            if (body is Player player)
+            if (body is Player player && player.Camera.CurrentState == _cameraState)
             {
                 player.Camera.DetectAnglesAndDistance(); // Mouselook breaks without this, for some reason.
                 player.Camera.StartFollowing(1);
