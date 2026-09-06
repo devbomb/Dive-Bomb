@@ -44,7 +44,6 @@ namespace FastDragon
         {
             if (body is Player player && player.Camera.CurrentState == _cameraState)
             {
-                player.Camera.DetectAnglesAndDistance(); // Mouselook breaks without this, for some reason.
                 player.Camera.StartFollowing(1);
             }
         }
@@ -70,8 +69,16 @@ namespace FastDragon
 
             public override void OnOrbitRequested(float yawRad, float pitchRad)
             {
-                Self.DetectAnglesAndDistance(); // Mouselook breaks without this, for some reason.
                 Self.StartFollowing(0.1f);
+            }
+
+            public override void OnStateExited()
+            {
+                // Prevent the camera from suddenly snapping when going to the
+                // Following state.
+                // TODO: Refactor so this isn't necessary
+                Camera.DetectAnglesAndDistance();
+                base.OnStateExited();
             }
         }
     }
