@@ -47,7 +47,7 @@ namespace FastDragon
 
         public void OnBodyEntered(Node3D body)
         {
-            if (body is Player player)
+            if (body is Player player && !player.Camera.IsUsingMouselook)
             {
                 _targetPos = GetTree().CurrentScene
                     .EnumerateDescendantsOfType<NamedMarker3D>()
