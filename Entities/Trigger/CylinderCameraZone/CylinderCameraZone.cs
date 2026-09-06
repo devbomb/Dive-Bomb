@@ -30,7 +30,7 @@ namespace FastDragon
             public override void OnOrbitRequested(float yawRad, float pitchRad)
             {
                 Self.DetectAnglesAndDistance(); // Mouselook breaks without this, for some reason.
-                Self.StartFollowing(1);
+                Self.StartFollowing(0.1f);
             }
         }
 
