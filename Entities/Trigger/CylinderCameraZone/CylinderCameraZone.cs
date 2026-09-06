@@ -13,26 +13,6 @@ namespace FastDragon
         private Vector3 _targetPos;
 
         private readonly SuggestingCylinder _cameraState;
-        private class SuggestingCylinder(CylinderCameraZone Owner) : PlayerCamera.CustomState
-        {
-            public override void OnStateEntered()
-            {
-                CustomPosition = Owner.CalculateCameraPos();
-                base.OnStateEntered();
-            }
-
-            public override void _PhysicsProcess(double delta)
-            {
-                CustomPosition = Owner.CalculateCameraPos();
-                base._PhysicsProcess(delta);
-            }
-
-            public override void OnOrbitRequested(float yawRad, float pitchRad)
-            {
-                Self.DetectAnglesAndDistance(); // Mouselook breaks without this, for some reason.
-                Self.StartFollowing(0.1f);
-            }
-        }
 
         public CylinderCameraZone()
         {
@@ -69,21 +49,30 @@ namespace FastDragon
             }
         }
 
-        private Transform3D CalculateCameraPos()
+        private class SuggestingCylinder(CylinderCameraZone Owner) : PlayerCamera.CustomState
         {
-            var cameraForward = _player
-                .CameraFocus
-                .GlobalPosition
-                .DirectionTo(_targetPos)
-                .Flattened()
-                .Normalized();
+            protected override Transform3D GetCustomPosition()
+            {
+                var cameraForward = Player
+                    .CameraFocus
+                    .GlobalPosition
+                    .DirectionTo(Owner._targetPos)
+                    .Flattened()
+                    .Normalized();
 
-            var cameraPos = _targetPos - (cameraForward * Distance);
-            cameraPos.Y = _player.CameraFocus.GlobalPosition.Y;
+                var cameraPos = Owner._targetPos - (cameraForward * Owner.Distance);
+                cameraPos.Y = Player.CameraFocus.GlobalPosition.Y;
 
-            return Transform3D.Identity
-                .Translated(cameraPos)
-                .LookingAt(_player.CameraFocus.GlobalPosition);
+                return Transform3D.Identity
+                    .Translated(cameraPos)
+                    .LookingAt(Player.CameraFocus.GlobalPosition);
+            }
+
+            public override void OnOrbitRequested(float yawRad, float pitchRad)
+            {
+                Self.DetectAnglesAndDistance(); // Mouselook breaks without this, for some reason.
+                Self.StartFollowing(0.1f);
+            }
         }
     }
 }

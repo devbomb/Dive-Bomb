@@ -350,7 +350,6 @@ namespace FastDragon
 
         public abstract class CustomState : CameraState
         {
-            protected virtual Transform3D CustomPosition { get; set; }
             protected virtual float TransitionDuration { get; } = 1;
 
             private Transform3D _transitionStartPos;
@@ -378,17 +377,19 @@ namespace FastDragon
                 // Avoid division by zero
                 if (TransitionDuration <= 0)
                 {
-                    Self.GlobalTransform = CustomPosition;
+                    Self.GlobalTransform = GetCustomPosition();
                     return;
                 }
 
                 float t = _transitionTimer / TransitionDuration;
 
                 Self.GlobalTransform = _transitionStartPos.InterpolateWith(
-                    CustomPosition,
+                    GetCustomPosition(),
                     MathUtils.LerpSinusoidal(0, 1, t)
                 );
             }
+
+            protected abstract Transform3D GetCustomPosition();
         }
 
         private class Following : CameraState
