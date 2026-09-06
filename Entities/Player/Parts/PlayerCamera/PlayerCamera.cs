@@ -268,10 +268,10 @@ namespace FastDragon
             _stateMachine.ChangeState<Recentering>();
         }
 
-        public void ApplyAnglesAndDistance()
+        public Transform3D PositionFromOrbitCoords(SphereCoords orbitCoords)
         {
             var followTargetPos = FollowTargetTransform();
-            Vector3 offset = OrbitCoordinates.ToCartesian();
+            Vector3 offset = orbitCoords.ToCartesian();
 
             var desiredPosition = Transform3D.Identity
                 .Translated(followTargetPos.Origin + offset)
@@ -294,6 +294,34 @@ namespace FastDragon
                     desiredPosition.Origin -= dir * 0.1f;
                 }
             }
+
+            return desiredPosition;
+        }
+
+        /// <summary>
+        /// The inverse of <see cref="PositionFromOrbitCoords"/>.
+        /// Returns the <see cref="SphereCoords"/> that would be cause
+        /// <see cref="PositionFromOrbitCoords"/> to return a transform with
+        /// <paramref name="pos"/> as the origin (ignoring obstructions).
+        /// </summary>
+        public SphereCoords OrbitCoordsFromPosition(Vector3 pos)
+        {
+            var followTargetPos = FollowTargetTransform().Origin;
+            float dist = followTargetPos.DistanceTo(pos);
+
+            var angles = pos
+                .DirectionTo(followTargetPos)
+                .ForwardToEulerAnglesRad();
+
+            float pitchRad = angles.X;
+            float yawRad = angles.Y;
+
+            return new(yawRad, pitchRad, dist);
+        }
+
+        public void ApplyAnglesAndDistance()
+        {
+            var desiredPosition = PositionFromOrbitCoords(OrbitCoordinates);
 
             // If a transition is active, tween between our desired position and
             // the transition start.
@@ -318,15 +346,7 @@ namespace FastDragon
         /// </summary>
         public void DetectAnglesAndDistance()
         {
-            var followTargetPos = FollowTargetTransform().Origin;
-            OrbitDistance = followTargetPos.DistanceTo(GlobalPosition);
-
-            var angles = GlobalPosition
-                .DirectionTo(followTargetPos)
-                .ForwardToEulerAnglesRad();
-
-            OrbitPitchRad = angles.X;
-            OrbitYawRad = angles.Y;
+            OrbitCoordinates = OrbitCoordsFromPosition(GlobalPosition);
         }
 
         private Transform3D FollowTargetTransform()
