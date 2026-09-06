@@ -194,7 +194,7 @@ namespace FastDragon
 
         public void MakeCurrent() => _camera.MakeCurrent();
 
-        public void ChangeState(CustomState state)
+        public void ChangeState(CameraState state)
         {
             _stateMachine.ChangeState(state);
         }

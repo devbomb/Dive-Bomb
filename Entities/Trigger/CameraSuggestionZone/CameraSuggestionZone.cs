@@ -12,7 +12,7 @@ namespace FastDragon
         [Export] public string target;
 
         private readonly SuggestingAngle _cameraState;
-        private class SuggestingAngle(CameraSuggestionZone Owner) : PlayerCamera.CustomState
+        private class SuggestingAngle(CameraSuggestionZone Owner) : PlayerCamera.CameraState
         {
             private const float Duration = 0.5f;
 
