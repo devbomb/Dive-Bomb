@@ -451,7 +451,7 @@ namespace FastDragon
                 _orbitRequestedThisTick = false;
                 if (!orbitRequested && !Self.IsUsingMouselook)
                 {
-                    MaintainDistanceAndAutoRotate(delta);
+                    MaintainDistanceAndAutoRotate();
                 }
 
                 ZoomToFollowDistance(delta);
@@ -478,7 +478,7 @@ namespace FastDragon
                 );
             }
 
-            private void MaintainDistanceAndAutoRotate(float delta)
+            private void MaintainDistanceAndAutoRotate()
             {
                 var targetPos = Self.FollowTargetTransform().Origin;
                 var dir = targetPos.DirectionTo(_prevPos);
