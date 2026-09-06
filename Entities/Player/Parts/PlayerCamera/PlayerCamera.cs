@@ -352,12 +352,12 @@ namespace FastDragon
         {
             protected virtual float TransitionDuration { get; } = 1;
 
-            private Transform3D _transitionStartPos;
+            private Transform3D _transitionStart;
             private float _transitionTimer;
 
             public override void OnStateEntered()
             {
-                _transitionStartPos = Self.GlobalTransform;
+                _transitionStart = Self.GlobalTransform;
                 _transitionTimer = 0;
                 UpdatePosition();
             }
@@ -374,22 +374,20 @@ namespace FastDragon
 
             private void UpdatePosition()
             {
-                // Avoid division by zero
-                if (TransitionDuration <= 0)
-                {
-                    Self.GlobalTransform = GetCustomPosition();
-                    return;
-                }
+                float t = TransitionDuration > 0
+                    ? _transitionTimer / TransitionDuration
+                    : 1;
 
-                float t = _transitionTimer / TransitionDuration;
-
-                Self.GlobalTransform = _transitionStartPos.InterpolateWith(
-                    GetCustomPosition(),
-                    MathUtils.LerpSinusoidal(0, 1, t)
-                );
+                Self.GlobalTransform = Transition(_transitionStart, GetCustomPosition(), t);
             }
 
             protected abstract Transform3D GetCustomPosition();
+
+            protected virtual Transform3D Transition(Transform3D startPos, Transform3D currentPos, float t)
+            {
+                t = MathUtils.LerpSinusoidal(0, 1, t);
+                return startPos.InterpolateWith(currentPos, t);
+            }
         }
 
         private class Following : CameraState
