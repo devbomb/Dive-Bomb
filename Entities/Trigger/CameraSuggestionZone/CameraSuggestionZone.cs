@@ -41,6 +41,7 @@ namespace FastDragon
                 );
 
                 Self.OrbitCoordinates = _initialOrbitCoords.Lerp(suggestedCoords, t);
+                Self.ApplyAnglesAndDistance();
             }
 
             public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)

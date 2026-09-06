@@ -146,8 +146,6 @@ namespace FastDragon
             _followTransitionTimer += delta;
             _lagTimer += delta;
 
-            ApplyAnglesAndDistance();
-
             OrbitControls(delta);
         }
 
@@ -447,6 +445,7 @@ namespace FastDragon
                 ZoomToFollowDistance(delta);
 
                 _prevPos = Self.GlobalPosition;
+                Self.ApplyAnglesAndDistance();
             }
 
             public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)
@@ -564,7 +563,7 @@ namespace FastDragon
                 Self.IsUsingMouselook = false;
             }
 
-            public override void _Process(double deltaD)
+            public override void _PhysicsProcess(double deltaD)
             {
                 _timer += (float)deltaD;
                 float t = _timer / Duration;
@@ -577,6 +576,7 @@ namespace FastDragon
                 };
 
                 Self.OrbitCoordinates = _initialOrbitCoords.Lerp(targetCoords, t);
+                Self.ApplyAnglesAndDistance();
 
                 if (_timer > Duration)
                 {
