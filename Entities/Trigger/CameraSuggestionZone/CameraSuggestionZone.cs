@@ -11,6 +11,49 @@ namespace FastDragon
 
         [Export] public string target;
 
+        private readonly SuggestingAngle _cameraState;
+        private class SuggestingAngle(CameraSuggestionZone Owner) : PlayerCamera.CustomState
+        {
+            private const float Duration = 0.5f;
+
+            private float _timer;
+            private SphereCoords _initialOrbitCoords;
+
+            public override void OnStateEntered()
+            {
+                _timer = 0;
+                _initialOrbitCoords = Self.OrbitCoordinates;
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                // Move the camera to the suggested angle
+                _timer += (float)deltaD;
+
+                float t = _timer / Duration;
+                t = Mathf.Min(1, t);
+                t = MathUtils.LerpSinusoidal(0, 1, t);
+
+                var suggestedCoords = new SphereCoords(
+                    Mathf.DegToRad(Owner.SuggestedYawDeg),
+                    Mathf.DegToRad(Owner.SuggestedPitchDeg),
+                    Owner.SuggestedDistance
+                );
+
+                Self.OrbitCoordinates = _initialOrbitCoords.Lerp(suggestedCoords, t);
+            }
+
+            public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)
+            {
+                Self.StartFollowing();
+            }
+        }
+
+        public CameraSuggestionZone()
+        {
+            _cameraState = new(this);
+        }
+
         public override void _Ready()
         {
             BodyEntered += OnBodyEntered;
@@ -31,11 +74,7 @@ namespace FastDragon
         {
             if (body is Player player)
             {
-                player.Camera.SuggestAngle(
-                    Mathf.DegToRad(SuggestedYawDeg),
-                    Mathf.DegToRad(SuggestedPitchDeg),
-                    SuggestedDistance
-                );
+                player.Camera.ChangeState(_cameraState);
             }
         }
 

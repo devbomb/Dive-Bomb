@@ -18,8 +18,10 @@ namespace FastDragon
         public bool DisableInput { get; set; }
         public bool IgnoreObstructions { get; set; }
 
+        public CameraState CurrentState => (CameraState)_stateMachine.CurrentState;
+
         public bool IsBeingManhandled => _stateMachine.CurrentState is Manhandled;
-        public bool IsSuggestingAngle => _stateMachine.CurrentState is SuggestingAngle;
+        public bool IsCustomState => _stateMachine.CurrentState is CustomState;
 
         public bool IsUsingMouselook { get; private set; }
 
@@ -60,8 +62,6 @@ namespace FastDragon
 
         private Camera3D _camera => GetNode<Camera3D>("%Camera");
         private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast");
-
-        private SphereCoords _suggestedOrbitCoordinates;
 
         private readonly StateMachine _stateMachine = new StateMachine();
 
@@ -196,6 +196,11 @@ namespace FastDragon
 
         public void MakeCurrent() => _camera.MakeCurrent();
 
+        public void ChangeState(CustomState state)
+        {
+            _stateMachine.ChangeState(state);
+        }
+
         public void Shake(float magnitude, float frequency, float duration)
         {
             Shake(
@@ -238,12 +243,6 @@ namespace FastDragon
             OrbitYawRad = FollowTargetTransform().Basis.GetEuler().Y;
             ApplyAnglesAndDistance();
             this.ResetPhysicsInterpolation3D();
-        }
-
-        public void SuggestAngle(float yawRad, float pitchRad, float distance)
-        {
-            _suggestedOrbitCoordinates = new(yawRad, pitchRad, distance);
-            _stateMachine.ChangeState<SuggestingAngle>();
         }
 
         public void StartFollowing(float transitionDuration = 0)
@@ -343,9 +342,52 @@ namespace FastDragon
             return FollowTarget.GlobalTransform;
         }
 
-        private abstract class CameraState : State<PlayerCamera>
+        public abstract class CameraState : State<PlayerCamera>
         {
             public virtual void OnOrbitRequested(float yawRad, float pitchRad) {}
+        }
+
+        public abstract class CustomState : CameraState
+        {
+            protected virtual Transform3D CustomPosition { get; set; }
+            protected virtual float TransitionDuration { get; } = 1;
+
+            private Transform3D _transitionStartPos;
+            private float _transitionTimer;
+
+            public override void OnStateEntered()
+            {
+                _transitionStartPos = Self.GlobalTransform;
+                _transitionTimer = 0;
+                UpdatePosition();
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                _transitionTimer += (float)deltaD;
+
+                if (_transitionTimer > TransitionDuration)
+                    _transitionTimer = TransitionDuration;
+
+                UpdatePosition();
+            }
+
+            private void UpdatePosition()
+            {
+                // Avoid division by zero
+                if (TransitionDuration <= 0)
+                {
+                    Self.GlobalTransform = CustomPosition;
+                    return;
+                }
+
+                float t = _transitionTimer / TransitionDuration;
+
+                Self.GlobalTransform = _transitionStartPos.InterpolateWith(
+                    CustomPosition,
+                    MathUtils.LerpSinusoidal(0, 1, t)
+                );
+            }
         }
 
         private class Following : CameraState
@@ -464,37 +506,6 @@ namespace FastDragon
                     FollowDistance,
                     ZoomSpeed * delta
                 );
-            }
-        }
-
-        private class SuggestingAngle : CameraState
-        {
-            private const float Duration = 0.5f;
-
-            private float _timer;
-            private SphereCoords _initialOrbitCoords;
-
-            public override void OnStateEntered()
-            {
-                _timer = 0;
-                _initialOrbitCoords = Self.OrbitCoordinates;
-            }
-
-            public override void _PhysicsProcess(double deltaD)
-            {
-                // Move the camera to the suggested angle
-                _timer += (float)deltaD;
-
-                float t = _timer / Duration;
-                t = Mathf.Min(1, t);
-                t = MathUtils.LerpSinusoidal(0, 1, t);
-
-                Self.OrbitCoordinates = _initialOrbitCoords.Lerp(Self._suggestedOrbitCoordinates, t);
-            }
-
-            public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)
-            {
-                ChangeState<Following>();
             }
         }
 
