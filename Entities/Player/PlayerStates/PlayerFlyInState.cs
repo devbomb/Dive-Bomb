@@ -37,10 +37,13 @@ namespace FastDragon
             _startPos = Self.GlobalPosition;
             _startRotRad = Self.GlobalRotation;
 
-            Self.Camera.OrbitDistance = PortalLoadingScreen.CameraDist;
-            Self.Camera.OrbitYawRad = PortalLoadingScreen.EnterLevelCameraYawRad;
-            Self.Camera.OrbitPitchRad = PortalLoadingScreen.EnterLevelCameraPitchRad;
-            Self.Camera.ApplyAnglesAndDistance();
+            Self.Camera.OrbitCoordinates = new()
+            {
+                Distance = PortalLoadingScreen.CameraDist,
+                YawRad = PortalLoadingScreen.EnterLevelCameraYawRad,
+                PitchRad = PortalLoadingScreen.EnterLevelCameraPitchRad,
+            };
+            Self.Camera.GlobalTransform = Self.Camera.PositionFromOrbitCoords(Self.Camera.OrbitCoordinates);
             Self.Camera.ResetPhysicsInterpolation3D();
 
             // Pause the game while flying in.  This way, the fly-in won't
