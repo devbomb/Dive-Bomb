@@ -342,6 +342,9 @@ namespace FastDragon
 
         public abstract class CameraState : State<PlayerCamera>
         {
+            public PlayerCamera Camera => Self;
+            public Player Player => Self.Player;
+
             public virtual void OnOrbitRequested(float yawRad, float pitchRad) {}
         }
 
