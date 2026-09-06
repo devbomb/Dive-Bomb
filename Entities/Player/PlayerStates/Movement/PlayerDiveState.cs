@@ -52,7 +52,7 @@ namespace FastDragon
 
             AngleModelPitchWithVelocity();
 
-            if (_redirectTimer <= 0 && !Self.Camera.IsSuggestingAngle && !Self.Camera.IsUsingMouselook)
+            if (_redirectTimer <= 0 && !Self.Camera.IsCustomState && !Self.Camera.IsUsingMouselook)
             {
                 var camera = Self.Camera;
 
