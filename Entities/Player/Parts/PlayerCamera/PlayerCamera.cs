@@ -336,19 +336,6 @@ namespace FastDragon
             }
         }
 
-        /// <summary>
-        /// The inverse of <see cref="ApplyAnglesAndDistance"/>: changes
-        /// OrbitYawRad, OrbitPitchRad, and OrbitDistance to match what they
-        /// would need to be for <see cref="ApplyAnglesAndDistance"/> to
-        /// move the camera to its current position (ignoring obstructions).
-        ///
-        /// Useful when you want to teleport the camera.
-        /// </summary>
-        public void DetectAnglesAndDistance()
-        {
-            OrbitCoordinates = OrbitCoordsFromPosition(GlobalPosition);
-        }
-
         private Transform3D FollowTargetTransform()
         {
             if (_lagTimer < _lagDuration)
@@ -423,6 +410,7 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                Self.OrbitCoordinates = Self.OrbitCoordsFromPosition(Self.GlobalPosition);
                 Self.ApplyAnglesAndDistance();
                 _prevPos = Self.GlobalPosition;
             }

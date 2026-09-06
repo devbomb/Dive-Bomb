@@ -71,15 +71,6 @@ namespace FastDragon
             {
                 Self.StartFollowing(0.1f);
             }
-
-            public override void OnStateExited()
-            {
-                // Prevent the camera from suddenly snapping when going to the
-                // Following state.
-                // TODO: Refactor so this isn't necessary
-                Camera.DetectAnglesAndDistance();
-                base.OnStateExited();
-            }
         }
     }
 }

@@ -61,15 +61,6 @@ namespace FastDragon
                 base.OnStateEntered();
             }
 
-            public override void OnStateExited()
-            {
-                // Prevent the camera from suddenly snapping when going to the
-                // Following state.
-                // TODO: Refactor so this isn't necessary
-                Camera.DetectAnglesAndDistance();
-                base.OnStateExited();
-            }
-
             protected override Transform3D GetCustomPosition()
             {
                 var suggestedCoords = new SphereCoords(
