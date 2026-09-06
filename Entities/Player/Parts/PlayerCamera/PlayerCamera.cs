@@ -59,6 +59,7 @@ namespace FastDragon
         /// </summary>
         public Transform3D ManhandledPosition;
         private float _manhandledTransitionDuration;
+        private float _followTransitionDuration;
 
         private Camera3D _camera => GetNode<Camera3D>("%Camera");
         private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast");
@@ -72,10 +73,6 @@ namespace FastDragon
         private FastNoiseLite _shakeNoiseY = new FastNoiseLite();
         private Random _shakeRNG = new Random(1337);
 
-        private float _followTransitionTimer;
-        private float _followTransitionDuration;
-        private Transform3D _followTransitionStart;
-
         private float _lagTimer;
         private float _lagDuration;
         private Transform3D _lagFollowTargetStart;
@@ -85,16 +82,13 @@ namespace FastDragon
         public override void _Ready()
         {
             AddChild(_stateMachine);
-            _stateMachine.ChangeState<Following>();
+            StartFollowing();
 
             _raycast.AddException(Player);
         }
 
         public void Reset()
         {
-            _followTransitionTimer = 0;
-            _followTransitionDuration = 0;
-
             _lagTimer = 0;
             _lagDuration = 0;
 
@@ -107,7 +101,7 @@ namespace FastDragon
             GlobalTransform = PositionFromOrbitCoords(OrbitCoordinates);
             this.ResetPhysicsInterpolation3D();
 
-            _stateMachine.ChangeState<Following>();
+            StartFollowing();
         }
 
         public override void _Input(InputEvent ev)
@@ -143,8 +137,6 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
-
-            _followTransitionTimer += delta;
             _lagTimer += delta;
 
             OrbitControls(delta);
@@ -248,9 +240,7 @@ namespace FastDragon
 
         public void StartFollowing(float transitionDuration = 0)
         {
-            _followTransitionTimer = 0;
             _followTransitionDuration = transitionDuration;
-            _followTransitionStart = GlobalTransform;
             _stateMachine.ChangeState<Following>();
         }
 
@@ -391,11 +381,17 @@ namespace FastDragon
             public const float MinOrbitPitchDeg = -89;
             public const float MaxOrbitPitchDeg = 0;
 
+            private float _transitionTimer;
+            private Transform3D _transitionStart;
+
             private Vector3 _prevPos;
             private bool _orbitRequestedThisTick;
 
             public override void OnStateEntered()
             {
+                _transitionTimer = 0;
+                _transitionStart = Self.GlobalTransform;
+
                 Self.OrbitCoordinates = Self.OrbitCoordsFromPosition(Self.GlobalPosition);
                 ApplyOrbitCoords();
                 _prevPos = Self.GlobalPosition;
@@ -415,9 +411,10 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double deltaD)
             {
-                ApplyOrbitCoords();
-
                 float delta = (float)deltaD;
+                _transitionTimer += delta;
+
+                ApplyOrbitCoords();
 
                 // Don't let the motion of moving platforms affect auto-rotation;
                 // in an empty void, the player shouldn't be able to tell the
@@ -510,10 +507,10 @@ namespace FastDragon
 
                 // If a transition is active, tween between our desired position and
                 // the transition start.
-                if (Self._followTransitionTimer < Self._followTransitionDuration)
+                if (_transitionTimer < Self._followTransitionDuration)
                 {
-                    float t = Mathf.Min(1, Self._followTransitionTimer / Self._followTransitionDuration);
-                    Self.GlobalTransform = Self._followTransitionStart.InterpolateWith(desiredPosition, t);
+                    float t = Mathf.Min(1, _transitionTimer / Self._followTransitionDuration);
+                    Self.GlobalTransform = _transitionStart.InterpolateWith(desiredPosition, t);
                 }
                 else
                 {
@@ -592,7 +589,7 @@ namespace FastDragon
                 {
                     Self.OrbitCoordinates = targetCoords;
                     Self.GlobalTransform = Self.PositionFromOrbitCoords(Self.OrbitCoordinates);
-                    ChangeState<Following>();
+                    Self.StartFollowing();
                     return;
                 }
             }
