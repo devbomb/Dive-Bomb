@@ -419,6 +419,8 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double deltaD)
             {
+                Self.ApplyAnglesAndDistance();
+
                 float delta = (float)deltaD;
 
                 // Don't let the motion of moving platforms affect auto-rotation;
@@ -445,7 +447,6 @@ namespace FastDragon
                 ZoomToFollowDistance(delta);
 
                 _prevPos = Self.GlobalPosition;
-                Self.ApplyAnglesAndDistance();
             }
 
             public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)
