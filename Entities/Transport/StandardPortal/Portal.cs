@@ -322,10 +322,12 @@ namespace FastDragon
 
                 player.CameraFocus.Reset();
 
+                var cameraCoords = player.Camera.OrbitCoordsFromPosition(player.Camera.GlobalPosition);
+                cameraCoords.YawRad = Self.PlayerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
+                cameraCoords.PitchRad = 0;
+
                 player.Camera.IgnoreObstructions = true;
-                player.Camera.OrbitYawRad = Self.PlayerSpawn.GlobalRotation.Y + Mathf.DegToRad(180);
-                player.Camera.OrbitPitchRad = 0;
-                player.Camera.ApplyAnglesAndDistance();
+                player.Camera.GlobalTransform = player.Camera.PositionFromOrbitCoords(cameraCoords);
                 player.Camera.ResetPhysicsInterpolation3D();
 
                 // HACK: For whatever reason, portal surface textures don't

@@ -59,6 +59,7 @@ namespace FastDragon
         /// </summary>
         public Transform3D ManhandledPosition;
         private float _manhandledTransitionDuration;
+        private float _followTransitionDuration;
 
         private Camera3D _camera => GetNode<Camera3D>("%Camera");
         private RayCast3D _raycast => GetNode<RayCast3D>("%RayCast");
@@ -72,10 +73,6 @@ namespace FastDragon
         private FastNoiseLite _shakeNoiseY = new FastNoiseLite();
         private Random _shakeRNG = new Random(1337);
 
-        private float _followTransitionTimer;
-        private float _followTransitionDuration;
-        private Transform3D _followTransitionStart;
-
         private float _lagTimer;
         private float _lagDuration;
         private Transform3D _lagFollowTargetStart;
@@ -85,16 +82,13 @@ namespace FastDragon
         public override void _Ready()
         {
             AddChild(_stateMachine);
-            _stateMachine.ChangeState<Following>();
+            StartFollowing();
 
             _raycast.AddException(Player);
         }
 
         public void Reset()
         {
-            _followTransitionTimer = 0;
-            _followTransitionDuration = 0;
-
             _lagTimer = 0;
             _lagDuration = 0;
 
@@ -103,10 +97,11 @@ namespace FastDragon
 
             _accumulatedMouseMotion = Vector2.Zero;
 
-            OrbitDistance = Following.FollowDistance;
-            ForceRecenter();
+            OrbitCoordinates = RecenteredOrbitCoords();
+            GlobalTransform = PositionFromOrbitCoords(OrbitCoordinates);
+            this.ResetPhysicsInterpolation3D();
 
-            _stateMachine.ChangeState<Following>();
+            StartFollowing();
         }
 
         public override void _Input(InputEvent ev)
@@ -142,8 +137,6 @@ namespace FastDragon
         public override void _PhysicsProcess(double deltaD)
         {
             float delta = (float)deltaD;
-
-            _followTransitionTimer += delta;
             _lagTimer += delta;
 
             OrbitControls(delta);
@@ -235,19 +228,19 @@ namespace FastDragon
             _lagFollowTargetStart = FollowTarget.GlobalTransform;
         }
 
-        public void ForceRecenter()
+        public SphereCoords RecenteredOrbitCoords()
         {
-            OrbitPitchRad = 0;
-            OrbitYawRad = FollowTargetTransform().Basis.GetEuler().Y;
-            ApplyAnglesAndDistance();
-            this.ResetPhysicsInterpolation3D();
+            return new()
+            {
+                Distance = Following.FollowDistance,
+                PitchRad = 0,
+                YawRad = FollowTargetTransform().Basis.GetEuler().Y,
+            };
         }
 
         public void StartFollowing(float transitionDuration = 0)
         {
-            _followTransitionTimer = 0;
             _followTransitionDuration = transitionDuration;
-            _followTransitionStart = GlobalTransform;
             _stateMachine.ChangeState<Following>();
         }
 
@@ -319,36 +312,6 @@ namespace FastDragon
             return new(yawRad, pitchRad, dist);
         }
 
-        public void ApplyAnglesAndDistance()
-        {
-            var desiredPosition = PositionFromOrbitCoords(OrbitCoordinates);
-
-            // If a transition is active, tween between our desired position and
-            // the transition start.
-            if (_followTransitionTimer < _followTransitionDuration)
-            {
-                float t = Mathf.Min(1, _followTransitionTimer / _followTransitionDuration);
-                GlobalTransform = _followTransitionStart.InterpolateWith(desiredPosition, t);
-            }
-            else
-            {
-                GlobalTransform = desiredPosition;
-            }
-        }
-
-        /// <summary>
-        /// The inverse of <see cref="ApplyAnglesAndDistance"/>: changes
-        /// OrbitYawRad, OrbitPitchRad, and OrbitDistance to match what they
-        /// would need to be for <see cref="ApplyAnglesAndDistance"/> to
-        /// move the camera to its current position (ignoring obstructions).
-        ///
-        /// Useful when you want to teleport the camera.
-        /// </summary>
-        public void DetectAnglesAndDistance()
-        {
-            OrbitCoordinates = OrbitCoordsFromPosition(GlobalPosition);
-        }
-
         private Transform3D FollowTargetTransform()
         {
             if (_lagTimer < _lagDuration)
@@ -418,12 +381,19 @@ namespace FastDragon
             public const float MinOrbitPitchDeg = -89;
             public const float MaxOrbitPitchDeg = 0;
 
+            private float _transitionTimer;
+            private Transform3D _transitionStart;
+
             private Vector3 _prevPos;
             private bool _orbitRequestedThisTick;
 
             public override void OnStateEntered()
             {
-                Self.ApplyAnglesAndDistance();
+                _transitionTimer = 0;
+                _transitionStart = Self.GlobalTransform;
+
+                Self.OrbitCoordinates = Self.OrbitCoordsFromPosition(Self.GlobalPosition);
+                ApplyOrbitCoords();
                 _prevPos = Self.GlobalPosition;
             }
 
@@ -441,9 +411,10 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double deltaD)
             {
-                Self.ApplyAnglesAndDistance();
-
                 float delta = (float)deltaD;
+                _transitionTimer += delta;
+
+                ApplyOrbitCoords();
 
                 // Don't let the motion of moving platforms affect auto-rotation;
                 // in an empty void, the player shouldn't be able to tell the
@@ -454,7 +425,7 @@ namespace FastDragon
 
                 if (Self.DisableInput)
                 {
-                    Self.ApplyAnglesAndDistance();
+                    ApplyOrbitCoords();
                     _prevPos = Self.GlobalPosition;
                     return;
                 }
@@ -463,7 +434,7 @@ namespace FastDragon
                 _orbitRequestedThisTick = false;
                 if (!orbitRequested && !Self.IsUsingMouselook)
                 {
-                    MaintainDistanceAndAutoRotate(delta);
+                    MaintainDistanceAndAutoRotate();
                 }
 
                 ZoomToFollowDistance(delta);
@@ -490,7 +461,7 @@ namespace FastDragon
                 );
             }
 
-            private void MaintainDistanceAndAutoRotate(float delta)
+            private void MaintainDistanceAndAutoRotate()
             {
                 var targetPos = Self.FollowTargetTransform().Origin;
                 var dir = targetPos.DirectionTo(_prevPos);
@@ -518,7 +489,7 @@ namespace FastDragon
                     );
                 }
 
-                Self.ApplyAnglesAndDistance();
+                ApplyOrbitCoords();
             }
 
             private void ZoomToFollowDistance(float delta)
@@ -528,6 +499,23 @@ namespace FastDragon
                     FollowDistance,
                     ZoomSpeed * delta
                 );
+            }
+
+            private void ApplyOrbitCoords()
+            {
+                var desiredPosition = Self.PositionFromOrbitCoords(Self.OrbitCoordinates);
+
+                // If a transition is active, tween between our desired position and
+                // the transition start.
+                if (_transitionTimer < Self._followTransitionDuration)
+                {
+                    float t = Mathf.Min(1, _transitionTimer / Self._followTransitionDuration);
+                    Self.GlobalTransform = _transitionStart.InterpolateWith(desiredPosition, t);
+                }
+                else
+                {
+                    Self.GlobalTransform = desiredPosition;
+                }
             }
         }
 
@@ -591,23 +579,19 @@ namespace FastDragon
                 _timer += (float)deltaD;
                 float t = _timer / Duration;
 
-                var targetCoords = new SphereCoords
-                {
-                    PitchRad = 0,
-                    YawRad = Self.FollowTargetTransform().Basis.GetEuler().Y,
-                    Distance = _initialOrbitCoords.Distance,
-                };
+                var targetCoords = Self.RecenteredOrbitCoords();
+                targetCoords.Distance = _initialOrbitCoords.Distance;
 
                 Self.OrbitCoordinates = _initialOrbitCoords.Lerp(targetCoords, t);
-                Self.ApplyAnglesAndDistance();
+                Self.GlobalTransform = Self.PositionFromOrbitCoords(Self.OrbitCoordinates);
 
                 if (_timer > Duration)
                 {
-                    Self.ForceRecenter();
-                    ChangeState<Following>();
+                    Self.OrbitCoordinates = targetCoords;
+                    Self.GlobalTransform = Self.PositionFromOrbitCoords(Self.OrbitCoordinates);
+                    Self.StartFollowing();
                     return;
                 }
-
             }
         }
     }

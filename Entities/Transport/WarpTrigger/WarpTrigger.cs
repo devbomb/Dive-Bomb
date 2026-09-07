@@ -52,7 +52,6 @@ namespace FastDragon
             // Teleport the camera
             player.CameraFocus.Reset();
             player.Camera.GlobalTransform = player.GlobalTransform * cameraPosRelativeToPlayer;
-            player.Camera.DetectAnglesAndDistance();
             player.Camera.StartFollowing();
             player.Camera.ResetPhysicsInterpolation3D();
 
