@@ -12,8 +12,7 @@ namespace FastDragon
         public struct SafeGroundPos
         {
             public Transform3D PlayerPos;
-            public float CameraYawRad;
-            public float CameraPitchRad;
+            public SphereCoords CameraCoords;
         }
 
         private readonly Player _player;
@@ -39,14 +38,14 @@ namespace FastDragon
 
             _player.ChangeState<PlayerStandState>();
 
-            if (!_player.Camera.IsBeingManhandled)
+            var camera = _player.Camera;
+            if (!camera.IsBeingManhandled)
             {
                 _player.CameraFocus.Reset();
 
-                _player.Camera.OrbitYawRad = LastSafeGround.CameraYawRad;
-                _player.Camera.OrbitPitchRad = LastSafeGround.CameraPitchRad;
-                _player.Camera.StartFollowing();
-                _player.Camera.ResetPhysicsInterpolation3D();
+                camera.GlobalTransform = camera.PositionFromOrbitCoords(LastSafeGround.CameraCoords);
+                camera.ResetPhysicsInterpolation3D();
+                camera.StartFollowing();
             }
         }
 
@@ -100,8 +99,7 @@ namespace FastDragon
             LastSafeGround = new SafeGroundPos
             {
                 PlayerPos = _player.GlobalTransform,
-                CameraYawRad = _player.Camera.OrbitYawRad,
-                CameraPitchRad = _player.Camera.OrbitPitchRad
+                CameraCoords = _player.Camera.OrbitCoordsFromPosition(_player.Camera.GlobalPosition),
             };
         }
     }
