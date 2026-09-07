@@ -12,6 +12,8 @@ namespace FastDragon
         public const float RightStickRotSpeedDeg = 180;
         public const float BaseMouseSensRadiansPerPixel = 0.00125f;
 
+        public const float DefaultFollowDistance = 6;
+
         [Export] public Node3D FollowTarget;
         [Export] public Player Player;
 
@@ -232,7 +234,7 @@ namespace FastDragon
         {
             return new()
             {
-                Distance = Following.FollowDistance,
+                Distance = DefaultFollowDistance,
                 PitchRad = 0,
                 YawRad = FollowTargetTransform().Basis.GetEuler().Y,
             };
@@ -375,7 +377,6 @@ namespace FastDragon
 
         private class Following : CameraState
         {
-            public const float FollowDistance = 6;
             public const float ZoomSpeed = 4;
 
             public const float MinOrbitPitchDeg = -89;
@@ -467,7 +468,7 @@ namespace FastDragon
                 var dir = targetPos.DirectionTo(_prevPos);
 
                 var transform = Self.GlobalTransform;
-                transform.Origin = targetPos + (dir * FollowDistance);
+                transform.Origin = targetPos + (dir * DefaultFollowDistance);
                 transform = transform.LookingAt(targetPos);
 
                 float oldPitchRad = Self.OrbitPitchRad;
@@ -496,7 +497,7 @@ namespace FastDragon
             {
                 Self.OrbitDistance = Mathf.MoveToward(
                     Self.OrbitDistance,
-                    FollowDistance,
+                    DefaultFollowDistance,
                     ZoomSpeed * delta
                 );
             }
