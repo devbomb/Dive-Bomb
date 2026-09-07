@@ -55,6 +55,7 @@ namespace FastDragon
         {
             var camera = GetTree().FindNode<PlayerCamera>();
             camera.StartFollowing(1);
+            camera.OrbitDistance = 6;
         }
 
         private void UseCameraAngle(Transform3D position)
