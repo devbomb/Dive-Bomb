@@ -445,6 +445,9 @@ namespace FastDragon
 
             public override void OnOrbitRequested(float deltaYawRad, float deltaPitchRad)
             {
+                if (Self.DisableInput)
+                    return;
+
                 Self.OrbitYawRad += deltaYawRad;
                 Self.OrbitPitchRad += deltaPitchRad;
                 _orbitRequestedThisTick = true;
