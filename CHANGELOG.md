@@ -1,4 +1,7 @@
 # Unreleased
+
+
+# [0.0.4]
 ## Save files
 * **Breaking:** Changed the way levels are identified in save files.  This means
     all save files from previous versions of the game are now incompatible and
