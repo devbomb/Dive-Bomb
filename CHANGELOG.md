@@ -46,6 +46,9 @@
     "suggested" camera angles.
     [(issue)](https://github.com/devbomb/Dive-Bomb/issues/6)
 
+* **Fixed:** Fixed camera controls being unintentionally enabled during the
+    "parachute" cutscene at the beginning of every level.
+
 ## Snapjaw Swamp
 * **Changed:** Added a tiny little "safety wall" in front of a pit on one of the
     tree branches.  This was necessary because the default camera angle makes

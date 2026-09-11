@@ -4,6 +4,9 @@ namespace FastDragon
 {
     public partial class PlayerFlyInLandState : PlayerState
     {
+        public override bool Invincible => true;
+        public override bool DisableCameraInput => true;
+
         public override void OnStateEntered()
         {
             Self.Animator.Play("ParachuteLand", 0.1);
