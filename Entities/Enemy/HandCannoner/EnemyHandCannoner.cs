@@ -4,7 +4,7 @@ namespace FastDragon
 {
     public partial class EnemyHandCannoner : StaticBody3D, IDamageable, IGemContainer
     {
-        public bool VulnerableToKick => false;
+        public bool Kickable => false;
 
         [Signal] public delegate void KilledEventHandler();
 

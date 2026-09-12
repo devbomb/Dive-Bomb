@@ -19,8 +19,8 @@ namespace FastDragon
         /// </summary>
         [Export] public string targetname;
 
-        public bool VulnerableToKick => CanBreak();
-        public bool VulnerableToRoll => CanBreak();
+        public bool Kickable => CanBreak();
+        public bool Rollable => CanBreak();
         public bool CausesBonk => !CanBreak();
 
         [ExportGroup("Internal")]

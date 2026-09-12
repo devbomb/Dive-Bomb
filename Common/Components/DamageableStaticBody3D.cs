@@ -18,8 +18,7 @@ namespace FastDragon
 
         [Export] public bool CausesBonk { get; set; } = false;
 
-        public bool VulnerableToRoll => Rollable && !Disabled;
-        public bool VulnerableToKick => Kickable && !Disabled;
+        bool IDamageable.Invulnerable => Disabled;
 
         public void OnKicked()
         {

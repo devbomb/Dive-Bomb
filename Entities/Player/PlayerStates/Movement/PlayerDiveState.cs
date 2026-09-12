@@ -190,7 +190,7 @@ namespace FastDragon
 
             _detectedObjects.Add(d);
 
-            return d.VulnerableToRoll
+            return d.Rollable
                 ? IgnoreOrBonk()
                 : SlideOrBonk();
 

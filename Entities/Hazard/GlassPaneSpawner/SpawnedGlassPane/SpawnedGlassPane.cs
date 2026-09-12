@@ -6,8 +6,8 @@ namespace FastDragon
 {
     public partial class SpawnedGlassPane : CharacterBody3D, IDamageable
     {
-        public bool VulnerableToKick => false;
-        public bool VulnerableToRoll { get; set; } = true;
+        public bool Kickable => false;
+        public bool Rollable { get; set; } = true;
         public float CameraShakeMagnitude => 0.5f;
 
         [Export] public double LifespanSeconds;
@@ -51,7 +51,7 @@ namespace FastDragon
 
             CollisionShape.Shape = shape;
             FloorDetectorShape.Shape = shape;
-            VulnerableToRoll = isBreakable;
+            Rollable = isBreakable;
         }
 
         public void OnDamaged()

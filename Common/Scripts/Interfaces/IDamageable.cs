@@ -13,12 +13,12 @@ namespace FastDragon
         /// into.  If true, then the player will also pass through this object
         /// intangibly while diving/rolling.
         /// </summary>
-        bool VulnerableToRoll => true;
+        bool Rollable => true;
 
         /// <summary>
         /// Whether or not <see cref="OnDamaged"/> is called when kicked.
         /// </summary>
-        bool VulnerableToKick => true;
+        bool Kickable => true;
 
         bool Invulnerable => false;
 
@@ -66,7 +66,7 @@ namespace FastDragon
         {
             d.OnRolledInto();
 
-            if (!d.VulnerableToRoll || d.Invulnerable)
+            if (!d.Rollable || d.Invulnerable)
             {
                 d.OnDamageRejected();
                 return false;
@@ -80,7 +80,7 @@ namespace FastDragon
         {
             d.OnKicked();
 
-            if (!d.VulnerableToKick || d.Invulnerable)
+            if (!d.Kickable || d.Invulnerable)
             {
                 d.OnDamageRejected();
                 return false;

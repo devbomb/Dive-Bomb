@@ -8,7 +8,7 @@ namespace FastDragon
         private static readonly PackedScene FxScene =
             ResourceLoader.Load<PackedScene>("res://Entities/Wall/DivableWall/DivableWallFX.tscn");
 
-        public bool VulnerableToKick => false;
+        public bool Kickable => false;
         public float CameraShakeMagnitude => 0.5f;
 
         private readonly DivableWallFX _fx = FxScene.Instantiate<DivableWallFX>();
