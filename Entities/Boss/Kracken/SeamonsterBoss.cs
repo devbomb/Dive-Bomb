@@ -81,7 +81,7 @@ namespace FastDragon
 
         private void ShowWeakPoint(bool shouldShow)
         {
-            _weakPoint.Disabled = !shouldShow;
+            _weakPoint.Invulnerable = !shouldShow;
             _weakPoint.Visible = shouldShow;
         }
 

@@ -14,11 +14,7 @@ namespace FastDragon
 
         [Export] public bool Rollable { get; set; } = true;
         [Export] public bool Kickable { get; set; } = true;
-        [Export] public bool Disabled { get; set; } = false;
-
-        [Export] public bool CausesBonk { get; set; } = false;
-
-        bool IDamageable.Invulnerable => Disabled;
+        [Export] public bool Invulnerable { get; set; } = false;
 
         public void OnKicked()
         {

@@ -229,7 +229,7 @@ collision_mask = 0
 script = ExtResource("2_rlh65")
 CameraShakeMagnitude = 0.6
 Kickable = false
-Disabled = true
+Invulnerable = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeakPoint" unique_id=1676540032]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
