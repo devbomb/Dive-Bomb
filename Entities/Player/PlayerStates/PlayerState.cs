@@ -167,55 +167,48 @@ namespace FastDragon
         /// </summary>
         /// <param name="hitbox"></param>
         /// <param name="objectsToIgnore"></param>
-        /// <param name="isVulnerable"></param>
-        /// <param name="onDetected">
+        /// <param name="tryDamage">
         ///     Called when a damageable object is detected, regardless of if
-        ///     it's vulnerable or not.  It will also not be called if the
-        ///     object appears inside <paramref name="objectsToIgnore"/>.
+        ///     it's vulnerable or not.  Will not be called if the object
+        ///     appears inside <paramref name="objectsToIgnore"/>.
         /// </param>
         protected void ApplyHitboxToDamageableObjects(
             Area3D hitbox,
             List<IDamageable> objectsToIgnore,
-            Func<IDamageable, bool> isVulnerable,
-            Action<IDamageable> onDetected)
+            Func<IDamageable, bool> tryDamage
+        )
         {
             var bodies = hitbox.GetOverlappingBodies();
             var areas = hitbox.GetOverlappingAreas();
 
             foreach (var body in bodies)
             {
-                if (body is IDamageable b)
-                    TryBreak(b);
+                if (body is IDamageable d)
+                    TryDamage(d);
             }
 
             foreach (var area in areas)
             {
-                if (area is IDamageable b)
-                    TryBreak(b);
+                if (area is IDamageable d)
+                    TryDamage(d);
             }
 
-            void TryBreak(IDamageable b)
+            void TryDamage(IDamageable d)
             {
-                if (objectsToIgnore?.Contains(b) ?? false)
+                if (objectsToIgnore?.Contains(d) ?? false)
                 {
-                    GD.Print($"Ignoring already-broken object: {b}");
+                    GD.Print($"Ignoring already-damaged object: {d}");
                     return;
                 }
 
-                onDetected(b);
-
-                if (!isVulnerable(b))
+                if (tryDamage(d))
                 {
-                    b.OnDamageRejected();
-                    return;
+                    Self.Camera.Shake(
+                        d.CameraShakeMagnitude,
+                        d.CameraShakeFrequency,
+                        d.CameraShakeDuration
+                    );
                 }
-
-                b.OnDamaged();
-                Self.Camera.Shake(
-                    b.CameraShakeMagnitude,
-                    b.CameraShakeFrequency,
-                    b.CameraShakeDuration
-                );
             }
         }
 

@@ -57,4 +57,35 @@ namespace FastDragon
         /// </summary>
         void OnDamageRejected() {}
     }
+
+    public static class IDamageableExtensions
+    {
+        public static bool TryRollInto(this IDamageable d)
+        {
+            d.OnRolledInto();
+
+            if (!d.VulnerableToRoll)
+            {
+                d.OnDamageRejected();
+                return false;
+            }
+
+            d.OnDamaged();
+            return true;
+        }
+
+        public static bool TryKick(this IDamageable d)
+        {
+            d.OnKicked();
+
+            if (!d.VulnerableToKick)
+            {
+                d.OnDamageRejected();
+                return false;
+            }
+
+            d.OnDamaged();
+            return true;
+        }
+    }
 }
