@@ -5,7 +5,7 @@ namespace FastDragon
 {
     // TODO: Refactor DivableWall to use this, instead of duplicating it.
     [GlobalClass]
-    public partial class ShatterableWall : BreakableStaticBody3D
+    public partial class ShatterableWall : DamageableStaticBody3D
     {
         [Export] public GpuParticles3D ShatterPartciles;
         [Export] public float ShatterDuration = 4f / 60;

@@ -4,7 +4,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class SpawnedGlassPane : CharacterBody3D, IBreakable
+    public partial class SpawnedGlassPane : CharacterBody3D, IDamageable
     {
         public bool VulnerableToKick => false;
         public bool VulnerableToRoll { get; set; } = true;
@@ -54,7 +54,7 @@ namespace FastDragon
             VulnerableToRoll = isBreakable;
         }
 
-        public void OnBroken()
+        public void OnDamaged()
         {
             _stateMachine.ChangeState<Shattering>();
         }

@@ -37,7 +37,7 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            ApplyHitboxToBreakableObjects(
+            ApplyHitboxToDamageableObjects(
                 Self.KickHitbox,
                 null,
                 b => b.VulnerableToKick,

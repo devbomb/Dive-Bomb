@@ -3,7 +3,7 @@ using Godot;
 namespace FastDragon
 {
     // TODO: Don't use inheritance, ya twit!
-    public partial class PowerOrb : BreakableStaticBody3D
+    public partial class PowerOrb : DamageableStaticBody3D
     {
         [Export] public float SpawnTime = 0.25f;
 

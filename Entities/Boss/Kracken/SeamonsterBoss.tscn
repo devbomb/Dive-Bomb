@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ppobneqjd1nn" path="res://Entities/Boss/Kracken/SeamonsterBoss.cs" id="1_r8tvq"]
 [ext_resource type="PackedScene" uid="uid://s0qtchrtav7v" path="res://Entities/Boss/Kracken/Projectiles/StraightWave/StraightWave.tscn" id="2_4jp8p"]
-[ext_resource type="Script" uid="uid://blpfmbcbfae1y" path="res://Common/Components/BreakableArea3D.cs" id="2_rlh65"]
+[ext_resource type="Script" uid="uid://blpfmbcbfae1y" path="res://Common/Components/DamageableArea3D.cs" id="2_rlh65"]
 [ext_resource type="PackedScene" uid="uid://cgshrb63523oq" path="res://Entities/Boss/Kracken/Projectiles/FallingAcidBlob/FallingAcidBlob.tscn" id="3_mh7lc"]
 [ext_resource type="Script" uid="uid://gemyx0pb1hj5" path="res://UI/Widgets/MeshLabel3D.cs" id="3_phdjg"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bgcglvens6c8e" path="res://Entities/Boss/Kracken/KrackenAnimationTree.tres" id="4_intgd"]

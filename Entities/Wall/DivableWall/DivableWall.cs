@@ -3,7 +3,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class DivableWall : StaticBody3D, IBreakable
+    public partial class DivableWall : StaticBody3D, IDamageable
     {
         private static readonly PackedScene FxScene =
             ResourceLoader.Load<PackedScene>("res://Entities/Wall/DivableWall/DivableWallFX.tscn");
@@ -39,7 +39,7 @@ namespace FastDragon
             _stateMachine.ChangeState<Solid>();
         }
 
-        public void OnBroken()
+        public void OnDamaged()
         {
             _stateMachine.ChangeState<Shattering>();
         }

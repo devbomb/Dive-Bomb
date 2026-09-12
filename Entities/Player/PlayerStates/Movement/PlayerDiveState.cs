@@ -14,9 +14,9 @@ namespace FastDragon
         private float _targetCameraYawRad;
         private float _startY;
 
-        private List<IBreakable> _brokenObjects = new();
-        private List<IBreakable> _unbrokenObjects = new();
-        private List<IBreakable> _detectedObjects = new();
+        private List<IDamageable> _damagedObjects = new();
+        private List<IDamageable> _undamagedObjects = new();
+        private List<IDamageable> _detectedObjects = new();
         private KinematicCollision3D _bonkCollision = null;
 
         public override void OnStateEntered()
@@ -107,27 +107,27 @@ namespace FastDragon
 
             ApplyGravity(delta, Player.Dive.Gravity);
 
-            _brokenObjects.Clear();
-            _unbrokenObjects.Clear();
+            _damagedObjects.Clear();
+            _undamagedObjects.Clear();
             _detectedObjects.Clear();
 
             MoveAndSlideBreakingObjects();
 
-            foreach (var b in _brokenObjects)
+            foreach (var b in _damagedObjects)
             {
                 b.OnRolledInto();
-                Break(b);
+                Damage(b);
             }
 
-            foreach (var b in _unbrokenObjects)
-                b.OnBreakRejected();
+            foreach (var b in _undamagedObjects)
+                b.OnDamageRejected();
 
             // Apply an extra-wide hitbox to catch objects that the player
             // barely grazes past without touching.
-            _detectedObjects.AddRange(_brokenObjects);
-            _detectedObjects.AddRange(_unbrokenObjects);
+            _detectedObjects.AddRange(_damagedObjects);
+            _detectedObjects.AddRange(_undamagedObjects);
 
-            ApplyHitboxToBreakableObjects(
+            ApplyHitboxToDamageableObjects(
                 Self.DiveExtraHitbox,
                 _detectedObjects,
                 b => b.VulnerableToRoll,
@@ -191,16 +191,16 @@ namespace FastDragon
         {
             var hitObject = collision.GetCollider();
 
-            if (hitObject is not IBreakable b)
+            if (hitObject is not IDamageable b)
                 return SlideOrBonk();
 
             if (!b.VulnerableToRoll)
             {
-                _unbrokenObjects.Add(b);
+                _undamagedObjects.Add(b);
                 return SlideOrBonk();
             }
 
-            _brokenObjects.Add(b);
+            _damagedObjects.Add(b);
             return IgnoreOrBonk();
 
             MoveAndSlideExResponse IgnoreOrBonk()
@@ -224,9 +224,9 @@ namespace FastDragon
             }
         }
 
-        private void Break(IBreakable b)
+        private void Damage(IDamageable b)
         {
-            b.OnBroken();
+            b.OnDamaged();
             Self.Camera.Shake(
                 b.CameraShakeMagnitude,
                 b.CameraShakeFrequency,

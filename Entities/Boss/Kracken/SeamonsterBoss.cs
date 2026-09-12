@@ -15,7 +15,7 @@ namespace FastDragon
         private AnimationTree _animationTree => GetNode<AnimationTree>("%AnimationTree");
 
         private BossHealth _health;
-        private BreakableArea3D _weakPoint => GetNode<BreakableArea3D>("%WeakPoint");
+        private DamageableArea3D _weakPoint => GetNode<DamageableArea3D>("%WeakPoint");
         private Control _bossHud => GetNode<Control>("%BossHUD");
 
         private readonly StateMachine _stateMachine = new StateMachine();

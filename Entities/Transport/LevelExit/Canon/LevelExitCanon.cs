@@ -9,7 +9,7 @@ namespace FastDragon
         [Export] public double RevealDuration = 1;
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
-        private BreakableStaticBody3D _crystal => GetNode<BreakableStaticBody3D>("%Crystal");
+        private DamageableStaticBody3D _crystal => GetNode<DamageableStaticBody3D>("%Crystal");
         private CollisionShape3D _crystalShape => GetNode<CollisionShape3D>("%CrystalCollisionShape");
         private Node3D _playerLandPoint => GetNode<Node3D>("%PlayerLandPoint");
 

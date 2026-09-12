@@ -2,11 +2,12 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class BreakableStaticBody3D : StaticBody3D, IBreakable
+    public partial class DamageableArea3D : Area3D, IDamageable
     {
         [Signal] public delegate void KickedEventHandler();
         [Signal] public delegate void RolledIntoEventHandler();
         [Signal] public delegate void BrokenEventHandler();
+        [Signal] public delegate void BreakRejectedEventHandler();
 
         [Export] public float CameraShakeMagnitude { get; set; } = 0.25f;
         [Export] public float CameraShakeFrequency { get; set; } = 15;
@@ -15,8 +16,6 @@ namespace FastDragon
         [Export] public bool Rollable { get; set; } = true;
         [Export] public bool Kickable { get; set; } = true;
         [Export] public bool Disabled { get; set; } = false;
-
-        [Export] public bool CausesBonk { get; set; } = false;
 
         public bool VulnerableToRoll => Rollable && !Disabled;
         public bool VulnerableToKick => Kickable && !Disabled;
@@ -31,7 +30,12 @@ namespace FastDragon
             EmitSignal(SignalName.RolledInto);
         }
 
-        public void OnBroken()
+        public void OnDamageRejected()
+        {
+            EmitSignal(SignalName.BreakRejected);
+        }
+
+        public void OnDamaged()
         {
             EmitSignal(SignalName.Broken);
         }
