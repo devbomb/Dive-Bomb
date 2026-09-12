@@ -50,10 +50,6 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
-            // TODO: Stay dead if all of the following are true:
-            // * The enemy is dead (or dieing)
-            // * The player has collected the enemy's gem
-            // * The player has reached a checkpoint since killing the enemy
             _stateMachine.ChangeState<Idle>();
         }
 
