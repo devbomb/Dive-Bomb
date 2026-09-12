@@ -20,6 +20,8 @@ namespace FastDragon
         /// </summary>
         bool VulnerableToKick => true;
 
+        bool Invulnerable => false;
+
         public float CameraShakeMagnitude => 0.25f;
         public float CameraShakeFrequency => 15;
         public float CameraShakeDuration => 0.5f;
@@ -64,7 +66,7 @@ namespace FastDragon
         {
             d.OnRolledInto();
 
-            if (!d.VulnerableToRoll)
+            if (!d.VulnerableToRoll || d.Invulnerable)
             {
                 d.OnDamageRejected();
                 return false;
@@ -78,7 +80,7 @@ namespace FastDragon
         {
             d.OnKicked();
 
-            if (!d.VulnerableToKick)
+            if (!d.VulnerableToKick || d.Invulnerable)
             {
                 d.OnDamageRejected();
                 return false;
