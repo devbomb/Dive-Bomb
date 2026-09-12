@@ -14,13 +14,15 @@ namespace FastDragon
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public float AggroRange = 20;
 
+        [ExportCategory("Internal")]
+        [Export] public CollisionShape3D BodyShape;
+        [Export] public Node3D Model;
+        [Export] public AggroSphere AggroSphere;
+        [Export] public AnimationPlayer AnimationPlayer;
+
+
         public bool IsDead => _stateMachine.CurrentState is Dead;
 
-        private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
-        private Node3D _model => GetNode<Node3D>("%Model");
-        private AggroSphere _aggroSphere => GetNode<AggroSphere>("%AggroSphere");
-
-        private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private StateMachine _stateMachine = new StateMachine();
 
         private Vector3 _spawnPoint;
@@ -62,7 +64,7 @@ namespace FastDragon
 
         private void RefreshAggroSphereSize()
         {
-            _aggroSphere.Radius = AggroRange;
+            AggroSphere.Radius = AggroRange;
         }
 
         private class VultureState : State<EnemyVulture> {}
@@ -74,7 +76,7 @@ namespace FastDragon
                 Self.GlobalPosition = Self._spawnPoint;
                 Self.ResetPhysicsInterpolation3D();
 
-                Self._animator.Play("Idle");
+                Self.AnimationPlayer.Play("Idle");
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -86,7 +88,7 @@ namespace FastDragon
                     Mathf.DegToRad(RotSpeedDeg) * delta
                 );
 
-                var player = Self._aggroSphere.SearchForPlayer();
+                var player = Self.AggroSphere.SearchForPlayer();
                 if (player != null)
                     ChangeState<Chasing>();
             }
@@ -99,10 +101,10 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
-                _targetPlayer = Self._aggroSphere.SearchForPlayer();
+                _targetPlayer = Self.AggroSphere.SearchForPlayer();
                 _fspeed = 0;
                 Self.Velocity = Vector3.Zero;
-                Self._animator.Play("Fly");
+                Self.AnimationPlayer.Play("Fly");
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -153,7 +155,7 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                Self._animator.Play("Fly");
+                Self.AnimationPlayer.Play("Fly");
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -185,15 +187,15 @@ namespace FastDragon
         {
             public override void OnStateEntered()
             {
-                Self._bodyShape.Disabled = true;
-                Self._model.Visible = false;
+                Self.BodyShape.Disabled = true;
+                Self.Model.Visible = false;
                 Self.EmitSignal(EnemyVulture.SignalName.Killed);
             }
 
             public override void OnStateExited()
             {
-                Self._bodyShape.Disabled = false;
-                Self._model.Visible = true;
+                Self.BodyShape.Disabled = false;
+                Self.Model.Visible = true;
             }
         }
     }
