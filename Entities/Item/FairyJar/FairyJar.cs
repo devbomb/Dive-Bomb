@@ -4,7 +4,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class FairyJar : StaticBody3D, IBreakable
+    public partial class FairyJar : StaticBody3D, IDamageable
     {
         [Signal] public delegate void BreakRejectedEventHandler();
 
@@ -19,8 +19,8 @@ namespace FastDragon
         /// </summary>
         [Export] public string targetname;
 
-        public bool VulnerableToKick => CanBreak();
-        public bool VulnerableToRoll => CanBreak();
+        public bool Kickable => CanBreak();
+        public bool Rollable => CanBreak();
         public bool CausesBonk => !CanBreak();
 
         [ExportGroup("Internal")]
@@ -90,7 +90,7 @@ namespace FastDragon
                 ?.Contains(SaveKey) ?? false;
         }
 
-        public void OnBroken()
+        public void OnDamaged()
         {
             // TODO: I suspect this might be getting called twice sometimes, but
             // very rarely.  Log if that happens.
@@ -123,7 +123,7 @@ namespace FastDragon
             _stateMachine.ChangeState<Shattering>();
         }
 
-        public void OnBreakRejected()
+        public void OnDamageRejected()
         {
             EmitSignal(SignalName.BreakRejected);
         }

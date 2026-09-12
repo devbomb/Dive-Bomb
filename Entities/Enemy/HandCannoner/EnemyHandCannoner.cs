@@ -2,9 +2,9 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class EnemyHandCannoner : StaticBody3D, IBreakable, IGemContainer
+    public partial class EnemyHandCannoner : StaticBody3D, IDamageable, IGemContainer
     {
-        public bool VulnerableToKick => false;
+        public bool Kickable => false;
 
         [Signal] public delegate void KilledEventHandler();
 
@@ -57,7 +57,7 @@ namespace FastDragon
             _bodyShape.Disabled = !state.EnableCollision;
         }
 
-        public void OnBroken()
+        public void OnDamaged()
         {
             if (IsAlive)
                 _stateMachine.ChangeState<Dieing>();

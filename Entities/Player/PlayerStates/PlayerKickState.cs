@@ -37,11 +37,10 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            ApplyHitboxToBreakableObjects(
+            ApplyHitboxToDamageableObjects(
                 Self.KickHitbox,
                 null,
-                b => b.VulnerableToKick,
-                b => b.OnKicked()
+                d => d.TryKick()
             );
 
             // It's possible for the objects hit by the hitbox to change the

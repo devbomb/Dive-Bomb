@@ -1,6 +1,6 @@
 namespace FastDragon
 {
-    public interface IBreakable
+    public interface IDamageable
     {
         /// <summary>
         /// Whether or not the player bonks when they roll or dive into this.
@@ -9,16 +9,18 @@ namespace FastDragon
         bool CausesBonk => false;
 
         /// <summary>
-        /// Whether or not <see cref="OnBroken"/> is called when rolled or dived
+        /// Whether or not <see cref="OnDamaged"/> is called when rolled or dived
         /// into.  If true, then the player will also pass through this object
         /// intangibly while diving/rolling.
         /// </summary>
-        bool VulnerableToRoll => true;
+        bool Rollable => true;
 
         /// <summary>
-        /// Whether or not <see cref="OnBroken"/> is called when kicked.
+        /// Whether or not <see cref="OnDamaged"/> is called when kicked.
         /// </summary>
-        bool VulnerableToKick => true;
+        bool Kickable => true;
+
+        bool Invulnerable => false;
 
         public float CameraShakeMagnitude => 0.25f;
         public float CameraShakeFrequency => 15;
@@ -46,7 +48,7 @@ namespace FastDragon
         /// Gets called whenever it is hit by an attack that it is vulnerable
         /// to.
         /// </summary>
-        void OnBroken() {}
+        void OnDamaged() {}
 
         /// <summary>
         /// Gets called whenever it is hit by any attack that it's NOT
@@ -55,6 +57,37 @@ namespace FastDragon
         /// Use this to play "reaction" animations when the player tries to
         /// break something that's unbreakable.
         /// </summary>
-        void OnBreakRejected() {}
+        void OnDamageRejected() {}
+    }
+
+    public static class IDamageableExtensions
+    {
+        public static bool TryRollInto(this IDamageable d)
+        {
+            d.OnRolledInto();
+
+            if (!d.Rollable || d.Invulnerable)
+            {
+                d.OnDamageRejected();
+                return false;
+            }
+
+            d.OnDamaged();
+            return true;
+        }
+
+        public static bool TryKick(this IDamageable d)
+        {
+            d.OnKicked();
+
+            if (!d.Kickable || d.Invulnerable)
+            {
+                d.OnDamageRejected();
+                return false;
+            }
+
+            d.OnDamaged();
+            return true;
+        }
     }
 }

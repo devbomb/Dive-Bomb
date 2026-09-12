@@ -2,7 +2,7 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class BreakableArea3D : Area3D, IBreakable
+    public partial class DamageableArea3D : Area3D, IDamageable
     {
         [Signal] public delegate void KickedEventHandler();
         [Signal] public delegate void RolledIntoEventHandler();
@@ -15,10 +15,7 @@ namespace FastDragon
 
         [Export] public bool Rollable { get; set; } = true;
         [Export] public bool Kickable { get; set; } = true;
-        [Export] public bool Disabled { get; set; } = false;
-
-        public bool VulnerableToRoll => Rollable && !Disabled;
-        public bool VulnerableToKick => Kickable && !Disabled;
+        [Export] public bool Invulnerable { get; set; } = false;
 
         public void OnKicked()
         {
@@ -30,12 +27,12 @@ namespace FastDragon
             EmitSignal(SignalName.RolledInto);
         }
 
-        public void OnBreakRejected()
+        public void OnDamageRejected()
         {
             EmitSignal(SignalName.BreakRejected);
         }
 
-        public void OnBroken()
+        public void OnDamaged()
         {
             EmitSignal(SignalName.Broken);
         }

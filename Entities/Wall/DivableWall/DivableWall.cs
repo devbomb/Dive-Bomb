@@ -3,12 +3,12 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class DivableWall : StaticBody3D, IBreakable
+    public partial class DivableWall : StaticBody3D, IDamageable
     {
         private static readonly PackedScene FxScene =
             ResourceLoader.Load<PackedScene>("res://Entities/Wall/DivableWall/DivableWallFX.tscn");
 
-        public bool VulnerableToKick => false;
+        public bool Kickable => false;
         public float CameraShakeMagnitude => 0.5f;
 
         private readonly DivableWallFX _fx = FxScene.Instantiate<DivableWallFX>();
@@ -39,7 +39,7 @@ namespace FastDragon
             _stateMachine.ChangeState<Solid>();
         }
 
-        public void OnBroken()
+        public void OnDamaged()
         {
             _stateMachine.ChangeState<Shattering>();
         }

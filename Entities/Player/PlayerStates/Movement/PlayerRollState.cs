@@ -15,9 +15,7 @@ namespace FastDragon
         private float _timer;
         private bool _isGroundRoll;
 
-        private List<IBreakable> _brokenObjects = new();
-        private List<IBreakable> _unbrokenObjects = new();
-        private List<IBreakable> _detectedObjects = new();
+        private List<IDamageable> _detectedObjects = new();
         private KinematicCollision3D _bonkCollision = null;
 
         public override void OnStateEntered(IState oldState)
@@ -93,31 +91,27 @@ namespace FastDragon
 
             RotateInstantlyTowardVelocity();
 
-            _brokenObjects.Clear();
-            _unbrokenObjects.Clear();
             _detectedObjects.Clear();
-
             MoveAndSlideBreakingObjects();
 
-            foreach (var b in _brokenObjects)
+            foreach (var d in _detectedObjects)
             {
-                b.OnRolledInto();
-                Break(b);
+                if (d.TryRollInto())
+                {
+                    Self.Camera.Shake(
+                        d.CameraShakeMagnitude,
+                        d.CameraShakeFrequency,
+                        d.CameraShakeDuration
+                    );
+                }
             }
-
-            foreach (var b in _unbrokenObjects)
-                b.OnBreakRejected();
 
             // Apply an extra-wide hitbox to catch objects that the player
             // barely grazes past without touching.
-            _detectedObjects.AddRange(_brokenObjects);
-            _detectedObjects.AddRange(_unbrokenObjects);
-
-            ApplyHitboxToBreakableObjects(
+            ApplyHitboxToDamageableObjects(
                 Self.RollExtraHitbox,
                 _detectedObjects,
-                b => b.VulnerableToRoll,
-                b => b.OnRolledInto()
+                d => d.TryRollInto()
             );
 
             // It's possible for the objects hit by the hitbox to change the
@@ -157,21 +151,18 @@ namespace FastDragon
         {
             var hitObject = collision.GetCollider();
 
-            if (hitObject is not IBreakable b)
+            if (hitObject is not IDamageable d)
                 return SlideOrBonk();
 
-            if (!b.VulnerableToRoll)
-            {
-                _unbrokenObjects.Add(b);
-                return SlideOrBonk();
-            }
+            _detectedObjects.Add(d);
 
-            _brokenObjects.Add(b);
-            return IgnoreOrBonk();
+            return d.Rollable
+                ? IgnoreOrBonk()
+                : SlideOrBonk();
 
             MoveAndSlideExResponse IgnoreOrBonk()
             {
-                return b.CausesBonk
+                return d.CausesBonk
                     ? Bonk()
                     : MoveAndSlideExResponse.Ignore;
             }
@@ -188,16 +179,6 @@ namespace FastDragon
                 _bonkCollision = collision;
                 return MoveAndSlideExResponse.Stop;
             }
-        }
-
-        private void Break(IBreakable b)
-        {
-            b.OnBroken();
-            Self.Camera.Shake(
-                b.CameraShakeMagnitude,
-                b.CameraShakeFrequency,
-                b.CameraShakeDuration
-            );
         }
 
         private void AccelerateWithLeftStickAgainstDrag(

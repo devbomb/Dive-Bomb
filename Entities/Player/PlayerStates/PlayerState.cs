@@ -151,72 +151,64 @@ namespace FastDragon
         }
 
         /// <summary>
-        /// Scans the given area for breakable objects and breaks them if they're
-        /// vulnerable to this particular kind of attack.
+        /// Scans the given area for damageable objects and damages them if
+        /// they're vulnerable to this particular kind of attack.
         ///
-        /// When an object is broken in this manner, its <see cref="IBreakable.OnBroken"/>
-        /// method is called, the <paramref name="onBroken"/> callback is fired,
-        /// and a screen shake effect is played.
+        /// When an object is damaged in this manner, its <see cref="IDamageable.OnDamaged"/>
+        /// method is called and a screen shake effect is played.
         ///
-        /// If a breakable object is detected but it isn't vulnerable to this
-        /// particular kind of attack, its <see cref="IBreakable.OnBreakRejected"/>
+        /// If a damageable object is detected but it isn't vulnerable to this
+        /// particular kind of attack, its <see cref="IDamageable.OnDamageRejected"/>
         /// method is called.
         ///
-        /// If a breakable object is detected but it also appears inside
-        /// <paramref name="objectsToIgnore"/>, then NEITHER <see cref="IBreakable.OnBroken"/>
-        /// NOR <see cref="IBreakable.OnBreakRejected"/> will be called.
+        /// If a damageable object is detected but it also appears inside
+        /// <paramref name="objectsToIgnore"/>, then NEITHER <see cref="IDamageable.OnDamaged"/>
+        /// NOR <see cref="IDamageable.OnDamageRejected"/> will be called.
         /// </summary>
         /// <param name="hitbox"></param>
         /// <param name="objectsToIgnore"></param>
-        /// <param name="isVulnerable"></param>
-        /// <param name="onDetected">
-        ///     Called when a breakable object is detected, regardless of if
-        ///     it's vulnerable or not.  It will also not be called if the
-        ///     object appears inside <paramref name="objectsToIgnore"/>.
+        /// <param name="tryDamage">
+        ///     Called when a damageable object is detected, regardless of if
+        ///     it's vulnerable or not.  Will not be called if the object
+        ///     appears inside <paramref name="objectsToIgnore"/>.
         /// </param>
-        protected void ApplyHitboxToBreakableObjects(
+        protected void ApplyHitboxToDamageableObjects(
             Area3D hitbox,
-            List<IBreakable> objectsToIgnore,
-            Func<IBreakable, bool> isVulnerable,
-            Action<IBreakable> onDetected)
+            List<IDamageable> objectsToIgnore,
+            Func<IDamageable, bool> tryDamage
+        )
         {
             var bodies = hitbox.GetOverlappingBodies();
             var areas = hitbox.GetOverlappingAreas();
 
             foreach (var body in bodies)
             {
-                if (body is IBreakable b)
-                    TryBreak(b);
+                if (body is IDamageable d)
+                    TryDamage(d);
             }
 
             foreach (var area in areas)
             {
-                if (area is IBreakable b)
-                    TryBreak(b);
+                if (area is IDamageable d)
+                    TryDamage(d);
             }
 
-            void TryBreak(IBreakable b)
+            void TryDamage(IDamageable d)
             {
-                if (objectsToIgnore?.Contains(b) ?? false)
+                if (objectsToIgnore?.Contains(d) ?? false)
                 {
-                    GD.Print($"Ignoring already-broken object: {b}");
+                    GD.Print($"Ignoring already-damaged object: {d}");
                     return;
                 }
 
-                onDetected(b);
-
-                if (!isVulnerable(b))
+                if (tryDamage(d))
                 {
-                    b.OnBreakRejected();
-                    return;
+                    Self.Camera.Shake(
+                        d.CameraShakeMagnitude,
+                        d.CameraShakeFrequency,
+                        d.CameraShakeDuration
+                    );
                 }
-
-                b.OnBroken();
-                Self.Camera.Shake(
-                    b.CameraShakeMagnitude,
-                    b.CameraShakeFrequency,
-                    b.CameraShakeDuration
-                );
             }
         }
 
