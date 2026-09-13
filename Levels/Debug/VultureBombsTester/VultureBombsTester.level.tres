@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://bjtkk2qecoq6k"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_0ioiu"]
+
+[resource]
+script = ExtResource("1_0ioiu")
+Debug = true
+HumanReadableName = "VultureBombsTester"
+SceneFilePath = "res://Levels/Debug/VultureBombsTester/VultureBombsTester.tscn"
