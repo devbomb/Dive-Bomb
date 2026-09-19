@@ -29,6 +29,7 @@ namespace FastDragon
 
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;
+        private Player _targetPlayer;
 
         public override void _Ready()
         {
@@ -90,18 +91,47 @@ namespace FastDragon
 
                 var player = Self.AggroSphere.SearchForPlayer();
                 if (player != null)
+                    ChangeState<Alerted>();
+            }
+        }
+
+        private class Alerted : State<EnemyVulture>
+        {
+            public const double Duration = 0.75;
+            public const float RiseHeight = 1;
+
+            private double _timer;
+            private Vector3 _startPos;
+            private Vector3 _endPos;
+
+            public override void OnStateEntered()
+            {
+                Self._targetPlayer = Self.AggroSphere.SearchForPlayer();
+
+                _startPos = Self.GlobalPosition;
+                _endPos = _startPos + (Vector3.Up * RiseHeight);
+                _timer = 0;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer += delta;
+
+                float t = (float)(_timer / (Duration * 0.9));
+                t = 1f - Mathf.Pow(t - 1, 4);
+                Self.GlobalPosition = _startPos.Lerp(_endPos, t);
+
+                if (_timer >= Duration)
                     ChangeState<Chasing>();
             }
         }
 
         private class Chasing : State<EnemyVulture>
         {
-            private Player _targetPlayer;
             private float _fspeed;
 
             public override void OnStateEntered()
             {
-                _targetPlayer = Self.AggroSphere.SearchForPlayer();
                 _fspeed = 0;
                 Self.Velocity = Vector3.Zero;
                 Self.AnimationPlayer.Play("Fly");
@@ -112,7 +142,7 @@ namespace FastDragon
                 float delta = (float)deltaD;
 
                 _fspeed = Mathf.MoveToward(_fspeed, MaxSpeed, delta * Accel);
-                Self.Velocity = _fspeed * Self.GlobalPosition.DirectionTo(_targetPlayer.GlobalPosition);
+                Self.Velocity = _fspeed * Self.GlobalPosition.DirectionTo(Self._targetPlayer.GlobalPosition);
                 Self.MoveAndSlide();
 
                 Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
@@ -146,7 +176,7 @@ namespace FastDragon
 
             private void OnTouchedPlayer()
             {
-                _targetPlayer.TryDamage<PlayerDamageFlipState>(1);
+                Self._targetPlayer.TryDamage<PlayerDamageFlipState>(1);
                 ChangeState<Returning>();
             }
         }
