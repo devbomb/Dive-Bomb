@@ -146,7 +146,7 @@ namespace FastDragon
 
             private void OnTouchedPlayer()
             {
-                _targetPlayer.TryDamage<PlayerDamageFlipState>();
+                _targetPlayer.TryDamage<PlayerDamageFlipState>(1);
                 ChangeState<Returning>();
             }
         }
