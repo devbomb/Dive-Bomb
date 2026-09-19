@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dbaadt64jq1i7"]
+
+[ext_resource type="Script" uid="uid://bsjd5r7c8k2l6" path="res://Common/Projectiles/FuseBombProjectile/FuseBombProjectile.cs" id="1_ikvcn"]
+[ext_resource type="PackedScene" uid="uid://feymjil4np4v" path="res://Common/Projectiles/ExplosionProjectile/ExplosionProjectile.tscn" id="2_52brp"]
+[ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="3_52brp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ym36x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q585p"]
+resource_local_to_scene = true
+resource_name = "HitboxSphereShape"
+
+[sub_resource type="SphereMesh" id="SphereMesh_ikvcn"]
+radius = 0.4
+height = 0.8
+
+[node name="FuseBombProjectile" type="CharacterBody3D" unique_id=481505957 node_paths=PackedStringArray("BodyShape", "Explosion", "BombModel") groups=["PhysicsInterpolated", "UnsafeGround"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ikvcn")
+BodyShape = NodePath("BodyShape")
+Explosion = NodePath("ExplosionProjectile")
+BombModel = NodePath("BombModel")
+
+[node name="BodyShape" type="CollisionShape3D" parent="." unique_id=442156025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_ym36x")
+
+[node name="ExplosionProjectile" parent="." unique_id=1448840994 instance=ExtResource("2_52brp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+Reusable = true
+SphereShape = SubResource("SphereShape3D_q585p")
+
+[node name="BombModel" type="MeshInstance3D" parent="." unique_id=1820044549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+mesh = SubResource("SphereMesh_ikvcn")
+
+[node name="BlobShadow" parent="BombModel" unique_id=92795423 instance=ExtResource("3_52brp")]
+radius = 0.4
