@@ -70,6 +70,26 @@ namespace FastDragon
             AggroSphere.Radius = AggroRange;
         }
 
+        private bool IsTouchingPlayer()
+        {
+            int collisionCount = GetSlideCollisionCount();
+            for (int i = 0; i < collisionCount; i++)
+            {
+                var collision = GetSlideCollision(i);
+                int colliderCount = collision.GetCollisionCount();
+                for (int j = 0; j < colliderCount; j++)
+                {
+                    var collider = collision.GetCollider(j);
+                    if (collider is Player)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private class Idle : State<EnemyVulture>
         {
             public override void OnStateEntered()
@@ -122,7 +142,41 @@ namespace FastDragon
                 Self.GlobalPosition = _startPos.Lerp(_endPos, t);
 
                 if (_timer >= Duration)
+                    ChangeState<Diving>();
+            }
+        }
+
+        private class Diving : State<EnemyVulture>
+        {
+            public const double Duration = 0.5;
+            private double _timer;
+
+            public override void OnStateEntered()
+            {
+                _timer = Duration;
+                Self.AnimationPlayer.Play("Fly");
+
+                Self.Velocity = (Self.GlobalPosition.DirectionTo(Self._targetPlayer.GlobalPosition)) * MaxSpeed;
+                Self.GlobalRotation = Self.Velocity.Normalized().ForwardToEulerAnglesRad();
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                Self.MoveAndSlide();
+
+                if (Self.IsTouchingPlayer())
+                {
+                    Self._targetPlayer.TryDamage<PlayerDamageFlipState>(1);
+                    ChangeState<Returning>();
+                    return;
+                }
+
+                _timer -= delta;
+                if (_timer < 0)
+                {
                     ChangeState<Chasing>();
+                    return;
+                }
             }
         }
 
@@ -150,28 +204,8 @@ namespace FastDragon
                     Mathf.DegToRad(RotSpeedDeg) * delta
                 );
 
-                if (IsTouchingPlayer())
+                if (Self.IsTouchingPlayer())
                     OnTouchedPlayer();
-            }
-
-            private bool IsTouchingPlayer()
-            {
-                int collisionCount = Self.GetSlideCollisionCount();
-                for (int i = 0; i < collisionCount; i++)
-                {
-                    var collision = Self.GetSlideCollision(i);
-                    int colliderCount = collision.GetCollisionCount();
-                    for (int j = 0; j < colliderCount; j++)
-                    {
-                        var collider = collision.GetCollider(j);
-                        if (collider is Player)
-                        {
-                            return true;
-                        }
-                    }
-                }
-
-                return false;
             }
 
             private void OnTouchedPlayer()
