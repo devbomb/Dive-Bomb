@@ -17,6 +17,7 @@ namespace FastDragon
         private readonly BombableWallFX _fx = FxScene.Instantiate<BombableWallFX>();
         private readonly MeshExploder _meshExploder = new();
         private readonly StateMachine _stateMachine = new();
+        private readonly SaveKeyGenerator _saveKeyGen = new();
 
         private MeshInstance3D _meshInstance;
 
@@ -25,6 +26,7 @@ namespace FastDragon
             AddChild(_stateMachine);
             AddChild(_meshExploder);
             AddChild(_fx);
+            AddChild(_saveKeyGen);
         }
 
         public override void _Ready()
@@ -39,13 +41,18 @@ namespace FastDragon
 
         public void Reset()
         {
-            _stateMachine.ChangeState<Solid>();
+            if (this.IsStoryFlagSet(BrokenStoryFlag()))
+                _stateMachine.ChangeState<Broken>();
+            else
+                _stateMachine.ChangeState<Solid>();
         }
 
         public void OnDamaged()
         {
             _stateMachine.ChangeState<Shattering>();
         }
+
+        private StoryFlag BrokenStoryFlag() => StoryFlag.Checkpointable($"BombableWall_{_saveKeyGen.SaveKey}");
 
         private void SetCollisionEnabled(bool enabled)
         {
@@ -87,6 +94,8 @@ namespace FastDragon
                 );
 
                 Self._fx.Play(Self._meshInstance);
+
+                Self.SetStoryFlag(Self.BrokenStoryFlag());
             }
 
             public override void OnStateExited()
