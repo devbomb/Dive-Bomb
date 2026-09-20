@@ -14,8 +14,8 @@ namespace FastDragon.Levels.Tutorial
 
         public static class StoryFlags
         {
-            public const string AgentDIntroFinished = "AgentDIntroFinished";
-            public const string DrMonocleSpeechCheckpointed = "DrMonocleIntroSpeechCheckpointed";
+            public static readonly StoryFlag AgentDIntroFinished = StoryFlag.Permanent("AgentDIntroFinished");
+            public static readonly StoryFlag DrMonocleSpeechCheckpointed = StoryFlag.Temporary("DrMonocleIntroSpeechCheckpointed");
         }
 
         private readonly StateMachine _stateMachine = new();
@@ -45,20 +45,13 @@ namespace FastDragon.Levels.Tutorial
                     return;
                 }
 
-                bool startedEscapeSequence = this.GetLevel()
-                    .GetStoryFlags()
-                    .HasTemporary(StoryFlags.DrMonocleSpeechCheckpointed);
-
-                if (startedEscapeSequence)
+                if (this.IsStoryFlagSet(StoryFlags.DrMonocleSpeechCheckpointed))
                 {
                     _stateMachine.ChangeState<EscapeSequence>();
                     return;
                 }
 
-                bool seenAgentDIntro = this
-                    .GetStoryFlags()
-                    .HasPermanent(StoryFlags.AgentDIntroFinished);
-
+                bool seenAgentDIntro = this.IsStoryFlagSet(StoryFlags.AgentDIntroFinished);
                 if (!seenAgentDIntro && !this.PlaySceneFromHereWasUsed())
                 {
                     _stateMachine.ChangeState<PlayingAgentDIntro>();
@@ -85,7 +78,7 @@ namespace FastDragon.Levels.Tutorial
 
             public override void OnStateExited()
             {
-                Self.GetStoryFlags().SetPermanent(StoryFlags.AgentDIntroFinished);
+                Self.SetStoryFlag(StoryFlags.AgentDIntroFinished);
                 Self.MusicPlayer.RestartSong();
             }
 
@@ -166,7 +159,7 @@ namespace FastDragon.Levels.Tutorial
             private void CheckpointActivated()
             {
                 GD.Print("Dr. Monocle speech checkpointed");
-                Self.GetStoryFlags().SetTemporary(StoryFlags.DrMonocleSpeechCheckpointed);
+                Self.SetStoryFlag(StoryFlags.DrMonocleSpeechCheckpointed);
             }
         }
     }

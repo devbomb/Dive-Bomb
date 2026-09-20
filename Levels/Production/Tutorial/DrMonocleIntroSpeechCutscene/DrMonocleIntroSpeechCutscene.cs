@@ -202,9 +202,8 @@ namespace FastDragon.Levels.Tutorial
                 GD.Print("Dr. Monocle speech finished");
                 Self.AnimationPlayer.Play("Hidden");
 
-                bool isReloading = Self
-                    .GetStoryFlags()
-                    .HasTemporary(TutorialStoryManager.StoryFlags.DrMonocleSpeechCheckpointed);
+                var flag = TutorialStoryManager.StoryFlags.DrMonocleSpeechCheckpointed;
+                bool isReloading = Self.IsStoryFlagSet(flag);
 
                 if (isReloading)
                 {
