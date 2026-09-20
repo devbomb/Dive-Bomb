@@ -165,7 +165,7 @@ namespace FastDragon
             SaveFileManager
                 .Current
                 .CurrentLevelVisit
-                .UnsetAllNonLockedCheckpointableFlags();
+                .ClearUnsafeCheckpointableFlags();
 
             // Fade to black, reset the level, and then unfade.
             DoThingWithFadeToBlack(SignalBus.Instance.EmitLevelReset);

@@ -98,11 +98,11 @@ namespace FastDragon
             /// If a flag has a key in this dictionary, then it's set.
             /// Otherwise, it's not.
             ///
-            /// The value associated with each key indicates if it has been
-            /// "locked in".  If it's been "locked in", then it will NOT become
-            /// unset when the player dies.  Otherwise, it will be.
+            /// The value associated with each key indicates if it is "safe".
+            /// If it's safe, then it will NOT become unset when the player dies.
+            /// Otherwise, it will be.
             ///
-            /// All set flags will become locked in when the player reaches a
+            /// All set flags will become safe in when the player reaches a
             /// checkpoint.
             /// </summary>
             public Dictionary<string, bool> CheckpointableStoryFlags = new();
@@ -134,13 +134,13 @@ namespace FastDragon
                 return CheckpointableStoryFlags.ContainsKey(flag);
             }
 
-            public void LockInCheckpointableFlags()
+            public void MarkCheckpointableFlagsSafe()
             {
                 foreach (string flag in CheckpointableStoryFlags.Keys)
                     CheckpointableStoryFlags[flag] = true;
             }
 
-            public void UnsetAllNonLockedCheckpointableFlags()
+            public void ClearUnsafeCheckpointableFlags()
             {
                 string[] flags = CheckpointableStoryFlags.Keys.ToArray();
                 foreach (string flag in flags)
