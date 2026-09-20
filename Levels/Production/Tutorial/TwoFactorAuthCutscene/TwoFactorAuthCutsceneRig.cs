@@ -27,10 +27,7 @@ namespace FastDragon.Levels.Tutorial
 
         private void Reset()
         {
-            bool jokeFinished = this
-                .GetLevel()
-                .TempStoryFlags
-                .Contains(StoryFlag);
+            bool jokeFinished = this.GetStoryFlags().HasTemporary(StoryFlag);
 
             if (jokeFinished)
                 _stateMachine.ChangeState<AllDone>();
@@ -105,7 +102,7 @@ namespace FastDragon.Levels.Tutorial
 
             private void OnCheckpointReached()
             {
-                Self.GetLevel().TempStoryFlags.Add(StoryFlag);
+                Self.GetStoryFlags().SetTemporary(StoryFlag);
             }
         }
 

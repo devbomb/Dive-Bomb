@@ -63,18 +63,16 @@ namespace FastDragon
 
         private bool IsStoryFlagSet()
         {
-            return this.GetLevel()
-                    ?.GetProgress()
-                    ?.StoryFlags
-                    ?.Contains(StoryFlagId()) ?? false;
+            return this
+                .GetStoryFlags()
+                .HasPermanent(StoryFlagId());
         }
 
         private void SetStoryFlag()
         {
             this.GetLevel()
-                ?.GetProgress()
-                ?.StoryFlags
-                .Add(StoryFlagId());
+                .GetStoryFlags()
+                .SetPermanent(StoryFlagId());
 
             SaveFileManager.Instance.RequestAutosave();
         }
