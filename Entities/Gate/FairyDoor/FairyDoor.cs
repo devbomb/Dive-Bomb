@@ -59,21 +59,16 @@ namespace FastDragon
                 ?.Contains(_jar.SaveKey) ?? false;
         }
 
-        private string StoryFlagId() => $"{FairyId}_DoorOpened";
+        private StoryFlag StoryFlagId() => StoryFlag.Permanent($"{FairyId}_DoorOpened");
 
         private bool IsStoryFlagSet()
         {
-            return this
-                .GetStoryFlags()
-                .HasPermanent(StoryFlagId());
+            return this.IsStoryFlagSet(StoryFlagId());
         }
 
         private void SetStoryFlag()
         {
-            this.GetLevel()
-                .GetStoryFlags()
-                .SetPermanent(StoryFlagId());
-
+            this.SetStoryFlag(StoryFlagId());
             SaveFileManager.Instance.RequestAutosave();
         }
 

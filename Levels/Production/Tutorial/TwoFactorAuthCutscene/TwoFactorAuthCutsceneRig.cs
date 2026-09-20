@@ -5,7 +5,7 @@ namespace FastDragon.Levels.Tutorial
 {
     public partial class TwoFactorAuthCutsceneRig : Node
     {
-        private const string StoryFlag = "EscapeSequence_2FA_Joke_Finished";
+        private static readonly StoryFlag JokeFinishedFlag = StoryFlag.Temporary("EscapeSequence_2FA_Joke_Finished");
 
         [Export] public string targetname;
         [Export] public OpenableWall Door;
@@ -27,7 +27,7 @@ namespace FastDragon.Levels.Tutorial
 
         private void Reset()
         {
-            bool jokeFinished = this.GetStoryFlags().HasTemporary(StoryFlag);
+            bool jokeFinished = this.IsStoryFlagSet(JokeFinishedFlag);
 
             if (jokeFinished)
                 _stateMachine.ChangeState<AllDone>();
@@ -102,7 +102,7 @@ namespace FastDragon.Levels.Tutorial
 
             private void OnCheckpointReached()
             {
-                Self.GetStoryFlags().SetTemporary(StoryFlag);
+                Self.SetStoryFlag(JokeFinishedFlag);
             }
         }
 
