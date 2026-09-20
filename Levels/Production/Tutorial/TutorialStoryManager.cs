@@ -46,8 +46,8 @@ namespace FastDragon.Levels.Tutorial
                 }
 
                 bool startedEscapeSequence = this.GetLevel()
-                    .TempStoryFlags
-                    .Contains(StoryFlags.DrMonocleSpeechCheckpointed);
+                    .GetStoryFlags()
+                    .HasTemporary(StoryFlags.DrMonocleSpeechCheckpointed);
 
                 if (startedEscapeSequence)
                 {
@@ -166,7 +166,7 @@ namespace FastDragon.Levels.Tutorial
             private void CheckpointActivated()
             {
                 GD.Print("Dr. Monocle speech checkpointed");
-                Self.GetLevel().TempStoryFlags.Add(StoryFlags.DrMonocleSpeechCheckpointed);
+                Self.GetStoryFlags().SetTemporary(StoryFlags.DrMonocleSpeechCheckpointed);
             }
         }
     }

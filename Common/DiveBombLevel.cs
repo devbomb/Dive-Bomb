@@ -26,17 +26,6 @@ namespace FastDragon
             ? GetProgress().TotalGemsCollected - GetProgress().SpentGems
             : SaveFileManager.Current.TotalGemCount;
 
-        /// <summary>
-        /// Story flags that need to be persisted if the player saves/reloads
-        /// mid-level, but that should still reset on revists.
-        ///
-        /// Shorthand for SaveFileManager.Current.CurrentLevelVisit.StoryFlags.
-        /// </summary>
-        public HashSet<string> TempStoryFlags => SaveFileManager
-            .Current
-            .CurrentLevelVisit
-            .StoryFlags;
-
         public DiveBombLevel()
         {
             AddChild(TimeTrial);
