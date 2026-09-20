@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://hbq0l84plwxn"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_5of5k"]
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="2_u8lrk"]
+[ext_resource type="Environment" uid="uid://dk0eyoi3afr5p" path="res://Common/Skyboxes/DigitalWorld/DigitalWorldSkybox.tres" id="3_73llw"]
+[ext_resource type="PackedScene" uid="uid://53ejcbo08ocb" path="res://Levels/Debug/BombableWallTester/Maps/BombableWallTester_Main.map" id="4_u8lrk"]
+[ext_resource type="PackedScene" uid="uid://feymjil4np4v" path="res://Common/Projectiles/ExplosionProjectile/ExplosionProjectile.tscn" id="5_73llw"]
+
+[sub_resource type="Resource" id="Resource_sg4qf"]
+script = ExtResource("2_u8lrk")
+Debug = true
+HumanReadableName = "BombableWallTester"
+SceneFilePath = "res://Levels/Debug/BombableWallTester/BombableWallTester.tscn"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sg4qf"]
+resource_local_to_scene = true
+resource_name = "HitboxSphereShape"
+
+[node name="BombableWallTester" type="Node3D" unique_id=170796724]
+script = ExtResource("1_5of5k")
+Manifest = SubResource("Resource_sg4qf")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2040874426]
+environment = ExtResource("3_73llw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1431556766]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
+
+[node name="BombableWallTester_Main" parent="." unique_id=279766731 instance=ExtResource("4_u8lrk")]
+
+[node name="ExplosionProjectile" parent="." unique_id=1448840994 instance=ExtResource("5_73llw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8549795, 2, 3.4359527)
+Reusable = true
+SphereShape = SubResource("SphereShape3D_sg4qf")
+
+[connection signal="Pressed" from="BombableWallTester_Main/entity_WallButton" to="ExplosionProjectile" method="Explode"]
+
+[editable path="BombableWallTester_Main"]
