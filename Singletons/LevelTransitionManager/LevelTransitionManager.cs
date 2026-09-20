@@ -161,6 +161,12 @@ namespace FastDragon
 
         public void ReloadCheckpoint()
         {
+            // Clear all checkpointable story flags that haven't been "locked in"
+            SaveFileManager
+                .Current
+                .CurrentLevelVisit
+                .UnsetAllNonLockedCheckpointableFlags();
+
             // Fade to black, reset the level, and then unfade.
             DoThingWithFadeToBlack(SignalBus.Instance.EmitLevelReset);
         }
