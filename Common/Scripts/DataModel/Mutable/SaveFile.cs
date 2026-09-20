@@ -15,7 +15,7 @@ namespace FastDragon
         ///     Bump this whenever new stuff is added the save file that cannot
         ///     be read by older version of the game.
         /// </summary>
-        public const int CurrentSaveFormatVersion = 1;
+        public const int CurrentSaveFormatVersion = 2;
 
         /// <summary>
         ///     The oldest format version that can be parsed without data loss.
@@ -23,7 +23,7 @@ namespace FastDragon
         ///     Bump this to <see cref="CurrentSaveFormatVersion"/> if the save
         ///     format has changed so much that old files cannot be parsed.
         /// </summary>
-        public const int MinSaveFormatVersion = 1;
+        public const int MinSaveFormatVersion = 2;
 
         public int? SaveFormatVersion = CurrentSaveFormatVersion;
 
