@@ -134,8 +134,10 @@ namespace FastDragon
                 return CheckpointableStoryFlags.ContainsKey(flag);
             }
 
-            public void MarkCheckpointableFlagsSafe()
+            public void ReachCheckpoint(string checkpointId)
             {
+                LastCheckpoint = checkpointId;
+
                 foreach (string flag in CheckpointableStoryFlags.Keys)
                     CheckpointableStoryFlags[flag] = true;
             }

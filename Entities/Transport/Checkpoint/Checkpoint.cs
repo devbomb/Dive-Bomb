@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 namespace FastDragon
@@ -51,21 +52,40 @@ namespace FastDragon
             GetTree().FindNode<Player>().Camera.Shake(1, 5, 0.2f);
 
             // Show an announcement if this is a _new_ checkpoint
-            if (!IsCurrent && !this.IsTimeTrialMode())
+            // (or if there are unsafe checkpointable story flags to be marked
+            // as safe).
+            if (AnythingToSave() && !this.IsTimeTrialMode())
                 LabelAnimator.Play("Activated");
 
             // Heal the player and update their spawn
             player.Health = Player.MaxHealth;
-            SaveFileManager.Current.CurrentLevelVisit.LastCheckpoint = CheckpointName;
+            SaveFileManager.Current.CurrentLevelVisit.ReachCheckpoint(CheckpointName);
 
-            // Give other things a chance to react.  Usually by setting a
-            // "don't reset me anymore" story flag.
+            // Give other things a chance to react.
             SignalBus.Instance.EmitCheckpointActivated();
 
             if (!this.IsTimeTrialMode())
             {
                 SaveFileManager.Instance.RequestAutosave();
             }
+        }
+
+        private bool AnythingToSave()
+        {
+            if (!IsCurrent)
+                return true;
+
+            bool anyUnsafeCheckpointableFlags = SaveFileManager
+                .Current
+                .CurrentLevelVisit
+                .CheckpointableStoryFlags
+                .Values
+                .Any(f => f == false);
+
+            if (anyUnsafeCheckpointableFlags)
+                return true;
+
+            return false;
         }
     }
 }
