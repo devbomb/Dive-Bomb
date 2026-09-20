@@ -19,9 +19,11 @@ namespace FastDragon
         [Export] public Node3D Model;
         [Export] public AggroSphere AggroSphere;
         [Export] public AnimationPlayer AnimationPlayer;
+        [Export] public FuseBombProjectile Bomb;
 
 
         public bool IsDead => _stateMachine.CurrentState is Dead;
+        public bool Invulnerable => IsDead;
 
         private StateMachine _stateMachine = new StateMachine();
 
@@ -55,7 +57,11 @@ namespace FastDragon
 
         public void OnDamaged()
         {
-            if (!IsDead) _stateMachine.ChangeState<Dead>();
+            _stateMachine.ChangeState<Dead>();
+
+            Bomb.GlobalPosition = GlobalPosition;
+            Bomb.ResetPhysicsInterpolation3D();
+            Bomb.Reveal();
         }
 
         private void RefreshAggroSphereSize()
@@ -63,9 +69,7 @@ namespace FastDragon
             AggroSphere.Radius = AggroRange;
         }
 
-        private class VultureState : State<EnemyVulture> {}
-
-        private class Idle : VultureState
+        private class Idle : State<EnemyVulture>
         {
             public override void OnStateEntered()
             {
@@ -90,7 +94,7 @@ namespace FastDragon
             }
         }
 
-        private class Chasing : VultureState
+        private class Chasing : State<EnemyVulture>
         {
             private Player _targetPlayer;
             private float _fspeed;
@@ -147,7 +151,7 @@ namespace FastDragon
             }
         }
 
-        private class Returning : VultureState
+        private class Returning : State<EnemyVulture>
         {
             public override void OnStateEntered()
             {
@@ -179,7 +183,7 @@ namespace FastDragon
             }
         }
 
-        private class Dead : VultureState
+        private class Dead : State<EnemyVulture>
         {
             public override void OnStateEntered()
             {
