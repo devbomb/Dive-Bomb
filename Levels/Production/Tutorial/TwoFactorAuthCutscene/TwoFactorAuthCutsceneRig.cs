@@ -5,7 +5,7 @@ namespace FastDragon.Levels.Tutorial
 {
     public partial class TwoFactorAuthCutsceneRig : Node
     {
-        private static readonly StoryFlag JokeFinishedFlag = StoryFlag.Temporary("EscapeSequence_2FA_Joke_Finished");
+        private static readonly StoryFlag JokeFinishedFlag = StoryFlag.Checkpointable("EscapeSequence_2FA_Joke_Finished");
 
         [Export] public string targetname;
         [Export] public OpenableWall Door;
@@ -86,23 +86,9 @@ namespace FastDragon.Levels.Tutorial
         {
             public override void OnStateEntered()
             {
+                Self.SetStoryFlag(JokeFinishedFlag);
                 Self.Animator.Play("Doomed");
                 Self.Door.StartOpening();
-            }
-
-            public override void SubscribeToSignals()
-            {
-                SignalBus.Instance.CheckpointActivated += OnCheckpointReached;
-            }
-
-            public override void UnsubscribeFromSignals()
-            {
-                SignalBus.Instance.CheckpointActivated -= OnCheckpointReached;
-            }
-
-            private void OnCheckpointReached()
-            {
-                Self.SetStoryFlag(JokeFinishedFlag);
             }
         }
 
