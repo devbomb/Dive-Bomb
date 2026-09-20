@@ -55,9 +55,9 @@ namespace FastDragon.Levels.Tutorial
                     return;
                 }
 
-                bool seenAgentDIntro = this.GetLevel()
-                    .PermanentStoryFlags
-                    .Contains(StoryFlags.AgentDIntroFinished);
+                bool seenAgentDIntro = this
+                    .GetStoryFlags()
+                    .HasPermanent(StoryFlags.AgentDIntroFinished);
 
                 if (!seenAgentDIntro && !this.PlaySceneFromHereWasUsed())
                 {
@@ -85,7 +85,7 @@ namespace FastDragon.Levels.Tutorial
 
             public override void OnStateExited()
             {
-                Self.GetLevel().PermanentStoryFlags.Add(StoryFlags.AgentDIntroFinished);
+                Self.GetStoryFlags().SetPermanent(StoryFlags.AgentDIntroFinished);
                 Self.MusicPlayer.RestartSong();
             }
 
