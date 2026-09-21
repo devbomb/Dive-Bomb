@@ -50,21 +50,30 @@ namespace FastDragon
         /// </summary>
         public string SaveKey { get; private set; }
 
-        private readonly StateMachine _stateMachine = new StateMachine();
         private Transform3D _initialModelPos;
         private float _initialCameraYawRad;
         private Node3D _camTarget;
 
         private Player Player;
 
+        private readonly StateMachine _stateMachine = new();
+        private readonly SaveKeyGenerator _saveKeyGen = new();
+
+        public FairyJar()
+        {
+            AddChild(_stateMachine);
+            AddChild(_saveKeyGen);
+        }
+
         public override void _Ready()
         {
-            SaveKey = GenerateSaveKey();
+            SaveKey = !string.IsNullOrEmpty(targetname)
+                ? targetname
+                : _saveKeyGen.SaveKey;
+
             _initialModelPos = Model.GlobalTransform;
 
             SignalBus.Instance.LevelReset += Reset;
-            AddChild(_stateMachine);
-
             Reset();
         }
 
@@ -144,29 +153,6 @@ namespace FastDragon
             var musicPlayer = GetTree().FindNode<BackgroundMusicPlayer>();
             if (musicPlayer != null)
                 musicPlayer.ProcessMode = ProcessMode;
-        }
-
-        private string GenerateSaveKey()
-        {
-            if (!string.IsNullOrEmpty(targetname))
-                return targetname;
-
-            var builder = new System.Text.StringBuilder();
-            Visit(this);
-            return builder.ToString();
-
-            void Visit(Node n)
-            {
-                if (n.GetParent() == GetTree().Root)
-                {
-                    builder.Append(n.Name);
-                    return;
-                }
-
-                Visit(n.GetParent());
-                builder.Append("/");
-                builder.Append(n.GetIndex());
-            }
         }
 
         private bool HasGuide()

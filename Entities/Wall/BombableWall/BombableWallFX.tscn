@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dnilso4bx4lre"]
+
+[ext_resource type="Script" uid="uid://bruputn41qq3h" path="res://Entities/Wall/BombableWall/BombableWallFX.cs" id="1_xdstt"]
+
+[sub_resource type="Curve" id="Curve_cv1di"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i20vl"]
+curve = SubResource("Curve_cv1di")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6bkmj"]
+resource_local_to_scene = true
+resource_name = "ExplosionParticlesProc"
+lifetime_randomness = 0.64
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 37.19
+initial_velocity_min = 5.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, -15, 0)
+damping_max = 10.547001
+scale_min = 0.099999994
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_i20vl")
+
+[sub_resource type="PrismMesh" id="PrismMesh_neoal"]
+resource_local_to_scene = true
+resource_name = "ExplosionParticleMesh"
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="BombableWallFX" type="Node3D" unique_id=1938366240 node_paths=PackedStringArray("ShatterSound", "ExplosionParticles")]
+script = ExtResource("1_xdstt")
+ShatterSound = NodePath("ShatterSound")
+ExplosionParticles = NodePath("ExplosionParticles")
+
+[node name="ShatterSound" type="AudioStreamPlayer" parent="." unique_id=924235661]
+bus = &"Sfx"
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=1436308658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358937, 0)
+emitting = false
+amount = 32
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_6bkmj")
+draw_pass_1 = SubResource("PrismMesh_neoal")

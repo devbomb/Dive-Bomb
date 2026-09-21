@@ -1,0 +1,57 @@
+// Game: FastDragon
+// Format: Standard
+// Generator: TrenchBroom 2026.2 (Build v2026.2 Release Win64)
+// entity 0
+{
+"wad" ""
+"classname" "worldspawn"
+// brush 0
+{
+( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) __TB_empty 0 0 0 1 1
+( -64 -128 -16 ) ( -64 -128 -15 ) ( -63 -128 -16 ) __TB_empty 0 0 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) __TB_empty 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) __TB_empty 0 0 0 1 1
+( 64 64 16 ) ( 65 64 16 ) ( 64 64 17 ) __TB_empty 0 0 0 1 1
+( 176 64 16 ) ( 176 64 17 ) ( 176 65 16 ) __TB_empty 0 0 0 1 1
+}
+// brush 1
+{
+( 48 0 16 ) ( 48 1 16 ) ( 48 0 17 ) __TB_empty 0 0 0 1 1
+( 48 0 16 ) ( 48 0 17 ) ( 49 0 16 ) __TB_empty 0 0 0 1 1
+( 48 0 16 ) ( 49 0 16 ) ( 48 1 16 ) __TB_empty 0 0 0 1 1
+( 64 64 96 ) ( 64 65 96 ) ( 65 64 96 ) __TB_empty 0 0 0 1 1
+( 64 64 96 ) ( 65 64 96 ) ( 64 64 97 ) __TB_empty 0 0 0 1 1
+( 64 64 96 ) ( 64 64 97 ) ( 64 65 96 ) __TB_empty 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "transport_player_spawn"
+"origin" "-44 0 16"
+}
+// entity 2
+{
+"classname" "wall_bombable"
+// brush 0
+{
+( 80 -128 16 ) ( 80 -127 16 ) ( 80 -128 17 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 80 -128 16 ) ( 80 -128 17 ) ( 81 -128 16 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 80 -128 16 ) ( 81 -128 16 ) ( 80 -127 16 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 160 -48 128 ) ( 160 -47 128 ) ( 161 -48 128 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 160 -48 128 ) ( 161 -48 128 ) ( 160 -48 129 ) Textures/darkbrown_bricks 0 0 0 1 1
+( 160 -48 128 ) ( 160 -48 129 ) ( 160 -47 128 ) Textures/darkbrown_bricks 0 0 0 1 1
+}
+}
+// entity 3
+{
+"classname" "logic_wall_button"
+"origin" "40 32 56"
+"angle" "180"
+"targetname" "WallButton"
+}
+// entity 4
+{
+"classname" "transport_checkpoint"
+"origin" "-16 -96 16"
+"CheckpointName" "TestCheckpoint"
+}

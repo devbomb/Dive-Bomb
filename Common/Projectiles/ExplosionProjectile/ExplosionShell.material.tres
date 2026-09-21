@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ursyur4muula"]
+
+[sub_resource type="Shader" id="Shader_0y6k4"]
+code = "shader_type spatial;
+render_mode 
+	cull_disabled,
+	vertex_lighting;
+
+uniform sampler3D noise: filter_linear_mipmap;
+uniform vec3 color: source_color;
+
+void fragment() {
+	float smoke_time = TIME * 0.01;
+	float scroll_time = TIME * 0.05;
+	float rot_time = TIME * 0.05;
+	vec2 uv = vec2(UV.x + rot_time, UV.y + scroll_time);
+	float value = texture(noise, vec3(uv, smoke_time)).r;
+	if (value < 0.6)
+		discard;
+	
+	ALBEDO = color;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7vrof"]
+frequency = 0.1224
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_5h7uk"]
+depth = 128
+noise = SubResource("FastNoiseLite_7vrof")
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_0y6k4")
+shader_parameter/noise = SubResource("NoiseTexture3D_5h7uk")
+shader_parameter/color = Color(1, 0.7, 0, 1)

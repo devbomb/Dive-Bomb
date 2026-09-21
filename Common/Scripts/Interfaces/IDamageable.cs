@@ -20,6 +20,12 @@ namespace FastDragon
         /// </summary>
         bool Kickable => true;
 
+        /// <summary>
+        /// Whether or not <see cref="OnDamaged"/> is called when caught in an
+        /// explosion.
+        /// </summary>
+        bool Explodable => true;
+
         bool Invulnerable => false;
 
         public float CameraShakeMagnitude => 0.25f;
@@ -43,6 +49,14 @@ namespace FastDragon
         /// kick an unkickable object.
         /// </summary>
         void OnKicked() {}
+
+        /// <summary>
+        /// Gets called whenever this object is caught in an explosion,
+        /// regardless of whether or not it's vulnerable to explosions.
+        ///
+        /// Use this to play "reaction" animations.
+        /// </summary>
+        void OnExploded() {}
 
         /// <summary>
         /// Gets called whenever it is hit by an attack that it is vulnerable
@@ -81,6 +95,20 @@ namespace FastDragon
             d.OnKicked();
 
             if (!d.Kickable || d.Invulnerable)
+            {
+                d.OnDamageRejected();
+                return false;
+            }
+
+            d.OnDamaged();
+            return true;
+        }
+
+        public static bool TryExplode(this IDamageable d)
+        {
+            d.OnExploded();
+
+            if (!d.Explodable || d.Invulnerable)
             {
                 d.OnDamageRejected();
                 return false;

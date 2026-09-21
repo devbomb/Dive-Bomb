@@ -22,7 +22,7 @@ namespace FastDragon
         public bool TouchedGroundOnce {get; private set;} = false;
         public bool IsRevealed => _stateMachine.CurrentState is Revealed;
 
-        public string SaveKey { get; private set; }
+        public string SaveKey => _saveKeyGen.SaveKey;
 
         public Area3D CollectionArea => GetNode<Area3D>("%CollectionArea");
 
@@ -43,11 +43,18 @@ namespace FastDragon
         private Node _visibleEnablerParent;
 
         private Transform3D _initialPos;
-        private StateMachine _stateMachine = new StateMachine();
+
+        private readonly StateMachine _stateMachine = new();
+        private readonly SaveKeyGenerator _saveKeyGen = new();
+
+        public Gem()
+        {
+            AddChild(_stateMachine);
+            AddChild(_saveKeyGen);
+        }
 
         public override void _Ready()
         {
-            SaveKey = GenerateSaveKey();
             base._Ready();
 
             // Add a random offset to the spinning animation.
@@ -62,7 +69,6 @@ namespace FastDragon
             _visibleEnablerParent = _visibleEnabler.GetParent();
 
             _initialPos = GlobalTransform;
-            AddChild(_stateMachine);
             Reset();
 
             SignalBus.Instance.LevelReset += Reset;
@@ -130,26 +136,6 @@ namespace FastDragon
         public void Sparkle()
         {
             _sparkleAnim.Play("Sparkle");
-        }
-
-        private string GenerateSaveKey()
-        {
-            var builder = new System.Text.StringBuilder();
-            Visit(this);
-            return builder.ToString();
-
-            void Visit(Node n)
-            {
-                if (n.GetParent() == GetTree().Root)
-                {
-                    builder.Append(n.Name);
-                    return;
-                }
-
-                Visit(n.GetParent());
-                builder.Append("/");
-                builder.Append(n.GetIndex());
-            }
         }
 
         private void ChangeState<TState>() where TState : State<Gem>, new()

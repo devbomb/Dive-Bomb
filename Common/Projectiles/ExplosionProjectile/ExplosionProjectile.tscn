@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://feymjil4np4v"]
+
+[ext_resource type="Script" uid="uid://b5w5mgluj3c1m" path="res://Common/Projectiles/ExplosionProjectile/ExplosionProjectile.cs" id="1_jrqjv"]
+[ext_resource type="Material" uid="uid://ursyur4muula" path="res://Common/Projectiles/ExplosionProjectile/ExplosionShell.material.tres" id="2_0y6k4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xadyu"]
+resource_local_to_scene = true
+resource_name = "HitboxSphereShape"
+
+[sub_resource type="SphereMesh" id="SphereMesh_xadyu"]
+material = ExtResource("2_0y6k4")
+radius = 1.0
+height = 2.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="Curve" id="Curve_jrqjv"]
+_data = [Vector2(0.08571428, 0), 0.0, 0.0, 0, 0, Vector2(0.29890108, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_k24h7"]
+curve = SubResource("Curve_jrqjv")
+
+[sub_resource type="Curve" id="Curve_0y6k4"]
+_data = [Vector2(0.45934063, 1), 0.0, 0.0, 0, 0, Vector2(0.91868126, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lv8lh"]
+curve = SubResource("Curve_0y6k4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5h7uk"]
+lifetime_randomness = 1.0
+angle_min = -388.5
+angle_max = 429.40002
+spread = 180.0
+initial_velocity_min = 23.13
+initial_velocity_max = 23.13
+gravity = Vector3(0, 0, 0)
+damping_min = 53.346
+damping_max = 90.060005
+use_scale_3d = true
+scale_3d_min = Vector3(0.25, 0.25, 0.25)
+scale_3d_max = Vector3(3, 3, 3)
+scale_curve = SubResource("CurveTexture_lv8lh")
+scale_over_velocity_max = 275.86
+alpha_curve = SubResource("CurveTexture_k24h7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_055gh"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_7vrof"]
+material = SubResource("StandardMaterial3D_055gh")
+
+[node name="ExplosionProjectile" type="Node3D" unique_id=1448840994 node_paths=PackedStringArray("Hitbox", "Model", "ExplosionParticles")]
+script = ExtResource("1_jrqjv")
+Radius = 5.0
+Hitbox = NodePath("Hitbox")
+SphereShape = SubResource("SphereShape3D_xadyu")
+Model = NodePath("Model")
+ExplosionParticles = NodePath("ExplosionParticles")
+
+[node name="Hitbox" type="ShapeCast3D" parent="." unique_id=841951818]
+enabled = false
+shape = SubResource("SphereShape3D_xadyu")
+target_position = Vector3(0, 0, 0)
+collision_mask = 2684354560
+collide_with_areas = true
+debug_shape_custom_color = Color(0.8, 0.41960785, 0, 0.41960785)
+
+[node name="Model" type="MeshInstance3D" parent="." unique_id=1809142027]
+visible = false
+mesh = SubResource("SphereMesh_xadyu")
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=187525212]
+emitting = false
+amount = 36
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_5h7uk")
+draw_pass_1 = SubResource("QuadMesh_7vrof")

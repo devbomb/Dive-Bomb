@@ -6,6 +6,7 @@ namespace FastDragon
     {
         [Signal] public delegate void KickedEventHandler();
         [Signal] public delegate void RolledIntoEventHandler();
+        [Signal] public delegate void ExplodedEventHandler();
         [Signal] public delegate void BrokenEventHandler();
 
         [Export] public float CameraShakeMagnitude { get; set; } = 0.25f;
@@ -14,6 +15,7 @@ namespace FastDragon
 
         [Export] public bool Rollable { get; set; } = true;
         [Export] public bool Kickable { get; set; } = true;
+        [Export] public bool Explodable { get; set; } = true;
         [Export] public bool Invulnerable { get; set; } = false;
 
         public void OnKicked()
@@ -29,6 +31,11 @@ namespace FastDragon
         public void OnDamaged()
         {
             EmitSignal(SignalName.Broken);
+        }
+
+        public void OnExploded()
+        {
+            EmitSignal(SignalName.Exploded);
         }
     }
 }

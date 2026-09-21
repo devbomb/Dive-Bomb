@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" format=3 uid="uid://b5gnb37h0ikfy"]
+
+[ext_resource type="Script" uid="uid://5cow84q03m6a" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_mr1d7"]
+[ext_resource type="Script" uid="uid://wke1ey8tjug5" path="res://Entities/Wall/BombableWall/BombableWall.cs" id="2_rysq5"]
+
+[resource]
+script = ExtResource("1_mr1d7")
+use_in_baked_light = false
+render_layers = 9
+collision_layer = 536870915
+collision_mask = 0
+script_class = ExtResource("2_rysq5")
+classname = "wall_bombable"
+node_class = "StaticBody3D"
+node_groups = Array[String](["UnsafeGround"])
+metadata/_custom_type_script = "uid://5cow84q03m6a"
