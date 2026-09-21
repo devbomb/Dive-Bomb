@@ -142,41 +142,7 @@ namespace FastDragon
                 Self.GlobalPosition = _startPos.Lerp(_endPos, t);
 
                 if (_timer >= Duration)
-                    ChangeState<Diving>();
-            }
-        }
-
-        private class Diving : State<EnemyVulture>
-        {
-            public const double Duration = 0.5;
-            private double _timer;
-
-            public override void OnStateEntered()
-            {
-                _timer = Duration;
-                Self.AnimationPlayer.Play("Fly");
-
-                Self.Velocity = (Self.GlobalPosition.DirectionTo(Self._targetPlayer.GlobalPosition)) * MaxSpeed;
-                Self.GlobalRotation = Self.Velocity.Normalized().ForwardToEulerAnglesRad();
-            }
-
-            public override void _PhysicsProcess(double delta)
-            {
-                Self.MoveAndSlide();
-
-                if (Self.IsTouchingPlayer())
-                {
-                    Self._targetPlayer.TryDamage<PlayerDamageFlipState>(1);
-                    ChangeState<Returning>();
-                    return;
-                }
-
-                _timer -= delta;
-                if (_timer < 0)
-                {
                     ChangeState<Chasing>();
-                    return;
-                }
             }
         }
 
@@ -193,11 +159,25 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double delta)
             {
-                float distance = Self.GlobalPosition.DistanceTo(Self._targetPlayer.GlobalPosition);
+                var targetPoint = Self._targetPlayer.GlobalPosition;
+
+                // Don't chase the player upwards unless line of sight has been
+                // broken.  That way, the player can jump over the vulture
+                // while still letting it fly over obstacles
+                if (Self.AggroSphere.HasLineOfSightTo(Self._targetPlayer))
+                {
+                    if (targetPoint.Y > Self.GlobalPosition.Y)
+                        targetPoint.Y = Self.GlobalPosition.Y;
+                }
+
+                // Speed up if we're too far away from the player, slow down
+                // if we're too close.
+                float distance = Self.GlobalPosition.DistanceTo(targetPoint);
                 float fspeed = distance > PreferredDistance
                     ? CatchUpSpeed
                     : CruiseSpeed;
-                Self.Velocity = fspeed * Self.GlobalPosition.DirectionTo(Self._targetPlayer.GlobalPosition);
+
+                Self.Velocity = fspeed * Self.GlobalPosition.DirectionTo(targetPoint);
                 Self.MoveAndSlide();
 
                 Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
