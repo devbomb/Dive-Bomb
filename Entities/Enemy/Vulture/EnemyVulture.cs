@@ -182,26 +182,27 @@ namespace FastDragon
 
         private class Chasing : State<EnemyVulture>
         {
-            private float _fspeed;
+            private const float PreferredDistance = 3;
+            private const float CatchUpSpeed = Player.Walk.Speed * 1.5f;
+            private const float CruiseSpeed = Player.Walk.Speed * 1.1f;
 
             public override void OnStateEntered()
             {
-                _fspeed = 0;
-                Self.Velocity = Vector3.Zero;
                 Self.AnimationPlayer.Play("Fly");
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                float delta = (float)deltaD;
-
-                _fspeed = Mathf.MoveToward(_fspeed, MaxSpeed, delta * Accel);
-                Self.Velocity = _fspeed * Self.GlobalPosition.DirectionTo(Self._targetPlayer.GlobalPosition);
+                float distance = Self.GlobalPosition.DistanceTo(Self._targetPlayer.GlobalPosition);
+                float fspeed = distance > PreferredDistance
+                    ? CatchUpSpeed
+                    : CruiseSpeed;
+                Self.Velocity = fspeed * Self.GlobalPosition.DirectionTo(Self._targetPlayer.GlobalPosition);
                 Self.MoveAndSlide();
 
                 Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
                     Self.Velocity.Normalized().ForwardToEulerAnglesRad(),
-                    Mathf.DegToRad(RotSpeedDeg) * delta
+                    Mathf.DegToRad(RotSpeedDeg) * (float)delta
                 );
 
                 if (Self.IsTouchingPlayer())
