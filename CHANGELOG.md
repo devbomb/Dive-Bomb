@@ -1,4 +1,9 @@
 # Unreleased
+## Save files
+* **Breaking:** Changed a few story flags to use a new "checkpointable" story
+    flag type.  This new type of flag automatically becomes unset when you die,
+    _unless_ you've reached a checkpoint since it was set.  This renders old
+    save files incompatible.
 
 
 # [0.0.4]

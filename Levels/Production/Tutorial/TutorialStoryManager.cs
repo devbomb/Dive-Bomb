@@ -15,7 +15,7 @@ namespace FastDragon.Levels.Tutorial
         public static class StoryFlags
         {
             public static readonly StoryFlag AgentDIntroFinished = StoryFlag.Permanent("AgentDIntroFinished");
-            public static readonly StoryFlag DrMonocleSpeechCheckpointed = StoryFlag.Temporary("DrMonocleIntroSpeechCheckpointed");
+            public static readonly StoryFlag EscapeSequenceStarted = StoryFlag.Checkpointable("EscapeSequenceStarted");
         }
 
         private readonly StateMachine _stateMachine = new();
@@ -45,7 +45,7 @@ namespace FastDragon.Levels.Tutorial
                     return;
                 }
 
-                if (this.IsStoryFlagSet(StoryFlags.DrMonocleSpeechCheckpointed))
+                if (this.IsStoryFlagSet(StoryFlags.EscapeSequenceStarted))
                 {
                     _stateMachine.ChangeState<EscapeSequence>();
                     return;
@@ -139,27 +139,16 @@ namespace FastDragon.Levels.Tutorial
                 GD.Print("Starting escape sequence");
                 Self.MusicPlayer.OverrideSong(Self.EscapeMusic);
                 Self.DrMonocleIntro.GoToFinished();
+
+                // This needs to be set AFTER GoToFinished(), because that
+                // method checks the flag to determine if we're reloading a
+                // checkpoint or not.
+                Self.SetStoryFlag(StoryFlags.EscapeSequenceStarted);
             }
 
             public override void OnStateExited()
             {
                 Self.MusicPlayer.RemoveSongOverride();
-            }
-
-            public override void SubscribeToSignals()
-            {
-                SignalBus.Instance.CheckpointActivated += CheckpointActivated;
-            }
-
-            public override void UnsubscribeFromSignals()
-            {
-                SignalBus.Instance.CheckpointActivated -= CheckpointActivated;
-            }
-
-            private void CheckpointActivated()
-            {
-                GD.Print("Dr. Monocle speech checkpointed");
-                Self.SetStoryFlag(StoryFlags.DrMonocleSpeechCheckpointed);
             }
         }
     }

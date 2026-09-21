@@ -15,7 +15,7 @@ namespace FastDragon
         ///     Bump this whenever new stuff is added the save file that cannot
         ///     be read by older version of the game.
         /// </summary>
-        public const int CurrentSaveFormatVersion = 1;
+        public const int CurrentSaveFormatVersion = 2;
 
         /// <summary>
         ///     The oldest format version that can be parsed without data loss.
@@ -23,7 +23,7 @@ namespace FastDragon
         ///     Bump this to <see cref="CurrentSaveFormatVersion"/> if the save
         ///     format has changed so much that old files cannot be parsed.
         /// </summary>
-        public const int MinSaveFormatVersion = 1;
+        public const int MinSaveFormatVersion = 2;
 
         public int? SaveFormatVersion = CurrentSaveFormatVersion;
 
@@ -90,6 +90,23 @@ namespace FastDragon
             /// </summary>
             public HashSet<string> StoryFlags = new();
 
+            /// <summary>
+            /// Story flags that should reset if the player dies before reaching
+            /// a checkpoint.
+            ///
+            /// The presence of key indicates if the corresponding flag is set.
+            /// If a flag has a key in this dictionary, then it's set.
+            /// Otherwise, it's not.
+            ///
+            /// The value associated with each key indicates if it is "safe".
+            /// If it's safe, then it will NOT become unset when the player dies.
+            /// Otherwise, it will be.
+            ///
+            /// All set flags will become safe in when the player reaches a
+            /// checkpoint.
+            /// </summary>
+            public Dictionary<string, bool> CheckpointableStoryFlags = new();
+
             public PhysicsTicks Playtime;
             public int Deaths;
             public int FairiesFound;
@@ -104,6 +121,35 @@ namespace FastDragon
                     GemsFound[color] = 0;
 
                 GemsFound[color]++;
+            }
+
+            public void SetCheckpointableFlag(string flag)
+            {
+                if (!IsCheckpointableFlagSet(flag))
+                    CheckpointableStoryFlags[flag] = false;
+            }
+
+            public bool IsCheckpointableFlagSet(string flag)
+            {
+                return CheckpointableStoryFlags.ContainsKey(flag);
+            }
+
+            public void ReachCheckpoint(string checkpointId)
+            {
+                LastCheckpoint = checkpointId;
+
+                foreach (string flag in CheckpointableStoryFlags.Keys)
+                    CheckpointableStoryFlags[flag] = true;
+            }
+
+            public void ClearUnsafeCheckpointableFlags()
+            {
+                string[] flags = CheckpointableStoryFlags.Keys.ToArray();
+                foreach (string flag in flags)
+                {
+                    if (!CheckpointableStoryFlags[flag])
+                        CheckpointableStoryFlags.Remove(flag);
+                }
             }
         }
 

@@ -13,6 +13,7 @@ namespace FastDragon
         {
             Permanent,
             Temporary,
+            Checkpointable,
         }
 
         private StoryFlag(string id, FlagPermanence permanence)
@@ -30,7 +31,13 @@ namespace FastDragon
         {
             return new(id, FlagPermanence.Temporary);
         }
+
+        public static StoryFlag Checkpointable(string id)
+        {
+            return new(id, FlagPermanence.Checkpointable);
+        }
     }
+
     public static class StoryFlagExtensions
     {
         public static bool IsStoryFlagSet(this Node node, StoryFlag flag)
@@ -48,6 +55,11 @@ namespace FastDragon
                     .CurrentLevelVisit
                     .StoryFlags
                     .Contains(flag.Id),
+
+                StoryFlag.FlagPermanence.Checkpointable => SaveFileManager
+                    .Current
+                    .CurrentLevelVisit
+                    .IsCheckpointableFlagSet(flag.Id),
 
                 _ => throw new UnreachableException(),
             };
@@ -73,6 +85,15 @@ namespace FastDragon
                         .CurrentLevelVisit
                         .StoryFlags
                         .Add(flag.Id);
+                    break;
+                }
+
+                case StoryFlag.FlagPermanence.Checkpointable:
+                {
+                    SaveFileManager
+                        .Current
+                        .CurrentLevelVisit
+                        .SetCheckpointableFlag(flag.Id);
                     break;
                 }
 
