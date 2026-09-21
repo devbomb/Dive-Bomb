@@ -21,6 +21,7 @@ namespace FastDragon
 
         public bool Kickable => CanBreak();
         public bool Rollable => CanBreak();
+        public bool Explodable => false;
         public bool CausesBonk => !CanBreak();
 
         [ExportGroup("Internal")]
