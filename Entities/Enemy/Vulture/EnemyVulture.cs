@@ -149,7 +149,7 @@ namespace FastDragon
         private class Chasing : State<EnemyVulture>
         {
             private const float PreferredDistance = 3;
-            private const float CatchUpSpeed = Player.Walk.Speed * 1.5f;
+            private const float CatchUpSpeed = Player.Dive.FSpeed * 1.1f;
             private const float CruiseSpeed = Player.Walk.Speed * 1.1f;
             private const float Accel = CatchUpSpeed / 0.5f;
 
