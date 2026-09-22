@@ -151,6 +151,7 @@ namespace FastDragon
             private const float PreferredDistance = 3;
             private const float CatchUpSpeed = Player.Walk.Speed * 1.5f;
             private const float CruiseSpeed = Player.Walk.Speed * 1.1f;
+            private const float Accel = CatchUpSpeed / 0.5f;
 
             public override void OnStateEntered()
             {
@@ -173,11 +174,12 @@ namespace FastDragon
                 // Speed up if we're too far away from the player, slow down
                 // if we're too close.
                 float distance = Self.GlobalPosition.DistanceTo(targetPoint);
-                float fspeed = distance > PreferredDistance
+                float targetSpeed = distance > PreferredDistance
                     ? CatchUpSpeed
                     : CruiseSpeed;
 
-                Self.Velocity = fspeed * Self.GlobalPosition.DirectionTo(targetPoint);
+                var targetVel = targetSpeed * Self.GlobalPosition.DirectionTo(targetPoint);
+                Self.Velocity = Self.Velocity.MoveToward(targetVel, Accel * (float)delta);
                 Self.MoveAndSlide();
 
                 Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
