@@ -151,7 +151,8 @@ namespace FastDragon
             private const float PreferredDistance = 3;
             private const float CatchUpSpeed = Player.Dive.FSpeed * 1.1f;
             private const float CruiseSpeed = Player.Walk.Speed * 1.1f;
-            private const float Accel = CatchUpSpeed / 0.5f;
+            private const float Accel = CatchUpSpeed / 0.25f;
+            private const float LooneyTunesAccel = CatchUpSpeed / 1f;
 
             public override void OnStateEntered()
             {
@@ -178,8 +179,18 @@ namespace FastDragon
                     ? CatchUpSpeed
                     : CruiseSpeed;
 
+                // Use lower acceleration if we're going the wrong way.
+                // That way, the bird will comically overshoot the player for
+                // longer when they jump over it, but still brake reliably when
+                // getting too close.
+                var targetDir = Self.GlobalPosition.DirectionTo(targetPoint);
+                bool isWrongWay = Self.Velocity.Normalized().Dot(targetDir) < 0;
+                float accel = isWrongWay
+                    ? LooneyTunesAccel
+                    : Accel;
+
                 var targetVel = targetSpeed * Self.GlobalPosition.DirectionTo(targetPoint);
-                Self.Velocity = Self.Velocity.MoveToward(targetVel, Accel * (float)delta);
+                Self.Velocity = Self.Velocity.MoveToward(targetVel, accel * (float)delta);
                 Self.MoveAndSlide();
 
                 Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
