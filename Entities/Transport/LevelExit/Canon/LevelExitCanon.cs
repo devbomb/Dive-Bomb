@@ -196,8 +196,6 @@ namespace FastDragon
             private Player _player;
             private float _rotSpeedDeg;
 
-            private bool _detectedAnimationFinished;
-
             public override void OnStateEntered()
             {
                 Self._animator.Play("MissionClear");
@@ -207,7 +205,6 @@ namespace FastDragon
                 _player.Camera.Shake(2, 10, 0.5f);
 
                 _rotSpeedDeg = InitRotSpeedDeg;
-                _detectedAnimationFinished = false;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -235,18 +232,31 @@ namespace FastDragon
                 );
 
                 // Move on when the animation is finished
-                if (!Self._animator.IsPlaying() && !_detectedAnimationFinished)
+                if (!Self._animator.IsPlaying())
                 {
-                    _detectedAnimationFinished = true;
-
                     if (Self.IsTimeTrialMode())
-                    {
-                        Self.GetLevel().TimeTrial.ShowResultsScreen();
-                        return;
-                    }
-
-                    LevelTransitionManager.Instance.GoToMissionStatsScreen();
+                        ChangeState<ShowingTimeTrialResults>();
+                    else
+                        LevelTransitionManager.Instance.GoToMissionStatsScreen();
                 }
+            }
+        }
+
+        private class ShowingTimeTrialResults : State<LevelExitCanon>
+        {
+            private const float RotSpeedDeg = 180;
+            private Player _player;
+
+            public override void OnStateEntered()
+            {
+                Self.GetLevel().TimeTrial.ShowResultsScreen();
+
+                _player = GetTree().FindNode<Player>();
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _player.GlobalRotationDegrees += Vector3.Up * RotSpeedDeg * (float)delta;
             }
         }
     }
