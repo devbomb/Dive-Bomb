@@ -206,11 +206,11 @@ namespace FastDragon
 
         private class Shattering : State<FairyJar>
         {
-            private const float MinDuration = 2f;
-            private const float MaxDuration = 2.5f;
-            private const float CameraMoveDelay = 1f;
-            private const float CameraMoveDuration = MinDuration - CameraMoveDelay;
-            private const float TimeScale = 0.5f;
+            private const double MinDuration = 2;
+            private const double MaxDuration = 2.5;
+            private const double CameraMoveDelay = 1;
+            private const double CameraMoveDuration = MinDuration - CameraMoveDelay;
+            private const double TimeScale = 0.5;
 
             private static float PlayerJumpSpeed => Player.Jump.InitVSpeed;
             private static float PlayerGravity => Player.Jump.ShortHopGravity;
@@ -218,7 +218,7 @@ namespace FastDragon
             private Player _player => Self.Player;
 
             private bool _playerLanded;
-            private float _timer;
+            private double _timer;
 
             private CameraState _cameraState;
             private enum CameraState
@@ -264,13 +264,11 @@ namespace FastDragon
                 Engine.TimeScale = 1;
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                float delta = (float)deltaD;
+                _timer += delta / Engine.TimeScale;
 
-                _timer += delta / (float)Engine.TimeScale;
-
-                _player.Velocity += Vector3.Down * PlayerGravity * delta;
+                _player.Velocity += Vector3.Down * PlayerGravity * (float)delta;
                 _player.MoveAndSlide();
                 MoveCamera();
 
@@ -349,7 +347,7 @@ namespace FastDragon
                 Self._initialCameraYawRad = _player.Camera.GlobalRotation.Y;
                 Self._camTarget = Self.KissPointClosestToCurrentCamPos();
 
-                _player.Camera.StartManhandling(CamTargetPos(), CameraMoveDuration);
+                _player.Camera.StartManhandling(CamTargetPos(), (float)CameraMoveDuration);
                 _cameraState = CameraState.MovingToTarget;
             }
 
@@ -415,14 +413,14 @@ namespace FastDragon
 
         private class FlyingToPlayer : State<FairyJar>
         {
-            private const float Duration = 0.5f;
+            private const double Duration = 0.5;
 
             private Transform3D _start;
 
             private float _playerInitialYawRad;
             private float _playerTargetYawRad;
 
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -446,9 +444,9 @@ namespace FastDragon
                 Self.FadeCurtainAnimator.Play("RESET");
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer += (float)deltaD;
+                _timer += delta;
 
                 RotatePlayer();
                 MoveFairy();
@@ -461,7 +459,7 @@ namespace FastDragon
 
             private void MoveFairy()
             {
-                float t = _timer / Duration;
+                float t = (float)(_timer / Duration);
                 t = Mathf.SmoothStep(0, 1, t);
 
                 var player = Self.Player;
@@ -471,7 +469,7 @@ namespace FastDragon
 
             private void RotatePlayer()
             {
-                float t = _timer / Duration;
+                float t = (float)(_timer / Duration);
                 t = Mathf.Clamp(t, 0, 1);
                 Self.Player.YawRad = Mathf.LerpAngle(_playerInitialYawRad, _playerTargetYawRad, t);
             }
@@ -506,8 +504,8 @@ namespace FastDragon
 
         private class FlyingAway : State<FairyJar>
         {
-            private const float Duration = 0.75f;
-            private float _timer;
+            private const double Duration = 0.75;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -515,9 +513,9 @@ namespace FastDragon
                 Self.Animator.Play("FlyAwayHigh");
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer += (float)deltaD;
+                _timer += delta;
 
                 if (_timer > Duration)
                     ChangeState<Rescued>();
@@ -526,12 +524,12 @@ namespace FastDragon
 
         private class QuickRescue : State<FairyJar>
         {
-            private const float MoveToCameraDuration = 0.5f;
+            private const double MoveToCameraDuration = 0.5;
 
             private Transform3D _initialOffsetFromCamera;
             private Transform3D _targetOffsetFromCamera;
 
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -550,10 +548,10 @@ namespace FastDragon
                 _timer = 0;
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer += (float)deltaD;
-                float t = Mathf.Min(_timer / MoveToCameraDuration, 1);
+                _timer += delta;
+                float t = (float)Mathf.Min(_timer / MoveToCameraDuration, 1);
                 t = MathUtils.LerpSinusoidal(0, 1, t);
 
                 var offsetFromCamera = _initialOffsetFromCamera.InterpolateWith(_targetOffsetFromCamera, t);
