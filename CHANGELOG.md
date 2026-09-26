@@ -6,11 +6,9 @@
     save files incompatible.
 
 ## Determinism
-* **Fixed:** In general, the game now looks at a timer whenever it needs to
-    wait for an animation to finish, instead of directly checking the animation
-    player itself.  This ensures that the wait time always lasts for the exact
-    same number of physics ticks(there are 60 physics ticks in a second), even
-    if your framerate is wildly fluctuating.
+* **Fixed:** Whenever the game needs to wait for an animation to finish, it will
+    now do so by counting the number of "physics ticks" that have occurred since
+    it started, instead of directly asking the animation player if it's done.
 
 ## Misc
 * **Fixed:** Fixed a camera "twitch" that would occur during the time trial
