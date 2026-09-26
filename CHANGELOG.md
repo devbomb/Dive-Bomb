@@ -5,6 +5,13 @@
     _unless_ you've reached a checkpoint since it was set.  This renders old
     save files incompatible.
 
+## Determinism
+* **Fixed:** In general, the game now looks at a timer whenever it needs to
+    wait for an animation to finish, instead of directly checking the animation
+    player itself.  This ensures that the wait time always lasts for the exact
+    same number of physics ticks(there are 60 physics ticks in a second), even
+    if your framerate is wildly fluctuating.
+
 ## Misc
 * **Fixed:** Fixed a camera "twitch" that would occur during the time trial
     results sequence.
