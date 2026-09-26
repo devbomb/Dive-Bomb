@@ -217,8 +217,10 @@ namespace FastDragon
 
             private Player _player => Self.Player;
 
+            private double _unscaledTimer;
+
             private bool _playerLanded;
-            private double _timer;
+            private double _playerLandAnimTimer;
 
             private CameraState _cameraState;
             private enum CameraState
@@ -231,7 +233,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 _cameraState = CameraState.FollowingPlayer;
-                _timer = 0;
+                _unscaledTimer = 0;
 
                 // Pause the game (except the player and fairy) during the
                 // cutscene to prevent the player from getting hit by enemies.
@@ -266,7 +268,7 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double delta)
             {
-                _timer += delta / Engine.TimeScale;
+                _unscaledTimer += delta / Engine.TimeScale;
 
                 _player.Velocity += Vector3.Down * PlayerGravity * (float)delta;
                 _player.MoveAndSlide();
@@ -282,7 +284,7 @@ namespace FastDragon
                     // Failsafe: if the player is falling for too long, have
                     // the fairy go rescue them and drop them back off at the
                     // jar's center point.
-                    if (_timer >= MaxDuration)
+                    if (_unscaledTimer >= MaxDuration)
                     {
                         ChangeState<PanicFlyingToPlayer>();
                     }
@@ -291,7 +293,8 @@ namespace FastDragon
                 {
                     // Move to the next state after the player's landing
                     // animation has finished
-                    if (!_player.Animator.IsPlaying() && _timer >= MinDuration)
+                    _playerLandAnimTimer -= delta;
+                    if (_playerLandAnimTimer <= 0 && _unscaledTimer >= MinDuration)
                     {
                         ChangeState<FlyingToPlayer>();
                     }
@@ -304,7 +307,7 @@ namespace FastDragon
                 {
                     case CameraState.FollowingPlayer:
                     {
-                        if (_timer >= CameraMoveDelay)
+                        if (_unscaledTimer >= CameraMoveDelay)
                         {
                             StartFreezingCamera();
                         }
@@ -333,7 +336,11 @@ namespace FastDragon
                 _playerLanded = true;
                 _player.Velocity = Vector3.Zero;
                 Engine.TimeScale = 1;
-                _player.Animator.PlaySection("ParachuteLand", endTime: 0.75f);
+
+                _playerLandAnimTimer = _player.Animator.PlaySectionGetLength(
+                    "ParachuteLand",
+                    endTime: 0.75
+                );
             }
 
             private void StartFreezingCamera()
@@ -477,10 +484,11 @@ namespace FastDragon
 
         private class KissingPlayer : State<FairyJar>
         {
+            private double _timer;
             public override void OnStateEntered()
             {
                 Self.SetPausedForCutscene(true);
-                Self.Animator.Play("Kiss", 0.3f);
+                _timer = Self.Animator.PlayGetLength("Kiss", 0.3f);
             }
 
             public override void OnStateExited()
@@ -490,9 +498,10 @@ namespace FastDragon
                 Self.Player.Camera.StartFollowing(0.75f);
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                if (!Self.Animator.IsPlaying())
+                _timer -= delta;
+                if (_timer <= 0)
                 {
                     if (!Self.HasGuide())
                         ChangeState<FlyingAway>();
@@ -558,6 +567,12 @@ namespace FastDragon
                 var camera = GetTree().Root.GetCamera3D();
                 Self.Model.GlobalTransform = camera.GlobalTransform * offsetFromCamera;
 
+                // Polling AnimationPlayer.IsPlaying() is normally forbidden,
+                // since it's nondeterministic with respect to framerate.
+                //
+                // It's fine in this case, though, because it's only controlling
+                // a visual effect; gameplay will not be affected if we end this
+                // state 1 tick too early or too late.
                 if (!Self.Animator.IsPlaying())
                     ChangeState<Rescued>();
             }

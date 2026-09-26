@@ -57,10 +57,11 @@ namespace FastDragon
         private class PlayerDamageFlipSubstateFalling : PlayerDamageFlipState
         {
             private const float VSpeed = 5;
+            private double _timer;
 
             public override void OnStateEntered()
             {
-                Self.Animator.Play("DamageFlip");
+                _timer = Self.Animator.PlayGetLength("DamageFlip");
                 Self.FlipDamageSound.Play();
                 Self.VSpeed = VSpeed;
                 Self.FSpeed = 0;
@@ -72,23 +73,27 @@ namespace FastDragon
             {
                 base._PhysicsProcess(delta);
 
-                if (Self.IsOnFloor() && !Self.Animator.IsPlaying())
+                _timer -= delta;
+                if (Self.IsOnFloor() && _timer <= 0)
                     ChangeState<PlayerDamageFlipSubstateLanded>();
             }
         }
 
         private class PlayerDamageFlipSubstateLanded : PlayerDamageFlipState
         {
+            private double _timer;
+
             public override void OnStateEntered()
             {
-                Self.Animator.Play("DamageFlip_Land");
+                _timer = Self.Animator.PlayGetLength("DamageFlip_Land");
             }
 
             public override void _PhysicsProcess(double delta)
             {
                 base._PhysicsProcess(delta);
 
-                if (Self.IsOnFloor() && !Self.Animator.IsPlaying())
+                _timer -= delta;
+                if (Self.IsOnFloor() && _timer <= 0)
                 {
                     if (Self.Health <= 0)
                         ChangeState<PlayerReachOutDeathState>();

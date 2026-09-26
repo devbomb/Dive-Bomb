@@ -197,10 +197,11 @@ namespace FastDragon
 
             private Player _player;
             private float _rotSpeedDeg;
+            private double _timer;
 
             public override void OnStateEntered()
             {
-                Self._animator.Play("MissionClear");
+                _timer = Self._animator.PlayGetLength("MissionClear");
 
                 _player = GetTree().FindNode<Player>();
                 _player.Animator.Play("Glide");
@@ -232,7 +233,8 @@ namespace FastDragon
                 );
 
                 // Move on when the animation is finished
-                if (!Self._animator.IsPlaying())
+                _timer -= deltaD;
+                if (_timer <= 0)
                 {
                     if (Self.IsTimeTrialMode())
                         ChangeState<ShowingTimeTrialResults>();

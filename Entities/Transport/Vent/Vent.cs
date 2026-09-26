@@ -98,14 +98,18 @@ namespace FastDragon
 
             private double _camTimer;
             private double _playerTimer;
+            private double _playerAnimTimer;
 
             public override void OnStateEntered()
             {
                 Self._animator.Play("PlayerEntering");
 
                 Player.ChangeState<PlayerManhandledState>();
-                Player.Animator.Play("VentEnter", EnterTweenDuration);
                 Player.Velocity = Vector3.Zero;
+                _playerAnimTimer = Player.Animator.PlayGetLength(
+                    "VentEnter",
+                    EnterTweenDuration
+                );
 
                 _playerStart = Player.GlobalTransform;
                 _playerTimer = 0;
@@ -157,7 +161,8 @@ namespace FastDragon
                     playerT
                 );
 
-                if (!Player.Animator.IsPlaying())
+                _playerAnimTimer -= delta;
+                if (_playerAnimTimer <= 0)
                     ChangeState<Moving>();
             }
         }
