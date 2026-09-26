@@ -7,8 +7,45 @@
 
 ## Determinism
 * **Fixed:** Whenever the game needs to wait for an animation to finish, it will
-    now do so by counting the number of "physics ticks" that have occurred since
-    it started, instead of directly asking the animation player if it's done.
+    now do so by counting the number of "ticks" that have occurred since it 
+    started, instead of directly asking the animation player if it's done.
+    * **A word on determinism**: It is common for modern games to behave
+        slightly differently depending on your framerate.  EG: jumping
+        2 centimeters higher at 60 fps than at 30 fps.  That's fine for most
+        games, because the differences are usually unnoticeably small.
+        Dive Bomb, however, is built to be speedran.  If those 2 extra
+        centimeters let you barely clear an otherwise-impossible jump, then 30
+        fps players are put at a severe disadvantage.  For that reason, I've
+        gone to _great lengths_ to ensure Dive Bomb always behaves exactly the
+        same for all players, regardless of their framerate.  Anything else
+        would be unfair to players with weaker hardware.
+
+        In general, Dive Bomb ensures determinism by advancing all of its logic
+        every _tick_ instead of every _frame_.  Ticks are always exactly 1/60th
+        of a second apart, regardless of your framerate.  At 30 fps, there are
+        2 ticks per frame.  At 60 fps, there's 1 tick per frame.  At 120 fps,
+        there is 1 tick every other frame(with linear interpolation to ensure
+        it still looks smooth).  And if you have a _weird_ framerate, like 41 fps,
+        then there will be 1 tick on some frames and 2 ticks on others.
+        
+        Animation players, however, exist completely outside this "tick" system.
+        Every frame, they measure how much time passed since the last frame, and
+        then skip the animation forward by that amount.  Before this patch, Dive
+        Bomb would ask the animation player every _tick_ if its current animation
+        was finished yet.  But since animations complete on _frames_, they would
+        sometimes finish _barely_ too late to end on the tick they usually end
+        on, meaning they would randomly take 1 more tick than usual on some
+        framerates.  Or, to put it another way:
+        [imagine a bus.](https://knowyourmeme.com/memes/imagine-a-bus-stop).
+        Sorry, I had to.
+
+        As of this patch, the game no longer asks the animation player if it's
+        done yet.  Instead, it asks how long the animation is supposed to be
+        (in seconds), divides that number by 60, and then rounds up.  It then
+        waits exactly that number of ticks.  This won't always perfectly line up
+        with the exact end of the animation, but that's OK.  The important part
+        is that it will always wait the same number of ticks, regardless of your
+        framerate.
 
 ## Misc
 * **Fixed:** Fixed a camera "twitch" that would occur during the time trial
