@@ -5,6 +5,9 @@
     _unless_ you've reached a checkpoint since it was set.  This renders old
     save files incompatible.
 
+## Misc
+* **Fixed:** Fixed a camera "twitch" that would occur during the time trial
+    results sequence.
 
 # [0.0.4]
 ## Save files
