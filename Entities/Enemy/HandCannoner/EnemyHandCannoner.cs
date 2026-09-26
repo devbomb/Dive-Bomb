@@ -124,7 +124,7 @@ namespace FastDragon
 
         private class Shielding : EnemyHandCannonerState
         {
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -132,11 +132,11 @@ namespace FastDragon
                 Self._animator.Play("Shield", 0.2f);
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
                 Self.FaceTargetPlayer();
-                _timer -= (float)deltaD;
 
+                _timer -= delta;
                 if (_timer <= 0)
                     ChangeState<Aiming>();
             }
@@ -144,7 +144,7 @@ namespace FastDragon
 
         private class Aiming : EnemyHandCannonerState
         {
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -152,11 +152,11 @@ namespace FastDragon
                 Self._animator.Play("Aim", 0.2f);
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
                 Self.FaceTargetPlayer();
-                _timer -= (float)deltaD;
 
+                _timer -= delta;
                 if (_timer <= 0)
                     Self.FireProjectile();
             }
