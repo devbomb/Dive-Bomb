@@ -2,23 +2,18 @@ using Godot;
 
 namespace FastDragon
 {
+    // HACK: This state abuses inheritance to have "substates".
+    // Please forgive me.
+    //
+    // TODO: Refactor StateMachine to allow for proper nested state machines.
     public partial class PlayerDamageFlipState : PlayerState
     {
         public override bool Invincible => true;
         public override bool PauseDamageCooldownTimer => true;
 
-        private const float VSpeed = 5;
-        private bool _startedLandingAnimation;
-
         public override void OnStateEntered()
         {
-            Self.Animator.Play("DamageFlip");
-            Self.FlipDamageSound.Play();
-            Self.VSpeed = VSpeed;
-            Self.FSpeed = 0;
-            _startedLandingAnimation = false;
-
-            Self.Camera.Shake(1.1f, 15, 0.5f);
+            ChangeState<PlayerDamageFlipSubstateFalling>();
         }
 
         public override void _PhysicsProcess(double deltaD)
@@ -28,28 +23,9 @@ namespace FastDragon
             ApplyGravity(delta);
             DecelerateHSpeedToZero(delta);
             Self.MoveAndSlide();
-
-            if (Self.IsOnFloor() && !Self.Animator.IsPlaying())
-            {
-                if (!_startedLandingAnimation)
-                {
-                    _startedLandingAnimation = true;
-                    Self.Animator.Play("DamageFlip_Land");
-                    return;
-                }
-
-                if (Self.Health <= 0)
-                {
-                    Self.ChangeState<PlayerReachOutDeathState>();
-                }
-                else
-                {
-                    Self.ChangeState<PlayerWalkState>();
-                }
-            }
         }
 
-        public override void OnStateExited()
+        public override void OnStateExited(IState nextState)
         {
             // Reset the the animator to avoid the "360 degree wrap around" effect.
             //
@@ -62,8 +38,11 @@ namespace FastDragon
             // Resetting the animator immediately sets the rotation back to 0
             // degrees, thus avoiding the effect at the cost of forgoing
             // animation blending.
-            Self.Animator.Play("RESET", 0);
-            Self.Animator.Seek(0, true);
+            if (nextState is not PlayerDamageFlipState)
+            {
+                Self.Animator.Play("RESET", 0);
+                Self.Animator.Seek(0, true);
+            }
         }
 
         private void DecelerateHSpeedToZero(float delta)
@@ -73,6 +52,50 @@ namespace FastDragon
             v.Y = Self.LocalVelocity.Y;
 
             Self.LocalVelocity = v;
+        }
+
+        private class PlayerDamageFlipSubstateFalling : PlayerDamageFlipState
+        {
+            private const float VSpeed = 5;
+
+            public override void OnStateEntered()
+            {
+                Self.Animator.Play("DamageFlip");
+                Self.FlipDamageSound.Play();
+                Self.VSpeed = VSpeed;
+                Self.FSpeed = 0;
+
+                Self.Camera.Shake(1.1f, 15, 0.5f);
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                base._PhysicsProcess(delta);
+
+                if (Self.IsOnFloor() && !Self.Animator.IsPlaying())
+                    ChangeState<PlayerDamageFlipSubstateLanded>();
+            }
+        }
+
+        private class PlayerDamageFlipSubstateLanded : PlayerDamageFlipState
+        {
+            public override void OnStateEntered()
+            {
+                Self.Animator.Play("DamageFlip_Land");
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                base._PhysicsProcess(delta);
+
+                if (Self.IsOnFloor() && !Self.Animator.IsPlaying())
+                {
+                    if (Self.Health <= 0)
+                        ChangeState<PlayerReachOutDeathState>();
+                    else
+                        ChangeState<PlayerWalkState>();
+                }
+            }
         }
     }
 }
