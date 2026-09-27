@@ -58,17 +58,21 @@ namespace FastDragon
 
         private class Submerging : State<SeamonsterBoss>
         {
+            private double _timer;
+
             public override void OnStateEntered()
             {
                 Self.HidePowerOrbs();
-                Self.PlayAnimation("Submerge");
                 Self._leftSplashTentacle.Submerge();
                 Self._rightSplashTentacle.Submerge();
+
+                _timer = Self.PlayAnimGetLength("Submerge");
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                if (Self.CurrentAnimation() != "Submerge")
+                _timer -= delta;
+                if (_timer <= 0)
                 {
                     Self.RandomizeSpawnPoint();
                     ChangeState<Submerged>();
