@@ -13,17 +13,27 @@ namespace FastDragon
 
         private class AcidSplashesSubmerging : State<SeamonsterBoss>
         {
+            private double _timer;
+
             public override void OnStateEntered()
             {
                 Self.UseOverheadCameraAngle();
                 Self.PlayAnimation("Submerge");
                 Self._leftSplashTentacle.Submerge();
                 Self._rightSplashTentacle.Submerge();
+
+                _timer = Self
+                    ._animationTree
+                    .GetAnimPlayer()
+                    .GetAnimation("Submerge")
+                    .Length;
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                if (Self.CurrentAnimation() != "Submerge")
+                _timer -= delta;
+
+                if (_timer <= 0)
                 {
                     Self.RandomizeSpawnPoint();
                     ChangeState<AcidSplashesRaining>();
