@@ -23,12 +23,14 @@ namespace FastDragon
         )
         {
             var stateMachine = (AnimationNodeStateMachine)animTree.TreeRoot;
-            var animNode = stateMachine.GetNode(animName);
-            if (animNode is not AnimationNodeAnimation)
+            var node = stateMachine.GetNode(animName);
+            if (node is not AnimationNodeAnimation animNode)
                 throw new Exception($"There is no AnimationNodeAnimation named {animName}");
 
             animTree.PlayState(animName);
-            return animTree.GetAnimation(animName).Length;
+            return animNode.UseCustomTimeline
+                ? animNode.TimelineLength
+                : animTree.GetAnimation(animName).Length;
         }
 
         public static string CurrentState(this AnimationTree animTree)
