@@ -90,6 +90,11 @@ namespace FastDragon
             _animationTree.PlayState(animationName, travel);
         }
 
+        private double PlayAnimGetLength(string animationName)
+        {
+            return _animationTree.PlayAnimStateGetLength(animationName);
+        }
+
         private string CurrentAnimation() => _animationTree.CurrentState();
 
         private class WaitingToRespawn : State<SeamonsterBoss>

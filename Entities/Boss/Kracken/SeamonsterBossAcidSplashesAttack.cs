@@ -18,15 +18,10 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 Self.UseOverheadCameraAngle();
-                Self.PlayAnimation("Submerge");
                 Self._leftSplashTentacle.Submerge();
                 Self._rightSplashTentacle.Submerge();
 
-                _timer = Self
-                    ._animationTree
-                    .GetAnimPlayer()
-                    .GetAnimation("Submerge")
-                    .Length;
+                _timer = Self.PlayAnimGetLength("Submerge");
             }
 
             public override void _PhysicsProcess(double delta)
