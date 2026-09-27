@@ -216,10 +216,12 @@ namespace FastDragon
 
         private class Dying : State<SeamonsterBoss>
         {
+            private double _timer;
             public override void OnStateEntered()
             {
                 Self.UseCameraAngle(Self._deathAnimationCameraPos.GlobalTransform);
                 Self.PlayAnimation("Dying");
+                _timer = GetAnimLen();
 
                 // Clear out all of the permanent acid splashes
                 var splashes = GetTree().Root.EnumerateDescendantsOfType<FallingAcidBlob>();
@@ -239,10 +241,29 @@ namespace FastDragon
                 GetTree().FindNode<PlayerCamera>().ProcessMode = ProcessModeEnum.Inherit;
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                if (Self.CurrentAnimation() != "Dying")
+                _timer -= delta;
+                if (_timer <= 0)
                     ChangeState<Dead>();
+            }
+
+            private double GetAnimLen()
+            {
+                // This state is a combination of multiple animations, each played
+                // one after the other, with no transition duration.
+                //
+                // Therefore, we can get the length by just summing each anim's
+                // length.
+                var animTree = Self._animationTree;
+                var animations = new[]
+                {
+                    "LookLeftAndRight",
+                    "Explode",
+                };
+                return animations
+                    .Select(animName => animTree.GetAnimation(animName).Length)
+                    .Sum();
             }
         }
 
