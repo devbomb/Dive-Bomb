@@ -109,6 +109,11 @@ tracks/6/keys = PackedFloat32Array(0, 1, 0.0517461, 1.1905e-07, 6.16862e-09, 0.9
 [sub_resource type="Animation" id="Animation_lnr6p"]
 resource_name = "Splash"
 length = 1.5
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"SpawnWaveAttack",
+"time": 0.9
+}]
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -179,20 +184,6 @@ tracks/9/path = NodePath("KrackenTentacle/Armature/Skeleton3D:Bone")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = PackedFloat32Array(0.7, 1, 0, -2.25705, 0, 0.9, 1, 0, -1.31481, 0, 1.1, 1, 0, -1.31481, 0)
-tracks/10/type = "method"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath(".")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"SpawnWaveAttack"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_eqjm6"]
 resource_name = "SplashRecover"

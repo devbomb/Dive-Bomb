@@ -14,19 +14,19 @@ namespace FastDragon
         [Export] public PowerOrb[] PowerOrbs = new PowerOrb[0];
 
         [ExportGroup("Main Loop/Submerge")]
-        [Export] public float SubmergedDuration = 1;
+        [Export] public double SubmergedDuration = 1;
         [Export] public float SubmergeDepth = -14;
 
         [ExportGroup("Main Loop/Surface")]
-        [Export] public float SurfacingDuration = 0.5f;
+        [Export] public double SurfacingDuration = 0.5f;
 
         [ExportGroup("Main Loop/Laugh")]
-        [Export] public float LaughingDuration = 3;
+        [Export] public double LaughingDuration = 3;
 
         [ExportGroup("Main Loop/Vulnerable and Hurt")]
-        [Export] public float VulnerableDuration = 3;
+        [Export] public double VulnerableDuration = 3;
         [Export] public float HurtKnockbackDistance = 10;
-        [Export] public float HurtKnockbackDuration = 1.5f;
+        [Export] public double HurtKnockbackDuration = 1.5f;
 
         private Node3D _deathAnimationCameraPos => GetNode<Node3D>("%DeathAnimationCameraPos");
 
@@ -58,17 +58,21 @@ namespace FastDragon
 
         private class Submerging : State<SeamonsterBoss>
         {
+            private double _timer;
+
             public override void OnStateEntered()
             {
                 Self.HidePowerOrbs();
-                Self.PlayAnimation("Submerge");
                 Self._leftSplashTentacle.Submerge();
                 Self._rightSplashTentacle.Submerge();
+
+                _timer = Self.PlayAnimGetLength("Submerge");
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                if (Self.CurrentAnimation() != "Submerge")
+                _timer -= delta;
+                if (_timer <= 0)
                 {
                     Self.RandomizeSpawnPoint();
                     ChangeState<Submerged>();
@@ -78,7 +82,7 @@ namespace FastDragon
 
         private class Submerged : State<SeamonsterBoss>
         {
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -96,9 +100,9 @@ namespace FastDragon
                 Self.Visible = true;
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer -= (float)deltaD;
+                _timer -= delta;
 
                 if (_timer <= 0)
                     ChangeState<Surfacing>();
@@ -107,7 +111,7 @@ namespace FastDragon
 
         private class Surfacing : State<SeamonsterBoss>
         {
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -122,9 +126,9 @@ namespace FastDragon
                 Self._rightSplashTentacle.Surface();
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer -= (float)deltaD;
+                _timer -= delta;
 
                 if (_timer <= 0)
                     ChangeState<WavesAttack>();
@@ -133,7 +137,7 @@ namespace FastDragon
 
         private class Vulnerable : State<SeamonsterBoss>
         {
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -149,9 +153,9 @@ namespace FastDragon
                 Self._weakPoint.Broken -= OnDamagedByPlayer;
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer -= (float)deltaD;
+                _timer -= delta;
 
                 if (_timer <= 0)
                     ChangeState<Submerging>();
@@ -171,7 +175,7 @@ namespace FastDragon
 
         private class Damaged : State<SeamonsterBoss>
         {
-            private float _timer;
+            private double _timer;
             private Vector3 _startPos;
             private Vector3 _endPos;
 
@@ -191,10 +195,10 @@ namespace FastDragon
                 }
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer += (float)deltaD;
-                float t = _timer / Self.HurtKnockbackDuration;
+                _timer += delta;
+                float t = (float)(_timer / Self.HurtKnockbackDuration);
                 t = Mathf.Sqrt(t);
                 t = Mathf.Min(t * 2, 1);
 
@@ -212,10 +216,12 @@ namespace FastDragon
 
         private class Dying : State<SeamonsterBoss>
         {
+            private double _timer;
             public override void OnStateEntered()
             {
                 Self.UseCameraAngle(Self._deathAnimationCameraPos.GlobalTransform);
                 Self.PlayAnimation("Dying");
+                _timer = GetAnimLen();
 
                 // Clear out all of the permanent acid splashes
                 var splashes = GetTree().Root.EnumerateDescendantsOfType<FallingAcidBlob>();
@@ -235,10 +241,29 @@ namespace FastDragon
                 GetTree().FindNode<PlayerCamera>().ProcessMode = ProcessModeEnum.Inherit;
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                if (Self.CurrentAnimation() != "Dying")
+                _timer -= delta;
+                if (_timer <= 0)
                     ChangeState<Dead>();
+            }
+
+            private double GetAnimLen()
+            {
+                // This state is a combination of multiple animations, each played
+                // one after the other, with no transition duration.
+                //
+                // Therefore, we can get the length by just summing each anim's
+                // length.
+                var animTree = Self._animationTree;
+                var animations = new[]
+                {
+                    "LookLeftAndRight",
+                    "Explode",
+                };
+                return animations
+                    .Select(animName => animTree.GetAnimation(animName).Length)
+                    .Sum();
             }
         }
 
@@ -260,7 +285,7 @@ namespace FastDragon
 
         private class Laughing : State<SeamonsterBoss>
         {
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -268,9 +293,9 @@ namespace FastDragon
                 Self.PlayAnimation("Laugh", true);
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer -= (float)deltaD;
+                _timer -= delta;
 
                 if (Self.AllPowerOrbsBroken())
                 {

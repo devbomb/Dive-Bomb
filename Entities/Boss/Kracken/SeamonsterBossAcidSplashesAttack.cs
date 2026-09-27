@@ -8,22 +8,27 @@ namespace FastDragon
         [ExportGroup("Attacks/Acid Splashes")]
         [Export] public PackedScene FallingAcidBlobPrefab;
         [Export] public Node3D AcidSplashesCameraPoint;
-        [Export] public float AcidSplashesInterval = 0.5f;
+        [Export] public double AcidSplashesInterval = 0.5f;
         [Export] public int AcidSplashCount = 4;
 
         private class AcidSplashesSubmerging : State<SeamonsterBoss>
         {
+            private double _timer;
+
             public override void OnStateEntered()
             {
                 Self.UseOverheadCameraAngle();
-                Self.PlayAnimation("Submerge");
                 Self._leftSplashTentacle.Submerge();
                 Self._rightSplashTentacle.Submerge();
+
+                _timer = Self.PlayAnimGetLength("Submerge");
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                if (Self.CurrentAnimation() != "Submerge")
+                _timer -= delta;
+
+                if (_timer <= 0)
                 {
                     Self.RandomizeSpawnPoint();
                     ChangeState<AcidSplashesRaining>();
@@ -33,7 +38,7 @@ namespace FastDragon
 
         private class AcidSplashesRaining : State<SeamonsterBoss>
         {
-            private float _timer;
+            private double _timer;
             private int _splashesRemaining;
 
             public override void OnStateEntered()
@@ -48,9 +53,9 @@ namespace FastDragon
                 Self.UseBossCameraAngle();
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer -= (float)deltaD;
+                _timer -= delta;
 
                 if (_timer <= 0)
                 {

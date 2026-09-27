@@ -8,13 +8,13 @@ namespace FastDragon
         [ExportGroup("Attacks/Wave")]
         [Export] public PackedScene StraightWavePrefab;
 
-        [Export] public float WaveInterval = 1.67f;
+        [Export] public double WaveInterval = 1.67f;
         [Export] public int WaveCount = 3;
 
         private class WavesAttack : State<SeamonsterBoss>
         {
             private int _wavesRemaining;
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -31,9 +31,9 @@ namespace FastDragon
                 Self._rightSplashTentacle.DamagedPlayer -= OnDamagedPlayer;
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer -= (float)deltaD;
+                _timer -= delta;
 
                 if (Self.AllPowerOrbsBroken())
                 {
