@@ -21,6 +21,8 @@ namespace FastDragon
 
         private Transform3D _lockedWaveSpawn;
 
+        private double _splashTimer = 0;
+
         public override void _Ready()
         {
             SignalBus.Instance.LevelReset += Reset;
@@ -29,13 +31,28 @@ namespace FastDragon
 
         public void Reset()
         {
+            _splashTimer = 0;
+
             _animator.ClearQueue();
             _animator.Play("Submerged");
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            if (_splashTimer > 0)
+            {
+                _splashTimer -= delta;
+
+                if (_splashTimer <= 0)
+                    SpawnWaveAttack();
+            }
         }
 
         public void Surface()
         {
             _animator.ClearQueue();
+            _splashTimer = 0;
+
             _animator.Play("Surface");
             _animator.Queue("Idle");
         }
@@ -46,6 +63,10 @@ namespace FastDragon
             _animator.Play("Splash", 0.1f);
             _animator.Queue("SplashRecover");
             _animator.Queue("Idle");
+
+            _splashTimer = _animator
+                .GetAnimation("Splash")
+                .GetMarkerTime("SpawnWaveAttack");
 
             // HACK: Determine where the wave will spawn _now_, instead of when
             // the wave actually spawns.
@@ -59,11 +80,13 @@ namespace FastDragon
         public void Submerge()
         {
             _animator.ClearQueue();
+            _splashTimer = 0;
+
             _animator.Play("Submerge", 0.1f);
             _animator.Queue("Submerged");
         }
 
-        public StraightWave SpawnWaveAttack()
+        private StraightWave SpawnWaveAttack()
         {
             var wave = StraightWavePrefab.Instantiate<StraightWave>();
             GetTree().CurrentScene.AddChild(wave);
