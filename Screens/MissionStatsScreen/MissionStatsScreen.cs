@@ -281,6 +281,13 @@ namespace FastDragon
                 Self.ChalkboardModel.Visible = true;
                 Self.ChalkboardAnimator.Play("SwingIn");
                 Self.ChalkboardAnimator.Advance(0);
+
+                // Polling AnimationPlayer.IsPlaying() is normally forbidden
+                // because it's nondeterministic with respect to framerate
+                // (since animations advance inside _Process() by default).
+                //
+                // But this is a loading screen, dammit!  Nobody cares about
+                // determinism in a loading screen!  So let's indulge a little.
                 while (Self.ChalkboardAnimator.IsPlaying())
                     yield return default;
 

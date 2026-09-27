@@ -4,6 +4,8 @@ namespace FastDragon
 {
     public partial class LevelExitCanon : Node3D
     {
+        public const float BlastOffRiseSpeed = 40;
+
         [Export] public bool StartHidden = false;
         [Export] public float HiddenHeight = -6;
         [Export] public double RevealDuration = 1;
@@ -195,19 +197,17 @@ namespace FastDragon
 
             private Player _player;
             private float _rotSpeedDeg;
-
-            private bool _detectedAnimationFinished;
+            private double _timer;
 
             public override void OnStateEntered()
             {
-                Self._animator.Play("MissionClear");
+                _timer = Self._animator.PlayGetLength("MissionClear");
 
                 _player = GetTree().FindNode<Player>();
                 _player.Animator.Play("Glide");
                 _player.Camera.Shake(2, 10, 0.5f);
 
                 _rotSpeedDeg = InitRotSpeedDeg;
-                _detectedAnimationFinished = false;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -215,7 +215,7 @@ namespace FastDragon
                 float delta = (float)deltaD;
 
                 // Spin the player and move them up
-                float speed = 40;
+                _player.GlobalPosition += Vector3.Up * BlastOffRiseSpeed * delta;
                 _player.GlobalRotationDegrees += Vector3.Up * _rotSpeedDeg * delta;
 
                 _rotSpeedDeg = Mathf.MoveToward(
@@ -223,8 +223,6 @@ namespace FastDragon
                     FinalRotSpeedDeg,
                     RotSpeedAccelDeg * delta
                 );
-
-                _player.GlobalPosition += Vector3.Up * speed * delta;
 
                 // Rotate the camera underneath the player
                 _player.Camera.OrbitPitchRad = AngleMath.DecayToward(
@@ -235,18 +233,41 @@ namespace FastDragon
                 );
 
                 // Move on when the animation is finished
-                if (!Self._animator.IsPlaying() && !_detectedAnimationFinished)
+                _timer -= deltaD;
+                if (_timer <= 0)
                 {
-                    _detectedAnimationFinished = true;
-
                     if (Self.IsTimeTrialMode())
-                    {
-                        Self.GetLevel().TimeTrial.ShowResultsScreen();
-                        return;
-                    }
-
-                    LevelTransitionManager.Instance.GoToMissionStatsScreen();
+                        ChangeState<ShowingTimeTrialResults>();
+                    else
+                        LevelTransitionManager.Instance.GoToMissionStatsScreen();
                 }
+            }
+        }
+
+        private class ShowingTimeTrialResults : State<LevelExitCanon>
+        {
+            private const float RotSpeedDeg = 180;
+            private const float RiseSpeedDecel = 20;
+
+            private Player _player;
+            private float _riseSpeed;
+
+            public override void OnStateEntered()
+            {
+                Self.GetLevel().TimeTrial.ShowResultsScreen();
+
+                _player = GetTree().FindNode<Player>();
+                _riseSpeed = BlastOffRiseSpeed;
+            }
+
+            public override void _PhysicsProcess(double deltaD)
+            {
+                float delta = (float)deltaD;
+
+                _player.GlobalPosition += Vector3.Up * _riseSpeed * delta;
+                _player.GlobalRotationDegrees += Vector3.Up * RotSpeedDeg * delta;
+
+                _riseSpeed = Mathf.MoveToward(_riseSpeed, 0, RiseSpeedDecel * delta);
             }
         }
     }

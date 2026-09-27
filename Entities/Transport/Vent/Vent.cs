@@ -5,10 +5,10 @@ namespace FastDragon
 {
     public partial class Vent : Node3D
     {
-        private const float CooldownDuration = 1;
-        private const float EnterCameraMoveDuration = 0.3f;
-        private const float EnterTweenDuration = 0.2f;
-        private const float MoveDuration = 3;
+        private const double CooldownDuration = 1;
+        private const double EnterCameraMoveDuration = 0.3;
+        private const double EnterTweenDuration = 0.2;
+        private const double MoveDuration = 3;
 
         [Export] public string VentId;
         [Export] public string TargetVentId;
@@ -26,7 +26,7 @@ namespace FastDragon
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private AudioStreamPlayer _crawlSound => GetNode<AudioStreamPlayer>("%CrawlSound");
 
-        private float _cooldownTimer;
+        private double _cooldownTimer;
         private Vent _targetVent;
         private Player _player;
 
@@ -77,10 +77,10 @@ namespace FastDragon
             }
         }
 
-        public override void _PhysicsProcess(double deltaD)
+        public override void _PhysicsProcess(double delta)
         {
             if (_cooldownTimer > 0)
-                _cooldownTimer -= (float)deltaD;
+                _cooldownTimer -= delta;
         }
 
         private abstract partial class VentState : State<Vent>
@@ -96,16 +96,20 @@ namespace FastDragon
             private Transform3D _cameraStart;
             private Transform3D _cameraEnd;
 
-            private float _camTimer;
-            private float _playerTimer;
+            private double _camTimer;
+            private double _playerTimer;
+            private double _playerAnimTimer;
 
             public override void OnStateEntered()
             {
                 Self._animator.Play("PlayerEntering");
 
                 Player.ChangeState<PlayerManhandledState>();
-                Player.Animator.Play("VentEnter", EnterTweenDuration);
                 Player.Velocity = Vector3.Zero;
+                _playerAnimTimer = Player.Animator.PlayGetLength(
+                    "VentEnter",
+                    EnterTweenDuration
+                );
 
                 _playerStart = Player.GlobalTransform;
                 _playerTimer = 0;
@@ -139,32 +143,33 @@ namespace FastDragon
                 Player.Camera.MakeCurrent();
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _playerTimer += (float)deltaD;
-                _camTimer += (float)deltaD;
+                _playerTimer += delta;
+                _camTimer += delta;
 
-                float camT = Mathf.Min(_camTimer / EnterCameraMoveDuration, 1);
+                float camT = (float)Mathf.Min(_camTimer / EnterCameraMoveDuration, 1);
                 camT = MathUtils.LerpSinusoidal(0, 1, camT);
                 Self._cutsceneCam.GlobalTransform = _cameraStart.InterpolateWith(
                     _cameraEnd,
                     camT
                 );
 
-                float playerT = Mathf.Min(_playerTimer / EnterTweenDuration, 1);
+                float playerT = (float)Mathf.Min(_playerTimer / EnterTweenDuration, 1);
                 Player.GlobalTransform = _playerStart.InterpolateWith(
                     Self.GlobalTransform,
                     playerT
                 );
 
-                if (!Player.Animator.IsPlaying())
+                _playerAnimTimer -= delta;
+                if (_playerAnimTimer <= 0)
                     ChangeState<Moving>();
             }
         }
 
         private class Moving : VentState
         {
-            private float _timer;
+            private double _timer;
 
             private Transform3D _camStart;
 
@@ -194,11 +199,11 @@ namespace FastDragon
                 Self._crawlSound.Stop();
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                _timer +=(float)deltaD;
+                _timer += delta;
 
-                float t = Mathf.Min(_timer / MoveDuration, 1);
+                float t = (float)Mathf.Min(_timer / MoveDuration, 1);
                 t = Mathf.SmoothStep(0, 1, t);
 
                 Self._cutsceneCam.GlobalTransform = _camStart.InterpolateWith(

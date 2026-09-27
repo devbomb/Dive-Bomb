@@ -5,21 +5,21 @@ namespace FastDragon
     public partial class PlayerReachOutDeathState : PlayerState
     {
         public override bool Invincible => true;
+        private double _timer;
 
         public override void OnStateEntered()
         {
-            Self.Animator.Play("ReachOutDeath", 0);
+            _timer = Self.Animator.PlayGetLength("ReachOutDeath", 0);
             Self.LocalVelocity = Vector3.Zero;
         }
 
-        public override void _PhysicsProcess(double deltaD)
+        public override void _PhysicsProcess(double delta)
         {
-            float delta = (float)deltaD;
-
-            ApplyGravity(delta);
+            ApplyGravity((float)delta);
             Self.MoveAndSlide();
 
-            if (!Self.Animator.IsPlaying())
+            _timer -= delta;
+            if (_timer <= 0)
                 Self.Die();
         }
     }

@@ -108,23 +108,26 @@ namespace FastDragon
 
         private class WakingUp : EnemyHandCannonerState
         {
+            private double _timer;
+
             public override void OnStateEntered()
             {
-                Self._animator.Play("WakeUp", 0.1f);
+                _timer = Self._animator.PlayGetLength("WakeUp", 0.1f);
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
                 Self.FaceTargetPlayer();
 
-                if (!Self._animator.IsPlaying())
+                _timer -= delta;
+                if (_timer <= 0)
                     ChangeState<Shielding>();
             }
         }
 
         private class Shielding : EnemyHandCannonerState
         {
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -132,11 +135,11 @@ namespace FastDragon
                 Self._animator.Play("Shield", 0.2f);
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
                 Self.FaceTargetPlayer();
-                _timer -= (float)deltaD;
 
+                _timer -= delta;
                 if (_timer <= 0)
                     ChangeState<Aiming>();
             }
@@ -144,7 +147,7 @@ namespace FastDragon
 
         private class Aiming : EnemyHandCannonerState
         {
-            private float _timer;
+            private double _timer;
 
             public override void OnStateEntered()
             {
@@ -152,11 +155,11 @@ namespace FastDragon
                 Self._animator.Play("Aim", 0.2f);
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
                 Self.FaceTargetPlayer();
-                _timer -= (float)deltaD;
 
+                _timer -= delta;
                 if (_timer <= 0)
                     Self.FireProjectile();
             }
@@ -164,14 +167,16 @@ namespace FastDragon
 
         private class RecoilingAfterFiring : EnemyHandCannonerState
         {
+            private double _timer;
             public override void OnStateEntered()
             {
-                Self._animator.Play("FireRecoil");
+                _timer = Self._animator.PlayGetLength("FireRecoil");
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                if (!Self._animator.IsPlaying())
+                _timer -= delta;
+                if (_timer <= 0)
                     ChangeState<Shielding>();
             }
         }
@@ -179,17 +184,19 @@ namespace FastDragon
         private class Dieing : EnemyHandCannonerState
         {
             public override bool EnableCollision => false;
+            private double _timer;
 
             public override void OnStateEntered()
             {
                 Self.FaceTargetPlayer();
                 Self.EmitSignal(EnemyHandCannoner.SignalName.Killed);
-                Self._animator.Play("Death");
+                _timer = Self._animator.PlayGetLength("Death");
             }
 
             public override void _PhysicsProcess(double delta)
             {
-                if (!Self._animator.IsPlaying())
+                _timer -= delta;
+                if (_timer <= 0)
                     ChangeState<Dead>();
             }
         }
