@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace FastDragon
@@ -14,6 +15,20 @@ namespace FastDragon
                 playback.Travel(stateName);
             else
                 playback.Start(stateName);
+        }
+
+        public static double PlayAnimStateGetLength(
+            this AnimationTree animTree,
+            string animName
+        )
+        {
+            var stateMachine = (AnimationNodeStateMachine)animTree.TreeRoot;
+            var animNode = stateMachine.GetNode(animName);
+            if (animNode is not AnimationNodeAnimation)
+                throw new Exception($"There is no AnimationNodeAnimation named {animName}");
+
+            animTree.PlayState(animName);
+            return animTree.GetAnimation(animName).Length;
         }
 
         public static string CurrentState(this AnimationTree animTree)
