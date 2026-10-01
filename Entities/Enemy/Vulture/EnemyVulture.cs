@@ -13,6 +13,7 @@ namespace FastDragon
 
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public float AggroRange = 20;
+        [Export] public double RespawnTime = 5;
 
         [ExportCategory("Internal")]
         [Export] public CollisionShape3D BodyShape;
@@ -60,10 +61,19 @@ namespace FastDragon
         public void OnDamaged()
         {
             _stateMachine.ChangeState<Dead>();
+            EmitSignal(SignalName.Killed);
 
             Bomb.GlobalPosition = GlobalPosition;
             Bomb.ResetPhysicsInterpolation3D();
             Bomb.Reveal();
+        }
+
+        private void OnCrashed()
+        {
+            _stateMachine.ChangeState<Dead>();
+
+            Bomb.GlobalPosition = GlobalPosition;
+            Bomb.ExplodeEarly();
         }
 
         private void RefreshAggroSphereSize()
@@ -200,13 +210,7 @@ namespace FastDragon
                 );
 
                 if (Self.IsTouchingPlayer())
-                    OnTouchedPlayer();
-            }
-
-            private void OnTouchedPlayer()
-            {
-                Self._targetPlayer.TryDamage<PlayerDamageFlipState>(1);
-                ChangeState<Returning>();
+                    Self.OnCrashed();
             }
         }
 
@@ -244,17 +248,27 @@ namespace FastDragon
 
         private class Dead : State<EnemyVulture>
         {
+            private double _respawnTimer;
+
             public override void OnStateEntered()
             {
                 Self.BodyShape.Disabled = true;
                 Self.Model.Visible = false;
-                Self.EmitSignal(EnemyVulture.SignalName.Killed);
+
+                _respawnTimer = Self.RespawnTime;
             }
 
             public override void OnStateExited()
             {
                 Self.BodyShape.Disabled = false;
                 Self.Model.Visible = true;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _respawnTimer -= delta;
+                if (_respawnTimer <= 0)
+                    Self.Reset();
             }
         }
     }

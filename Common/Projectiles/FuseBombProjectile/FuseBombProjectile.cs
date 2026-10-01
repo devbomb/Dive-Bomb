@@ -48,6 +48,12 @@ namespace FastDragon
             _stateMachine.ChangeState<Falling>();
         }
 
+        public void ExplodeEarly()
+        {
+            _stateMachine.ChangeState<Hidden>();
+            Explosion.Explode();
+        }
+
         private class Hidden : State<FuseBombProjectile>
         {
             public override void OnStateEntered()
