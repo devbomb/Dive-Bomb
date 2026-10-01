@@ -11,6 +11,7 @@ namespace FastDragon
         private const float RollingCircumference = 2 * Mathf.Pi * RollingRadius;
 
         private const float CameraLagDuration = 0.5f;
+        private const double CooldownDuration = 0.2;
 
         private float _timer;
         private bool _isGroundRoll;
@@ -24,6 +25,7 @@ namespace FastDragon
             Self.RollThuum.Visible = true;
 
             _timer = 0;
+            Self.RollCooldownTimer = 0;
 
             _isGroundRoll = !(oldState is PlayerDiveState);
             Self.LocalVelocity = Self.GlobalForward() * Player.Roll.InitialSpeed;
@@ -125,6 +127,18 @@ namespace FastDragon
 
             if (_timer >= Player.Roll.Duration)
             {
+                // Impose a cooldown on rolling from the ground again, to
+                // ensure jump -> dive -> roll is faster than roll spamming.
+                //
+                // This cooldown only stops you from starting a roll from the
+                // _ground_.  It does not prevent the forced auto-roll after
+                // you land from a dive.
+                //
+                // We deliberately SKIP this cooldown if the player exits the
+                // roll state early(EG: by bonking or by cancelling it with a
+                // jump).
+                Self.RollCooldownTimer = CooldownDuration;
+
                 if (Self.IsOnFloor())
                 {
                     StartWalkingOrStanding();
