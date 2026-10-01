@@ -15,12 +15,16 @@ namespace FastDragon
         private float _sideFlipWindowTimer;
         private float _boundJumpWindowTimer;
 
+        private bool _rollBuffered;
+
         public override void OnStateEntered(IState oldState)
         {
             Self.Animator.Play(RunAnim);
 
             if (Self.LocalVelocity.Length() < Player.Walk.MinSpeed)
                 Self.FSpeed = Player.Walk.MinSpeed;
+
+            _rollBuffered = false;
 
             _sideFlipDisableTimer = Player.Walk.MinTimeBeforeSideFlip;
             _sideFlipWindowTimer = 0;
@@ -88,9 +92,13 @@ namespace FastDragon
                 return;
             }
 
-            if (InputService.RollJustPressed(ev) && Self.RollCooldownTimer <= 0)
+            if (InputService.RollJustPressed(ev))
             {
-                Self.ChangeState<PlayerRollState>();
+                if (Self.RollCooldownTimer <= 0)
+                    Self.ChangeState<PlayerRollState>();
+                else
+                    _rollBuffered = true;
+
                 return;
             }
 
@@ -119,6 +127,17 @@ namespace FastDragon
             if (!Self.IsOnFloor())
             {
                 Self.ChangeState<PlayerFlopState>();
+                return;
+            }
+
+            // If the player pressed the roll button while it was on cooldown,
+            // roll as soon as the cooldown ends so it doesn't feel like their
+            // input was eaten.
+            //
+            // TODO: Somehow share this buffer with PlayerStandState?
+            if (_rollBuffered && Self.RollCooldownTimer <= 0)
+            {
+                Self.ChangeState<PlayerRollState>();
                 return;
             }
 
