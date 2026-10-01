@@ -113,6 +113,8 @@ namespace FastDragon
         /// </summary>
         public float EarlyJumpBufferTimer { get; private set; }
 
+        public double RollCooldownTimer;
+
         public float FSpeed
         {
             get => LocalVelocity.Flattened().Length();
@@ -224,6 +226,7 @@ namespace FastDragon
             ChangeState<PlayerStandState>();
 
             EarlyJumpBufferTimer = 0;
+            RollCooldownTimer = 0;
             _damageCooldownTimer = 0;
         }
 
@@ -393,6 +396,9 @@ namespace FastDragon
 
             if (EarlyJumpBufferTimer > 0)
                 EarlyJumpBufferTimer -= delta;
+
+            if (RollCooldownTimer > 0)
+                RollCooldownTimer -= deltaD;
 
             if (_damageCooldownTimer > 0 && !CurrentState.PauseDamageCooldownTimer)
                 _damageCooldownTimer -= delta;

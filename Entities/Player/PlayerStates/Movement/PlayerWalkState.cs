@@ -88,7 +88,7 @@ namespace FastDragon
                 return;
             }
 
-            if (InputService.RollJustPressed(ev))
+            if (InputService.RollJustPressed(ev) && Self.RollCooldownTimer <= 0)
             {
                 Self.ChangeState<PlayerRollState>();
                 return;
