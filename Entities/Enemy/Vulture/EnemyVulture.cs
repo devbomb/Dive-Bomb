@@ -17,6 +17,7 @@ namespace FastDragon
         [ExportCategory("Internal")]
         [Export] public CollisionShape3D BodyShape;
         [Export] public Node3D Model;
+        [Export] public Node3D NestModel;
         [Export] public AggroSphere AggroSphere;
         [Export] public AnimationPlayer AnimationPlayer;
         [Export] public FuseBombProjectile Bomb;
@@ -33,9 +34,9 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            base._Ready();
-
             AddChild(_stateMachine);
+            NestModel.TopLevel = true;
+            NestModel.GlobalTransform = GlobalTransform;
 
             RefreshAggroSphereSize();
 

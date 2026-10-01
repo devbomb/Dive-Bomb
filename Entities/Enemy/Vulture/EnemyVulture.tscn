@@ -10,12 +10,41 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uo6qh"]
 
-[node name="EnemyVulture" type="CharacterBody3D" unique_id=159658312 node_paths=PackedStringArray("BodyShape", "Model", "AggroSphere", "AnimationPlayer", "Bomb") groups=["PhysicsInterpolated", "UnsafeGround"]]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei83e"]
+shading_mode = 2
+albedo_color = Color(0.29168966, 0.1940442, 0.049136043, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u6aji"]
+material = SubResource("StandardMaterial3D_ei83e")
+flip_faces = true
+bottom_radius = 0.25
+height = 0.25
+radial_segments = 7
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k24h7"]
+shading_mode = 2
+albedo_color = Color(0.41, 0.37638003, 0.073800005, 1)
+emission_enabled = true
+emission = Color(0.42, 0.23351999, 0.11759999, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tyb5u"]
+material = SubResource("StandardMaterial3D_k24h7")
+flip_faces = true
+top_radius = 0.45
+bottom_radius = 0.125
+height = 0.15
+radial_segments = 7
+cap_top = false
+
+[node name="EnemyVulture" type="CharacterBody3D" unique_id=159658312 node_paths=PackedStringArray("BodyShape", "Model", "NestModel", "AggroSphere", "AnimationPlayer", "Bomb") groups=["PhysicsInterpolated", "UnsafeGround"]]
 collision_layer = 536870915
 collision_mask = 2147483650
 script = ExtResource("1_is5gw")
 BodyShape = NodePath("BodyShape")
 Model = NodePath("Model")
+NestModel = NodePath("NestModel")
 AggroSphere = NodePath("AggroSphere")
 AnimationPlayer = NodePath("AnimationPlayer")
 Bomb = NodePath("FuseBombProjectile")
@@ -64,6 +93,16 @@ shape = SubResource("SphereShape3D_uo6qh")
 [node name="FuseBombProjectile" parent="." unique_id=481505957 instance=ExtResource("2_tyb5u")]
 top_level = true
 Reusable = true
+
+[node name="NestModel" type="Node3D" parent="." unique_id=918697882]
+
+[node name="Outer" type="MeshInstance3D" parent="NestModel" unique_id=366640368]
+transform = Transform3D(0.93914676, 0, -0.3435162, 0, 1, 0, 0.3435162, 0, 0.93914676, 0, 0.125, 0)
+mesh = SubResource("CylinderMesh_u6aji")
+
+[node name="Inner" type="MeshInstance3D" parent="NestModel" unique_id=1732846378]
+transform = Transform3D(0.99904823, 0, -0.043619387, 0, 1, 0, 0.043619387, 0, 0.99904823, 0, 0.08341767, 0)
+mesh = SubResource("CylinderMesh_tyb5u")
 
 [connection signal="Killed" from="." to="GemSpawner" method="Reveal"]
 
