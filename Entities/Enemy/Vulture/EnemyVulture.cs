@@ -14,17 +14,22 @@ namespace FastDragon
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public float AggroRange = 20;
 
+        [ExportCategory("Internal")]
+        [Export] public CollisionShape3D BodyShape;
+        [Export] public Node3D Model;
+        [Export] public AggroSphere AggroSphere;
+        [Export] public AnimationPlayer AnimationPlayer;
+        [Export] public FuseBombProjectile Bomb;
+
+
         public bool IsDead => _stateMachine.CurrentState is Dead;
+        public bool Invulnerable => IsDead;
 
-        private CollisionShape3D _bodyShape => GetNode<CollisionShape3D>("%BodyShape");
-        private Node3D _model => GetNode<Node3D>("%Model");
-        private AggroSphere _aggroSphere => GetNode<AggroSphere>("%AggroSphere");
-
-        private AnimationPlayer _animator => GetNode<AnimationPlayer>("%AnimationPlayer");
         private StateMachine _stateMachine = new StateMachine();
 
         private Vector3 _spawnPoint;
         private Vector3 _spawnRotation;
+        private Player _targetPlayer;
 
         public override void _Ready()
         {
@@ -48,33 +53,51 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
-            // TODO: Stay dead if all of the following are true:
-            // * The enemy is dead (or dieing)
-            // * The player has collected the enemy's gem
-            // * The player has reached a checkpoint since killing the enemy
             _stateMachine.ChangeState<Idle>();
         }
 
         public void OnDamaged()
         {
-            if (!IsDead) _stateMachine.ChangeState<Dead>();
+            _stateMachine.ChangeState<Dead>();
+
+            Bomb.GlobalPosition = GlobalPosition;
+            Bomb.ResetPhysicsInterpolation3D();
+            Bomb.Reveal();
         }
 
         private void RefreshAggroSphereSize()
         {
-            _aggroSphere.Radius = AggroRange;
+            AggroSphere.Radius = AggroRange;
         }
 
-        private class VultureState : State<EnemyVulture> {}
+        private bool IsTouchingPlayer()
+        {
+            int collisionCount = GetSlideCollisionCount();
+            for (int i = 0; i < collisionCount; i++)
+            {
+                var collision = GetSlideCollision(i);
+                int colliderCount = collision.GetCollisionCount();
+                for (int j = 0; j < colliderCount; j++)
+                {
+                    var collider = collision.GetCollider(j);
+                    if (collider is Player)
+                    {
+                        return true;
+                    }
+                }
+            }
 
-        private class Idle : VultureState
+            return false;
+        }
+
+        private class Idle : State<EnemyVulture>
         {
             public override void OnStateEntered()
             {
                 Self.GlobalPosition = Self._spawnPoint;
                 Self.ResetPhysicsInterpolation3D();
 
-                Self._animator.Play("Idle");
+                Self.AnimationPlayer.Play("Idle");
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -86,74 +109,111 @@ namespace FastDragon
                     Mathf.DegToRad(RotSpeedDeg) * delta
                 );
 
-                var player = Self._aggroSphere.SearchForPlayer();
+                var player = Self.AggroSphere.SearchForPlayer();
                 if (player != null)
+                    ChangeState<Alerted>();
+            }
+        }
+
+        private class Alerted : State<EnemyVulture>
+        {
+            public const double Duration = 0.75;
+            public const float RiseHeight = 1;
+
+            private double _timer;
+            private Vector3 _startPos;
+            private Vector3 _endPos;
+
+            public override void OnStateEntered()
+            {
+                Self._targetPlayer = Self.AggroSphere.SearchForPlayer();
+
+                _startPos = Self.GlobalPosition;
+                _endPos = _startPos + (Vector3.Up * RiseHeight);
+                _timer = 0;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _timer += delta;
+
+                float t = (float)(_timer / (Duration * 0.9));
+                t = 1f - Mathf.Pow(t - 1, 4);
+                Self.GlobalPosition = _startPos.Lerp(_endPos, t);
+
+                if (_timer >= Duration)
                     ChangeState<Chasing>();
             }
         }
 
-        private class Chasing : VultureState
+        private class Chasing : State<EnemyVulture>
         {
-            private Player _targetPlayer;
-            private float _fspeed;
+            private const float PreferredDistance = 3;
+            private const float CatchUpSpeed = Player.Dive.FSpeed * 1.1f;
+            private const float CruiseSpeed = Player.Walk.Speed * 1.1f;
+            private const float Accel = CatchUpSpeed / 0.25f;
+            private const float LooneyTunesAccel = CatchUpSpeed / 1f;
 
             public override void OnStateEntered()
             {
-                _targetPlayer = Self._aggroSphere.SearchForPlayer();
-                _fspeed = 0;
-                Self.Velocity = Vector3.Zero;
-                Self._animator.Play("Fly");
+                Self.AnimationPlayer.Play("Fly");
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void _PhysicsProcess(double delta)
             {
-                float delta = (float)deltaD;
+                var targetPoint = Self._targetPlayer.GlobalPosition;
 
-                _fspeed = Mathf.MoveToward(_fspeed, MaxSpeed, delta * Accel);
-                Self.Velocity = _fspeed * Self.GlobalPosition.DirectionTo(_targetPlayer.GlobalPosition);
+                // Don't chase the player upwards unless line of sight has been
+                // broken.  That way, the player can jump over the vulture
+                // while still letting it fly over obstacles
+                if (Self.AggroSphere.HasLineOfSightTo(Self._targetPlayer))
+                {
+                    if (targetPoint.Y > Self.GlobalPosition.Y)
+                        targetPoint.Y = Self.GlobalPosition.Y;
+                }
+
+                // Speed up if we're too far away from the player, slow down
+                // if we're too close.
+                float distance = Self.GlobalPosition.DistanceTo(targetPoint);
+                float targetSpeed = distance > PreferredDistance
+                    ? CatchUpSpeed
+                    : CruiseSpeed;
+
+                // Use lower acceleration if we're going the wrong way.
+                // That way, the bird will comically overshoot the player for
+                // longer when they jump over it, but still brake reliably when
+                // getting too close.
+                var targetDir = Self.GlobalPosition.DirectionTo(targetPoint);
+                bool isWrongWay = Self.Velocity.Normalized().Dot(targetDir) < 0;
+                float accel = isWrongWay
+                    ? LooneyTunesAccel
+                    : Accel;
+
+                var targetVel = targetSpeed * Self.GlobalPosition.DirectionTo(targetPoint);
+                Self.Velocity = Self.Velocity.MoveToward(targetVel, accel * (float)delta);
                 Self.MoveAndSlide();
 
                 Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
                     Self.Velocity.Normalized().ForwardToEulerAnglesRad(),
-                    Mathf.DegToRad(RotSpeedDeg) * delta
+                    Mathf.DegToRad(RotSpeedDeg) * (float)delta
                 );
 
-                if (IsTouchingPlayer())
+                if (Self.IsTouchingPlayer())
                     OnTouchedPlayer();
-            }
-
-            private bool IsTouchingPlayer()
-            {
-                int collisionCount = Self.GetSlideCollisionCount();
-                for (int i = 0; i < collisionCount; i++)
-                {
-                    var collision = Self.GetSlideCollision(i);
-                    int colliderCount = collision.GetCollisionCount();
-                    for (int j = 0; j < colliderCount; j++)
-                    {
-                        var collider = collision.GetCollider(j);
-                        if (collider is Player)
-                        {
-                            return true;
-                        }
-                    }
-                }
-
-                return false;
             }
 
             private void OnTouchedPlayer()
             {
-                _targetPlayer.TryDamage<PlayerDamageFlipState>();
+                Self._targetPlayer.TryDamage<PlayerDamageFlipState>(1);
                 ChangeState<Returning>();
             }
         }
 
-        private class Returning : VultureState
+        private class Returning : State<EnemyVulture>
         {
             public override void OnStateEntered()
             {
-                Self._animator.Play("Fly");
+                Self.AnimationPlayer.Play("Fly");
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -181,19 +241,19 @@ namespace FastDragon
             }
         }
 
-        private class Dead : VultureState
+        private class Dead : State<EnemyVulture>
         {
             public override void OnStateEntered()
             {
-                Self._bodyShape.Disabled = true;
-                Self._model.Visible = false;
+                Self.BodyShape.Disabled = true;
+                Self.Model.Visible = false;
                 Self.EmitSignal(EnemyVulture.SignalName.Killed);
             }
 
             public override void OnStateExited()
             {
-                Self._bodyShape.Disabled = false;
-                Self._model.Visible = true;
+                Self.BodyShape.Disabled = false;
+                Self.Model.Visible = true;
             }
         }
     }

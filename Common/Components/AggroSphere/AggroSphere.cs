@@ -38,7 +38,7 @@ namespace FastDragon
             _area.Scale = Vector3.One * _radius;
         }
 
-        private bool HasLineOfSightTo(Player player)
+        public bool HasLineOfSightTo(Player player)
         {
             var localPlayerPos = ToLocal(player.GlobalPosition);
             TargetPosition = localPlayerPos;

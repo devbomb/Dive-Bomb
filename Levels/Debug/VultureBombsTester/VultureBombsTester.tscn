@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dquodaemyuldn"]
+
+[ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_3bsmg"]
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="2_1wctr"]
+[ext_resource type="Environment" uid="uid://dk0eyoi3afr5p" path="res://Common/Skyboxes/DigitalWorld/DigitalWorldSkybox.tres" id="3_tpx70"]
+[ext_resource type="PackedScene" uid="uid://bkudmck1wj2g1" path="res://Levels/Debug/VultureBombsTester/Maps/VultureBombsTester_Main.map" id="4_1wctr"]
+[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier/DeathBarrier.cs" id="5_tpx70"]
+
+[sub_resource type="Resource" id="Resource_f30nc"]
+script = ExtResource("2_1wctr")
+Debug = true
+HumanReadableName = "VultureBombsTester"
+SceneFilePath = "res://Levels/Debug/VultureBombsTester/VultureBombsTester.tscn"
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xadyu"]
+
+[node name="VultureBombsTester" type="Node3D" unique_id=1483039775]
+script = ExtResource("1_3bsmg")
+Manifest = SubResource("Resource_f30nc")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=60143054]
+environment = ExtResource("3_tpx70")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=360335679]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
+
+[node name="VultureBombsTester_Main" parent="." unique_id=1587015630 instance=ExtResource("4_1wctr")]
+
+[node name="DeathBarrier" type="Area3D" parent="." unique_id=1771275309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
+collision_layer = 0
+collision_mask = 2147483648
+script = ExtResource("5_tpx70")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier" unique_id=1174761695]
+shape = SubResource("WorldBoundaryShape3D_xadyu")

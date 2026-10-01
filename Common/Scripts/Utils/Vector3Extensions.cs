@@ -17,7 +17,7 @@ namespace FastDragon
         {
             Vector3 up = upDirection ?? Vector3.Up;
 
-            if (forward.IsParallelTo(up))
+            if (forward.IsColinearWith(up))
             {
                 if (forward.ComponentAlong(up) > 0)
                     return new Vector3(Mathf.DegToRad(90), 0, 0);
@@ -139,9 +139,9 @@ namespace FastDragon
             return to.MoveToward(from, remaining);
         }
 
-        public static bool IsParallelTo(this Vector3 v, Vector3 other)
+        public static bool IsColinearWith(this Vector3 v, Vector3 other)
         {
-            return v.Cross(other) == Vector3.Zero;
+            return v.Cross(other).IsZeroApprox();
         }
 
         public static float ComponentAlong(this Vector3 v, Vector3 other)
