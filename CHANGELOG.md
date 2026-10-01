@@ -48,6 +48,15 @@
         framerate.
 
 ## Misc
+
+* **Changed:** Rolling now has a very short 0.2 second cooldown before you can
+    roll again.  This cooldown can be bypassed by cancelling your roll with a
+    jump.
+    * **Personal note:** This is intended to nerf roll-spamming, to ensure it's
+        always noticeably slower than the jump => dive => roll combo.
+        It was already _slightly_ slower, but it was still fast enough that it
+        was competing too well with jump => dive => roll.
+
 * **Fixed:** Fixed a camera "twitch" that would occur during the time trial
     results sequence.
 
