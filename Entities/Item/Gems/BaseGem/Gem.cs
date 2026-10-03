@@ -100,7 +100,7 @@ namespace FastDragon
         /// </summary>
         public void Reveal()
         {
-            if (IsCollectedInSaveFile)
+            if (!CanReveal)
                 return;
 
             // If the player is close enough, automatically home in on them.

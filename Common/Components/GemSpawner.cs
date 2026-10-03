@@ -24,11 +24,14 @@ namespace FastDragon
 
         public void Reveal()
         {
+            if (!_gem.CanReveal)
+                return;
+
             _gem.Reveal();
             _gem.GlobalPosition = GlobalPosition;
             _gem.ResetPhysicsInterpolation3D();
 
-            if (AlwaysHomeIn && !IsGemCollected)
+            if (AlwaysHomeIn)
                 _gem.StartHomingIn();
         }
     }
