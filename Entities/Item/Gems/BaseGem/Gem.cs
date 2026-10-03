@@ -10,19 +10,21 @@ namespace FastDragon
         public const float RevealJumpVelocity = 10;
         public const float Gravity = 30;
 
-        public bool IsCollected => this.GetLevel()
+        public bool IsCollectedInSaveFile => this.GetLevel()
             ?.GetProgress()
             ?.IsGemCollected(Value, SaveKey) ?? false;
-
-        public bool IsHomingIn => _stateMachine.CurrentState is Homing;
 
         [Export] public GemColor Value;
 
         public bool StartHidden = false;
-        public bool TouchedGroundOnce {get; private set;} = false;
-        public bool IsRevealed => _stateMachine.CurrentState is Revealed;
 
         public string SaveKey => _saveKeyGen.SaveKey;
+
+        public bool CanReveal => _currentState.CanReveal;
+        public bool CanEnqueue => _currentState.CanEnqueue;
+        public bool CanCollect => _currentState.CanCollect;
+        public bool CanBePointedTo => _currentState.CanBePointedTo;
+        private GemState _currentState => _stateMachine.CurrentState as GemState;
 
         public Area3D CollectionArea => GetNode<Area3D>("%CollectionArea");
 
@@ -79,15 +81,17 @@ namespace FastDragon
             GlobalTransform = _initialPos;
             this.ResetPhysicsInterpolation3D();
 
-            if (StartHidden || IsCollected)
-                ChangeState<Hidden>();
+            if (IsCollectedInSaveFile)
+                ChangeState<Collected>();
+            else if (StartHidden)
+                ChangeState<Unrevealed>();
             else
                 ChangeState<Revealed>();
         }
 
         public void OnCollectionAreaBodyEntered(Node3D body)
         {
-            if (body is Player && IsRevealed)
+            if (body is Player && CanCollect)
                 StartHomingIn();
         }
 
@@ -96,7 +100,7 @@ namespace FastDragon
         /// </summary>
         public void Reveal()
         {
-            if (IsCollected)
+            if (IsCollectedInSaveFile)
                 return;
 
             // If the player is close enough, automatically home in on them.
@@ -128,7 +132,7 @@ namespace FastDragon
 
             SignalBus.Instance.EmitItemCollected();
             _collectSound.Play();
-            ChangeState<Hidden>();
+            ChangeState<Collected>();
 
             SaveFileManager.Instance.RequestAutosave();
         }
@@ -138,7 +142,7 @@ namespace FastDragon
             _sparkleAnim.Play("Sparkle");
         }
 
-        private void ChangeState<TState>() where TState : State<Gem>, new()
+        private void ChangeState<TState>() where TState : GemState, new()
         {
             _stateMachine.ChangeState<TState>();
         }
@@ -167,7 +171,31 @@ namespace FastDragon
             }
         }
 
-        private class Hidden : State<Gem>
+        private abstract class GemState : State<Gem>
+        {
+            public virtual bool CanReveal => false;
+            public virtual bool CanEnqueue => false;
+            public virtual bool CanCollect => false;
+            public virtual bool CanBePointedTo => false;
+        }
+
+        private class Unrevealed : GemState
+        {
+            public override bool CanReveal => true;
+            public override bool CanBePointedTo => true;
+
+            public override void OnStateEntered()
+            {
+                Self.Visible = false;
+            }
+
+            public override void OnStateExited()
+            {
+                Self.Visible = true;
+            }
+        }
+
+        private class Collected : GemState
         {
             public override void OnStateEntered()
             {
@@ -179,13 +207,19 @@ namespace FastDragon
                 Self.Visible = true;
             }
         }
-        private class Revealed : State<Gem>
+
+        private class Revealed : GemState
         {
+            public override bool CanEnqueue => _touchedGround;
+            public override bool CanBePointedTo => true;
+            public override bool CanCollect => true;
+
             private Vector3 _velocity;
+            private bool _touchedGround;
 
             public override void OnStateEntered()
             {
-                Self.TouchedGroundOnce = false;
+                _touchedGround = false;
 
                 if (Self.StartHidden)
                 {
@@ -197,7 +231,7 @@ namespace FastDragon
             {
                 float delta = (float)deltaD;
 
-                if (!Self.TouchedGroundOnce)
+                if (!_touchedGround)
                 {
                     _velocity += Vector3.Down * Gravity * delta;
 
@@ -207,7 +241,7 @@ namespace FastDragon
                         _velocity = Vector3.Zero;
 
                         if (collider is StaticBody3D)
-                            Self.TouchedGroundOnce = true;
+                            _touchedGround = true;
                     }
                 }
             }
@@ -224,7 +258,8 @@ namespace FastDragon
                 return Self._raycast.GetCollider();
             }
         }
-        private class Homing : State<Gem>
+
+        private class Homing : GemState
         {
             private Vector3 _homingStartPos;
             private float _homingTimer;
