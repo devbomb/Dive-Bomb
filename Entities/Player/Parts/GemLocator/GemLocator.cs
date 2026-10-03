@@ -20,7 +20,7 @@ namespace FastDragon
             var nearestGem = GetTree()
                 .GetNodesInGroup("Gems")
                 .OfType<Gem>()
-                .Where(g => !g.IsCollected && !g.IsHomingIn)
+                .Where(g => g.CanBePointedTo)
                 .OrderBy(g => g.GlobalPosition.DistanceSquaredTo(GlobalPosition))
                 .FirstOrDefault();
 

@@ -13,10 +13,12 @@ namespace FastDragon
 
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public float AggroRange = 20;
+        [Export] public double RespawnTime = 5;
 
         [ExportCategory("Internal")]
         [Export] public CollisionShape3D BodyShape;
         [Export] public Node3D Model;
+        [Export] public Node3D NestModel;
         [Export] public AggroSphere AggroSphere;
         [Export] public AnimationPlayer AnimationPlayer;
         [Export] public FuseBombProjectile Bomb;
@@ -33,9 +35,9 @@ namespace FastDragon
 
         public override void _Ready()
         {
-            base._Ready();
-
             AddChild(_stateMachine);
+            NestModel.TopLevel = true;
+            NestModel.GlobalTransform = GlobalTransform;
 
             RefreshAggroSphereSize();
 
@@ -59,10 +61,19 @@ namespace FastDragon
         public void OnDamaged()
         {
             _stateMachine.ChangeState<Dead>();
+            EmitSignal(SignalName.Killed);
 
             Bomb.GlobalPosition = GlobalPosition;
             Bomb.ResetPhysicsInterpolation3D();
             Bomb.Reveal();
+        }
+
+        private void OnCrashed()
+        {
+            _stateMachine.ChangeState<Dead>();
+
+            Bomb.GlobalPosition = GlobalPosition;
+            Bomb.ExplodeEarly();
         }
 
         private void RefreshAggroSphereSize()
@@ -148,11 +159,13 @@ namespace FastDragon
 
         private class Chasing : State<EnemyVulture>
         {
-            private const float PreferredDistance = 3;
+            private const float PreferredDistance = 4;
             private const float CatchUpSpeed = Player.Dive.FSpeed * 1.1f;
-            private const float CruiseSpeed = Player.Walk.Speed * 1.1f;
+            private const float CruiseSpeed = Player.Walk.Speed * 0.9f;
             private const float Accel = CatchUpSpeed / 0.25f;
             private const float LooneyTunesAccel = CatchUpSpeed / 1f;
+
+            private const float JumpOverHeight = 3;
 
             public override void OnStateEntered()
             {
@@ -163,10 +176,9 @@ namespace FastDragon
             {
                 var targetPoint = Self._targetPlayer.GlobalPosition;
 
-                // Don't chase the player upwards unless line of sight has been
-                // broken.  That way, the player can jump over the vulture
-                // while still letting it fly over obstacles
-                if (Self.AggroSphere.HasLineOfSightTo(Self._targetPlayer))
+                // Don't chase the player upwards if the player is trying to
+                // jump over.
+                if (IsPlayerJumpingOver())
                 {
                     if (targetPoint.Y > Self.GlobalPosition.Y)
                         targetPoint.Y = Self.GlobalPosition.Y;
@@ -199,13 +211,25 @@ namespace FastDragon
                 );
 
                 if (Self.IsTouchingPlayer())
-                    OnTouchedPlayer();
+                    Self.OnCrashed();
             }
 
-            private void OnTouchedPlayer()
+            private bool IsPlayerJumpingOver()
             {
-                Self._targetPlayer.TryDamage<PlayerDamageFlipState>(1);
-                ChangeState<Returning>();
+                var player = Self._targetPlayer;
+
+                bool isJustAbove =
+                    player.GlobalPosition.Y >= Self.GlobalPosition.Y &&
+                    player.GlobalPosition.Y <= Self.GlobalPosition.Y + JumpOverHeight;
+
+                if (!isJustAbove)
+                    return false;
+
+                bool isMovingUp = player.Velocity.Y > 0;
+                if (!isMovingUp)
+                    return false;
+
+                return true;
             }
         }
 
@@ -243,17 +267,27 @@ namespace FastDragon
 
         private class Dead : State<EnemyVulture>
         {
+            private double _respawnTimer;
+
             public override void OnStateEntered()
             {
                 Self.BodyShape.Disabled = true;
                 Self.Model.Visible = false;
-                Self.EmitSignal(EnemyVulture.SignalName.Killed);
+
+                _respawnTimer = Self.RespawnTime;
             }
 
             public override void OnStateExited()
             {
                 Self.BodyShape.Disabled = false;
                 Self.Model.Visible = true;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                _respawnTimer -= delta;
+                if (_respawnTimer <= 0)
+                    Self.Reset();
             }
         }
     }

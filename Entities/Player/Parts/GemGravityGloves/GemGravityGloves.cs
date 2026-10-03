@@ -72,10 +72,7 @@ namespace FastDragon
                 if (area != gem.CollectionArea)
                     continue;
 
-                if (!gem.IsRevealed)
-                    continue;
-
-                if (!gem.TouchedGroundOnce)
+                if (!gem.CanEnqueue)
                     continue;
 
                 if (_gemQueue.Contains(gem))
@@ -87,13 +84,13 @@ namespace FastDragon
 
         private Gem PeekAtGemQueue()
         {
-            // Skip gems that aren't revealed(EG: because they were collected
-            // manually before we could get to them)
+            // Skip gems that cannot be enqueued anymore(EG: because they were
+            // collected manually before we could get to them)
             while (_gemQueue.Count > 0)
             {
                 var gem = _gemQueue.Peek();
 
-                if (!gem.IsRevealed)
+                if (!gem.CanEnqueue)
                 {
                     _gemQueue.Dequeue();
                     continue;
