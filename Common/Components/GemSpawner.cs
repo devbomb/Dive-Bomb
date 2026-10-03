@@ -18,11 +18,15 @@ namespace FastDragon
             _gem.StartHidden = true;
             _gem.Name = "Gem";
             AddChild(_gem);
+
+            _gem.TopLevel = true;
         }
 
         public void Reveal()
         {
             _gem.Reveal();
+            _gem.GlobalPosition = GlobalPosition;
+            _gem.ResetPhysicsInterpolation3D();
 
             if (AlwaysHomeIn && !IsGemCollected)
                 _gem.StartHomingIn();
