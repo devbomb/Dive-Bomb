@@ -6,13 +6,87 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ym36x"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_q585p"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_52brp"]
 resource_local_to_scene = true
 resource_name = "HitboxSphereShape"
 
-[sub_resource type="SphereMesh" id="SphereMesh_ikvcn"]
-radius = 0.4
-height = 0.8
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_055gh"]
+shading_mode = 2
+albedo_color = Color(1, 0.16666669, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ei83e"]
+material = SubResource("StandardMaterial3D_055gh")
+top_radius = 0.16679688
+bottom_radius = 0.2667969
+height = 2.5212402
+radial_segments = 5
+rings = 1
+
+[sub_resource type="Gradient" id="Gradient_52brp"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.34498835, 0.7226107)
+colors = PackedColorArray(0.49271894, 0.09663256, 0, 1, 0.9804922, 0.23167083, 0, 1, 1, 0.7372549, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hwecq"]
+gradient = SubResource("Gradient_52brp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u6aji"]
+angle_min = -110.99999
+angle_max = 32.10001
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.02
+scale_max = 0.03
+color_initial_ramp = SubResource("GradientTexture1D_hwecq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei83e"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_u6aji"]
+material = SubResource("StandardMaterial3D_ei83e")
+
+[sub_resource type="Curve" id="Curve_a2pto"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7648351, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aqvc7"]
+curve = SubResource("Curve_a2pto")
+
+[sub_resource type="Curve" id="Curve_q585p"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wjixr"]
+curve = SubResource("Curve_q585p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b1sjd"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -110.99999
+angle_max = 32.10001
+direction = Vector3(0, 1, 0)
+spread = 0.0
+flatness = 1.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_wjixr")
+color = Color(0.23921569, 0.23921569, 0.23921569, 0.27058825)
+alpha_curve = SubResource("CurveTexture_aqvc7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fuccg"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_x7uaj"]
+material = SubResource("StandardMaterial3D_fuccg")
 
 [node name="FuseBombProjectile" type="CharacterBody3D" unique_id=481505957 node_paths=PackedStringArray("BodyShape", "Explosion", "BombModel") groups=["PhysicsInterpolated", "UnsafeGround"]]
 collision_layer = 0
@@ -29,11 +103,34 @@ shape = SubResource("SphereShape3D_ym36x")
 [node name="ExplosionProjectile" parent="." unique_id=1448840994 instance=ExtResource("2_52brp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 Reusable = true
-SphereShape = SubResource("SphereShape3D_q585p")
+SphereShape = SubResource("SphereShape3D_52brp")
 
-[node name="BombModel" type="MeshInstance3D" parent="." unique_id=1820044549]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-mesh = SubResource("SphereMesh_ikvcn")
+[node name="BombModel" type="Node3D" parent="." unique_id=139151741]
+transform = Transform3D(0.99941754, -0.033285968, -0.007520948, 0.0332805, 0.9994457, -0.0008514591, 0.0075451205, 0.0006006616, 0.99997133, -0.0660578, 0.3765333, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BombModel" unique_id=1855983857]
+transform = Transform3D(-1.3113417e-08, -0.3, 0, 0.3, -1.3113417e-08, 0, 0, 0, 0.3, 0.003186034, -0.3079451, 0)
+mesh = SubResource("CylinderMesh_ei83e")
+
+[node name="Sparks" type="GPUParticles3D" parent="BombModel" unique_id=2089111932]
+transform = Transform3D(0.25000006, 5.27848e-10, -1.1641532e-10, -3.1961918e-09, 0.25, 2.910383e-11, -3.4924597e-10, -2.910383e-11, 0.25, 0.49306032, -0.32132196, -0.0035272946)
+amount = 32
+lifetime = 0.68
+speed_scale = 5.0
+randomness = 1.0
+draw_order = 3
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_u6aji")
+draw_pass_1 = SubResource("QuadMesh_u6aji")
+
+[node name="Smoke" type="GPUParticles3D" parent="BombModel" unique_id=1846208656]
+transform = Transform3D(0.25000006, 5.27848e-10, -1.1641532e-10, -3.1961918e-09, 0.25, 2.910383e-11, -3.4924597e-10, -2.910383e-11, 0.25, 0.49306032, -0.32132196, -0.0035272946)
+draw_order = 3
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_b1sjd")
+draw_pass_1 = SubResource("QuadMesh_x7uaj")
 
 [node name="BlobShadow" parent="BombModel" unique_id=92795423 instance=ExtResource("3_52brp")]
 radius = 0.4
