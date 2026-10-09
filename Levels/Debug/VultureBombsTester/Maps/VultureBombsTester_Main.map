@@ -187,8 +187,8 @@
 {
 ( 536 -654 200 ) ( 536 -656 208 ) ( 536 -656 136 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 536 -656 208 ) ( 584 -656 208 ) ( 584 -656 136 ) Textures/BigMetalSquares 0 0 0 1 1
-( 584 -656 136 ) ( 584 -654 144 ) ( 536 -654 144 ) Textures/BigMetalSquares 0 76 0 1 1
-( 536 -654 200 ) ( 584 -654 200 ) ( 584 -656 208 ) Textures/BigMetalSquares 0 52 0 1 1
+( 584 -656 136 ) ( 584 -654 144 ) ( 536 -654 144 ) Textures/BigMetalSquares 0 0 0 1 1
+( 536 -654 200 ) ( 584 -654 200 ) ( 584 -656 208 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 584 -654 144 ) ( 584 -654 200 ) ( 536 -654 200 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 584 -656 208 ) ( 584 -654 200 ) ( 584 -654 144 ) Textures/BigMetalSquares 0 0 0 1 1
 }
@@ -196,7 +196,7 @@
 {
 ( 536 -576 168 ) ( 536 -578 160 ) ( 536 -578 96 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 536 -578 160 ) ( 584 -578 160 ) ( 584 -578 96 ) Textures/BigMetalSquares 0 0 0 1 1
-( 536 -576 168 ) ( 584 -576 168 ) ( 584 -578 160 ) Textures/BigMetalSquares 0 20 0 1 1
+( 536 -576 168 ) ( 584 -576 168 ) ( 584 -578 160 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 584 -578 96 ) ( 584 -576 96 ) ( 536 -576 96 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 584 -576 96 ) ( 584 -576 168 ) ( 536 -576 168 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 584 -578 160 ) ( 584 -576 168 ) ( 584 -576 96 ) Textures/BigMetalSquares 0 0 0 1 1
@@ -214,8 +214,8 @@
 {
 ( 536 -576 256 ) ( 536 -578 248 ) ( 536 -578 192 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 536 -578 248 ) ( 584 -578 248 ) ( 584 -578 192 ) Textures/BigMetalSquares 0 0 0 1 1
-( 584 -578 192 ) ( 584 -576 184 ) ( 536 -576 184 ) Textures/BigMetalSquares 0 52 0 1 1
-( 536 -576 256 ) ( 584 -576 256 ) ( 584 -578 248 ) Textures/BigMetalSquares 0 28 0 1 1
+( 584 -578 192 ) ( 584 -576 184 ) ( 536 -576 184 ) Textures/BigMetalSquares 0 0 0 1 1
+( 536 -576 256 ) ( 584 -576 256 ) ( 584 -578 248 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 584 -576 184 ) ( 584 -576 256 ) ( 536 -576 256 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 584 -578 248 ) ( 584 -576 256 ) ( 584 -576 184 ) Textures/BigMetalSquares 0 0 0 1 1
 }
@@ -223,8 +223,8 @@
 {
 ( 536 -654 288 ) ( 536 -656 296 ) ( 536 -656 224 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 536 -656 296 ) ( 584 -656 296 ) ( 584 -656 224 ) Textures/BigMetalSquares 0 0 0 1 1
-( 584 -656 224 ) ( 584 -654 232 ) ( 536 -654 232 ) Textures/BigMetalSquares 0 4 0 1 1
-( 536 -654 288 ) ( 584 -654 288 ) ( 584 -656 296 ) Textures/BigMetalSquares 0 60 0 1 1
+( 584 -656 224 ) ( 584 -654 232 ) ( 536 -654 232 ) Textures/BigMetalSquares 0 0 0 1 1
+( 536 -654 288 ) ( 584 -654 288 ) ( 584 -656 296 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 584 -654 232 ) ( 584 -654 288 ) ( 536 -654 288 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 584 -656 296 ) ( 584 -654 288 ) ( 584 -654 232 ) Textures/BigMetalSquares 0 0 0 1 1
 }
@@ -233,8 +233,8 @@
 ( 528 -580 304 ) ( 528 -620 304 ) ( 528 -620 260 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 528 -620 304 ) ( 530 -620 296 ) ( 530 -620 268 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 530 -580 268 ) ( 530 -580 296 ) ( 528 -580 304 ) Textures/BigMetalSquares 0 0 0 1 1
-( 528 -580 260 ) ( 528 -620 260 ) ( 530 -620 268 ) Textures/BigMetalSquares 12 68 0 1 1
-( 528 -580 304 ) ( 530 -580 296 ) ( 530 -620 296 ) Textures/BigMetalSquares 12 16 0 1 1
+( 528 -580 260 ) ( 528 -620 260 ) ( 530 -620 268 ) Textures/BigMetalSquares 0 0 0 1 1
+( 528 -580 304 ) ( 530 -580 296 ) ( 530 -620 296 ) Textures/BigMetalSquares 0 0 0 1 1
 ( 530 -620 296 ) ( 530 -580 296 ) ( 530 -580 268 ) Textures/BigMetalSquares 0 0 0 1 1
 }
 // brush 25
@@ -295,12 +295,12 @@
 "classname" "wall_bombable"
 // brush 0
 {
-( 144 0 16 ) ( 144 1 16 ) ( 144 0 17 ) Textures/DarkWood 0 0 0 1 1
-( 144 0 16 ) ( 144 0 17 ) ( 145 0 16 ) Textures/DarkWood 0 0 0 1 1
-( 144 0 16 ) ( 145 0 16 ) ( 144 1 16 ) Textures/DarkWood 0 0 0 1 1
-( 208 80 160 ) ( 208 81 160 ) ( 209 80 160 ) Textures/DarkWood 0 0 0 1 1
-( 208 80 160 ) ( 209 80 160 ) ( 208 80 161 ) Textures/DarkWood 0 0 0 1 1
-( 208 80 160 ) ( 208 80 161 ) ( 208 81 160 ) Textures/DarkWood 0 0 0 1 1
+( 144 0 16 ) ( 144 1 16 ) ( 144 0 17 ) Textures/BombableRocks 0 0 0 1 1
+( 144 0 16 ) ( 144 0 17 ) ( 145 0 16 ) Textures/BombableRocks 0 0 0 1 1
+( 144 0 16 ) ( 145 0 16 ) ( 144 1 16 ) Textures/BombableRocks 0 0 0 1 1
+( 208 80 160 ) ( 208 81 160 ) ( 209 80 160 ) Textures/BombableRocks 0 0 0 1 1
+( 208 80 160 ) ( 209 80 160 ) ( 208 80 161 ) Textures/BombableRocks 0 0 0 1 1
+( 208 80 160 ) ( 208 80 161 ) ( 208 81 160 ) Textures/BombableRocks 0 0 0 1 1
 }
 }
 // entity 5
