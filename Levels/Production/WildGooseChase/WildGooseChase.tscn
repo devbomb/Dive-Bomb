@@ -3,11 +3,15 @@
 [ext_resource type="Script" uid="uid://qt3xvtm481hw" path="res://Common/DiveBombLevel.cs" id="1_nrcjt"]
 [ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="2_sht2q"]
 [ext_resource type="Environment" uid="uid://dk0eyoi3afr5p" path="res://Common/Skyboxes/DigitalWorld/DigitalWorldSkybox.tres" id="3_5l55w"]
+[ext_resource type="PackedScene" uid="uid://xke68xw7i52n" path="res://Levels/Production/WildGooseChase/Maps/WildGooseChase_SleepingGooseTut.map" id="4_sht2q"]
+[ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier/DeathBarrier.cs" id="5_5l55w"]
 
 [sub_resource type="Resource" id="Resource_ew8ws"]
 script = ExtResource("2_sht2q")
 HumanReadableName = "WildGooseChase"
 SceneFilePath = "res://Levels/Production/WildGooseChase/WildGooseChase.tscn"
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ew8ws"]
 
 [node name="WildGooseChase" type="Node3D" unique_id=1107296956]
 script = ExtResource("1_nrcjt")
@@ -18,3 +22,14 @@ environment = ExtResource("3_5l55w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=325746031]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 7, 0)
+
+[node name="WildGooseChase_SleepingGooseTut" parent="." unique_id=1073893528 instance=ExtResource("4_sht2q")]
+
+[node name="DeathBarrier" type="Area3D" parent="." unique_id=472505087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0)
+collision_layer = 0
+collision_mask = 2147483648
+script = ExtResource("5_5l55w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier" unique_id=720227549]
+shape = SubResource("WorldBoundaryShape3D_ew8ws")
