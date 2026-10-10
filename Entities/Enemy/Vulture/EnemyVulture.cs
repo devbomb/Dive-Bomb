@@ -146,6 +146,8 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                Self.AnimationPlayer.Play("RESET"); // TODO: Play a "waking up" animation
+
                 Self._targetPlayer = Self.AggroSphere.SearchForPlayer();
 
                 _startPos = Self.GlobalPosition;

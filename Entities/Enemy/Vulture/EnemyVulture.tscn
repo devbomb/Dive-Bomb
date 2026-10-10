@@ -107,7 +107,7 @@ transform = Transform3D(0.99904823, 0, -0.043619387, 0, 1, 0, 0.043619387, 0, 0.
 mesh = SubResource("CylinderMesh_tyb5u")
 
 [node name="SnoreParticles" parent="NestModel" unique_id=1928800236 instance=ExtResource("2_j3dsg")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.428611, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.9356599, -0.8026145)
 emitting = false
 
 [connection signal="Killed" from="." to="GemSpawner" method="Reveal"]
