@@ -327,6 +327,7 @@
 "classname" "enemy_vulture"
 "origin" "328 -16 16"
 "AggroRange" "0"
+"angle" "210"
 }
 // entity 3
 {
