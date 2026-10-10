@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://ddpftr308sg3k"
+path="res://.godot/imported/WildGooseChase_SandboxPlayground.map-00ef675b0b00271f308bcb47ed27104c.tscn"
+
+[deps]
+
+source_file="res://Levels/Production/WildGooseChase/Maps/WildGooseChase_SandboxPlayground.map"
+dest_files=["res://.godot/imported/WildGooseChase_SandboxPlayground.map-00ef675b0b00271f308bcb47ed27104c.tscn"]
+
+[params]
+
