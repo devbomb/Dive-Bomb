@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" format=3 uid="uid://8jo3afq5iw6w"]
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" format=3 uid="uid://dvj34p1g1vqn2"]
 
 [ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/base_gem_container.tres" id="1_4js4o"]
 [ext_resource type="PackedScene" uid="uid://cyd2uyjl8rvk5" path="res://Entities/Enemy/Vulture/EnemyVulture.tscn" id="2_4js4o"]
 [ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="2_ne011"]
-[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_vlo65"]
+[ext_resource type="Script" uid="uid://ldfqjtq0br35" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="4_25iqt"]
 
 [resource]
-script = ExtResource("3_vlo65")
+script = ExtResource("4_25iqt")
+target_map_editor = 1
+rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("2_4js4o")
 classname = "enemy_vulture"
 base_classes = Array[Resource]([ExtResource("1_4js4o")])
@@ -16,6 +18,7 @@ class_properties = Dictionary[String, Variant]({
 auto_apply_to_matching_node_properties = true
 meta_properties = Dictionary[String, Variant]({
 "color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-8, -8, 0, 8, 8, 16)
+"model": "{\"path\": \"TrenchbroomEntityModels/enemy_vulture.glb\", \"scale\": 16.0 }",
+"size": AABB(-8, -8, -8, 8, 8, 8)
 })
-metadata/_custom_type_script = "uid://cddjtiy8pj12o"
+metadata/_custom_type_script = "uid://ldfqjtq0br35"
