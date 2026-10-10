@@ -61,13 +61,16 @@ func _generate_model() -> void:
 	var node: Node3D = _get_node()
 	if not node:
 		return
-		
+	
+	# ALEX HACK: Don't include hidden nodes
+	_strip_hidden_nodes(node)
+	
 	# ALEX HACK: For whatever reason, scenes with AnimationPlayers in them
 	# sometimes cause Godot to freeze when you try to append them to a
 	# GLTFDocument.  Add it to the list of Godot bullshit I've needed to
 	# work around.
 	_strip_animation_player(node)
-		
+
 	if not _create_gltf_file(gltf_state, path, node):
 		printerr("could not create gltf file")
 		return
@@ -99,6 +102,16 @@ func _strip_animation_player(node: Node):
 			child.queue_free()
 			continue
 		_strip_animation_player(child)
+
+func _strip_hidden_nodes(node: Node):
+	var children := node.get_children()
+	for child in children:
+		if (child is Node3D):
+			if (!child.visible):
+				node.remove_child(child)
+				child.queue_free()
+				continue
+		_strip_hidden_nodes(child)
 
 func _get_node() -> Node3D:
 	var node := scene_file.instantiate()

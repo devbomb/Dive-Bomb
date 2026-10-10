@@ -179,12 +179,25 @@ This project uses a modified version of [this release](https://github.com/func-g
 of func_godot.  These were small modifications needed to work around some bugs.
 Namely:
 
-* When generating trenchbroom entity models, it now removes any `AnimationPlayer`
-    nodes from the scene it's converting to gltf.  This is to work around a
-    Godot bug where `GLTFDocument.append_from_scene()` will sometimes freeze
-    the editor if you pass a node into it that contains an `AnimationPlayer`.
-    > TODO: Submit a GitHub issue to the Godot repo after creating a minimal
-        reproduction project.
+* When generating trenchbroom entity models, the following nodes are stripped
+    from the scene before it's converted to gltf:
+    * `AnimationPlayer` nodes
+        * This is to work around a Godot bug where
+            `GLTFDocument.append_from_scene()` will sometimes freeze the editor
+            if you pass a node into it that contains an `AnimationPlayer`.
+            > TODO: Submit a GitHub issue to the Godot repo after creating a
+                minimal reproduction project.
+
+    * Invisible nodes (IE: `Node3D`s whose `visible` property is `false`)
+        * This is because:
+            * Trenchbroom ignores the gltf "hidden" flag that the `visible`
+                property gets translated to.
+            * Dive Bomb has some entities with large invisible `MeshInstance3D`
+                nodes in their scene(EG: "explosion" shells that briefly become
+                visible during an explosion animation).
+            * If such nodes were not removed, then the entity model would be
+                completely swallowed by the supposedly-invisible node when
+                viewed in Trenchbroom.
 
 * When building maps in the Quake format, flip UVs on the y-axis.  This
     fixes a bug in this version of func_godot that causes UVs to be facing the
