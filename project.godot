@@ -227,6 +227,7 @@ FakeCameraControlAction={
 3d_physics/layer_1="BlocksPlayer"
 3d_physics/layer_2="BlocksProjectiles"
 3d_physics/layer_3="BlocksCamera"
+3d_physics/layer_4="BlocksLineOfSight"
 3d_physics/layer_30="DetectedAsHurtbox"
 3d_physics/layer_31="DetectedAsGem"
 3d_physics/layer_32="DetectedAsPlayer"

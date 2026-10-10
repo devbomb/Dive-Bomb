@@ -7,7 +7,7 @@
 script = ExtResource("1_mr1d7")
 use_in_baked_light = false
 render_layers = 9
-collision_layer = 536870915
+collision_layer = 536870923
 collision_mask = 0
 script_class = ExtResource("2_rysq5")
 classname = "wall_bombable"

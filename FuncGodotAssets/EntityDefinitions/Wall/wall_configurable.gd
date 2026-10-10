@@ -7,6 +7,7 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 	_apply_collision_layer("BlocksPlayer", entity_properties)
 	_apply_collision_layer("BlocksProjectiles", entity_properties)
 	_apply_collision_layer("BlocksCamera", entity_properties)
+	_apply_collision_layer("BlocksLineOfSight", entity_properties)
 
 func _apply_collision_layer(layer_name: String, entity_properties: Dictionary):
 	var layer_index: int = _layer_name_to_index[layer_name]
