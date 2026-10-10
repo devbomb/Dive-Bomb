@@ -11,6 +11,7 @@ script_class = ExtResource("2_u8svm")
 classname = "wall_configurable"
 class_properties = Dictionary[String, Variant]({
 "BlocksCamera": true,
+"BlocksLineOfSight": true,
 "BlocksPlayer": true,
 "BlocksProjectiles": true
 })
