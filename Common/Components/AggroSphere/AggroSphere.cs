@@ -21,6 +21,9 @@ namespace FastDragon
 
         public Player SearchForPlayer(int safetyTimer = 2)
         {
+            if (_radius <= 0)
+                return null;
+
             return _area
                     .GetOverlappingBodiesResetSafe(safetyTimer)
                     .Where(body => body is Player)
@@ -35,7 +38,8 @@ namespace FastDragon
 
         private void UpdateRadius()
         {
-            _area.Scale = Vector3.One * _radius;
+            if (_radius > 0)
+                _area.Scale = Vector3.One * _radius;
         }
 
         public bool HasLineOfSightTo(Player player)
