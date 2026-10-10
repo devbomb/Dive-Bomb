@@ -55,7 +55,7 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
-            _stateMachine.ChangeState<Idle>();
+            _stateMachine.ChangeState<Sleeping>();
         }
 
         public void OnDamaged()
@@ -101,7 +101,7 @@ namespace FastDragon
             return false;
         }
 
-        private class Idle : State<EnemyVulture>
+        private class Sleeping : State<EnemyVulture>
         {
             public override void OnStateEntered()
             {
@@ -260,7 +260,7 @@ namespace FastDragon
 
                 if (Self.Position.IsEqualApprox(Self._spawnPoint))
                 {
-                    ChangeState<Idle>();
+                    ChangeState<Sleeping>();
                 }
             }
         }
