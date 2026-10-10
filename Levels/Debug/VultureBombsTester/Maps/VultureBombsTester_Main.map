@@ -325,8 +325,8 @@
 // entity 2
 {
 "classname" "enemy_vulture"
-"origin" "296 -88 48"
-"AggroRange" "20.000000"
+"origin" "328 -16 16"
+"AggroRange" "0"
 }
 // entity 3
 {
@@ -393,20 +393,5 @@
 ( 384 32 90.14288799258793 ) ( 368 1.2245074243401177 128 ) ( 368 32 90.14288799258793 ) Textures/BombableRocks 0 0 0 1 1
 ( 384 32 90.14288799258793 ) ( 368 32 16 ) ( 384 32 16 ) Textures/BombableRocks 0 0 0 1 1
 ( 384 32 90.14288799258793 ) ( 384 -33.22450742433905 128 ) ( 384 1.2245074243401177 128 ) Textures/BombableRocks 0 0 0 1 1
-}
-}
-// entity 8
-{
-"classname" "wall_configurable"
-"BlocksCamera" "0"
-"BlocksLineOfSight" "0"
-// brush 0
-{
-( 288 -96 16 ) ( 288 -95 16 ) ( 288 -96 17 ) Textures/DarkWood 0 0 0 1 1
-( 288 -96 16 ) ( 288 -96 17 ) ( 289 -96 16 ) Textures/DarkWood 0 0 0 1 1
-( 288 -96 16 ) ( 289 -96 16 ) ( 288 -95 16 ) Textures/DarkWood 0 0 0 1 1
-( 304 -80 48 ) ( 304 -79 48 ) ( 305 -80 48 ) Textures/DarkWood 0 0 0 1 1
-( 304 -80 48 ) ( 305 -80 48 ) ( 304 -80 49 ) Textures/DarkWood 0 0 0 1 1
-( 304 -80 48 ) ( 304 -80 49 ) ( 304 -79 48 ) Textures/DarkWood 0 0 0 1 1
 }
 }
