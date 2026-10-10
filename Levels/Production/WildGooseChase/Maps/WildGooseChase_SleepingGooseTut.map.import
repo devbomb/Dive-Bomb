@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot_map_importer"
+type="PackedScene"
+uid="uid://xke68xw7i52n"
+path="res://.godot/imported/WildGooseChase_SleepingGooseTut.map-ca6ddaeb84ab6279f6c32f344d8fe87f.tscn"
+
+[deps]
+
+source_file="res://Levels/Production/WildGooseChase/Maps/WildGooseChase_SleepingGooseTut.map"
+dest_files=["res://.godot/imported/WildGooseChase_SleepingGooseTut.map-ca6ddaeb84ab6279f6c32f344d8fe87f.tscn"]
+
+[params]
+
