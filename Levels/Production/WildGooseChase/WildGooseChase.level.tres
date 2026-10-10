@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LevelManifest" format=3 uid="uid://c4406t77f3nha"]
+
+[ext_resource type="Script" uid="uid://fteyboqsx0a" path="res://Common/Scripts/DataModel/Static/LevelManifest.cs" id="1_ib072"]
+
+[resource]
+script = ExtResource("1_ib072")
+HumanReadableName = "WildGooseChase"
+SceneFilePath = "res://Levels/Production/WildGooseChase/WildGooseChase.tscn"
