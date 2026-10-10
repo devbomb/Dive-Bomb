@@ -19,6 +19,7 @@ namespace FastDragon
         [Export] public CollisionShape3D BodyShape;
         [Export] public Node3D Model;
         [Export] public Node3D NestModel;
+        [Export] public GpuParticles3D SnoreParticles;
         [Export] public AggroSphere AggroSphere;
         [Export] public AnimationPlayer AnimationPlayer;
         [Export] public FuseBombProjectile Bomb;
@@ -109,6 +110,14 @@ namespace FastDragon
                 Self.ResetPhysicsInterpolation3D();
 
                 Self.AnimationPlayer.Play("Idle");
+
+                Self.SnoreParticles.Restart();
+                Self.SnoreParticles.Emitting = true;
+            }
+
+            public override void OnStateExited()
+            {
+                Self.SnoreParticles.Emitting = false;
             }
 
             public override void _PhysicsProcess(double deltaD)
