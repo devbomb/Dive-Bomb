@@ -19,6 +19,6 @@ auto_apply_to_matching_node_properties = true
 meta_properties = Dictionary[String, Variant]({
 "color": Color(0.8, 0.8, 0.8, 1),
 "model": "{\"path\": \"TrenchbroomEntityModels/enemy_vulture.glb\", \"scale\": 16.0 }",
-"size": AABB(-8, -8, -8, 8, 8, 8)
+"size": AABB(-8, -8, 0, 8, 8, 16)
 })
 metadata/_custom_type_script = "uid://ldfqjtq0br35"
