@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://l0gjh3jkqteb" path="res://Entities/Enemy/Vulture/EnemyVulture.cs" id="1_is5gw"]
 [ext_resource type="AnimationLibrary" uid="uid://phpkdehj2kfx" path="res://Entities/Enemy/Vulture/VultureAnimations.tres" id="2_4b7rt"]
 [ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Common/Components/GemSpawner.cs" id="2_alb8d"]
+[ext_resource type="PackedScene" uid="uid://depulo7hkxuq7" path="res://Common/FX/SnoreParticles.tscn" id="2_j3dsg"]
 [ext_resource type="PackedScene" uid="uid://b6ia338a4pp02" path="res://Entities/Enemy/Vulture/EnemyVulture.glb" id="2_ni8ar"]
 [ext_resource type="PackedScene" uid="uid://dbaadt64jq1i7" path="res://Common/Projectiles/FuseBombProjectile/FuseBombProjectile.tscn" id="2_tyb5u"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="3_k88mj"]
@@ -38,13 +39,14 @@ height = 0.15
 radial_segments = 7
 cap_top = false
 
-[node name="EnemyVulture" type="CharacterBody3D" unique_id=159658312 node_paths=PackedStringArray("BodyShape", "Model", "NestModel", "AggroSphere", "AnimationPlayer", "Bomb") groups=["PhysicsInterpolated", "UnsafeGround"]]
+[node name="EnemyVulture" type="CharacterBody3D" unique_id=159658312 node_paths=PackedStringArray("BodyShape", "Model", "NestModel", "SnoreParticles", "AggroSphere", "AnimationPlayer", "Bomb") groups=["PhysicsInterpolated", "UnsafeGround"]]
 collision_layer = 536870915
 collision_mask = 2147483650
 script = ExtResource("1_is5gw")
 BodyShape = NodePath("BodyShape")
 Model = NodePath("Model")
 NestModel = NodePath("NestModel")
+SnoreParticles = NodePath("NestModel/SnoreParticles")
 AggroSphere = NodePath("AggroSphere")
 AnimationPlayer = NodePath("AnimationPlayer")
 Bomb = NodePath("FuseBombProjectile")
@@ -103,6 +105,10 @@ mesh = SubResource("CylinderMesh_u6aji")
 [node name="Inner" type="MeshInstance3D" parent="NestModel" unique_id=1732846378]
 transform = Transform3D(0.99904823, 0, -0.043619387, 0, 1, 0, 0.043619387, 0, 0.99904823, 0, 0.08341767, 0)
 mesh = SubResource("CylinderMesh_tyb5u")
+
+[node name="SnoreParticles" parent="NestModel" unique_id=1928800236 instance=ExtResource("2_j3dsg")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.9356599, -0.8026145)
+emitting = false
 
 [connection signal="Killed" from="." to="GemSpawner" method="Reveal"]
 

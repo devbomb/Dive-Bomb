@@ -19,6 +19,7 @@ namespace FastDragon
         [Export] public CollisionShape3D BodyShape;
         [Export] public Node3D Model;
         [Export] public Node3D NestModel;
+        [Export] public GpuParticles3D SnoreParticles;
         [Export] public AggroSphere AggroSphere;
         [Export] public AnimationPlayer AnimationPlayer;
         [Export] public FuseBombProjectile Bomb;
@@ -55,7 +56,7 @@ namespace FastDragon
             Velocity = Vector3.Zero;
             this.ResetPhysicsInterpolation3D();
 
-            _stateMachine.ChangeState<Idle>();
+            _stateMachine.ChangeState<Sleeping>();
         }
 
         public void OnDamaged()
@@ -101,7 +102,7 @@ namespace FastDragon
             return false;
         }
 
-        private class Idle : State<EnemyVulture>
+        private class Sleeping : State<EnemyVulture>
         {
             public override void OnStateEntered()
             {
@@ -109,6 +110,14 @@ namespace FastDragon
                 Self.ResetPhysicsInterpolation3D();
 
                 Self.AnimationPlayer.Play("Idle");
+
+                Self.SnoreParticles.Restart();
+                Self.SnoreParticles.Emitting = true;
+            }
+
+            public override void OnStateExited()
+            {
+                Self.SnoreParticles.Emitting = false;
             }
 
             public override void _PhysicsProcess(double deltaD)
@@ -137,6 +146,8 @@ namespace FastDragon
 
             public override void OnStateEntered()
             {
+                Self.AnimationPlayer.Play("RESET"); // TODO: Play a "waking up" animation
+
                 Self._targetPlayer = Self.AggroSphere.SearchForPlayer();
 
                 _startPos = Self.GlobalPosition;
@@ -260,7 +271,7 @@ namespace FastDragon
 
                 if (Self.Position.IsEqualApprox(Self._spawnPoint))
                 {
-                    ChangeState<Idle>();
+                    ChangeState<Sleeping>();
                 }
             }
         }

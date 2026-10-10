@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://depulo7hkxuq7"]
+
+[ext_resource type="Script" uid="uid://ilt6j85e4n8e" path="res://Common/Components/DecoratorNodes/BillboardToCameraDecorator.gd" id="1_uj7md"]
+
+[sub_resource type="Curve" id="Curve_locw6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.55, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6a3bp"]
+curve = SubResource("Curve_locw6")
+
+[sub_resource type="Curve" id="Curve_j3dsg"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2065934, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.55, 2), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6v4s4"]
+curve = SubResource("Curve_j3dsg")
+
+[sub_resource type="Curve" id="Curve_a2pto"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.14725275, 1), 0.0, 0.0, 0, 0, Vector2(0.7362637, 0.45698923), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aqvc7"]
+curve = SubResource("Curve_a2pto")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wjixr"]
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+velocity_limit_curve = SubResource("CurveTexture_aqvc7")
+gravity = Vector3(0, 0.5, 0)
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = -2.2351742e-06
+damping_min = 0.75000006
+damping_max = 0.75000006
+scale_curve = SubResource("CurveTexture_6v4s4")
+alpha_curve = SubResource("CurveTexture_6a3bp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwecq"]
+transparency = 4
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.63, 0.8705, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+use_z_clip_scale = true
+z_clip_scale = 0.01
+
+[sub_resource type="TextMesh" id="TextMesh_tgjut"]
+material = SubResource("StandardMaterial3D_hwecq")
+text = "Z"
+depth = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_disos"]
+transparency = 2
+alpha_scissor_threshold = 0.558
+alpha_antialiasing_mode = 0
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+z_clip_scale = 0.01
+
+[sub_resource type="TextMesh" id="TextMesh_7cfcr"]
+material = SubResource("StandardMaterial3D_disos")
+text = "Z"
+font_size = 17
+depth = 0.01
+offset = Vector2(1, -1)
+
+[node name="SnoreParticles" type="GPUParticles3D" unique_id=1928800236]
+amount = 3
+lifetime = 3.0
+explosiveness = 0.75
+local_coords = true
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_wjixr")
+draw_passes = 2
+draw_pass_1 = SubResource("TextMesh_tgjut")
+draw_pass_2 = SubResource("TextMesh_7cfcr")
+
+[node name="BillboardToCameraDecorator" type="Node" parent="." unique_id=1007039951]
+script = ExtResource("1_uj7md")
+y_only = false
+metadata/_custom_type_script = "uid://ilt6j85e4n8e"
