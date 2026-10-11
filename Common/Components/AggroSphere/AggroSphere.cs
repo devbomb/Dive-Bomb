@@ -44,7 +44,7 @@ namespace FastDragon
 
         public bool HasLineOfSightTo(Player player)
         {
-            var localPlayerPos = ToLocal(player.GlobalPosition);
+            var localPlayerPos = ToLocal(player.CenterPoint);
             TargetPosition = localPlayerPos;
             ForceUpdateTransform();
             ForceRaycastUpdate();
