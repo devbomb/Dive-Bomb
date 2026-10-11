@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" format=3 uid="uid://c0osyl5kfdvy1"]
+
+[ext_resource type="Resource" uid="uid://x63sbqq5m5da" path="res://FuncGodotAssets/EntityDefinitions/base_gem_container.tres" id="1_xv113"]
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="2_jqtsx"]
+[ext_resource type="PackedScene" uid="uid://fjcjwhphy6dx" path="res://Entities/Item/StoneChest/StoneChest.tscn" id="3_hn61t"]
+[ext_resource type="Script" uid="uid://ldfqjtq0br35" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="4_h0bh6"]
+
+[resource]
+script = ExtResource("4_h0bh6")
+target_map_editor = 1
+rotation_offset = Vector3(0, 180, 0)
+scene_file = ExtResource("3_hn61t")
+classname = "item_stone_chest"
+base_classes = Array[Resource]([ExtResource("1_xv113")])
+auto_apply_to_matching_node_properties = true
+meta_properties = Dictionary[String, Variant]({
+"color": Color(0.8, 0.8, 0.8, 1),
+"model": "{\"path\": \"TrenchbroomEntityModels/item_stone_chest.glb\", \"scale\": 16.0 }",
+"size": AABB(-8, -8, 0, 8, 8, 16)
+})
