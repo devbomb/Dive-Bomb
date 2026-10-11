@@ -62,8 +62,17 @@ namespace FastDragon
             {
                 if (body is Player p)
                 {
-                    p.TryDamage<PlayerDamageFlipState>(1);
-                    continue;
+                    bool lineOfSight = !PhysicsUtils.RaycastInefficient(
+                        GlobalPosition,
+                        p.CenterPoint,
+                        PhysicsUtils.CollisionFlagsFromNames("BlocksProjectiles")
+                    );
+
+                    if (lineOfSight)
+                    {
+                        p.TryDamage<PlayerDamageFlipState>(1);
+                        continue;
+                    }
                 }
 
                 if (body is IDamageable d)
