@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://fjcjwhphy6dx"]
+
+[ext_resource type="Script" uid="uid://dgu3p1wuws01b" path="res://Common/Scripts/GenericGemContainer.cs" id="1_3fxjp"]
+[ext_resource type="Script" uid="uid://c425xaupg1x74" path="res://Common/Components/DamageableStaticBody3D.cs" id="2_6af1j"]
+[ext_resource type="PackedScene" uid="uid://b4ch8roclhqrt" path="res://Entities/Item/StoneChest/StoneChest.glb" id="2_mcw4l"]
+[ext_resource type="Script" uid="uid://dhjvxdov8gnkp" path="res://Common/Components/GemSpawner.cs" id="3_6af1j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xadyu"]
+size = Vector3(1, 0.734, 0.782)
+
+[sub_resource type="Curve" id="Curve_mcw4l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kc3qw"]
+curve = SubResource("Curve_mcw4l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6af1j"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+scale_curve = SubResource("CurveTexture_kc3qw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v65i"]
+resource_name = "Material"
+cull_mode = 2
+albedo_color = Color(0.544296, 0.40880808, 0.28530997, 1)
+metallic = 0.24623115
+
+[sub_resource type="PrismMesh" id="PrismMesh_o6br8"]
+material = SubResource("StandardMaterial3D_8v65i")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="StoneChest" type="Node3D" unique_id=1769025001 node_paths=PackedStringArray("Model", "GemSpawner", "CollisionShape", "Particles", "ShatterSound")]
+script = ExtResource("1_3fxjp")
+Model = NodePath("Model")
+GemSpawner = NodePath("GemSpawner")
+CollisionShape = NodePath("Body/CollisionShape3D")
+Particles = NodePath("Particles")
+ShatterSound = NodePath("ShatterSound")
+
+[node name="Body" type="StaticBody3D" parent="." unique_id=1449613611]
+collision_layer = 536870915
+collision_mask = 0
+script = ExtResource("2_6af1j")
+Rollable = false
+Kickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1134325265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.367, 0)
+shape = SubResource("BoxShape3D_xadyu")
+
+[node name="Model" parent="." unique_id=1975081054 instance=ExtResource("2_mcw4l")]
+
+[node name="GemSpawner" type="Node3D" parent="." unique_id=896495196]
+script = ExtResource("3_6af1j")
+metadata/_custom_type_script = "uid://dhjvxdov8gnkp"
+
+[node name="Particles" type="GPUParticles3D" parent="." unique_id=1014650086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.839535, 0)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_6af1j")
+draw_pass_1 = SubResource("PrismMesh_o6br8")
+
+[node name="ShatterSound" type="AudioStreamPlayer3D" parent="." unique_id=1970846947]
+bus = &"Sfx"
+
+[node name="Comment" type="Node" parent="ShatterSound" unique_id=960828725]
+editor_description = "TODO: Give this a sound"
+
+[connection signal="Broken" from="Body" to="." method="OnBroken"]
