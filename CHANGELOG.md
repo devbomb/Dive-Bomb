@@ -72,6 +72,9 @@
 
 
 ## Misc
+* **Changed:** When detecting the player, enemies now require line-of-sight to
+    the player's _center_, instead of to the player's _feet_.
+
 * **Fixed:** Fixed a camera "twitch" that would occur during the time trial
     results sequence.
 
