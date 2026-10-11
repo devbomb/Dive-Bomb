@@ -138,6 +138,5 @@ radius = 0.25
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=901970328]
 unique_name_in_owner = true
 enabled = false
-hit_from_inside = true
 
 [connection signal="body_entered" from="CollectionArea" to="." method="OnCollectionAreaBodyEntered"]
