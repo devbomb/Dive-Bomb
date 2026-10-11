@@ -57,6 +57,9 @@
         It was already _slightly_ slower, but it was still fast enough that it
         was competing too well with jump => dive => roll.
 
+* **Changed:** When detecting the player, enemies now require line-of-sight to
+    the player's _center_, instead of to the player's _feet_.
+
 * **Fixed:** Fixed a camera "twitch" that would occur during the time trial
     results sequence.
 
