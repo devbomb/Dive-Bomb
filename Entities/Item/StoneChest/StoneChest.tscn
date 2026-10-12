@@ -8,6 +8,48 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_xadyu"]
 size = Vector3(1, 0.734, 0.782)
 
+[sub_resource type="GDScript" id="GDScript_u6aji"]
+script/source = "extends Node
+
+@export var x_noise: Noise
+@export var z_noise: Noise
+
+const _shake_freq: float = 5
+const _shake_scale: float = 20
+const _shake_duration: float = 0.6
+const _kick_cooldown_duration: float = 0.75
+
+var _shake_timer: float = 0
+var _kick_cooldown_timer: float = 0
+
+func _process(delta: float) -> void:
+	_shake_timer = move_toward(_shake_timer, 0, delta)
+	_kick_cooldown_timer = move_toward(_kick_cooldown_timer, 0, delta)
+
+	var scale = _shake_scale * (_shake_timer / _shake_duration)
+
+	var model: Node3D = get_parent()
+	model.rotation_degrees.x = x_noise.get_noise_1d(_shake_timer * _shake_freq) * scale
+	model.rotation_degrees.z = z_noise.get_noise_1d(_shake_timer * _shake_freq) * scale
+
+func on_bonk() -> void:
+	_shake_timer = _shake_duration
+
+func on_kick() -> void:
+	if _kick_cooldown_timer <= 0:
+		_kick_cooldown_timer = _kick_cooldown_duration
+		_shake_timer = _shake_duration
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mcw4l"]
+frequency = 1.0
+fractal_type = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6af1j"]
+seed = 1
+frequency = 1.0
+fractal_type = 0
+
 [sub_resource type="Curve" id="Curve_mcw4l"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.510178, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -54,6 +96,12 @@ shape = SubResource("BoxShape3D_xadyu")
 
 [node name="Model" parent="." unique_id=1975081054 instance=ExtResource("2_mcw4l")]
 
+[node name="ShakeOnBonk" type="Node" parent="Model" unique_id=592589740]
+process_mode = 3
+script = SubResource("GDScript_u6aji")
+x_noise = SubResource("FastNoiseLite_mcw4l")
+z_noise = SubResource("FastNoiseLite_6af1j")
+
 [node name="GemSpawner" type="Node3D" parent="." unique_id=896495196]
 script = ExtResource("3_6af1j")
 metadata/_custom_type_script = "uid://dhjvxdov8gnkp"
@@ -74,3 +122,5 @@ bus = &"Sfx"
 editor_description = "TODO: Give this a sound"
 
 [connection signal="Broken" from="Body" to="." method="OnBroken"]
+[connection signal="Kicked" from="Body" to="Model/ShakeOnBonk" method="on_kick"]
+[connection signal="RolledInto" from="Body" to="Model/ShakeOnBonk" method="on_bonk"]
