@@ -1,0 +1,32 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c1mdo1y5lxlui"]
+
+[sub_resource type="Gradient" id="Gradient_4t4c0"]
+offsets = PackedFloat32Array(0.40992168, 0.43603134, 0.5691906, 1)
+colors = PackedColorArray(0.98860514, 0.98653454, 0.98524594, 1, 0.7192266, 0.63235295, 0.56429946, 1, 0.98860514, 0.98653454, 0.98524594, 1, 0.9721156, 0.88580424, 0.826347, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_katqi"]
+frequency = 0.1239
+offset = Vector3(-423.08, 0, 0)
+cellular_distance_function = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_85yq2"]
+width = 32
+height = 32
+noise = SubResource("FastNoiseLite_katqi")
+color_ramp = SubResource("Gradient_4t4c0")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4y8xa"]
+blend_mode = 3
+shading_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_85yq2")
+texture_filter = 1
+
+[resource]
+resource_name = "Stone"
+next_pass = SubResource("StandardMaterial3D_4y8xa")
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.55092955, 0.40989175, 0.22102773, 1)
+metallic = 0.24623115
