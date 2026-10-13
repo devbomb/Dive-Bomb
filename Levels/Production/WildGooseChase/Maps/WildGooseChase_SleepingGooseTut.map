@@ -108,3 +108,9 @@
 "origin" "120 0 24"
 "id" "SleepingGooseTut_To_Sandbox"
 }
+// entity 5
+{
+"classname" "item_stone_chest"
+"origin" "72 40 16"
+"angle" "180"
+}
