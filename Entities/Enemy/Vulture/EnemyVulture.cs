@@ -244,38 +244,6 @@ namespace FastDragon
             }
         }
 
-        private class Returning : State<EnemyVulture>
-        {
-            public override void OnStateEntered()
-            {
-                Self.AnimationPlayer.Play("Fly");
-            }
-
-            public override void _PhysicsProcess(double deltaD)
-            {
-                float delta = (float)deltaD;
-
-                Self.GlobalPosition = Self.GlobalPosition.MoveToward(
-                    Self._spawnPoint,
-                    MaxSpeed * delta
-                );
-
-                Vector3 targetRot = Self.GlobalPosition
-                    .DirectionTo(Self._spawnPoint)
-                    .ForwardToEulerAnglesRad();
-
-                Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
-                    targetRot,
-                    Mathf.DegToRad(RotSpeedDeg) * delta
-                );
-
-                if (Self.Position.IsEqualApprox(Self._spawnPoint))
-                {
-                    ChangeState<Sleeping>();
-                }
-            }
-        }
-
         private class Dead : State<EnemyVulture>
         {
             private double _respawnTimer;
