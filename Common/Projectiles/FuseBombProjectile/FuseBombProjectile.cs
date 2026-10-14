@@ -8,6 +8,8 @@ namespace FastDragon
         [Export] public double FuseDurationSeconds = 3;
         [Export] public float ExplosionRadius = 5;
 
+        public bool IsHidden => _stateMachine.CurrentState is Hidden;
+
         [ExportCategory("Internal")]
         [Export] public CollisionShape3D BodyShape;
         [Export] public ExplosionProjectile Explosion;
