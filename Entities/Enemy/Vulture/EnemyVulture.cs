@@ -13,6 +13,7 @@ namespace FastDragon
 
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public float AggroRange = 20;
+        [Export] public float EarlyDetonateDistance = 10;
         [Export] public double RespawnTime = 2;
 
         [ExportCategory("Internal")]
@@ -265,10 +266,14 @@ namespace FastDragon
 
         private class DeadWaitingForExplosion : State<EnemyVulture>
         {
+            private Player _player;
+
             public override void OnStateEntered()
             {
                 Self.BodyShape.Disabled = true;
                 Self.Model.Visible = false;
+
+                _player = Self.GetTree().FindNode<Player>();
             }
 
             public override void OnStateExited()
@@ -279,6 +284,21 @@ namespace FastDragon
 
             public override void _PhysicsProcess(double delta)
             {
+                // Detonate the bomb early if the player gets too far away from
+                // it.  That way, speedrunners don't need to wait around for the
+                // fuse to run out.
+                //
+                // Let's see how long it takes them to figure this out!
+                // ...probably not very long, since this code is open source.
+                float dist = _player.GlobalPosition.DistanceTo(Self.Bomb.GlobalPosition);
+                if (dist >= Self.EarlyDetonateDistance)
+                {
+                    Self.Bomb.ExplodeEarly();
+                    ChangeState<DeadWaitingToRespawn>();
+                    return;
+                }
+
+                // Wait to respawn after it explodes.
                 if (Self.Bomb.IsHidden)
                     ChangeState<DeadWaitingToRespawn>();
             }
