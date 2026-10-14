@@ -13,7 +13,7 @@ namespace FastDragon
 
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public float AggroRange = 20;
-        [Export] public double RespawnTime = 5;
+        [Export] public double RespawnTime = 2;
 
         [ExportCategory("Internal")]
         [Export] public CollisionShape3D BodyShape;
@@ -26,7 +26,7 @@ namespace FastDragon
         [Export] public Node3D HomingLaserAnchoredLine3D;
 
 
-        public bool IsDead => _stateMachine.CurrentState is Dead;
+        public bool IsDead => _stateMachine.CurrentState is DeadWaitingToRespawn;
         public bool Invulnerable => IsDead;
 
         private StateMachine _stateMachine = new StateMachine();
@@ -62,7 +62,7 @@ namespace FastDragon
 
         public void OnDamaged()
         {
-            _stateMachine.ChangeState<Dead>();
+            _stateMachine.ChangeState<DeadWaitingForExplosion>();
             EmitSignal(SignalName.Killed);
 
             Bomb.GlobalPosition = GlobalPosition;
@@ -72,7 +72,7 @@ namespace FastDragon
 
         private void OnCrashed()
         {
-            _stateMachine.ChangeState<Dead>();
+            _stateMachine.ChangeState<DeadWaitingToRespawn>();
 
             Bomb.GlobalPosition = GlobalPosition;
             Bomb.ExplodeEarly();
@@ -263,7 +263,28 @@ namespace FastDragon
             }
         }
 
-        private class Dead : State<EnemyVulture>
+        private class DeadWaitingForExplosion : State<EnemyVulture>
+        {
+            public override void OnStateEntered()
+            {
+                Self.BodyShape.Disabled = true;
+                Self.Model.Visible = false;
+            }
+
+            public override void OnStateExited()
+            {
+                Self.BodyShape.Disabled = false;
+                Self.Model.Visible = true;
+            }
+
+            public override void _PhysicsProcess(double delta)
+            {
+                if (Self.Bomb.IsHidden)
+                    ChangeState<DeadWaitingToRespawn>();
+            }
+        }
+
+        private class DeadWaitingToRespawn : State<EnemyVulture>
         {
             private double _respawnTimer;
 
@@ -284,6 +305,7 @@ namespace FastDragon
             public override void _PhysicsProcess(double delta)
             {
                 _respawnTimer -= delta;
+
                 if (_respawnTimer <= 0)
                     Self.Reset();
             }
