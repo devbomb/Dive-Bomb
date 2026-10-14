@@ -12,6 +12,7 @@ namespace FastDragon
         [Export] public CollisionShape3D BodyShape;
         [Export] public ExplosionProjectile Explosion;
         [Export] public Node3D BombModel;
+        [Export] public Decal RadiusDecal;
 
         private readonly StateMachine _stateMachine = new();
 
@@ -92,10 +93,31 @@ namespace FastDragon
         private class TickingDown : State<FuseBombProjectile>
         {
             private double _timer;
+            private float _alpha;
 
             public override void OnStateEntered()
             {
                 _timer = Self.FuseDurationSeconds;
+
+                _alpha = 0;
+                Self.RadiusDecal.Modulate = FromAlpha(0);
+                Self.RadiusDecal.Visible = true;
+                Self.RadiusDecal.Size = new Vector3(
+                    Self.ExplosionRadius * 2,
+                    1,
+                    Self.ExplosionRadius * 2
+                );
+            }
+
+            public override void OnStateExited()
+            {
+                Self.RadiusDecal.Visible = false;
+            }
+
+            public override void _Process(double delta)
+            {
+                _alpha = Mathf.MoveToward(_alpha, 1, (float)(delta * 4));
+                Self.RadiusDecal.Modulate = FromAlpha(_alpha);
             }
 
             public override void _PhysicsProcess(double delta)
@@ -106,6 +128,14 @@ namespace FastDragon
                     Self.Explosion.Explode();
                     ChangeState<Hidden>();
                 }
+            }
+
+            private Color FromAlpha(float alpha)
+            {
+                return Colors.White with
+                {
+                    A = alpha
+                };
             }
         }
     }
