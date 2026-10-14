@@ -326,3 +326,13 @@
 ( -784 -32 -40 ) ( -784 -32 -39 ) ( -784 -31 -40 ) Textures/PeaceKeepersWater 0 0 0 1 1
 }
 }
+// entity 12
+{
+"classname" "item_stone_chest"
+"origin" "-488 24 -32"
+}
+// entity 13
+{
+"classname" "item_stone_chest"
+"origin" "-712 -88 160"
+}
