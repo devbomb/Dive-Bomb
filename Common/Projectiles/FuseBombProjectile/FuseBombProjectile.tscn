@@ -88,13 +88,27 @@ vertex_color_use_as_albedo = true
 [sub_resource type="QuadMesh" id="QuadMesh_x7uaj"]
 material = SubResource("StandardMaterial3D_fuccg")
 
-[node name="FuseBombProjectile" type="CharacterBody3D" unique_id=481505957 node_paths=PackedStringArray("BodyShape", "Explosion", "BombModel") groups=["PhysicsInterpolated", "UnsafeGround"]]
+[sub_resource type="Gradient" id="Gradient_q585p"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.52067184, 0.6963824, 0.6976744)
+colors = PackedColorArray(1, 0, 0, 0, 0.95, 0.028499972, 0.028499972, 0.40392157, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ei83e"]
+gradient = SubResource("Gradient_q585p")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u6aji"]
+size = Vector2(300, 300)
+
+[node name="FuseBombProjectile" type="CharacterBody3D" unique_id=481505957 node_paths=PackedStringArray("BodyShape", "Explosion", "BombModel", "RadiusDecal") groups=["PhysicsInterpolated", "UnsafeGround"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_ikvcn")
 BodyShape = NodePath("BodyShape")
 Explosion = NodePath("ExplosionProjectile")
 BombModel = NodePath("BombModel")
+RadiusDecal = NodePath("BombModel/RadiusDecal")
 
 [node name="BodyShape" type="CollisionShape3D" parent="." unique_id=442156025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -134,3 +148,16 @@ draw_pass_1 = SubResource("QuadMesh_x7uaj")
 
 [node name="BlobShadow" parent="BombModel" unique_id=92795423 instance=ExtResource("3_52brp")]
 radius = 0.4
+
+[node name="RadiusDecal" type="Decal" parent="BombModel" unique_id=1468360914]
+transform = Transform3D(0.99941766, 0.0332805, 0.0075451215, -0.033285975, 0.99944574, 0.0006006623, -0.0075209485, -0.0008514585, 0.9999714, 0.053488117, -0.37852338, -0.00017621485)
+visible = false
+size = Vector3(5, 1, 5)
+texture_albedo = SubResource("GradientTexture2D_ei83e")
+upper_fade = 0.04948207
+cull_mask = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=38928872]
+visible = false
+layers = 8
+mesh = SubResource("PlaneMesh_u6aji")
