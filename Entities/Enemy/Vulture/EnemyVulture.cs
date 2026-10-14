@@ -23,6 +23,7 @@ namespace FastDragon
         [Export] public AggroSphere AggroSphere;
         [Export] public AnimationPlayer AnimationPlayer;
         [Export] public FuseBombProjectile Bomb;
+        [Export] public Node3D HomingLaserAnchoredLine3D;
 
 
         public bool IsDead => _stateMachine.CurrentState is Dead;
@@ -137,12 +138,15 @@ namespace FastDragon
 
         private class Alerted : State<EnemyVulture>
         {
-            public const double Duration = 0.75;
+            public const double Duration = 1;
             public const float RiseHeight = 1;
+            public const double LaserStrobeFreq = 5;
 
             private double _timer;
             private Vector3 _startPos;
             private Vector3 _endPos;
+
+            private double _laserStrobeTimer;
 
             public override void OnStateEntered()
             {
@@ -153,6 +157,21 @@ namespace FastDragon
                 _startPos = Self.GlobalPosition;
                 _endPos = _startPos + (Vector3.Up * RiseHeight);
                 _timer = 0;
+
+                _laserStrobeTimer = 0;
+                Self.HomingLaserAnchoredLine3D.Visible = true;
+                Self.HomingLaserAnchoredLine3D.Set("end_point", Self._targetPlayer);
+            }
+
+            public override void OnStateExited()
+            {
+                Self.HomingLaserAnchoredLine3D.Visible = false;
+            }
+
+            public override void _Process(double delta)
+            {
+                _laserStrobeTimer += delta * LaserStrobeFreq;
+                Self.HomingLaserAnchoredLine3D.Visible = Mathf.PosMod(_laserStrobeTimer, 1) < 0.6;
             }
 
             public override void _PhysicsProcess(double delta)
