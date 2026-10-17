@@ -20,6 +20,15 @@
 [ext_resource type="PackedScene" uid="uid://db05gfycomjg2" path="res://Entities/Player/Parts/DiageticPauseMenu/DiageticPauseMenu.tscn" id="14_samso"]
 [ext_resource type="PackedScene" uid="uid://dm46wyspjqcns" path="res://Entities/Player/FX/BonkFX/BonkFX.tscn" id="19_e34i1"]
 
+[sub_resource type="SystemFont" id="SystemFont_h6pxy"]
+font_names = PackedStringArray("Monospace")
+font_weight = 600
+
+[sub_resource type="Theme" id="Theme_e34i1"]
+default_font = SubResource("SystemFont_h6pxy")
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.8039216)
+Label/constants/outline_size = 0
+
 [sub_resource type="GDScript" id="GDScript_h6pxy"]
 script/source = "extends GridContainer
 
@@ -30,12 +39,15 @@ func _physics_process(_delta: float) -> void:
 		return
 	
 	var player: CharacterBody3D = owner
-	$Velocity.text = str(player.velocity)
-	$LocalVelocity.text = str(player.LocalVelocity)
-	$LastPlatformVelocity.text = str(player.LastPlatformVelocity)
-	$CurrentPlatformVelocity.text = str(player.get_platform_velocity())
+	$Velocity.text = _pad_vector3(player.velocity)
+	$LocalVelocity.text = _pad_vector3(player.LocalVelocity)
+	$LastPlatformVelocity.text = _pad_vector3(player.LastPlatformVelocity)
+	$CurrentPlatformVelocity.text = _pad_vector3(player.get_platform_velocity())
 	$OnWall.text = str(player.is_on_wall())
 	$OnFloor.text = str(player.is_on_floor())
+
+func _pad_vector3(vector: Vector3) -> String:
+	return \"(%10f, %10f, %10f)\" % [vector.x, vector.y, vector.z]
 "
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b8til"]
@@ -151,6 +163,7 @@ offset_left = -137.0
 offset_top = -131.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = SubResource("Theme_e34i1")
 columns = 2
 script = SubResource("GDScript_h6pxy")
 
