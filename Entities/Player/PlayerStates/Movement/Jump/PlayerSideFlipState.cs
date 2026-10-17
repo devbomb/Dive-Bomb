@@ -2,75 +2,22 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerSideFlipState : PlayerState
+    public partial class PlayerSideFlipState : PlayerJumpState
     {
         public override bool CanBoundAfterLanding => true;
 
-        private bool _isHolding;
+        public override string AnimationName => "SideFlip";
+        public override float InitVSpeed => Player.SideFlip.InitVSpeed;
+        public override float FullJumpRiseGravity => Player.SideFlip.FullJumpRiseGravity;
+        public override float ShortHopGravity => Player.SideFlip.ShortHopGravity;
 
         public override void OnStateEntered()
         {
-            Self.Animator.Play("SideFlip", 0);
-            Self.VSpeed = Player.SideFlip.InitVSpeed;
+            base.OnStateEntered();
 
             RotateInstantlyTowardLeftStick();
             Self.FSpeed = Player.Walk.Speed;
             Self.ResetPhysicsInterpolation3D();
-
-            _isHolding = true;
-        }
-
-        public override void _Input(InputEvent ev)
-        {
-            if (InputService.RollJustPressed(ev))
-            {
-                Self.ChangeState<PlayerDiveState>();
-                return;
-            }
-
-            if (InputService.KickJustPressed(ev))
-            {
-                Self.ChangeState<PlayerKickState>();
-                return;
-            }
-        }
-
-        public override void _PhysicsProcess(double deltaD)
-        {
-            float delta = (float)deltaD;
-
-            RotateTowardLeftStick(Player.Jump.RotSpeedRad, delta);
-            AccelerateWithLeftStick(
-                Player.Jump.MaxFSpeed,
-                Player.Jump.StrafeAccel,
-                delta
-            );
-
-            if (!InputService.JumpHeld)
-                _isHolding = false;
-
-            float gravity = Player.Default.Gravity;
-            if (Self.VSpeed > 0)
-            {
-                gravity = _isHolding
-                    ? Player.SideFlip.FullJumpRiseGravity
-                    : Player.SideFlip.ShortHopGravity;
-            }
-
-            ApplyGravity(delta, gravity);
-            Self.MoveAndSlide();
-
-            if (Self.IsOnFloor())
-            {
-                StartWalkingOrStanding();
-                return;
-            }
-
-            if (Self.IsOnWall() && Self.VSpeed < 0)
-            {
-                Self.ChangeState<PlayerWallSlideState>();
-                return;
-            }
         }
     }
 }

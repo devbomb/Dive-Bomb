@@ -2,16 +2,29 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerFlopState : PlayerState
+    public partial class PlayerFlopState : PlayerJumpState
     {
-        private float _coyoteTimer;
+        public override string AnimationName => "Flop";
+        public override float FallGravity => Player.Default.Gravity;
+        public override float FullJumpRiseGravity => Player.Default.Gravity;
+        public override float ShortHopGravity => Player.Default.Gravity;
+
+        private double _coyoteTimer;
+
+        public override void OnStateEntered()
+        {
+            Self.Animator.Play(AnimationName, 0);
+            // Deliberately NOT setting the VSpeed here, because we want to
+            // conserve it from the previous state.  Simply setting InitVSpeed
+            // to 0 wouldn't achieve that.
+        }
 
         public override void OnStateEntered(IState prevState)
         {
-            Self.Animator.Play("Flop");
-
             if (prevState is PlayerWalkState)
                 _coyoteTimer = Player.Default.CoyoteTime;
+            else
+                _coyoteTimer = 0;
         }
 
         public override void _Input(InputEvent ev)
@@ -23,47 +36,15 @@ namespace FastDragon
                 return;
             }
 
-            if (InputService.RollJustPressed(ev))
-            {
-                Self.ChangeState<PlayerDiveState>();
-                return;
-            }
-
-            if (InputService.KickJustPressed(ev))
-            {
-                Self.ChangeState<PlayerKickState>();
-                return;
-            }
+           base._Input(ev);
         }
 
-        public override void _PhysicsProcess(double deltaD)
+        public override void _PhysicsProcess(double delta)
         {
-            float delta = (float)deltaD;
-
             if (_coyoteTimer > 0)
                 _coyoteTimer -= delta;
 
-            RotateTowardLeftStick(Player.Jump.RotSpeedRad, delta);
-            AccelerateWithLeftStick(
-                Player.Jump.MaxFSpeed,
-                Player.Jump.StrafeAccel,
-                delta
-            );
-
-            ApplyGravity(delta, Player.Default.Gravity);
-            Self.MoveAndSlide();
-
-            if (Self.IsOnFloor())
-            {
-                Self.ChangeState<PlayerWalkState>();
-                return;
-            }
-
-            if (Self.IsOnWall() && Self.VSpeed < 0)
-            {
-                Self.ChangeState<PlayerWallSlideState>();
-                return;
-            }
+            base._PhysicsProcess(delta);
         }
     }
 }
