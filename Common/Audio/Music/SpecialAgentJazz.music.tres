@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BackgroundSong" format=3 uid="uid://c0ettirxt3pji"]
+
+[ext_resource type="Script" uid="uid://scn0xkyf0sin" path="res://Common/Scripts/DataModel/Static/BackgroundSong.cs" id="1_0t1ww"]
+[ext_resource type="AudioStream" uid="uid://dwfvy4rsbrcly" path="res://Common/Audio/Music/SpecialAgentJazz.mp3" id="1_q3e7p"]
+
+[resource]
+script = ExtResource("1_0t1ww")
+Title = "Special Agent Jazz"
+Music = ExtResource("1_q3e7p")
+VolumeMultiplierLinear = 0.25
+Artist = "Lucas Marsh"
+ShowPopup = true
+metadata/_custom_type_script = "uid://scn0xkyf0sin"
