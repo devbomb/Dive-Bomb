@@ -59,7 +59,7 @@ namespace FastDragon
             }
 
             ApplyGravity(delta, gravity);
-            Self.MoveAndSlide();
+            Self.MoveAndSlideEx(keepVelocity: true);
 
             if (Self.IsOnFloor())
             {

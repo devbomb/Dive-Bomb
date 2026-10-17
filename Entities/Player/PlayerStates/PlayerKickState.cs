@@ -56,7 +56,7 @@ namespace FastDragon
             if (!Self.LocalVelocity.Flattened().IsZeroApprox())
                 RotateInstantlyTowardVelocity();
 
-            Self.MoveAndSlide();
+            Self.MoveAndSlideEx(keepVelocity: true);
 
             _timer -= delta;
             if (_timer <= 0)
