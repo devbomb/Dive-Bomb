@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xke68xw7i52n" path="res://Levels/Production/WildGooseChase/Maps/WildGooseChase_SleepingGooseTut.map" id="4_sht2q"]
 [ext_resource type="Script" uid="uid://bm1j4ati03uu8" path="res://Entities/Hazard/DeathBarrier/DeathBarrier.cs" id="5_5l55w"]
 [ext_resource type="PackedScene" uid="uid://ddpftr308sg3k" path="res://Levels/Production/WildGooseChase/Maps/WildGooseChase_SandboxPlayground.map" id="6_ew8ws"]
+[ext_resource type="PackedScene" uid="uid://bunbhrbdt3avv" path="res://Levels/Production/WildGooseChase/Maps/WildGoodChase_EndingCourse.map" id="7_s684e"]
 
 [sub_resource type="Resource" id="Resource_ew8ws"]
 script = ExtResource("2_sht2q")
@@ -41,3 +42,6 @@ shape = SubResource("WorldBoundaryShape3D_ew8ws")
 
 [node name="WildGooseChase_SandboxPlayground" parent="." unique_id=331434797 instance=ExtResource("6_ew8ws")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 11)
+
+[node name="WildGoodChase_EndingCourse" parent="." unique_id=2074334065 instance=ExtResource("7_s684e")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.99018, 2, 76.89699)
