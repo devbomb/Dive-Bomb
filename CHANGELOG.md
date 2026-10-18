@@ -47,8 +47,7 @@
         is that it will always wait the same number of ticks, regardless of your
         framerate.
 
-## Misc
-
+## Movement
 * **Changed:** Rolling now has a very short 0.2 second cooldown before you can
     roll again.  This cooldown can be bypassed by cancelling your roll with a
     jump.
@@ -57,6 +56,22 @@
         It was already _slightly_ slower, but it was still fast enough that it
         was competing too well with jump => dive => roll.
 
+* **Changed:** You no longer lose your horizontal speed or change direction when
+    rubbing up against a wall while in a jumping state.
+
+* **Changed:** You no longer lose your speed or change direction when grazing
+    against a wall(without bonking) while rolling.
+
+* **Changed:** Capped the horizontal speed loss caused by grazing against a wall
+    (without bonking) while diving.  You'll still lose _some_, but nowhere near
+    as much as before.
+
+* **Fixed:** Fixed the player failing to enter the wall sliding state when
+    touching a wall if the left stick is neutral.  This should make it slightly
+    easier to wall jump.
+
+
+## Misc
 * **Fixed:** Fixed a camera "twitch" that would occur during the time trial
     results sequence.
 

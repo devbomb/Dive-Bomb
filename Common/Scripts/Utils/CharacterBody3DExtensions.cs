@@ -1,3 +1,4 @@
+#nullable enable
 using Godot;
 
 namespace FastDragon
@@ -37,57 +38,80 @@ namespace FastDragon
         ///     Returns false if there were no collisions, or they were all
         ///     ignored.
         /// </summary>
+        /// <param name="onCollision">
+        ///     A callback that is called on every slide collision to determine
+        ///     how it should react to that collision.  If omitted, it will
+        ///     default to <see cref="MoveAndSlideExResponse.Slide"/> for every
+        ///     collision.
+        /// </param>
+        /// <param name="keepVelocity">
+        ///     If true, the body's velocity will not be affected by collisions.
+        ///     Do note that this will also undo any velocity changes made by
+        ///     <paramref name="onCollision"/>.
+        /// </param>
         public static bool MoveAndSlideEx(
             this CharacterBody3D body,
-            MoveAndSlideExCollisionHandler onCollision
+            MoveAndSlideExCollisionHandler? onCollision = null,
+            bool keepVelocity = false
         )
         {
             Vector3 prevPos = body.GlobalPosition;
             Vector3 prevVel = body.Velocity;
 
-            if (!body.MoveAndSlide())
-                return false;
-
-            int numCollisions = body.GetSlideCollisionCount();
-            for (int i = 0; i < numCollisions; i++)
+            try
             {
-                var collision = body.GetSlideCollision(i);
-                var response = onCollision(collision);
+                if (!body.MoveAndSlide())
+                    return false;
 
-                switch (response)
+                if (onCollision == null)
+                    return true;
+
+                int numCollisions = body.GetSlideCollisionCount();
+                for (int i = 0; i < numCollisions; i++)
                 {
-                    case MoveAndSlideExResponse.Slide: continue;
+                    var collision = body.GetSlideCollision(i);
+                    var response = onCollision(collision);
 
-                    case MoveAndSlideExResponse.Ignore:
+                    switch (response)
                     {
-                        // Rewind and try again, but this time ignore this object
-                        body.GlobalPosition = prevPos;
-                        body.Velocity = prevVel;
+                        case MoveAndSlideExResponse.Slide: continue;
 
-                        body.AddCollisionExceptionWith((Node)collision.GetCollider());
-                        bool result = body.MoveAndSlideEx(onCollision);
-                        body.RemoveCollisionExceptionWith((Node)collision.GetCollider());
+                        case MoveAndSlideExResponse.Ignore:
+                        {
+                            // Rewind and try again, but this time ignore this object
+                            body.GlobalPosition = prevPos;
+                            body.Velocity = prevVel;
 
-                        return result;
-                    }
+                            body.AddCollisionExceptionWith((Node)collision.GetCollider());
+                            bool result = body.MoveAndSlideEx(onCollision);
+                            body.RemoveCollisionExceptionWith((Node)collision.GetCollider());
 
-                    case MoveAndSlideExResponse.Stop:
-                    {
-                        // TODO: Actually prevent the body from sliding.
-                        // Right now, it just prevents the collision handler
-                        // from being called on the remaining slide collisions.
-                        // Nobody's really going to notice, though, right?
-                        return true;
+                            return result;
+                        }
 
-                        // BUG: IsOnFloor(), IsOnWall(), GetPlatformVelocity(),
-                        // etc. _should_ be based off _this_ collision, but
-                        // they'll actually be based on
-                        // GetSlideCollision(numCollisions - 1).
+                        case MoveAndSlideExResponse.Stop:
+                        {
+                            // TODO: Actually prevent the body from sliding.
+                            // Right now, it just prevents the collision handler
+                            // from being called on the remaining slide collisions.
+                            // Nobody's really going to notice, though, right?
+                            return true;
+
+                            // BUG: IsOnFloor(), IsOnWall(), GetPlatformVelocity(),
+                            // etc. _should_ be based off _this_ collision, but
+                            // they'll actually be based on
+                            // GetSlideCollision(numCollisions - 1).
+                        }
                     }
                 }
-            }
 
-            return true;
+                return true;
+            }
+            finally
+            {
+                if (keepVelocity)
+                    body.Velocity = prevVel;
+            }
         }
     }
 }

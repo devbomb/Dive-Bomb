@@ -105,6 +105,7 @@ namespace FastDragon
 
             ApplyGravity(delta, Player.Dive.Gravity);
 
+            Vector3 preSlideVel = Self.Velocity;
             _detectedObjects.Clear();
             MoveAndSlideBreakingObjects();
 
@@ -134,6 +135,17 @@ namespace FastDragon
             // as we hit the ground.
             if (!IsCurrent)
                 return;
+
+            // HACK: If grazing against the wall (but not bonking), keep the
+            // direction change from MoveAndSlide(), but limit the velocity loss
+            float maxSpeedLoss = Player.Dive.MaxHspeedLossFromGrazingWallPerSecond * delta;
+            float speedLoss = (preSlideVel - Self.Velocity).Flattened().Length();
+            if (speedLoss > maxSpeedLoss)
+            {
+                float hSpeed = preSlideVel.Flattened().Length() - maxSpeedLoss;
+                Vector3 hDir = Self.Velocity.Flattened().Normalized();
+                Self.Velocity = Self.Velocity - Self.Velocity.Flattened() + (hDir * hSpeed);
+            }
 
             if (Self.IsOnFloor())
             {

@@ -155,7 +155,7 @@ namespace FastDragon
         private void MoveAndSlideBreakingObjects()
         {
             _bonkCollision = null;
-            Self.MoveAndSlideEx(OnCollision);
+            Self.MoveAndSlideEx(OnCollision, keepVelocity: true);
 
             if (_bonkCollision != null)
                 Self.BonkAgainst(_bonkCollision);

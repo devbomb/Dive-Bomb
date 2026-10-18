@@ -147,6 +147,8 @@ namespace FastDragon
             public const float InitialVSpeed = 12;
             public const float Gravity = 40;
 
+            public const float MaxHspeedLossFromGrazingWallPerSecond = FSpeed;
+
             public const float CameraDecayRate = 10;
             public const float CameraPitchDeg = 0;
             public static float CameraPitchRad => Mathf.DegToRad(CameraPitchDeg);

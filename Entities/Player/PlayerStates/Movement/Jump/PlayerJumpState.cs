@@ -2,16 +2,25 @@ using Godot;
 
 namespace FastDragon
 {
-    public partial class PlayerWalkJumpState : PlayerState
+    public abstract partial class PlayerJumpState : PlayerState
     {
-        public override bool CanBoundAfterLanding => true;
+        public virtual float RotSpeedRad => Player.Jump.RotSpeedRad;
+        public virtual float MaxFSpeed => Player.Jump.MaxFSpeed;
+        public virtual float StrafeAccel => Player.Jump.StrafeAccel;
+
+        public virtual float InitVSpeed => Player.Jump.InitVSpeed;
+        public virtual float FullJumpRiseGravity => Player.Jump.FullJumpRiseGravity;
+        public virtual float ShortHopGravity => Player.Jump.ShortHopGravity;
+        public virtual float FallGravity => Player.Default.Gravity;
+
+        public virtual string AnimationName => "Jump";
 
         private bool _isHolding;
 
         public override void OnStateEntered()
         {
-            Self.Animator.Play("Jump", 0);
-            Self.VSpeed = Player.Jump.InitVSpeed;
+            Self.Animator.Play(AnimationName, 0);
+            Self.VSpeed = InitVSpeed;
 
             _isHolding = true;
         }
@@ -35,26 +44,22 @@ namespace FastDragon
         {
             float delta = (float)deltaD;
 
-            RotateTowardLeftStick(Player.Jump.RotSpeedRad, delta);
-            AccelerateWithLeftStick(
-                Player.Jump.MaxFSpeed,
-                Player.Jump.StrafeAccel,
-                delta
-            );
+            RotateTowardLeftStick(RotSpeedRad, delta);
+            AccelerateWithLeftStick(MaxFSpeed, StrafeAccel, delta);
 
             if (!InputService.JumpHeld)
                 _isHolding = false;
 
-            float gravity = Player.Default.Gravity;
+            float gravity = FallGravity;
             if (Self.VSpeed > 0)
             {
                 gravity = _isHolding
-                    ? Player.Jump.FullJumpRiseGravity
-                    : Player.Jump.ShortHopGravity;
+                    ? FullJumpRiseGravity
+                    : ShortHopGravity;
             }
 
             ApplyGravity(delta, gravity);
-            Self.MoveAndSlide();
+            Self.MoveAndSlideEx(keepVelocity: true);
 
             if (Self.IsOnFloor())
             {
