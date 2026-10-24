@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://bsjd5r7c8k2l6" path="res://Common/Projectiles/FuseBombProjectile/FuseBombProjectile.cs" id="1_ikvcn"]
 [ext_resource type="PackedScene" uid="uid://feymjil4np4v" path="res://Common/Projectiles/ExplosionProjectile/ExplosionProjectile.tscn" id="2_52brp"]
 [ext_resource type="PackedScene" uid="uid://5oie51hsk73p" path="res://Common/Components/BlobShadow.tscn" id="3_52brp"]
+[ext_resource type="AudioStream" uid="uid://c0ld04dhdtdft" path="res://Common/Projectiles/FuseBombProjectile/DynamiteHiss.wav" id="4_q585p"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ym36x"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_52brp"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_b1sjd"]
 resource_local_to_scene = true
 resource_name = "HitboxSphereShape"
 
@@ -101,7 +102,7 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="PlaneMesh" id="PlaneMesh_u6aji"]
 size = Vector2(300, 300)
 
-[node name="FuseBombProjectile" type="CharacterBody3D" unique_id=481505957 node_paths=PackedStringArray("BodyShape", "Explosion", "BombModel", "RadiusDecal") groups=["PhysicsInterpolated", "UnsafeGround"]]
+[node name="FuseBombProjectile" type="CharacterBody3D" unique_id=481505957 node_paths=PackedStringArray("BodyShape", "Explosion", "BombModel", "RadiusDecal", "HissSfx") groups=["PhysicsInterpolated", "UnsafeGround"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_ikvcn")
@@ -109,6 +110,7 @@ BodyShape = NodePath("BodyShape")
 Explosion = NodePath("ExplosionProjectile")
 BombModel = NodePath("BombModel")
 RadiusDecal = NodePath("BombModel/RadiusDecal")
+HissSfx = NodePath("HissSfx")
 
 [node name="BodyShape" type="CollisionShape3D" parent="." unique_id=442156025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -117,7 +119,7 @@ shape = SubResource("SphereShape3D_ym36x")
 [node name="ExplosionProjectile" parent="." unique_id=1448840994 instance=ExtResource("2_52brp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 Reusable = true
-SphereShape = SubResource("SphereShape3D_52brp")
+SphereShape = SubResource("SphereShape3D_b1sjd")
 
 [node name="BombModel" type="Node3D" parent="." unique_id=139151741]
 transform = Transform3D(0.99941754, -0.033285968, -0.007520948, 0.0332805, 0.9994457, -0.0008514591, 0.0075451205, 0.0006006616, 0.99997133, -0.0660578, 0.3765333, 0)
@@ -161,3 +163,9 @@ cull_mask = 8
 visible = false
 layers = 8
 mesh = SubResource("PlaneMesh_u6aji")
+
+[node name="HissSfx" type="AudioStreamPlayer3D" parent="." unique_id=1070960665]
+stream = ExtResource("4_q585p")
+autoplay = true
+stream_paused = true
+bus = &"Sfx"
