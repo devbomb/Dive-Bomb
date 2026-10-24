@@ -17,6 +17,7 @@ namespace FastDragon
         [Export] public SphereShape3D SphereShape;
         [Export] public MeshInstance3D Model;
         [Export] public GpuParticles3D ExplosionParticles;
+        [Export] public AudioStreamPlayer3D ExplosionSfx;
 
         private readonly StateMachine _stateMachine = new();
 
@@ -45,11 +46,13 @@ namespace FastDragon
         private void Reset()
         {
             _stateMachine.ChangeState<Idle>();
+            ExplosionSfx.Stop();
         }
 
         public void Explode()
         {
             _stateMachine.ChangeState<Growing>();
+            ExplosionSfx.Play();
 
             GetTree().FindNode<Player>()?.Camera?.Shake(
                 CameraShakeMagnitude,

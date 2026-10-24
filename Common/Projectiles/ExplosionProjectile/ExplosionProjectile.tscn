@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5w5mgluj3c1m" path="res://Common/Projectiles/ExplosionProjectile/ExplosionProjectile.cs" id="1_jrqjv"]
 [ext_resource type="Material" uid="uid://ursyur4muula" path="res://Common/Projectiles/ExplosionProjectile/ExplosionShell.material.tres" id="2_0y6k4"]
+[ext_resource type="AudioStream" uid="uid://dx2kb2kg8u873" path="res://Common/Audio/SFX/Explosions/DynamiteExplosion.wav" id="3_5h7uk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xadyu"]
 resource_local_to_scene = true
@@ -58,13 +59,14 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_7vrof"]
 material = SubResource("StandardMaterial3D_055gh")
 
-[node name="ExplosionProjectile" type="Node3D" unique_id=1448840994 node_paths=PackedStringArray("Hitbox", "Model", "ExplosionParticles")]
+[node name="ExplosionProjectile" type="Node3D" unique_id=1448840994 node_paths=PackedStringArray("Hitbox", "Model", "ExplosionParticles", "ExplosionSfx")]
 script = ExtResource("1_jrqjv")
 Radius = 5.0
 Hitbox = NodePath("Hitbox")
 SphereShape = SubResource("SphereShape3D_xadyu")
 Model = NodePath("Model")
 ExplosionParticles = NodePath("ExplosionParticles")
+ExplosionSfx = NodePath("ExplosionSfx")
 
 [node name="Hitbox" type="ShapeCast3D" parent="." unique_id=841951818]
 enabled = false
@@ -87,3 +89,6 @@ fixed_fps = 60
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_5h7uk")
 draw_pass_1 = SubResource("QuadMesh_7vrof")
+
+[node name="ExplosionSfx" type="AudioStreamPlayer3D" parent="." unique_id=831371167]
+stream = ExtResource("3_5h7uk")
