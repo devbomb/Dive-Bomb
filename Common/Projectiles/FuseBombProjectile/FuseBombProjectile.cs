@@ -15,6 +15,7 @@ namespace FastDragon
         [Export] public ExplosionProjectile Explosion;
         [Export] public Node3D BombModel;
         [Export] public Decal RadiusDecal;
+        [Export] public AudioStreamPlayer3D HissSfx;
 
         private readonly StateMachine _stateMachine = new();
 
@@ -63,6 +64,7 @@ namespace FastDragon
             {
                 Self.BombModel.Visible = false;
                 Self.BodyShape.Disabled = true;
+                Self.HissSfx.Stop();
             }
 
             public override void OnStateExited()
@@ -80,6 +82,7 @@ namespace FastDragon
             public override void OnStateEntered()
             {
                 Self.Velocity = Vector3.Up * UpwardSpeed;
+                Self.HissSfx.Play();
             }
 
             public override void _PhysicsProcess(double delta)
