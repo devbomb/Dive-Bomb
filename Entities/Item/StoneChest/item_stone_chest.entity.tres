@@ -12,6 +12,9 @@ rotation_offset = Vector3(0, 180, 0)
 scene_file = ExtResource("3_hn61t")
 classname = "item_stone_chest"
 base_classes = Array[Resource]([ExtResource("1_xv113")])
+class_properties = Dictionary[String, Variant]({
+"GemColor": 1
+})
 auto_apply_to_matching_node_properties = true
 meta_properties = Dictionary[String, Variant]({
 "color": Color(0.8, 0.8, 0.8, 1),
