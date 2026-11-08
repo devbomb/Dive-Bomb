@@ -17,6 +17,13 @@ namespace FastDragon
 
         public PlayerState CurrentState => (PlayerState)_stateMachine.CurrentState;
 
+        /// <summary>
+        /// The center point of the player's collision shape, in global space.
+        /// </summary>
+        public Vector3 CenterPoint =>
+            GlobalPosition +
+            Vector3.Up * (BodyCollisionShape.Shape as SphereShape3D).Radius;
+
         [Export] public Node3D Model;
         [Export] public AnimationPlayer Animator;
 

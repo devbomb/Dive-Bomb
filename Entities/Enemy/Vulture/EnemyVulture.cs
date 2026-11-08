@@ -13,7 +13,8 @@ namespace FastDragon
 
         [Export] public GemColor GemColor { get; set; } = GemColor.Red;
         [Export] public float AggroRange = 20;
-        [Export] public double RespawnTime = 5;
+        [Export] public float EarlyDetonateDistance = 10;
+        [Export] public double RespawnTime = 2;
 
         [ExportCategory("Internal")]
         [Export] public CollisionShape3D BodyShape;
@@ -23,9 +24,10 @@ namespace FastDragon
         [Export] public AggroSphere AggroSphere;
         [Export] public AnimationPlayer AnimationPlayer;
         [Export] public FuseBombProjectile Bomb;
+        [Export] public Node3D HomingLaserAnchoredLine3D;
 
 
-        public bool IsDead => _stateMachine.CurrentState is Dead;
+        public bool IsDead => _stateMachine.CurrentState is DeadWaitingToRespawn;
         public bool Invulnerable => IsDead;
 
         private StateMachine _stateMachine = new StateMachine();
@@ -61,7 +63,7 @@ namespace FastDragon
 
         public void OnDamaged()
         {
-            _stateMachine.ChangeState<Dead>();
+            _stateMachine.ChangeState<DeadWaitingForExplosion>();
             EmitSignal(SignalName.Killed);
 
             Bomb.GlobalPosition = GlobalPosition;
@@ -71,7 +73,7 @@ namespace FastDragon
 
         private void OnCrashed()
         {
-            _stateMachine.ChangeState<Dead>();
+            _stateMachine.ChangeState<DeadWaitingToRespawn>();
 
             Bomb.GlobalPosition = GlobalPosition;
             Bomb.ExplodeEarly();
@@ -137,12 +139,15 @@ namespace FastDragon
 
         private class Alerted : State<EnemyVulture>
         {
-            public const double Duration = 0.75;
+            public const double Duration = 1;
             public const float RiseHeight = 1;
+            public const double LaserStrobeFreq = 5;
 
             private double _timer;
             private Vector3 _startPos;
             private Vector3 _endPos;
+
+            private double _laserStrobeTimer;
 
             public override void OnStateEntered()
             {
@@ -153,6 +158,21 @@ namespace FastDragon
                 _startPos = Self.GlobalPosition;
                 _endPos = _startPos + (Vector3.Up * RiseHeight);
                 _timer = 0;
+
+                _laserStrobeTimer = 0;
+                Self.HomingLaserAnchoredLine3D.Visible = true;
+                Self.HomingLaserAnchoredLine3D.Set("end_point", Self._targetPlayer);
+            }
+
+            public override void OnStateExited()
+            {
+                Self.HomingLaserAnchoredLine3D.Visible = false;
+            }
+
+            public override void _Process(double delta)
+            {
+                _laserStrobeTimer += delta * LaserStrobeFreq;
+                Self.HomingLaserAnchoredLine3D.Visible = Mathf.PosMod(_laserStrobeTimer, 1) < 0.6;
             }
 
             public override void _PhysicsProcess(double delta)
@@ -244,39 +264,47 @@ namespace FastDragon
             }
         }
 
-        private class Returning : State<EnemyVulture>
+        private class DeadWaitingForExplosion : State<EnemyVulture>
         {
+            private Player _player;
+
             public override void OnStateEntered()
             {
-                Self.AnimationPlayer.Play("Fly");
+                Self.BodyShape.Disabled = true;
+                Self.Model.Visible = false;
+
+                _player = Self.GetTree().FindNode<Player>();
             }
 
-            public override void _PhysicsProcess(double deltaD)
+            public override void OnStateExited()
             {
-                float delta = (float)deltaD;
+                Self.BodyShape.Disabled = false;
+                Self.Model.Visible = true;
+            }
 
-                Self.GlobalPosition = Self.GlobalPosition.MoveToward(
-                    Self._spawnPoint,
-                    MaxSpeed * delta
-                );
-
-                Vector3 targetRot = Self.GlobalPosition
-                    .DirectionTo(Self._spawnPoint)
-                    .ForwardToEulerAnglesRad();
-
-                Self.GlobalRotation = Self.GlobalRotation.RotateTowardEulerRad(
-                    targetRot,
-                    Mathf.DegToRad(RotSpeedDeg) * delta
-                );
-
-                if (Self.Position.IsEqualApprox(Self._spawnPoint))
+            public override void _PhysicsProcess(double delta)
+            {
+                // Detonate the bomb early if the player gets too far away from
+                // it.  That way, speedrunners don't need to wait around for the
+                // fuse to run out.
+                //
+                // Let's see how long it takes them to figure this out!
+                // ...probably not very long, since this code is open source.
+                float dist = _player.GlobalPosition.DistanceTo(Self.Bomb.GlobalPosition);
+                if (dist >= Self.EarlyDetonateDistance)
                 {
-                    ChangeState<Sleeping>();
+                    Self.Bomb.ExplodeEarly();
+                    ChangeState<DeadWaitingToRespawn>();
+                    return;
                 }
+
+                // Wait to respawn after it explodes.
+                if (Self.Bomb.IsHidden)
+                    ChangeState<DeadWaitingToRespawn>();
             }
         }
 
-        private class Dead : State<EnemyVulture>
+        private class DeadWaitingToRespawn : State<EnemyVulture>
         {
             private double _respawnTimer;
 
@@ -297,6 +325,7 @@ namespace FastDragon
             public override void _PhysicsProcess(double delta)
             {
                 _respawnTimer -= delta;
+
                 if (_respawnTimer <= 0)
                     Self.Reset();
             }
