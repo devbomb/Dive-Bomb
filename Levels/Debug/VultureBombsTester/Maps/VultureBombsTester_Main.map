@@ -396,3 +396,15 @@
 ( 384 32 90.14288799258793 ) ( 384 -33.22450742433905 128 ) ( 384 1.2245074243401177 128 ) Textures/BombableRocks 0 0 0 1 1
 }
 }
+// entity 8
+{
+"classname" "item_stone_chest"
+"origin" "328 40 16"
+"angle" "180"
+}
+// entity 9
+{
+"classname" "item_stone_chest"
+"origin" "344 -616 304"
+"GemColor" "10"
+}

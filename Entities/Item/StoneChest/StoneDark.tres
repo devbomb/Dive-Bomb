@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c7ecebmv1u1yv"]
+
+[resource]
+resource_name = "StoneDark"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.5126477, 0.34731016, 0.20087375, 1)
+roughness = 0.5
