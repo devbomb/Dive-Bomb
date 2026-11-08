@@ -1,0 +1,17 @@
+[gd_resource type="AnimationLibrary" format=3 uid="uid://bbshy4mxaujqa"]
+
+[sub_resource type="Animation" id="Animation_0lyxv"]
+resource_name = "Fly"
+
+[sub_resource type="Animation" id="Animation_0uomi"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_4csuw"]
+resource_name = "RESET"
+
+[resource]
+_data = {
+&"Fly": SubResource("Animation_0lyxv"),
+&"Idle": SubResource("Animation_0uomi"),
+&"RESET": SubResource("Animation_4csuw")
+}
